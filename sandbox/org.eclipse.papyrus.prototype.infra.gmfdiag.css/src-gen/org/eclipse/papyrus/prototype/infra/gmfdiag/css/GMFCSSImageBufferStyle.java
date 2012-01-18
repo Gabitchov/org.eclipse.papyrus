@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSImageBufferStyle extends ImageBufferStyleImpl implements CSSStylableElement, CSSImageBufferStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSImageBufferStyle extends ImageBufferStyleImpl implements CSSS
 	public GMFCSSImageBufferStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.imageBufferStyle = new CSSImageBufferStyleImpl(this);
+		this.imageBufferStyle = new CSSImageBufferStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSImageBufferStyle extends ImageBufferStyleImpl implements CSSS
 	//////////////////////////////////////////
 
 	public java.lang.Boolean getCSSAntiAlias(){
-		return imageBufferStyle.getCSSAntiAlias();
+		if (eIsSet(NotationPackage.eINSTANCE.getImageStyle_AntiAlias())){
+			return super.getAntiAlias();
+		} else {
+			return imageBufferStyle.getCSSAntiAlias();
+		}
 	}
 
 	public java.lang.Boolean getCSSMaintainAspectRatio(){
-		return imageBufferStyle.getCSSMaintainAspectRatio();
+		if (eIsSet(NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio())){
+			return super.getMaintainAspectRatio();
+		} else {
+			return imageBufferStyle.getCSSMaintainAspectRatio();
+		}
+	}
+
+
+	@Override
+	public java.lang.Boolean getAntiAlias(){
+		//return super.getAntiAlias();
+		return getCSSAntiAlias();
+	}
+
+	@Override
+	public java.lang.Boolean getMaintainAspectRatio(){
+		//return super.getMaintainAspectRatio();
+		return getCSSMaintainAspectRatio();
 	}
 
 

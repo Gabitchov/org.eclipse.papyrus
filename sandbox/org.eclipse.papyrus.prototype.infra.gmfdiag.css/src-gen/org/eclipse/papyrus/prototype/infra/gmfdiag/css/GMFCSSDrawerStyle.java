@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSDrawerStyle extends DrawerStyleImpl implements CSSStylableElement, CSSDrawerStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSDrawerStyle extends DrawerStyleImpl implements CSSStylableEle
 	public GMFCSSDrawerStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.drawerStyle = new CSSDrawerStyleImpl(this);
+		this.drawerStyle = new CSSDrawerStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSDrawerStyle extends DrawerStyleImpl implements CSSStylableEle
 	//////////////////////////////////////////
 
 	public boolean isCSSCollapsed(){
-		return drawerStyle.isCSSCollapsed();
+		if (eIsSet(NotationPackage.eINSTANCE.getDrawerStyle_Collapsed())){
+			return super.isCollapsed();
+		} else {
+			return drawerStyle.isCSSCollapsed();
+		}
+	}
+
+
+	@Override
+	public boolean isCollapsed(){
+		//return super.isCollapsed();
+		return isCSSCollapsed();
 	}
 
 

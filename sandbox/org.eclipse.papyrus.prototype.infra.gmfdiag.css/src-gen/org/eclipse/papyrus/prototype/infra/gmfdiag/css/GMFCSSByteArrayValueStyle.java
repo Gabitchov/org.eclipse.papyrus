@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSByteArrayValueStyle extends ByteArrayValueStyleImpl implements CSSStylableElement, CSSByteArrayValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSByteArrayValueStyle extends ByteArrayValueStyleImpl implement
 	public GMFCSSByteArrayValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.byteArrayValueStyle = new CSSByteArrayValueStyleImpl(this);
+		this.byteArrayValueStyle = new CSSByteArrayValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSByteArrayValueStyle extends ByteArrayValueStyleImpl implement
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return byteArrayValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return byteArrayValueStyle.getCSSName();
+		}
 	}
 
 	public byte[] getCSSByteArrayValue(){
-		return byteArrayValueStyle.getCSSByteArrayValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getByteArrayValueStyle_ByteArrayValue())){
+			return super.getByteArrayValue();
+		} else {
+			return byteArrayValueStyle.getCSSByteArrayValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public byte[] getByteArrayValue(){
+		//return super.getByteArrayValue();
+		return getCSSByteArrayValue();
 	}
 
 

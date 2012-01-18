@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSPageStyle extends PageStyleImpl implements CSSStylableElement, CSSPageStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSPageStyle extends PageStyleImpl implements CSSStylableElement
 	public GMFCSSPageStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.pageStyle = new CSSPageStyleImpl(this);
+		this.pageStyle = new CSSPageStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,19 +46,60 @@ public class GMFCSSPageStyle extends PageStyleImpl implements CSSStylableElement
 	//////////////////////////////////////////
 
 	public int getCSSPageX(){
-		return pageStyle.getCSSPageX();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageX())){
+			return super.getPageX();
+		} else {
+			return pageStyle.getCSSPageX();
+		}
 	}
 
 	public int getCSSPageY(){
-		return pageStyle.getCSSPageY();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageY())){
+			return super.getPageY();
+		} else {
+			return pageStyle.getCSSPageY();
+		}
 	}
 
 	public int getCSSPageWidth(){
-		return pageStyle.getCSSPageWidth();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageWidth())){
+			return super.getPageWidth();
+		} else {
+			return pageStyle.getCSSPageWidth();
+		}
 	}
 
 	public int getCSSPageHeight(){
-		return pageStyle.getCSSPageHeight();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageHeight())){
+			return super.getPageHeight();
+		} else {
+			return pageStyle.getCSSPageHeight();
+		}
+	}
+
+
+	@Override
+	public int getPageX(){
+		//return super.getPageX();
+		return getCSSPageX();
+	}
+
+	@Override
+	public int getPageY(){
+		//return super.getPageY();
+		return getCSSPageY();
+	}
+
+	@Override
+	public int getPageWidth(){
+		//return super.getPageWidth();
+		return getCSSPageWidth();
+	}
+
+	@Override
+	public int getPageHeight(){
+		//return super.getPageHeight();
+		return getCSSPageHeight();
 	}
 
 

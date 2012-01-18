@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSCanonicalStyle extends CanonicalStyleImpl implements CSSStylableElement, CSSCanonicalStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSCanonicalStyle extends CanonicalStyleImpl implements CSSStyla
 	public GMFCSSCanonicalStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.canonicalStyle = new CSSCanonicalStyleImpl(this);
+		this.canonicalStyle = new CSSCanonicalStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSCanonicalStyle extends CanonicalStyleImpl implements CSSStyla
 	//////////////////////////////////////////
 
 	public boolean isCSSCanonical(){
-		return canonicalStyle.isCSSCanonical();
+		if (eIsSet(NotationPackage.eINSTANCE.getCanonicalStyle_Canonical())){
+			return super.isCanonical();
+		} else {
+			return canonicalStyle.isCSSCanonical();
+		}
+	}
+
+
+	@Override
+	public boolean isCanonical(){
+		//return super.isCanonical();
+		return isCSSCanonical();
 	}
 
 

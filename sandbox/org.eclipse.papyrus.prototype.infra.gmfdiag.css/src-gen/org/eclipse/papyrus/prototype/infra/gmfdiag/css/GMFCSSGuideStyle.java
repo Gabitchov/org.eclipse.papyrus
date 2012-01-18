@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSGuideStyle extends GuideStyleImpl implements CSSStylableElement, CSSGuideStyle {
 
 	protected CSSEngine engine;
@@ -38,12 +38,14 @@ public class GMFCSSGuideStyle extends GuideStyleImpl implements CSSStylableEleme
 	public GMFCSSGuideStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.guideStyle = new CSSGuideStyleImpl(this);
+		this.guideStyle = new CSSGuideStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
 	//	Forwards accesses to CSS properties	//
 	//////////////////////////////////////////
+
+
 
 
 

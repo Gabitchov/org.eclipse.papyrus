@@ -3,13 +3,22 @@ package org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.*;
 import org.eclipse.gmf.runtime.notation.*;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 
+@SuppressWarnings("restriction")
 public class CSSPageStyleImpl implements CSSPageStyle{
 	
 	private PageStyle pageStyle;
 
-	public CSSPageStyleImpl(PageStyle pageStyle){
-		this.pageStyle = pageStyle; 
+	private CSSEngine engine;
+
+	private CSSStylableElement element;
+
+	public CSSPageStyleImpl(PageStyle pageStyle, CSSStylableElement element, CSSEngine engine){
+		this.pageStyle = pageStyle;
+ 		this.engine = engine;
+		this.element = element;
 	}
 
 	////////////////////////////////////////////////
@@ -17,18 +26,38 @@ public class CSSPageStyleImpl implements CSSPageStyle{
 	////////////////////////////////////////////////
 
 	public int getCSSPageX(){
-		return pageStyle.getPageX();
+		String cssValue = engine.retrieveCSSProperty(element, "pageX", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageX().getDefaultValue(); 
+			return (Integer)defaultValue;
+		}
+		return (Integer)Integer.parseInt(cssValue);
 	}
 
 	public int getCSSPageY(){
-		return pageStyle.getPageY();
+		String cssValue = engine.retrieveCSSProperty(element, "pageY", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageY().getDefaultValue(); 
+			return (Integer)defaultValue;
+		}
+		return (Integer)Integer.parseInt(cssValue);
 	}
 
 	public int getCSSPageWidth(){
-		return pageStyle.getPageWidth();
+		String cssValue = engine.retrieveCSSProperty(element, "pageWidth", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageWidth().getDefaultValue(); 
+			return (Integer)defaultValue;
+		}
+		return (Integer)Integer.parseInt(cssValue);
 	}
 
 	public int getCSSPageHeight(){
-		return pageStyle.getPageHeight();
+		String cssValue = engine.retrieveCSSProperty(element, "pageHeight", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageHeight().getDefaultValue(); 
+			return (Integer)defaultValue;
+		}
+		return (Integer)Integer.parseInt(cssValue);
 	}
 }

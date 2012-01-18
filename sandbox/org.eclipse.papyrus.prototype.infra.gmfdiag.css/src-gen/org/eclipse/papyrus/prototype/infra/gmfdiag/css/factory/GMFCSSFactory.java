@@ -345,7 +345,7 @@ public class GMFCSSFactory extends NotationFactoryImpl {
 		}
 	
 
-	public CSSEngine getCSSEngine(){
-		return new GMFCSSEngineImpl();
+	public CSSEngine getCSSEngine() {
+		return GMFCSSEngineImpl.instance;
 	}
 }

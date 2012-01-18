@@ -3,13 +3,22 @@ package org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.*;
 import org.eclipse.gmf.runtime.notation.*;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 
+@SuppressWarnings("restriction")
 public class CSSBooleanListValueStyleImpl implements CSSBooleanListValueStyle{
 	
 	private BooleanListValueStyle booleanListValueStyle;
 
-	public CSSBooleanListValueStyleImpl(BooleanListValueStyle booleanListValueStyle){
-		this.booleanListValueStyle = booleanListValueStyle; 
+	private CSSEngine engine;
+
+	private CSSStylableElement element;
+
+	public CSSBooleanListValueStyleImpl(BooleanListValueStyle booleanListValueStyle, CSSStylableElement element, CSSEngine engine){
+		this.booleanListValueStyle = booleanListValueStyle;
+ 		this.engine = engine;
+		this.element = element;
 	}
 
 	////////////////////////////////////////////////
@@ -17,10 +26,20 @@ public class CSSBooleanListValueStyleImpl implements CSSBooleanListValueStyle{
 	////////////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return booleanListValueStyle.getName();
+		String cssValue = engine.retrieveCSSProperty(element, "name", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getNamedStyle_Name().getDefaultValue(); 
+			return (String)defaultValue;
+		}
+		return cssValue;
 	}
 
 	public EList getCSSBooleanListValue(){
-		return booleanListValueStyle.getBooleanListValue();
+		String cssValue = engine.retrieveCSSProperty(element, "booleanListValue", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getBooleanListValueStyle_BooleanListValue().getDefaultValue(); 
+			return (EList)defaultValue;
+		}
+		return null;
 	}
 }

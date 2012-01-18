@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSRoundedCornersStyle extends RoundedCornersStyleImpl implements CSSStylableElement, CSSRoundedCornersStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSRoundedCornersStyle extends RoundedCornersStyleImpl implement
 	public GMFCSSRoundedCornersStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.roundedCornersStyle = new CSSRoundedCornersStyleImpl(this);
+		this.roundedCornersStyle = new CSSRoundedCornersStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSRoundedCornersStyle extends RoundedCornersStyleImpl implement
 	//////////////////////////////////////////
 
 	public int getCSSRoundedBendpointsRadius(){
-		return roundedCornersStyle.getCSSRoundedBendpointsRadius();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius())){
+			return super.getRoundedBendpointsRadius();
+		} else {
+			return roundedCornersStyle.getCSSRoundedBendpointsRadius();
+		}
+	}
+
+
+	@Override
+	public int getRoundedBendpointsRadius(){
+		//return super.getRoundedBendpointsRadius();
+		return getCSSRoundedBendpointsRadius();
 	}
 
 

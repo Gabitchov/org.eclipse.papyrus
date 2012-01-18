@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSPropertiesSetStyle extends PropertiesSetStyleImpl implements CSSStylableElement, CSSPropertiesSetStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSPropertiesSetStyle extends PropertiesSetStyleImpl implements 
 	public GMFCSSPropertiesSetStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.propertiesSetStyle = new CSSPropertiesSetStyleImpl(this);
+		this.propertiesSetStyle = new CSSPropertiesSetStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSPropertiesSetStyle extends PropertiesSetStyleImpl implements 
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return propertiesSetStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return propertiesSetStyle.getCSSName();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
 	}
 
 

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSStringValueStyle extends StringValueStyleImpl implements CSSStylableElement, CSSStringValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSStringValueStyle extends StringValueStyleImpl implements CSSS
 	public GMFCSSStringValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.stringValueStyle = new CSSStringValueStyleImpl(this);
+		this.stringValueStyle = new CSSStringValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSStringValueStyle extends StringValueStyleImpl implements CSSS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return stringValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return stringValueStyle.getCSSName();
+		}
 	}
 
 	public java.lang.String getCSSStringValue(){
-		return stringValueStyle.getCSSStringValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getStringValueStyle_StringValue())){
+			return super.getStringValue();
+		} else {
+			return stringValueStyle.getCSSStringValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public java.lang.String getStringValue(){
+		//return super.getStringValue();
+		return getCSSStringValue();
 	}
 
 

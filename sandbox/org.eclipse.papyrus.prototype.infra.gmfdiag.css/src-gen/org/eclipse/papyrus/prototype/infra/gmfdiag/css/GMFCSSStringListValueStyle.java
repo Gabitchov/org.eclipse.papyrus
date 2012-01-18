@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSStringListValueStyle extends StringListValueStyleImpl implements CSSStylableElement, CSSStringListValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSStringListValueStyle extends StringListValueStyleImpl impleme
 	public GMFCSSStringListValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.stringListValueStyle = new CSSStringListValueStyleImpl(this);
+		this.stringListValueStyle = new CSSStringListValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSStringListValueStyle extends StringListValueStyleImpl impleme
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return stringListValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return stringListValueStyle.getCSSName();
+		}
 	}
 
 	public EList getCSSStringListValue(){
-		return stringListValueStyle.getCSSStringListValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getStringListValueStyle_StringListValue())){
+			return super.getStringListValue();
+		} else {
+			return stringListValueStyle.getCSSStringListValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public EList getStringListValue(){
+		//return super.getStringListValue();
+		return getCSSStringListValue();
 	}
 
 

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSRoutingStyle extends RoutingStyleImpl implements CSSStylableElement, CSSRoutingStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSRoutingStyle extends RoutingStyleImpl implements CSSStylableE
 	public GMFCSSRoutingStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.routingStyle = new CSSRoutingStyleImpl(this);
+		this.routingStyle = new CSSRoutingStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,35 +46,116 @@ public class GMFCSSRoutingStyle extends RoutingStyleImpl implements CSSStylableE
 	//////////////////////////////////////////
 
 	public int getCSSRoundedBendpointsRadius(){
-		return routingStyle.getCSSRoundedBendpointsRadius();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius())){
+			return super.getRoundedBendpointsRadius();
+		} else {
+			return routingStyle.getCSSRoundedBendpointsRadius();
+		}
 	}
 
 	public Routing getCSSRouting(){
-		return routingStyle.getCSSRouting();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_Routing())){
+			return super.getRouting();
+		} else {
+			return routingStyle.getCSSRouting();
+		}
 	}
 
 	public Smoothness getCSSSmoothness(){
-		return routingStyle.getCSSSmoothness();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_Smoothness())){
+			return super.getSmoothness();
+		} else {
+			return routingStyle.getCSSSmoothness();
+		}
 	}
 
 	public boolean isCSSAvoidObstructions(){
-		return routingStyle.isCSSAvoidObstructions();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions())){
+			return super.isAvoidObstructions();
+		} else {
+			return routingStyle.isCSSAvoidObstructions();
+		}
 	}
 
 	public boolean isCSSClosestDistance(){
-		return routingStyle.isCSSClosestDistance();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance())){
+			return super.isClosestDistance();
+		} else {
+			return routingStyle.isCSSClosestDistance();
+		}
 	}
 
 	public JumpLinkStatus getCSSJumpLinkStatus(){
-		return routingStyle.getCSSJumpLinkStatus();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus())){
+			return super.getJumpLinkStatus();
+		} else {
+			return routingStyle.getCSSJumpLinkStatus();
+		}
 	}
 
 	public JumpLinkType getCSSJumpLinkType(){
-		return routingStyle.getCSSJumpLinkType();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType())){
+			return super.getJumpLinkType();
+		} else {
+			return routingStyle.getCSSJumpLinkType();
+		}
 	}
 
 	public boolean isCSSJumpLinksReverse(){
-		return routingStyle.isCSSJumpLinksReverse();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse())){
+			return super.isJumpLinksReverse();
+		} else {
+			return routingStyle.isCSSJumpLinksReverse();
+		}
+	}
+
+
+	@Override
+	public int getRoundedBendpointsRadius(){
+		//return super.getRoundedBendpointsRadius();
+		return getCSSRoundedBendpointsRadius();
+	}
+
+	@Override
+	public Routing getRouting(){
+		//return super.getRouting();
+		return getCSSRouting();
+	}
+
+	@Override
+	public Smoothness getSmoothness(){
+		//return super.getSmoothness();
+		return getCSSSmoothness();
+	}
+
+	@Override
+	public boolean isAvoidObstructions(){
+		//return super.isAvoidObstructions();
+		return isCSSAvoidObstructions();
+	}
+
+	@Override
+	public boolean isClosestDistance(){
+		//return super.isClosestDistance();
+		return isCSSClosestDistance();
+	}
+
+	@Override
+	public JumpLinkStatus getJumpLinkStatus(){
+		//return super.getJumpLinkStatus();
+		return getCSSJumpLinkStatus();
+	}
+
+	@Override
+	public JumpLinkType getJumpLinkType(){
+		//return super.getJumpLinkType();
+		return getCSSJumpLinkType();
+	}
+
+	@Override
+	public boolean isJumpLinksReverse(){
+		//return super.isJumpLinksReverse();
+		return isCSSJumpLinksReverse();
 	}
 
 

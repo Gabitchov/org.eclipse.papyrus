@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSLineStyle extends LineStyleImpl implements CSSStylableElement, CSSLineStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSLineStyle extends LineStyleImpl implements CSSStylableElement
 	public GMFCSSLineStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.lineStyle = new CSSLineStyleImpl(this);
+		this.lineStyle = new CSSLineStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSLineStyle extends LineStyleImpl implements CSSStylableElement
 	//////////////////////////////////////////
 
 	public int getCSSLineColor(){
-		return lineStyle.getCSSLineColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineStyle_LineColor())){
+			return super.getLineColor();
+		} else {
+			return lineStyle.getCSSLineColor();
+		}
 	}
 
 	public int getCSSLineWidth(){
-		return lineStyle.getCSSLineWidth();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineStyle_LineWidth())){
+			return super.getLineWidth();
+		} else {
+			return lineStyle.getCSSLineWidth();
+		}
+	}
+
+
+	@Override
+	public int getLineColor(){
+		//return super.getLineColor();
+		return getCSSLineColor();
+	}
+
+	@Override
+	public int getLineWidth(){
+		//return super.getLineWidth();
+		return getCSSLineWidth();
 	}
 
 

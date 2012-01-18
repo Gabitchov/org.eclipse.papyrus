@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSIntValueStyle extends IntValueStyleImpl implements CSSStylableElement, CSSIntValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSIntValueStyle extends IntValueStyleImpl implements CSSStylabl
 	public GMFCSSIntValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.intValueStyle = new CSSIntValueStyleImpl(this);
+		this.intValueStyle = new CSSIntValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSIntValueStyle extends IntValueStyleImpl implements CSSStylabl
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return intValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return intValueStyle.getCSSName();
+		}
 	}
 
 	public int getCSSIntValue(){
-		return intValueStyle.getCSSIntValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getIntValueStyle_IntValue())){
+			return super.getIntValue();
+		} else {
+			return intValueStyle.getCSSIntValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public int getIntValue(){
+		//return super.getIntValue();
+		return getCSSIntValue();
 	}
 
 

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSFillStyle extends FillStyleImpl implements CSSStylableElement, CSSFillStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSFillStyle extends FillStyleImpl implements CSSStylableElement
 	public GMFCSSFillStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.fillStyle = new CSSFillStyleImpl(this);
+		this.fillStyle = new CSSFillStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,15 +46,46 @@ public class GMFCSSFillStyle extends FillStyleImpl implements CSSStylableElement
 	//////////////////////////////////////////
 
 	public int getCSSFillColor(){
-		return fillStyle.getCSSFillColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getFillStyle_FillColor())){
+			return super.getFillColor();
+		} else {
+			return fillStyle.getCSSFillColor();
+		}
 	}
 
 	public int getCSSTransparency(){
-		return fillStyle.getCSSTransparency();
+		if (eIsSet(NotationPackage.eINSTANCE.getFillStyle_Transparency())){
+			return super.getTransparency();
+		} else {
+			return fillStyle.getCSSTransparency();
+		}
 	}
 
 	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient(){
-		return fillStyle.getCSSGradient();
+		if (eIsSet(NotationPackage.eINSTANCE.getFillStyle_Gradient())){
+			return super.getGradient();
+		} else {
+			return fillStyle.getCSSGradient();
+		}
+	}
+
+
+	@Override
+	public int getFillColor(){
+		//return super.getFillColor();
+		return getCSSFillColor();
+	}
+
+	@Override
+	public int getTransparency(){
+		//return super.getTransparency();
+		return getCSSTransparency();
+	}
+
+	@Override
+	public org.eclipse.gmf.runtime.notation.datatype.GradientData getGradient(){
+		//return super.getGradient();
+		return getCSSGradient();
 	}
 
 

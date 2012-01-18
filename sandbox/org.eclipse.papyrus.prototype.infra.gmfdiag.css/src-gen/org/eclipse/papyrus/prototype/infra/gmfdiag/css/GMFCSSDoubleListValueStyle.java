@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSDoubleListValueStyle extends DoubleListValueStyleImpl implements CSSStylableElement, CSSDoubleListValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSDoubleListValueStyle extends DoubleListValueStyleImpl impleme
 	public GMFCSSDoubleListValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.doubleListValueStyle = new CSSDoubleListValueStyleImpl(this);
+		this.doubleListValueStyle = new CSSDoubleListValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSDoubleListValueStyle extends DoubleListValueStyleImpl impleme
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return doubleListValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return doubleListValueStyle.getCSSName();
+		}
 	}
 
 	public EList getCSSDoubleListValue(){
-		return doubleListValueStyle.getCSSDoubleListValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getDoubleListValueStyle_DoubleListValue())){
+			return super.getDoubleListValue();
+		} else {
+			return doubleListValueStyle.getCSSDoubleListValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public EList getDoubleListValue(){
+		//return super.getDoubleListValue();
+		return getCSSDoubleListValue();
 	}
 
 

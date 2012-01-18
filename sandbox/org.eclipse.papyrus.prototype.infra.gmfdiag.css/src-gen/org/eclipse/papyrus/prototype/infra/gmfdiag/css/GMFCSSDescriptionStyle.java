@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSDescriptionStyle extends DescriptionStyleImpl implements CSSStylableElement, CSSDescriptionStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSDescriptionStyle extends DescriptionStyleImpl implements CSSS
 	public GMFCSSDescriptionStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.descriptionStyle = new CSSDescriptionStyleImpl(this);
+		this.descriptionStyle = new CSSDescriptionStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSDescriptionStyle extends DescriptionStyleImpl implements CSSS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSDescription(){
-		return descriptionStyle.getCSSDescription();
+		if (eIsSet(NotationPackage.eINSTANCE.getDescriptionStyle_Description())){
+			return super.getDescription();
+		} else {
+			return descriptionStyle.getCSSDescription();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getDescription(){
+		//return super.getDescription();
+		return getCSSDescription();
 	}
 
 

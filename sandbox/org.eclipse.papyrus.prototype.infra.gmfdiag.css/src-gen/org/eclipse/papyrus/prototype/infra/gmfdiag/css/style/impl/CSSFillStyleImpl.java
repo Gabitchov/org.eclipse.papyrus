@@ -3,13 +3,22 @@ package org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.*;
 import org.eclipse.gmf.runtime.notation.*;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 
+@SuppressWarnings("restriction")
 public class CSSFillStyleImpl implements CSSFillStyle{
 	
 	private FillStyle fillStyle;
 
-	public CSSFillStyleImpl(FillStyle fillStyle){
-		this.fillStyle = fillStyle; 
+	private CSSEngine engine;
+
+	private CSSStylableElement element;
+
+	public CSSFillStyleImpl(FillStyle fillStyle, CSSStylableElement element, CSSEngine engine){
+		this.fillStyle = fillStyle;
+ 		this.engine = engine;
+		this.element = element;
 	}
 
 	////////////////////////////////////////////////
@@ -17,14 +26,29 @@ public class CSSFillStyleImpl implements CSSFillStyle{
 	////////////////////////////////////////////////
 
 	public int getCSSFillColor(){
-		return fillStyle.getFillColor();
+		String cssValue = engine.retrieveCSSProperty(element, "fillColor", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_FillColor().getDefaultValue(); 
+			return (Integer)defaultValue;
+		}
+		return (Integer)Integer.parseInt(cssValue);
 	}
 
 	public int getCSSTransparency(){
-		return fillStyle.getTransparency();
+		String cssValue = engine.retrieveCSSProperty(element, "transparency", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_Transparency().getDefaultValue(); 
+			return (Integer)defaultValue;
+		}
+		return (Integer)Integer.parseInt(cssValue);
 	}
 
 	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient(){
-		return fillStyle.getGradient();
+		String cssValue = engine.retrieveCSSProperty(element, "gradient", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_Gradient().getDefaultValue(); 
+			return (org.eclipse.gmf.runtime.notation.datatype.GradientData)defaultValue;
+		}
+		return null;
 	}
 }

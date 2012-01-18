@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSDoubleValueStyle extends DoubleValueStyleImpl implements CSSStylableElement, CSSDoubleValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSDoubleValueStyle extends DoubleValueStyleImpl implements CSSS
 	public GMFCSSDoubleValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.doubleValueStyle = new CSSDoubleValueStyleImpl(this);
+		this.doubleValueStyle = new CSSDoubleValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSDoubleValueStyle extends DoubleValueStyleImpl implements CSSS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return doubleValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return doubleValueStyle.getCSSName();
+		}
 	}
 
 	public double getCSSDoubleValue(){
-		return doubleValueStyle.getCSSDoubleValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getDoubleValueStyle_DoubleValue())){
+			return super.getDoubleValue();
+		} else {
+			return doubleValueStyle.getCSSDoubleValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public double getDoubleValue(){
+		//return super.getDoubleValue();
+		return getCSSDoubleValue();
 	}
 
 

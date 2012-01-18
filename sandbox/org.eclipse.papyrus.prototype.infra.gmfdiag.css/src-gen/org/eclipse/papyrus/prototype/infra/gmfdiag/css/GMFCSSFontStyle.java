@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSFontStyle extends FontStyleImpl implements CSSStylableElement, CSSFontStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSFontStyle extends FontStyleImpl implements CSSStylableElement
 	public GMFCSSFontStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.fontStyle = new CSSFontStyleImpl(this);
+		this.fontStyle = new CSSFontStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,31 +46,102 @@ public class GMFCSSFontStyle extends FontStyleImpl implements CSSStylableElement
 	//////////////////////////////////////////
 
 	public int getCSSFontColor(){
-		return fontStyle.getCSSFontColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_FontColor())){
+			return super.getFontColor();
+		} else {
+			return fontStyle.getCSSFontColor();
+		}
 	}
 
 	public java.lang.String getCSSFontName(){
-		return fontStyle.getCSSFontName();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_FontName())){
+			return super.getFontName();
+		} else {
+			return fontStyle.getCSSFontName();
+		}
 	}
 
 	public int getCSSFontHeight(){
-		return fontStyle.getCSSFontHeight();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_FontHeight())){
+			return super.getFontHeight();
+		} else {
+			return fontStyle.getCSSFontHeight();
+		}
 	}
 
 	public boolean isCSSBold(){
-		return fontStyle.isCSSBold();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_Bold())){
+			return super.isBold();
+		} else {
+			return fontStyle.isCSSBold();
+		}
 	}
 
 	public boolean isCSSItalic(){
-		return fontStyle.isCSSItalic();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_Italic())){
+			return super.isItalic();
+		} else {
+			return fontStyle.isCSSItalic();
+		}
 	}
 
 	public boolean isCSSUnderline(){
-		return fontStyle.isCSSUnderline();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_Underline())){
+			return super.isUnderline();
+		} else {
+			return fontStyle.isCSSUnderline();
+		}
 	}
 
 	public boolean isCSSStrikeThrough(){
-		return fontStyle.isCSSStrikeThrough();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough())){
+			return super.isStrikeThrough();
+		} else {
+			return fontStyle.isCSSStrikeThrough();
+		}
+	}
+
+
+	@Override
+	public int getFontColor(){
+		//return super.getFontColor();
+		return getCSSFontColor();
+	}
+
+	@Override
+	public java.lang.String getFontName(){
+		//return super.getFontName();
+		return getCSSFontName();
+	}
+
+	@Override
+	public int getFontHeight(){
+		//return super.getFontHeight();
+		return getCSSFontHeight();
+	}
+
+	@Override
+	public boolean isBold(){
+		//return super.isBold();
+		return isCSSBold();
+	}
+
+	@Override
+	public boolean isItalic(){
+		//return super.isItalic();
+		return isCSSItalic();
+	}
+
+	@Override
+	public boolean isUnderline(){
+		//return super.isUnderline();
+		return isCSSUnderline();
+	}
+
+	@Override
+	public boolean isStrikeThrough(){
+		//return super.isStrikeThrough();
+		return isCSSStrikeThrough();
 	}
 
 

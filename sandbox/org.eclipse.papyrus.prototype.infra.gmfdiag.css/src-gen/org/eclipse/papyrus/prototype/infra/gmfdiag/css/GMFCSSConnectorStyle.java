@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSConnectorStyle extends ConnectorStyleImpl implements CSSStylableElement, CSSConnectorStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSConnectorStyle extends ConnectorStyleImpl implements CSSStyla
 	public GMFCSSConnectorStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.connectorStyle = new CSSConnectorStyleImpl(this);
+		this.connectorStyle = new CSSConnectorStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,43 +46,144 @@ public class GMFCSSConnectorStyle extends ConnectorStyleImpl implements CSSStyla
 	//////////////////////////////////////////
 
 	public int getCSSRoundedBendpointsRadius(){
-		return connectorStyle.getCSSRoundedBendpointsRadius();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius())){
+			return super.getRoundedBendpointsRadius();
+		} else {
+			return connectorStyle.getCSSRoundedBendpointsRadius();
+		}
 	}
 
 	public Routing getCSSRouting(){
-		return connectorStyle.getCSSRouting();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_Routing())){
+			return super.getRouting();
+		} else {
+			return connectorStyle.getCSSRouting();
+		}
 	}
 
 	public Smoothness getCSSSmoothness(){
-		return connectorStyle.getCSSSmoothness();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_Smoothness())){
+			return super.getSmoothness();
+		} else {
+			return connectorStyle.getCSSSmoothness();
+		}
 	}
 
 	public boolean isCSSAvoidObstructions(){
-		return connectorStyle.isCSSAvoidObstructions();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions())){
+			return super.isAvoidObstructions();
+		} else {
+			return connectorStyle.isCSSAvoidObstructions();
+		}
 	}
 
 	public boolean isCSSClosestDistance(){
-		return connectorStyle.isCSSClosestDistance();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance())){
+			return super.isClosestDistance();
+		} else {
+			return connectorStyle.isCSSClosestDistance();
+		}
 	}
 
 	public JumpLinkStatus getCSSJumpLinkStatus(){
-		return connectorStyle.getCSSJumpLinkStatus();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus())){
+			return super.getJumpLinkStatus();
+		} else {
+			return connectorStyle.getCSSJumpLinkStatus();
+		}
 	}
 
 	public JumpLinkType getCSSJumpLinkType(){
-		return connectorStyle.getCSSJumpLinkType();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType())){
+			return super.getJumpLinkType();
+		} else {
+			return connectorStyle.getCSSJumpLinkType();
+		}
 	}
 
 	public boolean isCSSJumpLinksReverse(){
-		return connectorStyle.isCSSJumpLinksReverse();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse())){
+			return super.isJumpLinksReverse();
+		} else {
+			return connectorStyle.isCSSJumpLinksReverse();
+		}
 	}
 
 	public int getCSSLineColor(){
-		return connectorStyle.getCSSLineColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineStyle_LineColor())){
+			return super.getLineColor();
+		} else {
+			return connectorStyle.getCSSLineColor();
+		}
 	}
 
 	public int getCSSLineWidth(){
-		return connectorStyle.getCSSLineWidth();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineStyle_LineWidth())){
+			return super.getLineWidth();
+		} else {
+			return connectorStyle.getCSSLineWidth();
+		}
+	}
+
+
+	@Override
+	public int getRoundedBendpointsRadius(){
+		//return super.getRoundedBendpointsRadius();
+		return getCSSRoundedBendpointsRadius();
+	}
+
+	@Override
+	public Routing getRouting(){
+		//return super.getRouting();
+		return getCSSRouting();
+	}
+
+	@Override
+	public Smoothness getSmoothness(){
+		//return super.getSmoothness();
+		return getCSSSmoothness();
+	}
+
+	@Override
+	public boolean isAvoidObstructions(){
+		//return super.isAvoidObstructions();
+		return isCSSAvoidObstructions();
+	}
+
+	@Override
+	public boolean isClosestDistance(){
+		//return super.isClosestDistance();
+		return isCSSClosestDistance();
+	}
+
+	@Override
+	public JumpLinkStatus getJumpLinkStatus(){
+		//return super.getJumpLinkStatus();
+		return getCSSJumpLinkStatus();
+	}
+
+	@Override
+	public JumpLinkType getJumpLinkType(){
+		//return super.getJumpLinkType();
+		return getCSSJumpLinkType();
+	}
+
+	@Override
+	public boolean isJumpLinksReverse(){
+		//return super.isJumpLinksReverse();
+		return isCSSJumpLinksReverse();
+	}
+
+	@Override
+	public int getLineColor(){
+		//return super.getLineColor();
+		return getCSSLineColor();
+	}
+
+	@Override
+	public int getLineWidth(){
+		//return super.getLineWidth();
+		return getCSSLineWidth();
 	}
 
 

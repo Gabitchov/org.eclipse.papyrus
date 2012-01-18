@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSSortingStyle extends SortingStyleImpl implements CSSStylableElement, CSSSortingStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSSortingStyle extends SortingStyleImpl implements CSSStylableE
 	public GMFCSSSortingStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.sortingStyle = new CSSSortingStyleImpl(this);
+		this.sortingStyle = new CSSSortingStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSSortingStyle extends SortingStyleImpl implements CSSStylableE
 	//////////////////////////////////////////
 
 	public Sorting getCSSSorting(){
-		return sortingStyle.getCSSSorting();
+		if (eIsSet(NotationPackage.eINSTANCE.getSortingStyle_Sorting())){
+			return super.getSorting();
+		} else {
+			return sortingStyle.getCSSSorting();
+		}
 	}
 
 	public java.util.Map getCSSSortingKeys(){
-		return sortingStyle.getCSSSortingKeys();
+		if (eIsSet(NotationPackage.eINSTANCE.getSortingStyle_SortingKeys())){
+			return super.getSortingKeys();
+		} else {
+			return sortingStyle.getCSSSortingKeys();
+		}
+	}
+
+
+	@Override
+	public Sorting getSorting(){
+		//return super.getSorting();
+		return getCSSSorting();
+	}
+
+	@Override
+	public java.util.Map getSortingKeys(){
+		//return super.getSortingKeys();
+		return getCSSSortingKeys();
 	}
 
 

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSDiagramLinkStyle extends DiagramLinkStyleImpl implements CSSStylableElement, CSSDiagramLinkStyle {
 
 	protected CSSEngine engine;
@@ -38,12 +38,14 @@ public class GMFCSSDiagramLinkStyle extends DiagramLinkStyleImpl implements CSSS
 	public GMFCSSDiagramLinkStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.diagramLinkStyle = new CSSDiagramLinkStyleImpl(this);
+		this.diagramLinkStyle = new CSSDiagramLinkStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
 	//	Forwards accesses to CSS properties	//
 	//////////////////////////////////////////
+
+
 
 
 

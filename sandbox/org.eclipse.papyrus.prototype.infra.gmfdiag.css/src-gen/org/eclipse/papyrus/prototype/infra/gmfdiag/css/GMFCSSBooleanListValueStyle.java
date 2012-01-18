@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSBooleanListValueStyle extends BooleanListValueStyleImpl implements CSSStylableElement, CSSBooleanListValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSBooleanListValueStyle extends BooleanListValueStyleImpl imple
 	public GMFCSSBooleanListValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.booleanListValueStyle = new CSSBooleanListValueStyleImpl(this);
+		this.booleanListValueStyle = new CSSBooleanListValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSBooleanListValueStyle extends BooleanListValueStyleImpl imple
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return booleanListValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return booleanListValueStyle.getCSSName();
+		}
 	}
 
 	public EList getCSSBooleanListValue(){
-		return booleanListValueStyle.getCSSBooleanListValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getBooleanListValueStyle_BooleanListValue())){
+			return super.getBooleanListValue();
+		} else {
+			return booleanListValueStyle.getCSSBooleanListValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public EList getBooleanListValue(){
+		//return super.getBooleanListValue();
+		return getCSSBooleanListValue();
 	}
 
 

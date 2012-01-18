@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSStandardDiagram extends StandardDiagramImpl implements CSSStylableElement, CSSDiagramStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSStandardDiagram extends StandardDiagramImpl implements CSSSty
 	public GMFCSSStandardDiagram(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.diagramStyle = new CSSDiagramStyleImpl(this);
+		this.diagramStyle = new CSSDiagramStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,23 +46,74 @@ public class GMFCSSStandardDiagram extends StandardDiagramImpl implements CSSSty
 	//////////////////////////////////////////
 
 	public int getCSSPageX(){
-		return diagramStyle.getCSSPageX();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageX())){
+			return super.getPageX();
+		} else {
+			return diagramStyle.getCSSPageX();
+		}
 	}
 
 	public int getCSSPageY(){
-		return diagramStyle.getCSSPageY();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageY())){
+			return super.getPageY();
+		} else {
+			return diagramStyle.getCSSPageY();
+		}
 	}
 
 	public int getCSSPageWidth(){
-		return diagramStyle.getCSSPageWidth();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageWidth())){
+			return super.getPageWidth();
+		} else {
+			return diagramStyle.getCSSPageWidth();
+		}
 	}
 
 	public int getCSSPageHeight(){
-		return diagramStyle.getCSSPageHeight();
+		if (eIsSet(NotationPackage.eINSTANCE.getPageStyle_PageHeight())){
+			return super.getPageHeight();
+		} else {
+			return diagramStyle.getCSSPageHeight();
+		}
 	}
 
 	public java.lang.String getCSSDescription(){
-		return diagramStyle.getCSSDescription();
+		if (eIsSet(NotationPackage.eINSTANCE.getDescriptionStyle_Description())){
+			return super.getDescription();
+		} else {
+			return diagramStyle.getCSSDescription();
+		}
+	}
+
+
+	@Override
+	public int getPageX(){
+		//return super.getPageX();
+		return getCSSPageX();
+	}
+
+	@Override
+	public int getPageY(){
+		//return super.getPageY();
+		return getCSSPageY();
+	}
+
+	@Override
+	public int getPageWidth(){
+		//return super.getPageWidth();
+		return getCSSPageWidth();
+	}
+
+	@Override
+	public int getPageHeight(){
+		//return super.getPageHeight();
+		return getCSSPageHeight();
+	}
+
+	@Override
+	public java.lang.String getDescription(){
+		//return super.getDescription();
+		return getCSSDescription();
 	}
 
 

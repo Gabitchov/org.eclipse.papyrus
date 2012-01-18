@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSHintedDiagramLinkStyle extends HintedDiagramLinkStyleImpl implements CSSStylableElement, CSSHintedDiagramLinkStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSHintedDiagramLinkStyle extends HintedDiagramLinkStyleImpl imp
 	public GMFCSSHintedDiagramLinkStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.hintedDiagramLinkStyle = new CSSHintedDiagramLinkStyleImpl(this);
+		this.hintedDiagramLinkStyle = new CSSHintedDiagramLinkStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSHintedDiagramLinkStyle extends HintedDiagramLinkStyleImpl imp
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSHint(){
-		return hintedDiagramLinkStyle.getCSSHint();
+		if (eIsSet(NotationPackage.eINSTANCE.getHintedDiagramLinkStyle_Hint())){
+			return super.getHint();
+		} else {
+			return hintedDiagramLinkStyle.getCSSHint();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getHint(){
+		//return super.getHint();
+		return getCSSHint();
 	}
 
 

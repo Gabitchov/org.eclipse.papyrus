@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSLineTypeStyle extends LineTypeStyleImpl implements CSSStylableElement, CSSLineTypeStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSLineTypeStyle extends LineTypeStyleImpl implements CSSStylabl
 	public GMFCSSLineTypeStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.lineTypeStyle = new CSSLineTypeStyleImpl(this);
+		this.lineTypeStyle = new CSSLineTypeStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSLineTypeStyle extends LineTypeStyleImpl implements CSSStylabl
 	//////////////////////////////////////////
 
 	public LineType getCSSLineType(){
-		return lineTypeStyle.getCSSLineType();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineTypeStyle_LineType())){
+			return super.getLineType();
+		} else {
+			return lineTypeStyle.getCSSLineType();
+		}
+	}
+
+
+	@Override
+	public LineType getLineType(){
+		//return super.getLineType();
+		return getCSSLineType();
 	}
 
 

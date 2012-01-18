@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSBooleanValueStyle extends BooleanValueStyleImpl implements CSSStylableElement, CSSBooleanValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSBooleanValueStyle extends BooleanValueStyleImpl implements CS
 	public GMFCSSBooleanValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.booleanValueStyle = new CSSBooleanValueStyleImpl(this);
+		this.booleanValueStyle = new CSSBooleanValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSBooleanValueStyle extends BooleanValueStyleImpl implements CS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return booleanValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return booleanValueStyle.getCSSName();
+		}
 	}
 
 	public boolean isCSSBooleanValue(){
-		return booleanValueStyle.isCSSBooleanValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue())){
+			return super.isBooleanValue();
+		} else {
+			return booleanValueStyle.isCSSBooleanValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public boolean isBooleanValue(){
+		//return super.isBooleanValue();
+		return isCSSBooleanValue();
 	}
 
 

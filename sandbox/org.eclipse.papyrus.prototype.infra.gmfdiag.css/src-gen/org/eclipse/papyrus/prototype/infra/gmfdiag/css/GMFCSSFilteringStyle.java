@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSFilteringStyle extends FilteringStyleImpl implements CSSStylableElement, CSSFilteringStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSFilteringStyle extends FilteringStyleImpl implements CSSStyla
 	public GMFCSSFilteringStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.filteringStyle = new CSSFilteringStyleImpl(this);
+		this.filteringStyle = new CSSFilteringStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSFilteringStyle extends FilteringStyleImpl implements CSSStyla
 	//////////////////////////////////////////
 
 	public Filtering getCSSFiltering(){
-		return filteringStyle.getCSSFiltering();
+		if (eIsSet(NotationPackage.eINSTANCE.getFilteringStyle_Filtering())){
+			return super.getFiltering();
+		} else {
+			return filteringStyle.getCSSFiltering();
+		}
 	}
 
 	public java.util.List getCSSFilteringKeys(){
-		return filteringStyle.getCSSFilteringKeys();
+		if (eIsSet(NotationPackage.eINSTANCE.getFilteringStyle_FilteringKeys())){
+			return super.getFilteringKeys();
+		} else {
+			return filteringStyle.getCSSFilteringKeys();
+		}
+	}
+
+
+	@Override
+	public Filtering getFiltering(){
+		//return super.getFiltering();
+		return getCSSFiltering();
+	}
+
+	@Override
+	public java.util.List getFilteringKeys(){
+		//return super.getFilteringKeys();
+		return getCSSFilteringKeys();
 	}
 
 

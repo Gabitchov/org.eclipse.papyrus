@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSArrowStyle extends ArrowStyleImpl implements CSSStylableElement, CSSArrowStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSArrowStyle extends ArrowStyleImpl implements CSSStylableEleme
 	public GMFCSSArrowStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.arrowStyle = new CSSArrowStyleImpl(this);
+		this.arrowStyle = new CSSArrowStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSArrowStyle extends ArrowStyleImpl implements CSSStylableEleme
 	//////////////////////////////////////////
 
 	public ArrowType getCSSArrowSource(){
-		return arrowStyle.getCSSArrowSource();
+		if (eIsSet(NotationPackage.eINSTANCE.getArrowStyle_ArrowSource())){
+			return super.getArrowSource();
+		} else {
+			return arrowStyle.getCSSArrowSource();
+		}
 	}
 
 	public ArrowType getCSSArrowTarget(){
-		return arrowStyle.getCSSArrowTarget();
+		if (eIsSet(NotationPackage.eINSTANCE.getArrowStyle_ArrowTarget())){
+			return super.getArrowTarget();
+		} else {
+			return arrowStyle.getCSSArrowTarget();
+		}
+	}
+
+
+	@Override
+	public ArrowType getArrowSource(){
+		//return super.getArrowSource();
+		return getCSSArrowSource();
+	}
+
+	@Override
+	public ArrowType getArrowTarget(){
+		//return super.getArrowTarget();
+		return getCSSArrowTarget();
 	}
 
 

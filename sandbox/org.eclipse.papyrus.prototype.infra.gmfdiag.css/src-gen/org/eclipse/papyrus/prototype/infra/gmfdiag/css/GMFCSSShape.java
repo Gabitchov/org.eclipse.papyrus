@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSShapeStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	public GMFCSSShape(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.shapeStyle = new CSSShapeStyleImpl(this);
+		this.shapeStyle = new CSSShapeStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,59 +46,200 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	//////////////////////////////////////////
 
 	public int getCSSFontColor(){
-		return shapeStyle.getCSSFontColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_FontColor())){
+			return super.getFontColor();
+		} else {
+			return shapeStyle.getCSSFontColor();
+		}
 	}
 
 	public java.lang.String getCSSFontName(){
-		return shapeStyle.getCSSFontName();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_FontName())){
+			return super.getFontName();
+		} else {
+			return shapeStyle.getCSSFontName();
+		}
 	}
 
 	public int getCSSFontHeight(){
-		return shapeStyle.getCSSFontHeight();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_FontHeight())){
+			return super.getFontHeight();
+		} else {
+			return shapeStyle.getCSSFontHeight();
+		}
 	}
 
 	public boolean isCSSBold(){
-		return shapeStyle.isCSSBold();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_Bold())){
+			return super.isBold();
+		} else {
+			return shapeStyle.isCSSBold();
+		}
 	}
 
 	public boolean isCSSItalic(){
-		return shapeStyle.isCSSItalic();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_Italic())){
+			return super.isItalic();
+		} else {
+			return shapeStyle.isCSSItalic();
+		}
 	}
 
 	public boolean isCSSUnderline(){
-		return shapeStyle.isCSSUnderline();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_Underline())){
+			return super.isUnderline();
+		} else {
+			return shapeStyle.isCSSUnderline();
+		}
 	}
 
 	public boolean isCSSStrikeThrough(){
-		return shapeStyle.isCSSStrikeThrough();
+		if (eIsSet(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough())){
+			return super.isStrikeThrough();
+		} else {
+			return shapeStyle.isCSSStrikeThrough();
+		}
 	}
 
 	public java.lang.String getCSSDescription(){
-		return shapeStyle.getCSSDescription();
+		if (eIsSet(NotationPackage.eINSTANCE.getDescriptionStyle_Description())){
+			return super.getDescription();
+		} else {
+			return shapeStyle.getCSSDescription();
+		}
 	}
 
 	public int getCSSFillColor(){
-		return shapeStyle.getCSSFillColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getFillStyle_FillColor())){
+			return super.getFillColor();
+		} else {
+			return shapeStyle.getCSSFillColor();
+		}
 	}
 
 	public int getCSSTransparency(){
-		return shapeStyle.getCSSTransparency();
+		if (eIsSet(NotationPackage.eINSTANCE.getFillStyle_Transparency())){
+			return super.getTransparency();
+		} else {
+			return shapeStyle.getCSSTransparency();
+		}
 	}
 
 	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient(){
-		return shapeStyle.getCSSGradient();
+		if (eIsSet(NotationPackage.eINSTANCE.getFillStyle_Gradient())){
+			return super.getGradient();
+		} else {
+			return shapeStyle.getCSSGradient();
+		}
 	}
 
 	public int getCSSLineColor(){
-		return shapeStyle.getCSSLineColor();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineStyle_LineColor())){
+			return super.getLineColor();
+		} else {
+			return shapeStyle.getCSSLineColor();
+		}
 	}
 
 	public int getCSSLineWidth(){
-		return shapeStyle.getCSSLineWidth();
+		if (eIsSet(NotationPackage.eINSTANCE.getLineStyle_LineWidth())){
+			return super.getLineWidth();
+		} else {
+			return shapeStyle.getCSSLineWidth();
+		}
 	}
 
 	public int getCSSRoundedBendpointsRadius(){
-		return shapeStyle.getCSSRoundedBendpointsRadius();
+		if (eIsSet(NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius())){
+			return super.getRoundedBendpointsRadius();
+		} else {
+			return shapeStyle.getCSSRoundedBendpointsRadius();
+		}
+	}
+
+
+	@Override
+	public int getFontColor(){
+		//return super.getFontColor();
+		return getCSSFontColor();
+	}
+
+	@Override
+	public java.lang.String getFontName(){
+		//return super.getFontName();
+		return getCSSFontName();
+	}
+
+	@Override
+	public int getFontHeight(){
+		//return super.getFontHeight();
+		return getCSSFontHeight();
+	}
+
+	@Override
+	public boolean isBold(){
+		//return super.isBold();
+		return isCSSBold();
+	}
+
+	@Override
+	public boolean isItalic(){
+		//return super.isItalic();
+		return isCSSItalic();
+	}
+
+	@Override
+	public boolean isUnderline(){
+		//return super.isUnderline();
+		return isCSSUnderline();
+	}
+
+	@Override
+	public boolean isStrikeThrough(){
+		//return super.isStrikeThrough();
+		return isCSSStrikeThrough();
+	}
+
+	@Override
+	public java.lang.String getDescription(){
+		//return super.getDescription();
+		return getCSSDescription();
+	}
+
+	@Override
+	public int getFillColor(){
+		//return super.getFillColor();
+		return getCSSFillColor();
+	}
+
+	@Override
+	public int getTransparency(){
+		//return super.getTransparency();
+		return getCSSTransparency();
+	}
+
+	@Override
+	public org.eclipse.gmf.runtime.notation.datatype.GradientData getGradient(){
+		//return super.getGradient();
+		return getCSSGradient();
+	}
+
+	@Override
+	public int getLineColor(){
+		//return super.getLineColor();
+		return getCSSLineColor();
+	}
+
+	@Override
+	public int getLineWidth(){
+		//return super.getLineWidth();
+		return getCSSLineWidth();
+	}
+
+	@Override
+	public int getRoundedBendpointsRadius(){
+		//return super.getRoundedBendpointsRadius();
+		return getCSSRoundedBendpointsRadius();
 	}
 
 

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSIntListValueStyle extends IntListValueStyleImpl implements CSSStylableElement, CSSIntListValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSIntListValueStyle extends IntListValueStyleImpl implements CS
 	public GMFCSSIntListValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.intListValueStyle = new CSSIntListValueStyleImpl(this);
+		this.intListValueStyle = new CSSIntListValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSIntListValueStyle extends IntListValueStyleImpl implements CS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return intListValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return intListValueStyle.getCSSName();
+		}
 	}
 
 	public EList getCSSIntListValue(){
-		return intListValueStyle.getCSSIntListValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getIntListValueStyle_IntListValue())){
+			return super.getIntListValue();
+		} else {
+			return intListValueStyle.getCSSIntListValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public EList getIntListValue(){
+		//return super.getIntListValue();
+		return getCSSIntListValue();
 	}
 
 

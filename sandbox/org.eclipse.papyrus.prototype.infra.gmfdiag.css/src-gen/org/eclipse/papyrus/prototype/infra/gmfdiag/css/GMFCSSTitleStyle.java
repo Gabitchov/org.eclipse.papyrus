@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSTitleStyle extends TitleStyleImpl implements CSSStylableElement, CSSTitleStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSTitleStyle extends TitleStyleImpl implements CSSStylableEleme
 	public GMFCSSTitleStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.titleStyle = new CSSTitleStyleImpl(this);
+		this.titleStyle = new CSSTitleStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSTitleStyle extends TitleStyleImpl implements CSSStylableEleme
 	//////////////////////////////////////////
 
 	public boolean isCSSShowTitle(){
-		return titleStyle.isCSSShowTitle();
+		if (eIsSet(NotationPackage.eINSTANCE.getTitleStyle_ShowTitle())){
+			return super.isShowTitle();
+		} else {
+			return titleStyle.isCSSShowTitle();
+		}
+	}
+
+
+	@Override
+	public boolean isShowTitle(){
+		//return super.isShowTitle();
+		return isCSSShowTitle();
 	}
 
 

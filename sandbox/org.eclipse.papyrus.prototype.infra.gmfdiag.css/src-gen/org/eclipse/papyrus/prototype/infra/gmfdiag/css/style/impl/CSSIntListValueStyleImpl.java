@@ -3,13 +3,22 @@ package org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.*;
 import org.eclipse.gmf.runtime.notation.*;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 
+@SuppressWarnings("restriction")
 public class CSSIntListValueStyleImpl implements CSSIntListValueStyle{
 	
 	private IntListValueStyle intListValueStyle;
 
-	public CSSIntListValueStyleImpl(IntListValueStyle intListValueStyle){
-		this.intListValueStyle = intListValueStyle; 
+	private CSSEngine engine;
+
+	private CSSStylableElement element;
+
+	public CSSIntListValueStyleImpl(IntListValueStyle intListValueStyle, CSSStylableElement element, CSSEngine engine){
+		this.intListValueStyle = intListValueStyle;
+ 		this.engine = engine;
+		this.element = element;
 	}
 
 	////////////////////////////////////////////////
@@ -17,10 +26,20 @@ public class CSSIntListValueStyleImpl implements CSSIntListValueStyle{
 	////////////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return intListValueStyle.getName();
+		String cssValue = engine.retrieveCSSProperty(element, "name", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getNamedStyle_Name().getDefaultValue(); 
+			return (String)defaultValue;
+		}
+		return cssValue;
 	}
 
 	public EList getCSSIntListValue(){
-		return intListValueStyle.getIntListValue();
+		String cssValue = engine.retrieveCSSProperty(element, "intListValue", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getIntListValueStyle_IntListValue().getDefaultValue(); 
+			return (EList)defaultValue;
+		}
+		return null;
 	}
 }

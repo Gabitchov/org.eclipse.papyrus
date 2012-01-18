@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter;
 
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
@@ -6,6 +17,9 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -13,7 +27,16 @@ import org.w3c.dom.NodeList;
 
 public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 
-	private EObject sourceElement;
+	/**
+	 * The UML Element associated to the current styled element
+	 * Might also be a GMF Diagram
+	 */
+	private EObject semanticElement;
+
+	/**
+	 * The current GMF Element
+	 */
+	private EObject notationElement;
 
 	private String namespaceURI;
 
@@ -88,21 +111,37 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 	public GMFCSSAdapter(EObject eObject, CSSEngine engine) {
 		super(eObject, engine);
 
-		sourceElement = eObject;
-		namespaceURI = computeNamespaceURI();
-		localName = computeLocalName();
+		notationElement = eObject;
 	}
 
-	private String computeNamespaceURI() {
-		return EMFHelper.getQualifiedName(sourceElement.eClass(), ".");
+	private EObject findSemanticElement(final EObject notationElement) {
+		if(notationElement instanceof Diagram) {
+			return notationElement;
+		}
+
+		EObject currentElement = notationElement;
+
+		do {
+			if(currentElement instanceof View) {
+				View view = (View)currentElement;
+				return view.getElement();
+			}
+			currentElement = currentElement.eContainer();
+		} while(currentElement != null);
+
+		Activator.log.warn("Cannot find a valid source for " + notationElement);
+		return notationElement;
 	}
 
-	private String computeLocalName() {
-		return sourceElement.eClass().getName();
+	private EObject getSemanticElement() {
+		if(semanticElement == null) {
+			semanticElement = findSemanticElement(notationElement);
+		}
+		return semanticElement;
 	}
 
 	public Node getParentNode() {
-		return (Node)sourceElement.eContainer();
+		return (Node)notationElement.eContainer();
 	}
 
 	public NodeList getChildNodes() {
@@ -110,31 +149,31 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 	}
 
 	public String getNamespaceURI() {
-		return namespaceURI;
+		return EMFHelper.getQualifiedName(getSemanticElement().eClass(), ".");
 	}
 
 	public String getCSSId() {
-		return getCSSID(sourceElement);
+		return getCSSID(notationElement);
 	}
 
 	public String getCSSClass() {
-		return getCSSClass(sourceElement);
+		return getCSSClass(notationElement);
 	}
 
 	public String getCSSStyle() {
-		return getCSSStyle(sourceElement);
+		return getCSSStyle(notationElement);
 	}
 
 	@Override
 	public String getLocalName() {
-		return localName;
+		return getSemanticElement().eClass().getName();
 	}
 
 	@Override
 	public String getAttribute(String attr) {
-		EStructuralFeature feature = sourceElement.eClass().getEStructuralFeature(attr);
+		EStructuralFeature feature = notationElement.eClass().getEStructuralFeature(attr);
 		if(feature != null) {
-			Object value = sourceElement.eGet(feature);
+			Object value = notationElement.eGet(feature);
 			if(value != null) {
 				return value.toString();
 			}
@@ -150,7 +189,7 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 	 */
 	@Override
 	public EObject getNativeWidget() {
-		return sourceElement;
+		return notationElement;
 	}
 
 
@@ -163,12 +202,12 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 
 	public Node item(int index) {
 		//TODO Some contained elements may not be Nodes
-		return (Node)sourceElement.eContents().get(index);
+		return (Node)notationElement.eContents().get(index);
 	}
 
 	public int getLength() {
 		//TODO Some contained elements may not be Nodes
-		return sourceElement.eContents().size();
+		return notationElement.eContents().size();
 	}
 
 }

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSEObjectValueStyle extends EObjectValueStyleImpl implements CSSStylableElement, CSSEObjectValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSEObjectValueStyle extends EObjectValueStyleImpl implements CS
 	public GMFCSSEObjectValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.eObjectValueStyle = new CSSEObjectValueStyleImpl(this);
+		this.eObjectValueStyle = new CSSEObjectValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSEObjectValueStyle extends EObjectValueStyleImpl implements CS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return eObjectValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return eObjectValueStyle.getCSSName();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
 	}
 
 

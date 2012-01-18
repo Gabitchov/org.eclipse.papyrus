@@ -3,13 +3,22 @@ package org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.*;
 import org.eclipse.gmf.runtime.notation.*;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 
+@SuppressWarnings("restriction")
 public class CSSImageBufferStyleImpl implements CSSImageBufferStyle{
 	
 	private ImageBufferStyle imageBufferStyle;
 
-	public CSSImageBufferStyleImpl(ImageBufferStyle imageBufferStyle){
-		this.imageBufferStyle = imageBufferStyle; 
+	private CSSEngine engine;
+
+	private CSSStylableElement element;
+
+	public CSSImageBufferStyleImpl(ImageBufferStyle imageBufferStyle, CSSStylableElement element, CSSEngine engine){
+		this.imageBufferStyle = imageBufferStyle;
+ 		this.engine = engine;
+		this.element = element;
 	}
 
 	////////////////////////////////////////////////
@@ -17,10 +26,20 @@ public class CSSImageBufferStyleImpl implements CSSImageBufferStyle{
 	////////////////////////////////////////////////
 
 	public java.lang.Boolean getCSSAntiAlias(){
-		return imageBufferStyle.getAntiAlias();
+		String cssValue = engine.retrieveCSSProperty(element, "antiAlias", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_AntiAlias().getDefaultValue(); 
+			return (java.lang.Boolean)defaultValue;
+		}
+		return null;
 	}
 
 	public java.lang.Boolean getCSSMaintainAspectRatio(){
-		return imageBufferStyle.getMaintainAspectRatio();
+		String cssValue = engine.retrieveCSSProperty(element, "maintainAspectRatio", "");
+		if (cssValue == null){
+			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio().getDefaultValue(); 
+			return (java.lang.Boolean)defaultValue;
+		}
+		return null;
 	}
 }

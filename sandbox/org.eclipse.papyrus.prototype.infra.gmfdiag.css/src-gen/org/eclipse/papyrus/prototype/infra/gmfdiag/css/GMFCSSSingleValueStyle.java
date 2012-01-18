@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSSingleValueStyle extends SingleValueStyleImpl implements CSSStylableElement, CSSSingleValueStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSSingleValueStyle extends SingleValueStyleImpl implements CSSS
 	public GMFCSSSingleValueStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.singleValueStyle = new CSSSingleValueStyleImpl(this);
+		this.singleValueStyle = new CSSSingleValueStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,11 +46,32 @@ public class GMFCSSSingleValueStyle extends SingleValueStyleImpl implements CSSS
 	//////////////////////////////////////////
 
 	public java.lang.String getCSSName(){
-		return singleValueStyle.getCSSName();
+		if (eIsSet(NotationPackage.eINSTANCE.getNamedStyle_Name())){
+			return super.getName();
+		} else {
+			return singleValueStyle.getCSSName();
+		}
 	}
 
 	public java.lang.String getCSSRawValue(){
-		return singleValueStyle.getCSSRawValue();
+		if (eIsSet(NotationPackage.eINSTANCE.getSingleValueStyle_RawValue())){
+			return super.getRawValue();
+		} else {
+			return singleValueStyle.getCSSRawValue();
+		}
+	}
+
+
+	@Override
+	public java.lang.String getName(){
+		//return super.getName();
+		return getCSSName();
+	}
+
+	@Override
+	public java.lang.String getRawValue(){
+		//return super.getRawValue();
+		return getCSSRawValue();
 	}
 
 

@@ -26,7 +26,7 @@ import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
 
-
+@SuppressWarnings("restriction")
 public class GMFCSSTextStyle extends TextStyleImpl implements CSSStylableElement, CSSTextStyle {
 
 	protected CSSEngine engine;
@@ -38,7 +38,7 @@ public class GMFCSSTextStyle extends TextStyleImpl implements CSSStylableElement
 	public GMFCSSTextStyle(CSSEngine engine) {
 		this.engine = engine;
 		this.cssAdapter = new GMFCSSAdapter(this, engine);
-		this.textStyle = new CSSTextStyleImpl(this);
+		this.textStyle = new CSSTextStyleImpl(this, this, engine);
 	}
 
 	//////////////////////////////////////////
@@ -46,7 +46,18 @@ public class GMFCSSTextStyle extends TextStyleImpl implements CSSStylableElement
 	//////////////////////////////////////////
 
 	public TextAlignment getCSSTextAlignment(){
-		return textStyle.getCSSTextAlignment();
+		if (eIsSet(NotationPackage.eINSTANCE.getTextStyle_TextAlignment())){
+			return super.getTextAlignment();
+		} else {
+			return textStyle.getCSSTextAlignment();
+		}
+	}
+
+
+	@Override
+	public TextAlignment getTextAlignment(){
+		//return super.getTextAlignment();
+		return getCSSTextAlignment();
 	}
 
 
