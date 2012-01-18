@@ -62,7 +62,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart extend
 	}
 
 	/**
-	 * @generated NOT (remove the bottom border, remove scrollbars)
+	 * @generated
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
@@ -135,4 +135,6 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart extend
 		super.refreshVisuals();
 		refreshBounds();
 	}
+
+	
 }

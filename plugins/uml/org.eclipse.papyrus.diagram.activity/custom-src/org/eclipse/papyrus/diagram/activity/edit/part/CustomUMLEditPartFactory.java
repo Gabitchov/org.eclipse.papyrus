@@ -11,20 +11,35 @@
  *   Atos - Initial API and implementation
  *   Arthur Daussy 	Bug 366026 - [ActivityDiagram] Refactoring in order to try respect Generation Gap Pattern 
  *   				Bug 366159 - [ActivityDiagram] Activity Diagram should be able to handle correctly Interruptible Edge
- *   				Bug 367279: [Activity Diagram] Activity Diagram should be able to handle correctly Exception Handler element
+ *   				Bug 367279 - [Activity Diagram] Activity Diagram should be able to handle correctly Exception Handler element
+ *   				Bug 368932 - [ActivitiyDiagram] Prevent Compartment of Activity group to be selected
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.part;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomActivityPartitionActivityPartitionContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomLoopNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerIconEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 
@@ -70,6 +85,48 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				 * Customization to handle special image label
 				 */
 				return new CustomExceptionHandlerIconEditPart(view);
+			case ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomActivityPartitionActivityPartitionContentCompartmentEditPart(view);
+			case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart(view);
+			case ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart(view);
+			case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomLoopNodeStructuredActivityNodeContentCompartmentEditPart(view);
+			case SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart(view);
+			case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart(view);
+			case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

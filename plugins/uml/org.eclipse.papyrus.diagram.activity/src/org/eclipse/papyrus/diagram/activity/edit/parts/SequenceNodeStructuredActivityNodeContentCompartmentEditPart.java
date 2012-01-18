@@ -62,7 +62,7 @@ public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart extend
 	}
 
 	/**
-	 * @generated NOT (remove the top border,hide scrollbar)
+	 * @generated
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();

@@ -61,7 +61,7 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentEditPart ext
 	}
 
 	/**
-	 * @generated NOT (remove the top border)
+	 * @generated
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
