@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -67,13 +66,6 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
-		// remove the top border
-		result.setBorder(null);
-		// Hide scrollBar
-		result.getScrollPane().setEnabled(false);
-		result.getScrollPane().setHorizontalScrollBar(null);
-		result.getScrollPane().setVerticalScrollBar(null);
-		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
 		return result;
 	}
 

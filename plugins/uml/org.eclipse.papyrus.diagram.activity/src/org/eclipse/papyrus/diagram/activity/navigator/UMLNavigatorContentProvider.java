@@ -4403,100 +4403,50 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForTimeConstraintAsLocalPostcondEditPart(view, parentElement);
-		}
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConstraintAsLocalPrecondEditPart(view, parentElement);
-		}
-		case ValuePinInCallOpActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValuePinInCallOpActEditPart(view, parentElement);
-		}
-		case SendObjectActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForSendObjectActionEditPart(view, parentElement);
-		}
-		case OutputPinInCallOpActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInCallOpActEditPart(view, parentElement);
-		}
-		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInAddStructuralFeatureValueActionAsObjectEditPart(view, parentElement);
-		}
-		case OutputPinInCallBeActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInCallBeActEditPart(view, parentElement);
-		}
-		case InitialNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInitialNodeEditPart(view, parentElement);
-		}
-		case ActivityEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActivityEditPart(view, parentElement);
+			return getViewChildrenForInputPinInAddStructuralFeatureValueActionAsValueEditPart(view, parentElement);
 		}
 		case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOutputPinInReadVariableActionAsResultEditPart(view, parentElement);
 		}
-		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForTimeConstraintAsLocalPrecondEditPart(view, parentElement);
+			return getViewChildrenForDataStoreNodeEditPart(view, parentElement);
 		}
-		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+		case CentralBufferNodeEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForExpansionNodeAsOutEditPart(view, parentElement);
+			return getViewChildrenForCentralBufferNodeEditPart(view, parentElement);
 		}
-		case BroadcastSignalActionEditPart.VISUAL_ID:
+		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForBroadcastSignalActionEditPart(view, parentElement);
+			return getViewChildrenForValuePinInSendObjActAsTargetEditPart(view, parentElement);
 		}
-		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForIntervalConstraintAsLocalPrecondEditPart(view, parentElement);
+			return getViewChildrenForActionInputPinInSendObjActAsReqEditPart(view, parentElement);
+		}
+		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActionInputPinInOpaqueActEditPart(view, parentElement);
 		}
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionLocalPostconditionEditPart(view, parentElement);
 		}
-		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInCreateObjectActionAsResultEditPart(view, parentElement);
-		}
-		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInSendSigActEditPart(view, parentElement);
-		}
-		case CommentEditPartCN.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentEditPartCN(view, parentElement);
-		}
-		case ReadSelfActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForReadSelfActionEditPart(view, parentElement);
+			return getViewChildrenForOutputPinInValSpecActEditPart(view, parentElement);
 		}
 		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
 		{
@@ -4508,265 +4458,320 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForValuePinInOpaqueActEditPart(view, parentElement);
 		}
-		case ActivityEditPartCN.VISUAL_ID:
+		case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActivityEditPartCN(view, parentElement);
-		}
-		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForAddStructuralFeatureValueActionEditPart(view, parentElement);
-		}
-		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInCallOpActAsTargetEditPart(view, parentElement);
-		}
-		case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInAddVariableValueActionAsInsertAtEditPart(view, parentElement);
-		}
-		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValuePinInSendObjActAsReqEditPart(view, parentElement);
-		}
-		case DestroyObjectActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDestroyObjectActionEditPart(view, parentElement);
-		}
-		case InputPinInSendSigActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInSendSigActEditPart(view, parentElement);
-		}
-		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInAddStructuralFeatureValueActionAsResultEditPart(view, parentElement);
-		}
-		case ValuePinInSendSigActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValuePinInSendSigActEditPart(view, parentElement);
-		}
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInValSpecActEditPart(view, parentElement);
-		}
-		case OutputPinInOpaqueActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInOpaqueActEditPart(view, parentElement);
-		}
-		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDurationConstraintAsLocalPrecondEditPart(view, parentElement);
-		}
-		case CommentLinkEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentLinkEditPart(view, parentElement);
-		}
-		case AddVariableValueActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForAddVariableValueActionEditPart(view, parentElement);
-		}
-		case SequenceNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForSequenceNodeEditPart(view, parentElement);
-		}
-		case ExpansionRegionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForExpansionRegionEditPart(view, parentElement);
+			return getViewChildrenForInputPinInDestroyObjectActionEditPart(view, parentElement);
 		}
 		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionInputPinInCallOpActEditPart(view, parentElement);
 		}
-		case ValuePinInCallBeActEditPart.VISUAL_ID:
+		case ValuePinInCallOpActEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValuePinInCallBeActEditPart(view, parentElement);
+			return getViewChildrenForValuePinInCallOpActEditPart(view, parentElement);
 		}
-		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
+		case ExpansionRegionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInCallBeActEditPart(view, parentElement);
+			return getViewChildrenForExpansionRegionEditPart(view, parentElement);
 		}
-		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+		case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInSendObjActAsReqEditPart(view, parentElement);
+			return getViewChildrenForAddStructuralFeatureValueActionEditPart(view, parentElement);
 		}
-		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInBroadcastSignalActionEditPart(view, parentElement);
-		}
-		case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInAddVariableValueActionAsValueEditPart(view, parentElement);
-		}
-		case ObjectFlowEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForObjectFlowEditPart(view, parentElement);
-		}
-		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForReadStructuralFeatureActionEditPart(view, parentElement);
-		}
-		case CallOperationActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCallOperationActionEditPart(view, parentElement);
-		}
-		case InputPinInCallBeActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInCallBeActEditPart(view, parentElement);
-		}
-		case InputPinInOpaqueActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInOpaqueActEditPart(view, parentElement);
-		}
-		case StructuredActivityNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForStructuredActivityNodeEditPart(view, parentElement);
-		}
-		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValuePinInSendObjActAsTargetEditPart(view, parentElement);
-		}
-		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInSendObjActAsTargetEditPart(view, parentElement);
-		}
-		case ActivityDiagramEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActivityDiagramEditPart(view, parentElement);
-		}
-		case InterruptibleActivityRegionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInterruptibleActivityRegionEditPart(view, parentElement);
-		}
-		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInOpaqueActEditPart(view, parentElement);
-		}
-		case CentralBufferNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCentralBufferNodeEditPart(view, parentElement);
-		}
-		case DecisionNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDecisionNodeEditPart(view, parentElement);
-		}
-		case JoinNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForJoinNodeEditPart(view, parentElement);
-		}
-		case DataStoreNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDataStoreNodeEditPart(view, parentElement);
-		}
-		case MergeNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMergeNodeEditPart(view, parentElement);
-		}
-		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInReadStructuralFeatureAsObjectEditPart(view, parentElement);
+			return getViewChildrenForIntervalConstraintAsLocalPrecondEditPart(view, parentElement);
 		}
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForCallBehaviorActionEditPart(view, parentElement);
 		}
-		case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
+		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInDestroyObjectActionEditPart(view, parentElement);
+			return getViewChildrenForInterruptibleActivityRegionEditPart(view, parentElement);
 		}
-		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case CreateObjectActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForIntervalConstraintAsLocalPostcondEditPart(view, parentElement);
+			return getViewChildrenForCreateObjectActionEditPart(view, parentElement);
 		}
-		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+		case SendSignalActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForOutputPinInReadStructuralFeatureAsResultEditPart(view, parentElement);
+			return getViewChildrenForSendSignalActionEditPart(view, parentElement);
 		}
-		case ActionLocalPreconditionEditPart.VISUAL_ID:
+		case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionLocalPreconditionEditPart(view, parentElement);
+			return getViewChildrenForInputPinInReadStructuralFeatureAsObjectEditPart(view, parentElement);
 		}
-		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ActivityParameterNodeEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValueSpecificationActionEditPart(view, parentElement);
+			return getViewChildrenForActivityParameterNodeEditPart(view, parentElement);
+		}
+		case ValuePinInCallBeActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForValuePinInCallBeActEditPart(view, parentElement);
 		}
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOutputPinInAcceptEventActionEditPart(view, parentElement);
 		}
-		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+		case ValuePinInSendSigActEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForReadSelfActionOutputPinEditPart(view, parentElement);
+			return getViewChildrenForValuePinInSendSigActEditPart(view, parentElement);
 		}
-		case ForkNodeEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForForkNodeEditPart(view, parentElement);
+			return getViewChildrenForIntervalConstraintAsLocalPostcondEditPart(view, parentElement);
 		}
-		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInSendSigActAsTargetEditPart(view, parentElement);
+			return getViewChildrenForActionInputPinInSendObjActAsTargetEditPart(view, parentElement);
+		}
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForTimeConstraintAsLocalPrecondEditPart(view, parentElement);
+		}
+		case OutputPinInCallBeActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForOutputPinInCallBeActEditPart(view, parentElement);
+		}
+		case SequenceNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForSequenceNodeEditPart(view, parentElement);
 		}
 		case OpaqueActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForOpaqueActionEditPart(view, parentElement);
 		}
-		case ConditionalNodeEditPart.VISUAL_ID:
+		case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConditionalNodeEditPart(view, parentElement);
+			return getViewChildrenForInputPinInAddVariableValueActionAsValueEditPart(view, parentElement);
+		}
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForOutputPinInAddStructuralFeatureValueActionAsResultEditPart(view, parentElement);
+		}
+		case InputPinInOpaqueActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInOpaqueActEditPart(view, parentElement);
+		}
+		case CallOperationActionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCallOperationActionEditPart(view, parentElement);
+		}
+		case ActivityPartitionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActivityPartitionEditPart(view, parentElement);
+		}
+		case ReadSelfActionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForReadSelfActionEditPart(view, parentElement);
+		}
+		case DecisionNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDecisionNodeEditPart(view, parentElement);
+		}
+		case CommentEditPartCN.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentEditPartCN(view, parentElement);
+		}
+		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInCallOpActAsTargetEditPart(view, parentElement);
+		}
+		case JoinNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForJoinNodeEditPart(view, parentElement);
+		}
+		case ActionLocalPreconditionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActionLocalPreconditionEditPart(view, parentElement);
+		}
+		case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForOutputPinInReadStructuralFeatureAsResultEditPart(view, parentElement);
+		}
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDurationConstraintAsLocalPostcondEditPart(view, parentElement);
+		}
+		case BroadcastSignalActionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForBroadcastSignalActionEditPart(view, parentElement);
+		}
+		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActionInputPinInSendSigActAsTargetEditPart(view, parentElement);
+		}
+		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActionInputPinInCallOpActAsTargetEditPart(view, parentElement);
+		}
+		case FlowFinalNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForFlowFinalNodeEditPart(view, parentElement);
+		}
+		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInSendObjActAsReqEditPart(view, parentElement);
+		}
+		case InputPinInCallBeActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInCallBeActEditPart(view, parentElement);
+		}
+		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForValuePinInCallOpActAsTargetEditPart(view, parentElement);
+		}
+		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActionInputPinInCallBeActEditPart(view, parentElement);
+		}
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForReadSelfActionOutputPinEditPart(view, parentElement);
+		}
+		case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForReadStructuralFeatureActionEditPart(view, parentElement);
+		}
+		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInSendObjActAsTargetEditPart(view, parentElement);
+		}
+		case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForOutputPinInCreateObjectActionAsResultEditPart(view, parentElement);
+		}
+		case OutputPinInCallOpActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForOutputPinInCallOpActEditPart(view, parentElement);
+		}
+		case InputPinInSendSigActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInSendSigActEditPart(view, parentElement);
+		}
+		case InputPinInCallOpActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInCallOpActEditPart(view, parentElement);
+		}
+		case OutputPinInOpaqueActEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForOutputPinInOpaqueActEditPart(view, parentElement);
+		}
+		case ActivityEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActivityEditPart(view, parentElement);
+		}
+		case CommentLinkEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentLinkEditPart(view, parentElement);
+		}
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForTimeConstraintAsLocalPostcondEditPart(view, parentElement);
+		}
+		case ObjectFlowEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForObjectFlowEditPart(view, parentElement);
 		}
 		case AcceptEventActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForAcceptEventActionEditPart(view, parentElement);
+		}
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForExpansionNodeAsInEditPart(view, parentElement);
+		}
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInAddStructuralFeatureValueActionAsObjectEditPart(view, parentElement);
+		}
+		case ActivityDiagramEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActivityDiagramEditPart(view, parentElement);
+		}
+		case LoopNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForLoopNodeEditPart(view, parentElement);
+		}
+		case ConditionalNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConditionalNodeEditPart(view, parentElement);
+		}
+		case ActivityEditPartCN.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActivityEditPartCN(view, parentElement);
+		}
+		case InitialNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInitialNodeEditPart(view, parentElement);
+		}
+		case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInBroadcastSignalActionEditPart(view, parentElement);
 		}
 		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
 		{
@@ -4778,95 +4783,90 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintAsLocalPostcondEditPart(view, parentElement);
 		}
-		case InputPinInCallOpActEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInCallOpActEditPart(view, parentElement);
+			return getViewChildrenForDurationConstraintAsLocalPrecondEditPart(view, parentElement);
 		}
-		case FlowFinalNodeEditPart.VISUAL_ID:
+		case DestroyObjectActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForFlowFinalNodeEditPart(view, parentElement);
-		}
-		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInAddStructuralFeatureValueActionAsValueEditPart(view, parentElement);
-		}
-		case ActivityParameterNodeEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActivityParameterNodeEditPart(view, parentElement);
-		}
-		case CreateObjectActionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCreateObjectActionEditPart(view, parentElement);
-		}
-		case ActivityPartitionEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActivityPartitionEditPart(view, parentElement);
+			return getViewChildrenForDestroyObjectActionEditPart(view, parentElement);
 		}
 		case ReadVariableActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForReadVariableActionEditPart(view, parentElement);
 		}
-		case ActivityFinalNodeEditPart.VISUAL_ID:
+		case SendObjectActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActivityFinalNodeEditPart(view, parentElement);
+			return getViewChildrenForSendObjectActionEditPart(view, parentElement);
 		}
-		case SendSignalActionEditPart.VISUAL_ID:
+		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForSendSignalActionEditPart(view, parentElement);
+			return getViewChildrenForActionInputPinInSendSigActEditPart(view, parentElement);
 		}
-		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case ForkNodeEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDurationConstraintAsLocalPostcondEditPart(view, parentElement);
+			return getViewChildrenForForkNodeEditPart(view, parentElement);
 		}
-		case ExpansionNodeAsInEditPart.VISUAL_ID:
+		case AddVariableValueActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForExpansionNodeAsInEditPart(view, parentElement);
+			return getViewChildrenForAddVariableValueActionEditPart(view, parentElement);
 		}
-		case ControlFlowEditPart.VISUAL_ID:
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForControlFlowEditPart(view, parentElement);
+			return getViewChildrenForExpansionNodeAsOutEditPart(view, parentElement);
 		}
-		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInCallOpActAsTargetEditPart(view, parentElement);
+			return getViewChildrenForValueSpecificationActionEditPart(view, parentElement);
 		}
-		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+		case StructuredActivityNodeEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActionInputPinInSendObjActAsTargetEditPart(view, parentElement);
-		}
-		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInputPinInSendObjActAsReqEditPart(view, parentElement);
-		}
-		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForValuePinInCallOpActAsTargetEditPart(view, parentElement);
+			return getViewChildrenForStructuredActivityNodeEditPart(view, parentElement);
 		}
 		case ExceptionHandlerEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForExceptionHandlerEditPart(view, parentElement);
 		}
-		case LoopNodeEditPart.VISUAL_ID:
+		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForLoopNodeEditPart(view, parentElement);
+			return getViewChildrenForValuePinInSendObjActAsReqEditPart(view, parentElement);
+		}
+		case ControlFlowEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForControlFlowEditPart(view, parentElement);
+		}
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConstraintAsLocalPrecondEditPart(view, parentElement);
+		}
+		case ActivityFinalNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActivityFinalNodeEditPart(view, parentElement);
+		}
+		case MergeNodeEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMergeNodeEditPart(view, parentElement);
+		}
+		case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInputPinInAddVariableValueActionAsInsertAtEditPart(view, parentElement);
 		}
 		}
 		return EMPTY_ARRAY;

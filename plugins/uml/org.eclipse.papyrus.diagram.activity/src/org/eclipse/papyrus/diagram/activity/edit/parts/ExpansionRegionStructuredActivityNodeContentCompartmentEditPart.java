@@ -66,8 +66,6 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentEditPart ext
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
-		// remove the top border
-		result.setBorder(null);
 		return result;
 	}
 
