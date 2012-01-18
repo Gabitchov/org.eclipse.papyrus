@@ -135,6 +135,4 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart extend
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
-	
 }
