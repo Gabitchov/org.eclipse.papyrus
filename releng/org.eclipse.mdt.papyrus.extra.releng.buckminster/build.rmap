@@ -117,7 +117,7 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-<rm:searchPath name="platform.binaries">
+  <rm:searchPath name="platform.binaries">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		 <!-- updateFrom("BIRT",0) -->
       <rm:uri format="{0}/birt/update-site/3.7-interim/">
@@ -215,7 +215,7 @@
      <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!--rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository"-->
       <!--rm:uri format="{0}/e4/updates/0.11/R-0.11-201106201631"--> 
-      <rm:uri format="{0}/e4/updates/0.11/R-0.111-201109121510">
+      <rm:uri format="{0}{0}/e4/downloads/drops/R-0.111-201109121510/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
