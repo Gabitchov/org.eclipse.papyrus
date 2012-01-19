@@ -31,13 +31,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.uml.diagram.common.editparts.IUMLEditPart;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.FileSelectionFilter;
@@ -46,6 +44,7 @@ import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.RegisteredProfileSelectionDialog;
 import org.eclipse.papyrus.uml.profile.ui.panels.AppliedProfilePanel;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseEvent;
@@ -64,6 +63,7 @@ import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.Profile;
@@ -441,21 +441,11 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	public Package getSelectedPackage() {
 		Package selectedPackage = null;
 		Object input = ((IStructuredSelection)selectedElement).getFirstElement();
-		if(input instanceof IUMLEditPart) {
-			if(((IUMLEditPart)input).getUMLElement() instanceof Package) {
-				selectedPackage = (Package)((IUMLEditPart)input).getUMLElement();
-			}
-		} else if(input instanceof DiagramEditPart) {
-			DiagramEditPart diagramEditPart = (DiagramEditPart)input;
-			if(diagramEditPart.resolveSemanticElement() != null && diagramEditPart.resolveSemanticElement() instanceof Package) {
-				selectedPackage = (Package)diagramEditPart.resolveSemanticElement();
-			}
+		Element element =UMLUtil.resolveUMLElement(input);
+		if(element!=null && element instanceof Package ) {
+				selectedPackage = (Package)element;
 		}
-		EObject eObject = resolveSemanticObject(input);
-		if(eObject != null && eObject instanceof Package) {
-			//the selection is provided by the model explorer
-			selectedPackage = (Package)eObject;
-		}
+		
 		return selectedPackage;
 	}
 

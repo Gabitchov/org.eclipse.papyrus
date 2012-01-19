@@ -76,7 +76,17 @@ public class PackageFigure extends NodeNamedElementFigure {
 			List childrenList = container.getChildren();
 			for(int i = 0; i < container.getChildren().size(); i++) {
 				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
-				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
+				IFigure fig=((IFigure)childrenList.get(i));
+				fig.invalidate();
+				Dimension pref=((IFigure)childrenList.get(i)).getPreferredSize();
+				fig.invalidate();
+				Dimension prefConstraint=((IFigure)childrenList.get(i)).getPreferredSize(container.getBounds().width-40,-1);
+				if( pref.width<prefConstraint.width){
+					bound.setSize(pref);
+				}
+				else{
+					bound.setSize(prefConstraint);
+				}
 				if(((IFigure)childrenList.get(i)).equals(iconPackage)) {
 					Rectangle boundName = getNameLabel().getBounds().getCopy();
 					boundName.x += GAP_X / 2;
@@ -167,10 +177,10 @@ public class PackageFigure extends NodeNamedElementFigure {
 		Rectangle headerBound = new Rectangle(0, 0, 0, 0);
 		for(int i = 0; i < indexShapeContainer; i++) {
 			IFigure currentchild = (IFigure)this.getChildren().get(i);
-			if(currentchild.getPreferredSize().width + 2 * GAP_X > headerBound.width) {
-				headerBound.width = currentchild.getPreferredSize().width + 2 * GAP_X;
+			if(currentchild.getSize().width + 2 * GAP_X > headerBound.width) {
+				headerBound.width = currentchild.getSize().width + 2 * GAP_X;
 			}
-			headerBound.height += currentchild.getPreferredSize().height;
+			headerBound.height += currentchild.getSize().height;
 		}
 		headerBound.height += 1;
 
@@ -199,7 +209,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 		getPackageableElementFigure().setLineWidth(w);
 		super.setLineWidth(w);
 	}
-	
+
 	@Override
 	protected void paintBorder(Graphics graphics) {
 		graphics.drawRectangle(getHeader());

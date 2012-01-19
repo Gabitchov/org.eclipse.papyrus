@@ -16,12 +16,13 @@ import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 
 public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 
 	protected static int MARGIN_X = 5;
 
-	protected static int MARGIN_Y = 5;
+	protected static int MARGIN_Y = 10;
 
 	/**
 	 * 
@@ -34,8 +35,22 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 		int minimumHeight = 0;
 		// display name
 		for(int i = 0; i < container.getChildren().size(); i++) {
-			minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height + MARGIN_Y;
-			minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize().width);
+			
+			IFigure fig=((IFigure)container.getChildren().get(i));
+			if( fig instanceof AppliedStereotypeCompartmentFigure){
+				if(((AppliedStereotypeCompartmentFigure)fig).isExpanded()){
+					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize(hint, hint2).height + MARGIN_Y;
+					minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize(hint, hint2).width);
+				}
+				else{
+					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height + MARGIN_Y;
+					minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize().width);
+				}
+			}
+			else{
+				minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize(hint, hint2).width);
+			}
+			
 		}
 
 		return new Dimension(minimumWith + MARGIN_X, minimumHeight + MARGIN_Y);
@@ -49,7 +64,11 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 		List childrenList = container.getChildren();
 		for(int i = 0; i < container.getChildren().size(); i++) {
 			Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
-			bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
+
+			bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize(container.getBounds().width-40,-1));
+			
+			
+			
 			if(i > 0) {
 				bound.x = container.getBounds().x;
 				bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;

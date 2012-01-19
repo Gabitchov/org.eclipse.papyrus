@@ -22,12 +22,12 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.uml.diagram.common.editparts.IUMLEditPart;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.tree.DisplayedProfileElementLabelProvider;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -317,22 +317,9 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	public Element getSelected() {
 		Object input = ((IStructuredSelection)selection).getFirstElement();
-		if(input instanceof IUMLEditPart) {
-			return ((IUMLEditPart)input).getUMLElement();
-		} else {
-			return null;
-		}
+		return UMLUtil.resolveUMLElement(input);
 	}
 
-	private IUMLEditPart getSelectedEditPart() {
-		Object input = ((IStructuredSelection)selection).getFirstElement();
-		if(input instanceof IUMLEditPart) {
-			return (IUMLEditPart)input;
-
-		} else {
-			return null;
-		}
-	}
 
 	/**
 	 * {@inheritDoc}

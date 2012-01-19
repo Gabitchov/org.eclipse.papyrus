@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.figure.node;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 
 /**
@@ -24,6 +25,12 @@ import org.eclipse.draw2d.geometry.Point;
 public class StereotypePropertiesCompartment extends RectangleFigure {
 
 	protected boolean upperLine = true;
+	
+	public Dimension getPreferredSize(int wHint, int hHint) {
+		//the calculus of the prefered size is contextual
+		prefSize=null;
+		return super.getPreferredSize(wHint,hHint);
+	}
 
 	/**
 	 * {@inheritDoc}

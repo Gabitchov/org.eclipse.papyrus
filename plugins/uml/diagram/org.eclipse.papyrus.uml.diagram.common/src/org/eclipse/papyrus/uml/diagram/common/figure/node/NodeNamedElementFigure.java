@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.FigureListener;
@@ -33,8 +34,8 @@ import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * This class is top graphNode figure. It contains: 1 icone label + 1 stereotype
- * label + 1 qualified nale label + 1 name label
+ * This class is top graphNode figure. It contains: 1 icon label + 1 stereotype
+ * label + 1 qualified name label + 1 name label
  */
 public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure, IPapyrusNodeUMLElementFigure {
 
@@ -84,6 +85,37 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		this(null);
 	}
 
+
+	
+	@Override
+	public void remove(IFigure figure) {
+		 if(figure instanceof AppliedStereotypeCompartmentFigure){
+			if(stereotypePropertiesContent == null) {
+		 		this.createStereotypePropertiesContent();
+		 	}
+		 	stereotypePropertiesContent.remove(figure);
+		}
+		 else{
+
+			super.remove(figure);
+	 }
+		
+	}
+	@Override
+	public void add(IFigure figure, Object constraint, int index) {
+		if(figure instanceof AppliedStereotypeCompartmentFigure){
+	 		if(stereotypePropertiesContent == null) {
+	 			this.createStereotypePropertiesContent();
+			}
+			stereotypePropertiesContent.add(figure);
+		}
+		else{
+
+			super.add(figure, constraint, index);
+		}
+	}
+
+	
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 
 		// Set stereotype text on figure
@@ -978,7 +1010,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// Set stereotype icon on figure
 		this.iconLabel.setIcon(image);
 	}
-	
+
 	/**
 	 * Sets the applied stereotype icon.
 	 * 

@@ -15,10 +15,12 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import java.util.Iterator;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
@@ -28,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.ICompartmentLayoutHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
@@ -89,6 +92,14 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	public Element getUMLElement() {
 		return (Element)resolveSemanticElement();
+	}
+
+	public void setLayoutConstraint(EditPart child, IFigure childFigure,
+		Object constraint) {
+		if(!( childFigure instanceof AppliedStereotypeCompartmentFigure)){
+			getContentPaneFor((IGraphicalEditPart) child).setConstraint(
+				childFigure, constraint);
+		}
 	}
 
 	/**
@@ -156,7 +167,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 			}
 		}		
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
