@@ -3,6 +3,9 @@ package org.eclipse.papyrus.eclipse.project.editors.project;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,13 +21,15 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
-import org.eclipse.papyrus.eclipse.project.editors.interfaces.IFragmentProjectEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IFeatureProjectEditor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
-public class FragmentProjectEditor extends ProjectEditor implements IFragmentProjectEditor {
+public class FeatureProjectEditor extends ProjectEditor implements IFeatureProjectEditor {
 
 	private Document fragmentXML;;
 
@@ -43,7 +48,7 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 	 * @throws IOException
 	 * @throws CoreException
 	 */
-	public FragmentProjectEditor(final IProject project) throws ParserConfigurationException, SAXException, IOException, CoreException {
+	public FeatureProjectEditor(final IProject project) throws ParserConfigurationException, SAXException, IOException, CoreException {
 		super(project);
 	}
 
@@ -83,7 +88,7 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 	@Override
 	public void createFiles(final Set<String> files) {
 		//TODO
-		throw new UnsupportedOperationException();
+		//		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -98,56 +103,7 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 		return plugin.exists() && super.exists();
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor#addExtension(java.lang.String)
-	 * 
-	 *      {@inheritDoc}
-	 */
-	public Element addExtension(final String extensionPoint) {
-		//TODO
-		throw new UnsupportedOperationException();
-		//		if(exists()) {
-		//			Element extension = this.pluginXML.createElement(EXTENSION);
-		//			extension.setAttribute(POINT, extensionPoint);
-		//			this.pluginRoot.appendChild(extension);
-		//			return extension;
-		//		}
-		//		return null;
-	}
 
-	//	/**
-	//	 * Returns the list of the registered extension with this extension point
-	//	 * 
-	//	 * @param extensionPoint
-	//	 *        the name of an extension point
-	//	 * @return
-	//	 *         the list of the registered extension with this extension point
-	//	 */
-	//	public List<Node> getExtensions(final String extensionPoint) {
-	//		
-	////		if(exists()) {
-	////			NodeList nodes = this.pluginRoot.getChildNodes();
-	////			List<Node> extensions = new ArrayList<Node>();
-	////			for(int i = 0; i < nodes.getLength(); i++) {
-	////				Node item = nodes.item(i);
-	////				if(item instanceof NodeList) {
-	////					String name = item.getNodeName();
-	////					if(name.equals(EXTENSION)) {
-	////						NamedNodeMap attributes = item.getAttributes();
-	////						Node point = attributes.getNamedItem(POINT);
-	////						if(extensionPoint.equals(point.getNodeValue())){
-	////							if(item instanceof Node) {
-	////								extensions.add(item);
-	////							}
-	////						}
-	////					}
-	////				}
-	////			}
-	////			return extensions;
-	////		}
-	////		return null;
-	//	}
 
 
 	/**
@@ -161,17 +117,6 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 		element.setAttribute(attributeName, attributeValue);
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor#addChild(org.w3c.dom.Element, java.lang.String)
-	 * 
-	 *      {@inheritDoc}
-	 */
-	public Element addChild(final Element element, final String childName) {
-		Element child = this.fragmentXML.createElement(childName);
-		element.appendChild(child);
-		return child;
-	}
 
 	/**
 	 * 
@@ -220,13 +165,8 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 	 */
 	@Override
 	public Set<String> getMissingNature() {
+		return Collections.EMPTY_SET;
 		//TODO
-		throw new UnsupportedOperationException();
-		//		Set<String> natures = super.getMissingNature();
-		//		if(!hasNature(PLUGIN_NATURE)) {
-		//			natures.add(PLUGIN_NATURE);
-		//		}
-		//		return natures;
 	}
 
 	/**
@@ -237,14 +177,8 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 	 */
 	@Override
 	public Set<String> getMissingFiles() {
+		return Collections.EMPTY_SET;
 		//TODO
-		throw new UnsupportedOperationException();
-		//		Set<String> files = super.getMissingFiles();
-		//		IFile plugin = getProject().getFile(PLUGIN_XML_FILE);
-		//		if(!plugin.exists()){
-		//			files.add(PLUGIN_XML_FILE);
-		//		}
-		//		return files;
 	}
 
 	/**
@@ -255,13 +189,8 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 	 */
 	@Override
 	public Set<String> getMissingBuildCommand() {
+		return Collections.emptySet();
 		//TODO
-		throw new UnsupportedOperationException();
-		//		Set<String> commands = super.getMissingBuildCommand();
-		//		if(!hasBuildCommand(PLUGIN_BUILD_COMMAND)) {
-		//			commands.add(PLUGIN_BUILD_COMMAND);
-		//		}
-		//		return commands;
 	}
 
 	/**
@@ -274,42 +203,78 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 	}
 
 	public void setLabel(String label) {
-		// TODO Auto-generated method stub
+		this.fragmentRoot.setAttribute(LABEL, label);
 
 	}
 
 	public void setVersion(String version) {
-		// TODO Auto-generated method stub
+		this.fragmentRoot.setAttribute(VERSION, version);
 
 	}
 
 	public void setProviderName(String providerName) {
-		// TODO Auto-generated method stub
+		this.fragmentRoot.setAttribute(PROVIDER, providerName);
 
 	}
 
-	public void setCopyright(String copyright) {
-		// TODO Auto-generated method stub
+	public static final String DESCRIPTION = "description";
 
+	public static final String URL = "url";
+
+	public void setDescription(final String copyrightURL, final String copyrightDesc) {
+		if(exists()) {
+			//			this.fragmentRoot.getChildNodes():AttributeNode(name)
+			//			getDescriptionNode(DESCRIPTION);
+			Element extension = getNode(DESCRIPTION);;//this.fragmentXML.getgetElementById(DESCRIPTION);
+			if(extension == null) {
+				extension = this.fragmentXML.createElement(DESCRIPTION);
+				extension.setAttribute(URL, copyrightURL);
+				extension.setTextContent(copyrightDesc);
+				this.fragmentRoot.appendChild(extension);
+			} else {
+				extension.setAttribute(URL, copyrightURL + "erase");
+				extension.setTextContent(copyrightDesc + "erase");
+			}
+		}
 	}
 
-	public void setLicence(String licence) {
-		// TODO Auto-generated method stub
+	public void setLicense(final String licenseURL, final String licenseDesc) {
+		setURLNode(LICENSE, licenseURL, licenseDesc);
+	}
 
+	protected void setURLNode(final String nodeName, final String url, final String description) {
+		if(exists()) {
+			Element extension = getNode(nodeName);
+			if(extension == null) {
+				extension = this.fragmentXML.createElement(nodeName);
+				if(url != null) {
+					extension.setAttribute(URL, url);
+				}
+				extension.setTextContent(description);
+				this.fragmentRoot.appendChild(extension);
+			} else {
+				if(url != null) {
+					extension.setAttribute(URL, url);
+				}
+				extension.setTextContent(description);
+			}
+		}
 	}
 
 	public String getLabel() {
-		return this.fragmentRoot.getAttribute("label");
+		return this.fragmentRoot.getAttribute(LABEL);
 	}
 
 	public String getVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.fragmentRoot.getAttribute(VERSION);
 	}
 
 	public String getProviderName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.fragmentRoot.getAttribute(PROVIDER);
+	}
+
+	public void setCopyright(final String copyrightURL, final String copyrightDesc) {
+		setURLNode(COPYRIGHT, copyrightURL, copyrightDesc);
 	}
 
 	public String getCopyright() {
@@ -317,8 +282,32 @@ public class FragmentProjectEditor extends ProjectEditor implements IFragmentPro
 		return null;
 	}
 
-	public String getLicence() {
+	public String getLicense() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param nodeName
+	 *        the node name
+	 * @return
+	 */
+	public Element getNode(final String nodeName) {
+		if(exists()) {
+			NodeList nodes = this.fragmentRoot.getChildNodes();
+			for(int i = 0; i < nodes.getLength(); i++) {
+				Node item = nodes.item(i);
+				if(item instanceof NodeList) {
+					String name = item.getNodeName();
+					if(name.equals(nodeName)) {
+						if(item instanceof Element) {
+							return (Element)item;
+						}
+					}
+				}
+			}
+		}
 		return null;
 	}
 }
