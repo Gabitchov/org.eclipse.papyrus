@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.plugin.management.command"
+            name="Edit Meta information">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.eclipse.papyrus.plugin.management.command"
+               icon="icons/update-plugin.png"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.plugin.management.handler.RefactoringHandler"
+            commandId="org.eclipse.papyrus.plugin.management.command">
+      </handler>
+   </extension>
+
+</plugin>

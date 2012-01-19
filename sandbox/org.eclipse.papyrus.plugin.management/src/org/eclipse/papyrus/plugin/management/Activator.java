@@ -1,6 +1,6 @@
 package org.eclipse.papyrus.plugin.management;
 
-import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
