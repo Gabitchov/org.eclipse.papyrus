@@ -1,0 +1,35 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+
+* {
+	lineColor:#272727;
+	fontColor:black;
+	fontHeight:9;
+	elementIcon:true; /* Unsupported yet */
+}
+ 
+Class, Interface {
+	fillColor:#C3D1D5;
+}
+
+Comment {
+	fillColor:#FFFFCC;
+}
+
+Constraint {
+	fillColor:#C8FFE6;
+}
+
+Package {
+	fillColor:#FFFFFF
+} 
+

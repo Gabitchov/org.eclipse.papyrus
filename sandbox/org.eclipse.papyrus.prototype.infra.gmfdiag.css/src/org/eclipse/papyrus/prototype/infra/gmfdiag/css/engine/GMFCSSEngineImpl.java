@@ -11,9 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css.engine;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.Activator;
@@ -46,7 +46,8 @@ public class GMFCSSEngineImpl extends AbstractGMFCSSEngineImpl {
 		lastInit = System.currentTimeMillis();
 		try {
 			reset();
-			parseStyleSheet(new FileInputStream("C:/Users/CL228098/Desktop/papyrus.css"));
+			URL styleSheetURL = new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/papyrus.css");
+			parseStyleSheet(styleSheetURL.openStream());
 		} catch (FileNotFoundException ex) {
 			Activator.log.error(ex);
 		} catch (IOException ex) {
