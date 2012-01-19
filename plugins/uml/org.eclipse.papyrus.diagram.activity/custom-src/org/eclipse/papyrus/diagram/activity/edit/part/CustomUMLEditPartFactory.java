@@ -26,6 +26,7 @@ import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomInterr
 import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomLoopNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
@@ -127,6 +128,12 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				 * Custom figure
 				 */
 				return new CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
+			case ActivityActivityContentCompartmentEditPart.VISUAL_ID:
+				/*
+				 * Customization in order to make this compartment not selectable
+				 * Custom figure
+				 */
+				return new CustomActivityActivityContentCompartmentEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

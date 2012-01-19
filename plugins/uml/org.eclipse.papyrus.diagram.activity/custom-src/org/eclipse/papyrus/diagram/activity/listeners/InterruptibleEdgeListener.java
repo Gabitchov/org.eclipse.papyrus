@@ -217,14 +217,22 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 					}
 					return null;
 				}
-
+				/*
+				 * TODO test if needed
+				 * (non-Javadoc)
+				 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doUndo(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+				 */
 				@Override
 				protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					IStatus status = super.doUndo(monitor, info);
 					getDiagramEditPart().refresh();
 					return status;
 				}
-
+				/*
+				 * TODO test if needed
+				 * (non-Javadoc)
+				 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doUndo(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+				 */
 				@Override
 				protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					IStatus status = super.doRedo(monitor, info);

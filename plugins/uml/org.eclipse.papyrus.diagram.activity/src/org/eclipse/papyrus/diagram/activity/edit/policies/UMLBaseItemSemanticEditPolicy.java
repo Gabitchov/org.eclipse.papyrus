@@ -90,8 +90,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
-	 * Extended request data key to hold the edge view during a reconnect
-	 * request.
+	 * Extended request data key to hold the edge view during a reconnect request.
 	 * 
 	 * @generated
 	 */
