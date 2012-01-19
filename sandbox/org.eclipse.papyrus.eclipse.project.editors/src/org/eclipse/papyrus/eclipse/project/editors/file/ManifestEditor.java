@@ -263,7 +263,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		}
 
 		if(getSymbolicBundleName() == null) {
-			setBundleName(getProject().getName());
+			setSymbolicBundleName(getProject().getName());
 		}
 
 		if(getBundleVersion() == null) {
@@ -273,11 +273,11 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setBundleName(java.lang.String)
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setSymbolicBundleName(java.lang.String)
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public void setBundleName(String newName) {
+	public void setSymbolicBundleName(String newName) {
 		if(newName == null) {
 			newName = "noName"; //$NON-NLS-1$
 		}
@@ -370,6 +370,33 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 				}
 			}
 			return value;
+		}
+		return null;
+	}
+
+	public String getBundleName() {
+		if(this.manifest != null) {
+			Name bundleName = new Name(BUNDLE_NAME);
+			String name = this.manifest.getMainAttributes().getValue(bundleName);
+			return name;
+		}
+		return null;
+	}
+
+	public void setBundleName(String newName) {
+		if(newName == null) {
+			newName = "noName"; //$NON-NLS-1$
+		}
+		Name bundleNameName = new Name(BUNDLE_SYMBOLIC_NAME);
+		this.manifest.getMainAttributes().put(bundleNameName, newName);
+		
+	}
+
+	public String getBundleLocalization() {
+		if(this.manifest != null) {
+			Name bundleLocalization = new Name(BUNDLE_LOCALIZATION);
+			String name = this.manifest.getMainAttributes().getValue(bundleLocalization);
+			return name;
 		}
 		return null;
 	}

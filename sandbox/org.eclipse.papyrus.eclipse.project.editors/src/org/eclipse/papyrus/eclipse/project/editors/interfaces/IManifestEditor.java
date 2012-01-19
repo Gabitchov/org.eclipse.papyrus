@@ -31,6 +31,9 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	/** the key for the bundle symbolic name */
 	public static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName"; //$NON-NLS-1$
 
+	/** the key for the bundle name */
+	public static final String BUNDLE_NAME = "Bundle-Name";//$NON-NLS-1$
+
 	/** the key for the required bundle */
 	public static final String REQUIRED_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
@@ -42,6 +45,10 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 
 	/** the build command for the manifest */
 	public static final String MANIFEST_BUILD_COMMAND = "org.eclipse.pde.ManifestBuilder"; //$NON-NLS-1$
+
+	/** the key for the bundle localization */
+	public static final String BUNDLE_LOCALIZATION = "Bundle-Localization"; //$NON-NLS-1$
+
 	/**
 	 * 
 	 * @param dependency
@@ -101,16 +108,31 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	/**
 	 * 
 	 * @param name
-	 *        the name for the bundle
+	 *        the symbolic name for the bundle
 	 */
-	public void setBundleName(final String name);
+	public void setSymbolicBundleName(final String name);
+
+
+	/**
+	 * 
+	 * @return
+	 *         the bundle name for the project
+	 */
+	public String getSymbolicBundleName();
 
 	/**
 	 * 
 	 * @return
 	 *         the symbolic bundle name for the project
 	 */
-	public String getSymbolicBundleName();
+	public String getBundleName();
+
+	/**
+	 * 
+	 * @param name
+	 *        the bundle name for the bundle
+	 */
+	public void setBundleName(final String name);
 
 	/**
 	 * 
@@ -139,4 +161,12 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 *        this plug-in's provider
 	 */
 	public void setBundleVendor(final String vendor);
+
+	/**
+	 * Get the bundle localization
+	 * 
+	 * @return
+	 *         the bundle localization
+	 */
+	public String getBundleLocalization();
 }
