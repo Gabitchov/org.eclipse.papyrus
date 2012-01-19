@@ -15,6 +15,7 @@ package org.eclipse.papyrus.table.common.listener;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -171,33 +172,47 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 	/**
 	 * 
 	 * @param domain
-	 *        the domain to do the command
+	 *            the domain to do the command
 	 * @param elementsToAdd
-	 *        the elements to add in the table
+	 *            the elements to add in the table
 	 * @param widget
-	 *        the widget
-	 * @return
-	 *         the command to add the elements in the table
+	 *            the widget
+	 * @return the command to add the elements in the table
 	 */
 	protected Command getAddElementCommand(final TransactionalEditingDomain domain, final List<EObject> elementsToAdd, final INatTableWidget widget) {
 		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, null, null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				widget.addRows(elementsToAdd);
 				for(EObject current : elementsToAdd) {
 					if(!widget.getTableInstance().getElements().contains(current)) {//we re-test during the execution, to avoid the same element will be added many times
-						List<EObject> toAdd = new ArrayList<EObject>();
-						toAdd.add(current);
-						Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
-						if(command != null) {
-							command.execute();
-						}
+							widget.addRows(Collections.singletonList(current));
 					}
-
 				}
+//					List<EObject> toAdd = new ArrayList<EObject>();
+//					toAdd.add(current);
+//					Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
+//					if(command != null) {
+//						command.execute();
+//					}
+//				}
+//			}
+				//I change the implementation of this command, because, when we create a new element in the model explorer, the facet column are not created
+//				for(EObject current : elementsToAdd) {
+//					if(!widget.getTableInstance().getElements().contains(current)) {//we re-test during the execution, to avoid the same element will be added many times
+//						
+//						List<EObject> toAdd = new ArrayList<EObject>();
+//						toAdd.add(current);
+//						Command command = TableInstanceCommandFactory.createAddRowsCommand(toAdd, (NatTableWidget)widget);
+//						if(command != null) {
+//							command.execute();
+//						}
+//					}
+//				}
 				return null;
 			}
-		});
+			});
 	}
 
 	/**
