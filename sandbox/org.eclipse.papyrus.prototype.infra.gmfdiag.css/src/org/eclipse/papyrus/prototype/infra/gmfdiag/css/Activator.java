@@ -11,9 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css;
 
-import java.io.File;
-import java.io.PrintStream;
-
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -47,8 +44,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
-		//TODO : Remove that
-		System.setErr(new PrintStream(new File("C:/Users/CL228098/Desktop/err.log")));
 	}
 
 	/*

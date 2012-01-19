@@ -42,7 +42,7 @@ public class GMFCSSEngineImpl extends AbstractGMFCSSEngineImpl {
 			return;
 		}
 
-		System.out.println("Refreshing styleSheet");
+		//		System.out.println("Refreshing styleSheet");
 		lastInit = System.currentTimeMillis();
 		try {
 			reset();

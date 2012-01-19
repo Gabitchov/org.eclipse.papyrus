@@ -37,7 +37,22 @@ public class CSSShapeStyleImpl implements CSSShapeStyle {
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_FontColor().getDefaultValue();
 			return (Integer)defaultValue;
+		} else {
+			try {
+				CSSValue value = engine.parsePropertyValue(cssValue);
+				RGBColor color;
+				if(value instanceof RGBColor) {
+					color = (RGBColor)value;
+				} else {
+					color = CSS2ColorHelper.getRGBColor(cssValue);
+				}
+
+				return ConversionHelper.getIntColor(color);
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
 		}
+
 		return Integer.parseInt(cssValue);
 	}
 
@@ -152,7 +167,22 @@ public class CSSShapeStyleImpl implements CSSShapeStyle {
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineColor().getDefaultValue();
 			return (Integer)defaultValue;
+		} else {
+			try {
+				CSSValue value = engine.parsePropertyValue(cssValue);
+				RGBColor color;
+				if(value instanceof RGBColor) {
+					color = (RGBColor)value;
+				} else {
+					color = CSS2ColorHelper.getRGBColor(cssValue);
+				}
+
+				return ConversionHelper.getIntColor(color);
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
 		}
+
 		return Integer.parseInt(cssValue);
 	}
 
