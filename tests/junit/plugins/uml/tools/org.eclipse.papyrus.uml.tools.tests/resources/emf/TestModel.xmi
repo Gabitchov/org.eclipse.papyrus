@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<test:Class1
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:test="http://www.eclipse.org/papyrus/tools/tests"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/tools/tests Metamodel.ecore"
+    singleValuedProperty="//@ownedElements.0">
+  <ownedElements
+      xsi:type="test:Class2"
+      infiniteReference="/"/>
+  <ownedElements
+      xsi:type="test:Class3"/>
+  <ownedElements
+      xsi:type="test:Class1">
+    <ownedElements
+        xsi:type="test:Class2"/>
+    <ownedElements
+        xsi:type="test:Class3"/>
+    <ownedElements
+        xsi:type="test:Class2"/>
+    <ownedElements
+        xsi:type="test:Class3"/>
+  </ownedElements>
+  <ownedElements
+      xsi:type="test:Class1">
+    <ownedElements
+        xsi:type="test:Class2"/>
+    <ownedElements
+        xsi:type="test:Class3"/>
+    <ownedElements
+        xsi:type="test:Class2"/>
+    <ownedElements
+        xsi:type="test:Class3"/>
+    <ownedElements
+        xsi:type="test:Class4"/>
+    <ownedElements
+        xsi:type="test:Class4"/>
+  </ownedElements>
+</test:Class1>

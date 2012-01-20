@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_QGjiZENHEeG0c8mgtNb9-Q" name="Model">
+  <packageImport xmi:id="_QGjiZUNHEeG0c8mgtNb9-Q">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V3hbMENHEeG0c8mgtNb9-Q" name="Class1">
+    <ownedAttribute xmi:id="_XNXz0ENHEeG0c8mgtNb9-Q" name="Property1">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_WUPMYENHEeG0c8mgtNb9-Q" name="Class2"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_akpRoENHEeG0c8mgtNb9-Q" name="EmptyPackage"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_blg4wENHEeG0c8mgtNb9-Q" name="Package1">
+    <packagedElement xmi:type="uml:Class" xmi:id="_f7uEAENHEeG0c8mgtNb9-Q" name="Class1">
+      <ownedAttribute xmi:id="_qJ36EENHEeG0c8mgtNb9-Q" name="Property1"/>
+      <ownedAttribute xmi:id="_qSDlsENHEeG0c8mgtNb9-Q" name="Property2"/>
+      <ownedAttribute xmi:id="_qa1uQENHEeG0c8mgtNb9-Q" name="Property3"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_dGgxcENHEeG0c8mgtNb9-Q" name="Package2">
+    <packagedElement xmi:type="uml:Component" xmi:id="_e62c4ENHEeG0c8mgtNb9-Q" name="Subclass1"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_h38gIENHEeG0c8mgtNb9-Q" name="Interface1"/>
+  </packagedElement>
+</uml:Model>
