@@ -77,10 +77,18 @@ public class PropertyEditorTypeContentProvider extends EMFGraphicalContentProvid
 				if(source.getProperty() == null) {
 					return true;
 				}
-				return editorType.getType() == source.getProperty().getType();
+				return editorType.getType() == source.getProperty().getType() && isMultiplicityEquivalent(editorType.getMultiplicity(), source.getProperty().getMultiplicity());
 			}
 
 			return false;
+		}
+
+		private boolean isMultiplicityEquivalent(int multiplicity, int multiplicity2) {
+			if(multiplicity < 0 || multiplicity > 1) {
+				return multiplicity2 < 0 || multiplicity2 > 1;
+			}
+
+			return multiplicity == 1 && multiplicity2 == 1;
 		}
 
 		public boolean getFilter() {
@@ -91,7 +99,5 @@ public class PropertyEditorTypeContentProvider extends EMFGraphicalContentProvid
 			this.filter = filter;
 			clearCache();
 		}
-
 	}
-
 }

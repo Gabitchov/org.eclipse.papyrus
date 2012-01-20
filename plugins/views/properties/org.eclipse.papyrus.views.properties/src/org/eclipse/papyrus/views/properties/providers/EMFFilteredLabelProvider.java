@@ -16,6 +16,7 @@ import java.util.Iterator;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
 
 /**
  * A LabelProvider which only accepts EMF Objects (EObject, or objects which can be adapted to EObjects)
@@ -41,7 +42,11 @@ public class EMFFilteredLabelProvider extends EMFLabelProvider implements IFilte
 		return true;
 	}
 
-	protected boolean accept(Object element) {
+	public boolean accept(Object element) {
+		if(element instanceof IStructuredSelection) {
+			return accept((IStructuredSelection)element);
+		}
+
 		//The element is an EObject or can be adapted to an EObject
 		return EMFHelper.getEObject(element) != null;
 	}

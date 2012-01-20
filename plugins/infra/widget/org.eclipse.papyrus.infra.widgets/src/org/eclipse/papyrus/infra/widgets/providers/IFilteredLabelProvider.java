@@ -9,10 +9,9 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.providers;
+package org.eclipse.papyrus.infra.widgets.providers;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * A LabelProvider which only accepts a specific set of objects
@@ -21,5 +20,5 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public interface IFilteredLabelProvider extends ILabelProvider {
 
-	public boolean accept(IStructuredSelection selection);
+	public boolean accept(Object element);
 }

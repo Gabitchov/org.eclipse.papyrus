@@ -12,16 +12,13 @@
 package org.eclipse.papyrus.views.properties.providers;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.TreeMap;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.widgets.providers.ExtensibleLabelProvider;
+import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * A class for providing labels for a selected element.
@@ -31,7 +28,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Camille Letavernier
  * 
  */
-public class SelectionLabelProvider extends LabelProvider {
+public class SelectionLabelProvider extends ExtensibleLabelProvider {
 
 	public static final String EXTENSION_ID = "org.eclipse.papyrus.views.properties.labelprovider"; //$NON-NLS-1$
 
@@ -42,6 +39,7 @@ public class SelectionLabelProvider extends LabelProvider {
 	protected final TreeMap<Integer, Collection<IFilteredLabelProvider>> labelProviders = new TreeMap<Integer, Collection<IFilteredLabelProvider>>();
 
 	public SelectionLabelProvider() {
+		super();
 		readExtensionPoint();
 	}
 
@@ -52,42 +50,10 @@ public class SelectionLabelProvider extends LabelProvider {
 			try {
 				final IFilteredLabelProvider provider = (IFilteredLabelProvider)e.createExecutableExtension(LABEL_PROVIDER_PROPERTY);
 				final int priority = Integer.parseInt(e.getAttribute(PRIORITY_PROPERTY));
-				getLabelProviders(priority).add(provider);
+				registerProvider(priority, provider);
 			} catch (Exception ex) {
 				Activator.log.error("Cannot load the label provider : " + e.getAttribute(LABEL_PROVIDER_PROPERTY), ex);
 			}
 		}
-	}
-
-	protected Collection<IFilteredLabelProvider> getLabelProviders(int priority) {
-		if(!labelProviders.containsKey(priority)) {
-			labelProviders.put(priority, new LinkedList<IFilteredLabelProvider>());
-		}
-		return labelProviders.get(priority);
-	}
-
-	@Override
-	public String getText(Object element) {
-		return getLabelProvider(element).getText(element);
-	}
-
-	@Override
-	public Image getImage(Object element) {
-		return getLabelProvider(element).getImage(element);
-	}
-
-	protected ILabelProvider getLabelProvider(Object element) {
-		if(element instanceof IStructuredSelection) {
-			IStructuredSelection selection = (IStructuredSelection)element;
-			for(Collection<IFilteredLabelProvider> providers : labelProviders.values()) {
-				for(IFilteredLabelProvider labelProvider : providers) {
-					if(labelProvider.accept(selection)) {
-						return labelProvider;
-					}
-				}
-			}
-		}
-
-		return new LabelProvider(); //Default
 	}
 }

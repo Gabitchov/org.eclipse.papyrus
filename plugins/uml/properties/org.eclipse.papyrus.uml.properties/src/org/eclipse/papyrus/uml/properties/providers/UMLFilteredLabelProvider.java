@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.widgets.providers.IFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
-import org.eclipse.papyrus.views.properties.providers.IFilteredLabelProvider;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -32,9 +32,6 @@ import org.eclipse.uml2.uml.Element;
  */
 public class UMLFilteredLabelProvider extends UMLLabelProvider implements IFilteredLabelProvider {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean accept(IStructuredSelection selection) {
 		if(selection.isEmpty()) {
 			return false;
@@ -51,7 +48,11 @@ public class UMLFilteredLabelProvider extends UMLLabelProvider implements IFilte
 		return true;
 	}
 
-	protected boolean accept(Object element) {
+	public boolean accept(Object element) {
+		if(element instanceof IStructuredSelection) {
+			return accept((IStructuredSelection)element);
+		}
+
 		//The element is a UML Element or can be adapted to an EObject
 		EObject eObject = EMFHelper.getEObject(element);
 		if(eObject == null) {
@@ -60,10 +61,12 @@ public class UMLFilteredLabelProvider extends UMLLabelProvider implements IFilte
 		if(eObject instanceof Element) {
 			return true;
 		}
+
 		//TODO : is this really this provider's role to accept GMF Diagrams ?
 		if(eObject instanceof Diagram) {
 			return true;
 		}
+
 		return false;
 	}
 
