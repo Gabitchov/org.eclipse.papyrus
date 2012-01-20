@@ -76,6 +76,10 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 				//I think that only Set and Unset are required to get all changes in the model
 				case Notification.SET:
 				case Notification.UNSET:
+				case Notification.ADD:
+				case Notification.REMOVE:
+				case Notification.ADD_MANY:
+				case Notification.REMOVE_MANY:
 					return getSynchronizationCommand(domain);
 				default:
 					break;
