@@ -52,32 +52,51 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 	}
 
 	@Override
+	public Object[] getElements() {
+		return getValidElements(super.getElements());
+	}
+
+	@Override
+	public Object[] getElements(Object inputElement) {
+		return getValidElements(super.getElements(inputElement));
+	}
+
+	/**
+	 * Filters the valid root elements, ie. the root elements containing
+	 * at least one valid child (Or being valid themselves)
+	 * 
+	 * @param roots
+	 * @return
+	 */
+	protected Object[] getValidElements(Object[] roots) {
+		if(filterElements) {
+			List<Object> rootsList = ListHelper.asList(roots);
+			Iterator<?> iterator = rootsList.iterator();
+			while(iterator.hasNext()) {
+				if(!isValid(iterator.next(), new HashSet<Object>())) {
+					iterator.remove();
+				}
+			}
+			return rootsList.toArray();
+		}
+
+		return roots;
+	}
+
+	@Override
 	public Object[] getChildren(Object parent) {
 		if(provider == null) {
 			Activator.log.warn("The provider has not been initialized");
 			return new Object[0];
 		}
 
-		return filterElements ? getValidChildren(parent, new HashSet<Object>()) : super.getChildren(parent);
+		return getValidElements(super.getChildren(parent));
 	}
 
 	@Override
 	public boolean hasChildren(Object parent) {
 		//May be expensive
 		return getChildren(parent).length > 0;
-	}
-
-	protected Object[] getValidChildren(Object parent, Set<Object> visitedElements) {
-		List<?> children = ListHelper.asList(super.getChildren(parent));
-		Iterator<?> childrenIterator = children.iterator();
-		while(childrenIterator.hasNext()) {
-			Object child = childrenIterator.next();
-			if(!isValid(child, visitedElements)) {
-				childrenIterator.remove();
-			}
-		}
-
-		return children.toArray();
 	}
 
 	protected boolean isValid(Object containerElement, Set<Object> visitedElements) {
