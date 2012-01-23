@@ -946,7 +946,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					Resource resource = (Resource)notification.getNotifier();
 					if(resource.isLoaded()) {
 						boolean modified = false;
-						for(Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+						for(Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource)it.next();
 							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();

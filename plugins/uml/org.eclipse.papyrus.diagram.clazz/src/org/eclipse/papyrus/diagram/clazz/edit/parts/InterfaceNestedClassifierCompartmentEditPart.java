@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.AbstractNestedClassifierListenerEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassNestedClassifierListenerEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.InterfaceNestedClassifierListenerEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.NestedClazzCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;

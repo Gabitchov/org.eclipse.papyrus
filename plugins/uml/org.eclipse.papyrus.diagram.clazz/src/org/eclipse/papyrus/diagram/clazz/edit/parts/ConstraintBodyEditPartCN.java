@@ -73,8 +73,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
