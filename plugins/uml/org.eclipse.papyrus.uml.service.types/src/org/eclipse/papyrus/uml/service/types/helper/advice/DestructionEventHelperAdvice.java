@@ -19,6 +19,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 
 /**
  * Helper advice for all {@link DestructionEvent} elements.
+ * 
+ * @deprecated the related element no more exists in UML 2.4
  */
 public class DestructionEventHelperAdvice extends AbstractEditHelperAdvice {
 

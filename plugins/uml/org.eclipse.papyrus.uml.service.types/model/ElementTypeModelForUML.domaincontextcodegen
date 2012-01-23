@@ -179,9 +179,6 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="CreationEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreationEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreationEvent"/>
-    </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DataStoreNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
     </types>
@@ -212,8 +209,8 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="DestroyObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="DestructionEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestructionEvent"/>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DestructionOccurrenceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionOccurrenceSpecification.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestructionOccurrenceSpecification"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Device" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Device"/>
@@ -259,9 +256,6 @@
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionEnvironment" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEnvironment"/>
-    </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionOccurrenceSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionOccurrenceSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionOccurrenceSpecification"/>
@@ -403,6 +397,9 @@
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralNull" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralNull"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralReal" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralReal.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralReal"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralSpecification" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralSpecification"/>
@@ -566,12 +563,6 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Realization" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Realization"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReceiveOperationEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveOperationEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReceiveOperationEvent"/>
-    </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReceiveSignalEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveSignalEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReceiveSignalEvent"/>
-    </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="Reception" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Reception"/>
     </types>
@@ -605,14 +596,8 @@
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SendObjectAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendObjectAction"/>
     </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="SendOperationEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendOperationEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendOperationEvent"/>
-    </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SendSignalAction" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalAction"/>
-    </types>
-    <types xsi:type="domaincontextcodegen:MetaClassType" name="SendSignalEvent" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalEvent.gif">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalEvent"/>
     </types>
     <types xsi:type="domaincontextcodegen:MetaClassType" name="SequenceNode" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SequenceNode"/>
@@ -751,21 +736,265 @@
   <advices adviceID="org.eclipse.papyrus.uml.advice.Collaboration" ref="//@elementTypes/@types.38" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice"/>
   <advices adviceID="org.eclipse.papyrus.uml.advice.CollaborationUse" ref="//@elementTypes/@types.39" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationUseHelperAdvice"/>
   <advices adviceID="org.eclipse.papyrus.uml.advice.ConnectorEnd" ref="//@elementTypes/@types.50" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectorEndHelperAdvice"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.DestructionEvent" ref="//@elementTypes/@types.70" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.DirectedRelationship" ref="//@elementTypes/@types.72" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.DirectedRelationshipHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.ExecutionSpecification" ref="//@elementTypes/@types.88" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.FeatureNameInitializer" ref="//@elementTypes/@types.96" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.FeatureNameInitializerHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.Lifeline" ref="//@elementTypes/@types.126" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.Message" ref="//@elementTypes/@types.140" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.MessageEnd" ref="//@elementTypes/@types.141" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer" ref="//@elementTypes/@types.145" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MultiplicityElementMultiplicityInitializerHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.NamedElement" ref="//@elementTypes/@types.146" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer" ref="//@elementTypes/@types.146" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" ref="//@elementTypes/@types.152" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice" inheritance="all"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.PartDecomposition" ref="//@elementTypes/@types.166" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"/>
-  <advices adviceID="org.eclipse.papyrus.uml.advice.Property" ref="//@elementTypes/@types.172" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.DirectedRelationship" ref="//@elementTypes/@types.71" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.DirectedRelationshipHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.EncapsulatedClassifier" ref="//@elementTypes/@types.78" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.EncapsulatedClassifierHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.ExecutionSpecification" ref="//@elementTypes/@types.86" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.FeatureNameInitializer" ref="//@elementTypes/@types.94" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.FeatureNameInitializerHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Lifeline" ref="//@elementTypes/@types.124" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Message" ref="//@elementTypes/@types.139" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.MessageEnd" ref="//@elementTypes/@types.140" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer" ref="//@elementTypes/@types.144" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MultiplicityElementMultiplicityInitializerHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.NamedElement" ref="//@elementTypes/@types.145" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer" ref="//@elementTypes/@types.145" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" ref="//@elementTypes/@types.151" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.PartDecomposition" ref="//@elementTypes/@types.165" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Property" ref="//@elementTypes/@types.171" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice" inheritance="all"/>
   <bindings clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext">
-    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" pattern="org\.eclipse\.papyrus\.uml\..*"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.0"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.1"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.2"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.3"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.4"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.5"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.6"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.7"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.8"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.9"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.10"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.11"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.12"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.13"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.14"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.15"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.16"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.17"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.18"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.19"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.20"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.21"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.22"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.23"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.24"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.25"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.26"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.27"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.28"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.29"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.30"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.31"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.32"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.33"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.34"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.35"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.36"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.37"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.38"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.39"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.40"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.41"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.42"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.43"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.44"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.45"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.46"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.47"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.48"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.49"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.50"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.51"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.52"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.53"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.54"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.55"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.56"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.57"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.58"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.59"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.60"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.61"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.62"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.63"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.64"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.65"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.66"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.67"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.68"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.69"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.70"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.71"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.72"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.73"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.74"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.75"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.76"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.77"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.78"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.79"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.80"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.81"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.82"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.83"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.84"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.85"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.86"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.87"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.88"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.89"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.90"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.91"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.92"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.93"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.94"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.95"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.96"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.97"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.98"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.99"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.100"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.101"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.102"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.103"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.104"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.105"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.106"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.107"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.108"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.109"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.110"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.111"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.112"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.113"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.114"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.115"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.116"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.117"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.118"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.119"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.120"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.121"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.122"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.123"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.124"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.125"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.126"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.127"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.128"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.129"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.130"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.131"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.132"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.133"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.134"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.135"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.136"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.137"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.138"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.139"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.140"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.141"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.142"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.143"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.144"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.145"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.146"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.147"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.148"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.149"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.150"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.151"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.152"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.153"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.154"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.155"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.156"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.157"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.158"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.159"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.160"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.161"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.162"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.163"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.164"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.165"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.166"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.167"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.168"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.169"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.170"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.171"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.172"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.173"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.174"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.175"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.176"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.177"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.178"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.179"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.180"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.181"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.182"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.183"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.184"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.185"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.186"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.187"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.188"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.189"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.190"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.191"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.192"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.193"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.194"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.195"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.196"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.197"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.198"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.199"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.200"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.201"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.202"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.203"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.204"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.205"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.206"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.207"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.208"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.209"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.210"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.211"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.212"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.213"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.214"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.215"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.216"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.217"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.218"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.219"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.220"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.221"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.222"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.223"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.224"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.225"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.226"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.227"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.228"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.229"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.230"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.231"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.232"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.233"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.234"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.235"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.236"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.237"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.238"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.239"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.240"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.241"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.242"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.243"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" ref="//@elementTypes/@types.244"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.0"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.1"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.2"/>
@@ -784,5 +1013,5 @@
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.15"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.16"/>
   </bindings>
-  <genHandlers handlerPackage="org.eclipse.papyrus.uml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.uml.modelexplorer.handler" elementTypeEnumerator="UMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.uml.service.types.element" visibleCreateChildHandlers="//@elementTypes/@types.1 //@elementTypes/@types.2 //@elementTypes/@types.4 //@elementTypes/@types.5 //@elementTypes/@types.6 //@elementTypes/@types.8 //@elementTypes/@types.11 //@elementTypes/@types.12 //@elementTypes/@types.13 //@elementTypes/@types.14 //@elementTypes/@types.15 //@elementTypes/@types.16 //@elementTypes/@types.17 //@elementTypes/@types.21 //@elementTypes/@types.24 //@elementTypes/@types.26 //@elementTypes/@types.27 //@elementTypes/@types.28 //@elementTypes/@types.29 //@elementTypes/@types.30 //@elementTypes/@types.31 //@elementTypes/@types.33 //@elementTypes/@types.34 //@elementTypes/@types.35 //@elementTypes/@types.36 //@elementTypes/@types.37 //@elementTypes/@types.38 //@elementTypes/@types.39 //@elementTypes/@types.40 //@elementTypes/@types.41 //@elementTypes/@types.43 //@elementTypes/@types.45 //@elementTypes/@types.47 //@elementTypes/@types.51 //@elementTypes/@types.52 //@elementTypes/@types.53 //@elementTypes/@types.54 //@elementTypes/@types.56 //@elementTypes/@types.57 //@elementTypes/@types.58 //@elementTypes/@types.59 //@elementTypes/@types.60 //@elementTypes/@types.61 //@elementTypes/@types.62 //@elementTypes/@types.66 //@elementTypes/@types.68 //@elementTypes/@types.69 //@elementTypes/@types.70 //@elementTypes/@types.71 //@elementTypes/@types.73 //@elementTypes/@types.74 //@elementTypes/@types.75 //@elementTypes/@types.76 //@elementTypes/@types.78 //@elementTypes/@types.80 //@elementTypes/@types.81 //@elementTypes/@types.83 //@elementTypes/@types.85 //@elementTypes/@types.86 //@elementTypes/@types.87 //@elementTypes/@types.89 //@elementTypes/@types.90 //@elementTypes/@types.91 //@elementTypes/@types.95 //@elementTypes/@types.98 //@elementTypes/@types.99 //@elementTypes/@types.100 //@elementTypes/@types.101 //@elementTypes/@types.102 //@elementTypes/@types.103 //@elementTypes/@types.106 //@elementTypes/@types.109 //@elementTypes/@types.110 //@elementTypes/@types.111 //@elementTypes/@types.112 //@elementTypes/@types.113 //@elementTypes/@types.114 //@elementTypes/@types.115 //@elementTypes/@types.117 //@elementTypes/@types.118 //@elementTypes/@types.119 //@elementTypes/@types.121 //@elementTypes/@types.122 //@elementTypes/@types.123 //@elementTypes/@types.125 //@elementTypes/@types.126 //@elementTypes/@types.128 //@elementTypes/@types.129 //@elementTypes/@types.130 //@elementTypes/@types.131 //@elementTypes/@types.132 //@elementTypes/@types.133 //@elementTypes/@types.135 //@elementTypes/@types.136 //@elementTypes/@types.137 //@elementTypes/@types.139 //@elementTypes/@types.144 //@elementTypes/@types.148 //@elementTypes/@types.149 //@elementTypes/@types.152 //@elementTypes/@types.153 //@elementTypes/@types.154 //@elementTypes/@types.155 //@elementTypes/@types.156 //@elementTypes/@types.157 //@elementTypes/@types.158 //@elementTypes/@types.159 //@elementTypes/@types.160 //@elementTypes/@types.163 //@elementTypes/@types.164 //@elementTypes/@types.166 //@elementTypes/@types.167 //@elementTypes/@types.168 //@elementTypes/@types.169 //@elementTypes/@types.170 //@elementTypes/@types.172 //@elementTypes/@types.174 //@elementTypes/@types.175 //@elementTypes/@types.177 //@elementTypes/@types.178 //@elementTypes/@types.179 //@elementTypes/@types.180 //@elementTypes/@types.181 //@elementTypes/@types.182 //@elementTypes/@types.183 //@elementTypes/@types.184 //@elementTypes/@types.185 //@elementTypes/@types.186 //@elementTypes/@types.188 //@elementTypes/@types.189 //@elementTypes/@types.190 //@elementTypes/@types.191 //@elementTypes/@types.193 //@elementTypes/@types.194 //@elementTypes/@types.195 //@elementTypes/@types.197 //@elementTypes/@types.198 //@elementTypes/@types.199 //@elementTypes/@types.200 //@elementTypes/@types.201 //@elementTypes/@types.202 //@elementTypes/@types.203 //@elementTypes/@types.204 //@elementTypes/@types.205 //@elementTypes/@types.206 //@elementTypes/@types.207 //@elementTypes/@types.208 //@elementTypes/@types.209 //@elementTypes/@types.210 //@elementTypes/@types.211 //@elementTypes/@types.212 //@elementTypes/@types.213 //@elementTypes/@types.214 //@elementTypes/@types.217 //@elementTypes/@types.220 //@elementTypes/@types.221 //@elementTypes/@types.222 //@elementTypes/@types.223 //@elementTypes/@types.225 //@elementTypes/@types.226 //@elementTypes/@types.227 //@elementTypes/@types.228 //@elementTypes/@types.229 //@elementTypes/@types.230 //@elementTypes/@types.232 //@elementTypes/@types.235 //@elementTypes/@types.237 //@elementTypes/@types.238 //@elementTypes/@types.240 //@elementTypes/@types.241" createChildMenuLocationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild"/>
+  <genHandlers handlerPackage="org.eclipse.papyrus.uml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.uml.modelexplorer.handler" elementTypeEnumerator="UMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.uml.service.types.element" visibleCreateChildHandlers="//@elementTypes/@types.1 //@elementTypes/@types.2 //@elementTypes/@types.4 //@elementTypes/@types.5 //@elementTypes/@types.6 //@elementTypes/@types.8 //@elementTypes/@types.11 //@elementTypes/@types.12 //@elementTypes/@types.13 //@elementTypes/@types.14 //@elementTypes/@types.15 //@elementTypes/@types.16 //@elementTypes/@types.17 //@elementTypes/@types.21 //@elementTypes/@types.24 //@elementTypes/@types.26 //@elementTypes/@types.27 //@elementTypes/@types.28 //@elementTypes/@types.29 //@elementTypes/@types.30 //@elementTypes/@types.31 //@elementTypes/@types.33 //@elementTypes/@types.34 //@elementTypes/@types.35 //@elementTypes/@types.36 //@elementTypes/@types.37 //@elementTypes/@types.38 //@elementTypes/@types.39 //@elementTypes/@types.40 //@elementTypes/@types.41 //@elementTypes/@types.43 //@elementTypes/@types.45 //@elementTypes/@types.47 //@elementTypes/@types.51 //@elementTypes/@types.52 //@elementTypes/@types.53 //@elementTypes/@types.54 //@elementTypes/@types.56 //@elementTypes/@types.57 //@elementTypes/@types.58 //@elementTypes/@types.59 //@elementTypes/@types.60 //@elementTypes/@types.61 //@elementTypes/@types.65 //@elementTypes/@types.67 //@elementTypes/@types.68 //@elementTypes/@types.70 //@elementTypes/@types.72 //@elementTypes/@types.73 //@elementTypes/@types.74 //@elementTypes/@types.75 //@elementTypes/@types.77 //@elementTypes/@types.79 //@elementTypes/@types.80 //@elementTypes/@types.82 //@elementTypes/@types.84 //@elementTypes/@types.85 //@elementTypes/@types.87 //@elementTypes/@types.88 //@elementTypes/@types.89 //@elementTypes/@types.93 //@elementTypes/@types.96 //@elementTypes/@types.97 //@elementTypes/@types.98 //@elementTypes/@types.99 //@elementTypes/@types.100 //@elementTypes/@types.101 //@elementTypes/@types.104 //@elementTypes/@types.107 //@elementTypes/@types.108 //@elementTypes/@types.109 //@elementTypes/@types.110 //@elementTypes/@types.111 //@elementTypes/@types.112 //@elementTypes/@types.113 //@elementTypes/@types.115 //@elementTypes/@types.116 //@elementTypes/@types.117 //@elementTypes/@types.119 //@elementTypes/@types.120 //@elementTypes/@types.121 //@elementTypes/@types.123 //@elementTypes/@types.124 //@elementTypes/@types.126 //@elementTypes/@types.127 //@elementTypes/@types.128 //@elementTypes/@types.129 //@elementTypes/@types.130 //@elementTypes/@types.131 //@elementTypes/@types.132 //@elementTypes/@types.134 //@elementTypes/@types.135 //@elementTypes/@types.136 //@elementTypes/@types.138 //@elementTypes/@types.143 //@elementTypes/@types.147 //@elementTypes/@types.148 //@elementTypes/@types.151 //@elementTypes/@types.152 //@elementTypes/@types.153 //@elementTypes/@types.154 //@elementTypes/@types.155 //@elementTypes/@types.156 //@elementTypes/@types.157 //@elementTypes/@types.158 //@elementTypes/@types.159 //@elementTypes/@types.162 //@elementTypes/@types.163 //@elementTypes/@types.165 //@elementTypes/@types.166 //@elementTypes/@types.167 //@elementTypes/@types.168 //@elementTypes/@types.169 //@elementTypes/@types.171 //@elementTypes/@types.173 //@elementTypes/@types.174 //@elementTypes/@types.176 //@elementTypes/@types.177 //@elementTypes/@types.178 //@elementTypes/@types.179 //@elementTypes/@types.180 //@elementTypes/@types.181 //@elementTypes/@types.182 //@elementTypes/@types.183 //@elementTypes/@types.184 //@elementTypes/@types.185 //@elementTypes/@types.187 //@elementTypes/@types.188 //@elementTypes/@types.190 //@elementTypes/@types.191 //@elementTypes/@types.192 //@elementTypes/@types.194 //@elementTypes/@types.195 //@elementTypes/@types.196 //@elementTypes/@types.197 //@elementTypes/@types.198 //@elementTypes/@types.199 //@elementTypes/@types.200 //@elementTypes/@types.201 //@elementTypes/@types.202 //@elementTypes/@types.203 //@elementTypes/@types.204 //@elementTypes/@types.205 //@elementTypes/@types.206 //@elementTypes/@types.207 //@elementTypes/@types.208 //@elementTypes/@types.209 //@elementTypes/@types.212 //@elementTypes/@types.215 //@elementTypes/@types.216 //@elementTypes/@types.217 //@elementTypes/@types.218 //@elementTypes/@types.220 //@elementTypes/@types.221 //@elementTypes/@types.222 //@elementTypes/@types.223 //@elementTypes/@types.224 //@elementTypes/@types.225 //@elementTypes/@types.227 //@elementTypes/@types.230 //@elementTypes/@types.232 //@elementTypes/@types.233 //@elementTypes/@types.235 //@elementTypes/@types.236" createChildMenuLocationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild"/>
 </domaincontextcodegen:DomainContext>

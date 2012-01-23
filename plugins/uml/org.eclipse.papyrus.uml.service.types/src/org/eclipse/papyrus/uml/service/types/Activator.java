@@ -33,7 +33,7 @@ public class Activator extends Plugin {
 
 	/** Default Constructor */
 	public Activator() {
-		
+
 	}
 
 	/*

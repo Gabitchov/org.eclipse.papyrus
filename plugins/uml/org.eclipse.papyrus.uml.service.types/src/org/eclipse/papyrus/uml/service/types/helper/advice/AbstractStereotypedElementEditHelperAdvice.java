@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 
 /**
  * This abstract EditHelperAdvice is used for UML Element creation with
@@ -32,7 +33,7 @@ import org.eclipse.uml2.uml.Package;
 public abstract class AbstractStereotypedElementEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/** List of profiles supposedly applied before element creation */
-	protected List<String> requiredProfileIDs = new ArrayList<String>();
+	protected List<Profile> requiredProfiles = new ArrayList<Profile>();
 
 	/**
 	 * Check required profile application before approving the request.
@@ -61,8 +62,8 @@ public abstract class AbstractStereotypedElementEditHelperAdvice extends Abstrac
 
 			// Ensure all necessary profiles are effectively applied
 			if(profileApplicationContext != null) {
-				for(String requiredProfileID : requiredProfileIDs) {
-					if(profileApplicationContext.getAppliedProfile(requiredProfileID, true) == null) {
+				for(Profile requiredProfile : requiredProfiles) {
+					if(profileApplicationContext.isProfileApplied(requiredProfile)) {
 						isApproved = false;
 					}
 				}

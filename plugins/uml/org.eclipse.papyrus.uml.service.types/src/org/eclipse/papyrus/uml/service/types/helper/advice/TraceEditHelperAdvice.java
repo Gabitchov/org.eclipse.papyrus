@@ -18,18 +18,18 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
-import org.eclipse.papyrus.uml.standard.StandardPackage;
-import org.eclipse.papyrus.uml.standard.Trace;
-import org.eclipse.papyrus.uml.standard.util.StandardResource;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** Standard Profile {@link Trace} edit helper advice */
 public class TraceEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public TraceEditHelperAdvice() {
-		requiredProfileIDs.add(StandardResource.STANDARD_ID);
+		requiredProfiles.add(UMLUtil.getProfile(L2Package.eINSTANCE));
 	}
 
 	/** Complete creation process by applying the expected stereotype */
@@ -41,14 +41,11 @@ public class TraceEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(StandardResource.TRACE_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, L2Package.eINSTANCE.getRefine());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(StandardPackage.eINSTANCE.getTrace().getName(), element.eContainer().eContents());
+					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(L2Package.eINSTANCE.getTrace().getName(), element.eContainer().eContents());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult(element);

@@ -1,6 +1,3 @@
-/*
- * 
- */
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
 import org.eclipse.core.commands.IHandler;
@@ -9,17 +6,17 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 /**
  * <pre>
- * Command handler for DestructionEvent creation
+ * Command handler for DestructionOccurrenceSpecification creation
  * 
  * </pre>
  * 
  * @generated
  */
-public class DestructionEventHandler extends CreateCommandHandler implements IHandler {
+public class DestructionOccurrenceSpecificationHandler extends CreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.uml.service.creation.handler.CreateHandler#getElementTypeToCreate()
+	 * @see org.eclipse.papyrus.uml.modelexplorer.handler.CreateCommandHandler#getElementTypeToCreate()
 	 * 
 	 * @return the IElementType this handler is supposed to create
 	 * 
@@ -28,6 +25,6 @@ public class DestructionEventHandler extends CreateCommandHandler implements IHa
 	 * @generated
 	 */
 	protected IElementType getElementTypeToCreate() {
-		return UMLElementTypes.DESTRUCTION_EVENT;
+		return UMLElementTypes.DESTRUCTION_OCCURRENCE_SPECIFICATION;
 	}
 }

@@ -20,7 +20,7 @@
 	
 	<!-- Declaration of IElementTypes -->
 	
-[for (type : MetaClassType | domain.elementTypes.types->select(oclIsTypeOf(MetaClassType)))]
+[for (type : MetaClassType | domain.elementTypes.types->select(oclIsTypeOf(MetaClassType))->collect(oclAsType(MetaClassType)))]
 	<!-- IMetamodelType for [type.name/] -->
 	<metamodelType id="[type.getElementTypeID()/]" name="[type.getSemanticHint()/]"
 		eclass="[type.metaClass.name/]"
@@ -32,7 +32,7 @@
 	</metamodelType>
 	
 [/for]
-[for (type : SpecializationType | domain.elementTypes.types->select(oclIsTypeOf(SpecializationType)))]
+[for (type : SpecializationType | domain.elementTypes.types->select(oclIsTypeOf(SpecializationType))->collect(oclAsType(SpecializationType)))]
 	<!-- ISpecializationType [type.name/] of [type.ref.getSemanticHint() /] -->
 	<specializationType id="[type.getElementTypeID()/]" name="[type.getSemanticHint()/]"
 		edithelperadvice="[type.helper/]"
@@ -75,10 +75,10 @@
 	<!-- Bindings declaration -->
 	<binding context="[domain.bindings.clientContextID/]">
 	
-[for (binding : ElementTypeBinding | domain.bindings.bindings->select(oclIsTypeOf(ElementTypeBinding)))]
+[for (binding : ElementTypeBinding | domain.bindings.bindings->select(oclIsTypeOf(ElementTypeBinding))->collect(oclAsType(ElementTypeBinding)))]
 		[binding.GenBinding()/]
 [/for]
-[for (binding : AdviceBinding | domain.bindings.bindings->select(oclIsTypeOf(AdviceBinding)))]
+[for (binding : AdviceBinding | domain.bindings.bindings->select(oclIsTypeOf(AdviceBinding))->collect(oclAsType(AdviceBinding)))]
 		[binding.GenBinding()/]
 [/for]
 

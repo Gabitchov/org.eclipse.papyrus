@@ -16,9 +16,10 @@
     <!-- ================================================================= -->
     <target name="post.compile.@dot">
         <acceleoCompiler 
-            sourceFolder="${target.folder}" 
+            sourceFolder="${target.folder}"
+            outputFolder="${target.folder}"
             dependencies=""
-            binaryResource="true">
+            binaryResource="false">
         </acceleoCompiler>
     </target>    
 </project>

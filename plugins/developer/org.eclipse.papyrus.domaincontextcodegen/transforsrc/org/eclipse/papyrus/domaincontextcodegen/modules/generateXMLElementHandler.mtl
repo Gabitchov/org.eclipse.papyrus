@@ -16,10 +16,7 @@
 <extension point="org.eclipse.ui.commands">
 [for (type : ElementType | domain.elementTypes.types->select(not isAbstract()))]
 	<!-- Creation command for [type.name/] -->
-	<command categoryId="org.eclipse.papyrus.editor.category"
-		id="[type.getCommandID()/]"
-		name="Create a new [type.name/]" description="Create a new [type.name/]"
-		defaultHandler="[type.getCommandHandler()/]">
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="[type.getCommandHandler()/]" description="Create a new [type.name/]" id="[type.getCommandID()/]" name="Create a new [type.name/]">
 	</command>
 	
 [/for ]
@@ -34,18 +31,14 @@
 
 [for (type : ElementType | domain.elementTypes.types->select(not isAbstract()))]
 		<!-- Creation menu action for [type.name/] -->
-		<command commandId="[type.getCommandID()/]"
-			label="Create a new [type.name/]" tooltip="Create a new [type.name/]" style="push"		
-			icon="[type.getIcon()/]" >
+		<command commandId="[type.getCommandID()/]" icon="[type.getIcon()/]" label="Create a new [type.name/]" style="push" tooltip="Create a new [type.name/]">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 [/for ]	
 [for (type : ElementType | domain.genHandlers.parentDomainCreateChild->select(not isAbstract()))]
 		<!-- Creation menu action for [type.name/] -->
-		<command commandId="[type.getCommandID()/]"
-			label="Create a new [type.name/]" tooltip="Create a new [type.name/]" style="push"		
-			icon="[type.getIcon()/]" >
+		<command commandId="[type.getCommandID()/]" icon="[type.getIcon()/]" label="Create a new [type.name/]" style="push" tooltip="Create a new [type.name/]">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		

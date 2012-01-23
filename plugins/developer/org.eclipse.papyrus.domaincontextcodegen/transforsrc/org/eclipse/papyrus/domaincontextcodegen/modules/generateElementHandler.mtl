@@ -57,12 +57,13 @@ import [domain.genHandlers.elementTypeEnumeratorPackage/].[domain.genHandlers.el
 [if (not domain.specializationOf.oclIsUndefined())]
 import [domain.specializationOf.genHandlers.elementTypeEnumeratorPackage/].[domain.specializationOf.genHandlers.elementTypeEnumerator/];	
 [/if]
+import org.eclipse.papyrus.views.modelexplorer.ICommandFilter;
 
-public class CommandFilter {
+public class CommandFilter implements ICommandFilter {
 
-	private static List<IElementType> visibleCommands;
+	private List<IElementType> visibleCommands;
 
-	public static List<IElementType> getVisibleCommands() {
+	public List<IElementType> getVisibleCommands() {
 		if(visibleCommands == null) {
 			visibleCommands = new ArrayList<IElementType>();
 

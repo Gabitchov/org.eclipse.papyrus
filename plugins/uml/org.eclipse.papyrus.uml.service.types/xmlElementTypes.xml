@@ -5,7 +5,7 @@
 <!-- UML ElementTypes declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 	
 	<!-- Declaration of IElementTypes -->
 	
@@ -429,13 +429,6 @@
 			<param name="semanticHint" value="UML::CreateObjectAction"/>
 	</metamodelType>
 	
-	<!-- IMetamodelType for CreationEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.CreationEvent" name="UML::CreationEvent"
-		eclass="CreationEvent"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::CreationEvent"/>
-	</metamodelType>
-	
 	<!-- IMetamodelType for DataStoreNode -->
 	<metamodelType id="org.eclipse.papyrus.uml.DataStoreNode" name="UML::DataStoreNode"
 		eclass="DataStoreNode"
@@ -507,11 +500,11 @@
 			<param name="semanticHint" value="UML::DestroyObjectAction"/>
 	</metamodelType>
 	
-	<!-- IMetamodelType for DestructionEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.DestructionEvent" name="UML::DestructionEvent"
-		eclass="DestructionEvent"
+	<!-- IMetamodelType for DestructionOccurrenceSpecification -->
+	<metamodelType id="org.eclipse.papyrus.uml.DestructionOccurrenceSpecification" name="UML::DestructionOccurrenceSpecification"
+		eclass="DestructionOccurrenceSpecification"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::DestructionEvent"/>
+			<param name="semanticHint" value="UML::DestructionOccurrenceSpecification"/>
 	</metamodelType>
 	
 	<!-- IMetamodelType for Device -->
@@ -618,13 +611,6 @@
 		eclass="ExecutionEnvironment"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ExecutionEnvironment"/>
-	</metamodelType>
-	
-	<!-- IMetamodelType for ExecutionEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.ExecutionEvent" name="UML::ExecutionEvent"
-		eclass="ExecutionEvent"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::ExecutionEvent"/>
 	</metamodelType>
 	
 	<!-- IMetamodelType for ExecutionOccurrenceSpecification -->
@@ -959,6 +945,13 @@
 		eclass="LiteralNull"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::LiteralNull"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for LiteralReal -->
+	<metamodelType id="org.eclipse.papyrus.uml.LiteralReal" name="UML::LiteralReal"
+		eclass="LiteralReal"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::LiteralReal"/>
 	</metamodelType>
 	
 	<!-- IMetamodelType for LiteralSpecification -->
@@ -1343,20 +1336,6 @@
 			<param name="semanticHint" value="UML::Realization"/>
 	</metamodelType>
 	
-	<!-- IMetamodelType for ReceiveOperationEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.ReceiveOperationEvent" name="UML::ReceiveOperationEvent"
-		eclass="ReceiveOperationEvent"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::ReceiveOperationEvent"/>
-	</metamodelType>
-	
-	<!-- IMetamodelType for ReceiveSignalEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.ReceiveSignalEvent" name="UML::ReceiveSignalEvent"
-		eclass="ReceiveSignalEvent"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::ReceiveSignalEvent"/>
-	</metamodelType>
-	
 	<!-- IMetamodelType for Reception -->
 	<metamodelType id="org.eclipse.papyrus.uml.Reception" name="UML::Reception"
 		eclass="Reception"
@@ -1434,25 +1413,11 @@
 			<param name="semanticHint" value="UML::SendObjectAction"/>
 	</metamodelType>
 	
-	<!-- IMetamodelType for SendOperationEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.SendOperationEvent" name="UML::SendOperationEvent"
-		eclass="SendOperationEvent"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::SendOperationEvent"/>
-	</metamodelType>
-	
 	<!-- IMetamodelType for SendSignalAction -->
 	<metamodelType id="org.eclipse.papyrus.uml.SendSignalAction" name="UML::SendSignalAction"
 		eclass="SendSignalAction"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::SendSignalAction"/>
-	</metamodelType>
-	
-	<!-- IMetamodelType for SendSignalEvent -->
-	<metamodelType id="org.eclipse.papyrus.uml.SendSignalEvent" name="UML::SendSignalEvent"
-		eclass="SendSignalEvent"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
-			<param name="semanticHint" value="UML::SendSignalEvent"/>
 	</metamodelType>
 	
 	<!-- IMetamodelType for SequenceNode -->
@@ -1776,13 +1741,22 @@
 		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.TraceMatcher" />
 	</specializationType>
 	
+	<!-- ISpecializationType Refine of UML::Abstraction -->
+	<specializationType id="org.eclipse.papyrus.uml.Refine" name="UML::Refine"
+		edithelperadvice="org.eclipse.papyrus.uml.service.types.helper.advice.RefineEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Refine"/>
+		<specializes id="org.eclipse.papyrus.uml.Abstraction" />
+		<matcher class ="org.eclipse.papyrus.uml.service.types.matcher.RefineMatcher" />
+	</specializationType>
+	
 	</metamodel>
 </extension>
 
 <!-- Helper advice declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 	
 	<!-- Helper advice for Classifier -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.Classifier"
@@ -1808,16 +1782,16 @@
 		inheritance="none" typeId="org.eclipse.papyrus.uml.ConnectorEnd">
 	</adviceBinding>
 	
-	<!-- Helper advice for DestructionEvent -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.DestructionEvent"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.DestructionEvent">
-	</adviceBinding>
-	
 	<!-- Helper advice for DirectedRelationship -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.DirectedRelationship"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.DirectedRelationshipHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.DirectedRelationship">
+	</adviceBinding>
+	
+	<!-- Helper advice for EncapsulatedClassifier -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.EncapsulatedClassifier"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.EncapsulatedClassifierHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.EncapsulatedClassifier">
 	</adviceBinding>
 	
 	<!-- Helper advice for ExecutionSpecification -->
@@ -1895,13 +1869,257 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 	
-		<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />
+		<elementType ref="org.eclipse.papyrus.uml.Abstraction" />
+		<elementType ref="org.eclipse.papyrus.uml.AcceptCallAction" />
+		<elementType ref="org.eclipse.papyrus.uml.AcceptEventAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Action" />
+		<elementType ref="org.eclipse.papyrus.uml.ActionExecutionSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.ActionInputPin" />
+		<elementType ref="org.eclipse.papyrus.uml.Activity" />
+		<elementType ref="org.eclipse.papyrus.uml.ActivityEdge" />
+		<elementType ref="org.eclipse.papyrus.uml.ActivityFinalNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ActivityGroup" />
+		<elementType ref="org.eclipse.papyrus.uml.ActivityNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ActivityParameterNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ActivityPartition" />
+		<elementType ref="org.eclipse.papyrus.uml.Actor" />
+		<elementType ref="org.eclipse.papyrus.uml.AddStructuralFeatureValueAction" />
+		<elementType ref="org.eclipse.papyrus.uml.AddVariableValueAction" />
+		<elementType ref="org.eclipse.papyrus.uml.AnyReceiveEvent" />
+		<elementType ref="org.eclipse.papyrus.uml.Artifact" />
+		<elementType ref="org.eclipse.papyrus.uml.AssociationBase" />
+		<elementType ref="org.eclipse.papyrus.uml.AssociationClass" />
+		<elementType ref="org.eclipse.papyrus.uml.Behavior" />
+		<elementType ref="org.eclipse.papyrus.uml.BehaviorExecutionSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.BehavioralFeature" />
+		<elementType ref="org.eclipse.papyrus.uml.BehavioredClassifier" />
+		<elementType ref="org.eclipse.papyrus.uml.BroadcastSignalAction" />
+		<elementType ref="org.eclipse.papyrus.uml.CallAction" />
+		<elementType ref="org.eclipse.papyrus.uml.CallBehaviorAction" />
+		<elementType ref="org.eclipse.papyrus.uml.CallEvent" />
+		<elementType ref="org.eclipse.papyrus.uml.CallOperationAction" />
+		<elementType ref="org.eclipse.papyrus.uml.CentralBufferNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ChangeEvent" />
+		<elementType ref="org.eclipse.papyrus.uml.Class" />
+		<elementType ref="org.eclipse.papyrus.uml.Classifier" />
+		<elementType ref="org.eclipse.papyrus.uml.ClassifierTemplateParameter" />
+		<elementType ref="org.eclipse.papyrus.uml.Clause" />
+		<elementType ref="org.eclipse.papyrus.uml.ClearAssociationAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ClearStructuralFeatureAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ClearVariableAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Collaboration" />
+		<elementType ref="org.eclipse.papyrus.uml.CollaborationUse" />
+		<elementType ref="org.eclipse.papyrus.uml.CombinedFragment" />
+		<elementType ref="org.eclipse.papyrus.uml.Comment" />
+		<elementType ref="org.eclipse.papyrus.uml.CommunicationPath" />
+		<elementType ref="org.eclipse.papyrus.uml.Component" />
+		<elementType ref="org.eclipse.papyrus.uml.ComponentRealization" />
+		<elementType ref="org.eclipse.papyrus.uml.ConditionalNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ConnectableElement" />
+		<elementType ref="org.eclipse.papyrus.uml.ConnectableElementTemplateParameter" />
+		<elementType ref="org.eclipse.papyrus.uml.ConnectionPointReference" />
+		<elementType ref="org.eclipse.papyrus.uml.Connector" />
+		<elementType ref="org.eclipse.papyrus.uml.ConnectorEnd" />
+		<elementType ref="org.eclipse.papyrus.uml.ConsiderIgnoreFragment" />
+		<elementType ref="org.eclipse.papyrus.uml.Constraint" />
+		<elementType ref="org.eclipse.papyrus.uml.Continuation" />
+		<elementType ref="org.eclipse.papyrus.uml.ControlFlow" />
+		<elementType ref="org.eclipse.papyrus.uml.ControlNode" />
+		<elementType ref="org.eclipse.papyrus.uml.CreateLinkAction" />
+		<elementType ref="org.eclipse.papyrus.uml.CreateLinkObjectAction" />
+		<elementType ref="org.eclipse.papyrus.uml.CreateObjectAction" />
+		<elementType ref="org.eclipse.papyrus.uml.DataStoreNode" />
+		<elementType ref="org.eclipse.papyrus.uml.DataType" />
+		<elementType ref="org.eclipse.papyrus.uml.DecisionNode" />
+		<elementType ref="org.eclipse.papyrus.uml.Dependency" />
+		<elementType ref="org.eclipse.papyrus.uml.DeployedArtifact" />
+		<elementType ref="org.eclipse.papyrus.uml.Deployment" />
+		<elementType ref="org.eclipse.papyrus.uml.DeploymentSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.DeploymentTarget" />
+		<elementType ref="org.eclipse.papyrus.uml.DestroyLinkAction" />
+		<elementType ref="org.eclipse.papyrus.uml.DestroyObjectAction" />
+		<elementType ref="org.eclipse.papyrus.uml.DestructionOccurrenceSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.Device" />
+		<elementType ref="org.eclipse.papyrus.uml.DirectedRelationship" />
+		<elementType ref="org.eclipse.papyrus.uml.Duration" />
+		<elementType ref="org.eclipse.papyrus.uml.DurationConstraint" />
+		<elementType ref="org.eclipse.papyrus.uml.DurationInterval" />
+		<elementType ref="org.eclipse.papyrus.uml.DurationObservation" />
+		<elementType ref="org.eclipse.papyrus.uml.Element" />
+		<elementType ref="org.eclipse.papyrus.uml.ElementImport" />
+		<elementType ref="org.eclipse.papyrus.uml.EncapsulatedClassifier" />
+		<elementType ref="org.eclipse.papyrus.uml.Enumeration" />
+		<elementType ref="org.eclipse.papyrus.uml.EnumerationLiteral" />
+		<elementType ref="org.eclipse.papyrus.uml.Event" />
+		<elementType ref="org.eclipse.papyrus.uml.ExceptionHandler" />
+		<elementType ref="org.eclipse.papyrus.uml.ExecutableNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ExecutionEnvironment" />
+		<elementType ref="org.eclipse.papyrus.uml.ExecutionOccurrenceSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.ExecutionSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.ExpansionNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ExpansionRegion" />
+		<elementType ref="org.eclipse.papyrus.uml.Expression" />
+		<elementType ref="org.eclipse.papyrus.uml.Extend" />
+		<elementType ref="org.eclipse.papyrus.uml.Extension" />
+		<elementType ref="org.eclipse.papyrus.uml.ExtensionEnd" />
+		<elementType ref="org.eclipse.papyrus.uml.ExtensionPoint" />
+		<elementType ref="org.eclipse.papyrus.uml.Feature" />
+		<elementType ref="org.eclipse.papyrus.uml.FinalNode" />
+		<elementType ref="org.eclipse.papyrus.uml.FinalState" />
+		<elementType ref="org.eclipse.papyrus.uml.FlowFinalNode" />
+		<elementType ref="org.eclipse.papyrus.uml.ForkNode" />
+		<elementType ref="org.eclipse.papyrus.uml.FunctionBehavior" />
+		<elementType ref="org.eclipse.papyrus.uml.Gate" />
+		<elementType ref="org.eclipse.papyrus.uml.GeneralOrdering" />
+		<elementType ref="org.eclipse.papyrus.uml.Generalization" />
+		<elementType ref="org.eclipse.papyrus.uml.GeneralizationSet" />
+		<elementType ref="org.eclipse.papyrus.uml.Image" />
+		<elementType ref="org.eclipse.papyrus.uml.Include" />
+		<elementType ref="org.eclipse.papyrus.uml.InformationFlow" />
+		<elementType ref="org.eclipse.papyrus.uml.InformationItem" />
+		<elementType ref="org.eclipse.papyrus.uml.InitialNode" />
+		<elementType ref="org.eclipse.papyrus.uml.InputPin" />
+		<elementType ref="org.eclipse.papyrus.uml.InstanceSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.InstanceValue" />
+		<elementType ref="org.eclipse.papyrus.uml.Interaction" />
+		<elementType ref="org.eclipse.papyrus.uml.InteractionConstraint" />
+		<elementType ref="org.eclipse.papyrus.uml.InteractionFragment" />
+		<elementType ref="org.eclipse.papyrus.uml.InteractionOperand" />
+		<elementType ref="org.eclipse.papyrus.uml.InteractionUse" />
+		<elementType ref="org.eclipse.papyrus.uml.Interface" />
+		<elementType ref="org.eclipse.papyrus.uml.InterfaceRealization" />
+		<elementType ref="org.eclipse.papyrus.uml.InterruptibleActivityRegion" />
+		<elementType ref="org.eclipse.papyrus.uml.Interval" />
+		<elementType ref="org.eclipse.papyrus.uml.IntervalConstraint" />
+		<elementType ref="org.eclipse.papyrus.uml.InvocationAction" />
+		<elementType ref="org.eclipse.papyrus.uml.JoinNode" />
+		<elementType ref="org.eclipse.papyrus.uml.Lifeline" />
+		<elementType ref="org.eclipse.papyrus.uml.LinkAction" />
+		<elementType ref="org.eclipse.papyrus.uml.LinkEndCreationData" />
+		<elementType ref="org.eclipse.papyrus.uml.LinkEndData" />
+		<elementType ref="org.eclipse.papyrus.uml.LinkEndDestructionData" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralBoolean" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralInteger" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralNull" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralReal" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralString" />
+		<elementType ref="org.eclipse.papyrus.uml.LiteralUnlimitedNatural" />
+		<elementType ref="org.eclipse.papyrus.uml.LoopNode" />
+		<elementType ref="org.eclipse.papyrus.uml.Manifestation" />
+		<elementType ref="org.eclipse.papyrus.uml.MergeNode" />
+		<elementType ref="org.eclipse.papyrus.uml.Message" />
+		<elementType ref="org.eclipse.papyrus.uml.MessageEnd" />
+		<elementType ref="org.eclipse.papyrus.uml.MessageEvent" />
+		<elementType ref="org.eclipse.papyrus.uml.MessageOccurrenceSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.Model" />
+		<elementType ref="org.eclipse.papyrus.uml.MultiplicityElement" />
+		<elementType ref="org.eclipse.papyrus.uml.NamedElement" />
+		<elementType ref="org.eclipse.papyrus.uml.Namespace" />
+		<elementType ref="org.eclipse.papyrus.uml.Node" />
+		<elementType ref="org.eclipse.papyrus.uml.ObjectFlow" />
+		<elementType ref="org.eclipse.papyrus.uml.ObjectNode" />
+		<elementType ref="org.eclipse.papyrus.uml.Observation" />
+		<elementType ref="org.eclipse.papyrus.uml.OccurrenceSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.OpaqueAction" />
+		<elementType ref="org.eclipse.papyrus.uml.OpaqueBehavior" />
+		<elementType ref="org.eclipse.papyrus.uml.OpaqueExpression" />
+		<elementType ref="org.eclipse.papyrus.uml.Operation" />
+		<elementType ref="org.eclipse.papyrus.uml.OperationTemplateParameter" />
+		<elementType ref="org.eclipse.papyrus.uml.OutputPin" />
+		<elementType ref="org.eclipse.papyrus.uml.Package" />
+		<elementType ref="org.eclipse.papyrus.uml.PackageImport" />
+		<elementType ref="org.eclipse.papyrus.uml.PackageMerge" />
+		<elementType ref="org.eclipse.papyrus.uml.PackageableElement" />
+		<elementType ref="org.eclipse.papyrus.uml.Parameter" />
+		<elementType ref="org.eclipse.papyrus.uml.ParameterSet" />
+		<elementType ref="org.eclipse.papyrus.uml.ParameterableElement" />
+		<elementType ref="org.eclipse.papyrus.uml.PartDecomposition" />
+		<elementType ref="org.eclipse.papyrus.uml.Pin" />
+		<elementType ref="org.eclipse.papyrus.uml.Port" />
+		<elementType ref="org.eclipse.papyrus.uml.PrimitiveType" />
+		<elementType ref="org.eclipse.papyrus.uml.Profile" />
+		<elementType ref="org.eclipse.papyrus.uml.ProfileApplication" />
+		<elementType ref="org.eclipse.papyrus.uml.Property" />
+		<elementType ref="org.eclipse.papyrus.uml.ProtocolConformance" />
+		<elementType ref="org.eclipse.papyrus.uml.ProtocolStateMachine" />
+		<elementType ref="org.eclipse.papyrus.uml.ProtocolTransition" />
+		<elementType ref="org.eclipse.papyrus.uml.Pseudostate" />
+		<elementType ref="org.eclipse.papyrus.uml.QualifierValue" />
+		<elementType ref="org.eclipse.papyrus.uml.RaiseExceptionAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadExtentAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadIsClassifiedObjectAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadLinkAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadLinkObjectEndAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadLinkObjectEndQualifierAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadSelfAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadStructuralFeatureAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReadVariableAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Realization" />
+		<elementType ref="org.eclipse.papyrus.uml.Reception" />
+		<elementType ref="org.eclipse.papyrus.uml.ReclassifyObjectAction" />
+		<elementType ref="org.eclipse.papyrus.uml.RedefinableElement" />
+		<elementType ref="org.eclipse.papyrus.uml.RedefinableTemplateSignature" />
+		<elementType ref="org.eclipse.papyrus.uml.ReduceAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Region" />
+		<elementType ref="org.eclipse.papyrus.uml.Relationship" />
+		<elementType ref="org.eclipse.papyrus.uml.RemoveStructuralFeatureValueAction" />
+		<elementType ref="org.eclipse.papyrus.uml.RemoveVariableValueAction" />
+		<elementType ref="org.eclipse.papyrus.uml.ReplyAction" />
+		<elementType ref="org.eclipse.papyrus.uml.SendObjectAction" />
+		<elementType ref="org.eclipse.papyrus.uml.SendSignalAction" />
+		<elementType ref="org.eclipse.papyrus.uml.SequenceNode" />
+		<elementType ref="org.eclipse.papyrus.uml.Signal" />
+		<elementType ref="org.eclipse.papyrus.uml.SignalEvent" />
+		<elementType ref="org.eclipse.papyrus.uml.Slot" />
+		<elementType ref="org.eclipse.papyrus.uml.StartClassifierBehaviorAction" />
+		<elementType ref="org.eclipse.papyrus.uml.StartObjectBehaviorAction" />
+		<elementType ref="org.eclipse.papyrus.uml.State" />
+		<elementType ref="org.eclipse.papyrus.uml.StateInvariant" />
+		<elementType ref="org.eclipse.papyrus.uml.StateMachine" />
+		<elementType ref="org.eclipse.papyrus.uml.Stereotype" />
+		<elementType ref="org.eclipse.papyrus.uml.StringExpression" />
+		<elementType ref="org.eclipse.papyrus.uml.StructuralFeature" />
+		<elementType ref="org.eclipse.papyrus.uml.StructuralFeatureAction" />
+		<elementType ref="org.eclipse.papyrus.uml.StructuredActivityNode" />
+		<elementType ref="org.eclipse.papyrus.uml.StructuredClassifier" />
+		<elementType ref="org.eclipse.papyrus.uml.Substitution" />
+		<elementType ref="org.eclipse.papyrus.uml.TemplateBinding" />
+		<elementType ref="org.eclipse.papyrus.uml.TemplateParameter" />
+		<elementType ref="org.eclipse.papyrus.uml.TemplateParameterSubstitution" />
+		<elementType ref="org.eclipse.papyrus.uml.TemplateSignature" />
+		<elementType ref="org.eclipse.papyrus.uml.TemplateableElement" />
+		<elementType ref="org.eclipse.papyrus.uml.TestIdentityAction" />
+		<elementType ref="org.eclipse.papyrus.uml.TimeConstraint" />
+		<elementType ref="org.eclipse.papyrus.uml.TimeEvent" />
+		<elementType ref="org.eclipse.papyrus.uml.TimeExpression" />
+		<elementType ref="org.eclipse.papyrus.uml.TimeInterval" />
+		<elementType ref="org.eclipse.papyrus.uml.TimeObservation" />
+		<elementType ref="org.eclipse.papyrus.uml.Transition" />
+		<elementType ref="org.eclipse.papyrus.uml.Trigger" />
+		<elementType ref="org.eclipse.papyrus.uml.Type" />
+		<elementType ref="org.eclipse.papyrus.uml.TypedElement" />
+		<elementType ref="org.eclipse.papyrus.uml.UnmarshallAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Usage" />
+		<elementType ref="org.eclipse.papyrus.uml.UseCase" />
+		<elementType ref="org.eclipse.papyrus.uml.ValuePin" />
+		<elementType ref="org.eclipse.papyrus.uml.ValueSpecification" />
+		<elementType ref="org.eclipse.papyrus.uml.ValueSpecificationAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Variable" />
+		<elementType ref="org.eclipse.papyrus.uml.VariableAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Vertex" />
+		<elementType ref="org.eclipse.papyrus.uml.WriteLinkAction" />
+		<elementType ref="org.eclipse.papyrus.uml.WriteStructuralFeatureAction" />
+		<elementType ref="org.eclipse.papyrus.uml.WriteVariableAction" />
+		<elementType ref="org.eclipse.papyrus.uml.Association" />
+		<elementType ref="org.eclipse.papyrus.uml.Trace" />
+		<elementType ref="org.eclipse.papyrus.uml.Refine" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
 		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
 		<advice ref="org.eclipse.papyrus.uml.advice.ConnectorEnd" />
-		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />
 		<advice ref="org.eclipse.papyrus.uml.advice.DirectedRelationship" />
+		<advice ref="org.eclipse.papyrus.uml.advice.EncapsulatedClassifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.FeatureNameInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />

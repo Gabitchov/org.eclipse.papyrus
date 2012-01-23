@@ -257,10 +257,6 @@
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CreateObjectActionHandler" description="Create a new CreateObjectAction" id="org.eclipse.papyrus.uml.modelexplorer.CreateObjectActionCreateCommand" name="Create a new CreateObjectAction">
 	</command>
 	
-	<!-- Creation command for CreationEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CreationEventHandler" description="Create a new CreationEvent" id="org.eclipse.papyrus.uml.modelexplorer.CreationEventCreateCommand" name="Create a new CreationEvent">
-	</command>
-	
 	<!-- Creation command for DataStoreNode -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DataStoreNodeHandler" description="Create a new DataStoreNode" id="org.eclipse.papyrus.uml.modelexplorer.DataStoreNodeCreateCommand" name="Create a new DataStoreNode">
 	</command>
@@ -293,8 +289,8 @@
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DestroyObjectActionHandler" description="Create a new DestroyObjectAction" id="org.eclipse.papyrus.uml.modelexplorer.DestroyObjectActionCreateCommand" name="Create a new DestroyObjectAction">
 	</command>
 	
-	<!-- Creation command for DestructionEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DestructionEventHandler" description="Create a new DestructionEvent" id="org.eclipse.papyrus.uml.modelexplorer.DestructionEventCreateCommand" name="Create a new DestructionEvent">
+	<!-- Creation command for DestructionOccurrenceSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DestructionOccurrenceSpecificationHandler" description="Create a new DestructionOccurrenceSpecification" id="org.eclipse.papyrus.uml.modelexplorer.DestructionOccurrenceSpecificationCreateCommand" name="Create a new DestructionOccurrenceSpecification">
 	</command>
 	
 	<!-- Creation command for Device -->
@@ -335,10 +331,6 @@
 	
 	<!-- Creation command for ExecutionEnvironment -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExecutionEnvironmentHandler" description="Create a new ExecutionEnvironment" id="org.eclipse.papyrus.uml.modelexplorer.ExecutionEnvironmentCreateCommand" name="Create a new ExecutionEnvironment">
-	</command>
-	
-	<!-- Creation command for ExecutionEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExecutionEventHandler" description="Create a new ExecutionEvent" id="org.eclipse.papyrus.uml.modelexplorer.ExecutionEventCreateCommand" name="Create a new ExecutionEvent">
 	</command>
 	
 	<!-- Creation command for ExecutionOccurrenceSpecification -->
@@ -503,6 +495,10 @@
 	
 	<!-- Creation command for LiteralNull -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralNullHandler" description="Create a new LiteralNull" id="org.eclipse.papyrus.uml.modelexplorer.LiteralNullCreateCommand" name="Create a new LiteralNull">
+	</command>
+	
+	<!-- Creation command for LiteralReal -->
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralRealHandler" description="Create a new LiteralReal" id="org.eclipse.papyrus.uml.modelexplorer.LiteralRealCreateCommand" name="Create a new LiteralReal">
 	</command>
 	
 	<!-- Creation command for LiteralString -->
@@ -681,14 +677,6 @@
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RealizationHandler" description="Create a new Realization" id="org.eclipse.papyrus.uml.modelexplorer.RealizationCreateCommand" name="Create a new Realization">
 	</command>
 	
-	<!-- Creation command for ReceiveOperationEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReceiveOperationEventHandler" description="Create a new ReceiveOperationEvent" id="org.eclipse.papyrus.uml.modelexplorer.ReceiveOperationEventCreateCommand" name="Create a new ReceiveOperationEvent">
-	</command>
-	
-	<!-- Creation command for ReceiveSignalEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReceiveSignalEventHandler" description="Create a new ReceiveSignalEvent" id="org.eclipse.papyrus.uml.modelexplorer.ReceiveSignalEventCreateCommand" name="Create a new ReceiveSignalEvent">
-	</command>
-	
 	<!-- Creation command for Reception -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReceptionHandler" description="Create a new Reception" id="org.eclipse.papyrus.uml.modelexplorer.ReceptionCreateCommand" name="Create a new Reception">
 	</command>
@@ -725,16 +713,8 @@
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendObjectActionHandler" description="Create a new SendObjectAction" id="org.eclipse.papyrus.uml.modelexplorer.SendObjectActionCreateCommand" name="Create a new SendObjectAction">
 	</command>
 	
-	<!-- Creation command for SendOperationEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendOperationEventHandler" description="Create a new SendOperationEvent" id="org.eclipse.papyrus.uml.modelexplorer.SendOperationEventCreateCommand" name="Create a new SendOperationEvent">
-	</command>
-	
 	<!-- Creation command for SendSignalAction -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendSignalActionHandler" description="Create a new SendSignalAction" id="org.eclipse.papyrus.uml.modelexplorer.SendSignalActionCreateCommand" name="Create a new SendSignalAction">
-	</command>
-	
-	<!-- Creation command for SendSignalEvent -->
-	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendSignalEventHandler" description="Create a new SendSignalEvent" id="org.eclipse.papyrus.uml.modelexplorer.SendSignalEventCreateCommand" name="Create a new SendSignalEvent">
 	</command>
 	
 	<!-- Creation command for SequenceNode -->
@@ -869,13 +849,17 @@
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TraceHandler" description="Create a new Trace" id="org.eclipse.papyrus.uml.modelexplorer.TraceCreateCommand" name="Create a new Trace">
 	</command>
 	
+	<!-- Creation command for Refine -->
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RefineHandler" description="Create a new Refine" id="org.eclipse.papyrus.uml.modelexplorer.RefineCreateCommand" name="Create a new Refine">
+	</command>
+	
 </extension>
 
 	
 <!-- UI Menu declaration for creation commands -->
 <extension point="org.eclipse.ui.menus">
 
-	<menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createchild" allPopups="false">
 	
 		<!-- Creation menu action for Abstraction -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AbstractionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Abstraction" style="push" tooltip="Create a new Abstraction">
@@ -1117,11 +1101,6 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for CreationEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CreationEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreationEvent.gif" label="Create a new CreationEvent" style="push" tooltip="Create a new CreationEvent">
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
 		<!-- Creation menu action for DataStoreNode -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DataStoreNodeCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif" label="Create a new DataStoreNode" style="push" tooltip="Create a new DataStoreNode">
 			<visibleWhen checkEnabled="true"/>
@@ -1162,8 +1141,8 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for DestructionEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DestructionEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif" label="Create a new DestructionEvent" style="push" tooltip="Create a new DestructionEvent">
+		<!-- Creation menu action for DestructionOccurrenceSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DestructionOccurrenceSpecificationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionOccurrenceSpecification.gif" label="Create a new DestructionOccurrenceSpecification" style="push" tooltip="Create a new DestructionOccurrenceSpecification">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -1214,11 +1193,6 @@
 		
 		<!-- Creation menu action for ExecutionEnvironment -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExecutionEnvironmentCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif" label="Create a new ExecutionEnvironment" style="push" tooltip="Create a new ExecutionEnvironment">
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
-		<!-- Creation menu action for ExecutionEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExecutionEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEvent.gif" label="Create a new ExecutionEvent" style="push" tooltip="Create a new ExecutionEvent">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -1424,6 +1398,11 @@
 		
 		<!-- Creation menu action for LiteralNull -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralNullCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif" label="Create a new LiteralNull" style="push" tooltip="Create a new LiteralNull">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LiteralReal -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralRealCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralReal.gif" label="Create a new LiteralReal" style="push" tooltip="Create a new LiteralReal">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -1647,16 +1626,6 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for ReceiveOperationEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReceiveOperationEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveOperationEvent.gif" label="Create a new ReceiveOperationEvent" style="push" tooltip="Create a new ReceiveOperationEvent">
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
-		<!-- Creation menu action for ReceiveSignalEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReceiveSignalEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveSignalEvent.gif" label="Create a new ReceiveSignalEvent" style="push" tooltip="Create a new ReceiveSignalEvent">
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
 		<!-- Creation menu action for Reception -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReceptionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif" label="Create a new Reception" style="push" tooltip="Create a new Reception">
 			<visibleWhen checkEnabled="true"/>
@@ -1702,18 +1671,8 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-		<!-- Creation menu action for SendOperationEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendOperationEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendOperationEvent.gif" label="Create a new SendOperationEvent" style="push" tooltip="Create a new SendOperationEvent">
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
 		<!-- Creation menu action for SendSignalAction -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendSignalActionCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif" label="Create a new SendSignalAction" style="push" tooltip="Create a new SendSignalAction">
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
-		<!-- Creation menu action for SendSignalEvent -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendSignalEventCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalEvent.gif" label="Create a new SendSignalEvent" style="push" tooltip="Create a new SendSignalEvent">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
@@ -1873,12 +1832,17 @@
 		</command>
 		
 		<!-- Creation menu action for Association -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand" icon="" label="Create a new Association" style="push" tooltip="Create a new Association">
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" label="Create a new Association" style="push" tooltip="Create a new Association">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
 		<!-- Creation menu action for Trace -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TraceCreateCommand" icon="" label="Create a new Trace" style="push" tooltip="Create a new Trace">
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TraceCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Trace" style="push" tooltip="Create a new Trace">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Refine -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RefineCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Refine" style="push" tooltip="Create a new Refine">
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		

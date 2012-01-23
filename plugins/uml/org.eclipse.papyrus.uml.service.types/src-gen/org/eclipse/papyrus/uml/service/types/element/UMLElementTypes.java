@@ -200,9 +200,6 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML CreateObjectAction */
 	public static final IHintedType CREATE_OBJECT_ACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.CreateObjectAction"); //$NON-NLS-1$
 
-	/** IElementType for UML CreationEvent */
-	public static final IHintedType CREATION_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.CreationEvent"); //$NON-NLS-1$
-
 	/** IElementType for UML DataStoreNode */
 	public static final IHintedType DATA_STORE_NODE = (IHintedType)getElementType("org.eclipse.papyrus.uml.DataStoreNode"); //$NON-NLS-1$
 
@@ -233,8 +230,8 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML DestroyObjectAction */
 	public static final IHintedType DESTROY_OBJECT_ACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.DestroyObjectAction"); //$NON-NLS-1$
 
-	/** IElementType for UML DestructionEvent */
-	public static final IHintedType DESTRUCTION_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.DestructionEvent"); //$NON-NLS-1$
+	/** IElementType for UML DestructionOccurrenceSpecification */
+	public static final IHintedType DESTRUCTION_OCCURRENCE_SPECIFICATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.DestructionOccurrenceSpecification"); //$NON-NLS-1$
 
 	/** IElementType for UML Device */
 	public static final IHintedType DEVICE = (IHintedType)getElementType("org.eclipse.papyrus.uml.Device"); //$NON-NLS-1$
@@ -280,9 +277,6 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML ExecutionEnvironment */
 	public static final IHintedType EXECUTION_ENVIRONMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.ExecutionEnvironment"); //$NON-NLS-1$
-
-	/** IElementType for UML ExecutionEvent */
-	public static final IHintedType EXECUTION_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.ExecutionEvent"); //$NON-NLS-1$
 
 	/** IElementType for UML ExecutionOccurrenceSpecification */
 	public static final IHintedType EXECUTION_OCCURRENCE_SPECIFICATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.ExecutionOccurrenceSpecification"); //$NON-NLS-1$
@@ -424,6 +418,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML LiteralNull */
 	public static final IHintedType LITERAL_NULL = (IHintedType)getElementType("org.eclipse.papyrus.uml.LiteralNull"); //$NON-NLS-1$
+
+	/** IElementType for UML LiteralReal */
+	public static final IHintedType LITERAL_REAL = (IHintedType)getElementType("org.eclipse.papyrus.uml.LiteralReal"); //$NON-NLS-1$
 
 	/** IElementType for UML LiteralSpecification */
 	public static final IHintedType LITERAL_SPECIFICATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.LiteralSpecification"); //$NON-NLS-1$
@@ -587,12 +584,6 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML Realization */
 	public static final IHintedType REALIZATION = (IHintedType)getElementType("org.eclipse.papyrus.uml.Realization"); //$NON-NLS-1$
 
-	/** IElementType for UML ReceiveOperationEvent */
-	public static final IHintedType RECEIVE_OPERATION_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.ReceiveOperationEvent"); //$NON-NLS-1$
-
-	/** IElementType for UML ReceiveSignalEvent */
-	public static final IHintedType RECEIVE_SIGNAL_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.ReceiveSignalEvent"); //$NON-NLS-1$
-
 	/** IElementType for UML Reception */
 	public static final IHintedType RECEPTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.Reception"); //$NON-NLS-1$
 
@@ -626,14 +617,8 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML SendObjectAction */
 	public static final IHintedType SEND_OBJECT_ACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.SendObjectAction"); //$NON-NLS-1$
 
-	/** IElementType for UML SendOperationEvent */
-	public static final IHintedType SEND_OPERATION_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.SendOperationEvent"); //$NON-NLS-1$
-
 	/** IElementType for UML SendSignalAction */
 	public static final IHintedType SEND_SIGNAL_ACTION = (IHintedType)getElementType("org.eclipse.papyrus.uml.SendSignalAction"); //$NON-NLS-1$
-
-	/** IElementType for UML SendSignalEvent */
-	public static final IHintedType SEND_SIGNAL_EVENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.SendSignalEvent"); //$NON-NLS-1$
 
 	/** IElementType for UML SequenceNode */
 	public static final IHintedType SEQUENCE_NODE = (IHintedType)getElementType("org.eclipse.papyrus.uml.SequenceNode"); //$NON-NLS-1$
