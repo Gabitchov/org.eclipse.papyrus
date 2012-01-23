@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -165,7 +166,8 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 
 		// save hyperlink Document list
 		try {
-			transactionalEditingDomain.getCommandStack().execute(hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects));
+			Command addHyperlinksCommand = hyperLinkHelperFactory.getAddHyperLinkCommand(transactionalEditingDomain, view, allhypHyperlinkObjects);
+			transactionalEditingDomain.getCommandStack().execute(addHyperlinksCommand);
 		} catch (HyperLinkException error) {
 			Activator.log.error(error);
 		}

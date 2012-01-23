@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.common.helper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -59,7 +60,7 @@ public class HyperlinkHelperFactory {
 	 *        to set this hyperlink as default
 	 * @return the adds the hyper link command
 	 */
-	public Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, ArrayList<HyperlinkObject> hyperlinkObjects) throws HyperLinkException {
+	public Command getAddHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object, List<HyperlinkObject> hyperlinkObjects) throws HyperLinkException {
 		CompoundCommand cmpCommand = new CompoundCommand();
 		Iterator<HyperlinkObject> iterator = hyperlinkObjects.iterator();
 		while(iterator.hasNext()) {

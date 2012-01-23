@@ -33,6 +33,7 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
@@ -44,10 +45,10 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.helper.DiagramHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.helper.DocumentHyperLinkHelper;
+import org.eclipse.papyrus.diagram.common.helper.EditPartHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelperFactory;
 import org.eclipse.papyrus.diagram.common.helper.WebHyperLinkHelper;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
-import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkException;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkLabelProvider;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
@@ -611,13 +612,12 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	protected int populatePopup() {
 		int xLoc = 5;
 		if(getFigureBar() != null) {
-			// add all subdiagrams
-
-			try {
-				hyperLinkObjectList = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(((GraphicalEditPart)getHost()).getNotationView());
-			} catch (HyperLinkException e) {
-				e.printStackTrace();
-			}
+			
+			// Retrieving the hyperlinks.
+			IGraphicalEditPart host = (IGraphicalEditPart) this.getHost();
+			EditPartHyperLinkHelper diagramHelper = new EditPartHyperLinkHelper(host);
+			hyperLinkObjectList = (ArrayList<HyperlinkObject>) diagramHelper.getHyperlinksFromEditPart(hyperlinkHelperFactory);
+			
 			xLoc = addObjectList(xLoc, hyperLinkObjectList);
 			// add the PLUS button
 			PopupBarLabelHandle handle = new PopupBarLabelPlusHandle();

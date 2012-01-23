@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
 
 public class BlockDefinitionDiagramEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
@@ -85,11 +86,19 @@ public class BlockDefinitionDiagramEditPolicyProvider extends AbstractProvider i
 			return true;
 		}
 
+		if(gep instanceof org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart) {
+			return true;
+		}
+		if(gep instanceof org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart) {
+			return true;
+		}
+
 		return false;
 	}
 
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
 	}
 
 }

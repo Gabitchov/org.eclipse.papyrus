@@ -19,6 +19,9 @@
       </navigationRule>
       <navigationRule
             rule="org.eclipse.papyrus.navigation.uml.TransitionRule"></navigationRule>
+      <navigationRule
+            rule="org.eclipse.papyrus.navigation.uml.TypedElementRule">
+      </navigationRule>
    </extension>
    <extension
          point="org.eclipse.papyrus.navigation.navigationDecoratorRules">
