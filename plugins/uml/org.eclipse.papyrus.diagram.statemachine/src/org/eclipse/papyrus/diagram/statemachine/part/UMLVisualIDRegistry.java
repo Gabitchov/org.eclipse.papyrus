@@ -769,6 +769,30 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
+	 * @generated
+	 */
+	private static boolean isBehavior_690(Behavior domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isBehavior_691(Behavior domainElement) {
+		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isBehavior_692(Behavior domainElement) {
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
 	 * 
 	 * @generated not cf http://www.eclipse.org/forums/index.php/m/759914/#msg_759914
 	 */

@@ -160,5 +160,4 @@ public abstract class UMLAbstractExpression {
 			UMLDiagramEditorPlugin.getInstance().logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
-
 }

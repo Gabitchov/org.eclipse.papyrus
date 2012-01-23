@@ -87,6 +87,8 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -158,7 +160,7 @@ public class EntryStateBehaviorEditPart extends CompartmentEditPart implements I
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
+		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 	}
 
@@ -510,6 +512,13 @@ public class EntryStateBehaviorEditPart extends CompartmentEditPart implements I
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
+		}
 	}
 
 	/**
@@ -736,6 +745,9 @@ public class EntryStateBehaviorEditPart extends CompartmentEditPart implements I
 					refreshLabel();
 				}
 			}
+		}
+		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
+			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
 	}
