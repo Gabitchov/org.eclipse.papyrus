@@ -112,10 +112,9 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 		Collection<EObject> listOfClassifiers = cache.get(eClassifier);
 		if(listOfClassifiers != null) {
 			listOfClassifiers.remove(newObj);
-		}
-		if (listOfClassifiers.isEmpty())
-		{
-			cache.remove(eClassifier);
+			if (listOfClassifiers.isEmpty()) {
+				cache.remove(eClassifier);
+			}
 		}
 	}
 
