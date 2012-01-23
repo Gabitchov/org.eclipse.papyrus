@@ -17,50 +17,20 @@ import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.w3c.dom.css.CSSValue;
 
-
+@SuppressWarnings("restriction")
 public class UMLPropertyHandler implements ICSSPropertyHandler {
 
 	public boolean applyCSSProperty(Object element, String property, CSSValue value, String pseudo, CSSEngine engine) throws Exception {
-		return true;
+		return false;
 	}
 
 	public String retrieveCSSProperty(Object element, String property, String pseudo, CSSEngine engine) throws Exception {
-		//		System.out.println("Break");
 		CSSStyleDeclaration style = engine.getViewCSS().getComputedStyle((Element)element, pseudo);
 		CSSValue value = style.getPropertyCSSValue(property);
 		if(value == null) {
 			return null;
 		}
 		return value.getCssText();
-
-		//		StyleSheetList styleSheets = engine.getDocumentCSS().getStyleSheets();
-		//		for(int i = 0; i < styleSheets.getLength(); i++) {
-		//			StyleSheet styleSheet = styleSheets.item(i);
-		//			if(!styleSheet.getDisabled()) {
-		//				if(styleSheet instanceof CSSStyleSheet) {
-		//					CSSStyleSheet cssSheet = (CSSStyleSheet)styleSheet;
-		//					CSSRuleList rules = cssSheet.getCssRules();
-		//					for(int j = 0; j < rules.getLength(); j++) {
-		//						CSSRule rule = rules.item(j);
-		//						if (rule instanceof ExtendedCSSRule){
-		//							ExtendedCSSRule cssRule = (ExtendedCSSRule)rule;
-		//							SelectorList selectors = cssRule.getSelectorList();
-		//							for (int k = 0; k < selectors.getLength(); k++){
-		//								Selector selector = selectors.item(k);
-		//								if (selector instanceof ExtendedSelector){
-		//									ExtendedSelector cssSelector = (ExtendedSelector)selector;
-		//									if (cssSelector.match(e, pseudo)){
-		//										
-		//									}
-		//								}
-		//							}
-		//						}
-		//					}
-		//				}
-		//			}
-		//		}
-
-		//		return "";
 	}
 
 }

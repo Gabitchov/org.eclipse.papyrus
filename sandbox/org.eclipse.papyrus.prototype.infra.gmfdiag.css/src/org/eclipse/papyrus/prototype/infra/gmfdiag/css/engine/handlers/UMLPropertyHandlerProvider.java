@@ -14,21 +14,27 @@ package org.eclipse.papyrus.prototype.infra.gmfdiag.css.engine.handlers;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.e4.ui.css.core.dom.properties.ICSSPropertyHandlerProvider;
+import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
+import org.eclipse.e4.ui.css.core.dom.properties.ICSSPropertyHandler;
+import org.eclipse.e4.ui.css.core.dom.properties.providers.AbstractCSSPropertyHandlerProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
-import org.eclipse.e4.ui.css.core.impl.dom.CSSComputedStyleImpl;
 import org.w3c.dom.css.CSSStyleDeclaration;
 
-
 @SuppressWarnings("restriction")
-public class UMLPropertyHandlerProvider implements ICSSPropertyHandlerProvider {
+public class UMLPropertyHandlerProvider extends AbstractCSSPropertyHandlerProvider {
 
-	public Collection getCSSPropertyHandlers(String property) throws Exception {
+	public Collection<? extends ICSSPropertyHandler> getCSSPropertyHandlers(String property) throws Exception {
 		return Collections.singleton(new UMLPropertyHandler());
 	}
 
-	public CSSStyleDeclaration getDefaultCSSStyleDeclaration(CSSEngine engine, Object element, CSSStyleDeclaration newStyle, String pseudoE) throws Exception {
-		return new CSSComputedStyleImpl(Collections.EMPTY_LIST);
+	//	@Override
+	//	public CSSStyleDeclaration getDefaultCSSStyleDeclaration(CSSEngine engine, Object element, CSSStyleDeclaration newStyle, String pseudoE) throws Exception {
+	//		return new CSSComputedStyleImpl(Collections.EMPTY_LIST);
+	//	}
+
+	@Override
+	protected CSSStyleDeclaration getDefaultCSSStyleDeclaration(CSSEngine engine, CSSStylableElement stylableElement, CSSStyleDeclaration newStyle, String pseudoE) throws Exception {
+		return null;
 	}
 
 }

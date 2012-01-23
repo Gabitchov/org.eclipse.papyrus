@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -26,6 +29,30 @@ import org.w3c.dom.NodeList;
 
 
 public class GMFCSSAdapter extends ElementAdapter implements NodeList {
+
+	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
+	public static final Map<String, String> diagramNameMappings = new HashMap<String, String>();
+
+	static {
+		//UML
+		diagramNameMappings.put("CompositeStructure", "CompositeDiagram");
+		diagramNameMappings.put("Package", "PackageDiagram");
+		diagramNameMappings.put("PapyrusUMLActivityDiagram", "ActivityDiagram");
+		diagramNameMappings.put("PapyrusUMLClassDiagram", "ClassDiagram");
+		diagramNameMappings.put("PapyrusUMLCommunicationDiagram", "CommunicationDiagram");
+		diagramNameMappings.put("PapyrusUMLComponentDiagram", "ComponentDiagram");
+		diagramNameMappings.put("PapyrusUMLDeploymentDiagram", "DeploymentDiagram");
+		diagramNameMappings.put("PapyrusUMLProfileDiagram", "ProfileDiagram");
+		diagramNameMappings.put("PapyrusUMLSequenceDiagram", "SequenceDiagram");
+		diagramNameMappings.put("PapyrusUMLStateMachineDiagram", "StateMachineDiagram");
+		diagramNameMappings.put("UseCase", "UseCaseDiagram");
+
+		//SysML
+		diagramNameMappings.put("BlockDefinition", "BlockDiagram");
+		diagramNameMappings.put("InternalBlock", "InternalBlockDiagram");
+		diagramNameMappings.put("PapyrusSysMLRequirement", "RequirementDiagram");
+		diagramNameMappings.put("Parametric", "ParametricDiagram");
+	}
 
 	/**
 	 * The UML Element associated to the current styled element
@@ -166,6 +193,15 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 
 	@Override
 	public String getLocalName() {
+		if(getSemanticElement() instanceof Diagram) {
+			Diagram diagram = (Diagram)getSemanticElement();
+			String type = diagram.getType();
+			if(diagramNameMappings.containsKey(type)) {
+				return diagramNameMappings.get(type);
+			}
+			return type;
+		}
+
 		return getSemanticElement().eClass().getName();
 	}
 

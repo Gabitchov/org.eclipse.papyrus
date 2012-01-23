@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css.helper;
 
+import org.eclipse.e4.ui.css.core.css2.CSS2ColorHelper;
 import org.eclipse.e4.ui.css.core.impl.dom.Measure;
 import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
@@ -33,6 +34,27 @@ public class ConversionHelper {
 			return measure.getIntegerValue(CSSValue.CSS_PRIMITIVE_VALUE);
 		}
 		return (int)value.getFloatValue(CSSValue.CSS_PRIMITIVE_VALUE);
+	}
+
+	public static int getIntColor(String value, CSSValue cssValue) {
+		RGBColor color;
+		if(cssValue instanceof RGBColor) {
+			//color:rgb(125, 255, 0);
+			color = (RGBColor)cssValue;
+		} else {
+			//color:red; || color:#FFFFFF;
+			color = CSS2ColorHelper.getRGBColor(value);
+		}
+
+		if(color == null) {
+			try {
+				return Integer.parseInt(value);
+			} catch (NumberFormatException ex) {
+				return -1;
+			}
+		}
+
+		return getIntColor(color);
 	}
 
 }

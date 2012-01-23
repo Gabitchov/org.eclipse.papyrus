@@ -10,6 +10,20 @@ public class GMFCSSFactory extends NotationFactoryImpl {
 	
 	
 		@Override
+		public Edge createEdge() {
+			Edge edge = new GMFCSSEdge(getCSSEngine());
+			return edge;
+		}
+	
+	
+		@Override
+		public Node createNode() {
+			Node node = new GMFCSSNode(getCSSEngine());
+			return node;
+		}
+	
+	
+		@Override
 		public FillStyle createFillStyle() {
 			FillStyle fillStyle = new GMFCSSFillStyle(getCSSEngine());
 			return fillStyle;
@@ -52,9 +66,65 @@ public class GMFCSSFactory extends NotationFactoryImpl {
 	
 	
 		@Override
+		public Size createSize() {
+			Size size = new GMFCSSSize(getCSSEngine());
+			return size;
+		}
+	
+	
+		@Override
+		public Location createLocation() {
+			Location location = new GMFCSSLocation(getCSSEngine());
+			return location;
+		}
+	
+	
+		@Override
+		public Bounds createBounds() {
+			Bounds bounds = new GMFCSSBounds(getCSSEngine());
+			return bounds;
+		}
+	
+	
+		@Override
+		public Ratio createRatio() {
+			Ratio ratio = new GMFCSSRatio(getCSSEngine());
+			return ratio;
+		}
+	
+	
+		@Override
+		public IdentityAnchor createIdentityAnchor() {
+			IdentityAnchor identityAnchor = new GMFCSSIdentityAnchor(getCSSEngine());
+			return identityAnchor;
+		}
+	
+	
+		@Override
 		public RoutingStyle createRoutingStyle() {
 			RoutingStyle routingStyle = new GMFCSSRoutingStyle(getCSSEngine());
 			return routingStyle;
+		}
+	
+	
+		@Override
+		public RelativeBendpoints createRelativeBendpoints() {
+			RelativeBendpoints relativeBendpoints = new GMFCSSRelativeBendpoints(getCSSEngine());
+			return relativeBendpoints;
+		}
+	
+	
+		@Override
+		public Diagram createDiagram() {
+			Diagram diagram = new GMFCSSDiagram(getCSSEngine());
+			return diagram;
+		}
+	
+	
+		@Override
+		public Image createImage() {
+			Image image = new GMFCSSImage(getCSSEngine());
+			return image;
 		}
 	
 	
@@ -101,6 +171,20 @@ public class GMFCSSFactory extends NotationFactoryImpl {
 	
 	
 		@Override
+		public Guide createGuide() {
+			Guide guide = new GMFCSSGuide(getCSSEngine());
+			return guide;
+		}
+	
+	
+		@Override
+		public java.util.Map.Entry createNodeEntry() {
+			java.util.Map.Entry nodeEntry = new GMFCSSNodeEntry(getCSSEngine());
+			return nodeEntry;
+		}
+	
+	
+		@Override
 		public FilteringStyle createFilteringStyle() {
 			FilteringStyle filteringStyle = new GMFCSSFilteringStyle(getCSSEngine());
 			return filteringStyle;
@@ -132,6 +216,20 @@ public class GMFCSSFactory extends NotationFactoryImpl {
 		public PropertiesSetStyle createPropertiesSetStyle() {
 			PropertiesSetStyle propertiesSetStyle = new GMFCSSPropertiesSetStyle(getCSSEngine());
 			return propertiesSetStyle;
+		}
+	
+	
+		@Override
+		public java.util.Map.Entry createStringToPropertyValueMapEntry() {
+			java.util.Map.Entry stringToPropertyValueMapEntry = new GMFCSSStringToPropertyValueMapEntry(getCSSEngine());
+			return stringToPropertyValueMapEntry;
+		}
+	
+	
+		@Override
+		public PropertyValue createPropertyValue() {
+			PropertyValue propertyValue = new GMFCSSPropertyValue(getCSSEngine());
+			return propertyValue;
 		}
 	
 	
@@ -314,6 +412,20 @@ public class GMFCSSFactory extends NotationFactoryImpl {
 		public StandardDiagram createStandardDiagram() {
 			StandardDiagram standardDiagram = new GMFCSSStandardDiagram(getCSSEngine());
 			return standardDiagram;
+		}
+	
+	
+		@Override
+		public DecorationNode createDecorationNode() {
+			DecorationNode decorationNode = new GMFCSSDecorationNode(getCSSEngine());
+			return decorationNode;
+		}
+	
+	
+		@Override
+		public BasicDecorationNode createBasicDecorationNode() {
+			BasicDecorationNode basicDecorationNode = new GMFCSSBasicDecorationNode(getCSSEngine());
+			return basicDecorationNode;
 		}
 	
 	

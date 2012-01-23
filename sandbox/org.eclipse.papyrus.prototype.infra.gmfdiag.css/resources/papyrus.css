@@ -14,11 +14,27 @@
 	lineColor:#272727;
 	fontColor:black;
 	fontHeight:9;
-	elementIcon:true; /* Unsupported yet */
+	elementIcon:true;
+	
+	/* Detailed gradient */
+	/* 	gradientColor:white; */
+	/* 	gradientStyle:vertical; */
+	
+	/* Global gradient (Equivalent to the latter) */
+	gradient:white vertical;
+	
+	/* Global gradient (2) */
+	/* 	gradient:white blue vertical Unsupported by diagrams (Color2 is unused) */
 }
- 
-Class, Interface {
+
+Class {
 	fillColor:#C3D1D5;
+	lineColor:black;
+}
+
+Port {
+	fillColor:#C8D9F5;
+	lineColor:black;
 }
 
 Comment {
@@ -30,6 +46,5 @@ Constraint {
 }
 
 Package {
-	fillColor:#FFFFFF
-} 
-
+	fillColor:white;
+}
