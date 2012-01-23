@@ -33,6 +33,7 @@ import org.eclipse.papyrus.table.instance.papyrustableinstance.Papyrustableinsta
  */
 public class TableTriggerListener extends AbstractSynchronizedTableTriggerListener {
 
+	
 	/**
 	 * 
 	 * Constructor.
@@ -69,11 +70,14 @@ public class TableTriggerListener extends AbstractSynchronizedTableTriggerListen
 					}
 					break;
 				case PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__FILLING_QUERIES:
-					if(this.table.isIsSynchronized()) {
+					if(this.papyrusTable.isIsSynchronized()) {
 						switch(notification.getEventType()) {
-						case Notification.ADD_MANY:
+						case Notification.SET:
+						case Notification.UNSET:
 						case Notification.ADD:
-						case Notification.REMOVE: //we remove the elements that the removed query brought
+						case Notification.REMOVE:
+						case Notification.ADD_MANY:
+						case Notification.REMOVE_MANY: //we remove the elements that the removed query brought
 							return getSynchronizationCommand(domain);
 						default:
 							//nothing to do
@@ -85,4 +89,5 @@ public class TableTriggerListener extends AbstractSynchronizedTableTriggerListen
 		}
 		return null;
 	}
+
 }

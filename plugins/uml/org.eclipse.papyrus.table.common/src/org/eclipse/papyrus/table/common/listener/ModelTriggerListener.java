@@ -15,9 +15,6 @@ package org.eclipse.papyrus.table.common.listener;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
@@ -54,40 +51,34 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 	 */
 	@Override
 	protected Command trigger(TransactionalEditingDomain domain, Notification notification) {
-		if(this.table.isIsSynchronized()) {
-			//we look for the file extension
-			Object notifier = notification.getNotifier();
-			String fileExtension = null;
-			if(notifier instanceof XMIResource) {
-				fileExtension = ((XMIResource)notifier).getURI().fileExtension();
 
-			} else if(notifier instanceof EObject) {
-				Resource res = ((EObject)notifier).eResource();
-				if(res != null && res.getURI() != null) {
-					fileExtension = res.getURI().fileExtension();
-				}
-			}
+		
+		Command cmd = null;
+	
+		Object notifier = notification.getNotifier();
+		if(notifier instanceof org.eclipse.uml2.uml.Element) {
+			if(this.papyrusTable.isIsSynchronized()) {
 
-			//we only listen the modification on the UML model
-			if("uml".equals(fileExtension)) { //$NON-NLS-1$
 				int eventType = notification.getEventType();
 				//we can't do a test on the element which provide the notification, because each action on the model can change the result of the query
 				switch(eventType) {
-				//I think that only Set and Unset are required to get all changes in the model
 				case Notification.SET:
 				case Notification.UNSET:
 				case Notification.ADD:
 				case Notification.REMOVE:
 				case Notification.ADD_MANY:
 				case Notification.REMOVE_MANY:
-					return getSynchronizationCommand(domain);
+					System.out.println(notification);
+					cmd = getSynchronizationCommand(domain);
 				default:
 					break;
 				//nothing to do
 				}
 			}
 		}
-		return null;
+
+
+		return cmd;
 	}
 
 }
