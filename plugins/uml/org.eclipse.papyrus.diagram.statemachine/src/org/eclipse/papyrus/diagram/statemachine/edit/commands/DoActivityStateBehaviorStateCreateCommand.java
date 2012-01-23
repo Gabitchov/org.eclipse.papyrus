@@ -73,8 +73,6 @@ public class DoActivityStateBehaviorStateCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -93,24 +91,15 @@ public class DoActivityStateBehaviorStateCreateCommand extends EditElementComman
 		if(container.getDoActivity() != null) {
 			return false;
 		}
-
-
 		return true;
-
-
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-
 		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 	}
-
-
 
 	/**
 	 * @generated
@@ -125,5 +114,4 @@ public class DoActivityStateBehaviorStateCreateCommand extends EditElementComman
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

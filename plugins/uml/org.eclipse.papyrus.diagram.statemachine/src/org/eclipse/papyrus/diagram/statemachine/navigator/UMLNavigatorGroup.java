@@ -93,5 +93,4 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	public boolean isEmpty() {
 		return myChildren.size() == 0;
 	}
-
 }

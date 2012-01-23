@@ -99,14 +99,9 @@ public class PackageEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
-
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.statemachine.edit.policies.PackageCanonicalEditPolicy());
-
-
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomPackageCreationEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomPackageXYLayoutEditPolicy());
@@ -118,7 +113,6 @@ public class PackageEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	public Object getAdapter(Class adapter) {
-
 		if(adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
@@ -129,7 +123,6 @@ public class PackageEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
-
 		super.handleNotificationEvent(event);
 		if(event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
@@ -139,5 +132,4 @@ public class PackageEditPart extends DiagramEditPart {
 			}
 		}
 	}
-
 }

@@ -34,5 +34,4 @@ public class StateMachineCompartmentItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

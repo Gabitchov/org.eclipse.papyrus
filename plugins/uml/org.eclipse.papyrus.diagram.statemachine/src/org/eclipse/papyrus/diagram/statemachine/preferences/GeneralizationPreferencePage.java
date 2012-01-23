@@ -14,8 +14,6 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
-
 	}
 
 	/**
@@ -33,5 +31,4 @@ public class GeneralizationPreferencePage extends AbstractPapyrusLinkPreferenceP
 	protected String getBundleId() {
 		return UMLDiagramEditorPlugin.ID;
 	}
-
 }

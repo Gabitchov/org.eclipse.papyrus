@@ -75,8 +75,6 @@ public class InternalTransitionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,37 +89,21 @@ public class InternalTransitionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
-
 		return true;
-
-
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-
-
 		Transition newElement = UMLFactory.eINSTANCE.createTransition();
-
 		Vertex owner = (Vertex)getElementToEdit();
 		owner.getIncomings().add(newElement);
-
-
 		ElementInitializers.getInstance().init_Transition_680(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -136,5 +118,4 @@ public class InternalTransitionCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

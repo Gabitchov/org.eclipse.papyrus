@@ -380,7 +380,6 @@ public class UMLVisualIDRegistry {
 		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
 			return PackageEditPart.VISUAL_ID;
 		}
-
 		return -1;
 	}
 
@@ -391,18 +390,10 @@ public class UMLVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())
-
-
-
-		) {
+		if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
 			return TransitionEditPart.VISUAL_ID;
 		}
-		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
-
-
-
-		) {
+		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -446,9 +437,7 @@ public class UMLVisualIDRegistry {
 		}
 		switch(containerVisualID) {
 		case PackageEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 				return StateMachineEditPart.VISUAL_ID;
 			}
 			break;
@@ -470,14 +459,10 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_692(containerView, (Behavior)domainElement)) {
 				return ExitStateBehaviorEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
 				return InternalTransitionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 				return RegionEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
@@ -486,9 +471,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
 				return PseudostateExitPointEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
 				return ConnectionPointReferenceEditPart.VISUAL_ID;
 			}
 			break;
@@ -517,14 +500,10 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_15000(containerView, (Pseudostate)domainElement)) {
 				return PseudostateTerminateEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getFinalState().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getFinalState().isSuperTypeOf(domainElement.eClass())) {
 				return FinalStateEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())) {
 				return StateEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
@@ -533,21 +512,15 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
 				return PseudostateExitPointEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
 				return CommentEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintEditPart.VISUAL_ID;
 			}
 			break;
 		case StateMachineCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 				return RegionEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
@@ -558,14 +531,10 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 				return RegionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
 				return ConnectionPointReferenceEditPart.VISUAL_ID;
 			}
 			break;
@@ -580,159 +549,73 @@ public class UMLVisualIDRegistry {
 		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
 		ViewInfo viewInfo = null;
 		ViewInfo labelInfo = null;
-
 		viewInfo = new BaseViewInfo(2000, ViewInfo.Node, "StateMachine");
 		root.addNode(1000, viewInfo);
-
 		viewInfo = new BaseViewInfo(7000, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
-
 		labelInfo = new BaseViewInfo(7001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
-
 		labelInfo = new BaseViewInfo(7002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
-
 		labelInfo = new BaseViewInfo(7003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
-
 		viewInfo = new BaseViewInfo(19000, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
-
 		labelInfo = new BaseViewInfo(19002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
-
 		viewInfo = new BaseViewInfo(667, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(670, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(3000, ViewInfo.Node, "Region");
-
 		root.addNode(2002, viewInfo);
-
 		root.addNode(6002, viewInfo);
-
 		root.addNode(6000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(5000, ViewInfo.Node, "FinalState");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(6000, ViewInfo.Node, "State");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(8000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(9000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(10000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(11000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(12000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(13000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(14000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(15000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(16000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(2000, viewInfo);
-
 		root.addNode(3002, viewInfo);
-
 		root.addNode(2002, viewInfo);
-
 		root.addNode(6000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(17000, ViewInfo.Node, "Pseudostate");
-
 		root.addNode(3002, viewInfo);
-
 		root.addNode(2002, viewInfo);
-
 		root.addNode(2000, viewInfo);
-
 		root.addNode(6000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(18000, ViewInfo.Node, "ConnectionPointReference");
-
 		root.addNode(6000, viewInfo);
-
 		root.addNode(6002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(666, ViewInfo.Node, "Comment");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(668, ViewInfo.Node, "Constraint");
-
 		root.addNode(3002, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(680, ViewInfo.Node, "Transition");
-
 		root.addNode(6000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(690, ViewInfo.Node, "Behavior");
-
 		root.addNode(6000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(691, ViewInfo.Node, "Behavior");
-
 		root.addNode(6000, viewInfo);
-
-
 		viewInfo = new BaseViewInfo(692, ViewInfo.Node, "Behavior");
-
 		root.addNode(6000, viewInfo);
-
 		return root;
 	}
 
@@ -784,9 +667,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_10000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a fork
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -799,9 +680,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_11000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a choice
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -814,9 +693,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_12000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a junction
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -829,9 +706,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_13000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a shallowHistory
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -844,9 +719,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_14000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a deepHistory
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -859,9 +732,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_15000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a terminate
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -874,9 +745,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_16000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is an entryPoint
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -889,9 +758,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_17000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is an exitPoint
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -929,9 +796,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_8000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is an initial
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -944,9 +809,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-
 	private static boolean isPseudostate_9000(View containerView, Pseudostate domainElement) {
-
 		// Test if the pseudostate is a join
 		if(domainElement instanceof Pseudostate) {
 			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
@@ -955,5 +818,4 @@ public class UMLVisualIDRegistry {
 		}
 		return false;
 	}
-
 }

@@ -12,9 +12,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.policies.ConstraintConstrai
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -36,10 +34,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -48,7 +42,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -60,28 +53,16 @@ implements ITreeBranchEditPart {
 		return (CommentLinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class CommentLinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
-
-
-
 	}
-
-
-
 }

@@ -76,13 +76,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_667(Comment source, Element target) {
 			if(source != null) {
-				if(source.getAnnotatedElements().contains(target)
-
-				) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_667(source, target);
 		}
 
@@ -91,13 +88,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_670(Constraint source, Element target) {
 			if(source != null) {
-				if(source.getConstrainedElements().contains(target)
-
-				) {
+				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_670(source, target);
 		}
 
@@ -135,7 +129,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistTransition_7000(Region container, Transition linkInstance, Vertex source, Vertex target) {
 			return true;
 		}
-
 	}
 
 	/**
@@ -247,13 +240,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
-
 			return getGEFWrapper(createGMFCommand);
 		}
-
 		return null;
 	}
 
@@ -334,11 +324,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
-
 	}
 
 	/**

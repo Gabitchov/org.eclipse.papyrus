@@ -88,5 +88,4 @@ public class UMLLinkDescriptor extends UMLNodeDescriptor {
 	public EObject getSource() {
 		return mySource;
 	}
-
 }

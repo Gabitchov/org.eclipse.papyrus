@@ -39,9 +39,6 @@ public class EntryStateBehaviorItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.Behavior_690);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -49,7 +46,6 @@ public class EntryStateBehaviorItemSemanticEditPolicy extends UMLBaseItemSemanti
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -64,6 +60,4 @@ public class EntryStateBehaviorItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

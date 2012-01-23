@@ -80,5 +80,4 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	public boolean isLeaf() {
 		return myLeaf;
 	}
-
 }

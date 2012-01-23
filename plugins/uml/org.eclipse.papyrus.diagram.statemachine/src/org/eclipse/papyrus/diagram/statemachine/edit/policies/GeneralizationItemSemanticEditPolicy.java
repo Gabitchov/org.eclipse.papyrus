@@ -94,5 +94,4 @@ public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

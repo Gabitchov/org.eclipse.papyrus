@@ -12,9 +12,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.policies.CommentAnnotatedEl
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,7 +42,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -67,9 +64,6 @@ implements ITreeBranchEditPart {
 		public CommentLinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

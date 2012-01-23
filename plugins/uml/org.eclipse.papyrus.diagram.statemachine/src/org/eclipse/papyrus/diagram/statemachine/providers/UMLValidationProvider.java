@@ -76,5 +76,4 @@ public class UMLValidationProvider {
 	public static boolean shouldConstraintsBePrivate() {
 		return false;
 	}
-
 }

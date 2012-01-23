@@ -140,7 +140,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -206,7 +205,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -256,7 +254,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -293,7 +290,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -426,8 +422,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 				}
 			}
 		}
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -516,9 +510,7 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -545,7 +537,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -553,7 +544,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -561,7 +551,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -664,7 +653,6 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
 
 	/**
@@ -759,5 +747,4 @@ public class StateNameEditPart extends CompartmentEditPart implements ITextAware
 			configuration = null;
 		}
 	}
-
 }

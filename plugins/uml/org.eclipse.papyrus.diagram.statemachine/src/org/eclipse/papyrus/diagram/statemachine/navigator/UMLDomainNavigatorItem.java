@@ -31,7 +31,6 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
-
 				return null;
 			}
 
@@ -102,5 +101,4 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}
-
 }

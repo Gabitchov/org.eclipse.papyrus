@@ -70,7 +70,6 @@ public class UMLOCLFactory {
 		return cached.expressions[index];
 	}
 
-
 	/**
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
 	 * 
