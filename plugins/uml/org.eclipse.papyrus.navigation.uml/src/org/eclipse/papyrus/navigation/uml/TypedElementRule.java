@@ -32,12 +32,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class TypedElementRule implements INavigationRule {
 
-	@Override
 	public boolean handle(EObject element) {
 		return element instanceof TypedElement;
 	}
 
-	@Override
 	public List<NavigableElement> getNextPossibleElements(NavigableElement currentNavElement) {
 
 		EStructuralFeature feature = UMLPackage.Literals.TYPED_ELEMENT__TYPE;
