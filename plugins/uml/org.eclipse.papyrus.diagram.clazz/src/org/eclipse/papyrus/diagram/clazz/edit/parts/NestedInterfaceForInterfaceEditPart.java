@@ -68,6 +68,8 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -489,6 +491,13 @@ public class NestedInterfaceForInterfaceEditPart extends CompartmentEditPart imp
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
+		}
 	}
 
 	/**
@@ -715,6 +724,9 @@ public class NestedInterfaceForInterfaceEditPart extends CompartmentEditPart imp
 					refreshLabel();
 				}
 			}
+		}
+		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
+			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
 	}
