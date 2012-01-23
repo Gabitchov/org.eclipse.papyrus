@@ -1530,15 +1530,11 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.OpaqueActionObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.OpaqueActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -1610,10 +1606,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="RequestConstants.REQ_DELETE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
@@ -1707,10 +1699,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="RequestConstants.REQ_DELETE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
@@ -1804,10 +1792,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="RequestConstants.REQ_DELETE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
@@ -1887,10 +1871,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="RequestConstants.REQ_DELETE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>

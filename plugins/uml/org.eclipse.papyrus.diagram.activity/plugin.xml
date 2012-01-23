@@ -2688,6 +2688,20 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <extension
 		id="Papyrus activity editor Plugin.palettedefinition"
 		name="Papyrus activity editor Plugin Predefined Entries"
@@ -3839,6 +3853,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		
 
 </extension>
+
+
+
+
 
 
 

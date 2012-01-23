@@ -92,7 +92,7 @@ public class ActionInputPinInOpaqueActCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT do not set new element which may change after validation
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ActionInputPin newElement = UMLFactory.eINSTANCE.createActionInputPin();
@@ -100,9 +100,8 @@ public class ActionInputPinInOpaqueActCreateCommand extends EditElementCommand {
 		owner.getInputValues().add(newElement);
 		ElementInitializers.getInstance().init_ActionInputPin_3016(newElement);
 		doConfigure(newElement, monitor, info);
-		// do not set new element which may change after validation
-		// ((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult();// newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**

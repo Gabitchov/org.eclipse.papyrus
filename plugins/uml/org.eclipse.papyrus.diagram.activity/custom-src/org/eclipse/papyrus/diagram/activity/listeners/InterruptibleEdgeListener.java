@@ -55,7 +55,6 @@ import org.eclipse.papyrus.diagram.common.util.predicates.ReferencingViewPredica
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.Iterables;
 
