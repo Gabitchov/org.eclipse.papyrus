@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.tests.infra.services.feature"
-      label="Feature"
+      id="org.eclipse.papyrus.tests.sysml.feature"
+      label="Tests SysML Feature (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
@@ -18,7 +18,7 @@
    </license>
 
    <plugin
-         id="org.eclipse.papyrus.core.resourceloading.tests"
+         id="org.eclipse.papyrus.sysml.service.types.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -26,11 +26,10 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.infra.services.edit.tests"
+         id="org.eclipse.papyrus.sysml.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
 </feature>
