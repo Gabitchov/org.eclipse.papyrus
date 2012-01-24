@@ -16,17 +16,17 @@ package org.eclipse.papyrus.sysml.modelelements.tests;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
-import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsFactory;
+import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>View</b></em>'. <!--
@@ -126,11 +126,12 @@ public class ViewTest extends TestCase {
 		c1 = model.createOwnedClass("c1", false);
 
 		// Add View stereotype
-		v0 = (View)p0.applyStereotype(p0.getApplicableStereotype(SysmlResource.VIEW_ID));
-		v1 = (View)p1.applyStereotype(p1.getApplicableStereotype(SysmlResource.VIEW_ID));
+
+		v0 = (View)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, ModelelementsPackage.eINSTANCE.getView());
+		v1 = (View)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, ModelelementsPackage.eINSTANCE.getView());
 
 		// Add ViewPoint stereotype
-		vp1 = (ViewPoint)c1.applyStereotype(c1.getApplicableStereotype(SysmlResource.VIEWPOINT_ID));
+		vp1 = (ViewPoint)StereotypeApplicationHelper.INSTANCE.applyStereotype(c1, ModelelementsPackage.eINSTANCE.getViewPoint());
 
 		// Add Abstractions with allocate stereotype
 		// v1 (p1) -> vp1 (c1)
@@ -138,9 +139,8 @@ public class ViewTest extends TestCase {
 		v1_vp1.getClients().add(p1);
 		v1_vp1.getSuppliers().add(c1);
 		model.getPackagedElements().add(v1_vp1);
-		@SuppressWarnings("unused")
-		Conform c_v1_vp1 = (Conform)v1_vp1.applyStereotype(v1_vp1.getApplicableStereotype(SysmlResource.CONFORM_ID));
 
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(v1_vp1, ModelelementsPackage.eINSTANCE.getConform());
 	}
 
 	/**

@@ -19,13 +19,15 @@ import junit.textui.TestRunner;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsFactory;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Flow Property</b></em>'. <!--
@@ -128,13 +130,13 @@ public class FlowPropertyTest extends TestCase {
 		Property p2 = i.createOwnedAttribute("p2", null);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowProperty)p0.applyStereotype(p0.getApplicableStereotype(SysmlResource.FLOW_PROPERTY_ID));
+		fp0 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowProperty());
 		fp0.setDirection(FlowDirection.IN);
 
-		fp1 = (FlowProperty)p1.applyStereotype(p1.getApplicableStereotype(SysmlResource.FLOW_PROPERTY_ID));
+		fp1 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowProperty());
 		fp1.setDirection(FlowDirection.OUT);
 
-		fp2 = (FlowProperty)p2.applyStereotype(p2.getApplicableStereotype(SysmlResource.FLOW_PROPERTY_ID));
+		fp2 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowProperty());
 		fp2.setDirection(FlowDirection.INOUT);
 
 	}
@@ -160,8 +162,7 @@ public class FlowPropertyTest extends TestCase {
 	public void testGetIcon() {
 
 		// Retrieve Stereotype
-		Property p = fp0.getBase_Property();
-		Stereotype s = p.getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
+		Stereotype s = UMLUtil.getStereotype(fp0);
 
 		Image i0 = s.getIcons().get(1); // IN
 		Image i1 = s.getIcons().get(2); // OUT

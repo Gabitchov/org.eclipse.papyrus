@@ -18,14 +18,14 @@ import junit.textui.TestRunner;
 
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
-import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Test Case</b></em>'. <!--
@@ -123,19 +123,19 @@ public class TestCaseTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class verified1 = model.createOwnedClass("verified1", false);
-		verified1_req = (Requirement)verified1.applyStereotype(verified1.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
+		verified1_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(verified1, RequirementsPackage.eINSTANCE.getRequirement());
 
 		Class verified2 = model.createOwnedClass("verified2", false);
-		verified2_req = (Requirement)verified2.applyStereotype(verified2.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
+		verified2_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(verified2, RequirementsPackage.eINSTANCE.getRequirement());
 
 		Class testClass = model.createOwnedClass("testClass", false);
 		Operation op0 = testClass.createOwnedOperation("op0", null, null, null);
 		Operation op1 = testClass.createOwnedOperation("op1", null, null, null);
 		Operation op2 = testClass.createOwnedOperation("op2", null, null, null);
 
-		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)op0.applyStereotype(op0.getApplicableStereotype(SysmlResource.TEST_CASE_ID));
-		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)op1.applyStereotype(op1.getApplicableStereotype(SysmlResource.TEST_CASE_ID));
-		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)op2.applyStereotype(op2.getApplicableStereotype(SysmlResource.TEST_CASE_ID));
+		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.INSTANCE.applyStereotype(op0, RequirementsPackage.eINSTANCE.getTestCase());
+		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.INSTANCE.applyStereotype(op1, RequirementsPackage.eINSTANCE.getTestCase());
+		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.INSTANCE.applyStereotype(op2, RequirementsPackage.eINSTANCE.getTestCase());
 
 		// Add "Verify" (Abstraction)
 		// testCase1, testCase2 -> verified1
@@ -144,22 +144,19 @@ public class TestCaseTest extends TestCase {
 		t1_v1.getClients().add(op1);
 		t1_v1.getSuppliers().add(verified1);
 		model.getPackagedElements().add(t1_v1);
-		@SuppressWarnings("unused")
-		Verify v_t1_v1 = (Verify)t1_v1.applyStereotype(t1_v1.getApplicableStereotype(SysmlResource.VERIFY_ID));
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t1_v1, RequirementsPackage.eINSTANCE.getVerify());
 
 		Abstraction t1_v2 = UMLFactory.eINSTANCE.createAbstraction();
 		t1_v2.getClients().add(op1);
 		t1_v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(t1_v2);
-		@SuppressWarnings("unused")
-		Verify v_t1_v2 = (Verify)t1_v2.applyStereotype(t1_v2.getApplicableStereotype(SysmlResource.VERIFY_ID));
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t1_v2, RequirementsPackage.eINSTANCE.getVerify());
 
 		Abstraction t2_v2 = UMLFactory.eINSTANCE.createAbstraction();
 		t2_v2.getClients().add(op2);
 		t2_v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(t2_v2);
-		@SuppressWarnings("unused")
-		Verify v_t2_v2 = (Verify)t2_v2.applyStereotype(t2_v2.getApplicableStereotype(SysmlResource.VERIFY_ID));
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(t2_v2, RequirementsPackage.eINSTANCE.getVerify());
 
 		// ////////////////////////////////////////////////////////////////////
 	}

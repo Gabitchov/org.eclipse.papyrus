@@ -16,15 +16,15 @@ package org.eclipse.papyrus.sysml.allocations.tests;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
-import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsFactory;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Allocated</b></em>'. <!--
@@ -133,11 +133,12 @@ public class AllocatedTest extends TestCase {
 		c4 = model.createOwnedClass("C4", false);
 
 		// Add Allocated stereotype
-		ac0 = (Allocated)c0.applyStereotype(c0.getApplicableStereotype(SysmlResource.ALLOCATED_ID));
-		ac1 = (Allocated)c1.applyStereotype(c1.getApplicableStereotype(SysmlResource.ALLOCATED_ID));
-		ac2 = (Allocated)c2.applyStereotype(c2.getApplicableStereotype(SysmlResource.ALLOCATED_ID));
-		ac3 = (Allocated)c3.applyStereotype(c3.getApplicableStereotype(SysmlResource.ALLOCATED_ID));
-		ac4 = (Allocated)c4.applyStereotype(c4.getApplicableStereotype(SysmlResource.ALLOCATED_ID));
+
+		ac0 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c0, AllocationsPackage.eINSTANCE.getAllocated());
+		ac1 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c1, AllocationsPackage.eINSTANCE.getAllocated());
+		ac2 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c2, AllocationsPackage.eINSTANCE.getAllocated());
+		ac3 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c3, AllocationsPackage.eINSTANCE.getAllocated());
+		ac4 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c4, AllocationsPackage.eINSTANCE.getAllocated());
 
 		// Add Abstractions with allocate stereotype
 		// c1 -> c2, c3
@@ -146,23 +147,20 @@ public class AllocatedTest extends TestCase {
 		c1_c2.getClients().add(c1);
 		c1_c2.getSuppliers().add(c2);
 		model.getPackagedElements().add(c1_c2);
-		@SuppressWarnings("unused")
-		Allocate a_c1_c2 = (Allocate)c1_c2.applyStereotype(c1_c2.getApplicableStereotype(SysmlResource.ALLOCATE_ID));
+
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(c1_c2, AllocationsPackage.eINSTANCE.getAllocate());
 
 		Abstraction c1_c3 = UMLFactory.eINSTANCE.createAbstraction();
 		model.getPackagedElements().add(c1_c3);
 		c1_c3.getClients().add(c1);
 		c1_c3.getSuppliers().add(c3);
-		@SuppressWarnings("unused")
-		Allocate a_c1_c3 = (Allocate)c1_c3.applyStereotype(c1_c3.getApplicableStereotype(SysmlResource.ALLOCATE_ID));
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(c1_c3, AllocationsPackage.eINSTANCE.getAllocate());
 
 		Abstraction c4_c3 = UMLFactory.eINSTANCE.createAbstraction();
 		model.getPackagedElements().add(c4_c3);
 		c4_c3.getClients().add(c4);
 		c4_c3.getSuppliers().add(c3);
-		@SuppressWarnings("unused")
-		Allocate a_c4_c3 = (Allocate)c4_c3.applyStereotype(c4_c3.getApplicableStereotype(SysmlResource.ALLOCATE_ID));
-
+		StereotypeApplicationHelper.INSTANCE.applyStereotype(c4_c3, AllocationsPackage.eINSTANCE.getAllocate());
 	}
 
 	/**

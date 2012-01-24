@@ -20,7 +20,7 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsFactory;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Image;
@@ -29,6 +29,8 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Flow Port</b></em>'. <!--
@@ -145,15 +147,15 @@ public class FlowPortTest extends TestCase {
 		p2 = c0.createOwnedPort("p2", i2);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowPort)p0.applyStereotype(p0.getApplicableStereotype(SysmlResource.FLOW_PORT_ID));
-		fp1 = (FlowPort)p1.applyStereotype(p1.getApplicableStereotype(SysmlResource.FLOW_PORT_ID));
+		fp0 = (FlowPort)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowPort());
+		fp1 = (FlowPort)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowPort());
 		fp1.setDirection(FlowDirection.OUT);
-		fp2 = (FlowPort)p2.applyStereotype(p2.getApplicableStereotype(SysmlResource.FLOW_PORT_ID));
+		fp2 = (FlowPort)StereotypeApplicationHelper.INSTANCE.applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowPort());
 		fp2.setDirection(FlowDirection.IN);
 		fp2.setIsConjugated(true);
 
 		// Add FlowSpecification
-		fsp2 = (FlowSpecification)i2.applyStereotype(i2.getApplicableStereotype(SysmlResource.FLOW_SPECIFICATION_ID));
+		fsp2 = (FlowSpecification)StereotypeApplicationHelper.INSTANCE.applyStereotype(i2, PortandflowsPackage.eINSTANCE.getFlowSpecification());
 	}
 
 	/**
@@ -177,8 +179,7 @@ public class FlowPortTest extends TestCase {
 	public void testGetIcon() {
 
 		// Retrieve Stereotype
-		Port p = fp0.getBase_Port();
-		Stereotype s = p.getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
+		Stereotype s = UMLUtil.getStereotype(fp0);
 
 		//Image i0 = s.getIcons().get(1); // IN
 		Image i1 = s.getIcons().get(2); // OUT
