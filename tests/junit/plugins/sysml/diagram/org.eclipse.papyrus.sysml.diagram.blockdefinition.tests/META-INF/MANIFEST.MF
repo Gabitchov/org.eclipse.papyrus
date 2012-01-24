@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.8.2"
 Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.sysml.diagram.blockdefinition;bundl
- e-version="0.8.0"
-Bundle-Version: 0.8.2.qualifier
+Fragment-Host: org.eclipse.papyrus.sysml.diagram.blockdefinition;bundle-version="0.9.0"
+Bundle-Version: 0.9.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.blockdefinition
