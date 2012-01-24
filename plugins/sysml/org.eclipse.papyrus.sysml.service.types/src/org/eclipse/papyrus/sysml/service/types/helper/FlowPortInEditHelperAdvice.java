@@ -22,17 +22,18 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** SysML FlowPort#In edit helper advice */
 public class FlowPortInEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public FlowPortInEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
 	}
 
 	/** Complete creation process by applying the expected stereotype */

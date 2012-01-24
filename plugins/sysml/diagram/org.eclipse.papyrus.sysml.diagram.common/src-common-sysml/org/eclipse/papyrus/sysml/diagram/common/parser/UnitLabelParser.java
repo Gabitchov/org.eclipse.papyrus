@@ -27,8 +27,8 @@ import org.eclipse.papyrus.sysml.blocks.Dimension;
 import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Semantic Parser for {@link Unit}
@@ -57,7 +57,7 @@ public class UnitLabelParser extends NamedElementLabelParser {
 
 			InstanceSpecification iSpec = (InstanceSpecification)eObject;
 
-			Unit unit = ElementUtil.getStereotypeApplication(iSpec, Unit.class);
+			Unit unit = UMLUtil.getStereotypeApplication(iSpec, Unit.class);
 
 			// manage name
 			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (iSpec.isSetName())) {
@@ -108,7 +108,7 @@ public class UnitLabelParser extends NamedElementLabelParser {
 
 			semanticElementsBeingParsed.add(semElement);
 
-			Unit unit = ElementUtil.getStereotypeApplication(semElement, Unit.class);
+			Unit unit = UMLUtil.getStereotypeApplication(semElement, Unit.class);
 			if(unit != null) {
 				semanticElementsBeingParsed.add(unit);
 			}

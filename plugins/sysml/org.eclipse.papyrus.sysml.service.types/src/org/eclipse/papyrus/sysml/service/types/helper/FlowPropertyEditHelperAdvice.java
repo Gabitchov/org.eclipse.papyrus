@@ -29,7 +29,6 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
@@ -37,15 +36,16 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML FlowProperty edit helper advice */
 public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public FlowPropertyEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
 	}
 
 	/**
@@ -88,10 +88,7 @@ public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEdit
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.FLOW_PROPERTY_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, PortandflowsPackage.eINSTANCE.getFlowProperty());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType

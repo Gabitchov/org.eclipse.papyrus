@@ -21,17 +21,18 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** SysML FlowPort#In edit helper advice */
 public class FlowPortNAEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public FlowPortNAEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
 	}
 
 	/** Verify that the new FlowPort is typed by a FlowSpecification */

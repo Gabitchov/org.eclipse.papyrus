@@ -28,13 +28,13 @@ import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Semantic Parser for {@link FlowPort}
@@ -64,7 +64,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 
 			Property property = (Property)eObject;
 
-			FlowPort flowPort = ElementUtil.getStereotypeApplication(property, FlowPort.class);
+			FlowPort flowPort = UMLUtil.getStereotypeApplication(property, FlowPort.class);
 			if(flowPort != null) {
 
 				// manage direction only if the FlowPort is type and type is not a FlowSpecification
@@ -86,7 +86,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 					}
 					
 					// manage direction only if the FlowPort is not a FlowSpecification
-					if ((property.getType() == null) || ((property.getType() != null) && (ElementUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null))) {
+					if ((property.getType() == null) || ((property.getType() != null) && (UMLUtil.getStereotypeApplication(property.getType(), FlowSpecification.class) == null))) {
 						result = String.format(DIRECTION_FORMAT, direction, result);
 					}
 				}
@@ -224,7 +224,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 		if((element != null) && (element instanceof Port)) {
 			Port semElement = (Port)element;
 
-			FlowPort flowPort = ElementUtil.getStereotypeApplication(semElement, FlowPort.class);
+			FlowPort flowPort = UMLUtil.getStereotypeApplication(semElement, FlowPort.class);
 			if(flowPort != null) {
 				semanticElementsBeingParsed.add(flowPort);
 			}

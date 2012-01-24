@@ -20,8 +20,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Tester for the Internal Block Diagram
@@ -70,7 +70,7 @@ public class InternalBlockDiagramTester extends PropertyTester {
 				Object current = iter.next();
 				if(current instanceof IAdaptable) {
 					Element port = (Element)((IAdaptable)current).getAdapter(Element.class);
-					FlowPort fp = ElementUtil.getStereotypeApplication(port, FlowPort.class);
+					FlowPort fp = UMLUtil.getStereotypeApplication(port, FlowPort.class);
 					boolean value = fp != null;
 					return expectedValue.equals(value);
 				}

@@ -20,12 +20,13 @@ import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class is a Property tester used to check is current model (meaning the model currently opened in Papyrus) is a SysML Model.
@@ -71,8 +72,8 @@ public class SysMLSelectionTester extends PropertyTester {
 
 				EObject root = openedModel.lookupRoot();
 				if(root instanceof Package) {
-					Profile sysml = ((Package)root).getAppliedProfile(SysmlResource.SYSML_ID);
-					if(sysml != null) {
+					Profile sysml = UMLUtil.getProfile(SysmlPackage.eINSTANCE);					
+					if(((Package)root).isProfileApplied(sysml)) {
 						isSysMLModel = true;
 					}
 				}

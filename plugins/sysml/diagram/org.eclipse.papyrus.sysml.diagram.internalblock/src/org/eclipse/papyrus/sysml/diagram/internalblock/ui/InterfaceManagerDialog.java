@@ -59,7 +59,6 @@ import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.common.util.Visitor;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -85,6 +84,7 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -432,7 +432,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 		for(Element element : interfaces) {
 			// Test if the interface is a FlowSpecification
-			FlowSpecification flowSpec = ElementUtil.getStereotypeApplication(element, FlowSpecification.class);
+			FlowSpecification flowSpec = UMLUtil.getStereotypeApplication(element, FlowSpecification.class);
 			if(flowSpec == null) {
 				otherInterfaces.add((Interface)element);
 			}

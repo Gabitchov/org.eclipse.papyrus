@@ -19,18 +19,18 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link ItemFlow} edit helper advice */
 public class ItemFlowEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public ItemFlowEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
 	}
 
 	/** Complete creation process by applying the expected stereotype */
@@ -42,10 +42,7 @@ public class ItemFlowEditHelperAdvice extends AbstractStereotypedElementEditHelp
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.ITEM_FLOW_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, PortandflowsPackage.eINSTANCE.getItemFlow());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType

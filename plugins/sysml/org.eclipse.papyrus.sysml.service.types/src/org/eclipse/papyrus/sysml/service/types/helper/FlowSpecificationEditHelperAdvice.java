@@ -32,20 +32,20 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML FlowSpecification edit helper advice */
 public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public FlowSpecificationEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
 	}
 
 	/**
@@ -125,10 +125,7 @@ public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElemen
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.FLOW_SPECIFICATION_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, PortandflowsPackage.eINSTANCE.getFlowSpecification());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType

@@ -20,18 +20,18 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link Dimension} edit helper advice */
 public class DimensionEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public DimensionEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.BLOCKS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(BlocksPackage.eINSTANCE));
 	}
 
 	/** Complete creation process by applying the expected stereotype */
@@ -43,10 +43,7 @@ public class DimensionEditHelperAdvice extends AbstractStereotypedElementEditHel
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.DIMENSION_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, BlocksPackage.eINSTANCE.getDimension());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType

@@ -26,8 +26,8 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Semantic Parser for {@link FlowProperty}
@@ -53,7 +53,7 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 		if((eObject != null) && (eObject instanceof Property)) {
 
 			Property property = (Property)eObject;
-			FlowProperty flowProperty = ElementUtil.getStereotypeApplication(property, FlowProperty.class);
+			FlowProperty flowProperty = UMLUtil.getStereotypeApplication(property, FlowProperty.class);
 			if(flowProperty != null) {
 
 				// manage direction
@@ -107,7 +107,7 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 		if((element != null) && (element instanceof Property)) {
 			Property semElement = (Property)element;
 
-			FlowProperty flowProperty = ElementUtil.getStereotypeApplication(semElement, FlowProperty.class);
+			FlowProperty flowProperty = UMLUtil.getStereotypeApplication(semElement, FlowProperty.class);
 			if(flowProperty != null) {
 				semanticElementsBeingParsed.add(flowProperty);
 			}

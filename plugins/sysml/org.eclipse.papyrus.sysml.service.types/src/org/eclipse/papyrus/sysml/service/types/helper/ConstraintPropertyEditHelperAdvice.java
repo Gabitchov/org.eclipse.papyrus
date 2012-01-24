@@ -22,21 +22,21 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link ConstraintProperty} edit helper advice */
 public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public ConstraintPropertyEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.CONSTRAINTS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(ConstraintsPackage.eINSTANCE));
 	}
 
 	/** Complete creation process by applying the expected stereotype */
@@ -48,10 +48,7 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, ConstraintsPackage.eINSTANCE.getConstraintProperty());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType

@@ -38,7 +38,6 @@ import org.eclipse.papyrus.sysml.diagram.common.figure.FlowPortFigure;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
@@ -49,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocat
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class implements an edit part for FlowPort represented as border items.
@@ -142,7 +142,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 
 		if(resolveSemanticElement() != null) {
 
-			FlowPort flowPort = ElementUtil.getStereotypeApplication((Element)resolveSemanticElement(), FlowPort.class);
+			FlowPort flowPort = UMLUtil.getStereotypeApplication((Element)resolveSemanticElement(), FlowPort.class);
 			if(flowPort != null) {
 				addListenerFilter("FlowPort", this, flowPort); //$NON-NLS-1$
 			}
@@ -176,7 +176,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		// A visual refresh may also be needed when the following properties are changing : isAtomic (depend on the type), direction, isConjugated.
 		if(resolveSemanticElement() != null) {
 			Element element = (Element)resolveSemanticElement();
-			FlowPort flowPort = ElementUtil.getStereotypeApplication(element, FlowPort.class);
+			FlowPort flowPort = UMLUtil.getStereotypeApplication(element, FlowPort.class);
 
 			if((flowPort != null) && (flowPort.equals(event.getNotifier()))) {
 				if(PortandflowsPackage.eINSTANCE.getFlowPort_Direction().equals(event.getFeature())
@@ -230,7 +230,7 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		}
 
 		Element element = (Element)resolveSemanticElement();
-		FlowPort flowPort = ElementUtil.getStereotypeApplication(element, FlowPort.class);
+		FlowPort flowPort = UMLUtil.getStereotypeApplication(element, FlowPort.class);
 
 		Image image = Activator.getInstance().getFlowPortImage(flowPort, side);
 		getPrimaryShape().setImage(image);

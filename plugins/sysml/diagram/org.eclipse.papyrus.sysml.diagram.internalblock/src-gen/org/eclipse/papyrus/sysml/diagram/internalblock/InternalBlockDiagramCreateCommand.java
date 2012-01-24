@@ -35,11 +35,11 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
@@ -89,7 +89,7 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 
 		if(owner instanceof org.eclipse.uml2.uml.Class) {
 			org.eclipse.uml2.uml.Class cOwner = (org.eclipse.uml2.uml.Class)owner;
-			Block block = ElementUtil.getStereotypeApplication(cOwner, Block.class);
+			Block block = UMLUtil.getStereotypeApplication(cOwner, Block.class);
 
 			if(block != null) {
 				canvasDomainElement = (EObject)owner;

@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Semantic Parser for {@link Requirement}
@@ -46,7 +46,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 		if((eObject != null) && (eObject instanceof Class)) {
 
 			Class clazz = (Class)eObject;
-			Requirement requirement = ElementUtil.getStereotypeApplication(clazz, Requirement.class);
+			Requirement requirement = UMLUtil.getStereotypeApplication(clazz, Requirement.class);
 
 			// manage name
 			if((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) {
@@ -79,7 +79,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 
 			semanticElementsBeingParsed.add(semElement);
 
-			Requirement requirement = ElementUtil.getStereotypeApplication(semElement, Requirement.class);
+			Requirement requirement = UMLUtil.getStereotypeApplication(semElement, Requirement.class);
 			if(requirement != null) {
 				semanticElementsBeingParsed.add(requirement);
 			}

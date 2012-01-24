@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Abstraction} is a {@link Verify}
@@ -26,7 +26,7 @@ public class VerifyMatcher implements IElementMatcher {
 		if(eObject instanceof Abstraction) {
 
 			Abstraction element = (Abstraction)eObject;
-			if(ElementUtil.getStereotypeApplication(element, Verify.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, Verify.class) != null) {
 				isMatch = true;
 			}
 		}

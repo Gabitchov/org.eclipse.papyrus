@@ -29,13 +29,13 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.messages.Messages;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.ui.InterfaceManagerDialog;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler;
-import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <pre>
@@ -63,7 +63,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		}
 
 		// Selection should not be a FlowPort
-		FlowPort flowPort = ElementUtil.getStereotypeApplication((Port)semanticElement, FlowPort.class);
+		FlowPort flowPort = UMLUtil.getStereotypeApplication((Port)semanticElement, FlowPort.class);
 		if(flowPort != null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -139,7 +139,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		}
 
 		// Selection should not be a FlowPort
-		FlowPort flowPort = ElementUtil.getStereotypeApplication((Port)semanticElement, FlowPort.class);
+		FlowPort flowPort = UMLUtil.getStereotypeApplication((Port)semanticElement, FlowPort.class);
 		if(flowPort != null) {
 			return false;
 		}

@@ -19,18 +19,18 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link Allocate} edit helper advice */
 public class AllocateEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public AllocateEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.ALLOCATIONS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(AllocationsPackage.eINSTANCE));
 	}
 
 	/** Complete creation process by applying the expected stereotype */
@@ -42,10 +42,7 @@ public class AllocateEditHelperAdvice extends AbstractStereotypedElementEditHelp
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.ALLOCATE_ID);
-					if(stereotypeToApply != null) {
-						element.applyStereotype(stereotypeToApply);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, AllocationsPackage.eINSTANCE.getAllocate());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType

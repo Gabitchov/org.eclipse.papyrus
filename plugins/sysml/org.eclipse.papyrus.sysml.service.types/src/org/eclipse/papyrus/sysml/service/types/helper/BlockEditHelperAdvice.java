@@ -26,19 +26,19 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML Block edit helper advice */
 public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
 	public BlockEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.BLOCKS_ID);
+		requiredProfiles.add(UMLUtil.getProfile(BlocksPackage.eINSTANCE));
 	}
 
 	/**
@@ -90,10 +90,7 @@ public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype blockSt = element.getApplicableStereotype(SysmlResource.BLOCK_ID);
-					if(blockSt != null) {
-						element.applyStereotype(blockSt);
-					}
+					StereotypeApplicationHelper.INSTANCE.applyStereotype(element, BlocksPackage.eINSTANCE.getBlock());
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
