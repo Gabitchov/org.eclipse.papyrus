@@ -28,11 +28,11 @@
         <handler
             class="org.eclipse.papyrus.uml.textedit.property.xtext.ui.UmlPropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
             commandId="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.validate">
-           <activeWhen>
-              <reference
+         <activeWhen>
+            <reference
                     definitionId="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.Editor.opened">
-              </reference>
-           </activeWhen>
+            </reference>
+         </activeWhen>
       </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
@@ -68,6 +68,19 @@
             id="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.templates"
             name="Templates">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.property.xtext.ui.keyword_UmlProperty"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            class="org.eclipse.papyrus.uml.textedit.property.xtext.ui.UmlPropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty"
+            name="UmlProperty">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.property.xtext.ui.keyword_UmlProperty"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
     <extension
@@ -139,7 +152,6 @@
 
 
 
-
 	<!-- Quick Outline -->
 	<extension
 		point="org.eclipse.ui.handlers">
@@ -180,6 +192,12 @@
             class="org.eclipse.papyrus.uml.textedit.property.xtext.ui.UmlPropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
+
+
+   
+   
+   
+   <!-- MANUAL EXTENSION POINT-->
    <extension
          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
       <DirectEditor
