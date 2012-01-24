@@ -21,6 +21,22 @@
          id="org.eclipse.papyrus.tests.uml.diagram.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.tests.infra.services.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.sysml.diagram.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.sysml.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.uml.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.papyrus.tests"
          download-size="0"
