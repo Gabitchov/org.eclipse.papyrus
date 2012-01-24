@@ -190,7 +190,7 @@
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher" />
 	</specializationType>
-
+	
 	<!-- ISpecializationType FlowPort_NA of SysML::FlowPort -->
 	<specializationType id="org.eclipse.papyrus.sysml.FlowPort_NA" name="SysML::FlowPort_NA"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortNAEditHelperAdvice"
@@ -200,7 +200,7 @@
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortNAMatcher" />
 	</specializationType>
-		
+	
 	<!-- ISpecializationType FlowProperty of UML::Property -->
 	<specializationType id="org.eclipse.papyrus.sysml.FlowProperty" name="SysML::FlowProperty"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPropertyEditHelperAdvice"

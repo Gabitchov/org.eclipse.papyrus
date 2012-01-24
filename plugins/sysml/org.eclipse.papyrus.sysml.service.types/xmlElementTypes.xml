@@ -5,7 +5,7 @@
 <!-- SysML ElementTypes declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 	
 	<!-- Declaration of IElementTypes -->
 	
@@ -164,7 +164,7 @@
 	<!-- ISpecializationType FlowPort_InOut of SysML::FlowPort -->
 	<specializationType id="org.eclipse.papyrus.sysml.FlowPort_InOut" name="SysML::FlowPort_InOut"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortInOutEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT_A.gif"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::FlowPort_InOut"/>
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
@@ -174,7 +174,7 @@
 	<!-- ISpecializationType FlowPort_In of SysML::FlowPort -->
 	<specializationType id="org.eclipse.papyrus.sysml.FlowPort_In" name="SysML::FlowPort_In"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortInEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::FlowPort_In"/>
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
@@ -184,11 +184,21 @@
 	<!-- ISpecializationType FlowPort_Out of SysML::FlowPort -->
 	<specializationType id="org.eclipse.papyrus.sysml.FlowPort_Out" name="SysML::FlowPort_Out"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortOutEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT_A.gif"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::FlowPort_Out"/>
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
 		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher" />
+	</specializationType>
+	
+	<!-- ISpecializationType FlowPort_NA of SysML::FlowPort -->
+	<specializationType id="org.eclipse.papyrus.sysml.FlowPort_NA" name="SysML::FlowPort_NA"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortNAEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::FlowPort_NA"/>
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.FlowPortNAMatcher" />
 	</specializationType>
 	
 	<!-- ISpecializationType FlowProperty of UML::Property -->
@@ -354,7 +364,7 @@
 	<!-- ISpecializationType ViewPoint of UML::Class -->
 	<specializationType id="org.eclipse.papyrus.sysml.ViewPoint" name="SysML::ViewPoint"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ViewPointEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/ViewPoint.gif"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/modelelements/Viewpoint.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="SysML::ViewPoint"/>
 		<specializes id="org.eclipse.papyrus.uml.Class" />
@@ -367,11 +377,23 @@
 <!-- Helper advice declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 	
 	<!-- Helper advice for Property -->
 	<adviceBinding id="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice"
 		class="org.eclipse.papyrus.sysml.service.types.helper.ConstraintBlockPropertyEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+	
+	<!-- Helper advice for Classifier -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Classifier"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.ClassifierEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Classifier">
+	</adviceBinding>
+	
+	<!-- Helper advice for Property -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Property"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.PropertyEditHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
 	
@@ -403,6 +425,7 @@
 		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_InOut" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_In" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_Out" />
+		<elementType ref="org.eclipse.papyrus.sysml.FlowPort_NA" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.FlowSpecification" />
 		<elementType ref="org.eclipse.papyrus.sysml.ItemFlow" />
@@ -421,6 +444,8 @@
 		<elementType ref="org.eclipse.papyrus.sysml.View" />
 		<elementType ref="org.eclipse.papyrus.sysml.ViewPoint" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Classifier" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Property" />
 
 	</binding>
 	

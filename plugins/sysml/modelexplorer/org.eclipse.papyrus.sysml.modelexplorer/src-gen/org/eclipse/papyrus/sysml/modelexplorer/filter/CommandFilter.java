@@ -48,6 +48,7 @@ public class CommandFilter implements ICommandFilter {
 			visibleCommands.add(SysMLElementTypes.FLOW_PORT_IN_OUT);
 			visibleCommands.add(SysMLElementTypes.FLOW_PORT_IN);
 			visibleCommands.add(SysMLElementTypes.FLOW_PORT_OUT);
+			// visibleCommands.add(SysMLElementTypes.FLOW_PORT_NA);
 			visibleCommands.add(SysMLElementTypes.FLOW_PROPERTY);
 			visibleCommands.add(SysMLElementTypes.FLOW_SPECIFICATION);
 			// visibleCommands.add(SysMLElementTypes.ITEM_FLOW);
