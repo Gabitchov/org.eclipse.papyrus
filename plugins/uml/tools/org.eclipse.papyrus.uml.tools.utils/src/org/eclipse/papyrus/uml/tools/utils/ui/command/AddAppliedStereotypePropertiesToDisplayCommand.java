@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 
 /**
  * The Class AddAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to

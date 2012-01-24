@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 
 // TODO: Auto-generated Javadoc
 /**

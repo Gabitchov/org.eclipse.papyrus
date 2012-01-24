@@ -22,10 +22,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.tools.utils.ui.command.AddMaskManagedLabelDisplayCommand;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.RemoveEAnnotationCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**

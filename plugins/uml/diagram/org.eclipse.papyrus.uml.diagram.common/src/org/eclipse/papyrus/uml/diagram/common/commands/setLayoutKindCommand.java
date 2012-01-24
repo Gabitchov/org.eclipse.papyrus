@@ -16,8 +16,9 @@ package org.eclipse.papyrus.uml.diagram.common.commands;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.CreateEAnnotationCommand;
+
 
 /**
  * set the kind of the layout of the figure

@@ -19,14 +19,16 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.CreateEAnnotationCommand;
+
 
 /**
  * The Class DeleteHyperLinkCommand. it can be used also to remove an hyperlink
  * web. It will remove the first eannotation that corresponds to the link or the
  * localization of the hyperlink
  */
+//TODO : should be moved into the hyperlink plugin. 
 public class EmptyAllHyperLinkCommand extends CreateEAnnotationCommand {
 
 	/**
