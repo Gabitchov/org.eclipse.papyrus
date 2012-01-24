@@ -20,10 +20,10 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -147,7 +147,7 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isConstraintBlockFromClass(Class class_) {
-		if(class_.getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(class_, ConstraintBlock.class) != null) {
 			return true;
 		}
 		return false;
@@ -176,7 +176,7 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isConstraintPropertyFromProperty(Property property_) {
-		if(property_.getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(property_, ConstraintProperty.class) != null) {
 			return true;
 		}
 		return false;

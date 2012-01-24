@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Allocated</b></em>'. <!-- end-user-doc -->
@@ -171,7 +171,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 			Iterator<DirectedRelationship> itDep = getBase_NamedElement().getTargetDirectedRelationships().iterator();
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDRelationship, AllocationsPackage.eINSTANCE.getAllocate());
+				currentAllocate = UMLUtil.getStereotypeApplication(currentDRelationship, Allocate.class);
 
 				if(currentAllocate != null) {
 					EList<Element> targets = currentAllocate.getBase_Abstraction().getSources();
@@ -206,7 +206,7 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 			Iterator<Dependency> itDep = getBase_NamedElement().getClientDependencies().iterator();
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentAllocate = (Allocate)ElementUtil.hasStereotype(currentDependency, AllocationsPackage.eINSTANCE.getAllocate());
+				currentAllocate = UMLUtil.getStereotypeApplication(currentDependency, Allocate.class);
 
 				if(currentAllocate != null) {
 					allocatedFrom.addAll(currentAllocate.getBase_Abstraction().getSuppliers());

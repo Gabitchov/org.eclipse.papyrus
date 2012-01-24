@@ -20,11 +20,11 @@ import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -148,7 +148,7 @@ public class AllocationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isAllocateFromAbstraction(Abstraction abstraction_) {
-		if(abstraction_.getAppliedStereotype(SysmlResource.ALLOCATE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(abstraction_, Allocate.class) != null) {
 			return true;
 		}
 		return false;
@@ -177,7 +177,7 @@ public class AllocationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isAllocatedFromNamedElement(NamedElement namedElement_) {
-		if(namedElement_.getAppliedStereotype(SysmlResource.ALLOCATED_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(namedElement_, Allocated.class) != null) {
 			return true;
 		}
 		return false;
@@ -206,7 +206,7 @@ public class AllocationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isAllocateActivityPartitionFromActivityPartition(ActivityPartition activityPartition_) {
-		if(activityPartition_.getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(activityPartition_, AllocateActivityPartition.class) != null) {
 			return true;
 		}
 		return false;

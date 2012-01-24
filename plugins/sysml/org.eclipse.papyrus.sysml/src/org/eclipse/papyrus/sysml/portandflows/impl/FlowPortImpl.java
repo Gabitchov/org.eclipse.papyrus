@@ -22,13 +22,12 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Flow Port</b></em>'. <!-- end-user-doc -->
@@ -257,7 +256,8 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		Image ImageNotFound = null;
 
 		if(getBase_Port() != null) {
-			Stereotype st = getBase_Port().getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
+
+			Stereotype st = UMLUtil.getStereotype(this);
 
 			Image image = st.getIcons().get(0);
 
@@ -295,7 +295,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 			// Find FlowPort type
 			Type type = getBase_Port().getType();
 			if((type != null) && (type instanceof Interface)) {
-				flowSpec = ElementUtil.getStereotypeApplication(type, FlowSpecification.class);
+				flowSpec = UMLUtil.getStereotypeApplication(type, FlowSpecification.class);
 			}
 
 			if(flowSpec != null) {

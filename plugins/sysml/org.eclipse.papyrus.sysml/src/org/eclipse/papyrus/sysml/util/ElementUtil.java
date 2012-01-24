@@ -18,7 +18,9 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
+@Deprecated
 public class ElementUtil {
 
 	/**
@@ -63,7 +65,9 @@ public class ElementUtil {
 	 *        sub-types will be returned as well
 	 * @return the stereotype application or null if such stereotype is not
 	 *         applied
+	 * @deprecated prefer using {@link UMLUtil#getStereotypeApplication(Element, Class)}
 	 */
+	@Deprecated
 	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T getStereotypeApplication(Element element, java.lang.Class<T> clazz) {
 		for(EObject stereoApplication : element.getStereotypeApplications()) {

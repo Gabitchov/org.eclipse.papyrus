@@ -27,11 +27,11 @@ import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Test Case</b></em>'. <!-- end-user-doc -->
@@ -238,13 +238,13 @@ public class TestCaseImpl extends EObjectImpl implements TestCase {
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getVerify());
+				currentVerify = UMLUtil.getStereotypeApplication(currentDependency, Verify.class);
 
 				if(currentVerify != null) {
 					EList<NamedElement> suppliers = currentVerify.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							verifies.add(currentRequirement);
 						}

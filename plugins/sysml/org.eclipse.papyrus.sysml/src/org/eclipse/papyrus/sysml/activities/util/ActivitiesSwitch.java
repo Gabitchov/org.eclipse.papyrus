@@ -25,7 +25,6 @@ import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.activities.Rate;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.ObjectNode;
@@ -33,6 +32,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterSet;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -219,7 +219,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isOptionalFromParameter(Parameter parameter_) {
-		if(parameter_.getAppliedStereotype(SysmlResource.OPTIONAL_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(parameter_, Optional.class) != null) {
 			return true;
 		}
 		return false;
@@ -248,7 +248,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isRateFromParameter(Parameter parameter_) {
-		if(parameter_.getAppliedStereotype(SysmlResource.RATE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(parameter_, Rate.class) != null) {
 			return true;
 		}
 		return false;
@@ -277,7 +277,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isRateFromActivityEdge(ActivityEdge activityEdge_) {
-		if(activityEdge_.getAppliedStereotype(SysmlResource.RATE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(activityEdge_, Rate.class) != null) {
 			return true;
 		}
 		return false;
@@ -306,7 +306,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isProbabilityFromActivityEdge(ActivityEdge activityEdge_) {
-		if(activityEdge_.getAppliedStereotype(SysmlResource.PROBABILITY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(activityEdge_, Probability.class) != null) {
 			return true;
 		}
 		return false;
@@ -335,7 +335,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isProbabilityFromParameterSet(ParameterSet parameterSet_) {
-		if(parameterSet_.getAppliedStereotype(SysmlResource.PROBABILITY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(parameterSet_, Probability.class) != null) {
 			return true;
 		}
 		return false;
@@ -364,7 +364,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isContinuousFromParameter(Parameter parameter_) {
-		if(parameter_.getAppliedStereotype(SysmlResource.CONTINUOUS_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(parameter_, Continuous.class) != null) {
 			return true;
 		}
 		return false;
@@ -393,7 +393,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isContinuousFromActivityEdge(ActivityEdge activityEdge_) {
-		if(activityEdge_.getAppliedStereotype(SysmlResource.CONTINUOUS_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(activityEdge_, Continuous.class) != null) {
 			return true;
 		}
 		return false;
@@ -422,7 +422,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isDiscreteFromParameter(Parameter parameter_) {
-		if(parameter_.getAppliedStereotype(SysmlResource.DISCRETE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(parameter_, Discrete.class) != null) {
 			return true;
 		}
 		return false;
@@ -451,7 +451,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isDiscreteFromActivityEdge(ActivityEdge activityEdge_) {
-		if(activityEdge_.getAppliedStereotype(SysmlResource.DISCRETE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(activityEdge_, Discrete.class) != null) {
 			return true;
 		}
 		return false;
@@ -480,7 +480,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isControlOperatorFromOperation(Operation operation_) {
-		if(operation_.getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(operation_, ControlOperator.class) != null) {
 			return true;
 		}
 		return false;
@@ -509,7 +509,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isControlOperatorFromBehavior(Behavior behavior_) {
-		if(behavior_.getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(behavior_, ControlOperator.class) != null) {
 			return true;
 		}
 		return false;
@@ -538,7 +538,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isNoBufferFromObjectNode(ObjectNode objectNode_) {
-		if(objectNode_.getAppliedStereotype(SysmlResource.NO_BUFFER_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(objectNode_, NoBuffer.class) != null) {
 			return true;
 		}
 		return false;
@@ -567,7 +567,7 @@ public class ActivitiesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isOverwriteFromObjectNode(ObjectNode objectNode_) {
-		if(objectNode_.getAppliedStereotype(SysmlResource.OVERWRITE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(objectNode_, Overwrite.class) != null) {
 			return true;
 		}
 		return false;

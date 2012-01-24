@@ -27,7 +27,6 @@ import org.eclipse.papyrus.sysml.blocks.ParticipantProperty;
 import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -36,6 +35,7 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -270,7 +270,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isBlockFromClass(Class class_) {
-		if(class_.getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(class_, Block.class) != null) {
 			return true;
 		}
 		return false;
@@ -299,7 +299,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isDistributedPropertyFromProperty(Property property_) {
-		if(property_.getAppliedStereotype(SysmlResource.DISTRIBUTED_PROPERTY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(property_, DistributedProperty.class) != null) {
 			return true;
 		}
 		return false;
@@ -328,7 +328,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isDimensionFromInstanceSpecification(InstanceSpecification instanceSpecification_) {
-		if(instanceSpecification_.getAppliedStereotype(SysmlResource.DIMENSION_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(instanceSpecification_, Dimension.class) != null) {
 			return true;
 		}
 		return false;
@@ -357,7 +357,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isUnitFromInstanceSpecification(InstanceSpecification instanceSpecification_) {
-		if(instanceSpecification_.getAppliedStereotype(SysmlResource.UNIT_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(instanceSpecification_, Unit.class) != null) {
 			return true;
 		}
 		return false;
@@ -386,7 +386,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isValueTypeFromDataType(DataType dataType_) {
-		if(dataType_.getAppliedStereotype(SysmlResource.VALUE_TYPE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(dataType_, ValueType.class) != null) {
 			return true;
 		}
 		return false;
@@ -415,7 +415,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isNestedConnectorEndFromConnectorEnd(ConnectorEnd connectorEnd_) {
-		if(connectorEnd_.getAppliedStereotype(SysmlResource.NESTED_CONNECTOR_END_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(connectorEnd_, NestedConnectorEnd.class) != null) {
 			return true;
 		}
 		return false;
@@ -444,7 +444,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isParticipantPropertyFromProperty(Property property_) {
-		if(property_.getAppliedStereotype(SysmlResource.PARTICIPANT_PROPERTY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(property_, ParticipantProperty.class) != null) {
 			return true;
 		}
 		return false;
@@ -473,7 +473,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isConnectorPropertyFromProperty(Property property_) {
-		if(property_.getAppliedStereotype(SysmlResource.CONNECTOR_PROPERTY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(property_, ConnectorProperty.class) != null) {
 			return true;
 		}
 		return false;
@@ -502,7 +502,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isBindingConnectorFromConnector(Connector connector_) {
-		if(connector_.getAppliedStereotype(SysmlResource.BINDING_CONNECTOR_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(connector_, BindingConnector.class) != null) {
 			return true;
 		}
 		return false;
@@ -531,7 +531,7 @@ public class BlocksSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isPropertySpecificTypeFromClassifier(Classifier classifier_) {
-		if(classifier_.getAppliedStereotype(SysmlResource.PROPERTY_SPECIFIC_TYPE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(classifier_, PropertySpecificType.class) != null) {
 			return true;
 		}
 		return false;

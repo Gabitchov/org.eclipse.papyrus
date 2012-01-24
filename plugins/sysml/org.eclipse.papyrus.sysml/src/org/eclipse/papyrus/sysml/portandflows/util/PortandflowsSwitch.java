@@ -21,12 +21,12 @@ import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -166,7 +166,7 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isFlowPortFromPort(Port port_) {
-		if(port_.getAppliedStereotype(SysmlResource.FLOW_PORT_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(port_, FlowPort.class) != null) {
 			return true;
 		}
 		return false;
@@ -195,7 +195,7 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isFlowPropertyFromProperty(Property property_) {
-		if(property_.getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(property_, FlowProperty.class) != null) {
 			return true;
 		}
 		return false;
@@ -224,7 +224,7 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isFlowSpecificationFromInterface(Interface interface_) {
-		if(interface_.getAppliedStereotype(SysmlResource.FLOW_SPECIFICATION_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(interface_, FlowSpecification.class) != null) {
 			return true;
 		}
 		return false;
@@ -253,7 +253,7 @@ public class PortandflowsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isItemFlowFromInformationFlow(InformationFlow informationFlow_) {
-		if(informationFlow_.getAppliedStereotype(SysmlResource.ITEM_FLOW_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(informationFlow_, ItemFlow.class) != null) {
 			return true;
 		}
 		return false;

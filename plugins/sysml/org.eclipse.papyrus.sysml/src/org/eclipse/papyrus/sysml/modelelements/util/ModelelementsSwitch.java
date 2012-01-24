@@ -22,12 +22,12 @@ import org.eclipse.papyrus.sysml.modelelements.Problem;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -182,7 +182,7 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isConformFromDependency(Dependency dependency_) {
-		if(dependency_.getAppliedStereotype(SysmlResource.CONFORM_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(dependency_, Conform.class) != null) {
 			return true;
 		}
 		return false;
@@ -211,7 +211,7 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isViewFromPackage(Package package_) {
-		if(package_.getAppliedStereotype(SysmlResource.VIEW_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(package_, View.class) != null) {
 			return true;
 		}
 		return false;
@@ -240,7 +240,7 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isViewPointFromClass(Class class_) {
-		if(class_.getAppliedStereotype(SysmlResource.VIEW_POINT_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(class_, ViewPoint.class) != null) {
 			return true;
 		}
 		return false;
@@ -269,7 +269,7 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isRationaleFromComment(Comment comment_) {
-		if(comment_.getAppliedStereotype(SysmlResource.RATIONALE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(comment_, Rationale.class) != null) {
 			return true;
 		}
 		return false;
@@ -298,7 +298,7 @@ public class ModelelementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isProblemFromComment(Comment comment_) {
-		if(comment_.getAppliedStereotype(SysmlResource.PROBLEM_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(comment_, Problem.class) != null) {
 			return true;
 		}
 		return false;

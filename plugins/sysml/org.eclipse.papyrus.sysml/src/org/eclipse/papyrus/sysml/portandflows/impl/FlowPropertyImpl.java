@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Flow Property</b></em>'. <!-- end-user-doc -->
@@ -207,7 +207,7 @@ public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 		Image ImageNotFound = null;
 
 		if(getBase_Property() != null) {
-			Stereotype st = getBase_Property().getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
+			Stereotype st = UMLUtil.getStereotype(this);
 
 			Image image = st.getIcons().get(0);
 

@@ -24,9 +24,9 @@ import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>View</b></em>'. <!-- end-user-doc -->
@@ -85,7 +85,7 @@ public class ViewImpl extends EObjectImpl implements View {
 			Iterator<Dependency> itDep = getBase_Package().getClientDependencies().iterator();
 			while(itDep.hasNext() && (conform == null)) {
 				Dependency currentDependency = itDep.next();
-				conform = (Conform)ElementUtil.hasStereotype(currentDependency, ModelelementsPackage.eINSTANCE.getConform());
+				conform = UMLUtil.getStereotypeApplication(currentDependency, Conform.class);
 			}
 
 			// Find ViewPoint
@@ -93,7 +93,7 @@ public class ViewImpl extends EObjectImpl implements View {
 				Iterator<Element> itElt = conform.getBase_Dependency().getTargets().iterator();
 				while(itElt.hasNext()) {
 					Element currentElt = itElt.next();
-					viewPoint = (ViewPoint)ElementUtil.hasStereotype(currentElt, ModelelementsPackage.eINSTANCE.getViewPoint());
+					viewPoint = UMLUtil.getStereotypeApplication(currentElt, ViewPoint.class);
 				}
 			}
 		}
