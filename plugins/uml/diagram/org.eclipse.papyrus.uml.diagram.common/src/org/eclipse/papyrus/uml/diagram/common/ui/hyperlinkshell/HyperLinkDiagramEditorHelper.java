@@ -51,15 +51,15 @@ public class HyperLinkDiagramEditorHelper extends AbstractHyperLinkEditorHelper 
 
 	@Override
 	public HyperLinkEditor getHyperLinkObjectForEAnnotation(EAnnotation eAnnotation) {
-		if(eAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+		if(eAnnotation.getSource().equals(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM)) {
 			HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
 			EList<EObject> list = eAnnotation.getReferences();
 			if(list.size() > 0) {
 				if(eAnnotation.getReferences().get(0).eResource() != null) {
 					hyperLinkDiagram.setDiagram((Diagram)eAnnotation.getReferences().get(0));
 					hyperLinkDiagram.setTooltipText(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT));
-					if(eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION) != null) {
-						String stringboolean = eAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION);
+					if(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION) != null) {
+						String stringboolean = eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION);
 						boolean isDefaultNaviagation = Boolean.parseBoolean(stringboolean);
 						hyperLinkDiagram.setIsDefault(isDefaultNaviagation);
 					} else {

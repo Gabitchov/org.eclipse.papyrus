@@ -148,40 +148,40 @@ public interface VisualInformationPapyrusConstant {
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
 
-	/**
-	 * this is a key of eAnnnotation that contains hypertext link or referenced document
-	 **/
-	public static final String HYPERLINK_DIAGRAM = "PapyrusHyperLink_Diagram";
-
-	/**
-	 * this is a value of a eAnnnotation detail that explain the kind of the link
-	 **/
-	/**
-	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
-	 */
-	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLink_Document";
-	/**
-	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
-	 */
-	public static final String HYPERLINK_WEB = "PapyrusHyperLink_web";
-	/**
-	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
-	 */
-	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text";
-
-	public static final String HYPERLINK_DIAGRAM_NAME = "diagram_name";
-	/**
-	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
-	 */
-	public static final String HYPERLINK_IS_DEFAULT_NAVIGATION = "is_default_navigation";
-	/**
-	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
-	 */
-	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization";
-	/**
-	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
-	 */
-	public static final String HYPERLINK_WEB_LINK = "link";
+//	/**
+//	 * this is a key of eAnnnotation that contains hypertext link or referenced document
+//	 **/
+//	public static final String HYPERLINK_DIAGRAM = "PapyrusHyperLink_Diagram";
+//
+//	/**
+//	 * this is a value of a eAnnnotation detail that explain the kind of the link
+//	 **/
+//	/**
+//	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
+//	 */
+//	public static final String HYPERLINK_DOCUMENT = "PapyrusHyperLink_Document";
+//	/**
+//	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
+//	 */
+//	public static final String HYPERLINK_WEB = "PapyrusHyperLink_web";
+//	/**
+//	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
+//	 */
+//	public static final String HYPERLINK_TOOLTYPE_TEXT = "tooltip_text";
+//
+//	public static final String HYPERLINK_DIAGRAM_NAME = "diagram_name";
+//	/**
+//	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
+//	 */
+//	public static final String HYPERLINK_IS_DEFAULT_NAVIGATION = "is_default_navigation";
+//	/**
+//	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
+//	 */
+//	public static final String HYPERLINK_DOCUMENT_LOCALIZATION = "localization";
+//	/**
+//	 * @deprecated : use the constants declared into oep.infra.hyperlink.HyperLinkConstants.java
+//	 */
+//	public static final String HYPERLINK_WEB_LINK = "link";
 
 	/** key for the appearance of properties or other specific display */
 	public static final String CUSTOM_APPEARANCE_MASK_VALUE = "CustomAppearance_MaskValue";

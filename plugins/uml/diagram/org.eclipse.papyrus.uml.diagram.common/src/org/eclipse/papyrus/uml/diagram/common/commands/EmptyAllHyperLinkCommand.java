@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
+import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagramConstants;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 
 
@@ -43,7 +45,7 @@ public class EmptyAllHyperLinkCommand extends CreateEAnnotationCommand {
 	 *        the localization of the link
 	 */
 	public EmptyAllHyperLinkCommand(TransactionalEditingDomain domain, EModelElement object) {
-		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
+		super(domain, object, HyperLinkDiagramConstants.HYPERLINK_DIAGRAM);
 	}
 
 	/**
@@ -55,7 +57,7 @@ public class EmptyAllHyperLinkCommand extends CreateEAnnotationCommand {
 		// look for interesting eannotations
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT) || currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_WEB) || currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+			if(currentAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_DOCUMENT) || currentAnnotation.getSource().equals(HyperLinkConstants.HYPERLINK_WEB) || currentAnnotation.getSource().equals(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM)) {
 				eAnnotationsToRemove.add(currentAnnotation);
 			}
 		}

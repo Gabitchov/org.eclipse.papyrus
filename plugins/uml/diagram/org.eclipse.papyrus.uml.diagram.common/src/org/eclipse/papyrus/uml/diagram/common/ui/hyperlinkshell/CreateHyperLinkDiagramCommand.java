@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
+import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 
 /**
  * The Class CreateHyperLinkCommand. this has in charge to add a new entry list
@@ -49,7 +50,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 *        the localization
 	 */
 	public CreateHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, String tooltiptext, String name, EModelElement diagram, boolean isDefaultNavigation) {
-		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
+		super(domain, object, HyperLinkDiagramConstants.HYPERLINK_DIAGRAM);
 		this.tooltiptext = tooltiptext;
 		this.name = name;
 		this.diagram = diagram;
@@ -62,9 +63,9 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	protected void doExecute() {
 		EAnnotation eAnnotation = createEAnnotation();
 		eAnnotation.getReferences().add(diagram);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM_NAME, this.name);
-		eAnnotation.getDetails().put(VisualInformationPapyrusConstant.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefaultNavigation); //$NON-NLS-1$
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_TOOLTYPE_TEXT, this.tooltiptext);
+		eAnnotation.getDetails().put(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM_NAME, this.name);
+		eAnnotation.getDetails().put(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION, ""+this.isDefaultNavigation); //$NON-NLS-1$
 		attachEannotation(eAnnotation, getObject());
 	}
 

@@ -45,7 +45,7 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 *        the localization of the link
 	 */
 	public DeleteHyperLinkDiagramCommand(TransactionalEditingDomain domain, EModelElement object, EModelElement diagram) {
-		super(domain, object, VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM);
+		super(domain, object, HyperLinkDiagramConstants.HYPERLINK_DIAGRAM);
 		this.diagram = diagram;
 	}
 
@@ -58,7 +58,7 @@ public class DeleteHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 		// look for interesting eannotations
 		while(iter.hasNext()) {
 			EAnnotation currentAnnotation = iter.next();
-			if(currentAnnotation.getSource().equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
+			if(currentAnnotation.getSource().equals(HyperLinkDiagramConstants.HYPERLINK_DIAGRAM)) {
 				if(currentAnnotation.getReferences().contains(diagram)) {
 					eAnnotationsToRemove.add(currentAnnotation);
 				}
