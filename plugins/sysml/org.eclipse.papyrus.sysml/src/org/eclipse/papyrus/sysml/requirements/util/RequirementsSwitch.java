@@ -24,14 +24,14 @@ import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.papyrus.uml.standard.Trace;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -234,7 +234,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isDeriveReqtFromAbstraction(Abstraction abstraction_) {
-		if(abstraction_.getAppliedStereotype(SysmlResource.DERIVE_REQT_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(abstraction_, DeriveReqt.class) != null) {
 			return true;
 		}
 		return false;
@@ -263,7 +263,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isVerifyFromAbstraction(Abstraction abstraction_) {
-		if(abstraction_.getAppliedStereotype(SysmlResource.VERIFY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(abstraction_, Verify.class) != null) {
 			return true;
 		}
 		return false;
@@ -292,7 +292,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isCopyFromAbstraction(Abstraction abstraction_) {
-		if(abstraction_.getAppliedStereotype(SysmlResource.COPY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(abstraction_, Copy.class) != null) {
 			return true;
 		}
 		return false;
@@ -321,7 +321,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isSatisfyFromAbstraction(Abstraction abstraction_) {
-		if(abstraction_.getAppliedStereotype(SysmlResource.SATISFY_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(abstraction_, Satisfy.class) != null) {
 			return true;
 		}
 		return false;
@@ -350,7 +350,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isTestCaseFromBehavior(Behavior behavior_) {
-		if(behavior_.getAppliedStereotype(SysmlResource.TEST_CASE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(behavior_, TestCase.class) != null) {
 			return true;
 		}
 		return false;
@@ -379,7 +379,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isTestCaseFromOperation(Operation operation_) {
-		if(operation_.getAppliedStereotype(SysmlResource.TEST_CASE_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(operation_, TestCase.class) != null) {
 			return true;
 		}
 		return false;
@@ -408,7 +408,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isRequirementFromClass(Class class_) {
-		if(class_.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(class_, Requirement.class) != null) {
 			return true;
 		}
 		return false;
@@ -437,7 +437,7 @@ public class RequirementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	protected Boolean isRequirementRelatedFromNamedElement(NamedElement namedElement_) {
-		if(namedElement_.getAppliedStereotype(SysmlResource.REQUIREMENT_RELATED_ID) != null) {
+		if(UMLUtil.getStereotypeApplication(namedElement_, RequirementRelated.class) != null) {
 			return true;
 		}
 		return false;

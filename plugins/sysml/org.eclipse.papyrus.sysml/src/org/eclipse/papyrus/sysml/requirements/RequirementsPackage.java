@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.uml.standard.StandardPackage;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
@@ -325,7 +325,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DERIVE_REQT__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
+	int DERIVE_REQT__BASE_ABSTRACTION = L2Package.TRACE__BASE_ABSTRACTION;
 
 	/**
 	 * The number of structural features of the '<em>Derive Reqt</em>' class.
@@ -334,7 +334,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DERIVE_REQT_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
+	int DERIVE_REQT_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl <em>Verify</em>}' class.
@@ -353,7 +353,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFY__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
+	int VERIFY__BASE_ABSTRACTION = L2Package.TRACE__BASE_ABSTRACTION;
 
 	/**
 	 * The number of structural features of the '<em>Verify</em>' class. <!--
@@ -362,7 +362,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFY_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
+	int VERIFY_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.CopyImpl <em>Copy</em>}' class.
@@ -381,7 +381,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COPY__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
+	int COPY__BASE_ABSTRACTION = L2Package.TRACE__BASE_ABSTRACTION;
 
 	/**
 	 * The number of structural features of the '<em>Copy</em>' class. <!--
@@ -390,7 +390,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COPY_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
+	int COPY_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl <em>Satisfy</em>}' class.
@@ -409,7 +409,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY__BASE_ABSTRACTION = StandardPackage.TRACE__BASE_ABSTRACTION;
+	int SATISFY__BASE_ABSTRACTION = L2Package.TRACE__BASE_ABSTRACTION;
 
 	/**
 	 * The number of structural features of the '<em>Satisfy</em>' class. <!--
@@ -418,7 +418,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY_FEATURE_COUNT = StandardPackage.TRACE_FEATURE_COUNT + 0;
+	int SATISFY_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl <em>Test Case</em>}' class.

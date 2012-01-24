@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.requirements.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
-import org.eclipse.papyrus.uml.standard.impl.TraceImpl;
+import org.eclipse.uml2.uml.profile.l2.internal.impl.TraceImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Satisfy</b></em>'. <!-- end-user-doc -->

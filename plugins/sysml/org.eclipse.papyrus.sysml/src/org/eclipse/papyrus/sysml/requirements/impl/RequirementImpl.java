@@ -29,13 +29,13 @@ import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
-import org.eclipse.papyrus.uml.standard.Refine;
-import org.eclipse.papyrus.uml.standard.StandardPackage;
-import org.eclipse.papyrus.uml.standard.Trace;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.l2.Refine;
+import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirement</b></em>'. <!-- end-user-doc -->
@@ -146,13 +146,13 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find Copy link
 			while(itDep.hasNext()) {
 				Dependency currentDep = itDep.next();
-				currentCopy = (Copy)ElementUtil.hasStereotype(currentDep, RequirementsPackage.eINSTANCE.getCopy());
+				currentCopy = UMLUtil.getStereotypeApplication(currentDep, Copy.class);
 
 				if(currentCopy != null) {
 					EList<NamedElement> suppliers = currentCopy.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext() && (master == null)) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							master = currentRequirement;
 						}
@@ -316,13 +316,13 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find DeriveReqt link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDirectedRelationship = itDep.next();
-				currentDeriveReqt = (DeriveReqt)ElementUtil.hasStereotype(currentDirectedRelationship, RequirementsPackage.eINSTANCE.getDeriveReqt());
+				currentDeriveReqt = UMLUtil.getStereotypeApplication(currentDirectedRelationship, DeriveReqt.class);
 
 				if(currentDeriveReqt != null) {
 					EList<NamedElement> clients = currentDeriveReqt.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							derived.add(currentRequirement);
 						}
@@ -350,13 +350,13 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find DeriveReqt link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentDeriveReqt = (DeriveReqt)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getDeriveReqt());
+				currentDeriveReqt = UMLUtil.getStereotypeApplication(currentDRelationship, DeriveReqt.class);
 
 				if(currentDeriveReqt != null) {
 					EList<NamedElement> suppliers = currentDeriveReqt.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							derivedFrom.add(currentRequirement);
 						}
@@ -404,7 +404,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find Refine link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentRefine = (Refine)ElementUtil.hasStereotype(currentDRelationship, StandardPackage.eINSTANCE.getRefine());
+				currentRefine = UMLUtil.getStereotypeApplication(currentDRelationship, Refine.class);
 
 				if(currentRefine != null) {
 					refinedBy.addAll(currentRefine.getBase_Abstraction().getClients());
@@ -432,7 +432,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find Satisfy link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getSatisfy());
+				currentSatisfy = UMLUtil.getStereotypeApplication(currentDRelationship, Satisfy.class);
 
 				if(currentSatisfy != null) {
 					satisfyBy.addAll(currentSatisfy.getBase_Abstraction().getClients());
@@ -471,10 +471,10 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find Trace link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDR = itDep.next();
-				currentTrace = ElementUtil.getStereotypeApplication(currentDR, Trace.class);
+				currentTrace = UMLUtil.getStereotypeApplication(currentDR, Trace.class);
 
 				// Must be a Trace not a subtype (see bug #352563).
-				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
+				if((currentTrace != null) && (currentTrace.eClass() == L2Package.eINSTANCE.getTrace())) {
 					EList<NamedElement> suppliers = currentTrace.getBase_Abstraction().getClients();
 					tracedTo.addAll(suppliers);
 				}
@@ -501,7 +501,7 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 			// Find Verify link
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentVerify = (Verify)ElementUtil.hasStereotype(currentDRelationship, RequirementsPackage.eINSTANCE.getVerify());
+				currentVerify = UMLUtil.getStereotypeApplication(currentDRelationship, Verify.class);
 
 				if(currentVerify != null) {
 					verifiedBy.addAll(currentVerify.getBase_Abstraction().getClients());

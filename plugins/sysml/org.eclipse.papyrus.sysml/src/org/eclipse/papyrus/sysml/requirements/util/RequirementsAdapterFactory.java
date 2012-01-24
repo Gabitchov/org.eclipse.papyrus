@@ -26,13 +26,13 @@ import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.uml.standard.Trace;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.profile.l2.Trace;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

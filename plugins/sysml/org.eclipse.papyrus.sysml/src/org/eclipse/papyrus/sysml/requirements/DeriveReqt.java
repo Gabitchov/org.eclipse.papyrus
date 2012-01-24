@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.requirements;
 
-import org.eclipse.papyrus.uml.standard.Trace;
+import org.eclipse.uml2.uml.profile.l2.Trace;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Derive Reqt</b></em>'. <!-- end-user-doc -->

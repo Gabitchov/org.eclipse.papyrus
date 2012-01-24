@@ -28,13 +28,13 @@ import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
-import org.eclipse.papyrus.uml.standard.Refine;
-import org.eclipse.papyrus.uml.standard.StandardPackage;
-import org.eclipse.papyrus.uml.standard.Trace;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.l2.Refine;
+import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Requirement Related</b></em>'. <!-- end-user-doc -->
@@ -201,13 +201,13 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentRefine = (Refine)ElementUtil.hasStereotype(currentDependency, StandardPackage.eINSTANCE.getRefine());
+				currentRefine = UMLUtil.getStereotypeApplication(currentDependency, Refine.class);
 
 				if(currentRefine != null) {
 					EList<NamedElement> suppliers = currentRefine.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							refines.add(currentRequirement);
 						}
@@ -235,13 +235,13 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentSatisfy = (Satisfy)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getSatisfy());
+				currentSatisfy = UMLUtil.getStereotypeApplication(currentDependency, Satisfy.class);
 
 				if(currentSatisfy != null) {
 					EList<NamedElement> suppliers = currentSatisfy.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							satisfies.add(currentRequirement);
 						}
@@ -274,14 +274,14 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 
 			while(itDep.hasNext()) {
 				DirectedRelationship currentDRelationship = itDep.next();
-				currentTrace = ElementUtil.getStereotypeApplication(currentDRelationship, Trace.class);
+				currentTrace = UMLUtil.getStereotypeApplication(currentDRelationship, Trace.class);
 
 				// Must be a Trace not a subtype (see bug #352563).
-				if((currentTrace != null) && (currentTrace.eClass() == StandardPackage.eINSTANCE.getTrace())) {
+				if((currentTrace != null) && (currentTrace.eClass() == L2Package.eINSTANCE.getTrace())) {
 					EList<NamedElement> clients = currentTrace.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = clients.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = ElementUtil.getStereotypeApplication(it.next(), Requirement.class);
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							tracedFrom.add(currentRequirement);
 						}
@@ -309,13 +309,13 @@ public class RequirementRelatedImpl extends EObjectImpl implements RequirementRe
 
 			while(itDep.hasNext()) {
 				Dependency currentDependency = itDep.next();
-				currentVerify = (Verify)ElementUtil.hasStereotype(currentDependency, RequirementsPackage.eINSTANCE.getVerify());
+				currentVerify = UMLUtil.getStereotypeApplication(currentDependency, Verify.class);
 
 				if(currentVerify != null) {
 					EList<NamedElement> suppliers = currentVerify.getBase_Abstraction().getSuppliers();
 					Iterator<NamedElement> it = suppliers.iterator();
 					while(it.hasNext()) {
-						Requirement currentRequirement = (Requirement)ElementUtil.hasStereotype(it.next(), RequirementsPackage.eINSTANCE.getRequirement());
+						Requirement currentRequirement = UMLUtil.getStereotypeApplication(it.next(), Requirement.class);
 						if(currentRequirement != null) {
 							verifies.add(currentRequirement);
 						}

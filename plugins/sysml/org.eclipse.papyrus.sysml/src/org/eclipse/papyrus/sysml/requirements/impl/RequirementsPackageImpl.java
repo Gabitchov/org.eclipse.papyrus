@@ -47,8 +47,8 @@ import org.eclipse.papyrus.sysml.statemachines.StatemachinesPackage;
 import org.eclipse.papyrus.sysml.statemachines.impl.StatemachinesPackageImpl;
 import org.eclipse.papyrus.sysml.usecases.UsecasesPackage;
 import org.eclipse.papyrus.sysml.usecases.impl.UsecasesPackageImpl;
-import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -87,7 +87,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		isInited = true;
 
 		// Initialize simple dependencies
-		StandardPackage.eINSTANCE.eClass();
+		L2Package.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
@@ -515,7 +515,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		StandardPackage theStandardPackage = (StandardPackage)EPackage.Registry.INSTANCE.getEPackage(StandardPackage.eNS_URI);
+		L2Package theStandardPackage = (L2Package)EPackage.Registry.INSTANCE.getEPackage(L2Package.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
