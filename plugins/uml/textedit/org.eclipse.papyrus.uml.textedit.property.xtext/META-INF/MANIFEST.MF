@@ -1,14 +1,18 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
- org.eclipse.papyrus.uml.textedit.property.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.uml.textedit.property.xtext.formatting,
  org.eclipse.papyrus.uml.textedit.property.xtext.parser.antlr,
  org.eclipse.papyrus.uml.textedit.property.xtext.parser.antlr.internal,
  org.eclipse.papyrus.uml.textedit.property.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.property.xtext.serializer,
  org.eclipse.papyrus.uml.textedit.property.xtext.services,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.impl,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.util,
- org.eclipse.papyrus.uml.textedit.property.xtext.validation
+ org.eclipse.papyrus.uml.textedit.property.xtext.validation,
+ types,
+ types.impl,
+ org.eclipse.papyrus.uml.textedit.property.xtext.generator
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  de.itemis.xtext.antlr;resolution:=optional,
@@ -31,7 +35,8 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.xtend2.lib
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

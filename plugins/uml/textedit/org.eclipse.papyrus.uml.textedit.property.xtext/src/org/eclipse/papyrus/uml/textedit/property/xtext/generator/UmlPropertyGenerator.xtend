@@ -11,18 +11,15 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.textedit.property.xtext;
+package org.eclipse.papyrus.uml.textedit.property.xtext.generator
 
-import org.eclipse.papyrus.uml.textedit.property.xtext.UmlPropertyStandaloneSetupGenerated;
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.generator.IFileSystemAccess
 
-/**
- * Initialization support for running Xtext languages 
- * without equinox extension registry
- */
-public class UmlPropertyStandaloneSetup extends UmlPropertyStandaloneSetupGenerated{
-
-	public static void doSetup() {
-		new UmlPropertyStandaloneSetup().createInjectorAndDoEMFRegistration();
+class UmlPropertyGenerator implements IGenerator {
+	
+	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+		//TODO implement me
 	}
 }
-

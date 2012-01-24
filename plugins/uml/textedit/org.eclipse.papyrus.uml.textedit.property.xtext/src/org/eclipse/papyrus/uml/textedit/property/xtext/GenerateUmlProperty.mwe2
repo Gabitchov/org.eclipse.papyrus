@@ -1,4 +1,17 @@
-module org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+ module org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
@@ -10,18 +23,54 @@ var projectName = "org.eclipse.papyrus.uml.textedit.property.xtext"
 var runtimeProject = "../${projectName}"
 
 Workflow {
-	/*
     bean = StandaloneSetup {
+    	scanClassPath  = true
 		platformUri = "${runtimeProject}/.."
-	}*/
-    bean = StandaloneSetup {
-		platformUri = "${runtimeProject}/.."
-		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
-		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
-		uriMap = {from="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore" 
-				to="platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/model/Ecore.ecore"}
-		uriMap = {from="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel" 
-  				to="platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/model/Ecore.genmodel"}
+		
+		//load EMF ECORE	
+		uriMap = {
+            from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
+            to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore"
+        }
+		
+		uriMap = { from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+           		   to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+       	}
+        uriMap = {
+          from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel"
+           to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+        }
+        registerGeneratedEPackage = "org.eclipse.emf.ecore.EcorePackage"
+        registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
+        registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"	
+		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+		
+		//load UML
+		
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
+            to = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+        }
+		
+ 		uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+            to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+        }
+        
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+            to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+        }
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
+            to = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
+        }
+		
+        registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+        registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
+        
+	 	registerGenModelFile = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+        registerGenModelFile = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
 	}
 	
 	component = DirectoryCleaner {
@@ -46,15 +95,15 @@ Workflow {
 			fragment = grammarAccess.GrammarAccessFragment {}
 			
 			// generates Java API for the generated EPackages
-			fragment = ecore.EcoreGeneratorFragment {
-				referencedGenModels = "platform:/resource/org.eclipse.papyrus.uml.textedit.property.xtext/model/UML.genmodel"
-			} 
-			//fragment = ecore.EcoreGeneratorFragment {
-			// referencedGenModels = "uri to genmodel, uri to next genmodel"
-			//}
+			fragment = ecore.EcoreGeneratorFragment {}
+            // the serialization component
+			//fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
 			
-			// the serialization component
-			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
+			// Serializer 2.0
+           	fragment = serializer.SerializerFragment {
+           		generateStub = false
+           	}
+			
 			
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
@@ -88,15 +137,22 @@ Workflow {
             
 			// scoping and exporting API
 			
-			fragment = scoping.ImportURIScopingFragment {}
-			fragment = exporting.SimpleNamesFragment {}
+			//fragment = scoping.ImportURIScopingFragment {}
+			//fragment = exporting.SimpleNamesFragment {}
 			
 			
 			// scoping and exporting API 
-			/*
+			//It is very important to add it if not you will
+			//have a mistake during the execution about qualifiedName.
 			fragment = scoping.ImportNamespacesScopingFragment {}
 			fragment = exporting.QualifiedNamesFragment {}
-			*/
+			fragment = builder.BuilderIntegrationFragment {}
+			
+			 // generator API
+            fragment = generator.GeneratorFragment {
+                generateMwe = false
+                generateJavaMain = false
+            }
 			
 			// formatter API 
 			fragment = formatting.FormatterFragment {}
@@ -107,21 +163,15 @@ Workflow {
 			// outline API 
 			fragment = outline.OutlineTreeProviderFragment {}
 			fragment = outline.QuickOutlineFragment {}
+			
+			 // quickfix API
+            fragment = quickfix.QuickfixProviderFragment {}
 
 			// java-based API for content assistance 
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 			
-			// the following fragment tries to use the Antlr based content assist 
-			//     fragment which can be downloaded from http://www.itemis.com 
-			//     and will be ignored if it's not available. 
-			//fragment = DelegatingGeneratorFragment { 
-			//	delegate = "de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-			//	message="You are generating without ANTLR. It is highly recommended to download and use the plugin \'de.itemis.xtext.antlr\' \n\t using the update site http://download.itemis.com/updates/."
-			//}
-			
+			 // generates a more lightweight Antlr parser and lexer tailored for content assist
 			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
-
-			fragment = builder.BuilderIntegrationFragment {}
 
 			// project wizard (optional) 
 			/*
@@ -131,8 +181,6 @@ Workflow {
 			}
 			*/
 			
-			// quickfix API 
-			fragment = quickfix.QuickfixProviderFragment {}			
 		}
 	}
 }
