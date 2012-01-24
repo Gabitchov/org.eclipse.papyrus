@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -33,52 +32,35 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class ElementUtil {
 
 
 	/**
-	 * Return the stereotype application by passing an element of the static profile
+	 * Check if the StereotypedElement has the given stereotype, or if one of
+	 * its stereotype is inherits from the stereotype passed in parameter. This
+	 * method currently exists in UMLUtils, this one is a copy created to avoid
+	 * some dependencies propagated by UMLUtils (jface...). Current UMLUtils
+	 * plug-in should probably be separated into two parts one depending on UML2
+	 * plug-in only, and the other bringing ui related features;
 	 * 
-	 * @param element
-	 *        an UML model element
-	 * @param clazz
-	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
-	 * @return the stereotype application or null
+	 * @deprecated prefer using {@link UMLUtil#getStereotypeApplication(Element, Class)}
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T getStereotypeApplication(Element element, Class<T> clazz) {
-		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed parameter clazz
-			if(clazz.isInstance(stereoApplication)) {
-				return (T)stereoApplication;
-			}
-		}
-		return null;
+	@Deprecated
+	public static EObject hasStereotype(Element elt, EClass stereotypeClass) {
+		return UMLUtil.getStereotypeApplication(elt, stereotypeClass.getClass());
 	}
 
-
 	/**
-	 * Check if the StereotypedElement has the given stereotype.
+	 * Convenient method to retrieve the StereotypeApplication by passing an
+	 * element of the static profile.
 	 * 
-	 * @param stereotypeName
-	 *        The name of the stereotype to find.
-	 * @return the Stereotype application EObject.
+	 * @deprecated prefer using {@link UMLUtil#getStereotypeApplication(Element, Class)}
 	 */
-	// @unused
-	public static EObject hasStereotype(Element elt, EClass stereotypeClass) {
-		EObject stereotypeApplication = null;
-
-		// Stereotype parsing
-		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
-		while(stAppIt.hasNext() && (stereotypeApplication == null)) {
-			EObject stApp = stAppIt.next();
-			if(stApp.eClass().getEAllSuperTypes().contains(stereotypeClass) || (stApp.eClass().equals(stereotypeClass))) {
-				stereotypeApplication = stApp;
-			}
-		}
-
-		return stereotypeApplication;
+	@Deprecated
+	public static <T extends EObject> T getStereotypeApplication(Element element, java.lang.Class<T> clazz) {
+		return UMLUtil.getStereotypeApplication(element, clazz);
 	}
 
 	/**

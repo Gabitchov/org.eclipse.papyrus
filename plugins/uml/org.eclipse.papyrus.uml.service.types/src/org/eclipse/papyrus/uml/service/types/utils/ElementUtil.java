@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Utility class use to retrieve stereotype applications.
@@ -39,25 +40,14 @@ public class ElementUtil {
 	private static final String PAPYRUS_ELEMENT_NATURE = "nature";
 
 	/**
-	 * Convenient method to retrieve the StereotypeApplication by passing an element of the static profile.
+	 * Convenient method to retrieve the StereotypeApplication by passing an
+	 * element of the static profile.
 	 * 
-	 * @param <T>
-	 *        the type of stereotype to look for
-	 * @param element
-	 *        an UML model element
-	 * @param clazz
-	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
-	 * @return the stereotype application or null if such stereotype is not applied
+	 * @deprecated prefer using {@link UMLUtil#getStereotypeApplication(Element, Class)}
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends EObject> T getStereotypeApplication(Element element, Class<T> clazz) {
-		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed parameter class
-			if(clazz.isInstance(stereoApplication)) {
-				return (T)stereoApplication;
-			}
-		}
-		return null;
+	@Deprecated
+	public static <T extends EObject> T getStereotypeApplication(Element element, java.lang.Class<T> clazz) {
+		return UMLUtil.getStereotypeApplication(element, clazz);
 	}
 
 	/**

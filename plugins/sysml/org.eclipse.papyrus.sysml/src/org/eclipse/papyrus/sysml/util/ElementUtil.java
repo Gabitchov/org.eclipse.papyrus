@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.util;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
@@ -31,52 +29,21 @@ public class ElementUtil {
 	 * plug-in should probably be separated into two parts one depending on UML2
 	 * plug-in only, and the other bringing ui related features;
 	 * 
-	 * @param stereotypeName
-	 *        The name of the stereotype to find.
-	 * @return the Stereotype application EObject.
-	 * @deprecated prefer using getStereotypeApplication()
+	 * @deprecated prefer using {@link UMLUtil#getStereotypeApplication(Element, Class)}
 	 */
 	@Deprecated
 	public static EObject hasStereotype(Element elt, EClass stereotypeClass) {
-		EObject stereotypeApplication = null;
-
-		// Stereotype parsing
-		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
-		while(stAppIt.hasNext() && (stereotypeApplication == null)) {
-			EObject stApp = stAppIt.next();
-			if(stApp.eClass().getEAllSuperTypes().contains(stereotypeClass) || (stApp.eClass().equals(stereotypeClass))) {
-				stereotypeApplication = stApp;
-			}
-		}
-
-		return stereotypeApplication;
+		return UMLUtil.getStereotypeApplication(elt, stereotypeClass.getClass());
 	}
 
 	/**
 	 * Convenient method to retrieve the StereotypeApplication by passing an
 	 * element of the static profile.
 	 * 
-	 * @param <T>
-	 *        the type of stereotype to look for
-	 * @param element
-	 *        an UML model element
-	 * @param clazz
-	 *        the class of an element of a static profile. Compatible
-	 *        sub-types will be returned as well
-	 * @return the stereotype application or null if such stereotype is not
-	 *         applied
 	 * @deprecated prefer using {@link UMLUtil#getStereotypeApplication(Element, Class)}
 	 */
 	@Deprecated
-	@SuppressWarnings("unchecked")
 	public static <T extends EObject> T getStereotypeApplication(Element element, java.lang.Class<T> clazz) {
-		for(EObject stereoApplication : element.getStereotypeApplications()) {
-			// check whether the stereotype is an instance of the passed
-			// parameter class
-			if(clazz.isInstance(stereoApplication)) {
-				return (T)stereoApplication;
-			}
-		}
-		return null;
+		return UMLUtil.getStereotypeApplication(element, clazz);
 	}
 }
