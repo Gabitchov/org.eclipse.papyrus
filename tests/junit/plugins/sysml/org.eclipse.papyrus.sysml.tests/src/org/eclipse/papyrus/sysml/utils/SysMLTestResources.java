@@ -54,7 +54,7 @@ public class SysMLTestResources {
 
 		// Apply UML Standard profile
 		// Retrieve standard profile
-		Profile umlStdProfile = (Profile)PackageUtil.loadPackage(URI.createURI(UMLResource.STANDARD_PROFILE_URI), RESOURCE_SET);
+		Profile umlStdProfile = (Profile)PackageUtil.loadPackage(URI.createURI(UMLResource.STANDARD_L2_PROFILE_URI), RESOURCE_SET);
 		// Apply to new model
 		model.applyProfile(umlStdProfile);
 
