@@ -53,7 +53,7 @@ public interface UsecasesPackage extends EPackage {
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see java.lang.String
-		 * @see org.eclipse.papyrus.sysml.usecases.impl.UsecasesPackageImpl#getDummy()
+		 * @see org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesPackageImpl#getDummy()
 		 * @generated
 		 */
 		EDataType DUMMY = eINSTANCE.getDummy();
@@ -91,14 +91,14 @@ public interface UsecasesPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	UsecasesPackage eINSTANCE = org.eclipse.papyrus.sysml.usecases.impl.UsecasesPackageImpl.init();
+	UsecasesPackage eINSTANCE = org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesPackageImpl.init();
 
 	/**
 	 * The meta object id for the '<em>Dummy</em>' data type. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see java.lang.String
-	 * @see org.eclipse.papyrus.sysml.usecases.impl.UsecasesPackageImpl#getDummy()
+	 * @see org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesPackageImpl#getDummy()
 	 * @generated
 	 */
 	int DUMMY = 0;

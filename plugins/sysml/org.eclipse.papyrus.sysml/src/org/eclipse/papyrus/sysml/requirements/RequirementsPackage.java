@@ -52,55 +52,55 @@ public interface RequirementsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl <em>Derive Reqt</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.DeriveReqtImpl <em>Derive Reqt</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getDeriveReqt()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.DeriveReqtImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getDeriveReqt()
 		 * @generated
 		 */
 		EClass DERIVE_REQT = eINSTANCE.getDeriveReqt();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.internal.impl.VerifyImpl
 		 * <em>Verify</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getVerify()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.VerifyImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getVerify()
 		 * @generated
 		 */
 		EClass VERIFY = eINSTANCE.getVerify();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.CopyImpl <em>Copy</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.CopyImpl <em>Copy</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.CopyImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getCopy()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.CopyImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getCopy()
 		 * @generated
 		 */
 		EClass COPY = eINSTANCE.getCopy();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.internal.impl.SatisfyImpl
 		 * <em>Satisfy</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getSatisfy()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.SatisfyImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getSatisfy()
 		 * @generated
 		 */
 		EClass SATISFY = eINSTANCE.getSatisfy();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.requirements.internal.impl.TestCaseImpl
 		 * <em>Test Case</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getTestCase()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.TestCaseImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getTestCase()
 		 * @generated
 		 */
 		EClass TEST_CASE = eINSTANCE.getTestCase();
@@ -130,12 +130,12 @@ public interface RequirementsPackage extends EPackage {
 		EReference TEST_CASE__VERIFIES = eINSTANCE.getTestCase_Verifies();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementImpl <em>Requirement</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirement()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getRequirement()
 		 * @generated
 		 */
 		EClass REQUIREMENT = eINSTANCE.getRequirement();
@@ -221,13 +221,13 @@ public interface RequirementsPackage extends EPackage {
 		EReference REQUIREMENT__BASE_CLASS = eINSTANCE.getRequirement_Base_Class();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl <em>Requirement Related</em>}'
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl <em>Requirement Related</em>}'
 		 * class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl
-		 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirementRelated()
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl
+		 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getRequirementRelated()
 		 * @generated
 		 */
 		EClass REQUIREMENT_RELATED = eINSTANCE.getRequirementRelated();
@@ -305,15 +305,15 @@ public interface RequirementsPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	RequirementsPackage eINSTANCE = org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl.init();
+	RequirementsPackage eINSTANCE = org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl.init();
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.internal.impl.DeriveReqtImpl
 	 * <em>Derive Reqt</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.DeriveReqtImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getDeriveReqt()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.DeriveReqtImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getDeriveReqt()
 	 * @generated
 	 */
 	int DERIVE_REQT = 0;
@@ -337,11 +337,11 @@ public interface RequirementsPackage extends EPackage {
 	int DERIVE_REQT_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl <em>Verify</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.VerifyImpl <em>Verify</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.VerifyImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getVerify()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.VerifyImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getVerify()
 	 * @generated
 	 */
 	int VERIFY = 1;
@@ -365,11 +365,11 @@ public interface RequirementsPackage extends EPackage {
 	int VERIFY_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.CopyImpl <em>Copy</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.CopyImpl <em>Copy</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.CopyImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getCopy()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.CopyImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getCopy()
 	 * @generated
 	 */
 	int COPY = 2;
@@ -393,11 +393,11 @@ public interface RequirementsPackage extends EPackage {
 	int COPY_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl <em>Satisfy</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.SatisfyImpl <em>Satisfy</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.SatisfyImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getSatisfy()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.SatisfyImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getSatisfy()
 	 * @generated
 	 */
 	int SATISFY = 3;
@@ -421,11 +421,11 @@ public interface RequirementsPackage extends EPackage {
 	int SATISFY_FEATURE_COUNT = L2Package.TRACE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl <em>Test Case</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.TestCaseImpl <em>Test Case</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.TestCaseImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getTestCase()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.TestCaseImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getTestCase()
 	 * @generated
 	 */
 	int TEST_CASE = 4;
@@ -467,12 +467,12 @@ public interface RequirementsPackage extends EPackage {
 	int TEST_CASE_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementImpl
 	 * <em>Requirement</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirement()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getRequirement()
 	 * @generated
 	 */
 	int REQUIREMENT = 5;
@@ -577,12 +577,12 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT_FEATURE_COUNT = 10;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl <em>Requirement Related</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl <em>Requirement Related</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl
-	 * @see org.eclipse.papyrus.sysml.requirements.impl.RequirementsPackageImpl#getRequirementRelated()
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl
+	 * @see org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsPackageImpl#getRequirementRelated()
 	 * @generated
 	 */
 	int REQUIREMENT_RELATED = 6;

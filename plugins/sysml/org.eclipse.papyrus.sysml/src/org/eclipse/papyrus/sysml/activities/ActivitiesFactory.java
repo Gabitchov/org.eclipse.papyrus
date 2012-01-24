@@ -31,7 +31,7 @@ public interface ActivitiesFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	ActivitiesFactory eINSTANCE = org.eclipse.papyrus.sysml.activities.impl.ActivitiesFactoryImpl.init();
+	ActivitiesFactory eINSTANCE = org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Optional</em>'.

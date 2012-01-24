@@ -53,7 +53,7 @@ public interface StatemachinesPackage extends EPackage {
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see java.lang.String
-		 * @see org.eclipse.papyrus.sysml.statemachines.impl.StatemachinesPackageImpl#getDummy()
+		 * @see org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackageImpl#getDummy()
 		 * @generated
 		 */
 		EDataType DUMMY = eINSTANCE.getDummy();
@@ -91,14 +91,14 @@ public interface StatemachinesPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	StatemachinesPackage eINSTANCE = org.eclipse.papyrus.sysml.statemachines.impl.StatemachinesPackageImpl.init();
+	StatemachinesPackage eINSTANCE = org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackageImpl.init();
 
 	/**
 	 * The meta object id for the '<em>Dummy</em>' data type. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see java.lang.String
-	 * @see org.eclipse.papyrus.sysml.statemachines.impl.StatemachinesPackageImpl#getDummy()
+	 * @see org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackageImpl#getDummy()
 	 * @generated
 	 */
 	int DUMMY = 0;

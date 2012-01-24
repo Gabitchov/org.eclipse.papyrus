@@ -31,7 +31,7 @@ public interface ConstraintsFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	ConstraintsFactory eINSTANCE = org.eclipse.papyrus.sysml.constraints.impl.ConstraintsFactoryImpl.init();
+	ConstraintsFactory eINSTANCE = org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Constraint Block</em>'. <!--

@@ -31,7 +31,7 @@ public interface ModelelementsFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	ModelelementsFactory eINSTANCE = org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsFactoryImpl.init();
+	ModelelementsFactory eINSTANCE = org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Conform</em>'.

@@ -31,7 +31,7 @@ public interface PortandflowsFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	PortandflowsFactory eINSTANCE = org.eclipse.papyrus.sysml.portandflows.impl.PortandflowsFactoryImpl.init();
+	PortandflowsFactory eINSTANCE = org.eclipse.papyrus.sysml.portandflows.internal.impl.PortandflowsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Flow Port</em>'.

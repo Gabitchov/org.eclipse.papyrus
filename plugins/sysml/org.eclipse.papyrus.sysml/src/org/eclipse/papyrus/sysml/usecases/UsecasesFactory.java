@@ -31,7 +31,7 @@ public interface UsecasesFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	UsecasesFactory eINSTANCE = org.eclipse.papyrus.sysml.usecases.impl.UsecasesFactoryImpl.init();
+	UsecasesFactory eINSTANCE = org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

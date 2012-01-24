@@ -51,24 +51,24 @@ public interface ConstraintsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.impl.ConstraintBlockImpl <em>Constraint Block</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintBlockImpl <em>Constraint Block</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintBlockImpl
-		 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintsPackageImpl#getConstraintBlock()
+		 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintBlockImpl
+		 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintsPackageImpl#getConstraintBlock()
 		 * @generated
 		 */
 		EClass CONSTRAINT_BLOCK = eINSTANCE.getConstraintBlock();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.impl.ConstraintPropertyImpl <em>Constraint Property</em>}'
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl <em>Constraint Property</em>}'
 		 * class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintPropertyImpl
-		 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintsPackageImpl#getConstraintProperty()
+		 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl
+		 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintsPackageImpl#getConstraintProperty()
 		 * @generated
 		 */
 		EClass CONSTRAINT_PROPERTY = eINSTANCE.getConstraintProperty();
@@ -114,15 +114,15 @@ public interface ConstraintsPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	ConstraintsPackage eINSTANCE = org.eclipse.papyrus.sysml.constraints.impl.ConstraintsPackageImpl.init();
+	ConstraintsPackage eINSTANCE = org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.impl.ConstraintBlockImpl <em>Constraint Block</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintBlockImpl <em>Constraint Block</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintBlockImpl
-	 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintsPackageImpl#getConstraintBlock()
+	 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintBlockImpl
+	 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintsPackageImpl#getConstraintBlock()
 	 * @generated
 	 */
 	int CONSTRAINT_BLOCK = 0;
@@ -155,12 +155,12 @@ public interface ConstraintsPackage extends EPackage {
 	int CONSTRAINT_BLOCK_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.impl.ConstraintPropertyImpl <em>Constraint Property</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl <em>Constraint Property</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintPropertyImpl
-	 * @see org.eclipse.papyrus.sysml.constraints.impl.ConstraintsPackageImpl#getConstraintProperty()
+	 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl
+	 * @see org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintsPackageImpl#getConstraintProperty()
 	 * @generated
 	 */
 	int CONSTRAINT_PROPERTY = 1;

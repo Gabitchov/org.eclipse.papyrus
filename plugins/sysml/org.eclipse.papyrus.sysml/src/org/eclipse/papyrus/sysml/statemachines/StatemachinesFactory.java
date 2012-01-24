@@ -31,7 +31,7 @@ public interface StatemachinesFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	StatemachinesFactory eINSTANCE = org.eclipse.papyrus.sysml.statemachines.impl.StatemachinesFactoryImpl.init();
+	StatemachinesFactory eINSTANCE = org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

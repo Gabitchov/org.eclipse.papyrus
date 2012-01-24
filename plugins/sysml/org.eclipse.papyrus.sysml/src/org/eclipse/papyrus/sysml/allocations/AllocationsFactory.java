@@ -31,7 +31,7 @@ public interface AllocationsFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	AllocationsFactory eINSTANCE = org.eclipse.papyrus.sysml.allocations.impl.AllocationsFactoryImpl.init();
+	AllocationsFactory eINSTANCE = org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Allocate</em>'.

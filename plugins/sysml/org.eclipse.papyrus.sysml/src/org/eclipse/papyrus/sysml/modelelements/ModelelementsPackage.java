@@ -53,12 +53,12 @@ public interface ModelelementsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ConformImpl
 		 * <em>Conform</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getConform()
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ConformImpl
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getConform()
 		 * @generated
 		 */
 		EClass CONFORM = eINSTANCE.getConform();
@@ -72,11 +72,11 @@ public interface ModelelementsPackage extends EPackage {
 		EReference CONFORM__BASE_DEPENDENCY = eINSTANCE.getConform_Base_Dependency();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl <em>View</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewImpl <em>View</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getView()
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewImpl
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getView()
 		 * @generated
 		 */
 		EClass VIEW = eINSTANCE.getView();
@@ -98,12 +98,12 @@ public interface ModelelementsPackage extends EPackage {
 		EReference VIEW__BASE_PACKAGE = eINSTANCE.getView_Base_Package();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl <em>View Point</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewPointImpl <em>View Point</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getViewPoint()
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewPointImpl
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getViewPoint()
 		 * @generated
 		 */
 		EClass VIEW_POINT = eINSTANCE.getViewPoint();
@@ -157,12 +157,12 @@ public interface ModelelementsPackage extends EPackage {
 		EAttribute VIEW_POINT__METHODS = eINSTANCE.getViewPoint_Methods();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.internal.impl.RationaleImpl
 		 * <em>Rationale</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getRationale()
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.RationaleImpl
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getRationale()
 		 * @generated
 		 */
 		EClass RATIONALE = eINSTANCE.getRationale();
@@ -176,12 +176,12 @@ public interface ModelelementsPackage extends EPackage {
 		EReference RATIONALE__BASE_COMMENT = eINSTANCE.getRationale_Base_Comment();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ProblemImpl
 		 * <em>Problem</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl
-		 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getProblem()
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ProblemImpl
+		 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getProblem()
 		 * @generated
 		 */
 		EClass PROBLEM = eINSTANCE.getProblem();
@@ -227,14 +227,14 @@ public interface ModelelementsPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	ModelelementsPackage eINSTANCE = org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl.init();
+	ModelelementsPackage eINSTANCE = org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl <em>Conform</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ConformImpl <em>Conform</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ConformImpl
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getConform()
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ConformImpl
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getConform()
 	 * @generated
 	 */
 	int CONFORM = 0;
@@ -258,11 +258,11 @@ public interface ModelelementsPackage extends EPackage {
 	int CONFORM_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl <em>View</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewImpl <em>View</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getView()
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewImpl
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getView()
 	 * @generated
 	 */
 	int VIEW = 1;
@@ -295,12 +295,12 @@ public interface ModelelementsPackage extends EPackage {
 	int VIEW_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewPointImpl
 	 * <em>View Point</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getViewPoint()
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewPointImpl
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getViewPoint()
 	 * @generated
 	 */
 	int VIEW_POINT = 2;
@@ -369,11 +369,11 @@ public interface ModelelementsPackage extends EPackage {
 	int VIEW_POINT_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl <em>Rationale</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.RationaleImpl <em>Rationale</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getRationale()
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.RationaleImpl
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getRationale()
 	 * @generated
 	 */
 	int RATIONALE = 3;
@@ -397,11 +397,11 @@ public interface ModelelementsPackage extends EPackage {
 	int RATIONALE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl <em>Problem</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ProblemImpl <em>Problem</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl
-	 * @see org.eclipse.papyrus.sysml.modelelements.impl.ModelelementsPackageImpl#getProblem()
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ProblemImpl
+	 * @see org.eclipse.papyrus.sysml.modelelements.internal.impl.ModelelementsPackageImpl#getProblem()
 	 * @generated
 	 */
 	int PROBLEM = 4;

@@ -55,7 +55,7 @@ public interface SysmlPackage extends EPackage {
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see java.lang.String
-		 * @see org.eclipse.papyrus.sysml.impl.SysmlPackageImpl#getDummy()
+		 * @see org.eclipse.papyrus.sysml.internal.impl.SysmlPackageImpl#getDummy()
 		 * @generated
 		 */
 		EDataType DUMMY = eINSTANCE.getDummy();
@@ -93,14 +93,14 @@ public interface SysmlPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	SysmlPackage eINSTANCE = org.eclipse.papyrus.sysml.impl.SysmlPackageImpl.init();
+	SysmlPackage eINSTANCE = org.eclipse.papyrus.sysml.internal.impl.SysmlPackageImpl.init();
 
 	/**
 	 * The meta object id for the '<em>Dummy</em>' data type. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see java.lang.String
-	 * @see org.eclipse.papyrus.sysml.impl.SysmlPackageImpl#getDummy()
+	 * @see org.eclipse.papyrus.sysml.internal.impl.SysmlPackageImpl#getDummy()
 	 * @generated
 	 */
 	int DUMMY = 0;

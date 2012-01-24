@@ -31,7 +31,7 @@ public interface InteractionsFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	InteractionsFactory eINSTANCE = org.eclipse.papyrus.sysml.interactions.impl.InteractionsFactoryImpl.init();
+	InteractionsFactory eINSTANCE = org.eclipse.papyrus.sysml.interactions.internal.impl.InteractionsFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

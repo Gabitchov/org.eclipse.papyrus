@@ -50,12 +50,12 @@ public interface AllocationsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateImpl
 		 * <em>Allocate</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl
-		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocate()
+		 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateImpl
+		 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl#getAllocate()
 		 * @generated
 		 */
 		EClass ALLOCATE = eINSTANCE.getAllocate();
@@ -69,12 +69,12 @@ public interface AllocationsPackage extends EPackage {
 		EReference ALLOCATE__BASE_ABSTRACTION = eINSTANCE.getAllocate_Base_Abstraction();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocatedImpl
 		 * <em>Allocated</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl
-		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocated()
+		 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocatedImpl
+		 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl#getAllocated()
 		 * @generated
 		 */
 		EClass ALLOCATED = eINSTANCE.getAllocated();
@@ -104,13 +104,13 @@ public interface AllocationsPackage extends EPackage {
 		EReference ALLOCATED__ALLOCATED_TO = eINSTANCE.getAllocated_AllocatedTo();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl
 		 * <em>Allocate Activity Partition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
-		 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocateActivityPartition()
+		 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl
+		 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl#getAllocateActivityPartition()
 		 * @generated
 		 */
 		EClass ALLOCATE_ACTIVITY_PARTITION = eINSTANCE.getAllocateActivityPartition();
@@ -156,14 +156,14 @@ public interface AllocationsPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	AllocationsPackage eINSTANCE = org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl.init();
+	AllocationsPackage eINSTANCE = org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl <em>Allocate</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateImpl <em>Allocate</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateImpl
-	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocate()
+	 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateImpl
+	 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl#getAllocate()
 	 * @generated
 	 */
 	int ALLOCATE = 0;
@@ -187,11 +187,11 @@ public interface AllocationsPackage extends EPackage {
 	int ALLOCATE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl <em>Allocated</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocatedImpl <em>Allocated</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocatedImpl
-	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocated()
+	 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocatedImpl
+	 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl#getAllocated()
 	 * @generated
 	 */
 	int ALLOCATED = 1;
@@ -233,13 +233,13 @@ public interface AllocationsPackage extends EPackage {
 	int ALLOCATED_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl
 	 * <em>Allocate Activity Partition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocateActivityPartitionImpl
-	 * @see org.eclipse.papyrus.sysml.allocations.impl.AllocationsPackageImpl#getAllocateActivityPartition()
+	 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl
+	 * @see org.eclipse.papyrus.sysml.allocations.internal.impl.AllocationsPackageImpl#getAllocateActivityPartition()
 	 * @generated
 	 */
 	int ALLOCATE_ACTIVITY_PARTITION = 2;

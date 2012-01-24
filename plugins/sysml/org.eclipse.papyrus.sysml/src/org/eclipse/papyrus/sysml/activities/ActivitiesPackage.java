@@ -50,12 +50,12 @@ public interface ActivitiesPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.OptionalImpl
 		 * <em>Optional</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.OptionalImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptional()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.OptionalImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getOptional()
 		 * @generated
 		 */
 		EClass OPTIONAL = eINSTANCE.getOptional();
@@ -69,11 +69,11 @@ public interface ActivitiesPackage extends EPackage {
 		EReference OPTIONAL__BASE_PARAMETER = eINSTANCE.getOptional_Base_Parameter();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl <em>Rate</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.RateImpl <em>Rate</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.RateImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getRate()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.RateImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getRate()
 		 * @generated
 		 */
 		EClass RATE = eINSTANCE.getRate();
@@ -103,12 +103,12 @@ public interface ActivitiesPackage extends EPackage {
 		EReference RATE__RATE = eINSTANCE.getRate_Rate();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl <em>Probability</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ProbabilityImpl <em>Probability</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getProbability()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ProbabilityImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getProbability()
 		 * @generated
 		 */
 		EClass PROBABILITY = eINSTANCE.getProbability();
@@ -138,34 +138,34 @@ public interface ActivitiesPackage extends EPackage {
 		EReference PROBABILITY__PROBABILITY = eINSTANCE.getProbability_Probability();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.ContinuousImpl <em>Continuous</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ContinuousImpl <em>Continuous</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ContinuousImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getContinuous()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ContinuousImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getContinuous()
 		 * @generated
 		 */
 		EClass CONTINUOUS = eINSTANCE.getContinuous();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.impl.DiscreteImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.DiscreteImpl
 		 * <em>Discrete</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.DiscreteImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getDiscrete()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.DiscreteImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getDiscrete()
 		 * @generated
 		 */
 		EClass DISCRETE = eINSTANCE.getDiscrete();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl <em>Control Operator</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl <em>Control Operator</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getControlOperator()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getControlOperator()
 		 * @generated
 		 */
 		EClass CONTROL_OPERATOR = eINSTANCE.getControlOperator();
@@ -187,12 +187,12 @@ public interface ActivitiesPackage extends EPackage {
 		EReference CONTROL_OPERATOR__BASE_BEHAVIOR = eINSTANCE.getControlOperator_Base_Behavior();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.NoBufferImpl
 		 * <em>No Buffer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getNoBuffer()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.NoBufferImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getNoBuffer()
 		 * @generated
 		 */
 		EClass NO_BUFFER = eINSTANCE.getNoBuffer();
@@ -206,12 +206,12 @@ public interface ActivitiesPackage extends EPackage {
 		EReference NO_BUFFER__BASE_OBJECT_NODE = eINSTANCE.getNoBuffer_Base_ObjectNode();
 
 		/**
-		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl
+		 * The meta object literal for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.OverwriteImpl
 		 * <em>Overwrite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 		 * -->
 		 * 
-		 * @see org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl
-		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOverwrite()
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.OverwriteImpl
+		 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getOverwrite()
 		 * @generated
 		 */
 		EClass OVERWRITE = eINSTANCE.getOverwrite();
@@ -257,14 +257,14 @@ public interface ActivitiesPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	ActivitiesPackage eINSTANCE = org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl.init();
+	ActivitiesPackage eINSTANCE = org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl <em>Optional</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.OptionalImpl <em>Optional</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.OptionalImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptional()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.OptionalImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getOptional()
 	 * @generated
 	 */
 	int OPTIONAL = 0;
@@ -288,11 +288,11 @@ public interface ActivitiesPackage extends EPackage {
 	int OPTIONAL_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl <em>Rate</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.RateImpl <em>Rate</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.RateImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getRate()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.RateImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getRate()
 	 * @generated
 	 */
 	int RATE = 1;
@@ -334,12 +334,12 @@ public interface ActivitiesPackage extends EPackage {
 	int RATE_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.ProbabilityImpl
 	 * <em>Probability</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getProbability()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ProbabilityImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getProbability()
 	 * @generated
 	 */
 	int PROBABILITY = 2;
@@ -381,12 +381,12 @@ public interface ActivitiesPackage extends EPackage {
 	int PROBABILITY_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.activities.impl.ContinuousImpl
+	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.activities.internal.impl.ContinuousImpl
 	 * <em>Continuous</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ContinuousImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getContinuous()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ContinuousImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getContinuous()
 	 * @generated
 	 */
 	int CONTINUOUS = 3;
@@ -428,11 +428,11 @@ public interface ActivitiesPackage extends EPackage {
 	int CONTINUOUS_FEATURE_COUNT = RATE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.DiscreteImpl <em>Discrete</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.DiscreteImpl <em>Discrete</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.DiscreteImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getDiscrete()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.DiscreteImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getDiscrete()
 	 * @generated
 	 */
 	int DISCRETE = 4;
@@ -474,12 +474,12 @@ public interface ActivitiesPackage extends EPackage {
 	int DISCRETE_FEATURE_COUNT = RATE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl <em>Control Operator</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl <em>Control Operator</em>}' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ControlOperatorImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getControlOperator()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getControlOperator()
 	 * @generated
 	 */
 	int CONTROL_OPERATOR = 5;
@@ -512,11 +512,11 @@ public interface ActivitiesPackage extends EPackage {
 	int CONTROL_OPERATOR_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl <em>No Buffer</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.NoBufferImpl <em>No Buffer</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getNoBuffer()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.NoBufferImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getNoBuffer()
 	 * @generated
 	 */
 	int NO_BUFFER = 6;
@@ -540,11 +540,11 @@ public interface ActivitiesPackage extends EPackage {
 	int NO_BUFFER_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl <em>Overwrite</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.OverwriteImpl <em>Overwrite</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl
-	 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOverwrite()
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.OverwriteImpl
+	 * @see org.eclipse.papyrus.sysml.activities.internal.impl.ActivitiesPackageImpl#getOverwrite()
 	 * @generated
 	 */
 	int OVERWRITE = 7;

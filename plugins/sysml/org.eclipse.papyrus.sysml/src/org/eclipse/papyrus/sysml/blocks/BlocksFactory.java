@@ -31,7 +31,7 @@ public interface BlocksFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	BlocksFactory eINSTANCE = org.eclipse.papyrus.sysml.blocks.impl.BlocksFactoryImpl.init();
+	BlocksFactory eINSTANCE = org.eclipse.papyrus.sysml.blocks.internal.impl.BlocksFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Binding Connector</em>'. <!--

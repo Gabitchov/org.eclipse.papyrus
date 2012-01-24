@@ -31,7 +31,7 @@ public interface RequirementsFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	RequirementsFactory eINSTANCE = org.eclipse.papyrus.sysml.requirements.impl.RequirementsFactoryImpl.init();
+	RequirementsFactory eINSTANCE = org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Copy</em>'.

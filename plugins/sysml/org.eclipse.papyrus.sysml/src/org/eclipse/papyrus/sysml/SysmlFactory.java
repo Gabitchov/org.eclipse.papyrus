@@ -31,7 +31,7 @@ public interface SysmlFactory extends EFactory {
 	 * 
 	 * @generated
 	 */
-	SysmlFactory eINSTANCE = org.eclipse.papyrus.sysml.impl.SysmlFactoryImpl.init();
+	SysmlFactory eINSTANCE = org.eclipse.papyrus.sysml.internal.impl.SysmlFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

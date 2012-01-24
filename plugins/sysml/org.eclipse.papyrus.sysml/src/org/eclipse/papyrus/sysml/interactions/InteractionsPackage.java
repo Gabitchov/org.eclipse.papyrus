@@ -53,7 +53,7 @@ public interface InteractionsPackage extends EPackage {
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see java.lang.String
-		 * @see org.eclipse.papyrus.sysml.interactions.impl.InteractionsPackageImpl#getDummy()
+		 * @see org.eclipse.papyrus.sysml.interactions.internal.impl.InteractionsPackageImpl#getDummy()
 		 * @generated
 		 */
 		EDataType DUMMY = eINSTANCE.getDummy();
@@ -91,14 +91,14 @@ public interface InteractionsPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	InteractionsPackage eINSTANCE = org.eclipse.papyrus.sysml.interactions.impl.InteractionsPackageImpl.init();
+	InteractionsPackage eINSTANCE = org.eclipse.papyrus.sysml.interactions.internal.impl.InteractionsPackageImpl.init();
 
 	/**
 	 * The meta object id for the '<em>Dummy</em>' data type. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see java.lang.String
-	 * @see org.eclipse.papyrus.sysml.interactions.impl.InteractionsPackageImpl#getDummy()
+	 * @see org.eclipse.papyrus.sysml.interactions.internal.impl.InteractionsPackageImpl#getDummy()
 	 * @generated
 	 */
 	int DUMMY = 0;
