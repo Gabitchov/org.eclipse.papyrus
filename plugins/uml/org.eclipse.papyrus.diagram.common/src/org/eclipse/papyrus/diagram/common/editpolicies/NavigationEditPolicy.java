@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
@@ -141,7 +140,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 						@Override
 						public void execute() {
-							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)gep.getNotationView().getElement(), gep.getNotationView(), topPackage((Element)semanticElement), hyperlinkHelperFactory);
+							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (Element)gep.getNotationView().getElement(), gep.getNotationView(), topPackage((Element)semanticElement), hyperlinkHelperFactory);
 							hyperLinkManagerShell.setInput(hyperLinkObjectList);
 							hyperLinkManagerShell.open();
 						}
