@@ -58,6 +58,23 @@ function setAccessRights() {
 	chgrp -hR modeling.mdt.papyrus "$1"
 }
 
+function waitUntilJobIsFinished() {
+	_jobName="$1" # name of the Hudson Job
+	_timeout="$2" # timeout in seconds
+	interval=10
+	
+	((t = ${_timeout}))
+
+    while ((t > 0)); do
+        sleep $interval
+        building=$(curl -s -S https://hudson.eclipse.org/hudson/job/${_jobName}/lastBuild/api/xml | xpath "//building/text()")
+        if [ "$building" == "false" ]; then return 0; fi
+        ((t -= interval))
+    done
+	
+	return 1
+}
+
 function promote() {
 	NARGS=10
 	if [ $# -ne $NARGS ]; then echo "promote expects exactly $NARGS arguments"; exit 1; fi

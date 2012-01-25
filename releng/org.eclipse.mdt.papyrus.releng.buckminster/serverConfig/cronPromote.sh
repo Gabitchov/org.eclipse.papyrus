@@ -43,6 +43,9 @@ ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/download
 # constants required by promoteFunctions.sh
 export ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
 
+# wait for up to 15 minutes for Hudson to finish (archive the result)
+JOB_FINISH_WAIT_TIMEOUT=900
+
 # include promote functions
 source $(dirname $0)/promoteFunctions.sh
 
@@ -78,6 +81,8 @@ lastPromoteDateMaintenanceExtraNightly=$(stat --format=%Y $LAST_PROMOTE_FILE_MAI
 if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY"
+	
+	waitUntilJobIsFinished "papyrus-trunk-nightly" "$JOB_FINISH_WAIT_TIMEOUT"
 	
 	# the Hudson job wrote these build name and version to publish
 	buildName=$(cat "$PROMOTE_SIGNAL_TRUNK_NIGHTLY")
@@ -145,6 +150,8 @@ if [ $signalDateTrunkNightlyTests -gt $lastPromoteDateTrunkNightlyTests ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_NIGHTLY_TESTS"
 
+	waitUntilJobIsFinished "papyrus-trunk-nightly-tests" "$JOB_FINISH_WAIT_TIMEOUT"
+
 	dirBefore=$(pwd)
 	echo "[$DATE] creating working dir"
 	workingDir=$(mktemp -d)
@@ -185,6 +192,8 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_TRUNK_EXTRA_NIGHTLY"
 	
+	waitUntilJobIsFinished "papyrus-trunk-extra-nightly" "$JOB_FINISH_WAIT_TIMEOUT"
+
 	dirBefore=$(pwd)
 	echo "[$DATE] creating working dir"
 	workingDir=$(mktemp -d)
@@ -237,6 +246,9 @@ fi
 if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_MAINTENANCE_NIGHTLY"
+
+	waitUntilJobIsFinished "papyrus-0.8-maintenance-nightly" "$JOB_FINISH_WAIT_TIMEOUT"
+
 	zipName=$(cat "$PROMOTE_SIGNAL_MAINTENANCE_NIGHTLY").zip
 	version=$(cat "$PROMOTE_VERSION_MAINTENANCE_NIGHTLY")
 	
@@ -259,6 +271,9 @@ fi
 if [ $signalDateMaintenanceExtraNightly -gt $lastPromoteDateMaintenanceExtraNightly ]; then
 	# mark the promote as done
 	touch "$LAST_PROMOTE_FILE_MAINTENANCE_EXTRA_NIGHTLY"
+
+	waitUntilJobIsFinished "papyrus-0.8-maintenance-extra-nightly" "$JOB_FINISH_WAIT_TIMEOUT"
+
 	zipName=$(cat "$PROMOTE_SIGNAL_MAINTENANCE_EXTRA_NIGHTLY").zip
 	version=$(cat "$PROMOTE_VERSION_MAINTENANCE_EXTRA_NIGHTLY")
 	
