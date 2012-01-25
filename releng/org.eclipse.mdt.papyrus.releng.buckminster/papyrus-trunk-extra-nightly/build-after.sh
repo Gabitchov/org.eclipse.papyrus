@@ -11,16 +11,16 @@ updateZipName=Papyrus-Extra-Update.zip
 zipName=Papyrus-Extra.zip
 
 rm -rf tmp
-mkdir -p "tmp/extras"
+mkdir -p "tmp/extra"
 
 # create the update site zip
 (cd $p2UpdateSiteDir && zip -r $updateZipName *)
-mv $p2UpdateSiteDir/$updateZipName "tmp/extras"
+mv $p2UpdateSiteDir/$updateZipName "tmp/extra"
 
-mv revision.txt "tmp/extras"
+mv revision.txt "tmp/extra"
 
 # copy the build log into the result
-wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/extras/buildlog.txt"
+wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/extra/buildlog.txt"
 
 (cd tmp && zip -r $zipName *)
 mv tmp/$zipName .
