@@ -37,12 +37,13 @@ import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.uml.standard.Trace;
-import org.eclipse.papyrus.uml.standard.util.StandardResource;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.l2.Trace;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the derived attribute "tracedTo" of the requirement */
 public class SetRequirementTracedToQuery implements IJavaModelQueryWithEditingDomain<NamedElement, EObject> {
@@ -78,7 +79,7 @@ public class SetRequirementTracedToQuery implements IJavaModelQueryWithEditingDo
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /TracedTo"); //$NON-NLS-1$
 		int result = MessageDialog.OK;
 		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
-			if(context.getNearestPackage().getAppliedProfile(StandardResource.STANDARD_ID) == null) {
+			if (! context.getNearestPackage().isProfileApplied(UMLUtil.getProfile(L2Package.eINSTANCE))) {
 				cmd.add(new IdentityCommandWithNotification(Messages.SetRequirementTextQuery_AssignmentCantBeDone, Messages.SetRequirementRefinedByQuery_StandardIsNotAppliedOnTheModel, Type.ERROR));
 			} else {
 				Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
