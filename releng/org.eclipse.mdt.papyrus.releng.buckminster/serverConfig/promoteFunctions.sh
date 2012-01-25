@@ -66,9 +66,10 @@ function waitUntilJobIsFinished() {
 	((t = ${_timeout}))
 
     while ((t > 0)); do
-        sleep $interval
+    	# returns "true" or "false", depending on whether the build is currently running
         building=$(curl -s -S https://hudson.eclipse.org/hudson/job/${_jobName}/lastBuild/api/xml | xpath "//building/text()")
         if [ "$building" == "false" ]; then return 0; fi
+        sleep $interval
         ((t -= interval))
     done
 	
