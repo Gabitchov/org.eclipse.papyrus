@@ -54,22 +54,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.layout.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.marte.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.marte.properties.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.marte.textedit.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.sysml.diagram.feature"
          version="0.0.0"/>
 
