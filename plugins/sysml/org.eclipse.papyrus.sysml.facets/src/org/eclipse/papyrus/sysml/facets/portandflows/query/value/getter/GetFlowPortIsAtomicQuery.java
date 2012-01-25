@@ -36,7 +36,7 @@ public class GetFlowPortIsAtomicQuery implements IJavaModelQuery<Port, Boolean> 
 			throws ModelQueryExecutionException {
 		FlowPort flowPort = UMLUtil.getStereotypeApplication(context, FlowPort.class);
 		if(flowPort != null) {
-			return flowPort.isIsAtomic();
+			return flowPort.isAtomic();
 		}
 		return null;
 	}

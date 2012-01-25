@@ -29,7 +29,7 @@ public class FlowPortNAMatcher implements IElementMatcher {
 			Port port = (Port)eObject;
 			FlowPort flowPort = UMLUtil.getStereotypeApplication(port, FlowPort.class);
 
-			if((flowPort != null) && (! flowPort.isIsAtomic())) {
+			if((flowPort != null) && (! flowPort.isAtomic())) {
 				isFlowPort_NA = true;
 			}
 		}

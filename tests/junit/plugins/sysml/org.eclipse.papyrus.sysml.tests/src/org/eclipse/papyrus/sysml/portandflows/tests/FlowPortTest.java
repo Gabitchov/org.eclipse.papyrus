@@ -209,17 +209,17 @@ public class FlowPortTest extends TestCase {
 	public void testIsIsAtomic() {
 
 		// FlowPort without type is Atomic
-		if(!fp0.isIsAtomic()) {
+		if(!fp0.isAtomic()) {
 			fail();
 		}
 
 		// FlowPort type is not a FlowSpecification
-		if(!fp1.isIsAtomic()) {
+		if(!fp1.isAtomic()) {
 			fail();
 		}
 
 		// FlowPort type is a FlowSpecification
-		if(fp2.isIsAtomic()) {
+		if(fp2.isAtomic()) {
 			fail();
 		}
 	}

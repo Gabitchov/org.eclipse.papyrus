@@ -136,7 +136,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
 				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
-					if((flowPort != null) && (flowPort.isIsConjugated())) {
+					if((flowPort != null) && (flowPort.isConjugated())) {
 						type = String.format(CONJUGATED_FORMAT, type);
 					}
 					result = String.format(TYPE_FORMAT, result, type);

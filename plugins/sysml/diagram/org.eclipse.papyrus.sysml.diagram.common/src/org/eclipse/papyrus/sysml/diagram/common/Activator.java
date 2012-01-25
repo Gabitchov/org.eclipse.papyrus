@@ -196,7 +196,7 @@ public class Activator extends AbstractUIPlugin {
 
 		// Prepare the image key
 		String imageKey = "FlowPort_";
-		if(flowport.isIsAtomic()) {
+		if(flowport.isAtomic()) {
 			if(flowport.getDirection() == FlowDirection.IN) {
 				imageKey = imageKey + "IN_";
 			} else if(flowport.getDirection() == FlowDirection.OUT) {

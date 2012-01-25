@@ -27,7 +27,7 @@ public class GetFlowPortDirectionQuery implements IJavaModelQuery<Port, Enumerat
 	public Enumerator evaluate(final Port context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		FlowPort flowPort = UMLUtil.getStereotypeApplication(context, FlowPort.class);
 		if(flowPort != null) {
-			if(flowPort.isIsAtomic()) {
+			if(flowPort.isAtomic()) {
 				return flowPort.getDirection();
 			} else {
 				return NAFlowPortDirection.get(0);
