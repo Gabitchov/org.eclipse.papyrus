@@ -36,10 +36,10 @@ import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the derived attribute "satisfiedBy" of the requirement */
 public class SetRequirementSatisfiedByQuery implements IJavaModelQueryWithEditingDomain<NamedElement, EObject> {
@@ -72,9 +72,9 @@ public class SetRequirementSatisfiedByQuery implements IJavaModelQueryWithEditin
 	 */
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the derived attribute /SatisfiedBy"); //$NON-NLS-1$
-		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
+		if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
 
-			Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
+			Requirement req = UMLUtil.getStereotypeApplication(context, Requirement.class);
 			EList<DirectedRelationship> dependencies = context.getTargetDirectedRelationships();
 			EList<NamedElement> currentSatisfiedBy = req.getSatisfiedBy();
 
@@ -87,7 +87,7 @@ public class SetRequirementSatisfiedByQuery implements IJavaModelQueryWithEditin
 
 			//we destroy the unnecessary Satisfy
 			for(DirectedRelationship current : dependencies) {
-				if(ElementUtil.getStereotypeApplication(current, Satisfy.class) != null) {
+				if(UMLUtil.getStereotypeApplication(current, Satisfy.class) != null) {
 					EList<NamedElement> clients = ((Dependency)current).getClients();
 					//we assume that there is only one client
 					if(clients.size() == 1) {

@@ -13,18 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.facets.query.value.getter;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
-import org.eclipse.papyrus.sysml.requirements.TestCase;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to get the text of the requirement */
 
@@ -32,7 +29,7 @@ public class GetRequirementVerifiedByQuery implements IJavaModelQuery<Class, Col
 
 	public Collection<NamedElement> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
-		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		Requirement requirement = UMLUtil.getStereotypeApplication(context, Requirement.class);
 		if(requirement != null) {
 			return requirement.getVerifiedBy();
 		}

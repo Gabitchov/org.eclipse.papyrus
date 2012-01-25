@@ -19,12 +19,13 @@ import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to qet the attribute "Direction" of the FlowPort */
 public class GetFlowPortDirectionQuery implements IJavaModelQuery<Port, Enumerator> {
 
 	public Enumerator evaluate(final Port context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		FlowPort flowPort = ElementUtil.getStereotypeApplication(context, FlowPort.class);
+		FlowPort flowPort = UMLUtil.getStereotypeApplication(context, FlowPort.class);
 		if(flowPort != null) {
 			if(flowPort.isIsAtomic()) {
 				return flowPort.getDirection();

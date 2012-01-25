@@ -20,8 +20,8 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to get the text of the requirement */
 public class GetRequirementDerivedFromQuery implements IJavaModelQuery<Class, Collection<Class>> {
@@ -29,7 +29,7 @@ public class GetRequirementDerivedFromQuery implements IJavaModelQuery<Class, Co
 	public Collection<Class> evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Collection<Class> result = new ArrayList<Class>();
 
-		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		Requirement requirement = UMLUtil.getStereotypeApplication(context, Requirement.class);
 		if(requirement != null) {
 			for(Requirement current : requirement.getDerivedFrom()) {
 				result.add(current.getBase_Class());

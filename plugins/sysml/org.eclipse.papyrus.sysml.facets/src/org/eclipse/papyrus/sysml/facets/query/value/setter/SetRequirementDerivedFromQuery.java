@@ -36,10 +36,10 @@ import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the derived attribute "derived" of the requirement */
 public class SetRequirementDerivedFromQuery implements IJavaModelQueryWithEditingDomain<Class, EObject> {
@@ -77,8 +77,8 @@ public class SetRequirementDerivedFromQuery implements IJavaModelQueryWithEditin
 		 * we need to do this test, because, the facets can be applied on a default table.
 		 * In this case, we can't be sure the edited element is a Requirement
 		 */
-		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
-			Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
+			Requirement req = UMLUtil.getStereotypeApplication(context, Requirement.class);
 			EList<Dependency> dependencies = context.getClientDependencies();
 			EList<Requirement> currentDerivedFrom = req.getDerivedFrom();
 			List<Class> currentDerivedFrom_base_Class = new ArrayList<Class>();
@@ -94,7 +94,7 @@ public class SetRequirementDerivedFromQuery implements IJavaModelQueryWithEditin
 
 			//we destroy the unnecessary Derive_Reqt
 			for(Dependency current : dependencies) {
-				if(ElementUtil.getStereotypeApplication(current, DeriveReqt.class) != null) {
+				if(UMLUtil.getStereotypeApplication(current, DeriveReqt.class) != null) {
 					EList<NamedElement> suppliers = current.getSuppliers();
 					//we assume that there is only one supplier
 					if(suppliers.size() == 1) {
@@ -113,7 +113,7 @@ public class SetRequirementDerivedFromQuery implements IJavaModelQueryWithEditin
 				//we create the derive_reqt only if it doesn't exist
 
 				if(!currentDerivedFrom_base_Class.contains(current)) {
-					if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
+					if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
 						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
 						CreateRelationshipRequest createRequest = new CreateRelationshipRequest(context.getNearestPackage(), context, (EObject)current, SysMLElementTypes.DERIVE_REQT);
 						cmd.add(provider.getEditCommand(createRequest));

@@ -28,8 +28,8 @@ import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the attribute "text" of the requirement */
 public class SetRequirementTextQuery implements IJavaModelQueryWithEditingDomain<Class, EObject> {
@@ -61,7 +61,7 @@ public class SetRequirementTextQuery implements IJavaModelQueryWithEditingDomain
 	 * @throws ModelQueryExecutionException
 	 */
 	public EObject evaluate(final Class context, final ParameterValueList parameter, final EditingDomain editingDomain) throws ModelQueryExecutionException {
-		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		Requirement requirement = UMLUtil.getStereotypeApplication(context, Requirement.class);
 
 		if(requirement != null) {
 			if(!((parameter.isEmpty()) || (parameter.get(0) == null))) {

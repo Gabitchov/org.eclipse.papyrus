@@ -17,14 +17,14 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to get the text of the requirement */
 public class GetRequirementMasterQuery implements IJavaModelQuery<Class, Class> {
 
 	public Class evaluate(final Class context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Requirement requirement = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		Requirement requirement = UMLUtil.getStereotypeApplication(context, Requirement.class);
 		return ((requirement != null) && (requirement.getMaster() != null)) ? requirement.getMaster().getBase_Class() : null;
 	}
 }

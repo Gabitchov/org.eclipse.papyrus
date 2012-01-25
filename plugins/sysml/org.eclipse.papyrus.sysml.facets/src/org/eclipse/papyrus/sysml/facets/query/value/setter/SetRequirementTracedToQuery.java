@@ -35,7 +35,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
@@ -78,11 +77,11 @@ public class SetRequirementTracedToQuery implements IJavaModelQueryWithEditingDo
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /TracedTo"); //$NON-NLS-1$
 		int result = MessageDialog.OK;
-		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
-			if (! context.getNearestPackage().isProfileApplied(UMLUtil.getProfile(L2Package.eINSTANCE))) {
+		if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
+			if(!context.getNearestPackage().isProfileApplied(UMLUtil.getProfile(L2Package.eINSTANCE))) {
 				cmd.add(new IdentityCommandWithNotification(Messages.SetRequirementTextQuery_AssignmentCantBeDone, Messages.SetRequirementRefinedByQuery_StandardIsNotAppliedOnTheModel, Type.ERROR));
 			} else {
-				Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
+				Requirement req = UMLUtil.getStereotypeApplication(context, Requirement.class);
 				EList<DirectedRelationship> dependencies = context.getTargetDirectedRelationships();
 
 				EList<?> currentTracedTo = req.getTracedTo();
@@ -94,7 +93,7 @@ public class SetRequirementTracedToQuery implements IJavaModelQueryWithEditingDo
 
 				//we destroy the unnecessary tracedTo 
 				for(DirectedRelationship current : dependencies) {
-					if(ElementUtil.getStereotypeApplication(current, Trace.class) != null && isStricteTrace(current)) {
+					if(UMLUtil.getStereotypeApplication(current, Trace.class) != null && isStricteTrace(current)) {
 						EList<NamedElement> clients = ((Dependency)current).getClients();
 						//we assume that there is only one client
 						if(clients.size() == 1) {

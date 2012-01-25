@@ -36,10 +36,10 @@ import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.Verify;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the derived attribute "verifiedBy" of the requirement */
 public class SetRequirementVerifiedByQuery implements IJavaModelQueryWithEditingDomain<NamedElement, EObject> {
@@ -72,9 +72,9 @@ public class SetRequirementVerifiedByQuery implements IJavaModelQueryWithEditing
 	 */
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /VerifiedBy"); //$NON-NLS-1$
-		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
+		if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
 
-			Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
+			Requirement req = UMLUtil.getStereotypeApplication(context, Requirement.class);
 			EList<DirectedRelationship> dependencies = context.getTargetDirectedRelationships();
 			EList<?> currentVerifiedBy = req.getVerifiedBy();
 
@@ -87,7 +87,7 @@ public class SetRequirementVerifiedByQuery implements IJavaModelQueryWithEditing
 
 			//we destroy the unnecessary Verified
 			for(DirectedRelationship current : dependencies) {
-				if(ElementUtil.getStereotypeApplication(current, Verify.class) != null) {
+				if(UMLUtil.getStereotypeApplication(current, Verify.class) != null) {
 					EList<NamedElement> clients = ((Dependency)current).getClients();
 					//we assume that there is only one client
 					if(clients.size() == 1) {

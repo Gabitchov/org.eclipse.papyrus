@@ -36,11 +36,11 @@ import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the derived attribute "master" of the requirement */
 public class SetRequirementMasterQuery implements IJavaModelQueryWithEditingDomain<Class, EObject> {
@@ -76,18 +76,18 @@ public class SetRequirementMasterQuery implements IJavaModelQueryWithEditingDoma
 		ModelQueryParameterValue object = parameterValues.get(0);
 		Object value = object.getValue();
 		Class newMaster = null;
-		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
+		if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
 			if(value != null) {
 				Assert.isTrue(value instanceof Class);
 				newMaster = (Class)value;
 			}
-			Assert.isTrue(ElementUtil.getStereotypeApplication(context, Requirement.class) != null);
+			Assert.isTrue(UMLUtil.getStereotypeApplication(context, Requirement.class) != null);
 
 			EList<Dependency> dependencies = context.getClientDependencies();
 
 			//we destroy the unnecessary Copy
 			for(DirectedRelationship current : dependencies) {
-				if(ElementUtil.getStereotypeApplication(current, Copy.class) != null) {
+				if(UMLUtil.getStereotypeApplication(current, Copy.class) != null) {
 					EList<NamedElement> target = ((Dependency)current).getSuppliers();
 					//we assume that there is only one client
 					if(target.size() == 1) {
@@ -103,7 +103,7 @@ public class SetRequirementMasterQuery implements IJavaModelQueryWithEditingDoma
 			}
 
 			if(newMaster != null) {
-				if(ElementUtil.getStereotypeApplication(newMaster, Requirement.class) != null) {
+				if(UMLUtil.getStereotypeApplication(newMaster, Requirement.class) != null) {
 					//we create the Element Copy
 					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
 					CreateElementRequest createRequest = new CreateRelationshipRequest(context.getNearestPackage(), context, newMaster, SysMLElementTypes.COPY);

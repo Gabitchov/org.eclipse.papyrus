@@ -75,10 +75,10 @@ public class SetRequirementRefinedByQuery implements IJavaModelQueryWithEditingD
 	public EObject evaluate(NamedElement context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /refinedBy"); //$NON-NLS-1$
 		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
-			if (! context.getNearestPackage().isProfileApplied(UMLUtil.getProfile(L2Package.eINSTANCE))) {
+			if(!context.getNearestPackage().isProfileApplied(UMLUtil.getProfile(L2Package.eINSTANCE))) {
 				cmd.add(new IdentityCommandWithNotification(Messages.SetRequirementTextQuery_AssignmentCantBeDone, Messages.SetRequirementRefinedByQuery_StandardIsNotAppliedOnTheModel, Type.ERROR));
 			} else {
-				Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
+				Requirement req = UMLUtil.getStereotypeApplication(context, Requirement.class);
 				EList<DirectedRelationship> dependencies = context.getTargetDirectedRelationships();
 				EList<NamedElement> currentRefinedBy = req.getRefinedBy();
 
@@ -90,7 +90,7 @@ public class SetRequirementRefinedByQuery implements IJavaModelQueryWithEditingD
 
 				//we destroy the unnecessary Refine 
 				for(DirectedRelationship current : dependencies) {
-					if(ElementUtil.getStereotypeApplication(current, Refine.class) != null) {
+					if(UMLUtil.getStereotypeApplication(current, Refine.class) != null) {
 
 						EList<NamedElement> clients = ((Dependency)current).getClients();
 						//we assume that there is only one client

@@ -17,6 +17,7 @@ import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to get the derived attribute "isAtomic" of the FlowPort */
 public class GetFlowPortIsAtomicQuery implements IJavaModelQuery<Port, Boolean> {
@@ -33,7 +34,7 @@ public class GetFlowPortIsAtomicQuery implements IJavaModelQuery<Port, Boolean> 
 	 */
 	public Boolean evaluate(final Port context, final ParameterValueList parameterValues)
 			throws ModelQueryExecutionException {
-		FlowPort flowPort = ElementUtil.getStereotypeApplication(context, FlowPort.class);
+		FlowPort flowPort = UMLUtil.getStereotypeApplication(context, FlowPort.class);
 		if(flowPort != null) {
 			return flowPort.isIsAtomic();
 		}

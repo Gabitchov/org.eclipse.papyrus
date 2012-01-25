@@ -39,11 +39,11 @@ import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to set the derived attribute "derived" of the requirement */
 public class SetRequirementDerivedQuery implements IJavaModelQueryWithEditingDomain<Class, EObject> {
@@ -76,8 +76,8 @@ public class SetRequirementDerivedQuery implements IJavaModelQueryWithEditingDom
 	 */
 	public EObject evaluate(Class context, ParameterValueList parameter, EditingDomain editingDomain) throws ModelQueryExecutionException {
 		CompositeCommand cmd = new CompositeCommand("Edit the feature /Derived"); //$NON-NLS-1$
-		if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
-			Requirement req = ElementUtil.getStereotypeApplication(context, Requirement.class);
+		if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
+			Requirement req = UMLUtil.getStereotypeApplication(context, Requirement.class);
 
 			EList<DirectedRelationship> dependencies = context.getTargetDirectedRelationships();
 			EList<Requirement> currentDerived = req.getDerived();
@@ -94,7 +94,7 @@ public class SetRequirementDerivedQuery implements IJavaModelQueryWithEditingDom
 
 			//we destroy the unnecessary Derive_Reqt
 			for(DirectedRelationship current : dependencies) {
-				if(ElementUtil.getStereotypeApplication(current, DeriveReqt.class) != null) {
+				if(UMLUtil.getStereotypeApplication(current, DeriveReqt.class) != null) {
 					EList<NamedElement> clients = ((Dependency)current).getClients();
 					//we assume that there is only one client
 					if(clients.size() == 1) {
@@ -113,7 +113,7 @@ public class SetRequirementDerivedQuery implements IJavaModelQueryWithEditingDom
 			for(Object current : (List<?>)values) {
 				//we create the derive_reqt only if it doesn't exist
 				if(!currentDerived_base_Class.contains(current)) {
-					if(ElementUtil.getStereotypeApplication(context, Requirement.class) != null) {
+					if(UMLUtil.getStereotypeApplication(context, Requirement.class) != null) {
 						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
 
 						CreateElementRequest createRequest = new CreateRelationshipRequest(context.getNearestPackage(), (EObject)current, context, SysMLElementTypes.DERIVE_REQT);

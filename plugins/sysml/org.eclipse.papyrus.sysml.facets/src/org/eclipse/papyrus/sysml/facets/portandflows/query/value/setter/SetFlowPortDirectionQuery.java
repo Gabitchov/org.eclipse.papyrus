@@ -27,8 +27,8 @@ import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows
 import org.eclipse.papyrus.sysml.facets.messages.Messages;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to qet the attribute "Direction" of the FlowPort */
 public class SetFlowPortDirectionQuery implements IJavaModelQueryWithEditingDomain<Port, Enumerator> {
@@ -40,7 +40,7 @@ public class SetFlowPortDirectionQuery implements IJavaModelQueryWithEditingDoma
 
 
 	public Enumerator evaluate(Port context, ParameterValueList parameterValues, EditingDomain editingDomain) throws ModelQueryExecutionException {
-		FlowPort flowPort = ElementUtil.getStereotypeApplication(context, FlowPort.class);
+		FlowPort flowPort = UMLUtil.getStereotypeApplication(context, FlowPort.class);
 
 		if(flowPort != null) {
 			if(!((parameterValues.isEmpty()) || (parameterValues.get(0) == null))) {
