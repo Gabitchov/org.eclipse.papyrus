@@ -14,9 +14,6 @@ package org.eclipse.papyrus.properties.runtime;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.constraints.CompoundConstraint;
 import org.eclipse.papyrus.properties.constraints.Constraint;
-import org.eclipse.papyrus.properties.contexts.CompositeConstraint;
-import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
-import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 
 /**
  * A Singleton class for creating {@link Constraint}s from a {@link ConstraintDescriptor}
@@ -51,6 +48,13 @@ public class ConstraintFactory {
 			cConstraint.setConstraintDescriptor(model);
 			for(SimpleConstraint descriptor : ((CompositeConstraint)model).getConstraints()) {
 				Constraint subConstraint = loadConstraint(descriptor);
+
+				//One of the subConstraint is invalid : we stop building the constraint
+				if(subConstraint == null) {
+					Activator.log.warn("Cannot load constraint " + model.getName()); //$NON-NLS-1$
+					return null;
+				}
+
 				cConstraint.addConstraint(subConstraint);
 			}
 
