@@ -29,6 +29,9 @@ public class CompoundConstraint extends AbstractConstraint {
 	 *        The sub-constraint to be added
 	 */
 	public void addConstraint(Constraint subConstraint) {
+		if(subConstraint == null) {
+			throw new IllegalArgumentException("The subConstraint shall not be null");
+		}
 		constraints.add(subConstraint);
 	}
 

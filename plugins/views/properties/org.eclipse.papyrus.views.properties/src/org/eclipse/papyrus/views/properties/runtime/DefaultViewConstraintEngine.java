@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.constraints.runtime.ConstraintFactory;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.View;
 

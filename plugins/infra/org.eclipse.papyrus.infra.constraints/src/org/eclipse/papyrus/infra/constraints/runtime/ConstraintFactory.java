@@ -53,6 +53,13 @@ public class ConstraintFactory {
 			cConstraint.setConstraintDescriptor(model);
 			for(SimpleConstraint descriptor : ((CompositeConstraint)model).getConstraints()) {
 				Constraint subConstraint = loadConstraint(descriptor);
+
+				//One of the subConstraint is invalid : we stop building the constraint
+				if(subConstraint == null) {
+					Activator.log.warn("Cannot load constraint " + model.getName()); //$NON-NLS-1$
+					return null;
+				}
+
 				cConstraint.addConstraint(subConstraint);
 			}
 
