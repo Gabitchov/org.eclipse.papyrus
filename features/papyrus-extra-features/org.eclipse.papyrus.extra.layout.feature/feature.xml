@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.layout.feature"
+      id="org.eclipse.papyrus.extra.layout.feature"
       label="Papyrus layouts (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
