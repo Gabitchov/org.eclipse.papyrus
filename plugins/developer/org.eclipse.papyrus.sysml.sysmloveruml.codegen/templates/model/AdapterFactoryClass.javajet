@@ -26,8 +26,6 @@ package <%=genPackage.getUtilitiesPackageName()%>;
 <%genModel.addImport("org.eclipse.emf.ecore.EObject");%>
 <%genModel.addImport("org.eclipse.emf.ecore.EPackage");%>
 <%genModel.addImport("org.eclipse.uml2.uml.*");%>
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Package;
 
 <%if (!genPackage.hasJavaLangConflict() && !genPackage.getUtilitiesPackageName().equals(genPackage.getInterfacePackageName())) genModel.addImport(genPackage.getInterfacePackageName() + ".*");%>
 <%String typeArgument = genModel.useGenerics() ? "<Adapter>" : "";%>

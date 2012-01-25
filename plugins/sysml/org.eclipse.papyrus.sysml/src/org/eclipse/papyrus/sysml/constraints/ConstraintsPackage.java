@@ -51,7 +51,8 @@ public interface ConstraintsPackage extends EPackage {
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintBlockImpl <em>Constraint Block</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintBlockImpl <em>Constraint Block</em>}'
+		 * class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
@@ -62,8 +63,8 @@ public interface ConstraintsPackage extends EPackage {
 		EClass CONSTRAINT_BLOCK = eINSTANCE.getConstraintBlock();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl <em>Constraint Property</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl
+		 * <em>Constraint Property</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
@@ -155,7 +156,8 @@ public interface ConstraintsPackage extends EPackage {
 	int CONSTRAINT_BLOCK_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl <em>Constraint Property</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.constraints.internal.impl.ConstraintPropertyImpl <em>Constraint Property</em>}'
+	 * class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.requirements;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -142,6 +143,38 @@ public interface Requirement extends EObject {
 	EList<NamedElement> getRefinedBy();
 
 	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Refined By</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getRefinedBy()
+	 * @generated
+	 */
+	NamedElement getRefinedBy(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Refined By</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @param ignoreCase
+	 *        Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass
+	 *        The Ecore class of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getRefinedBy()
+	 * @generated
+	 */
+	NamedElement getRefinedBy(String name, boolean ignoreCase, EClass eClass);
+
+	/**
 	 * Returns the value of the '<em><b>Satisfied By</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.uml2.uml.NamedElement}.
 	 * <!-- begin-user-doc -->
@@ -156,6 +189,38 @@ public interface Requirement extends EObject {
 	 * @generated
 	 */
 	EList<NamedElement> getSatisfiedBy();
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Satisfied By</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getSatisfiedBy()
+	 * @generated
+	 */
+	NamedElement getSatisfiedBy(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Satisfied By</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @param ignoreCase
+	 *        Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass
+	 *        The Ecore class of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getSatisfiedBy()
+	 * @generated
+	 */
+	NamedElement getSatisfiedBy(String name, boolean ignoreCase, EClass eClass);
 
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute. <!--
@@ -191,6 +256,38 @@ public interface Requirement extends EObject {
 	EList<NamedElement> getTracedTo();
 
 	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Traced To</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getTracedTo()
+	 * @generated
+	 */
+	NamedElement getTracedTo(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Traced To</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @param ignoreCase
+	 *        Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass
+	 *        The Ecore class of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getTracedTo()
+	 * @generated
+	 */
+	NamedElement getTracedTo(String name, boolean ignoreCase, EClass eClass);
+
+	/**
 	 * Returns the value of the '<em><b>Verified By</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.uml2.uml.NamedElement}.
 	 * <!-- begin-user-doc -->
@@ -205,6 +302,38 @@ public interface Requirement extends EObject {
 	 * @generated
 	 */
 	EList<NamedElement> getVerifiedBy();
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Verified By</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getVerifiedBy()
+	 * @generated
+	 */
+	NamedElement getVerifiedBy(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Verified By</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @param ignoreCase
+	 *        Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass
+	 *        The Ecore class of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getVerifiedBy()
+	 * @generated
+	 */
+	NamedElement getVerifiedBy(String name, boolean ignoreCase, EClass eClass);
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.requirements.Requirement#getBase_Class <em>Base Class</em>}' reference.

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated <em>Is Encapsulated</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.Block#isEncapsulated <em>Is Encapsulated</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
@@ -31,6 +31,22 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Block extends EObject {
+
+	/**
+	 * Returns the value of the '<em><b>Is Encapsulated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Encapsulated</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Is Encapsulated</em>' attribute.
+	 * @see #setIsEncapsulated(boolean)
+	 * @see org.eclipse.papyrus.sysml.blocks.BlocksPackage#getBlock_IsEncapsulated()
+	 * @model unique="false" ordered="false"
+	 * @generated
+	 */
+	boolean isEncapsulated();
 
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!--
@@ -49,22 +65,6 @@ public interface Block extends EObject {
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Returns the value of the '<em><b>Is Encapsulated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Encapsulated</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Is Encapsulated</em>' attribute.
-	 * @see #setIsEncapsulated(boolean)
-	 * @see org.eclipse.papyrus.sysml.blocks.BlocksPackage#getBlock_IsEncapsulated()
-	 * @model unique="false" ordered="false"
-	 * @generated
-	 */
-	boolean isIsEncapsulated();
-
-	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -77,13 +77,13 @@ public interface Block extends EObject {
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#isIsEncapsulated <em>Is Encapsulated</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.blocks.Block#isEncapsulated <em>Is Encapsulated</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Is Encapsulated</em>' attribute.
-	 * @see #isIsEncapsulated()
+	 * @see #isEncapsulated()
 	 * @generated
 	 */
 	void setIsEncapsulated(boolean value);

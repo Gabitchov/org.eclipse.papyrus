@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.allocations;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -52,6 +53,38 @@ public interface Allocated extends EObject {
 	EList<NamedElement> getAllocatedFrom();
 
 	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '
+	 * <em><b>Allocated From</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getAllocatedFrom()
+	 * @generated
+	 */
+	NamedElement getAllocatedFrom(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '
+	 * <em><b>Allocated From</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @param ignoreCase
+	 *        Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass
+	 *        The Ecore class of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getAllocatedFrom()
+	 * @generated
+	 */
+	NamedElement getAllocatedFrom(String name, boolean ignoreCase, EClass eClass);
+
+	/**
 	 * Returns the value of the '<em><b>Allocated To</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.uml2.uml.NamedElement}.
 	 * <!-- begin-user-doc -->
@@ -66,6 +99,38 @@ public interface Allocated extends EObject {
 	 * @generated
 	 */
 	EList<NamedElement> getAllocatedTo();
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Allocated To</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getAllocatedTo()
+	 * @generated
+	 */
+	NamedElement getAllocatedTo(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>' from the '<em><b>Allocated To</b></em>'
+	 * reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param name
+	 *        The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @param ignoreCase
+	 *        Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass
+	 *        The Ecore class of the {@link org.eclipse.uml2.uml.NamedElement} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.NamedElement} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getAllocatedTo()
+	 * @generated
+	 */
+	NamedElement getAllocatedTo(String name, boolean ignoreCase, EClass eClass);
 
 	/**
 	 * Returns the value of the '<em><b>Base Named Element</b></em>' reference.

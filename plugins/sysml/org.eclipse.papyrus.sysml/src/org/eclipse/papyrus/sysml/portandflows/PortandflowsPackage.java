@@ -95,7 +95,8 @@ public interface PortandflowsPackage extends EPackage {
 		EAttribute FLOW_PORT__DIRECTION = eINSTANCE.getFlowPort_Direction();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPropertyImpl <em>Flow Property</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPropertyImpl <em>Flow Property</em>}'
+		 * class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
@@ -122,8 +123,8 @@ public interface PortandflowsPackage extends EPackage {
 		EAttribute FLOW_PROPERTY__DIRECTION = eINSTANCE.getFlowProperty_Direction();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowSpecificationImpl <em>Flow Specification</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowSpecificationImpl
+		 * <em>Flow Specification</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
@@ -308,7 +309,8 @@ public interface PortandflowsPackage extends EPackage {
 	int FLOW_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowSpecificationImpl <em>Flow Specification</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowSpecificationImpl <em>Flow Specification</em>}'
+	 * class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -427,22 +429,22 @@ public interface PortandflowsPackage extends EPackage {
 	EAttribute getFlowPort_Direction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic <em>Is Atomic</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic <em>Is Atomic</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Is Atomic</em>'.
-	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic()
+	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic()
 	 * @see #getFlowPort()
 	 * @generated
 	 */
 	EAttribute getFlowPort_IsAtomic();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated <em>Is Conjugated</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isConjugated <em>Is Conjugated</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Is Conjugated</em>'.
-	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated()
+	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isConjugated()
 	 * @see #getFlowPort()
 	 * @generated
 	 */

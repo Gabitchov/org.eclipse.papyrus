@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml"
-    nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML" nsPrefix="SysML">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml" nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML" nsPrefix="SysML">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="OMG SysML V1.1 formal/2008-11-02&#xD;&#xA;Trace instead of Abstraction in SysML specifications."/>
   </eAnnotations>
@@ -211,10 +209,10 @@
   </eSubpackages>
   <eSubpackages name="requirements" nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements"
       nsPrefix="Requirements">
-    <eClassifiers xsi:type="ecore:EClass" name="DeriveReqt" eSuperTypes="../../org.eclipse.papyrus.uml.standard/model/Standard.ecore#//Trace"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Verify" eSuperTypes="../../org.eclipse.papyrus.uml.standard/model/Standard.ecore#//Trace"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Copy" eSuperTypes="../../org.eclipse.papyrus.uml.standard/model/Standard.ecore#//Trace"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Satisfy" eSuperTypes="../../org.eclipse.papyrus.uml.standard/model/Standard.ecore#//Trace"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DeriveReqt" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.ecore#//Trace"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Verify" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.ecore#//Trace"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Copy" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.ecore#//Trace"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Satisfy" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.ecore#//Trace"/>
     <eClassifiers xsi:type="ecore:EClass" name="TestCase">
       <eStructuralFeatures xsi:type="ecore:EReference" name="base_Behavior" ordered="false"
           unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>

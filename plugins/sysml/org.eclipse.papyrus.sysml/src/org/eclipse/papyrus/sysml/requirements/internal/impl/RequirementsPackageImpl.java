@@ -515,7 +515,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		L2Package theStandardPackage = (L2Package)EPackage.Registry.INSTANCE.getEPackage(L2Package.eNS_URI);
+		L2Package theL2Package = (L2Package)EPackage.Registry.INSTANCE.getEPackage(L2Package.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -523,10 +523,10 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		deriveReqtEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		verifyEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		copyEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		satisfyEClass.getESuperTypes().add(theStandardPackage.getTrace());
+		deriveReqtEClass.getESuperTypes().add(theL2Package.getTrace());
+		verifyEClass.getESuperTypes().add(theL2Package.getTrace());
+		copyEClass.getESuperTypes().add(theL2Package.getTrace());
+		satisfyEClass.getESuperTypes().add(theL2Package.getTrace());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(deriveReqtEClass, DeriveReqt.class, "DeriveReqt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

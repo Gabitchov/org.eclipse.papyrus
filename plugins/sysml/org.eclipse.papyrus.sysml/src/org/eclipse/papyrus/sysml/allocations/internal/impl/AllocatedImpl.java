@@ -190,6 +190,33 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getAllocatedFrom(String name) {
+		return getAllocatedFrom(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getAllocatedFrom(String name, boolean ignoreCase, EClass eClass) {
+		allocatedFromLoop: for(NamedElement allocatedFrom : getAllocatedFrom()) {
+			if(eClass != null && !eClass.isInstance(allocatedFrom))
+				continue allocatedFromLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(allocatedFrom.getName()) : name.equals(allocatedFrom.getName())))
+				continue allocatedFromLoop;
+			return allocatedFrom;
+		}
+		return null;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -215,6 +242,33 @@ public class AllocatedImpl extends EObjectImpl implements Allocated {
 		}
 		// Convert to InternalEList<?>
 		return new BasicInternalEList<NamedElement>(NamedElement.class, allocatedFrom.size(), allocatedFrom.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getAllocatedTo(String name) {
+		return getAllocatedTo(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getAllocatedTo(String name, boolean ignoreCase, EClass eClass) {
+		allocatedToLoop: for(NamedElement allocatedTo : getAllocatedTo()) {
+			if(eClass != null && !eClass.isInstance(allocatedTo))
+				continue allocatedToLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(allocatedTo.getName()) : name.equals(allocatedTo.getName())))
+				continue allocatedToLoop;
+			return allocatedTo;
+		}
+		return null;
 	}
 
 	/**

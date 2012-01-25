@@ -221,8 +221,8 @@ public interface RequirementsPackage extends EPackage {
 		EReference REQUIREMENT__BASE_CLASS = eINSTANCE.getRequirement_Base_Class();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl <em>Requirement Related</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl
+		 * <em>Requirement Related</em>}' class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
@@ -577,7 +577,8 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT_FEATURE_COUNT = 10;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl <em>Requirement Related</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.internal.impl.RequirementRelatedImpl <em>Requirement Related</em>}'
+	 * class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 

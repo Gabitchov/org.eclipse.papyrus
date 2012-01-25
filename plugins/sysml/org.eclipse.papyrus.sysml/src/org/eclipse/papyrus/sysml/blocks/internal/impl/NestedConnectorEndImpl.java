@@ -26,6 +26,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Nested Connector End</b></em>'. <!-- end-user-doc -->
@@ -190,6 +191,35 @@ public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnect
 			propertyPath = new EObjectResolvingEList<Property>(Property.class, this, BlocksPackage.NESTED_CONNECTOR_END__PROPERTY_PATH);
 		}
 		return propertyPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Property getPropertyPath(String name, Type type) {
+		return getPropertyPath(name, type, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Property getPropertyPath(String name, Type type, boolean ignoreCase, EClass eClass) {
+		propertyPathLoop: for(Property propertyPath : getPropertyPath()) {
+			if(eClass != null && !eClass.isInstance(propertyPath))
+				continue propertyPathLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(propertyPath.getName()) : name.equals(propertyPath.getName())))
+				continue propertyPathLoop;
+			if(type != null && !type.equals(propertyPath.getType()))
+				continue propertyPathLoop;
+			return propertyPath;
+		}
+		return null;
 	}
 
 	/**

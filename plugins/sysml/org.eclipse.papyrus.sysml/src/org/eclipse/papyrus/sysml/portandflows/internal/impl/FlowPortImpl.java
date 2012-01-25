@@ -35,8 +35,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPortImpl#getBase_Port <em>Base Port</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPortImpl#isIsAtomic <em>Is Atomic</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPortImpl#isIsConjugated <em>Is Conjugated</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPortImpl#isAtomic <em>Is Atomic</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPortImpl#isConjugated <em>Is Conjugated</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.internal.impl.FlowPortImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
@@ -56,31 +56,31 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	protected Port base_Port;
 
 	/**
-	 * The default value of the '{@link #isIsAtomic() <em>Is Atomic</em>}' attribute.
+	 * The default value of the '{@link #isAtomic() <em>Is Atomic</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #isIsAtomic()
+	 * @see #isAtomic()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ATOMIC_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #isIsConjugated() <em>Is Conjugated</em>}' attribute.
+	 * The default value of the '{@link #isConjugated() <em>Is Conjugated</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see #isIsConjugated()
+	 * @see #isConjugated()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_CONJUGATED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsConjugated() <em>Is Conjugated</em>}' attribute.
+	 * The cached value of the '{@link #isConjugated() <em>Is Conjugated</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #isIsConjugated()
+	 * @see #isConjugated()
 	 * @generated
 	 * @ordered
 	 */
@@ -137,9 +137,9 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 				return getBase_Port();
 			return basicGetBase_Port();
 		case PortandflowsPackage.FLOW_PORT__IS_ATOMIC:
-			return isIsAtomic();
+			return isAtomic();
 		case PortandflowsPackage.FLOW_PORT__IS_CONJUGATED:
-			return isIsConjugated();
+			return isConjugated();
 		case PortandflowsPackage.FLOW_PORT__DIRECTION:
 			return getDirection();
 		}
@@ -157,7 +157,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 		case PortandflowsPackage.FLOW_PORT__BASE_PORT:
 			return base_Port != null;
 		case PortandflowsPackage.FLOW_PORT__IS_ATOMIC:
-			return isIsAtomic() != IS_ATOMIC_EDEFAULT;
+			return isAtomic() != IS_ATOMIC_EDEFAULT;
 		case PortandflowsPackage.FLOW_PORT__IS_CONJUGATED:
 			return isConjugated != IS_CONJUGATED_EDEFAULT;
 		case PortandflowsPackage.FLOW_PORT__DIRECTION:
@@ -310,20 +310,33 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	 * 
 	 * @generated
 	 */
-	public boolean isIsConjugated() {
-		return isConjugated;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public void setBase_Port(Port newBase_Port) {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
 		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__BASE_PORT, oldBase_Port, base_Port));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isAtomic() {
+		// TODO: implement this method to return the 'Is Atomic' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isConjugated() {
+		return isConjugated;
 	}
 
 	/**

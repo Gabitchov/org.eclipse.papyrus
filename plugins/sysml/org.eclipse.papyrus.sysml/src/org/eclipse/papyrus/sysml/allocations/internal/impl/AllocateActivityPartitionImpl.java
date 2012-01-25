@@ -27,7 +27,8 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl#getBase_ActivityPartition <em>Base Activity Partition</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.allocations.internal.impl.AllocateActivityPartitionImpl#getBase_ActivityPartition <em>Base Activity Partition
+ * </em>}</li>
  * </ul>
  * </p>
  * 

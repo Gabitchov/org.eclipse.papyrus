@@ -24,8 +24,8 @@ import org.eclipse.uml2.uml.Port;
  * The following features are supported:
  * <ul>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getBase_Port <em>Base Port</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic <em>Is Atomic</em>}</li>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated <em>Is Conjugated</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic <em>Is Atomic</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isConjugated <em>Is Conjugated</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
@@ -80,6 +80,18 @@ public interface FlowPort extends EObject {
 	Image getIcon();
 
 	/**
+	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getBase_Port
+	 * <em>Base Port</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Port</em>' reference.
+	 * @see #getBase_Port()
+	 * @generated
+	 */
+	void setBase_Port(Port value);
+
+	/**
 	 * Returns the value of the '<em><b>Is Atomic</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -93,11 +105,11 @@ public interface FlowPort extends EObject {
 	 * @model default="false" unique="false" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	boolean isIsAtomic();
+	boolean isAtomic();
 
 	/**
-	 * Returns the value of the '<em><b>Is Conjugated</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Is Conjugated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Conjugated</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -109,19 +121,7 @@ public interface FlowPort extends EObject {
 	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
-	boolean isIsConjugated();
-
-	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getBase_Port
-	 * <em>Base Port</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Base Port</em>' reference.
-	 * @see #getBase_Port()
-	 * @generated
-	 */
-	void setBase_Port(Port value);
+	boolean isConjugated();
 
 	/**
 	 * Sets the value of the ' {@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getDirection
@@ -137,13 +137,13 @@ public interface FlowPort extends EObject {
 	void setDirection(FlowDirection value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsConjugated <em>Is Conjugated</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isConjugated <em>Is Conjugated</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Is Conjugated</em>' attribute.
-	 * @see #isIsConjugated()
+	 * @see #isConjugated()
 	 * @generated
 	 */
 	void setIsConjugated(boolean value);

@@ -160,7 +160,8 @@ public interface ActivitiesPackage extends EPackage {
 		EClass DISCRETE = eINSTANCE.getDiscrete();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl <em>Control Operator</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.internal.impl.ControlOperatorImpl <em>Control Operator</em>}'
+		 * class.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 

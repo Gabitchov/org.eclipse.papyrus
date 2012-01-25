@@ -416,6 +416,33 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getRefinedBy(String name) {
+		return getRefinedBy(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getRefinedBy(String name, boolean ignoreCase, EClass eClass) {
+		refinedByLoop: for(NamedElement refinedBy : getRefinedBy()) {
+			if(eClass != null && !eClass.isInstance(refinedBy))
+				continue refinedByLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(refinedBy.getName()) : name.equals(refinedBy.getName())))
+				continue refinedByLoop;
+			return refinedBy;
+		}
+		return null;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -441,6 +468,33 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		}
 		// Convert to InternalEList<?>
 		return new BasicInternalEList<NamedElement>(NamedElement.class, satisfyBy.size(), satisfyBy.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getSatisfiedBy(String name) {
+		return getSatisfiedBy(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getSatisfiedBy(String name, boolean ignoreCase, EClass eClass) {
+		satisfiedByLoop: for(NamedElement satisfiedBy : getSatisfiedBy()) {
+			if(eClass != null && !eClass.isInstance(satisfiedBy))
+				continue satisfiedByLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(satisfiedBy.getName()) : name.equals(satisfiedBy.getName())))
+				continue satisfiedByLoop;
+			return satisfiedBy;
+		}
+		return null;
 	}
 
 	/**
@@ -485,6 +539,33 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getTracedTo(String name) {
+		return getTracedTo(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getTracedTo(String name, boolean ignoreCase, EClass eClass) {
+		tracedToLoop: for(NamedElement tracedTo : getTracedTo()) {
+			if(eClass != null && !eClass.isInstance(tracedTo))
+				continue tracedToLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(tracedTo.getName()) : name.equals(tracedTo.getName())))
+				continue tracedToLoop;
+			return tracedTo;
+		}
+		return null;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -510,6 +591,33 @@ public class RequirementImpl extends EObjectImpl implements Requirement {
 		}
 		// Convert to InternalEList<?>
 		return new BasicInternalEList<NamedElement>(NamedElement.class, verifiedBy.size(), verifiedBy.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getVerifiedBy(String name) {
+		return getVerifiedBy(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NamedElement getVerifiedBy(String name, boolean ignoreCase, EClass eClass) {
+		verifiedByLoop: for(NamedElement verifiedBy : getVerifiedBy()) {
+			if(eClass != null && !eClass.isInstance(verifiedBy))
+				continue verifiedByLoop;
+			if(name != null && !(ignoreCase ? name.equalsIgnoreCase(verifiedBy.getName()) : name.equals(verifiedBy.getName())))
+				continue verifiedByLoop;
+			return verifiedBy;
+		}
+		return null;
 	}
 
 	/**

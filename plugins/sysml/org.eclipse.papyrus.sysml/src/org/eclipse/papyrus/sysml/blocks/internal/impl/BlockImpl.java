@@ -26,7 +26,7 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.blocks.internal.impl.BlockImpl#isIsEncapsulated <em>Is Encapsulated</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.blocks.internal.impl.BlockImpl#isEncapsulated <em>Is Encapsulated</em>}</li>
  * <li>{@link org.eclipse.papyrus.sysml.blocks.internal.impl.BlockImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
@@ -36,22 +36,22 @@ import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 public class BlockImpl extends EObjectImpl implements Block {
 
 	/**
-	 * The default value of the '{@link #isIsEncapsulated() <em>Is Encapsulated</em>}' attribute.
+	 * The default value of the '{@link #isEncapsulated() <em>Is Encapsulated</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see #isIsEncapsulated()
+	 * @see #isEncapsulated()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ENCAPSULATED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsEncapsulated() <em>Is Encapsulated</em>}' attribute.
+	 * The cached value of the '{@link #isEncapsulated() <em>Is Encapsulated</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @see #isIsEncapsulated()
+	 * @see #isEncapsulated()
 	 * @generated
 	 * @ordered
 	 */
@@ -94,7 +94,7 @@ public class BlockImpl extends EObjectImpl implements Block {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
 		case BlocksPackage.BLOCK__IS_ENCAPSULATED:
-			return isIsEncapsulated();
+			return isEncapsulated();
 		case BlocksPackage.BLOCK__BASE_CLASS:
 			if(resolve)
 				return getBase_Class();
@@ -148,6 +148,16 @@ public class BlockImpl extends EObjectImpl implements Block {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isEncapsulated() {
+		return isEncapsulated;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -180,15 +190,6 @@ public class BlockImpl extends EObjectImpl implements Block {
 			}
 		}
 		return base_Class;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public boolean isIsEncapsulated() {
-		return isEncapsulated;
 	}
 
 	/**

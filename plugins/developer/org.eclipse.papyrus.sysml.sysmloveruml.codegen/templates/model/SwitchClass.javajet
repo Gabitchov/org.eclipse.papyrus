@@ -20,12 +20,10 @@
 <%@ include file="../Header.javajetinc"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
 
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Package;
 <%genModel.addImport("org.eclipse.uml2.uml.Package");%>
 <%genModel.addImport("org.eclipse.uml2.uml.Class");%>
 <%genModel.addImport("org.eclipse.uml2.uml.*");%>
-<%genModel.addImport("org.eclipse.papyrus.sysml.util.SysmlResource");%>
+<%genModel.addImport("org.eclipse.uml2.uml.util.UMLUtil");%>
 <%if (supportsComposition) {%>
 <%genModel.addImport("org.eclipse.emf.ecore.EObject");%>
 <%genModel.addImport("org.eclipse.emf.ecore.EPackage");%>
@@ -280,7 +278,7 @@ public class <%=genPackage.getSwitchClassName()%><%=templateParameters%><%if (su
 	 * @generated
 	 */
 		protected Boolean <%=SysMLOverUMLHelper.getIsXFromYLabelFunction(genClass,eClass) %>(<%=eClass.getName()%> <%=SysMLOverUMLHelper.getBasedClassVariableName(eClass)%>) {
-			if(<%=SysMLOverUMLHelper.getBasedClassVariableName(eClass)%>.getAppliedStereotype(SysmlResource.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(genClass.getEcoreClass())%>_ID) != null) {
+			if(UMLUtil.getStereotypeApplication(<%=SysMLOverUMLHelper.getBasedClassVariableName(eClass)%>, <%=genPackage.getClassUniqueName(genClass)%>.class) != null) {
 				return true;
 			}
 			return false;
