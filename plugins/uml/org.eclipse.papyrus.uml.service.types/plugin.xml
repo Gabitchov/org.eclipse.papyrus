@@ -80,9 +80,11 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for ActivityNode -->
-	<metamodelType id="org.eclipse.papyrus.uml.ActivityNode" name="UML::ActivityNode"
-		eclass="ActivityNode"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="ActivityNode"
+       id="org.eclipse.papyrus.uml.ActivityNode"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::ActivityNode">
 			<param name="semanticHint" value="UML::ActivityNode"/>
 	</metamodelType>
 	
@@ -1550,9 +1552,12 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for StructuredActivityNode -->
-	<metamodelType id="org.eclipse.papyrus.uml.StructuredActivityNode" name="UML::StructuredActivityNode"
-		eclass="StructuredActivityNode"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="StructuredActivityNode"
+       edithelper="org.eclipse.papyrus.uml.service.types.helper.StructuredActivityNodeEditHelper"
+       id="org.eclipse.papyrus.uml.StructuredActivityNode"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::StructuredActivityNode">
 			<param name="semanticHint" value="UML::StructuredActivityNode"/>
 	</metamodelType>
 	
