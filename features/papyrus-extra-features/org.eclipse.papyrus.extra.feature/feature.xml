@@ -21,4 +21,20 @@
          id="org.eclipse.papyrus.extra.compare.report.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.extra.layout.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.properties.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.extra.marte.textedit.feature"
+         version="0.0.0"/>
+
 </feature>
