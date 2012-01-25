@@ -124,4 +124,56 @@ We now use the "local" reader:
    </rm:uri>
  </rm:provider>
 
+== Creating a composite update site ==
+
+A composite update site contains child update sites that appear as if their contents were in the composite update site. It is a way to aggregate update sites without having to physically move all the plug-ins in the same "plugins" directory (and the features in the "features" directory).
+
+To create a composite update site, add two files named compositeArtifacts.xml and compositeContent.xml at the root of the composite update site.
+Here is an example of the content of these files, for a composite update site that contains two children named "main" and "extra".
+
+"p2.timestamp" is the Unix date in milliseconds, which must be udpated everytime you change the compositeArtifacts.xml or compositeContent.xml files.
+To obtain the right value, use the command:
+ date +%s000
+
+
+compositeArtifacts.xml:
+ <?xml version="1.0" encoding="UTF-8"?>
+ <repository name="Papyrus" type="org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository" version="1.0.0">
+   <properties size="1">
+     <property name="p2.timestamp" value="1327488131000"/>
+   </properties>
+   <children size="2">
+     <child location="main"/>
+     <child location="extra"/>
+   </children>
+ </repository>
+
+compositeContent.xml:
+ <?xml version="1.0" encoding="UTF-8"?>
+ <repository name="Papyrus" type="org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository" version="1.0.0">
+   <properties size="1">
+     <property name="p2.timestamp" value="1327488131000"/>
+   </properties>
+   <children size="2">
+     <child location="main"/>
+     <child location="extra"/>
+   </children>
+ </repository>
+
+The update site directory looks like this:
+ compositeArtifacts.xml
+ compositeContent.xml
+ main
+   artifacts.jar
+   content.jar
+   features
+   plugins
+ extra
+   artifacts.jar
+   content.jar
+   features
+   plugins
+
+== Retention policy ==
+TODO: Papyrus should define a retention policy, and link to it in the portal.
 
