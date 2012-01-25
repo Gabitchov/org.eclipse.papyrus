@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Abstraction} is a {@link DeriveReqt}
@@ -26,7 +26,7 @@ public class DeriveReqtMatcher implements IElementMatcher {
 		if(eObject instanceof Abstraction) {
 
 			Abstraction element = (Abstraction)eObject;
-			if(ElementUtil.getStereotypeApplication(element, DeriveReqt.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, DeriveReqt.class) != null) {
 				isMatch = true;
 			}
 		}

@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Interface} is a {@link FlowSpecification}
@@ -26,7 +26,7 @@ public class FlowSpecificationMatcher implements IElementMatcher {
 		if(eObject instanceof Interface) {
 
 			Interface element = (Interface)eObject;
-			if(ElementUtil.getStereotypeApplication(element, FlowSpecification.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, FlowSpecification.class) != null) {
 				isFlowSpec = true;
 			}
 		}

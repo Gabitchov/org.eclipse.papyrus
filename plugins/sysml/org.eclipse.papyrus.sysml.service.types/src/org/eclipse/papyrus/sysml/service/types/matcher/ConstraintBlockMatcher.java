@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Class} is a {@link ConstraintBlock}
@@ -26,7 +26,7 @@ public class ConstraintBlockMatcher implements IElementMatcher {
 		if(eObject instanceof Class) {
 
 			Class element = (Class)eObject;
-			if(ElementUtil.getStereotypeApplication(element, ConstraintBlock.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, ConstraintBlock.class) != null) {
 				isMatch = true;
 			}
 		}

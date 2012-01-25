@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.blocks.ValueType;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link PrimitiveType} is a {@link ValueType}
@@ -26,7 +26,7 @@ public class ValueTypePrimitiveTypeMatcher implements IElementMatcher {
 		if(eObject instanceof PrimitiveType) {
 
 			PrimitiveType element = (PrimitiveType)eObject;
-			if(ElementUtil.getStereotypeApplication(element, ValueType.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, ValueType.class) != null) {
 				isMatch = true;
 			}
 		}

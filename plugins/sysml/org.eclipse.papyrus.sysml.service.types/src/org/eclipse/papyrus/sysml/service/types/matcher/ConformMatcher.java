@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Dependency} is a {@link Conform}
@@ -26,7 +26,7 @@ public class ConformMatcher implements IElementMatcher {
 		if(eObject instanceof Dependency) {
 
 			Dependency element = (Dependency)eObject;
-			if(ElementUtil.getStereotypeApplication(element, Conform.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, Conform.class) != null) {
 				isMatch = true;
 			}
 		}

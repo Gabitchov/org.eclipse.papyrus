@@ -30,7 +30,6 @@ import org.eclipse.papyrus.sysml.blocks.ValueType;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -119,8 +118,8 @@ public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEdit
 					return null; // accept these types
 				}
 
-				ValueType valueType = ElementUtil.getStereotypeApplication(value, ValueType.class);
-				Block block = ElementUtil.getStereotypeApplication(value, Block.class);
+				ValueType valueType = UMLUtil.getStereotypeApplication(value, ValueType.class);
+				Block block = UMLUtil.getStereotypeApplication(value, Block.class);
 
 				if((block != null) || (valueType != null)) {
 					return null; // accept these types

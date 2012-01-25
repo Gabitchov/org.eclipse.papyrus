@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.InformationFlow;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link InformationFlow} is a {@link ItemFlow}
@@ -26,7 +26,7 @@ public class ItemFlowMatcher implements IElementMatcher {
 		if(eObject instanceof InformationFlow) {
 
 			InformationFlow element = (InformationFlow)eObject;
-			if(ElementUtil.getStereotypeApplication(element, ItemFlow.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, ItemFlow.class) != null) {
 				isMatch = true;
 			}
 		}

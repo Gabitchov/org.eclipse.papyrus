@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Property} is a {@link ConstraintProperty}
@@ -26,7 +26,7 @@ public class ConstraintPropertyMatcher implements IElementMatcher {
 		if(eObject instanceof Property) {
 
 			Property element = (Property) eObject;
-			if(ElementUtil.getStereotypeApplication(element, ConstraintProperty.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, ConstraintProperty.class) != null) {
 				isMatch = true;
 			}
 		}

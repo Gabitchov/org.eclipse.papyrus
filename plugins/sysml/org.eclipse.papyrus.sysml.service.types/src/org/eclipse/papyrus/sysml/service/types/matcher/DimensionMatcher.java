@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.blocks.Dimension;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link InstanceSpecification} is a {@link Dimension}
@@ -26,7 +26,7 @@ public class DimensionMatcher implements IElementMatcher {
 		if(eObject instanceof InstanceSpecification) {
 
 			InstanceSpecification element = (InstanceSpecification)eObject;
-			if(ElementUtil.getStereotypeApplication(element, Dimension.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, Dimension.class) != null) {
 				isMatch = true;
 			}
 		}

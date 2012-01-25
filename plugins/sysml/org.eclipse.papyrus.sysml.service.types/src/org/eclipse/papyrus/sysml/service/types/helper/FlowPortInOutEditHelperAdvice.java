@@ -24,7 +24,6 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -45,7 +44,7 @@ public class FlowPortInOutEditHelperAdvice extends AbstractStereotypedElementEdi
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				Port port = (Port)request.getElementToConfigure();
-				FlowPort flowPort = ElementUtil.getStereotypeApplication(port, FlowPort.class);
+				FlowPort flowPort = UMLUtil.getStereotypeApplication(port, FlowPort.class);
 				if(flowPort != null) {
 					flowPort.setDirection(FlowDirection.INOUT);
 				}

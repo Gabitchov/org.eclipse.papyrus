@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.modelelements.View;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Package} is a {@link View}
@@ -26,7 +26,7 @@ public class ViewMatcher implements IElementMatcher {
 		if(eObject instanceof Package) {
 
 			Package element = (Package)eObject;
-			if(ElementUtil.getStereotypeApplication(element, View.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, View.class) != null) {
 				isMatch = true;
 			}
 		}

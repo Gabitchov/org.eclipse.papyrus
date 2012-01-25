@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Comment} is a {@link Problem}
@@ -26,7 +26,7 @@ public class ProblemMatcher implements IElementMatcher {
 		if(eObject instanceof Comment) {
 
 			Comment element = (Comment)eObject;
-			if(ElementUtil.getStereotypeApplication(element, Problem.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, Problem.class) != null) {
 				isMatch = true;
 			}
 		}

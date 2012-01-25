@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Port} is a non atomic {@link FlowPort}.
@@ -27,7 +27,7 @@ public class FlowPortNAMatcher implements IElementMatcher {
 		if(eObject instanceof Port) {
 
 			Port port = (Port)eObject;
-			FlowPort flowPort = ElementUtil.getStereotypeApplication(port, FlowPort.class);
+			FlowPort flowPort = UMLUtil.getStereotypeApplication(port, FlowPort.class);
 
 			if((flowPort != null) && (! flowPort.isIsAtomic())) {
 				isFlowPort_NA = true;

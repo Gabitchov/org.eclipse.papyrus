@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -47,7 +46,7 @@ public class FlowPortNAEditHelperAdvice extends AbstractStereotypedElementEditHe
 				
 				// Ensure the type is a FlowSpecification
 				if((port != null) && (port.getType() != null)) {
-					if (ElementUtil.getStereotypeApplication(port.getType(), FlowSpecification.class) != null) {
+					if (UMLUtil.getStereotypeApplication(port.getType(), FlowSpecification.class) != null) {
 						return CommandResult.newOKCommandResult(port);
 					}
 				}

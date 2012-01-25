@@ -23,7 +23,6 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -74,7 +73,7 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 					return UnexecutableCommand.INSTANCE;
 				}
 
-				ConstraintBlock constraint = ElementUtil.getStereotypeApplication((Element)request.getValue(), ConstraintBlock.class);
+				ConstraintBlock constraint = UMLUtil.getStereotypeApplication((Element)request.getValue(), ConstraintBlock.class);
 				if(constraint == null) {
 					return UnexecutableCommand.INSTANCE;
 				}

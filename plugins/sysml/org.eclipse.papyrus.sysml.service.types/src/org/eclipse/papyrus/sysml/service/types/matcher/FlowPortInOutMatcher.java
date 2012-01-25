@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Port} is a {@link FlowPort} with INOUT direction
@@ -28,7 +28,7 @@ public class FlowPortInOutMatcher implements IElementMatcher {
 		if(eObject instanceof Port) {
 
 			Port port = (Port)eObject;
-			FlowPort flowPort = ElementUtil.getStereotypeApplication(port, FlowPort.class);
+			FlowPort flowPort = UMLUtil.getStereotypeApplication(port, FlowPort.class);
 
 			if((flowPort != null) && (flowPort.getDirection() == FlowDirection.INOUT)) {
 				isFlowPort_INOUT = true;

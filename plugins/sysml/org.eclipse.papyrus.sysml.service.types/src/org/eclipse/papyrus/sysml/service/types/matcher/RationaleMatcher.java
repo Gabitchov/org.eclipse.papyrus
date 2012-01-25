@@ -12,8 +12,8 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Test if current {@link Comment} is a {@link Rationale}
@@ -26,7 +26,7 @@ public class RationaleMatcher implements IElementMatcher {
 		if(eObject instanceof Comment) {
 
 			Comment element = (Comment)eObject;
-			if(ElementUtil.getStereotypeApplication(element, Rationale.class) != null) {
+			if(UMLUtil.getStereotypeApplication(element, Rationale.class) != null) {
 				isMatch = true;
 			}
 		}

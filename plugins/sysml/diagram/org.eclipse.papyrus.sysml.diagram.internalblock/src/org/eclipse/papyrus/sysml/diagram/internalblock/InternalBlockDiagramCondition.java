@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.papyrus.sysml.blocks.Block;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * InternalBlockDiagramCondition to set conditions for the diagram creation
@@ -31,7 +31,7 @@ public class InternalBlockDiagramCondition extends PerspectiveContextDependence 
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof org.eclipse.uml2.uml.Class) {
 				org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class)selectedElement;
-				if(ElementUtil.getStereotypeApplication(clazz, Block.class) != null) {
+				if(UMLUtil.getStereotypeApplication(clazz, Block.class) != null) {
 					return true;
 				}
 			}
