@@ -62,7 +62,8 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.gef,
  org.eclipse.papyrus.diagram.common.groups,
  org.eclipse.papyrus.editor;bundle-version="0.8.2",
- org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.2"
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.2",
+ org.eclipse.papyrus.service.edit
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.8.2.qualifier

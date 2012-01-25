@@ -1194,9 +1194,12 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for Pin -->
-	<metamodelType id="org.eclipse.papyrus.uml.Pin" name="UML::Pin"
-		eclass="Pin"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="Pin"
+       edithelper="org.eclipse.papyrus.uml.service.types.helper.PinEditHelper"
+       id="org.eclipse.papyrus.uml.Pin"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::Pin">
 			<param name="semanticHint" value="UML::Pin"/>
 	</metamodelType>
 	

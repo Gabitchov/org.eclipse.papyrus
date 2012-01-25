@@ -16902,7 +16902,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="elements that intherit form UMLNodeEditpart"
-        genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.3"
+        genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.52"
         name="UMLNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart"/>
     <extensionNodes
@@ -16964,5 +16964,10 @@
         role="DecisionInputFlow"
         iconPathRole=""
         linkLabels="/0/@diagram/@links.2/@labels.4"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService"
+        comment=""
+        name="Delete service elements"
+        genView="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.87"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
