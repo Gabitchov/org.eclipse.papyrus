@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2010 Mia-Software
+Copyright (c) 2010-2012 Mia-Software
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
 Gregoire Dupe (Mia-Software) - initial contribution
 Remi Schnekenburger (CEA LIST) - modification for Papyrus stats
+Nicolas Bros (Mia-Software) - stats for extra plug-ins
 -->
 <xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
 	version="1.0">
@@ -27,26 +28,14 @@ Remi Schnekenburger (CEA LIST) - modification for Papyrus stats
 		</properties>
 	</xsl:template>
 
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.core']/properties">
-		<xsl:call-template name="artifact_properties"/>
-	</xsl:template>
-	
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.diagram.clazz']/properties">
+	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.layout']/properties">
 		<xsl:call-template name="artifact_properties"/>
 	</xsl:template>
 
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.sysml']/properties">
+	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.marte.static.profile']/properties">
 		<xsl:call-template name="artifact_properties"/>
 	</xsl:template>
-	
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.doc']/properties">
-		<xsl:call-template name="artifact_properties"/>
-	</xsl:template>
-	
-	<xsl:template match="artifact[@classifier='osgi.bundle' and @id='org.eclipse.papyrus.properties.tabbed.customization']/properties">
-		<xsl:call-template name="artifact_properties"/>
-	</xsl:template>
-	
+
  	<xsl:template name="artifact_properties">
  		<properties size='{@size+1}'>
 			<xsl:copy-of select="property" />

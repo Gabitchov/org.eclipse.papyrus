@@ -154,6 +154,8 @@ cat > "$updateSiteDir/compositeContent.xml" <<EOF
 </repository>
 EOF
 
+$ADD_DOWNLOAD_STATS "$updateSiteDir/main" "main"
+
 # ============================== PUBLISH EXTRAS ==============================
 if [[ "$extrasBuildNumber" != "0" ]]; then
 	nfsURL="/shared/jobs/papyrus-trunk-extra-nightly/builds/$extrasBuildNumber/archive/"
@@ -164,6 +166,8 @@ if [[ "$extrasBuildNumber" != "0" ]]; then
 	# unzips under an "extra" folder under the main build's folder
 	unzip -o "$zipName" -d "$buildsDir/$folderName"
 	unzip -o "$buildsDir/$folderName/extra/$updateZipName" -d "$updateSiteDir/extra"
+	
+	$ADD_DOWNLOAD_STATS "$updateSiteDir/extra" "extra"
 fi
 
 # ============================== PUBLISH TESTS ==============================

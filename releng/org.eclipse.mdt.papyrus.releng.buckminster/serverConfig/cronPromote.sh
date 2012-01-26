@@ -41,7 +41,7 @@ ARCHIVE_DIR=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/
 ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html
 
 # constants required by promoteFunctions.sh
-export ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
+# export ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
 
 # wait for up to 15 minutes for Hudson to finish (archive the result)
 JOB_FINISH_WAIT_TIMEOUT=900

@@ -9,8 +9,7 @@
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
-  <createdBy>mward</createdBy>
-  <creationTime>1326137668126</creationTime>
+  <creationTime>0</creationTime>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
@@ -74,6 +73,7 @@
               <string>N</string>
               <string>M</string>
               <string>R</string>
+              <string>S</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
@@ -97,78 +97,98 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Workspace:ytanguy</permission>
+      <permission>hudson.model.Item.Workspace:tfaure</permission>
+      <permission>hudson.model.Item.Workspace:ptessier</permission>
+      <permission>hudson.model.Item.Workspace:vlorenzo</permission>
+      <permission>hudson.model.Item.Workspace:vhemery</permission>
+      <permission>hudson.model.Item.Workspace:tlandre</permission>
+      <permission>hudson.model.Item.Workspace:eperico</permission>
+      <permission>hudson.model.Item.Workspace:mvelten</permission>
+      <permission>hudson.model.Item.Workspace:rschnekenbu</permission>
+      <permission>hudson.model.Item.Workspace:cdumoulin</permission>
+      <permission>hudson.model.Item.Workspace:cmraidha</permission>
+      <permission>hudson.model.Item.Workspace:rfaudou</permission>
+      <permission>hudson.model.Item.Workspace:tfesenko</permission>
+      <permission>hudson.model.Item.Workspace:nbros</permission>
+      <permission>hudson.model.Item.Workspace:sgerard</permission>
+      <permission>hudson.model.Run.Update:ytanguy</permission>
+      <permission>hudson.model.Run.Update:tfaure</permission>
+      <permission>hudson.model.Run.Update:ptessier</permission>
+      <permission>hudson.model.Run.Update:vlorenzo</permission>
+      <permission>hudson.model.Run.Update:vhemery</permission>
+      <permission>hudson.model.Run.Update:tlandre</permission>
+      <permission>hudson.model.Run.Update:eperico</permission>
+      <permission>hudson.model.Run.Update:mvelten</permission>
+      <permission>hudson.model.Run.Update:rschnekenbu</permission>
+      <permission>hudson.model.Run.Update:cdumoulin</permission>
+      <permission>hudson.model.Run.Update:cmraidha</permission>
+      <permission>hudson.model.Run.Update:rfaudou</permission>
+      <permission>hudson.model.Run.Update:tfesenko</permission>
+      <permission>hudson.model.Run.Update:nbros</permission>
+      <permission>hudson.model.Run.Update:sgerard</permission>
       <permission>hudson.model.Item.Build:ytanguy</permission>
       <permission>hudson.model.Item.Build:tfaure</permission>
-      <permission>hudson.model.Item.Build:mvelten</permission>
       <permission>hudson.model.Item.Build:ptessier</permission>
       <permission>hudson.model.Item.Build:vlorenzo</permission>
+      <permission>hudson.model.Item.Build:vhemery</permission>
+      <permission>hudson.model.Item.Build:tlandre</permission>
+      <permission>hudson.model.Item.Build:eperico</permission>
+      <permission>hudson.model.Item.Build:mvelten</permission>
       <permission>hudson.model.Item.Build:rschnekenbu</permission>
       <permission>hudson.model.Item.Build:cdumoulin</permission>
-      <permission>hudson.model.Item.Build:tfesenko</permission>
-      <permission>hudson.model.Item.Build:rfaudou</permission>
       <permission>hudson.model.Item.Build:cmraidha</permission>
-      <permission>hudson.model.Item.Build:tlandre</permission>
+      <permission>hudson.model.Item.Build:rfaudou</permission>
+      <permission>hudson.model.Item.Build:tfesenko</permission>
+      <permission>hudson.model.Item.Build:nbros</permission>
       <permission>hudson.model.Item.Build:sgerard</permission>
       <permission>hudson.model.Item.Read:ytanguy</permission>
       <permission>hudson.model.Item.Read:tfaure</permission>
-      <permission>hudson.model.Item.Read:mvelten</permission>
       <permission>hudson.model.Item.Read:ptessier</permission>
       <permission>hudson.model.Item.Read:vlorenzo</permission>
+      <permission>hudson.model.Item.Read:vhemery</permission>
+      <permission>hudson.model.Item.Read:tlandre</permission>
+      <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Read:eperico</permission>
+      <permission>hudson.model.Item.Read:mvelten</permission>
       <permission>hudson.model.Item.Read:rschnekenbu</permission>
       <permission>hudson.model.Item.Read:cdumoulin</permission>
-      <permission>hudson.model.Item.Read:tfesenko</permission>
-      <permission>hudson.model.Item.Read:rfaudou</permission>
       <permission>hudson.model.Item.Read:cmraidha</permission>
-      <permission>hudson.model.Item.Read:tlandre</permission>
+      <permission>hudson.model.Item.Read:rfaudou</permission>
+      <permission>hudson.model.Item.Read:tfesenko</permission>
+      <permission>hudson.model.Item.Read:nbros</permission>
       <permission>hudson.model.Item.Read:sgerard</permission>
-      <permission>hudson.model.Item.Workspace:ytanguy</permission>
-      <permission>hudson.model.Item.Workspace:tfaure</permission>
-      <permission>hudson.model.Item.Workspace:mvelten</permission>
-      <permission>hudson.model.Item.Workspace:ptessier</permission>
-      <permission>hudson.model.Item.Workspace:vlorenzo</permission>
-      <permission>hudson.model.Item.Workspace:rschnekenbu</permission>
-      <permission>hudson.model.Item.Workspace:cdumoulin</permission>
-      <permission>hudson.model.Item.Workspace:tfesenko</permission>
-      <permission>hudson.model.Item.Workspace:rfaudou</permission>
-      <permission>hudson.model.Item.Workspace:cmraidha</permission>
-      <permission>hudson.model.Item.Workspace:tlandre</permission>
-      <permission>hudson.model.Item.Workspace:sgerard</permission>
-      <permission>hudson.model.Run.Delete:ytanguy</permission>
-      <permission>hudson.model.Run.Delete:tfaure</permission>
-      <permission>hudson.model.Run.Delete:mvelten</permission>
-      <permission>hudson.model.Run.Delete:ptessier</permission>
-      <permission>hudson.model.Run.Delete:vlorenzo</permission>
-      <permission>hudson.model.Run.Delete:rschnekenbu</permission>
-      <permission>hudson.model.Run.Delete:cdumoulin</permission>
-      <permission>hudson.model.Run.Delete:tfesenko</permission>
-      <permission>hudson.model.Run.Delete:rfaudou</permission>
-      <permission>hudson.model.Run.Delete:cmraidha</permission>
-      <permission>hudson.model.Run.Delete:tlandre</permission>
-      <permission>hudson.model.Run.Delete:sgerard</permission>
-      <permission>hudson.model.Run.Update:ytanguy</permission>
-      <permission>hudson.model.Run.Update:tfaure</permission>
-      <permission>hudson.model.Run.Update:mvelten</permission>
-      <permission>hudson.model.Run.Update:ptessier</permission>
-      <permission>hudson.model.Run.Update:vlorenzo</permission>
-      <permission>hudson.model.Run.Update:rschnekenbu</permission>
-      <permission>hudson.model.Run.Update:cdumoulin</permission>
-      <permission>hudson.model.Run.Update:tfesenko</permission>
-      <permission>hudson.model.Run.Update:rfaudou</permission>
-      <permission>hudson.model.Run.Update:cmraidha</permission>
-      <permission>hudson.model.Run.Update:tlandre</permission>
-      <permission>hudson.model.Run.Update:sgerard</permission>
+      <permission>hudson.model.Item.ExtendedRead:nbros</permission>
       <permission>hudson.model.Item.Configure:ytanguy</permission>
       <permission>hudson.model.Item.Configure:tfaure</permission>
-      <permission>hudson.model.Item.Configure:mvelten</permission>
       <permission>hudson.model.Item.Configure:ptessier</permission>
       <permission>hudson.model.Item.Configure:vlorenzo</permission>
+      <permission>hudson.model.Item.Configure:vhemery</permission>
+      <permission>hudson.model.Item.Configure:tlandre</permission>
+      <permission>hudson.model.Item.Configure:eperico</permission>
+      <permission>hudson.model.Item.Configure:mvelten</permission>
       <permission>hudson.model.Item.Configure:rschnekenbu</permission>
       <permission>hudson.model.Item.Configure:cdumoulin</permission>
-      <permission>hudson.model.Item.Configure:tfesenko</permission>
-      <permission>hudson.model.Item.Configure:rfaudou</permission>
       <permission>hudson.model.Item.Configure:cmraidha</permission>
-      <permission>hudson.model.Item.Configure:tlandre</permission>
+      <permission>hudson.model.Item.Configure:rfaudou</permission>
+      <permission>hudson.model.Item.Configure:tfesenko</permission>
+      <permission>hudson.model.Item.Configure:nbros</permission>
       <permission>hudson.model.Item.Configure:sgerard</permission>
+      <permission>hudson.model.Run.Delete:ytanguy</permission>
+      <permission>hudson.model.Run.Delete:tfaure</permission>
+      <permission>hudson.model.Run.Delete:ptessier</permission>
+      <permission>hudson.model.Run.Delete:vlorenzo</permission>
+      <permission>hudson.model.Run.Delete:vhemery</permission>
+      <permission>hudson.model.Run.Delete:tlandre</permission>
+      <permission>hudson.model.Run.Delete:eperico</permission>
+      <permission>hudson.model.Run.Delete:mvelten</permission>
+      <permission>hudson.model.Run.Delete:rschnekenbu</permission>
+      <permission>hudson.model.Run.Delete:cdumoulin</permission>
+      <permission>hudson.model.Run.Delete:cmraidha</permission>
+      <permission>hudson.model.Run.Delete:rfaudou</permission>
+      <permission>hudson.model.Run.Delete:tfesenko</permission>
+      <permission>hudson.model.Run.Delete:nbros</permission>
+      <permission>hudson.model.Run.Delete:sgerard</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.disk__usage.DiskUsageProperty/>
   </properties>
@@ -188,7 +208,7 @@
     <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
   </scm>
   <quietPeriod>300</quietPeriod>
-  <assignedNode>hudson-slave1</assignedNode>
+  <assignedNode>fastlane</assignedNode>
   <advancedAffinityChooser>false</advancedAffinityChooser>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -233,10 +253,9 @@ cp -a result/workspace/_temp/org.eclipse.papyrus.extra.build_*-eclipse.feature/s
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#publishing script#
-promoteSignal=/opt/public/modeling/mdt/papyrus/extra/papyrusExtraBuildPromoteSignalN
-promoteVersion=/opt/public/modeling/mdt/papyrus/extra/papyrusExtraBuildPromoteVersionN
-promoteDirName=/opt/public/modeling/mdt/papyrus/extra/papyrusExtraBuildPromoteDirNameN
-lastBuildLogFile=/opt/public/modeling/mdt/papyrus/extra/lastBuildLogN
+promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.8-maintenance-extra-nightly/promoteSignal
+promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-0.8-maintenance-extra-nightly/promoteVersion
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.8-maintenance-extra-nightly/promoteDirName
 
 FULL_BUILD_ID=$(cat /opt/public/modeling/mdt/papyrus/extra/papyrusExtraBuildPromoteDirNameN)
 
@@ -264,8 +283,7 @@ fi
 
 # Test if build succeeded. If not, then exit with error 1.
 # Copy the log, because the commands appear in the grepped log...
-wget --quiet --no-check-certificate https://hudson.eclipse.org/hudson/job/cbi-papyrus-extra-nightly/${BUILD_NUMBER}/consoleText -O &quot;$lastBuildLogFile&quot;
-cp &quot;$lastBuildLogFile&quot; &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt&quot;
+wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O &quot;${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt&quot;
 
 cd ${WORKSPACE}/tmp
 zip -r ${FULL_BUILD_ID}.zip *

@@ -1,1 +1,0 @@
-*/5 * * * * /opt/public/modeling/mdt/papyrus/cronPromoteMonitor.sh

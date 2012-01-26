@@ -126,8 +126,10 @@ function promote() {
 	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
 	updateSiteZipName=$(basename $(ls -1 "$tmpDrop/$dirNameInZip/${_updateZipPrefix}"*.zip))
 	unzip -o "$tmpDrop/$dirNameInZip/${updateSiteZipName}" -d "$_updateSite"
-	echo "[$DATE] enabling download statistics"
-	$ADD_DOWNLOAD_STATS "$_updateSite"
+	
+	# commented out because we don't need statistics for nightlies
+	#echo "[$DATE] enabling download statistics"
+	#$ADD_DOWNLOAD_STATS "$_updateSite"
 	
 	echo "[$DATE] setting access rights"
 	#buildFolder="$buildsDir"/${_zipName/%\.zip/}
