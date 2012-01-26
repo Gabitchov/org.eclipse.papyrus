@@ -31,6 +31,8 @@ import org.xml.sax.SAXException;
 
 public class FeatureProjectEditor extends ProjectEditor implements IFeatureProjectEditor {
 
+	//TODO pour l'externalization : utiliser l'éditeur de Properties! dans java Utils
+	
 	private Document fragmentXML;;
 
 	private IFile fragmentFile;;
