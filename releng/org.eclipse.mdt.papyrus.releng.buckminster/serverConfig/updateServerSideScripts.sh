@@ -14,7 +14,19 @@ SVN_LOC="file:///svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclip
 
 cd "$SCRIPTS_LOC"
 
-for i in addDownloadStats.sh addDownloadStats.xsl cronPromote.sh cronPromoteMonitor.sh manualPromote.sh promoteFunctions.sh addToComposite.sh addToComposite.xsl; do
+scripts="
+addDownloadStats-extra.xsl
+addDownloadStats-main.xsl
+addDownloadStats.sh
+addToComposite.sh
+addToComposite.xsl
+cronPromote.sh
+cronPromoteMonitor.sh
+manualPromote.sh
+promoteFunctions.sh
+"
+
+for i in $scripts; do
 	svn export "$SVN_LOC/$i"
 	chmod +x "$i"
 done
