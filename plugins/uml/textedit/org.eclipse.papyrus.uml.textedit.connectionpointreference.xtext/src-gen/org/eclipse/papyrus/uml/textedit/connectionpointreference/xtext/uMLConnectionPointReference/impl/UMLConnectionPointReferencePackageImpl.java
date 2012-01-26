@@ -18,6 +18,10 @@ import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnec
 
 import org.eclipse.uml2.uml.UMLPackage;
 
+import types.TypesPackage;
+
+import types.impl.TypesPackageImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
@@ -84,11 +88,16 @@ public class UMLConnectionPointReferencePackageImpl extends EPackageImpl impleme
     // Initialize simple dependencies
     UMLPackage.eINSTANCE.eClass();
 
+    // Obtain or create and register interdependencies
+    TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
+
     // Create package meta-data objects
     theUMLConnectionPointReferencePackage.createPackageContents();
+    theTypesPackage.createPackageContents();
 
     // Initialize created meta-data
     theUMLConnectionPointReferencePackage.initializePackageContents();
+    theTypesPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     theUMLConnectionPointReferencePackage.freeze();

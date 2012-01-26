@@ -104,10 +104,10 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:505:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:505:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:504:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:504:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:505:11: ( '^' )?
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:504:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -116,7 +116,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:505:11: '^'
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:504:11: '^'
                     {
                     match('^'); 
 
@@ -134,7 +134,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:505:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:504:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -183,10 +183,10 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:507:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:507:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:506:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:506:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:507:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:506:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -200,7 +200,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:507:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:506:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -232,10 +232,10 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -253,10 +253,10 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -272,7 +272,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -288,7 +288,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -313,10 +313,10 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -332,7 +332,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -348,7 +348,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:509:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:508:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -391,12 +391,12 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:511:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:511:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:510:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:510:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:511:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:510:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -421,7 +421,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:511:52: .
+            	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:510:52: .
             	    {
             	    matchAny(); 
 
@@ -451,12 +451,12 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -469,7 +469,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -489,7 +489,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -498,9 +498,9 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:41: ( '\\r' )?
+                    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -509,7 +509,7 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:513:41: '\\r'
+                            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:512:41: '\\r'
                             {
                             match('\r'); 
 
@@ -541,10 +541,10 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:515:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:515:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:514:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:514:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:515:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:514:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -598,8 +598,8 @@ public class InternalUMLConnectionPointReferenceLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:517:16: ( . )
-            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:517:18: .
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:516:16: ( . )
+            // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/ui/contentassist/antlr/internal/InternalUMLConnectionPointReference.g:516:18: .
             {
             matchAny(); 
 

@@ -2,7 +2,7 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
   <xtext:Grammar name="org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference" usedGrammars="/1">
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="uml">
-      <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+      <ePackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="uMLConnectionPointReference">
       <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference#/"/>
@@ -17,7 +17,7 @@
           <elements xsi:type="xtext:Assignment" feature="entry" operator="+=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="/0/@metamodelDeclarations.0">
-                <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Pseudostate"/>
+                <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Pseudostate"/>
               </type>
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
             </terminal>
@@ -27,7 +27,7 @@
             <elements xsi:type="xtext:Assignment" feature="entry" operator="+=">
               <terminal xsi:type="xtext:CrossReference">
                 <type metamodel="/0/@metamodelDeclarations.0">
-                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Pseudostate"/>
+                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Pseudostate"/>
                 </type>
                 <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
               </terminal>
@@ -39,7 +39,7 @@
           <elements xsi:type="xtext:Assignment" feature="exit" operator="+=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="/0/@metamodelDeclarations.0">
-                <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Pseudostate"/>
+                <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Pseudostate"/>
               </type>
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
             </terminal>
@@ -49,7 +49,7 @@
             <elements xsi:type="xtext:Assignment" feature="exit" operator="+=">
               <terminal xsi:type="xtext:CrossReference">
                 <type metamodel="/0/@metamodelDeclarations.0">
-                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Pseudostate"/>
+                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Pseudostate"/>
                 </type>
                 <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
               </terminal>
