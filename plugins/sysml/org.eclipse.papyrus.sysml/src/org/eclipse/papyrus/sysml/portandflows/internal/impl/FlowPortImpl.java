@@ -261,7 +261,7 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 
 			Image image = st.getIcons().get(0);
 
-			if(isIsAtomic()) {
+			if(isAtomic()) {
 				if(getDirection() == FlowDirection.IN) {
 					image = st.getIcons().get(1);
 				} else if(getDirection() == FlowDirection.OUT) {
@@ -284,9 +284,22 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * @generated
+	 */
+	public void setBase_Port(Port newBase_Port) {
+		Port oldBase_Port = base_Port;
+		base_Port = newBase_Port;
+		if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__BASE_PORT, oldBase_Port, base_Port));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
-	public boolean isIsAtomic() {
+	public boolean isAtomic() {
 		// The FlowPort is Atomic if it is not typed by a FlowSpecification
 		Boolean isAtomic = true;
 		FlowSpecification flowSpec = null;
@@ -303,30 +316,6 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 			}
 		}
 		return isAtomic;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setBase_Port(Port newBase_Port) {
-		Port oldBase_Port = base_Port;
-		base_Port = newBase_Port;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PortandflowsPackage.FLOW_PORT__BASE_PORT, oldBase_Port, base_Port));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public boolean isAtomic() {
-		// TODO: implement this method to return the 'Is Atomic' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 
 	/**
