@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -25,6 +26,10 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStateFactory;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
 
 import org.eclipse.uml2.uml.UMLPackage;
+
+import types.TypesPackage;
+
+import types.impl.TypesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -134,11 +139,16 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
     // Initialize simple dependencies
     UMLPackage.eINSTANCE.eClass();
 
+    // Obtain or create and register interdependencies
+    TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
+
     // Create package meta-data objects
     theUmlStatePackage.createPackageContents();
+    theTypesPackage.createPackageContents();
 
     // Initialize created meta-data
     theUmlStatePackage.initializePackageContents();
+    theTypesPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     theUmlStatePackage.freeze();
@@ -455,6 +465,7 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
+    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
     UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
     // Create type parameters
@@ -465,7 +476,7 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(stateRuleEClass, StateRule.class, "StateRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStateRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStateRule_Name(), theEcorePackage.getEString(), "name", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStateRule_Submachine(), this.getSubmachineRule(), null, "submachine", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStateRule_Entry(), this.getEntryRule(), null, "entry", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStateRule_Do(), this.getDoRule(), null, "do", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -481,15 +492,15 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
 
     initEClass(entryRuleEClass, EntryRule.class, "EntryRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEntryRule_Kind(), this.getBehaviorKind(), "kind", null, 0, 1, EntryRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEntryRule_BehaviorName(), ecorePackage.getEString(), "behaviorName", null, 0, 1, EntryRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEntryRule_BehaviorName(), theEcorePackage.getEString(), "behaviorName", null, 0, 1, EntryRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(doRuleEClass, DoRule.class, "DoRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDoRule_Kind(), this.getBehaviorKind(), "kind", null, 0, 1, DoRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDoRule_BehaviorName(), ecorePackage.getEString(), "behaviorName", null, 0, 1, DoRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDoRule_BehaviorName(), theEcorePackage.getEString(), "behaviorName", null, 0, 1, DoRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exitRuleEClass, ExitRule.class, "ExitRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExitRule_Kind(), this.getBehaviorKind(), "kind", null, 0, 1, ExitRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getExitRule_BehaviorName(), ecorePackage.getEString(), "behaviorName", null, 0, 1, ExitRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExitRule_BehaviorName(), theEcorePackage.getEString(), "behaviorName", null, 0, 1, ExitRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(behaviorKindEEnum, BehaviorKind.class, "BehaviorKind");

@@ -2,8 +2,7 @@
 <?eclipse version="3.0"?>
 
 <plugin>
-
-    <extension
+ <extension
             point="org.eclipse.ui.editors">
         <editor
             class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
@@ -68,6 +67,19 @@
             id="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.templates"
             name="Templates">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.state.xtext.ui.keyword_UmlState"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"
+            name="UmlState">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.state.xtext.ui.keyword_UmlState"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
     <extension
@@ -139,6 +151,36 @@
 
 
 
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+      </participant>
+   </extension>
+   <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            category="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"
+            class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.compiler.preferencePage"
+            name="Compiler">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.state.xtext.ui.keyword_UmlState"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            category="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"
+            class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.compiler.propertyPage"
+            name="Compiler">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.state.xtext.ui.keyword_UmlState"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+    </extension>
 
 	<!-- Quick Outline -->
 	<extension
@@ -180,6 +222,9 @@
             class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
+   
+   
+   <!-- CUSTOM EXTENSION POINT -->
    <extension
          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
       <DirectEditor
