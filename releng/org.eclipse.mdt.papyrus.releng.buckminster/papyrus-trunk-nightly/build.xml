@@ -263,6 +263,14 @@
 				<arg value="${basedir}/${mspec.file}" />
 			</cmdargs>
 		</buckminster>
+		
+		<!-- Generate the psf -->
+		<echo message="Generating psf" />
+		<replace file="${build.root}/papyrus_bom.xml" token="${bom.local.source.tree}" value="${bom.svn.source.tree}"/>
+		<xslt style="${build.config.root.dir}/xsl/psf/bom2repository.xsl" in="${build.root}/papyrus_bom.xml" out="repository.xml" />
+		<xslt style="${build.config.root.dir}/xsl/psf/repository2subversive.xsl" in="repository.xml" out="${result}/subversive_${build.type}.psf" />
+		<xslt style="${build.config.root.dir}/xsl/psf/repository2subclipse.xsl" in="repository.xml" out="${result}/subclipse_${build.type}.psf" />
+		<delete file="repository.xml" />
 	</target>
 
 	<target name="site.p2" depends="provision" unless="skip.site.p2">
@@ -294,14 +302,6 @@
 		<xslt style="${build.config.root.dir}/xsl/content2xml.xsl" in="${site.p2.dir}/content.xml" out="${site.p2.dir}/index.xml" />
 		<delete file="${site.p2.dir}/content.xml" />
 		
-		<!-- Generate the psf -->
-		<echo message="Generating psf" />
-		<replace file="${build.root}/papyrus_bom.xml" token="${bom.local.source.tree}" value="${bom.svn.source.tree}"/>
-		<xslt style="${build.config.root.dir}/xsl/psf/bom2repository.xsl" in="${build.root}/papyrus_bom.xml" out="repository.xml" />
-		<xslt style="${build.config.root.dir}/xsl/psf/repository2subversive.xsl" in="repository.xml" out="${result}/subversive_${build.type}.psf" />
-		<xslt style="${build.config.root.dir}/xsl/psf/repository2subclipse.xsl" in="repository.xml" out="${result}/subclipse_${build.type}.psf" />
-		<delete file="repository.xml" />
-
 	</target>
 	
 	<target name="test" depends="site.p2" unless="skip.tests">
