@@ -14,6 +14,9 @@ package org.eclipse.papyrus.properties.runtime;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.constraints.CompoundConstraint;
 import org.eclipse.papyrus.properties.constraints.Constraint;
+import org.eclipse.papyrus.properties.contexts.CompositeConstraint;
+import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
+import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
 
 /**
  * A Singleton class for creating {@link Constraint}s from a {@link ConstraintDescriptor}
