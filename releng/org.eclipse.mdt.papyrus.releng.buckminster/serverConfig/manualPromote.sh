@@ -36,7 +36,6 @@ extrasBuildNumber=""
 testsBuildNumber=""
 version=""
 updateSite=""
-branchToTag=""
 sure=""
 
 echo "mainBuildNumber (the number of the \"papyrus-trunk-nightly\" Hudson build from which to publish the main Papyrus plug-ins): "
@@ -82,13 +81,6 @@ if [ -e "$updateSiteDir" ]; then
 	if [ "$deleteUpdateSite" != "yes" ]; then echo "Canceled."; exit 1; fi
 	rm -rf "$updateSiteDir"
 fi
-
-
-echo "branchToTag (e.g. \"trunk\", \"branches/0_1\", \"NA\"): "
-while [[ ! "$branchToTag" =~ ^(trunk|branches/.+?|NA)$ ]]; do
-	echo -n "? "
-	read branchToTag
-done
 
 
 echo "Are you sure you want to publish with these parameters (yes|no)?"
