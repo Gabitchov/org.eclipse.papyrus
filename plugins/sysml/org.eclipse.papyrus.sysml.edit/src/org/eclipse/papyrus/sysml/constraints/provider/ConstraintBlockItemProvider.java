@@ -169,7 +169,7 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		}
 
 		ConstraintBlock constraintBlock = (ConstraintBlock)constraintBlock_;
-		return getString("_UI_ConstraintBlock_type") + " " + constraintBlock.isIsEncapsulated();
+		return getString("_UI_ConstraintBlock_type") + " " + constraintBlock.isEncapsulated();
 	}
 
 	/**

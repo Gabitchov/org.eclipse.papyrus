@@ -33,10 +33,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
+import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.papyrus.uml.standard.provider.TraceItemProvider;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -49,7 +49,7 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * 
  * @generated
  */
-public class SatisfyItemProvider extends TraceItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
+public class SatisfyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
 
 {
 

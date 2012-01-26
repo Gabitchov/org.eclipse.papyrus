@@ -246,7 +246,7 @@ public class BlockItemProvider extends SysMLItemProviderAdapter implements IEdit
 		}
 
 		Block block = (Block)block_;
-		return getString("_UI_Block_type") + " " + block.isIsEncapsulated();
+		return getString("_UI_Block_type") + " " + block.isEncapsulated();
 	}
 
 	/**

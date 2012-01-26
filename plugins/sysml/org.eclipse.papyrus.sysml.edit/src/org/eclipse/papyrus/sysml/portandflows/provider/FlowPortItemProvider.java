@@ -320,7 +320,7 @@ public class FlowPortItemProvider extends SysMLItemProviderAdapter implements IE
 		}
 
 		FlowPort flowPort = (FlowPort)flowPort_;
-		return getString("_UI_FlowPort_type") + " " + flowPort.isIsAtomic();
+		return getString("_UI_FlowPort_type") + " " + flowPort.isAtomic();
 	}
 
 	/**
