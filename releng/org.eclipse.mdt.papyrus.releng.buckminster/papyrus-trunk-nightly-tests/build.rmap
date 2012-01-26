@@ -286,7 +286,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/3.8milestones/S-3.8M4-201112091447">
+		<rm:uri format="{0}/eclipse/updates/4.2milestones/S-4.2M4-201112092100">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
