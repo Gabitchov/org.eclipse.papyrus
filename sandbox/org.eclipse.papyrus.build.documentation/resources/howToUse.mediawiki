@@ -1,20 +1,22 @@
-The Papyrus project is built using [[Buckminster]], with this releng project: [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster]
-(for the trunk; the branches are build with the corresponding project from the branch).
+The Papyrus project is built using [[Buckminster]], with this releng project:
+https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster
+(only for the trunk; the branches are build with the corresponding project from the branch).
 
 This project contains sub-folders containing the Buckminster configuration for each Hudson job. 
 
 == Hudson Jobs ==
 The Papyrus builds are started from Hudson. The following jobs exist currently:
 * papyrus-trunk-nightly : builds the main plug-ins on the trunk of Papyrus
-* papyrus-trunk-nightly-tests : installs the latest Papyrus nightly build and runs the unit tests
+* papyrus-trunk-nightly-tests : installs the latest Papyrus nightly build and runs the unit tests (on Eclipse 4.x)
+* papyrus-trunk-nightly-3.8-tests : installs the latest Papyrus nightly build and runs the unit tests (on Eclipse 3.x)
 * papyrus-trunk-extra-nightly : builds the "extra" plug-ins of Papyrus (on the trunk) 
 * papyrus-trunk-extra-nightly-tests (not implemented yet): installs the latest Papyrus nightly build with extras and runs the unit tests for the extra plug-ins
 * papyrus-0.8-maintenance-nightly : builds the main plug-ins on the branch 0.8 of Papyrus
 * papyrus-0.8-maintenance-nightly-tests : installs the latest Papyrus nightly build for branch 0.8 and runs the unit tests
-* papyrus-0.8-maintenance-nightly : builds the "extra" plug-ins of Papyrus (on branch 0.8) 
-* papyrus-0.8-maintenance-nightly-tests (not implemented yet): installs the latest Papyrus nightly build with extras (branch 0.8) and runs the unit tests for the extra plug-ins
+* papyrus-0.8-maintenance-extra-nightly : builds the "extra" plug-ins of Papyrus (on branch 0.8) 
+* papyrus-0.8-maintenance-extra-nightly-tests (not implemented yet): installs the latest Papyrus nightly build with extras (branch 0.8) and runs the unit tests for the extra plug-ins
 
-See all the currently defined Papyrus jobs on this page : [https://hudson.eclipse.org/hudson/user/vlorenzo/my-views/view/Papyrus https://hudson.eclipse.org/hudson/user/vlorenzo/my-views/view/Papyrus]
+See all the currently defined Papyrus jobs on this page : https://hudson.eclipse.org/hudson/user/vlorenzo/my-views/view/Papyrus
 
 == What is built? ==
 
@@ -82,7 +84,7 @@ These builds can then be seen and downloaded from http://www.eclipse.org/modelin
 === With the script ===
 
 To publish a milestone or release, you can use the manualPromote.sh script on: '''/opt/public/modeling/mdt/papyrus/manualPromote.sh'''
-Then, fill in the parameters in the interactive script, and it will:
+Start this script, and fill in the parameters in the interactive script, and it will:
 * publish the build to the download drops
 * 
 * 
