@@ -23,9 +23,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.
- UmlCommonActivator
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.uml2.uml
-

@@ -132,7 +132,7 @@ public class UmlCommonGrammarAccess extends AbstractGrammarElementFinder {
 	public class BoundSpecificationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BoundSpecification");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueUnlimitedLiteralTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueUnlimitedLiteralParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//BoundSpecification:
 		//	value=UnlimitedLiteral;
@@ -142,7 +142,27 @@ public class UmlCommonGrammarAccess extends AbstractGrammarElementFinder {
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
 		//UnlimitedLiteral
-		public RuleCall getValueUnlimitedLiteralTerminalRuleCall_0() { return cValueUnlimitedLiteralTerminalRuleCall_0; }
+		public RuleCall getValueUnlimitedLiteralParserRuleCall_0() { return cValueUnlimitedLiteralParserRuleCall_0; }
+	}
+
+	public class UnlimitedLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnlimitedLiteral");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//UnlimitedLiteral returns ecore::EString:
+		//	INT | "*";
+		public ParserRule getRule() { return rule; }
+
+		//INT | "*"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
 	}
 	
 	
@@ -239,7 +259,7 @@ public class UmlCommonGrammarAccess extends AbstractGrammarElementFinder {
 	private VisibilityKindElements unknownRuleVisibilityKind;
 	private MultiplicityRuleElements pMultiplicityRule;
 	private BoundSpecificationElements pBoundSpecification;
-	private TerminalRule tUnlimitedLiteral;
+	private UnlimitedLiteralElements pUnlimitedLiteral;
 	private DirectionElements unknownRuleDirection;
 	
 	private final GrammarProvider grammarProvider;
@@ -313,11 +333,15 @@ public class UmlCommonGrammarAccess extends AbstractGrammarElementFinder {
 		return getBoundSpecificationAccess().getRule();
 	}
 
-	//terminal UnlimitedLiteral:
-	//	"0".."9" "0".."9"* | "*";
-	public TerminalRule getUnlimitedLiteralRule() {
-		return (tUnlimitedLiteral != null) ? tUnlimitedLiteral : (tUnlimitedLiteral = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UnlimitedLiteral"));
-	} 
+	//UnlimitedLiteral returns ecore::EString:
+	//	INT | "*";
+	public UnlimitedLiteralElements getUnlimitedLiteralAccess() {
+		return (pUnlimitedLiteral != null) ? pUnlimitedLiteral : (pUnlimitedLiteral = new UnlimitedLiteralElements());
+	}
+	
+	public ParserRule getUnlimitedLiteralRule() {
+		return getUnlimitedLiteralAccess().getRule();
+	}
 
 	//enum Direction:
 	//	IN="in" | OUT="out" | INOUT="inout" | RETURN="return";

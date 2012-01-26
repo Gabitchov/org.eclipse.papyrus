@@ -241,7 +241,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 				try {
 					CheckedOperationHistory.getInstance().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
-					org.eclipse.papyrus.views.properties.runtime.Activator.log.error(e);
+					System.err.println(e);
 				}
 			}
 		};

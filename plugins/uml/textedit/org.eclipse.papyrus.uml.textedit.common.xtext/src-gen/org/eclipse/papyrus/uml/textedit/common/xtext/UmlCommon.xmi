@@ -2,20 +2,23 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
   <xtext:Grammar name="org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon" usedGrammars="/1">
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="uml">
-      <ePackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+      <ePackage href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+    </metamodelDeclarations>
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+      <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="umlCommon">
       <ePackage href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="QualifiedName">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//QualifiedName"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="path" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Namespace"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -27,7 +30,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="TypeRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//TypeRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -37,7 +40,7 @@
         <elements xsi:type="xtext:Assignment" feature="type" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Type"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </terminal>
@@ -45,7 +48,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:EnumRule" name="VisibilityKind">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//VisibilityKind"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -68,7 +71,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="MultiplicityRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//MultiplicityRule"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -86,33 +89,24 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="BoundSpecification">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//BoundSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:TerminalRule" name="UnlimitedLiteral">
-      <type metamodel="/1/@metamodelDeclarations.0">
+    <rules xsi:type="xtext:ParserRule" name="UnlimitedLiteral">
+      <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <elements xsi:type="xtext:Group">
-          <elements xsi:type="xtext:CharacterRange">
-            <left value="0"/>
-            <right value="9"/>
-          </elements>
-          <elements xsi:type="xtext:CharacterRange" cardinality="*">
-            <left value="0"/>
-            <right value="9"/>
-          </elements>
-        </elements>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
         <elements xsi:type="xtext:Keyword" value="*"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:EnumRule" name="Direction">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/0/@metamodelDeclarations.2">
         <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon#//Direction"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">

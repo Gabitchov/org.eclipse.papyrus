@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contenta
- ssist.antlr
+Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contentassist.antlr
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
@@ -16,7 +15,6 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.parameter.xtext;bundle-version=
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
- org.eclipse.papyrus.views.properties.runtime;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.textedit.common.xtext.ui;bundle-version="0.9.0",
@@ -24,11 +22,9 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.parameter.xtext;bundle-version=
 Bundle-Vendor: %providerName
 Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.intern
- al.UmlParameterActivator
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.internal.UmlParameterActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.gmf.runtime.common.core.command,
  org.eclipse.gmf.runtime.emf.type.core.requests,
  org.eclipse.uml2.uml
-

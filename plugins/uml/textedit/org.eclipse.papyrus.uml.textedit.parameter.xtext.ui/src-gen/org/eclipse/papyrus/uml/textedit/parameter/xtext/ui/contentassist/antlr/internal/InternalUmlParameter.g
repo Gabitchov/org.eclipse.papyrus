@@ -23,7 +23,6 @@ import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
@@ -281,6 +280,34 @@ finally {
 
 
 
+// Entry rule entryRuleUnlimitedLiteral
+entryRuleUnlimitedLiteral 
+:
+{ before(grammarAccess.getUnlimitedLiteralRule()); }
+	 ruleUnlimitedLiteral
+{ after(grammarAccess.getUnlimitedLiteralRule()); } 
+	 EOF 
+;
+
+// Rule UnlimitedLiteral
+ruleUnlimitedLiteral
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getUnlimitedLiteralAccess().getAlternatives()); }
+(rule__UnlimitedLiteral__Alternatives)
+{ after(grammarAccess.getUnlimitedLiteralAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 
 // Rule ModifierKind
 ruleModifierKind
@@ -375,6 +402,30 @@ rule__ParameterRule__Alternatives_4
 	'<Undefined>' 
 
 { after(grammarAccess.getParameterRuleAccess().getUndefinedKeyword_4_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__UnlimitedLiteral__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getUnlimitedLiteralAccess().getINTTerminalRuleCall_0()); }
+	RULE_INT
+{ after(grammarAccess.getUnlimitedLiteralAccess().getINTTerminalRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); }
+
+	'*' 
+
+{ after(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); }
 )
 
 ;
@@ -1719,8 +1770,8 @@ rule__BoundSpecification__ValueAssignment
     }
 :
 (
-{ before(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralTerminalRuleCall_0()); }
-	RULE_UNLIMITEDLITERAL{ after(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralTerminalRuleCall_0()); }
+{ before(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralParserRuleCall_0()); }
+	ruleUnlimitedLiteral{ after(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralParserRuleCall_0()); }
 )
 
 ;
@@ -1728,8 +1779,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-
-RULE_UNLIMITEDLITERAL : ('0'..'9' ('0'..'9')*|'*');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

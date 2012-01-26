@@ -11,11 +11,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
+
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.EffectKind;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.EffectRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifierKind;
@@ -24,6 +25,8 @@ import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifiersRu
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ParameterRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterFactory;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterPackage;
+
+import types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,6 +128,7 @@ public class UmlParameterPackageImpl extends EPackageImpl implements UmlParamete
 
     // Initialize simple dependencies
     UmlCommonPackage.eINSTANCE.eClass();
+    TypesPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theUmlParameterPackage.createPackageContents();
@@ -380,6 +384,7 @@ public class UmlParameterPackageImpl extends EPackageImpl implements UmlParamete
 
     // Obtain other dependent packages
     UmlCommonPackage theUmlCommonPackage = (UmlCommonPackage)EPackage.Registry.INSTANCE.getEPackage(UmlCommonPackage.eNS_URI);
+    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
 
@@ -391,7 +396,7 @@ public class UmlParameterPackageImpl extends EPackageImpl implements UmlParamete
     initEClass(parameterRuleEClass, ParameterRule.class, "ParameterRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParameterRule_Visibility(), theUmlCommonPackage.getVisibilityKind(), "visibility", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameterRule_Direction(), theUmlCommonPackage.getDirection(), "direction", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getParameterRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getParameterRule_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterRule_Type(), theUmlCommonPackage.getTypeRule(), null, "type", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterRule_Multiplicity(), theUmlCommonPackage.getMultiplicityRule(), null, "multiplicity", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterRule_Modifiers(), this.getModifiersRule(), null, "modifiers", null, 0, 1, ParameterRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
