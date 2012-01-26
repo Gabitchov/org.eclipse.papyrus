@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.views.modelexplorer.handler;
+package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
 
 import java.util.List;
 
@@ -26,7 +26,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.views.modelexplorer.messages.Messages;
+import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.messages.Messages;
+import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -58,7 +59,7 @@ public class RenameDiagramHandler extends AbstractCommandHandler {
 
 					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_rename_an_existing_diagram, Messages.RenameDiagramHandler_new_name, currentName, null);
+						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
 						if(dialog.open() == Window.OK) {
 							final String name = dialog.getValue();
 							if(name != null && name.length() > 0) {

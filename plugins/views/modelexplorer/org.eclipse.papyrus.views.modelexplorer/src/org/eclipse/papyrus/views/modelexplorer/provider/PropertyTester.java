@@ -37,9 +37,6 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public class PropertyTester extends org.eclipse.core.expressions.PropertyTester {
 
-	/** property to test if the selected element are open in the editor */
-	public static final String IS_DIAGRAM = "isDiagram"; //$NON-NLS-1$
-
 	/** property to test if the selected elements is an eObject */
 	public static final String IS_EOBJECT = "isEObject"; //$NON-NLS-1$
 
@@ -60,11 +57,6 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 * @return
 	 */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		if(IS_DIAGRAM.equals(property) && receiver instanceof IStructuredSelection) {
-			boolean answer = isDiagram((IStructuredSelection)receiver);
-			return new Boolean(answer).equals(expectedValue);
-		}
-
 		if(IS_EOBJECT.equals(property) && receiver instanceof IStructuredSelection) {
 			boolean answer = isObject((IStructuredSelection)receiver);
 			return new Boolean(answer).equals(expectedValue);
@@ -166,33 +158,5 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 		return false;
 	}
 
-	/**
-	 * Tests the selection in order to know if it contains only {@link Diagram}
-	 * 
-	 * @param selection
-	 * @return
-	 *         <code>true</code> if the selection is composed by {@link Diagram}
-	 * 
-	 *         FIXME : we should call the method isDiagram in
-	 *         oep.diagram.common#DiagramPropertyTester
-	 */
-	private boolean isDiagram(IStructuredSelection selection) {
-		if(!selection.isEmpty()) {
-			Iterator<?> iter = selection.iterator();
-			while(iter.hasNext()) {
-				/**
-				 * Set to use the IAdaptable mechanism
-				 * Used for example for facet elements
-				 */
-				final Object next = iter.next();
-				EObject diag = NavigatorUtils.getElement(next, EObject.class);
-				if(!(diag instanceof Diagram)) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
-	}
 
 }

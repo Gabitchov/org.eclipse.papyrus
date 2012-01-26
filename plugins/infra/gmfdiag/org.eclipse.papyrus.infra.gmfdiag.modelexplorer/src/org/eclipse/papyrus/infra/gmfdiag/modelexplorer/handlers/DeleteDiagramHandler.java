@@ -11,28 +11,30 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.views.modelexplorer.handler;
+package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
 
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.views.modelexplorer.messages.Messages;
+import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 
 /**
- * This handler provides the duplicate action for the diagrams
+ * Handler for the delete Diagram action
  * 
  * 
  * 
  */
-public class DuplicateDiagramHandler extends AbstractCommandHandler {
+public class DeleteDiagramHandler extends AbstractCommandHandler {
+
 
 	/**
 	 * 
@@ -43,34 +45,27 @@ public class DuplicateDiagramHandler extends AbstractCommandHandler {
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		final IPageMngr pageManager = getPageManager();
+		final IPageMngr pageMngr = getPageManager();
+
 		List<Diagram> diagrams = getSelectedDiagrams();
 
-		if(editingDomain != null && pageManager != null && !diagrams.isEmpty()) {
+		if(editingDomain != null && pageMngr != null && !diagrams.isEmpty()) {
 			CompoundCommand command = new CompoundCommand();
-			for(Diagram diagram : diagrams) {
 
-				// Clone the current diagram
-				final Diagram newDiagram = EcoreUtil.copy(diagram);
-				// Give a new name
-				newDiagram.setName(Messages.DuplicateDiagramHandler_copy_of + diagram.getName());
-				Command addGmfDiagramCmd = new AddCommand(editingDomain, diagram.eResource().getContents(), newDiagram);
-				// EMFCommandOperation operation = new
-				// EMFCommandOperation(editingDomain,
-				// addGmfDiagramCmd);
-
-				Command sashOpenComd = new RecordingCommand(editingDomain) {
+			for(final Diagram diagram : diagrams) {
+				Command sashRemoveComd = new RecordingCommand(editingDomain) {
 
 					@Override
 					protected void doExecute() {
-						pageManager.openPage(newDiagram);
+						if(pageMngr.isOpen(diagram)) {
+							pageMngr.closePage(diagram);
+						}
+						pageMngr.removePage(diagram);
 					}
 				};
-
-				// TODO : synchronize with Cedric
-				// command.append(operation.getCommand());
-				command.append(addGmfDiagramCmd);
-				command.append(sashOpenComd);
+				EList<EObject> diags = diagram.eResource().getContents();
+				command.append(sashRemoveComd);
+				command.append(new RemoveCommand(editingDomain, diags, diagram));
 			}
 			return command.isEmpty() ? UnexecutableCommand.INSTANCE : command;
 		}

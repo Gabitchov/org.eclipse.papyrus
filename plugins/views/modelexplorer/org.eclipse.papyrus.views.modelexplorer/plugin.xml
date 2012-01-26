@@ -280,19 +280,6 @@
    </command>
 </extension>
 <extension point="org.eclipse.ui.handlers">
-   <handler class="org.eclipse.papyrus.views.modelexplorer.handler.RenameDiagramHandler" commandId="org.eclipse.ui.edit.rename">
-      <activeWhen>
-         <with variable="selection">
-            <and>
-               <count value="1">
-               </count>
-               <!-- We add this test in order to refresh the Rename action in the menu edit -->
-               <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram" value="true">
-               </test>
-            </and>
-         </with>
-      </activeWhen>
-   </handler>
    <handler commandId="org.eclipse.papyrus.views.modelexplorer.popup.close.command">
       <activeWhen>
          <with variable="selection">
@@ -319,19 +306,6 @@
                </test>
             </and>
          </with>
-      </activeWhen>
-   </handler>
-   <handler class="org.eclipse.papyrus.views.modelexplorer.handler.DeleteDiagramHandler" commandId="org.eclipse.ui.edit.delete">
-      <activeWhen>
-         <and>
-            <with variable="selection">
-            </with>
-            <!-- We add this test in order to refresh the Delete action in the menu edit -->
-            <with variable="selection">
-               <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram" value="true">
-               </test>
-            </with>
-         </and>
       </activeWhen>
    </handler>
    <handler commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.command">
@@ -361,22 +335,6 @@
          <parameter name="open_parameter" value="already_open">
          </parameter>
       </class>
-   </handler>
-   <handler class="org.eclipse.papyrus.views.modelexplorer.handler.DuplicateDiagramHandler" commandId="org.eclipse.papyrus.views.modelexplorer.duplicate.command">
-      <activeWhen>
-      <and>
-         <with variable="selection">
-            <and>
-               <count value="1">
-               </count>
-            </and>
-         </with>
-         <with variable="selection">
-            <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isDiagram" value="true">
-            </test>
-         </with>
-         </and>
-      </activeWhen>
    </handler>
    <handler class="org.eclipse.papyrus.views.modelexplorer.handler.CutHandler" commandId="org.eclipse.ui.edit.cut">
       <activeWhen>
@@ -426,7 +384,7 @@
 </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters">
       <!-- the property tester is used to enabled/disabled handler -->
-   <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester" namespace="org.eclipse.papyrus.views.modelexplorer.tester" properties="isDiagram, isEObject, isPage" type="org.eclipse.jface.viewers.IStructuredSelection">
+   <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester" namespace="org.eclipse.papyrus.views.modelexplorer.tester" properties="isEObject, isPage" type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
    <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester.view" namespace="org.eclipse.papyrus.views.modelexplorer.tester.view" properties="isModelExplorer" type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>
