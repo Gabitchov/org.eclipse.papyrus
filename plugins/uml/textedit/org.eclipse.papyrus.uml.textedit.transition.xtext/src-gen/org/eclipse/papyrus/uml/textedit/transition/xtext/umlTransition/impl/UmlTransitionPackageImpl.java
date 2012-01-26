@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -29,6 +30,10 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage;
 
 import org.eclipse.uml2.uml.UMLPackage;
+
+import types.TypesPackage;
+
+import types.impl.TypesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -166,11 +171,16 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
     // Initialize simple dependencies
     UMLPackage.eINSTANCE.eClass();
 
+    // Obtain or create and register interdependencies
+    TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
+
     // Create package meta-data objects
     theUmlTransitionPackage.createPackageContents();
+    theTypesPackage.createPackageContents();
 
     // Initialize created meta-data
     theUmlTransitionPackage.initializePackageContents();
+    theTypesPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     theUmlTransitionPackage.freeze();
@@ -481,6 +491,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 
     // Obtain other dependent packages
     UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
 
@@ -506,24 +517,24 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
     initEReference(getCallOrSignalEventRule_OperationOrSignal(), theUMLPackage.getNamedElement(), null, "operationOrSignal", null, 0, 1, CallOrSignalEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(anyReceiveEventRuleEClass, AnyReceiveEventRule.class, "AnyReceiveEventRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAnyReceiveEventRule_IsAReceiveEvent(), ecorePackage.getEString(), "isAReceiveEvent", null, 0, 1, AnyReceiveEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAnyReceiveEventRule_IsAReceiveEvent(), theEcorePackage.getEString(), "isAReceiveEvent", null, 0, 1, AnyReceiveEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(timeEventRuleEClass, TimeEventRule.class, "TimeEventRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTimeEventRule_Expr(), ecorePackage.getEString(), "expr", null, 0, 1, TimeEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTimeEventRule_Expr(), theEcorePackage.getEString(), "expr", null, 0, 1, TimeEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relativeTimeEventRuleEClass, RelativeTimeEventRule.class, "RelativeTimeEventRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(absoluteTimeEventRuleEClass, AbsoluteTimeEventRule.class, "AbsoluteTimeEventRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(changeEventRuleEClass, ChangeEventRule.class, "ChangeEventRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getChangeEventRule_Exp(), ecorePackage.getEString(), "exp", null, 0, 1, ChangeEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChangeEventRule_Exp(), theEcorePackage.getEString(), "exp", null, 0, 1, ChangeEventRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(guardRuleEClass, GuardRule.class, "GuardRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getGuardRule_Constraint(), ecorePackage.getEString(), "constraint", null, 0, 1, GuardRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getGuardRule_Constraint(), theEcorePackage.getEString(), "constraint", null, 0, 1, GuardRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(effectRuleEClass, EffectRule.class, "EffectRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEffectRule_Kind(), this.getBehaviorKind(), "kind", null, 0, 1, EffectRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEffectRule_BehaviorName(), ecorePackage.getEString(), "behaviorName", null, 0, 1, EffectRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEffectRule_BehaviorName(), theEcorePackage.getEString(), "behaviorName", null, 0, 1, EffectRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(behaviorKindEEnum, BehaviorKind.class, "BehaviorKind");

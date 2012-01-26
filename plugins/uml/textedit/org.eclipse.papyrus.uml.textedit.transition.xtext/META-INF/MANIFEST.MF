@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.textedit.transition.xtext,
  org.eclipse.papyrus.uml.textedit.transition.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.transition.xtext.parseTreeConstruction,
  org.eclipse.papyrus.uml.textedit.transition.xtext.parser.antlr,
  org.eclipse.papyrus.uml.textedit.transition.xtext.parser.antlr.internal,
  org.eclipse.papyrus.uml.textedit.transition.xtext.scoping,
@@ -9,7 +8,8 @@ Export-Package: org.eclipse.papyrus.uml.textedit.transition.xtext,
  org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition,
  org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl,
  org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.util,
- org.eclipse.papyrus.uml.textedit.transition.xtext.validation
+ org.eclipse.papyrus.uml.textedit.transition.xtext.validation,
+ org.eclipse.papyrus.uml.textedit.transition.xtext.serializer
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -34,4 +34,3 @@ Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

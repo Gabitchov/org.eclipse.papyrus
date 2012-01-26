@@ -3,7 +3,7 @@
 
 <plugin>
 
-    <extension
+  <extension
             point="org.eclipse.ui.editors">
         <editor
             class="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.UmlTransitionExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
@@ -34,10 +34,6 @@
             </reference>
          </activeWhen>
       </handler>
-        <handler
-              class="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.UmlTransitionContentAssistHandler"
-              commandId="org.eclipse.ui.edit.text.contentAssist.proposals">
-        </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
         <definition id="org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.Editor.opened">
@@ -72,6 +68,19 @@
             id="org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.templates"
             name="Templates">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.keyword_UmlTransition"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            class="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.UmlTransitionExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition"
+            name="UmlTransition">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.keyword_UmlTransition"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
     <extension
@@ -143,7 +152,6 @@
 
 
 
-
 	<!-- Quick Outline -->
 	<extension
 		point="org.eclipse.ui.handlers">
@@ -184,6 +192,8 @@
             class="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.UmlTransitionExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
+   
+   <!-- CUSTOM EXTENSION POINT***********************************************     -->
    <extension
          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
       <DirectEditor
