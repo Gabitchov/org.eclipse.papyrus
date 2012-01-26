@@ -1,4 +1,4 @@
-<%@ jet package="org.eclipse.emf.codegen.ecore.templates.edit" imports="org.eclipse.emf.ecore.EStructuralFeature org.eclipse.emf.common.util.EList org.eclipse.emf.ecore.EClass org.eclipse.papyrus.sysml.sysmloveruml.codegen.generationUtils.SysMLOverUMLHelper java.util.* org.eclipse.emf.codegen.ecore.genmodel.*" class="ItemProvider" version="$Id: ItemProvider.javajet,v 1.44 2009/10/20 13:39:38 davidms Exp $" %>
+<%@ jet package="org.eclipse.emf.codegen.ecore.templates.edit" imports="org.eclipse.uml2.codegen.ecore.genmodel.util.* org.eclipse.emf.common.util.* org.eclipse.emf.ecore.EStructuralFeature org.eclipse.emf.common.util.EList org.eclipse.emf.ecore.EClass org.eclipse.papyrus.sysml.sysmloveruml.codegen.generationUtils.SysMLOverUMLHelper java.util.* org.eclipse.emf.codegen.ecore.genmodel.*" class="ItemProvider" version="$Id: ItemProvider.javajet,v 1.44 2009/10/20 13:39:38 davidms Exp $" %>
 <%
 /**
  * <copyright>
@@ -20,6 +20,7 @@
 package <%=genPackage.getProviderPackageName()%>;
 
 <%genModel.addImport("org.eclipse.uml2.uml.UMLPackage");%>
+<%genModel.addImport("org.eclipse.uml2.uml.util.UMLUtil");%>
 <%genModel.addImport("org.eclipse.emf.common.notify.AdapterFactory");%>
 <%genModel.addImport("org.eclipse.emf.common.notify.Notification");%>
 <%genModel.addImport("org.eclipse.emf.edit.provider.IEditingDomainItemProvider");%>
@@ -31,7 +32,6 @@ package <%=genPackage.getProviderPackageName()%>;
 <%genModel.addImport("org.eclipse.uml2.uml.Class");%>
 <%genModel.addImport("org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory");%>
 <%genModel.addImport("org.eclipse.papyrus.sysml.edit.provider.IRootAdapterFactory");%>
-<%genModel.addImport("org.eclipse.papyrus.sysml.util.SysmlResource");%>
 <%genModel.addImport("java.util.regex.Pattern");%>
 <%genModel.addImport("org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter");%>
 <%genModel.addImport("org.eclipse.uml2.uml.NamedElement");%>
@@ -141,9 +141,8 @@ public class <%=genClass.getProviderClassName()%>
 				final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);		
 				
 				<%=name%>.addAll(propertyDescriptors);
-  				Stereotype ste = (element).getAppliedStereotype(SysmlResource.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(genClass.getEcoreClass())%>_ID);
-				if(ste != null) {
-					EObject steApplication = (element).getStereotypeApplication(ste);
+			<%=genClass.getName()%> steApplication = UMLUtil.getStereotypeApplication(element, <%=genClass.getName()%>.class);
+			if(steApplication != null) {
 				<%for (GenFeature genFeature : genClass.getPropertyFeatures()) { %>
 					  		<%for(EClass basedClass2 : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
 								<%=name%>.add(create<%=genFeature.getCapName()%>PropertyDescriptorFor<%=basedClass2.getName()%>(steApplication));
@@ -368,7 +367,8 @@ public class <%=genClass.getProviderClassName()%>
 		<%=genClass.getImportedInterfaceName()%> <%=SysMLOverUMLHelper.getBasedClassVariableName(genClass.getEcoreClass())%> = null;
   		<%for(EClass basedClass : SysMLOverUMLHelper.getBasedElement(genClass.getEcoreClass())) {%>
   			if ( object instanceof <%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%> ){
-  			Stereotype ste = ((<%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%>)object).getAppliedStereotype(SysmlResource.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(genClass.getEcoreClass())%>_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((<%=SysMLOverUMLHelper.getUMLInterfaceName(basedClass)%>) object, <%=genClass.getName()%>.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
   			if ( ste != null){
   				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.<%=SysMLOverUMLHelper.getClassifierCorrectLabel(basedClass)%>);
 				String result = ite.getText(object);				

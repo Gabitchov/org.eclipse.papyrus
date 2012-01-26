@@ -6,10 +6,9 @@
     templateDirectory="org.eclipse.papyrus.sysml.sysmloveruml.codegen/templates" dynamicTemplates="true"
     redirection="" modelName="Sysml" editPluginClass="org.eclipse.papyrus.sysml.provider.SysmlEditPlugin"
     editorPluginClass="org.eclipse.papyrus.sysml.presentation.SysmlEditorPlugin" featureMapWrapperClass=""
-    codeFormatting="true" testSuiteClass="org.eclipse.papyrus.sysml.tests.SysmlAllTests"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    editPluginID="org.eclipse.papyrus.sysml.edit" editorPluginID="org.eclipse.papyrus.sysml.editor"
-    usedGenPackages="platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.genmodel#//l2 platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    testSuiteClass="org.eclipse.papyrus.sysml.tests.SysmlAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.sysml.edit"
+    editorPluginID="org.eclipse.papyrus.sysml.editor" usedGenPackages="platform:/plugin/org.eclipse.uml2.uml.profile.l2/model/L2.genmodel#//l2 platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="PROCESS"/>
@@ -31,11 +30,12 @@
   <foreignModel>sysml.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.papyrus.sysml.sysmloveruml.codegen</templatePluginVariables>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Sysml" basePackage="org.eclipse.papyrus"
-      classPackageSuffix="internal.impl" generateExampleClass="false" multipleEditorPages="false"
-      generateModelWizard="false" ecorePackage="sysml.ecore#/">
+      disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+      multipleEditorPages="false" generateModelWizard="false" ecorePackage="sysml.ecore#/">
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="sysml.ecore#//Dummy"/>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Modelelements" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//modelelements">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//modelelements">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//modelelements/Conform">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference sysml.ecore#//modelelements/Conform/base_Dependency"/>
@@ -65,7 +65,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Blocks" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//blocks">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//blocks">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//blocks/Block">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute sysml.ecore#//blocks/Block/isEncapsulated"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -121,7 +122,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Portandflows" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//portandflows">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//portandflows">
       <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="sysml.ecore#//portandflows/FlowDirection">
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="sysml.ecore#//portandflows/FlowDirection/in"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="sysml.ecore#//portandflows/FlowDirection/out"/>
@@ -154,7 +156,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Constraints" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//constraints">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//constraints">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//constraints/ConstraintBlock"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//constraints/ConstraintProperty">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -162,7 +165,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Activities" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//activities">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//activities">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//activities/Optional">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference sysml.ecore#//activities/Optional/base_Parameter"/>
@@ -201,7 +205,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Allocations" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//allocations">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//allocations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//allocations/Allocate">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference sysml.ecore#//allocations/Allocate/base_Abstraction"/>
@@ -220,7 +225,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Requirements" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//requirements">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//requirements">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//requirements/DeriveReqt"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//requirements/Verify"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="sysml.ecore#//requirements/Copy"/>
@@ -267,15 +273,18 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Interactions" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//interactions">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//interactions">
       <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="sysml.ecore#//interactions/Dummy"/>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Statemachines" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//statemachines">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//statemachines">
       <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="sysml.ecore#//statemachines/Dummy"/>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Usecases" basePackage="org.eclipse.papyrus.sysml"
-        classPackageSuffix="internal.impl" generateExampleClass="false" ecorePackage="sysml.ecore#//usecases">
+        disposableProviderFactory="true" classPackageSuffix="internal.impl" generateExampleClass="false"
+        ecorePackage="sysml.ecore#//usecases">
       <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="sysml.ecore#//usecases/Dummy"/>
     </nestedGenPackages>
   </genPackages>
