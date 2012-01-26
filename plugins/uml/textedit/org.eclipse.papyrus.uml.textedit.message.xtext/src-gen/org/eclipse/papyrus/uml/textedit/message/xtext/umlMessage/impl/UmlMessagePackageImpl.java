@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -87,6 +88,9 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
     UmlMessagePackageImpl theUmlMessagePackage = (UmlMessagePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UmlMessagePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UmlMessagePackageImpl());
 
     isInited = true;
+
+    // Initialize simple dependencies
+    EcorePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theUmlMessagePackage.createPackageContents();
@@ -237,6 +241,9 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Obtain other dependent packages
+    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
     // Create type parameters
 
     // Set bounds for type parameters
@@ -246,12 +253,12 @@ public class UmlMessagePackageImpl extends EPackageImpl implements UmlMessagePac
     // Initialize classes and features; add operations and parameters
     initEClass(messageRuleEClass, MessageRule.class, "MessageRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMessageRule_SequenceTerm(), this.getSequenceTermRule(), null, "sequenceTerm", null, 0, -1, MessageRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMessageRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, MessageRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMessageRule_Name(), theEcorePackage.getEString(), "name", null, 0, 1, MessageRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sequenceTermRuleEClass, SequenceTermRule.class, "SequenceTermRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSequenceTermRule_SequencialOrder(), ecorePackage.getEInt(), "sequencialOrder", null, 0, 1, SequenceTermRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSequenceTermRule_SequenceName(), ecorePackage.getEString(), "sequenceName", null, 0, 1, SequenceTermRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSequenceTermRule_Recurrence(), ecorePackage.getEString(), "recurrence", null, 0, 1, SequenceTermRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSequenceTermRule_SequencialOrder(), theEcorePackage.getEInt(), "sequencialOrder", null, 0, 1, SequenceTermRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSequenceTermRule_SequenceName(), theEcorePackage.getEString(), "sequenceName", null, 0, 1, SequenceTermRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSequenceTermRule_Recurrence(), theEcorePackage.getEString(), "recurrence", null, 0, 1, SequenceTermRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

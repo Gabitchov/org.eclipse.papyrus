@@ -11,12 +11,12 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.textedit.transition.xtext.serializer;
+package org.eclipse.papyrus.uml.textedit.message.xtext.serializer;
 
 import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.services.UmlTransitionGrammarAccess;
+import org.eclipse.papyrus.uml.textedit.message.xtext.services.UmlMessageGrammarAccess;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
@@ -25,13 +25,13 @@ import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISyn
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
 @SuppressWarnings("restriction")
-public class AbstractUmlTransitionSyntacticSequencer extends AbstractSyntacticSequencer {
+public class AbstractUmlMessageSyntacticSequencer extends AbstractSyntacticSequencer {
 
-	protected UmlTransitionGrammarAccess grammarAccess;
+	protected UmlMessageGrammarAccess grammarAccess;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
-		grammarAccess = (UmlTransitionGrammarAccess) access;
+		grammarAccess = (UmlMessageGrammarAccess) access;
 	}
 	
 	@Override

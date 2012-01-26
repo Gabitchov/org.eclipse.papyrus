@@ -71,6 +71,19 @@
         </page>
     </extension>
     <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            class="org.eclipse.papyrus.uml.textedit.message.xtext.ui.UmlMessageExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage"
+            name="UmlMessage">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.message.xtext.ui.keyword_UmlMessage"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+    </extension>
+    <extension
         point="org.eclipse.ui.keywords">
         <keyword
             id="org.eclipse.papyrus.uml.textedit.message.xtext.ui.keyword_UmlMessage"
@@ -138,6 +151,37 @@
     </extension>
 
 
+
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="org.eclipse.papyrus.uml.textedit.message.xtext.ui.UmlMessageExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+      </participant>
+   </extension>
+   <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            category="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage"
+            class="org.eclipse.papyrus.uml.textedit.message.xtext.ui.UmlMessageExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage.compiler.preferencePage"
+            name="Compiler">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.message.xtext.ui.keyword_UmlMessage"/>
+        </page>
+    </extension>
+    <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            category="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage"
+            class="org.eclipse.papyrus.uml.textedit.message.xtext.ui.UmlMessageExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage.compiler.propertyPage"
+            name="Compiler">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.message.xtext.ui.keyword_UmlMessage"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+    </extension>
 
 	<!-- Quick Outline -->
 	<extension
