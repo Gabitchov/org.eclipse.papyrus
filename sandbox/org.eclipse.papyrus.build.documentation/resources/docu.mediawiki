@@ -354,6 +354,25 @@ This is a Java compilation error.
 * Make sure that the code compiles in your workspace
 * Make sure that your development environment contains the same plug-ins with the same versions as the Buckminster build (see buildroot/result/targetPlatform in the Hudson workspace)
 
+=== Test launching error ===
+ java.lang.IllegalArgumentException: Export has failed because no test session is available
+When you see this error message, it means the tests failed to start. This is most often because one of the test plug-ins could not be resolved. To get more information about this problem, you can look in the Hudson workspace:
+ /buildroot/result/junit-workspace/.metadata/.log
+If you see messages like:
+ Bundle org.eclipse.papyrus.xyz was not resolved.
+Then look at the messages that follow, and you should see:
+ Missing required bundle xyz
+or
+ Missing imported package xyz
+
+Which indicates the dependency that was not resolved. Then you can search again for references to "xyz" in this log to determine why the dependency was not resolved. Continue to iterate like this until you get down to the root of the problem.
+
+Once you have found the root dependency that is not resolved, then you can:
+* If the dependency is already specified in one of your plug-ins, then you maybe need to modify constraints (required version for example) so that it can be resolved
+* If the dependency is not already specified in one of your plug-ins, then you can either:
+** Add it to one of your plug-ins if it makes sense
+** If it does not make sense to specify the dependency on one of your plug-ins, because the dependency is incidental (inherited from a project you depend on for example), then you can add it to the '''buckminster.cspec''' of the test build
+
 === The Hudson build's workspace ===
 You can see the contents of the Hudson build's workspace on Hudson. For example:
  https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/ws/
