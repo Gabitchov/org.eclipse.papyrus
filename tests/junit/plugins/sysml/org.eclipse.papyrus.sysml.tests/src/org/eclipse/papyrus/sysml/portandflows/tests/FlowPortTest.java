@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
  * <p>
  * The following features are tested:
  * <ul>
- * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic() <em>Is Atomic</em>}</li>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic() <em>Is Atomic</em>}</li>
  * </ul>
  * </p>
  * <p>
@@ -170,6 +170,31 @@ public class FlowPortTest extends TestCase {
 	}
 
 	/**
+	 * Tests the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic() <em>Is Atomic</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isAtomic()
+	 * @generated NOT
+	 */
+	public void testIsAtomic() {
+		// FlowPort without type is Atomic
+		if(!fp0.isAtomic()) {
+			fail();
+		}
+
+		// FlowPort type is not a FlowSpecification
+		if(!fp1.isAtomic()) {
+			fail();
+		}
+
+		// FlowPort type is a FlowSpecification
+		if(fp2.isAtomic()) {
+			fail();
+		}
+	}
+
+	/**
 	 * Tests the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#getIcon()
 	 * <em>Get Icon</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -195,31 +220,6 @@ public class FlowPortTest extends TestCase {
 		}
 
 		if(!fp2.getIcon().equals(i3)) { // fp2 is atomic
-			fail();
-		}
-	}
-
-	/**
-	 * Tests the '{@link org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic()
-	 * <em>Is Atomic</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipse.papyrus.sysml.portandflows.FlowPort#isIsAtomic()
-	 * @generated NOT
-	 */
-	public void testIsIsAtomic() {
-
-		// FlowPort without type is Atomic
-		if(!fp0.isAtomic()) {
-			fail();
-		}
-
-		// FlowPort type is not a FlowSpecification
-		if(!fp1.isAtomic()) {
-			fail();
-		}
-
-		// FlowPort type is a FlowSpecification
-		if(fp2.isAtomic()) {
 			fail();
 		}
 	}
