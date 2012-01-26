@@ -39,6 +39,5 @@ public class UmlCollaborationUseStandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }

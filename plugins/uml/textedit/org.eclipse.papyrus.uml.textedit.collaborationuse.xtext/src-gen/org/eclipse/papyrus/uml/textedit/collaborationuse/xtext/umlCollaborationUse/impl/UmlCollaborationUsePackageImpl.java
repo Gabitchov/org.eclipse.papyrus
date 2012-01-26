@@ -10,15 +10,18 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.TypeRule;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUseFactory;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
+
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
+
+import types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,6 +95,7 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 
     // Initialize simple dependencies
     UmlCommonPackage.eINSTANCE.eClass();
+    TypesPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theUmlCollaborationUsePackage.createPackageContents();
@@ -222,6 +226,7 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 
     // Obtain other dependent packages
     UmlCommonPackage theUmlCommonPackage = (UmlCommonPackage)EPackage.Registry.INSTANCE.getEPackage(UmlCommonPackage.eNS_URI);
+    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
 
@@ -233,7 +238,7 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
     // Initialize classes and features; add operations and parameters
     initEClass(collaborationUseRuleEClass, CollaborationUseRule.class, "CollaborationUseRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCollaborationUseRule_Visibility(), theUmlCommonPackage.getVisibilityKind(), "visibility", null, 0, 1, CollaborationUseRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCollaborationUseRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, CollaborationUseRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCollaborationUseRule_Name(), theEcorePackage.getEString(), "name", null, 0, 1, CollaborationUseRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCollaborationUseRule_Type(), this.getTypeRule(), null, "type", null, 0, 1, CollaborationUseRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeRuleEClass, TypeRule.class, "TypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

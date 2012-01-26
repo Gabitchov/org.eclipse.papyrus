@@ -11,14 +11,59 @@ var runtimeProject = "../${projectName}"
 
 Workflow {
     bean = StandaloneSetup {
+    	scanClassPath  = true
 		platformUri = "${runtimeProject}/.."
 		
-		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
-		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
-		uriMap = {from="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore" 
-				to="platform:/resource/org.eclipse.papyrus.message.editor.xtext/model/Ecore.ecore"}
-		uriMap = {from="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel" 
-  				to="platform:/resource/org.eclipse.papyrus.message.editor.xtext/model/Ecore.genmodel"}
+		//load EMF ECORE	
+		uriMap = {
+            from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
+            to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore"
+        }
+		
+		uriMap = { from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+           		   to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+       	}
+        uriMap = {
+          from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel"
+           to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+        }
+        registerGeneratedEPackage = "org.eclipse.emf.ecore.EcorePackage"
+        registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
+        registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"	
+		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+		
+		//load UML
+		
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
+            to = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+        }
+		
+ 		uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+            to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+        }
+        
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+            to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+        }
+        uriMap = {
+            from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
+            to = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
+        }
+		
+        registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+        registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
+        
+	 	registerGenModelFile = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+        registerGenModelFile = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+	
+		//LOAD COMMON XTEXT
+		 
+		 registerGeneratedEPackage = "org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage"
+		 registerGenModelFile="platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel"
+	
 	}
 
 	component = DirectoryCleaner {
@@ -42,15 +87,12 @@ Workflow {
 			fragment = grammarAccess.GrammarAccessFragment {}
 
 			// generates Java API for the generated EPackages 
-			fragment = ecore.EcoreGeneratorFragment {
-			referencedGenModels = "platform:/resource/org.eclipse.papyrus.property.editor.xtext/model/UML.genmodel"
-			referencedGenModels = "platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel"
-			
-			}
+			fragment = ecore.EcoreGeneratorFragment {}
 
-			// the serialization component
-			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
-
+			// Serializer 2.0
+           	fragment = serializer.SerializerFragment {
+           		generateStub = false
+           	}
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
 				fileExtensions = file.extensions
@@ -74,13 +116,17 @@ Workflow {
 			// fragment = scoping.ImportURIScopingFragment {}
 			// fragment = exporting.SimpleNamesFragment {}
 
-			// scoping and exporting API 
+				// scoping and exporting API 
+		    fragment = scoping.ImportNamespacesScopingFragment {}
+			fragment = exporting.QualifiedNamesFragment {}
+			fragment = builder.BuilderIntegrationFragment {}
 			
-			fragment = scoping.ImportURIScopingFragment {}
-			fragment = exporting.SimpleNamesFragment {}
+			// generator API
+            fragment = generator.GeneratorFragment {
+                generateMwe = false
+                generateJavaMain = false
+            }
 			
-			/*fragment = scoping.ImportNamespacesScopingFragment {}
-			fragment = exporting.QualifiedNamesFragment {}*/
 			
 			
 			fragment = builder.BuilderIntegrationFragment {}
@@ -93,7 +139,6 @@ Workflow {
 
 			// outline API 
 			fragment = outline.OutlineTreeProviderFragment {}
-			fragment = outline.QuickOutlineFragment {}
 			fragment = outline.QuickOutlineFragment {}
 
 			// quickfix API 

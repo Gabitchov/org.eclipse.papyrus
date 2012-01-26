@@ -62,9 +62,7 @@ Workflow {
 		//LOAD COMMON XTEXT
 		 
 		 registerGeneratedEPackage = "org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage"
-//		 registerGeneratedEPackage ="types.TypesPackage"
 		 registerGenModelFile="platform:/resource/org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/UMLCommon.genmodel"
-//	
 	
 	}
 

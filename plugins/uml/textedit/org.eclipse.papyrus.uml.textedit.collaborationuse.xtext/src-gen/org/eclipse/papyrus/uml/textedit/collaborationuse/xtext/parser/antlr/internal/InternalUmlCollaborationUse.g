@@ -274,24 +274,59 @@ ruleBoundSpecification returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
-		lv_value_0_0=RULE_UNLIMITEDLITERAL
-		{
-			newLeafNode(lv_value_0_0, grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralTerminalRuleCall_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralParserRuleCall_0()); 
+	    }
+		lv_value_0_0=ruleUnlimitedLiteral		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getBoundSpecificationRule());
+	            $current = createModelElementForParent(grammarAccess.getBoundSpecificationRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"value",
         		lv_value_0_0, 
         		"UnlimitedLiteral");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )
 ;
+
+
+
+
+
+// Entry rule entryRuleUnlimitedLiteral
+entryRuleUnlimitedLiteral returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getUnlimitedLiteralRule()); } 
+	 iv_ruleUnlimitedLiteral=ruleUnlimitedLiteral 
+	 { $current=$iv_ruleUnlimitedLiteral.current.getText(); }  
+	 EOF 
+;
+
+// Rule UnlimitedLiteral
+ruleUnlimitedLiteral returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getUnlimitedLiteralAccess().getINTTerminalRuleCall_0()); 
+    }
+
+    |
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
+    }
+)
+    ;
 
 
 
@@ -329,8 +364,6 @@ ruleVisibilityKind returns [Enumerator current=null]
 
 
 
-
-RULE_UNLIMITEDLITERAL : ('0'..'9' ('0'..'9')*|'*');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

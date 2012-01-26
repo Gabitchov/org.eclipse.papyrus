@@ -182,11 +182,15 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		return getBoundSpecificationAccess().getRule();
 	}
 
-	//terminal UnlimitedLiteral:
-	//	"0".."9" "0".."9"* | "*";
-	public TerminalRule getUnlimitedLiteralRule() {
-		return gaUmlCommon.getUnlimitedLiteralRule();
-	} 
+	//UnlimitedLiteral returns ecore::EString:
+	//	INT | "*";
+	public UmlCommonGrammarAccess.UnlimitedLiteralElements getUnlimitedLiteralAccess() {
+		return gaUmlCommon.getUnlimitedLiteralAccess();
+	}
+	
+	public ParserRule getUnlimitedLiteralRule() {
+		return getUnlimitedLiteralAccess().getRule();
+	}
 
 	//enum Direction:
 	//	IN="in" | OUT="out" | INOUT="inout" | RETURN="return";

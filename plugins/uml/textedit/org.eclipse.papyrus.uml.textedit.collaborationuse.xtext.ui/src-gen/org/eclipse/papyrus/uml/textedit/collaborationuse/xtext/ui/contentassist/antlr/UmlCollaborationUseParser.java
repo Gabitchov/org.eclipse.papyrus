@@ -38,6 +38,7 @@ public class UmlCollaborationUseParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getCollaborationUseRuleAccess().getAlternatives_3(), "rule__CollaborationUseRule__Alternatives_3");
+					put(grammarAccess.getUnlimitedLiteralAccess().getAlternatives(), "rule__UnlimitedLiteral__Alternatives");
 					put(grammarAccess.getVisibilityKindAccess().getAlternatives(), "rule__VisibilityKind__Alternatives");
 					put(grammarAccess.getDirectionAccess().getAlternatives(), "rule__Direction__Alternatives");
 					put(grammarAccess.getCollaborationUseRuleAccess().getGroup(), "rule__CollaborationUseRule__Group__0");
