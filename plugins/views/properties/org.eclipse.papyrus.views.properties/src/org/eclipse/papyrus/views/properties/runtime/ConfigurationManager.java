@@ -98,7 +98,7 @@ public class ConfigurationManager {
 	public final static ConfigurationManager instance = new ConfigurationManager();
 
 	private ConfigurationManager() {
-		constraintEngine = new DefaultViewConstraintEngine();
+		constraintEngine = new ViewConstraintEngineImpl();
 		enabledContexts = new HashSet<Context>();
 
 		root = RootFactory.eINSTANCE.createPropertiesRoot();
