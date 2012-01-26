@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.blocks.ConnectorProperty;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.ConnectorProperty} object.
@@ -113,9 +113,8 @@ public class ConnectorPropertyItemProvider extends SysMLItemProviderAdapter impl
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONNECTOR_PROPERTY_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			ConnectorProperty steApplication = UMLUtil.getStereotypeApplication(element, ConnectorProperty.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
 
@@ -229,7 +228,8 @@ public class ConnectorPropertyItemProvider extends SysMLItemProviderAdapter impl
 		ConnectorProperty connectorProperty_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Property) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Property)object).getAppliedStereotype(SysmlResource.CONNECTOR_PROPERTY_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Property)object, ConnectorProperty.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 				String result = ite.getText(object);

@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.activities.Overwrite;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Overwrite} object.
@@ -112,9 +112,8 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForobjectNode.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.OVERWRITE_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Overwrite steApplication = UMLUtil.getStereotypeApplication(element, Overwrite.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForobjectNode.add(createBase_ObjectNodePropertyDescriptorForObjectNode(steApplication));
 
@@ -192,7 +191,8 @@ public class OverwriteItemProvider extends SysMLItemProviderAdapter implements I
 		Overwrite overwrite_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.ObjectNode) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ObjectNode)object).getAppliedStereotype(SysmlResource.OVERWRITE_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ObjectNode)object, Overwrite.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OBJECT_NODE);
 				String result = ite.getText(object);

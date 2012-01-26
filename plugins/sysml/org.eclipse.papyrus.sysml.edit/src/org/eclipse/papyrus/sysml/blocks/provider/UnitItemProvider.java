@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.blocks.Unit;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.Unit} object.
@@ -113,9 +113,8 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForinstanceSpecification.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.UNIT_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Unit steApplication = UMLUtil.getStereotypeApplication(element, Unit.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForinstanceSpecification.add(createBase_InstanceSpecificationPropertyDescriptorForInstanceSpecification(steApplication));
 
@@ -229,7 +228,8 @@ public class UnitItemProvider extends SysMLItemProviderAdapter implements IEditi
 		Unit unit_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.InstanceSpecification) {
-			Stereotype ste = ((org.eclipse.uml2.uml.InstanceSpecification)object).getAppliedStereotype(SysmlResource.UNIT_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.InstanceSpecification)object, Unit.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INSTANCE_SPECIFICATION);
 				String result = ite.getText(object);

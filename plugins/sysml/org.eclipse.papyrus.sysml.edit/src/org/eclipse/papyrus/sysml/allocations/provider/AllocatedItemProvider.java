@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.Allocated} object.
@@ -114,9 +114,8 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsFornamedElement.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATED_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Allocated steApplication = UMLUtil.getStereotypeApplication(element, Allocated.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsFornamedElement.add(createBase_NamedElementPropertyDescriptorForNamedElement(steApplication));
 
@@ -266,7 +265,8 @@ public class AllocatedItemProvider extends SysMLItemProviderAdapter implements I
 		Allocated allocated_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.NamedElement) {
-			Stereotype ste = ((org.eclipse.uml2.uml.NamedElement)object).getAppliedStereotype(SysmlResource.ALLOCATED_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.NamedElement)object, Allocated.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
 				String result = ite.getText(object);

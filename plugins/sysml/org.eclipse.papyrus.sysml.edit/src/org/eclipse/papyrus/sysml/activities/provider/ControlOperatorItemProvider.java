@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.ControlOperator} object.
@@ -121,9 +121,8 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForoperation.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			ControlOperator steApplication = UMLUtil.getStereotypeApplication(element, ControlOperator.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForoperation.add(createBase_OperationPropertyDescriptorForOperation(steApplication));
 
@@ -153,9 +152,8 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForbehavior.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			ControlOperator steApplication = UMLUtil.getStereotypeApplication(element, ControlOperator.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForbehavior.add(createBase_OperationPropertyDescriptorForOperation(steApplication));
 
@@ -319,7 +317,8 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 		ControlOperator controlOperator_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Operation) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Operation)object).getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Operation)object, ControlOperator.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.OPERATION);
 				String result = ite.getText(object);
@@ -330,7 +329,8 @@ public class ControlOperatorItemProvider extends SysMLItemProviderAdapter implem
 		}
 
 		if(object instanceof org.eclipse.uml2.uml.Behavior) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Behavior)object).getAppliedStereotype(SysmlResource.CONTROL_OPERATOR_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Behavior)object, ControlOperator.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.BEHAVIOR);
 				String result = ite.getText(object);

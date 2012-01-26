@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd} object.
@@ -113,9 +113,8 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForconnectorEnd.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.NESTED_CONNECTOR_END_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			NestedConnectorEnd steApplication = UMLUtil.getStereotypeApplication(element, NestedConnectorEnd.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForconnectorEnd.add(createPropertyPathPropertyDescriptorForConnectorEnd(steApplication));
 
@@ -229,7 +228,8 @@ public class NestedConnectorEndItemProvider extends SysMLItemProviderAdapter imp
 		NestedConnectorEnd nestedConnectorEnd_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.ConnectorEnd) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ConnectorEnd)object).getAppliedStereotype(SysmlResource.NESTED_CONNECTOR_END_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ConnectorEnd)object, NestedConnectorEnd.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CONNECTOR_END);
 				String result = ite.getText(object);

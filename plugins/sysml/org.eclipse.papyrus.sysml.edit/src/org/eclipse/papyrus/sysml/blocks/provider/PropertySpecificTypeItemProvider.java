@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.blocks.PropertySpecificType;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.PropertySpecificType} object.
@@ -112,9 +112,8 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForclassifier.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROPERTY_SPECIFIC_TYPE_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			PropertySpecificType steApplication = UMLUtil.getStereotypeApplication(element, PropertySpecificType.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForclassifier.add(createBase_ClassifierPropertyDescriptorForClassifier(steApplication));
 
@@ -192,7 +191,8 @@ public class PropertySpecificTypeItemProvider extends SysMLItemProviderAdapter i
 		PropertySpecificType propertySpecificType_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Classifier) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Classifier)object).getAppliedStereotype(SysmlResource.PROPERTY_SPECIFIC_TYPE_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Classifier)object, PropertySpecificType.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASSIFIER);
 				String result = ite.getText(object);

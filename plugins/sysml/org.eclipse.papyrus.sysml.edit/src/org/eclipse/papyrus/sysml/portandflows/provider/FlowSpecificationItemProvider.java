@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowSpecification} object.
@@ -112,9 +112,8 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForinterface.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_SPECIFICATION_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			FlowSpecification steApplication = UMLUtil.getStereotypeApplication(element, FlowSpecification.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForinterface.add(createBase_InterfacePropertyDescriptorForInterface(steApplication));
 
@@ -192,7 +191,8 @@ public class FlowSpecificationItemProvider extends SysMLItemProviderAdapter impl
 		FlowSpecification flowSpecification_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Interface) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Interface)object).getAppliedStereotype(SysmlResource.FLOW_SPECIFICATION_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Interface)object, FlowSpecification.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.INTERFACE);
 				String result = ite.getText(object);

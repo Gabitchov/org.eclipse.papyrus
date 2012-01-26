@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition} object.
@@ -112,9 +112,8 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForactivityPartition.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			AllocateActivityPartition steApplication = UMLUtil.getStereotypeApplication(element, AllocateActivityPartition.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForactivityPartition.add(createBase_ActivityPartitionPropertyDescriptorForActivityPartition(steApplication));
 
@@ -192,7 +191,8 @@ public class AllocateActivityPartitionItemProvider extends SysMLItemProviderAdap
 		AllocateActivityPartition allocateActivityPartition_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.ActivityPartition) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ActivityPartition)object).getAppliedStereotype(SysmlResource.ALLOCATE_ACTIVITY_PARTITION_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ActivityPartition)object, AllocateActivityPartition.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_PARTITION);
 				String result = ite.getText(object);

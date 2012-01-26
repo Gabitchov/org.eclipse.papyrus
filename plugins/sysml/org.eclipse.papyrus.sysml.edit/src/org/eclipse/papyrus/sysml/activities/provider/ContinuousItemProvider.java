@@ -33,11 +33,11 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Continuous} object.
@@ -115,9 +115,8 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Continuous steApplication = UMLUtil.getStereotypeApplication(element, Continuous.class);
+			if(steApplication != null) {
 
 			}
 			return itemPropertyDescriptorsForparameter;
@@ -139,9 +138,8 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Continuous steApplication = UMLUtil.getStereotypeApplication(element, Continuous.class);
+			if(steApplication != null) {
 
 			}
 			return itemPropertyDescriptorsForactivityEdge;
@@ -183,7 +181,8 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 		Continuous continuous_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Parameter)object).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Parameter)object, Continuous.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 				String result = ite.getText(object);
@@ -194,7 +193,8 @@ public class ContinuousItemProvider extends RateItemProvider implements IEditing
 		}
 
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ActivityEdge)object).getAppliedStereotype(SysmlResource.CONTINUOUS_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ActivityEdge)object, Continuous.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 				String result = ite.getText(object);

@@ -36,11 +36,11 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock} object.
@@ -110,9 +110,8 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForclass.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			ConstraintBlock steApplication = UMLUtil.getStereotypeApplication(element, ConstraintBlock.class);
+			if(steApplication != null) {
 
 			}
 			return itemPropertyDescriptorsForclass;
@@ -154,7 +153,8 @@ public class ConstraintBlockItemProvider extends BlockItemProvider implements IE
 		ConstraintBlock constraintBlock_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Class) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Class)object).getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Class)object, ConstraintBlock.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.CLASS);
 				String result = ite.getText(object);

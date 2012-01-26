@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,17 +31,18 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptorDecorator;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
-import org.eclipse.papyrus.sysml.edit.provider.IVisibilityOverlayImage;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.Copy;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.Copy} object.
@@ -49,7 +51,7 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * 
  * @generated
  */
-public class CopyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IVisibilityOverlayImage
+public class CopyItemProvider extends SysMLItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource
 
 {
 
@@ -92,6 +94,7 @@ public class CopyItemProvider extends SysMLItemProviderAdapter implements IEditi
 			if(itemPropertyDescriptors == null) {
 				super.getPropertyDescriptors(object);
 
+				addBase_AbstractionPropertyDescriptor(object);
 			}
 		}
 
@@ -110,9 +113,10 @@ public class CopyItemProvider extends SysMLItemProviderAdapter implements IEditi
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForabstraction.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.COPY_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Copy steApplication = UMLUtil.getStereotypeApplication(element, Copy.class);
+			if(steApplication != null) {
+
+				itemPropertyDescriptorsForabstraction.add(createBase_AbstractionPropertyDescriptorForAbstraction(steApplication));
 
 			}
 			return itemPropertyDescriptorsForabstraction;
@@ -120,6 +124,40 @@ public class CopyItemProvider extends SysMLItemProviderAdapter implements IEditi
 		}
 
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Abstraction feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addBase_AbstractionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Trace_base_Abstraction_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Trace_base_Abstraction_feature", "_UI_Trace_type"), L2Package.Literals.TRACE__BASE_ABSTRACTION, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Abstraction feature for the UML element Abstraction.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ItemPropertyDescriptorDecorator createBase_AbstractionPropertyDescriptorForAbstraction(Object object) {
+
+		return new ItemPropertyDescriptorDecorator(object, createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Trace_base_Abstraction_feature"),
+
+		getString("_UI_PropertyDescriptor_description", "_UI_Trace_base_Abstraction_feature", "_UI_Trace_type"),
+
+		L2Package.Literals.TRACE__BASE_ABSTRACTION, true, false, true,
+
+		null,
+
+		null,
+
+		null));
+
 	}
 
 	/**
@@ -154,7 +192,8 @@ public class CopyItemProvider extends SysMLItemProviderAdapter implements IEditi
 		Copy copy_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Abstraction) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Abstraction)object).getAppliedStereotype(SysmlResource.COPY_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Abstraction)object, Copy.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ABSTRACTION);
 				String result = ite.getText(object);

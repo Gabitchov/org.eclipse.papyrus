@@ -41,10 +41,10 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.portandflows.FlowProperty} object.
@@ -116,9 +116,8 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForproperty.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			FlowProperty steApplication = UMLUtil.getStereotypeApplication(element, FlowProperty.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForproperty.add(createBase_PropertyPropertyDescriptorForProperty(steApplication));
 
@@ -232,7 +231,8 @@ public class FlowPropertyItemProvider extends SysMLItemProviderAdapter implement
 		FlowProperty flowProperty_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Property) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Property)object).getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Property)object, FlowProperty.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PROPERTY);
 				String result = ite.getText(object);

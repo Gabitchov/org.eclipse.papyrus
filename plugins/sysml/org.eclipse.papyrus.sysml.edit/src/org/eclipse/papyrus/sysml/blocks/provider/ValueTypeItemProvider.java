@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.blocks.ValueType;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.blocks.ValueType} object.
@@ -114,9 +114,8 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsFordataType.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.VALUE_TYPE_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			ValueType steApplication = UMLUtil.getStereotypeApplication(element, ValueType.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsFordataType.add(createBase_DataTypePropertyDescriptorForDataType(steApplication));
 
@@ -266,7 +265,8 @@ public class ValueTypeItemProvider extends SysMLItemProviderAdapter implements I
 		ValueType valueType_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.DataType) {
-			Stereotype ste = ((org.eclipse.uml2.uml.DataType)object).getAppliedStereotype(SysmlResource.VALUE_TYPE_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.DataType)object, ValueType.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DATA_TYPE);
 				String result = ite.getText(object);

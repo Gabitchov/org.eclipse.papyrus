@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.activities.Rate;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Rate} object.
@@ -122,9 +122,8 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForparameter.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.RATE_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Rate steApplication = UMLUtil.getStereotypeApplication(element, Rate.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForparameter.add(createBase_ParameterPropertyDescriptorForParameter(steApplication));
 
@@ -158,9 +157,8 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.RATE_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Rate steApplication = UMLUtil.getStereotypeApplication(element, Rate.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForactivityEdge.add(createBase_ParameterPropertyDescriptorForParameter(steApplication));
 
@@ -385,7 +383,8 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 		Rate rate_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Parameter) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Parameter)object).getAppliedStereotype(SysmlResource.RATE_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Parameter)object, Rate.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER);
 				String result = ite.getText(object);
@@ -396,7 +395,8 @@ public class RateItemProvider extends SysMLItemProviderAdapter implements IEditi
 		}
 
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ActivityEdge)object).getAppliedStereotype(SysmlResource.RATE_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ActivityEdge)object, Rate.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 				String result = ite.getText(object);

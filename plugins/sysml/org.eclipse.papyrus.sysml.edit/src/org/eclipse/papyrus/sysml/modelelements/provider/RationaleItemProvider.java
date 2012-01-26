@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Rationale;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Rationale} object.
@@ -112,9 +112,8 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForcomment.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.RATIONALE_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Rationale steApplication = UMLUtil.getStereotypeApplication(element, Rationale.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForcomment.add(createBase_CommentPropertyDescriptorForComment(steApplication));
 
@@ -192,7 +191,8 @@ public class RationaleItemProvider extends SysMLItemProviderAdapter implements I
 		Rationale rationale_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Comment) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Comment)object).getAppliedStereotype(SysmlResource.RATIONALE_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Comment)object, Rationale.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.COMMENT);
 				String result = ite.getText(object);

@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.requirements.RequirementRelated} object.
@@ -116,9 +116,8 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsFornamedElement.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.REQUIREMENT_RELATED_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			RequirementRelated steApplication = UMLUtil.getStereotypeApplication(element, RequirementRelated.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsFornamedElement.add(createBase_NamedElementPropertyDescriptorForNamedElement(steApplication));
 
@@ -340,7 +339,8 @@ public class RequirementRelatedItemProvider extends SysMLItemProviderAdapter imp
 		RequirementRelated requirementRelated_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.NamedElement) {
-			Stereotype ste = ((org.eclipse.uml2.uml.NamedElement)object).getAppliedStereotype(SysmlResource.REQUIREMENT_RELATED_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.NamedElement)object, RequirementRelated.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.NAMED_ELEMENT);
 				String result = ite.getText(object);

@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.Conform} object.
@@ -112,9 +112,8 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsFordependency.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.CONFORM_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Conform steApplication = UMLUtil.getStereotypeApplication(element, Conform.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsFordependency.add(createBase_DependencyPropertyDescriptorForDependency(steApplication));
 
@@ -192,7 +191,8 @@ public class ConformItemProvider extends SysMLItemProviderAdapter implements IEd
 		Conform conform_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Dependency) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Dependency)object).getAppliedStereotype(SysmlResource.CONFORM_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Dependency)object, Conform.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.DEPENDENCY);
 				String result = ite.getText(object);

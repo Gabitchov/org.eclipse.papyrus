@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.activities.Probability;
 import org.eclipse.papyrus.sysml.edit.provider.IComposableAdapterFactory;
 import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.activities.Probability} object.
@@ -122,9 +122,8 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForactivityEdge.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Probability steApplication = UMLUtil.getStereotypeApplication(element, Probability.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForactivityEdge.add(createBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication));
 
@@ -158,9 +157,8 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForparameterSet.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			Probability steApplication = UMLUtil.getStereotypeApplication(element, Probability.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForparameterSet.add(createBase_ActivityEdgePropertyDescriptorForActivityEdge(steApplication));
 
@@ -385,7 +383,8 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		Probability probability_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.ActivityEdge) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ActivityEdge)object).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ActivityEdge)object, Probability.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.ACTIVITY_EDGE);
 				String result = ite.getText(object);
@@ -396,7 +395,8 @@ public class ProbabilityItemProvider extends SysMLItemProviderAdapter implements
 		}
 
 		if(object instanceof org.eclipse.uml2.uml.ParameterSet) {
-			Stereotype ste = ((org.eclipse.uml2.uml.ParameterSet)object).getAppliedStereotype(SysmlResource.PROBABILITY_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.ParameterSet)object, Probability.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PARAMETER_SET);
 				String result = ite.getText(object);

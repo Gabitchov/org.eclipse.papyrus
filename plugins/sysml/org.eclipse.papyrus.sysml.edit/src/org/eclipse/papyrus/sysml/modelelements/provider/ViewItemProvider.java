@@ -38,10 +38,10 @@ import org.eclipse.papyrus.sysml.edit.provider.SysMLItemProviderAdapter;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.provider.SysmlEditPlugin;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.sysml.modelelements.View} object.
@@ -113,9 +113,8 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 			final List<IItemPropertyDescriptor> propertyDescriptors = ite.getPropertyDescriptors(this);
 
 			itemPropertyDescriptorsForpackage.addAll(propertyDescriptors);
-			Stereotype ste = (element).getAppliedStereotype(SysmlResource.VIEW_ID);
-			if(ste != null) {
-				EObject steApplication = (element).getStereotypeApplication(ste);
+			View steApplication = UMLUtil.getStereotypeApplication(element, View.class);
+			if(steApplication != null) {
 
 				itemPropertyDescriptorsForpackage.add(createViewPointPropertyDescriptorForPackage(steApplication));
 
@@ -229,7 +228,8 @@ public class ViewItemProvider extends SysMLItemProviderAdapter implements IEditi
 		View view_ = null;
 
 		if(object instanceof org.eclipse.uml2.uml.Package) {
-			Stereotype ste = ((org.eclipse.uml2.uml.Package)object).getAppliedStereotype(SysmlResource.VIEW_ID);
+			EObject steApplication = UMLUtil.getStereotypeApplication((org.eclipse.uml2.uml.Package)object, View.class);
+			Stereotype ste = UMLUtil.getStereotype(steApplication);
 			if(ste != null) {
 				IItemLabelProvider ite = (IItemLabelProvider)((IComposableAdapterFactory)adapterFactory).getIRootAdapterFactory().getItemProvider(UMLPackage.Literals.PACKAGE);
 				String result = ite.getText(object);
