@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Display;
  * 
  * 
  */
-public class RenameDiagramHandler extends AbstractCommandHandler {
+public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 
 
 	/**

@@ -33,7 +33,7 @@ import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
  * 
  * 
  */
-public class DeleteDiagramHandler extends AbstractCommandHandler {
+public class DeleteDiagramHandler extends AbstractDiagramCommandHandler {
 
 
 	/**

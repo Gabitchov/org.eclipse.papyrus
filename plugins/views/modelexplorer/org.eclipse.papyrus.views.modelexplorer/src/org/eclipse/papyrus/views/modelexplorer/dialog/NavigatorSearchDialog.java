@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -320,7 +319,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 		boolean caseSensitive = caseButton.getSelection();
 		for(Object o : objects) {
 			// Search matches in this level
-			if(!(o instanceof Diagram)) {
+//			if(!(o instanceof Diagram)) {
 				objectLabel = caseSensitive ? labelProvider.getText(o)
 						: labelProvider.getText(o).toUpperCase();
 
@@ -337,13 +336,19 @@ public class NavigatorSearchDialog extends TrayDialog {
 					if(child instanceof IAdaptable) {
 						EObject eObject = (EObject)((IAdaptable)child).getAdapter(EObject.class);
 
-						if(eObject != null && eObject.eContainer() != null && eObject.eContainer().equals(parentEObj)) {
+						//doesn't work for facets (Diagram and table)
+//						if(eObject != null && eObject.eContainer() != null && eObject.eContainer().equals(parentEObj)) {
+//							childs.add(child);
+//						}
+						
+						//to find diagrams, tables and others
+						if(eObject!=null){
 							childs.add(child);
 						}
 					}
 				}
 			}
-		}
+//		}
 		if(!childs.isEmpty()) {
 			matches.addAll(searchPattern(pattern, childs));
 		}
@@ -355,8 +360,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 		return new KeyListener() {
 
 			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-
+				//nothing to do
 			}
 
 			public void keyReleased(KeyEvent e) {

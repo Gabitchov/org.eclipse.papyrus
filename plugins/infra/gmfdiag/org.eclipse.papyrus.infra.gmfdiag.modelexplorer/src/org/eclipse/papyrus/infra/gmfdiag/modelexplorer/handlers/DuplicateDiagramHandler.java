@@ -34,7 +34,7 @@ import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
  * 
  * 
  */
-public class DuplicateDiagramHandler extends AbstractCommandHandler {
+public class DuplicateDiagramHandler extends AbstractDiagramCommandHandler {
 
 	/**
 	 * 

@@ -32,7 +32,6 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -43,6 +42,7 @@ import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
@@ -198,10 +198,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		SemanticFromModelExplorer semanticGetter = new SemanticFromModelExplorer();
 		List<Object> path = new ArrayList<Object>();
 		ITreeContentProvider contentProvider = (ITreeContentProvider)getCommonViewer().getContentProvider();
+		IPageMngr iPageMngr = EditorUtils.getIPageMngr();
+		Object[] result = iPageMngr.allPages().toArray();
+		List<Object> editors = Arrays.asList(result);
 
+		
 		for(Object o : objects) {
 			// Search matches in this level
-			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
+//			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
+			if(!editors.contains(o) && o instanceof IAdaptable){
 				if(eobject.equals(((IAdaptable)o).getAdapter(EObject.class))) {
 					path.add(o);
 					return path;

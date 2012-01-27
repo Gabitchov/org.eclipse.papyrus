@@ -13,20 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * This provides facilities to get the TransactionEditingDomain and the PageManager from the Model Explorer
@@ -68,39 +58,5 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 			//			e.printStackTrace();
 		}
 		return pageMngr;
-	}
-
-	/**
-	 * Returns the list of selected diagrams
-	 * 
-	 * @return
-	 *         the list of selected diagrams
-	 */
-	protected List<Diagram> getSelectedDiagrams() {
-		List<Diagram> diagrams = new ArrayList<Diagram>();
-		ISelection selection = null;
-
-		// Get current selection
-		selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-
-		// Get first element if the selection is an IStructuredSelection
-		if(selection instanceof IStructuredSelection) {
-			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
-			Iterator<?> iter = structuredSelection.iterator();
-			while(iter.hasNext()) {
-				Object current = iter.next();
-				/**
-				 * Get the diagram object.
-				 * This getElement is used in order to use IAdaptabel mechanisme
-				 * For example for Facet Elements
-				 */
-				EObject diag = NavigatorUtils.getElement(current, EObject.class);
-				if(diag instanceof Diagram) {
-					diagrams.add((Diagram)diag);
-				}
-			}
-		}
-
-		return diagrams;
 	}
 }

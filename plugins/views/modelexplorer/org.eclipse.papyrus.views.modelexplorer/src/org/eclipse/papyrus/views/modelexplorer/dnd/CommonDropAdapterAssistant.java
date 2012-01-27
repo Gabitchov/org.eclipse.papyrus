@@ -343,9 +343,14 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 					eObjectchild=(EObject)object;
 				}
 
-				if(eObjectchild instanceof Diagram){
+//				if(eObjectchild instanceof Diagram){
+//					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
+//				}
+				
+				if(getEditors().contains(eObjectchild)){
 					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
 				}
+				
 				//test if object is an eobject
 				else if(eObjectchild!=null){
 
@@ -356,6 +361,15 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		}
 
 		return result;
+	}
+	
+/**
+ * 
+ * @return
+ * the list of the editors
+ */
+	private List<Object> getEditors(){
+		return EditorUtils.getIPageMngr().allPages();
 	}
 
 	/**

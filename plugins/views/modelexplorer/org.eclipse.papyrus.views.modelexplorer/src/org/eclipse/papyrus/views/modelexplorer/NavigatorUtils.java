@@ -16,13 +16,10 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
@@ -256,18 +253,6 @@ public class NavigatorUtils {
 	//		return null;
 	//	}
 
-	/**
-	 * Opens a {@link Diagram} in the sash editor.
-	 * 
-	 * @param diagram
-	 */
-	// @unused
-	public static void openDiagram(Diagram diagram) {
-		IPageMngr pageManager = EditorUtils.getIPageMngr();
-		if(pageManager != null) {
-			pageManager.openPage(diagram);
-		}
-	}
 
 	/**
 	 * Opens a view part in the workbench with the specified ID.
