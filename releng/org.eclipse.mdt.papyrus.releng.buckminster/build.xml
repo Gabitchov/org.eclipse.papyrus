@@ -255,7 +255,7 @@
 			</cmdargs>
 		</buckminster>
 
-		<echo message="Generating psf" />
+		<echo message="Generating PSF" />
 		<replaceregexp file="${build.root}/papyrus_bom.xml" match="${bom.local.source.tree}" replace="${bom.svn.source.tree}" byline="true"/>
 		<xslt style="xsl/psf/bom2repository.xsl" in="${build.root}/papyrus_bom.xml" out="repository.xml" />
 		<xslt style="xsl/psf/repository2subversive.xsl" in="repository.xml" out="${result}/subversive_${build.type}.psf" />
