@@ -13,7 +13,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.examples.xtext.essentialocl.ui;bundle-version="3.1.0",
  org.eclipse.gef;bundle-version="3.7.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.views.properties.runtime;bundle-version="0.8.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.8.0",
  org.eclipse.core.expressions
 Bundle-ActivationPolicy: lazy
