@@ -83,8 +83,8 @@ The test builds do one more step: they run the tests using the Buckminster '''te
 
 == Features ==
 The feature '''org.eclipse.papyrus.build.feature''' is not visible on the Papyrus Update Site. It is only useful for the Buckminster build. It contains the main Papyrus features : 
-* org.eclipse.papyrus.sdk.feature (binary build)
-* org.eclipse.papyrus.sdk.source.feature (source build)
+* org.eclipse.papyrus.sdk.feature (binaries)
+* org.eclipse.papyrus.sdk.source.feature (sources + binaries)
 
 The feature '''org.eclipse.papyrus.sdk.feature''' allows to provide the Papyrus binaries on the Update Site. This feature aggregates all the main Papyrus features.
 
@@ -136,7 +136,16 @@ If you don't know where a particular plug-in or feature is located, the easiest 
  find /home/data/httpd/download.eclipse.org/modeling/emf/ -name 'org.eclipse.emf.compare_*'
 
 == Publishing a build in the aggregator ==
-The Eclipse simultaneous release train is built with the B3 aggregator. To be part of the aggregation, you must add your contribution to the aggregation model:
+The Eclipse simultaneous release train is built with the B3 aggregator. To be part of the aggregation, you must add your contribution to the aggregation model.
+
+First, you need to install the B3 aggregator. Theoretically, you can edit the model with any text editor, but it is better to edit it with the B3 editor, which will check that your model is valid. 
+
+It is suggested that you [http://wiki.eclipse.org/Eclipse_b3/aggregator/manual#Eclipse_SDK_installation install] the B3 aggregator in a separate Eclipse, dedicated to releng activities. For the Indigo and Juno simultaneous releases, you will need two different B3 installations : 
+* one which uses the Helios version of B3 for building Indigo : http://download.eclipse.org/modeling/emft/b3/updates-3.6/
+* and one that uses the Indigo version of B3 for building Juno : http://download.eclipse.org/modeling/emft/b3/updates-3.7/
+
+It is important to use the right version for each, because you will break the build if you commit changes that depend on the wrong version.
+
 * checkout the project org.eclipse.<releaseName>.build from the Eclipse CVS ":pserver:<committerID>@dev.eclipse.org:/cvsroot/callisto"
 * open "mdt-papyrus.b3aggrcon"
 * change the location on this line to point to the build you want to publish in the aggregator:
@@ -147,6 +156,12 @@ The Eclipse simultaneous release train is built with the B3 aggregator. To be pa
 ** open the error log and see if everything went OK
 * commit your changes
 * optionally start an [https://hudson.eclipse.org/hudson/view/Repository%20Aggregation/job/juno.runAggregator/ aggregation build] (the build should start automatically after you commit changes)
+
+=== contact information ===
+
+The people responsible for the build should be listed as contacts in the build model:
+
+[[Image:b3Contacts.png]]
 
 == What do you select in your build.properties files ? ==
 The licence.html file should be selected for both binary and source builds.
