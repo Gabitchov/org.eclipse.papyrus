@@ -5,10 +5,10 @@
 **use extssh and not pserver for this connection
 * have rights to launch this job : https://hudson.eclipse.org/hudson/job/juno.runAggregator/ (should come with the previous rights)
 * have write access to /home/data/httpd/download.eclipse.org/modeling/mdt/papyrus (should come with the Papyrus committer rights)
+* you must subscribe to the [https://dev.eclipse.org/mailman/listinfo/cross-project-issues-dev cross-project-issues-dev] mailing list, on which discussions relevant to the releng activities take place
 
 === configure password-less ssh access ===
 To run scripts that access the build.eclipse.org server without having to type the ssh password for each operation, you can use ssh-keygen to create a key and put your '''public''' key "~/.ssh/id_rsa.pub" in "~/.ssh/authorized_keys" ([http://linuxproblem.org/art_9.html see this documentation]).
-
 
 == Releng Project ==
 The papyrus releng project is called : '''org.eclipse.mdt.papyrus.releng.buckminster'''
@@ -131,6 +131,10 @@ And the variable "papyrus.update.site" is defined in the Hudson job configuratio
 
 [[Image:hudsonUpdateSiteDependency.png]]
 
+== Finding dependencies ==
+If you don't know where a particular plug-in or feature is located, the easiest way to find it is to search the Eclipse download area using "find" on build.eclipse.org. For example, to look for "org.eclipse.emf.compare" :
+ find /home/data/httpd/download.eclipse.org/modeling/emf/ -name 'org.eclipse.emf.compare_*'
+
 == Publishing a build in the aggregator ==
 The Eclipse simultaneous release train is built with the B3 aggregator. To be part of the aggregation, you must add your contribution to the aggregation model:
 * checkout the project org.eclipse.<releaseName>.build from the Eclipse CVS ":pserver:<committerID>@dev.eclipse.org:/cvsroot/callisto"
@@ -143,23 +147,6 @@ The Eclipse simultaneous release train is built with the B3 aggregator. To be pa
 ** open the error log and see if everything went OK
 * commit your changes
 * optionally start an [https://hudson.eclipse.org/hudson/view/Repository%20Aggregation/job/juno.runAggregator/ aggregation build] (the build should start automatically after you commit changes)
-
-== Entering the simultaneous release train ==
-You should indicate that your project follows the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
-
-[[Image:clickOnView.jpeg]]
-
-click on '''maintain'''
-
-[[Image:clickOnMaintain.jpeg]]
-
-click on edit for '''simultaneousrelease'''
-
-[[Image:clickOnSimultaneousRelease.jpeg]]
-
-add 1 to your new release
-
-[[Image:eclipseTrain.jpeg]]
 
 == What do you select in your build.properties files ? ==
 The licence.html file should be selected for both binary and source builds.
@@ -339,7 +326,7 @@ If this is a plug-in from another project you depend on, you can fix this error 
 * making sure that the locator pattern points Buckminster to the right update site for this plug-in
 * making sure that you depend on the right version of the plug-in (in the referencing project's MANIFEST.MF)
 
-Notice the "[0009]" tag before the error message: it refers to more information at the end of the build log. Search for this number, and you will find something like:
+Notice the "&#91;0009&#93;" tag before the error message: it refers to more information at the end of the build log. Search for this number, and you will find something like:
  INFO:  TAG-ID 0009 = Query for org.eclipse.mdt.papyrus.releng.buckminster:buckminster, path:
  org.eclipse.mdt.papyrus.releng.buckminster:buckminster$0.9.0.qualifier -> 
  org.eclipse.xxx:osgi.bundle$0.9.0.qualifier -> 
@@ -373,6 +360,9 @@ Once you have found the root dependency that is not resolved, then you can:
 ** Add it to one of your plug-ins if it makes sense
 ** If it does not make sense to specify the dependency on one of your plug-ins, because the dependency is incidental (inherited from a project you depend on for example), then you can add it to the '''buckminster.cspec''' of the test build
 
+Sometimes, the error message says that the tests failed to launch, and to "see the log", but it doesn't indicate which log. The log for a launch failure is located in:
+ buildroot/result/workspace/.metadata/.plugins/org.eclipse.pde.core/<launchName>
+
 === The Hudson build's workspace ===
 You can see the contents of the Hudson build's workspace on Hudson. For example:
  https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/ws/
@@ -390,3 +380,52 @@ At the end of the build, the Hudson workspace contains these files:
 * updateSite : a copy of the update site that was produced by Buckminster. The other Papyrus builds (for extra and tests) use this update site
 * Papyrus-Main.zip : this is the result of the build, packaged in a zip ready to be published by the cron publishing script
 
+== Eclipse simultaneous release plan ==
+The page for each project's simultaneous release is usually:
+ http://wiki.eclipse.org/<release_name>/Simultaneous_Release_Plan
+For example:
+ * http://wiki.eclipse.org/Indigo/Simultaneous_Release_Plan
+ * http://wiki.eclipse.org/Juno/Simultaneous_Release_Plan
+
+It contains the date each milestone is expected to be available, depending on whether the project has a +0, +1, +2 or +3 offset. Each project determines its offset depending on its dependencies : if it depends on +2 projects, then it should be +3. And if it depends on +3 projects, then it is still +3, because there is no +4 offset. In this case, communication between the projects is essential, to make sure that each build depends on the right version of its dependencies.
+
+Each project in the simultaneous release should also respect:
+* API Freeze at M6 : no API changes should occur after M6
+* UI freeze at M6 : no major UI changes should occur after M6, in order to give Babel translators enough time to translate everything before the release
+* Feature Freeze at M7 : no new features should be developped after M7 (only bug fixes, documentation and releng changes should be committed for the release candidates)
+
+=== Final Daze ===
+
+As the time for the big release in june each year approaches, each project in the simultaneous release must keep informed about the plan for the release, and perform some actions at the right time to ensure the release goes smoothly (such as cleaning up, archiving, publishing the documentation, putting the release bits in the right place for mirroring, etc.).
+
+This is documented in a page conventionally named:
+ http://wiki.eclipse.org/<release_name>/Final_Daze
+for example:
+* http://wiki.eclipse.org/Indigo/Final_Daze
+
+It is also very important to read the [https://dev.eclipse.org/mailman/listinfo/cross-project-issues-dev cross-project-issues-dev] mailing list regularly, to stay informed about everything concerning the simultaneous release.
+
+== Entering the simultaneous release train ==
+You should indicate that your project follows the Eclipse Train. Go to the Eclipse portal [https://dev.eclipse.org/portal]. In Eclipse Projects, click on '''view''' : 
+
+[[Image:clickOnView.jpeg]]
+
+click on '''maintain'''
+
+[[Image:clickOnMaintain.jpeg]]
+
+click on edit for '''simultaneousrelease'''
+
+[[Image:clickOnSimultaneousRelease.jpeg]]
+
+add 1 to your new release
+
+[[Image:eclipseTrain.jpeg]]
+
+== Simultaneous release metadata ==
+You must respect the rules for being part of the simultaneous release, and fill in metadata on the portal. Most of this metadata is to document your compliance with the rules. If you don't comply with some rules, you should explain why, either with an in-place explanation if appropriate, or by linking to a web page with more information.
+* go to https://dev.eclipse.org/portal/myfoundation/portal/portal.php
+* in the "Simultaneous Release Tracker" portlet, click on "track" on the right of "modeling.mdt.papyrus"
+* fill in the required information :
+
+[[Image:simultaneousReleaseTracker.png]]

@@ -45,7 +45,7 @@ There is a tool that copies most of the information automatically in this plug-i
 '''Warning''': don't forget to update the aggregation model project before copying information from it
 
 A few dependencies are not in the aggregation build model though, so they must be updated manually:
-* '''Orbit''' : take the latest version from : http://download.eclipse.org/tools/orbit/downloads/
+* '''Orbit''' : you can find the latest version listed on : http://download.eclipse.org/tools/orbit/downloads/
 
 ==== Finding dependencies ====
 If you don't know where a particular plug-in or feature is located, the easiest way to find it is to search the Eclipse download area using "find" on build.eclipse.org.
@@ -61,8 +61,8 @@ For example, to look for "org.eclipse.emf.compare" :
 === Manually ===
 
 * Only committers in the Papyrus project can launch Papyrus build jobs from Hudson.
-* Trunk nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/
-* Trunk extras nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/
+* Trunk nightly build : https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/
+* Trunk extras nightly build : https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/
 * Branch 0.8 nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly
 * Branch 0.8 extras nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly/
 
@@ -84,10 +84,35 @@ These builds can then be seen and downloaded from http://www.eclipse.org/modelin
 === With the script ===
 
 To publish a milestone or release, you can use the manualPromote.sh script on: '''/opt/public/modeling/mdt/papyrus/manualPromote.sh'''
-Start this script, and fill in the parameters in the interactive script, and it will:
-* publish the build to the download drops
-* 
-* 
+Start this script, and fill in the parameters in the interactive script. For example:
+
+ $ cd /opt/public/modeling/mdt/papyrus/
+ $ ./manualPromote.sh
+ -------------------- user parameters --------------------
+ mainBuildNumber (the number of the "papyrus-trunk-nightly" Hudson build from which to publish the main Papyrus plug-ins):
+ ? 519
+ extrasBuildNumber (the number of the "papyrus-trunk-extra-nightly" Hudson build from which to publish the extra Papyrus plug-ins, or 0 to not publish):
+ ? 43
+ testsBuildNumber (the number of the "papyrus-trunk-nightly-tests" Hudson build from which to publish the test results, or 0 to not publish):
+ ? 93
+ version (e.g. "0.9.0"):
+ ? 0.9.0
+ updateSite (e.g. "nightly/juno", "milestones/0.9/M5", "releases/indigo/0.8.1") :
+ ? milestones/0.9/M5
+ Are you sure you want to publish with these parameters (yes|no)?
+ ? yes
+
+In the previous example, the script will:
+* publish the main Papyrus plug-ins from papyrus-trunk-nightly build #519 to the Papyrus download in "drops/0.9.0" and the update site in "milestones/0.9/M5/main"
+* publish the extra plug-ins from papyrus-trunk-extra-nightly build #43 to the Papyrus download in "drops/0.9.0" in the same build folder as the main build, and the update site in "milestones/0.9/M5/extra"
+* publish the test results from papyrus-trunk-nightly-tests build #93 to the Papyrus download in "drops/0.9.0" in the same build folder as the main build
+* make "milestones/0.9/M5" a composite update site, which contains "milestones/0.9/M5/main" and "milestones/0.9/M5/extra"
+* enable p2 download statistics both on "milestones/0.9/M5/main" and "milestones/0.9/M5/extra"
+* set the correct linux access rights on the new folders
+
+Once the script is done, all you have left to do is to:
+* [[#Tagging|Tag the build]]
+* [[#Simultaneous Release|update the aggregation model]] if this build must be part of the simultaneous release
 
 === Manually ===
 '''S'''table, '''M'''aintenance and '''R'''elease builds are not automatically published. They should be first tested internally before publishing. For example, to publish the 0.1.0M6 milestone build:
@@ -142,6 +167,8 @@ Hudson builds expect these parameters:
 Releases should have a tag like '''0.9.0''', and milestones should have a tag like '''0.9.0_M7'''.
 
 == Checking ==
+
+You can execute the following Bash snippets to check the compliance of different aspects.
 
 === Check bundles ===
 Check that each bundle contains an about.html file:
