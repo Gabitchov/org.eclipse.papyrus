@@ -17,9 +17,16 @@ bash -x "$cronPromoteScript" 2>&1 | tee "$logFile"
 if [ ${PIPESTATUS[0]} != 0 ]; then
 	echo "promote failed : sending mail"
 	(echo "This is an automatically generated message sent because the build promotion script 'cronPromote.sh' running on build.eclipse.org failed." && 
+	echo &&
 	echo "Run these commands on build.eclipse.org to retry publishing:" && 
+	echo "--------------------------------------------------------------------------------" && 
 	echo "cd /opt/public/modeling/mdt/papyrus/" && 
 	echo "touch papyrus-trunk-nightly/promoteSignal && ./cronPromote.sh # (replace papyrus-trunk-nightly by the job you want to publish)" && 
+	echo "--------------------------------------------------------------------------------" && 
+	echo && 
+	echo && 
+	echo && 
+	echo && 
 	echo && 
 	cat $logFile) | mail -s "[Papyrus build promotion] build promotion failed" $mailRecipients
 fi
