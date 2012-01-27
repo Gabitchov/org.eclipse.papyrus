@@ -1,6 +1,6 @@
-The Papyrus project is built using [[Buckminster]], with this releng project:
-https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster
-(only for the trunk; the branches are build with the corresponding project from the branch).
+The Papyrus project is built using [http://www.eclipse.org/buckminster/ Buckminster], with this releng project:
+http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster
+(only for the trunk; the branches are built with the corresponding project from the branch).
 
 This project contains sub-folders containing the Buckminster configuration for each Hudson job. 
 
@@ -40,7 +40,7 @@ This model is in a project with the release name on the Eclipse CVS:
 * [http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.juno.build/?root=Callisto "org.eclipse.<releaseName>.build"] on <code>dev.eclipse.org:/cvsroot/callisto</code>, where releaseName is helios or indigo or juno etc. depending on the version being built.
 
 There is a tool that copies most of the information automatically in this plug-in:
-* https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/releng/org.eclipse.emf.facet.releng.tools (see the [https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/releng/org.eclipse.emf.facet.releng.tools/README.TXT README.TXT])
+* http://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/releng/org.eclipse.emf.facet.releng.tools (see the [http://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/releng/org.eclipse.emf.facet.releng.tools/README.TXT README.TXT])
 
 '''Warning''': don't forget to update the aggregation model project before copying information from it
 
@@ -60,11 +60,19 @@ For example, to look for "org.eclipse.emf.compare" :
 
 === Manually ===
 
-* Only committers in the Papyrus project can launch Papyrus build jobs from Hudson.
+Only committers in the Papyrus project can launch Papyrus build jobs from Hudson.
+
+Go to one of these pages, depending on the build you want to launch:
+
 * Trunk nightly build : https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/
 * Trunk extras nightly build : https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly/
-* Branch 0.8 nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly
-* Branch 0.8 extras nightly build : go to https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly/
+* Trunk tests nightly build on 4.x : https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-tests/
+* Trunk tests nightly build on 3.x : https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly-3.8-tests/
+* Trunk extra tests nightly build : https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/
+* Branch 0.8 nightly build : https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly
+* Branch 0.8 extra nightly build : https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly/
+* Branch 0.8 tests nightly build : https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly-tests/
+* Branch 0.8 extra tests nightly build : https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly-tests/
 
 Then:
 * In Hudson, click on '''Build Now''', change the build parameters as needed (see [[#Build parameters]]), and click on '''Build'''.
@@ -72,9 +80,9 @@ Then:
 
 == How to publish a build? ==
 === Automatically ===
-Successful '''N'''ightly builds are automatically published to download.eclipse.org by a [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig/cronPromote.sh cron job] that runs on build.eclipse.org. For example, a nightly build for version 0.9.0, created on April 21 2011 at 04:13 would be published to:
-* the download drops: http://download.eclipse.org/modeling/mdt/papyrus/downloads/drops/0.8.0/N201104210413
-* the nightly update site: http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/
+Successful '''N'''ightly builds are automatically published to download.eclipse.org by a [http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig/cronPromote.sh cron job] that runs on build.eclipse.org. For example, a papyrus-trunk-nightly build for version 0.9.0, created on April 21 2011 at 04:13 would be published to:
+* the download drops: http://download.eclipse.org/modeling/mdt/papyrus/downloads/drops/0.9.0/N201104210413
+* the nightly update site: http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/main
 
 These builds can then be seen and downloaded from http://www.eclipse.org/modeling/mdt/papyrus/downloads/, where additional information is available (test results, build log), or installed from the update sites:
 * http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno (composite update site)
@@ -83,7 +91,7 @@ These builds can then be seen and downloaded from http://www.eclipse.org/modelin
 
 === With the script ===
 
-To publish a milestone or release, you can use the manualPromote.sh script on: '''/opt/public/modeling/mdt/papyrus/manualPromote.sh'''
+To publish a milestone or release from a trunk build, you can use the manualPromote.sh script on: '''/opt/public/modeling/mdt/papyrus/manualPromote.sh'''
 Start this script, and fill in the parameters in the interactive script. For example:
 
  $ cd /opt/public/modeling/mdt/papyrus/
@@ -112,7 +120,7 @@ In the previous example, the script will:
 
 Once the script is done, all you have left to do is to:
 * [[#Tagging|Tag the build]]
-* [[#Simultaneous Release|update the aggregation model]] if this build must be part of the simultaneous release
+* [[#Simultaneous_Release|update the aggregation model]] if this build must be part of the simultaneous release
 
 === Manually ===
 '''S'''table, '''M'''aintenance and '''R'''elease builds are not automatically published. They should be first tested internally before publishing. For example, to publish the 0.1.0M6 milestone build:
@@ -132,20 +140,16 @@ Add a new update site with the new build to the composite:
 ** set the value of p2.timestamp to the result of "<code>date +%s000</code>"
 ** increase the "size" attribute of the children element
 ** add a "child" element inside the "children" element with a "location" set to the name of the folder (e.g "M6")
-* You can enable download stats on the repository by running [https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig/addDownloadStats.sh /opt/public/modeling/mdt/papyrus/addDownloadStats.sh] on the update site
+* You can enable download stats on the repository by running [http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/org.eclipse.mdt.papyrus.releng.buckminster/serverConfig/addDownloadStats.sh /opt/public/modeling/mdt/papyrus/addDownloadStats.sh] on the update site
 * Check that the new build appears on [http://www.eclipse.org/modeling/mdt/papyrus/downloads/ http://www.eclipse.org/modeling/mdt/papyrus/downloads/].
 * Builds can be hidden from this page before a release by modifying <code>downloads-scripts.php</code> in <code>www/modeling/mdt/papyrus/downloads/</code> on <code>:pserver:anonymous@dev.eclipse.org:/cvsroot/org.eclipse</code>
-* Update the archive site with the new build:
-** <code>unzip S201109070430.zip -d /home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/drops/0.1.0/</code>
-** update <code>/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html</code> with a link to the newly added update zip
 * [[#Tagging|Tag the build]]
 
 === Simultaneous Release ===
 If the build must be part of the simultaneous release, you must also:
-* Use the [[Eclipse_b3/aggregator/manual|B3 Aggregator]] (or a text editor if the modification is trivial) to [[Juno/Contributing_to_Juno_Build|update the build model for the aggregator]] ([http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.juno.build/?root=Callisto after checking it out from CVS])
-Usually, the only thing to change is the location (for example "milestones/0.9/M4"):
- <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/milestones/0.9/M4" description="Papyrus">
-
+* Use the [http://wiki.eclipse.org/Eclipse_b3/aggregator/manual B3 Aggregator] (or a text editor if the modification is trivial) to [http://wiki.eclipse.org/Juno/Contributing_to_Juno_Build update the build model for the aggregator] ([http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.juno.build/?root=Callisto after checking it out from CVS])
+Usually, the only thing to change is the location (for example "milestones/0.9/M5/main"):
+ <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/milestones/0.9/M5/main" description="Papyrus">
 
 == Build parameters ==
 Hudson builds expect these parameters:

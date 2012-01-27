@@ -65,7 +65,7 @@ And these scripts are common to all the builds:
 == Build process ==
 
 Taking the example of the job papyrus-trunk-nightly:
-* When the Hudson job papyrus-trunk-nightly starts, Hudson begins by doing a checkout of the required folders (which are specified in the [[#Hudson_job.27s_SVN_configuration]]) from the SVN : the "plugins", "features" and "releng" folders are retrieved, and placed under a directory named "sourceTree" in the Hudson workspace.
+* When the Hudson job papyrus-trunk-nightly starts, Hudson begins by doing a checkout of the required folders (which are specified in the [[#Hudson_job.27s_SVN_configuration|Hudson job's configuration]]) from the SVN : the "plugins", "features" and "releng" folders are retrieved, and placed under a directory named "sourceTree" in the Hudson workspace.
 * Then the first bash script (from the releng project that was just retrieved from the SVN) is executed : "sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster/papyrus-trunk-nightly/build-before.sh". This script does a bit of clean-up and initializes variables for the build.
 * Then the main build script is executed: "sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster/papyrus-trunk-nightly/build.xml":
 ** it reads the property file '''build.properties''', which defines settings for the build
