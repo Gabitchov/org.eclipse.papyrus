@@ -45,6 +45,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.TimeEvent;
@@ -152,7 +153,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			result.append(getTextForGuard(trans));
 			String textForEffect = getTextForEffect(trans);
 			if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-				result.append("/ ").append(textForEffect); //$NON-NLS-1$
+				result.append("/\n").append(textForEffect); //$NON-NLS-1$
 			}
 			return result.toString();
 		}
@@ -187,8 +188,16 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		Behavior effect = trans.getEffect();
 		if(effect != null) {
 			EClass eClass = effect.eClass();
+			if(effect instanceof OpaqueBehavior) {
+				OpaqueBehavior ob = (OpaqueBehavior)effect;
+				if(ob.getBodies().size() > 0) {
+					// return body of behavior (only handle case of a single body)
+					result.append(ob.getBodies().get(0));
+					return result.toString();
+				}
+			}
 			if(eClass != null) {
-				result.append(eClass.getName()).append(" :").append(effect.getName()); //$NON-NLS-1$
+				result.append(eClass.getName()).append(": ").append(effect.getName()); //$NON-NLS-1$
 			}
 		}
 		return result.toString();
