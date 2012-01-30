@@ -1,3 +1,19 @@
+/*****************************************************************************
+ * Copyright (c) 2010-2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *
+ *		David Servat
+ *		Ansgar Radermacher (bug 369305)
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.diagram.statemachine.custom.factory;
 
 import org.eclipse.gef.EditPart;
@@ -13,6 +29,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMach
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomTransitionGuardEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
@@ -56,7 +73,7 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 			case StateCompartmentEditPart.VISUAL_ID:
 				return new CustomStateCompartmentEditPart(view);
 			case TransitionGuardEditPart.VISUAL_ID:
-				return new TransitionGuardEditPart(view);
+				return new CustomTransitionGuardEditPart(view);
 			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
 				return new CustomConnectionPointReferenceNameEditPart(view);
 
