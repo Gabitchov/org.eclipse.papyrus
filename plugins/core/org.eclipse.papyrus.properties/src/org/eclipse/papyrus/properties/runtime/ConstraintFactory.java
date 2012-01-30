@@ -17,6 +17,7 @@ import org.eclipse.papyrus.properties.constraints.Constraint;
 import org.eclipse.papyrus.properties.contexts.CompositeConstraint;
 import org.eclipse.papyrus.properties.contexts.ConstraintDescriptor;
 import org.eclipse.papyrus.properties.contexts.SimpleConstraint;
+import org.eclipse.papyrus.properties.util.ClassLoader;
 
 /**
  * A Singleton class for creating {@link Constraint}s from a {@link ConstraintDescriptor}
@@ -69,21 +70,20 @@ public class ConstraintFactory {
 	}
 
 	private Constraint loadConstraint(SimpleConstraint model) {
-		String className = model.getConstraintType().getConstraintClass();
 		Constraint constraint = null;
 
-		if(model.getConstraintType().eIsProxy()) {
-			Activator.log.error("The constraint URI cannot be resolved. Constraint : " + model.getName() + ". " + model.getConstraintType(), null);
+		if(model.getConstraintType() != null) {
+			String className = model.getConstraintType().getConstraintClass();
+			ClassLoader loader = new ClassLoader();
+			constraint = loader.newInstance(className, Constraint.class);
+		}
+
+		if(constraint == null) {
+			Activator.log.warn("Cannot load constraint " + model.getName()); //$NON-NLS-1$
 			return null;
 		}
 
-		try {
-			constraint = (Constraint)Class.forName(className).newInstance();
-			constraint.setConstraintDescriptor(model);
-		} catch (Exception ex) {
-			Activator.log.error("Cannot load constraint " + model.getName(), ex); //$NON-NLS-1$
-		}
-
+		constraint.setConstraintDescriptor(model);
 		return constraint;
 	}
 

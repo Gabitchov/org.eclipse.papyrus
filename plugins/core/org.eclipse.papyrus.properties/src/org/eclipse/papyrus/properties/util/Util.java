@@ -23,6 +23,7 @@ import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.properties.contexts.Property;
 import org.eclipse.papyrus.properties.environment.Namespace;
 
 /**
@@ -54,6 +55,20 @@ public class Util {
 			return source;
 		}
 		return source.substring(0, 1).toLowerCase() + source.substring(1);
+	}
+
+	/**
+	 * Returns the formatted label of the property
+	 * 
+	 * @param property
+	 * @return
+	 */
+	public static String getLabel(Property property) {
+		if(property.getLabel() == null || property.getLabel().trim().equals("")) {
+			return getLabel(property.getName());
+		}
+
+		return property.getLabel();
 	}
 
 	/**

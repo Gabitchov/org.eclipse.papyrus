@@ -34,12 +34,12 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * An IGenerator for building Contexts from a UML Profile
@@ -114,27 +114,27 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	}
 
 	/**
-	 * Retrieve the Stereotype corresponding to the given path, in the given Package
+	 * Retrieve the Classifier corresponding to the given path, in the given Package
 	 * 
 	 * @param path
-	 *        The list of package and subpackages names, and the stereotype name, i.e.
-	 *        the list of segments in the stereotype's qualified name
+	 *        The list of package and subpackages names, and the classifier name, i.e.
+	 *        the list of segments in the classifier qualified name
 	 *        e.g. : SysML::Blocks::Block : ["SysML", "Blocks", "Block"]
 	 * @param profilePackage
 	 *        The root Package in which the stereotype should be retrieved
 	 * @return
-	 *         The corresponding Stereotype, or null if it couldn't be retrieved
+	 *         The corresponding Classifier, or null if it couldn't be retrieved
 	 */
-	protected Stereotype findStereotype(List<String> path, Package profilePackage) {
+	protected Classifier findClassifier(List<String> path, Package profilePackage) {
 		NamedElement element = profilePackage.getOwnedMember(path.get(0));
 		path.remove(0);
 		if(path.size() == 0) {
-			if(element instanceof Stereotype) {
-				return (Stereotype)element;
+			if(element instanceof Classifier) {
+				return (Classifier)element;
 			}
 		} else {
 			if(element instanceof Package) {
-				return findStereotype(path, (Package)element);
+				return findClassifier(path, (Package)element);
 			}
 		}
 		return null;
@@ -163,14 +163,15 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	 * @param property
 	 * @return
 	 */
-	protected org.eclipse.uml2.uml.Property getAttribute(Property property) {
+	public org.eclipse.uml2.uml.Property getAttribute(Property property) {
 		List<String> path = getPath(property);
 		path.remove(0); //The first path element corresponds to this.umlProfile
-		Stereotype stereotype = findStereotype(path, umlProfile);
-		if(stereotype == null)
+		Classifier classifier = findClassifier(path, umlProfile);
+		if(classifier == null) {
 			return null;
+		}
 
-		org.eclipse.uml2.uml.Property attribute = stereotype.getOwnedAttribute(property.getName(), null);
+		org.eclipse.uml2.uml.Property attribute = classifier.getAttribute(property.getName(), null);
 		return attribute;
 	}
 
@@ -201,9 +202,8 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 
 		Set<String> validDataTypes = new HashSet<String>(Arrays.asList(new String[]{ "Integer", "Boolean", "Float", "Double" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
-		if(attribute.getType() instanceof DataType) {
-			if(validDataTypes.contains(((DataType)attribute.getType()).getName()))
-				return true;
+		if(attribute.getType() instanceof PrimitiveType) {
+			return validDataTypes.contains(((PrimitiveType)attribute.getType()).getName());
 		}
 
 		if(attribute.getType() instanceof Enumeration) {

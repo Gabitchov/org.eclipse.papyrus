@@ -90,30 +90,29 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 	@Override
 	public boolean performFinish() {
-		if(generator == null || context == null) {
+		if(generator == null || context == null || layoutGenerator == null) {
 			return false;
 		}
 
 		ConfigurationManager configManager = ConfigurationManager.instance;
 
 		Tab defaultTab = ContextsFactory.eINSTANCE.createTab();
-		defaultTab.setCategory("default"); //$NON-NLS-1$
-		defaultTab.setId("default"); //$NON-NLS-1$
-		defaultTab.setLabel("Default"); //$NON-NLS-1$
+		defaultTab.setId(context.getName().toLowerCase()); //$NON-NLS-1$
+		defaultTab.setLabel(context.getName()); //$NON-NLS-1$
 		context.getTabs().add(defaultTab);
 
 		FieldSelection fieldSelection = selectFieldsPage.getFieldSelection();
 
-		URI contextURI = context.eResource().getURI();
-		Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
-		selectionResource.getContents().add(fieldSelection);
-		try {
-			selectionResource.save(null);
-		} catch (IOException ex) {
-			Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
-		}
+//		URI contextURI = context.eResource().getURI();
+//		Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
+//		selectionResource.getContents().add(fieldSelection);
+//		try {
+//			selectionResource.save(null);
+//		} catch (IOException ex) {
+//			Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
+//		}
 
-		layoutGenerator = layoutGenerators.get(0); //TODO : Use the layoutGenerator combo
+		layoutGenerator.setGenerator(generator);
 
 		for(View view : context.getViews()) {
 			if(view.getConstraints().size() == 0) //TODO : Problem with external resource references
@@ -181,35 +180,6 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		} catch (InterruptedException ex) {
 			Activator.log.error(ex);
 		}
-		//		Job job = new Job(Messages.CreateContextWizard_propertyViewGenerationJobName + context.getName()) {
-		//
-		//			@Override
-		//			protected IStatus run(IProgressMonitor monitor) {
-		//				monitor.beginTask(getName(), numberOfSections);
-		//
-		//				try {
-		//					context.eResource().save(Collections.EMPTY_MAP);
-		//
-		//					monitor.worked(1);
-		//					for(Tab tab : context.getTabs()) {
-		//						for(Section section : tab.getSections()) {
-		//							if(monitor.isCanceled()) {
-		//								return Status.CANCEL_STATUS;
-		//							}
-		//							section.getWidget().eResource().save(Collections.EMPTY_MAP);
-		//							monitor.worked(1);
-		//						}
-		//					}
-		//				} catch (IOException ex) {
-		//					Activator.log.error(ex);
-		//					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CreateContextWizard_propertyViewGenerationError + context.getName(), ex);
-		//				}
-		//				return Status.OK_STATUS;
-		//			}
-		//		};
-		//		job.setPriority(Job.INTERACTIVE);
-		//		job.setUser(true);
-		//		job.schedule();
 
 		return true;
 	}

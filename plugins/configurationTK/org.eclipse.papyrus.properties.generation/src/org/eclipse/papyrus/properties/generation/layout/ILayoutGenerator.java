@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.generation.layout;
 
 import java.util.List;
 
+import org.eclipse.papyrus.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.properties.contexts.Section;
 import org.eclipse.papyrus.properties.contexts.View;
 import org.eclipse.papyrus.properties.ui.PropertyEditor;
@@ -43,4 +44,14 @@ public interface ILayoutGenerator {
 	 * @return the name of the Layout generator
 	 */
 	public String getName();
+
+	/**
+	 * Sets the generator used to generate the Property view configuration
+	 * 
+	 * @param generator
+	 */
+	//TODO : This method has been added for a specific case (Profile layout).
+	//It should be removed when we have a better way to retrieve the source
+	//profile
+	public void setGenerator(IGenerator generator);
 }

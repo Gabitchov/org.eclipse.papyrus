@@ -35,6 +35,9 @@
       <generator
             generator="org.eclipse.papyrus.properties.generation.layout.StandardLayoutGenerator">
       </generator>
+      <generator
+            generator="org.eclipse.papyrus.properties.generation.layout.ProfileWithDatatypes">
+      </generator>
    </extension>
 
 </plugin>
