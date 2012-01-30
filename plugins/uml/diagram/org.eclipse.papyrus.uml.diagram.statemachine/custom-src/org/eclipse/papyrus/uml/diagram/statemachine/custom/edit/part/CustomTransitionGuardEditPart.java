@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionGuardEditPart;
