@@ -71,10 +71,13 @@ public class ConstraintFactory {
 	}
 
 	private Constraint loadConstraint(SimpleConstraint model) {
-		String className = model.getConstraintType().getConstraintClass();
 		Constraint constraint = null;
 
-		constraint = ClassLoaderHelper.newInstance(className, Constraint.class);
+		if(model.getConstraintType() != null) {
+			String className = model.getConstraintType().getConstraintClass();
+			constraint = ClassLoaderHelper.newInstance(className, Constraint.class);
+		}
+
 		if(constraint == null) {
 			Activator.log.warn("Cannot load constraint " + model.getName()); //$NON-NLS-1$
 			return null;
