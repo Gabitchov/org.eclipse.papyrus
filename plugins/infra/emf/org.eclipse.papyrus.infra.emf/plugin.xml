@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService"
+            description="Service used to initialize association between ResourceSet and ServiceRegistry"
+            id="org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+      </service>
+   </extension>
+
+</plugin>
