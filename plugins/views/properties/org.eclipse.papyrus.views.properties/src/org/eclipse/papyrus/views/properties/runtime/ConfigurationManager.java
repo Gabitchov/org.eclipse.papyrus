@@ -200,10 +200,15 @@ public class ConfigurationManager {
 	private void loadCustomContext(File contextDirectory) throws IOException {
 		String contextPath = contextDirectory.getPath() + "/" + contextDirectory.getName() + ".ctx"; //$NON-NLS-1$ //$NON-NLS-2$
 		URI contextURI = URI.createFileURI(contextPath);
-		EObject model = loadEMFModel(contextURI);
-		if(model instanceof Context) {
-			Context context = (Context)model;
-			addContext(context, isApplied(context));
+		try {
+			EObject model = loadEMFModel(contextURI);
+
+			if(model instanceof Context) {
+				Context context = (Context)model;
+				addContext(context, isApplied(context));
+			}
+		} catch (IOException ex) {
+			//Silent : The file has been removed from the preferences, but the folder still exists
 		}
 	}
 

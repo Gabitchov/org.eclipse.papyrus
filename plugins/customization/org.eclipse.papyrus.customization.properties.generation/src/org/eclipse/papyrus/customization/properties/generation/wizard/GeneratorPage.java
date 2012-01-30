@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.customization.properties.generation.wizard;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.layout.ILayoutGenerator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
@@ -41,6 +42,8 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 	private Composite root, generatorControl;
 
 	private FileChooser targetFileChooser;
+
+	private CCombo layoutCombo;
 
 	/**
 	 * Constructor.
@@ -93,14 +96,14 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		data.widthHint = 100;
 		layoutGeneratorLabel.setLayoutData(data);
 
-		CCombo layoutGeneratorCombo = new CCombo(root, SWT.BORDER);
-		layoutGeneratorCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		layoutGeneratorCombo.setEditable(false);
-		layoutGeneratorCombo.setBackground(new Color(layoutGeneratorCombo.getDisplay(), 255, 255, 255));
+		layoutCombo = new CCombo(root, SWT.BORDER);
+		layoutCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		layoutCombo.setEditable(false);
+		layoutCombo.setBackground(new Color(layoutCombo.getDisplay(), 255, 255, 255));
 		for(ILayoutGenerator layoutGenerator : CreateContextWizard.layoutGenerators) {
-			layoutGeneratorCombo.add(layoutGenerator.getName());
+			layoutCombo.add(layoutGenerator.getName());
 		}
-		layoutGeneratorCombo.select(0);
+		layoutCombo.select(0);
 
 		Label targetLabel = new Label(root, SWT.NONE);
 		targetLabel.setText(Messages.GeneratorPage_target);
@@ -123,4 +126,10 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 		super.getContainer().updateButtons();
 	}
 
+	@Override
+	public IWizardPage getNextPage() {
+		int selection = layoutCombo.getSelectionIndex();
+		getWizard().layoutGenerator = CreateContextWizard.layoutGenerators.get(selection);
+		return super.getNextPage();
+	}
 }

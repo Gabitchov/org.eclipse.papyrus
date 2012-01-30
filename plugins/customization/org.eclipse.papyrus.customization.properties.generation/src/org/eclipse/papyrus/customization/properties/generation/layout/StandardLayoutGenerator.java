@@ -23,6 +23,7 @@ import java.util.TreeMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
+import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.views.properties.contexts.Property;
@@ -51,37 +52,87 @@ import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
  */
 public class StandardLayoutGenerator implements ILayoutGenerator {
 
-	private TreeMap<Category, List<PropertyEditor>> editorsByCategory = new TreeMap<Category, List<PropertyEditor>>();
+	protected final TreeMap<Category, List<PropertyEditor>> editorsByCategory = new TreeMap<Category, List<PropertyEditor>>();
 
-	public List<Section> layoutElements(List<PropertyEditor> editors, View parent) {
+	protected final Set<Namespace> namespaces = new HashSet<Namespace>();
+
+	public synchronized List<Section> layoutElements(List<PropertyEditor> editors, View parent) {
 
 		editorsByCategory.clear();
+		namespaces.clear();
 
-		Set<Namespace> namespaces = new HashSet<Namespace>(ConfigurationManager.instance.getBaseNamespaces());
+		namespaces.addAll(ConfigurationManager.instance.getBaseNamespaces());
 
+		sortEditors(editors);
+
+		Section section = createSection(parent);
+
+		for(Map.Entry<Category, List<PropertyEditor>> mapping : editorsByCategory.entrySet()) {
+			Category category = mapping.getKey();
+			List<PropertyEditor> categorizedEditors = mapping.getValue();
+
+			CompositeWidget container = layoutCategorizedEditors(category, categorizedEditors);
+
+			section.getWidget().getWidgets().add(container);
+		}
+
+		return Collections.singletonList(section);
+	}
+
+	protected CompositeWidget layoutCategorizedEditors(Category category, List<PropertyEditor> editors) {
+		CompositeWidgetType compositeType = ConfigurationManager.instance.getDefaultCompositeType();
+		LayoutType propertiesLayoutType = ConfigurationManager.instance.getDefaultLayoutType();
+
+		CompositeWidget container = UiFactory.eINSTANCE.createCompositeWidget();
+		container.setWidgetType(compositeType);
+		Layout layout = UiFactory.eINSTANCE.createLayout();
+		container.setLayout(layout);
+		ValueAttribute numColumns = UiFactory.eINSTANCE.createValueAttribute();
+		numColumns.setName("numColumns"); //$NON-NLS-1$
+		numColumns.setValue(category.getNumColumns().toString());
+		layout.getAttributes().add(numColumns);
+		layout.setLayoutType(propertiesLayoutType);
+		container.getWidgets().addAll(editors);
+
+		return container;
+	}
+
+	protected void sortEditors(List<PropertyEditor> editors) {
 		for(PropertyEditor editor : editors) {
 			Category category = new Category(editor.getProperty());
 			getByCategory(category).add(editor);
+
 			if(editor.getWidgetType() == null) {
 				Activator.log.warn(String.format("Editor for property %s doesn't have a WidgetType", editor.getProperty().getName())); //$NON-NLS-1$
-			} else {
-				namespaces.add(editor.getWidgetType().getNamespace());
+				continue;
 			}
-		}
 
-		ConfigurationManager configManager = ConfigurationManager.instance;
+			namespaces.add(editor.getWidgetType().getNamespace());
+		}
+	}
+
+	protected Section createSection(View parent) {
+		CompositeWidget sectionRoot = createSectionRoot();
 
 		Section section = ContextsFactory.eINSTANCE.createSection();
 		section.setName(parent.getName());
-		section.setSectionFile("ui/" + section.getName().replaceAll(" ", "") + ".xwt"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		section.setSectionFile(String.format("ui/%s.xwt", section.getName().replaceAll(" ", ""))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
 
 		URI compositeURI = URI.createURI(section.getSectionFile());
 		compositeURI = compositeURI.resolve(parent.eResource().getURI());
 		Resource resource = parent.eResource().getResourceSet().createResource(compositeURI);
 
-		CompositeWidgetType compositeType = configManager.getDefaultCompositeType();
+		section.setWidget(sectionRoot);
+
+		resource.getContents().add(sectionRoot);
+
+		return section;
+	}
+
+	protected CompositeWidget createSectionRoot() {
+		CompositeWidgetType compositeType = ConfigurationManager.instance.getDefaultCompositeType();
 		namespaces.add(compositeType.getNamespace());
-		LayoutType propertiesLayoutType = configManager.getDefaultLayoutType();
+		LayoutType propertiesLayoutType = ConfigurationManager.instance.getDefaultLayoutType();
 		namespaces.add(propertiesLayoutType.getNamespace());
 
 		CompositeWidget sectionRoot = UiFactory.eINSTANCE.createCompositeWidget();
@@ -91,31 +142,10 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		sectionRoot.setLayout(layout);
 		sectionRoot.getAttributes().addAll(createNamespaces(namespaces));
 
-		section.setWidget(sectionRoot);
-
-		resource.getContents().add(sectionRoot);
-
-		for(Map.Entry<Category, List<PropertyEditor>> mapping : editorsByCategory.entrySet()) {
-			Category category = mapping.getKey();
-			List<PropertyEditor> categorizedEditors = mapping.getValue();
-
-			CompositeWidget container = UiFactory.eINSTANCE.createCompositeWidget();
-			container.setWidgetType(compositeType);
-			layout = UiFactory.eINSTANCE.createLayout();
-			container.setLayout(layout);
-			ValueAttribute numColumns = UiFactory.eINSTANCE.createValueAttribute();
-			numColumns.setName("numColumns"); //$NON-NLS-1$
-			numColumns.setValue(category.getNumColumns().toString());
-			layout.getAttributes().add(numColumns);
-			layout.setLayoutType(propertiesLayoutType);
-			container.getWidgets().addAll(categorizedEditors);
-			sectionRoot.getWidgets().add(container);
-		}
-
-		return Collections.singletonList(section);
+		return sectionRoot;
 	}
 
-	private List<ValueAttribute> createNamespaces(Collection<Namespace> namespaces) {
+	protected List<ValueAttribute> createNamespaces(Collection<Namespace> namespaces) {
 		List<ValueAttribute> xmlNamespaces = new LinkedList<ValueAttribute>();
 		for(Namespace namespace : namespaces) {
 			if(namespace == null) {
@@ -130,14 +160,14 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		return xmlNamespaces;
 	}
 
-	private List<PropertyEditor> getByCategory(Category category) {
+	protected List<PropertyEditor> getByCategory(Category category) {
 		if(!editorsByCategory.containsKey(category)) {
 			editorsByCategory.put(category, new LinkedList<PropertyEditor>());
 		}
 		return editorsByCategory.get(category);
 	}
 
-	private class Category implements Comparable<Category> {
+	protected class Category implements Comparable<Category> {
 
 		public Type editorType;
 
@@ -166,20 +196,36 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 
 		@Override
 		public int hashCode() {
-			return editorType.hashCode() * multiplicity;
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((editorType == null) ? 0 : editorType.hashCode());
+			result = prime * result + multiplicity;
+			return result;
 		}
 
 		@Override
-		public boolean equals(Object o) {
-			if(o == null) {
+		public boolean equals(Object obj) {
+			if(this == obj) {
+				return true;
+			}
+			if(obj == null) {
 				return false;
 			}
-			if(!(o instanceof Category)) {
+			if(!(obj instanceof Category)) {
 				return false;
 			}
-
-			Category category = (Category)o;
-			return category.editorType == editorType && category.multiplicity == multiplicity;
+			Category other = (Category)obj;
+			if(!getOuterType().equals(other.getOuterType())) {
+				return false;
+			}
+			if(editorType != other.editorType) {
+				return false;
+			}
+			if(multiplicity != other.multiplicity) {
+				return false;
+			}
+			return true;
 		}
 
 		public int compareTo(Category category) {
@@ -210,6 +256,10 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		public String toString() {
 			return (multiplicity == 1 ? "Single" : "Multiple") + editorType.toString(); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+
+		private StandardLayoutGenerator getOuterType() {
+			return StandardLayoutGenerator.this;
+		}
 	}
 
 	/**
@@ -219,5 +269,9 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 
 	public String getName() {
 		return Messages.StandardLayoutGenerator_name;
+	}
+
+	public void setGenerator(IGenerator generator) {
+		//Ignored
 	}
 }
