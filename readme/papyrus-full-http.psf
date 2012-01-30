@@ -47,24 +47,6 @@
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.ui.resources,org.eclipse.papyrus.infra.ui.resources"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/org.eclipse.papyrus.infra.widgets,org.eclipse.papyrus.infra.widgets"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/org.eclipse.papyrus.infra.widgets.toolbox,org.eclipse.papyrus.infra.widgets.toolbox"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout,org.eclipse.papyrus.layout"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.gridAlgorithm,org.eclipse.papyrus.layout.algorithms.gridAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm,org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm,org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm,org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.radialAlgorithm,org.eclipse.papyrus.layout.algorithms.radialAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.springAlgorithm,org.eclipse.papyrus.layout.algorithms.springAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.treeAlgorithm,org.eclipse.papyrus.layout.algorithms.treeAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm,org.eclipse.papyrus.layout.algorithms.verticalAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm,org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/layout/org.eclipse.papyrus.layout.subeditor.gmf,org.eclipse.papyrus.layout.subeditor.gmf"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/org.eclipse.papyrus.marte.static.profile,org.eclipse.papyrus.marte.static.profile"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/textedit/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext,org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/textedit/org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui,org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/textedit/org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext,org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/textedit/org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui,org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/org.eclipse.papyrus.marte.vsl,org.eclipse.papyrus.marte.vsl"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/marte/org.eclipse.papyrus.marte.vsl.ui,org.eclipse.papyrus.marte.vsl.ui"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/org.eclipse.papyrus.navigator,org.eclipse.papyrus.navigator"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/org.eclipse.papyrus.outline.emftree,org.eclipse.papyrus.outline.emftree"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/org.eclipse.papyrus.parsers,org.eclipse.papyrus.parsers"/>
@@ -88,8 +70,6 @@
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/org.eclipse.papyrus.sysml.service.types,org.eclipse.papyrus.sysml.service.types"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/table/org.eclipse.papyrus.sysml.table.allocation,org.eclipse.papyrus.sysml.table.allocation"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/table/org.eclipse.papyrus.sysml.table.requirement,org.eclipse.papyrus.sysml.table.requirement"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.compare,org.eclipse.papyrus.uml.compare"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.compare.ui,org.eclipse.papyrus.uml.compare.ui"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.controlmode.profile,org.eclipse.papyrus.uml.controlmode.profile"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.activity,org.eclipse.papyrus.uml.diagram.activity"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz,org.eclipse.papyrus.uml.diagram.clazz"/>
@@ -255,32 +235,6 @@
 <item elementID="=org.eclipse.papyrus.infra.widgets.toolbox" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612399633_43" label="layout" name="layout">
-<item elementID="=org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.treeAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.radialAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.verticalAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.gridAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.algorithms.springAlgorithm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.layout.subeditor.gmf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612401289_44" label="marte" name="marte">
-<item elementID="=org.eclipse.papyrus.marte.vsl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.marte.static.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.marte.vsl.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612546178_66" label="marte.properties" name="marte.properties">
-</workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612549396_67" label="marte.textedit" name="marte.textedit">
-<item elementID="=org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1304515262215_6" label="Papyrus" name="Papyrus">
 <item elementID="=org.eclipse.xtext.gmf.glue" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.resource.migration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -328,7 +282,6 @@
 <item elementID="=org.eclipse.papyrus.uml.resourceloading.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.pastemanager" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.standard" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.uml.compare.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.templaterepository" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.icons" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.service.types" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -337,7 +290,6 @@
 <item elementID="=org.eclipse.papyrus.uml.commands" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.ui.perspectiveconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.import" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.uml.compare" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612410851_45" label="uml.diagram" name="uml.diagram">
 <item elementID="=org.eclipse.papyrus.uml.diagram.common.palette.customaction" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>

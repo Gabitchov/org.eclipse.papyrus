@@ -69,8 +69,6 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/org.eclipse.papyrus.sysml.service.types,org.eclipse.papyrus.sysml.service.types"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/table/org.eclipse.papyrus.sysml.table.allocation,org.eclipse.papyrus.sysml.table.allocation"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/table/org.eclipse.papyrus.sysml.table.requirement,org.eclipse.papyrus.sysml.table.requirement"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.compare,org.eclipse.papyrus.uml.compare"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.compare.ui,org.eclipse.papyrus.uml.compare.ui"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/org.eclipse.papyrus.uml.controlmode.profile,org.eclipse.papyrus.uml.controlmode.profile"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.activity,org.eclipse.papyrus.uml.diagram.activity"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz,org.eclipse.papyrus.uml.diagram.clazz"/>
@@ -283,7 +281,6 @@
 <item elementID="=org.eclipse.papyrus.uml.resourceloading.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.pastemanager" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.standard" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.uml.compare.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.templaterepository" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.icons" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.service.types" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -292,7 +289,6 @@
 <item elementID="=org.eclipse.papyrus.uml.commands" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.ui.perspectiveconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.import" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.uml.compare" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612410851_45" label="uml.diagram" name="uml.diagram">
 <item elementID="=org.eclipse.papyrus.uml.diagram.common.palette.customaction" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
