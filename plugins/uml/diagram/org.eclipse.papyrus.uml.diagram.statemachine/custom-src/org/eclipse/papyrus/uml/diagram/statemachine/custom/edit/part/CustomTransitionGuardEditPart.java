@@ -20,6 +20,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionGuardEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 
 
 public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
