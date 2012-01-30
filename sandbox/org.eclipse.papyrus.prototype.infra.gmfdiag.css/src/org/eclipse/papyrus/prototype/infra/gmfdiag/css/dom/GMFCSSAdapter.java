@@ -9,9 +9,12 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter;
+package org.eclipse.papyrus.prototype.infra.gmfdiag.css.dom;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
@@ -69,20 +72,24 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 
 	private String localName;
 
+	private Node[] children;
+
+	private Node parentNode;
+
 	/**
 	 * The css id property
 	 */
-	public static final String CSS_GMF_ID_KEY = "Papyrus.GMF.ID";
+	public static final String CSS_GMF_ID_KEY = "cssId";
 
 	/**
 	 * The css class property
 	 */
-	public static final String CSS_GMF_CLASS_KEY = "Papyrus.GMF.Class";
+	public static final String CSS_GMF_CLASS_KEY = "cssClass";
 
 	/**
 	 * The css style property
 	 */
-	public static final String CSS_GMF_STYLE_KEY = "Papyrus.GMF.Style";
+	public static final String CSS_GMF_STYLE_KEY = "cssStyle";
 
 	/**
 	 * The name of the EAnnotation containing css informations
@@ -91,7 +98,7 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 	 * @see CSS_GMF_CLASS_KEY
 	 * @see CSS_GMF_STYLE_KEY
 	 */
-	public static final String CSS_ANNOTATION = "Papyrus.GMF.Style";
+	public static final String CSS_ANNOTATION = "PapyrusCSSStyle";
 
 	public static String getCSSID(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_ID_KEY);
@@ -141,25 +148,6 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 		notationElement = eObject;
 	}
 
-	private EObject findSemanticElement(final EObject notationElement) {
-		if(notationElement instanceof Diagram) {
-			return notationElement;
-		}
-
-		EObject currentElement = notationElement;
-
-		do {
-			if(currentElement instanceof View) {
-				View view = (View)currentElement;
-				return view.getElement();
-			}
-			currentElement = currentElement.eContainer();
-		} while(currentElement != null);
-
-		Activator.log.warn("Cannot find a valid source for " + notationElement);
-		return notationElement;
-	}
-
 	private EObject getSemanticElement() {
 		if(semanticElement == null) {
 			semanticElement = findSemanticElement(notationElement);
@@ -167,8 +155,36 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 		return semanticElement;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Returns the first parent Notation Element representing a different semantic object
+	 * than self.
+	 */
 	public Node getParentNode() {
-		return (Node)notationElement.eContainer();
+		if(parentNode == null) {
+			EObject gmfElement = notationElement;
+			while(gmfElement != null) {
+				EObject semanticElement = findSemanticElement(gmfElement);
+
+				if(semanticElement != this.getSemanticElement()) {
+					break;
+				}
+
+				if(gmfElement == gmfElement.eContainer()) {
+					gmfElement = null;
+					break;
+				}
+
+				gmfElement = gmfElement.eContainer();
+			}
+
+			if(gmfElement instanceof Node) {
+				parentNode = (Node)gmfElement;
+			}
+		}
+
+		return parentNode;
 	}
 
 	public NodeList getChildNodes() {
@@ -176,7 +192,7 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 	}
 
 	public String getNamespaceURI() {
-		return EMFHelper.getQualifiedName(getSemanticElement().eClass(), ".");
+		return EMFHelper.getQualifiedName(getSemanticElement().eClass().getEPackage(), ".");
 	}
 
 	public String getCSSId() {
@@ -207,9 +223,9 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 
 	@Override
 	public String getAttribute(String attr) {
-		EStructuralFeature feature = notationElement.eClass().getEStructuralFeature(attr);
+		EStructuralFeature feature = semanticElement.eClass().getEStructuralFeature(attr);
 		if(feature != null) {
-			Object value = notationElement.eGet(feature);
+			Object value = semanticElement.eGet(feature);
 			if(value != null) {
 				return value.toString();
 			}
@@ -237,13 +253,67 @@ public class GMFCSSAdapter extends ElementAdapter implements NodeList {
 
 
 	public Node item(int index) {
-		//TODO Some contained elements may not be Nodes
-		return (Node)notationElement.eContents().get(index);
+		return getChildren()[index];
 	}
 
 	public int getLength() {
-		//TODO Some contained elements may not be Nodes
-		return notationElement.eContents().size();
+		return getChildren().length;
+	}
+
+	private Node[] getChildren() {
+		if(children == null) {
+			children = computeChildren(notationElement);
+		}
+
+		return children;
+	}
+
+	/**
+	 * Returns the list of notation child elements attached to semantic
+	 * elements different than self's semantic element.
+	 * 
+	 * If a notation child element represents the same semantic element
+	 * than self, returns its own children (Recursively).
+	 */
+	private static Node[] computeChildren(EObject notationElement) {
+		EObject semanticElement = findSemanticElement(notationElement);
+		List<Node> childList = new LinkedList<Node>();
+		for(EObject child : notationElement.eContents()) {
+			if(child instanceof View) {
+				View notationChild = (View)child;
+				if(findSemanticElement(notationChild) != semanticElement) {
+					childList.add((Node)notationChild);
+				} else {
+					childList.addAll(Arrays.asList(computeChildren(notationChild)));
+				}
+			}
+		}
+
+		return childList.toArray(new Node[childList.size()]);
+	}
+
+	/**
+	 * Returns the semantic element attached to the given notation element
+	 * 
+	 * The result element can also be a Diagram
+	 */
+	private static EObject findSemanticElement(EObject notationElement) {
+		if(notationElement instanceof Diagram) {
+			return notationElement;
+		}
+
+		EObject currentElement = notationElement;
+
+		do {
+			if(currentElement instanceof View) {
+				View view = (View)currentElement;
+				return view.getElement();
+			}
+			currentElement = currentElement.eContainer();
+		} while(currentElement != null);
+
+		Activator.log.warn("Cannot find a valid source for " + notationElement);
+		return notationElement;
 	}
 
 }

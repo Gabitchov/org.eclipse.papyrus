@@ -8,5 +8,20 @@
             uri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
       </factory>
    </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.prototype.infra.gmfdiag.css.handler.RefreshHandler"
+            commandId="org.eclipse.ui.file.refresh">
+         <activeWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
+   </extension>
 
 </plugin>

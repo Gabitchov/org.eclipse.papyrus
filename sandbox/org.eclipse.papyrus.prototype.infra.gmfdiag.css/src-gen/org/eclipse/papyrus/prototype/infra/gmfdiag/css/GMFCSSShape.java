@@ -11,12 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css;
 
+
 import org.eclipse.e4.ui.css.core.dom.CSSExtendedProperties;
 import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
+import org.eclipse.papyrus.prototype.infra.gmfdiag.css.dom.GMFCSSAdapter;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.CSSShapeStyle;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl.CSSShapeStyleImpl;
 import org.w3c.dom.Attr;
@@ -250,18 +251,25 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 		return shapeStyle.getCSSElementIcon();
 	}
 
-	public boolean getStereotypeDisplay() {
-		return shapeStyle.getStereotypeDisplay();
+	public boolean getCSSShadow() {
+		return shapeStyle.getCSSShadow();
 	}
 
-	public boolean getShadow() {
-		return shapeStyle.getShadow();
+	public int getCSSQualifiedNameDepth() {
+		return shapeStyle.getCSSQualifiedNameDepth();
 	}
 
-	public int getQualifiedNameDepth() {
-		return shapeStyle.getQualifiedNameDepth();
+	public String getCSSStereotypeDisplay() {
+		return shapeStyle.getCSSStereotypeDisplay();
 	}
 
+	public String getCSSTextAlignment() {
+		return shapeStyle.getCSSTextAlignment();
+	}
+
+	public String getCSSDisplayPlace() {
+		return shapeStyle.getCSSDisplayPlace();
+	}
 
 
 	//////////////////////////////////////////
@@ -277,11 +285,11 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void setAttribute(String name, String value) throws DOMException {
-		setAttribute(name, value);
+		cssAdapter.setAttribute(name, value);
 	}
 
 	public void removeAttribute(String name) throws DOMException {
-		removeAttribute(name);
+		cssAdapter.removeAttribute(name);
 	}
 
 	public Attr getAttributeNode(String name) {
@@ -305,11 +313,11 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void setAttributeNS(String namespaceURI, String qualifiedName, String value) throws DOMException {
-		setAttributeNS(namespaceURI, qualifiedName, value);
+		cssAdapter.setAttributeNS(namespaceURI, qualifiedName, value);
 	}
 
 	public void removeAttributeNS(String namespaceURI, String localName) throws DOMException {
-		removeAttributeNS(namespaceURI, localName);
+		cssAdapter.removeAttributeNS(namespaceURI, localName);
 	}
 
 	public Attr getAttributeNodeNS(String namespaceURI, String localName) throws DOMException {
@@ -337,15 +345,15 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void setIdAttribute(String name, boolean isId) throws DOMException {
-		setIdAttribute(name, isId);
+		cssAdapter.setIdAttribute(name, isId);
 	}
 
 	public void setIdAttributeNS(String namespaceURI, String localName, boolean isId) throws DOMException {
-		setIdAttributeNS(namespaceURI, localName, isId);
+		cssAdapter.setIdAttributeNS(namespaceURI, localName, isId);
 	}
 
 	public void setIdAttributeNode(Attr idAttr, boolean isId) throws DOMException {
-		setIdAttributeNode(idAttr, isId);
+		cssAdapter.setIdAttributeNode(idAttr, isId);
 	}
 
 	public String getNodeName() {
@@ -357,7 +365,7 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void setNodeValue(String nodeValue) throws DOMException {
-		setNodeValue(nodeValue);
+		cssAdapter.setNodeValue(nodeValue);
 	}
 
 	public short getNodeType() {
@@ -421,7 +429,7 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void normalize() {
-		normalize();
+		cssAdapter.normalize();
 	}
 
 	public boolean isSupported(String feature, String version) {
@@ -437,7 +445,7 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void setPrefix(String prefix) throws DOMException {
-		setPrefix(prefix);
+		cssAdapter.setPrefix(prefix);
 	}
 
 	public String getLocalName() {
@@ -517,11 +525,11 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void copyDefaultStyleDeclarations(CSSStylableElement stylableElement) {
-		copyDefaultStyleDeclarations(stylableElement);
+		cssAdapter.copyDefaultStyleDeclarations(stylableElement);
 	}
 
 	public void setDefaultStyleDeclaration(String pseudoE, CSSStyleDeclaration defaultStyleDeclaration) {
-		setDefaultStyleDeclaration(pseudoE, defaultStyleDeclaration);
+		cssAdapter.setDefaultStyleDeclaration(pseudoE, defaultStyleDeclaration);
 	}
 
 	public boolean isPseudoInstanceOf(String s) {
@@ -537,7 +545,7 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void onStylesApplied(NodeList nodes) {
-		onStylesApplied(nodes);
+		cssAdapter.onStylesApplied(nodes);
 	}
 
 	public CSSExtendedProperties getStyle() {
@@ -545,10 +553,10 @@ public class GMFCSSShape extends ShapeImpl implements CSSStylableElement, CSSSha
 	}
 
 	public void initialize() {
-		initialize();
+		cssAdapter.initialize();
 	}
 
 	public void dispose() {
-		dispose();
+		cssAdapter.dispose();
 	}
 }

@@ -11,9 +11,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css.engine;
 
-import org.eclipse.e4.ui.css.core.impl.engine.CSSEngineImpl;
+import org.w3c.dom.Element;
+import org.w3c.dom.css.CSSValue;
 
 
-public class AbstractGMFCSSEngineImpl extends CSSEngineImpl {
+/**
+ * An interface for Lazy CSS Engine
+ * 
+ * The Engine doesn't modify an Element. Instead, for an element, it returns the
+ * value of the required property.
+ * 
+ * @author Camille Letavernier
+ */
+public interface LazyCSSEngine {
+
+	public CSSValue retrievePropertyValue(Element element, String property);
 
 }

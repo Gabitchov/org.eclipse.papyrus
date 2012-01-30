@@ -15,7 +15,7 @@ import org.eclipse.e4.ui.css.core.dom.CSSExtendedProperties;
 import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.gmf.runtime.notation.impl.BoundsImpl;
-import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
+import org.eclipse.papyrus.prototype.infra.gmfdiag.css.dom.GMFCSSAdapter;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;

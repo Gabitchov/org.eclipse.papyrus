@@ -1,0 +1,96 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *****************************************************************************/
+ 
+/* 
+ *	Papyrus CSS v0.9
+ *	Sample 
+ */
+
+* {
+	
+	/**
+	*	GMF Display
+	*/
+	
+	lineColor: #272727;
+	fontColor: black;
+	fillColor:#C3D1D5;
+	
+	/* 	fontHeight:9; */
+	
+	/** 
+	*	Gradient 
+	*/
+	
+	/* 	gradientColor:white; */
+	/* 	gradientStyle:vertical; */
+	
+	/*  
+	*	Global gradient (Equivalent to the latter)
+	*/
+	
+	gradient: white vertical;
+	
+	/* 
+	*	Global gradient (2)
+	*	Unsupported by diagrams (Color2 is unused) 
+	*/
+	
+	/* 	gradient:white blue vertical */
+	
+	/**
+	*	UML Display
+	*/
+	
+	elementIcon: true;
+	/* 	shadow:false; */
+	/* 	qualifiedNameDepth:Full; */
+	
+	/** 
+	* 	UML Stereotypes display 
+	*/
+	
+	/* 	stereotypeDisplay:"Text and Icon"; */
+	/* 	textAlignment:Vertical; */
+	/* 	displayPlace:"With brace"; */
+}
+
+Class {
+	fillColor: #C3D7DD;
+	lineColor: black;
+}
+
+Interface{
+	fillColor:#FAFAFC;
+}
+
+Class[isAbstract=true], Class[isAbstract=true] *{
+	fillColor:#E4E4E7;
+	fontColor:gray;
+}
+
+Port {
+	fillColor: #C8D9F5;
+	lineColor: black;
+}
+
+Comment {
+	fillColor: #FFFFCC;
+}
+
+Constraint {
+	fillColor: #C8FFE6;
+}
+
+Package {
+	fillColor: white;
+}

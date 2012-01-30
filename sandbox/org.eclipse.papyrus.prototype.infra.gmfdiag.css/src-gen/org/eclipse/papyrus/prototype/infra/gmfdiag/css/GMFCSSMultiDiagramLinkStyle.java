@@ -35,7 +35,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.TypeInfo;
 import org.w3c.dom.UserDataHandler;
 import org.w3c.dom.css.CSSStyleDeclaration;
-import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
+import org.eclipse.papyrus.prototype.infra.gmfdiag.css.dom.GMFCSSAdapter;
 
 @SuppressWarnings("restriction")
 public class GMFCSSMultiDiagramLinkStyle extends MultiDiagramLinkStyleImpl implements CSSStylableElement, CSSMultiDiagramLinkStyle {

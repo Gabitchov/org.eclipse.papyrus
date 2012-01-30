@@ -1,0 +1,10 @@
+* {
+	lineColor:black;
+	gradient: white vertical;
+	fillColor: #FAFAFC;
+	elementIcon:true;
+}
+
+Comment, Constraint {
+	fontColor:black;
+}

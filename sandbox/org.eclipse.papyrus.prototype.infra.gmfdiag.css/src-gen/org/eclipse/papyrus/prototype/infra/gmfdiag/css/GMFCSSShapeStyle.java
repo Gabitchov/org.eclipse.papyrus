@@ -16,7 +16,7 @@ import org.eclipse.e4.ui.css.core.dom.CSSStylableElement;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.impl.ShapeStyleImpl;
-import org.eclipse.papyrus.prototype.infra.gmfdiag.css.adapter.GMFCSSAdapter;
+import org.eclipse.papyrus.prototype.infra.gmfdiag.css.dom.GMFCSSAdapter;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.CSSShapeStyle;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl.CSSShapeStyleImpl;
 import org.w3c.dom.Attr;
@@ -165,16 +165,24 @@ public class GMFCSSShapeStyle extends ShapeStyleImpl implements CSSStylableEleme
 		return shapeStyle.getCSSElementIcon();
 	}
 
-	public boolean getStereotypeDisplay() {
-		return shapeStyle.getStereotypeDisplay();
+	public boolean getCSSShadow() {
+		return shapeStyle.getCSSShadow();
 	}
 
-	public boolean getShadow() {
-		return shapeStyle.getShadow();
+	public int getCSSQualifiedNameDepth() {
+		return shapeStyle.getCSSQualifiedNameDepth();
 	}
 
-	public int getQualifiedNameDepth() {
-		return shapeStyle.getQualifiedNameDepth();
+	public String getCSSStereotypeDisplay() {
+		return shapeStyle.getCSSStereotypeDisplay();
+	}
+
+	public String getCSSTextAlignment() {
+		return shapeStyle.getCSSTextAlignment();
+	}
+
+	public String getCSSDisplayPlace() {
+		return shapeStyle.getCSSDisplayPlace();
 	}
 
 

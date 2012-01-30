@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.prototype.infra.gmfdiag.css.style.impl;
 
 import java.io.IOException;
@@ -172,6 +183,9 @@ public class CSSShapeStyleImpl implements CSSShapeStyle {
 		String gradient = engine.retrieveCSSProperty(element, "gradient", "");
 
 		if(gradient != null) {
+			if(gradient.equals("none")) {
+				return null;
+			}
 			int[] gradientValues = parseGradient(gradient);
 			return new GradientData(gradientValues[0], gradientValues[1], gradientValues[2]);
 		}
@@ -307,15 +321,7 @@ public class CSSShapeStyleImpl implements CSSShapeStyle {
 		return Boolean.parseBoolean(cssValue);
 	}
 
-	public boolean getStereotypeDisplay() {
-		String cssValue = engine.retrieveCSSProperty(element, "stereotypeDisplay", "");
-		if(cssValue == null) {
-			return false;
-		}
-		return Boolean.parseBoolean(cssValue);
-	}
-
-	public boolean getShadow() {
+	public boolean getCSSShadow() {
 		String cssValue = engine.retrieveCSSProperty(element, "shadow", "");
 		if(cssValue == null) {
 			return false;
@@ -323,11 +329,47 @@ public class CSSShapeStyleImpl implements CSSShapeStyle {
 		return Boolean.parseBoolean(cssValue);
 	}
 
-	public int getQualifiedNameDepth() {
+	public int getCSSQualifiedNameDepth() {
 		String cssValue = engine.retrieveCSSProperty(element, "qualifiedNameDepth", "");
 		if(cssValue == null) {
 			return 1000;
 		}
-		return Integer.parseInt(cssValue);
+
+		if("full".equals(cssValue.toLowerCase())) {
+			return 0;
+		}
+
+		if("none".equals(cssValue.toLowerCase())) {
+			return 1000;
+		}
+
+		int value = Integer.parseInt(cssValue);
+		return value > 0 ? -value : value;
 	}
+
+	public String getCSSStereotypeDisplay() {
+		String cssValue = engine.retrieveCSSProperty(element, "stereotypeDisplay", "");
+		if(cssValue == null) {
+			return "Text";
+		}
+
+		return cssValue;
+	}
+
+	public String getCSSTextAlignment() {
+		String cssValue = engine.retrieveCSSProperty(element, "textAlignment", "");
+		if(cssValue == null) {
+			return "Horizontal";
+		}
+		return cssValue;
+	}
+
+	public String getCSSDisplayPlace() {
+		String cssValue = engine.retrieveCSSProperty(element, "displayPlace", "");
+		if(cssValue == null) {
+			return "Compartment";
+		}
+		return cssValue;
+	}
+
 }
