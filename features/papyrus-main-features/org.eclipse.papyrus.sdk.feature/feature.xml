@@ -3,7 +3,8 @@
       id="org.eclipse.papyrus.sdk.feature"
       label="Papyrus SDK Binaries (Incubation)"
       version="0.9.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="Eclipse Modeling Project"
+      plugin="org.eclipse.papyrus.infra.core">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
