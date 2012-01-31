@@ -34,6 +34,7 @@ import org.eclipse.papyrus.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.properties.ui.UiFactory;
 import org.eclipse.papyrus.properties.ui.ValueAttribute;
 import org.eclipse.papyrus.properties.util.Util;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -93,9 +94,18 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 		if(!(generator instanceof ProfileGenerator)) {
 			return "";
 		}
-		Context context = findContext(property);
+
 		org.eclipse.uml2.uml.Property attribute = ((ProfileGenerator)generator).getAttribute(property);
-		return context.getName() + ":Single " + attribute.getType().getName();
+
+		Package nearestPackage = attribute.getType().getNearestPackage();
+		Package rootPackage = nearestPackage;
+		while(rootPackage.getNestingPackage() != null) {
+			rootPackage = rootPackage.getNestingPackage();
+		}
+
+		//TODO : We're assuming the rootPackage has the same name as the context...
+		//This layout generator is really only compatible with ProfileGenerator
+		return rootPackage.getName() + ":Single " + attribute.getType().getName();
 	}
 
 	protected Context findContext(Property property) {

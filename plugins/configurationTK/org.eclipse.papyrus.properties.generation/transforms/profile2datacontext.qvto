@@ -9,73 +9,13 @@ main() {
 	profile.rootObjects()[Profile]->map toContext();
 }
 
-mapping Profile::toContext() : c:Context, root:DataContextRoot{
-	object c : Context {
-		name := self.name;
-		dataContexts := root;
-		dependencies := uml.rootObjects()[Context];
-	};
-	
-	self.packagedElement->select(e | e.isView())->map toDataContextElement();
-	
-	object root : DataContextRoot{
-		name := self.name;
-		label := self.name;
-		elements := self.packagedElement->select(e | e.isView())->map toDataContextElement().element
-			->union(self.packagedElement->select(e | e.oclIsKindOf(Package))->map toDataContextPackage());
-		modelElementFactory := pRoot.rootObjects()[PropertiesRoot].environments.modelElementFactories
-			->any(e | e.factoryClass = 'org.eclipse.papyrus.properties.uml.modelelement.StereotypeModelElementFactory');
-	};
-}
+----- Context -----
 
-query Element::isView() : Boolean {
-	return self.oclIsTypeOf(Stereotype) or self.oclIsTypeOf(DataType);
-}
-
-abstract mapping Element::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View;
-
-abstract mapping PackageableElement::toDataContextPackage() : DataContextPackage {	
+mapping Package::toContext() : Context{
 	name := self.name;
-}
-
-mapping Package::toDataContextPackage() : DataContextPackage inherits PackageableElement::toDataContextPackage{
-	elements := self.packagedElement->map toDataContextElement().element->union(
-		self.packagedElement->select(e | e.oclIsKindOf(Package))->map toDataContextPackage()
-	);
-}
-
-abstract mapping Classifier::toDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View {
-	element.name := self.name;
-
-	viewSingle.name := 'Single '+self.name;
-	viewSingle.automaticContext := true;
-	viewSingle.datacontexts := element;
-	viewSingle.elementMultiplicity := 1;
-	viewSingle.constraints := self.map toConstraint(viewSingle);
-	viewSingle.context := self.getContext();
-	
-	viewMultiple.name := 'Multiple '+self.name;
-	viewMultiple.automaticContext := true;
-	viewMultiple.datacontexts := element;
-	viewMultiple.elementMultiplicity := -1;
-	viewMultiple.constraints := self.map toConstraint(viewMultiple);
-	viewMultiple.context := self.getContext();
-}
-
-mapping Stereotype::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toDCElement{
-	element.properties := self.attribute->select(e | e.isAttribute(self))->map toProperty();
-	element.supertypes := self.generalization.target->map toDataContextElement().element->union(
-		self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet()
-	);
-}
-
-mapping DataType::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toDCElement when {
-	self.oclIsTypeOf(DataType) -- Exclude primitive types from generation
-}{
-	element.properties := self.attribute->map toProperty();
-	element.supertypes := self.generalization.target->map toDataContextElement().element->union(
-		self.ownedAttribute->getDataContextElement()->asSet()
-	);
+	dataContexts := self.map toDCRoot();
+	dependencies := uml.rootObjects()[Context];
+	self.getClassifiers()->map toDCElement();
 }
 
 query Package::getRootPackage() : Package {
@@ -88,12 +28,93 @@ query Package::getRootPackage() : Package {
 	return package;
 }
 
-query Classifier::getRootProfile() : Profile {
-	return self.package.getRootPackage().oclAsType(Profile);
+query Classifier::getRootPackage() : Package {
+	return self.package.getRootPackage();
 }
 
-query Classifier::getContext() : PropertyContext::Context {
-	return self.getRootProfile().map toContext().c;
+query Package::getClassifiers() : Collection(Classifier) {
+	return self.packagedElement->select(e | e.isView()).oclAsType(Classifier);
+}
+
+-------------------
+
+----- DataContextPackage & DataContextRoot -------
+
+mapping Package::toDCPackage() : DataContextPackage disjuncts
+	Package::toDataContextPackage, Package::toDCRoot;
+	
+abstract mapping Package::toAbstractDCPackage() : DataContextPackage {
+	name := self.name;
+	elements := self.getClassifiers().map toDCElement().element->union(
+		self.packagedElement->select(e | e.oclIsKindOf(Package)).oclAsType(Package)->map toDataContextPackage()
+	);
+}
+
+mapping Package::toDataContextPackage() : DataContextPackage inherits Package::toAbstractDCPackage when {
+	not self.nestingPackage.oclIsUndefined()
+}{
+	if not self.nestingPackage.oclIsUndefined() then
+		package := self.nestingPackage.map toDataContextPackage()
+	endif;
+}
+
+mapping Package::toDCRoot() : DataContextRoot disjuncts Model::toDataContextRoot, Profile::toDatacontextRoot when {
+	self.nestingPackage.oclIsUndefined();
+};
+
+mapping Model::toDataContextRoot() : DataContextRoot inherits Package::toAbstractDCPackage {
+	modelElementFactory := findFactory('org.eclipse.papyrus.properties.uml.modelelement.UMLModelElementFactory');
+}
+
+mapping Profile::toDatacontextRoot() : DataContextRoot inherits Package::toAbstractDCPackage{
+	modelElementFactory := findFactory('org.eclipse.papyrus.properties.uml.modelelement.StereotypeModelElementFactory');
+}
+
+query findFactory(className : String) : ModelElementFactoryDescriptor {
+	return pRoot.rootObjects()[PropertiesRoot].environments.modelElementFactories
+			->any(e | e.factoryClass = className);
+}
+
+--------------------------------------------------
+
+----- DataContextElement & View -------
+
+mapping Classifier::toDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View 
+	disjuncts Stereotype::toDataContextElement, DataType::toDataContextElement;
+	
+abstract mapping Classifier::toAbstractDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View{
+	element.name := self.name;
+	element.package := self.package.map toDCPackage();
+
+	viewSingle.name := 'Single '+self.name;
+	viewSingle.automaticContext := true;
+	viewSingle.datacontexts := element;
+	viewSingle.elementMultiplicity := 1;
+	viewSingle.constraints := self.map toConstraint(viewSingle);
+	viewSingle.context := self.getRootPackage().map toContext();
+	
+	viewMultiple.name := 'Multiple '+self.name;
+	viewMultiple.automaticContext := true;
+	viewMultiple.datacontexts := element;
+	viewMultiple.elementMultiplicity := -1;
+	viewMultiple.constraints := self.map toConstraint(viewMultiple);
+	viewMultiple.context := self.getRootPackage().map toContext();
+}
+
+mapping Stereotype::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toAbstractDCElement{
+	element.properties := self.attribute->select(e | e.isAttribute(self))->map toProperty();
+	element.supertypes := self.generalization.target->select(e | e.isView()).oclAsType(Classifier)->map toDCElement().element->union(
+		self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet()
+	);
+}
+
+mapping DataType::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toAbstractDCElement when {
+	self.oclIsTypeOf(DataType) -- Exclude primitive types from generation
+}{
+	element.properties := self.attribute->map toProperty();
+	element.supertypes := self.generalization.target->select(e | e.isView()).oclAsType(Classifier)->map toDCElement().element->union(
+		self.ownedAttribute->getDataContextElement()->asSet()
+	);
 }
 
 mapping Classifier::toConstraint(view : View) : SimpleConstraint{
@@ -107,6 +128,10 @@ mapping Classifier::toConstraint(view : View) : SimpleConstraint{
 	properties := stereotypeName;
 }
 
+query Element::isView() : Boolean {
+	return self.oclIsTypeOf(Stereotype) or self.oclIsTypeOf(DataType);
+}
+
 query Property::getDataContextElement() : DataContextElement {
 	var extension := self.association.memberEnd->any(e | not self.association.ownedEnd->includes(e));
 	var metaclassName := extension.type.name;
@@ -117,12 +142,18 @@ query UML::Property::isAttribute(stereo : Stereotype) : Boolean{
 	return not self.name.startsWith('base_');
 }
 
+---------------------------------------
+
 mapping UML::Property::toProperty() : PropertyContext::Property {
 	name := self.name;
-	type := self.type.toType();
+	type := self.type.getType();
+	
+	if self.type.isView() then
+		self.type.oclAsType(Classifier).map toDCElement()
+	endif;
 }
 
-query UML::Type::toType() : PropertyEnvironment::Type {
+query UML::Type::getType() : PropertyEnvironment::Type {
 	-- Unknown cases are handled as Strings
 	var type : PropertyEnvironment::Type := PropertyEnvironment::Type::String;
 	switch {

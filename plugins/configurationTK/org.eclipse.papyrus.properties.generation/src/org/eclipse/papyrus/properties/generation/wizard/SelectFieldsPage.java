@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.generation.wizard;
 
+import java.util.List;
+
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.databinding.EMFProperties;
@@ -50,7 +52,7 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 
 	private URI targetURI;
 
-	private Context context;
+	private List<Context> contexts;
 
 	private Composite root;
 
@@ -81,17 +83,17 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 	 * @param context
 	 *        The partially generated context
 	 */
-	public void setContext(Context context) {
-		if(context == null) {
+	public void setContexts(List<Context> contexts) {
+		if(contexts == null || contexts.isEmpty()) {
 			Activator.log.warn("Generated context is null"); //$NON-NLS-1$
 			return;
 		}
 
-		this.context = context;
+		this.contexts = contexts;
 
 		fieldSelection = createNewFieldSelection();
 
-		getWizard().setContext(context);
+		getWizard().setContexts(contexts);
 
 		Label label = new Label(root, SWT.NONE);
 		label.setText(Messages.SelectFieldsPage_availableFields);
@@ -119,8 +121,10 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 		selectionMultiple.setText(Messages.SelectFieldsPage_displayMultiple);
 		descriptionLabel.setText(Messages.SelectFieldsPage_description);
 
-		for(DataContextRoot dataContextRoot : context.getDataContexts()) {
-			displayFields(dataContextRoot);
+		for(Context context : contexts) {
+			for(DataContextRoot dataContextRoot : context.getDataContexts()) {
+				displayFields(dataContextRoot);
+			}
 		}
 
 		fields.setSize(fields.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -133,9 +137,11 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 	private FieldSelection createNewFieldSelection() {
 		FieldSelection selection = FieldSelectionFactory.eINSTANCE.createFieldSelection();
 
-		for(DataContextRoot dataContextRoot : context.getDataContexts()) {
-			ContextElement definition = createContextPackage(dataContextRoot);
-			selection.getContextElements().add(definition);
+		for(Context context : contexts) {
+			for(DataContextRoot dataContextRoot : context.getDataContexts()) {
+				ContextElement definition = createContextPackage(dataContextRoot);
+				selection.getContextElements().add(definition);
+			}
 		}
 
 		return selection;
@@ -256,8 +262,8 @@ public class SelectFieldsPage extends AbstractCreateContextPage {
 	public void setVisible(boolean visible) {
 		super.setPageComplete(true);
 		super.setVisible(visible);
-		if(context == null && visible) {
-			setContext(getWizard().generator.generate(targetURI));
+		if(contexts == null && visible) {
+			setContexts(getWizard().generator.generate(targetURI));
 		}
 	}
 

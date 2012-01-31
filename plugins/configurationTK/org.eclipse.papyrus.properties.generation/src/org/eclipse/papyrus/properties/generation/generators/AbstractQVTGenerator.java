@@ -12,7 +12,9 @@
 package org.eclipse.papyrus.properties.generation.generators;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +30,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.generation.Activator;
 import org.eclipse.swt.widgets.Event;
@@ -43,9 +46,9 @@ import org.eclipse.swt.widgets.Listener;
 public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 
 	/**
-	 * The Context created by the transformation.
+	 * The Contexts created by the transformation.
 	 */
-	protected Context generatedContext;
+	protected List<Context> generatedContexts;
 
 	/**
 	 * The output ModelExtent
@@ -54,7 +57,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 
 	private Set<Listener> listeners = new HashSet<Listener>();
 
-	public Context generate(URI targetURI) {
+	public List<Context> generate(URI targetURI) {
 
 		URI transformationURI = getTransformationURI();
 		TransformationExecutor executor = new TransformationExecutor(transformationURI);
@@ -78,12 +81,12 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 			Resource contextResource = resourceSet.createResource(targetURI);
 			contextResource.getContents().addAll(outObjects);
 
-			return generatedContext = getContext(outObjects);
+			return generatedContexts = getContexts(outObjects);
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
 			Activator.getDefault().getLog().log(status);
 		}
-		return generatedContext = null;
+		return generatedContexts = null;
 	}
 
 	/**
@@ -152,11 +155,15 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @return
 	 *         The main generated context
 	 */
-	protected Context getContext(List<EObject> outObjects) {
-		Object objectResult = outObjects.get(0);
-		if(!(objectResult instanceof Context)) {
-			return null;
+	protected List<Context> getContexts(List<EObject> outObjects) {
+		List<Context> result = new LinkedList<Context>();
+
+		for(Object objectResult : outObjects) {
+			if(objectResult instanceof Context) {
+				result.add((Context)objectResult);
+			}
 		}
-		return (Context)objectResult;
+
+		return result;
 	}
 }
