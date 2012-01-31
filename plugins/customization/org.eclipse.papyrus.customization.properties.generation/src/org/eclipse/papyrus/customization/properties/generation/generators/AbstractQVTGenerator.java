@@ -12,7 +12,9 @@
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +31,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.swt.widgets.Event;
@@ -44,9 +47,9 @@ import org.eclipse.swt.widgets.Listener;
 public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 
 	/**
-	 * The Context created by the transformation.
+	 * The Contexts created by the transformation.
 	 */
-	protected Context generatedContext;
+	protected List<Context> generatedContexts;
 
 	/**
 	 * The output ModelExtent
@@ -55,7 +58,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 
 	private Set<Listener> listeners = new HashSet<Listener>();
 
-	public Context generate(URI targetURI) {
+	public List<Context> generate(URI targetURI) {
 
 		URI transformationURI = getTransformationURI();
 
@@ -63,14 +66,14 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		Diagnostic diagnostic = executor.loadTransformation();
 		if(diagnostic.getSeverity() != Diagnostic.OK) {
 			Activator.log.warn("Cannot load the transformation : " + transformationURI);
-			return generatedContext = null;
+			return generatedContexts = null;
 		}
 
 		List<ModelExtent> extents = getModelExtents();
 
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$
-		//context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
+		context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
 
 		ExecutionDiagnostic result = executor.execute(context, extents.toArray(new ModelExtent[0]));
 
@@ -85,12 +88,12 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 			Resource contextResource = resourceSet.createResource(targetURI);
 			contextResource.getContents().addAll(outObjects);
 
-			return generatedContext = getContext(outObjects);
+			return generatedContexts = getContexts(outObjects);
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
 			Activator.log.warn(String.format("%s : %s", status.getPlugin(), status.getMessage()));
 		}
-		return generatedContext = null;
+		return generatedContexts = null;
 	}
 
 	/**
@@ -159,11 +162,15 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @return
 	 *         The main generated context
 	 */
-	protected Context getContext(List<EObject> outObjects) {
-		Object objectResult = outObjects.get(0);
-		if(!(objectResult instanceof Context)) {
-			return null;
+	protected List<Context> getContexts(List<EObject> outObjects) {
+		List<Context> result = new LinkedList<Context>();
+
+		for(Object objectResult : outObjects) {
+			if(objectResult instanceof Context) {
+				result.add((Context)objectResult);
+			}
 		}
-		return (Context)objectResult;
+
+		return result;
 	}
 }

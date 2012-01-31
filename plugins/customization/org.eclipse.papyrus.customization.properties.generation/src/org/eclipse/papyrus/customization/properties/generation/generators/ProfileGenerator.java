@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
@@ -124,13 +125,13 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	 *        The list of package and subpackages names, and the classifier name, i.e.
 	 *        the list of segments in the classifier qualified name
 	 *        e.g. : SysML::Blocks::Block : ["SysML", "Blocks", "Block"]
-	 * @param profilePackage
+	 * @param rootPackage
 	 *        The root Package in which the stereotype should be retrieved
 	 * @return
 	 *         The corresponding Classifier, or null if it couldn't be retrieved
 	 */
-	protected Classifier findClassifier(List<String> path, Package profilePackage) {
-		NamedElement element = profilePackage.getOwnedMember(path.get(0));
+	protected Classifier findClassifier(List<String> path, Package rootPackage) {
+		NamedElement element = rootPackage.getOwnedMember(path.get(0));
 		path.remove(0);
 		if(path.size() == 0) {
 			if(element instanceof Classifier) {
@@ -169,14 +170,33 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 	 */
 	public org.eclipse.uml2.uml.Property getAttribute(Property property) {
 		List<String> path = getPath(property);
-		path.remove(0); //The first path element corresponds to this.umlProfile
-		Classifier classifier = findClassifier(path, umlProfile);
+
+		Package propertyRootPackage = findPackage(path.remove(0));
+		if(propertyRootPackage == null) {
+			return null;
+		}
+
+		Classifier classifier = findClassifier(path, propertyRootPackage);
 		if(classifier == null) {
 			return null;
 		}
 
 		org.eclipse.uml2.uml.Property attribute = classifier.getAttribute(property.getName(), null);
 		return attribute;
+	}
+
+	public Package findPackage(String name) {
+		for(Resource resource : umlProfile.eResource().getResourceSet().getResources()) {
+			for(Object rootElement : resource.getContents()) {
+				if(rootElement instanceof Package) {
+					Package rootPackage = (Package)rootElement;
+					if(name.equals(rootPackage.getName())) {
+						return rootPackage;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	public boolean isSelectedSingle(Property property) {

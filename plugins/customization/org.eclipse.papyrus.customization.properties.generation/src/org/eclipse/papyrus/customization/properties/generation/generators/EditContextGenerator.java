@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.Listener;
  */
 public class EditContextGenerator implements IGenerator {
 
-	public Context generate(URI targetURI) {
+	public List<Context> generate(URI targetURI) {
 		// TODO Auto-generated method stub
 		return null;
 	}

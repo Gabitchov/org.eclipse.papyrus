@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
@@ -37,7 +39,7 @@ public interface IGenerator {
 	 * @param targetURI
 	 * @return The generated Context
 	 */
-	public Context generate(URI targetURI);
+	public List<Context> generate(URI targetURI);
 
 	/**
 	 * Creates the controls for this Generator. The generator is responsible

@@ -53,13 +53,13 @@ import org.eclipse.ui.IWorkbench;
  */
 public class CreateContextWizard extends Wizard implements INewWizard {
 
-	CreateContextMainPage mainPage;
+	protected CreateContextMainPage mainPage;
 
-	GeneratorPage generatorPage;
+	protected GeneratorPage generatorPage;
 
 	//protected LayoutPage layout;
 
-	SelectFieldsPage selectFieldsPage;
+	protected SelectFieldsPage selectFieldsPage;
 
 	/**
 	 * All available context generators
@@ -72,9 +72,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	protected static List<ILayoutGenerator> layoutGenerators = new LinkedList<ILayoutGenerator>();
 
 	/**
-	 * The generated context
+	 * The generated contexts
 	 */
-	protected Context context;
+	protected List<Context> contexts;
 
 	/**
 	 * The IGenerator used to generate the context
@@ -92,97 +92,101 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 	@Override
 	public boolean performFinish() {
-		if(generator == null || context == null || layoutGenerator == null) {
+		if(generator == null || contexts == null || contexts.isEmpty() || layoutGenerator == null) {
 			return false;
 		}
 
 		ConfigurationManager configManager = ConfigurationManager.instance;
 
-		Tab defaultTab = ContextsFactory.eINSTANCE.createTab();
-		defaultTab.setId(context.getName().toLowerCase());
-		defaultTab.setLabel(context.getName());
-		defaultTab.setPriority(100);
-		context.getTabs().add(defaultTab);
+		for(Context context : contexts) {
+			Tab defaultTab = ContextsFactory.eINSTANCE.createTab();
+			defaultTab.setId(context.getName().toLowerCase());
+			defaultTab.setLabel(context.getName());
+			defaultTab.setPriority(100);
+			context.getTabs().add(defaultTab);
 
-		FieldSelection fieldSelection = selectFieldsPage.getFieldSelection();
+			FieldSelection fieldSelection = selectFieldsPage.getFieldSelection();
 
-		//		URI contextURI = context.eResource().getURI();
-		//		Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
-		//		selectionResource.getContents().add(fieldSelection);
-		//		try {
-		//			selectionResource.save(null);
-		//		} catch (IOException ex) {
-		//			Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
-		//		}
+			//		URI contextURI = context.eResource().getURI();
+			//		Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
+			//		selectionResource.getContents().add(fieldSelection);
+			//		try {
+			//			selectionResource.save(null);
+			//		} catch (IOException ex) {
+			//			Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
+			//		}
 
-		layoutGenerator.setGenerator(generator);
+			layoutGenerator.setGenerator(generator);
 
-		for(View view : context.getViews()) {
-			if(view.getConstraints().size() == 0) {
-				continue;
-			}
-
-			List<PropertyEditor> editors = new LinkedList<PropertyEditor>();
-
-			for(DataContextElement element : getAllContextElements(view.getDatacontexts())) {
-				for(Property property : element.getProperties()) {
-					if(isSelected(fieldSelection, property, view.getElementMultiplicity() != 1)) {
-						PropertyEditor editor = UiFactory.eINSTANCE.createPropertyEditor();
-						editor.setProperty(property);
-						editor.setWidgetType(configManager.getDefaultEditorType(property));
-						editors.add(editor);
-						ValueAttribute input = UiFactory.eINSTANCE.createValueAttribute();
-						input.setName("input"); //$NON-NLS-1$
-						input.setValue("{Binding}"); //$NON-NLS-1$
-						editor.getAttributes().add(input);
-					}
+			for(View view : context.getViews()) {
+				if(view.getConstraints().size() == 0) {
+					continue;
 				}
-			}
 
-			List<Section> generatedSections = layoutGenerator.layoutElements(editors, view);
-			defaultTab.getSections().addAll(generatedSections);
-			view.getSections().addAll(generatedSections);
-			context.getViews().add(view);
-		}
+				List<PropertyEditor> editors = new LinkedList<PropertyEditor>();
 
-		int i = 1;
-		for(Tab tab : context.getTabs()) {
-			i += tab.getSections().size();
-		}
-		final int numberOfSections = i;
-		try {
-			setNeedsProgressMonitor(true);
-			getContainer().run(true, true, new IRunnableWithProgress() {
-
-				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					monitor.beginTask(Messages.CreateContextWizard_propertyViewGenerationJobName + context.getName(), numberOfSections + 1);
-					monitor.worked(1);
-
-					try {
-						context.eResource().save(Collections.EMPTY_MAP);
-
-						monitor.worked(1);
-						for(Tab tab : context.getTabs()) {
-							for(Section section : tab.getSections()) {
-								if(monitor.isCanceled()) {
-									return;
-								}
-								section.getWidget().eResource().save(Collections.EMPTY_MAP);
-								monitor.worked(1);
-							}
+				for(DataContextElement element : getAllContextElements(view.getDatacontexts())) {
+					for(Property property : element.getProperties()) {
+						if(isSelected(fieldSelection, property, view.getElementMultiplicity() != 1)) {
+							PropertyEditor editor = UiFactory.eINSTANCE.createPropertyEditor();
+							editor.setProperty(property);
+							editor.setWidgetType(configManager.getDefaultEditorType(property));
+							editors.add(editor);
+							ValueAttribute input = UiFactory.eINSTANCE.createValueAttribute();
+							input.setName("input"); //$NON-NLS-1$
+							input.setValue("{Binding}"); //$NON-NLS-1$
+							editor.getAttributes().add(input);
 						}
-					} catch (IOException ex) {
-						Activator.log.error(ex);
-						return;
 					}
-					monitor.done();
 				}
 
-			});
-		} catch (InvocationTargetException ex) {
-			Activator.log.error(ex);
-		} catch (InterruptedException ex) {
-			Activator.log.error(ex);
+				List<Section> generatedSections = layoutGenerator.layoutElements(editors, view);
+				defaultTab.getSections().addAll(generatedSections);
+				view.getSections().addAll(generatedSections);
+				context.getViews().add(view);
+			}
+
+			int i = 1;
+			for(Tab tab : context.getTabs()) {
+				i += tab.getSections().size();
+			}
+			final int numberOfSections = i;
+			try {
+				setNeedsProgressMonitor(true);
+				final Context currentContext = context;
+				getContainer().run(true, true, new IRunnableWithProgress() {
+
+					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+						monitor.beginTask(Messages.CreateContextWizard_propertyViewGenerationJobName + currentContext.getName(), numberOfSections + 1);
+						monitor.worked(1);
+
+						try {
+							currentContext.eResource().save(Collections.EMPTY_MAP);
+
+							monitor.worked(1);
+							for(Tab tab : currentContext.getTabs()) {
+								for(Section section : tab.getSections()) {
+									if(monitor.isCanceled()) {
+										return;
+									}
+									section.getWidget().eResource().save(Collections.EMPTY_MAP);
+									monitor.worked(1);
+								}
+							}
+						} catch (IOException ex) {
+							Activator.log.error(ex);
+							return;
+						}
+						monitor.done();
+					}
+
+				});
+			} catch (InvocationTargetException ex) {
+				Activator.log.error(ex);
+			} catch (InterruptedException ex) {
+				Activator.log.error(ex);
+			}
+
 		}
 
 		return true;
@@ -206,7 +210,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return false;
 	}
 
-	PropertyDefinition getPropertyDefinition(FieldSelection fieldSelection, Property property) {
+	protected PropertyDefinition getPropertyDefinition(FieldSelection fieldSelection, Property property) {
 		List<String> propertyPath = getPropertyPath(property.getContextElement());
 		if(propertyPath.isEmpty()) {
 			return null;
@@ -218,6 +222,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 				currentElement = contextRoot;
 			}
 		}
+
 		propertyPath.remove(0);
 		if(currentElement == null) {
 			return null;
@@ -238,7 +243,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return null;
 	}
 
-	ContextElement findByName(ContextElement source, String name) {
+	protected ContextElement findByName(ContextElement source, String name) {
 		for(ContextElement element : source.getElements()) {
 			if(element.getName().equals(name)) {
 				return element;
@@ -247,7 +252,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		return null;
 	}
 
-	List<String> getPropertyPath(DataContextElement element) {
+	protected List<String> getPropertyPath(DataContextElement element) {
 		List<String> result;
 		if(element.getPackage() == null) {
 			result = new LinkedList<String>();
@@ -287,13 +292,15 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 
 	}
 
-	void setGenerator(IGenerator generator) {
+	protected void setGenerator(IGenerator generator) {
 		this.generator = generator;
 		generatorPage.setGenerator(generator);
 	}
 
-	void setContext(Context context) {
-		this.context = context;
+	protected void setContexts(List<Context> contexts) {
+		if(!contexts.isEmpty()) {
+			this.contexts = contexts;
+		}
 	}
 
 	/**
