@@ -123,7 +123,7 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
  
       <!--rm:uri format="{0}/tools/orbit/downloads/drops/S20110515001817/repository/"-->
-            <rm:uri format="{0}/tools/orbit/downloads/drops/R20110523182458/repository/">
+            <rm:uri format="{0}/tools/orbit/downloads/drops/R20120119162704/repository/">
       
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -185,7 +185,7 @@
     
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		 <!-- updateFrom("EMF Facet",0) -->
-      <rm:uri format="{0}/facet/updates/milestones/0.1/SR2_RC1">
+      <rm:uri format="{0}/facet/updates/milestones/0.1/SR2_RC2">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -217,7 +217,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		  <!-- updateFrom("EMF (Core)",0) -->
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.7">
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.7.x">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
