@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Compare UML Elements"
+            id="org.eclipse.papyrus.infra.emf.compare.uml.element.papyrus"
+            name="Compare UML Elements">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.eclipse.papyrus.infra.emf.compare.uml.element.papyrus">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.emf.compare.diff.mergerprovider">
+      <mergerprovider
+            fileExtension="uml"
+            mergerProviderClass="org.eclipse.papyrus.infra.emf.compare.merger.provider.PapyrusMergerProvider"
+            priority="low">
+      </mergerprovider>
+   </extension>
+
+</plugin>

@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus CompEMF are
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.compare;singleton:=true
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.infra.emf.compare.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.team.ui,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.compare.match,
+ org.eclipse.emf.compare,
+ org.eclipse.emf.compare.diff,
+ org.eclipse.emf.compare.ui,
+ org.eclipse.compare,
+ com.google.collect,
+ org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.gmf.runtime.emf.type.core
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.emf.compare,
+ org.eclipse.papyrus.infra.emf.compare.actions,
+ org.eclipse.papyrus.infra.emf.compare.merger,
+ org.eclipse.papyrus.infra.emf.compare.merger.provider,
+ org.eclipse.papyrus.infra.emf.compare.utils
