@@ -35,16 +35,6 @@ public interface Constraint {
 	public void setConstraintDescriptor(ConstraintDescriptor descriptor);
 
 	/**
-	 * Tests if this constraint matches the given object
-	 * 
-	 * @param selection
-	 *        The object to be tested against this constraint
-	 * @return
-	 *         True if this constraint matches the given object
-	 */
-	public boolean match(Object selection);
-
-	/**
 	 * Tests if this constraint matches the given selection
 	 * 
 	 * @param selection

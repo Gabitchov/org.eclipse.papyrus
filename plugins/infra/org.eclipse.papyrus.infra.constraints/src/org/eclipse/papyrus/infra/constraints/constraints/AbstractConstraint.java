@@ -216,4 +216,14 @@ public abstract class AbstractConstraint implements Constraint {
 		return false;
 	}
 
+	/**
+	 * Tests if this constraint matches the given object
+	 * 
+	 * @param selection
+	 *        The object to be tested against this constraint
+	 * @return
+	 *         True if this constraint matches the given object
+	 */
+	protected abstract boolean match(Object selection);
+
 }
