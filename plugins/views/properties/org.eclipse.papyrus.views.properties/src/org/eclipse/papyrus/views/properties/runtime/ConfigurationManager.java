@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
@@ -167,8 +168,8 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Refresh the Context represented by the given File. The File should be
-	 * a valid Context model. This method should be called when a model is edited
+	 * Refresh the Context represented by the given File. The File should be a
+	 * valid Context model. This method should be called when a model is edited
 	 * at runtime.
 	 * 
 	 * @param contextFile
@@ -176,18 +177,37 @@ public class ConfigurationManager {
 	 */
 	public void refresh(File contextFile) {
 		URI contextURI = URI.createFileURI(contextFile.getAbsolutePath());
+		ResourceSet tmpResourceSet = new ResourceSetImpl();
+		EObject root;
+		try {
+			root = EMFHelper.loadEMFModel(tmpResourceSet, contextURI);
+			if(root != null) {
+				for(Object rootObject : root.eResource().getContents()) {
+					if(rootObject instanceof Context) {
+						refresh((Context)rootObject);
+					}
+				}
+			}
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
+	}
 
-		//TODO : get the right URI from the context file :
-		//ppe:/context/<plugin>/<path> if it is in the workspace,
-		//ppe:/context/<preferences>/<path> if it is registered through preferences
+	private void refresh(Context context) {
+		// TODO : get the right URI from the context file :
+		// ppe:/context/<plugin>/<path> if it is in the workspace,
+		// ppe:/context/<preferences>/<path> if it is registered through
+		// preferences
+
+		URI contextURI = EcoreUtil.getURI(context);
 
 		if(contexts.containsKey(contextURI)) {
-			//Unloads the previous objects corresponding to this context
+			// Unloads the previous objects corresponding to this context
 			Context previousContext = contexts.get(contextURI);
 			enabledContexts.remove(previousContext);
 			previousContext.eResource().unload();
 
-			//Adds the new object corresponding to this context
+			// Adds the new object corresponding to this context
 			try {
 				addContext(contextURI);
 				constraintEngine.refresh();
@@ -262,9 +282,15 @@ public class ConfigurationManager {
 	 *         If the model behind this URI is not a valid Context
 	 */
 	public void addContext(URI uri) throws IOException {
-		Context context = (Context)loadEMFModel(uri);
-		if(context != null) {
-			addContext(context, isApplied(context));
+		EObject firstRootObject = loadEMFModel(uri);
+
+		if(firstRootObject != null) {
+			for(EObject rootObject : firstRootObject.eResource().getContents()) {
+				if(rootObject instanceof Context) {
+					Context context = (Context)rootObject;
+					addContext(context, isApplied(context));
+				}
+			}
 		}
 	}
 
@@ -283,7 +309,7 @@ public class ConfigurationManager {
 	 * @see ConfigurationManager#addContext(URI)
 	 */
 	public void addContext(Context context, boolean apply) {
-		contexts.put(context.eResource().getURI(), context);
+		contexts.put(EcoreUtil.getURI(context), context);
 		if(apply) {
 			enableContext(context, true);
 		} else {
@@ -368,7 +394,7 @@ public class ConfigurationManager {
 	 *         True if the context comes from a plugin, and is thus read-only
 	 */
 	public boolean isPlugin(Context context) {
-		URI uri = context.eResource().getURI();
+		URI uri = EcoreUtil.getURI(context);
 		boolean result = !(uri.isFile() || uri.isPlatformResource());
 		return result;
 	}
@@ -578,7 +604,7 @@ public class ConfigurationManager {
 	 *        The context to delete
 	 */
 	public void deleteContext(Context context) {
-		contexts.remove(context.eResource().getURI());
+		contexts.remove(EcoreUtil.getURI(context));
 		disableContext(context, true);
 		root.getContexts().remove(context);
 	}
