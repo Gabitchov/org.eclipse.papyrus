@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.diagram.activity.listeners;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -145,15 +147,19 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 	 */
 	public Iterable<View> getReferencingView(Notification notif) {
 		final ActivityEdge element = getElement(notif);		
-		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(element.eResource().getResourceSet());
-		if(adapter == null) {
-			adapter = new ECrossReferenceAdapter();
+		Resource eResource = element.eResource();
+		if (eResource != null){			
+			ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(eResource.getResourceSet());
+			if(adapter == null) {
+				adapter = new ECrossReferenceAdapter();
+			}
+			Collection<Setting> inverseReferences = adapter.getInverseReferences(element);
+			Iterable<EObject> settings = Iterables.transform(inverseReferences, new SettingToEObjectFunction());
+			Iterable<EObject> eObjects = Iterables.filter(settings, new ReferencingViewPredicate(element));
+			Iterable<View> views = Iterables.transform(eObjects, new EObjectToViewFunction());
+			return views;
 		}
-		Collection<Setting> inverseReferences = adapter.getInverseReferences(element);
-		Iterable<EObject> settings = Iterables.transform(inverseReferences, new SettingToEObjectFunction());
-		Iterable<EObject> eObjects = Iterables.filter(settings, new ReferencingViewPredicate(element));
-		Iterable<View> views = Iterables.transform(eObjects, new EObjectToViewFunction());
-		return views;
+		return Collections.emptyList();
 	}
 
 	private TransactionalEditingDomain getEditingDomain(View model) {
