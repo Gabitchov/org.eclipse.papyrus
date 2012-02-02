@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.properties.Activator;
 import org.eclipse.papyrus.properties.contexts.Context;
 import org.eclipse.papyrus.properties.contexts.DataContextElement;
@@ -58,8 +59,9 @@ import org.eclipse.papyrus.properties.util.EMFHelper;
 import org.eclipse.papyrus.properties.util.Util;
 
 /**
- * Central class of the Property View framework. It lists the available environments and contexts,
- * and is responsible for Enabling or Disabling contexts programmatically.
+ * Central class of the Property View framework. It lists the available
+ * environments and contexts, and is responsible for Enabling or Disabling
+ * contexts programmatically.
  * 
  * All {@link Context}s should have unique names.
  * 
@@ -107,7 +109,7 @@ public class ConfigurationManager {
 	}
 
 	private void start() {
-		if(started) {
+		if (started) {
 			return;
 		}
 
@@ -130,20 +132,23 @@ public class ConfigurationManager {
 
 		try {
 			EObject model = loadEMFModel(preferencesURI);
-			if(model != null && model instanceof Preferences) {
-				return (Preferences)model;
+			if (model != null && model instanceof Preferences) {
+				return (Preferences) model;
 			}
 		} catch (Exception ex) {
-			//File not found : we ignore the exception //TODO : improve the exceptions (FileNotFound is not the only one that can occur)
+			// File not found : we ignore the exception //TODO : improve the
+			// exceptions (FileNotFound is not the only one that can occur)
 		}
 
-		//If we're here, then the preferences.xmi doesn't exist or isn't valid : we create it
+		// If we're here, then the preferences.xmi doesn't exist or isn't valid
+		// : we create it
 
 		return createPreferences(preferencesURI);
 	}
 
 	private Preferences createPreferences(URI preferencesURI) {
-		Preferences preferencesStore = PreferencesFactory.eINSTANCE.createPreferences();
+		Preferences preferencesStore = PreferencesFactory.eINSTANCE
+				.createPreferences();
 
 		Resource resource = resourceSet.createResource(preferencesURI);
 		resource.getContents().add(preferencesStore);
@@ -155,9 +160,9 @@ public class ConfigurationManager {
 	private void loadCustomContexts() {
 		IPath path = Activator.getDefault().getPreferencesPath();
 		File preferencesDirectory = path.toFile();
-		for(File contextDirectory : preferencesDirectory.listFiles()) {
+		for (File contextDirectory : preferencesDirectory.listFiles()) {
 			try {
-				if(contextDirectory.isDirectory()) {
+				if (contextDirectory.isDirectory()) {
 					loadCustomContext(contextDirectory);
 				}
 			} catch (Exception ex) {
@@ -167,27 +172,49 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Refresh the Context represented by the given File. The File should be
-	 * a valid Context model. This method should be called when a model is edited
+	 * Refresh the Context represented by the given File. The File should be a
+	 * valid Context model. This method should be called when a model is edited
 	 * at runtime.
 	 * 
 	 * @param contextFile
-	 *        A File containing a valid Context model
+	 *            A File containing a valid Context model
 	 */
+	// FIXME : Wrong behavior when more than one context is defined in a single
+	// file
 	public void refresh(File contextFile) {
 		URI contextURI = URI.createFileURI(contextFile.getAbsolutePath());
+		ResourceSet tmpResourceSet = new ResourceSetImpl();
+		EObject root;
+		try {
+			root = EMFHelper.loadEMFModel(tmpResourceSet, contextURI);
+			if (root != null) {
+				for (Object rootObject : root.eResource().getContents()) {
+					if (rootObject instanceof Context) {
+						refresh((Context) rootObject);
+					}
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-		//TODO : get the right URI from the context file :
-		//ppe:/context/<plugin>/<path> if it is in the workspace,
-		//ppe:/context/<preferences>/<path> if it is registered through preferences
+	private void refresh(Context context) {
+		// TODO : get the right URI from the context file :
+		// ppe:/context/<plugin>/<path> if it is in the workspace,
+		// ppe:/context/<preferences>/<path> if it is registered through
+		// preferences
+		
+		URI contextURI = EcoreUtil.getURI(context);
 
-		if(contexts.containsKey(contextURI)) {
-			//Unloads the previous objects corresponding to this context
+		if (contexts.containsKey(contextURI)) {
+			// Unloads the previous objects corresponding to this context
 			Context previousContext = contexts.get(contextURI);
 			enabledContexts.remove(previousContext);
 			previousContext.eResource().unload();
 
-			//Adds the new object corresponding to this context
+			// Adds the new object corresponding to this context
 			try {
 				addContext(contextURI);
 				constraintEngine.contextChanged();
@@ -198,17 +225,19 @@ public class ConfigurationManager {
 	}
 
 	private void loadCustomContext(File contextDirectory) throws IOException {
-		String contextPath = contextDirectory.getPath() + "/" + contextDirectory.getName() + ".ctx"; //$NON-NLS-1$ //$NON-NLS-2$
+		String contextPath = contextDirectory.getPath()
+				+ "/" + contextDirectory.getName() + ".ctx"; //$NON-NLS-1$ //$NON-NLS-2$
 		URI contextURI = URI.createFileURI(contextPath);
 		try {
 			EObject model = loadEMFModel(contextURI);
 
-			if(model instanceof Context) {
-				Context context = (Context)model;
+			if (model instanceof Context) {
+				Context context = (Context) model;
 				addContext(context, isApplied(context));
 			}
 		} catch (IOException ex) {
-			//Silent : The file has been removed from the preferences, but the folder still exists
+			// Silent : The file has been removed from the preferences, but the
+			// folder still exists
 		}
 	}
 
@@ -216,8 +245,7 @@ public class ConfigurationManager {
 	 * Tests if a Context is enabled.
 	 * 
 	 * @param context
-	 * @return
-	 *         true if the given context is enabled.
+	 * @return true if the given context is enabled.
 	 * 
 	 * @see Preferences
 	 */
@@ -226,26 +254,27 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Retrieves the ContextDescriptor associated to the specified context.
-	 * If a matching descriptor cannot be found, a new Descriptor is created
-	 * in the preferences.
+	 * Retrieves the ContextDescriptor associated to the specified context. If a
+	 * matching descriptor cannot be found, a new Descriptor is created in the
+	 * preferences.
 	 * 
 	 * @param context
 	 * @return
 	 */
 	private ContextDescriptor findDescriptor(Context context) {
-		if(context.getName() == null || context.getName().equals("")) { //$NON-NLS-1$
+		if (context.getName() == null || context.getName().equals("")) { //$NON-NLS-1$
 			return null;
 		}
 
-		for(ContextDescriptor descriptor : preferences.getContexts()) {
-			if(descriptor.getName().equals(context.getName())) {
+		for (ContextDescriptor descriptor : preferences.getContexts()) {
+			if (descriptor.getName().equals(context.getName())) {
 				return descriptor;
 			}
 		}
-		//The descriptor hasn't been found : We create it
+		// The descriptor hasn't been found : We create it
 
-		ContextDescriptor descriptor = PreferencesFactory.eINSTANCE.createContextDescriptor();
+		ContextDescriptor descriptor = PreferencesFactory.eINSTANCE
+				.createContextDescriptor();
 		descriptor.setName(context.getName());
 		preferences.getContexts().add(descriptor);
 		savePreferences();
@@ -253,38 +282,44 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Adds a context via its URI. The URI should represent a valid Context model.
-	 * The model is loaded in the ConfigurationManager's resourceSet.
+	 * Adds a context via its URI. The URI should represent a valid Context
+	 * model. The model is loaded in the ConfigurationManager's resourceSet.
 	 * 
 	 * @param uri
-	 *        The context's URI
+	 *            The context's URI
 	 * @throws IOException
-	 *         If the model behind this URI is not a valid Context
+	 *             If the model behind this URI is not a valid Context
 	 */
 	public void addContext(URI uri) throws IOException {
-		Context context = (Context)loadEMFModel(uri);
-		if(context != null) {
-			addContext(context, isApplied(context));
+		EObject firstRootObject = loadEMFModel(uri);
+
+		if (firstRootObject != null) {
+			for (EObject rootObject : firstRootObject.eResource().getContents()) {
+				if (rootObject instanceof Context) {
+					Context context = (Context) rootObject;
+					addContext(context, isApplied(context));
+				}
+			}
 		}
 	}
 
 	/**
 	 * Programmatically register a new context to this ConfigurationManager.
-	 * Most of the time, new contexts should be registered through {@link ContextExtensionPoint}.
-	 * However, you can still call this method when creating a Context at runtime, programmatically
-	 * (Wizards, ...)
-	 * All {@link Context} should have unique names
+	 * Most of the time, new contexts should be registered through
+	 * {@link ContextExtensionPoint}. However, you can still call this method
+	 * when creating a Context at runtime, programmatically (Wizards, ...) All
+	 * {@link Context} should have unique names
 	 * 
 	 * @param context
-	 *        The new context to register
+	 *            The new context to register
 	 * @param apply
-	 *        Whether the context should be enabled or not
+	 *            Whether the context should be enabled or not
 	 * 
 	 * @see ConfigurationManager#addContext(URI)
 	 */
 	public void addContext(Context context, boolean apply) {
-		contexts.put(context.eResource().getURI(), context);
-		if(apply) {
+		contexts.put(EcoreUtil.getURI(context), context);
+		if (apply) {
 			enableContext(context, true);
 		} else {
 			disableContext(context, true);
@@ -302,27 +337,26 @@ public class ConfigurationManager {
 	 * Disable a Context.
 	 * 
 	 * @param context
-	 *        The Context to disable
+	 *            The Context to disable
 	 * @param update
-	 *        If true, the constraint engine will be updated to handle the
-	 *        modification
-	 *        If false, you should call manually {@link #update()} to refresh
-	 *        the constraint engine
+	 *            If true, the constraint engine will be updated to handle the
+	 *            modification If false, you should call manually
+	 *            {@link #update()} to refresh the constraint engine
 	 * @see Preferences
 	 * @see #enableContext(Context, boolean)
 	 */
 	public void disableContext(Context context, boolean update) {
 		update = enabledContexts.remove(context) && update;
 
-		//Update the preferences
+		// Update the preferences
 		ContextDescriptor descriptor = findDescriptor(context);
-		if(descriptor.isApplied()) {
+		if (descriptor.isApplied()) {
 			descriptor.setApplied(false);
 			savePreferences();
 		}
 
-		if(update) {
-			//Update the Engine
+		if (update) {
+			// Update the Engine
 			update();
 		}
 	}
@@ -331,60 +365,57 @@ public class ConfigurationManager {
 	 * Enables a Context
 	 * 
 	 * @param context
-	 *        The Context to enable
+	 *            The Context to enable
 	 * @param update
-	 *        If true, the constraint engine will be updated to handle the
-	 *        modification
-	 *        If false, you should call manually {@link #update()} to refresh
-	 *        the constraint engine
+	 *            If true, the constraint engine will be updated to handle the
+	 *            modification If false, you should call manually
+	 *            {@link #update()} to refresh the constraint engine
 	 * 
 	 * @see #disableContext(Context, boolean)
 	 */
 	public void enableContext(Context context, boolean update) {
 
 		enabledContexts.add(context);
-		//root.getContexts().add(context);
+		// root.getContexts().add(context);
 
-		//Update the preferences
+		// Update the preferences
 		ContextDescriptor descriptor = findDescriptor(context);
-		if(!descriptor.isApplied()) {
+		if (!descriptor.isApplied()) {
 			descriptor.setApplied(true);
 			savePreferences();
 		}
 
-		if(update) {
-			//Update the Engine
+		if (update) {
+			// Update the Engine
 			constraintEngine.addContext(context);
 		}
 	}
 
 	/**
-	 * Tests if a Context is a plugin context. plugin contexts
-	 * are registered through {@link ContextExtensionPoint} and are
-	 * read-only.
+	 * Tests if a Context is a plugin context. plugin contexts are registered
+	 * through {@link ContextExtensionPoint} and are read-only.
 	 * 
 	 * @param context
-	 * @return
-	 *         True if the context comes from a plugin, and is thus read-only
+	 * @return True if the context comes from a plugin, and is thus read-only
 	 */
 	public boolean isPlugin(Context context) {
-		URI uri = context.eResource().getURI();
+		URI uri = EcoreUtil.getURI(context);
 		boolean result = !(uri.isFile() || uri.isPlatformResource());
 		return result;
 	}
 
 	/**
-	 * Loads a Context from the given URI. The model is loaded in the {@link ConfigurationManager}'s resourceSet
+	 * Loads a Context from the given URI. The model is loaded in the
+	 * {@link ConfigurationManager}'s resourceSet
 	 * 
 	 * @param uri
-	 *        The URI from which the Context is loaded
-	 * @return
-	 *         The loaded context
+	 *            The URI from which the Context is loaded
+	 * @return The loaded context
 	 * @throws IOException
-	 *         If the URI doesn't represent a valid Context model
+	 *             If the URI doesn't represent a valid Context model
 	 */
 	public Context getContext(URI uri) throws IOException {
-		return (Context)loadEMFModel(uri);
+		return (Context) loadEMFModel(uri);
 	}
 
 	private void addEnvironment(Environment environment) {
@@ -395,19 +426,19 @@ public class ConfigurationManager {
 	 * Adds a new Environment from the given URI.
 	 * 
 	 * @param uri
-	 *        The URI from which the Environment is retrieved.
+	 *            The URI from which the Environment is retrieved.
 	 * @throws IOException
-	 *         if the URI doesn't represent a valid Environment model
+	 *             if the URI doesn't represent a valid Environment model
 	 */
 	public void addEnvironment(URI uri) throws IOException {
-		Environment environment = (Environment)loadEMFModel(uri);
+		Environment environment = (Environment) loadEMFModel(uri);
 		addEnvironment(environment);
 	}
 
 	/**
-	 * @return
-	 *         The PropertiesRoot for the Property view framework. The PropertiesRoot contains
-	 *         all registered Environments and Contexts (Whether they are enabled or disabled)
+	 * @return The PropertiesRoot for the Property view framework. The
+	 *         PropertiesRoot contains all registered Environments and Contexts
+	 *         (Whether they are enabled or disabled)
 	 */
 	public PropertiesRoot getPropertiesRoot() {
 		return root;
@@ -417,13 +448,12 @@ public class ConfigurationManager {
 	 * Returns the context from the given context name
 	 * 
 	 * @param contextName
-	 *        The name of the context to retrieve
-	 * @return
-	 *         The context corresponding to the given name
+	 *            The name of the context to retrieve
+	 * @return The context corresponding to the given name
 	 */
 	public Context getContext(String contextName) {
-		for(Context context : getContexts()) {
-			if(context.getName().equals(contextName)) {
+		for (Context context : getContexts()) {
+			if (context.getName().equals(contextName)) {
 				return context;
 			}
 		}
@@ -443,8 +473,8 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns all the known contexts, whether they are applied or not.
-	 * To get only applied contexts, see {@link #getEnabledContexts()}
+	 * Returns all the known contexts, whether they are applied or not. To get
+	 * only applied contexts, see {@link #getEnabledContexts()}
 	 * 
 	 * @return All known contexts
 	 * 
@@ -455,21 +485,27 @@ public class ConfigurationManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T extends WidgetType> T getDefaultWidget(int featureID, Class<T> theClass, String widgetName, String namespacePrefix) {
-		EStructuralFeature feature = EnvironmentPackage.Literals.ENVIRONMENT.getEStructuralFeature(featureID);
-		for(Environment environment : root.getEnvironments()) {
-			T widget = findWidgetTypeByClassName((EList<T>)environment.eGet(feature), widgetName, namespacePrefix);
-			if(widget != null) {
+	private <T extends WidgetType> T getDefaultWidget(int featureID,
+			Class<T> theClass, String widgetName, String namespacePrefix) {
+		EStructuralFeature feature = EnvironmentPackage.Literals.ENVIRONMENT
+				.getEStructuralFeature(featureID);
+		for (Environment environment : root.getEnvironments()) {
+			T widget = findWidgetTypeByClassName(
+					(EList<T>) environment.eGet(feature), widgetName,
+					namespacePrefix);
+			if (widget != null) {
 				return widget;
 			}
 		}
 		return null;
 	}
 
-
-	private <T extends WidgetType> T findWidgetTypeByClassName(Collection<T> types, String className, String namespacePrefix) {
-		for(T widgetType : types) {
-			if(widgetType.getWidgetClass().equals(className) && Util.namespaceEqualsByName(widgetType.getNamespace(), namespacePrefix)) {
+	private <T extends WidgetType> T findWidgetTypeByClassName(
+			Collection<T> types, String className, String namespacePrefix) {
+		for (T widgetType : types) {
+			if (widgetType.getWidgetClass().equals(className)
+					&& Util.namespaceEqualsByName(widgetType.getNamespace(),
+							namespacePrefix)) {
 				return widgetType;
 			}
 		}
@@ -480,32 +516,37 @@ public class ConfigurationManager {
 	 * @return the default implementation of CompositeWidgetType
 	 */
 	public CompositeWidgetType getDefaultCompositeType() {
-		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES, CompositeWidgetType.class, "Composite", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		return getDefaultWidget(
+				EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
+				CompositeWidgetType.class, "Composite", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @return the default implementation of LayoutType
 	 */
 	public LayoutType getDefaultLayoutType() {
-		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES, LayoutType.class, "PropertiesLayout", "ppel"); //$NON-NLS-1$ //$NON-NLS-2$
+		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES,
+				LayoutType.class, "PropertiesLayout", "ppel"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @return the default implementation of StandardWidgetType
 	 */
 	public StandardWidgetType getDefaultWidgetType() {
-		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES, StandardWidgetType.class, "Label", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES,
+				StandardWidgetType.class, "Label", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @param propertyType
 	 * @param multiple
-	 * @return the default implementation of PropertyEditorType for the given property Type
-	 *         and multiplicity
+	 * @return the default implementation of PropertyEditorType for the given
+	 *         property Type and multiplicity
 	 */
-	public PropertyEditorType getDefaultEditorType(Type propertyType, boolean multiple) {
+	public PropertyEditorType getDefaultEditorType(Type propertyType,
+			boolean multiple) {
 		String propertyEditorName = null;
-		switch(propertyType) {
+		switch (propertyType) {
 		case BOOLEAN:
 			propertyEditorName = multiple ? "MultiBoolean" : "BooleanRadio"; //$NON-NLS-1$ //$NON-NLS-2$
 			break;
@@ -523,11 +564,13 @@ public class ConfigurationManager {
 			break;
 		}
 
-		if(propertyEditorName == null) {
+		if (propertyEditorName == null) {
 			return null;
 		}
 
-		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES, PropertyEditorType.class, propertyEditorName, "ppe"); //$NON-NLS-1$
+		return getDefaultWidget(
+				EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
+				PropertyEditorType.class, propertyEditorName, "ppe"); //$NON-NLS-1$
 	}
 
 	/**
@@ -545,80 +588,84 @@ public class ConfigurationManager {
 
 	/**
 	 * @param name
-	 * @return
-	 *         The namespace corresponding to the given name
+	 * @return The namespace corresponding to the given name
 	 */
 	public Namespace getNamespaceByName(String name) {
-		for(Environment environment : root.getEnvironments()) {
-			for(Namespace namespace : environment.getNamespaces()) {
-				if(Util.namespaceEqualsByName(namespace, name)) {
+		for (Environment environment : root.getEnvironments()) {
+			for (Namespace namespace : environment.getNamespaces()) {
+				if (Util.namespaceEqualsByName(namespace, name)) {
 					return namespace;
 				}
 			}
 		}
-		Activator.log.warn("Cannot find a registered namespace for '" + name + "'"); //$NON-NLS-1$ //$NON-NLS-2$
+		Activator.log
+				.warn("Cannot find a registered namespace for '" + name + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 		return null;
 	}
 
 	/**
 	 * @param property
-	 * @return
-	 *         the default PropertyEditorType for the given Property
+	 * @return the default PropertyEditorType for the given Property
 	 */
 	public PropertyEditorType getDefaultEditorType(Property property) {
-		return getDefaultEditorType(property.getType(), property.getMultiplicity() != 1);
+		return getDefaultEditorType(property.getType(),
+				property.getMultiplicity() != 1);
 	}
 
 	/**
-	 * Disable, then unregisters a Context. The Context won't be available anymore in the framework
-	 * (not even in the Preferences page). This method <strong>won't</strong> delete the context's files
-	 * on the file system.
+	 * Disable, then unregisters a Context. The Context won't be available
+	 * anymore in the framework (not even in the Preferences page). This method
+	 * <strong>won't</strong> delete the context's files on the file system.
 	 * 
 	 * @param context
-	 *        The context to delete
+	 *            The context to delete
 	 */
 	public void deleteContext(Context context) {
-		contexts.remove(context.eResource().getURI());
+		contexts.remove(EcoreUtil.getURI(context));
 		disableContext(context, true);
 		root.getContexts().remove(context);
 	}
 
 	/**
-	 * Initializes the ConfigurationManager instance. This method should be called only once
+	 * Initializes the ConfigurationManager instance. This method should be
+	 * called only once
 	 */
 	public static void init() {
 		instance.start();
 	}
 
 	/**
-	 * Retrieves the Property object associated to the propertyPath in the given context
+	 * Retrieves the Property object associated to the propertyPath in the given
+	 * context
 	 * 
 	 * @param propertyPath
 	 * @param context
-	 * @return
-	 *         The property associated to the given propertyPath
+	 * @return The property associated to the given propertyPath
 	 */
 	public Property getProperty(String propertyPath, Context context) {
-		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
-		String propertyName = propertyPath.substring(propertyPath.lastIndexOf(":") + 1, propertyPath.length()); //$NON-NLS-1$
+		String elementName = propertyPath.substring(0,
+				propertyPath.lastIndexOf(":")); //$NON-NLS-1$
+		String propertyName = propertyPath.substring(
+				propertyPath.lastIndexOf(":") + 1, propertyPath.length()); //$NON-NLS-1$
 		Set<DataContextElement> elements = new HashSet<DataContextElement>();
 
 		Collection<Context> allContexts;
 
-		if(context == null) {
+		if (context == null) {
 			allContexts = getContexts();
 		} else {
 			allContexts = Util.getDependencies(context);
 		}
 
-		for(Context ctx : allContexts) {
+		for (Context ctx : allContexts) {
 			elements.addAll(ctx.getDataContexts());
 		}
 
-		DataContextElement element = Util.getContextElementByQualifiedName(elementName, elements);
-		if(element != null) {
-			for(Property property : element.getProperties()) {
-				if(property.getName().equals(propertyName)) {
+		DataContextElement element = Util.getContextElementByQualifiedName(
+				elementName, elements);
+		if (element != null) {
+			for (Property property : element.getProperties()) {
+				if (property.getName().equals(propertyName)) {
 					return property;
 				}
 			}
@@ -636,28 +683,28 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Checks the conflicts between all applied configurations
-	 * A Conflict may occur when two sections have the same ID : they can't
-	 * be displayed at the same time
+	 * Checks the conflicts between all applied configurations A Conflict may
+	 * occur when two sections have the same ID : they can't be displayed at the
+	 * same time
 	 * 
-	 * @return
-	 *         The list of conflicts
+	 * @return The list of conflicts
 	 */
 	public Collection<ConfigurationConflict> checkConflicts() {
 		Map<String, List<Context>> sections = new HashMap<String, List<Context>>();
 		Map<String, ConfigurationConflict> conflicts = new HashMap<String, ConfigurationConflict>();
 
-		for(Context context : getEnabledContexts()) {
-			for(Tab tab : context.getTabs()) {
-				for(Section section : tab.getSections()) {
+		for (Context context : getEnabledContexts()) {
+			for (Tab tab : context.getTabs()) {
+				for (Section section : tab.getSections()) {
 					String sectionID = section.getName();
 					List<Context> contexts = sections.get(sectionID);
-					if(contexts == null) {
+					if (contexts == null) {
 						contexts = new LinkedList<Context>();
 						sections.put(sectionID, contexts);
 					} else {
-						ConfigurationConflict conflict = conflicts.get(sectionID);
-						if(conflict == null) {
+						ConfigurationConflict conflict = conflicts
+								.get(sectionID);
+						if (conflict == null) {
 							conflict = new ConfigurationConflict(sectionID);
 							conflicts.put(sectionID, conflict);
 

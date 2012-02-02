@@ -14,6 +14,8 @@ package org.eclipse.papyrus.properties.constraints;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.jface.viewers.IStructuredSelection;
+
 /**
  * A Composite constraint. It matches a given selection if and only if
  * all its sub constraints match this selection.
@@ -34,18 +36,19 @@ public class CompoundConstraint extends AbstractConstraint {
 		}
 		constraints.add(subConstraint);
 	}
-
-	/**
-	 * A Composite Constraints matches a selection if and only if
-	 * all its inner constraints match it
-	 */
-	public boolean match(Object selection) {
+	
+	public boolean match(IStructuredSelection selection){
 		for(Constraint constraint : constraints) {
 			if(!constraint.match(selection)) {
 				return false;
 			}
 		}
 		return true;
+	}
+	
+	protected boolean match(Object selection) {
+		//Unused
+		return false;
 	}
 
 	@Override

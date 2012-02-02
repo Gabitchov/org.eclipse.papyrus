@@ -109,7 +109,9 @@ public abstract class AbstractModelElement implements ModelElement {
 	public final IObservable getObservable(String propertyPath) {
 		if(!observables.containsKey(propertyPath)) {
 			IObservable observable = doGetObservable(propertyPath);
-			observables.put(propertyPath, observable);
+			if (observable != null){
+				observables.put(propertyPath, observable);
+			}
 		}
 		return observables.get(propertyPath);
 	}

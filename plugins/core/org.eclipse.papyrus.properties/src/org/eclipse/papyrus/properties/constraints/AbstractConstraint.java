@@ -42,6 +42,9 @@ public abstract class AbstractConstraint implements Constraint {
 	 */
 	protected DisplayUnit display;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public final void setConstraintDescriptor(ConstraintDescriptor descriptor) {
 		this.descriptor = descriptor;
 		display = getDisplay(descriptor);
@@ -59,6 +62,9 @@ public abstract class AbstractConstraint implements Constraint {
 		return descriptor.getDisplay();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public View getView() {
 		if(display instanceof View) {
 			return (View)display;
@@ -96,6 +102,9 @@ public abstract class AbstractConstraint implements Constraint {
 	 */
 	protected abstract boolean equivalent(Constraint constraint);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ConstraintDescriptor getDescriptor() {
 		return descriptor;
 	}
@@ -227,5 +236,20 @@ public abstract class AbstractConstraint implements Constraint {
 
 		return false;
 	}
+
+
+	/**
+	 * Tests if this constraint matches the given object
+	 * This methods only needs to be implemented when you don't
+	 * override {@link AbstractConstraint#match(IStructuredSelection)}
+	 * 
+	 * @param selection
+	 *        The object to be tested against this constraint
+	 * @return
+	 *         True if this constraint matches the given object
+	 * 
+	 * @see {@link #match(IStructuredSelection)}
+	 */
+	protected abstract boolean match(Object selection);
 
 }
