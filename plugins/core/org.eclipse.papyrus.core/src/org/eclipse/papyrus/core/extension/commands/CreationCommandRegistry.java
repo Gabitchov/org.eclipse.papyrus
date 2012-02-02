@@ -35,7 +35,7 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 
 	public synchronized static CreationCommandRegistry getInstance(String extensionPointNamespace) {
 		CreationCommandRegistry registry = registriesMap.get(extensionPointNamespace);
-		if (registry == null) {
+		if(registry == null) {
 			registry = new CreationCommandRegistry(extensionPointNamespace);
 			registriesMap.put(extensionPointNamespace, registry);
 		}
@@ -58,7 +58,7 @@ public class CreationCommandRegistry implements ICreationCommandRegistry {
 	 */
 	private Map<Object, CreationCommandDescriptor> creationCommandDescriptors;
 
-	private CreationCommandRegistry(String extensionPointNamespace) {
+	public CreationCommandRegistry(String extensionPointNamespace) {
 		this.extensionPointNamespace = extensionPointNamespace;
 		initializeCreationCommandDescriptors();
 	}
