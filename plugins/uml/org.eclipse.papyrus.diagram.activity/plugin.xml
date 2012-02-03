@@ -2349,11 +2349,11 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validateElement">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"
-            lang="OCL"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter62"
             name="validateHandlerBodyInput"
             mode="Live"
             severity="ERROR" statusCode="200">
-            <![CDATA[((not self.handlerBody.oclIsUndefined()) and  (not self.exceptionInput.oclIsUndefined())) implies( let pins : Collection(Element) = self.handlerBody.allOwnedElements()->select(e : Element | e.oclIsKindOf(Pin)) in pins->forAll(e : Element | e.oclIsKindOf(Pin) implies e = self.exceptionInput))]]>
+            
             <description><![CDATA[The handler body has one input, and that input is the same as the exception input]]></description>
             <message><![CDATA[The handler body has one input, and that input is the same as the exception input]]></message>
             <target class="uml.ExceptionHandler"/>

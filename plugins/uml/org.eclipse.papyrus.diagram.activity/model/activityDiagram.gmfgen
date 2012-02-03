@@ -1117,7 +1117,7 @@
           name="validateHandlerBodyInput"
           description="The handler body has one input, and that input is the same as the exception input"
           id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"
-          rule="/0/@expressionProviders/@providers.1/@expressions.86"
+          rule="/0/@expressionProviders/@providers.0/@expressions.113"
           message="The handler body has one input, and that input is the same as the exception input"
           useInLiveMode="true"
           category="/0/@audits/@categories.36">
@@ -16457,6 +16457,9 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return UMLValidationHelper.validateInterruptibleEdge(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateExceptionHandlerBody(context, ctx);"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">

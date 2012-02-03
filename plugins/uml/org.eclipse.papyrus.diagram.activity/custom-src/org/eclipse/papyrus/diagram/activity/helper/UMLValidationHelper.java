@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -33,22 +34,42 @@ import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.ControlNode;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExceptionHandler;
+import org.eclipse.uml2.uml.ExecutableNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Pin;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-public class UMLValidationHelper {
+import com.google.common.collect.Collections2;
 
-	private static final String INTERRUTIBLE_EDGE_CONSTRAINT = "Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.";
+public class UMLValidationHelper {
+	/**
+	 * Exception Handler constraint define in  From UML Superstructure Version 2.4.1 with change bars
+	 */
+	private static final String EXCEPTION_HANDLER_CONSTRAINT_2 = "[4] The handler body has one input, and that input is the same as the exception input.";
+	/**
+	 * Exception Handler constraint define in  From UML Superstructure Version 2.4.1 with change bars
+	 */
+	private static final String EXCEPTION_HANDLER_CONSTRAINT_3 = "If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a StructuredActivityNode with output pins that correspond in number and types to those of the protected node.";
+	/**
+	 * Exception Handler constraint define in  From UML Superstructure Version 2.4.1 with change bars
+	 */
+	private static final String EXCEPTION_HANDLER_CONSTRAINT_4 = "The handler body has one input, and that input is the same as the exception input";
+	/**
+	 * Exception Handler constraint define in  From UML Superstructure Version 2.4.1 with change bars
+	 */
+	private static final String EXCEPTION_HANDLER_CONSTRAINT_1 = "The exception handler and its input object node are not the source or target of any edge.";
 
 	/**
 	 * The source and target of an edge must be in the same activity as the
@@ -59,7 +80,7 @@ public class UMLValidationHelper {
 	 * @param ctx
 	 *        The cache of context-specific information.
 	 */
-	public static IStatus validateSourceAndTarget(ActivityEdge context, IValidationContext ctx) {	
+	public static IStatus validateSourceAndTarget(ActivityEdge context, IValidationContext ctx) {
 		Activity edgeActivity = context.getActivity();
 		if(edgeActivity == null) {
 			// edge is contained by activity or group. Its activity is by
@@ -97,6 +118,22 @@ public class UMLValidationHelper {
 					// reason
 					return ctx.createSuccessStatus();
 				}
+				/*
+				 * Test the constraint un Exception handler section from Version 2.4.1 with change bars
+				 * [4] The handler body has one input, and that input is the same as the exception input.
+				 */
+				
+				StructuredActivityNode inStrucActNode = source.getInStructuredNode();
+				if (inStrucActNode != null){
+					if (!inStrucActNode.equals(target.getInStructuredNode())){
+						return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_2);
+					}
+				} else {
+					if (target.getInStructuredNode() != null){
+						return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_2);
+					}
+				}
+				
 			}
 			Activity targetActivity = target.getActivity();
 			if(targetActivity == null) {
@@ -122,6 +159,7 @@ public class UMLValidationHelper {
 		}
 		return ctx.createSuccessStatus();
 	}
+
 	/**
 	 * Implementation of the constraint
 	 * [1] Interrupting edges of a region must have their source node in the region and their target node outside the region in the
@@ -135,7 +173,73 @@ public class UMLValidationHelper {
 	 * @return
 	 */
 	public static IStatus validateInterruptibleEdge(ActivityEdge context, IValidationContext ctx) {
-		return validateInterruptibleEdge(context, context.getInterrupts())? ctx.createSuccessStatus():ctx.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");////$NON-NLS-0$
+		return validateInterruptibleEdge(context, context.getInterrupts()) ? ctx.createSuccessStatus() : ctx.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");////$NON-NLS-0$
+	}
+
+	/**
+	 * Implementation of the constraint:
+	 * [4] The handler body has one input, and that input is the same as the exception input
+	 * [3] If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a
+	 * StructuredActivityNode with output pins that correspond in number and types to those of the protected node.
+	 * [1] The exception handler and its input object node are not the source or target of any edge.
+	 * From UML Superstructure Version 2.4.1 with change bars
+	 * 
+	 * @param context
+	 * @param ctx
+	 * @return
+	 */
+	public static IStatus validateExceptionHandlerBody(ExceptionHandler context, IValidationContext ctx) {
+		ExecutableNode handlerBody = context.getHandlerBody();
+		/*
+		 * [4] The handler body has one input, and that input is the same as the exception input
+		 */
+		if(handlerBody != null) {
+			if(handlerBody instanceof Action) {
+				Action handlerBodyAction = (Action)handlerBody;
+				if(handlerBodyAction.getInputs() == null || handlerBodyAction.getInputs().size() != 1) {
+					return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_4);////$NON-NLS-1$
+				}
+			}
+		}
+		/*
+		 * [1] The exception handler and its input object node are not the source or target of any edge.
+		 */
+		ObjectNode exceptionInput = context.getExceptionInput();
+		if(exceptionInput != null) {
+			EList<ActivityEdge> incominEdges = exceptionInput.getIncomings();
+			EList<ActivityEdge> outgoingEdges = exceptionInput.getOutgoings();
+			if((incominEdges != null && incominEdges.size() != 0) || (outgoingEdges != null && outgoingEdges.size() != 0)) {
+				return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_1);
+			}
+		}
+		/*
+		 * [3] If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a
+		 * StructuredActivityNode with output pins that correspond in number and types to those of the protected node.
+		 */
+		ExecutableNode protectedNode = context.getProtectedNode();
+		if(protectedNode != null) {
+			if(protectedNode instanceof StructuredActivityNode) {
+				StructuredActivityNode structuredActNode = (StructuredActivityNode)protectedNode;
+				if(handlerBody instanceof StructuredActivityNode) {
+					EList<OutputPin> protectedNodeOutputPin = structuredActNode.getOutputs();
+					EList<OutputPin> handlerBodyOutputPin = ((StructuredActivityNode)handlerBody).getOutputs();
+					if (protectedNodeOutputPin.size() != handlerBodyOutputPin.size()){
+						return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_3);
+					}
+					
+					for (int i = 0; i<protectedNodeOutputPin.size();i++){
+						OutputPin outputPin = protectedNodeOutputPin.get(i);
+						if (outputPin != null && outputPin.equals(handlerBodyOutputPin.get(i))){
+							return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_3);
+						}
+					}
+					
+				} else if (handlerBody!= null){
+					return ctx.createFailureStatus(EXCEPTION_HANDLER_CONSTRAINT_3);
+				}
+			}
+		}
+		return ctx.createSuccessStatus();
 	}
 
 	/**

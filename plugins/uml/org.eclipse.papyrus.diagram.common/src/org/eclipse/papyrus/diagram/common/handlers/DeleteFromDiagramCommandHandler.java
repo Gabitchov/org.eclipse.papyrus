@@ -150,7 +150,7 @@ public class DeleteFromDiagramCommandHandler extends GraphicalCommandHandler imp
 				}
 				if(child instanceof ConnectionEditPart) {
 					ConnectionEditPart connection = (ConnectionEditPart)child;
-					isCanonical = (!connection.isSemanticConnection() || (isCanonical(connection.getSource()) && isCanonical(connection.getTarget())));
+					isCanonical = (!connection.isSemanticConnection());
 				} else {
 					isCanonical = isCanonical(child);
 				}

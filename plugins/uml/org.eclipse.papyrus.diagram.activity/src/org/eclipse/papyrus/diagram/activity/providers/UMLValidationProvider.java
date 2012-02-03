@@ -44,6 +44,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.ValuePin;
@@ -358,6 +359,20 @@ public class UMLValidationProvider {
 		public IStatus validate(IValidationContext ctx) {
 			DecisionNode context = (DecisionNode)ctx.getTarget();
 			return UMLValidationHelper.validateTwoInputParameters(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter62 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
+			return UMLValidationHelper.validateExceptionHandlerBody(context, ctx);
 		}
 	}
 
