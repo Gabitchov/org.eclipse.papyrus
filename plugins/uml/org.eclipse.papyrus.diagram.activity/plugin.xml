@@ -1855,6 +1855,16 @@ not self.source.oclIsUndefined() and not self.target.oclIsUndefined()]]>
             <message><![CDATA[The source and target of an edge must be defined.]]></message>
             <target class="uml.ActivityEdge"/>
          </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint2"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter66"
+            name="validateException_StructuredActivityNode_Constraint2"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[An edge that has a source in an exception handler structured node must also have its target in the handler, and vice versa.]]></description>
+            <message><![CDATA[An edge that has a source in an exception handler structured node must also have its target in the handler, and vice versa.]]></message>
+            <target class="uml.ActivityEdge"/>
+         </constraint>
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateNoActions"
@@ -2348,14 +2358,34 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateBroacastSignalAction">
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validateElement">
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_HandlerBody_Constraint4"
             lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter62"
-            name="validateHandlerBodyInput"
+            name="validateException_HandlerBody_Constraint4"
             mode="Live"
             severity="ERROR" statusCode="200">
             
             <description><![CDATA[The handler body has one input, and that input is the same as the exception input]]></description>
             <message><![CDATA[The handler body has one input, and that input is the same as the exception input]]></message>
+            <target class="uml.ExceptionHandler"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint3"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter64"
+            name="validateException_StructuredActivityNode_Constraint3"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a]]></description>
+            <message><![CDATA[If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a]]></message>
+            <target class="uml.ExceptionHandler"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_SourceAndTargetEdge_Constraint1"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter65"
+            name="validateException_SourceAndTargetEdge_Constraint1"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[The exception handler and its input object node are not the source or target of any edge.]]></description>
+            <message><![CDATA[The exception handler and its input object node are not the source or target of any edge.]]></message>
             <target class="uml.ExceptionHandler"/>
          </constraint>
                   </constraints>
@@ -2441,8 +2471,11 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateVariableAction_VariableScope"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinType"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateReadVariableAction_OutputPinMultiplicity"/>
-                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_HandlerBody_Constraint4"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleEdge_validateEdge"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint3"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_SourceAndTargetEdge_Constraint1"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint2"/>
                </binding>
 
    </extension>

@@ -114,7 +114,7 @@
           name="validateActivityEdge"
           description="Validate an activity edge"
           path="/0/@audits/@categories.0 /0/@audits/@categories.18"
-          audits="/0/@audits/@rules.15 /0/@audits/@rules.16 /0/@audits/@rules.17 /0/@audits/@rules.18"/>
+          audits="/0/@audits/@rules.15 /0/@audits/@rules.16 /0/@audits/@rules.17 /0/@audits/@rules.18 /0/@audits/@rules.65"/>
       <categories
           id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow"
           name="validateObjectFlow"
@@ -221,7 +221,7 @@
           name="validateExceptionHandler"
           description="Constraint Exception Handler"
           path="/0/@audits/@categories.10"
-          audits="/0/@audits/@rules.61"/>
+          audits="/0/@audits/@rules.61 /0/@audits/@rules.63 /0/@audits/@rules.64"/>
       <categories
           id="org.eclipse.uml2.uml.util.UMLValidator.validateInterruptibleEdge"
           name="validateInterruptibleEdge"
@@ -1114,11 +1114,11 @@
         </target>
       </rules>
       <rules
-          name="validateHandlerBodyInput"
-          description="The handler body has one input, and that input is the same as the exception input"
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateHandlerBodyInput"
+          name="validateException_HandlerBody_Constraint4"
+          description="The handler body has one input, and that input is the same as the exception input."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_HandlerBody_Constraint4"
           rule="/0/@expressionProviders/@providers.0/@expressions.113"
-          message="The handler body has one input, and that input is the same as the exception input"
+          message="The handler body has one input, and that input is the same as the exception input."
           useInLiveMode="true"
           category="/0/@audits/@categories.36">
         <target
@@ -1143,8 +1143,52 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
         </target>
       </rules>
+      <rules
+          name="validateException_StructuredActivityNode_Constraint3"
+          description="If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a StructuredActivityNode with output pins that correspond in number and types to those of the protected node."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint3"
+          rule="/0/@expressionProviders/@providers.0/@expressions.116"
+          message="If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a StructuredActivityNode with output pins that correspond in number and types to those of the protected node."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.36">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExceptionHandler"/>
+        </target>
+      </rules>
+      <rules
+          name="validateException_SourceAndTargetEdge_Constraint1"
+          description="The exception handler and its input object node are not the source or target of any edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_SourceAndTargetEdge_Constraint1"
+          rule="/0/@expressionProviders/@providers.0/@expressions.115"
+          message="The exception handler and its input object node are not the source or target of any edge."
+          useInLiveMode="true"
+          category="/0/@audits/@categories.36">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExceptionHandler"/>
+        </target>
+      </rules>
+      <rules
+          name="validateException_StructuredActivityNode_Constraint2"
+          description="An edge that has a source in an exception handler structured node must also have its target in the handler, and vice versa."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint2"
+          rule="/0/@expressionProviders/@providers.0/@expressions.114"
+          message="An edge that has a source in an exception handler structured node must also have its target in the handler, and vice versa."
+          category="/0/@audits/@categories.18">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityEdge"/>
+        </target>
+      </rules>
       <clientContexts
-          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target /0/@audits/@rules.2/@target /0/@audits/@rules.3/@target /0/@audits/@rules.4/@target /0/@audits/@rules.5/@target /0/@audits/@rules.6/@target /0/@audits/@rules.7/@target /0/@audits/@rules.8/@target /0/@audits/@rules.9/@target /0/@audits/@rules.10/@target /0/@audits/@rules.11/@target /0/@audits/@rules.12/@target /0/@audits/@rules.13/@target /0/@audits/@rules.14/@target /0/@audits/@rules.15/@target /0/@audits/@rules.16/@target /0/@audits/@rules.17/@target /0/@audits/@rules.18/@target /0/@audits/@rules.19/@target /0/@audits/@rules.20/@target /0/@audits/@rules.21/@target /0/@audits/@rules.22/@target /0/@audits/@rules.23/@target /0/@audits/@rules.24/@target /0/@audits/@rules.25/@target /0/@audits/@rules.26/@target /0/@audits/@rules.27/@target /0/@audits/@rules.28/@target /0/@audits/@rules.29/@target /0/@audits/@rules.30/@target /0/@audits/@rules.31/@target /0/@audits/@rules.32/@target /0/@audits/@rules.33/@target /0/@audits/@rules.34/@target /0/@audits/@rules.35/@target /0/@audits/@rules.36/@target /0/@audits/@rules.37/@target /0/@audits/@rules.38/@target /0/@audits/@rules.39/@target /0/@audits/@rules.40/@target /0/@audits/@rules.41/@target /0/@audits/@rules.42/@target /0/@audits/@rules.43/@target /0/@audits/@rules.44/@target /0/@audits/@rules.45/@target /0/@audits/@rules.46/@target /0/@audits/@rules.47/@target /0/@audits/@rules.48/@target /0/@audits/@rules.49/@target /0/@audits/@rules.50/@target /0/@audits/@rules.51/@target /0/@audits/@rules.52/@target /0/@audits/@rules.53/@target /0/@audits/@rules.54/@target /0/@audits/@rules.55/@target /0/@audits/@rules.56/@target /0/@audits/@rules.57/@target /0/@audits/@rules.58/@target /0/@audits/@rules.59/@target /0/@audits/@rules.60/@target /0/@audits/@rules.61/@target /0/@audits/@rules.62/@target"/>
+          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target /0/@audits/@rules.2/@target /0/@audits/@rules.3/@target /0/@audits/@rules.4/@target /0/@audits/@rules.5/@target /0/@audits/@rules.6/@target /0/@audits/@rules.7/@target /0/@audits/@rules.8/@target /0/@audits/@rules.9/@target /0/@audits/@rules.10/@target /0/@audits/@rules.11/@target /0/@audits/@rules.12/@target /0/@audits/@rules.13/@target /0/@audits/@rules.14/@target /0/@audits/@rules.15/@target /0/@audits/@rules.16/@target /0/@audits/@rules.17/@target /0/@audits/@rules.18/@target /0/@audits/@rules.19/@target /0/@audits/@rules.20/@target /0/@audits/@rules.21/@target /0/@audits/@rules.22/@target /0/@audits/@rules.23/@target /0/@audits/@rules.24/@target /0/@audits/@rules.25/@target /0/@audits/@rules.26/@target /0/@audits/@rules.27/@target /0/@audits/@rules.28/@target /0/@audits/@rules.29/@target /0/@audits/@rules.30/@target /0/@audits/@rules.31/@target /0/@audits/@rules.32/@target /0/@audits/@rules.33/@target /0/@audits/@rules.34/@target /0/@audits/@rules.35/@target /0/@audits/@rules.36/@target /0/@audits/@rules.37/@target /0/@audits/@rules.38/@target /0/@audits/@rules.39/@target /0/@audits/@rules.40/@target /0/@audits/@rules.41/@target /0/@audits/@rules.42/@target /0/@audits/@rules.43/@target /0/@audits/@rules.44/@target /0/@audits/@rules.45/@target /0/@audits/@rules.46/@target /0/@audits/@rules.47/@target /0/@audits/@rules.48/@target /0/@audits/@rules.49/@target /0/@audits/@rules.50/@target /0/@audits/@rules.51/@target /0/@audits/@rules.52/@target /0/@audits/@rules.53/@target /0/@audits/@rules.54/@target /0/@audits/@rules.55/@target /0/@audits/@rules.56/@target /0/@audits/@rules.57/@target /0/@audits/@rules.58/@target /0/@audits/@rules.59/@target /0/@audits/@rules.60/@target /0/@audits/@rules.61/@target /0/@audits/@rules.62/@target /0/@audits/@rules.63/@target /0/@audits/@rules.64/@target /0/@audits/@rules.65/@target"/>
     </audits>
     <diagram
         visualID="1000"
@@ -16459,7 +16503,16 @@
             body="return UMLValidationHelper.validateInterruptibleEdge(context, ctx);"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="return UMLValidationHelper.validateExceptionHandlerBody(context, ctx);"/>
+            body="return UMLValidationHelper.validateException_HandlerBody_Constraint4(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateException_StructuredActivityNode_Constraint2(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateException_SourceAndTargetEdge_Constraint1(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return UMLValidationHelper.validateException_StructuredActivityNode_Constraint3(context, ctx);"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">

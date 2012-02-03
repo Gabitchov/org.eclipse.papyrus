@@ -372,7 +372,7 @@ public class UMLValidationProvider {
 		 */
 		public IStatus validate(IValidationContext ctx) {
 			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
-			return UMLValidationHelper.validateExceptionHandlerBody(context, ctx);
+			return UMLValidationHelper.validateException_HandlerBody_Constraint4(context, ctx);
 		}
 	}
 
@@ -387,6 +387,48 @@ public class UMLValidationProvider {
 		public IStatus validate(IValidationContext ctx) {
 			ActivityEdge context = (ActivityEdge)ctx.getTarget();
 			return UMLValidationHelper.validateInterruptibleEdge(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter64 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
+			return UMLValidationHelper.validateException_StructuredActivityNode_Constraint3(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter65 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
+			return UMLValidationHelper.validateException_SourceAndTargetEdge_Constraint1(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter66 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
+			return UMLValidationHelper.validateException_StructuredActivityNode_Constraint2(context, ctx);
 		}
 	}
 
