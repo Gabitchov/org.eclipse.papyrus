@@ -10,7 +10,7 @@
          class="org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard"
          finalPerspective="org.eclipse.papyrus.infra.core.perspective"         
          icon="icons/papyrus/new_papyrus_project.gif"
-         id="org.eclipse.papyrus.wizards.1createproject"
+         id="org.eclipse.papyrus.uml.diagram.wizards.1createproject"
          name="Papyrus Project"
          project="true">
       <description>
@@ -22,7 +22,7 @@
          class="org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard"
          finalPerspective="org.eclipse.papyrus.infra.core.perspective"
          icon="icons/papyrus/new_papyrus_model.gif"
-         id="org.eclipse.papyrus.wizards.createmodel"
+         id="org.eclipse.papyrus.uml.diagram.wizards.createmodel"
          name="Papyrus Model">
    </wizard>
 </extension>

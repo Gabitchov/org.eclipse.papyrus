@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.perspective;
 
 import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard;
-import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
@@ -55,6 +54,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		layout.addShowViewShortcut(IPageLayout.ID_PROJECT_EXPLORER);
 		layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
 		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
+		layout.addShowViewShortcut(ID_MODELEXPLORER);
 
 		layout.addActionSet("org.eclipse.debug.ui.launchActionSet");
 
@@ -75,17 +75,17 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		// Editors are placed for free.
 		String editorArea = layout.getEditorArea();
 
-		// Place the Model Explorer and the Resource Navigator to the left of editor area.
-		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float)0.20, editorArea);
-		left.addView(ID_MODELEXPLORER);
-		left.addView(IPageLayout.ID_PROJECT_EXPLORER);
-		// place outline under the navigator
-		IFolderLayout left_bottom = layout.createFolder("left_bottom", IPageLayout.BOTTOM, (float)0.70, "left");
-		left_bottom.addView(IPageLayout.ID_OUTLINE);
+		// Place the the Resource Navigator to the top left of editor area.
+		layout.addView(IPageLayout.ID_PROJECT_EXPLORER, IPageLayout.LEFT, 0.2f, editorArea);
+
+		// Place the ModelExplorer under the Navigator
+		layout.addView(ID_MODELEXPLORER, IPageLayout.BOTTOM, 0.33f, IPageLayout.ID_PROJECT_EXPLORER);
+
+		// place outline under the model explorer
+		layout.addView(IPageLayout.ID_OUTLINE, IPageLayout.BOTTOM, 0.5f, ID_MODELEXPLORER);
 
 		// place properties under the editor
-		IFolderLayout bottom = layout.createFolder("under", IPageLayout.BOTTOM, (float)0.70, editorArea);
-		bottom.addView(IPageLayout.ID_PROP_SHEET);
+		layout.addView(IPageLayout.ID_PROP_SHEET, IPageLayout.BOTTOM, (float)0.70, editorArea);
 		// bottom.addView("org.eclipse.pde.runtime.LogView");
 	}
 }
