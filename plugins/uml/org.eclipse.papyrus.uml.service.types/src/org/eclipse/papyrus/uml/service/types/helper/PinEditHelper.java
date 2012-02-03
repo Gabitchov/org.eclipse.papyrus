@@ -34,8 +34,8 @@ import org.eclipse.uml2.uml.Pin;
 public class PinEditHelper extends ElementEditHelper{
 
 	@Override
-	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		DestroyElementCommand cmd = req.getBasicDestroyCommand();
+	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {		
+		ICommand cmd = getBasicDestroyElementCommand(req);
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(req.getEditingDomain(), "Destroy Pin Command");////$NON-NLS-1$
 		if ( cmd != null && cmd.canExecute()){
 			cc.compose(cmd);
