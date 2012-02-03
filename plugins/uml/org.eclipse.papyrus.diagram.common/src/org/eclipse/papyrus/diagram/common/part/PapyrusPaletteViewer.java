@@ -13,9 +13,13 @@
 
 package org.eclipse.papyrus.diagram.common.part;
 
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.PaletteCustomizer;
 import org.eclipse.gef.ui.palette.customize.PaletteCustomizerDialog;
@@ -28,6 +32,10 @@ import org.eclipse.swt.widgets.Shell;
  * Extended Palette Viewer, to have a new customize dialog
  */
 public class PapyrusPaletteViewer extends PaletteViewerEx {
+	
+	public static final String EXTENSION_ID = Activator.ID + ".paletteCustomization"; //$NON-NLS-1$
+	
+	public static final String CUSTOMIZER_ATTRIBUTE = "customizerDialog"; //$NON-NLS-1$
 
 	/** cached dialog for the customization */
 	private PaletteCustomizerDialog customizerDialog = null;
@@ -38,30 +46,28 @@ public class PapyrusPaletteViewer extends PaletteViewerEx {
 	@Override
 	public PaletteCustomizerDialog getCustomizerDialog() {
 		if(customizerDialog == null) {
-			try {
-				@SuppressWarnings("unchecked")
-				Class<PaletteCustomizerDialog> advancedCustomizerDialogClass = (Class<PaletteCustomizerDialog>)Activator.getDefault().getBundle().loadClass("org.eclipse.papyrus.diagram.common.palette.customization.dialog.PapyrusPaletteCustomizerDialog");
-				Constructor<PaletteCustomizerDialog> constructor = advancedCustomizerDialogClass.getConstructor(Shell.class, PaletteCustomizer.class, PaletteRoot.class);
-				if(constructor != null) {
-					customizerDialog = constructor.newInstance(getControl().getShell(), getCustomizer(), getPaletteRoot());
-					if(customizerDialog == null) {
-						// be sure it is not null
-						customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+			//Load from extension point
+			for(IConfigurationElement e : config) {
+				String customizerClassName = e.getAttribute("customizerDialog"); //$NON-NLS-1$
+				try {
+					Class<? extends PaletteCustomizerDialog> advancedCustomizerDialogClass = Activator.getDefault().getBundle().loadClass(customizerClassName).asSubclass(PaletteCustomizerDialog.class);
+					if (advancedCustomizerDialogClass != null){
+						Constructor<? extends PaletteCustomizerDialog> constructor = advancedCustomizerDialogClass.getConstructor(Shell.class, PaletteCustomizer.class, PaletteRoot.class);
+						if(constructor != null) {
+							customizerDialog = constructor.newInstance(getControl().getShell(), getCustomizer(), getPaletteRoot());
+							break;
+						}
 					}
+				} catch (Exception ex){
+					Activator.log.error(ex);
+					continue;
 				}
-			} catch (ClassNotFoundException e) {
-				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
-			} catch (IllegalArgumentException e) {
-				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
-			} catch (InstantiationException e) {
-				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
-			} catch (IllegalAccessException e) {
-				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
-			} catch (InvocationTargetException e) {
-				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
-			} catch (SecurityException e) {
-				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
-			} catch (NoSuchMethodException e) {
+			}
+			
+			if(customizerDialog == null) {
+				// be sure it is not null
 				customizerDialog = new PaletteCustomizerDialogEx(getControl().getShell(), getCustomizer(), getPaletteRoot());
 			}
 		}
