@@ -213,14 +213,17 @@ public class AbstractLinkCreationForSourcesTest extends AbstractLinkPrepareTest 
 	}
 	
 	@Test
+	public void createLinkWithSourceEnumerationLiteral() throws Exception {
+		View sourceView = enumerationLiteralSourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+		System.out.println("THIS TEST IS FINISHED");
+	}
+	
+	@Test
 	public void createLinkWithSourceFlowProperty() throws Exception {
 		View sourceView = flowPropertySourceView;
 		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
 	}
 	
-	@Test
-	public void createLinkWithSourceEnumerationLiteral() throws Exception {
-		View sourceView = enumerationLiteralSourceView;
-		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
-	}
+	
 }
