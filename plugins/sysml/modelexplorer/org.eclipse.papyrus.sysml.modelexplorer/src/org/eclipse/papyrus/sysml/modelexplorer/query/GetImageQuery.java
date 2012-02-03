@@ -15,29 +15,29 @@ public class GetImageQuery implements IJavaModelQuery<Element, String> {
 
 	public String evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
-		String icon_path = "";
+		String iconPath = "";
 		if(!context.getAppliedStereotypes().isEmpty()) {
 			Stereotype first_stereotype = context.getAppliedStereotypes().get(0);
 
 			if(!first_stereotype.getIcons().isEmpty()) {
 				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(context, first_stereotype, "icon");
 				if(icon != null) {
-					icon_path = icon.getLocation();
+					iconPath = icon.getLocation();
 				}
 			}
 		}
 
-		String image_path = "";
+		String imagePath = "";
 
-		if(!"".equals(icon_path)) {
-			URI iconURI = URI.createURI(icon_path);
+		if(iconPath != null && !"".equals(iconPath)) {
+			URI iconURI = URI.createURI(iconPath);
 			if(iconURI.isRelative()) {
-				image_path = sysml_plugin_path + icon_path;
+				imagePath = sysml_plugin_path + iconPath;
 			} else {
-				image_path = iconURI.toPlatformString(true);
+				imagePath = iconURI.toPlatformString(true);
 			}
 		}
 
-		return image_path;
+		return imagePath;
 	}
 }
