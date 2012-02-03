@@ -25,7 +25,7 @@ import org.eclipse.ui.IEditorPart;
 public class RefreshHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		GMFCSSFactory.eINSTANCE.getCSSEngine().resetCache();
+		GMFCSSFactory.getInstance().getCSSEngine().resetCache();
 
 		IEditorPart activeEditor = EditorUtils.getMultiDiagramEditor().getActiveEditor();
 		if(activeEditor instanceof DiagramEditor) {

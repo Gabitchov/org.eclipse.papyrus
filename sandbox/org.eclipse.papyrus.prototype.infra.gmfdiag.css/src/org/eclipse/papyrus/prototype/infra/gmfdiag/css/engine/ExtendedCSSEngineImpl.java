@@ -25,6 +25,8 @@ import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.prototype.infra.gmfdiag.css.GMFCSSDiagram;
+import org.eclipse.papyrus.prototype.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.prototype.infra.gmfdiag.css.engine.enginecopy.ExtendedViewCSSImpl;
 import org.w3c.css.sac.ConditionFactory;
 import org.w3c.dom.Element;
@@ -57,18 +59,28 @@ public class ExtendedCSSEngineImpl extends AbstractCSSEngine implements Extended
 
 	ExtendedViewCSSImpl viewCSS;
 
+	private ExtendedCSSEngine parent;
+
 	public ExtendedCSSEngineImpl() {
+		this(null);
+	}
+
+	public ExtendedCSSEngineImpl(ExtendedCSSEngine parent) {
 		super();
-		init();
+		init(parent);
 	}
 
-	public ExtendedCSSEngineImpl(ExtendedDocumentCSS documentCSS) {
+	public ExtendedCSSEngineImpl(ExtendedCSSEngine parent, ExtendedDocumentCSS documentCSS) {
 		super(documentCSS);
-		init();
+		init(parent);
 	}
 
-	private void init() {
+	private void init(ExtendedCSSEngine parent) {
 		viewCSS = new ExtendedViewCSSImpl(getDocumentCSS());
+		this.parent = parent;
+		//TODO : Register converters
+		this.registerCSSValueConverter(new ColorToGMFConverter());
+		//this.registerCSSValueConverter(...);
 	}
 
 	private void refreshStyleSheets() {
@@ -112,11 +124,23 @@ public class ExtendedCSSEngineImpl extends AbstractCSSEngine implements Extended
 	 * - Then, if two rules have the same specificity, returns the last declared rule
 	 */
 	public CSSValue retrievePropertyValue(Element element, String property) {
+		//		ExtendedCSSEngine engine = findEngine(element);
+		//		return engine.retrievePropertyValue(element, property);
 		refreshStyleSheets();
 
 		CSSStyleDeclaration declaration = getStyleDeclaration(element);
 
 		return declaration.getPropertyCSSValue(property);
+	}
+
+	private ExtendedCSSEngine findEngine(Element element) {
+		do {
+			if(element instanceof GMFCSSDiagram) {
+				return ((GMFCSSDiagram)element).getEngine();
+			}
+		} while((element = (Element)element.getParentNode()) != null);
+
+		return WorkspaceCSSEngine.instance; //Should not happen
 	}
 
 	private CSSStyleDeclaration getStyleDeclaration(Element element) {

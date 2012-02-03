@@ -143,8 +143,9 @@ import org.eclipse.papyrus.prototype.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 
 public class GMFCSSFactory extends NotationFactoryImpl {
 
-	public static GMFCSSFactory eINSTANCE = (GMFCSSFactory)NotationFactory.eINSTANCE;
-
+	public static GMFCSSFactory getInstance() {
+		return (GMFCSSFactory)NotationFactory.eINSTANCE;
+	}
 
 	@Override
 	public Edge createEdge() {
