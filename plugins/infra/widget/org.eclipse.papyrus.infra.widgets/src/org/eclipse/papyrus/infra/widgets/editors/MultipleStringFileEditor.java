@@ -110,17 +110,18 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 		FileDialog dialog = new FileDialog(getShell(), SWT.MULTI | SWT.OPEN);
 		dialog.setFilterExtensions(filterExtensions.toArray(new String[filterExtensions.size()]));
 		dialog.setFilterNames(filterNames.toArray(new String[filterNames.size()]));
-		dialog.open();
-		List<String> filePathList = new ArrayList<String>(modelProperty.size() + dialog.getFileNames().length);
-		filePathList.addAll(modelProperty);
+		if(dialog.open() != null) {
+			List<String> filePathList = new ArrayList<String>(modelProperty.size() + dialog.getFileNames().length);
+			filePathList.addAll(modelProperty);
 
-		for(String fileName : dialog.getFileNames()) {
-			filePathList.add(dialog.getFilterPath() + File.separator + fileName);
+			for(String fileName : dialog.getFileNames()) {
+				filePathList.add(dialog.getFilterPath() + File.separator + fileName);
+			}
+
+			modelProperty.clear();
+			modelProperty.addAll(filePathList);
+			commit();
 		}
-
-		modelProperty.clear();
-		modelProperty.addAll(filePathList);
-		commit();
 	}
 
 	protected void browseWorkspace() {
