@@ -143,10 +143,20 @@ public class PackageUtil {
 	 * @return the top {@link Package} for the specified element
 	 */
 	public static Package getRootPackage(Package package_) {
-		if(package_.getOwner() == null) {
+		Element owner = package_.getOwner();
+		
+		//Bug 370412: The package might not be contained in a Package 
+		//(e.g. it can be contained in a Component). Search for the nearest
+		//package, excluding self (Package#getNearestPackage() returns self)
+		while (owner != null && ! (owner instanceof Package)){
+			owner = owner.getOwner();
+		}
+		
+		if(owner == null) {
 			return package_;
 		}
-		return getRootPackage((Package)package_.getOwner());
+		
+		return getRootPackage((Package)owner);
 	}
 
 	/**
