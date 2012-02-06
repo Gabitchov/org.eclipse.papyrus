@@ -11,12 +11,12 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
- * A command to be used with the Eclipse Commands Framework. This command allows
- * to close all diagrams openened in the current SashContainer implemented on
- * di.
+ * A command to be used with the Eclipse Commands Framework.
+ * This command allows to close all diagrams openened in the current SashContainer implemented
+ * on di.
  * 
  * @author cedric dumoulin
- * 
+ *
  */
 public class CloseAllDiagramsCommand extends AbstractHandler {
 
@@ -25,16 +25,15 @@ public class CloseAllDiagramsCommand extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		// System.out.println("call to CloseAllDiagramsCommand.setEnable(" +
-		// evaluationContext + ")");
+//		System.out.println("call to CloseAllDiagramsCommand.setEnable(" + evaluationContext + ")");
 	}
-
+	
 	/**
 	 * Execute the command. This method is called when the action is triggered.
 	 * 
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
+		
 		IPageMngr pageMngr;
 		try {
 			pageMngr = getPageMngr(event);
@@ -43,34 +42,31 @@ public class CloseAllDiagramsCommand extends AbstractHandler {
 			return null;
 		}
 		execute(pageMngr);
-
+		
 		return null;
 	}
-
+	
 	/**
 	 * Get the PageMngr used to interact with the content provider.
-	 * 
 	 * @param event
 	 * @return
-	 * @throws NullPointerException
-	 *         if the PageMngr can't be found.
+	 * @throws NullPointerException if the PageMngr can't be found.
 	 */
 	private IPageMngr getPageMngr(ExecutionEvent event) {
-
+		
 		IEditorPart part = HandlerUtil.getActiveEditor(event);
 		IPageMngr pageMngr = (IPageMngr)part.getAdapter(IPageMngr.class);
-
+		
 		return pageMngr;
-
+		
 	}
 
 	/**
 	 * Close all the diagrams.
-	 * 
 	 * @param pageMngr
 	 */
 	public void execute(IPageMngr pageMngr) {
-
+		
 		pageMngr.closeAllOpenedPages();
 	}
 

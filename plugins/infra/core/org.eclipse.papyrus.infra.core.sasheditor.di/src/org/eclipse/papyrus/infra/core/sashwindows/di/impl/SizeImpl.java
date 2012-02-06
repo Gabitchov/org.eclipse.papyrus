@@ -14,12 +14,14 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Size;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Size</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Size</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SizeImpl#getWidth <em> Width</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SizeImpl#getLength <em> Length</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SizeImpl#getWidth <em>Width</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SizeImpl#getLength <em>Length</em>}</li>
  * </ul>
  * </p>
  * 
@@ -29,7 +31,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 
 	/**
 	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getWidth()
 	 * @generated
@@ -39,7 +42,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getWidth()
 	 * @generated
@@ -48,8 +52,9 @@ public class SizeImpl extends EObjectImpl implements Size {
 	protected int width = WIDTH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLength() <em>Length</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getLength()
 	 * @generated
@@ -59,7 +64,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 
 	/**
 	 * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getLength()
 	 * @generated
@@ -68,7 +74,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	protected int length = LENGTH_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -77,7 +84,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -87,7 +95,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -96,7 +105,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -108,7 +118,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -117,7 +128,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -129,7 +141,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -145,7 +158,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -163,7 +177,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -181,7 +196,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -197,7 +213,8 @@ public class SizeImpl extends EObjectImpl implements Size {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -215,4 +232,4 @@ public class SizeImpl extends EObjectImpl implements Size {
 		return result.toString();
 	}
 
-} // SizeImpl
+} //SizeImpl

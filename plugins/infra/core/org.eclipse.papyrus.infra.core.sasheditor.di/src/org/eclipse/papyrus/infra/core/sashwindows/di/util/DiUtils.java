@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorException;
 
+
 /**
  * Set of utility methods
  * 
@@ -34,8 +35,8 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorExcepti
 public class DiUtils {
 
 	/**
-	 * Create a default SashModel with one window and one folder. Set the
-	 * current folder.
+	 * Create a default SashModel with one window and one folder.
+	 * Set the current folder.
 	 * 
 	 * @param diResource
 	 * @return
@@ -56,8 +57,8 @@ public class DiUtils {
 	}
 
 	/**
-	 * Create a default SashWindowsMngr with one PageLit and one default
-	 * SashModel. Set the current folder.
+	 * Create a default SashWindowsMngr with one PageLit and one default SashModel.
+	 * Set the current folder.
 	 * 
 	 * @param diResource
 	 * @return
@@ -99,10 +100,10 @@ public class DiUtils {
 	 * @param diResource
 	 * @param eObject
 	 * 
-	 * @return the page ref of eObject, null if not found TODO This method use
-	 *         too low level mechanism for its implementation. Consider to move
-	 *         it in a more appropriate class. Furthermore, some similar methods
-	 *         already exist. Can't we use them instead ?
+	 * @return the page ref of eObject, null if not found
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public PageRef getPageRef(Resource diResource, EObject eObject) {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
@@ -125,10 +126,9 @@ public class DiUtils {
 	 * @param diResource
 	 * @param pageRef
 	 * @throws SashEditorException
-	 *         TODO This method use too low level mechanism for its
-	 *         implementation. Consider to move it in a more appropriate
-	 *         class. Furthermore, some similar methods already exist. Can't
-	 *         we use them instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public void addPageToPageList(Resource diResource, PageRef pageRef) throws SashEditorException {
 		SashWindowsMngr windowsMngr = lookupSashWindowsMngr(diResource);
@@ -141,10 +141,9 @@ public class DiUtils {
 	 * @param pageRef
 	 * @param windowsMngr
 	 * @throws SashEditorException
-	 *         TODO This method use too low level mechanism for its
-	 *         implementation. Consider to move it in a more appropriate
-	 *         class. Furthermore, some similar methods already exist. Can't
-	 *         we use them instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public void addPageToPageList(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
 		if(windowsMngr != null && windowsMngr.getPageList() != null) {
@@ -160,10 +159,9 @@ public class DiUtils {
 	 * @param windowsMngr
 	 * @param pageRef
 	 * @throws SashEditorException
-	 *         TODO This method use too low level mechanism for its
-	 *         implementation. Consider to move it in a more appropriate
-	 *         class. Furthermore, some similar methods already exist. Can't
-	 *         we use them instead ?
+	 *         TODO This method use too low level mechanism for its implementation. Consider to move it in a
+	 *         more appropriate class. Furthermore, some similar methods already exist. Can't we use them
+	 *         instead ?
 	 */
 	static public void addPageToTabFolder(SashWindowsMngr windowsMngr, PageRef pageRef) throws SashEditorException {
 

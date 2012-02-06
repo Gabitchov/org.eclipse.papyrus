@@ -14,12 +14,14 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Position;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Position</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Position</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PositionImpl#getX <em>X </em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PositionImpl#getY <em>Y </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PositionImpl#getX <em>X</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PositionImpl#getY <em>Y</em>}</li>
  * </ul>
  * </p>
  * 
@@ -28,8 +30,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.Position;
 public class PositionImpl extends EObjectImpl implements Position {
 
 	/**
-	 * The default value of the '{@link #getX() <em>X</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getX() <em>X</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getX()
 	 * @generated
@@ -38,8 +41,9 @@ public class PositionImpl extends EObjectImpl implements Position {
 	protected static final int X_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getX() <em>X</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getX()
 	 * @generated
@@ -48,8 +52,9 @@ public class PositionImpl extends EObjectImpl implements Position {
 	protected int x = X_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getY() <em>Y</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getY()
 	 * @generated
@@ -58,8 +63,9 @@ public class PositionImpl extends EObjectImpl implements Position {
 	protected static final int Y_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getY()
 	 * @generated
@@ -68,7 +74,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	protected int y = Y_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -77,7 +84,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -87,7 +95,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -96,7 +105,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -108,7 +118,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -117,7 +128,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -129,7 +141,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -145,7 +158,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -163,7 +177,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -181,7 +196,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -197,7 +213,8 @@ public class PositionImpl extends EObjectImpl implements Position {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -215,4 +232,4 @@ public class PositionImpl extends EObjectImpl implements Position {
 		return result.toString();
 	}
 
-} // PositionImpl
+} //PositionImpl

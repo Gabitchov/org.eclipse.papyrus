@@ -9,7 +9,6 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Anass Radouani (Atos) - add history management 
  *
  *****************************************************************************/
 
@@ -20,14 +19,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
+
 /**
- * Implementation of the page manager. The page manager provides basic methods
- * to access the DiSashModel and its PageList. This is the users interface to
- * add, open, close and remove pages.
+ * Implementation of the page manager.
+ * The page manager provides basic methods to access the DiSashModel and its PageList.
+ * This is the users interface to add, open, close and remove pages.
  * 
  * @author cedric dumoulin
  */
@@ -35,47 +34,8 @@ public class PageMngrImpl implements IPageMngr {
 
 	/** Internal EMF model */
 	private SashWindowsMngr diSashModel;
-
-	/**
-	 * true when an update is currently performed to not add a page two times to
-	 * the stack
-	 */
-	private boolean updating = false;
-
-	/** true when a page closing is currently performed */
-	private boolean closingPage = false;
-
+	
 	ContentChangedEventProvider contentChangedEventProvider;
-
-	/**
-	 * @return the updating
-	 */
-	public boolean isUpdating() {
-		return updating;
-	}
-
-	/**
-	 * @param updating
-	 *        the boolean to set
-	 */
-	public void setUpdating(boolean updating) {
-		this.updating = updating;
-	}
-
-	/**
-	 * @return the closingPage
-	 */
-	public boolean isClosingPage() {
-		return closingPage;
-	}
-
-	/**
-	 * @param closingPage
-	 *        the boolean to set
-	 */
-	public void setClosingPage(boolean closingPage) {
-		this.closingPage = closingPage;
-	}
 
 	public PageMngrImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		this.diSashModel = diSashModel;
@@ -83,8 +43,8 @@ public class PageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * Add a page to the PageList. Do not open the corresponding editor. The
-	 * page will be visible in the list.
+	 * Add a page to the PageList. Do not open the corresponding editor.
+	 * The page will be visible in the list.
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#addEditor(org.eclipse.emf.ecore.EObject)
 	 * 
@@ -92,7 +52,7 @@ public class PageMngrImpl implements IPageMngr {
 	 */
 	public void addPage(Object pageIdentifier) {
 
-		// We do not need to disable event delivering,
+		// We do not need to disable event delivering, 
 		// as addition to pageList doesn't fire events.
 		diSashModel.getPageList().addPage(pageIdentifier);
 	}
@@ -122,7 +82,7 @@ public class PageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closePage(Object pageIdentifier) {
-
+		
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePage(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
@@ -136,7 +96,7 @@ public class PageMngrImpl implements IPageMngr {
 	 * @param pageIdentifier
 	 */
 	public void closeAllOpenedPages() {
-
+		
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removeAllPages();
 		contentChangedEventProvider.setDeliver(true);
@@ -164,35 +124,9 @@ public class PageMngrImpl implements IPageMngr {
 	public void openPage(Object pageIdentifier) {
 		// Add the page to the SashModel and to the PageList
 
-		// We do not need to disable event delivering as the operation already
-		// fired
+        // We do not need to disable event delivering as the operation already fired
 		// one single event.
 
-		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
-		boolean found = false;
-		while(iterator.hasNext() && found == false) {
-			// Bug #288806 : the test should be inversed
-			if(pageIdentifier.equals(iterator.next().getPageIdentifier())) {
-				found = true;
-			}
-		}
-		if(!found) {
-			diSashModel.getPageList().addPage(pageIdentifier);
-		}
-		diSashModel.getSashModel().addPage(pageIdentifier);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#openPage(org.eclipse.emf.ecore.EObject)
-	 * 
-	 * @param pageIdentifier
-	 */
-	private void openPageWithoutStack(Object pageIdentifier) {
-		// Add the page to the SashModel and to the PageList
-
-		// We do not need to disable event delivering as the operation already
-		// fired
-		// one single event.
 		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
 		boolean found = false;
 		while(iterator.hasNext() && found == false) {
@@ -215,7 +149,7 @@ public class PageMngrImpl implements IPageMngr {
 	public void removePage(Object pageIdentifier) {
 		// remove from pageList and from SashModel
 		diSashModel.getPageList().removePage(pageIdentifier);
-
+		
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePage(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
@@ -231,30 +165,5 @@ public class PageMngrImpl implements IPageMngr {
 	public boolean isOpen(Object pageIdentifier) {
 		return diSashModel.getSashModel().lookupPage(pageIdentifier) != null;
 	}
-
-	public void pageOpened(IPage page) {
-		setClosingPage(false);
-	}
-
-	public void pageClosed(IPage page) {
-		setClosingPage(true);
-	}
-
-	public void pageChanged(IPage newPage) {
-	}
-
-	public void pageActivated(IPage page) {
-	}
-
-	public void pageDeactivated(IPage page) {
-	}
-
-	public void pageAboutToBeOpened(IPage page) {
-	}
-
-	public void pageAboutToBeClosed(IPage page) {
-	}
-
-	
 
 }

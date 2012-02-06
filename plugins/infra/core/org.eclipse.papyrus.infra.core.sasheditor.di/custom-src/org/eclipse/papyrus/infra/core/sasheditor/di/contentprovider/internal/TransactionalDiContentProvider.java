@@ -9,10 +9,11 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelM
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 
+
 /**
- * A content provider based on EMF di and using Transactions. This
- * implementation is a wrapper on {@link DiContentProvider}. Each method is
- * wrapped in a {@link RecordingCommand}.
+ * A content provider based on EMF di and using Transactions.
+ * This implementation is a wrapper on {@link DiContentProvider}.
+ * Each method is wrapped in a {@link RecordingCommand}.
  * 
  * @author cedric dumoulin
  * 

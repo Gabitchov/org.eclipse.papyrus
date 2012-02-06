@@ -18,16 +18,14 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Sash Windows Mngr</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Sash Windows Mngr</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashWindowsMngrImpl#getPageList
- * <em>Page List</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashWindowsMngrImpl#getSashModel
- * <em>Sash Model</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashWindowsMngrImpl#getPageList <em>Page List</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashWindowsMngrImpl#getSashModel <em>Sash Model</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,8 +34,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr {
 
 	/**
-	 * The cached value of the '{@link #getPageList() <em>Page List</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPageList() <em>Page List</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getPageList()
 	 * @generated
@@ -46,8 +45,9 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	protected PageList pageList;
 
 	/**
-	 * The cached value of the '{@link #getSashModel() <em>Sash Model</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSashModel() <em>Sash Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getSashModel()
 	 * @generated
@@ -56,7 +56,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	protected SashModel sashModel;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -65,7 +66,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -75,7 +77,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -84,7 +87,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -102,7 +106,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -121,7 +126,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -130,7 +136,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -148,7 +155,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -167,7 +175,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -183,7 +192,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -199,7 +209,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -217,7 +228,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -235,7 +247,8 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -250,4 +263,4 @@ public class SashWindowsMngrImpl extends EObjectImpl implements SashWindowsMngr 
 		return super.eIsSet(featureID);
 	}
 
-} // SashWindowsMngrImpl
+} //SashWindowsMngrImpl

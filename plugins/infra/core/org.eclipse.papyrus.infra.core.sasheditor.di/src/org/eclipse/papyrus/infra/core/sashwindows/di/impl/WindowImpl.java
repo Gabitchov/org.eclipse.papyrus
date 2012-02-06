@@ -18,14 +18,15 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.Size;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Window</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Window</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPosition
- * <em>Position</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getSize <em> Size</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPanel <em> Panel</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPosition <em>Position</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getSize <em>Size</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPanel <em>Panel</em>}</li>
  * </ul>
  * </p>
  * 
@@ -34,8 +35,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 public class WindowImpl extends PanelParentImpl implements Window {
 
 	/**
-	 * The cached value of the '{@link #getPosition() <em>Position</em>}'
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPosition() <em>Position</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getPosition()
 	 * @generated
@@ -45,7 +47,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 
 	/**
 	 * The cached value of the '{@link #getSize() <em>Size</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getSize()
 	 * @generated
@@ -54,7 +57,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	protected Size size;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -63,7 +67,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -73,7 +78,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -90,7 +96,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -99,7 +106,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -111,7 +119,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -128,7 +137,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -137,7 +147,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -149,7 +160,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -159,7 +171,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -172,7 +185,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -185,7 +199,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -209,7 +224,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -230,7 +246,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -251,7 +268,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -269,7 +287,8 @@ public class WindowImpl extends PanelParentImpl implements Window {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -277,4 +296,5 @@ public class WindowImpl extends PanelParentImpl implements Window {
 		setPanel(newChild);
 	}
 
-} // WindowImpl
+
+} //WindowImpl

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
+
 /**
  * EMF implementation of the {@link ISashWindowsContentProvider}.
  * 
@@ -37,18 +38,15 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	/** Factory used to create SWT Editor or Component from Page Identifiers. */
 	private IPageModelFactory pageModelFactory;
 
-	/**
-	 * Object delivering event to listeners. Used to control how the events are
-	 * triggered
-	 */
+	/** Object delivering event to listeners. Used to control how the events are triggered */
 	private ContentChangedEventProvider contentChangedEventProvider;
+	
 
 	/**
 	 * Create a ContentProvider
 	 * 
 	 * @param diSashModel
-	 * @param pageModelFactory
-	 *        The factory that will be used when a page will be created.
+	 * @param pageModelFactory The factory that will be used when a page will be created.
 	 * @throws IllegalArgumentException
 	 *         If the factory is null.
 	 */
@@ -61,8 +59,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 * Create a ContentProvider
 	 * 
 	 * @param diSashModel
-	 * @param pageModelFactory
-	 *        The factory that will be used when a page will be created.
+	 * @param pageModelFactory The factory that will be used when a page will be created.
 	 * @throws IllegalArgumentException
 	 *         If the factory is null.
 	 */
@@ -77,8 +74,8 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	}
 
 	/**
-	 * Access to internal structure for tests. This method is not intended to be
-	 * used for other purpose.
+	 * Access to internal structure for tests.
+	 * This method is not intended to be used for other purpose.
 	 * 
 	 * @return the diSashModel
 	 */
@@ -86,6 +83,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 		return diSashModel;
 	}
 
+	
 	/**
 	 * @return the contentChangedEventProvider
 	 */
@@ -94,8 +92,8 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	}
 
 	/**
-	 * Add a page identifier to the SashModel. This page identifier will be
-	 * added as "child" of the current TabFolder.
+	 * Add a page identifier to the SashModel. This page identifier will be added as "child" of the current
+	 * TabFolder.
 	 * 
 	 * @param pageIdentifier
 	 */
@@ -104,8 +102,8 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	}
 
 	/**
-	 * Add a page to the current folder. Create the Page (Editor or Component)
-	 * with the help of the factory.
+	 * Add a page to the current folder.
+	 * Create the Page (Editor or Component) with the help of the factory.
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider#addPage(int,
 	 *      org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel)
@@ -168,8 +166,8 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	}
 
 	/**
-	 * Get the node used as root of the SashWindows. For now, this is the first
-	 * window.
+	 * Get the node used as root of the SashWindows.
+	 * For now, this is the first window.
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider#getRootModel()
 	 * 
@@ -189,6 +187,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 * @return
 	 */
 	public IAbstractPanelModel createChildSashModel(Object root) {
+
 
 		if(root instanceof SashPanel)
 			return new SashPanelModel((SashPanel)root, pageModelFactory);

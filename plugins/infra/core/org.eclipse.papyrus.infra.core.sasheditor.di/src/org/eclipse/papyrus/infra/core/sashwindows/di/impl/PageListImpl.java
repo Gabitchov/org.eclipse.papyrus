@@ -21,13 +21,13 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Page List</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Page List</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageListImpl#getAvailablePage
- * <em>Available Page</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageListImpl#getAvailablePage <em>Available Page</em>}</li>
  * </ul>
  * </p>
  * 
@@ -36,9 +36,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 public class PageListImpl extends EObjectImpl implements PageList {
 
 	/**
-	 * The cached value of the '{@link #getAvailablePage()
-	 * <em>Available Page</em>}' containment reference list. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAvailablePage() <em>Available Page</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getAvailablePage()
 	 * @generated
@@ -47,7 +47,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	protected EList<PageRef> availablePage;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -56,7 +57,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -66,7 +68,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -78,7 +81,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -91,7 +95,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -106,7 +111,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -120,7 +126,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -134,7 +141,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -151,7 +159,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -166,7 +175,8 @@ public class PageListImpl extends EObjectImpl implements PageList {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -179,4 +189,4 @@ public class PageListImpl extends EObjectImpl implements PageList {
 		return super.eIsSet(featureID);
 	}
 
-} // PageListImpl
+} //PageListImpl

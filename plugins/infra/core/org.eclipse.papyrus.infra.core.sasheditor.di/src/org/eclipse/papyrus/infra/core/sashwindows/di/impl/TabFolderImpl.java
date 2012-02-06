@@ -20,12 +20,13 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Tab Folder</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Tab Folder</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl#getChildren
- * <em>Children</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
  * 
@@ -34,8 +35,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getChildren()
 	 * @generated
@@ -44,7 +46,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	protected EList<PageRef> children;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -53,7 +56,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -63,7 +67,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -75,7 +80,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -86,7 +92,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -95,7 +102,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -110,7 +118,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -124,7 +133,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -138,7 +148,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -155,7 +166,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -170,7 +182,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -206,7 +219,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		if(listSize == 0)
 			return;
 
+
 		getChildren().move(newIndex, oldIndex);
 	}
 
-} // TabFolderImpl
+} //TabFolderImpl
