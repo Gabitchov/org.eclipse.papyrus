@@ -59,7 +59,7 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="loadDefault" type="boolean" use="default" value="true">
+         <attribute name="loadDefault" type="boolean">
             <annotation>
                <documentation>
                   If set to true, this context will be activated by default. Otherwise, the user will need to activate it manually through the preferences page (Preferences -&gt; Papyrus -&gt; Property views)
