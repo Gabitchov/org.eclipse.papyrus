@@ -93,36 +93,38 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 			final ActivityEdge activityEdge = (ActivityEdge)graphicalHost.resolveSemanticElement();
 			final View interruptbleEdgeIcon = getInterruptbleEdgeIcon(graphicalHost, interruptibleEdge);
 			//If property == null and there is an view => delete
-			if(activityEdge.getInterrupts() == null && interruptbleEdgeIcon != null) {
-				ICommand destroyCommand = new AbstractTransactionalCommand(graphicalHost.getEditingDomain(), "Destroy Interruptible Edge Icon", null) {
-
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						ViewUtil.destroy(interruptbleEdgeIcon);
-						return CommandResult.newOKCommandResult();
-					}
-				};
-				executeCommand(new ICommandProxy(destroyCommand));
-			}
-			//If property is set and no view exist => create a view
-			if ( activityEdge.getInterrupts() != null && interruptbleEdgeIcon == null){
-				ICommand createCommand = new AbstractTransactionalCommand(graphicalHost.getEditingDomain(), "Create Interruptible Edge Icon", null) {
-					
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						Object model = graphicalHost.getModel();
-						if(model != null) {
-							Node node = ViewService.createNode((View)model, UMLVisualIDRegistry.getType(interruptibleEdge.getInterruptibleEdgeIconVisualID()), UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-							if(node != null) {
-								return CommandResult.newOKCommandResult(node);
-							} else {
-								return CommandResult.newErrorCommandResult("Unable to create the view for Interruptible Edge label");
-							}
+			if (activityEdge != null){				
+				if(activityEdge.getInterrupts() == null && interruptbleEdgeIcon != null) {
+					ICommand destroyCommand = new AbstractTransactionalCommand(graphicalHost.getEditingDomain(), "Destroy Interruptible Edge Icon", null) {
+						
+						@Override
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							ViewUtil.destroy(interruptbleEdgeIcon);
+							return CommandResult.newOKCommandResult();
 						}
-						return null;
-					}
-				};
-				executeCommand(new ICommandProxy(createCommand));
+					};
+					executeCommand(new ICommandProxy(destroyCommand));
+				}
+				//If property is set and no view exist => create a view
+				if ( activityEdge.getInterrupts() != null && interruptbleEdgeIcon == null){
+					ICommand createCommand = new AbstractTransactionalCommand(graphicalHost.getEditingDomain(), "Create Interruptible Edge Icon", null) {
+						
+						@Override
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							Object model = graphicalHost.getModel();
+							if(model != null) {
+								Node node = ViewService.createNode((View)model, UMLVisualIDRegistry.getType(interruptibleEdge.getInterruptibleEdgeIconVisualID()), UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+								if(node != null) {
+									return CommandResult.newOKCommandResult(node);
+								} else {
+									return CommandResult.newErrorCommandResult("Unable to create the view for Interruptible Edge label");
+								}
+							}
+							return null;
+						}
+					};
+					executeCommand(new ICommandProxy(createCommand));
+				}
 			}
 		} catch (ClassCastException e) {
 			throw new RuntimeException("The host of InterruptibleEdgeEditPolicy should implement IGraphicalEditPart and InterruptibleEdge which refer to an ActivityEdge");////$NON-NLS-0$
