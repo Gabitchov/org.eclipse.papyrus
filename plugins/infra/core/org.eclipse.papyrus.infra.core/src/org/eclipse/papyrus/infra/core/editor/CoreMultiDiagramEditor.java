@@ -558,10 +558,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		super.activate();
 		initFolderTabMenus();
 
-		// add page changed listener to sash container to warn page manager
-		getISashWindowsContainer().addPageChangedListener(getIPageMngr());
-		getISashWindowsContainer().addLifeCycleListener(getIPageMngr());
-
 		try {
 			// Register ISashWindowsContainer as service
 			// Should be done only once the container is ready.
@@ -572,11 +568,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 	}
 
-	@Override
-	protected void deactivate() {
-		super.deactivate();
-		getISashWindowsContainer().removePageChangedListener(getIPageMngr());
-	}
 
 	/**
 	 * Init the contextual menu shown in the folder tabs.
