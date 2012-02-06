@@ -22,8 +22,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite4x;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -43,17 +43,17 @@ import org.eclipse.ui.internal.misc.StatusUtil;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
+
 /**
- * This is a controler/part for an Editor. It is associated to a {@link IEditorModel}. This Part encapsulate an Eclipse Editor implementing
- * {@link IEditorPart}.
+ * This is a controler/part for an Editor. It is associated to a {@link IEditorModel}.
+ * This Part encapsulate an Eclipse Editor implementing {@link IEditorPart}.
  * 
  * @author dumoulin
- * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas SZADEL</a>
- *         Improve the error text (avoid NPE)
+ * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas SZADEL</a> Improve the error text (avoid NPE)
  */
 @SuppressWarnings("restriction")
 public class EditorPart extends PagePart implements IEditorPage {
-
+ 
 	/**
 	 * The model representing the editor.
 	 */
@@ -75,21 +75,21 @@ public class EditorPart extends PagePart implements IEditorPage {
 	private SashWindowsContainer tilesContainer;
 
 	/**
-	 * The manager used to access main editor properties like site, actionbars,
-	 * ...
+	 * The manager used to access main editor properties like site, actionbars, ...
 	 */
 	private IMultiEditorManager multiEditorManager;
 
 	/**
-	 * Parent owning this PagePart. Can be null if the Part is orphaned. Even if
-	 * it is orphaned, the Item still set.
+	 * Parent owning this PagePart.
+	 * Can be null if the Part is orphaned. Even if it is orphaned, the Item still set.
 	 */
-	// protected TabFolderPart parent;
+	//	protected TabFolderPart parent;
 
 	/**
-	 * Listen on mouse enter event. Try to get an event indicating that the
-	 * mouse enter over the editor. This can be used to switch the active
-	 * editor. TODO This doesn't work yet.
+	 * Listen on mouse enter event.
+	 * Try to get an event indicating that the mouse enter over the editor.
+	 * This can be used to switch the active editor.
+	 * TODO This doesn't work yet.
 	 */
 	private Listener mouseEnterListener = new Listener() {
 
@@ -99,10 +99,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 		 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 		 */
 		public void handleEvent(Event event) {
-			// Point globalPos = new Point(event.x, event.y);
-			// System.out.println(this.getClass().getSimpleName() +
-			// ".handleEvent(" + eventName(event.type) + ", " + globalPos +
-			// ")");
+			//			Point globalPos = new Point(event.x, event.y);
+			//			System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
 		}
 	};
 
@@ -143,17 +141,19 @@ public class EditorPart extends PagePart implements IEditorPage {
 		this.multiEditorManager = multiEditorManager;
 	}
 
+
 	/**
-	 * Create the control of this part. For a this implementations, also create
-	 * the children's controls. This method forward to {@link
-	 * createPartControl(Composite)}.
+	 * Create the control of this part.
+	 * For a this implementations, also create the children's controls.
+	 * This method forward to {@link createPartControl(Composite)}.
 	 * 
 	 * @param parent
 	 *        TODO remove ?
 	 */
-	// public void createControl(Composite parent) {
-	// createPartControl(parent);
-	// }
+	//	public void createControl(Composite parent) {
+	//		createPartControl(parent);
+	//	}
+
 
 	/**
 	 * Create the control of this Part, and children's controls.
@@ -172,14 +172,14 @@ public class EditorPart extends PagePart implements IEditorPage {
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
-			// editorPart = new ErrorEditorPart();
-			// editorControl = createEditorPartControl(parent, editorPart);
-			// editorControl = createErrorPartControl(parent, e);
+			//			editorPart = new ErrorEditorPart();
+			//			editorControl = createEditorPartControl(parent, editorPart);
+//			editorControl = createErrorPartControl(parent, e);
 			createErrorEditorPart(parent, e);
 		} catch (Exception e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
-			// editorControl = createErrorPartControl(parent, e);
+//			editorControl = createErrorPartControl(parent, e);
 			createErrorEditorPart(parent, e);
 		}
 	}
@@ -211,15 +211,14 @@ public class EditorPart extends PagePart implements IEditorPage {
 	}
 
 	/**
-	 * Create an EditorPart showing the Exception. This is used when the
-	 * creation of the regular IEditorPart failed.
-	 * 
+	 * Create an EditorPart showing the Exception.
+	 * This is used when the creation of the regular IEditorPart failed.
 	 * @param e
 	 */
 	private void createErrorEditorPart(Composite parent, Exception e) {
-
+		
 		try {
-			PartInitException partInitException = new PartInitException(StatusUtil.getLocalizedMessage(e), StatusUtil.getCause(e));
+			PartInitException partInitException = new PartInitException( StatusUtil.getLocalizedMessage(e), StatusUtil.getCause(e));
 			editorPart = new ErrorEditorPart(partInitException.getStatus());
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent, editorPart);
@@ -233,7 +232,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		}
 
 	}
-
+	
 	/**
 	 * Create the editor associated to this TabPart.
 	 * 
@@ -246,7 +245,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 	}
 
 	/**
-	 * Create the controls required by the editor. Init the editor.
+	 * Create the controls required by the editor.
+	 * Init the editor.
 	 * 
 	 * @param viewer
 	 * @param editorInput
@@ -270,7 +270,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		});
 
 		// TODO test to be removed
-		// attachListeners(editorParent, false);
+		//				attachListeners(editorParent, false);
 		return editorParent;
 	}
 
@@ -279,61 +279,61 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 */
 	private void attachListeners(Control theControl, boolean recursive) {
 
-		// All following methods listen to the same event.
+		// All following methods listen to the same event. 
 		// So use only one of them
-		// theControl.addListener(SWT.MouseEnter, mouseEnterListener);
-		//
-		// theControl.addListener(SWT.FocusIn, mouseEnterListener);
-		// theControl.addListener(SWT.MouseMove, mouseEnterListener);
-		// theControl.addListener(SWT.MouseHover, mouseEnterListener);
-		// theControl.addListener(SWT.MouseUp, mouseEnterListener);
-		// theControl.addListener(SWT.MouseDown, mouseEnterListener);
+		//		theControl.addListener(SWT.MouseEnter, mouseEnterListener);
+		//		
+		//		theControl.addListener(SWT.FocusIn, mouseEnterListener);
+		//		theControl.addListener(SWT.MouseMove, mouseEnterListener);
+		//		theControl.addListener(SWT.MouseHover, mouseEnterListener);
+		//		theControl.addListener(SWT.MouseUp, mouseEnterListener);
+		//		theControl.addListener(SWT.MouseDown, mouseEnterListener);
 		theControl.addListener(SWT.Activate, mouseEnterListener);
 
-		// if (recursive && theControl instanceof Composite) {
-		// Composite composite = (Composite) theControl;
-		// Control[] children = composite.getChildren();
+		//		if (recursive && theControl instanceof Composite) {
+		//			Composite composite = (Composite) theControl;
+		//			Control[] children = composite.getChildren();
 		//
-		// for (int i = 0; i < children.length; i++) {
-		// Control control = children[i];
+		//			for (int i = 0; i < children.length; i++) {
+		//				Control control = children[i];
 		//
-		// attachListeners(control, true);
-		// }
-		// }
+		//				attachListeners(control, true);
+		//			}
+		//		}
 	}
 
 	/**
 	 * Detach SWT listeners
 	 */
 	private void detachListeners(Control theControl, boolean recursive) {
-		// theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
-		// theControl.removeListener(SWT.FocusIn, mouseEnterListener);
-		// theControl.removeListener(SWT.MouseMove, mouseEnterListener);
-		// theControl.removeListener(SWT.MouseHover, mouseEnterListener);
-		// theControl.removeListener(SWT.MouseUp, mouseEnterListener);
-		// theControl.removeListener(SWT.MouseDown, mouseEnterListener);
+		//		theControl.removeListener(SWT.MouseEnter, mouseEnterListener);
+		//		theControl.removeListener(SWT.FocusIn, mouseEnterListener);
+		//		theControl.removeListener(SWT.MouseMove, mouseEnterListener);
+		//		theControl.removeListener(SWT.MouseHover, mouseEnterListener);
+		//		theControl.removeListener(SWT.MouseUp, mouseEnterListener);
+		//		theControl.removeListener(SWT.MouseDown, mouseEnterListener);
 		theControl.removeListener(SWT.Activate, mouseEnterListener);
 
-		// if (recursive && theControl instanceof Composite) {
-		// Composite composite = (Composite) theControl;
-		// Control[] children = composite.getChildren();
+		//		if (recursive && theControl instanceof Composite) {
+		//			Composite composite = (Composite) theControl;
+		//			Control[] children = composite.getChildren();
 		//
-		// for (int i = 0; i < children.length; i++) {
-		// Control control = children[i];
+		//			for (int i = 0; i < children.length; i++) {
+		//				Control control = children[i];
 		//
-		// detachListeners(control, false);
-		// }
-		// }
+		//				detachListeners(control, false);
+		//			}
+		//		}
 	}
 
+
 	/**
-	 * Handles a property change notification from a nested editor. The default
-	 * implementation simply forwards the change to listeners on this multi-page
-	 * editor by calling <code>firePropertyChange</code> with the same property
-	 * id. For example, if the dirty state of a nested editor changes (property
-	 * id <code>IEditorPart.PROP_DIRTY</code>), this method handles it by firing
-	 * a property change event for <code>IEditorPart.PROP_DIRTY</code> to
-	 * property listeners on this multi-page editor.
+	 * Handles a property change notification from a nested editor. The default implementation simply forwards
+	 * the change to listeners on this multi-page editor by calling <code>firePropertyChange</code> with the same property id. For example, if the
+	 * dirty state of a nested
+	 * editor changes (property id <code>IEditorPart.PROP_DIRTY</code>), this method handles it
+	 * by firing a property change event for <code>IEditorPart.PROP_DIRTY</code> to property listeners on this
+	 * multi-page editor.
 	 * <p>
 	 * Subclasses may extend or reimplement this method.
 	 * </p>
@@ -346,9 +346,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 	}
 
 	/**
-	 * Creates the site for the given nested editor. The <code>MultiPageEditorPart</code> implementation of this method creates an
-	 * instance of <code>MultiPageEditorSite</code>. Subclasses may reimplement
-	 * to create more specialized sites.
+	 * Creates the site for the given nested editor. The <code>MultiPageEditorPart</code> implementation
+	 * of this method creates an instance of <code>MultiPageEditorSite</code>. Subclasses may
+	 * reimplement to create more specialized sites.
 	 * 
 	 * @param editor
 	 *        the nested editor
@@ -356,12 +356,27 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 */
 	protected IEditorSite createSite(IEditorPart editor) {
 		EditorActionBarContributor contributor = createEditorActionBarContributor();
+		
+		// If you got compilation errors with the following line (under 3.X), 
+		// just comment the lines.
+		// Do not commit these change :-)
+		// try eclipse 4.x
+		try {
+			return new MultiPageEditorSite4x(multiEditorManager.getEditorSite(), editor, contributor);
+		} catch (NoClassDefFoundError  e) {
+			// Ok, will use 3.x
+		}
+		catch (NoSuchMethodError  e) {
+			// Ok, will use 3.x
+		}
+	
+		// Use 3.x
 		return new MultiPageEditorSite(multiEditorManager.getEditorSite(), editor, contributor);
 	}
 
 	/**
-	 * Create the EditorActionBarContributor requested by the editor. Creation
-	 * is done by delegating to the IMultiEditorNestedPartManager.
+	 * Create the EditorActionBarContributor requested by the editor.
+	 * Creation is done by delegating to the IMultiEditorNestedPartManager.
 	 * 
 	 * @return
 	 */
@@ -395,6 +410,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return multiEditorManager;
 	}
 
+
 	/**
 	 * @param isRecursive
 	 */
@@ -407,9 +423,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 		editorPart.dispose();
 	}
 
+
 	/**
-	 * As we are a final Tile, we should be the requested part. Return this
-	 * TilePart.
+	 * As we are a final Tile, we should be the requested part.
+	 * Return this TilePart.
 	 * 
 	 * @param toFind
 	 * @return
@@ -419,8 +436,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	}
 
 	/**
-	 * Locates the part that intersects the given point and that have the
-	 * expected type
+	 * Locates the part that intersects the given point and that have the expected type
 	 * 
 	 * @param toFind
 	 * @return
@@ -472,9 +488,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return editorControl;
 	}
 
+
 	/**
-	 * This is a container method. Not necessary in Leaf Tile. TODO: change the
-	 * interface.
+	 * This is a container method. Not necessary in Leaf Tile.
+	 * TODO: change the interface.
 	 * 
 	 * @param draggedObject
 	 * @param sourcePart
@@ -485,6 +502,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return null;
 	}
 
+
 	/**
 	 * @return
 	 */
@@ -493,9 +511,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return garbageState;
 	}
 
+
 	/**
-	 * Is the associated editor dirty ? Delegate to {@link
-	 * IEditorPart.isDirty()}
+	 * Is the associated editor dirty ?
+	 * Delegate to {@link IEditorPart.isDirty()}
 	 * 
 	 * @return true if the associated editor is dirty.
 	 * 
@@ -505,10 +524,12 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return editorPart.isDirty();
 	}
 
+
+
 	/**
 	 * Change the parent of the Tile. The parent is changed, and the control is
-	 * attached to the parent control. Change garbage state to {@link GarbageState.REPARENTED}. Do not detach the Tile from its old
-	 * parent.
+	 * attached to the parent control. Change garbage state to {@link GarbageState.REPARENTED}.
+	 * Do not detach the Tile from its old parent.
 	 * 
 	 * @param newParent
 	 *        The tilePart that should be used as part parent.
@@ -534,21 +555,23 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 	}
 
+
 	/**
-	 * Asks this part to take focus within the workbench. Set the focus on the
-	 * active nested part if the part is a container.
+	 * Asks this part to take focus within the workbench.
+	 * Set the focus on the active nested part if the part is a container.
 	 */
 	@Override
 	public void setFocus() {
 		editorPart.setFocus();
 	}
 
+
 	/**
-	 * Synchronize the Part, and its children. PartMap contains a snapshot of
-	 * the available part before the synchronization. After synchronization,
-	 * unreachable parts should be marked "orphaned" (= no parent). Do nothing
-	 * in this implementation, as we are a final leaf, and there is nothing to
-	 * synchronize with the underlying model.
+	 * Synchronize the Part, and its children. PartMap contains a snapshot of the available part before
+	 * the synchronization. After synchronization, unreachable parts should be marked "orphaned" (= no
+	 * parent).
+	 * Do nothing in this implementation, as we are a final leaf, and there is nothing to synchronize
+	 * with the underlying model.
 	 * 
 	 * @param partMap
 	 */
@@ -556,10 +579,12 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 	}
 
+
 	/**
-	 * Garbage this part. This part will be not used anymore. The part is
-	 * already marked as ORPHANED. It is not used anymore. It is already
-	 * detached from its parent.
+	 * Garbage this part.
+	 * This part will be not used anymore.
+	 * The part is already marked as ORPHANED. It is not used anymore. It is already detached
+	 * from its parent.
 	 * 
 	 */
 	@Override
@@ -569,9 +594,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 		getSashWindowContainer().getLifeCycleEventProvider().firePageClosedEvent(this);
 	}
 
+
 	/**
-	 * Accept the provided visitor. Call the corresponding accept method in the
-	 * visitor.
+	 * Accept the provided visitor.
+	 * Call the corresponding accept method in the visitor.
 	 * 
 	 * @param visitor
 	 * @return
@@ -582,7 +608,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 	}
 
 	/**
-	 * Visit the children of this Tile. There is no child, so do nothing.
+	 * Visit the children of this Tile.
+	 * There is no child, so do nothing.
 	 * 
 	 * @param visitor
 	 */
@@ -590,16 +617,17 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return true;
 	}
 
+
 	/**
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		// System.out.println( "EditorTile: "
-		// + " disposed=" + editorControl.isDisposed()
-		// + ", visible=" + editorControl.isVisible()
-		// + ", garbState=" + garbageState
-		// + ", '" + editorPart.getTitle()
-		// + "', " + this);
+		//		System.out.println( "EditorTile: " 
+		//				+ " disposed=" + editorControl.isDisposed()
+		//				+ ", visible=" + editorControl.isVisible()
+		//				+ ", garbState=" + garbageState
+		//				+ ", '" + editorPart.getTitle()
+		//				+ "', " + this);
 		String title = (editorPart != null ? editorPart.getTitle() : "no editorPart");
 		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, title, this);
 
