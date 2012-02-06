@@ -6,16 +6,14 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashContainerEventsListener;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 
 /**
- * A class managing events of the {@link SashWindowsContainer}. This class
- * dispatch events fired by the {@link SashWindowsContainer} to any listeners
+ * A class managing events of the {@link SashWindowsContainer}.
+ * This class dispatch events fired by the {@link SashWindowsContainer} to any listeners
  * implementing {@link SashContainerEventsProvider}.
  * 
  * @author cedric dumoulin
- * 
+ *
  */
 public class SashContainerEventsProvider {
 
@@ -43,9 +41,9 @@ public class SashContainerEventsProvider {
 		listeners.remove(listener);
 	}
 
+
 	/**
 	 * Notify all listener with event.
-	 * 
 	 * @param newEditor
 	 */
 	public void firePageOpenedEvent(PagePart page) {
@@ -57,7 +55,6 @@ public class SashContainerEventsProvider {
 
 	/**
 	 * Notify all listener with event.
-	 * 
 	 * @param newEditor
 	 */
 	public void firePageClosedEvent(PagePart page) {
@@ -69,7 +66,6 @@ public class SashContainerEventsProvider {
 
 	/**
 	 * Notify all listener with event.
-	 * 
 	 * @param newEditor
 	 */
 	public void firePageAboutToBeOpenedEvent(PagePart page) {
@@ -81,7 +77,6 @@ public class SashContainerEventsProvider {
 
 	/**
 	 * Notify all listener with event.
-	 * 
 	 * @param newEditor
 	 */
 	public void firePageAboutToBeClosedEvent(PagePart page) {
@@ -93,7 +88,6 @@ public class SashContainerEventsProvider {
 
 	/**
 	 * Notify all listener with event.
-	 * 
 	 * @param newEditor
 	 */
 	public void firePageActivatedEvent(PagePart page) {
@@ -105,7 +99,6 @@ public class SashContainerEventsProvider {
 
 	/**
 	 * Notify all listener with event.
-	 * 
 	 * @param newEditor
 	 */
 	public void firePageDeactivatedEvent(PagePart page) {

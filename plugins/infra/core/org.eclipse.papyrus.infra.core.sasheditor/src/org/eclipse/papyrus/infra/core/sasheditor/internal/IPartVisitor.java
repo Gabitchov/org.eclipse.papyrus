@@ -13,9 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
+
 /**
- * Visitor used to visit the hierarchy of Parts. Visit can be stopped by
- * returning false from the visit() method.
+ * Visitor used to visit the hierarchy of Parts.
+ * Visit can be stopped by returning false from the visit() method.
  * 
  * @author dumoulin
  * 
@@ -26,8 +27,7 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
-	 * @return true if the visit should continue, false if the visit should be
-	 *         stopped.
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 
 	public boolean accept(RootPart tile);
@@ -36,8 +36,7 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
-	 * @return true if the visit should continue, false if the visit should be
-	 *         stopped.
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 	public boolean accept(SashPanelPart tile);
 
@@ -45,8 +44,7 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
-	 * @return true if the visit should continue, false if the visit should be
-	 *         stopped.
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 	public boolean accept(TabFolderPart folder);
 
@@ -54,8 +52,7 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
-	 * @return true if the visit should continue, false if the visit should be
-	 *         stopped.
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 	public boolean accept(TabItemPart tile);
 
@@ -63,8 +60,7 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param folder
-	 * @return true if the visit should continue, false if the visit should be
-	 *         stopped.
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 	public boolean accept(EditorPart tile);
 
@@ -72,9 +68,9 @@ public interface IPartVisitor {
 	 * Accept the node of specified type.
 	 * 
 	 * @param componentPart
-	 * @return true if the visit should continue, false if the visit should be
-	 *         stopped.
+	 * @return true if the visit should continue, false if the visit should be stopped.
 	 */
 	public boolean accept(ComponentPart componentPart);
+
 
 }

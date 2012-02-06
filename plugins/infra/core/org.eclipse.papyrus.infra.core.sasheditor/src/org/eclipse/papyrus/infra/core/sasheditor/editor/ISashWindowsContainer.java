@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 import org.eclipse.ui.IEditorPart;
 
 public interface ISashWindowsContainer {
@@ -16,29 +17,30 @@ public interface ISashWindowsContainer {
 	public abstract IEditorPart getActiveEditor();
 
 	/**
-	 * Get the currently active SashWindows Page. This is s
+	 * Get the currently active SashWindows Page.
+	 * This is s
 	 * 
 	 * @return An {@link IPage} allowing to access current page data.
 	 */
 	public abstract IPage getActiveSashWindowsPage();
 
 	/**
-	 * Get the list of visible IPages. The visible IPages are the one that have
-	 * there diagram area visible.
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * visible.
 	 * 
 	 * @return
 	 */
 	public List<IPage> getVisiblePages();
 
 	/**
-	 * Get the list of visible IEditorPart obtain from the pages of type
-	 * IEditorPage. The visible IPages are the one that have there diagram area
+	 * Get the list of visible IEditorPart obtain from the pages of type IEditorPage. 
+	 * The visible IPages are the one that have there diagram area 
 	 * visible.
 	 * 
 	 * @return
 	 */
 	public List<IEditorPart> getVisibleIEditorParts();
-
+	
 	/**
 	 * The <code>AbstractMultiPageSashEditor</code> implementation of this <code>IWorkbenchPart</code> method sets focus on the active nested
 	 * editor, if there is one.
@@ -49,7 +51,8 @@ public interface ISashWindowsContainer {
 	public abstract void setFocus();
 
 	/**
-	 * Refresh the SashWindows. Synchronize the internal structure with the {@link ISashWindowsContentProvider}.
+	 * Refresh the SashWindows.
+	 * Synchronize the internal structure with the {@link ISashWindowsContentProvider}.
 	 */
 	public abstract void refreshTabs();
 
@@ -68,8 +71,8 @@ public interface ISashWindowsContainer {
 	public abstract void removePageChangedListener(IPageChangedListener pageChangedListener);
 
 	/**
-	 * Add a listener on Page LifeCycle events. This implementation delegates to
-	 * the internal PageTracker.
+	 * Add a listener on Page LifeCycle events.
+	 * This implementation delegates to the internal PageTracker.
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#addPageChangedListener(org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener)
 	 * @param listener
@@ -85,14 +88,9 @@ public interface ISashWindowsContainer {
 	 * 
 	 */
 	public void removeLifeCycleListener(SashContainerEventsListener listener);
-
 	/**
-	 * Set a {@link MenuManager} used to manage a contextual menu that is shown
-	 * on the tabs area of the folders.
-	 * 
-	 * @param menuManager
-	 *        The {@link MenuManager} used to create the menu on the tab
-	 *        area.
+	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of the folders.
+	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.
 	 */
-	public abstract void setFolderTabMenuManager(MenuManager menuManager);
+	public abstract void setFolderTabMenuManager( MenuManager menuManager );
 }

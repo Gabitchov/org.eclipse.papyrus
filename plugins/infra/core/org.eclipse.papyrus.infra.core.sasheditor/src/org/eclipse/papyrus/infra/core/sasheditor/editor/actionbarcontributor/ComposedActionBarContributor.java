@@ -9,34 +9,34 @@ import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
+
 /**
  * 
  * An ActionBarContributor composed of ActionBarContributor from multi editor.
- * This ActionBarContributor switch to the contributor dedicated to the active
- * editor in a MultiPageEditor environement.
+ * This ActionBarContributor switch to the contributor dedicated to the active editor in
+ * a MultiPageEditor environement.
  * 
  * @author dumoulin
  * 
  */
 public class ComposedActionBarContributor extends MultiPageEditorActionBarContributor {
 
-	// /**
-	// * List of contributors.
-	// */
-	// protected ContributorMap<Class<? extends IEditorPart>,
-	// EditorActionBarContributor> contributors = new ContributorMap<Class<?
-	// extends IEditorPart>, EditorActionBarContributor>();
-	//
-	//
-	// /**
-	// * Contributor used as default.
-	// */
-	// protected EditorActionBarContributor defaultContributor;
-	//
-	// /**
-	// * The currently active contributor.
-	// */
-	// protected EditorActionBarContributor activeContributor;
+	//	/**
+	//	 * List of contributors.
+	//	 */
+	//	protected ContributorMap<Class<? extends IEditorPart>, EditorActionBarContributor> contributors = new ContributorMap<Class<? extends IEditorPart>, EditorActionBarContributor>();
+	//	
+	//	
+	//	/**
+	//	 * Contributor used as default.
+	//	 */
+	//	protected EditorActionBarContributor defaultContributor;
+	//	
+	//	/**
+	//	 * The currently active contributor.
+	//	 */
+	//	protected EditorActionBarContributor activeContributor;
+
 
 	/** The currently active nested editor */
 	protected IEditorPart activeNestedEditor;
@@ -56,9 +56,8 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	 * </p>
 	 * 
 	 * @param activeEditor
-	 *        the new active editor, or <code>null</code> if there is no
-	 *        active page, or if the active page does not have a
-	 *        corresponding editor
+	 *        the new active editor, or <code>null</code> if there is no active page, or if the
+	 *        active page does not have a corresponding editor
 	 */
 	@Override
 	public void setActivePage(IEditorPart activeEditor) {
@@ -77,9 +76,9 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 
 		activeNestedEditor = activeEditor;
 
-		// System.out.println(this.getClass().getSimpleName()
-		// + ".setActivePage(" + activeEditor
-		// + ") :" + getActiveContributor());
+//		System.out.println(this.getClass().getSimpleName()
+//				+ ".setActivePage(" + activeEditor
+//				+ ") :" + getActiveContributor());
 
 		// Propagate call if possible
 		// Call setActiveEditor() on nested contributor.
@@ -87,9 +86,8 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		if(contributor != this && contributor instanceof EditorActionBarContributor)
 			((EditorActionBarContributor)contributor).setActiveEditor(activeEditor);
 
-		// if(contributor != this && contributor instanceof
-		// IMultiPageEditorActionBarContributor)
-		// ((IMultiPageEditorActionBarContributor)contributor).setActivePage(activeEditor);
+		//		if(contributor != this && contributor instanceof IMultiPageEditorActionBarContributor)
+		//			((IMultiPageEditorActionBarContributor)contributor).setActivePage(activeEditor);
 
 	}
 
@@ -111,11 +109,10 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		// Switch the editor and activeContributor.
 		super.setActiveEditor(part);
 		// Now, propagate to the new activeContributor
-		// IEditorActionBarContributor activeContributor =
-		// getActiveContributor();
+		//		IEditorActionBarContributor activeContributor = getActiveContributor();
 		//
-		// if(activeContributor!=this)
-		// activeContributor.setActiveEditor(part);
+		//		if(activeContributor!=this)
+		//		  activeContributor.setActiveEditor(part);
 	}
 
 	/**
@@ -129,12 +126,13 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		if(activeNestedEditor == null)
 			return this;
 
-		//
+		// 
 		return activeNestedEditor.getEditorSite().getActionBarContributor();
 	}
 
+
 	// ************************************************ //
-	// Propagate method calls //
+	//      Propagate method calls  //
 	// ************************************************ //
 
 	/**
@@ -142,14 +140,13 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	 * 
 	 * @return the action bars
 	 */
-	// public IActionBars getActionBars() {
-	// IEditorActionBarContributor activeContributor = getActiveContributor();
-	// if( activeContributor!=this && activeContributor instanceof
-	// EditorActionBarContributor)
-	// return
-	// ((EditorActionBarContributor)getActiveContributor()).getActionBars();
-	// else
-	// return super.getActionBars();
-	// }
+	//    public IActionBars getActionBars() {
+	//    	IEditorActionBarContributor activeContributor = getActiveContributor();
+	//    	if( activeContributor!=this && activeContributor instanceof EditorActionBarContributor)
+	//          return ((EditorActionBarContributor)getActiveContributor()).getActionBars();
+	//    	else
+	//    		return super.getActionBars();
+	//    }
+
 
 }

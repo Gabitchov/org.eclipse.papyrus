@@ -13,14 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * Interface implemented by Part that can be parent of a Panel (Sashes or
- * Folders). The interface allows to restrict the classes that can be parent of
- * a Panel. For now, only {@link RootPart} and {@link SashPanelPart} can be
- * parent of a Panel.
+ * Interface implemented by Part that can be parent of a Panel (Sashes or Folders). The interface allows to restrict the classes that can be parent of
+ * a Panel. For now, only {@link RootPart} and {@link SashPanelPart} can be parent of a Panel.
  * 
  * @author dumoulin
  */

@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelM
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 
+
 /**
  * Simple implementation of the {@link ISashPanelModel}.
  * 
@@ -35,6 +36,8 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 
 	protected int sashDirection;
 
+
+
 	/**
 	 * @param children
 	 * @param sashDirection
@@ -46,6 +49,7 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 
 		this.sashDirection = sashDirection;
 	}
+
 
 	/**
 	 * Set the left child.
@@ -83,10 +87,12 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 		return children[1];
 	}
 
+
+
 	/**
-	 * Create the SashPanelModel from the raw model. In this implementation, the
-	 * rawModel is the SashPanelModel. This default implementation return
-	 * directly the child which is already of the appropriate type.
+	 * Create the SashPanelModel from the raw model.
+	 * In this implementation, the rawModel is the SashPanelModel.
+	 * This default implementation return directly the child which is already of the appropriate type.
 	 */
 	public IAbstractPanelModel createChildSashModel(Object rawModel) {
 		return (IAbstractPanelModel)rawModel;
@@ -112,12 +118,14 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 	 */
 	public void replaceChild(AbstractPanelModel oldChild, AbstractPanelModel newChild) {
 
+
 		if(getLeftChild() == oldChild)
 			setLeftChild(newChild);
 		else if(getRightChild() == oldChild)
 			setRightChild(newChild);
 
 	}
+
 
 	/**
 	 * 
@@ -132,9 +140,10 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 		return getRightChild().lookupTabFolder(tabItem);
 	}
 
+
 	/**
-	 * Delete the sashModel. The childToDelete is removed from the tree, bypass
-	 * the sashnode : the other child parent is set to sashnode parent.
+	 * Delete the sashModel.
+	 * The childToDelete is removed from the tree, bypass the sashnode : the other child parent is set to sashnode parent.
 	 * 
 	 * @param tabFolder
 	 */
@@ -148,6 +157,8 @@ public class SashPanelModel extends AbstractPanelModel implements ISashPanelMode
 		otherChild.setParent(parent);
 		parent.replaceChild(this, otherChild);
 
+
 	}
+
 
 }

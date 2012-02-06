@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
+
 /**
- * Visitor used to show the status of the different Tiles composing the sash
- * system.
+ * Visitor used to show the status of the different Tiles composing the sash system.
  * 
  * @author dumoulin
  * 
@@ -33,7 +33,7 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public boolean accept(RootPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "root:" + tile );
+		//			System.out.println( "root:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -45,7 +45,7 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	 */
 	private void indent() {
 		if(level < 1) {
-			// error
+			//error
 			return;
 		}
 
@@ -63,7 +63,7 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public boolean accept(SashPanelPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "sash:" + tile );
+		//			System.out.println( "sash:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -77,7 +77,7 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public boolean accept(TabFolderPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "folder:" + tile );
+		//			System.out.println( "folder:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -91,7 +91,7 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public boolean accept(EditorPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "editor:" + tile );
+		//			System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
@@ -105,11 +105,12 @@ public class ShowPartStatusVisitor extends PartVisitor {
 	public boolean accept(ComponentPart tile) {
 		indent();
 		tile.showStatus();
-		// System.out.println( "editor:" + tile );
+		//			System.out.println( "editor:" + tile );
 		level++;
 		super.accept(tile);
 		level--;
 		return true;
 	}
+
 
 }

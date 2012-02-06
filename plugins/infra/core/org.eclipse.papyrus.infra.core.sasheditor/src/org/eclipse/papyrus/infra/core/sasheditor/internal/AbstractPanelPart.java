@@ -18,8 +18,10 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.dnd.IDropTarget;
 
+
 /**
- * Common ancestor of Panel Parts. Panels are sashes and folders.
+ * Common ancestor of Panel Parts.
+ * Panels are sashes and folders.
  * 
  * @author cedric dumoulin
  */
@@ -41,7 +43,8 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	}
 
 	/**
-	 * Create the SWT controls. This method is called by the SWT parent.
+	 * Create the SWT controls.
+	 * This method is called by the SWT parent.
 	 * 
 	 * @param container
 	 */
@@ -68,8 +71,8 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	abstract public void synchronize2(PartLists existingParts);
 
 	/**
-	 * Return true is the part is for the specified raw model. Return false
-	 * otherwise.
+	 * Return true is the part is for the specified raw model.
+	 * Return false otherwise.
 	 * 
 	 * @param rawModel
 	 * @return
@@ -77,10 +80,9 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	abstract public boolean isPartFor(Object rawModel);
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left
-	 * unchanged. The node can be reattached with reparent(). Change garbage
-	 * state to {@link GarbageState.ORPHANED}. This method as no effect if the
-	 * Tile has already been reparented.
+	 * Orphan this node. The parent is set to null, but control is left unchanged.
+	 * The node can be reattached with reparent(). Change garbage state to {@link GarbageState.ORPHANED}.
+	 * This method as no effect if the Tile has already been reparented.
 	 */
 	public void orphan() {
 		// orphan only if we are in UNCHANGED state
@@ -90,8 +92,10 @@ public abstract class AbstractPanelPart extends AbstractPart {
 		}
 	}
 
+
 	/**
-	 * Mark this Page as UNCHANGED. The PAge should be in the COLLECTED state.
+	 * Mark this Page as UNCHANGED.
+	 * The PAge should be in the COLLECTED state.
 	 * 
 	 * @see
 	 * @return the parent
@@ -117,8 +121,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	abstract public void reparent(IPanelParent newParent, Composite swtParent);
 
 	/**
-	 * Collect all the parts. The method is called recursively in the tree of
-	 * parts.
+	 * Collect all the parts. The method is called recursively in the tree of parts.
 	 * 
 	 * @param parts
 	 *        The list into which parts are added.
@@ -144,8 +147,7 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	abstract public AbstractPart findPart(Object control);
 
 	/**
-	 * Locates the part that intersects the given point and that have the
-	 * expected type
+	 * Locates the part that intersects the given point and that have the expected type
 	 * 
 	 * @param toFind
 	 *        Position in Display coordinate.
@@ -163,8 +165,10 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	abstract public Composite getControl();
 
 	/**
-	 * Get the drop target. Used by the drag tab mechanism.
+	 * Get the drop target.
+	 * Used by the drag tab mechanism.
 	 */
 	abstract public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position);
+
 
 }

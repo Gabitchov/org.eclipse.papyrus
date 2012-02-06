@@ -25,8 +25,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 
 /**
- * A simple implementation of providers allowing only one single folder
- * containing tabs. The tabs can be added and removed.
+ * A simple implementation of providers allowing only one single folder containing tabs.
+ * The tabs can be added and removed.
  * 
  * @author dumoulin
  */
@@ -154,8 +154,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Remove the specified tab. As we have only one folder, this should be from
-	 * the currentFolder {@inheritDoc}
+	 * Remove the specified tab. As we have only one folder, this should be from the currentFolder {@inheritDoc}
 	 */
 	public void removePage(ITabFolderModel parentFolder, int tabIndex) {
 		removePage(tabIndex);
@@ -252,8 +251,8 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	}
 
 	/**
-	 * Move a tab from folder to folder. As this implementation has only one
-	 * folder, this can't happen. Do nothing. {@inheritDoc}
+	 * Move a tab from folder to folder.
+	 * As this implementation has only one folder, this can't happen. Do nothing. {@inheritDoc}
 	 */
 	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 		return;

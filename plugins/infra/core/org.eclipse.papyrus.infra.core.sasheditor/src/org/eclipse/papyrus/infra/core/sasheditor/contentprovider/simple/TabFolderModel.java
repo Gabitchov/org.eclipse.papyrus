@@ -55,12 +55,10 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	}
 
 	/**
-	 * This default implementation return directly the child which is already of
-	 * the appropriate type.
+	 * This default implementation return directly the child which is already of the appropriate type.
 	 */
 	public IPageModel createChildSashModel(Object child) {
-		// In this default implementation, the child is already of the
-		// appropriate type.
+		// In this default implementation, the child is already of the appropriate type.
 		return (IPageModel)child;
 	}
 
@@ -109,8 +107,8 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	}
 
 	/**
-	 * Move a tab inside the folder. Moves the tab from the old position to the
-	 * new position.
+	 * Move a tab inside the folder.
+	 * Moves the tab from the old position to the new position.
 	 * 
 	 * @param oldIndex
 	 *        the position of the tab before the move.
@@ -132,6 +130,7 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 		if(listSize == 0)
 			return;
 
+
 		// Move
 		IPageModel toMove = children.remove(oldIndex);
 		children.add(newIndex, toMove);
@@ -139,7 +138,8 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	}
 
 	/**
-	 * Add a new model. Do not fire change Event
+	 * Add a new model.
+	 * Do not fire change Event
 	 * 
 	 * @param newModel
 	 */
@@ -148,7 +148,8 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	}
 
 	/**
-	 * Add a model at the specified position. Do not fire change Event
+	 * Add a model at the specified position.
+	 * Do not fire change Event
 	 * 
 	 * @param index
 	 * @param newModel
@@ -161,7 +162,8 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	}
 
 	/**
-	 * Remove the specified tab. Do not fire change Event
+	 * Remove the specified tab.
+	 * Do not fire change Event
 	 * 
 	 * @param index
 	 * @return
@@ -193,7 +195,8 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	}
 
 	/**
-	 * Remove the specified tab. Do not fire change Event
+	 * Remove the specified tab.
+	 * Do not fire change Event
 	 * 
 	 * @param tabItem
 	 */
@@ -214,8 +217,8 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	 * Get a folder by one of its tab.
 	 * 
 	 * @param tabItem
-	 *        Item for which a folder is looked for. If the item is null,
-	 *        return the first folder encountered.
+	 *        Item for which a folder is looked for. If the item is null, return
+	 *        the first folder encountered.
 	 * @return The folder if it contains the item, or if item is null.
 	 */
 	@Override

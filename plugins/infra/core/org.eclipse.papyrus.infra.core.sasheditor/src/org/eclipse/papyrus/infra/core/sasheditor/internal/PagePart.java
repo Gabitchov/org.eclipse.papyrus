@@ -23,21 +23,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * This class represent a leaf part that is a part containing an editor or a
- * component.
+ * This class represent a leaf part that is a part containing an editor or a component.
  * 
  * @author dumoulin
  */
 public abstract class PagePart extends AbstractPart implements IPage {
 
-	/**
-	 * Raw model associated to this part. We store it because the PartModel do
-	 * not provide it
-	 */
+	/** Raw model associated to this part. We store it because the PartModel do not provide it */
 	protected Object rawModel;
 
 	/** Parent part of this Part */
 	protected TabFolderPart parent;
+
 
 	/**
 	 * Constructor.
@@ -50,18 +47,18 @@ public abstract class PagePart extends AbstractPart implements IPage {
 		this.rawModel = rawModel;
 	}
 
+
 	/**
 	 * @return the parent
 	 */
-	public TabFolderPart getParent() {
+	protected TabFolderPart getParent() {
 		return parent;
 	}
 
 	/**
-	 * Orphan this node. The parent is set to null, but control is left
-	 * unchanged. The node can be reattached with reparent(). Change garbage
-	 * state to {@link GarbageState.ORPHANED}. This method as no effect if the
-	 * Page has already been reparented.
+	 * Orphan this node. The parent is set to null, but control is left unchanged.
+	 * The node can be reattached with reparent(). Change garbage state to {@link GarbageState.ORPHANED}.
+	 * This method as no effect if the Page has already been reparented.
 	 * 
 	 * @see
 	 * @return the parent
@@ -75,7 +72,8 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	}
 
 	/**
-	 * Mark this Page as UNCHANGED. The PAge should be in the COLLECTED state.
+	 * Mark this Page as UNCHANGED.
+	 * The PAge should be in the COLLECTED state.
 	 * 
 	 * @see
 	 * @return the parent
@@ -100,8 +98,8 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	abstract boolean visit(IPartVisitor visitor);
 
 	/**
-	 * Locates the part that intersects the given point and that have the
-	 * expected type. For a leaf, return the leaf if it is of the expected type.
+	 * Locates the part that intersects the given point and that have the expected type.
+	 * For a leaf, return the leaf if it is of the expected type.
 	 * 
 	 * @param position
 	 * @param expectedTileType
@@ -130,16 +128,16 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	abstract public Control getControl();
 
 	/**
-	 * reparent this Part with the specified new parent. The part is marked as
-	 * reparented.
+	 * reparent this Part with the specified new parent.
+	 * The part is marked as reparented.
 	 * 
 	 * @param parent
 	 */
 	abstract public void reparent(TabFolderPart parent);
 
 	/**
-	 * Add the tree of parts starting from this part. As we are a leaf, add
-	 * itself only.
+	 * Add the tree of parts starting from this part.
+	 * As we are a leaf, add itself only.
 	 * 
 	 * @param partMap
 	 */
@@ -158,8 +156,9 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	}
 
 	/**
-	 * Return a title for this part. This title can be used by parent to be
-	 * shown in tabs ... To be implemented by subclasses.
+	 * Return a title for this part. This title can be used by parent to be shown
+	 * in tabs ...
+	 * To be implemented by subclasses.
 	 * 
 	 * @return The title or null.
 	 */
@@ -169,7 +168,8 @@ public abstract class PagePart extends AbstractPart implements IPage {
 
 	/**
 	 * Return a icon for this part. This title can be used by parent to be shown
-	 * in tabs ... To be implemented by subclasses.
+	 * in tabs ...
+	 * To be implemented by subclasses.
 	 * 
 	 * @return The icon or null.
 	 */
@@ -183,10 +183,9 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	public void refreshTab() {
 		getParent().refreshPageTab(this);
 	}
-
 	/**
-	 * Set focus on the SWT control associated to this PagePart. Used by the
-	 * ActivePageTracker.
+	 * Set focus on the SWT control associated to this PagePart.
+	 * Used by the ActivePageTracker.
 	 */
 	abstract public void setFocus();
 
@@ -196,8 +195,8 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	abstract public void garbage();
 
 	/**
-	 * Return true if the part is associated to the specified rawModel. Return
-	 * false otherwise.
+	 * Return true if the part is associated to the specified rawModel.
+	 * Return false otherwise.
 	 * 
 	 * @param realModel
 	 * @return
@@ -205,5 +204,6 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	public boolean isPartFor(Object realModel) {
 		return this.rawModel == realModel;
 	}
+
 
 }

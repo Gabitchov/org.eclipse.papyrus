@@ -23,12 +23,12 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.swt.SWT;
 
 /**
- * A simple implementation of providers allowing sashes and folders. The tabs
- * can be added and removed.
+ * A simple implementation of providers allowing sashes and folders.
+ * The tabs can be added and removed.
  * 
  * @author dumoulin
  * 
@@ -53,6 +53,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		currentTabFolder = new TabFolderModel(this);
 		rootModel = new RootModel(currentTabFolder);
 	}
+
 
 	/**
 	 * Add a listener listening on content changed. This listener will be
@@ -126,8 +127,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Move a tab from folder to folder. The change event is sent only once
-	 * after the complete operation is performed. {@inheritDoc}
+	 * Move a tab from folder to folder.
+	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 */
 	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 		// This implementation use (TabFolderModel), so we can cast safely
@@ -168,41 +169,29 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Create a new folder and insert it at the specified side. Move the
-	 * specified tab into the created Folder.
+	 * Create a new folder and insert it at the specified side. Move the specified tab into the created Folder.
 	 * 
-	 * The change event is sent only once after the complete operation is
-	 * performed. {@inheritDoc}
+	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 * 
-	 * @param referenceFolder
-	 *        The folder used as reference to insert the newly created
-	 *        Folder.
-	 * @param side
-	 *        The side to which the created folder is inserted. Can be
-	 *        SWT.TOP, DOWN, LEFT, RIGHT.
+	 * @param referenceFolder The folder used as reference to insert the newly created Folder. 
+	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public void createFolder(ITabFolderModel sourceFolder, int tabIndex, ITabFolderModel referenceFolder, int side) {
 		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()");
 
 		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)sourceFolder, tabIndex, (TabFolderModel)referenceFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, sourceFolder));
-		// return newFolder;
+		//		return newFolder;
 	}
 
 	/**
-	 * Create a new folder and insert it at the specified side of the reference
-	 * folder. The change event is sent only once after the complete operation
-	 * is performed.
+	 * Create a new folder and insert it at the specified side of the reference folder.
+	 * The change event is sent only once after the complete operation is performed. 
 	 * 
-	 * This method is not part of the {@link SashWindowsContainer} API. It is
-	 * here to help writing junit tests.
+	 * This method is not part of the {@link SashWindowsContainer} API. It is here to help writing junit tests.
 	 * 
-	 * @param referenceFolder
-	 *        The folder used as reference to insert the newly created
-	 *        Folder.
-	 * @param side
-	 *        The side to which the created folder is inserted. Can be
-	 *        SWT.TOP, DOWN, LEFT, RIGHT.
+	 * @param referenceFolder The folder used as reference to insert the newly created Folder. 
+	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public ITabFolderModel createFolder(ITabFolderModel referenceFolder, int side) {
 		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()");
@@ -213,8 +202,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Move a tab from folder to folder. The change event is sent only once
-	 * after the complete operation is performed.
+	 * Move a tab from folder to folder.
+	 * The change event is sent only once after the complete operation is performed.
 	 * 
 	 * @return The moved tab.
 	 */
@@ -226,9 +215,9 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Move a tab from folder to folder. The tab is added at the end of the
-	 * target folder. The change event is sent only once after the complete
-	 * operation is performed. {@inheritDoc}
+	 * Move a tab from folder to folder.
+	 * The tab is added at the end of the target folder.
+	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 */
 	private void doMoveTab(TabFolderModel srcFolderModel, int sourceIndex, TabFolderModel targetFolderModel) {
 
@@ -290,8 +279,8 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Insert the folderToInsert on the specified side of the refFolder. Create
-	 * and insert the requested SashModel.
+	 * Insert the folderToInsert on the specified side of the refFolder. Create and insert the
+	 * requested SashModel.
 	 * 
 	 * @param folderToInsert
 	 * @param refFolder
@@ -381,10 +370,9 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * Lookup the folder containing the specified tabItem.
 	 * 
 	 * @param tabItem
-	 *        Item for which a folder is looked for. If the item is null,
-	 *        return the first folder encountered.
-	 * @return The folder containing the item, or the first encountered folder
-	 *         if item is null.
+	 *        Item for which a folder is looked for. If the item is null, return
+	 *        the first folder encountered.
+	 * @return The folder containing the item, or the first encountered folder if item is null.
 	 */
 	private TabFolderModel lookupPageFolder(IPageModel tabItem) {
 		return rootModel.lookupTabFolder(tabItem);
@@ -424,8 +412,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider#setCurrentFolder(java.lang.Object)
 	 * 
 	 * @param rawModel
-	 *        Object identifying the current folder. In this implementation,
-	 *        the object is the FolderModel.
+	 *        Object identifying the current folder. In this implementation, the object is the FolderModel.
 	 */
 	public void setCurrentFolder(Object rawModel) {
 		if(!(rawModel instanceof TabFolderModel)) {

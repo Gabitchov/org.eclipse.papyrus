@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
+
 /**
  * @author dumoulin
  */

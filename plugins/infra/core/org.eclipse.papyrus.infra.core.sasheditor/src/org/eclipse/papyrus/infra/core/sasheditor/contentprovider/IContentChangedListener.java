@@ -3,19 +3,20 @@
  */
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
+
 /**
- * Interface to be implemented by classes needing to be notified when the
- * SashContent model has changed. This interface is not used by the
- * sashesWindows itself. It exists to allows ContentProvider implementation to
- * provide a common notification mechanism.
+ * Interface to be implemented by classes needing to be notified
+ * when the SashContent model has changed.
+ * This interface is not used by the sashesWindows itself. It exists to allows ContentProvider
+ * implementation to provide a common notification mechanism.
  * 
  * @author dumoulin
  */
 public interface IContentChangedListener {
 
 	/**
-	 * Event indicating the change. TODO The types are not set correctly from
-	 * user like DI model. But anyway there aren't used by clients.
+	 * Event indicating the change.
+	 * TODO The types are not set correctly from user like DI model. But anyway there aren't used by clients.
 	 * 
 	 * @author dumoulin
 	 */
@@ -49,6 +50,7 @@ public interface IContentChangedListener {
 			this.object = object;
 		}
 
+
 		/**
 		 * @return the type
 		 */
@@ -56,12 +58,14 @@ public interface IContentChangedListener {
 			return type;
 		}
 
+
 		/**
 		 * @return the model
 		 */
 		public Object getModel() {
 			return model;
 		}
+
 
 		/**
 		 * @return the object

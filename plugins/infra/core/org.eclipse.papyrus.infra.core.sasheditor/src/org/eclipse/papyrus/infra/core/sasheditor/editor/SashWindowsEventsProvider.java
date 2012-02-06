@@ -6,6 +6,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.editor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -18,12 +19,10 @@ import org.eclipse.ui.IWorkbenchPart;
  * <li>- containerChanged - the active editor has changed, and so the currently active container.</li>
  * </ul>
  * 
- * This class require the current Eclipse page in order to listen on active
- * editor changed. This class connect itself to the Workbench editor changed
- * event. Then, it ask the current editor for a ISashWindowsContainer (using
- * getAdaptor() ). If the editor return a ISashWindowsContainer, this class
- * listen to the pageChanged events. This class takes care to connect itself to
- * the new ISashWindowsContainer when the editor changes.
+ * This class require the current Eclipse page in order to listen on active editor changed.
+ * This class connect itself to the Workbench editor changed event. Then, it ask the current editor for a ISashWindowsContainer (using getAdaptor() ).
+ * If the editor return a ISashWindowsContainer,
+ * this class listen to the pageChanged events. This class takes care to connect itself to the new ISashWindowsContainer when the editor changes.
  * 
  * @TODO rename as SashWindowsEventsNotifier
  * @author cedric dumoulin
@@ -32,14 +31,12 @@ import org.eclipse.ui.IWorkbenchPart;
 public class SashWindowsEventsProvider {
 
 	/**
-	 * List of listeners that will be notified when the current Sash Page has
-	 * changed.
+	 * List of listeners that will be notified when the current Sash Page has changed.
 	 */
 	private PageChangedListeners pageEventsManager = new PageChangedListeners();
 
 	/**
-	 * List of listeners that will be notified when the SashWindowsContainer has
-	 * changed.
+	 * List of listeners that will be notified when the SashWindowsContainer has changed.
 	 */
 	private SashWindowsContainerChangedListeners containerEventsManager = new SashWindowsContainerChangedListeners();
 
@@ -61,28 +58,28 @@ public class SashWindowsEventsProvider {
 	/** Currently active page, or null if no container is active */
 	private IPage activePage = null;
 
+
 	private IPartListener workbenchPartListener = new IPartListener() {
 
 		public void partOpened(IWorkbenchPart part) {
-			// System.out.println("partOpened("+ part +")");
+			//			System.out.println("partOpened("+ part +")");
 
 		}
 
 		public void partDeactivated(IWorkbenchPart part) {
-			// System.out.println("partDeactivated("+ part +")");
+			//			System.out.println("partDeactivated("+ part +")");
 		}
 
 		public void partClosed(IWorkbenchPart part) {
-			// System.out.println("("+ part +")");
+			//			System.out.println("("+ part +")");
 		}
 
 		public void partBroughtToTop(IWorkbenchPart part) {
-			// System.out.println("partClosed("+ part +")");
+			//			System.out.println("partClosed("+ part +")");
 		}
 
 		public void partActivated(IWorkbenchPart part) {
-			// System.out.println("partActivated(" + part + ") - activeEditor: "
-			// + workbenchPage.getActiveEditor());
+			//			System.out.println("partActivated(" + part + ") - activeEditor: " + workbenchPage.getActiveEditor());
 			checkActiveEditorChange();
 		}
 	};
@@ -99,8 +96,8 @@ public class SashWindowsEventsProvider {
 
 	/**
 	 * 
-	 * Constructor. Page can be acquired with :
-	 * <code>IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();</code>
+	 * Constructor.
+	 * Page can be acquired with : <code>IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();</code>
 	 */
 	public SashWindowsEventsProvider(IWorkbenchPage page) {
 
@@ -129,19 +126,18 @@ public class SashWindowsEventsProvider {
 			newContainer = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
 		}
 
-		// // Set SashContainer and ActivePage
-		// currentContainer = newContainer;
-		// if( currentContainer != null)
-		// {
-		// activePage = newContainer.getActiveSashWindowsPage();
-		// System.err.println("activePage=" + activePage.getPageTitle()
-		// + ", tab index=" + currentContainer.);
-		// }
+		//		// Set SashContainer and ActivePage
+		//		currentContainer = newContainer;
+		//		if( currentContainer != null)
+		//		{
+		//			activePage = newContainer.getActiveSashWindowsPage();
+		//			System.err.println("activePage=" + activePage.getPageTitle()
+		//					+ ", tab index=" + currentContainer.);
+		//		}
 	}
 
 	/**
-	 * Return the currently active ISashWindowsContainer or null if none is
-	 * actif.
+	 * Return the currently active ISashWindowsContainer or null if none is actif.
 	 * 
 	 * @return
 	 */
@@ -150,8 +146,8 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * Return the currently active {@link IEditorPart} owning the currently
-	 * active ISashWindowsContaineror. Return null if no container is actif.
+	 * Return the currently active {@link IEditorPart} owning the currently active ISashWindowsContaineror.
+	 * Return null if no container is actif.
 	 * 
 	 * @return
 	 */
@@ -162,8 +158,8 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * Return the currently active page associated to the currently active
-	 * Container. Return null if no container is actif.
+	 * Return the currently active page associated to the currently active Container.
+	 * Return null if no container is actif.
 	 * 
 	 * @return
 	 */
@@ -192,9 +188,9 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * Register a listener listeneing on editor change. Page can be acuired with
-	 * : IWorkbenchPage page =
-	 * PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+	 * Register a listener listeneing on editor change.
+	 * Page can be acuired with :
+	 * IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 	 */
 	private void registerEditorChangedListener() {
 
@@ -202,9 +198,9 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * This method is called when the active editor has change. The method
-	 * checks the new editor and send appropriate events. The editor can be
-	 * null.
+	 * This method is called when the active editor has change.
+	 * The method checks the new editor and send appropriate events.
+	 * The editor can be null.
 	 * 
 	 * @param newEditor
 	 *        The new editor of null if none is set.
@@ -224,9 +220,8 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * This method is called when the active container has changed. The
-	 * pageChangedListener is removed from the oldContainer, and attached to the
-	 * newContainer.
+	 * This method is called when the active container has changed.
+	 * The pageChangedListener is removed from the oldContainer, and attached to the newContainer.
 	 * 
 	 * @param newContainer
 	 */
@@ -251,8 +246,8 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * Send an event indicating a containerChanged. Propagate the event to all
-	 * the listeners.
+	 * Send an event indicating a containerChanged.
+	 * Propagate the event to all the listeners.
 	 * 
 	 * @param activeEditor
 	 */
@@ -262,8 +257,8 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * Send an event indicating a pageChanged. Propagate the event to all the
-	 * listeners.
+	 * Send an event indicating a pageChanged.
+	 * Propagate the event to all the listeners.
 	 * 
 	 * @param activeEditor
 	 */
@@ -405,8 +400,7 @@ public class SashWindowsEventsProvider {
 	}
 
 	/**
-	 * A list of {@link ISashWindowsContainerChangedListener} listening on
-	 * container changed event.
+	 * A list of {@link ISashWindowsContainerChangedListener} listening on container changed event.
 	 * 
 	 * @author dumoulin
 	 * 

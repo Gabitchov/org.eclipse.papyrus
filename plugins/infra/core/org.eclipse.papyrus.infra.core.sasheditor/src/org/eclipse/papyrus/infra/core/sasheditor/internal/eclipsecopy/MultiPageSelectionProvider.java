@@ -24,9 +24,9 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * Manages the current selection in a multi-page editor by tracking the active
- * nested editor within the multi-page editor. When the selection changes,
- * notifications are sent to all registered listeners.
+ * Manages the current selection in a multi-page editor by tracking the active nested editor within the multi-page editor. When the selection changes,
+ * notifications are sent to all registered
+ * listeners.
  * <p>
  * This class may be instantiated; it is not intended to be subclassed. The base implementation of <code>MultiPageEditor.init</code> creates an
  * instance of this class.
@@ -70,8 +70,7 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	}
 
 	/**
-	 * Adds a listener for post selection changes in this multi page selection
-	 * provider.
+	 * Adds a listener for post selection changes in this multi page selection provider.
 	 * 
 	 * @param listener
 	 *        a selection changed listener
@@ -82,8 +81,7 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	}
 
 	/**
-	 * Notifies all registered selection changed listeners that the editor's
-	 * selection has changed. Only listeners registered at the time this method
+	 * Notifies all registered selection changed listeners that the editor's selection has changed. Only listeners registered at the time this method
 	 * is called are notified.
 	 * 
 	 * @param event
@@ -95,8 +93,7 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	}
 
 	/**
-	 * Notifies all post selection changed listeners that the editor's selection
-	 * has changed.
+	 * Notifies all post selection changed listeners that the editor's selection has changed.
 	 * 
 	 * @param event
 	 *        the event to propogate.
@@ -119,14 +116,14 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 		}
 	}
 
-	// /**
-	// * Returns the multi-page editor.
-	// *
-	// * @return the multi-page editor.
-	// */
-	// private IMultiPageEditorPart getMultiPageEditor() {
-	// return multiPageEditor;
-	// }
+	//	/**
+	//	 * Returns the multi-page editor.
+	//	 * 
+	//	 * @return the multi-page editor.
+	//	 */
+	//	private IMultiPageEditorPart getMultiPageEditor() {
+	//		return multiPageEditor;
+	//	}
 
 	/*
 	 * (non-Javadoc) Method declared on <code>ISelectionProvider</code>.
@@ -150,8 +147,7 @@ public class MultiPageSelectionProvider implements IPostSelectionProvider {
 	}
 
 	/**
-	 * Removes a listener for post selection changes in this multi page
-	 * selection provider.
+	 * Removes a listener for post selection changes in this multi page selection provider.
 	 * 
 	 * @param listener
 	 *        a selection changed listener

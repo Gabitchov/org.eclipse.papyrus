@@ -13,33 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPartSite;
 
+
 /**
- * This interface allows EditorPart to access objects provided by the real
- * editor. Implementation of this interface is provided to the {@link SashWindowsContainer} and used by {@link EditorPart}. The EditorPart
- * will call {@link #getEditorInput()} and pass the result to input of the
- * created nested IEditorPart. The site provided by {@link #getEditorSite()} is
- * used to initialize a specific site for the nested IEditorPart. It is also
- * used by the {@link SashWindowsContainer}.
+ * This interface allows EditorPart to access objects provided by the real editor.
+ * Implementation of this interface is provided to the {@link SashWindowsContainer} and used by {@link EditorPart}.
+ * The EditorPart will call {@link #getEditorInput()} and pass the result to input of the created nested IEditorPart.
+ * The site provided by {@link #getEditorSite()} is used to initialize a specific site for the nested IEditorPart.
+ * It is also used by the {@link SashWindowsContainer}.
  * 
  * @author dumoulin
  */
 public interface IMultiEditorManager {
 
 	/**
-	 * Get the EditorActionBarContributor for the editor associated to the
-	 * specified model.
+	 * Get the EditorActionBarContributor for the editor associated to the specified model.
 	 * 
 	 * @param editorModel
 	 * @return
 	 * @throws MultiDiagramException
 	 */
-	// public EditorActionBarContributor getActionBarContributor(Object
-	// editorModel);
+	//	public EditorActionBarContributor getActionBarContributor(Object editorModel);
 
 	/**
 	 * Fires a property changed event.
@@ -47,7 +44,7 @@ public interface IMultiEditorManager {
 	 * @param propertyId
 	 *        the id of the property that changed
 	 */
-	// public void firePropertyChange(int propertyId);
+	//    public void firePropertyChange(int propertyId);
 
 	/**
 	 * Get the editor input associated to the main IMultiPageEditorPart.
@@ -64,8 +61,8 @@ public interface IMultiEditorManager {
 	public IWorkbenchPartSite getSite();
 
 	/**
-	 * Get the IEditorSite associated to this MultiPageEditorPart. This return
-	 * the same object as getSite().
+	 * Get the IEditorSite associated to this MultiPageEditorPart.
+	 * This return the same object as getSite().
 	 * 
 	 * @return
 	 */

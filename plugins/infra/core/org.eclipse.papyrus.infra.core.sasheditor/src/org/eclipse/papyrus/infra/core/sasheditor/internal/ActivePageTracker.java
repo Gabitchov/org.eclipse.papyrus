@@ -18,12 +18,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.ActivePageTracker.IActiveEditorChangedListener;
+
 
 /**
- * Instance of this class track the active Page. When the active Page change,
- * the tracker receive an event on {@link #setActiveEditor(PagePart)}, and
- * perform following tasks:
+ * Instance of this class track the active Page.
+ * When the active Page change, the tracker receive an event on {@link #setActiveEditor(PagePart)}, and perform following tasks:
  * <ul>
  * <li>- call {@link #fireEditorChangeEvent(PagePart, PagePart)}</li>
  * <li>- fire events to all registered listeners.</li>
@@ -55,8 +54,7 @@ public class ActivePageTracker {
 	protected PagePart activeEditor;
 
 	/**
-	 * Interface that must be implemented by listeners on activeEditorChange
-	 * event.
+	 * Interface that must be implemented by listeners on activeEditorChange event.
 	 * 
 	 * @author dumoulin
 	 * 
@@ -72,9 +70,10 @@ public class ActivePageTracker {
 		public void activeEditorChanged(PagePart oldEditor, PagePart newEditor);
 	}
 
+
 	/**
-	 * Constructor. The activeEditor will be set by the first TabFolder that
-	 * will call TabFolderPart.setPage().
+	 * Constructor.
+	 * The activeEditor will be set by the first TabFolder that will call TabFolderPart.setPage().
 	 * 
 	 * @param multiPartEditor
 	 */
@@ -91,8 +90,8 @@ public class ActivePageTracker {
 	}
 
 	/**
-	 * Set the active editor with the specified editor. This will notify all
-	 * registered listeners
+	 * Set the active editor with the specified editor.
+	 * This will notify all registered listeners
 	 * 
 	 * @param editor
 	 */
@@ -162,8 +161,8 @@ public class ActivePageTracker {
 	 */
 	private void fireEditorChangeEvent(PagePart oldEditor, PagePart newEditor) {
 		// Fire only if really change
-		// if(oldEditor == newEditor)
-		// return;
+//		if(oldEditor == newEditor)
+//			return;
 
 		// Fire events to internal listeners
 		for(IActiveEditorChangedListener listener : activeEditorChangedListeners) {

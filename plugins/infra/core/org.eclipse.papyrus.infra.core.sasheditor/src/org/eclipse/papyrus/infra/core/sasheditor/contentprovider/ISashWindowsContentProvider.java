@@ -1,12 +1,12 @@
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 /**
- * This interface is used by the sash windows system to discover its content. It
- * is considered as the root of the sash windows models. The sashsystem is able
- * to retrieve all its content from this interface, and associated interfaces {@link ITabFolderModel}, {@link ISashPanelModel}, {@link IPageModel}.
- * The
- * interface is also used by the sashsystem to communicate, by sending event,
- * with the effective implementation or upper level.
+ * This interface is used by the sash windows system to discover its content. It is considered
+ * as the root of the sash windows models.
+ * The sashsystem is able to retrieve all its content from this interface, and associated interfaces {@link ITabFolderModel}, {@link ISashPanelModel},
+ * {@link IPageModel}.
+ * The interface is also used by the sashsystem to communicate, by sending event, with the
+ * effective implementation or upper level.
  * 
  * @author dumoulin
  * 
@@ -14,10 +14,10 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 public interface ISashWindowsContentProvider {
 
 	/**
-	 * Get the root object shown in the sashes window. The type of the returned
-	 * object is left to the implementation. The sashes window will ask for an
-	 * interface used to interact with the object. In normal implementation,
-	 * this method should return the model used by the implementation.
+	 * Get the root object shown in the sashes window.
+	 * The type of the returned object is left to the implementation.
+	 * The sashes window will ask for an interface used to interact with the object.
+	 * In normal implementation, this method should return the model used by the implementation.
 	 * 
 	 * @return The object representing the root of the sashes window.
 	 */
@@ -25,8 +25,8 @@ public interface ISashWindowsContentProvider {
 
 	/**
 	 * create the interface used by the sashes window to access the root model.
-	 * This method is called by the sashes window to get the interface. The
-	 * method is called only once for a given object.
+	 * This method is called by the sashes window to get the interface.
+	 * The method is called only once for a given object.
 	 * 
 	 * @param root
 	 * @return The SashModel corresponding to the specified root object.
@@ -34,12 +34,12 @@ public interface ISashWindowsContentProvider {
 	public IAbstractPanelModel createChildSashModel(Object root);
 
 	/**
-	 * Add a page to the current TabFolder. The Page is added at the end of the
-	 * tab list.
+	 * Add a page to the current TabFolder.
+	 * The Page is added at the end of the tab list.
 	 * 
 	 * @param page
-	 *        An object identifying the page to add. The object could be
-	 *        anything. It will be passed to the {@link ITabFolderModel#createChildSashModel(Object)} method.
+	 *        An object identifying the page to add. The object could be anything. It will be
+	 *        passed to the {@link ITabFolderModel#createChildSashModel(Object)} method.
 	 */
 	public void addPage(Object page);
 
@@ -47,8 +47,8 @@ public interface ISashWindowsContentProvider {
 	 * Add a page at the specified index of TabFolder.
 	 * 
 	 * @param page
-	 *        An object identifying the page to add. The object could be
-	 *        anything. It will be passed to the {@link ITabFolderModel#createChildSashModel(Object)} method.
+	 *        An object identifying the page to add. The object could be anything. It will be
+	 *        passed to the {@link ITabFolderModel#createChildSashModel(Object)} method.
 	 * @param index
 	 *        Index to where the tabItem should be added.
 	 */
@@ -81,8 +81,8 @@ public interface ISashWindowsContentProvider {
 	public void removePage(int index);
 
 	/**
-	 * Remove the page from the sashes window. Look for the folder containing
-	 * the page.
+	 * Remove the page from the sashes window.
+	 * Look for the folder containing the page.
 	 * 
 	 * @param page
 	 *        The Object identifying the page. This is the object used in {@link #addPage(Object)}.
@@ -97,11 +97,11 @@ public interface ISashWindowsContentProvider {
 	public void removePage(ITabFolderModel parentFolder, int tabIndex);
 
 	/**
-	 * Ask the model to move the specified tab to the specified side of the
-	 * specified targetFolder. This method is called by the the
-	 * SashTileContainer when the user have drag a tab in a correct place. The
-	 * SashTileContainer has not change is presentation yet. This will be done
-	 * when the corresponding event will occur.
+	 * Ask the model to move the specified tab to the specified side of the specified targetFolder.
+	 * This method
+	 * is called by the the SashTileContainer when the user
+	 * have drag a tab in a correct place. The SashTileContainer has not change is presentation yet. This
+	 * will be done when the corresponding event will occur.
 	 * 
 	 * @param tabFolder
 	 *        The folder containing the tab to move
@@ -110,22 +110,21 @@ public interface ISashWindowsContentProvider {
 	 * @param targetFolder
 	 *        The folder to which the side refer to
 	 * @param side
-	 *        Side where node should be inserted : SWT.LEFT, SWT.RIGHT,
-	 *        SWT.TOP, SWT.DOWN.
+	 *        Side where node should be inserted : SWT.LEFT, SWT.RIGHT, SWT.TOP, SWT.DOWN.
 	 */
 	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side);
 
 	/**
-	 * Ask the model to keep trace of the Current Folder. The notion of Current
-	 * Folder is used by {@link #addPage(Object)}. Calling this method should
-	 * not fire a Change Event.
+	 * Ask the model to keep trace of the Current Folder.
+	 * The notion of Current Folder is used by {@link #addPage(Object)}.
+	 * Calling this method should not fire a Change Event.
 	 * 
-	 * This method is used by the SashSystem when the user select a new folder
-	 * by clicking on one of the tabs.
+	 * This method is used by the SashSystem when the user select a new folder by clicking on one of
+	 * the tabs.
 	 * 
 	 * @param rawModel
-	 *        The Raw model identifying the folder. This is the same object
-	 *        as the one returned by {@link ISashPanelModel#getChildren()} when the child denote a folder.
+	 *        The Raw model identifying the folder. This is the same object as the one
+	 *        returned by {@link ISashPanelModel#getChildren()} when the child denote a folder.
 	 */
 	public void setCurrentFolder(Object rawModel);
 

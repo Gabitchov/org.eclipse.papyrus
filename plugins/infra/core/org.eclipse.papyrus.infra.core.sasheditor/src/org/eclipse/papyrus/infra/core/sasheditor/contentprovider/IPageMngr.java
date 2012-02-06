@@ -9,7 +9,6 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Anass Radouani (Atos) - Add History management
  *
  *****************************************************************************/
 
@@ -17,31 +16,29 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashContainerEventsListener;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
+
 
 /**
- * Interface providing method to manage pages in the Sash Windows system. This
- * interface can be provided by ContentProvider whishing to provide a standard
- * way to manage pages. This interface is not mandatory for the Sasheditor. This
- * interface provide basic access to the Sash Windows system. It is intended to
- * be used from the application in order to interact with the ContentProvider.
- * Then, the {@link SashWindowsContainer} will refresh its views.
+ * Interface providing method to manage pages in the Sash Windows system.
+ * This interface can be provided by ContentProvider whishing to provide a standard 
+ * way to manage pages. This interface is not mandatory for the Sasheditor.
+ * This interface provide basic access to the Sash Windows system.
+ * It is intended to be used from the application in order to interact with the ContentProvider. Then,
+ * the {@link SashWindowsContainer} will refresh its views.
  * 
  * 
  * @author dumoulin
  */
-public interface IPageMngr extends IPageChangedListener, SashContainerEventsListener {
+public interface IPageMngr {
 
 	/**
 	 * Add a Page identifier to the list of pages, do not open it.
 	 * 
 	 * @param page
-	 *        The object identifying the page to add. This object will be
-	 *        passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
-	 *        identifier is stored in the sash model. It should be a
-	 *        reference on a EMF object identifying the page.
+	 *        The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
+	 *        identifier is stored in the sash model.
+	 *        It should be a reference on a EMF object identifying the page.
 	 */
 	public void addPage(Object pageIdentifier);
 
@@ -55,13 +52,14 @@ public interface IPageMngr extends IPageChangedListener, SashContainerEventsList
 	public void removePage(Object pageIdentifier);
 
 	/**
-	 * Close the page corresponding to the identifier. The identifier is removed
-	 * from the Sash Windows, but not from the list of pages.
+	 * Close the page corresponding to the identifier.
+	 * The identifier is removed from the Sash Windows, but not from the list of pages.
 	 * 
 	 * @param pageIdentifier
 	 *        The object identifying the page
 	 */
 	public void closePage(Object pageIdentifier);
+
 
 	/**
 	 * Close all opened pages.
@@ -77,16 +75,16 @@ public interface IPageMngr extends IPageChangedListener, SashContainerEventsList
 	public void closeOtherPages(Object pageIdentifier);
 
 	/**
-	 * Open a Page corresponding to the identifier. If the page is not in the
-	 * list of pages, add it. The identifier is first added to the current
-	 * folder model. Then the Sash Windows should react and ask the {@link IPageModelFactory} to create the IPageModel. This later is then
-	 * used to create the SWT page. If
+	 * Open a Page corresponding to the identifier. If the page is not in the list of pages, add it.
+	 * The identifier is first added to the current folder model. Then the Sash Windows should react and
+	 * ask the {@link IPageModelFactory} to create the IPageModel. This later is then used to create the
+	 * SWT page.
+	 * If
 	 * 
 	 * @param page
-	 *        The object identifying the page to add. This object will be
-	 *        passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
-	 *        identifier is stored in the sash model. It should be a
-	 *        reference on a EMF object identifying the page.
+	 *        The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
+	 *        identifier is stored in the sash model.
+	 *        It should be a reference on a EMF object identifying the page.
 	 */
 	public void openPage(Object pageIdentifier);
 
@@ -104,6 +102,5 @@ public interface IPageMngr extends IPageChangedListener, SashContainerEventsList
 	 * @return
 	 */
 	public boolean isOpen(Object pageIdentifier);
-
 
 }

@@ -34,19 +34,19 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
 /**
- * A MultiPageEditor implementation accepting IMultiSashContentProvider as
- * content provider. This implementation extends the regular eclipse
- * MultiPageEditorPart. The refresh() method allows to refresh the tabs.
+ * A MultiPageEditor implementation accepting IMultiSashContentProvider as content provider.
+ * This implementation extends the regular eclipse MultiPageEditorPart.
+ * The refresh() method allows to refresh the tabs.
  * 
- * The implementation do not listen on model change. This can be done by
- * subclasses. To add a new tab, one should add it as a model in the
- * ContentProvider. The addPage() methods should not be used for this purpose.
+ * The implementation do not listen on model change. This can be done by subclasses.
+ * To add a new tab, one should add it as a model in the ContentProvider. The addPage()
+ * methods should not be used for this purpose.
  * 
- * This implementation is intended for debug and testing purpose : it can be
- * used in place of the AbstractMultiPageSashEditor. It takes the same arguments
- * and ContentProvider, but it only allows one folder and don't deal with
- * multisashes. Also, the implementation use the regular Eclipse EditorSite
- * management. This allows to check for problems from this site management.
+ * This implementation is intended for debug and testing purpose : it can be used in place
+ * of the AbstractMultiPageSashEditor. It takes the same arguments and ContentProvider, but
+ * it only allows one folder and don't deal with multisashes.
+ * Also, the implementation use the regular Eclipse EditorSite management. This allows to check for problems from this
+ * site management.
  * 
  * @author dumoulin
  */
@@ -74,8 +74,9 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	}
 
 	/**
-	 * This method is called at the end of createPartControl(). Just intercept
-	 * the call in order to call activate(). Create the part controls. {@inheritDoc}
+	 * This method is called at the end of createPartControl().
+	 * Just intercept the call in order to call activate().
+	 * Create the part controls. {@inheritDoc}
 	 */
 	@Override
 	protected void initializePageSwitching() {
@@ -85,17 +86,18 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	}
 
 	/**
-	 * Method to activate the editor. Called immediately after
-	 * createPartControl() is complete. To be implemented by subclasses. Default
-	 * implementation do nothing.
+	 * Method to activate the editor.
+	 * Called immediately after createPartControl() is complete.
+	 * To be implemented by subclasses. Default implementation do nothing.
 	 */
 	protected void activate() {
 
 	}
 
 	/**
-	 * Method to deactivate the editor. Called when dispose() is called. To be
-	 * implemented by subclasses. Default implementation do nothing.
+	 * Method to deactivate the editor.
+	 * Called when dispose() is called.
+	 * To be implemented by subclasses. Default implementation do nothing.
 	 */
 	protected void deactivate() {
 
@@ -111,7 +113,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	public void dispose() {
 		deactivate();
 		super.dispose();
-		// sashContainer.dispose();
+		//		sashContainer.dispose();
 	}
 
 	@Override
@@ -135,6 +137,8 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 
 		return pageProvider;
 	}
+
+
 
 	/**
 	 * @param pageProvider
@@ -175,7 +179,11 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 				setPageImage(index, image);
 			return index;
 		} catch (PartInitException e) {
-			ErrorDialog.openError(getSite().getShell(), "Error creating nested text editor", null, e.getStatus());
+			ErrorDialog.openError(
+					getSite().getShell(),
+					"Error creating nested text editor",
+					null,
+					e.getStatus());
 			return -1;
 		}
 
@@ -188,31 +196,29 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		// get the page descriptions
 		pageProvider = getContentProvider();
 		// Get the current tabFolder
-		//
+		// 
 		tabFolderModel = lookupFolder();
 
 		refreshTabs();
 
-		// // iterate over pages to be show
-		// for( Object rawPageModel : tabFolderModel.getChildren() )
-		// {
-		// // Get the model interface
-		// ITabItemModel tabItem = tabFolderModel.createChildSashModel(
-		// rawPageModel);
-		// if(tabItem instanceof IEditorModel )
-		// {
-		// addPage((IEditorModel)tabItem );
-		// }
-		// else if(tabItem instanceof IComponentModel )
-		// {
-		// addPage((IComponentModel)tabItem );
-		// }
-		// else
-		// {
-		// System.err.println("Can't create page for model '" + tabItem +
-		// "'. Skipp it.");
-		// }
-		// }
+		//		// iterate over pages to be show
+		//		for( Object rawPageModel : tabFolderModel.getChildren() )
+		//			{
+		//			// Get the model interface
+		//			ITabItemModel tabItem = tabFolderModel.createChildSashModel( rawPageModel);
+		//			if(tabItem instanceof IEditorModel )
+		//			{
+		//				addPage((IEditorModel)tabItem );
+		//			}
+		//			else if(tabItem instanceof IComponentModel )
+		//			{
+		//				addPage((IComponentModel)tabItem );				
+		//			}
+		//			else
+		//			{
+		//				System.err.println("Can't create page for model '" + tabItem + "'. Skipp it.");
+		//			}
+		//		}
 	}
 
 	/**
@@ -231,8 +237,8 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	}
 
 	/**
-	 * Recursively search in sash models for a FolderModel. Return the first
-	 * encountered folder.
+	 * Recursively search in sash models for a FolderModel.
+	 * Return the first encountered folder.
 	 * 
 	 * @param panelModel
 	 * @return
@@ -256,22 +262,21 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	}
 
 	/**
-	 * Create the provider. Subclass must implements this method. It should
-	 * return the provider used by the editor.
+	 * Create the provider.
+	 * Subclass must implements this method. It should return the provider used by the editor.
 	 * 
 	 */
 	abstract protected ISashWindowsContentProvider createPageProvider();
 
 	/**
-	 * Refresh the tabs order. This method should be called after the model list
-	 * is modified.
+	 * Refresh the tabs order.
+	 * This method should be called after the model list is modified.
 	 */
 	protected void refreshTabs() {
 		// get list of diagrams to be displayed
 		List<?> newModels = tabFolderModel.getChildren();
 
-		// Check if each model has an open pageEditor. If not, create the
-		// editor.
+		// Check if each model has an open pageEditor. If not, create the editor.
 		Iterator<?> newIter = newModels.iterator();
 		while(newIter.hasNext()) {
 			Object model = newIter.next();
@@ -283,7 +288,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 			}
 		}
 
-		// If open editor count is the same has models count,
+		// If open editor count is the same has models count, 
 		// all models have an editor. So, end the refresh process.
 		if(newModels.size() == getPageCount())
 			return;
@@ -323,6 +328,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		return false;
 	}
 
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -347,8 +353,8 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	}
 
 	/**
-	 * Add a new editor at the end of existing editors. First, create the
-	 * editor, then add it to the tabs.
+	 * Add a new editor at the end of existing editors.
+	 * First, create the editor, then add it to the tabs.
 	 * 
 	 * @param contentProvider
 	 *        the diagram (model) to be displayed in the editor
@@ -373,9 +379,10 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 
 		// Add the model in the list of current tabs.
 		currentTabs.add(tabItem);
-		// set active page
+		//  set active page
 		setActivePage(editorIndex);
 
 	}
+
 
 }

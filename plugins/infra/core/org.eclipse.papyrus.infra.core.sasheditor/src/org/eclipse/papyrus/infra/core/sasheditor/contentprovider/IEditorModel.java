@@ -26,16 +26,15 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 public interface IEditorModel extends IPageModel {
 
 	/**
-	 * Create the IEditor that should be shown. Editor life cycle methods are
-	 * not called.
+	 * Create the IEditor that should be shown.
+	 * Editor life cycle methods are not called.
 	 * 
 	 * @return A new instance of the IEditor.
 	 */
 	public IEditorPart createIEditorPart() throws PartInitException;
 
 	/**
-	 * Get the EditorActionBarContributor that should be associated with the
-	 * editor .
+	 * Get the EditorActionBarContributor that should be associated with the editor .
 	 * 
 	 * @return
 	 */
