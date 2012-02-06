@@ -12,6 +12,20 @@
  * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug 361643: [StateMachine Diagram] Display of Guards doesn't work.
  *
  *****************************************************************************/
+/*****************************************************************************
+ * Copyright (c) 2010-2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ * 
+ * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug 361643: [StateMachine Diagram] Display of Guards doesn't work.
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.parsers;
 
 import java.util.Iterator;
@@ -54,6 +68,7 @@ import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecification;
 
+
 public class TransitionPropertiesParser implements IParser, ISemanticParser {
 
 	private static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
@@ -67,6 +82,9 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
+		if(element instanceof EObjectAdapter) {
+			final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
+		}
 		return EMPTY_STRING;
 	}
 
@@ -153,7 +171,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			result.append(getTextForGuard(trans));
 			String textForEffect = getTextForEffect(trans);
 			if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-				result.append("/\n").append(textForEffect); //$NON-NLS-1$
+				result.append("/ ").append(textForEffect); //$NON-NLS-1$
 			}
 			return result.toString();
 		}
@@ -184,23 +202,21 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 * @return
 	 */
 	protected String getTextForEffect(Transition trans) {
-		StringBuilder result = new StringBuilder();
+		StringBuilder text = new StringBuilder();
+		String result = EMPTY_STRING;
 		Behavior effect = trans.getEffect();
 		if(effect != null) {
-			EClass eClass = effect.eClass();
-			if(effect instanceof OpaqueBehavior) {
-				OpaqueBehavior ob = (OpaqueBehavior)effect;
-				if(ob.getBodies().size() > 0) {
-					// return body of behavior (only handle case of a single body)
-					result.append(ob.getBodies().get(0));
-					return result.toString();
-				}
-			}
-			if(eClass != null) {
-				result.append(eClass.getName()).append(": ").append(effect.getName()); //$NON-NLS-1$
+			if (effect instanceof OpaqueBehavior){
+				result = ((OpaqueBehavior) effect).getBodies().get(0);
+			} else {
+				EClass eClass = effect.eClass();
+				if(eClass != null) {
+					text.append(eClass.getName()).append(" :").append(effect.getName()); //$NON-NLS-1$
+					result = String.format("%s", text.toString()); //$NON-NLS-1$
+				}				
 			}
 		}
-		return result.toString();
+		return result;
 	}
 
 	/**
@@ -212,33 +228,19 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	protected String getTextForTrigger(Transition trans) {
 		StringBuilder result = new StringBuilder();
 		boolean isFirstTrigger = true;
+		TriggerTextGetter triggerTextGetter = new TriggerTextGetter();
 		for(Trigger t : trans.getTriggers()) {
-			if(t != null) {
-				if(!isFirstTrigger)
-					result.append(", "); //$NON-NLS-1$
-				else
-					isFirstTrigger = false;
+			if(t != null && t.getEvent() != null) {
 				Event e = t.getEvent();
-				if(e instanceof CallEvent) {
-					if(((CallEvent)e).getOperation() != null)
-						result.append(((CallEvent)e).getOperation().getName());
-					else
-						result.append(((CallEvent)e).getName());
-
-				} else if(e instanceof SignalEvent) {
-					if(((SignalEvent)e).getSignal() != null)
-						result.append(((SignalEvent)e).getSignal().getName());
-					else
-						result.append(((SignalEvent)e).getName());
-				} else if(e instanceof ChangeEvent) {
-					result.append("when ").append("\"").append(retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-				} else if(e instanceof TimeEvent) {
-					//absRelPrefix
-					result.append((((TimeEvent)e).isRelative() ? "after " : "at ")); //$NON-NLS-1$ //$NON-NLS-2$
-					// body
-					result.append("\"").append(retrieveBody((OpaqueExpression)((TimeEvent)e).getWhen().getExpr(), "Natural language")).append("\""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				} else { // any receive event
-					result.append("all"); //$NON-NLS-1$
+				String tText = triggerTextGetter.doSwitch(e);
+				if(tText != null && !tText.isEmpty()) {
+					//Appending comas if the trigger is not the first one.
+					if(!isFirstTrigger) {
+						result.append(", "); //$NON-NLS-1$
+					} else {
+						isFirstTrigger = false;
+					}
+					result.append(tText);
 				}
 			}
 		}
@@ -246,72 +248,16 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	}
 
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-
 		return new ParserEditStatus(org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, ""); //$NON-NLS-1$
 	}
 
 	public List getSemanticElementsBeingParsed(EObject element) {
-		Element umlElement = (Element)element;
-		List<EObject> result = new LinkedList<EObject>();
-		if(umlElement instanceof Transition) {
-			Transition trans = (Transition)umlElement;
-			if(trans != null) {
-				result.add(trans);
-				/**
-				 * Listen constraint modification
-				 */
-				Constraint constraint = trans.getGuard();
-				if(constraint != null) {
-					result.add(constraint);
-					ValueSpecification specification = constraint.getSpecification();
-					if(specification != null) {
-						result.add(specification);
-					}
-				}
-				/**
-				 * Listen trigger modification
-				 */
-				for(Trigger t : trans.getTriggers()) {
-					if(t != null) {
-						result.add(t);
-					}
-				}
-				/**
-				 * Listen effect modification
-				 */
-				Behavior effect = trans.getEffect();
-				if(effect != null) {
-					result.add(effect);
-				}
-			}
-
-			//			if(constraint.getSpecification() != null) {
-			//				ValueSpecification value = constraint.getSpecification();
-			//				result.add(value);
-			//			}
-		}
-		return result;
+		SemanticElementsToParseGetter getter = new SemanticElementsToParseGetter();
+		return getter.doSwitch(element);
 	}
 
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
 	}
-
-	private String retrieveBody(OpaqueExpression exp, String languageName) {
-		String body = EMPTY_STRING;
-		if(exp == null)
-			return body;
-		int index = 0;
-		for(String _languageName : exp.getLanguages()) {
-			if(_languageName.equals(languageName)) {
-				if(index < exp.getBodies().size())
-					return exp.getBodies().get(index);
-				else
-					return EMPTY_STRING;
-			}
-			index++;
-		}
-		return body;
-	}
-
 }
+

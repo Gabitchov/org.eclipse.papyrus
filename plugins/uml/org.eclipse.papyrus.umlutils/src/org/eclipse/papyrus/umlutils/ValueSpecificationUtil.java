@@ -96,7 +96,22 @@ public class ValueSpecificationUtil {
 				}
 				break;
 			case UMLPackage.STRING_EXPRESSION:
-				// TODO
+				StringExpression stringExpr = (StringExpression)specification;
+				if(!stringExpr.getOperands().isEmpty()) {
+					StringBuffer operandsBuff = new StringBuffer(stringExpr.getSymbol());
+					operandsBuff.append("(");
+					int initialLength = operandsBuff.length();
+					for(ValueSpecification operand : stringExpr.getOperands()) {
+						if(operandsBuff.length() > initialLength) {
+							operandsBuff.append(",");
+						}
+						operandsBuff.append(getSpecificationValue(operand));
+					}
+					operandsBuff.append(")");
+					value = operandsBuff.toString();
+				} else {
+					value = stringExpr.getSymbol();
+				}
 				break;
 			case UMLPackage.DURATION:
 				Duration durationExpr = (Duration)specification;
