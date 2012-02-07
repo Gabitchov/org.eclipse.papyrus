@@ -62,7 +62,8 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.navigation.uml,
  org.eclipse.emf.validation.ocl;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.eclipse.papyrus.editor;bundle-version="0.8.2"
+ org.eclipse.papyrus.editor;bundle-version="0.8.2",
+ com.google.collect;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Ant-Version: Apache Ant 1.7.0
 Eclipse-LazyStart: true
@@ -70,5 +71,3 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.statemachine; singleton:=true
-Import-Package: com.google.common.base;version="1.0.0",
- com.google.common.collect;version="1.0.0"

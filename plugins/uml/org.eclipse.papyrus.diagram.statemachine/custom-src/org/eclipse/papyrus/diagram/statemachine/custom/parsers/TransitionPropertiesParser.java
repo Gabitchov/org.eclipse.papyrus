@@ -233,7 +233,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			if(t != null && t.getEvent() != null) {
 				Event e = t.getEvent();
 				String tText = triggerTextGetter.doSwitch(e);
-				if(tText != null && !tText.isEmpty()) {
+				if(tText != null && !tText.equals("")) {
 					//Appending comas if the trigger is not the first one.
 					if(!isFirstTrigger) {
 						result.append(", "); //$NON-NLS-1$
