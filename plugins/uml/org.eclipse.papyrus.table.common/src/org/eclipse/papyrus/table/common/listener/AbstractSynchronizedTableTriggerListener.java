@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -301,7 +302,7 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 	 *         a collection with the elements returned by the filling queries
 	 */
 	private Collection<EObject> getAllElementsUsingFillingqueries() {
-		final Collection<EObject> allElements = new HashSet<EObject>();
+		final Collection<EObject> allElements = new LinkedHashSet<EObject>();
 		for(ModelQuery query : this.papyrusTable.getFillingQueries()) {
 			AbstractModelQuery impl = null;
 			try {
