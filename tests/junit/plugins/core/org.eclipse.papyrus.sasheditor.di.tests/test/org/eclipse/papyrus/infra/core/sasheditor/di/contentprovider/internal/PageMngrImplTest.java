@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal;
+package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +78,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testAddPage() {
 		// A listener on change event.
@@ -109,7 +109,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#allPages()}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#allPages()}.
 	 */
 	public void testAllPages() {
 		// A listener on change event.
@@ -138,7 +138,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closePage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testClosePage() {
 		// A listener on change event.
@@ -182,7 +182,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#closeAllOpenedPages())}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closeAllOpenedPages())}.
 	 */
 	public void testCloseAllOpenedPages() {
 		// A listener on change event.
@@ -228,7 +228,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#closeAllOpenedPages())}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#closeAllOpenedPages())}.
 	 */
 	public void testCloseOtherOpenedPages() {
 		// A listener on change event.
@@ -278,7 +278,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testOpenPage() {
 		// A listener on change event.
@@ -314,7 +314,7 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testRemovePage() {
 		// A listener on change event.

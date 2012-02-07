@@ -16,7 +16,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.MessagePartModel;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;

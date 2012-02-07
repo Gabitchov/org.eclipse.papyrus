@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di;
+package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
 import java.io.File;
 
@@ -84,7 +84,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	/**
 	 * Test method for
-	 * {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.IPageModelFactory)}
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory)}
 	 * .
 	 */
 	public void testDiSashModelMngrIPageModelFactory() {
@@ -100,7 +100,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	/**
 	 * Test method for
-	 * {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.emf.ecore.resource.Resource)}
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory, org.eclipse.emf.ecore.resource.Resource)}
 	 * .
 	 */
 	public void testDiSashModelMngrIPageModelFactoryResource() {
@@ -122,7 +122,7 @@ public class DiSashModelMngrTest extends TestCase {
 
 	/**
 	 * Test method for
-	 * {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.IPageModelFactory, org.eclipse.papyrus.sashwindows.di.DiSashModel)}
+	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#DiSashModelMngr(org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory, org.eclipse.papyrus.sashwindows.di.DiSashModel)}
 	 * .
 	 */
 	public void testDiSashModelMngrIPageModelFactoryDiSashModel() {
@@ -138,7 +138,7 @@ public class DiSashModelMngrTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.DiSashModelMngr#getIPageMngr()}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#getIPageMngr()}.
 	 */
 	public void testGetIPageMngr() {
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
@@ -147,7 +147,7 @@ public class DiSashModelMngrTest extends TestCase {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.DiSashModelMngr#getISashWindowsContentProvider()}.
+	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr#getISashWindowsContentProvider()}.
 	 */
 	public void testGetISashWindowsContentProvider() {
 		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);

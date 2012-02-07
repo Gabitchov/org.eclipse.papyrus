@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal;
+package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import java.util.ArrayList;
 import java.util.List;

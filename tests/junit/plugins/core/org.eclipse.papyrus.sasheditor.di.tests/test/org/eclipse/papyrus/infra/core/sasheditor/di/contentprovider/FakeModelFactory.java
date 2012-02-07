@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal;
+package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
@@ -21,10 +21,10 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFa
 /**
  * @author dumoulin
  */
-public class FakePageModelFactory implements IPageModelFactory {
+public class FakeModelFactory implements IPageModelFactory {
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory#createIPageModel(org.eclipse.emf.ecore.EObject)
 	 * 
 	 * @param pageIdentifier
 	 * @return

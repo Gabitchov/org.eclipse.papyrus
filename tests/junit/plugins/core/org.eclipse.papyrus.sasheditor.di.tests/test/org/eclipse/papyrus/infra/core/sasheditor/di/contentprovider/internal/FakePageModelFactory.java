@@ -12,32 +12,26 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.di.internal;
+package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
+
 
 /**
- * Listener on ContentChange for Tests.
- * 
  * @author dumoulin
  */
-public class ContentChangeListener implements IContentChangedListener {
-
-	/** Count number of change event */
-	private int changeCount = 0;
+public class FakePageModelFactory implements IPageModelFactory {
 
 	/**
-	 * @return the changeCount
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory#createIPageModel(java.lang.Object)
+	 * 
+	 * @param pageIdentifier
+	 * @return
 	 */
-	public int getChangeCount() {
-		return changeCount;
+	public IPageModel createIPageModel(Object pageIdentifier) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void contentChanged(ContentEvent event) {
-		changeCount++;
-	}
-
-	public void reset() {
-		changeCount = 0;
-	}
 }
