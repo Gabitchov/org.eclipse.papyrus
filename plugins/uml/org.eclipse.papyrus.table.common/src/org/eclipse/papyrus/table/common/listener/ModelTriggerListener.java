@@ -17,6 +17,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
@@ -32,7 +33,7 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 	 * 
 	 * @param table
 	 *        the table
-	 * @param provider
+	 * @param prov<ider
 	 *        the nattable widget provider
 	 */
 	public ModelTriggerListener(final PapyrusTableInstance table, final INatTableWidgetProvider provider) {
@@ -52,14 +53,21 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 	@Override
 	protected Command trigger(TransactionalEditingDomain domain, Notification notification) {
 
-		
+
 		Command cmd = null;
-	
+
 		Object notifier = notification.getNotifier();
-		if(notifier instanceof org.eclipse.uml2.uml.Element) {
+		int eventType = notification.getEventType();
+		if(notifier instanceof TabFolder) {
+			switch(eventType) {
+			case Notification.ADD:
+				cmd = getSynchronizationCommand(domain); //update the contents of the table when we open the table (bug 369208)
+			default:
+				break;
+			}
+		} else if(notifier instanceof org.eclipse.uml2.uml.Element) {
 			if(this.papyrusTable.isIsSynchronized()) {
 
-				int eventType = notification.getEventType();
 				//we can't do a test on the element which provide the notification, because each action on the model can change the result of the query
 				switch(eventType) {
 				case Notification.SET:
@@ -68,7 +76,6 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 				case Notification.REMOVE:
 				case Notification.ADD_MANY:
 				case Notification.REMOVE_MANY:
-					System.out.println(notification);
 					cmd = getSynchronizationCommand(domain);
 				default:
 					break;
