@@ -7,9 +7,13 @@ Export-Package: org.eclipse.papyrus.diagram.common.groups.commands,
  org.eclipse.papyrus.diagram.common.groups.request,
  org.eclipse.papyrus.diagram.common.groups.tabbedproperties.appearance,
  org.eclipse.papyrus.diagram.common.groups.utils
-Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.gm
- f.runtime.diagram.ui.properties,org.eclipse.papyrus.diagram.common,or
- g.eclipse.papyrus.ui.toolbox,org.eclipse.papyrus.preferences
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.gmf.runtime.diagram.ui.properties,
+ org.eclipse.papyrus.diagram.common,
+ org.eclipse.papyrus.ui.toolbox,
+ org.eclipse.papyrus.preferences,
+ com.google.collect;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
@@ -20,6 +24,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.groups;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: com.google.common.base;version="1.0.0",
- com.google.common.collect;version="1.0.0"
 

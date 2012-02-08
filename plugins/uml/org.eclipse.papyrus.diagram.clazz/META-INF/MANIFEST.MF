@@ -52,12 +52,11 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.ui,
- org.eclipse.papyrus.service.edit
+ org.eclipse.papyrus.service.edit,
+ com.google.collect;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.8.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.clazz; singleton:=true
-Import-Package: com.google.common.base;version="1.0.0",
- com.google.common.collect;version="1.0.0"
