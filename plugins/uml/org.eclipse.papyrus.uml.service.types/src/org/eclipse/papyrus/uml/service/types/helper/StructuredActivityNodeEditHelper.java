@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.diagram.common.commands.DestroyElementPapyrusCommand;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 
@@ -58,7 +59,7 @@ public class StructuredActivityNodeEditHelper extends ElementEditHelper {
 				}
 			}
 			for ( ActivityEdge edgeToDstroy : edgesToDestroy){
-				DestroyElementCommand destroyCommand = new DestroyElementCommand(new DestroyElementRequest(req.getEditingDomain(), edgeToDstroy, false));
+				DestroyElementCommand destroyCommand = new DestroyElementPapyrusCommand(new DestroyElementRequest(req.getEditingDomain(), edgeToDstroy, false));
 				if ( destroyCommand != null && destroyCommand.canExecute()){
 					cc.compose(destroyCommand);
 				}
