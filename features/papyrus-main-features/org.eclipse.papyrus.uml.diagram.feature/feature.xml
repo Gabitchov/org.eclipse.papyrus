@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.diagram.feature"
-      label="Papyrus UML Diagram (Incubation)"
+      label="%featureName"
       version="0.9.0.qualifier"
-      provider-name="Eclipse Modeling Project">
-
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
-   </description>
+      provider-name="%providerName">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2011 CEA LIST.
@@ -18,8 +14,8 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="%licenseURL">
+      %license
    </license>
 
    <plugin
