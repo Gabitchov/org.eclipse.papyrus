@@ -18,34 +18,34 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfiguration;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.RGB;
-import org.eclipse.swt.widgets.Display;
-
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 
 /**
- * PapyrusLabelProvider provides the same labels and icons as one can find in the Model Explorer.
+ * PLabelProvider provides the same labels and icons as one can find in
+ * the Model Explorer.
  */
-// Not placed in the UI plugin because it is used in the subclasses of AbstractDiffExtension, in getText() method 
-public class PapyrusLabelProvider extends CustomizableModelLabelProvider implements IRefreshViewer {
-
+public class EMFCompareLabelProvider extends CustomizableModelLabelProvider implements ILabelProviderRefreshingViewer {
 
 	/** The configuration. */
 	private final AppearanceConfiguration configuration;
 
-	//TODO merge ModelStructureLabelProvider with this provider!
-	private final ModelStructureLabelProvider provider = new ModelStructureLabelProvider();
+	/** the list of the registered viewer */
+	private Collection<TreeViewer> viewers = null;
 
 	/**
 	 * Constructor.
@@ -53,41 +53,11 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider impleme
 	 * @param customizationManager
 	 *        the customization manager
 	 */
-	public PapyrusLabelProvider(final CustomizationManager customizationManager) {
+	public EMFCompareLabelProvider(final CustomizationManager customizationManager) {
 		super(customizationManager);
 		this.configuration = getAppearanceConfiguration(customizationManager);
 	}
 
-	//	/**
-	//	 * Instantiates a new papyrus label provider.
-	//	 */
-	//	public PapyrusLabelProvider() {
-	//		this(initCustomizationManager());
-	//	}
-
-	//	/**
-	//	 * Inits the customization manager.
-	//	 *
-	//	 * @return the customization manager
-	//	 */
-	//	private static CustomizationManager initCustomizationManager() {
-	//		CustomizationManager manager = new CustomizationManager();
-	//		try {
-	//			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-	//			for(MetamodelView metamodelView : registryDefaultCustomizations) {
-	//				manager.registerCustomization(metamodelView);
-	//			}
-	//			manager.loadCustomizations();
-	//
-	//		} catch (Throwable e) {
-	//			//TODO
-	////			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-	//		}
-	//		manager.setShowFullQualifiedNames(false);
-	//		manager.setShowURI(true);
-	//		manager.setShowDerivedLinks(false);
-	//		return manager;
-	//	}
 
 	/**
 	 * Gets the appearance configuration.
@@ -105,16 +75,15 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider impleme
 				return (AppearanceConfiguration)getApperanceConfigurationMethod.invoke(customizationManager2);
 			}
 		} catch (final SecurityException e) {
-			//TODO
-			//			Activator.logError(e);
+			Activator.log.error(e);
 		} catch (final NoSuchMethodException e) {
-			//			Activator.logError(e);
+			Activator.log.error(e);
 		} catch (final IllegalArgumentException e) {
-			//			Activator.logError(e);
+			Activator.log.error(e);
 		} catch (final IllegalAccessException e) {
-			//			Activator.logError(e);
+			Activator.log.error(e);
 		} catch (final InvocationTargetException e) {
-			//			Activator.logError(e);
+			Activator.log.error(e);
 		}
 		return new AppearanceConfiguration(null); // default one.
 	}
@@ -128,33 +97,46 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider impleme
 	 */
 	@Override
 	public String getText(final Object element) {
-		if(element == null) {
-			return ""; //$NON-NLS-1$
+		String text = "";
+		if(element instanceof AbstractDiffExtension) {
+			text = ((AbstractDiffExtension)element).getText();
+		} else if(element instanceof IFile) {
+			text = ((IFile)element).getName();
+		} else if(element instanceof Resource) {
+			text = ((Resource)element).getURI().lastSegment();
 		}
 		if(element instanceof EObject) {
 			final ITreeElement treeElement = getTreeElement((EObject)element);
-			return super.getText(treeElement);
+			text = super.getText(treeElement);
+		} else {
+			text = super.getText(element);
 		}
-		return super.getText(element);
+		return text;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider#getImage(java.lang.Object)
+	 * @see
+	 * org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider
+	 * #getImage(java.lang.Object)
 	 */
 	@Override
 	public Image getImage(final Object element) {
-		if(element == null) {
-			return null;
-		}
-		if(element instanceof EObject) {
+		Image image = null;
+		if(element instanceof AbstractDiffExtension) {
+			image = (Image)((AbstractDiffExtension)element).getImage();
+		} else if(element instanceof IFile) {
+			image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FILE);
+		} else if(element instanceof EObject) {
 			final ITreeElement treeElement = getTreeElement((EObject)element);
-			return super.getImage(treeElement);
+			image = super.getImage(treeElement);
+		} else {
+			image = super.getImage(element);
 		}
-		return super.getImage(element);
-	}
+		return image;
 
+	}
 
 	/**
 	 * Gets the tree element.
@@ -170,36 +152,36 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider impleme
 		return new ModelElementItem(eObject, getTreeElement(eObject.eContainer()), this.configuration);
 	}
 
-//	//TODO for test only!
-//	@Override
-//	public Color getBackground(final Object element) {
-//		final RGB rgb = new RGB(255, 200, 0);
-//		final Device device = Display.getDefault();
-//		final Color color = new Color(device, rgb);
-//		// TODO Auto-generated method stub
-//		return color;
-//	}
 
-	private Collection<TreeViewer> viewers = null;
 
-	//TODO supprimer ces viewers quand ils seront disposés!
 
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer#registerViewer(org.eclipse.jface.viewers.TreeViewer)
+	 * 
+	 * @param viewer
+	 */
 	public void registerViewer(final TreeViewer viewer) {
-		// TODO Auto-generated method stub
 		if(viewers == null) {
 			viewers = new HashSet<TreeViewer>();
 		}
 		final DisposeListener listener = new DisposeListener() {
 
 			public void widgetDisposed(DisposeEvent e) {
-			viewer.getTree().removeDisposeListener(this);
-			viewers.remove(viewer);
+				viewer.getTree().removeDisposeListener(this);
+				unregisterViewer(viewer);
 			}
 		};
 		viewer.getTree().addDisposeListener(listener);
 		viewers.add(viewer);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer#refreshViewer()
+	 * 
+	 */
 	public void refreshViewer() {
 		for(TreeViewer current : viewers) {
 			if(!current.getTree().isDisposed()) {
@@ -208,5 +190,14 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider impleme
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer#unregisterViewer(org.eclipse.jface.viewers.TreeViewer)
+	 * 
+	 * @param viewer
+	 */
+	public void unregisterViewer(TreeViewer viewer) {
+		viewers.remove(viewer);
+	}
 
 }

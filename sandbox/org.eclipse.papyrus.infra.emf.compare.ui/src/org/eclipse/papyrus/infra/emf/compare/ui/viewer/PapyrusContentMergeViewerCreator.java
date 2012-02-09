@@ -23,13 +23,26 @@ import org.eclipse.swt.widgets.Composite;
  * This class allows to create the MergeViewer
  *
  */
-public class TransactionalContentMergeViewerCreator implements IViewerCreator {
+public class PapyrusContentMergeViewerCreator implements IViewerCreator {
 
-	public TransactionalContentMergeViewerCreator() {
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
+	public PapyrusContentMergeViewerCreator() {
 		//nothing to do
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.compare.IViewerCreator#createViewer(org.eclipse.swt.widgets.Composite, org.eclipse.compare.CompareConfiguration)
+	 *
+	 * @param parent
+	 * @param config
+	 * @return
+	 */
 	public Viewer createViewer(Composite parent, CompareConfiguration config) {
-		return new TransactionalModelContentMergeViewer(parent, config);
+		return new PapyrusModelContentMergeViewer(parent, config);
 	}
 }

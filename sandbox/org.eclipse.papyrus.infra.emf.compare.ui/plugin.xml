@@ -4,19 +4,15 @@
 <plugin>
    <extension point="org.eclipse.compare.contentMergeViewers">
       <viewer
-            class="org.eclipse.papyrus.infra.emf.compare.ui.viewer.TransactionalContentMergeViewerCreator"
-            extensions="uml,ecore"
+            class="org.eclipse.papyrus.infra.emf.compare.ui.viewer.PapyrusContentMergeViewerCreator"
+            extensions="uml"
             id="org.eclipse.papyrus.infra.emf.compare.ui.papyrus.viewer"
-            label="INFRA Papyrus Viewer">
+            label="Papyrus Content Merge Viewer">
       </viewer>
    </extension>
    <extension point="org.eclipse.compare.structureMergeViewers">
-      <viewer class="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer.PapyrusStructureMergeViewerCreator" extensions="uml,ecore" id="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer" label="INFRA Papyrus Structure Merge Viewer">
+      <viewer class="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer.PapyrusStructureMergeViewerCreator" extensions="uml" id="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer" label="Papyrus Structure Merge Viewer">
       </viewer>
    </extension>
 
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization
-            file="resources/diffElement.uiCustom"/>
-   </extension>
 </plugin>

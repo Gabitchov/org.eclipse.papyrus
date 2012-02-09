@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.emf.compare.ui.viewer;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 
 import org.eclipse.compare.CompareConfiguration;
@@ -24,13 +25,11 @@ import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.Utils;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorPart;
 
-public class TransactionalModelContentMergeViewer extends ModelContentMergeViewer {
+public class PapyrusModelContentMergeViewer extends ModelContentMergeViewer {
 
 	/** the list of the metamodels referenced in the compared files. this field is used by the Customization Manager */
 	private Collection<EPackage> metamodels;
@@ -42,7 +41,7 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 	 * @param parent
 	 * @param config
 	 */
-	public TransactionalModelContentMergeViewer(final Composite parent, final CompareConfiguration config) {
+	public PapyrusModelContentMergeViewer(final Composite parent, final CompareConfiguration config) {
 		super(parent, config);
 	}
 
@@ -70,7 +69,7 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 	 */
 	@Override
 	protected ModelContentMergeTabFolder createModelContentMergeTabFolder(final Composite composite, final int side) {
-		return new TransactionalModelContentMergeTabFolder(this, composite, side);
+		return new PapyrusModelContentMergeTabFolder(this, composite, side);
 	}
 
 
@@ -84,30 +83,25 @@ public class TransactionalModelContentMergeViewer extends ModelContentMergeViewe
 	 */
 	@Override
 	protected void createToolItems(final ToolBarManager tbm) {
-
 		//we add an action to change the applied customization
 		if(metamodels == null) {
 			metamodels = new HashSet<EPackage>();
 		}
-		final IAction customizationAction = new CustomizationAction(metamodels);
+		final IAction customizationAction = new CustomizationAction(Collections.unmodifiableCollection(metamodels));
 		final ActionContributionItem customizationContributionItem = new ActionContributionItem(customizationAction);
 		tbm.insert(1, customizationContributionItem);
 		super.createToolItems(tbm);
-
 	}
-
 
 	/**
 	 * 
-	 * {@inheritDoc}
-	 * 
+	 * @see org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer#handleDispose(org.eclipse.swt.events.DisposeEvent)
+	 *
 	 * @param event
 	 */
 	@Override
-	protected void handleDispose(final DisposeEvent event) {
-		//TODO : et si l'éditeur que l'on ferme n'est pas celui au premier plan...
-		final IEditorPart editor = org.eclipse.papyrus.infra.emf.compare.ui.utils.Utils.getCurrentEditor();
-		LabelProviderUtil.INSTANCE.destroyLabelProvider(editor);
+	protected void handleDispose(DisposeEvent event) {
+		metamodels.clear();
 		super.handleDispose(event);
 	}
 }

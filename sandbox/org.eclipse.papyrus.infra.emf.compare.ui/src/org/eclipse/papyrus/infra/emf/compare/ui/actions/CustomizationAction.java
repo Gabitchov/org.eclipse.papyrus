@@ -16,28 +16,20 @@ package org.eclipse.papyrus.infra.emf.compare.ui.actions;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.compare.internal.CompareEditor;
-import org.eclipse.compare.internal.ViewerDescriptor;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsDialog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.IRefreshViewer;
+import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.Utils;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.team.internal.ui.synchronize.SaveablesCompareEditorInput;
-import org.eclipse.team.ui.synchronize.SaveableCompareEditorInput;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * 
@@ -104,6 +96,6 @@ public class CustomizationAction extends Action {
 			customizationManager.loadCustomizations();
 		}
 		//we refresh the viewers in the editor
-		((IRefreshViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(Utils.getCurrentEditor())).refreshViewer();
+		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(Utils.getCurrentEditor())).refreshViewer();
 	}
 }
