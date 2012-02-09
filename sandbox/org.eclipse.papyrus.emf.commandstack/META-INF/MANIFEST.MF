@@ -7,7 +7,7 @@ Bundle-Activator: org.eclipse.papyrus.emf.commandstack.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.emf.facet.common.ui;bundle-version="0.2.0",
+ org.eclipse.emf.facet.common.ui,
  org.eclipse.emf.edit;bundle-version="2.7.1",
  org.eclipse.papyrus.sasheditor;bundle-version="0.8.2",
  org.eclipse.papyrus.core;bundle-version="0.8.2"
