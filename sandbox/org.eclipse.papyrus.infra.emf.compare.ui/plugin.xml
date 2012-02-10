@@ -5,13 +5,17 @@
    <extension point="org.eclipse.compare.contentMergeViewers">
       <viewer
             class="org.eclipse.papyrus.infra.emf.compare.ui.viewer.PapyrusContentMergeViewerCreator"
-            extensions="uml"
             id="org.eclipse.papyrus.infra.emf.compare.ui.papyrus.viewer"
             label="Papyrus Content Merge Viewer">
       </viewer>
    </extension>
    <extension point="org.eclipse.compare.structureMergeViewers">
-      <viewer class="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer.PapyrusStructureMergeViewerCreator" extensions="uml" id="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer" label="Papyrus Structure Merge Viewer">
+      <!--I add uml here, but it is not really a dependency-->
+      <viewer
+            class="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer.PapyrusStructureMergeViewerCreator"
+            extensions="ecore, uml" 
+            id="org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer"
+            label="Papyrus Structure Merge Viewer">
       </viewer>
    </extension>
 

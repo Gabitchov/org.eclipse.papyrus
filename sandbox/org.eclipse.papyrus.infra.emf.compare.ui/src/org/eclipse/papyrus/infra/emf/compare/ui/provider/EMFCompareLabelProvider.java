@@ -97,7 +97,7 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider impl
 	 */
 	@Override
 	public String getText(final Object element) {
-		String text = "";
+		String text = ""; //$NON-NLS-1$
 		if(element instanceof AbstractDiffExtension) {
 			text = ((AbstractDiffExtension)element).getText();
 		} else if(element instanceof IFile) {

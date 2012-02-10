@@ -24,9 +24,11 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
+import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.Utils;
+import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -42,10 +44,10 @@ public class CustomizationAction extends Action {
 	/**
 	 * tooltip for this action
 	 */
-	private static final String TOOLTIPTEXT = "Manage the applied customizations";
+	private static final String TOOLTIPTEXT = Messages.CustomizationAction_ManageAppliedCustomization;
 
 	//FIXME : avoid to duplicate this image?
-	private static final String CUSTOMIZATION_IMAGE_PATH = "icons/addUiCustom.gif";
+	private static final String CUSTOMIZATION_IMAGE_PATH = "icons/addUiCustom.gif"; //$NON-NLS-1$
 
 	/**
 	 * the registered metamodels for the customization manager
@@ -72,11 +74,11 @@ public class CustomizationAction extends Action {
 	 * 
 	 */
 	//TODO duplicate code from ModelExplorer
-	//TODO vérifier que l'on n'a pas la même chose dans les tables également!
+	//TODO duplicate in the table ?
 	@Override
 	public void run() {
 
-		final IEditorPart currentEditor = Utils.getCurrentEditor();
+		final IEditorPart currentEditor = EditorHelper.getCurrentEditor();
 		final CustomizationManager customizationManager = LabelProviderUtil.INSTANCE.getCustomizationManager(currentEditor);
 		final List<MetamodelView> initiallySelectedCustomizations = customizationManager.getRegisteredCustomizations();
 		final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(Display.getCurrent().getActiveShell(), initiallySelectedCustomizations, this.registeredMetamodel);
@@ -96,6 +98,6 @@ public class CustomizationAction extends Action {
 			customizationManager.loadCustomizations();
 		}
 		//we refresh the viewers in the editor
-		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(Utils.getCurrentEditor())).refreshViewer();
+		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(EditorHelper.getCurrentEditor())).refreshViewer();
 	}
 }
