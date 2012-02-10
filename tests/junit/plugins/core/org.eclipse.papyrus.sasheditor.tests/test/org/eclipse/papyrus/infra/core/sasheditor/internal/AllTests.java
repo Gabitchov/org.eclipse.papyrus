@@ -20,7 +20,11 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests for package org.eclipse.papyrus.infra.core.sasheditor.internal
  */
 @RunWith(Suite.class)
-@SuiteClasses({ SashContainerEventsProviderTest.class, SashWindowsContainerEventsProviderTest.class, SashWindowsContainerTest.class })
+@SuiteClasses({ SashContainerEventsProviderTest.class, 
+	SashWindowsContainerEventsProviderTest.class, 
+	SashWindowsContainerTest.class ,
+	SashWindowsContainerMemoryLeakTest.class
+	})
 public class AllTests {
 
 }

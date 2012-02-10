@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.FakeMultiSashPageEditor"
+            default="false"
+            id="org.eclipse.papyrus.infra.core.sasheditor.tests.editor.FakeMultiSashPageEditor"
+            name="FakeMultiSashPageEditor">
+      </editor>
+   </extension>
+
+</fragment>

@@ -22,7 +22,11 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 // testModel1
-org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.AllTests.class, org.eclipse.papyrus.infra.core.sasheditor.editor.AllTests.class, org.eclipse.papyrus.infra.core.sasheditor.internal.AllTests.class })
+org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.AllTests.class, 
+org.eclipse.papyrus.infra.core.sasheditor.editor.AllTests.class, 
+org.eclipse.papyrus.infra.core.sasheditor.internal.AllTests.class,
+org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.AllTests.class
+})
 public class AllTests {
 
 }
