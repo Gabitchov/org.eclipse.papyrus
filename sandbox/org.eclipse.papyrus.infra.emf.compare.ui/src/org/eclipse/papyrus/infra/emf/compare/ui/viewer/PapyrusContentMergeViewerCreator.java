@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.emf.compare.ui.viewer;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.IViewerCreator;
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
+import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 
