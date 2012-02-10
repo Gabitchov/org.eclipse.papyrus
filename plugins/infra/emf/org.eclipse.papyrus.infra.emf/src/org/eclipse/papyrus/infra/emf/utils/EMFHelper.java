@@ -12,9 +12,12 @@
 package org.eclipse.papyrus.infra.emf.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
@@ -400,6 +403,25 @@ public class EMFHelper {
 		}
 
 		return false; //The property if not required
+	}
+	
+	/**
+	 * 
+	 * @param resource
+	 *        a resource
+	 * 
+	 * @return
+	 *         the list of the metamodel knows by the resource
+	 */
+	public static Set<EPackage> getMetamodels(final Resource resource) {
+		Set<EPackage> metamodels = new HashSet<EPackage>();
+		if(resource != null) {
+			final List<EObject> contents = new ArrayList<EObject>(resource.getContents());
+			for(final EObject current : contents) {
+				metamodels.add(current.eClass().getEPackage());
+			}
+		}
+		return metamodels;
 	}
 
 
