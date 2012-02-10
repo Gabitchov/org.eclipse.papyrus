@@ -56,7 +56,7 @@ import org.eclipse.ui.services.IServiceScopes;
  * 
  * @see org.eclipse.ui.part.MultiPageEditorSite.class
  */
-public class MultiPageEditorSite implements IEditorSite, INestable {
+public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 
 
 	org.eclipse.ui.part.MultiPageEditorSite e;

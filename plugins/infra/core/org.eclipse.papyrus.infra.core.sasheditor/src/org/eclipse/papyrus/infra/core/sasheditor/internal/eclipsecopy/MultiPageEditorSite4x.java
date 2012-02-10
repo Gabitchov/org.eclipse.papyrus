@@ -71,7 +71,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
  * 
  * @see org.eclipse.ui.part.MultiPageEditorSite.class
  */
-public class MultiPageEditorSite4x implements IEditorSite, INestable {
+public class MultiPageEditorSite4x implements IMultiPageEditorSite, INestable {
 
 
 	org.eclipse.ui.part.MultiPageEditorSite e;

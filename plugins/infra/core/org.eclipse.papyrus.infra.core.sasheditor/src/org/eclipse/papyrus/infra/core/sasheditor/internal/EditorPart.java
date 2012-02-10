@@ -16,12 +16,15 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite4x;
 import org.eclipse.swt.SWT;
@@ -36,6 +39,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.ErrorEditorPart;
 import org.eclipse.ui.internal.dnd.IDropTarget;
@@ -416,11 +421,38 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 */
 	public void dispose() {
 
+		System.out.println("org.eclipse.papyrus.infra.core.sasheditor.internal.EditorPart.dispose()");
 		detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
 		// Dispose the editor.
-		editorPart.dispose();
+//		editorPart.dispose();
+		disposePart(editorPart);
+		
+		
+	}
+
+	/**
+	 * Disposes the given part and its site.
+	 * 
+	 * @param part
+	 *            The part to dispose; must not be <code>null</code>.
+	 * @copy copied from org.eclipse.ui.part.MultiPageEditorPart.disposePart(IWorkbenchPart) v3.8
+	 */
+	private void disposePart(final IWorkbenchPart part) {
+		SafeRunner.run(new ISafeRunnable() {
+			public void run() {
+				IWorkbenchPartSite partSite = part.getSite();
+				part.dispose();
+				if (partSite instanceof IMultiPageEditorSite) {
+					((IMultiPageEditorSite) partSite).dispose();
+				}
+			}
+
+			public void handleException(Throwable e) {
+				// Exception has already being logged by Core. Do nothing.
+			}
+		});
 	}
 
 
