@@ -175,17 +175,22 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			IDecoration deco = null;
 			org.eclipse.papyrus.infra.services.decoration.util.IDecoration decoration = null;
 			if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-				decoration = decorationService.getDecoration(view.getElement(), false);
-				decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
-				if(view instanceof Edge) {
-					/* Test *///decoration.setDecorationImage(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/obj16/Device.gif"));
-					deco = diagramDecorationAdapter.setDecoration(decoration, 50, 0, true);
-				} else {
-					int margin = -1;
-					if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-						margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
+				if(view.getElement() != null) {
+					decoration = decorationService.getDecoration(view.getElement(), false);
+					if(decoration != null) {
+						decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
+
+						if(view instanceof Edge) {
+							/* Test *///decoration.setDecorationImage(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/obj16/Device.gif"));
+							deco = diagramDecorationAdapter.setDecoration(decoration, 50, 0, true);
+						} else {
+							int margin = -1;
+							if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
+								margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
+							}
+							deco = diagramDecorationAdapter.setDecoration(decoration, 0, margin, true);
+						}
 					}
-					deco = diagramDecorationAdapter.setDecoration(decoration, 0, margin, true);
 				}
 			}
 

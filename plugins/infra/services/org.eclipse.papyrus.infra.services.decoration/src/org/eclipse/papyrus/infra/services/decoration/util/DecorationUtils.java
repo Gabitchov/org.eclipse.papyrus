@@ -58,8 +58,17 @@ public class DecorationUtils {
 	 *        the element
 	 */
 	public DecorationUtils(Object element) {
+		if(element == null) {
+			throw new IllegalArgumentException("The decorated element shall not be null");
+		}
+
+		EObject eObject = (EObject)Platform.getAdapterManager().getAdapter(element, EObject.class);
+		if(eObject == null) {
+			throw new IllegalArgumentException("The decorated EObject shall not be null");
+		}
+
 		this.element = element;
-		setEObject((EObject)Platform.getAdapterManager().getAdapter(element, EObject.class));
+		setEObject(eObject);
 	}
 
 
