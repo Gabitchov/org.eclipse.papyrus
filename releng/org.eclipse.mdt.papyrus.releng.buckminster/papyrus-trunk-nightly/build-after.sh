@@ -44,7 +44,7 @@ cp buildroot/result/*.psf "tmp/$FULL_BUILD_ID"
 mv revision.txt "tmp/$FULL_BUILD_ID"
 
 # copy the build log into the result
-wget --quiet --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt"
+wget --no-check-certificate ${HUDSON_URL}/job/${JOB_NAME}/${BUILD_NUMBER}/consoleText -O "${WORKSPACE}/tmp/$FULL_BUILD_ID/buildlog.txt"
 
 (cd tmp && zip -r $zipName *)
 mv tmp/$zipName .
