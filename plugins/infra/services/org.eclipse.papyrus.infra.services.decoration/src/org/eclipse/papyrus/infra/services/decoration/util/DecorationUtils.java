@@ -20,7 +20,6 @@ import org.apache.commons.lang.WordUtils;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.services.decoration.Activator;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
@@ -71,18 +70,12 @@ public class DecorationUtils {
 	 *        the e object
 	 */
 	public DecorationUtils(EObject eObject) {
+		if(eObject == null) {
+			throw new IllegalArgumentException("The decorated EObject shall not be null");
+		}
 		setEObject(eObject);
 	}
 
-	/**
-	 * Instantiates a new decoration utils.
-	 * 
-	 * @param view
-	 *        the view
-	 */
-	public DecorationUtils(View view) {
-		setEObject(view.getElement());
-	}
 
 	/**
 	 * Try child if empty.
@@ -177,8 +170,9 @@ public class DecorationUtils {
 							severity = severityI;
 						}
 					}
-					if(!navigateToParents)
+					if(!navigateToParents) {
 						break;
+					}
 					// navigate to parents, since parent folder is contaminated as well
 					eObjectOfDecorator = eObjectOfDecorator.eContainer();
 					if(markChildren != MarkChildren.ALL) {
