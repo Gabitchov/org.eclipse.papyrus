@@ -218,11 +218,15 @@ public abstract class AbstractConstraint implements Constraint {
 
 	/**
 	 * Tests if this constraint matches the given object
+	 * This methods only needs to be implemented when you don't
+	 * override {@link AbstractConstraint#match(IStructuredSelection)}
 	 * 
 	 * @param selection
 	 *        The object to be tested against this constraint
 	 * @return
 	 *         True if this constraint matches the given object
+	 * 
+	 * @see {@link #match(IStructuredSelection)}
 	 */
 	protected abstract boolean match(Object selection);
 
