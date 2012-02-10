@@ -31,7 +31,7 @@ import static org.junit.Assert.fail;
  */
 public class MemoryLeakUtil {
 
-	private static final int MAX_GC_ITERATIONS = 50;
+	private static final int MAX_GC_ITERATIONS = 20;
 	private static final int GC_SLEEP_TIME     = 100;
 
   /**
@@ -69,7 +69,7 @@ public class MemoryLeakUtil {
     
     for (int i = 0; i < MAX_GC_ITERATIONS; i++) {
         s_runtime.runFinalization();
-        System.err.println("Try to garbage iter " + i);
+//        System.err.println("Try to garbage iter " + i);
         try {
 			runGC();
 		} catch (Exception e1) {

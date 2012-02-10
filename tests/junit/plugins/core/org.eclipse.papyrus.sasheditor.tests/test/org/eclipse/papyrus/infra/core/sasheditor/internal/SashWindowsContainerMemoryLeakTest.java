@@ -14,10 +14,9 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.eclipse.papyrus.infra.core.sasheditor.tests.utils.memoryleak.MemoryLeakUtil.assertIsGarbageCollected2;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -37,8 +36,6 @@ import org.eclipse.ui.PlatformUI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.eclipse.papyrus.infra.core.sasheditor.tests.utils.memoryleak.MemoryLeakUtil.assertIsGarbageCollected;
-import static org.eclipse.papyrus.infra.core.sasheditor.tests.utils.memoryleak.MemoryLeakUtil.assertIsGarbageCollected2;
 
 /**
  * Tests to check  memory leak and dispose() calls.
@@ -149,8 +146,6 @@ public class SashWindowsContainerMemoryLeakTest {
 		
 			
 			FakeMultiSashPageEditor editor = FakeMultiSashPageEditor.openEditor(contentProvider);
-			// Get the container
-			SashWindowsContainer container = editor.getSashWindowsContainer();
 			
 			// Check if nested editor creation work
 			IEditorPart activeNestedEditor = editor.getActiveEditor();

@@ -14,10 +14,6 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor;
 
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProviderTest;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainerEventsProviderTest;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainerMemoryLeakTest;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainerTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
