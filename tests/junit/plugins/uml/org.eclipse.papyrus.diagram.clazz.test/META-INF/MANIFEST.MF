@@ -1,14 +1,16 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.diagram.clazz.test,org.eclipse.pap
- yrus.diagram.clazz.test.canonical,org.eclipse.papyrus.diagram.clazz.t
- est.load
-Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.junit4;bun
- dle-version="4.5.0",org.eclipse.papyrus.core;bundle-version="0.8.0",o
- rg.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.0",org.eclips
- e.papyrus.editor;bundle-version="0.8.0",org.eclipse.papyrus.diagram.c
- lazz;bundle-version="0.8.0",org.eclipse.gmf.runtime.diagram.ui.resour
- ces.editor;bundle-version="1.2.0",org.eclipse.papyrus.diagram.common;
- bundle-version="0.8.0"
+Export-Package: org.eclipse.papyrus.diagram.clazz.test,
+ org.eclipse.papyrus.diagram.clazz.test.canonical,
+ org.eclipse.papyrus.diagram.clazz.test.load
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit4;bundle-version="4.5.0",
+ org.eclipse.papyrus.core;bundle-version="0.8.0",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.0",
+ org.eclipse.papyrus.editor;bundle-version="0.8.0",
+ org.eclipse.papyrus.diagram.clazz;bundle-version="0.8.0",
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.8.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
@@ -17,4 +19,5 @@ Bundle-Activator: org.eclipse.papyrus.diagram.clazz.test.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.clazz.test
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 

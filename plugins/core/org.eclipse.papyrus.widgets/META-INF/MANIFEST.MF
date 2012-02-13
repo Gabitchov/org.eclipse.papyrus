@@ -1,8 +1,11 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.widgets,org.eclipse.papyrus.widget
- s.creation,org.eclipse.papyrus.widgets.databinding,org.eclipse.papyru
- s.widgets.editors,org.eclipse.papyrus.widgets.providers,org.eclipse.p
- apyrus.widgets.selectors,org.eclipse.papyrus.widgets.util
+Export-Package: org.eclipse.papyrus.widgets,
+ org.eclipse.papyrus.widgets.creation,
+ org.eclipse.papyrus.widgets.databinding,
+ org.eclipse.papyrus.widgets.editors,
+ org.eclipse.papyrus.widgets.providers,
+ org.eclipse.papyrus.widgets.selectors,
+ org.eclipse.papyrus.widgets.util
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.databinding.property;bundle-version="1.3.0",
@@ -22,4 +25,3 @@ Bundle-Activator: org.eclipse.papyrus.widgets.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.widgets
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

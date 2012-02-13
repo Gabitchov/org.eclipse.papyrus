@@ -1,13 +1,16 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.ui,org.eclipse.ui.navigator;bundle-version
-  ="3.4.0",org.eclipse.emf.transaction;bundle-version="1.4.0",org.ecli
- pse.uml2.uml.editor;bundle-version="3.1.0",org.eclipse.papyrus.uml.se
- rvice.types;bundle-version="0.8.0",org.eclipse.papyrus.service.edit;b
- undle-version="0.8.0",org.eclipse.emf.facet.infra.facet;bundle-versio
- n="0.1.0",org.eclipse.papyrus.modelexplorer;bundle-version="0.7.0",or
- g.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",org.e
- clipse.emf.ecore,org.eclipse.gmf.runtime.notation,org.eclipse.emf.fac
- et.infra.query.core
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.navigator;bundle-version="3.4.0",
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.uml2.uml.editor;bundle-version="3.1.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
+ org.eclipse.emf.facet.infra.facet;bundle-version="0.1.0",
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.7.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.gmf.runtime.notation,
+ org.eclipse.emf.facet.infra.query.core
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
@@ -17,4 +20,5 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.modelexplorer;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 

@@ -16,9 +16,10 @@ Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
 Bundle-Vendor: %providerName
 Bundle-ClassPath: .
 Bundle-Version: 0.8.2.qualifier
-Bundle-Name: %fragmentName
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.palette.custom
  ization;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 

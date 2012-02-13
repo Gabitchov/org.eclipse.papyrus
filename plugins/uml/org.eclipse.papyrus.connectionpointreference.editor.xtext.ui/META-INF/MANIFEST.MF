@@ -1,26 +1,31 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.connectionpointreference.editor.xt
  ext.ui.contentassist.antlr
-Require-Bundle: org.eclipse.papyrus.connectionpointreference.editor.xt
- ext;visibility:=reexport,org.eclipse.xtext.ui,org.eclipse.ui.editors;
- bundle-version="3.5.0",org.eclipse.ui.ide;bundle-version="3.5.0",org.
- eclipse.xtext.ui.shared,org.eclipse.ui,org.eclipse.xtext.builder,org.
- antlr.runtime,org.eclipse.papyrus.extensionpoints.editors;bundle-vers
- ion="0.8.0",org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0"
- ,org.eclipse.uml2.uml;bundle-version="3.1.0",org.eclipse.papyrus.umlu
- tils;bundle-version="0.8.0",org.eclipse.core.expressions;bundle-versi
- on="3.4.200",org.eclipse.papyrus.core;bundle-version="0.8.0",org.ecli
- pse.papyrus.properties.runtime;bundle-version="0.8.0",org.eclipse.xte
- xt.gmf.glue;bundle-version="0.8.0"
+Require-Bundle: org.eclipse.papyrus.connectionpointreference.editor.xtext;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.8.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.papyrus.umlutils;bundle-version="0.8.0",
+ org.eclipse.core.expressions;bundle-version="3.4.200",
+ org.eclipse.papyrus.core;bundle-version="0.8.0",
+ org.eclipse.papyrus.properties.runtime;bundle-version="0.8.0",
+ org.eclipse.xtext.gmf.glue;bundle-version="0.8.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.connectionpointreference.editor.
  xtext.ui.internal.UMLConnectionPointReferenceActivator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j
-Bundle-SymbolicName: org.eclipse.papyrus.connectionpointreference.edit
- or.xtext.ui; singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.connectionpointreference.editor.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

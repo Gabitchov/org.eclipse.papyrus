@@ -11,13 +11,14 @@ Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.pa
  dle-version="0.8.0",org.eclipse.papyrus.log;bundle-version="0.8.0",or
  g.eclipse.emf.edit.ui;bundle-version="2.7.0",org.eclipse.papyrus.core
  ;bundle-version="0.8.0"
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
-Bundle-Name: %Bundle-Name
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.properties.notation.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.properties.notation;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 

@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.gmf.runtime.diagram.ui
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
 Bundle-Version: 0.8.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.commands.Activator
