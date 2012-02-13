@@ -17,7 +17,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.table.common.util.FillingQueriesUtil;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 /**
@@ -58,14 +58,16 @@ public class ModelTriggerListener extends AbstractSynchronizedTableTriggerListen
 
 		Object notifier = notification.getNotifier();
 		int eventType = notification.getEventType();
-		if(notifier instanceof TabFolder) {
-			switch(eventType) {
-			case Notification.ADD:
-				cmd = getSynchronizationCommand(domain); //update the contents of the table when we open the table (bug 369208)
-			default:
-				break;
+		if(notifier instanceof PapyrusTableInstance){
+			if (this.papyrusTable.isIsSynchronized()) {
+				switch (eventType) {
+				case FillingQueriesUtil.OPEN_TABLE:
+					cmd = getSynchronizationCommand(domain);
+				default:
+					break;
+				}
 			}
-		} else if(notifier instanceof org.eclipse.uml2.uml.Element) {
+		}else if(notifier instanceof org.eclipse.uml2.uml.Element) {
 			if(this.papyrusTable.isIsSynchronized()) {
 
 				//we can't do a test on the element which provide the notification, because each action on the model can change the result of the query

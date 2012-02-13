@@ -25,6 +25,10 @@ public class Messages extends NLS {
 
 	public static String AbstractCreateNattableEditorCommand_CreateNewTableDialogTitle;
 
+	public static String AbstractNattableEditor_ICantUpdateTheOpenedTable;
+
+	public static String NatTableEditor_IndicatesIfTheTableIsSynchronizedWithQueries;
+
 	public static String NatTableEditor_TableContextLabel;
 
 	public static String NatTableEditor_TableContextTollTip;

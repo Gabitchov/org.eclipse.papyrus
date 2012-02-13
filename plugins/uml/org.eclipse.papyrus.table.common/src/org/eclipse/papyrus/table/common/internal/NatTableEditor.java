@@ -294,8 +294,8 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		contextGridData.horizontalSpan=1;
 		this.contextLabel.setLayoutData(contextGridData);
 
-		BooleanRadio checkbox = new BooleanRadio(firstLineComposite, SWT.NONE, "IsSynchronized :" );
-		checkbox.setToolTipText("Indicates if the table is synchronized with queries");
+		BooleanRadio checkbox = new BooleanRadio(firstLineComposite, SWT.NONE, "IsSynchronized :" ); //$NON-NLS-1$
+		checkbox.setToolTipText(Messages.NatTableEditor_IndicatesIfTheTableIsSynchronizedWithQueries);
 		final IObservableValue isSynchronizedObservable = new EMFObservableValue(this.tableEditorInput.getPapyrusTableInstance(), PapyrustableinstancePackage.eINSTANCE.getPapyrusTableInstance_IsSynchronized(), getEditingDomain());
 		checkbox.setModelObservable(isSynchronizedObservable);
 

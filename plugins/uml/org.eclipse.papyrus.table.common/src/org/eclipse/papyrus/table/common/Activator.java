@@ -28,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	public LogHelper helper;
+	public static LogHelper helper;
 	/**
 	 * The constructor
 	 */
