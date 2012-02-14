@@ -250,7 +250,7 @@
 		«REM»START: PapyrusGenCode«ENDREM»
 		java.util.List<org.eclipse.gmf.runtime.notation.View> views = org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (org.eclipse.gmf.runtime.notation.View view : views) {
-			if (org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper.showLabelIcon(view)) {
+			if (org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper.showLabelIcon(view)) {
 				return «diagram.getElementTypesQualifiedClassName()».getImage(parserElement.eClass());
 			}
 		}

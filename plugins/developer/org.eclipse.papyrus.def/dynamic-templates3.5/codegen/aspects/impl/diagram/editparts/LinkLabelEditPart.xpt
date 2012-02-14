@@ -23,7 +23,7 @@
 	
 	«REM»START Papyrus Code«ENDREM»
 	«IF elementIcon-»
-		if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
+		if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
 			refreshLabel();
 		}
 	«ENDIF-»
