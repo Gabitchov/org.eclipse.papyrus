@@ -24,10 +24,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
+import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.AddMaskManagedLabelDisplayCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 
 
 /**
@@ -37,18 +37,18 @@ import org.eclipse.papyrus.uml.tools.utils.ui.command.AddMaskManagedLabelDisplay
  * </pre>
  */
 public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements IMaskManagedLabelEditPolicy {
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Map<Integer, String> getMasks() {
 		Map<Integer, String> masks = new HashMap<Integer, String>();
-		
+
 		IParser parser = getHostLabelEditPart().getParser();
-		if (parser instanceof IMaskManagedSemanticParser) {
-			masks = ((IMaskManagedSemanticParser) parser).getMasks();
+		if(parser instanceof IMaskManagedSemanticParser) {
+			masks = ((IMaskManagedSemanticParser)parser).getMasks();
 		}
-		
+
 		return masks;
 	}
 
@@ -82,7 +82,7 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 	public void setDefaultDisplayValue() {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION));
 		}
 	}
 
@@ -97,7 +97,7 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 		// Not implemented.
 		return null;
 	}
-	
+
 	// @unused.
 	public Collection<Integer> getMaskValues() {
 		// Not implemented.
@@ -114,12 +114,13 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 		// Not implemented.
 		return null;
 	}
-	
+
 	/**
 	 * Get the host label edit part (has to implement {@link ITextAwareEditPart}).
+	 * 
 	 * @return the host label edit part.
 	 */
 	private ITextAwareEditPart getHostLabelEditPart() {
-		return (ITextAwareEditPart) getHost();
+		return (ITextAwareEditPart)getHost();
 	}
 }

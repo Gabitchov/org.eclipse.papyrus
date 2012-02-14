@@ -23,11 +23,11 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**

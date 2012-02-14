@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
@@ -60,7 +61,6 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceRealizationEdit
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**

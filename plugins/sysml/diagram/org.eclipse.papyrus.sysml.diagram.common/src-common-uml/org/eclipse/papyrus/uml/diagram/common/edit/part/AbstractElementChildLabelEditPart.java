@@ -69,18 +69,18 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextNonResizableEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.CellEditorLocatorUtil;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.MaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.parser.DefaultParserHintAdapter;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -113,6 +113,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		super(view);
 	}
 
+	@Override
 	public DragTracker getDragTracker(Request request) {
 		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
 			return null;
@@ -122,6 +123,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		return new SelectEditPartTracker(this);
 	}
 
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MaskManagedLabelEditPolicy());
@@ -178,10 +180,12 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		refreshVisuals();
 	}
 
+	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
 
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -275,18 +279,18 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	}
 
 	public ParserOptions getParserOptions() {
-		
+
 		if(getNotationView() == null || getNotationView().getDiagram() == null) {
 			return ParserOptions.NONE;
 		}
 
-		EAnnotation display = getNotationView().getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation display = getNotationView().getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		if(display == null) {
 			return getDefaultParserOptions();
 		}
 
 		// display != null
-		int displayOptions = Integer.parseInt(display.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+		int displayOptions = Integer.parseInt(display.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
 		return new ParserOptions(displayOptions);
 	}
 
@@ -356,6 +360,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -381,7 +386,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -430,6 +435,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		}
 	}
 
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -468,6 +474,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		}
 	}
 
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle)getView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
@@ -476,10 +483,12 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		}
 	}
 
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
 
+	@Override
 	protected void addSemanticListeners() {
 		if(getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -492,6 +501,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		}
 	}
 
+	@Override
 	protected void removeSemanticListeners() {
 		if(parserElements != null) {
 			for(int i = 0; i < parserElements.size(); i++) {
@@ -502,10 +512,12 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		}
 	}
 
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -586,16 +598,19 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		}
 	}
 
+	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
 	}
 
+	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -625,6 +640,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		super.handleNotificationEvent(event);
 	}
 
+	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
