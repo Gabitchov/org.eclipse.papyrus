@@ -67,7 +67,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -123,7 +123,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -179,7 +179,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -247,7 +247,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -303,7 +303,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -498,7 +498,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -554,7 +554,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -610,7 +610,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -666,7 +666,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass
@@ -1155,7 +1155,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.InstanceSpecificationNameLabelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -2639,7 +2639,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.InstanceSpecificationNameLabelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4233,7 +4233,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4263,7 +4263,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndSourceEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4390,7 +4390,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4420,7 +4420,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndSourceEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4450,7 +4450,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndSourceMultiplicityEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4480,7 +4480,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4547,7 +4547,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -4577,7 +4577,7 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -7436,7 +7436,7 @@
         comment="add superclass for compartment"
         genView="/0/@diagram/@compartments.27 /0/@diagram/@compartments.19 /0/@diagram/@compartments.20 /0/@diagram/@compartments.21 /0/@diagram/@compartments.22 /0/@diagram/@compartments.23 /0/@diagram/@compartments.24 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.10 /0/@diagram/@compartments.11 /0/@diagram/@compartments.16 /0/@diagram/@compartments.17 /0/@diagram/@compartments.18 /0/@diagram/@compartments.25 /0/@diagram/@compartments.26"
         name="ResizeableListCompartmentEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.ResizeableListCompartmentEditPart"/>
+        superOwnedEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
         comment="External node label locator"

@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditP
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AbstractNestedClassifierListenerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassNestedClassifierListenerEditPolicy;
@@ -32,7 +33,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.NestedClazzCompartm
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ComponentNestedClassifierCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
-import org.eclipse.papyrus.uml.diagram.common.editparts.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
 /**
