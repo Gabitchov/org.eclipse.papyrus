@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.emf.utils;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -82,10 +83,15 @@ public class ServiceUtilsForResourceInitializerService implements IService {
 	 * Detach the Adapter from the resourceSet
 	 */
 	public void disposeService() throws ServiceException {
-		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(servicesRegistry);
-		ServiceRegistryAdapterFactory factory = lookupServiceRegistryAdapterFactory(modelSet);
+		
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(servicesRegistry);
+			ServiceRegistryAdapterFactory factory = lookupServiceRegistryAdapterFactory(modelSet);
 
-		modelSet.getAdapterFactories().remove(factory);
+			modelSet.getAdapterFactories().remove(factory);
+		} catch (BadStateException e) {
+			// ModelSet is already disposed. Do nothing
+		}
 	}
 		
 }

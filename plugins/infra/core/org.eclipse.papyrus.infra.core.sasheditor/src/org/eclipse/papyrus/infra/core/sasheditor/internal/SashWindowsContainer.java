@@ -31,6 +31,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -100,6 +102,23 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	private MenuManager folderTabMenuManager;
 
+	/**
+	 * Listener on widget diposed event.
+	 */
+	private DisposeListener widgetDisposedListener = new DisposeListener() {
+		
+		/**
+		 * Called  when the widget is disposed.
+		 * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
+		 *
+		 * @param e
+		 */
+		public void widgetDisposed(DisposeEvent e) {
+			// We dispose the container.
+			dispose();
+		}
+	};
+	
 	/**
 	 * Constructor.
 	 * Build a Container without IEditor management. Trying to add a EditorPart will result in an Exception.
@@ -178,6 +197,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// TODO reactivate next
 		initDrag(container);
 		// activate();
+		
+		// Listen for disposale
+		container.addDisposeListener(widgetDisposedListener );
 	}
 
 	/**
@@ -186,6 +208,75 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	private RootPart createRootPart() {
 		RootPart part = new RootPart(this);
 		return part;
+	}
+
+	/**
+	 * Dispose the Container. All referenced resources will be disposed.
+	 * The container should not be used anymore once disposed.
+	 * The result of calling a method after a dispose() is unpredictable.
+	 * <br> 
+	 * This method can be called several times.
+	 * <br>
+	 * <br>
+	 * How the method works:
+	 * <ul>
+	 * <li>The {@link SashWindowsContainer} has two trees, the SWT tree and a Part tree ({@link #rootPart}).</li>
+	 * <li>The SWT tree is disposed first. </li>
+	 *   <ul>
+	 *     <li>This prevent events fired from user interaction or from Widget modifiaction</li>
+	 *     <li>The SWT disposal stop before nested editors SWT (thanks to the DISPOSE event in {@link EditorPart}). 
+	 *     At this point, the nested editor dispose() method is called. 
+	 *     </li>
+	 *     <li>This allow to let the nested editor receive one single dispose call.</li>
+	 *     <li></li>
+	 *   </ul>
+	 * <li>The Part tree is disposed second (by calling rootPart.disposeThisAndChildren() )</li>
+	 *   <ul>
+	 *     <li>properties are cleaned in order to help the GC</li>
+	 *     <li>swt controls are not disposed again</li>
+	 *   </ul>
+	 * <li></li>
+	 * <li></li>
+	 * <li></li>
+	 * <li></li>
+	 * <li></li>
+	 * </ul>
+	 * 
+
+	 */
+	public void dispose() {
+		// Check if already disposed
+		if( isDisposed() ) {
+			return;
+		}
+			
+		// End disposing children's SWT controls.
+		// It is possible to recall the dispose() method on a Widget, even if we are called by the dispose event.
+		// Recalling the dispose method will continue disposing SWT children's.
+		container.dispose();
+		
+		// dispose part children
+		rootPart.disposeThisAndChildren();
+		
+		// clean up properties to help GC
+		activePageTracker = null;
+		container = null;
+		contentProvider = null;
+		dragOverListener = null;
+		folderTabMenuManager = null;
+		lifeCycleEventProvider = null;
+		multiEditorManager = null;
+		rootPart = null;
+	}
+	
+	/**
+	 * Return true if the container is disposed, false otherwise.
+	 * 
+	 * @return
+	 */
+	public boolean isDisposed() {
+		// Use the activePageTracker as a flag.
+		return activePageTracker == null;
 	}
 
 	/**
@@ -960,15 +1051,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * A visitor used to collect all visible page in the sashcontainer.
 	 * A visible page is a page whose the diagram area is visible.
 	 */
-	private class CollectVisibleIEditorPart  extends PartVisitor {
+	private class AbstractCollectIEditorPart  extends PartVisitor {
 		
-		private List<IEditorPart> visiblePages = new ArrayList<IEditorPart>();
+		protected List<IEditorPart> editorParts = new ArrayList<IEditorPart>();
 		/**
 		 * Constructor.
 		 * 
 		 * @param menuManager
 		 */
-		public CollectVisibleIEditorPart() {
+		public AbstractCollectIEditorPart() {
 			
 		}
 
@@ -978,8 +1069,17 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * @return
 		 */
 		public List<IEditorPart> getVisiblePages() {
-			return visiblePages;
+			return editorParts;
 		}
+
+	}
+	
+	/**
+	 * Inner class.
+	 * A visitor used to collect all visible page in the sashcontainer.
+	 * A visible page is a page whose the diagram area is visible.
+	 */
+	private class CollectVisibleIEditorPart  extends AbstractCollectIEditorPart {
 
 		/**
 		 * Set the menu if the visited node is a folder.
@@ -990,9 +1090,34 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			IPage page = part.getVisiblePagePart();
 			if( page != null && page instanceof IEditorPage ) {
 				IEditorPage editorPage = (IEditorPage) page;
-					visiblePages.add(editorPage.getIEditorPart());
+					editorParts.add(editorPage.getIEditorPart());
 					
 			}
+			// continue searching
+			return true;
+		}
+
+	}
+
+	/**
+	 * Inner class.
+	 * A visitor used to collect all parts in the sashcontainer.
+	 * A visible page is a page whose the diagram area is visible.
+	 */
+	@SuppressWarnings("unused")
+	private class CollectIEditorParts  extends AbstractCollectIEditorPart {
+
+		/**
+		 * Add the part to thecollection.
+		 */
+		@Override
+		public boolean accept( EditorPart part) {
+			
+			IEditorPart editorPart = part.getIEditorPart();
+			if( editorPart != null ) {
+              editorParts.add(editorPart);
+			}
+					
 			// continue searching
 			return true;
 		}

@@ -32,7 +32,6 @@ import org.eclipse.swt.widgets.Composite;
  *        it just carry it to ask for the appropriate wrapper. Concrete implementation can specify
  *        a type.
  */
-@SuppressWarnings("restriction")
 public class RootPart extends AbstractPart implements IPanelParent {
 
 	/** The SWT container used as parent of all */
@@ -44,7 +43,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	private AbstractPanelPart child;
 
 	/** Raw model associated to this part. We store it because the PartModel do not provide it */
-	private Object rawModel;
+//	private Object rawModel;
 
 	/**
 	 * Constructor.
@@ -55,22 +54,21 @@ public class RootPart extends AbstractPart implements IPanelParent {
 
 	/**
 	 * Create the SWT controls.
-	 * This Root as no control. Create the child part and call the same method on the child.
+	 * This Root as no control. Children are created by the {@link #synchronize2(PartLists)} method.
 	 */
 	public void createPartControl(Composite parent) {
 		this.container = parent;
-		Object rawModel = getContentProvider().getRootModel();
-
-		// Create child part
-		//		child = createChildPart(rawModel);
 	}
 
 	/**
-	 * Dispose this part.
+	 * Dispose this part and its children.
 	 */
-	public void dispose() {
+	public void disposeThisAndChildren() {
 		if(child != null)
-			child.dispose();
+			child.disposeThisAndChildren();
+		
+		// Detach properties to help GC
+		child = null;
 	}
 
 	/**
@@ -185,16 +183,6 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 */
 	private void setChild(AbstractPanelPart newTile) {
 		child = newTile;
-	}
-
-	/**
-	 * Get the Composite used as parent for childs.
-	 * 
-	 * @return
-	 */
-	private Composite getChildParent() {
-		// This is the rootContainer
-		return container;
 	}
 
 	/**

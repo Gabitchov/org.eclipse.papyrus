@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -190,7 +187,27 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	abstract public void setFocus();
 
 	/**
+	 * Dispose the part.
+	 * <br/>
+	 * The part and its associated resource are disposed.
+	 * 
+	 */
+	abstract public void dispose();
+
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 */
+	abstract public void disposeThisAndChildren();
+
+	/**
 	 * Garbage the part.
+	 * <br/>
+	 * This method is called by the sashwindows garbage mechanism. It means that the part has been marked as "garbage" or 
+	 * is now unreachable. It is no longer used by the {@link SashWindowsContainer}, and it should be garbage.
+	 * <br/>
+	 * All resources used by this node should be reclaimed, but not its subnodes.
+	 * 
 	 */
 	abstract public void garbage();
 
@@ -204,6 +221,7 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	public boolean isPartFor(Object realModel) {
 		return this.rawModel == realModel;
 	}
+
 
 
 }

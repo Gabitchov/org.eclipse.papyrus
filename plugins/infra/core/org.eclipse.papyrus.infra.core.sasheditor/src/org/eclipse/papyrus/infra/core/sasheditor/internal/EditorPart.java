@@ -28,6 +28,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPage
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite4x;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
@@ -77,7 +79,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	/**
 	 * The MultiPageContainer system. This is the manager of all tiles.
 	 */
-	private SashWindowsContainer tilesContainer;
+//	private SashWindowsContainer tilesContainer;
 
 	/**
 	 * The manager used to access main editor properties like site, actionbars, ...
@@ -109,30 +111,49 @@ public class EditorPart extends PagePart implements IEditorPage {
 		}
 	};
 
-	private String eventName(int eventType) {
-		switch(eventType) {
-		case SWT.MouseEnter:
-			return "MouseEnter";
-		case SWT.MouseDown:
-			return "MouseDown";
-		case SWT.MouseExit:
-			return "MouseExit";
-		case SWT.MouseHover:
-			return "MouseHover";
-		case SWT.FocusIn:
-			return "FocusIn";
-		case SWT.FocusOut:
-			return "FocusOut";
-		case SWT.MouseMove:
-			return "MouseMove";
-		case SWT.MouseUp:
-			return "MouseUp";
-		case SWT.Activate:
-			return "Activate";
-		default:
-			return Integer.toString(eventType);
+	/**
+	 * Listener on widget disposed event. When the widget is disposed, the associated IEditor dispose()
+	 * method is called.
+	 * 
+	 */
+	private DisposeListener widgetDisposedListener = new DisposeListener() {
+		
+		/**
+	     * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
+		 * @see SashWindowsContainer#dispose()
+		 * @param e
+		 */
+		public void widgetDisposed(DisposeEvent e) {
+			// We dispose the associated editor.
+			disposeEditorPart();
 		}
-	}
+	};
+
+	// To be removed
+//	private String eventName(int eventType) {
+//		switch(eventType) {
+//		case SWT.MouseEnter:
+//			return "MouseEnter";
+//		case SWT.MouseDown:
+//			return "MouseDown";
+//		case SWT.MouseExit:
+//			return "MouseExit";
+//		case SWT.MouseHover:
+//			return "MouseHover";
+//		case SWT.FocusIn:
+//			return "FocusIn";
+//		case SWT.FocusOut:
+//			return "FocusOut";
+//		case SWT.MouseMove:
+//			return "MouseMove";
+//		case SWT.MouseUp:
+//			return "MouseUp";
+//		case SWT.Activate:
+//			return "Activate";
+//		default:
+//			return Integer.toString(eventType);
+//		}
+//	}
 
 	/**
 	 * Constructor.
@@ -163,7 +184,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	/**
 	 * Create the control of this Part, and children's controls.
 	 * 
-	 * @param parent
+	 * @param parent The SWT parent of this EditorPart. This is usually the {@link TabFolderPart}'s control.
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -266,6 +287,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 		editor.init(site, getIMultiEditorManager().getEditorInput());
 		Composite editorParent = new Composite(parentControl, getOrientation(editor));
 		editorParent.setLayout(new FillLayout());
+		// Listen to dispose event
+		editorParent.addDisposeListener(widgetDisposedListener);
+		// Create editor controls
 		editor.createPartControl(editorParent);
 		editor.addPropertyListener(new IPropertyListener() {
 
@@ -417,29 +441,64 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 
 	/**
-	 * @param isRecursive
+	/**
+	 * Dispose all resources used by this part.
+	 * <br/>
+	 * The Part should not be used after it has been disposed.
 	 */
 	public void dispose() {
 
-		System.out.println("org.eclipse.papyrus.infra.core.sasheditor.internal.EditorPart.dispose()");
 		detachListeners(editorControl, true);
 		// dispose the SWT root control
+		// This should also trigger the disposal of associated editor.
 		editorControl.dispose();
 		// Dispose the editor.
-//		editorPart.dispose();
-		disposePart(editorPart);
+//		disposeEditorPart();
 		
-		
+		// clean up properties to help GC
+		editorModel = null;
+//		editorPart = null;
+		rawModel = null;
 	}
 
 	/**
-	 * Disposes the given part and its site.
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 * <br/> 
+	 * SWT resources have already been disposed. We don't need to dispose them again.
+	 * 
+	 */
+	@Override
+	public void disposeThisAndChildren() {
+		
+		// Dispose the editor (normally this should be already done).
+		disposeEditorPart();
+		
+		// clean up properties to help GC
+		editorModel = null;
+//		editorPart = null;
+		rawModel = null;
+	}
+
+
+	/**
+	 * Disposes the associated editor and its site.
+	 * Do not dispose it twice.
 	 * 
 	 * @param part
 	 *            The part to dispose; must not be <code>null</code>.
 	 * @copy copied from org.eclipse.ui.part.MultiPageEditorPart.disposePart(IWorkbenchPart) v3.8
 	 */
-	private void disposePart(final IWorkbenchPart part) {
+	private void disposeEditorPart() {
+		
+		// Is the editor already disposed ?
+		if( editorPart == null ) {
+			return;
+		}
+		
+		final IWorkbenchPart part = editorPart;
+		editorPart = null;
+		
 		SafeRunner.run(new ISafeRunnable() {
 			public void run() {
 				IWorkbenchPartSite partSite = part.getSite();
@@ -617,7 +676,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * This part will be not used anymore.
 	 * The part is already marked as ORPHANED. It is not used anymore. It is already detached
 	 * from its parent.
-	 * 
+	 * <br>
+	 * This method is called by the sashwindows garbage mechanism after the Part has been marked as ORPHANED.
+	 * All resources associated to this part can be disposed.
+	 *  
 	 */
 	@Override
 	public void garbage() {

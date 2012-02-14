@@ -61,9 +61,12 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 */
 	public Object getServiceInstance() throws ServiceException {
 
-		if(factoryInstance == null)
-			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+		if(factoryInstance == null) {
+			throw new BadStateException("Service is not available (state="
+		       + state.toString() 
+		       + "). ", state, serviceDescriptor);
 
+		}
 		// Get the service instance if needed.
 		if(serviceInstance == null) {
 			serviceInstance = factoryInstance.createServiceInstance();
