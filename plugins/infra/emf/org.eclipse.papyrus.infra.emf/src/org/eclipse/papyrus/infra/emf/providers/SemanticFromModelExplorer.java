@@ -13,37 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.providers;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.IElementWithSemantic;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * This class is used to obtain the semantic element for element of the model explorer
- * 
- * @deprecated See EMFHelper#getEObject(Object)
  */
-@Deprecated
+//FIXME: Remove the dependency to gmf
 public class SemanticFromModelExplorer implements IElementWithSemantic {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object getSemanticElement(Object wrapper) {
-		if(wrapper instanceof IAdaptable) {
-			Object obj = ((IAdaptable)wrapper).getAdapter(EObject.class);
-			if(obj == null) {
-				obj = ((IAdaptable)wrapper).getAdapter(EReference.class);
-			}
-			if(obj != null) {
-				return obj;
-			}
+		EObject semantic = EMFHelper.getEObject(wrapper);
+		if(semantic != null) {
+			return semantic;
 		}
 
 		if(wrapper instanceof Diagram) {
 			return wrapper;
 		}
+
 		return null;
 	}
 

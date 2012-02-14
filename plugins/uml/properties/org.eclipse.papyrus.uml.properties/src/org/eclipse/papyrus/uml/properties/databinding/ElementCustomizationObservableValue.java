@@ -16,19 +16,19 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
+import org.eclipse.papyrus.infra.emf.appearance.commands.SetNameLabelIconCommand;
+import org.eclipse.papyrus.infra.emf.appearance.commands.SetQualifiedNameDepthCommand;
+import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.databinding.AbstractUMLAggregatedObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.AddMaskManagedLabelDisplayCommand;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.SetNameLabelIconCommand;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.SetQualifiedNameDepthCommand;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.SetShadowFigureCommand;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.QualifiedNameHelper;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.ShadowFigureHelper;
 import org.eclipse.uml2.uml.Element;
 
 /**

@@ -15,7 +15,9 @@ package org.eclipse.papyrus.uml.properties.util;
  * A list of constants for Stereotype appearance
  * 
  * @author Camille Letavernier
+ * 
  */
+//TODO : Move this interface to UML Tools or UML Utils
 public interface StereotypeAppearanceConstants {
 
 	/** constant for stereotype text alignement */

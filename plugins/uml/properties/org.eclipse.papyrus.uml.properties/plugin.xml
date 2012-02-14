@@ -37,8 +37,6 @@
          </editor>
          <editor editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor" language="Natural language">
          </editor>
-         <editor editor="org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor" language="OCL">
-         </editor>
       </extension>
       <extension point="org.eclipse.papyrus.views.properties.context">
          <context contextModel="Model/UMLNotation/UMLNotation.ctx">
@@ -57,5 +55,14 @@
             labelProvider="org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider"
             priority="50">
       </labelProvider>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="TreeOutlinePage">
+   		<propertyTab id="Base" label="General" category="org.eclipse.papyrus" afterTab=""/>
+     	<propertyTab id="Comments" label="Comments" category="org.eclipse.papyrus" afterTab="Base"/>
+     	<propertyTab id="advanced" label="Advanced" category="org.eclipse.papyrus" afterTab="Comments"/>
+      </propertyTabs>
    </extension>
 </plugin>

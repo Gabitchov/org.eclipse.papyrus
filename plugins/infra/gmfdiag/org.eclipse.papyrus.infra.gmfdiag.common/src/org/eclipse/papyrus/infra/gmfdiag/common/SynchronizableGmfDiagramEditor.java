@@ -16,7 +16,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.CommandStack;
@@ -28,10 +27,10 @@ import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
 
 /**
- /**
+ * /**
  * 
  * This GMF editor contains a methods in order to reveal visual element from a list of semantic element.
- *
+ * 
  */
 
 public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implements IRevealSemanticElement {
@@ -43,31 +42,33 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 	/**
 	 * reveal all editpart that represent an element in the given list.
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
 	 * 
 	 */
 	public void revealSemanticElement(List<?> elementList) {
 		//create an instance that can get semantic element from gmf
-		SemanticFromGMFElement semanticFromGMFElement= new SemanticFromGMFElement();
+		SemanticFromGMFElement semanticFromGMFElement = new SemanticFromGMFElement();
 
 		// get the graphical viewer
-		GraphicalViewer graphicalViewer =getGraphicalViewer() ;
-		if( graphicalViewer!=null){
+		GraphicalViewer graphicalViewer = getGraphicalViewer();
+		if(graphicalViewer != null) {
 
 			//look for among all edit part if the semantic is contained in the list
-			Iterator<?> iter=graphicalViewer.getEditPartRegistry().values().iterator();
-			IGraphicalEditPart researchedEditPart=null;
-			while(iter.hasNext()&& researchedEditPart==null) {
-				Object currentEditPart = (Object)iter.next();
+			Iterator<?> iter = graphicalViewer.getEditPartRegistry().values().iterator();
+			IGraphicalEditPart researchedEditPart = null;
+			while(iter.hasNext() && researchedEditPart == null) {
+				Object currentEditPart = iter.next();
 				//look for only among IPrimary editpart to avoid compartment and labels of links
-				if(currentEditPart instanceof IPrimaryEditPart){
-					if(elementList.contains(semanticFromGMFElement.getSemanticElement(currentEditPart))){
-						researchedEditPart=((IGraphicalEditPart)currentEditPart);}
+				if(currentEditPart instanceof IPrimaryEditPart) {
+					if(elementList.contains(semanticFromGMFElement.getSemanticElement(currentEditPart))) {
+						researchedEditPart = ((IGraphicalEditPart)currentEditPart);
+					}
 				}
 
 			}
 			//an editpart has been found so put selection on it.
-			if(researchedEditPart!=null){
+			if(researchedEditPart != null) {
 				graphicalViewer.select(researchedEditPart);
 			}
 		}

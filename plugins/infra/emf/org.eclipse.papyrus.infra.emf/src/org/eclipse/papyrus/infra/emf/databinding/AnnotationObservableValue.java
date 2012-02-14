@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.emf.databinding;
 import java.util.Map.Entry;
 
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
@@ -52,12 +53,6 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 	protected String key;
 
 	/**
-	 * The EAnnotation being edited
-	 * May be null
-	 */
-	protected EAnnotation annotation;
-
-	/**
 	 * Constructor.
 	 * 
 	 * Creates an IObservableValue for the annotation. The annotation doesn't
@@ -77,7 +72,6 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		this.domain = domain;
 		this.annotationName = annotationName;
 		this.key = key;
-		annotation = source.getEAnnotation(annotationName);
 	}
 
 	/**
@@ -92,6 +86,7 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 	 */
 	@Override
 	protected Object doGetValue() {
+		EAnnotation annotation = getEAnnotation();
 		if(annotation == null) {
 			return null;
 		}
@@ -100,21 +95,56 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 	}
 
 
+	protected EAnnotation getEAnnotation() {
+		return source.getEAnnotation(annotationName);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void doSetValue(Object value) {
-		if(!(value instanceof String)) {
-			return;
+		Command emfCommand = getCommand(value);
+		if(emfCommand != null) {
+			domain.getCommandStack().execute(emfCommand);
+		}
+	}
+
+	protected Command getCommand(Object value) {
+		EAnnotation annotation = getEAnnotation();
+
+		if(value == null) {
+			if(annotation == null) {
+				return null;
+			}
+		} else {
+			if(!(value instanceof String)) {
+				return null;
+			}
 		}
 
-		CompoundCommand emfCommand = new CompoundCommand("Set " + key);
+		CompoundCommand emfCommand = new CompoundCommand("Set " + key) {
+
+			@Override
+			public boolean prepare() {
+				if(this.isEmpty()) {
+					return false;
+				}
+
+				return commandList.get(0).canExecute();
+			}
+
+		};
 
 		if(annotation == null) {
 			annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			SetCommand command = new SetCommand(domain, annotation, EcorePackage.eINSTANCE.getEAnnotation_Source(), source);
-			emfCommand.append(command);
+			SetCommand nameCommand = new SetCommand(domain, annotation, EcorePackage.eINSTANCE.getEAnnotation_Source(), annotationName);
+			nameCommand.setLabel("Set name");
+			emfCommand.append(nameCommand);
+
+			SetCommand attachToSourceCommand = new SetCommand(domain, annotation, EcorePackage.eINSTANCE.getEAnnotation_EModelElement(), source);
+			nameCommand.setLabel("Attach to source");
+			emfCommand.append(attachToSourceCommand);
 		}
 
 		EMap<String, String> details = new BasicEMap<String, String>();
@@ -122,12 +152,23 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 			details.put(entry.getKey(), entry.getValue());
 		}
 
-		details.put(key, (String)value);
+		if(value == null) {
+			details.remove(key);
+			if(details.isEmpty()) { //We removed the last key : delete the annotation
+				SetCommand command = new SetCommand(domain, annotation, EcorePackage.eINSTANCE.getEAnnotation_EModelElement(), null);
+				command.setLabel("Delete EAnnotation");
+				emfCommand.append(command);
+				annotation = null;
+				return emfCommand;
+			}
+		} else {
+			details.put(key, (String)value);
+		}
 
 		SetCommand command = new SetCommand(domain, annotation, EcorePackage.eINSTANCE.getEAnnotation_Details(), details);
+		command.setLabel("Set details");
 		emfCommand.append(command);
 
-		domain.getCommandStack().execute(emfCommand);
+		return emfCommand;
 	}
-
 }

@@ -43,7 +43,6 @@ public class LanguageEditorExtensionPoint {
 			String languageName = e.getAttribute("language"); //$NON-NLS-1$
 			String editorClassName = e.getAttribute("editor"); //$NON-NLS-1$
 
-
 			Editor editor = languagepreferencesFactory.eINSTANCE.createEditor();
 			editor.setClass(editorClassName);
 			LanguageRegistry.instance.registerEditor(languageName, editor);

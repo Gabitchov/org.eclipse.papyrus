@@ -69,8 +69,9 @@ public class ElementList {
 	public void addElement(Object element) {
 		elements.add(elements.size(), element);
 		Iterator iterator = changeListeners.iterator();
-		while(iterator.hasNext())
+		while(iterator.hasNext()) {
 			((IListViewer)iterator.next()).addElement(element);
+		}
 	}
 
 
@@ -83,8 +84,9 @@ public class ElementList {
 	public void removeElement(Object element) {
 		elements.remove(element);
 		Iterator iterator = changeListeners.iterator();
-		while(iterator.hasNext())
+		while(iterator.hasNext()) {
 			((IListViewer)iterator.next()).removeElement(element);
+		}
 	}
 
 	/**
@@ -102,8 +104,9 @@ public class ElementList {
 		}
 
 		Iterator iterator = changeListeners.iterator();
-		while(iterator.hasNext())
+		while(iterator.hasNext()) {
 			((IListViewer)iterator.next()).updateElement(element);
+		}
 
 	}
 
@@ -122,8 +125,9 @@ public class ElementList {
 		}
 
 		Iterator iterator = changeListeners.iterator();
-		while(iterator.hasNext())
+		while(iterator.hasNext()) {
 			((IListViewer)iterator.next()).updateElement(element);
+		}
 	}
 
 
@@ -135,8 +139,9 @@ public class ElementList {
 	 */
 	public void elementChanged(Object element) {
 		Iterator iterator = changeListeners.iterator();
-		while(iterator.hasNext())
+		while(iterator.hasNext()) {
 			((IListViewer)iterator.next()).updateElement(element);
+		}
 	}
 
 	/**

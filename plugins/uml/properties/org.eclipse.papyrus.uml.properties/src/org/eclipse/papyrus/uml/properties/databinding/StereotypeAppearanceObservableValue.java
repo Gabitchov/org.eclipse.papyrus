@@ -27,10 +27,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -110,11 +110,11 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 
 			boolean hasIcons = ElementUtil.hasIcons(element, stereotype);
 			boolean hasShapes = ElementUtil.hasShapes(element, stereotype);
-			if(stereotypePresentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+			if(stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 				return ICON;
-			} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
+			} else if(stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION) && hasIcons) {
 				return TEXT_AND_ICON;
-			} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
+			} else if(stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShapes) {
 				return SHAPE;
 			} else {
 				return TEXT;
@@ -129,9 +129,9 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		final String stereotypePresentation = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 
 		if(stereotypePresentation != null) {
-			if(stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION)) {
+			if(stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION)) {
 				return HORIZONTAL;
-			} else if(stereotypePresentation.equals(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION)) {
+			} else if(stereotypePresentation.equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION)) {
 				return VERTICAL;
 			} else {
 				return HORIZONTAL;
@@ -172,16 +172,16 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		Stereotype stereotype = AppliedStereotypeHelper.getFirstDisplayedStereotype(diagramElement, element);
 		boolean hasIcons = ElementUtil.hasIcons(element, stereotype);
 		boolean hasShapes = ElementUtil.hasShapes(element, stereotype);
-		String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+		String appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 
 		if(stereotypeAppearance.equals(TEXT)) {
-			appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 		} else if(stereotypeAppearance.equals(ICON) && hasIcons) {
-			appliedStereotypeKind = VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
+			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
 		} else if(stereotypeAppearance.equals(TEXT_AND_ICON) && hasIcons) {
-			appliedStereotypeKind = VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
+			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
 		} else if(stereotypeAppearance.equals(SHAPE) && hasShapes) {
-			appliedStereotypeKind = VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
+			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
 		}
 
 
@@ -192,11 +192,11 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 	}
 
 	private void setTextAlignmentValue(String alignment) {
-		String appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+		String appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 		if(alignment.equals(HORIZONTAL)) {
-			appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 		} else if(alignment.equals(VERTICAL)) {
-			appliedStereotypeKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
+			appliedStereotypeKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
 		}
 
 

@@ -33,8 +33,6 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -44,7 +42,6 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.editor.preview.Preview;
 import org.eclipse.papyrus.customization.properties.messages.Messages;
-import org.eclipse.papyrus.customization.properties.preferences.CustomizationPreferencePage;
 import org.eclipse.papyrus.customization.properties.providers.ContextContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.ContextLabelProvider;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -197,16 +194,17 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			return;
 		}
 
-		boolean openPerspective;
+		boolean openPerspective = false;
 
-		if(CustomizationPreferencePage.askForConfirmation()) {
-			int defaultIndex = CustomizationPreferencePage.openCustomizationPerspective() ? 0 : 1;
-			MessageDialog confirmationDialog = new MessageDialog(getContainer().getShell(), Messages.UIEditor_ChangePerspective, null, Messages.UIEditor_ChangePerspectiveMessage, MessageDialog.QUESTION, new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL }, defaultIndex);
-			confirmationDialog.open();
-			openPerspective = confirmationDialog.getReturnCode() == 0;
-		} else {
-			openPerspective = CustomizationPreferencePage.openCustomizationPerspective();
-		}
+		//		if(CustomizationPreferencePage.askForConfirmation()) {
+		//			int defaultIndex = CustomizationPreferencePage.openCustomizationPerspective() ? 0 : 1;
+		//			System.out.println(getContainer().getShell());
+		//			MessageDialog confirmationDialog = new MessageDialog(getContainer().getShell(), Messages.UIEditor_ChangePerspective, null, Messages.UIEditor_ChangePerspectiveMessage, MessageDialog.QUESTION, new String[]{ IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL }, defaultIndex);
+		//			confirmationDialog.open();
+		//			openPerspective = confirmationDialog.getReturnCode() == 0;
+		//		} else {
+		//			openPerspective = CustomizationPreferencePage.openCustomizationPerspective();
+		//		}
 
 		if(openPerspective) {
 			try {

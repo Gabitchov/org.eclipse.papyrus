@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
+import static org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
+import static org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
+import static org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.DISPLAY_PLACE;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.HORIZONTAL;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.ICON;
@@ -20,9 +23,6 @@ import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConsta
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.TEXT_ALIGNMENT;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.TEXT_AND_ICON;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.VERTICAL;
-import static org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
-import static org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
-import static org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EModelElement;

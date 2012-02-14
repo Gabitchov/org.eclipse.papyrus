@@ -64,7 +64,7 @@ public class DecorationUtils {
 
 		EObject eObject = (EObject)Platform.getAdapterManager().getAdapter(element, EObject.class);
 		if(eObject == null) {
-			throw new IllegalArgumentException("The decorated EObject shall not be null");
+			throw new IllegalArgumentException("The decorated element cannot be resolved to an EObject");
 		}
 
 		this.element = element;

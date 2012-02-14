@@ -54,7 +54,12 @@ public class LanguageRegistry {
 
 		try {
 			ResourceSet resourceSet = new ResourceSetImpl();
-			preferences = (Preferences)EMFHelper.loadEMFModel(resourceSet, preferencesURI);
+			Object preferencesObject = EMFHelper.loadEMFModel(resourceSet, preferencesURI);
+			if(preferencesObject instanceof Preferences) {
+				preferences = (Preferences)preferencesObject;
+			} else {
+				createPreferences(preferencesURI);
+			}
 		} catch (IOException e) {
 			createPreferences(preferencesURI);
 		}

@@ -57,6 +57,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 
 
@@ -230,9 +231,7 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 	 * @param possibleText
 	 *        the possible text
 	 */
-	public ChooseSetAssistedDialog(Shell parentShell,
-			String possibleText,
-			String selectedText) {
+	public ChooseSetAssistedDialog(Shell parentShell, String possibleText, String selectedText) {
 		super(parentShell);
 
 		// add the resize ability to the window
@@ -270,10 +269,8 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		// remove default button = OK (enter pressed)
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
-				false);
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, false);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/*
@@ -473,9 +470,7 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 		char[] autoActivationCharacters = null;
 		int autoActivationDelay = 500;
 
-		ContentProposalAdapter adapter = new ContentProposalAdapter(possibleElementsText,
-				new TextContentAdapter(), getContentProposalProvider(),
-				keyStroke, autoActivationCharacters);
+		ContentProposalAdapter adapter = new ContentProposalAdapter(possibleElementsText, new TextContentAdapter(), getContentProposalProvider(), keyStroke, autoActivationCharacters);
 		adapter.setAutoActivationDelay(autoActivationDelay);
 
 		// filter proposals as keys are pressed and proposals popup is present
@@ -1144,10 +1139,12 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 		 *        the v
 		 */
 		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-			if(newInput != null)
+			if(newInput != null) {
 				((ElementList)newInput).addChangeListener(this);
-			if(oldInput != null)
+			}
+			if(oldInput != null) {
 				((ElementList)oldInput).removeChangeListener(this);
+			}
 		}
 
 		/*
@@ -1243,10 +1240,12 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 		 *        the v
 		 */
 		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-			if(newInput != null)
+			if(newInput != null) {
 				((ElementList)newInput).addChangeListener(this);
-			if(oldInput != null)
+			}
+			if(oldInput != null) {
 				((ElementList)oldInput).removeChangeListener(this);
+			}
 		}
 
 		/*
@@ -1363,8 +1362,7 @@ public class ChooseSetAssistedDialog extends Dialog implements IChooseDialog {
 		 * @throws InterruptedException
 		 * @throws InvocationTargetException
 		 */
-		public synchronized final void run(IProgressMonitor monitor)
-				throws InvocationTargetException, InterruptedException {
+		public synchronized final void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 			final InvocationTargetException[] iteHolder = new InvocationTargetException[1];
 			try {
 				IWorkspaceRunnable workspaceRunnable = new IWorkspaceRunnable() {

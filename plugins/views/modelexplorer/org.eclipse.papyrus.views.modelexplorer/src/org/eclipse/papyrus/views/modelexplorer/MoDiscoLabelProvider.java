@@ -94,9 +94,13 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 		}
 
 		//Set the decoration with default position
-		IDecoration decoration = decorationService.getDecoration(element, true);
-		decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
-		adapter.setDecoration(decoration.getDecorationImage(), PreferedPosition.DEFAULT);
+		if(element != null) {
+			if(element instanceof EObject || (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
+				IDecoration decoration = decorationService.getDecoration(element, true);
+				decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
+				adapter.setDecoration(decoration.getDecorationImage(), PreferedPosition.DEFAULT);
+			}
+		}
 
 		//return the target decorated
 		return adapter.getDecoratedImage();

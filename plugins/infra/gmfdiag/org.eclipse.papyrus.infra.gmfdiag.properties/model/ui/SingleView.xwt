@@ -10,9 +10,8 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:BooleanToggle text="Hello, world"
-			image="/org.eclipse.papyrus.infra.widgets/icons/papyrus.png" input="{Binding}"
-			property="notation:View:visible"></ppe:BooleanToggle>
+		<ppe:BooleanRadio input="{Binding}"
+			property="notation:View:visible"></ppe:BooleanRadio>
 		<ppe:BooleanRadio input="{Binding}" property="notation:View:mutable"></ppe:BooleanRadio>
 	</Composite>
 	<Composite>

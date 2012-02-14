@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.CompositeModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;

@@ -59,18 +59,6 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="loadDefault" type="boolean" use="default" value="true">
-            <annotation>
-               <documentation>
-                  If set to true, this context will be activated by default. Otherwise, the user will need to activate it manually through the preferences page (Preferences -&gt; Papyrus -&gt; Property views)
-
-Default is true.
-               </documentation>
-               <appInfo>
-                  <meta.attribute deprecated="true"/>
-               </appInfo>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 

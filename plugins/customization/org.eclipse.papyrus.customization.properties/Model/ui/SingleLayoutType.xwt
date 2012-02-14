@@ -10,8 +10,8 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
-			property="properties:environment:WidgetType:label" showLabel="false"></ppe:StringEditor>
+			property="properties:environment:WidgetType:label"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}"
-			property="properties:environment:WidgetType:widgetClass" showLabel="false"></ppe:StringEditor>
+			property="properties:environment:WidgetType:widgetClass"></ppe:StringEditor>
 	</Composite>
 </Composite>

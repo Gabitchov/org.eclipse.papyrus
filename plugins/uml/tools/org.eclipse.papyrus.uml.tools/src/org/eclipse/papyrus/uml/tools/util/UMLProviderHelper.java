@@ -46,6 +46,7 @@ public class UMLProviderHelper {
 			contentProvider = provider;
 		}
 
+		//FIXME : The editedEObject might not be contained in a Resource
 		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, editedEObject.eResource().getResourceSet(), historyId);
 
 		return graphicalProvider;

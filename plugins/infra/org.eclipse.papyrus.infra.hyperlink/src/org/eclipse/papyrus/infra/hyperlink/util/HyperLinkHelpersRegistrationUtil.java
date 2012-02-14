@@ -92,9 +92,9 @@ public class HyperLinkHelpersRegistrationUtil {
 					final Object h = e.createExecutableExtension(HELPER);
 					if(h instanceof AbstractHyperLinkHelper) {
 						helper = (AbstractHyperLinkHelper)h;
-						String o = e.getAttribute(POSITION, null);
+						String o = e.getAttribute(POSITION);
 						Integer order = Integer.valueOf(o);
-						String tabId = e.getAttribute(TAB_ID, null);
+						String tabId = e.getAttribute(TAB_ID);
 						helper.setTabId(tabId);
 						map.put(order, helper);
 					} else {

@@ -28,6 +28,44 @@
          id="com.cea.papyrus.gmf.editor.context">
    </editorContext>
    </extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler"
+         commandId="org.eclipse.ui.file.refresh">
+      <activeWhen>
+         <with
+               variable="activeEditorId">
+            <equals
+                  value="org.eclipse.papyrus.infra.core.papyrusEditor">
+            </equals>
+         </with>
+      </activeWhen>
+   </handler>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="toolbar:org.eclipes.papyrus.menu.toolbar">
+      <command
+            commandId="org.eclipse.ui.file.refresh"
+            icon="icons/refresh.gif"
+            label="Refresh"
+            style="push"
+            tooltip="Refresh the current diagram">
+         <visibleWhen
+               checkEnabled="false">
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
 
 
 
