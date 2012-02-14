@@ -54,4 +54,16 @@ public class FakePagePart extends PagePart {
 		
 	}
 
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disposeThisAndChildren() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -118,6 +118,15 @@ public class SashWindowsContainerDisposeCalledTest {
 	}
 
 	/**
+	 * Test if dispose can be called twice without errors.
+	 * 
+	 * 	 * @throws PartInitException 
+	 */
+	@Test
+	public void testCallingDisposeTwice() throws PartInitException {
+	}
+	
+	/**
 		 * Test the call of dispose() on nestedEditor when the main editor is 
 		 * closed. Normally, each nested editor should be disposed.
 		 * 

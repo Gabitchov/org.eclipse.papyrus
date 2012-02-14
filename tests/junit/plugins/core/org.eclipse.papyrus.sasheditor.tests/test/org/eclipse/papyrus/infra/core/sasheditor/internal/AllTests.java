@@ -23,6 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ SashContainerEventsProviderTest.class, 
 	SashWindowsContainerEventsProviderTest.class, 
 	SashWindowsContainerTest.class ,
+	SashWindowsContainerDisposeCalledTest.class,
 	SashWindowsContainerMemoryLeakTest.class
 	})
 public class AllTests {

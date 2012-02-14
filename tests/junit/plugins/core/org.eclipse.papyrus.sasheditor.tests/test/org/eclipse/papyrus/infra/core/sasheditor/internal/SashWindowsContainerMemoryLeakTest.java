@@ -14,7 +14,7 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
-import static org.eclipse.papyrus.infra.core.sasheditor.tests.utils.memoryleak.MemoryLeakUtil.assertIsGarbageCollected2;
+import static org.eclipse.papyrus.infra.core.sasheditor.tests.utils.memoryleak.MemoryLeakUtil.assertIsGarbageCollected;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -35,14 +35,19 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Tests to check  memory leak and dispose() calls.
  * 
+ * The test do not work because the {@link TestTextEditor} don not dispose properly. We need to find
+ * how to dispose it properly, or use another editor.
+ * 
  * @author Cedric Dumoulin
  *
  */
+@Ignore
 public class SashWindowsContainerMemoryLeakTest {
 
 	/**
@@ -58,11 +63,35 @@ public class SashWindowsContainerMemoryLeakTest {
 	@After
 	public void tearDown() throws Exception {
 		
-		// Close all remaining opened editors
-		IWorkbenchWindow window=PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		IWorkbenchPage page = window.getActivePage();
-		page.closeAllEditors(false);
+		if (PlatformUI.isWorkbenchRunning()) {
+
+			// Close all remaining opened editors
+			IWorkbenchWindow window=PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			IWorkbenchPage page = window.getActivePage();
+			page.closeAllEditors(false);
+		}
 	}
+	
+	/**
+	 * Test if calling dispose on TestEditor do not induce memory leak.
+	 * 
+	 * 	 * @throws PartInitException 
+	 * @throws Exception 
+	 */
+	@Test
+	public void testDisposeOnTestEditor() throws Exception {
+		
+		TestTextEditor editor = TestTextEditor.openEditor();
+		
+		TestTextEditor.closeEditor(editor);
+		// Check memory leak
+		WeakReference<IEditorPart> ref = new WeakReference<IEditorPart>(editor);
+		editor = null;
+		assertIsGarbageCollected(ref, 10*1000);
+
+		
+	}
+	
 	
 	/**
 	 * Test the call of dispose() on nestedEditor when the editor is 
@@ -72,6 +101,7 @@ public class SashWindowsContainerMemoryLeakTest {
 	 * @throws Exception 
 	 */
 	@Test
+	@Ignore
 	public void testDisposeCallOnNestedEditorRemoval() throws Exception {
 		// Create 
 		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
@@ -116,9 +146,10 @@ public class SashWindowsContainerMemoryLeakTest {
 		}
 		
 		// Check memory leak
+		editor = null;
 		WeakReference<IEditorPart> ref = new WeakReference<IEditorPart>(activeNestedEditor);
 		activeNestedEditor = null;
-		assertIsGarbageCollected2(ref, 10*1000);
+		assertIsGarbageCollected(ref, 10*1000);
 		
 		FakeMultiSashPageEditor.closeEditor(editor);
 
@@ -131,6 +162,7 @@ public class SashWindowsContainerMemoryLeakTest {
 		 * 	 * @throws PartInitException 
 		 */
 		@Test
+		@Ignore
 		public void testDisposeCallOnMainEditorClose() throws PartInitException {
 			// Create 
 			SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
@@ -153,7 +185,8 @@ public class SashWindowsContainerMemoryLeakTest {
 	
 			// Close the main editor
 			FakeMultiSashPageEditor.closeEditor(editor);
-	
+			editor = null;
+			
 			// for each container  check dispose call
 			assertEquals("list of model is alive", pageCount, models.size());
 			for(IPageModel model : models) {
@@ -161,6 +194,12 @@ public class SashWindowsContainerMemoryLeakTest {
 				ITraceRecords traces = ((TextEditorPartModel)model).getTraceRecords();
 				assertTrue("dispose is called", traces.contains(null, "dispose"));		
 			}
+			
+			// Check memory leak
+			WeakReference<IEditorPart> ref = new WeakReference<IEditorPart>(activeNestedEditor);
+			activeNestedEditor = null;
+			assertIsGarbageCollected(ref, 10*1000);
+
 
 		}
 

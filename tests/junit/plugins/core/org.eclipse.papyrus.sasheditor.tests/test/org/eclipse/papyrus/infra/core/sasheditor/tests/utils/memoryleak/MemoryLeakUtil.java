@@ -23,16 +23,24 @@ import static org.junit.Assert.fail;
 /**
  * Provides an assertion method to verify that an object has been garbage collected.
  * 
- * For more information on technics used by this method see : 
- *  <li>http://forums.sun.com/thread.jspa?threadID=315094&forumID=4</li>
- *  <li>http://forums.sun.com/thread.jspa?threadID=420237&forumID=4</li>
- *  <li>http://download.oracle.com/docs/cd/E17476_01/javase/1.5.0/docs/api/java/lang/ref/package-summary.html</li>
- * @copy http://www.forkcan.com/viewcode/215/Detecting-memory-leak-in-unit-test
+ * This method forward to one of the two implementations:
+ * <br/>
+ * {@link #assertIsGarbageCollected0(WeakReference, long)} 
+ * <br/>
+ * {@link #assertIsGarbageCollected2(WeakReference, long)}
+ * 
  */
 public class MemoryLeakUtil {
 
 	private static final int MAX_GC_ITERATIONS = 20;
 	private static final int GC_SLEEP_TIME     = 100;
+
+	public static void assertIsGarbageCollected(WeakReference<? extends Object> ref, long timeout)  {
+		// Slower method
+//		assertIsGarbageCollected0(ref, timeout);
+		// Faster method
+		assertIsGarbageCollected2(ref, timeout);
+	}
 
   /**
    * Check that the specified Object (referenced through a WeakReference) is garbage collected
@@ -61,7 +69,7 @@ public class MemoryLeakUtil {
    * @param timeout the timeout after which this method will consider (should be a multiple of 1000 ms with current implementation)
  * @throws Exception 
    */
-  public static void assertIsGarbageCollected(WeakReference<? extends Object> ref, long timeout)  {
+  public static void assertIsGarbageCollected0(WeakReference<? extends Object> ref, long timeout)  {
 
     // already cleared ?
     if( ref.get() == null)

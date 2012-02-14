@@ -9,6 +9,12 @@
             id="org.eclipse.papyrus.infra.core.sasheditor.tests.editor.FakeMultiSashPageEditor"
             name="FakeMultiSashPageEditor">
       </editor>
+      <editor
+            class="org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.TestTextEditor"
+            default="false"
+            id="org.eclipse.papyrus.infra.core.sasheditor.tests.editor.TestTextEditor"
+            name="TestTextEditor">
+      </editor>
    </extension>
 
 </fragment>
