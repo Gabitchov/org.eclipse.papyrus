@@ -24,11 +24,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypePropertyEditPart;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -103,7 +103,7 @@ public class AppliedStereotypePropertiesEditPolicy extends AppliedStereotypeNode
 
 		// if element that has changed is a stereotype => refresh the label.
 		if(notification.getNotifier() instanceof Node && (notification.getEventType()==Notification.ADD) &&(notification.getNewValue() instanceof EAnnotation)) {
-			if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNewValue()).getSource() ) {
+			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNewValue()).getSource() ) {
 				// stereotype annotation has changed => refresh label display
 				refreshDisplay();
 			}

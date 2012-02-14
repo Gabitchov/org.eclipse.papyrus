@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.menu.actions;
 
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.layout.DistributionConstants;

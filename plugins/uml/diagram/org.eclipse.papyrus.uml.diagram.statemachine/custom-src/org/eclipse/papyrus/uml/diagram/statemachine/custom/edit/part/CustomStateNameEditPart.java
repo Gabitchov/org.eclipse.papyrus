@@ -24,6 +24,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
+import org.eclipse.uml2.uml.State;
 /*****************************************************************************
  * Copyright (c) 2010-2011 CEA LIST.
  *
@@ -38,7 +39,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart
  * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
  *
  *****************************************************************************/
-import org.eclipse.uml2.uml.State;
 
 public class CustomStateNameEditPart extends StateNameEditPart {
 

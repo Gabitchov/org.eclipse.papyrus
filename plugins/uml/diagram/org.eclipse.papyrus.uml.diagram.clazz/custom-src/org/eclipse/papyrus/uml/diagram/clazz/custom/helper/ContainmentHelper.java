@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomCreateContainmentLinkCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
@@ -62,7 +63,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Stereotype;
@@ -311,7 +311,7 @@ public class ContainmentHelper extends ElementHelper {
 
 
 			String profileApplied = "\"" + stereotype.getProfile() + "\"::";
-			cc.add(new CustomDropAppliedStereotypeCommand(this.editDomain, createdEditPartAdapter, profileApplied, VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION));
+			cc.add(new CustomDropAppliedStereotypeCommand(this.editDomain, createdEditPartAdapter, profileApplied, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION));
 		}
 	}
 

@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.IPapyrusOperationPreferencesConstant;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.OperationLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
@@ -74,10 +74,10 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if(customeDisplayAnnotation != null) {
-			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -392,6 +392,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * Refreshes the display of the edit part
 	 */
+	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
 		OperationLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());

@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.CollaborationUseLabelHelper;
 import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CollaborationUsePreferencePage;
 import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.IPapyrusCollaborationUsePreferencesConstant;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -69,10 +69,10 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	 * {@inheritDoc}
 	 */
 	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if(propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -126,6 +126,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public CollaborationUse getUMLElement() {
 		return (CollaborationUse)super.getUMLElement();
 	}
@@ -258,6 +259,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * Refreshes the display of the edit part
 	 */
+	@Override
 	public void refreshDisplay() {
 		// calls the helper for this edit Part
 		CollaborationUseLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)getHost());

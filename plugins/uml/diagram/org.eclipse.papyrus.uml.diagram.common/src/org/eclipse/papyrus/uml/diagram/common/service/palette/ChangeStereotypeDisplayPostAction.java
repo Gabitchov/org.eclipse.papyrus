@@ -36,10 +36,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -60,10 +60,10 @@ import org.w3c.dom.Node;
 public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 
 	/** list of stereotypes to display with their names */
-	protected String displayKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+	protected String displayKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 
 	/** place where to display stereotypes */
-	protected String displayPlace = VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
+	protected String displayPlace = UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
 
 	/** combo for configuration of the stereotype display direction */
 	protected Combo directionCombo;
@@ -274,9 +274,9 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		placeLabel.setText("Display place:");
 
 		placeCombo = new Combo(mainComposite, SWT.READ_ONLY | SWT.BORDER);
-		placeCombo.add(VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION);
-		placeCombo.add(VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
-		placeCombo.add(VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
+		placeCombo.add(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION);
+		placeCombo.add(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+		placeCombo.add(UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
 		// data = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		placeCombo.setLayoutData(data);
 		placeCombo.addSelectionListener(new SelectionListener() {
@@ -303,11 +303,11 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		String place = PLACE_LIST.get((placeIndex >= 0) ? placeIndex : 0);
 
 		if(BRACE.equals(place)) {
-			displayPlace = VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
+			displayPlace = UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
 		} else if(COMMENT.equals(place)) {
-			displayPlace = VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
+			displayPlace = UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
 		} else {
-			displayPlace = VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
+			displayPlace = UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
 		}
 
 		// be sure display is up to date
@@ -323,16 +323,16 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		int directionIndex = directionCombo.getSelectionIndex();
 		String direction = DIRECTION_LIST.get((directionIndex >= 0) ? directionIndex : 0);
 		if(ICON.equals(display)) {
-			displayKind = VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
+			displayKind = UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION;
 		} else if(TEXT_AND_ICON.equals(display)) {
-			displayKind = VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
+			displayKind = UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION;
 		} else if(SHAPE.equals(display)) {
-			displayKind = VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
+			displayKind = UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION;
 		} else {
 			if(VERTICAL.equals(direction)) {
-				displayKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
+				displayKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION;
 			} else {
-				displayKind = VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
+				displayKind = UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION;
 			}
 		}
 
@@ -354,19 +354,19 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		 * VisualInformationPapyrusConstant
 		 * .STEREOTYPE_TEXT_VERTICAL_PRESENTATION
 		 */
-		if(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION.equals(displayKind)) {
+		if(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION.equals(displayKind)) {
 			displayCombo.select(DISPLAY_LIST.indexOf(TEXT_AND_ICON));
 			directionCombo.select(DIRECTION_LIST.indexOf(HORIZONTAL));
 			directionCombo.setEnabled(false);
-		} else if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(displayKind)) {
+		} else if(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(displayKind)) {
 			displayCombo.select(DISPLAY_LIST.indexOf(ICON));
 			directionCombo.select(DIRECTION_LIST.indexOf(HORIZONTAL));
 			directionCombo.setEnabled(false);
-		} else if(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION.equals(displayKind)) {
+		} else if(UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION.equals(displayKind)) {
 			displayCombo.select(DISPLAY_LIST.indexOf(SHAPE));
 			directionCombo.select(DIRECTION_LIST.indexOf(HORIZONTAL));
 			directionCombo.setEnabled(false);
-		} else if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(displayKind)) {
+		} else if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(displayKind)) {
 			displayCombo.select(DISPLAY_LIST.indexOf(TEXT));
 			directionCombo.select(DIRECTION_LIST.indexOf(VERTICAL));
 			directionCombo.setEnabled(true);
@@ -382,9 +382,9 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 		 * VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION
 		 * VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION
 		 */
-		if(VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION.equals(displayPlace)) {
+		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION.equals(displayPlace)) {
 			placeCombo.select(PLACE_LIST.indexOf(COMMENT));
-		} else if(VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION.equals(displayPlace)) {
+		} else if(UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION.equals(displayPlace)) {
 			placeCombo.select(PLACE_LIST.indexOf(BRACE));
 		} else {
 			placeCombo.select(PLACE_LIST.indexOf(COMPARTMENT));

@@ -69,17 +69,17 @@ public abstract class ClassifierEditPart extends NamedElementEditPart {
 		}
 	}
 
-	protected  void refreshIsActive() {
-		if(getUMLElement() instanceof org.eclipse.uml2.uml.Class){
-			if( getPrimaryShape() instanceof ClassifierFigure){
+	protected void refreshIsActive() {
+		if(getUMLElement() instanceof org.eclipse.uml2.uml.Class) {
+			if(getPrimaryShape() instanceof ClassifierFigure) {
 				((ClassifierFigure)getPrimaryShape()).setActive(((org.eclipse.uml2.uml.Class)getUMLElement()).isActive());
 			}
 		}
 	}
 
 	protected void refreshAbstract() {
-		if(getUMLElement() instanceof Classifier){
-			isAbstract=((Classifier)getUMLElement()).isAbstract();
+		if(getUMLElement() instanceof Classifier) {
+			isAbstract = ((Classifier)getUMLElement()).isAbstract();
 			refreshFont();
 
 		}
@@ -91,7 +91,13 @@ public abstract class ClassifierEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected FontData getFontData(FontStyle style) {
-		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (isAbstract ? SWT.ITALIC : (style.isItalic() ? SWT.ITALIC : SWT.NORMAL)));
+		FontData data = super.getFontData(style);
+		if(isAbstract) {
+			data.setStyle(data.getStyle() | SWT.ITALIC); //Force the Italic flag
+		} else {
+			data.setStyle(data.getStyle() & ~SWT.ITALIC); //Remove the Italic flag
+		}
+		return data;
 	}
 
 }

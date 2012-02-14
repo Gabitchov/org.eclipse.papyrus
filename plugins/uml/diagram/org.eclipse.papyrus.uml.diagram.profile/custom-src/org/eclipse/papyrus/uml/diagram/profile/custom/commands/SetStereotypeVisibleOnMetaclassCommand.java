@@ -24,9 +24,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
@@ -85,7 +85,7 @@ public class SetStereotypeVisibleOnMetaclassCommand extends AbstractTransactiona
 			View node = (View)(this.cmdResult).getAdapter(View.class);
 			Element UMLelement = metaclass;
 			String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
-			Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+			Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
 			if(command.canExecute()) {
 				command.execute();
 			}
@@ -94,7 +94,7 @@ public class SetStereotypeVisibleOnMetaclassCommand extends AbstractTransactiona
 			View node = (View)(this.cmdResult).getAdapter(View.class);
 			Element UMLelement = metaclass;
 			String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
-			Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+			Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
 			if(command.canExecute()) {
 				command.execute();
 			}

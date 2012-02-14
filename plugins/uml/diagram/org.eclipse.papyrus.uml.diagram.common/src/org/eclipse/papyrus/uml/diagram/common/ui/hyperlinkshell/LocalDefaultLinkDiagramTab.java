@@ -35,7 +35,6 @@ import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
 import org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationHelper;
-import org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.CTabFolder;

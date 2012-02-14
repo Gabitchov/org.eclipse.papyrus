@@ -45,7 +45,6 @@ import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
 import org.eclipse.swt.widgets.Shell;

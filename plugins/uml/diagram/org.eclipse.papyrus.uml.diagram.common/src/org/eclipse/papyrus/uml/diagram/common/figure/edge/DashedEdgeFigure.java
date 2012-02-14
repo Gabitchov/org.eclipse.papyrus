@@ -22,7 +22,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * This is a custom figure to represents a default edge. This code was used in
  * Papyrus 1. This edge figure is painted using dashes. This is the base figure
- * for dependencies, for exempale
+ * for dependencies, for example
  */
 public class DashedEdgeFigure extends UMLEdgeFigure {
 

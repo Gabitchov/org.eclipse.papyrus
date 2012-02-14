@@ -13,12 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 
@@ -44,8 +43,9 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NodeEditPart#getPrimaryShape()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#getPrimaryShape()
 	 */
+	@Override
 	public IPapyrusNodeFigure getPrimaryShape() {
 		return new ConstraintFigure();
 	}
@@ -54,6 +54,7 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#refreshLabelsFont(org.eclipse.swt.graphics.Font)
 	 */
+	@Override
 	protected void refreshLabelsFont(Font font) {
 		// TODO Auto-generated method stub
 		super.refreshLabelsFont(font);
@@ -62,22 +63,12 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 		}
 	}
 
-	protected void refreshBackgroundColor() {
-		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-		if(style != null) {
-			if(style.getGradient() == null || !supportsGradient()) {
-				setBackgroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFillColor())));
-			} else {
-				setGradient(style.getGradient());
-			}
-		}
-	}
-
 	/**
 	 * Refresh figure's background transparency.
 	 * 
 	 * @since 1.2
 	 */
+	@Override
 	protected void refreshTransparency() {
 		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if(style.getGradient() != null) {
@@ -91,6 +82,7 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#setFontColor(org.eclipse.swt.graphics.Color)
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		// TODO Auto-generated method stub
 		super.setFontColor(color);

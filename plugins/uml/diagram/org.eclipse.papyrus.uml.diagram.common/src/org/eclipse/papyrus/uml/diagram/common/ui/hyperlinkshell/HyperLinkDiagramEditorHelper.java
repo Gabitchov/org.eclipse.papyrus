@@ -24,7 +24,6 @@ import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 
 
 public class HyperLinkDiagramEditorHelper extends AbstractHyperLinkEditorHelper {

@@ -20,17 +20,17 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * management. It has facilities to retrieve UML element controlled by this edit
  * part
  */
-public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart implements IUMLEditPart, IEditpartListenerAccess {
+public abstract class UMLConnectionNodeEditPart extends ConnectionEditPart implements IUMLEditPart, IEditpartListenerAccess {
 
 	/**
 	 * Creates a new UMLConnectionNodeEditPart
@@ -188,13 +188,13 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 
 		// check the presentation kind. if only icon => do not display
 		// stereotypes
-		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
+		if(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return ""; // empty string, so stereotype label should not be
 						// displayed
 		}
 
 		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View)getModel()));
-		if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
+		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
 			return stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN);
 		} else {
 			return stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
@@ -211,7 +211,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		if(stereotypespresentationKind == null) {
 			return null;
 		}
-		if(stereotypespresentationKind.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+		if(stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
 			// retrieve the first stereotype in the list of displayed stereotype
 			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getModel());
@@ -253,7 +253,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		if(store == null) {
 			return "";
 		}
-		String sNameAppearance = store.getString(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
+		String sNameAppearance = store.getString(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
 
 		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
 		String out = "";
@@ -284,7 +284,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 
 				// check that the name has not already been added to the
 				// displayed string
-				if(sNameAppearance.equals(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
+				if(sNameAppearance.equals(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
 					if(out.indexOf(name) == -1) {
 						out = out + name + separator;
 					}

@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.figures.NestedResizableCompar
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypePropertiesEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
@@ -117,7 +118,7 @@ public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartm
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.ResizeableListCompartmentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 *
 	 * @param notification
 	 */
@@ -139,7 +140,7 @@ public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartm
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.ResizeableListCompartmentEditPart#refreshVisuals()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart#refreshVisuals()
 	 *
 	 */
 	protected void refreshVisuals() {

@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import org.eclipse.uml2.uml.Deployment;
+
 
 /**
  * Edit Policy for Applied Stereotype Label for {@link Deployment}.

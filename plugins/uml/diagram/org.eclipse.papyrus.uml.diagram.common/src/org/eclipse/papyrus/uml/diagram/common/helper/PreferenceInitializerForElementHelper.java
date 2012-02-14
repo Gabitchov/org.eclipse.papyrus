@@ -40,12 +40,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.QualifiedNameHelper;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 

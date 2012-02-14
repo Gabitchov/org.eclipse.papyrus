@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.helper;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.uml.diagram.common.commands.setLayoutKindCommand;
+import org.eclipse.papyrus.infra.emf.appearance.commands.SetLayoutKindCommand;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.AutomaticCompartmentToolBox;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.ILayoutToolBox;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.ManualCompartmentToolBox;
@@ -95,7 +95,7 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * 
 	 * @return the sets the layout kind command
 	 */
-	public setLayoutKindCommand setManualLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view) {
+	public SetLayoutKindCommand setManualLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view) {
 		// TODO Auto-generated method stub
 		return super.setLayoutKindOnView(domain, view, manualtoolBox.getLayout());
 	}
@@ -110,7 +110,7 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * 
 	 * @return the sets the layout kind command
 	 */
-	public setLayoutKindCommand setAutomaticLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view) {
+	public SetLayoutKindCommand setAutomaticLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view) {
 		// TODO Auto-generated method stub
 		return super.setLayoutKindOnView(domain, view, automaticToolBox.getLayout());
 	}

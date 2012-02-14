@@ -29,16 +29,15 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.ICompartmentLayoutHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -81,6 +80,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		super(view);
 	}
 
+	@Override
 	public void refresh() {
 		super.refresh();
 		changeLayoutCompartment();
@@ -94,22 +94,22 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		return (Element)resolveSemanticElement();
 	}
 
-	public void setLayoutConstraint(EditPart child, IFigure childFigure,
-		Object constraint) {
-		if(!( childFigure instanceof AppliedStereotypeCompartmentFigure)){
-			getContentPaneFor((IGraphicalEditPart) child).setConstraint(
-				childFigure, constraint);
+	@Override
+	public void setLayoutConstraint(EditPart child, IFigure childFigure, Object constraint) {
+		if(!(childFigure instanceof AppliedStereotypeCompartmentFigure)) {
+			getContentPaneFor((IGraphicalEditPart)child).setConstraint(childFigure, constraint);
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 		if(event.getNotifier() instanceof EAnnotation) {
-			if(VisualInformationPapyrusConstant.LAYOUTFIGURE.equals(((EAnnotation)event.getNotifier()).getSource())) {
+			if(VisualInformationPapyrusConstants.LAYOUTFIGURE.equals(((EAnnotation)event.getNotifier()).getSource())) {
 				changeLayoutCompartment();
 			}
 		}
@@ -153,19 +153,19 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 * bug 351084
 	 */
 	public void fixCompartmentTitleVisibility() {
-		for (Object currentEditPart : getChildren()) {
+		for(Object currentEditPart : getChildren()) {
 			if(currentEditPart instanceof ResizableCompartmentEditPart) {
-				ResizableCompartmentEditPart rcep = (ResizableCompartmentEditPart) currentEditPart;
-				View compartmentView = (View) rcep.getModel();
+				ResizableCompartmentEditPart rcep = (ResizableCompartmentEditPart)currentEditPart;
+				View compartmentView = (View)rcep.getModel();
 				Style titleStyle = compartmentView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-				if (titleStyle == null) {
-					if  (rcep.getFigure() instanceof ResizableCompartmentFigure) {
-						ResizableCompartmentFigure rcf = (ResizableCompartmentFigure) rcep.getFigure();
+				if(titleStyle == null) {
+					if(rcep.getFigure() instanceof ResizableCompartmentFigure) {
+						ResizableCompartmentFigure rcf = (ResizableCompartmentFigure)rcep.getFigure();
 						rcf.setTitleVisibility(false);
 					}
 				}
 			}
-		}		
+		}
 	}
 
 	/**
@@ -195,7 +195,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
 			// Get the font
 			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
@@ -225,16 +225,16 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 	}
 
-	/**
-	 * Update the fontData
-	 * 
-	 * @param style
-	 *        the font style of the figure
-	 * @return the new font data to use
-	 */
-	protected FontData getFontData(FontStyle style) {
-		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
-	}
+	//	/**
+	//	 * Update the fontData
+	//	 * 
+	//	 * @param style
+	//	 *        the font style of the figure
+	//	 * @return the new font data to use
+	//	 */
+	//	protected FontData getFontData(FontStyle style) {
+	//		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+	//	}
 
 	/**
 	 * {@inheritDoc}

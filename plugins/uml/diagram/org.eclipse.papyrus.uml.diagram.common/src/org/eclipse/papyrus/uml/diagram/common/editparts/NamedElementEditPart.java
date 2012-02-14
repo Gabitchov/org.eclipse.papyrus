@@ -15,8 +15,8 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.uml2.uml.NamedElement;
@@ -43,6 +43,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -54,9 +55,10 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	}
 
 	private void refreshIconNamedLabel() {
-		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.getNameLabelIconValue((View)getModel()));
+		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.showLabelIcon((View)getModel()));
 	}
 
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		if(getNodeNamedElementFigure() != null && resolveSemanticElement() != null) {
@@ -73,6 +75,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	 * @param font
 	 *        the font to use
 	 */
+	@Override
 	protected void refreshLabelsFont(Font font) {
 		super.refreshLabelsFont(font);
 		// Apply the font to the Name Label

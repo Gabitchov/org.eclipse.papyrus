@@ -22,6 +22,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
@@ -246,9 +248,10 @@ public class CustomLifelineEditPartCN extends LifelineEditPartCN {
 	@Override
 	protected void setGradient(GradientData gradient) {
 		NodeFigure fig = (NodeFigure)getFigure();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if(gradient != null) {
 			fig.setIsUsingGradient(true);
-			fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle());
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);
 		}

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.menu.actions;
 
 import java.util.List;
 
+import org.eclipse.gmf.runtime.diagram.ui.actions.internal.ColorPropertyContributionItem;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 
 /**

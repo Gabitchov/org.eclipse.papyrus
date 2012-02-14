@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 
 /**
  * This is an editpart in which we can access to the wrapping label for example

@@ -24,14 +24,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateAppliedStereotypeViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SetNodeVisibilityCommand;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeConpartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -117,7 +117,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		
 		// if element that has changed is a stereotype => refresh the label.
 				if(notification.getNotifier() instanceof Node && (notification.getEventType()==Notification.ADD) &&(notification.getNewValue() instanceof EAnnotation)) {
-					if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNewValue()).getSource() ) {
+					if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNewValue()).getSource() ) {
 						// stereotype annotation has changed => refresh label display
 						refreshDisplay();
 					}
@@ -249,7 +249,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	 */
 	protected void refreshAppliedStereotypesPropertiesInCompartment(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
 	
-		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)(View)getHost().getModel(), VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)(View)getHost().getModel(), UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
 
 		// if the string is not empty, then, the figure has to display it. Else,
 		// it displays nothing

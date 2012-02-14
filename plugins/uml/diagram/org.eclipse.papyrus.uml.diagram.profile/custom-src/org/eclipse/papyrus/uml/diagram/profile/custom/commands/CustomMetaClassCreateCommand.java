@@ -32,12 +32,12 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.profile.custom.requests.CustomCreateViewRequest;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MetaclassEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.MetaclassEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLViewProvider;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -127,7 +127,7 @@ public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagra
 
 
 					String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
-					Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+					Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
 					command.execute();
 				}
 

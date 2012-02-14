@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 
@@ -22,7 +22,7 @@ import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
  * This edit part manages the application and unapplication of stereotypes on
  * creation.
  */
-public class UMLCompartmentEditPart extends CompartmentEditPart {
+public class UMLCompartmentEditPart extends PapyrusCompartmentEditPart {
 
 	/**
 	 * Creates a new UMLCompartmentEditPart.

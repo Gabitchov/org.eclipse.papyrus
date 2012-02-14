@@ -22,10 +22,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.command.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -46,6 +47,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
@@ -97,6 +99,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
@@ -170,7 +173,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 			// notifier is the eannotation. Check this is the annotation in
 			// charge of the property
 			// label display
-			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)object).getSource())) {
+			if(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)object).getSource())) {
 				return true;
 			}
 		}
@@ -199,7 +202,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 				// this is an annotation which is returned
 				if(oldValue instanceof EAnnotation) {
 					// returns true if the annotation has the correct source
-					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)oldValue).getSource());
+					return VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)oldValue).getSource());
 				}
 			}
 		}
@@ -230,7 +233,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	public void setDefaultDisplayValue() {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION));
 		}
 
 	}

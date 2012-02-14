@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.helper;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.papyrus.uml.diagram.common.commands.setLayoutKindCommand;
+import org.eclipse.papyrus.infra.emf.appearance.commands.SetLayoutKindCommand;
 
 /**
  * the purpose of these kind of object is to. All subclasses are singletons.
@@ -34,7 +34,7 @@ public interface ICompartmentLayoutHelper {
 	 * @param layoutKind
 	 *        the new layout kind on view
 	 */
-	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view, String layoutKind);
+	public SetLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view, String layoutKind);
 
 	/**
 	 * Gets the layout kind from view.

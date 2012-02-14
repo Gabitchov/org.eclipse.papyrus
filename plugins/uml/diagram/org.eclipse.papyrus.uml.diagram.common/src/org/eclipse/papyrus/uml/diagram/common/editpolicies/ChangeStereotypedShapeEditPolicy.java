@@ -33,9 +33,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeEditPart;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -152,19 +152,19 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 
 		// if element that has changed is a stereotype => refresh the label.
 		if(notification.getNotifier() instanceof EAnnotation) {
-			if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
+			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
 				// stereotype annotation has changed => refresh label display
 				//add a test about kind old value 
-				if(!(getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) == VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
+				if(!(getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) == UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
 					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
-						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
+						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
 							transformIntoShape(getHost());
 						}
 					}
 				}
-				if((getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) != VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
+				if((getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) != UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
 					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
-						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
+						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(UMLVisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
 							transformIntoNormalShape(getHost());
 						}
 					}

@@ -24,9 +24,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.uml.diagram.common.commands.setLayoutKindCommand;
+import org.eclipse.papyrus.infra.emf.appearance.commands.SetLayoutKindCommand;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.ILayoutToolBox;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 
 /**
  * The Class ClassifierCompartmentLayoutHelper.
@@ -62,12 +62,12 @@ public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentL
 	 * {@inheritDoc}
 	 */
 	public String getLayoutKindFromView(EModelElement modelElement) {
-		EAnnotation layoutAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstant.LAYOUTFIGURE);
+		EAnnotation layoutAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.LAYOUTFIGURE);
 		if(layoutAnnotation != null) {
 			EMap<String, String> entries = layoutAnnotation.getDetails();
 
 			if(entries != null) {
-				String gradientvalueString = entries.get(VisualInformationPapyrusConstant.LAYOUTFIGURE_VALUE);
+				String gradientvalueString = entries.get(VisualInformationPapyrusConstants.LAYOUTFIGURE_VALUE);
 				return gradientvalueString;
 			}
 		}
@@ -77,8 +77,8 @@ public abstract class ClassifierCompartmentLayoutHelper implements ICompartmentL
 	/**
 	 * {@inheritDoc}
 	 */
-	public setLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view, String layoutKind) {
-		return new setLayoutKindCommand(domain, view, layoutKind);
+	public SetLayoutKindCommand setLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view, String layoutKind) {
+		return new SetLayoutKindCommand(domain, view, layoutKind);
 	}
 
 }

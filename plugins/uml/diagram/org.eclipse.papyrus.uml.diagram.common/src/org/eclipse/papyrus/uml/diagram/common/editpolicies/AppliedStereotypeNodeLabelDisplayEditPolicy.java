@@ -15,12 +15,12 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -84,7 +84,7 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	protected void refreshAppliedStereotypesPropertiesInCompartment(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
 		// retrieve the stereotype properties to be displayed
 
-		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)(View)getHost().getModel(), VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)(View)getHost().getModel(), UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
 
 		// if the string is not empty, then, the figure has to display it. Else,
 		// it displays nothing
@@ -102,7 +102,7 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	 */
 	protected void refreshAppliedStereotypesPropertiesInBrace(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
 		// check if properties have to be displayed in braces.
-		final boolean displayInBrace = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)getHost().getModel(), VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
+		final boolean displayInBrace = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)getHost().getModel(), UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
 
 		// if the string is not empty, then, the figure has to display it. Else,
 		// it displays nothing
@@ -130,7 +130,7 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 
 		// check the presentation kind. if only icon => do not display
 		// stereotypes
-		if(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
+		if(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
 			return ""; // empty string, so stereotype label should not be
 						// displayed
 		}
@@ -143,7 +143,7 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 			return "";
 		}
 		// vertical representation
-		if(VisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
+		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
 			return Activator.ST_LEFT + stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN) + Activator.ST_RIGHT;
 		} else {// horizontal representation
 			return Activator.ST_LEFT + stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN) + Activator.ST_RIGHT;

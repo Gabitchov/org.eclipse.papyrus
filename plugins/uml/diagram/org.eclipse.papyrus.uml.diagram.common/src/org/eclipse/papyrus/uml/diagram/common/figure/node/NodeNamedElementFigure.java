@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.FigureListener;
@@ -29,8 +28,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.PropertiesCompartmentLayoutManager;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -801,10 +800,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 			return;
 		}
 
-		if(presentation.equals(VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcon) {
+		if(presentation.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) && hasIcon) {
 			this.setStereotypes(null);
 			return;
-		} else if(presentation.equals(VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShape) {
+		} else if(presentation.equals(UMLVisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) && hasShape) {
 			this.setStereotypes(null);
 			return;
 		}

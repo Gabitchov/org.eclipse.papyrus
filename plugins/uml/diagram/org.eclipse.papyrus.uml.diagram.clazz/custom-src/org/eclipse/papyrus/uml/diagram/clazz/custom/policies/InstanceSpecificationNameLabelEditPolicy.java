@@ -24,12 +24,12 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.IPapyrusInstancePreferencesConstant;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.InstanceSpecificationUtil;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -54,7 +54,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		super.addAdditionalListeners();
 		Iterator<Classifier> iterator = getUMLElement().getClassifiers().iterator();
 		while(iterator.hasNext()) {
-			Classifier type = (Classifier)iterator.next();
+			Classifier type = iterator.next();
 			getDiagramEventBroker().addNotificationListener(type, this);
 
 		}
@@ -68,7 +68,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		if(getUMLElement() != null) {
 			Iterator<Classifier> iterator = getUMLElement().getClassifiers().iterator();
 			while(iterator.hasNext()) {
-				Classifier type = (Classifier)iterator.next();
+				Classifier type = iterator.next();
 				getDiagramEventBroker().removeNotificationListener(type, this);
 
 			}
@@ -77,7 +77,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabel(int)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabel(int)
 	 * 
 	 * @param value
 	 * @return
@@ -87,12 +87,13 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		return masks.get(value);
 	}
 
+	@Override
 	public InstanceSpecification getUMLElement() {
 		return (InstanceSpecification)super.getUMLElement();
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabels()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabels()
 	 * 
 	 * @return
 	 */
@@ -102,7 +103,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskValues()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskValues()
 	 * 
 	 * @return
 	 */
@@ -112,7 +113,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getMasks()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMasks()
 	 * 
 	 * @return
 	 */
@@ -122,16 +123,16 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getCurrentDisplayValue()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getCurrentDisplayValue()
 	 * 
 	 * @return
 	 */
 
 	public int getCurrentDisplayValue() {
-		EAnnotation instanceDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION);
+		EAnnotation instanceDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		int displayValue = getDefaultDisplayValue();
 		if(instanceDisplay != null) {
-			displayValue = Integer.parseInt(instanceDisplay.getDetails().get(VisualInformationPapyrusConstant.CUSTOM_APPEARANCE_MASK_VALUE));
+			displayValue = Integer.parseInt(instanceDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
 		} else {
 			// no specific information => look in preferences
 			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -144,7 +145,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getDefaultDisplayValue()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getDefaultDisplayValue()
 	 * 
 	 * @return
 	 */
@@ -154,6 +155,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 
+	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
 		// change the label of the figure managed by the host edit part (managed by the parent edit
@@ -197,7 +199,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy#getPreferencePageID()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getPreferencePageID()
 	 * 
 	 * @return
 	 */

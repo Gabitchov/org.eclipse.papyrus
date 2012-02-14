@@ -8,11 +8,12 @@
  * Contributors:
  *     CEA List - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common;
+package org.eclipse.papyrus.uml.diagram.common.preferences;
 
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -41,7 +42,7 @@ public class ProfileApplicationPreferencePage extends FieldEditorPreferencePage 
 	@Override
 	public void createFieldEditors() {
 
-		addField(new RadioGroupFieldEditor(VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE, "Stereotype Name Display Preferences :", 1, new String[][]{ { "UML Compatibility (force lower case for first letter - default)", VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM }, { "User Controlled (let name as entered by user)", VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED } }, getFieldEditorParent()));
+		addField(new RadioGroupFieldEditor(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE, "Stereotype Name Display Preferences :", 1, new String[][]{ { "UML Compatibility (force lower case for first letter - default)", UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM }, { "User Controlled (let name as entered by user)", UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED } }, getFieldEditorParent()));
 	}
 
 	/**

@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -51,6 +50,7 @@ import com.google.common.collect.Iterables;
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */
+//TODO: To be refactored. This class belongs to infra.gmfdiag.common
 public class DiagramEditPartsUtil {
 
 	/** The Constant BelongToDiagramSource. */
@@ -125,7 +125,6 @@ public class DiagramEditPartsUtil {
 	 * 
 	 * @return the diagram edit part
 	 */
-	// @unused
 	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
 		if(editPart == null) {
 			return null;
@@ -511,7 +510,7 @@ public class DiagramEditPartsUtil {
 			editPart.refresh();
 		}
 	}
-	
+
 	/**
 	 * Return the main edipart which correspond to the {@link EObject} passed in argument
 	 * 
@@ -556,7 +555,7 @@ public class DiagramEditPartsUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Return the main edipart which correspond to the {@link EObject} passed in argument
 	 * 
@@ -596,7 +595,7 @@ public class DiagramEditPartsUtil {
 				return Iterables.transform(find, new Function<EditPart, IGraphicalEditPart>() {
 
 					public IGraphicalEditPart apply(EditPart from) {
-						if (from instanceof IGraphicalEditPart){							
+						if(from instanceof IGraphicalEditPart) {
 							return (IGraphicalEditPart)from;
 						}
 						return null;

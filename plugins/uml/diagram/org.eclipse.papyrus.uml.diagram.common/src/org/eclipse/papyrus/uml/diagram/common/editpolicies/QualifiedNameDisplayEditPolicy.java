@@ -27,9 +27,9 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.uml.diagram.common.editparts.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.QualifiedNameHelper;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 

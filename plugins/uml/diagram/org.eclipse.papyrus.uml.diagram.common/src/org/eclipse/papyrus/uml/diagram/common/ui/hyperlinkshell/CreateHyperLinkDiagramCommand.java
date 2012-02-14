@@ -16,9 +16,9 @@ package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 
 /**
  * The Class CreateHyperLinkCommand. this has in charge to add a new entry list
@@ -45,7 +45,7 @@ public class CreateHyperLinkDiagramCommand extends CreateEAnnotationCommand {
 	 * @param object
 	 *        the object for example the view
 	 * @param tooltiptext
-	 *        the hyperlink kind see {@link VisualInformationPapyrusConstant}
+	 *        the hyperlink kind see {@link UMLVisualInformationPapyrusConstant}
 	 * @param name
 	 *        the localization
 	 */

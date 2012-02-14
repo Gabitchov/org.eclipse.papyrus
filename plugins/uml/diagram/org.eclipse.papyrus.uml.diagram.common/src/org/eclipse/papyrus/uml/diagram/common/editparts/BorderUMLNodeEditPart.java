@@ -20,16 +20,17 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.ICompartmentLayoutHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -102,11 +103,12 @@ public abstract class BorderUMLNodeEditPart extends BorderNodeEditPart implement
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 		if(event.getNotifier() instanceof EAnnotation) {
-			if(VisualInformationPapyrusConstant.LAYOUTFIGURE.equals(((EAnnotation)event.getNotifier()).getSource())) {
+			if(VisualInformationPapyrusConstants.LAYOUTFIGURE.equals(((EAnnotation)event.getNotifier()).getSource())) {
 				changeLayoutCompartment();
 			}
 		}
