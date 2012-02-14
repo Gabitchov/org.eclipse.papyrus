@@ -4,11 +4,9 @@ Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.emf.transaction;bundle-version="1.2.1",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.uml.tools.utils,
- org.eclipse.papyrus.uml.tools.utils.ui,
- org.eclipse.papyrus.uml.tools.utils.ui.command,
- org.eclipse.papyrus.uml.tools.utils.ui.helper
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.gmf.runtime.notation;bundle-version="1.5.0"
+Export-Package: org.eclipse.papyrus.uml.tools.utils
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
