@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.InstanceSpecificationLinkFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InstanceSpecificationLinkItemSemanticEditPolicy;
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InstanceSpecification
 /**
  * @generated
  */
-public class InstanceSpecificationLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class InstanceSpecificationLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

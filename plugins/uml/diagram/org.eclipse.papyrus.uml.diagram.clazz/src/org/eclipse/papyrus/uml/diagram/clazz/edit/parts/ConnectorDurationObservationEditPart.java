@@ -14,17 +14,17 @@ package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ConnectorDurationObservationItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ConnectorDurationObservationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ConnectorDurationObservationEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

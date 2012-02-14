@@ -21,6 +21,15 @@
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
 «EXTENSION xpt::diagram::editparts::Utils»
 
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»computes super type of the link edit part in case the edit part manages a representation of a UML element«ENDREM»
+«DEFINE extendsListContents FOR gmfgen::GenDiagram-»
+org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart
+«ENDDEFINE»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+
+
 «DEFINE _constructor FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	public «editPartClassName»(org.eclipse.gmf.runtime.notation.View view) {
