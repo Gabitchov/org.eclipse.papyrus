@@ -212,6 +212,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Needed by MultiPageActionBarContributor and MultiPageSelectionProvider.
 	 */
 	public IEditorPart getActiveEditor() {
+		if( sashContainer.isDisposed()) 
+			return null;
+		
 		return sashContainer.getActiveEditor();
 	}
 
