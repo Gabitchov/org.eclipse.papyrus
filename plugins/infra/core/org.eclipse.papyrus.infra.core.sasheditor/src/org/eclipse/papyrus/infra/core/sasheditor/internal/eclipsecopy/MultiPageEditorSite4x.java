@@ -324,6 +324,12 @@ public class MultiPageEditorSite4x implements IMultiPageEditorSite, INestable {
 		}
 		context.dispose();
 
+		// dispose properties to help GC
+		setSelectionProvider(null);
+		mainEditorSite = null;
+		editor = null;
+		actionBarContributor = null;
+
 	}
 
 	/**
