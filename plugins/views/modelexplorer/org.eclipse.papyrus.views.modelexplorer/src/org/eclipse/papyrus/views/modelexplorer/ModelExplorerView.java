@@ -109,6 +109,18 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
 
 	/**
+	 * A listener on page (all editors) selection change. This listener is set 
+	 * in {@link ModelExplorerView#init(IViewSite)}. It should be dispose to remove
+	 * hook to the Eclipse page.
+	 */
+	private ISelectionListener pageSelectionListener = new ISelectionListener() {
+
+		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+			handleSelectionChangedFromDiagramEditor(part, selection);
+		}
+	};
+	
+	/**
 	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
 	 */
 	protected IEditorInputChangedListener editorInputChangedListener = new IEditorInputChangedListener() {
@@ -168,6 +180,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		
 		setLinkingEnabled(true);
 
+		// Get required services from ServicesRegistry
 		try {
 			saveAndDirtyService = serviceRegistry.getService(ISaveAndDirtyService.class);
 			undoContext = serviceRegistry.getService(IUndoContext.class);
@@ -362,12 +375,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		IWorkbenchPage page = site.getPage();
 		// an ISelectionListener to react to workbench selection changes.
 
-		page.addSelectionListener(new ISelectionListener() {
-
-			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-				handleSelectionChangedFromDiagramEditor(part, selection);
-			}
-		});
+		page.addSelectionListener(pageSelectionListener);
 	}
 
 	/**
@@ -501,25 +509,28 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	private void deactivate() {
 		// deactivate global handler
-			if(Activator.log.isDebugEnabled()) {
-				Activator.log.debug("deactivate ModelExplorerView" ); //$NON-NLS-1$
-
-			// Stop Listenning to isDirty flag
-			saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
-
-			// unhook
-			//			IUndoContext undoContext = getUndoContext(editorPart);
-			//			undoHandler.setContext(undoContext);
-			//			undoHandler.update();
-			//			redoHandler.setContext(undoContext);
-			//			redoHandler.update();
-
+		if(Activator.log.isDebugEnabled()) {
+			Activator.log.debug("deactivate ModelExplorerView" ); //$NON-NLS-1$
 		}
+
+		// Stop listening on change events
+		getSite().getPage().removeSelectionListener(pageSelectionListener);
+		// Stop Listening to isDirty flag
+		saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
+
+		// unhook
+		//			IUndoContext undoContext = getUndoContext(editorPart);
+		//			undoHandler.setContext(undoContext);
+		//			undoHandler.update();
+		//			redoHandler.setContext(undoContext);
+		//			redoHandler.update();
+
 
 		if(editingDomain != null) {
 			editingDomain.removeResourceSetListener(resourceSetListener);
 			editingDomain = null;
 		}
+
 	}
 
 	/**
