@@ -435,6 +435,14 @@ implements IWorkspaceCommandStack {
 		domainListener = null;
 		historyAffectedResources = null;
 		mostRecentOperation = null;
+		
+		// remove listeners registered in opertationHistory
+		Collection<IOperationHistoryListener> values = proxyOperationListeners.values();
+		for( IOperationHistoryListener proxy : values ) {
+			getOperationHistory().removeOperationHistoryListener(proxy);
+		}
+		proxyOperationListeners.clear();
+
 	}
 
 	/**
