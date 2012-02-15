@@ -203,7 +203,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * TODO : move away, use a version independent of GMF, add a listener that will add
 	 * the context to all commands modifying attached Resources (==> linked to ModelSet ?)
 	 */
-	private EditingDomainUndoContext undoContext;
+	private IUndoContext undoContext;
 
 	/**
 	 * Get the contentOutlineRegistry. Create it if needed.
@@ -373,16 +373,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			return transactionalEditingDomain;
 		}
 
-		/**
+		/*
 		 * Return context used for undo/redo.
 		 * All papyrus views should use this context.
+		 * The prefer way to get this is to use
+		 * undoContext = servicesRegistry.getService(IUndoContext.class);
 		 */
 		if(IUndoContext.class == adapter) {
-			if(undoContext != null) {
-				return undoContext;
-			}
-
-			undoContext = new EditingDomainUndoContext(transactionalEditingDomain);
 			return undoContext;
 		}
 
@@ -530,6 +527,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			sashModelMngr = servicesRegistry.getService(DiSashModelMngr.class);
 			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
 			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
+			undoContext = servicesRegistry.getService(IUndoContext.class);
 		} catch (ServiceException e) {
 			log.error("A required service is missing.", e);
 			// if one of the services above fail to start, the editor can't run => stop

@@ -140,4 +140,15 @@ public abstract class ViewPartPage extends Page implements IAdaptable {
 		return null;
 	}
 
+	/**
+	 * Dispose the page, and its associated viewer.
+	 * @see org.eclipse.ui.part.Page#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		modelExplorer.dispose();
+		super.dispose();
+		modelExplorer = null;
+	}
 }

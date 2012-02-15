@@ -85,7 +85,9 @@ public abstract class MultiViewPageBookView extends PageBookView {
 	 */
 	@Override
 	protected void doDestroyPage(IWorkbenchPart part, PageRec pageRecord) {
-		// Nothing to do
+		
+		// Dispose the associated page.
+		pageRecord.page.dispose();
 
 	}
 

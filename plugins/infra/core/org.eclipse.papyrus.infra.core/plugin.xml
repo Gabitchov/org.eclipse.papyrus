@@ -273,6 +273,16 @@
                serviceKeyRef=" org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService">
          </dependsOn>
       </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.core.undocontext.UndoContextServiceFactory"
+            description="The shared IUndoContext used to tag command in the CommandStack"
+            id="org.eclipse.core.commands.operations.IUndoContext"
+            priority="1"
+            startKind="lazy">
+         <dependsOn
+               serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
+         </dependsOn>
+      </serviceFactory>
    </extension>
    <extension
          point="org.eclipse.ui.exportWizards">
