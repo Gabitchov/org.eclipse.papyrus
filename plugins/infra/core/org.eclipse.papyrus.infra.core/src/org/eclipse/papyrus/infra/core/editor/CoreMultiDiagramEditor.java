@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -611,9 +610,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 
 		// Avoid memory leak
-		if(resourceSet != null) {
-			resourceSet.unload();
-		}
+		// This call is done from the ServicesRegistry when it is disposed.
+		// Don't need to do it there.
+//		if(resourceSet != null) {
+//			resourceSet.unload();
+//		}
 
 		// dispose available service
 		if(servicesRegistry != null) {

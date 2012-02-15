@@ -168,6 +168,7 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 
 		factoryInstance.disposeService();
 		factoryInstance = null;
+		serviceInstance = null;
 		setState(ServiceState.disposed);
 	}
 

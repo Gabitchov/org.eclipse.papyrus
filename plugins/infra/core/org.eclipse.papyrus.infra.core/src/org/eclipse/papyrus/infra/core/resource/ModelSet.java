@@ -441,6 +441,13 @@ public class ModelSet extends ResourceSetImpl {
 			iter.next().unload();
 			iter.remove();
 		}
+		
+		// Dispose Editing Domain
+		transactionalEditingDomain.dispose();
+		// Detach associated factories
+		adapterFactories.clear();
+		eAdapters().clear();
+		
 	}
 
 	/**

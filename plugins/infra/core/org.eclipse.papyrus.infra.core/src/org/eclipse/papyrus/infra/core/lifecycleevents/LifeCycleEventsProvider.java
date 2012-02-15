@@ -225,6 +225,12 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 			return listeners;
 		}
 
+		/**
+		 * Remove all listeners.
+		 */
+		protected void clear() {
+			listeners.clear();
+		}
 	}
 
 	/**
