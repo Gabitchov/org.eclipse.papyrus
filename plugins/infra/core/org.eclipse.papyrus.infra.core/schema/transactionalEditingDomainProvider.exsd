@@ -48,6 +48,11 @@
    </element>
 
    <element name="transactionalEditingDomainProvider">
+      <annotation>
+         <documentation>
+            Please see ITransactionalEditingDomainProvider.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="class" type="string">
             <annotation>
@@ -62,7 +67,7 @@
          <attribute name="priority" type="string">
             <annotation>
                <documentation>
-                  
+                  Integer representing the priority of the registered editing domain provider : the provider with higher priority will be use to create the Papyrus editing domain.
                </documentation>
             </annotation>
          </attribute>

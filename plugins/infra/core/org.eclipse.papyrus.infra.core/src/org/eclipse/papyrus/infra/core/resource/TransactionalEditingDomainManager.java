@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011-2012 Atos.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Mathieu Velten  mathieu.velten@atos.net - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.util.Collections;
@@ -14,6 +27,13 @@ import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
 
+/**
+ * Manager used to read transactionalEditingDomainProvider extension point
+ * and providing an helper method to create an Editing Domain.
+ * 
+ * @author mvelten
+ *
+ */
 public class TransactionalEditingDomainManager {
 
 	protected static final ITransactionalEditingDomainProvider[] orderedProvidersArray;
@@ -61,6 +81,12 @@ public class TransactionalEditingDomainManager {
 		}
 	}
 
+	/**
+	 * Create an Editing Domain using the registered provider with the highest priority.
+	 * 
+	 * @param resourceSet
+	 * @return
+	 */
 	public static TransactionalEditingDomain createTransactionalEditingDomain(ResourceSet resourceSet) {
 		for (ITransactionalEditingDomainProvider provider : orderedProvidersArray) {
 			TransactionalEditingDomain ed = provider.createTransactionalEditingDomain(resourceSet);
