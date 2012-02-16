@@ -67,11 +67,12 @@ import com.google.common.collect.Iterables;
  * 
  */
 public class InterruptibleEdgeListener extends AbstractModifcationTriggerListener<ActivityEdge> {
+
 	/**
 	 * Id of all Visual ID of the interruptible Icon
-	 */	
-	private static ImmutableBiMap<EClass, String> INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION = ImmutableBiMap.of(UMLPackage.Literals.OBJECT_FLOW, String.valueOf(ObjectFlowInterruptibleIconEditPart.VISUAL_ID),UMLPackage.Literals.CONTROL_FLOW,String.valueOf(ControlFlowInterruptibleIconEditPart.VISUAL_ID));
-	
+	 */
+	private static ImmutableBiMap<EClass, String> INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION = ImmutableBiMap.of(UMLPackage.Literals.OBJECT_FLOW, String.valueOf(ObjectFlowInterruptibleIconEditPart.VISUAL_ID), UMLPackage.Literals.CONTROL_FLOW, String.valueOf(ControlFlowInterruptibleIconEditPart.VISUAL_ID));
+
 	@Override
 	protected boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature) {
 		if(UMLPackage.Literals.ACTIVITY_EDGE__INTERRUPTS.equals(eStructuralFeature)) {
@@ -81,62 +82,63 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 	}
 
 	/**
-	 * This command will react on a SET event of the structural feature describe in {@link InterruptibleEdgeListener#isCorrectStructuralfeature(EStructuralFeature)}
-	 * This will create a new view if the newValue != null or delete it if null
+	 * This command will react on a SET event of the structural feature describe in
+	 * {@link InterruptibleEdgeListener#isCorrectStructuralfeature(EStructuralFeature)} This will create a new view if the newValue != null or delete
+	 * it if null
 	 */
 	@Override
 	protected ICommand getModificationCommand(Notification notif, TransactionalEditingDomain domain) {
 		if(Notification.SET == notif.getEventType()) {
 			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");////$NON-NLS-0$
 			//Handling views
-			
-			final Iterable<IGraphicalEditPart> edgesEditPart =  DiagramEditPartsUtil.getChildrenByEObject((EObject)notif.getNotifier(), getDiagramEditPart(), true);
-				InterruptibleEdgeRequest request = new InterruptibleEdgeRequest();
-				Iterable<View> views = getReferencingView(notif);
-				if(notif.getNewValue() != null) {
-					//handle create view
-					request.setType(InterruptibleEdgeRequest.SET_INTERRUPTIBLE_EDGE);
-					for(View view : views) {
-						try {							
-							String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass()); 
-							ICommand createViewCommand = createInterruptibleEdgeIcon(view, visualID);
-							if(createViewCommand != null && createViewCommand.canExecute()) {
-								cc.compose(createViewCommand);
-							}
-						} catch (NullPointerException e) {
-							throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element"+view.getElement());
+
+			final Iterable<IGraphicalEditPart> edgesEditPart = DiagramEditPartsUtil.getChildrenByEObject((EObject)notif.getNotifier(), getDiagramEditPart(), true);
+			InterruptibleEdgeRequest request = new InterruptibleEdgeRequest();
+			Iterable<View> views = getReferencingView(notif);
+			if(notif.getNewValue() != null) {
+				//handle create view
+				request.setType(InterruptibleEdgeRequest.SET_INTERRUPTIBLE_EDGE);
+				for(View view : views) {
+					try {
+						String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass());
+						ICommand createViewCommand = createInterruptibleEdgeIcon(view, visualID);
+						if(createViewCommand != null && createViewCommand.canExecute()) {
+							cc.compose(createViewCommand);
 						}
-					}
-				} else {
-					//handle delete view
-					request.setType(InterruptibleEdgeRequest.UNSET_INTERRUPTIBLE_EDGE);
-					for(View view : views) {
-						try {							
-							String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass()); 
-							ICommand destroyCommand = destroyInterruptibleIcon((View)view, visualID);
-							if(destroyCommand != null && destroyCommand.canExecute()) {
-								cc.compose(destroyCommand);
-							}
-						} catch (NullPointerException e) {
-							throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element"+view.getElement());
-						}
+					} catch (NullPointerException e) {
+						throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element" + view.getElement());
 					}
 				}
-				for (IGraphicalEditPart edgeEditPart : edgesEditPart){					
-					if(edgeEditPart != null && edgeEditPart instanceof InterruptibleEdge && edgeEditPart.getModel() instanceof View) {
-						//Ask for the edit if something more else has to be done
-						Command command = edgeEditPart.getCommand(request);
-						if(command != null && command.canExecute()) {
-							cc.compose(new CommandProxy(command));
+			} else {
+				//handle delete view
+				request.setType(InterruptibleEdgeRequest.UNSET_INTERRUPTIBLE_EDGE);
+				for(View view : views) {
+					try {
+						String visualID = INTERRUPTIBLE_EDGE_ICON_VISUAL_ID_COLLECTION.get(view.getElement().eClass());
+						ICommand destroyCommand = destroyInterruptibleIcon((View)view, visualID);
+						if(destroyCommand != null && destroyCommand.canExecute()) {
+							cc.compose(destroyCommand);
 						}
+					} catch (NullPointerException e) {
+						throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element" + view.getElement());
 					}
 				}
-				return cc;
-		} 
+			}
+			for(IGraphicalEditPart edgeEditPart : edgesEditPart) {
+				if(edgeEditPart != null && edgeEditPart instanceof InterruptibleEdge && edgeEditPart.getModel() instanceof View) {
+					//Ask for the edit if something more else has to be done
+					Command command = edgeEditPart.getCommand(request);
+					if(command != null && command.canExecute()) {
+						cc.compose(new CommandProxy(command));
+					}
+				}
+			}
+			return cc;
+		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * Get all the view from Notation Model which represent the notifier.
 	 * Will only return the view of the same type than the notifier view
@@ -146,9 +148,9 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 	 * @return
 	 */
 	public Iterable<View> getReferencingView(Notification notif) {
-		final ActivityEdge element = getElement(notif);		
+		final ActivityEdge element = getElement(notif);
 		Resource eResource = element.eResource();
-		if (eResource != null){			
+		if(eResource != null) {
 			ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(eResource.getResourceSet());
 			if(adapter == null) {
 				adapter = new ECrossReferenceAdapter();
@@ -164,11 +166,11 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 
 	private TransactionalEditingDomain getEditingDomain(View model) {
 		DiagramEditPart diagramEditPart = getDiagramEditPart();
-		if( diagramEditPart != null){
+		if(diagramEditPart != null) {
 			return diagramEditPart.getEditingDomain();
 		}
 		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(model);
-		if ( editingDomain instanceof TransactionalEditingDomain){
+		if(editingDomain instanceof TransactionalEditingDomain) {
 			return (TransactionalEditingDomain)editingDomain;
 		}
 		return null;
@@ -222,10 +224,14 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 					}
 					return null;
 				}
+
 				/*
 				 * TODO test if needed
 				 * (non-Javadoc)
-				 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doUndo(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+				 * 
+				 * @see
+				 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doUndo(org.eclipse.core.runtime.IProgressMonitor,
+				 * org.eclipse.core.runtime.IAdaptable)
 				 */
 				@Override
 				protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -233,10 +239,14 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 					getDiagramEditPart().refresh();
 					return status;
 				}
+
 				/*
 				 * TODO test if needed
 				 * (non-Javadoc)
-				 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doUndo(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+				 * 
+				 * @see
+				 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doUndo(org.eclipse.core.runtime.IProgressMonitor,
+				 * org.eclipse.core.runtime.IAdaptable)
 				 */
 				@Override
 				protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -244,8 +254,8 @@ public class InterruptibleEdgeListener extends AbstractModifcationTriggerListene
 					getDiagramEditPart().refresh();
 					return status;
 				}
-				
-				
+
+
 			};
 			return cmd;
 		}

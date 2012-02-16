@@ -25,11 +25,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructured
  * @author arthur daussy
  * 
  */
-public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart
-		extends ConditionalNodeStructuredActivityNodeContentCompartmentEditPart {
+public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart extends ConditionalNodeStructuredActivityNodeContentCompartmentEditPart {
 
-	public CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart(
-			View view) {
+	public CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -38,8 +36,7 @@ public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPa
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
 		result.setBorder(null);

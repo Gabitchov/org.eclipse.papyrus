@@ -20,11 +20,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.UnmovableShapeEditPolicy;
 
 /**
  * Erase all movement functionality
+ * 
  * @author arthur daussy
- *
+ * 
  */
 public class PapyrusUnmovableShapeEditPolicy extends UnmovableShapeEditPolicy {
-	
+
 	@Override
 	protected IFigure createDragSourceFeedbackFigure() {
 		return null;

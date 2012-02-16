@@ -32,6 +32,7 @@ public class CustomObjectFlowInterruptibleIconEditPart extends ObjectFlowInterru
 	public CustomObjectFlowInterruptibleIconEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -42,6 +43,7 @@ public class CustomObjectFlowInterruptibleIconEditPart extends ObjectFlowInterru
 		}
 		return super.getLabelTextHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -53,6 +55,7 @@ public class CustomObjectFlowInterruptibleIconEditPart extends ObjectFlowInterru
 		}
 		super.getLabelTextHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -63,6 +66,7 @@ public class CustomObjectFlowInterruptibleIconEditPart extends ObjectFlowInterru
 		}
 		return super.getLabelIconHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */

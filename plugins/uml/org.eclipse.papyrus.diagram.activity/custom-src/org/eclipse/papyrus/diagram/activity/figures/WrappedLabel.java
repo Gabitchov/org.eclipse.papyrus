@@ -34,6 +34,6 @@ public class WrappedLabel extends PapyrusWrappingLabel {
 		setTextWrap(true);
 	}
 
-	
-	
+
+
 }

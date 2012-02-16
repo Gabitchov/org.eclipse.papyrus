@@ -11,6 +11,7 @@ public class CustomActivityActivityContentCompartmentEditPart extends ActivityAc
 	public CustomActivityActivityContentCompartmentEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * remove the top border
 	 */
@@ -30,6 +31,6 @@ public class CustomActivityActivityContentCompartmentEditPart extends ActivityAc
 	public boolean isSelectable() {
 		return false;
 	}
-	
-	
+
+
 }

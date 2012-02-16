@@ -32,7 +32,7 @@ import org.eclipse.papyrus.diagram.activity.request.InterruptibleEdgeRequest;
 import org.eclipse.uml2.uml.ActivityEdge;
 
 /**
- * Command to set an Activity Edge as an Interruptible Edge. 
+ * Command to set an Activity Edge as an Interruptible Edge.
  * This common is deferred this mean that the command will be created and executed in the doExecuteCommand.
  * This can prevent undo however this way drag and drop works
  * In order to make this command to work the target EditPart has to implement {@link InterruptibleEdge}
@@ -46,10 +46,12 @@ public class DeferredInterruptibleEdgeCommand extends AbstractTransactionalComma
 	 * {@link IGraphicalEditPart} of the {@link ActivityEdge} which implements {@link InterruptibleEdge}
 	 */
 	private EditPart hostEditPart;
+
 	/**
 	 * {@link ConnectionViewDescriptor} from creation mechanism
 	 */
 	private ConnectionViewDescriptor descriptor;
+
 	/**
 	 * Constructor {@link DeferredInterruptibleEdgeCommand#descriptor} and {@link DeferredInterruptibleEdgeCommand#hostEditPart}
 	 */

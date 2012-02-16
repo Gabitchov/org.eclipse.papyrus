@@ -52,6 +52,6 @@ public class SimpleLabel extends PapyrusWrappingLabel {
 		}
 	}
 
-	
-	
+
+
 }

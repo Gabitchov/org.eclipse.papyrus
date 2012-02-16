@@ -26,12 +26,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegi
  * @author arthur daussy
  * 
  */
-public class CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart
-		extends
-		InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart {
+public class CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart extends InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart {
 
-	public CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(
-			View view) {
+	public CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -40,8 +37,7 @@ public class CustomInterruptibleActivityRegionInterruptibleActivityRegionContent
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
 		result.setBorder(null);

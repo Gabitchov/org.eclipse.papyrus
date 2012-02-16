@@ -25,16 +25,17 @@ import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * Basic figure for Activity Edge figure
+ * 
  * @author arthur daussy
- *
+ * 
  */
 public class ActivityEdgeFigure extends UMLEdgeFigure {
-	
+
 	/**
 	 * @generated
 	 */
 	private WrappedLabel fEdgeName;
-	
+
 	/**
 	 * Since the Activity diagram is using Pixel unit we can use this as constant
 	 */
@@ -47,7 +48,7 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 
 
 	/**
-	 *  call the super constructor
+	 * call the super constructor
 	 */
 	public ActivityEdgeFigure() {
 		super();
@@ -64,7 +65,7 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 
 	/**
 	 * Scale changed from default 7:3 to 5:2 to make a
-	 *            smaller arrow
+	 * smaller arrow
 	 */
 	private RotatableDecoration createTargetDecoration() {
 		PolylineDecoration df = new PolylineDecoration();
@@ -74,7 +75,7 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 		pl.addPoint(mapNode.DPtoLP(0), mapNode.DPtoLP(0));
 		pl.addPoint(mapNode.DPtoLP(-2), mapNode.DPtoLP(-2));
 		df.setTemplate(pl);
-		df.setScale(mapNode.DPtoLP(5),mapNode.DPtoLP(2));
+		df.setScale(mapNode.DPtoLP(5), mapNode.DPtoLP(2));
 		return df;
 	}
 
@@ -100,9 +101,7 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 	}
 
 
-	
-	
 
-	
-	
+
+
 }

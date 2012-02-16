@@ -51,8 +51,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-import com.google.common.collect.Collections2;
-
 public class UMLValidationHelper {
 
 	/**

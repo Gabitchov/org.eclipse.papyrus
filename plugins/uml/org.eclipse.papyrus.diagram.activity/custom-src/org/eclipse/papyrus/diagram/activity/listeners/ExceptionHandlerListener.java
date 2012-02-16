@@ -17,7 +17,6 @@ package org.eclipse.papyrus.diagram.activity.listeners;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
@@ -54,7 +53,7 @@ public class ExceptionHandlerListener extends AbstractModifcationTriggerListener
 	}
 
 	@Override
-	protected ICommand getModificationCommand(Notification notif,TransactionalEditingDomain domain) {
+	protected ICommand getModificationCommand(Notification notif, TransactionalEditingDomain domain) {
 		if(Notification.SET == notif.getEventType()) {
 			ExceptionHandler ex = getElement(notif);
 			Object exceptionInput = notif.getNewValue();

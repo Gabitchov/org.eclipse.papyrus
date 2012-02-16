@@ -376,13 +376,13 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			ActivityNode source = (ActivityNode)sources.toArray()[0];
 			ActivityNode target = (ActivityNode)targets.toArray()[0];
 			CompositeCommand dropBinaryLink = dropBinaryLink(new CompositeCommand("drop Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
-//			If the activity edge is interruptible edge we forbib to drag it outside the interuptible edge
+			//			If the activity edge is interruptible edge we forbib to drag it outside the interuptible edge
 			if(dropBinaryLink != null && semanticLink instanceof ActivityEdge && ((ActivityEdge)semanticLink).getInterrupts() != null) {
-				if (!((ActivityEdge)semanticLink).getInterrupts().equals(((IGraphicalEditPart)getHost()).resolveSemanticElement())){
-					return UnexecutableCommand.INSTANCE;					
+				if(!((ActivityEdge)semanticLink).getInterrupts().equals(((IGraphicalEditPart)getHost()).resolveSemanticElement())) {
+					return UnexecutableCommand.INSTANCE;
 				} else {
 					return new ICommandProxy(getInterruptbleEdgeCommand(new CompositeCommand("drop Interruptible Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));////$NON-NLS-0$
-					
+
 				}
 			}
 			return new ICommandProxy(dropBinaryLink);
@@ -397,65 +397,65 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 * 
 	 * @param dropBinaryLink
 	 *        {@link CompositeCommand} to compose the newly created command
-	 * @param semanticLink 
-	 * @param point 
-	 * @param linkVISUALID 
-	 * @param target 
-	 * @param source 
+	 * @param semanticLink
+	 * @param point
+	 * @param linkVISUALID
+	 * @param target
+	 * @param source
 	 */
 	protected CompositeCommand getInterruptbleEdgeCommand(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
 		// look for editpart
-				GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
-				GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
+		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
 
-				// descriptor of the link
-				CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+		// descriptor of the link
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
 
-				IAdaptable sourceAdapter = null;
-				IAdaptable targetAdapter = null;
-				if(sourceEditPart == null) {
-					// creation of the node
-					ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+		IAdaptable sourceAdapter = null;
+		IAdaptable targetAdapter = null;
+		if(sourceEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
-					// get the command and execute it.
-					CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
-					cc.compose(nodeCreationCommand);
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y)); //$NON-NLS-1$
-					cc.compose(setBoundsCommand);
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
 
-					sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
-				} else {
-					sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
-				}
-				if(targetEditPart == null) {
-					// creation of the node
-					ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+		} else {
+			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
+		}
+		if(targetEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
-					// get the command and execute it.
-					
-					CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)((View)((IGraphicalEditPart)getHost()).getTopGraphicEditPart().getModel()).eContainer()));
-					cc.compose(nodeCreationCommand);
-					
-					IFigure interruptibleActivityRegionFigure = ((IGraphicalEditPart)getHost()).getFigure();
-					interruptibleActivityRegionFigure.getBounds();
-					Point targetPoint = location.getCopy();
-					targetPoint.setX(targetPoint.x()+50);
-					interruptibleActivityRegionFigure.translateToAbsolute(targetPoint);
-					while(interruptibleActivityRegionFigure.containsPoint(targetPoint)){
-						targetPoint.setX(targetPoint.x()+50);
-					}
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), targetPoint); //$NON-NLS-1$
-					cc.compose(setBoundsCommand);
-					targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+			// get the command and execute it.
 
-				} else {
-					targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
-				}
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)((View)((IGraphicalEditPart)getHost()).getTopGraphicEditPart().getModel()).eContainer()));
+			cc.compose(nodeCreationCommand);
 
-				CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
-				aLinkCommand.setElement(semanticLink);
-				cc.compose(aLinkCommand);
-				return cc;
+			IFigure interruptibleActivityRegionFigure = ((IGraphicalEditPart)getHost()).getFigure();
+			interruptibleActivityRegionFigure.getBounds();
+			Point targetPoint = location.getCopy();
+			targetPoint.setX(targetPoint.x() + 50);
+			interruptibleActivityRegionFigure.translateToAbsolute(targetPoint);
+			while(interruptibleActivityRegionFigure.containsPoint(targetPoint)) {
+				targetPoint.setX(targetPoint.x() + 50);
+			}
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), targetPoint); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+
+		} else {
+			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+		}
+
+		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		aLinkCommand.setElement(semanticLink);
+		cc.compose(aLinkCommand);
+		return cc;
 	}
 
 	/**

@@ -21,6 +21,7 @@ import org.eclipse.papyrus.diagram.activity.edit.part.interfaces.InterruptibleEd
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+
 /**
  * Customization to implement InterruptibleEdge
  * 
@@ -32,12 +33,14 @@ public class CustomObjectFlowEditPart extends ObjectFlowEditPart implements Inte
 	public CustomObjectFlowEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * {@inheritDoc InterruptibleEdge}
 	 */
 	public int getInterruptibleEdgeIconVisualID() {
 		return ObjectFlowInterruptibleIconEditPart.VISUAL_ID;
 	}
+
 	/**
 	 * {@inheritDoc InterruptibleEdge}
 	 */

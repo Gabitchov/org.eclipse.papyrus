@@ -31,6 +31,7 @@ public class CustomExceptionHandlerIconEditPart extends ExceptionHandlerIconEdit
 	public CustomExceptionHandlerIconEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -41,6 +42,7 @@ public class CustomExceptionHandlerIconEditPart extends ExceptionHandlerIconEdit
 		}
 		return super.getLabelTextHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -52,6 +54,7 @@ public class CustomExceptionHandlerIconEditPart extends ExceptionHandlerIconEdit
 		}
 		super.getLabelTextHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -62,6 +65,7 @@ public class CustomExceptionHandlerIconEditPart extends ExceptionHandlerIconEdit
 		}
 		return super.getLabelIconHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */

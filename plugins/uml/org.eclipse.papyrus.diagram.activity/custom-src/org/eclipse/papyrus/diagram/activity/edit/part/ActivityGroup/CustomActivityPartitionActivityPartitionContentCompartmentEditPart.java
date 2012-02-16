@@ -26,11 +26,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivity
  * @author arthur daussy
  * 
  */
-public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart
-		extends ActivityPartitionActivityPartitionContentCompartmentEditPart {
+public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart extends ActivityPartitionActivityPartitionContentCompartmentEditPart {
 
-	public CustomActivityPartitionActivityPartitionContentCompartmentEditPart(
-			View view) {
+	public CustomActivityPartitionActivityPartitionContentCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -47,8 +45,7 @@ public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
 		result.setBorder(null);

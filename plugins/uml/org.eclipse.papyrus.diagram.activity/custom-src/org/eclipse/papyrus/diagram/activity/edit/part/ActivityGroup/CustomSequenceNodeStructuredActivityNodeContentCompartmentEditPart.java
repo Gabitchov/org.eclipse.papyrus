@@ -26,11 +26,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredAct
  * @author arthur daussy
  * 
  */
-public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart
-		extends SequenceNodeStructuredActivityNodeContentCompartmentEditPart {
+public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart extends SequenceNodeStructuredActivityNodeContentCompartmentEditPart {
 
-	public CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart(
-			View view) {
+	public CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -39,8 +37,7 @@ public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
 		result.setBorder(null);

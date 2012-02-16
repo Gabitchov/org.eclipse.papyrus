@@ -31,6 +31,7 @@ public class CustomControlFlowInterruptibleIconEditPart extends ControlFlowInter
 	public CustomControlFlowInterruptibleIconEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -41,6 +42,7 @@ public class CustomControlFlowInterruptibleIconEditPart extends ControlFlowInter
 		}
 		return super.getLabelTextHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -52,6 +54,7 @@ public class CustomControlFlowInterruptibleIconEditPart extends ControlFlowInter
 		}
 		super.getLabelTextHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */
@@ -62,6 +65,7 @@ public class CustomControlFlowInterruptibleIconEditPart extends ControlFlowInter
 		}
 		return super.getLabelIconHelper(figure);
 	}
+
 	/**
 	 * Make it handle with {@link InterruptibleEdgeExternalIconFigure}
 	 */

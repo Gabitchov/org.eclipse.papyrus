@@ -33,12 +33,14 @@ public class CustomControlFlowEditPart extends ControlFlowEditPart implements In
 	public CustomControlFlowEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * {@inheritDoc InterruptibleEdge}
 	 */
 	public int getInterruptibleEdgeIconVisualID() {
 		return ControlFlowInterruptibleIconEditPart.VISUAL_ID;
 	}
+
 	/**
 	 * {@inheritDoc InterruptibleEdge}
 	 */

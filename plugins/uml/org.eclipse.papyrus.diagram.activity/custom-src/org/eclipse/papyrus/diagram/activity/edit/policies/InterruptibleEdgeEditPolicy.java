@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.Transaction;
@@ -53,15 +52,10 @@ import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.diagram.activity.edit.part.interfaces.InterruptibleEdge;
-import org.eclipse.papyrus.diagram.activity.helper.UMLValidationHelper;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.activity.request.InterruptibleEdgeRequest;
-import org.eclipse.papyrus.diagram.common.groups.request.GroupFrameworkRequest;
 import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * InterruptibleEdgeEditPolicy handle all action relative to interruptible Edge.
@@ -74,6 +68,7 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 
 	/** constant for this edit policy role */
 	public static String INTERRUPTIBLE_ICON_POLICY = "interruptibleIconPolicy";
+
 	/**
 	 * Validate the consistency of the view of the Interruptible Edge Icon
 	 */
@@ -90,13 +85,22 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 		try {
 			final IGraphicalEditPart graphicalHost = (IGraphicalEditPart)getHost();
 			final InterruptibleEdge interruptibleEdge = (InterruptibleEdge)getHost();
-			final ActivityEdge activityEdge = (ActivityEdge)graphicalHost.resolveSemanticElement();
+			EObject resolveSemanticElement = graphicalHost.resolveSemanticElement();
+			ActivityEdge activityEdgeAux;
+			if(resolveSemanticElement instanceof ActivityEdge) {
+				activityEdgeAux = (ActivityEdge)resolveSemanticElement;
+			} else {
+				activityEdgeAux = null;
+			}
+
+			final ActivityEdge activityEdge = activityEdgeAux;
+
 			final View interruptbleEdgeIcon = getInterruptbleEdgeIcon(graphicalHost, interruptibleEdge);
 			//If property == null and there is an view => delete
-			if (activityEdge != null){				
+			if(activityEdge != null) {
 				if(activityEdge.getInterrupts() == null && interruptbleEdgeIcon != null) {
 					ICommand destroyCommand = new AbstractTransactionalCommand(graphicalHost.getEditingDomain(), "Destroy Interruptible Edge Icon", null) {
-						
+
 						@Override
 						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 							ViewUtil.destroy(interruptbleEdgeIcon);
@@ -106,9 +110,9 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 					executeCommand(new ICommandProxy(destroyCommand));
 				}
 				//If property is set and no view exist => create a view
-				if ( activityEdge.getInterrupts() != null && interruptbleEdgeIcon == null){
+				if(activityEdge.getInterrupts() != null && interruptbleEdgeIcon == null) {
 					ICommand createCommand = new AbstractTransactionalCommand(graphicalHost.getEditingDomain(), "Create Interruptible Edge Icon", null) {
-						
+
 						@Override
 						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 							Object model = graphicalHost.getModel();
@@ -130,6 +134,7 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 			throw new RuntimeException("The host of InterruptibleEdgeEditPolicy should implement IGraphicalEditPart and InterruptibleEdge which refer to an ActivityEdge");////$NON-NLS-0$
 		}
 	}
+
 	/**
 	 * Retreive the view corresponding to interruptible edge icon
 	 */
@@ -142,8 +147,8 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 	}
 
 	/**
-	 * Executes the supplied command inside an <code>unchecked action</code>
-	 * COPIED FROM CANONICAL EDIT POLICY
+	 * Executes the supplied command inside an <code>unchecked action</code> COPIED FROM CANONICAL EDIT POLICY
+	 * 
 	 * @param cmd
 	 *        command that can be executed (i.e., cmd.canExecute() == true)
 	 */

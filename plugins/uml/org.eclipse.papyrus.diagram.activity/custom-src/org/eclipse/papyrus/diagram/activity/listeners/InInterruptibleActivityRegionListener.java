@@ -88,7 +88,8 @@ public class InInterruptibleActivityRegionListener extends AbstractModifcationTr
 	 * @return
 	 */
 	public Iterator<Iterable<ActivityEdge>> getActivityEdgeImpactedWithThisChange(ActivityNode node) {
-		Iterator<Iterable<ActivityEdge>> activityEdges = Iterators.transform(Iterators.concat(Collections.singleton(node).iterator(),node.eAllContents()), new Function<EObject, Iterable<ActivityEdge>>() {
+		Iterator<Iterable<ActivityEdge>> activityEdges = Iterators.transform(Iterators.concat(Collections.singleton(node).iterator(), node.eAllContents()), new Function<EObject, Iterable<ActivityEdge>>() {
+
 			public Iterable<ActivityEdge> apply(EObject from) {
 				if(from instanceof ActivityNode) {
 					ActivityNode activityNode = (ActivityNode)from;

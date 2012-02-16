@@ -25,11 +25,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructured
  * @author arthur daussy
  * 
  */
-public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart
-		extends ExpansionRegionStructuredActivityNodeContentCompartmentEditPart {
+public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart extends ExpansionRegionStructuredActivityNodeContentCompartmentEditPart {
 
-	public CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart(
-			View view) {
+	public CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -38,8 +36,7 @@ public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPa
 	 */
 	@Override
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
 		result.setTitleVisibility(false);
 		// remove the top border
 		result.setBorder(null);

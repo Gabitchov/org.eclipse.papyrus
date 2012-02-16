@@ -27,7 +27,7 @@ public class CustomUMLEditPartProvider extends UMLEditPartProvider {
 		setFactory(new CustomUMLEditPartFactory());
 		setAllowCaching(true);
 	}
-	
-	
+
+
 
 }

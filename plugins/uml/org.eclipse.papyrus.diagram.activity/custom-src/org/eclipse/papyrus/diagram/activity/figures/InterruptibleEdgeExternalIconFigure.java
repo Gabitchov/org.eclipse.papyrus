@@ -16,8 +16,9 @@ package org.eclipse.papyrus.diagram.activity.figures;
 
 import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+
 /**
- * External icon which look like a Z which represent external icon for Interruptible Edge or Exception Handler 
+ * External icon which look like a Z which represent external icon for Interruptible Edge or Exception Handler
  */
 public class InterruptibleEdgeExternalIconFigure extends ImageFigure {
 

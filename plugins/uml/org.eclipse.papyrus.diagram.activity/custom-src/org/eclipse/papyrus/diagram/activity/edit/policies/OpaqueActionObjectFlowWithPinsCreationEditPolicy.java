@@ -27,8 +27,9 @@ import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
  * Used to create pin when creating Object Flow
+ * 
  * @author arthur daussy
- *
+ * 
  */
 public class OpaqueActionObjectFlowWithPinsCreationEditPolicy extends ObjectFlowWithPinsCreationEditPolicy {
 
@@ -51,8 +52,8 @@ public class OpaqueActionObjectFlowWithPinsCreationEditPolicy extends ObjectFlow
 							return view;
 						}
 						//if there is no existing view we create it
-						Node node = ViewService.createNode(view, actNode ,UMLVisualIDRegistry.getType(UMLVisualIDRegistry.getNodeVisualID(view, actNode)), UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-						if (node != null){
+						Node node = ViewService.createNode(view, actNode, UMLVisualIDRegistry.getType(UMLVisualIDRegistry.getNodeVisualID(view, actNode)), UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+						if(node != null) {
 							return node;
 						}
 					}
@@ -61,14 +62,14 @@ public class OpaqueActionObjectFlowWithPinsCreationEditPolicy extends ObjectFlow
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void eraseSourceFeedback(Request request) {
-		if (connectionFeedback != null) {
+		if(connectionFeedback != null) {
 			removeFeedback(connectionFeedback);
 			feedbackHelper = null;
 			connectionFeedback = null;
 		}
 	}
-	
+
 }
