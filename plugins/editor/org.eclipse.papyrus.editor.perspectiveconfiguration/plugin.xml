@@ -7,5 +7,5 @@
       <startup
             class="org.eclipse.papyrus.editor.perspectiveconfiguration.PerspectiveConfigurator"></startup>
    </extension>
-
+ 
 </plugin>

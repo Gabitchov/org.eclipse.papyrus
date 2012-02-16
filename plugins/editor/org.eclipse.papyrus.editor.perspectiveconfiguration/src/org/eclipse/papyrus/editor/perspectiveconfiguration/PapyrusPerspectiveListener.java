@@ -14,33 +14,26 @@
 package org.eclipse.papyrus.editor.perspectiveconfiguration;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
-import org.eclipse.core.internal.jobs.Worker;
-import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.IPreferenceNode;
 import org.eclipse.jface.preference.PreferenceNode;
-import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PerspectiveAdapter;
-import org.eclipse.ui.application.ActionBarAdvisor;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.activities.IActivityManager;
+import org.eclipse.ui.activities.IWorkbenchActivitySupport;
 import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.ui.internal.Perspective;
+import org.eclipse.ui.internal.Workbench;
 import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.internal.WorkbenchWindow;
-import org.eclipse.ui.internal.registry.ActionSetDescriptor;
-import org.eclipse.ui.internal.registry.ActionSetRegistry;
-import org.eclipse.ui.internal.registry.IActionSetDescriptor;
 import org.eclipse.ui.internal.registry.PerspectiveRegistry;
-import org.eclipse.ui.menus.IMenuService;
-import org.eclipse.ui.menus.MenuUtil;
+//import org.eclipse.ui.internal.Perspective;
 
 /**
  * this is a listener hat has in charge to configure a perspective when it is openend etc..
@@ -90,7 +83,7 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 	public boolean isAlreadySave(String perspectiveID) {
 		PerspectiveRegistry perspRegistry = (PerspectiveRegistry)WorkbenchPlugin.getDefault().getPerspectiveRegistry();
 		try {
-			IMemento memento = perspRegistry.getCustomPersp(perspectiveID);
+			//IMemento memento = perspRegistry.getCustomPersp(perspectiveID);
 			//Activator.log.debug(""+memento);
 			return true;
 		} catch (Exception e) {
@@ -106,21 +99,21 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 
 		//test is we are interesting by the current perspective
 		if(configurationservice.getConfiguration(perspectivedescriptor.getId()) != null) {
-			if(!isAlreadySave(perspectivedescriptor.getId())) {
-				updateTooling(perspectivedescriptor);
-				page.savePerspective();
-			}
+			//if(!isAlreadySave(perspectivedescriptor.getId())) {
+			updateTooling(perspectivedescriptor);
+			//	page.savePerspective();
+			//}
 
 
 		}
 		updatePreferencePage(perspectivedescriptor);
-		Perspective perspective = ((WorkbenchPage)page).findPerspective(perspectivedescriptor);
-		
-		//due to a bug on the refresh, we need to call explicitly this method.
-		//to remove, when the origin is found.
-		if( perspective!=null){
-			perspective.updateActionBars();
-		}
+		//		Perspective perspective = ((WorkbenchPage)page).findPerspective(perspectivedescriptor);
+		//		
+		//		//due to a bug on the refresh, we need to call explicitly this method.
+		//		//to remove, when the origin is found.
+		//		if( perspective!=null){
+		//			perspective.updateActionBars();
+		//		}
 	}
 
 	protected void updatePreferencePage(IPerspectiveDescriptor perspectivedescriptor) {
@@ -154,152 +147,216 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 
 	}
 
-	/**
-	 * this method hide menu, tool bar and action hat are not interesting
-	 * 
-	 * @param perspectivedescriptor
-	 */
-	protected void updateTooling(IPerspectiveDescriptor perspectivedescriptor) {
 
-		CustomizeActionBars customizeActionBars = loadData();
+	protected void updateTooling(final IPerspectiveDescriptor perspectivedescriptor) {
+		IWorkbenchActivitySupport workbenchActivitySupport = PlatformUI.getWorkbench().getActivitySupport();
+		IActivityManager activityManager = workbenchActivitySupport.getActivityManager();
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				try {
+					IWorkbenchWindow window = Workbench.getInstance().getActiveWorkbenchWindow();
+					if(window instanceof WorkbenchWindow) {
+						WorkbenchPage worbenchPage = (WorkbenchPage)window.getActivePage();
+						ICommandService cmdService = (ICommandService)worbenchPage.getActivePart().getSite().getService(ICommandService.class);
+						Configuration configuration = configurationservice.getConfiguration(perspectivedescriptor.getId());
 
-		if(configurationservice.getConfiguration(perspectivedescriptor.getId()) != null) {
-			Configuration configuration = configurationservice.getConfiguration(perspectivedescriptor.getId());
-			//Activator.log.debug("Update tooling");
-			//Load all information about menus....
-			WorkbenchPage worbenchPage = (WorkbenchPage)window.getActivePage();
-			// Get the perspective
-			Perspective perspective = worbenchPage.findPerspective(perspectivedescriptor);
+						ArrayList<String> commandIdToRemove = new ArrayList<String>();
 
-			ICommandService cmdService = (ICommandService)worbenchPage.getActivePart().getSite().getService(ICommandService.class);
+						try {
 
-
-			ArrayList<String> commandIdToRemove = new ArrayList<String>();
-
-			try {
-
-				//put all commands that not reference to the given category
-				for(int i = 0; i < cmdService.getDefinedCommands().length; i++) {
-					if(!configuration.getCategoryIDList().contains(cmdService.getDefinedCommands()[i].getCategory().getId())) {
-						commandIdToRemove.add(cmdService.getDefinedCommands()[i].getId());
-					}
-					//	else{System.err.println("keep "+cmdService.getDefinedCommands()[i].getId());}
-				}
-
-				//then verify for each command by taking account its id.
-				for(int i = 0; i < cmdService.getDefinedCommands().length; i++) {
-					//put the commands in the list to hide, theis command are not referenced in the given list of command id and are not in the given list of category 
-					if(!configuration.getCommandIDList().contains(cmdService.getDefinedCommands()[i].getId())) {
-						if(!configuration.getCategoryIDList().contains(cmdService.getDefinedCommands()[i].getCategory().getId())) {
-							if(!commandIdToRemove.contains(cmdService.getDefinedCommands()[i].getId())) {
-								commandIdToRemove.add(cmdService.getDefinedCommands()[i].getId());
+							//put all commands that not reference to the given category
+							for(int i = 0; i < cmdService.getDefinedCommands().length; i++) {
+								if(!configuration.getCategoryIDList().contains(cmdService.getDefinedCommands()[i].getCategory().getId())) {
+									commandIdToRemove.add(cmdService.getDefinedCommands()[i].getId());
+								}
+								//	else{System.err.println("keep "+cmdService.getDefinedCommands()[i].getId());}
 							}
+
+							//then verify for each command by taking account its id.
+							for(int i = 0; i < cmdService.getDefinedCommands().length; i++) {
+								//put the commands in the list to hide, theis command are not referenced in the given list of command id and are not in the given list of category 
+								if(!configuration.getCommandIDList().contains(cmdService.getDefinedCommands()[i].getId())) {
+									if(!configuration.getCategoryIDList().contains(cmdService.getDefinedCommands()[i].getCategory().getId())) {
+										if(!commandIdToRemove.contains(cmdService.getDefinedCommands()[i].getId())) {
+											commandIdToRemove.add(cmdService.getDefinedCommands()[i].getId());
+										}
+									}
+								} else {//may be the id that we want to keep was in already in the list because of the filter on category
+									if(commandIdToRemove.contains(cmdService.getDefinedCommands()[i].getId())) {
+										commandIdToRemove.remove(cmdService.getDefinedCommands()[i].getId());
+									}
+								}
+							}
+						} catch (Exception e) {
+							System.err.println(e);
 						}
-					} else {//may be the id that we want to keep was in already in the list because of the filter on category
-						if(commandIdToRemove.contains(cmdService.getDefinedCommands()[i].getId())) {
-							commandIdToRemove.remove(cmdService.getDefinedCommands()[i].getId());
+
+
+
+
+						MenuManager menuManager = ((WorkbenchWindow)window).getMenuManager();
+						IContributionItem[] items = menuManager.getItems();
+						for(IContributionItem item:items){
+							if(!(configuration.getMenuIDList().contains(item.getId()))){
+								menuManager.remove(item.getId());
+							}
+							
 						}
+						
 					}
 				}
-			} catch (Exception e) {
-				System.err.println(e);
-			}
-
-
-			perspective.getHiddenMenuItems().clear();
-			perspective.getHiddenToolbarItems().clear();
-
-			//look for all actionSet
-			ArrayList<IActionSetDescriptor> actionSetToRemove = new ArrayList<IActionSetDescriptor>();
-			Iterator<IActionSetDescriptor> iteratorActionSet = customizeActionBars.getActionSet().iterator();
-			while(iteratorActionSet.hasNext()) {
-				IActionSetDescriptor currentActionSetDescriptor = iteratorActionSet.next();
-				//test if the configuationSet contains the id
-				if(!configuration.getActionSetIDList().contains(currentActionSetDescriptor.getId())) {
-					actionSetToRemove.add(currentActionSetDescriptor);
+				catch(Exception e){
+					System.err.println(e);
 				}
 			}
-
-
-
-			// look for all menu
-			ArrayList<String> menuToRemove = new ArrayList<String>();
-
-			for(int i = 0; i < customizeActionBars.getMenuManager().getItems().length; i++) {
-				if(!configuration.getMenuIDList().contains(customizeActionBars.getMenuManager().getItems()[i].getId())) {
-					menuToRemove.add(customizeActionBars.getMenuManager().getItems()[i].getId());
-				}
-			}
-
-			//look for all toolbar
-			ArrayList<String> toolbarToRemove = new ArrayList<String>();
-			for(int i = 0; i < customizeActionBars.getToolBarManager().getItems().length; i++) {
-
-				if(!configuration.getToolBarID().contains(customizeActionBars.getToolBarManager().getItems()[i].getId())) {
-					toolbarToRemove.add(customizeActionBars.getToolBarManager().getItems()[i].getId());
-				}
-			}
-
-			perspective.getHiddenMenuItems().addAll(commandIdToRemove);
-			perspective.getHiddenToolbarItems().addAll(commandIdToRemove);
-			//hide elements
-			perspective.turnOffActionSets((IActionSetDescriptor[])actionSetToRemove.toArray(new IActionSetDescriptor[actionSetToRemove.size()]));
-			perspective.getHiddenMenuItems().addAll(menuToRemove);
-			perspective.getHiddenToolbarItems().addAll(toolbarToRemove);
-			perspective.updateActionBars();
-
-		}
-
+		});
 	}
-
-	/**
-	 * this method search all identifier of menu toolbar and actionSet that are loaded in eclipse
-	 * 
-	 * @return a structure that contains all references of the toolbar, menu, and actionSet..
-	 */
-	protected CustomizeActionBars loadData() {
-
-
-		CustomizeActionBars ownedActionBar = new CustomizeActionBars(null);
-		//actionSet
-		// Just get the action sets at this point. Do not load the action set
-		// until it is actually selected in the dialog.
-		ActionSetRegistry reg = WorkbenchPlugin.getDefault().getActionSetRegistry();
-		IActionSetDescriptor[] sets = reg.getActionSets();
-		IActionSetDescriptor[] actionSetDescriptors = ((WorkbenchPage)window.getActivePage()).getActionSets();
-		List initiallyAvailableActionSets = Arrays.asList(actionSetDescriptors);
-		ownedActionBar.setActionSet(initiallyAvailableActionSets);
-
-
-
-		// Fill fake action bars with static menu information.
-		((WorkbenchWindow)window).fillActionBars(ownedActionBar, ActionBarAdvisor.FILL_PROXY | ActionBarAdvisor.FILL_MENU_BAR | ActionBarAdvisor.FILL_COOL_BAR);
-		//	Activator.log.debug("\n+-> ActionSetDescriptor");
-		for(int i = 0; i < sets.length; i++) {
-			ActionSetDescriptor actionSetDesc = (ActionSetDescriptor)sets[i];
-			//	Activator.log.debug("+--->" + actionSetDesc.getId());
-
-		}
-
-		final IMenuService menuService = (IMenuService)window.getService(IMenuService.class);
-		menuService.populateContributionManager((ContributionManager)ownedActionBar.getMenuManager(), MenuUtil.MAIN_MENU);
-		//Activator.log.debug("\n+-> Menu " + ownedActionBar.getMenuManager().getItems().length);
-		for(int i = 0; i < ownedActionBar.getMenuManager().getItems().length; i++) {
-			IContributionItem item = ownedActionBar.getMenuManager().getItems()[i];
-			//	Activator.log.debug("+--->" + item.getId());
-		}
-
-
-		IToolBarManager toolBarManager = ownedActionBar.getToolBarManager();
-		menuService.populateContributionManager((ContributionManager)toolBarManager, MenuUtil.MAIN_TOOLBAR);
-		//Activator.log.debug("\n+-> toolbar " + ownedActionBar.getToolBarManager() + " " + ownedActionBar.getToolBarManager().getItems().length);
-		for(int i = 0; i < ownedActionBar.getToolBarManager().getItems().length; i++) {
-			IContributionItem item = toolBarManager.getItems()[i];
-			//Activator.log.debug("+--->" + item.getId());
-		}
-
-		return ownedActionBar;
-	}
+	//	/**
+	//	 * this method hide menu, tool bar and action hat are not interesting
+	//	 * 
+	//	 * @param perspectivedescriptor
+	//	 */
+	//	protected void updateTooling(IPerspectiveDescriptor perspectivedescriptor) {
+	//
+	//		CustomizeActionBars customizeActionBars = loadData();
+	//
+	//		if(configurationservice.getConfiguration(perspectivedescriptor.getId()) != null) {
+	//			Configuration configuration = configurationservice.getConfiguration(perspectivedescriptor.getId());
+	//			//Activator.log.debug("Update tooling");
+	//			//Load all information about menus....
+	//			WorkbenchPage worbenchPage = (WorkbenchPage)window.getActivePage();
+	//			// Get the perspective
+	//			Perspective perspective = worbenchPage.findPerspective(perspectivedescriptor);
+	//
+	//			ICommandService cmdService = (ICommandService)worbenchPage.getActivePart().getSite().getService(ICommandService.class);
+	//
+	//
+	//			ArrayList<String> commandIdToRemove = new ArrayList<String>();
+	//
+	//			try {
+	//
+	//				//put all commands that not reference to the given category
+	//				for(int i = 0; i < cmdService.getDefinedCommands().length; i++) {
+	//					if(!configuration.getCategoryIDList().contains(cmdService.getDefinedCommands()[i].getCategory().getId())) {
+	//						commandIdToRemove.add(cmdService.getDefinedCommands()[i].getId());
+	//					}
+	//					//	else{System.err.println("keep "+cmdService.getDefinedCommands()[i].getId());}
+	//				}
+	//
+	//				//then verify for each command by taking account its id.
+	//				for(int i = 0; i < cmdService.getDefinedCommands().length; i++) {
+	//					//put the commands in the list to hide, theis command are not referenced in the given list of command id and are not in the given list of category 
+	//					if(!configuration.getCommandIDList().contains(cmdService.getDefinedCommands()[i].getId())) {
+	//						if(!configuration.getCategoryIDList().contains(cmdService.getDefinedCommands()[i].getCategory().getId())) {
+	//							if(!commandIdToRemove.contains(cmdService.getDefinedCommands()[i].getId())) {
+	//								commandIdToRemove.add(cmdService.getDefinedCommands()[i].getId());
+	//							}
+	//						}
+	//					} else {//may be the id that we want to keep was in already in the list because of the filter on category
+	//						if(commandIdToRemove.contains(cmdService.getDefinedCommands()[i].getId())) {
+	//							commandIdToRemove.remove(cmdService.getDefinedCommands()[i].getId());
+	//						}
+	//					}
+	//				}
+	//			} catch (Exception e) {
+	//				System.err.println(e);
+	//			}
+	//
+	//
+	//			perspective.getHiddenMenuItems().clear();
+	//			perspective.getHiddenToolbarItems().clear();
+	//
+	//			//look for all actionSet
+	//			ArrayList<IActionSetDescriptor> actionSetToRemove = new ArrayList<IActionSetDescriptor>();
+	//			Iterator<IActionSetDescriptor> iteratorActionSet = customizeActionBars.getActionSet().iterator();
+	//			while(iteratorActionSet.hasNext()) {
+	//				IActionSetDescriptor currentActionSetDescriptor = iteratorActionSet.next();
+	//				//test if the configuationSet contains the id
+	//				if(!configuration.getActionSetIDList().contains(currentActionSetDescriptor.getId())) {
+	//					actionSetToRemove.add(currentActionSetDescriptor);
+	//				}
+	//			}
+	//
+	//
+	//
+	//			// look for all menu
+	//			ArrayList<String> menuToRemove = new ArrayList<String>();
+	//
+	//			for(int i = 0; i < customizeActionBars.getMenuManager().getItems().length; i++) {
+	//				if(!configuration.getMenuIDList().contains(customizeActionBars.getMenuManager().getItems()[i].getId())) {
+	//					menuToRemove.add(customizeActionBars.getMenuManager().getItems()[i].getId());
+	//				}
+	//			}
+	//
+	//			//look for all toolbar
+	//			ArrayList<String> toolbarToRemove = new ArrayList<String>();
+	//			for(int i = 0; i < customizeActionBars.getToolBarManager().getItems().length; i++) {
+	//
+	//				if(!configuration.getToolBarID().contains(customizeActionBars.getToolBarManager().getItems()[i].getId())) {
+	//					toolbarToRemove.add(customizeActionBars.getToolBarManager().getItems()[i].getId());
+	//				}
+	//			}
+	//
+	//			perspective.getHiddenMenuItems().addAll(commandIdToRemove);
+	//			perspective.getHiddenToolbarItems().addAll(commandIdToRemove);
+	//			//hide elements
+	//			perspective.turnOffActionSets((IActionSetDescriptor[])actionSetToRemove.toArray(new IActionSetDescriptor[actionSetToRemove.size()]));
+	//			perspective.getHiddenMenuItems().addAll(menuToRemove);
+	//			perspective.getHiddenToolbarItems().addAll(toolbarToRemove);
+	//			perspective.updateActionBars();
+	//
+	//		}
+	//
+	//	}
+	//
+	//	/**
+	//	 * this method search all identifier of menu toolbar and actionSet that are loaded in eclipse
+	//	 * 
+	//	 * @return a structure that contains all references of the toolbar, menu, and actionSet..
+	//	 */
+	//	protected CustomizeActionBars loadData() {
+	//
+	//
+	//		CustomizeActionBars ownedActionBar = new CustomizeActionBars(null);
+	//		//actionSet
+	//		// Just get the action sets at this point. Do not load the action set
+	//		// until it is actually selected in the dialog.
+	//		ActionSetRegistry reg = WorkbenchPlugin.getDefault().getActionSetRegistry();
+	//		IActionSetDescriptor[] sets = reg.getActionSets();
+	//		IActionSetDescriptor[] actionSetDescriptors = ((WorkbenchPage)window.getActivePage()).getActionSets();
+	//		List initiallyAvailableActionSets = Arrays.asList(actionSetDescriptors);
+	//		ownedActionBar.setActionSet(initiallyAvailableActionSets);
+	//
+	//
+	//
+	//		// Fill fake action bars with static menu information.
+	//		((WorkbenchWindow)window).fillActionBars(ownedActionBar, ActionBarAdvisor.FILL_PROXY | ActionBarAdvisor.FILL_MENU_BAR | ActionBarAdvisor.FILL_COOL_BAR);
+	//		//	Activator.log.debug("\n+-> ActionSetDescriptor");
+	//		for(int i = 0; i < sets.length; i++) {
+	//			ActionSetDescriptor actionSetDesc = (ActionSetDescriptor)sets[i];
+	//			//	Activator.log.debug("+--->" + actionSetDesc.getId());
+	//
+	//		}
+	//
+	//		final IMenuService menuService = (IMenuService)window.getService(IMenuService.class);
+	//		menuService.populateContributionManager((ContributionManager)ownedActionBar.getMenuManager(), MenuUtil.MAIN_MENU);
+	//		//Activator.log.debug("\n+-> Menu " + ownedActionBar.getMenuManager().getItems().length);
+	//		for(int i = 0; i < ownedActionBar.getMenuManager().getItems().length; i++) {
+	//			IContributionItem item = ownedActionBar.getMenuManager().getItems()[i];
+	//			//	Activator.log.debug("+--->" + item.getId());
+	//		}
+	//
+	//
+	//		IToolBarManager toolBarManager = ownedActionBar.getToolBarManager();
+	//		menuService.populateContributionManager((ContributionManager)toolBarManager, MenuUtil.MAIN_TOOLBAR);
+	//		//Activator.log.debug("\n+-> toolbar " + ownedActionBar.getToolBarManager() + " " + ownedActionBar.getToolBarManager().getItems().length);
+	//		for(int i = 0; i < ownedActionBar.getToolBarManager().getItems().length; i++) {
+	//			IContributionItem item = toolBarManager.getItems()[i];
+	//			//Activator.log.debug("+--->" + item.getId());
+	//		}
+	//
+	//		return ownedActionBar;
+	//	}
 
 	/**
 	 * {@inheritDoc}
