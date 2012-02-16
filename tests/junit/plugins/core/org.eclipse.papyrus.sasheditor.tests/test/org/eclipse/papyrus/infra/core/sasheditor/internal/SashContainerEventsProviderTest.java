@@ -13,6 +13,8 @@ import org.junit.Test;
 
 
 /**
+ * Tests for the class {@link SashContainerEventsProvider}.
+ * 
  * @author dumoulin
  *
  */
@@ -39,7 +41,7 @@ public class SashContainerEventsProviderTest {
 	public void testAddActiveEditorChangedListener() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -57,7 +59,7 @@ public class SashContainerEventsProviderTest {
 	public void testRemoveActiveEditorChangedListener() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		provider.removeListener(listener);
 		
@@ -76,7 +78,7 @@ public class SashContainerEventsProviderTest {
 	public void testFirePageOpenedEvent() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -85,7 +87,7 @@ public class SashContainerEventsProviderTest {
 		// Send an event and check that it is received. If received, the listener is register !
 		provider.firePageOpenedEvent(page);
 		assertEquals("event fired", 1, listener.getEventCount());
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_OPENED, listener.getTraces().get(0));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_OPENED, listener.getTraces().get(0));
 	}
 
 	/**
@@ -95,7 +97,7 @@ public class SashContainerEventsProviderTest {
 	public void testFirePageClosedEvent() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -104,7 +106,7 @@ public class SashContainerEventsProviderTest {
 		// Send an event and check that it is received. If received, the listener is register !
 		provider.firePageClosedEvent(page);
 		assertEquals("event fired", 1, listener.getEventCount());
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_CLOSED, listener.getTraces().get(0));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_CLOSED, listener.getTraces().get(0));
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class SashContainerEventsProviderTest {
 	public void testFirePageAboutToBeOpenedEvent() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -123,7 +125,7 @@ public class SashContainerEventsProviderTest {
 		// Send an event and check that it is received. If received, the listener is register !
 		provider.firePageAboutToBeOpenedEvent(page);
 		assertEquals("event fired", 1, listener.getEventCount());
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(0));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(0));
 	}
 
 	/**
@@ -133,7 +135,7 @@ public class SashContainerEventsProviderTest {
 	public void testFirePageAboutToBeClosedEvent() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -142,7 +144,7 @@ public class SashContainerEventsProviderTest {
 		// Send an event and check that it is received. If received, the listener is register !
 		provider.firePageAboutToBeClosedEvent(page);
 		assertEquals("event fired", 1, listener.getEventCount());
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ABOUTTOBECLOSED, listener.getTraces().get(0));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBECLOSED, listener.getTraces().get(0));
 	}
 
 	/**
@@ -152,7 +154,7 @@ public class SashContainerEventsProviderTest {
 	public void testFirePageActivatedEvent() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -161,7 +163,7 @@ public class SashContainerEventsProviderTest {
 		// Send an event and check that it is received. If received, the listener is register !
 		provider.firePageActivatedEvent(page);
 		assertEquals("event fired", 1, listener.getEventCount());
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ACTIVATED, listener.getTraces().get(0));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(0));
 	}
 
 	/**
@@ -171,7 +173,7 @@ public class SashContainerEventsProviderTest {
 	public void testFirePageDeactivatedEvent() {
 		SashContainerEventsProvider provider = new SashContainerEventsProvider();
 		
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
 		provider.addListener(listener);
 		
 		// Use a null page, as it is not possible to instanciate a fake page.
@@ -180,7 +182,7 @@ public class SashContainerEventsProviderTest {
 		// Send an event and check that it is received. If received, the listener is register !
 		provider.firePageDeactivatedEvent(page);
 		assertEquals("event fired", 1, listener.getEventCount());
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_DEACTIVATED, listener.getTraces().get(0));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_DEACTIVATED, listener.getTraces().get(0));
 	}
 
 }

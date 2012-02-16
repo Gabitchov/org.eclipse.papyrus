@@ -1,20 +1,21 @@
 /**
  * 
  */
-package org.eclipse.papyrus.infra.core.sasheditor.internal;
+package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
 
 
 /**
- * Interface to be implemented by listeners on {@link SashWindowsContainer} life
- * cycle events.
+ * This Interface allows to listen on events thrown during the life 
+ * cycle of an IPage. 
+ * 
  * 
  * @author cedric dumoulin
  * 
  */
-public interface SashContainerEventsListener extends IPageChangedListener {
+public interface IPageLifeCycleEventsListener extends IPageChangedListener {
 
 	/**
 	 * 
@@ -40,6 +41,7 @@ public interface SashContainerEventsListener extends IPageChangedListener {
 
 	/**
 	 * The specify page is deactivated.
+	 * This event is never thrown actually. 
 	 * 
 	 * @param page
 	 *        The page firing the event.
@@ -54,7 +56,7 @@ public interface SashContainerEventsListener extends IPageChangedListener {
 	public void pageAboutToBeOpened(IPage page);
 
 	/**
-	 * 
+	 * This event is never thrown actually.
 	 * @param page
 	 *        The page firing the event.
 	 */

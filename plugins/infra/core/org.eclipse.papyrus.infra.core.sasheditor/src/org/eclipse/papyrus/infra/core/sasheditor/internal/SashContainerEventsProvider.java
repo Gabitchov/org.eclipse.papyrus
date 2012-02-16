@@ -6,6 +6,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
+
 
 /**
  * A class managing events of the {@link SashWindowsContainer}.
@@ -18,14 +20,14 @@ import java.util.List;
 public class SashContainerEventsProvider {
 
 	/** List of listeners */
-	private List<SashContainerEventsListener> listeners = new ArrayList<SashContainerEventsListener>();
+	private List<IPageLifeCycleEventsListener> listeners = new ArrayList<IPageLifeCycleEventsListener>();
 
 	/**
 	 * Add a listener on the activeEditorChange event.
 	 * 
 	 * @param listener
 	 */
-	public void addListener(SashContainerEventsListener listener) {
+	public void addListener(IPageLifeCycleEventsListener listener) {
 		// no duplicate
 		if(listeners.contains(listener))
 			return;
@@ -37,7 +39,7 @@ public class SashContainerEventsProvider {
 	 * 
 	 * @param listener
 	 */
-	public void removeListener(SashContainerEventsListener listener) {
+	public void removeListener(IPageLifeCycleEventsListener listener) {
 		listeners.remove(listener);
 	}
 
@@ -48,7 +50,7 @@ public class SashContainerEventsProvider {
 	 */
 	public void firePageOpenedEvent(PagePart page) {
 		// Fire events to internal listeners
-		for(SashContainerEventsListener listener : listeners) {
+		for(IPageLifeCycleEventsListener listener : listeners) {
 			listener.pageOpened(page);
 		}
 	}
@@ -59,7 +61,7 @@ public class SashContainerEventsProvider {
 	 */
 	public void firePageClosedEvent(PagePart page) {
 		// Fire events to internal listeners
-		for(SashContainerEventsListener listener : listeners) {
+		for(IPageLifeCycleEventsListener listener : listeners) {
 			listener.pageClosed(page);
 		}
 	}
@@ -70,7 +72,7 @@ public class SashContainerEventsProvider {
 	 */
 	public void firePageAboutToBeOpenedEvent(PagePart page) {
 		// Fire events to internal listeners
-		for(SashContainerEventsListener listener : listeners) {
+		for(IPageLifeCycleEventsListener listener : listeners) {
 			listener.pageAboutToBeOpened(page);
 		}
 	}
@@ -81,7 +83,7 @@ public class SashContainerEventsProvider {
 	 */
 	public void firePageAboutToBeClosedEvent(PagePart page) {
 		// Fire events to internal listeners
-		for(SashContainerEventsListener listener : listeners) {
+		for(IPageLifeCycleEventsListener listener : listeners) {
 			listener.pageAboutToBeClosed(page);
 		}
 	}
@@ -92,7 +94,7 @@ public class SashContainerEventsProvider {
 	 */
 	public void firePageActivatedEvent(PagePart page) {
 		// Fire events to internal listeners
-		for(SashContainerEventsListener listener : listeners) {
+		for(IPageLifeCycleEventsListener listener : listeners) {
 			listener.pageActivated(page);
 		}
 	}
@@ -103,7 +105,7 @@ public class SashContainerEventsProvider {
 	 */
 	public void firePageDeactivatedEvent(PagePart page) {
 		// Fire events to internal listeners
-		for(SashContainerEventsListener listener : listeners) {
+		for(IPageLifeCycleEventsListener listener : listeners) {
 			listener.pageDeactivated(page);
 		}
 	}

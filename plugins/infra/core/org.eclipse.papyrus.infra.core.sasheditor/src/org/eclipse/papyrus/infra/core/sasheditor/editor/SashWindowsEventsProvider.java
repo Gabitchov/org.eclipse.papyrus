@@ -13,10 +13,15 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * This class allows to listen on events from the {@link SashWindowsContainer}:
+ * This class allows to listen on events coming from all the active main Editors containing
+ * a  {@link SashWindowsContainer}. It send events when the active editor change and it contains 
+ * a {@link SashWindowsContainer}, and when the active page of one of the container has changed.
+ *  
+ * <br>
+ * This class allow to listen on following events:
  * <ul>
  * <li>pageChanged - a page has changed in the current container</li>
- * <li>- containerChanged - the active editor has changed, and so the currently active container.</li>
+ * <li>containerChanged - the active editor has changed, and so the currently active container.</li>
  * </ul>
  * 
  * This class require the current Eclipse page in order to listen on active editor changed.
@@ -120,11 +125,11 @@ public class SashWindowsEventsProvider {
 		workbenchPage = page;
 
 		// Get the currently active container, if any.
-		ISashWindowsContainer newContainer = null;
-		IEditorPart editorPart = page.getActiveEditor();
-		if(editorPart != null) {
-			newContainer = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
-		}
+//		ISashWindowsContainer newContainer = null;
+//		IEditorPart editorPart = page.getActiveEditor();
+//		if(editorPart != null) {
+//			newContainer = (ISashWindowsContainer)editorPart.getAdapter(ISashWindowsContainer.class);
+//		}
 
 		//		// Set SashContainer and ActivePage
 		//		currentContainer = newContainer;

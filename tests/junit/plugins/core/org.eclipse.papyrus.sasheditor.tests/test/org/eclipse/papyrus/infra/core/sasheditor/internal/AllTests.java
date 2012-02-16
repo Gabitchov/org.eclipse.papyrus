@@ -21,7 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ SashContainerEventsProviderTest.class, 
-	SashWindowsContainerEventsProviderTest.class, 
+	PageLifeCycleEventsThrownFromContainerTest.class, 
 	SashWindowsContainerTest.class ,
 	SashWindowsContainerDisposeCalledTest.class,
 	SashWindowsContainerMemoryLeakTest.class

@@ -5,7 +5,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
 import java.util.logging.Logger;
 
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPropertyListener;
@@ -39,7 +38,7 @@ public class SashTabDecorationSynchronizer {
 	/**
 	 * Listener on Container'pages life cycle.
 	 */
-	SashContainerEventsListener pageLifeCycleListener = new SashContainerEventsListener() {
+	IPageLifeCycleEventsListener pageLifeCycleListener = new IPageLifeCycleEventsListener() {
 		
 		public void pageChanged(IPage newPage) {
 		}
@@ -105,7 +104,7 @@ public class SashTabDecorationSynchronizer {
 	 * Attach listeners requested by the class.
 	 */
 	protected void attachListeners() {
-		container.addLifeCycleListener(pageLifeCycleListener);
+		container.addPageLifeCycleListener(pageLifeCycleListener);
 	}
 	
 	/**
@@ -113,7 +112,7 @@ public class SashTabDecorationSynchronizer {
 	 */
 	protected void detachListeners() {
 		if( !container.isDisposed()) {
-		  container.removeLifeCycleListener(pageLifeCycleListener);
+		  container.removePageLifeCycleListener(pageLifeCycleListener);
 		}
 	}
 	

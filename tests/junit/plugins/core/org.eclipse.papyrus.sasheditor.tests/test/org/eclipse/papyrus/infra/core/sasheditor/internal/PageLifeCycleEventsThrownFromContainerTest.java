@@ -26,12 +26,14 @@ import org.junit.Test;
 
 
 /**
- * Test the Events provider behaviors when pages are added to the SashContainer.
+ * Test if the {@link SashWindowsContainer} send the events of a page lifecycle.
+ * Test if the page lifecycle events are correctly thrown by the {@link SashWindowsContainer} when 
+ * page are added/removed, ...
  * 
  * @author cedric dumoulin
  *
  */
-public class SashWindowsContainerEventsProviderTest {
+public class PageLifeCycleEventsThrownFromContainerTest {
 
 	protected Display display;
 
@@ -149,8 +151,8 @@ public class SashWindowsContainerEventsProviderTest {
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 
 		// Create listener and attach it
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
-		container.addLifeCycleListener(listener);
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
+		container.addPageLifeCycleListener(listener);
 
 		// Do refresh. This fire events
 		container.refreshTabs();
@@ -165,8 +167,8 @@ public class SashWindowsContainerEventsProviderTest {
 		// check events (there is more than the 2 expected)
 		assertTrue("event fired", 2<=listener.getEventCount());
 		int i=0;
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_OPENED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_OPENED, listener.getTraces().get(i++));
 	}
 
 	/**
@@ -179,8 +181,8 @@ public class SashWindowsContainerEventsProviderTest {
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 
 		// Create listener and attach it
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
-		container.addLifeCycleListener(listener);
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
+		container.addPageLifeCycleListener(listener);
 
 		// Do refresh. This fire events
 		container.refreshTabs();
@@ -204,8 +206,8 @@ public class SashWindowsContainerEventsProviderTest {
 		assertTrue("event fired", 2<=listener.getEventCount());
 
 		assertTrue("close event fired", listener.getEvents().contains(page1));
-		assertTrue("close event fired", listener.getTraces().contains(FakeSashContainerEventsListener.PAGE_CLOSED));
-		int index = listener.getTraces().indexOf(FakeSashContainerEventsListener.PAGE_CLOSED);
+		assertTrue("close event fired", listener.getTraces().contains(FakePageLifeCycleEventsListener.PAGE_CLOSED));
+		int index = listener.getTraces().indexOf(FakePageLifeCycleEventsListener.PAGE_CLOSED);
 		assertEquals("right page closed", page1, listener.getEvent(index));
 	}
 
@@ -219,8 +221,8 @@ public class SashWindowsContainerEventsProviderTest {
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 
 		// Create listener and attach it
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
-		container.addLifeCycleListener(listener);
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
+		container.addPageLifeCycleListener(listener);
 
 		// Do refresh. This fire events
 		container.refreshTabs();
@@ -235,7 +237,7 @@ public class SashWindowsContainerEventsProviderTest {
 		// check events (there is more than the 2 expected)
 		assertTrue("event fired", 2<=listener.getEventCount());
 		int i=0;
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ABOUTTOBEOPENED, listener.getTraces().get(i++));
 	}
 
 	/**
@@ -256,8 +258,8 @@ public class SashWindowsContainerEventsProviderTest {
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 
 		// Create listener and attach it
-		FakeSashContainerEventsListener listener = new FakeSashContainerEventsListener();
-		container.addLifeCycleListener(listener);
+		FakePageLifeCycleEventsListener listener = new FakePageLifeCycleEventsListener();
+		container.addPageLifeCycleListener(listener);
 
 		container.refreshTabs();
 
@@ -281,7 +283,7 @@ public class SashWindowsContainerEventsProviderTest {
 		// check events (there is more than the 2 expected)
 		assertEquals("event fired", 1, listener.getEventCount());
 		int i=0;
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
 
 		// ****************
 		// Check with a move
@@ -296,7 +298,7 @@ public class SashWindowsContainerEventsProviderTest {
 		// check events (there is more than the 2 expected)
 		assertEquals("event fired", 3, listener.getEventCount());
 		i=0;
-		assertEquals("right event", FakeSashContainerEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
+		assertEquals("right event", FakePageLifeCycleEventsListener.PAGE_ACTIVATED, listener.getTraces().get(i++));
 
 
 	}
@@ -306,6 +308,7 @@ public class SashWindowsContainerEventsProviderTest {
 	 */
 	@Test
 	public void testFirePageDeactivatedEvent() {
+		// Deactivated is no sent
 	}
 
 }

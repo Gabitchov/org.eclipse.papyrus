@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener;
 import org.eclipse.ui.IEditorPart;
 
 public interface ISashWindowsContainer {
@@ -78,7 +77,7 @@ public interface ISashWindowsContainer {
 	 * @param listener
 	 * 
 	 */
-	public void addLifeCycleListener(SashContainerEventsListener listener);
+	public void addPageLifeCycleListener(IPageLifeCycleEventsListener listener);
 
 	/**
 	 * Remove a listener on Page LifeCycle events.
@@ -87,7 +86,7 @@ public interface ISashWindowsContainer {
 	 * @param listener
 	 * 
 	 */
-	public void removeLifeCycleListener(SashContainerEventsListener listener);
+	public void removePageLifeCycleListener(IPageLifeCycleEventsListener listener);
 	/**
 	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of the folders.
 	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.

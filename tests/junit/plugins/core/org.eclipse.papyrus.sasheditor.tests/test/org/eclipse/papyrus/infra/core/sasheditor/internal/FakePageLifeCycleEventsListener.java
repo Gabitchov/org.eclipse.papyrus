@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
 
 
 /**
@@ -14,7 +15,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
  * @author cedric dumoulin
  *
  */
-public class FakeSashContainerEventsListener implements SashContainerEventsListener {
+public class FakePageLifeCycleEventsListener implements IPageLifeCycleEventsListener {
 
 	public static final String PAGE_CHANGED = "pageChanged";
 
@@ -44,7 +45,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	 * Constructor.
 	 *
 	 */
-	public FakeSashContainerEventsListener() {
+	public FakePageLifeCycleEventsListener() {
 		traces = new ArrayList<String>();
 		events = new ArrayList<IPage>();
 	}
@@ -117,7 +118,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener#pageOpened(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.IPageLifeCycleEventsListener#pageOpened(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 	 *
 	 * @param page
 	 */
@@ -128,7 +129,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener#pageClosed(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.IPageLifeCycleEventsListener#pageClosed(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 	 *
 	 * @param page
 	 */
@@ -139,7 +140,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener#pageActivated(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.IPageLifeCycleEventsListener#pageActivated(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 	 *
 	 * @param page
 	 */
@@ -150,7 +151,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener#pageDeactivated(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.IPageLifeCycleEventsListener#pageDeactivated(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 	 *
 	 * @param page
 	 */
@@ -161,7 +162,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener#pageAboutToBeOpened(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.IPageLifeCycleEventsListener#pageAboutToBeOpened(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 	 *
 	 * @param page
 	 */
@@ -172,7 +173,7 @@ public class FakeSashContainerEventsListener implements SashContainerEventsListe
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsListener#pageAboutToBeClosed(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.IPageLifeCycleEventsListener#pageAboutToBeClosed(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 	 *
 	 * @param page
 	 */

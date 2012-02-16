@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsCon
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
@@ -935,7 +936,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param listener
 	 * 
 	 */
-	public void addLifeCycleListener(SashContainerEventsListener listener) {
+	public void addPageLifeCycleListener(IPageLifeCycleEventsListener listener) {
 		lifeCycleEventProvider.addListener(listener);
 	}
 
@@ -946,7 +947,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * @param listener
 	 * 
 	 */
-	public void removeLifeCycleListener(SashContainerEventsListener listener) {
+	public void removePageLifeCycleListener(IPageLifeCycleEventsListener listener) {
 		lifeCycleEventProvider.removeListener(listener);
 	}
 
