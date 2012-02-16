@@ -23,7 +23,13 @@ import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.resource.ITransactionalEditingDomainProvider;
-
+/**
+ * Editing Domain created using this provider will use handlers registered on readOnlyHandler extension
+ * to determine if a resource is read only.
+ * 
+ * @author mvelten
+ *
+ */
 public class ReadOnlyTransactionalEditingDomainProvider implements ITransactionalEditingDomainProvider {
 
 	public TransactionalEditingDomain createTransactionalEditingDomain(ResourceSet resourceSet) {
