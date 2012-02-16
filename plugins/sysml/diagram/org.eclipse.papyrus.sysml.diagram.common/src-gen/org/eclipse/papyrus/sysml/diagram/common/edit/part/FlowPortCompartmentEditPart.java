@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortCompartmentSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editparts.ResizeableListCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 
 public class FlowPortCompartmentEditPart extends ResizeableListCompartmentEditPart {
 
