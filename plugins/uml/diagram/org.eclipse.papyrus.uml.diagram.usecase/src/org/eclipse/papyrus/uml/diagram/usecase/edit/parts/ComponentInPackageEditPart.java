@@ -45,10 +45,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout;
-import org.eclipse.papyrus.uml.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
@@ -69,9 +69,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class ComponentInPackageEditPart extends
-
-ShapeNodeEditPart implements IPapyrusEditPart {
+public class ComponentInPackageEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -156,14 +154,12 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			((ComponentInPackageNameEditPart)childEditPart).setLabel(getPrimaryShape().getUseCaseSubjectFigure_name());
 			return true;
 		}
-
 		if(childEditPart instanceof ComponentUsecases3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ComponentUsecases3EditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -222,7 +218,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -872,21 +867,16 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @generated NOT
 		 */
 		private void createContents() {
-
 			useCaseSubjectFigure_header0 = new RectangleFigure();
 			useCaseSubjectFigure_header0.setLineWidth(1);
 			this.add(useCaseSubjectFigure_header0);
-
 			PileLayout layoutUseCaseSubjectFigure_header0 = new PileLayout();
 			layoutUseCaseSubjectFigure_header0.setNegativeGap(-10);
 			useCaseSubjectFigure_header0.setLayoutManager(layoutUseCaseSubjectFigure_header0);
-
 			fUseCaseSubjectFigure_name = new CenteredWrappedLabel();
 			fUseCaseSubjectFigure_name.setText("");
 			fUseCaseSubjectFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			useCaseSubjectFigure_header0.add(fUseCaseSubjectFigure_name);
-
 			fUseCaseSubjectFigure_contents = new RectangleFigure();
 			fUseCaseSubjectFigure_contents.setLineWidth(1);
 			this.add(fUseCaseSubjectFigure_contents);
@@ -925,7 +915,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		public WrappingLabel getUseCaseSubjectFigure_name() {
 			return fUseCaseSubjectFigure_name;
 		}
-
 	}
 
 	/**
@@ -945,7 +934,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -965,7 +953,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

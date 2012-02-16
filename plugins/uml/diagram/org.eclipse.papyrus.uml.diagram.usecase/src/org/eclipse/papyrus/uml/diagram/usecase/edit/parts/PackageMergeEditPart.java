@@ -27,9 +27,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.PackageMergeItemSem
 /**
  * @generated
  */
-public class PackageMergeEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -111,5 +109,4 @@ implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

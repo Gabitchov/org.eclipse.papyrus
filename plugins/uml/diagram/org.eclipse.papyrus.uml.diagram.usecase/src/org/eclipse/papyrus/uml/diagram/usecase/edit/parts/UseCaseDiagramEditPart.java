@@ -23,10 +23,10 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 /**
  * @generated
  */
-public class UseCaseDiagramEditPart extends DiagramEditPart {
+public class UseCaseDiagramEditPart extends PapyrusDiagramEditPart {
 
 	/**
 	 * @generated
@@ -62,12 +62,9 @@ public class UseCaseDiagramEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCaseDiagramItemSemanticEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseDiagramCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
@@ -122,7 +119,6 @@ public class UseCaseDiagramEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
-
 		super.handleNotificationEvent(event);
 		if(event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
@@ -137,11 +133,9 @@ public class UseCaseDiagramEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	public Object getAdapter(Class adapter) {
-
 		if(adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
 	}
-
 }

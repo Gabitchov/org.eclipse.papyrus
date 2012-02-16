@@ -127,7 +127,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
@@ -191,13 +190,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(USECASE_TOOL_COMMENTLINK)) {
 			return createCommentlink12CreationTool();
 		}
-
 		// default return: null
 		return null;
 	}
 
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}
@@ -209,7 +206,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Package_3014);
 		types.add(UMLElementTypes.Package_2016);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -222,7 +218,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.Component_2015);
 		types.add(UMLElementTypes.Component_3016);
 		types.add(UMLElementTypes.Component_3013);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -235,7 +230,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.Actor_2011);
 		types.add(UMLElementTypes.Actor_3018);
 		types.add(UMLElementTypes.Actor_3011);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -248,7 +242,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.UseCase_2013);
 		types.add(UMLElementTypes.UseCase_3009);
 		types.add(UMLElementTypes.UseCase_3012);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -261,7 +254,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.Constraint_3017);
 		types.add(UMLElementTypes.Constraint_3010);
 		types.add(UMLElementTypes.Constraint_2017);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -273,7 +265,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Comment_3015);
 		types.add(UMLElementTypes.Comment_2018);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -285,7 +276,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.ExtensionPoint_3007);
 		types.add(UMLElementTypes.ExtensionPoint_3008);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -296,7 +286,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createAssociation1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Association_4011);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -307,7 +296,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createGeneralization2CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Generalization_4010);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -318,7 +306,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createDependency3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Dependency_4013);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -329,7 +316,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createAbstraction4CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Abstraction_4015);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -340,7 +326,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createRealization5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Realization_4017);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -351,7 +336,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createUsage6CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Usage_4016);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -362,7 +346,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createPackageMerge7CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.PackageMerge_4018);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -373,7 +356,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createPackageImport8CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.PackageImport_4019);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -384,7 +366,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createInclude9CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Include_4008);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -395,7 +376,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createExtend10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Extend_4009);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -406,7 +386,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createConstrainedElement11CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4012);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
@@ -417,9 +396,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createCommentlink12CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4014);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
-
 }

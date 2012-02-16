@@ -61,9 +61,9 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
@@ -111,7 +111,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -310,7 +309,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -392,9 +390,7 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -417,7 +413,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -425,7 +420,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -433,7 +427,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -595,7 +588,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -708,7 +700,6 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -719,5 +710,4 @@ public class AppliedStereotypeRealizationEditPart extends LabelEditPart implemen
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
 }

@@ -65,9 +65,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ShortCutDiagramEditPart extends
-
-AbstractShortCutDiagramEditPart {
+public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 
 	/**
 	 * @generated
@@ -130,7 +128,6 @@ AbstractShortCutDiagramEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -139,14 +136,12 @@ AbstractShortCutDiagramEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DiagramNameEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
-						@Override
 						protected List createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
@@ -161,12 +156,10 @@ AbstractShortCutDiagramEditPart {
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -212,7 +205,6 @@ AbstractShortCutDiagramEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -282,7 +274,6 @@ AbstractShortCutDiagramEditPart {
 	 */
 	@Override
 	public void refresh() {
-
 		refreshIcons();
 		super.refresh();
 	}
@@ -342,9 +333,7 @@ AbstractShortCutDiagramEditPart {
 	private void refreshIcons() {
 		Image image;
 		image = getEditorRegistry().getEditorIcon(resolveSemanticElement());
-
 		getPrimaryShape().setIcon(image);
-
 	}
 
 	/**
@@ -372,7 +361,6 @@ AbstractShortCutDiagramEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -382,7 +370,7 @@ AbstractShortCutDiagramEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("ShortCutDiagram", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("ShortCutDiagram", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
@@ -392,7 +380,6 @@ AbstractShortCutDiagramEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

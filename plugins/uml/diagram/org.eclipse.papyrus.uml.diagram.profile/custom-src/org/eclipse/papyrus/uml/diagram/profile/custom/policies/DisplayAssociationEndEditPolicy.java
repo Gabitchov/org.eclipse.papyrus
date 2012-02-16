@@ -311,7 +311,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	//	public void setDefaultDisplayValue() {
 	//		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 	//		if(editingDomain != null) {
-	//			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+	//			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION));
 	//		}
 	//
 	//	}

@@ -129,7 +129,6 @@ public class ElementInitializers {
 			} else {
 				newInstance_0_0.getBodies().add((String)value_0_0_0);
 			}
-
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -221,7 +220,6 @@ public class ElementInitializers {
 			} else {
 				newInstance_0_0.getBodies().add((String)value_0_0_0);
 			}
-
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -253,7 +251,6 @@ public class ElementInitializers {
 			} else {
 				newInstance_0_0.getBodies().add((String)value_0_0_0);
 			}
-
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -416,7 +413,5 @@ public class ElementInitializers {
 	 */
 	private static String getName(org.eclipse.uml2.uml.Element self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-
 	}
-
 }

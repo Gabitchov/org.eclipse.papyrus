@@ -39,5 +39,4 @@ public class UseCasePointsInRectangleItemSemanticEditPolicy extends UMLBaseItemS
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

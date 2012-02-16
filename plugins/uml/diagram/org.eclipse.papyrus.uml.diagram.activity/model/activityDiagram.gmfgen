@@ -16789,7 +16789,7 @@
         comment="Node with no name"
         genView="/0/@diagram/@childNodes.64"
         name="NodeEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NodeEditPart"/>
+        superOwnedEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="link that to intherits from UML specificities"

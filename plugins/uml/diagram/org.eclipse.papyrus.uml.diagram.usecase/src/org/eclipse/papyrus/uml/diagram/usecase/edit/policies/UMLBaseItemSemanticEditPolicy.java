@@ -245,13 +245,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
-
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
-
 			return getGEFWrapper(createGMFCommand);
 		}
-
 		return null;
 	}
 
@@ -294,9 +291,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 	}
 
 	/**
@@ -405,7 +400,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_4012(source, target);
 		}
 
@@ -425,7 +419,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_4014(source, target);
 		}
 

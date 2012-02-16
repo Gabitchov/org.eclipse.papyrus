@@ -65,7 +65,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.PropertyLabelEditPolicy;
@@ -73,7 +73,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.UMLTextSelectionE
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLParserProvider;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;

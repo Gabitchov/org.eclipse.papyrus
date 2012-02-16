@@ -103,7 +103,6 @@ public class IncludeEditPart extends UMLConnectionNodeEditPart implements ITreeB
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new UseCases_WithArrow_Polyline();
 	}
@@ -127,7 +126,6 @@ public class IncludeEditPart extends UMLConnectionNodeEditPart implements ITreeB
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
-
 			setTargetDecoration(createTargetDecoration());
 		}
 
@@ -145,7 +143,5 @@ public class IncludeEditPart extends UMLConnectionNodeEditPart implements ITreeB
 			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 			return df;
 		}
-
 	}
-
 }

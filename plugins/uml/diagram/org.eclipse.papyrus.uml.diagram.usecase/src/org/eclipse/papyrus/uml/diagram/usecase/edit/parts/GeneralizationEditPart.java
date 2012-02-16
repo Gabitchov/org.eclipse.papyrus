@@ -102,7 +102,6 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new SolidLineWDstClosedArrow();
 	}
@@ -124,7 +123,6 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 		 */
 		public SolidLineWDstClosedArrow() {
 			this.setLineWidth(1);
-
 			setTargetDecoration(createTargetDecoration());
 		}
 
@@ -145,7 +143,5 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 			return df;
 		}
-
 	}
-
 }

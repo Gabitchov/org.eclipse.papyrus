@@ -60,10 +60,10 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
@@ -119,7 +119,6 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -311,7 +310,6 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -393,9 +391,7 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -422,7 +418,6 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -430,7 +425,6 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -438,7 +432,6 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -709,7 +702,6 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -734,5 +726,4 @@ public class AssociationAppliedStereotypeEditPart extends LabelEditPart implemen
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/stereotype.gif";//$NON-NLS-1$
 	}
-
 }

@@ -27,9 +27,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.AbstractionItemSema
 /**
  * @generated
  */
-public class AbstractionEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class AbstractionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -118,5 +116,4 @@ implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

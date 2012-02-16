@@ -15,17 +15,17 @@ package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -55,7 +55,6 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new DashedLineConnection();
 	}
@@ -78,9 +77,6 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 		public DashedLineConnection() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

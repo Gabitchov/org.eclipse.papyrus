@@ -56,9 +56,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ActorAsRectangleEditPartTN extends
-
-ShapeNodeEditPart {
+public class ActorAsRectangleEditPartTN extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -98,7 +96,6 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
 		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
@@ -135,7 +132,6 @@ ShapeNodeEditPart {
 			((ActorAsRectangleNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getActorAsRectangleFigure_name());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -185,7 +181,6 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -796,16 +791,12 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ActorAsRectangleFigure() {
-
 			ToolbarLayout layoutThis = new ToolbarLayout();
 			layoutThis.setStretchMinorAxis(true);
 			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
-
 			layoutThis.setSpacing(0);
 			layoutThis.setVertical(true);
-
 			this.setLayoutManager(layoutThis);
-
 			this.setLineWidth(1);
 			createContents();
 		}
@@ -814,28 +805,19 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			WrappingLabel actorAsRectangleFigure_fixed_actor0 = new WrappingLabel();
 			actorAsRectangleFigure_fixed_actor0.setText("\u00ABactor\u00BB");
-
 			this.add(actorAsRectangleFigure_fixed_actor0);
-
 			RectangleFigure actorAsRectangleFigure_NameContainer0 = new RectangleFigure();
 			actorAsRectangleFigure_NameContainer0.setFill(false);
 			actorAsRectangleFigure_NameContainer0.setOutline(false);
 			actorAsRectangleFigure_NameContainer0.setLineWidth(1);
-
 			this.add(actorAsRectangleFigure_NameContainer0);
-
 			CenterLayout layoutActorAsRectangleFigure_NameContainer0 = new CenterLayout();
-
 			actorAsRectangleFigure_NameContainer0.setLayoutManager(layoutActorAsRectangleFigure_NameContainer0);
-
 			fActorAsRectangleFigure_name = new WrappingLabel();
 			fActorAsRectangleFigure_name.setText("");
-
 			actorAsRectangleFigure_NameContainer0.add(fActorAsRectangleFigure_name);
-
 		}
 
 		/**
@@ -863,7 +845,6 @@ ShapeNodeEditPart {
 		public WrappingLabel getActorAsRectangleFigure_name() {
 			return fActorAsRectangleFigure_name;
 		}
-
 	}
 
 	/**
@@ -873,7 +854,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -893,7 +873,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

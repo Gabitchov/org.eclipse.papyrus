@@ -94,7 +94,6 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 
 		// FIXME canExecute if !(readOnly && getDiagramToOpen == null), i.e. open works on ro
 		// diagrams only when there's associated diagram already
-
 		/**
 		 * @generated
 		 */
@@ -192,5 +191,4 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			return UMLDiagramEditor.ID;
 		}
 	}
-
 }

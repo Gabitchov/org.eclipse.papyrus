@@ -60,9 +60,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class PackageEditPartCN extends
-
-NamedElementEditPart {
+public class PackageEditPartCN extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -108,7 +106,6 @@ NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -158,14 +155,12 @@ NamedElementEditPart {
 			((PackageNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		if(childEditPart instanceof PackagePackageableElementCompartment2EditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((PackagePackageableElementCompartment2EditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -224,7 +219,6 @@ NamedElementEditPart {
 		String preferrenceContantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferrenceContantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(store.getInt(preferrenceContantWitdh), store.getInt(preferrenceContantHeight));
-
 		return result;
 	}
 
@@ -739,7 +733,6 @@ NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -759,7 +752,6 @@ NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

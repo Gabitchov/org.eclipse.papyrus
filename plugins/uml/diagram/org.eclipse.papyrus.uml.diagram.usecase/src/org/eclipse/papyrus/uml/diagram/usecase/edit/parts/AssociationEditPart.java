@@ -57,7 +57,6 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated NOT
 	 */
-
 	public void deactivate() {
 		removeAssociationEndListeners();
 		super.deactivate();
@@ -85,7 +84,6 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
-
 		// set the good ends for the association figure
 		if(resolveSemanticElement() != null) {
 			refreshVisuals();
@@ -172,12 +170,10 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated NOT
 	 */
 	protected void refreshVisuals() {
-
 		Property source = getSourceProperty();
 		Property target = getTargetProperty();
 		int sourceType = 0;
 		int targetType = 0;
-
 		// navigable?
 		if(source != null && source.isNavigable()) {
 			sourceType += AssociationFigure.navigable;
@@ -217,14 +213,12 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	protected Property getRelatedProperty(EObject obj) {
 		if(obj != null && resolveSemanticElement() instanceof Association) {
 			EList<Property> ends = ((Association)resolveSemanticElement()).getMemberEnds();
-
 			for(Property end : ends) {
 				if(obj.equals(end.getType())) {
 					return end;
 				}
 			}
 		}
-
 		return null;
 	}
 }

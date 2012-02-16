@@ -59,9 +59,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * @generated
  */
-public class ConstraintEditPartTN extends
-
-ShapeNodeEditPart {
+public class ConstraintEditPartTN extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -144,7 +142,6 @@ ShapeNodeEditPart {
 			((ConstraintNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -194,7 +191,6 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -751,7 +747,6 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		public CornerBentDescriptor() {
-
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
@@ -761,14 +756,10 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fCornerBentContentLabel = new WrappingLabel();
 			fCornerBentContentLabel.setText("");
-
 			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
-
 			this.add(fCornerBentContentLabel);
-
 		}
 
 		/**
@@ -796,7 +787,6 @@ ShapeNodeEditPart {
 		public WrappingLabel getCornerBentContentLabel() {
 			return fCornerBentContentLabel;
 		}
-
 	}
 
 	/**
@@ -816,7 +806,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -836,7 +825,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

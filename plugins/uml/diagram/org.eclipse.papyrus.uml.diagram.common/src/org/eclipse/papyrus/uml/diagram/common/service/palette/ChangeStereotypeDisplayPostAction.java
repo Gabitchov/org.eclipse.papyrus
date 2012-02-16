@@ -346,9 +346,9 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 	protected void updateCombos() {
 		// udpate the direction and display combo
 		/*
-		 * VisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION,
-		 * VisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION,
-		 * VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION,
+		 * VisualInformationPapyrusConstants.TEXT_ICON_STEREOTYPE_PRESENTATION,
+		 * VisualInformationPapyrusConstants.ICON_STEREOTYPE_PRESENTATION,
+		 * VisualInformationPapyrusConstants.IMAGE_STEREOTYPE_PRESENTATION,
 		 * VisualInformationPapyrusConstant
 		 * .STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION,
 		 * VisualInformationPapyrusConstant
@@ -378,9 +378,9 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 
 		// update the place combo
 		/*
-		 * VisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION
-		 * VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION
-		 * VisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION
+		 * VisualInformationPapyrusConstants.STEREOTYPE_COMMENT_LOCATION
+		 * VisualInformationPapyrusConstants.STEREOTYPE_COMPARTMENT_LOCATION
+		 * VisualInformationPapyrusConstants.STEREOTYPE_BRACE_LOCATION
 		 */
 		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION.equals(displayPlace)) {
 			placeCombo.select(PLACE_LIST.indexOf(COMMENT));

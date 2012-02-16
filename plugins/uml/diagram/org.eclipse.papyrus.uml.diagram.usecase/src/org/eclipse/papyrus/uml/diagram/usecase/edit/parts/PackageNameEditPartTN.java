@@ -60,17 +60,17 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLParserProvider;
-import org.eclipse.papyrus.uml.tools.utils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.tools.utils.ui.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -223,7 +223,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -231,7 +230,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -303,7 +301,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -385,9 +382,7 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -414,7 +409,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -422,7 +416,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -430,7 +423,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -592,7 +584,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -722,11 +713,9 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 				}
 			}
 		}
-
-		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
+		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -753,7 +742,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -762,7 +750,6 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -770,7 +757,5 @@ public class PackageNameEditPartTN extends CompartmentEditPart implements ITextA
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

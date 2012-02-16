@@ -288,7 +288,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionEditPart imple
 					if(out.indexOf(name) == -1) {
 						out = out + name + separator;
 					}
-				} else { // VisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
+				} else { // VisualInformationPapyrusConstants.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
 					// {
 					name = name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
 					if(out.indexOf(name) == -1) {

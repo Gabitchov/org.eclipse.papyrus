@@ -104,5 +104,4 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

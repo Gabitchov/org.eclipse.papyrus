@@ -65,10 +65,10 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.AppliedStereotypeExtensionPointLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ExtensionPointInRectangleItemSemanticEditPolicy;
@@ -317,7 +317,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -399,9 +398,7 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -428,7 +425,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -436,7 +432,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -444,7 +439,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -605,7 +599,6 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -757,5 +750,4 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 	protected IFigure createFigurePrim() {
 		return new WrappingLabel();
 	}
-
 }

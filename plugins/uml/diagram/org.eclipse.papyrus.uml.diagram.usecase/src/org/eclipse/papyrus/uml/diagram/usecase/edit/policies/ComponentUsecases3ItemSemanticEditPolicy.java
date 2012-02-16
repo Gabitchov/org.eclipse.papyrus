@@ -55,5 +55,4 @@ public class ComponentUsecases3ItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

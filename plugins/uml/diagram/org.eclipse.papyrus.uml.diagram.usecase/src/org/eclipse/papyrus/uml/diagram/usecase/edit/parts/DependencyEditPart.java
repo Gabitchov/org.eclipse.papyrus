@@ -105,7 +105,6 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new DashedEdgeFigure();
 	}
@@ -116,5 +115,4 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

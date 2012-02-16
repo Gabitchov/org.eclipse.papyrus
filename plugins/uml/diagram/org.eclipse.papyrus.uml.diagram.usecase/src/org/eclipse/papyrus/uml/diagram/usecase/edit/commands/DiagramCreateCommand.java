@@ -73,7 +73,6 @@ public class DiagramCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -104,11 +103,8 @@ public class DiagramCreateCommand extends EditElementCommand {
 		// }
 		Resource resource = getElementToEdit().eResource();
 		Diagram newElement = NotationFactory.eINSTANCE.createDiagram();
-
 		resource.getContents().add(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -126,5 +122,4 @@ public class DiagramCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

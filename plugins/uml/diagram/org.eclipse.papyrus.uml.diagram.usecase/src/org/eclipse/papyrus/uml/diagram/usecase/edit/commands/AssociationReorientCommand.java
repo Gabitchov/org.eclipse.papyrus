@@ -136,7 +136,6 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		return AssociationHelper.reconnect(AssociationHelper.target, getLink(), getNewTarget());
-
 	}
 
 	/**

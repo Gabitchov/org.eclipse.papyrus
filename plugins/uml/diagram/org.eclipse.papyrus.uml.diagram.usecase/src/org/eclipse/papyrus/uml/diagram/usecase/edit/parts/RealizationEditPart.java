@@ -26,9 +26,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.RealizationItemSema
 /**
  * @generated
  */
-public class RealizationEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class RealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -117,5 +115,4 @@ implements ITreeBranchEditPart {
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure)getFigure();
 	}
-
 }

@@ -60,10 +60,10 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
@@ -111,7 +111,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -303,7 +302,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -385,9 +383,7 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -414,7 +410,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -422,7 +417,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -430,7 +424,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -592,7 +585,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -705,7 +697,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -730,5 +721,4 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
-
 }
