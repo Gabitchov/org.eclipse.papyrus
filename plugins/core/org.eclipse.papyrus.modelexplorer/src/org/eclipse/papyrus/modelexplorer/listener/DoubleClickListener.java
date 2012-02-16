@@ -52,7 +52,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 				while(iter.hasNext()) {
 					Object currentObject = iter.next();
 					EObject diag = NavigatorUtils.getElement(currentObject, EObject.class);
-					if(pageMngr.allPages().contains(diag)) {
+					if(diag != null) {
 						/**
 						 * Close the diagram if it was already open
 						 */
