@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
@@ -40,6 +42,7 @@ public class AbstractCommentEditPart extends NodeEditPart {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -55,6 +58,7 @@ public class AbstractCommentEditPart extends NodeEditPart {
 	 * 
 	 * @since 1.2
 	 */
+	@Override
 	protected void refreshTransparency() {
 		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if(style.getGradient() != null) {
@@ -64,27 +68,31 @@ public class AbstractCommentEditPart extends NodeEditPart {
 		}
 	}
 
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshFontColor();
 
 	}
 
-//	/** Refresh the editpart's figure font color. */
-//	protected void refreshFontColor() {
-//		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
-//		if(style != null) {
-//			setFontColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFontColor())));
-//		}
-//	}
+	/** Refresh the editpart's figure font color. */
+	@Override
+	protected void refreshFontColor() {
+		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+		if(style != null) {
+			setFontColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFontColor())));
+		}
+	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
 
+	@Override
 	protected void setForegroundColor(Color color) {
 		getPrimaryShape().setBorderColor(color);
 	}

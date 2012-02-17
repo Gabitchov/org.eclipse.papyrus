@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -43,7 +44,7 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#getPrimaryShape()
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NodeEditPart#getPrimaryShape()
 	 */
 	@Override
 	public IPapyrusNodeFigure getPrimaryShape() {
@@ -60,6 +61,18 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 		super.refreshLabelsFont(font);
 		if(getPrimaryShape() instanceof ConstraintFigure) {
 			((ConstraintFigure)getPrimaryShape()).getTextFlow().setFont(font);
+		}
+	}
+
+	@Override
+	protected void refreshBackgroundColor() {
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style != null) {
+			if(style.getGradient() == null || !supportsGradient()) {
+				setBackgroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFillColor())));
+			} else {
+				setGradient(style.getGradient());
+			}
 		}
 	}
 

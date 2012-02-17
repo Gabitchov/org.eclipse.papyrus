@@ -18,15 +18,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
  * this edit part has in charge to display the name of a diagram for a short cut
  * 
  */
-public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart implements Adapter {
+public abstract class AbstractShortcutDiagramNameEditPart extends PapyrusLabelEditPart implements Adapter {
 
 	public AbstractShortcutDiagramNameEditPart(View view) {
 		super(view);

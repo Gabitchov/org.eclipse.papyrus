@@ -4,8 +4,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,
  org.eclipse.papyrus.infra.gmfdiag.common.figure.node,
  org.eclipse.papyrus.infra.gmfdiag.common.handler,
- org.eclipse.papyrus.infra.gmfdiag.common.helper,
- org.eclipse.papyrus.infra.gmfdiag.common.notation
+ org.eclipse.papyrus.infra.gmfdiag.common.helper
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName

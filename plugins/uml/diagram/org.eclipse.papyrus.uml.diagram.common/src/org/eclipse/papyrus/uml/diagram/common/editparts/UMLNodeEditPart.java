@@ -36,8 +36,10 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompa
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.ICompartmentLayoutHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -195,7 +197,7 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
 		if(style != null) {
 			// Get the font
 			FontDescriptor fontDescriptor = FontDescriptor.createFrom(getFontData(style));
@@ -225,16 +227,16 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 	}
 
-	//	/**
-	//	 * Update the fontData
-	//	 * 
-	//	 * @param style
-	//	 *        the font style of the figure
-	//	 * @return the new font data to use
-	//	 */
-	//	protected FontData getFontData(FontStyle style) {
-	//		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
-	//	}
+	/**
+	 * Update the fontData
+	 * 
+	 * @param style
+	 *        the font style of the figure
+	 * @return the new font data to use
+	 */
+	protected FontData getFontData(FontStyle style) {
+		return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+	}
 
 	/**
 	 * {@inheritDoc}

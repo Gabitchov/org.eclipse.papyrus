@@ -15,32 +15,20 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
-import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.StyleEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
-import org.eclipse.papyrus.infra.gmfdiag.common.notation.FillStyleProvider;
-import org.eclipse.papyrus.infra.gmfdiag.common.notation.FontStyleProvider;
-import org.eclipse.papyrus.infra.gmfdiag.common.notation.LineStyleProvider;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.FontData;
 
 /**
  * this uml edit part can refresh shadow and gradient.
  */
-//TODO: Move this EditPart to infra.gmfdiag.common
-//TODO: Move IPapyrusNodeFigure to infra.gmfdiag.common
-//TODO: Move ShadowFigureHelper to infra.gmfdiag.common
-public abstract class NodeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart, IStylableEditPart {
+public abstract class NodeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 	public NodeEditPart(View view) {
 		super(view);
@@ -97,8 +85,11 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	}
 
 	@Override
-	public void activate() {
-		super.activate();
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshShadow();
+		refreshLineType();
+		refreshLineWidth();
 	}
 
 	@Override
@@ -141,9 +132,10 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	@Override
 	protected void setGradient(GradientData gradient) {
 		IPapyrusNodeFigure fig = getPrimaryShape();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if(gradient != null) {
-			fig.setIsUsingGradient(true);
-			fig.setGradientData(getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
+			fig.setIsUsingGradient(true);;
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);
 		}
@@ -171,130 +163,10 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		getPrimaryShape().setForegroundColor(color);
 	}
 
-	@Override
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshShadow();
-		refreshLineType();
-		refreshLineWidth();
-		refreshFontColor();
-	}
-
-	//Style Implementation
-
-	@Override
-	protected final void refreshBackgroundColor() {
-		if(supportsGradient()) {
-			GradientData gradient = getGradient();
-			if(gradient != null) {
-				setGradient(gradient);
-				return;
-			}
-		}
-
-		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(getFillColor()));
-	}
-
-	protected int getFillColor() {
-		FillStyleProvider provider = (FillStyleProvider)getStyleProvider(NotationPackage.eINSTANCE.getFillStyle());
-		if(provider == null) {
-			return ((FillStyle)getNotationView().getStyle(NotationPackage.eINSTANCE.getFillStyle())).getFillColor();
-		}
-		return provider.getFillColor();
-	}
-
-	protected GradientData getGradient() {
-		FillStyleProvider provider = (FillStyleProvider)getStyleProvider(NotationPackage.eINSTANCE.getFillStyle());
-		if(provider == null) {
-			return ((FillStyle)getNotationView().getStyle(NotationPackage.eINSTANCE.getFillStyle())).getGradient();
-		}
-		return provider.getGradient();
-	}
-
 	/**
 	 * Refresh the shadow of the figure
 	 */
 	protected final void refreshShadow() {
 		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
-	}
-
-	//	@Override
-	//	protected final void refreshLineType() {
-	//
-	//	}
-	//
-	//	@Override
-	//	protected final void refreshLineWidth() {
-	//
-	//	}
-	//
-
-	@Override
-	protected final void refreshForegroundColor() {
-		LineStyleProvider provider = (LineStyleProvider)getStyleProvider(NotationPackage.eINSTANCE.getLineStyle());
-
-		if(provider == null) {
-			super.refreshForegroundColor();
-			return;
-		}
-
-		setForegroundColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(provider.getLineColor())));
-	}
-
-
-	@Override
-	protected void refreshFont() {
-		FontStyle style = (FontStyle)getNotationView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null) {
-			setFont(getFontData(style));
-		}
-	}
-
-	/**
-	 * Update the fontData
-	 * 
-	 * @param style
-	 *        the font style of the figure
-	 * @return the new font data to use
-	 */
-	protected FontData getFontData(FontStyle style) {
-		FontStyleProvider provider = (FontStyleProvider)getStyleProvider(NotationPackage.eINSTANCE.getFontStyle());
-
-		if(provider == null) {
-			return new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
-		}
-
-		return new FontData(provider.getFontName(), provider.getFontHeight(), (provider.isBold() ? SWT.BOLD : SWT.NORMAL) | (provider.isItalic() ? SWT.ITALIC : SWT.NORMAL));
-	}
-
-	//	@Override
-	//	protected final void refreshBounds() {
-	//
-	//	}
-	//
-	//	@Override
-	//	protected final void refreshVisibility() {
-	//
-	//	}
-
-	@Override
-	protected final void refreshFontColor() {
-		FontStyleProvider provider = (FontStyleProvider)getStyleProvider(NotationPackage.eINSTANCE.getFontStyle());
-		if(provider == null) {
-			super.refreshFontColor();
-			return;
-		}
-
-		setFontColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(provider.getFontColor())));
-	}
-
-	protected Object getStyleProvider(EClass styleClass) {
-		Object styleEditPolicy = getEditPolicy(StyleEditPolicy.KEY);
-		if(styleEditPolicy == null || !(styleEditPolicy instanceof StyleEditPolicy)) {
-			return null;
-		}
-
-		Object styleProvider = ((StyleEditPolicy)styleEditPolicy).getStyle(styleClass);
-		return styleProvider;
 	}
 }

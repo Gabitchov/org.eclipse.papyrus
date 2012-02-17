@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * this a abstract editpart use to add listeners
  */
-public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEditPart {
+public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPart {
 
 	public AbstractAssociationBranchEditPart(View view) {
 		super(view);
@@ -36,6 +36,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		super.activate();
 		addAssociationEndListeners();
@@ -58,6 +59,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void deactivate() {
 		removeAssociationEndListeners();
 		super.deactivate();
@@ -74,6 +76,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	 * {@inheritDoc}
 	 */
 
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -88,6 +91,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void refreshVisuals() {
 		if(resolveSemanticElement() != null) {
 			if(resolveSemanticElement() instanceof Association) {
@@ -95,7 +99,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEd
 				if(target != null && target.getOwner() != null) {
 					int sourceType = 0;
 					int targetType = 0;
-					
+
 					// aggregation?
 					if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
 						targetType += AssociationFigure.aggregation;

@@ -93,12 +93,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * the goal of this editpart is to display property of stereotype in on line
- *
+ * 
  */
 public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 
-	public static final String ID ="AppliedStereotypeProperty";
+	public static final String ID = "AppliedStereotypeProperty";
 
 	private DirectEditManager manager;
 
@@ -132,13 +132,14 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#activate()
-	 *
+	 * 
 	 */
+	@Override
 	public void activate() {
 		super.activate();
 		// add listeners of listen modification on application of stereotypes
-		EObject stereotypeApplication=((View)getNotationView().eContainer()).getElement();
-		final Element umlElement=UMLUtil.getBaseElement(stereotypeApplication);
+		EObject stereotypeApplication = ((View)getNotationView().eContainer()).getElement();
+		final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
 		getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
 		getDiagramEventBroker().addNotificationListener(umlElement, this);
 	}
@@ -146,13 +147,14 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#deactivate()
-	 *
+	 * 
 	 */
+	@Override
 	public void deactivate() {
 		super.deactivate();
 		//remove Listeners
-		EObject stereotypeApplication=((View)getNotationView().eContainer()).getElement();
-		final Element umlElement=UMLUtil.getBaseElement(stereotypeApplication);
+		EObject stereotypeApplication = ((View)getNotationView().eContainer()).getElement();
+		final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
 		getDiagramEventBroker().removeNotificationListener(stereotypeApplication, this);
 		getDiagramEventBroker().removeNotificationListener(umlElement, this);
 	}
@@ -160,8 +162,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart#getDragTracker(org.eclipse.gef.Request)
-	 *
+	 * 
 	 */
+	@Override
 	public DragTracker getDragTracker(Request request) {
 		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
 			return null;
@@ -172,8 +175,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart#createDefaultEditPolicies()
-	 *
+	 * 
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		//installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PropertyForClassItemSemanticEditPolicy());
@@ -185,6 +189,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	/**
 	 * get the text from the figure
+	 * 
 	 * @param figure
 	 * @return
 	 */
@@ -200,6 +205,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	/**
 	 * set the text into the figure
+	 * 
 	 * @param figure
 	 * @param text
 	 */
@@ -215,7 +221,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	/**
 	 * get the icon from the figure
-	 * @param figure the figure
+	 * 
+	 * @param figure
+	 *        the figure
 	 * @return the icon
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
@@ -230,8 +238,10 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	/**
 	 * set the icon into the figure
-	 * @param figure get the figure
-	 * @param icon 
+	 * 
+	 * @param figure
+	 *        get the figure
+	 * @param icon
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if(figure instanceof WrappingLabel) {
@@ -253,8 +263,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getModelChildren()
-	 *
+	 * 
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
@@ -263,8 +274,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getChildBySemanticHint(java.lang.String)
-	 *
+	 * 
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -304,7 +316,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#setLabelText(java.lang.String)
-	 *
+	 * 
 	 */
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
@@ -321,7 +333,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getEditText()
-	 *
+	 * 
 	 */
 	public String getEditText() {
 		if(getParserElement() == null || getParser() == null) {
@@ -335,16 +347,17 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 * @return the label is editable
 	 */
 	protected boolean isEditable() {
-		if( !(((Property)resolveSemanticElement()).isDerived())){
+		if(!(((Property)resolveSemanticElement()).isDerived())) {
 			return getParser() != null;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
 
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getEditTextValidator()
-	 *
+	 * 
 	 */
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
@@ -373,10 +386,11 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 			}
 		};
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getCompletionProcessor()
-	 *
+	 * 
 	 */
 	public IContentAssistProcessor getCompletionProcessor() {
 		if(getParserElement() == null || getParser() == null) {
@@ -388,7 +402,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getParserOptions()
-	 *
+	 * 
 	 */
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
@@ -397,7 +411,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getParser()
-	 *
+	 * 
 	 */
 	public IParser getParser() {
 		if(parser == null) {
@@ -408,6 +422,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	/**
 	 * get the manager in charge of the edition
+	 * 
 	 * @return the directEditManager
 	 */
 	protected DirectEditManager getManager() {
@@ -419,14 +434,17 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof WrappingLabel)
+		if(source.getFigure() instanceof WrappingLabel) {
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
+		}
 		return null;
 
 	}
+
 	/**
 	 * set the manager in charge of the edition
-	 * @param manager 
+	 * 
+	 * @param manager
 	 */
 	protected void setManager(DirectEditManager manager) {
 		this.manager = manager;
@@ -434,13 +452,14 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	/**
 	 * perform the edtion of the label
-	 */ 
+	 */
 	protected void performDirectEdit() {
 		getManager().show();
 	}
 
 	/**
 	 * perform the edtion of the label
+	 * 
 	 * @param eventLocation
 	 */
 	protected void performDirectEdit(Point eventLocation) {
@@ -448,6 +467,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
+
 	/**
 	 * perform the edition
 	 */
@@ -464,6 +484,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#performDirectEditRequest(org.eclipse.gef.Request)
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -489,7 +510,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -541,8 +562,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshVisuals()
-	 *
+	 * 
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -595,8 +617,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshFont()
-	 *
+	 * 
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
@@ -608,8 +631,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#setFontColor(org.eclipse.swt.graphics.Color)
-	 *
+	 * 
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -617,13 +641,14 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#addSemanticListeners()
-	 *
+	 * 
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if(getParser() instanceof ISemanticParser) {
 			//listen stereotype application
-			EObject StereotypeApplication=((View)getNotationView().eContainer()).getElement();
-			addListenerFilter("SemanticModelForStereotypeApplication", this,StereotypeApplication); //$NON-NLS-1$
+			EObject StereotypeApplication = ((View)getNotationView().eContainer()).getElement();
+			addListenerFilter("SemanticModelForStereotypeApplication", this, StereotypeApplication); //$NON-NLS-1$
 			EObject element = resolveSemanticElement();
 			parserElements = ((ISemanticParser)getParser()).getSemanticElementsBeingParsed(element);
 			for(int i = 0; i < parserElements.size(); i++) {
@@ -637,8 +662,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeSemanticListeners()
-	 *
+	 * 
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		//remove listener on the stereotype application
 		removeListenerFilter("SemanticModelForStereotypeApplication"); //$NON-NLS-1$
@@ -654,12 +680,14 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getAccessibleEditPart()
-	 *
+	 * 
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -768,20 +796,24 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#addNotationalListeners()
-	 *
+	 * 
 	 */
+	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
-	 *
+	 * 
 	 */
+	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
@@ -790,8 +822,9 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
-	 *
+	 * 
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -824,20 +857,23 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#createFigure()
-	 *
+	 * 
 	 */
+	@Override
 	protected IFigure createFigure() {
 		return new PropertyFigureDescriptor();
 	}
 
 	/**
-	 *  this method has been overloaded in order to be able to display it into the proeprtyView 
+	 * this method has been overloaded in order to be able to display it into the proeprtyView
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getAdapter(java.lang.Class)
-	 *
+	 * 
 	 */
+	@Override
 	public Object getAdapter(Class key) {
 		if(key == AppliedStereotypeProperty.class) {
-			return new AppliedStereotypeProperty(((View)getNotationView().eContainer()).getElement(),(Property)resolveSemanticElement());
+			return new AppliedStereotypeProperty(((View)getNotationView().eContainer()).getElement(), (Property)resolveSemanticElement());
 		}
 		return null;
 		//return super.getAdapter(key);
@@ -888,10 +924,10 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 		}
 	}
 
-	
+
 	/**
-	 * the figure associated to this editpart 
-	 *
+	 * the figure associated to this editpart
+	 * 
 	 */
 	public class PropertyFigureDescriptor extends WrappingLabel {
 

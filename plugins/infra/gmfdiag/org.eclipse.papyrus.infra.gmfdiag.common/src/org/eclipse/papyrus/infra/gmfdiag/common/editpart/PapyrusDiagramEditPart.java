@@ -15,7 +15,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
 
-public class PapyrusDiagramEditPart extends DiagramEditPart implements IStylableEditPart {
+public class PapyrusDiagramEditPart extends DiagramEditPart {
 
 	public PapyrusDiagramEditPart(View diagramView) {
 		super(diagramView);
