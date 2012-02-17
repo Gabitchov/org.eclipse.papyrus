@@ -40,16 +40,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.ToolTip;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
+import org.eclipse.papyrus.modelexplorer.DecoratingLabelProviderWTooltips;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -66,7 +57,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.navigator.NavigatorContentService;
-import org.eclipse.ui.internal.navigator.NavigatorDecoratingLabelProvider;
 import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
@@ -76,6 +66,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.osgi.framework.ServiceException;
 
 /**
  * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}.
@@ -85,20 +76,21 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider {
 
-	/** The associated EditorPart
-	 * The View is associated to the ServicesRegistry rather than to an editor.
-	 *  */
-//	private IMultiDiagramEditor editorPart;
-	
 	/**
-	 * The {@link ServicesRegistry} associated to the Editor. This view is associated to the 
+	 * The associated EditorPart
+	 * The View is associated to the ServicesRegistry rather than to an editor.
+	 * */
+	//	private IMultiDiagramEditor editorPart;
+
+	/**
+	 * The {@link ServicesRegistry} associated to the Editor. This view is associated to the
 	 * ServicesRegistry rather than to the EditorPart.
 	 */
 	private ServicesRegistry serviceRegistry;
 
 	/** The save aservice associated to the editor. */
 	private ISaveAndDirtyService saveAndDirtyService;
-	
+
 	/** {@link IUndoContext} used to tag command in the commandStack. */
 	private IUndoContext undoContext;
 
@@ -109,7 +101,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
 
 	/**
-	 * A listener on page (all editors) selection change. This listener is set 
+	 * A listener on page (all editors) selection change. This listener is set
 	 * in {@link ModelExplorerView#init(IViewSite)}. It should be dispose to remove
 	 * hook to the Eclipse page.
 	 */
@@ -119,7 +111,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			handleSelectionChangedFromDiagramEditor(part, selection);
 		}
 	};
-	
+
 	/**
 	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
 	 */
@@ -168,16 +160,16 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	public ModelExplorerView(IMultiDiagramEditor part) {
 
-		if( part == null) {
+		if(part == null) {
 			throw new IllegalArgumentException("A part should be provided.");
 		}
-		
+
 		// Try to get the ServicesRegistry
 		serviceRegistry = part.getServicesRegistry();
-		if( serviceRegistry == null) {
+		if(serviceRegistry == null) {
 			throw new IllegalArgumentException("The part should have a ServiceRegistry.");
 		}
-		
+
 		setLinkingEnabled(true);
 
 		// Get required services from ServicesRegistry
@@ -233,7 +225,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		SemanticFromModelExplorer semanticGetter = new SemanticFromModelExplorer();
 		List<Object> path = new ArrayList<Object>();
 		ITreeContentProvider contentProvider = (ITreeContentProvider)getCommonViewer().getContentProvider();
-//		IPageMngr iPageMngr = EditorUtils.getIPageMngr();
+		//		IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 		IPageMngr iPageMngr;
 		try {
 			iPageMngr = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
@@ -244,11 +236,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		Object[] result = iPageMngr.allPages().toArray();
 		List<Object> editors = Arrays.asList(result);
 
-		
+
 		for(Object o : objects) {
 			// Search matches in this level
-//			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
-			if(!editors.contains(o) && o instanceof IAdaptable){
+			//			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
+			if(!editors.contains(o) && o instanceof IAdaptable) {
 				if(eobject.equals(((IAdaptable)o).getAdapter(EObject.class))) {
 					path.add(o);
 					return path;
@@ -316,8 +308,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			if(descriptor instanceof NavigatorContentDescriptor) {
 				try {
 					ILabelProvider labelProvider = ((NavigatorContentDescriptor)descriptor).createLabelProvider();
-					//viewer.setLabelProvider(labelProvider);
-					viewer.setLabelProvider(new NavigatorDecoratingLabelProvider(labelProvider)); /* added for decorator support */
+					viewer.setLabelProvider(new DecoratingLabelProviderWTooltips(labelProvider)); // add for decorator and tooltip support
 				} catch (CoreException e) {
 					Activator.log.error(e);
 				}
@@ -381,15 +372,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	/**
 	 * Hook the global undo/redi actions.
 	 */
-//	private void hookGlobalHistoryHandler(IViewSite site) {
-//		undoHandler = new UndoActionHandler(site, null);
-//		redoHandler = new RedoActionHandler(site, null);
-//
-//		IActionBars actionBars = site.getActionBars();
-//
-//		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), undoHandler);
-//		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoHandler);
-//	}
+	//	private void hookGlobalHistoryHandler(IViewSite site) {
+	//		undoHandler = new UndoActionHandler(site, null);
+	//		redoHandler = new RedoActionHandler(site, null);
+	//
+	//		IActionBars actionBars = site.getActionBars();
+	//
+	//		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), undoHandler);
+	//		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoHandler);
+	//	}
 
 	/**
 	 * {@link ResourceSetListener} to listen and react to changes in the
@@ -475,29 +466,29 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private void activate() {
 
 
-			try {
-				this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
-				//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
-				// Set Viewer input if it already exist
-				if(getCommonViewer() != null) {
-					getCommonViewer().setInput(serviceRegistry);
-				}
-				editingDomain.addResourceSetListener(resourceSetListener);
-			} catch (ServiceException e) {
-				// Can't get EditingDomain, skip
+		try {
+			this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+			//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
+			// Set Viewer input if it already exist
+			if(getCommonViewer() != null) {
+				getCommonViewer().setInput(serviceRegistry);
 			}
+			editingDomain.addResourceSetListener(resourceSetListener);
+		} catch (ServiceException e) {
+			// Can't get EditingDomain, skip
+		}
 
-			// Listen to isDirty flag
-			saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+		// Listen to isDirty flag
+		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 
-			// Hook
-			//			if(undoHandler != null){
-			//				IUndoContext undoContext = getUndoContext(part);
-			//				undoHandler.setContext(undoContext);
-			//				undoHandler.update();
-			//				redoHandler.setContext(undoContext);
-			//				redoHandler.update();
-			//			}
+		// Hook
+		//			if(undoHandler != null){
+		//				IUndoContext undoContext = getUndoContext(part);
+		//				undoHandler.setContext(undoContext);
+		//				undoHandler.update();
+		//				redoHandler.setContext(undoContext);
+		//				redoHandler.update();
+		//			}
 		if(this.getCommonViewer() != null) {
 			refresh();
 		}
@@ -510,7 +501,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private void deactivate() {
 		// deactivate global handler
 		if(Activator.log.isDebugEnabled()) {
-			Activator.log.debug("deactivate ModelExplorerView" ); //$NON-NLS-1$
+			Activator.log.debug("deactivate ModelExplorerView"); //$NON-NLS-1$
 		}
 
 		// Stop listening on change events
@@ -538,23 +529,23 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	@Override
 	public void dispose() {
-		
+
 		// Stop if we are already disposed
-		if( isDisposed() ) {
+		if(isDisposed()) {
 			return;
 		}
-		
+
 		deactivate();
 
 		saveAndDirtyService = null;
 		undoContext = null;
 		editingDomain = null;
 		serviceRegistry = null;
-		
+
 		super.dispose();
 
 		// Clean up properties to help GC
-		
+
 	}
 
 	/**
