@@ -225,26 +225,6 @@ public class PapyrusemfcompareinstancePackageImpl extends EPackageImpl implement
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/ocl/examples/OCL
-		createOCLAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/ocl/examples/OCL</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createOCLAnnotations() {
-		String source = "http://www.eclipse.org/ocl/examples/OCL";		
-		addAnnotation
-		  (getPapyrusEMFCompareInstance_Name(), 
-		   source, 
-		   new String[] {
-			 "body", "derive -> this.getDerivedName"
-		   });
 	}
 
 } //PapyrusemfcompareinstancePackageImpl

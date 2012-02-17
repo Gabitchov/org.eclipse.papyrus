@@ -3,15 +3,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="papyrusemfcompareinstance" nsURI="http://www.eclipse.org/Papyrus/EMFCompare/0.9.0/papyrusemfcompareinstance"
     nsPrefix="papyrusemfcompareinstance">
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusEMFCompareInstance" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
-    <eOperations name="getDerivedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" volatile="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-        <details key="body" value="derive -> this.getDerivedName"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+        changeable="false" volatile="true" derived="true"/>
   </eClassifiers>
 </ecore:EPackage>

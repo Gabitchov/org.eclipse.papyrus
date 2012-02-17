@@ -125,7 +125,6 @@ public interface PapyrusEMFCompareInstance extends EModelElement {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusemfcompareinstancePackage#getPapyrusEMFCompareInstance_Name()
 	 * @model changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='derive -> this.getDerivedName'"
 	 * @generated
 	 */
 	String getName();
