@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.papyrus.alf.validation.typing.SignatureFacade;
+import org.eclipse.papyrus.alf.validation.typing.SignatureFacadeFactory;
 import org.eclipse.papyrus.alf.validation.typing.TypeExpressionFactory;
 import org.eclipse.papyrus.alf.validation.typing.TypeFacade;
 import org.eclipse.papyrus.alf.validation.typing.TypeFacadeFactory;
@@ -27,6 +28,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 
 public class PredefinedBehaviorsAndTypesUtils {
@@ -35,12 +37,15 @@ public class PredefinedBehaviorsAndTypesUtils {
 	private Map<String, TypeFacade> typeMap = new HashMap<String, TypeFacade>() ;
 	private List<Behavior> behaviorInsertedAsElementImport = new ArrayList<Behavior>() ;
 	private List<Classifier> classifierInsertedAsElementImport = new ArrayList<Classifier>();
+	//private List<Behavior> predefinedCollectionFunctions = new ArrayList<Behavior>() ;
+	//private Map<String, SignatureFacade> predefinedCollectionFunctionsMap = new HashMap<String, SignatureFacade>() ;
 	
 	public void init(org.eclipse.uml2.uml.Package library) {
 		behaviorMap = new HashMap<String, List<SignatureFacade>>();
 		typeMap = new HashMap<String, TypeFacade>() ;
 		behaviorInsertedAsElementImport = new ArrayList<Behavior>() ;
 		classifierInsertedAsElementImport = new ArrayList<Classifier>() ;
+		TypeUtils.predefinedCollectionFunctions = new HashMap<String, SignatureFacade>() ;
 		localInit(library) ;
 		// initializes predefined type facades from TypeUtils
 		TypeUtils._bitString = typeMap.get("BitString") ;
@@ -63,9 +68,12 @@ public class PredefinedBehaviorsAndTypesUtils {
 	}
 	
 	private void localInit(org.eclipse.uml2.uml.Package library) {
+		if (library.getQualifiedName().equals("Alf::Library::CollectionFunctions")) {
+			this.initCollectionFunctions(library) ;
+		}
 		for (NamedElement n : library.getOwnedMembers()) {
 			if (n instanceof Behavior) {
-				insertSignatureFacade(new SignatureFacade((Behavior)n)) ;
+				insertSignatureFacade(SignatureFacadeFactory.eInstance.createSignatureFacade(n)) ;
 			}
 			else if (n instanceof Classifier) {
 				insertTypeFacade(TypeFacadeFactory.eInstance.createTypeFacade(n)) ;
@@ -99,8 +107,24 @@ public class PredefinedBehaviorsAndTypesUtils {
 		TypeUtils._Deque = typeMap.get("Deque") ;
 		TypeUtils._Map = typeMap.get("Map") ;
 		TypeUtils._Entry = typeMap.get("Entry") ;
+		
 	}
 	
+	private void initCollectionFunctions(Package library) {
+		for (NamedElement element : library.getOwnedMembers()) {
+			if (element instanceof Behavior) {
+				SignatureFacade s = SignatureFacadeFactory.eInstance.createSignatureFacade(element) ;
+				TypeUtils.predefinedCollectionFunctions.put(s.getName(), s) ;
+			}
+		}
+		for (ElementImport eImport : library.getElementImports()) {
+			if (eImport.getImportedElement() instanceof Behavior) {
+				SignatureFacade s = SignatureFacadeFactory.eInstance.createSignatureFacade(eImport) ;
+				TypeUtils.predefinedCollectionFunctions.put(eImport.getAlias() == null || eImport.getAlias().isEmpty() ? s.getName() : eImport.getAlias(), s) ;
+			}
+		}
+	}
+
 	public List<SignatureFacade> getSignatures(String name) {
 		return behaviorMap.get(name) ;
 	}

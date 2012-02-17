@@ -14,23 +14,50 @@
 package org.eclipse.papyrus.alf.validation.typing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.alf.alf.InstanceCreationTupleElement;
+import org.eclipse.papyrus.alf.alf.QualifiedNameWithBinding;
+import org.eclipse.papyrus.uml.templates.utils.TemplateBindingUtils;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.FunctionBehavior;
+import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Reception;
+import org.eclipse.uml2.uml.StateMachine;
+import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.TemplateParameterSubstitution;
+import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 public class SignatureFacade {
 
 	private String name = "";
 	protected List<TypeExpression> parameters = new ArrayList<TypeExpression>();
-	private TypeExpression returnType = TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._undefined, 0, 0, false, false) ;
+	//
+	protected Map<String, TypeExpression> parametersMap = new HashMap<String, TypeExpression>() ;
+	//
+	//private TypeExpression returnType = TypeExpressionFactory.eInstance.createTypeExpression(TypeUtils._undefined, 0, 0, false, false) ;
+	private TypeExpression returnType = null ;
 	private EObject actualSignatureObject = null ;
 	
+	public EObject getActualSignatureObject() {
+		return actualSignatureObject;
+	}
+
 	public SignatureFacade() {
 		
 	}
@@ -43,8 +70,11 @@ public class SignatureFacade {
 			for (Parameter p : operation.getOwnedParameters()) {
 				if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
 					returnType = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
-				else
-					parameters.add(TypeExpressionFactory.eInstance.createTypeExpression(p)) ;
+				else {
+					TypeExpression typeOfP = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
+					parameters.add(typeOfP) ;
+					parametersMap.put(p.getName(), typeOfP) ;
+				}
 			}
 		}
 		else if (o instanceof Behavior) {
@@ -54,8 +84,11 @@ public class SignatureFacade {
 			for (Parameter p : behavior.getOwnedParameters()) {
 				if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
 					returnType = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
-				else
-					parameters.add(TypeExpressionFactory.eInstance.createTypeExpression(p)) ;
+				else {
+					TypeExpression typeOfP = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
+					parameters.add(typeOfP) ;
+					parametersMap.put(p.getName(), typeOfP) ;
+				}
 			}
 		}
 		else if (o instanceof ElementImport) {
@@ -70,8 +103,23 @@ public class SignatureFacade {
 				for (Parameter p : b.getOwnedParameters()) {
 					if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
 						returnType = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
-					else
-						parameters.add(TypeExpressionFactory.eInstance.createTypeExpression(p)) ;
+					else {
+						TypeExpression typeOfP = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
+						parameters.add(typeOfP) ;
+						parametersMap.put(p.getName(), typeOfP) ;
+					}
+				}
+			}
+		}
+		else if (o instanceof Reception) {
+			Reception r = (Reception)o ;
+			this.actualSignatureObject = r ;
+			this.name = r.getName() ;
+			if (r.getSignal() != null) {
+				for (Property p : r.getSignal().getAllAttributes()) {
+					TypeExpression typeOfP = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
+					parameters.add(typeOfP) ;
+					parametersMap.put(p.getName(), typeOfP) ;
 				}
 			}
 		}
@@ -150,16 +198,28 @@ public class SignatureFacade {
 		return compatibilityLevel ;
 	}
 	
+	public String isCompatibleWithMe(Map<String,TypeExpression> arguments) {
+		if (arguments.keySet().size() == 0 )
+			return "" ;
+		String compatibility = "" ;
+		for (String parameterName : arguments.keySet()) {
+			if (parametersMap.get(parameterName) == null) {
+				compatibility += "Parameter " + parameterName + " is undefined\n"; 
+			}
+			else {
+				int compatibilityLevel = parametersMap.get(parameterName).isCompatibleWithMe(arguments.get(parameterName)) ;
+				if (compatibilityLevel == 0) {
+					compatibility += "Parameter " + parameterName + " requires an argument of type " + parametersMap.get(parameterName).getLabel() + "\n" ;
+				}
+			}
+		}
+		return compatibility ;
+	}
+	
 	public static List<SignatureFacade> findNearestSignature(List<TypeExpression> arguments, List<SignatureFacade> candidates) {
 		List<SignatureFacade> matchingSignatures = new ArrayList<SignatureFacade>() ;
 		int bestScore = 0 ;
 		for (SignatureFacade cddMatchingSignature : candidates) {
-			//String signatureLabel = cddMatchingSignature.getName() + "(";
-			//for (TypeExpression t : cddMatchingSignature.getParameters()) {
-			//	signatureLabel += " " + t.getLabel() + " ";
-			//}
-			//signatureLabel += ")" + (cddMatchingSignature.hasReturnType() ? " : " + cddMatchingSignature.getReturnType().getLabel() : "");
-			//System.out.println(signatureLabel) ;
 			int currentScore = cddMatchingSignature.isCompatibleWithMe(arguments) ;
 			if (currentScore != 0) {
 				if (currentScore >= bestScore) {
@@ -173,11 +233,20 @@ public class SignatureFacade {
 		return matchingSignatures ;
 	}
 	
+	public static List<SignatureFacade> findNearestConstructorSignature(Map<String, TypeExpression> arguments, List<SignatureFacade> candidates) {
+		List<SignatureFacade> matchingSignatures = new ArrayList<SignatureFacade>() ;
+		for (SignatureFacade cddMatchingSignature : candidates) {
+			String compatibility = cddMatchingSignature.isCompatibleWithMe(arguments) ;
+			if (compatibility.isEmpty()) {
+				matchingSignatures.add(cddMatchingSignature) ;
+			}
+		}
+		return matchingSignatures ;
+	}
+	
 	public List<SignatureFacade> isNotDistinguishableFrom(List<SignatureFacade> candidates) {
 		List<SignatureFacade> matchingSignatures = new ArrayList<SignatureFacade>() ;
 		for (SignatureFacade cddMatchingSignature : candidates) {
-			//System.out.println("self : " + this.getLabel()) ;
-			//System.out.println("compared to : " + cddMatchingSignature.getLabel()) ;
 			if (this.name.equals(cddMatchingSignature.getName())) {
 				if (this.parameters.size() == cddMatchingSignature.parameters.size()) {
 					boolean parameterThatDoesNotMatchFound = false ;
@@ -224,5 +293,56 @@ public class SignatureFacade {
 		if (signature == null)
 			return false ;
 		return signature.getAppliedStereotype("Standard::Destroy") != null ;
+	}
+	
+	public Map<String, TypeExpression> getParametersMap() {
+		return this.parametersMap ;
+	}
+	
+	public boolean isATemplate() {
+		if (this.actualSignatureObject instanceof TemplateableElement) {
+			return ((TemplateableElement)this.actualSignatureObject).isTemplate() ;
+		}
+		return false ;
+	}
+	
+	public SignatureFacade bindTemplate(Map<TemplateParameter, ParameterableElement> substitutions) {
+		if (this.isATemplate()) {
+			TemplateableElement t = (TemplateableElement)this.actualSignatureObject ;
+			if (t.getOwnedTemplateSignature().getParameters().size() != substitutions.size()) {
+				// Invalid number of template parameter subsitutions
+				return null ;
+			}
+			//Map<Object, EObject> substitutionsMap = new HashMap<Object, EObject>() ;
+			
+			if (this.isATemplate()) {
+				TemplateableElement equivalentBoundElement = null ;
+				if (this.actualSignatureObject instanceof Activity) {
+					equivalentBoundElement = UMLFactory.eINSTANCE.createActivity() ;
+				}
+				else if (this.actualSignatureObject instanceof FunctionBehavior) {
+					equivalentBoundElement = UMLFactory.eINSTANCE.createFunctionBehavior() ;
+				}
+				else if (this.actualSignatureObject instanceof StateMachine) {
+					equivalentBoundElement = UMLFactory.eINSTANCE.createStateMachine() ;
+				}
+				else if (this.actualSignatureObject instanceof Interaction) {
+					equivalentBoundElement = UMLFactory.eINSTANCE.createInteraction() ;
+				}
+				else if (this.actualSignatureObject instanceof Operation) {
+					equivalentBoundElement = UMLFactory.eINSTANCE.createOperation() ;
+				}
+				((NamedElement)equivalentBoundElement).setName(((NamedElement)this.actualSignatureObject).getName()) ;
+				org.eclipse.uml2.uml.TemplateBinding generatedTemplateBinding = equivalentBoundElement.createTemplateBinding(((TemplateableElement)this.actualSignatureObject).getOwnedTemplateSignature()) ;
+				for (TemplateParameter formal : substitutions.keySet()) {
+					TemplateParameterSubstitution tps = generatedTemplateBinding.createParameterSubstitution() ;
+					tps.setFormal(formal) ;
+					tps.setActual(substitutions.get(formal)) ;
+				}
+				equivalentBoundElement = (TemplateableElement)new TemplateBindingUtils().getEquivalentBoundElement(equivalentBoundElement) ;
+				return SignatureFacadeFactory.eInstance.createSignatureFacade(equivalentBoundElement) ;
+			}
+		}
+		return this ;
 	}
 }

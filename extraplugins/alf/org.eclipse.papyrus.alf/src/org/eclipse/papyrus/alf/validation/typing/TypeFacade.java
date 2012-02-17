@@ -14,20 +14,31 @@
 package org.eclipse.papyrus.alf.validation.typing;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.alf.alf.AcceptClause;
+import org.eclipse.papyrus.alf.alf.AcceptStatement;
 import org.eclipse.papyrus.alf.alf.Expression;
 import org.eclipse.papyrus.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.alf.alf.SuffixExpression;
+import org.eclipse.papyrus.alf.alf.TemplateBinding;
 import org.eclipse.papyrus.alf.validation.AlfJavaValidator;
+import org.eclipse.papyrus.uml.templates.utils.TemplateBindingUtils;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.TemplateParameterSubstitution;
+import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.TypedElement;
+import org.eclipse.uml2.uml.UMLFactory;
 
 public class TypeFacade {
 
 	protected EObject typeObject ;
-	protected TemplateBindingFacade templateBindingFacade ;
 	
 	public void setTypeObject(EObject typeObject) {
 		this.typeObject = typeObject ;
@@ -45,6 +56,8 @@ public class TypeFacade {
 		if (myType == null) // i.e. any
 			return 3 ;
 		Classifier hisType = extractActualType(type) ;
+		if (hisType == null)
+			return 0 ;
 		if (perfectMatch(myType, hisType))
 			return 3 ;
 		//else if (autoConversionMatch(myType, hisType)) TODO: temporarily commented. Rules need to be clarified
@@ -118,6 +131,11 @@ public class TypeFacade {
 			// infers the type of the nesting expression, ignoring the t.typeObject suffix
 			TypeExpression typeOfPrefix = new TypeUtils((SuffixExpression)t.typeObject).getTypeOfExpression((Expression)cddExpression) ;
 			actualType = extractActualType(typeOfPrefix.getTypeFacade()) ;
+			for (Operation o : actualType.getAllOperations()) {
+				if (o.getName().equals("toSequence")) {
+					actualType = (Classifier) (o.getReturnResult() != null ? o.getReturnResult().getType() : actualType) ;
+				}
+			}
 		}
 		return actualType ;
 	}
@@ -159,6 +177,23 @@ public class TypeFacade {
 
 	public String getLabel() {
 		return "" ; // TODO: uncomment when template bindings are supported + this.templateBindingFacade.getLabel() ;
+	}
+	
+	public void bindTemplate(Map<TemplateParameter, ParameterableElement> substitutions) {
+		if (this.isATemplate()) {
+			Classifier equivalentBoundElement = null ;
+			if (this.typeObject instanceof org.eclipse.uml2.uml.Class) {
+				equivalentBoundElement = UMLFactory.eINSTANCE.createClass() ;
+				equivalentBoundElement.setName(((NamedElement)this.typeObject).getName()) ;
+			}
+			org.eclipse.uml2.uml.TemplateBinding generatedTemplateBinding = equivalentBoundElement.createTemplateBinding(((TemplateableElement)this.typeObject).getOwnedTemplateSignature()) ;
+			for (TemplateParameter formal : substitutions.keySet()) {
+				TemplateParameterSubstitution tps = generatedTemplateBinding.createParameterSubstitution() ;
+				tps.setFormal(formal) ;
+				tps.setActual(substitutions.get(formal)) ;
+			}
+			this.typeObject = new TemplateBindingUtils().getEquivalentBoundElement(equivalentBoundElement) ;
+		}
 	}
 	
 }

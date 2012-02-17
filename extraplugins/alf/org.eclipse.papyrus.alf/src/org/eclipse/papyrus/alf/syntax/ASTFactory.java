@@ -1043,14 +1043,14 @@ public class ASTFactory {
 		synthesized.namedExpression = new ArrayList<NamedExpression>() ;
 		NamedExpression n ;
 		// Hypothesis: All LinkOperationTupleElement have both a "objectOrRole" and an "object"
-		for (LinkOperationTupleElement t : tuple.getLinkOperationTupleElement()) {
-			n = new NamedExpression() ;
-			n.name = t.getObjectOrRole() ;
-			if (t.getRoleIndex() != null)
-				n.index = this.synthesizeExpression(t.getRoleIndex()) ;
-			n.expression = this.synthesizeNameExpression(t.getObject()) ;
-			synthesized.namedExpression.add(n) ;
-		}
+//		for (LinkOperationTupleElement t : tuple.getLinkOperationTupleElement()) {
+//			n = new NamedExpression() ;
+//			n.name = t.getObjectOrRole() ;
+//			if (t.getRoleIndex() != null)
+//				n.index = this.synthesizeExpression(t.getRoleIndex()) ;
+//			n.expression = this.synthesizeNameExpression(t.getObject()) ;
+//			synthesized.namedExpression.add(n) ;
+//		}
 		
 		return synthesized ;
 	}
@@ -1070,8 +1070,8 @@ public class ASTFactory {
 		/* 1. Synthesizes property target:QualifiedName */
 		synthesized.constructor = this.synthesizeQualifiedName(parsed.getConstructor()) ;
 		
-		/* 2. Synthesizes property tuple:Tuple */
-		synthesized.tuple = this.synthesizeTuple(parsed.getTuple(), synthesized) ;
+//		/* 2. Synthesizes property tuple:Tuple */
+//		synthesized.tuple = this.synthesizeTuple(parsed.getTuple(), synthesized) ;
 		
 		if (parsed.getSuffix() != null)
 			return this.synthesizeExpression(synthesized, parsed.getSuffix()) ;

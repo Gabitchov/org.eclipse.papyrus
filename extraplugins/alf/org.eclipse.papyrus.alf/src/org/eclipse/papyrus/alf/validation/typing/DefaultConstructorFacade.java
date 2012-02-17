@@ -32,7 +32,9 @@ public class DefaultConstructorFacade extends SignatureFacade {
 		super(d) ;
 		this.datatypeToBeConstructed = d ;
 		for (Property p : d.getAllAttributes()) {
+			TypeExpression typeOfArgument = TypeExpressionFactory.eInstance.createTypeExpression(p) ;
 			parameters.add(TypeExpressionFactory.eInstance.createTypeExpression(p)) ;
+			parametersMap.put(p.getName(), typeOfArgument) ;
 		}
 		this.setReturnType(TypeExpressionFactory.eInstance.createTypeExpression(d)) ;
 	}

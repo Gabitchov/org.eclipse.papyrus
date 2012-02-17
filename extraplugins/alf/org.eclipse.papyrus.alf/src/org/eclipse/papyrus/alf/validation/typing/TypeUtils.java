@@ -14,8 +14,10 @@
 package org.eclipse.papyrus.alf.validation.typing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -44,7 +46,8 @@ import org.eclipse.papyrus.alf.alf.NameExpression;
 import org.eclipse.papyrus.alf.alf.NonLiteralValueSpecification;
 import org.eclipse.papyrus.alf.alf.NullExpression;
 import org.eclipse.papyrus.alf.alf.OperationCallExpression;
-import org.eclipse.papyrus.alf.alf.OperationCallExpressionWithoutDot;
+import org.eclipse.papyrus.alf.alf.Tuple;
+//import org.eclipse.papyrus.alf.alf.OperationCallExpressionWithoutDot;
 import org.eclipse.papyrus.alf.alf.ParenthesizedExpression;
 import org.eclipse.papyrus.alf.alf.PrimaryExpression;
 import org.eclipse.papyrus.alf.alf.PropertyCallExpression;
@@ -68,11 +71,19 @@ import org.eclipse.papyrus.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.alf.alf.ValueSpecification;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.alf.validation.AlfJavaValidator;
+import org.eclipse.papyrus.alf.validation.PredefinedBehaviorsAndTypesUtils;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.TemplateableElement;
 
 public class TypeUtils {
 	
@@ -93,6 +104,7 @@ public class TypeUtils {
 	public static TypeFacade _Deque ;
 	public static TypeFacade _Map ;
 	public static TypeFacade _Entry ;
+	public static Map<String, SignatureFacade> predefinedCollectionFunctions ;
 	
 	
 	private SuffixExpression suffixToBeIgnored = null ;
@@ -542,10 +554,20 @@ public class TypeUtils {
 				}
 			}
 			catch (Exception e) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
+				ErrorTypeFacade error = null ;
+				if (e instanceof TypeInferenceException) {
+					TypeInferenceException tie = (TypeInferenceException)e ;
+					error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
+							tie.getErrorMessage(), 
+							tie.getErrorSource(), 
+							tie.getErrorFeature()) ;
+				}
+				else {
+					error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
 						e.getMessage(), 
 						exp, 
 						AlfPackage.eINSTANCE.getInstanceCreationExpression_Constructor()) ;
+				}
 				return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 			}
 		}
@@ -651,8 +673,53 @@ public class TypeUtils {
 			// first resolves the first element of the path
 			List<EObject> visiblePackages = AlfScopeProvider.scopingTool.getVisiblePackages(exp).resolveByName(path.get(0).getName()) ;
 			if (visiblePackages.isEmpty()) {
-				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve package " + path.get(0).getName(), path.get(0), AlfPackage.eINSTANCE.getUnqualifiedName_Name()) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(error);
+				// Try to find a classifier
+				List<EObject> visibleClassifiers = AlfScopeProvider.scopingTool.getVisibleClassifiers(exp).resolveByName(path.get(0).getName()) ;
+				if (visibleClassifiers.isEmpty()) {
+					// No classifier found
+					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve package " + path.get(0).getName(), path.get(0), AlfPackage.eINSTANCE.getUnqualifiedName_Name()) ;
+					return TypeExpressionFactory.eInstance.createTypeExpression(error);
+				}
+				else if (visibleClassifiers.size() > 1) {
+					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(0).getName() + " resolves to multiple classifiers", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
+					return TypeExpressionFactory.eInstance.createTypeExpression(error);
+				}
+				else {
+					// Then walks through the path, which shall contain only references to (nested) classifiers
+					List<EObject> nestedVisibleClassifiers ;
+					EObject previousClassifier = visibleClassifiers.get(0) ;
+					for (int i = 1 ; i<path.size() ; i++) {
+						nestedVisibleClassifiers = AlfScopeProvider.scopingTool.getVisibleClassifiers(previousClassifier).resolveByName(path.get(i).getName()) ;
+						if (nestedVisibleClassifiers.isEmpty()) {							
+							ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve classifier " + path.get(i).getName(), path.get(i), AlfPackage.eINSTANCE.getUnqualifiedName_Name()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error);
+						}
+						else if (nestedVisibleClassifiers.size() > 1) {
+							ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(i).getName() + " resolves to multiple classifiers", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error);
+						}
+						previousClassifier = nestedVisibleClassifiers.get(0) ;
+					}
+					// TODO : Check if this is reasonable => We make the assumption than the final id can only be a reference to an enumeration
+					if (previousClassifier instanceof Enumeration) {
+						List<EObject> visibleEnumerationLiterals = AlfScopeProvider.scopingTool.getVisibleEnumerationLiterals(previousClassifier).resolveByName(exp.getId()) ;
+						if (visibleEnumerationLiterals.isEmpty()) {
+							ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve enumeration literal " + exp.getId(), exp, AlfPackage.eINSTANCE.getNameExpression_Id()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error);
+						}
+						else if (visibleEnumerationLiterals.size() > 1) {
+							ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(exp.getId() + " resolves to multiple enumeration literals", exp, AlfPackage.eINSTANCE.getNameExpression_Id()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error);
+						}
+						else {
+							return TypeExpressionFactory.eInstance.createTypeExpression(previousClassifier) ;
+						}
+					}
+					else {
+						ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(path.size()-1).getName() + " does not resolve to an enumeration", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
+						return TypeExpressionFactory.eInstance.createTypeExpression(error);
+					}
+				}
 			}
 			else if (visiblePackages.size() > 1) {
 				ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(0).getName() + " resolves to multiple packages", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
@@ -663,9 +730,54 @@ public class TypeUtils {
 				previousPackage = visiblePackages.get(0) ;
 				for (int i = 1 ; i<path.size() ; i++) {
 					nestedVisiblePackages = AlfScopeProvider.scopingTool.getVisiblePackages(previousPackage).resolveByName(path.get(i).getName()) ;
-					if (nestedVisiblePackages.isEmpty()) {							
-						ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve package " + path.get(i).getName(), path.get(i), AlfPackage.eINSTANCE.getUnqualifiedName_Name()) ;
-						return TypeExpressionFactory.eInstance.createTypeExpression(error);
+					if (nestedVisiblePackages.isEmpty()) {
+						// Try to find a classifier
+						List<EObject> visibleClassifiers = AlfScopeProvider.scopingTool.getVisibleClassifiers(exp).resolveByName(path.get(i).getName()) ;
+						if (visibleClassifiers.isEmpty()) {
+							// No classifier found
+							ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve package " + path.get(i).getName(), path.get(i), AlfPackage.eINSTANCE.getUnqualifiedName_Name()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error);
+						}
+						else if (visibleClassifiers.size() > 1) {
+							ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(0).getName() + " resolves to multiple classifiers", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
+							return TypeExpressionFactory.eInstance.createTypeExpression(error);
+						}
+						else {
+							// Then walks through the path, which shall contain only references to (nested) classifiers
+							List<EObject> nestedVisibleClassifiers ;
+							EObject previousClassifier = visibleClassifiers.get(0) ;
+							for (int j = i ; j<path.size() ; j++) {
+								nestedVisibleClassifiers = AlfScopeProvider.scopingTool.getVisibleClassifiers(previousClassifier).resolveByName(path.get(j).getName()) ;
+								if (nestedVisibleClassifiers.isEmpty()) {							
+									ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve classifier " + path.get(j).getName(), path.get(j), AlfPackage.eINSTANCE.getUnqualifiedName_Name()) ;
+									return TypeExpressionFactory.eInstance.createTypeExpression(error);
+								}
+								else if (nestedVisibleClassifiers.size() > 1) {
+									ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(j).getName() + " resolves to multiple classifiers", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
+									return TypeExpressionFactory.eInstance.createTypeExpression(error);
+								}
+								previousClassifier = nestedVisibleClassifiers.get(0) ;
+							}
+							// TODO : Check if this is reasonable => We make the assumption than the final id can only be a reference to an enumeration
+							if (previousClassifier instanceof Enumeration) {
+								List<EObject> visibleEnumerationLiterals = AlfScopeProvider.scopingTool.getVisibleEnumerationLiterals(previousClassifier).resolveByName(exp.getId()) ;
+								if (visibleEnumerationLiterals.isEmpty()) {
+									ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade("Could not resolve enumeration literal " + exp.getId(), exp, AlfPackage.eINSTANCE.getNameExpression_Id()) ;
+									return TypeExpressionFactory.eInstance.createTypeExpression(error);
+								}
+								else if (visibleEnumerationLiterals.size() > 1) {
+									ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(exp.getId() + " resolves to multiple enumeration literals", exp, AlfPackage.eINSTANCE.getNameExpression_Id()) ;
+									return TypeExpressionFactory.eInstance.createTypeExpression(error);
+								}
+								else {
+									return TypeExpressionFactory.eInstance.createTypeExpression(previousClassifier) ;
+								}
+							}
+							else {
+								ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(path.size()-1).getName() + " does not resolve to an enumeration", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
+								return TypeExpressionFactory.eInstance.createTypeExpression(error);
+							}
+						}
 					}
 					else if (nestedVisiblePackages.size() > 1) {
 						ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(path.get(i).getName() + " resolves to multiple packages", exp.getPath(), AlfPackage.eINSTANCE.getQualifiedNamePath_Namespace()) ;
@@ -727,7 +839,7 @@ public class TypeUtils {
 			else if (visibleOperationOrBehaviors.size()>1) {
 				List<SignatureFacade> availableSignatures = new ArrayList<SignatureFacade>() ;
 				for (EObject operation : visibleOperationOrBehaviors) {
-					availableSignatures.add(new SignatureFacade(operation)) ;
+					availableSignatures.add(SignatureFacadeFactory.eInstance.createSignatureFacade(operation)) ;
 				}
 				List<SignatureFacade> selectedSignatures = SignatureFacade.findNearestSignature(arguments, availableSignatures) ;
 				if (selectedSignatures.size() > 1) { // could not infer the actual operations even with type of arguments
@@ -759,7 +871,7 @@ public class TypeUtils {
 				}
 			}
 			else {
-				SignatureFacade operationOrBehaviorSignature = new SignatureFacade(visibleOperationOrBehaviors.get(0)) ;
+				SignatureFacade operationOrBehaviorSignature = SignatureFacadeFactory.eInstance.createSignatureFacade(visibleOperationOrBehaviors.get(0)) ;
 				String argumentsAreCompatible = operationOrBehaviorSignature.isCompatibleWithMe(arguments, true) ;
 				if (! (argumentsAreCompatible.length() == 0)) {
 					ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
@@ -829,12 +941,14 @@ public class TypeUtils {
 		return typeOfPrefix ;
 	}
 	
-	public TypeExpression getTypeOfSuffixExpression(SuffixExpression exp, TypeExpression typeOfPrefix) {
+	public TypeExpression getTypeOfSuffixExpression(SuffixExpression exp, TypeExpression propagatedTypeOfPrefix) {
 		// TODO: Support all cases
 		EObject source = exp.eContainer() ;
 		EStructuralFeature containtFeature = exp.eContainingFeature() ;
 		///////////////////////////
 		
+		TypeExpression typeOfPrefix = propagatedTypeOfPrefix ;
+				
 		if (typeOfPrefix == null) {
 			String errorMessage = "Type of prefix is undefined. Could not validate suffix." ;
 			ErrorTypeFacade error = 
@@ -848,7 +962,27 @@ public class TypeUtils {
 			return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 		}
 		
-		
+		// If the of prefix is of multiplicity 1 and if it has an operation toSequence (i.e., it is a collection class)
+		// Then, depending on the kind of suffix, it may be necessary to propagate a sequence has the prefix type
+		if (typeOfPrefix.getMultiplicity().getUpperBound() == 1 && 
+				(exp instanceof SequenceOperationExpression ||
+				 exp instanceof SelectOrRejectOperation
+						//	|| exp.getSuffix() instanceof ... TODO 
+						)) {
+			Classifier actualPrefixType = typeOfPrefix.getTypeFacade().extractActualType() ;
+			if( actualPrefixType != null) {
+				Operation toSequenceOperation = null ;
+				for (int i = 0 ; i<actualPrefixType.getAllOperations().size() && toSequenceOperation == null ; i++) {
+					Operation o = actualPrefixType.getAllOperations().get(i) ;
+					if (o.getName().equals("toSequence"))
+						toSequenceOperation = o ;
+				}
+				if (toSequenceOperation != null) {
+					typeOfPrefix = TypeExpressionFactory.eInstance.createTypeExpression(toSequenceOperation.getReturnResult()) ;
+				}
+			}
+		}
+
 		if (exp instanceof ClassExtentExpression) {
 			// TODO
 			String errorMessage = "Class extent expressions are not supported in this version of the Alf editor" ;
@@ -873,10 +1007,7 @@ public class TypeUtils {
 			return getTypeOfSequenceExpansionExpression((SequenceExpansionExpression) exp, typeOfPrefix) ;
 		}
 		else if (exp instanceof SequenceOperationExpression) {
-			String errorMessage = "Sequence operation expressions are not supported in this version of the Alf editor" ;
-			ErrorTypeFacade unsupportedCase = 
-				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
-			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+			return getTypeOfSequenceOperationExpression((SequenceOperationExpression)exp, typeOfPrefix) ;
 		}
 		else {// exp instanceof SequenceReductionExpression 
 			return getTypeOfSequenceReductionExpression((SequenceReductionExpression) exp, typeOfPrefix) ;
@@ -884,7 +1015,107 @@ public class TypeUtils {
 	}
 
 	public TypeExpression getTypeOfSequenceOperationExpression(SequenceOperationExpression exp, TypeExpression typeOfPrefix) {
-		return typeOfPrefix ; // TODO
+		
+		if (exp.getOperationName() == null) {
+			String errorMessage = "Sequence function is missing" ;
+			ErrorTypeFacade unsupportedCase = 
+				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getSequenceOperationExpression_OperationName()) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+		}
+		
+		// first tries to resolve the behavior name
+		SignatureFacade s = null ;
+		TypeFacade cddBehaviorFacade = TypeFacadeFactory.eInstance.createVoidFacade(exp.getOperationName()) ;
+		if (cddBehaviorFacade instanceof ErrorTypeFacade) {
+			// the behavior has not been found using default strategies.
+			// Tries to find it in predefined collection functions
+			s = TypeUtils.predefinedCollectionFunctions.get(exp.getOperationName().getId()) ;
+			if (s == null) {
+				return TypeExpressionFactory.eInstance.createTypeExpression(cddBehaviorFacade) ;
+//				EObject source = exp.eContainer() ;
+//				EStructuralFeature containingFeature = exp.eContainingFeature() ;
+//				String errorMessage = "Could not resolve collection function " + exp.getOperationName().getId() ;
+//				ErrorTypeFacade unsupportedCase = 
+//						TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containingFeature) ;
+//				return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+			}
+		}
+		else {		
+			Classifier cddBehavior = cddBehaviorFacade.extractActualType() ;
+			if (! (cddBehavior instanceof Behavior)) {
+				String errorMessage = cddBehavior.getName() + " does not resolve to a Behavior" ;
+				ErrorTypeFacade unsupportedCase = 
+						TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, AlfPackage.eINSTANCE.getSequenceOperationExpression_OperationName()) ;
+				return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+			}
+			else {
+				s = SignatureFacadeFactory.eInstance.createSignatureFacade(cddBehavior) ;
+			}
+		}
+		
+		if (s.isATemplate()) {
+			// A binding needs to be done, with the type of the prefix as an actual.
+			Map<TemplateParameter, ParameterableElement> substitutions = new HashMap<TemplateParameter, ParameterableElement>() ;
+			for (TemplateParameter tp : ((TemplateableElement)s.getActualSignatureObject()).getOwnedTemplateSignature().getOwnedParameters()) {
+				substitutions.put(tp,typeOfPrefix.getTypeFacade().extractActualType()) ;
+			}
+			String sLabelInCaseOfErrorInBinding = "" + s.getLabel() ;
+			s = s.bindTemplate(substitutions) ;
+			if (s == null) { // a problem occurred with binding
+				EObject source = exp.eContainer() ;
+				EStructuralFeature containtFeature = exp.eContainingFeature() ;
+				String errorMessage = "Could not implicitly bind behavior " + sLabelInCaseOfErrorInBinding + " with actual parameter " + typeOfPrefix.getTypeFacade().getLabel() ;
+				ErrorTypeFacade unsupportedCase = 
+					TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+				return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+			}
+		}
+		
+		// The signature has been resolved.
+		// Needs to determine if this is a valid signature. i.e. must have its first parameter with direction in or inout, and multiplicity *
+		if (s.getParameters().isEmpty()) {
+			EObject source = exp.eContainer() ;
+			EStructuralFeature containtFeature = exp.eContainingFeature() ;
+			String errorMessage = "Invalid sequence function. Should at least one in or inout parameter with multiplicity *" ;
+			ErrorTypeFacade unsupportedCase = 
+				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+		}
+		Behavior sequenceFunction = (Behavior)s.getActualSignatureObject() ;
+		Parameter firstParameter = sequenceFunction.getOwnedParameters().get(0) ;
+		if (((firstParameter.getDirection()!= ParameterDirectionKind.IN_LITERAL) && (firstParameter.getDirection() != ParameterDirectionKind.INOUT_LITERAL)) ||
+			  firstParameter.getUpper() != -1) {
+			EObject source = exp.eContainer() ;
+			EStructuralFeature containtFeature = exp.eContainingFeature() ;
+			String errorMessage = "Invalid sequence function. The first parameter should have direction in or inout, with multiplicity *" ;
+			ErrorTypeFacade unsupportedCase = 
+				TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+		}
+		// Then determines if arguments match parameters of the signature
+		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
+		arguments.add(typeOfPrefix) ;
+		for (TupleElement e : exp.getTuple().getTupleElements()) {
+			TypeExpression argType = getTypeOfExpression(e.getArgument()) ;
+			if (argType.getTypeFacade() != null && argType.getTypeFacade() instanceof ErrorTypeFacade)
+				return argType ;
+			arguments.add(argType) ;
+		}
+		String argumentsAreCompatible = s.isCompatibleWithMe(arguments, true) ;
+		if (! (argumentsAreCompatible.length() == 0)) {
+			ErrorTypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(
+					argumentsAreCompatible, 
+					exp, 
+					AlfPackage.eINSTANCE.getSequenceOperationExpression_OperationName()) ;
+			return TypeExpressionFactory.eInstance.createTypeExpression(error);
+		}
+		TypeExpression typeOfSuffix = s.getReturnType() ;
+		
+		if (exp.getSuffix() != null) {
+			return this.getTypeOfSuffixExpression(exp.getSuffix(), typeOfSuffix) ;
+		}
+
+		return typeOfSuffix ;
 	}
 	
 	public TypeExpression getTypeOfSequenceReductionExpression(SequenceReductionExpression exp, TypeExpression typeOfPrefix) {
@@ -1293,7 +1524,7 @@ public class TypeUtils {
 		else if (matchingOperations.size() > 1) {
 			List<SignatureFacade> availableSignatures = new ArrayList<SignatureFacade>() ;
 			for (EObject operation : matchingOperations) {
-				availableSignatures.add(new SignatureFacade(operation)) ;
+				availableSignatures.add(SignatureFacadeFactory.eInstance.createSignatureFacade(operation)) ;
 			}
 			List<SignatureFacade> selectedSignatures = SignatureFacade.findNearestSignature(arguments, availableSignatures) ;
 			if (selectedSignatures.size() > 1) { // could not infer the actual operations even with type of arguments
@@ -1424,6 +1655,149 @@ public class TypeUtils {
 				mostGeneral = null ;
 		}
 		return mostGeneral ;
+	}
+	
+	public TypeExpression getTypeOfCandidateExpression(EObject exp) {
+		// EObject cddExpression = o ;
+		if (exp instanceof Tuple) 
+			return getTypeOfCandidateExpression(exp.eContainer()) ;
+		else if (exp instanceof Expression) 
+			return getTypeOfExpression((Expression) exp) ; 
+		else if (exp instanceof ConditionalTestExpression) 
+			return getTypeOfConditionalTestExpression((ConditionalTestExpression)exp) ;
+		else if (exp instanceof ConditionalOrExpression)
+			return  getTypeOfConditionalOrExpression((ConditionalOrExpression) exp) ;
+		else if (exp instanceof ConditionalAndExpression)
+			return getTypeOfConditionalAndExpression((ConditionalAndExpression) exp) ;
+		else if (exp instanceof InclusiveOrExpression)
+			return getTypeOfInclusiveOrExpression((InclusiveOrExpression) exp) ;
+		else if (exp instanceof ExclusiveOrExpression)
+			return getTypeOfExclusiveOrExpression((ExclusiveOrExpression) exp) ;
+		else if (exp instanceof AndExpression)
+			return getTypeOfAndExpression((AndExpression) exp) ;
+		else if (exp instanceof EqualityExpression)
+			return getTypeOfEqualityExpression((EqualityExpression) exp) ;
+		else if (exp instanceof ClassificationExpression)
+			return getTypeOfClassificationExpression((ClassificationExpression) exp) ;
+		else if (exp instanceof RelationalExpression) 
+			return getTypeOfRelationalExpression((RelationalExpression) exp) ;
+		else if (exp instanceof ShiftExpression)
+			return getTypeOfShiftExpression((ShiftExpression) exp) ;
+		else if (exp instanceof AdditiveExpression)
+			return getTypeOfAdditiveExpression((AdditiveExpression) exp) ;
+		else if (exp instanceof MultiplicativeExpression)
+			return getTypeOfMultiplicativeExpression((MultiplicativeExpression) exp) ;
+		else if (exp instanceof UnaryExpression) 
+			return getTypeOfUnaryExpression((UnaryExpression) exp) ;
+		else if (exp instanceof PrimaryExpression)
+			return getTypeOfPrimaryExpression((PrimaryExpression) exp) ;
+		else if (exp instanceof ValueSpecification)
+			return getTypeOfValueSpecification((ValueSpecification)exp) ;
+		else if (exp instanceof NullExpression)
+			return getTypeOfNullExpression((NullExpression) exp) ;
+		else if (exp instanceof InstanceCreationExpression)
+			return getTypeOfInstanceCreationExpression((InstanceCreationExpression) exp) ;
+		else if (exp instanceof SuperInvocationExpression)
+			return getTypeOfSuperInvocationExpression((SuperInvocationExpression) exp) ;
+		else if (exp instanceof NonLiteralValueSpecification)
+			return getTypeOfNonLiteralValueSpecification((NonLiteralValueSpecification) exp) ;
+		else if (exp instanceof LITERAL)
+			return getTypeOfLITERAL((LITERAL) exp) ;
+		else if (exp instanceof ParenthesizedExpression)
+			return getTypeOfParenthesizedExpression((ParenthesizedExpression) exp) ;
+		else if (exp instanceof NameExpression)
+			return getTypeOfNameExpression((NameExpression) exp) ;
+		else if (exp instanceof ThisExpression)
+			return getTypeOfThisExpression((ThisExpression) exp) ;
+		else if (exp instanceof SequenceOperationExpression) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfSequenceOperationExpression((SequenceOperationExpression) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof SequenceReductionExpression) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfSequenceReductionExpression((SequenceReductionExpression) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof SequenceExpansionExpression) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfSequenceExpansionExpression((SequenceExpansionExpression) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof IsUniqueOperation) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfIsUniqueOperation((IsUniqueOperation) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof ForAllOrExistsOrOneOperation) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfForAllOrExistsOrOneOperation((ForAllOrExistsOrOneOperation) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof CollectOrIterateOperation) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfCollectOrIterateOperation((CollectOrIterateOperation) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof SelectOrRejectOperation) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfSelectOrRejectOperation((SelectOrRejectOperation) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof PropertyCallExpression) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfPropertyCallExpression((PropertyCallExpression) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof OperationCallExpression) {
+			// This is a suffix expression
+			// First determine type of prefix.
+			TypeUtils localTypeUtil = new TypeUtils((SuffixExpression)exp) ;
+			TypeExpression typeOfPrefix = localTypeUtil.getTypeOfCandidateExpression(exp.eContainer()) ;
+			if (typeOfPrefix.getTypeFacade() instanceof ErrorTypeFacade)
+				return typeOfPrefix ;
+			return getTypeOfOperationCallExpression((OperationCallExpression) exp, typeOfPrefix) ;
+		}
+		else if (exp instanceof SequenceElement)
+			return getTypeOfSequenceElement ((SequenceElement) exp) ;
+		else if (exp instanceof SequenceConstructionExpression)
+			return getTypeOfSequenceConstructionExpression ((SequenceConstructionExpression) exp) ;
+		
+		String errorMessage = "Not an expression." ;
+		TypeFacade error = TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, exp, null) ;
+		return TypeExpressionFactory.eInstance.createTypeExpression(error) ;
 	}
 }
 

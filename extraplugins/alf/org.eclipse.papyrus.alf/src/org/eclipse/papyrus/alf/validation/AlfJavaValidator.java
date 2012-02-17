@@ -85,7 +85,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
@@ -101,7 +103,10 @@ import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	
+	private static Element contextElement ;
 	private static Classifier contextClassifier ;
+	private static Namespace model ;
+	
 	private static Package alfStandardLibrary ; // TODO: include the library as part of the plug-in
 	public static PredefinedBehaviorsAndTypesUtils predefinedBehaviorsAndTypes ;
 	
@@ -111,6 +116,22 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 
 	public static boolean validate() {
 		return true ;
+	}
+	
+	public static Namespace getModel() {
+		return model;
+	}
+
+	public static void setModel(Namespace model) {
+		AlfJavaValidator.model = model;
+	}
+	
+	public static void setContextElement(Element _contextElement) {
+		contextElement = _contextElement ;
+	}
+	
+	public static Element getContextElement() {
+		return contextElement ;
 	}
 	
 	public static Classifier getContextClassifier() {
@@ -248,7 +269,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 			}
 		}
 		
-		// 2. checks that type can be resolved
+		// 2. checks that type can be resolved, and that potentially required template bindings are specified
 		TypeFacade variableType = null ;
 		if (statement.getType() != null) {
 			variableType = TypeFacadeFactory.eInstance.createVoidFacade(statement.getType()) ;
@@ -256,6 +277,12 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 				ErrorTypeFacade error = (ErrorTypeFacade)variableType ;
 				error(error.getLabel(), error.getErrorSource(), error.getStructuralFeature(), INSIGNIFICANT_INDEX) ;
 				variableType = null ;
+			}
+			else if (variableType.isATemplate()){
+				if (statement.getType().getBinding() == null) {
+					String errorMessage = variableType.getLabel() + " is a template. All its parameters shall be bound." ;
+					error(errorMessage, statement, AlfPackage.eINSTANCE.getLocalNameDeclarationStatement_Type(), INSIGNIFICANT_INDEX) ;
+				}
 			}
 		}
 		
@@ -1399,16 +1426,16 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 	@Check
 	public void checkTemplateBindingInNameExpression(UnqualifiedName expression) {
 		if (expression.getTemplateBinding() != null) {
-			String errorMessage = "Template bindings are not supported in this version of the Alf editor." ; // TODO
+			String errorMessage = "Template bindings are not supported in name expressions." ; // TODO
 			warning(errorMessage, AlfPackage.eINSTANCE.getUnqualifiedName_TemplateBinding()) ;
 		}
 	}
 	
 	@Check
 	public void checkTemplateBindingInQualifiedNameWithBinding(QualifiedNameWithBinding expression) {
-		if (expression.getBinding() != null) {
-			String errorMessage = "Template bindings are not supported in this version of the Alf editor." ; // TODO
-			warning(errorMessage, AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Binding()) ;
-		}
+		//if (expression.getBinding() != null) {
+		//	String errorMessage = "Template bindings are not supported in this version of the Alf editor." ; // TODO
+		//	warning(errorMessage, AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Binding()) ;
+		//}
 	}
 }

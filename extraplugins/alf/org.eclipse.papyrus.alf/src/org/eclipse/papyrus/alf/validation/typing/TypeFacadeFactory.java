@@ -13,11 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.alf.validation.typing;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.alf.alf.AcceptClause;
+import org.eclipse.papyrus.alf.alf.AcceptStatement;
 import org.eclipse.papyrus.alf.alf.AlfPackage;
 import org.eclipse.papyrus.alf.alf.ClassificationExpression;
 import org.eclipse.papyrus.alf.alf.Expression;
@@ -25,15 +30,20 @@ import org.eclipse.papyrus.alf.alf.InvocationOrAssignementOrDeclarationStatement
 import org.eclipse.papyrus.alf.alf.LocalNameDeclarationStatement;
 import org.eclipse.papyrus.alf.alf.LoopVariableDefinition;
 import org.eclipse.papyrus.alf.alf.NameExpression;
+import org.eclipse.papyrus.alf.alf.NamedTemplateBinding;
 import org.eclipse.papyrus.alf.alf.QualifiedNameWithBinding;
 import org.eclipse.papyrus.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.alf.alf.SuperInvocationExpression;
 import org.eclipse.papyrus.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
+import org.eclipse.papyrus.uml.templates.utils.TemplateBindingUtils;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TypedElement;
 
 public class TypeFacadeFactory {
@@ -93,6 +103,8 @@ public class TypeFacadeFactory {
 						TypeFacade t = TypeFacadeFactory.eInstance.createTypeFacade(typeObject) ;
 						return t.extractActualType().getName() + super.getLabel() ;
 					}
+					if (typeObject == null)
+						return "any" ;
 				}
 				catch (NullPointerException e) { // occurs when no type can be derived from typeObject (i.e., typeObject.getType() == null)
 					return "any" ;
@@ -145,6 +157,18 @@ public class TypeFacadeFactory {
 		}
 		else if (typeObject instanceof SequenceExpansionExpression) {
 			result.setTypeObject(typeObject) ;
+		}
+		else if (typeObject instanceof AcceptStatement) {
+			// first extract the accept clause
+			AcceptClause acceptClause = (AcceptClause)((AcceptStatement)typeObject).getClause() ;
+			if (acceptClause.getQualifiedNameList() != null && !(acceptClause.getQualifiedNameList().getQualifiedName().isEmpty())) {
+				// TODO : getQualifiedName is a collection. Should compute the least common ancestor.
+				TypeFacade f = TypeFacadeFactory.eInstance.createVoidFacade(acceptClause.getQualifiedNameList().getQualifiedName().get(0)) ;
+				result.setTypeObject(f.extractActualType()) ;
+			}
+			else {
+				result.setTypeObject(typeObject) ;
+			}
 		}
 		return result ;
 	}
@@ -301,7 +325,70 @@ public class TypeFacadeFactory {
 			return createErrorTypeFacade(remaining.getId() + " resolves to multiple classifiers.", remaining,
 					AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Id()) ;
 		}
-		return new VoidFacade(createTypeFacade(visibleClassifiers.get(0))) ;
+		
+		// Need to check that potential binding is valid
+		Classifier resolvedClassifier = (Classifier)visibleClassifiers.get(0) ;
+		if (!resolvedClassifier.isTemplate()) {
+			if (remaining.getBinding()!= null) { 
+				return createErrorTypeFacade(remaining.getId() + " is not a template", remaining,
+						AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Binding()) ;
+			}
+			else {
+				return new VoidFacade(createTypeFacade(visibleClassifiers.get(0))) ;
+			}
+		}
+		else {
+			if (remaining.getBinding()!= null) { 
+				// Needs to check that the binding is correct:
+				List<ParameterableElement> orderedListOfParameteredElements = new ArrayList<ParameterableElement>() ;
+				Map<String, ParameterableElement> mapOfParameteredElements = new HashMap<String, ParameterableElement>() ;
+				for (TemplateParameter tp : resolvedClassifier.getOwnedTemplateSignature().getOwnedParameters()) {
+					ParameterableElement p = tp.getParameteredElement() ;
+					if (p != null) {
+						orderedListOfParameteredElements.add(p) ;
+						mapOfParameteredElements.put(((NamedElement)p).getName(), p) ;
+					}
+				}
+				// Builds the substitutions map
+				Map<TemplateParameter, ParameterableElement> substitutionsMap = new HashMap<TemplateParameter, ParameterableElement>() ;
+				for (NamedTemplateBinding ntp : remaining.getBinding().getBindings()) {
+					ParameterableElement formal = mapOfParameteredElements.get(ntp.getFormal()) ;
+					if (formal == null) {
+						return createErrorTypeFacade("Template parameter " + ntp.getFormal() + " is undefined for classifier " + remaining.getId() , ntp,
+								AlfPackage.eINSTANCE.getNamedTemplateBinding_Formal()) ;
+					}
+					TypeFacade actual = createVoidFacade(ntp.getActual()) ;
+					if (actual instanceof ErrorTypeFacade)
+						return actual ;
+					substitutionsMap.put(formal.getTemplateParameter(), actual.extractActualType()) ;
+				}
+				// Checks the number of specified substitution
+				if (remaining.getBinding().getBindings().size() != orderedListOfParameteredElements.size()) {
+					String errorMessage = "" ;
+					if (remaining.getBinding().getBindings().size() > orderedListOfParameteredElements.size())
+						errorMessage = "Too many template bindings specified for " + remaining.getId()  ;
+					else {
+						errorMessage = "Template bindings are missing for " + remaining.getId()  ;
+					}
+					return createErrorTypeFacade(errorMessage, remaining,
+							AlfPackage.eINSTANCE.getQualifiedNameWithBinding_Binding()) ;
+				}
+				// Now, can create the void facade, and bind it with appropriate substitutions
+				VoidFacade boundResolvedClassifier = new VoidFacade(createTypeFacade(visibleClassifiers.get(0))) ;
+//				HashMap<Object, EObject> actualSubsitutionsMap = new HashMap<Object, EObject>() ;
+//				for (ParameterableElement p : orderedListOfParameteredElements) {
+//					actualSubsitutionsMap.put(TemplateBindingUtils.getParameteredElementName(p), 
+//											  subsitutionsMap.get(p) ) ;
+//				}
+				boundResolvedClassifier.bindTemplate(substitutionsMap) ;
+				
+				return boundResolvedClassifier;
+			}
+			else {
+				// Binding is not specified. It is up to the caller to perform implicit bindings.
+				return new VoidFacade(createTypeFacade(visibleClassifiers.get(0))) ;
+			}
+		}
 	}
 	
 }

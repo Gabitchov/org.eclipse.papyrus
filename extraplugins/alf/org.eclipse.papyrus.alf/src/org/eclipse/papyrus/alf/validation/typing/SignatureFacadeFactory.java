@@ -14,10 +14,13 @@
 package org.eclipse.papyrus.alf.validation.typing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.alf.alf.InstanceCreationExpression;
+import org.eclipse.papyrus.alf.alf.InstanceCreationTupleElement;
 import org.eclipse.papyrus.alf.alf.QualifiedNameWithBinding;
 import org.eclipse.papyrus.alf.alf.TupleElement;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
@@ -37,12 +40,15 @@ public class SignatureFacadeFactory {
 	
 	public SignatureFacade createConstructorFacade(InstanceCreationExpression exp) throws Exception {
 		List<TypeExpression> arguments = new ArrayList<TypeExpression>() ;
-		if (exp.getTuple().getTupleElements() != null) {
-			for (TupleElement tupleElement : exp.getTuple().getTupleElements()) {
-				TypeExpression typeOfArgument = new TypeUtils().getTypeOfExpression(tupleElement.getArgument()) ;
+		Map<String, TypeExpression> argumentsMap = new HashMap<String, TypeExpression>() ;
+		
+		if (exp.getTuple().getInstanceCreationTupleElement() != null) {
+			for (InstanceCreationTupleElement tupleElement : exp.getTuple().getInstanceCreationTupleElement()) {
+				TypeExpression typeOfArgument = new TypeUtils().getTypeOfExpression(tupleElement.getObject()) ;
 				if (typeOfArgument.getTypeFacade() instanceof ErrorTypeFacade)
-					throw new Exception(typeOfArgument.getTypeFacade().getLabel()) ;
+					throw new TypeInferenceException(typeOfArgument) ;
 				arguments.add(typeOfArgument) ;
+				argumentsMap.put(tupleElement.getRole(), typeOfArgument) ;
 			}
 		}
 		
@@ -129,7 +135,7 @@ public class SignatureFacadeFactory {
 						errorMessage += ") is undefined" ;
 						throw new Exception(errorMessage) ;
 					}
-					String potentialErrorMessage = constructor.isCompatibleWithMe(arguments, true) ;
+					String potentialErrorMessage = constructor.isCompatibleWithMe(argumentsMap) ;
 					if (potentialErrorMessage.length() == 0)
 						return constructor ;
 					else
@@ -139,7 +145,7 @@ public class SignatureFacadeFactory {
 			else if (referencedType instanceof DataType){ // This is a data type. 
 				//must match arguments with visible properties of the data type
 				SignatureFacade defaultDataTypeConstructor = new DefaultConstructorFacade((DataType)referencedType) ;
-				String errorMessage = defaultDataTypeConstructor.isCompatibleWithMe(arguments, true) ;
+				String errorMessage = defaultDataTypeConstructor.isCompatibleWithMe(argumentsMap) ;
 				if (!(errorMessage.length() == 0))
 					throw new Exception(errorMessage) ;
 				else

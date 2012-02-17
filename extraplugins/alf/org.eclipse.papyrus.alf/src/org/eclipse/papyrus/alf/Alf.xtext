@@ -231,8 +231,12 @@ LinkOperationTuple :
 	'('linkOperationTupleElement += LinkOperationTupleElement (',' linkOperationTupleElement += LinkOperationTupleElement)*')'
 ;
 
+//LinkOperationTupleElement :
+//	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+//;
+
 LinkOperationTupleElement :
-	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+	role = ID ('['roleIndex = Expression ']')? '=>' object = Expression
 ;
 
 enum LinkOperationKind :
@@ -242,7 +246,8 @@ enum LinkOperationKind :
 ;
 
 SequenceOperationExpression : 
-	'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
+	//'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
+	'->' operationName = QualifiedNameWithBinding tuple = Tuple (suffix = SuffixExpression) ?
 ;
 
 SequenceReductionExpression :
@@ -332,11 +337,30 @@ SuperInvocationExpression :
 			 ('.' operationName = QualifiedNameWithBinding tuple = Tuple))
 ;
 
+//InstanceCreationExpression :
+	//'new' constructor=QualifiedNameWithBinding 
+	//	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
+	//'new' constructor=QualifiedNameWithBinding 
+	//	tuple = Tuple (suffix = SuffixExpression) ?
+//;
+
 InstanceCreationExpression :
 	//'new' constructor=QualifiedNameWithBinding 
 	//	(tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
 	'new' constructor=QualifiedNameWithBinding 
-		tuple = Tuple (suffix = SuffixExpression) ?
+		tuple = InstanceCreationTuple (suffix = SuffixExpression) ?
+;
+
+InstanceCreationTuple :
+	{InstanceCreationTuple}'('(instanceCreationTupleElement += InstanceCreationTupleElement (',' instanceCreationTupleElement += InstanceCreationTupleElement)*)?')'
+;
+
+//LinkOperationTupleElement :
+//	objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
+//;
+
+InstanceCreationTupleElement :
+	role = ID '=>' object = Expression
 ;
 
 SequenceConstructionOrAccessCompletion :

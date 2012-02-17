@@ -23,5 +23,5 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  *
  */
 public class AlfScopeProvider extends AbstractDeclarativeScopeProvider {
-	public static AbstractScopingTool scopingTool ; 
+	public static AlfScopingTool scopingTool ; 
 }

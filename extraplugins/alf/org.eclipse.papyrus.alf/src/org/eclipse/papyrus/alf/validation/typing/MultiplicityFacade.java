@@ -43,7 +43,7 @@ public class MultiplicityFacade {
 	}
 
 	public boolean isCompatibleWithMe(MultiplicityFacade multiplicity) {
-		boolean lowerBoundCompatible = multiplicity.lowerBound >= this.lowerBound ;
+		//boolean lowerBoundCompatible = multiplicity.lowerBound >= this.lowerBound ;
 		boolean upperBoundCompatible = true ; 
 		
 		switch (this.upperBound) {
@@ -53,12 +53,13 @@ public class MultiplicityFacade {
 		default:
 			if (multiplicity.upperBound == -1)
 				upperBoundCompatible = false ;
-			else 
-				upperBoundCompatible = multiplicity.upperBound <= this.upperBound ;
+//			else 
+//				upperBoundCompatible = multiplicity.upperBound <= this.upperBound ;
 			break;
 		}
 		
-		return lowerBoundCompatible && upperBoundCompatible;
+		//return lowerBoundCompatible && upperBoundCompatible;
+		return upperBoundCompatible ;
 	}
 
 	public void setLowerBound(int lowerBound) {
