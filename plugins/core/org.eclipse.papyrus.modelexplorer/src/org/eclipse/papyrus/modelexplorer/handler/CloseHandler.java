@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
@@ -66,7 +67,10 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 			if(PARAMETER_SELECTION.equals(parameter)) {
 				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
 				while(iter.hasNext()) {
-					pageMngr.closePage(iter.next());
+					EObject select = getEObjectFromSelection(iter.next());
+					if (select != null){						
+						pageMngr.closePage(select);
+					}
 				}
 			} else if(PARAMETER_ALL.equals(parameter)) {
 				pageMngr.closeAllOpenedPages();

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.Messages;
 import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.modelexplorer.handler.OpenHandler;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -47,21 +48,8 @@ public class DoubleClickListener implements IDoubleClickListener {
 			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
 		}
 		if(pageMngr != null) {
-			if(selection instanceof IStructuredSelection) {
-				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
-				while(iter.hasNext()) {
-					Object currentObject = iter.next();
-					EObject diag = NavigatorUtils.getElement(currentObject, EObject.class);
-					if(diag != null) {
-						/**
-						 * Close the diagram if it was already open
-						 */
-						if(pageMngr.isOpen(diag)) {
-							pageMngr.closePage(diag);
-						}
-						pageMngr.openPage(diag);
-					}
-				}
+			if(selection instanceof IStructuredSelection) {	
+				OpenHandler.openSelectedElement(selection, pageMngr);	
 			}
 
 		}

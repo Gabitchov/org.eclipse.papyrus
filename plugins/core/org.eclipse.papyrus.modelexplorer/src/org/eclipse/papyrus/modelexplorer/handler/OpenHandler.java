@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
@@ -70,13 +71,35 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 		IPageMngr pageMngr = getPageManager();
 
 		if(selection instanceof IStructuredSelection && pageMngr != null) {
-			Iterator<?> iter = ((IStructuredSelection)selection).iterator();
-			while(iter.hasNext()) {
-				pageMngr.openPage(iter.next());
-			}
+			openSelectedElement(selection, pageMngr);
 		}
 		return null;
 	}
+
+
+	/**
+	 * Open the selected page with the specified {@link IPageMngr}
+	 * @param selection
+	 * @param pageMngr
+	 */
+	public static void openSelectedElement(ISelection selection, IPageMngr pageMngr) {
+		Iterator<?> iter = ((IStructuredSelection)selection).iterator();
+		while(iter.hasNext()) {
+			EObject select = getEObjectFromSelection(iter.next());
+			if (select != null){					
+				/**
+				 * Close the diagram if it was already open
+				 */
+				if(pageMngr.isOpen(select)) {
+					pageMngr.closePage(select);
+				}
+				pageMngr.openPage(select);
+			}
+
+		}
+	}
+	
+	
 
 	/**
 	 * 

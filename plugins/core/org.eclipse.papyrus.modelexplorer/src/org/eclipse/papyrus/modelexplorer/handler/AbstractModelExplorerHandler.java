@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -102,5 +103,21 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 		}
 
 		return diagrams;
+	}
+	/**
+	 * Return from a selection this method will return the corresponid EObject or null if none
+	 * @param selection Object of the current selection
+	 * @return {@link EObject} or null
+	 */
+	protected static EObject getEObjectFromSelection(Object selection){
+		if(selection instanceof EObject) {
+			return (EObject)selection;
+		} else if(selection instanceof IAdaptable) {
+			Object eObject = ((IAdaptable)selection).getAdapter(EObject.class);
+			if(eObject instanceof EObject) {
+				return (EObject)eObject;
+			}
+		}
+		return null;
 	}
 }
