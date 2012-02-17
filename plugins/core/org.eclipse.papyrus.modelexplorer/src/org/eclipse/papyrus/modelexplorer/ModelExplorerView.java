@@ -61,7 +61,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.internal.navigator.NavigatorContentService;
-import org.eclipse.ui.internal.navigator.NavigatorDecoratingLabelProvider;
 import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
@@ -211,8 +210,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			if(descriptor instanceof NavigatorContentDescriptor) {
 				try {
 					ILabelProvider labelProvider = ((NavigatorContentDescriptor)descriptor).createLabelProvider();
-					//viewer.setLabelProvider(labelProvider);
-					viewer.setLabelProvider(new NavigatorDecoratingLabelProvider(labelProvider));	/*added for decorator support*/
+					viewer.setLabelProvider(new DecoratingLabelProviderWTooltips(labelProvider)); // add for decorator and tooltip support
 				} catch (CoreException e) {
 					Activator.log.error(e);
 				}
@@ -544,7 +542,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				Iterable<EObject> reverseParents = Iterables.reverse(parents);
 
-				/* reveal the ancestors tree using expandToLevel on each of them
+				/*
+				 * reveal the ancestors tree using expandToLevel on each of them
 				 * in the good order. This is a lot faster than going through the whole tree
 				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
 				 * to keep track of the revealed elements.

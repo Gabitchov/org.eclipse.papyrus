@@ -10,7 +10,8 @@
       <modelqueryset file="resource/PapyrusBrowserQuery.querySet"/>
    </extension>
    <extension point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent activeByDefault="true" contentProvider="org.eclipse.papyrus.uml.modelexplorer.UMLContentProvider" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif" id="org.eclipse.papyrus.modelexplorer.UMLnavigatorContent" labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips" name="UML Model Contents" priority="lower">
+      <navigatorContent activeByDefault="true" contentProvider="org.eclipse.papyrus.uml.modelexplorer.UMLContentProvider" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif" id="org.eclipse.papyrus.modelexplorer.UMLnavigatorContent"
+      	labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider" name="UML Model Contents" priority="lower">
          <triggerPoints>
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
