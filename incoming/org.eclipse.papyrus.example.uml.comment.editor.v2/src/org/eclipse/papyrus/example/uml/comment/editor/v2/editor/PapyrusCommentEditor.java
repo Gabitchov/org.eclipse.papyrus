@@ -30,8 +30,11 @@ import org.eclipse.jface.text.TextEvent;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
+import org.eclipse.papyrus.example.uml.comment.editor.v2.Activator;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.swt.widgets.Composite;
@@ -52,6 +55,9 @@ public class PapyrusCommentEditor extends TextEditor {
 	/** the text listener */
 	protected ITextListener listener;
 
+	/** the editing domain */
+	protected TransactionalEditingDomain domain;
+
 	/**
 	 * 
 	 * Constructor.
@@ -63,6 +69,11 @@ public class PapyrusCommentEditor extends TextEditor {
 		super();
 		this.registry = registry;
 		this.papyrusTextInstance = papyrusTextInstance;
+		try {
+			domain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
 	}
 
 
@@ -82,22 +93,23 @@ public class PapyrusCommentEditor extends TextEditor {
 		//we add a listener on the viewer to be notified when the text is edited
 		//TODO try to improve, because we execute a command for each character
 		listener = new ITextListener() {
+
 			//we edit the uml.Comment
 			public void textChanged(TextEvent event) {
 				String currentText = getSourceViewer().getTextWidget().getText();
 				Comment cmt = (Comment)papyrusTextInstance.getEditedObject();
-				TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(cmt);
 				EStructuralFeature feature = cmt.eClass().getEStructuralFeature("body");
 				IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(cmt);
-						SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, cmt, feature, currentText);
-						ICommand command = elementEditService.getEditCommand(request);
-						if(command.canExecute()) {
-							editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
-						}
+				SetRequest request = new SetRequest(domain, cmt, feature, currentText);
+				ICommand command = elementEditService.getEditCommand(request);
+				if(command.canExecute()) {
+					domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+				}
 			}
 		};
 
 		viewer.addTextListener(listener);
+		
 		return viewer;
 	}
 

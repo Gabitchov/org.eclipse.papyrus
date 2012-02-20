@@ -16,7 +16,7 @@ package org.eclipse.papyrus.example.uml.comment.editor.v2.factory;
 import java.lang.reflect.Constructor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.example.uml.comment.editor.v2.Activator;
 import org.eclipse.papyrus.example.uml.comment.editor.v2.editor.PapyrusCommentEditor;
 import org.eclipse.papyrus.example.uml.comment.editor.v2.handler.CommentEditorHandler;

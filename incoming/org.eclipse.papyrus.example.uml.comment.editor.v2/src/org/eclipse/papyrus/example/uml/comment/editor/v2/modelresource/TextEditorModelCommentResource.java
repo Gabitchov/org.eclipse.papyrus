@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.example.uml.comment.editor.v2.modelresource;
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
