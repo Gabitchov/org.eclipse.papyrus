@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.emf.transaction,
  org.eclipse.gef,
  org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.views.modelexplorer,
- org.eclipse.papyrus.infra.table.instance
+ org.eclipse.papyrus.infra.table.instance,
+ org.eclipse.ui.navigator;bundle-version="3.5.100"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.infra.hyperlink,

@@ -44,8 +44,9 @@ import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkEditorHelpersRegistrationUtil;
-import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;//TODO remove this dependency
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
+import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -55,6 +56,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+//TODO remove this dependency
 
 
 
@@ -360,9 +362,13 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 		return false;
 	}
-	
+
 	//TODO delete this class to remove the PapyrusTable dependencies!
-	private class LocalLabelProvider extends MoDiscoLabelProviderWTooltips{
+	private class LocalLabelProvider extends DecoratingLabelProviderWTooltips {
+
+		public LocalLabelProvider() {
+			super(new MoDiscoLabelProvider());
+		}
 
 		/**
 		 * Return the EditorRegistry for nested editor descriptors. Subclass should
@@ -381,6 +387,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				return new PageIconsRegistry();
 			}
 		}
+
 		/**
 		 * the icon registry
 		 */
@@ -402,11 +409,11 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			}
 			return (IPageIconsRegistryExtended)editorRegistry;
 		}
-		
+
 		@Override
 		public String getText(Object element) {
 			if(element instanceof PapyrusTableInstance) {
-			return ((PapyrusTableInstance)element).getName();
+				return ((PapyrusTableInstance)element).getName();
 			}
 			return super.getText(element);
 		}

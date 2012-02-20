@@ -19,7 +19,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.provider.DiagramLabelProvider;
-import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProviderWTooltips;
+import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
+import org.eclipse.papyrus.views.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.ToolItem;
@@ -59,14 +60,9 @@ public class DiagramViewHandler extends AbstractHandler {
 			getCommonNavigator().getCommonViewer().setLabelProvider(new DiagramLabelProvider());
 		} else {
 			getCommonNavigator().getCommonViewer().setContentProvider(new MoDiscoContentProvider());
-			getCommonNavigator().getCommonViewer().setLabelProvider(new MoDiscoLabelProviderWTooltips());
+			getCommonNavigator().getCommonViewer().setLabelProvider(new DecoratingLabelProviderWTooltips(new MoDiscoLabelProvider()));
 		}
 		getCommonNavigator().getCommonViewer().refresh();
 		return null;
 	}
-
-
-
-
-
 }
