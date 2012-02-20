@@ -24,7 +24,6 @@ import org.eclipse.papyrus.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.alf.alf.SuffixExpression;
 import org.eclipse.papyrus.alf.alf.TemplateBinding;
 import org.eclipse.papyrus.alf.validation.AlfJavaValidator;
-import org.eclipse.papyrus.uml.templates.utils.TemplateBindingUtils;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
@@ -177,23 +176,6 @@ public class TypeFacade {
 
 	public String getLabel() {
 		return "" ; // TODO: uncomment when template bindings are supported + this.templateBindingFacade.getLabel() ;
-	}
-	
-	public void bindTemplate(Map<TemplateParameter, ParameterableElement> substitutions) {
-		if (this.isATemplate()) {
-			Classifier equivalentBoundElement = null ;
-			if (this.typeObject instanceof org.eclipse.uml2.uml.Class) {
-				equivalentBoundElement = UMLFactory.eINSTANCE.createClass() ;
-				equivalentBoundElement.setName(((NamedElement)this.typeObject).getName()) ;
-			}
-			org.eclipse.uml2.uml.TemplateBinding generatedTemplateBinding = equivalentBoundElement.createTemplateBinding(((TemplateableElement)this.typeObject).getOwnedTemplateSignature()) ;
-			for (TemplateParameter formal : substitutions.keySet()) {
-				TemplateParameterSubstitution tps = generatedTemplateBinding.createParameterSubstitution() ;
-				tps.setFormal(formal) ;
-				tps.setActual(substitutions.get(formal)) ;
-			}
-			this.typeObject = new TemplateBindingUtils().getEquivalentBoundElement(equivalentBoundElement) ;
-		}
 	}
 	
 }

@@ -36,7 +36,6 @@ import org.eclipse.papyrus.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.alf.alf.SuperInvocationExpression;
 import org.eclipse.papyrus.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
-import org.eclipse.papyrus.uml.templates.utils.TemplateBindingUtils;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
@@ -380,7 +379,7 @@ public class TypeFacadeFactory {
 //					actualSubsitutionsMap.put(TemplateBindingUtils.getParameteredElementName(p), 
 //											  subsitutionsMap.get(p) ) ;
 //				}
-				boundResolvedClassifier.bindTemplate(substitutionsMap) ;
+				//boundResolvedClassifier.bindTemplate(substitutionsMap) ;
 				
 				return boundResolvedClassifier;
 			}

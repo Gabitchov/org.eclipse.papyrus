@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.alf.alf.InstanceCreationTupleElement;
 import org.eclipse.papyrus.alf.alf.QualifiedNameWithBinding;
-import org.eclipse.papyrus.uml.templates.utils.TemplateBindingUtils;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
@@ -306,43 +305,4 @@ public class SignatureFacade {
 		return false ;
 	}
 	
-	public SignatureFacade bindTemplate(Map<TemplateParameter, ParameterableElement> substitutions) {
-		if (this.isATemplate()) {
-			TemplateableElement t = (TemplateableElement)this.actualSignatureObject ;
-			if (t.getOwnedTemplateSignature().getParameters().size() != substitutions.size()) {
-				// Invalid number of template parameter subsitutions
-				return null ;
-			}
-			//Map<Object, EObject> substitutionsMap = new HashMap<Object, EObject>() ;
-			
-			if (this.isATemplate()) {
-				TemplateableElement equivalentBoundElement = null ;
-				if (this.actualSignatureObject instanceof Activity) {
-					equivalentBoundElement = UMLFactory.eINSTANCE.createActivity() ;
-				}
-				else if (this.actualSignatureObject instanceof FunctionBehavior) {
-					equivalentBoundElement = UMLFactory.eINSTANCE.createFunctionBehavior() ;
-				}
-				else if (this.actualSignatureObject instanceof StateMachine) {
-					equivalentBoundElement = UMLFactory.eINSTANCE.createStateMachine() ;
-				}
-				else if (this.actualSignatureObject instanceof Interaction) {
-					equivalentBoundElement = UMLFactory.eINSTANCE.createInteraction() ;
-				}
-				else if (this.actualSignatureObject instanceof Operation) {
-					equivalentBoundElement = UMLFactory.eINSTANCE.createOperation() ;
-				}
-				((NamedElement)equivalentBoundElement).setName(((NamedElement)this.actualSignatureObject).getName()) ;
-				org.eclipse.uml2.uml.TemplateBinding generatedTemplateBinding = equivalentBoundElement.createTemplateBinding(((TemplateableElement)this.actualSignatureObject).getOwnedTemplateSignature()) ;
-				for (TemplateParameter formal : substitutions.keySet()) {
-					TemplateParameterSubstitution tps = generatedTemplateBinding.createParameterSubstitution() ;
-					tps.setFormal(formal) ;
-					tps.setActual(substitutions.get(formal)) ;
-				}
-				equivalentBoundElement = (TemplateableElement)new TemplateBindingUtils().getEquivalentBoundElement(equivalentBoundElement) ;
-				return SignatureFacadeFactory.eInstance.createSignatureFacade(equivalentBoundElement) ;
-			}
-		}
-		return this ;
-	}
 }
