@@ -28,7 +28,7 @@ public abstract class AbstractBaseModel implements IModel {
 	/**
 	 * List of attached snippets.
 	 */
-	private ModelSnippetList snippets = new ModelSnippetList();
+	protected ModelSnippetList snippets = new ModelSnippetList();
 
 	/**
 	 * The associated resource.
