@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * 
  */
-package org.eclipse.papyrus.example.test.instance.papyrustextinstance;
+package org.eclipse.papyrus.example.text.instance.papyrustextinstance;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject <em>Edited Object</em>}</li>
- *   <li>{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject <em>Edited Object</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance()
+ * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance()
  * @model
  * @generated
  */
@@ -44,14 +44,14 @@ public interface PapyrusTextInstance extends EModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edited Object</em>' reference.
 	 * @see #setEditedObject(EObject)
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance_EditedObject()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance_EditedObject()
 	 * @model
 	 * @generated
 	 */
 	EObject getEditedObject();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject <em>Edited Object</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject <em>Edited Object</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Edited Object</em>' reference.
@@ -70,14 +70,14 @@ public interface PapyrusTextInstance extends EModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance_Type()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance_Type()
 	 * @model
 	 * @generated
 	 */
 	String getType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
@@ -96,14 +96,14 @@ public interface PapyrusTextInstance extends EModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance_Name()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage#getPapyrusTextInstance_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

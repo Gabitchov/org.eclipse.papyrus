@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/Papyrus/Example/0.9.0/papyrustextinstance"
-            class="org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage"
+            class="org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage"
             genModel="model/papyrustextinstance.genmodel"/>
    </extension>
 

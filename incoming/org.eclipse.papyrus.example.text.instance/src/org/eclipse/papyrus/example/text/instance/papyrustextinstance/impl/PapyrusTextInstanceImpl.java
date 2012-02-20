@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * 
  */
-package org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl;
+package org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance;
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +31,9 @@ import org.eclipse.papyrus.example.test.instance.papyrustextinstance.Papyrustext
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl#getEditedObject <em>Edited Object</em>}</li>
- *   <li>{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl#getEditedObject <em>Edited Object</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

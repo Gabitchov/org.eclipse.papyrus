@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * 
  */
-package org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl;
+package org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance;
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstanceFactory;
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstanceFactory;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ public class PapyrustextinstancePackageImpl extends EPackageImpl implements Papy
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage#eNS_URI
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

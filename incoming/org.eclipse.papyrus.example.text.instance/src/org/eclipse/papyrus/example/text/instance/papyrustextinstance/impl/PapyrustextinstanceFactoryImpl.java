@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * 
  */
-package org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl;
+package org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.*;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.*;
 
 /**
  * <!-- begin-user-doc -->

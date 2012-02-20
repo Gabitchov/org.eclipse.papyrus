@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * 
  */
-package org.eclipse.papyrus.example.test.instance.papyrustextinstance.util;
+package org.eclipse.papyrus.example.text.instance.papyrustextinstance.util;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.example.test.instance.papyrustextinstance.*;
+import org.eclipse.papyrus.example.text.instance.papyrustextinstance.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.example.test.instance.papyrustextinstance.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstancePackage
+ * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstancePackage
  * @generated
  */
 public class PapyrustextinstanceSwitch<T> extends Switch<T> {

@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  * 
  */
-package org.eclipse.papyrus.example.test.instance.papyrustextinstance;
+package org.eclipse.papyrus.example.text.instance.papyrustextinstance;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrustextinstanceFactory
+ * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstanceFactory
  * @model kind="package"
  * @generated
  */
@@ -64,14 +64,14 @@ public interface PapyrustextinstancePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	PapyrustextinstancePackage eINSTANCE = org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrustextinstancePackageImpl.init();
+	PapyrustextinstancePackage eINSTANCE = org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrustextinstancePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl <em>Papyrus Text Instance</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl <em>Papyrus Text Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrustextinstancePackageImpl#getPapyrusTextInstance()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrustextinstancePackageImpl#getPapyrusTextInstance()
 	 * @generated
 	 */
 	int PAPYRUS_TEXT_INSTANCE = 0;
@@ -123,43 +123,43 @@ public interface PapyrustextinstancePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance <em>Papyrus Text Instance</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance <em>Papyrus Text Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Papyrus Text Instance</em>'.
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance
 	 * @generated
 	 */
 	EClass getPapyrusTextInstance();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject <em>Edited Object</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject <em>Edited Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Edited Object</em>'.
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getEditedObject()
 	 * @see #getPapyrusTextInstance()
 	 * @generated
 	 */
 	EReference getPapyrusTextInstance_EditedObject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getType()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getType()
 	 * @see #getPapyrusTextInstance()
 	 * @generated
 	 */
 	EAttribute getPapyrusTextInstance_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.PapyrusTextInstance#getName()
+	 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance#getName()
 	 * @see #getPapyrusTextInstance()
 	 * @generated
 	 */
@@ -188,11 +188,11 @@ public interface PapyrustextinstancePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl <em>Papyrus Text Instance</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl <em>Papyrus Text Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl
-		 * @see org.eclipse.papyrus.example.test.instance.papyrustextinstance.impl.PapyrustextinstancePackageImpl#getPapyrusTextInstance()
+		 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrusTextInstanceImpl
+		 * @see org.eclipse.papyrus.example.text.instance.papyrustextinstance.impl.PapyrustextinstancePackageImpl#getPapyrusTextInstance()
 		 * @generated
 		 */
 		EClass PAPYRUS_TEXT_INSTANCE = eINSTANCE.getPapyrusTextInstance();
