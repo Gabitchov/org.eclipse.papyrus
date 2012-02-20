@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+= * Copyright (c) 2010 CEA LIST.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -40,7 +40,16 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.ToolTip;
-import org.eclipse.papyrus.modelexplorer.DecoratingLabelProviderWTooltips;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -66,7 +75,6 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.osgi.framework.ServiceException;
 
 /**
  * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}.
