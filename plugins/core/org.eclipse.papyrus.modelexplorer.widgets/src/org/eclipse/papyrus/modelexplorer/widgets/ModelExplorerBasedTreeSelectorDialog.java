@@ -23,7 +23,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips;
+import org.eclipse.papyrus.modelexplorer.DecoratingLabelProviderWTooltips;
+import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.modelexplorer.SemanticFromModelExplorer;
 import org.eclipse.papyrus.widgets.editors.TreeSelectorDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -126,7 +127,7 @@ public class ModelExplorerBasedTreeSelectorDialog extends TreeSelectorDialog {
 		contentProvider.setMetaClassWanted(wantedEClass);
 		contentProvider.setMetaClassNotWanted(metaClassNotWanted);
 		this.setContentProvider(contentProvider);
-		this.setLabelProvider(new MoDiscoLabelProviderWTooltips());
+		this.setLabelProvider(new DecoratingLabelProviderWTooltips(new MoDiscoLabelProvider()));
 		this.setInput(EditorUtils.getMultiDiagramEditor().getServicesRegistry());
 	}
 
