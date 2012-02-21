@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.sysml.SysmlPackage;
+import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -65,27 +65,34 @@ public class SysMLSelectionTester extends PropertyTester {
 	protected boolean testSysMLModelNature(Object receiver) {
 		boolean isSysMLModel = false;
 
+		EObject root = getRoot();
+		if(root instanceof Package) {
+			Profile sysml = UMLUtil.getProfile(BlocksPackage.eINSTANCE, root);					
+			if(((Package)root).isProfileApplied(sysml)) {
+				isSysMLModel = true;
+			}
+		}
+
+		return isSysMLModel;
+	}
+	
+	/** Returns the root EObject of currently opened model */
+	private EObject getRoot() {
+		EObject root = null;
+
 		try {
-			ServiceUtilsForActionHandlers serviceUtils = new ServiceUtilsForActionHandlers();
+			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 			UmlModel openedModel = (UmlModel)serviceUtils.getModelSet().getModel(UmlModel.MODEL_ID);
 			if(openedModel != null) {
-
-				EObject root = openedModel.lookupRoot();
-				if(root instanceof Package) {
-					Profile sysml = UMLUtil.getProfile(SysmlPackage.eINSTANCE);					
-					if(((Package)root).isProfileApplied(sysml)) {
-						isSysMLModel = true;
-					}
-				}
+				root = openedModel.lookupRoot();
 			}
-
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		} catch (NotFoundException e) {
 			Activator.log.error(e);
 		}
 
-		return isSysMLModel;
+		return root;
 	}
 
 }

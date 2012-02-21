@@ -72,7 +72,7 @@ public class UMLSelectionTester extends PropertyTester {
 		EObject root = null;
 
 		try {
-			ServiceUtilsForActionHandlers serviceUtils = new ServiceUtilsForActionHandlers();
+			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 			UmlModel openedModel = (UmlModel)serviceUtils.getModelSet().getModel(UmlModel.MODEL_ID);
 			if(openedModel != null) {
 				root = openedModel.lookupRoot();

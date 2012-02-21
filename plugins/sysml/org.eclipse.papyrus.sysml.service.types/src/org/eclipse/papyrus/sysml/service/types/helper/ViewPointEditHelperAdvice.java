@@ -22,7 +22,6 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link ViewPoint} edit helper advice */
@@ -30,7 +29,7 @@ public class ViewPointEditHelperAdvice extends AbstractStereotypedElementEditHel
 
 	/** Default constructor */
 	public ViewPointEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(ModelelementsPackage.eINSTANCE));
+		requiredProfiles.add(ModelelementsPackage.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */

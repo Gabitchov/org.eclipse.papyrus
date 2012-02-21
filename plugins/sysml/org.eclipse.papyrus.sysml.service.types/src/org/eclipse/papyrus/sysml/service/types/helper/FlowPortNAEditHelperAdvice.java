@@ -31,7 +31,7 @@ public class FlowPortNAEditHelperAdvice extends AbstractStereotypedElementEditHe
 
 	/** Default constructor */
 	public FlowPortNAEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
+		requiredProfiles.add(PortandflowsPackage.eINSTANCE);
 	}
 
 	/** Verify that the new FlowPort is typed by a FlowSpecification */

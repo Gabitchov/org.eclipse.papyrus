@@ -21,7 +21,6 @@ import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.profile.l2.L2Package;
 import org.eclipse.uml2.uml.profile.l2.Refine;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** Standard Profile {@link Refine} edit helper advice */
@@ -29,7 +28,7 @@ public class RefineEditHelperAdvice extends AbstractStereotypedElementEditHelper
 
 	/** Default constructor */
 	public RefineEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(L2Package.eINSTANCE));
+		requiredProfiles.add(L2Package.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */

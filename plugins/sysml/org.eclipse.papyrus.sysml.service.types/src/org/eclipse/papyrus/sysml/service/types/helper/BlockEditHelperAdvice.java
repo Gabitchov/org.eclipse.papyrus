@@ -30,7 +30,6 @@ import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedEl
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML Block edit helper advice */
@@ -38,7 +37,7 @@ public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 
 	/** Default constructor */
 	public BlockEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(BlocksPackage.eINSTANCE));
+		requiredProfiles.add(BlocksPackage.eINSTANCE);
 	}
 
 	/**

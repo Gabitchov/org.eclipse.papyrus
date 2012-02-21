@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -30,7 +31,8 @@ public class BlockDefinitionDiagramCondition extends PerspectiveContextDependenc
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof org.eclipse.uml2.uml.Package) {
 				org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package)selectedElement;
-				if(pack.isProfileApplied(UMLUtil.getProfile(BlocksPackage.eINSTANCE))) {
+				if(pack.isProfileApplied(UMLUtil.getProfile(BlocksPackage.eINSTANCE, pack))
+					&& pack.isProfileApplied(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE, pack))) {
 					return true;
 				}
 			}

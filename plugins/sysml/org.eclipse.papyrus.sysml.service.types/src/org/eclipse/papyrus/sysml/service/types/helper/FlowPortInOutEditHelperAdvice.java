@@ -32,7 +32,7 @@ public class FlowPortInOutEditHelperAdvice extends AbstractStereotypedElementEdi
 
 	/** Default constructor */
 	public FlowPortInOutEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
+		requiredProfiles.add(PortandflowsPackage.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */

@@ -29,7 +29,6 @@ import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedEl
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML Requirement edit helper advice */
@@ -37,7 +36,7 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 
 	/** Default constructor */
 	public RequirementEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(RequirementsPackage.eINSTANCE));
+		requiredProfiles.add(RequirementsPackage.eINSTANCE);
 	}
 
 	/**

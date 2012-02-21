@@ -44,7 +44,7 @@ public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEdit
 
 	/** Default constructor */
 	public FlowPropertyEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
+		requiredProfiles.add(PortandflowsPackage.eINSTANCE);
 	}
 
 	/**

@@ -17,12 +17,13 @@ package org.eclipse.papyrus.uml.service.types.helper.advice;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This abstract EditHelperAdvice is used for UML Element creation with
@@ -33,7 +34,7 @@ import org.eclipse.uml2.uml.Profile;
 public abstract class AbstractStereotypedElementEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/** List of profiles supposedly applied before element creation */
-	protected List<Profile> requiredProfiles = new ArrayList<Profile>();
+	protected List<EPackage> requiredProfiles = new ArrayList<EPackage>();
 
 	/**
 	 * Check required profile application before approving the request.
@@ -62,9 +63,10 @@ public abstract class AbstractStereotypedElementEditHelperAdvice extends Abstrac
 
 			// Ensure all necessary profiles are effectively applied
 			if(profileApplicationContext != null) {
-				for(Profile requiredProfile : requiredProfiles) {
-					if(profileApplicationContext.isProfileApplied(requiredProfile)) {
+				for(EPackage requiredProfile : requiredProfiles) {
+					if(! profileApplicationContext.isProfileApplied(UMLUtil.getProfile(requiredProfile, profileApplicationContext))) {
 						isApproved = false;
+						break;
 					}
 				}
 			}

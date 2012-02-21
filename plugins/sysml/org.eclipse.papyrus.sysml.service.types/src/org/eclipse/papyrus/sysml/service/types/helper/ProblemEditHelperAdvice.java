@@ -21,7 +21,6 @@ import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link Problem} edit helper advice */
@@ -29,7 +28,7 @@ public class ProblemEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 
 	/** Default constructor */
 	public ProblemEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(ModelelementsPackage.eINSTANCE));
+		requiredProfiles.add(ModelelementsPackage.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */

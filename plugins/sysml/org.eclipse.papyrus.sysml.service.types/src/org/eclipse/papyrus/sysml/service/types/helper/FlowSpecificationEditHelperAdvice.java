@@ -37,7 +37,6 @@ import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedEl
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML FlowSpecification edit helper advice */
@@ -45,7 +44,7 @@ public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElemen
 
 	/** Default constructor */
 	public FlowSpecificationEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE));
+		requiredProfiles.add(PortandflowsPackage.eINSTANCE);
 	}
 
 	/**

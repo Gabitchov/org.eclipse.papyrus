@@ -22,7 +22,6 @@ import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link Allocate} edit helper advice */
@@ -30,7 +29,7 @@ public class AllocateEditHelperAdvice extends AbstractStereotypedElementEditHelp
 
 	/** Default constructor */
 	public AllocateEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(AllocationsPackage.eINSTANCE));
+		requiredProfiles.add(AllocationsPackage.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */

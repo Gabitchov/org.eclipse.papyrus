@@ -25,7 +25,6 @@ import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /** SysML {@link Satisfy} edit helper advice */
@@ -33,7 +32,7 @@ public class SatisfyEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 
 	/** Default constructor */
 	public SatisfyEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(RequirementsPackage.eINSTANCE));
+		requiredProfiles.add(RequirementsPackage.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */

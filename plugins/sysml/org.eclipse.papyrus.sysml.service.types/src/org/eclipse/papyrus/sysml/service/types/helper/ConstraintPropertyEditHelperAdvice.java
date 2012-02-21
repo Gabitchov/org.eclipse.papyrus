@@ -35,7 +35,7 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 
 	/** Default constructor */
 	public ConstraintPropertyEditHelperAdvice() {
-		requiredProfiles.add(UMLUtil.getProfile(ConstraintsPackage.eINSTANCE));
+		requiredProfiles.add(ConstraintsPackage.eINSTANCE);
 	}
 
 	/** Complete creation process by applying the expected stereotype */
