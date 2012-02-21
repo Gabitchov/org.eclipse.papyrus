@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
@@ -142,20 +143,32 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 
 		List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>();
 		List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>();
-		for(Object child : getParent().getChildren()) {
-			if(child instanceof LifelineEditPart) {
-				LifelineEditPart lifelineEditPart = (LifelineEditPart)child;
-				Lifeline lifeline = (Lifeline)lifelineEditPart.resolveSemanticElement();
-				if(newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
-					if(!coveredLifelines.contains(lifeline)) {
-						coveredLifelinesToAdd.add(lifeline);
+		EditPart interactionCompartment = getInteractionCompartment();
+		if (interactionCompartment != null) {
+			this.getFigure().translateToAbsolute(newBound);
+			for (Object child : interactionCompartment.getChildren()) {
+				if (child instanceof LifelineEditPart) {
+					LifelineEditPart lifelineEditPart = (LifelineEditPart) child;
+					Lifeline lifeline = (Lifeline) lifelineEditPart
+							.resolveSemanticElement();
+					LifelineDotLineCustomFigure dotLineFigure = lifelineEditPart
+							.getPrimaryShape().getFigureLifelineDotLineFigure();
+					Rectangle dotLineBounds = dotLineFigure.getBounds()
+							.getCopy();
+					Rectangle centralLineBounds = new Rectangle(
+							dotLineBounds.x() + dotLineBounds.width() / 2,
+							dotLineBounds.y(), 1, dotLineBounds.height());
+					dotLineFigure.translateToAbsolute(centralLineBounds);
+					if (newBound.intersects(centralLineBounds)) {
+						if (!coveredLifelines.contains(lifeline)) {
+							coveredLifelinesToAdd.add(lifeline);
+						}
+					} else if (coveredLifelines.contains(lifeline)) {
+						coveredLifelinesToRemove.add(lifeline);
 					}
-				} else if(coveredLifelines.contains(lifeline)) {
-					coveredLifelinesToRemove.add(lifeline);
 				}
 			}
 		}
-
 		if(!coveredLifelinesToAdd.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
 		}
@@ -163,6 +176,19 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
 		}
 
+	}
+	
+	/**
+	 * Find parent editpart of lifeline
+	 * @return EditPart
+	 */
+	public EditPart getInteractionCompartment() {
+		EditPart editPart = getParent();
+		while (editPart != null
+				&& !(editPart instanceof InteractionInteractionCompartmentEditPart)) {
+			editPart = editPart.getParent();
+		}
+		return editPart;
 	}
 
 }
