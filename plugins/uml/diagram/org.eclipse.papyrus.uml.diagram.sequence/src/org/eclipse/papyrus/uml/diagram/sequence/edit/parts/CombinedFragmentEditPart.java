@@ -14,18 +14,23 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -61,9 +66,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
@@ -1138,14 +1147,33 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				return;
 			}
 			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			if(operands == null || operands.size() <= 1) {
-				// If CombinedFragment have no operand, we can change the OperatorKind
+			if (operands == null || operands.size() <= 1) {
+				// If CombinedFragment have no operand, we can change the
+				// OperatorKind
 				updateHeaderLabel();
-			} else if(notification.getOldValue() instanceof InteractionOperatorKind && !newStringValue.equals(getPrimaryShape().getHeaderLabel().getText())) {
+			} else {
+				if (notification.getOldValue() instanceof InteractionOperatorKind) {
+					InteractionOperatorKind newValue = (InteractionOperatorKind) notification
+							.getNewValue();
+					if (!InteractionOperatorKindCompatibleMapping
+							.supportMultiOperand(newValue)) {
+						MessageDialog.openError(Display.getCurrent()
+								.getActiveShell(), FORBIDDEN_ACTION,
+								BLOCK_OPERATOR_MODIFICATION_MSG);
+						CommandHelper.executeCommandWithoutHistory(
+								getEditingDomain(), SetCommand.create(
+										getEditingDomain(), combinedFragment,
+										feature, notification.getOldValue()));
+					} else {
+						updateHeaderLabel();
+					}
+				}
+			}
+			/*else if(notification.getOldValue() instanceof InteractionOperatorKind && !newStringValue.equals(getPrimaryShape().getHeaderLabel().getText())) {
 				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
 				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
 				return;
-			}
+			}*/
 			// update guards on enclosed operands
 			for(InteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
 				ioep.getPrimaryShape().updateConstraintLabel();
