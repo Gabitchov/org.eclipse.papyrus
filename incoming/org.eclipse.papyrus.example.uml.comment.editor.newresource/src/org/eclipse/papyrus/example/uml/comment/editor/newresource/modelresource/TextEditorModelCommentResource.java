@@ -14,10 +14,11 @@
 package org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.AbstractDynamicModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
 
-public class TextEditorModelCommentResource extends AbstractBaseModel implements IModel {
+public class TextEditorModelCommentResource extends AbstractDynamicModel<PapyrusTextInstance> implements IModel {
 
 	/*
 	 * To save in a new file :
@@ -80,7 +81,8 @@ public class TextEditorModelCommentResource extends AbstractBaseModel implements
 	 *        The compareInstance to add.
 	 */
 	public void addPapyrusTextInstance(PapyrusTextInstance compareInstance) {
-		getResource().getContents().add(compareInstance);
+//		getResource().getContents().add(compareInstance);
+		addModelRoot(compareInstance);
 	}
 
 	/**
