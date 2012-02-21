@@ -16,6 +16,8 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ImageFigure;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -25,13 +27,15 @@ import org.eclipse.swt.graphics.Image;
 public class AffixedNamedElementFigure extends NodeNamedElementFigure {
 
 	/** Container for icon (stereotype icon) */
-	protected ImageFigure icon;
+	// protected ScalableImageFigure icon;
+	protected ScaledImageFigure icon;
 
 	/** Constructor */
 	public AffixedNamedElementFigure() {
 		super();
 
-		icon = new ImageFigure();
+		// icon = new ScalableImageFigure(new Image(Display.getCurrent(), 2, 2));
+		icon = new ScaledImageFigure();
 		this.add(icon);
 
 		BorderLayout layout = new BorderLayout();
@@ -57,7 +61,25 @@ public class AffixedNamedElementFigure extends NodeNamedElementFigure {
 	 *        the new
 	 */
 	protected void setIcon(Image image) {
-		getIconContainer().setImage(image);
+		icon.setImage(image);
+		if(image == null) {
+			icon.setScale(1.0);
+			// icon.setImage(new Image(Display.getCurrent(), 2, 2));
+			return;
+		}
+
+		Dimension imageDim = new Rectangle(image.getBounds()).getSize();
+		int imageMax = imageDim.width;
+		if(imageDim.height > imageMax) {
+			imageMax = imageDim.height;
+		}
+		// size of enclosing box
+		Dimension size = getParent().getBounds().getSize();
+
+		if((imageDim.width >= size.width) || (imageDim.height >= size.height)) {
+			// 5 = border width
+			icon.setScale((size.width - 5.0) / imageMax);
+		}
 	}
 
 	/**
