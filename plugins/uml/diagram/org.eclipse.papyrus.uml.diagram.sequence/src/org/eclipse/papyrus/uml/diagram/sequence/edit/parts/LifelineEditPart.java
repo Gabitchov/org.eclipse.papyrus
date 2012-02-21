@@ -84,6 +84,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWit
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
@@ -183,6 +184,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new LifelineAppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		
+		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=364608
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new LifelineSelectionEditPolicy());
 	}
 
 	/**
@@ -371,6 +375,13 @@ public class LifelineEditPart extends NamedElementEditPart {
 			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
 				return false;
 			}
+			
+			public boolean containsPoint(int x, int y) {
+				if (primaryShape != null) {
+					return primaryShape.containsPoint(x, y);
+				}
+				return super.containsPoint(x, y);
+		}
 		};
 		return result;
 	}
@@ -1420,6 +1431,23 @@ public class LifelineEditPart extends NamedElementEditPart {
 		 */
 		public LifelineDotLineCustomFigure getFigureLifelineDotLineFigure() {
 			return fFigureLifelineDotLineFigure;
+		}
+		
+		public boolean containsPoint(int x, int y) {
+			boolean contains = super.containsPoint(x, y);
+			if (!contains) {
+				return false;
+			}
+			if (fFigureLifelineNameContainerFigure != null
+					&& fFigureLifelineNameContainerFigure.containsPoint(x, y)) {
+				return true;
+			} else if (fFigureLifelineDotLineFigure != null) {
+				Rectangle bounds = fFigureLifelineDotLineFigure
+						.getDashLineRectangle().getBounds().getCopy();
+				bounds.expand(4, 0);
+				return bounds.contains(x, y);
+			}
+			return false;
 		}
 	}
 
