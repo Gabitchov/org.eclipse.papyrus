@@ -34,6 +34,7 @@ import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstanceFactory;
 import org.eclipse.papyrus.example.uml.comment.editor.newresource.Activator;
+import org.eclipse.papyrus.example.uml.comment.editor.newresource.editor.PapyrusCommentEditor;
 import org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource.TextEditorModelCommentResource;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
@@ -47,10 +48,6 @@ import org.eclipse.uml2.uml.Comment;
 
 public class CommentEditorHandler  extends AbstractHandler {
 
-
-	public static final String EDITOR_DEFAULT_NAME = "Comment Editor v2";
-	
-	public static final String EDITOR_TYPE = "CommentEditorv2";
 	
 	public CommentEditorHandler(){
 	}
@@ -167,8 +164,8 @@ public class CommentEditorHandler  extends AbstractHandler {
 	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 		PapyrusTextInstance editorModel = PapyrustextinstanceFactory.eINSTANCE.createPapyrusTextInstance();
 		editorModel.setEditedObject(getSelection().get(0));
-		editorModel.setType(EDITOR_TYPE);
-		editorModel.setName(EDITOR_DEFAULT_NAME);
+		editorModel.setType(PapyrusCommentEditor.EDITOR_TYPE);
+		editorModel.setName(PapyrusCommentEditor.EDITOR_DEFAULT_NAME);
 		TextEditorModelCommentResource model = (TextEditorModelCommentResource)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelCommentResource.MODEL_ID);
 		model.addPapyrusTextInstance(editorModel);
 		return editorModel;

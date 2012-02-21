@@ -58,6 +58,10 @@ public class PapyrusCommentEditor extends TextEditor {
 	/** the editing domain */
 	protected TransactionalEditingDomain domain;
 
+	public static final String EDITOR_DEFAULT_NAME = "Comment Editor Shared Resource";
+	
+	public static final String EDITOR_TYPE = "CommentEditorSharedResource";
+	
 	/**
 	 * 
 	 * Constructor.

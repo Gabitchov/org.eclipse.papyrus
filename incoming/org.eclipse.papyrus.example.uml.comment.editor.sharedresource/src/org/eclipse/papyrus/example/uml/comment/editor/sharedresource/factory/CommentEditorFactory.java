@@ -45,7 +45,7 @@ public class CommentEditorFactory extends AbstractEditorFactory {
 	 *        the type of editor
 	 */
 	public CommentEditorFactory() {
-		super(PapyrusCommentEditor.class,CommentEditorHandler.EDITOR_TYPE);
+		super(PapyrusCommentEditor.class,PapyrusCommentEditor.EDITOR_TYPE);
 	}
 
 	/**
