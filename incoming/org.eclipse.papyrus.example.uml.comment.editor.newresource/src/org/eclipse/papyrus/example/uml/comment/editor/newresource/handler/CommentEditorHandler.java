@@ -62,7 +62,11 @@ public class CommentEditorHandler  extends AbstractHandler {
 		return getSelection().size() == 1;
 	}
 
-	//TODO essayer de merger cet handler avec un autre fournissant une commande et la sélection!
+	/**
+	 * 
+	 * @return
+	 *         the current selection
+	 */
 	protected List<EObject> getSelection() {
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		List<EObject> currentSelection = new ArrayList<EObject>();

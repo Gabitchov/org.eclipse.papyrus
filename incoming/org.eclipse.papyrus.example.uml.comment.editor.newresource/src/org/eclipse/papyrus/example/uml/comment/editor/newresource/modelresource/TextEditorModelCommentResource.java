@@ -12,26 +12,18 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource;
+
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.AbstractDynamicModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
 
 public class TextEditorModelCommentResource extends AbstractDynamicModel<PapyrusTextInstance> implements IModel {
 
-	/*
-	 * To save in a new file :
-	 * the class should extends AbstractBaseModel and NOTATION_FILE_EXTENSION = "nattable" for example
-	 */
-
-
 	/**
-	 * File extension used for notation.
+	 * File extension used for comment.
 	 */
-		public static final String COMMENT_FILE_EXTENSION = "comment"; //$NON-NLS-1$
-
-//	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
+	public static final String COMMENT_FILE_EXTENSION = "comment"; //$NON-NLS-1$
 
 	/**
 	 * Model ID.
@@ -40,9 +32,9 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public TextEditorModelCommentResource() {
 
@@ -51,9 +43,9 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 
 	/**
 	 * Get the file extension used for this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -81,7 +73,6 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 	 *        The compareInstance to add.
 	 */
 	public void addPapyrusTextInstance(PapyrusTextInstance compareInstance) {
-//		getResource().getContents().add(compareInstance);
 		addModelRoot(compareInstance);
 	}
 
@@ -94,17 +85,5 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 	public void removePapyrusTextInstance(PapyrusTextInstance compareInstance) {
 		getResource().getContents().remove(compareInstance);
 	}
-
-//	/**
-//	 *
-//	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
-//	 *
-//	 * @param object
-//	 * @return
-//	 */
-//	@Override
-//	protected boolean isModelRoot(EObject object) {
-//		return false;
-//	}
 
 }

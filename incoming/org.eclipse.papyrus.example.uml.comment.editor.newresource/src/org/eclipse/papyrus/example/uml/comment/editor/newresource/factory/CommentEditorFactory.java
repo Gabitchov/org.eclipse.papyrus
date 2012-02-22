@@ -19,7 +19,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.example.uml.comment.editor.newresource.Activator;
 import org.eclipse.papyrus.example.uml.comment.editor.newresource.editor.PapyrusCommentEditor;
-import org.eclipse.papyrus.example.uml.comment.editor.newresource.handler.CommentEditorHandler;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.AbstractEditorFactory;
 import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
@@ -45,7 +44,7 @@ public class CommentEditorFactory extends AbstractEditorFactory {
 	 *        the type of editor
 	 */
 	public CommentEditorFactory() {
-		super(PapyrusCommentEditor.class,PapyrusCommentEditor.EDITOR_TYPE);
+		super(PapyrusCommentEditor.class, PapyrusCommentEditor.EDITOR_TYPE);
 	}
 
 	/**
@@ -117,8 +116,12 @@ public class CommentEditorFactory extends AbstractEditorFactory {
 		 */
 		public IEditorPart createIEditorPart() throws PartInitException {
 			try {
-				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, PapyrusTextInstance.class);
-				editor = (IEditorPart)c.newInstance(servicesRegistry, rawModel);
+				//we use this way when there is one factory for several editor types
+				//				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, PapyrusTextInstance.class);
+				//				editor = (IEditorPart)c.newInstance(servicesRegistry, rawModel);
+				
+				//we use this way when there is only one editor type  
+				editor = new PapyrusCommentEditor(servicesRegistry, rawModel);
 				return editor;
 
 			} catch (Exception e) {
@@ -186,7 +189,7 @@ public class CommentEditorFactory extends AbstractEditorFactory {
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if(imageDescriptor == null){
+			if(imageDescriptor == null) {
 				return null;
 			}
 			return imageDescriptor.createImage();

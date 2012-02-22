@@ -20,17 +20,10 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 
 public class TextEditorModelSharedResource extends AbstractModelWithSharedResource<PapyrusTextInstance> implements IModel {
 
-	/*
-	 * To save in a new file :
-	 * the class should extends AbstractBaseModel and NOTATION_FILE_EXTENSION = "nattable" for example
-	 */
-
 
 	/**
 	 * File extension used for notation.
 	 */
-	//	public static final String NOTATION_FILE_EXTENSION = "nattable"; //$NON-NLS-1$
-
 	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
 	/**
