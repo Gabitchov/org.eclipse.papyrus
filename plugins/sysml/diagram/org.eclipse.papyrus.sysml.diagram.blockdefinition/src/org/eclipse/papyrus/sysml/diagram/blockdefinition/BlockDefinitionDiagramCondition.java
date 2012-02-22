@@ -31,8 +31,8 @@ public class BlockDefinitionDiagramCondition extends PerspectiveContextDependenc
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof org.eclipse.uml2.uml.Package) {
 				org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package)selectedElement;
-				if(pack.isProfileApplied(UMLUtil.getProfile(BlocksPackage.eINSTANCE, pack))
-					&& pack.isProfileApplied(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE, pack))) {
+				if(pack.getAllAppliedProfiles().contains(UMLUtil.getProfile(BlocksPackage.eINSTANCE, pack))
+					&& pack.getAllAppliedProfiles().contains(UMLUtil.getProfile(PortandflowsPackage.eINSTANCE, pack))) {
 					return true;
 				}
 			}
