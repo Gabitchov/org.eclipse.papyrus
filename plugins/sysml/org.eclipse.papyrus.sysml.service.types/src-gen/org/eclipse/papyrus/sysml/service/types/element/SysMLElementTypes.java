@@ -8,10 +8,13 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** Constant for SysML nature */
 	public static final String SYSML_NATURE = "SysML_Nature";
-	
+
+	/** IElementType for SysML ActorPartProperty */
+	public static final IHintedType ACTOR_PART_PROPERTY = (IHintedType)getElementType("org.eclipse.papyrus.sysml.ActorPartProperty"); //$NON-NLS-1$
+
 	/** IElementType for SysML Allocate */
 	public static final IHintedType ALLOCATE = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Allocate"); //$NON-NLS-1$
-	
+
 	/** IElementType for SysML Association (Association with SysML nature) */
 	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Association"); //$NON-NLS-1$
 

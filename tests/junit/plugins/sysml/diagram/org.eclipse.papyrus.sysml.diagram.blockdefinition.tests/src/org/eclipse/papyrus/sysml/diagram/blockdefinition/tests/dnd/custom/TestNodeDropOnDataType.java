@@ -40,6 +40,13 @@ public class TestNodeDropOnDataType extends AbstractTest {
 	}
 
 	@Test
+	public void testDropActorPart() throws Exception {
+		EObject intermediateContainer = createElement(SysMLElementTypes.BLOCK, getDiagramView());
+		EObject droppedElement = createElement(SysMLElementTypes.ACTOR_PART_PROPERTY, intermediateContainer);
+		dropFromModelExplorer(droppedElement, containerView, false);
+	}
+
+	@Test
 	public void testDropBlock() throws Exception {
 		EObject droppedElement = createElement(SysMLElementTypes.BLOCK, getDiagramView());
 		dropFromModelExplorer(droppedElement, containerView, false);

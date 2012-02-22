@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -250,9 +250,11 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 				tag = "reference";
 				lineStyle = Graphics.LINE_CUSTOM;
 
-				//			} else if (UMLElementTypes.ACTOR.getEClass().isInstance(eObject.eGet(UMLPackage.eINSTANCE.getTypedElement_Type()))) {
-				//				tag = "actor";
-				//				lineStyle = Graphics.LINE_SOLID;
+			} else if(((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(eObject)) {
+				tag = "actor part";
+
+			} else if(((ISpecializationType)SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(eObject)) {
+				tag = "value";
 
 			} else {
 				// Consider the element is a Property...

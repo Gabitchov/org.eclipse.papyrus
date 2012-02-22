@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -201,6 +201,12 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_VALUE_AS_LIST_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_VALUE_AS_LABEL_ID;
+			}
+			return UNDEFINED_TYPE;
+		}
+		if(((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(domainElement)) {
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID.equals(containerType)) {
+				return UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID;
 			}
 			return UNDEFINED_TYPE;
 		}
@@ -529,6 +535,12 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_VALUE_AS_LIST_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_VALUE_AS_LABEL_ID;
+			}
+			return UNDEFINED_TYPE;
+		}
+		if(SysMLElementTypes.ACTOR_PART_PROPERTY.getSemanticHint().equals(proposedType)) {
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID.equals(containerType)) {
+				return UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID;
 			}
 			return UNDEFINED_TYPE;
 		}

@@ -19,6 +19,12 @@ public class AbstractLinkCreationForSourcesTest extends AbstractLinkPrepareTest 
 	}
 	
 	@Test
+	public void createLinkWithSourceActorPart() throws Exception {
+		View sourceView = actorPartSourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+	}
+	
+	@Test
 	public void createLinkWithSourceBlock() throws Exception {
 		View sourceView = blockSourceView;
 		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));

@@ -1,13 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- * 
+ * Copyright (c) 2010-2012 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -124,7 +125,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Two member ends of an association cannot be set to composite at the same time. To avoid
 		// such a situation this helper turns other ends into aggregation none before changing the property aggregation.
-		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getProperty_Aggregation()) && (request.getValue() == AggregationKind.COMPOSITE_LITERAL)) {
+		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getProperty_Aggregation()) && (request.getValue() != AggregationKind.NONE_LITERAL)) {
 			Property propertyToEdit = (Property)elementToEdit;
 			
 			// Only apply if the property is an association end.
@@ -135,7 +136,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 				members.remove(propertyToEdit);
 
 				for(Property member : members) {
-					if(member.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+					if(member.getAggregation() != AggregationKind.NONE_LITERAL) {
 						SetRequest setRequest = new SetRequest(member, UMLPackage.eINSTANCE.getProperty_Aggregation(), AggregationKind.NONE_LITERAL);
 						SetValueCommand setAggregationCommand = new SetValueCommand(setRequest);
 						gmfCommand = CompositeCommand.compose(gmfCommand, setAggregationCommand);

@@ -26,6 +26,7 @@ public class TestLinkCreationUsageFromBlock extends AbstractLinkCreationFromElem
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorTargetView, true);
+		isCreationAllowed.put(actorPartTargetView, false);
 		isCreationAllowed.put(blockTargetView, true);
 		isCreationAllowed.put(constraintBlockTargetView, true);
 		isCreationAllowed.put(dataTypeTargetView, true);

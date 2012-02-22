@@ -9,6 +9,16 @@
 	
 	<!-- Declaration of IElementTypes -->
 	
+	<!-- ISpecializationType ActorPartProperty of UML::Property -->
+	<specializationType id="org.eclipse.papyrus.sysml.ActorPartProperty" name="SysML::ActorPartProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.ActorPartPropertyEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::ActorPartProperty"/>
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class ="org.eclipse.papyrus.sysml.service.types.matcher.ActorPartPropertyMatcher" />
+	</specializationType>
+	
 	<!-- ISpecializationType Allocate of UML::Abstraction -->
 	<specializationType id="org.eclipse.papyrus.sysml.Allocate" name="SysML::Allocate"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.AllocateEditHelperAdvice"
@@ -406,6 +416,7 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
 	
+		<elementType ref="org.eclipse.papyrus.sysml.ActorPartProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Association" />
 		<elementType ref="org.eclipse.papyrus.sysml.AssociationComposite" />

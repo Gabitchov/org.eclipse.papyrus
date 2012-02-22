@@ -22,6 +22,7 @@ public class TestLinkCreationAssociationCompositeDirectedForSources extends Abst
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorSourceView, false);
+		isCreationAllowed.put(actorPartSourceView, false);
 		isCreationAllowed.put(blockSourceView, true);
 		isCreationAllowed.put(constraintBlockSourceView, true);
 		isCreationAllowed.put(dataTypeSourceView, true);

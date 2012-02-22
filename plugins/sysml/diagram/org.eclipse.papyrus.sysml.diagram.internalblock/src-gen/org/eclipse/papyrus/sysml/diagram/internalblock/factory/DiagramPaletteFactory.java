@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,13 +32,16 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 
 		{
 			put("internalblock.tool.block", new IElementType[]{ SysMLElementTypes.BLOCK });
-			put("internalblock.tool.blockpropertycomposite", new IElementType[]{ SysMLElementTypes.PART_PROPERTY, SysMLElementTypes.REFERENCE_PROPERTY });
+			put("internalblock.tool.blockpropertycomposite", new IElementType[]{ SysMLElementTypes.PART_PROPERTY, SysMLElementTypes.REFERENCE_PROPERTY, SysMLElementTypes.ACTOR_PART_PROPERTY, SysMLElementTypes.VALUE_PROPERTY, UMLElementTypes.PROPERTY });
 			put("internalblock.tool.flowport", new IElementType[]{ SysMLElementTypes.FLOW_PORT });
 			put("internalblock.tool.port", new IElementType[]{ UMLElementTypes.PORT });
 			//Start of user code Custom nodes
 			put("internalblock.tool.part", new IElementType[]{ SysMLElementTypes.PART_PROPERTY });
 			put("internalblock.tool.reference", new IElementType[]{ SysMLElementTypes.REFERENCE_PROPERTY });
-
+			put("internalblock.tool.actorpart", new IElementType[]{ SysMLElementTypes.ACTOR_PART_PROPERTY });
+			put("internalblock.tool.value", new IElementType[]{ SysMLElementTypes.VALUE_PROPERTY });
+			put("internalblock.tool.property", new IElementType[]{ UMLElementTypes.PROPERTY });
+			
 			put("internalblock.tool.flowport_na", new IElementType[]{ SysMLElementTypes.FLOW_PORT_NA });
 			put("internalblock.tool.flowport_in", new IElementType[]{ SysMLElementTypes.FLOW_PORT_IN });
 			put("internalblock.tool.flowport_out", new IElementType[]{ SysMLElementTypes.FLOW_PORT_OUT });

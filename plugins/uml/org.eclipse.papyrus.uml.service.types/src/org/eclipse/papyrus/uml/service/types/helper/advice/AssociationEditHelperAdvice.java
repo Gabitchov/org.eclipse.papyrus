@@ -1,11 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -229,9 +232,13 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest req) {
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
+		List<EObject> dependentsToKeep = (req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP) != null) ? (List<EObject>)req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP) : new ArrayList<EObject>();
+
 		Association association = (Association)req.getElementToDestroy();
 		for(Property end : association.getMemberEnds()) {
-			dependentsToDestroy.add(end);
+			if (!dependentsToKeep.contains(end)) {
+				dependentsToDestroy.add(end);
+			}
 		}
 
 		// Return command to destroy dependents ends 

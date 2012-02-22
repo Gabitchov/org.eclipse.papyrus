@@ -1,35 +1,47 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- * 
+ * Copyright (c) 2011-2012 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper.advice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -62,6 +74,24 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 			// The edited property has to be related to a SysML association
 			if((relatedAssociation == null) || !(ElementUtil.hasNature(relatedAssociation, SysMLElementTypes.SYSML_NATURE))) {
+				
+				// If no association exist and the new type is a Block, add the association
+				if ((relatedAssociation == null) 
+					&& ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())
+					&& ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(propertyToEdit.eContainer())) {
+					
+					ICommand addAssociationCommand = getCreatePartAssociationCommand((org.eclipse.uml2.uml.Class)propertyToEdit.eContainer(), propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue());
+					gmfCommand = CompositeCommand.compose(gmfCommand, addAssociationCommand);
+				}
+				
+				return gmfCommand;
+			}
+			
+			// If the new type is not a block, destroy related association
+			if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())) {
+				ICommand destroyCommand = getDestroyPartAssociationCommand(relatedAssociation, propertyToEdit);
+				gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
+				
 				return gmfCommand;
 			}
 
@@ -119,5 +149,74 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * Create a part association creation command.
+	 * 
+	 * @return the part association creation command
+	 */
+	private ICommand getCreatePartAssociationCommand(final org.eclipse.uml2.uml.Class sourceBlock, final Property sourceProperty, final org.eclipse.uml2.uml.Class targetBlock) {
+		
+		return new AbstractCommand("Create part association") {
+			
+			@Override
+			protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				Association association = UMLFactory.eINSTANCE.createAssociation();
+				
+				// Add the association in the model
+				org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package)EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{sourceBlock, targetBlock}), UMLPackage.eINSTANCE.getPackage());
+				container.getPackagedElements().add(association);
+				
+				// Use existing Property as source...
+				association.getMemberEnds().add(sourceProperty);
+				// ... and create the opposite (unnamed) Property
+				Property targetProperty = UMLFactory.eINSTANCE.createProperty();
+				association.getOwnedEnds().add(targetProperty);
+
+				// Set Association name
+				// Initialize the element name based on the created IElementType
+				String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(UMLPackage.eINSTANCE.getAssociation().getName(), association.eContainer().eContents());
+				association.setName(initializedName);
+				
+				// Add SysML Nature on the new Association
+				ElementUtil.addNature(association, SysMLElementTypes.SYSML_NATURE);
+				
+				return CommandResult.newOKCommandResult(association) ;
+			}
+		};
+
+	}
+	
+	/**
+	 * Create a part association destroy command.
+	 * 
+	 * @return the part association destroy command
+	 */
+	private ICommand getDestroyPartAssociationCommand(Association partAssociation, Property propertyToEdit) {
+				
+		DestroyElementRequest request = new DestroyElementRequest(partAssociation, false);
+		List<EObject> dependentsToKeep = Arrays.asList(new EObject[] { propertyToEdit });
+		request.getParameters().put(RequestParameterConstants.DEPENDENTS_TO_KEEP, dependentsToKeep);
+		
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(partAssociation.eContainer());
+		if(provider == null) {
+			return null;
+		}
+		ICommand destroyCommand = provider.getEditCommand(request);
+		
+		return destroyCommand;
 	}
 }

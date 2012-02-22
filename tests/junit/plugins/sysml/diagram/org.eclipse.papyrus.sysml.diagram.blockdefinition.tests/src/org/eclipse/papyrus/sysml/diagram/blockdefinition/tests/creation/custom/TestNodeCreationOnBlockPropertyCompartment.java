@@ -45,6 +45,12 @@ public class TestNodeCreationOnBlockPropertyCompartment extends AbstractTest {
 	}
 
 	@Test
+	public void createActorPart() throws Exception {
+		// Do not execute as this requires user interaction (dialog)
+		createNodeFromPalette("blockdefinition.tool.actorpart", containerView, true, false);
+	}
+
+	@Test
 	public void createBlock() throws Exception {
 		createNodeFromPalette("blockdefinition.tool.block", containerView, false);
 	}

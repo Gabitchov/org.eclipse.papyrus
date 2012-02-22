@@ -21,6 +21,7 @@ public class TestLinkCreationDependencyForSources extends AbstractLinkCreationFo
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorSourceView, true);
+		isCreationAllowed.put(actorPartSourceView, false);
 		isCreationAllowed.put(blockSourceView, true);
 		isCreationAllowed.put(constraintBlockSourceView, true);
 		isCreationAllowed.put(dataTypeSourceView, true);

@@ -44,6 +44,11 @@ public class TestNodeCreationOnPrimitiveType extends AbstractTest {
 	}
 
 	@Test
+	public void createActorPart() throws Exception {
+		createNodeFromPalette("blockdefinition.tool.actorpart", containerView, false);
+	}
+
+	@Test
 	public void createBlock() throws Exception {
 		createNodeFromPalette("blockdefinition.tool.block", containerView, false);
 	}

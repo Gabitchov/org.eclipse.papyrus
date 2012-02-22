@@ -38,6 +38,7 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 	public static View valueTypeSourceView, valueTypeTargetView;
 
 	// Custom child label nodes
+	public static View actorPartSourceView, actorPartTargetView;
 	public static View propertySourceView, propertyTargetView;
 	public static View portSourceView, portTargetView;
 	public static View flowportSourceView, flowportTargetView;
@@ -137,6 +138,8 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 		View propertySourceCpt = ViewUtil.getChildBySemanticHint(blockSourceView, SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID);
 		View propertyTargetCpt = ViewUtil.getChildBySemanticHint(blockTargetView, SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID);
 
+		actorPartSourceView = createGraphicalNode(SysMLElementTypes.ACTOR_PART_PROPERTY, UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID, propertySourceCpt);
+		actorPartTargetView = createGraphicalNode(SysMLElementTypes.ACTOR_PART_PROPERTY, UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID, propertyTargetCpt);
 		propertySourceView = createGraphicalNode(UMLElementTypes.PROPERTY, UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID, propertySourceCpt);
 		propertyTargetView = createGraphicalNode(UMLElementTypes.PROPERTY, UMLGraphicalTypes.SHAPE_UML_PROPERTY_AS_LABEL_ID, propertyTargetCpt);	
 		portSourceView = createGraphicalNode(UMLElementTypes.PORT, UMLGraphicalTypes.SHAPE_UML_PORT_AS_LABEL_ID, propertySourceCpt);

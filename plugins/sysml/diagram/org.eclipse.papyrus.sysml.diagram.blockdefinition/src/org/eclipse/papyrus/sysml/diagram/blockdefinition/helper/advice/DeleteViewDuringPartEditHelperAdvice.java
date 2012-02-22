@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -21,15 +21,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -52,6 +55,14 @@ public class DeleteViewDuringPartEditHelperAdvice extends AbstractEditHelperAdvi
 		if ((modifiedObject != null) && (modifiedObject instanceof Property) 
 			&& (request.getFeature() == UMLPackage.eINSTANCE.getProperty_Aggregation()) 
 			&& (request.getValue() != AggregationKind.COMPOSITE_LITERAL)) {
+			
+			viewsToDestroy.addAll(getViewsToDestroy(modifiedObject));
+		}
+
+		if ((modifiedObject != null) && (modifiedObject instanceof Property) 
+			&& (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type())
+			 && (request.getValue() instanceof Type)
+			 && !((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())) {
 			
 			viewsToDestroy.addAll(getViewsToDestroy(modifiedObject));
 		}

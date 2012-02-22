@@ -21,6 +21,7 @@ public class TestLinkCreationInterfaceRealizationForSources extends AbstractLink
 		// Initialize source creation results (must be a BehavioredClassifier)
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorSourceView, true);
+		isCreationAllowed.put(actorPartSourceView, false);
 		isCreationAllowed.put(blockSourceView, true);
 		isCreationAllowed.put(constraintBlockSourceView, true);
 		isCreationAllowed.put(dataTypeSourceView, false);

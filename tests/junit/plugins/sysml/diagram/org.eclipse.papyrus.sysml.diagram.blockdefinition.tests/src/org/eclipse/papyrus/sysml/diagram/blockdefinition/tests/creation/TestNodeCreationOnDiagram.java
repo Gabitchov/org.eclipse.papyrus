@@ -59,6 +59,11 @@ public class TestNodeCreationOnDiagram extends AbstractTest {
 	}
 
 	@Test
+	public void testCreationActorPartInDiagram() throws Exception {
+		createNodeFromPalette("blockdefinition.tool.actorpart", getDiagramView(), false);
+	}
+	
+	@Test
 	public void testCreationBlockInDiagram() throws Exception {
 		createNodeFromPalette("blockdefinition.tool.block", getDiagramView(), true);
 	}

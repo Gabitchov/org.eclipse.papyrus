@@ -18,12 +18,21 @@
 		</aspectTool>
 		<aspectTool description="Create a new FlowPort (Non Atomic)" id="internalblock_main.tool.flowport_na"
 			name="FlowPort (Non Atomic)" refToolId="internalblock.tool.flowport_na">
-		</aspectTool>				
+		</aspectTool>
+		<aspectTool description="Create a new Property" id="internalblock_main.tool.property"
+			name="Property" refToolId="internalblock.tool.property">
+		</aspectTool>
 		<aspectTool description="Create a new Part" id="internalblock_main.tool.part"
 			name="Part" refToolId="internalblock.tool.part">
 		</aspectTool>
 		<aspectTool description="Create a new Reference" id="internalblock_main.tool.reference"
 			name="Reference" refToolId="internalblock.tool.reference">
+		</aspectTool>
+		<aspectTool description="Create a new ActorPart" id="internalblock_main.tool.actorpart"
+			name="ActorPart" refToolId="internalblock.tool.actorpart">
+		</aspectTool>
+		<aspectTool description="Create a new Value" id="internalblock_main.tool.value"
+			name="Value" refToolId="internalblock.tool.value">
 		</aspectTool>
 
 		<aspectTool name="Comment" id="internalblock_main.tool.comment" refToolId="internalblock.tool.comment" description="Create a new Comment" />

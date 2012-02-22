@@ -23,6 +23,11 @@
 
 <!-- Creation command declarations -->
 <extension point="org.eclipse.ui.commands">
+
+	<!-- Creation command for ActorPart -->
+	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.ActorPartPropertyHandler" description="Create a new ActorPart" id="org.eclipse.papyrus.sysml.modelexplorer.ActorPartCreateCommand" name="Create a new ActorPart">
+	</command>
+	
 	<!-- Creation command for Allocate -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.AllocateHandler" description="Create a new Allocate" id="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand" name="Create a new Allocate">
 	</command>
@@ -191,6 +196,11 @@
 	<!-- Create SysML element menu content -->
 	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
 
+		<!-- Creation menu action for ActorPart -->
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.ActorPartCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" label="Create a new ActorPart" style="push" tooltip="Create a new ActorPart">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
 		<!-- Creation menu action for Allocate -->
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.AllocateCreateCommand" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" label="Create a new Allocate" style="push" tooltip="Create a new Allocate">
 			<visibleWhen checkEnabled="true"/>

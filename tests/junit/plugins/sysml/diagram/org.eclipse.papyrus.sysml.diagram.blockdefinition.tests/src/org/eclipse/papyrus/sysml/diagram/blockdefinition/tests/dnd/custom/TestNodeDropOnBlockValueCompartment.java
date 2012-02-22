@@ -47,6 +47,18 @@ public class TestNodeDropOnBlockValueCompartment extends AbstractTest {
 		EObject droppedElement = createElement(UMLElementTypes.ACTOR, getDiagramView());
 		dropFromModelExplorer(droppedElement, containerView, false);
 	}
+	
+	@Test
+	public void testDropActorPart() throws Exception {
+		EObject intermediateContainer = createElement(SysMLElementTypes.BLOCK, getDiagramView());
+		EObject droppedElement = createElement(SysMLElementTypes.ACTOR_PART_PROPERTY, intermediateContainer);
+		dropFromModelExplorer(droppedElement, containerView, false);
+	}
+
+	@Test
+	public void testDropActorPartContained() throws Exception {
+		dropFromModelExplorer(SysMLElementTypes.ACTOR_PART_PROPERTY, containerView, false);
+	}
 
 	@Test
 	public void testDropBlock() throws Exception {

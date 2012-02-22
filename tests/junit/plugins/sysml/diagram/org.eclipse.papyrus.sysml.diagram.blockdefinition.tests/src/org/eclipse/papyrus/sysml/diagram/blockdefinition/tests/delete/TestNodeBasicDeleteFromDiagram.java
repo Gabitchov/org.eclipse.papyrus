@@ -25,6 +25,14 @@ public class TestNodeBasicDeleteFromDiagram extends AbstractTest {
 	}
 
 	@Test
+	public void testBasicDeleteFromDiagramActorPart() throws Exception {
+		View intermediateContainer = dropFromModelExplorer(SysMLElementTypes.BLOCK, getDiagramView());
+		View compartment = ViewUtil.getChildBySemanticHint(intermediateContainer, SysMLGraphicalTypes.COMPARTMENT_SYSML_PROPERTY_AS_LIST_ID);
+		View testedView = dropFromModelExplorer(SysMLElementTypes.ACTOR_PART_PROPERTY, compartment);
+		deleteView(testedView, true);
+	}
+
+	@Test
 	public void testBasicDeleteFromDiagramBlock() throws Exception {
 		deleteView(SysMLElementTypes.BLOCK, getDiagramView(), true);
 	}

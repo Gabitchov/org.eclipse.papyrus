@@ -407,7 +407,18 @@
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
 		</entry>
-													
+		
+		<!-- internalblock.tool.actorpart -->
+		<entry
+			defineOnly="true"
+			description="Create an ActorPart"
+			id="blockdefinition.tool.actorpart"
+			kind="tool"
+			label="ActorPart"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+															
 		<!-- End of user code  -->
 		
 			
@@ -564,7 +575,7 @@
 	<!-- Custom graphical types view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomViewProvider">
 		<Priority name="Medium"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::ActorPartProperty, SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_block_as_classifier, shape_sysml_part_as_label, shape_uml_reception_as_label, shape_uml_port_as_label, shape_sysml_valuetype_as_classifier, shape_uml_enumerationliteral_as_label, shape_sysml_constraintproperty_as_label, shape_sysml_dimension_as_classifier, shape_sysml_flowspecification_as_classifier, shape_uml_operation_as_label, shape_sysml_reference_as_label, shape_sysml_unit_as_classifier, shape_sysml_flowport_as_affixed, shape_uml_port_as_affixed, shape_uml_property_as_label, shape_uml_signal_as_classifier, shape_uml_enumeration_as_classifier, shape_uml_primitivetype_as_classifier, shape_uml_datatype_as_classifier, shape_uml_interface_as_classifier, shape_sysml_flowproperty_as_label, shape_sysml_constraintblock_as_classifier, shape_sysml_value_as_label, shape_sysml_flowport_as_label, shape_uml_actor_as_classifier, shape_uml_constraint_as_label"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>

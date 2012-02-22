@@ -21,6 +21,7 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorSourceView, false);
+		isCreationAllowed.put(actorPartSourceView, false);
 		isCreationAllowed.put(blockSourceView, false);
 		isCreationAllowed.put(constraintBlockSourceView, false);
 		isCreationAllowed.put(dataTypeSourceView, false);

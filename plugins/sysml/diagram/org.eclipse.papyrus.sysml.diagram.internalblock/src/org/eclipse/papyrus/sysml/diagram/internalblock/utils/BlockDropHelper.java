@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -39,6 +39,10 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -58,6 +62,15 @@ public class BlockDropHelper extends ElementHelper {
 		}
 		if (elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			label = "Create a new Reference";
+		}
+		if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+			label = "Create a new ActorPart";
+		}
+		if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+			label = "Create a new Value";
+		}
+		if (elementType == UMLElementTypes.PROPERTY) {
+			label = "Create a new Property";
 		}
 		CompoundCommand cc = new CompoundCommand(label);
 		
@@ -94,7 +107,7 @@ public class BlockDropHelper extends ElementHelper {
 	private boolean isValidStructureItemType(Object object, IElementType elementType) {
 		boolean isValid = false;
 		
-		if ((object != null) && (object instanceof Type)) {
+		if ((object != null) && (object instanceof Type) && !(object instanceof Association)) {
 
 			Type type = (Type) object;
 			if ((elementType == SysMLElementTypes.PART_PROPERTY) || (elementType == SysMLElementTypes.REFERENCE_PROPERTY)) {
@@ -102,7 +115,24 @@ public class BlockDropHelper extends ElementHelper {
 					isValid = true;
 				}
 			}
-			
+			if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+				if(type instanceof Actor) {
+					isValid = true;
+				}
+			}
+			if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+				if(((ISpecializationType) SysMLElementTypes.VALUE_TYPE).getMatcher().matches(type) || (type instanceof DataType)) {
+					isValid = true;
+				}
+			}
+			if (elementType == UMLElementTypes.PROPERTY) {
+				if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(type)
+					&& !(type instanceof Actor)
+					&& !(type instanceof DataType)
+					&& !((ISpecializationType) SysMLElementTypes.VALUE_TYPE).getMatcher().matches(type)) {
+					isValid = true;
+				}
+			}
 		}
 		
 		return isValid; 

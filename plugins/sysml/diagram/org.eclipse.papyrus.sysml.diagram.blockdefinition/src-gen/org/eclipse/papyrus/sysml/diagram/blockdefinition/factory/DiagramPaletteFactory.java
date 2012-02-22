@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -66,6 +66,8 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("blockdefinition.tool.instancespecification", new IElementType[]{ UMLElementTypes.INSTANCE_SPECIFICATION });
 			put("blockdefinition.tool.slot", new IElementType[]{ UMLElementTypes.SLOT });
 			put("blockdefinition.tool.comment", new IElementType[]{ UMLElementTypes.COMMENT });
+
+			put("blockdefinition.tool.actorpart", new IElementType[]{ SysMLElementTypes.ACTOR_PART_PROPERTY });
 
 			//End of user code
 		}

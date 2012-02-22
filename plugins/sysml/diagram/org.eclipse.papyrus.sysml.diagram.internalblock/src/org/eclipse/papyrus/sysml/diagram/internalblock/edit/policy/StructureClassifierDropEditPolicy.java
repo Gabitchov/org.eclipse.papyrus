@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -24,12 +24,13 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.gmf.diagram.common.commands.SelectAndExecuteCommand;
 import org.eclipse.papyrus.sysml.diagram.internalblock.utils.BlockDropHelper;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.ui.PlatformUI;
 
 /** 
  * <pre>
  * Customization of the DND edit policy for the StructureClassifier compartments, that enables the direct
- * creation of typed Part or Reference by dragging Block in a Block structure compartment.
+ * creation of typed Part, Reference, Value, ActorPart or Property by dragging types in a Block structure compartment.
  * </pre> 
  */
 public class StructureClassifierDropEditPolicy extends CustomDragDropEditPolicy {
@@ -52,20 +53,38 @@ public class StructureClassifierDropEditPolicy extends CustomDragDropEditPolicy 
 		
 			// List of available drop commands
 			List<Command> commandChoice = new ArrayList<Command>();
-			
+
 			// 1. Try to create a Part typed by the dropped object
 			Command dropAsTypedPart = helper.getDropAsStructureItem(dropRequest, (GraphicalEditPart)getHost(), SysMLElementTypes.PART_PROPERTY);
 			if ((dropAsTypedPart != null) && (dropAsTypedPart.canExecute())) {
 				commandChoice.add(dropAsTypedPart);
 			}
-			
+
 			// 2. Try to create a Reference typed by the dropped object
 			Command dropAsTypedReference = helper.getDropAsStructureItem(dropRequest, (GraphicalEditPart)getHost(), SysMLElementTypes.REFERENCE_PROPERTY);
 			if ((dropAsTypedReference != null) && (dropAsTypedReference.canExecute())) {
 				commandChoice.add(dropAsTypedReference);
 			}
-			
-			// 3. Build default drop command (show view of the dropped object)
+
+			// 3. Try to create an ActorPart typed by the dropped object
+			Command dropAsTypedActorPart = helper.getDropAsStructureItem(dropRequest, (GraphicalEditPart)getHost(), SysMLElementTypes.ACTOR_PART_PROPERTY);
+			if ((dropAsTypedActorPart != null) && (dropAsTypedActorPart.canExecute())) {
+				commandChoice.add(dropAsTypedActorPart);
+			}
+
+			// 4. Try to create a Value typed by the dropped object
+			Command dropAsTypedValue = helper.getDropAsStructureItem(dropRequest, (GraphicalEditPart)getHost(), SysMLElementTypes.VALUE_PROPERTY);
+			if ((dropAsTypedValue != null) && (dropAsTypedValue.canExecute())) {
+				commandChoice.add(dropAsTypedValue);
+			}
+
+			// 5. Try to create a Property typed by the dropped object
+			Command dropAsTypedProperty= helper.getDropAsStructureItem(dropRequest, (GraphicalEditPart)getHost(), UMLElementTypes.PROPERTY);
+			if ((dropAsTypedProperty != null) && (dropAsTypedProperty.canExecute())) {
+				commandChoice.add(dropAsTypedProperty);
+			}
+
+			// 6. Build default drop command (show view of the dropped object)
 			Command defaultDropCommand = super.getDropObjectsCommand(dropRequest);
 			defaultDropCommand.setLabel("Default drop (Show dropped object in diagram)");
 			if ((defaultDropCommand != null) && (defaultDropCommand.canExecute())) {

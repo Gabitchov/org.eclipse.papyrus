@@ -21,6 +21,13 @@ public class TestNodeDropOnDiagram extends AbstractTest {
 	}
 
 	@Test
+	public void testDropActorPartInDiagram() throws Exception {
+		EObject intermediateContainer = createElement(SysMLElementTypes.BLOCK, getDiagramView());
+		EObject droppedElement = createElement(SysMLElementTypes.ACTOR_PART_PROPERTY, intermediateContainer);
+		dropFromModelExplorer(droppedElement, getDiagramView(), false);
+	}
+
+	@Test
 	public void testDropBlockInDiagram() throws Exception {
 		dropFromModelExplorer(SysMLElementTypes.BLOCK, getDiagramView(), true);
 	}

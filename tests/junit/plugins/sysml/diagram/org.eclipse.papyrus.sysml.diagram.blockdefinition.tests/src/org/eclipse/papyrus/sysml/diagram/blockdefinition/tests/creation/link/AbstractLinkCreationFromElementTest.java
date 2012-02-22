@@ -20,6 +20,12 @@ public class AbstractLinkCreationFromElementTest extends AbstractLinkPrepareTest
 	}
 	
 	@Test
+	public void createLinkWithTargetActorPart() throws Exception {
+		View targetView = actorPartTargetView;
+		createEdgeFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView));
+	}
+	
+	@Test
 	public void createLinkWithTargetBlock() throws Exception {
 		View targetView = blockTargetView;
 		createEdgeFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView));

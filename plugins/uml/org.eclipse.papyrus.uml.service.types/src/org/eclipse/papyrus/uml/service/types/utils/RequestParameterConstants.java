@@ -1,15 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.utils;
@@ -66,4 +65,10 @@ public interface RequestParameterConstants {
 	 * The ID to store the list of element under re-factoring.
 	 */
 	public static final String ASSOCIATION_REFACTORED_ELEMENTS = "ASSOCIATION_REFACTORED_ELEMENTS"; //$NON-NLS-1$
+	
+	/**
+	 * The ID to store the list of element that should not be destroyed (avoid dependents destroy).
+	 */
+	public static final String DEPENDENTS_TO_KEEP = "DEPENDENTS_TO_KEEP"; //$NON-NLS-1$
+
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -19,6 +19,7 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.uml2.uml.Property;
 
 public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 
@@ -58,7 +59,10 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 	public String getNodeGraphicalType(EObject domainElement, String containerType) {
 		// Start of user code getNodeGraphicalType(EObject domainElement, String containerType)	
 		if(((ISpecializationType)SysMLElementTypes.PART_PROPERTY).getMatcher().matches(domainElement) 
-			|| ((ISpecializationType)SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(domainElement)) {
+			|| ((ISpecializationType)SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(domainElement)
+			|| ((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(domainElement)
+			|| ((ISpecializationType)SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(domainElement)
+			|| (domainElement instanceof Property)) {
 
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
@@ -131,7 +135,10 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 	public String getNodeGraphicalType(String proposedType, String containerType) {
 		// Start of user code getNodeGraphicalType(String proposedType, String containerType)
 		if(SysMLElementTypes.PART_PROPERTY.getSemanticHint().equals(proposedType) 
-			|| SysMLElementTypes.REFERENCE_PROPERTY.getSemanticHint().equals(proposedType)) {
+			|| SysMLElementTypes.REFERENCE_PROPERTY.getSemanticHint().equals(proposedType)
+			||  SysMLElementTypes.ACTOR_PART_PROPERTY.getSemanticHint().equals(proposedType)
+			||  SysMLElementTypes.VALUE_PROPERTY.getSemanticHint().equals(proposedType)
+			||  UMLElementTypes.PROPERTY.getSemanticHint().equals(proposedType)) {
 
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
@@ -148,7 +155,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			|| SysMLElementTypes.FLOW_PORT_OUT.getSemanticHint().equals(proposedType)
 			|| SysMLElementTypes.FLOW_PORT_IN_OUT.getSemanticHint().matches(proposedType)
 			|| SysMLElementTypes.FLOW_PORT_NA.getSemanticHint().matches(proposedType)) {
-			
+
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}

@@ -32,6 +32,9 @@
 			<aspectTool description="Create a new Reference" id="blockdefinition_modelelements.tool.reference"
 				name="Reference" refToolId="blockdefinition.tool.reference">
 			</aspectTool>
+			<aspectTool description="Create a new ActorPart" id="blockdefinition_modelelements.tool.actorpart"
+				name="ActorPart" refToolId="blockdefinition.tool.actorpart">
+			</aspectTool>			
 			<aspectTool description="Create a new Value" id="blockdefinition_modelelements.tool.value"
 				name="Value" refToolId="blockdefinition.tool.value">
 			</aspectTool>

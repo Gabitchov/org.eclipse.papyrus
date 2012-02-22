@@ -26,6 +26,7 @@ public class TestLinkCreationInterfaceRealizationFromBlock extends AbstractLinkC
 		// Initialize source creation results (must be an Interface)
 		isCreationAllowed = new HashMap<View, Boolean>();
 		isCreationAllowed.put(actorTargetView, false);
+		isCreationAllowed.put(actorPartTargetView, false);
 		isCreationAllowed.put(blockTargetView, false);
 		isCreationAllowed.put(constraintBlockTargetView, false);
 		isCreationAllowed.put(dataTypeTargetView, false);

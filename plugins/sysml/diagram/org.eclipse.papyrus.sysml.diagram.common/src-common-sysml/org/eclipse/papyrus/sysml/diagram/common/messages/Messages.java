@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -60,6 +60,28 @@ public class Messages extends NLS {
 	public static String CreateOrSelectBlockPropertyTypeDialog_SelectNewTypeContainerDialogTitle;
 
 	public static String CreateOrSelectBlockPropertyTypeDialog_SelectNewTypeContainerDialogMessage;
+
+	public static String CreateOrSelectActorPartTypeDialog_DialogTitle;
+
+	public static String CreateOrSelectActorPartTypeDialog_SelectionSectionTitle;
+
+	public static String CreateOrSelectActorPartTypeDialog_SelectionSectionRadioLabel;
+
+	public static String CreateOrSelectActorPartTypeDialog_CreationSectionTitle;
+
+	public static String CreateOrSelectActorPartTypeDialog_CreationSectionRadioLabel;
+
+	public static String CreateOrSelectActorPartTypeDialog_NewTypeNameLabel;
+
+	public static String CreateOrSelectActorPartTypeDialog_NewTypeContainerNameLabel;
+
+	public static String CreateOrSelectActorPartTypeDialog_SelectTypeDialogTitle;
+
+	public static String CreateOrSelectActorPartTypeDialog_SelectTypeDialogMessage;
+
+	public static String CreateOrSelectActorPartTypeDialog_SelectNewTypeContainerDialogTitle;
+
+	public static String CreateOrSelectActorPartTypeDialog_SelectNewTypeContainerDialogMessage;
 
 	public static String CreateOrSelectValuePropertyTypeDialog_DialogTitle;
 
