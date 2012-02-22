@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+< * Copyright (c) 2008 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -366,7 +366,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * used to create a label that contains the icon.
 	 */
 	protected void createIconLabel() {
-		iconLabel = new Label();
+		iconLabel = new LabelWithScalableIcons();
 		// Add the label to the figure, at pos 0
 		getIconLabelContainer().add(iconLabel, getIconLabelConstraint(), getIconLabelPosition());
 		iconLabel.setLabelAlignment(PositionConstants.LEFT);
@@ -379,7 +379,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 *        the position
 	 */
 	protected void createIconLabel(int position) {
-		iconLabel = new Label();
+		iconLabel = new LabelWithScalableIcons();
 		getIconLabelContainer().add(iconLabel, getIconLabelConstraint(), getIconLabelPosition());
 		iconLabel.setLabelAlignment(position);
 	}
