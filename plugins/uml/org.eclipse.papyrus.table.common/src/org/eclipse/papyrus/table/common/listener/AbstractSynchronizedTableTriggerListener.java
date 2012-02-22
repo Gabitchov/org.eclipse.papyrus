@@ -97,6 +97,7 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 	 * @return the command to do the synchronization
 	 */
 	protected CompoundCommand getSynchronizationCommand(final TransactionalEditingDomain domain) {
+		if(!this.papyrusTable.getFillingQueries().isEmpty()){
 			CompoundCommand command = new CompoundCommand("Command to synchronize table with its context"); //$NON-NLS-1$
 
 			//		// the list of the elements to add in the table
@@ -292,7 +293,7 @@ public abstract class AbstractSynchronizedTableTriggerListener extends TriggerLi
 			if(!command.isEmpty()) {
 				return command;
 			}
-
+		}
 		return null;
 	}
 
