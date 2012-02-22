@@ -3,7 +3,7 @@
 
 <plugin>
    <extension point="org.eclipse.compare.contentMergeViewers">
-      <viewer class="org.eclipse.papyrus.infra.emf.compare.ui.viewer.PapyrusContentMergeViewerCreator" extensions="ecore, uml" id="org.eclipse.papyrus.infra.emf.compare.ui.papyrus.viewer" label="Papyrus Content Merge Viewer">
+      <viewer class="org.eclipse.papyrus.infra.emf.compare.ui.content.viewer.PapyrusContentMergeViewerCreator" extensions="ecore, uml" id="org.eclipse.papyrus.infra.emf.compare.ui.papyrus.viewer" label="Papyrus Content Merge Viewer">
       </viewer>
    </extension>
    <extension point="org.eclipse.compare.structureMergeViewers">
@@ -17,5 +17,32 @@
    </extension>
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resources/compare_diff.querySet"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.eclipse.compare.compareWithOther"
+               label="Papyrus Compare With Each Other"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.infra.emf.compare.ui.handler.CompareTwoElementsAction"
+            commandId="org.eclipse.compare.compareWithOther">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
    </extension>
 </plugin>

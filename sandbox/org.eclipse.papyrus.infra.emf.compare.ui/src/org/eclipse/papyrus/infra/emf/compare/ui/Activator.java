@@ -28,6 +28,7 @@ public class Activator extends AbstractUIPlugin {
 	/** the activator */
 	private static Activator plugin;
 
+	/**the log helper for this plugin*/
 	public static LogHelper log;
 
 	/**
