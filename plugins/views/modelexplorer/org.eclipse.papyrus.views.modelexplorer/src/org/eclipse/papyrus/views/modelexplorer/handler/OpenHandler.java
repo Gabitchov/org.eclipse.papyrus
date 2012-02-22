@@ -15,12 +15,14 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
@@ -36,25 +38,19 @@ import org.eclipse.ui.handlers.HandlerUtil;
 public class OpenHandler extends AbstractModelExplorerHandler implements IExecutableExtension {
 
 
-
-
-	/** parameters for this action */
-	/**
-	 * close all open elements
-	 */
-	public static final String PARAMETER_CLOSE = "close"; //$NON-NLS-1$
-
 	/**
 	 * Close only the selected elements
 	 */
-	public static final String PARAMETER_ALREADY_OPEN = "already_open"; //$NON-NLS-1$
+	public static final String IS_DUPLICATE_EDITOR_ALLOWED_PARAMETER = "isDuplicateEditorAllowed"; //$NON-NLS-1$
 
 
-	/** parameter ID */
-	protected String parameterID = "open_parameter"; //$NON-NLS-1$
-
-	/** parameter for this handler */
-	protected String parameter = null;
+	/**
+	 * Return true if the open command allow to duplicate editor that are already
+	 * opened.
+	 * Return false if open command should not duplicate already opened editor.
+	 * This property can be set from the plugin.xml.
+	 */
+	protected boolean isDuplicateDiagramAllowed = false;
 
 
 	/**
@@ -66,16 +62,30 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		IPageMngr pageMngr = getPageManager();
-
-		if(selection instanceof IStructuredSelection && pageMngr != null) {
-			Iterator<?> iter = ((IStructuredSelection)selection).iterator();
-			while(iter.hasNext()) {
-				pageMngr.openPage(iter.next());
+		if(pageMngr == null) {
+			return null;
+		}
+		
+		// Try to close each selected editor.
+		// There is no common type for object representing an editor. So,
+		// We try to get the EObject, and try to close it as an Editor.
+		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType( event, EObject.class );
+		if( selectedProperties == null) {
+			// nothing to do
+			return null;
+		}
+		
+		// Check each selected object
+		for( EObject selected : selectedProperties) {
+			
+			if( isDuplicateDiagramAllowed || !pageMngr.isOpen(selected) ) {
+				pageMngr.openPage(selected);
 			}
 		}
+
 		return null;
+
 	}
 
 	/**
@@ -84,32 +94,34 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	 * 
 	 * @return
 	 */
-	@Override
-	public boolean isEnabled() {
-		IPageMngr pageMngr = getPageManager();
-		if(pageMngr != null) {
-			IStructuredSelection selection = getSelectedElement();
-			Iterator<?> iter = selection.iterator();
-			if(selection != null) {
-				if(PARAMETER_CLOSE.equals(this.parameter)) {
-					while(iter.hasNext()) {
-						if(pageMngr.isOpen(iter.next())) {
-							return false;
-						}
-					}
-					return true;
-				} else if(PARAMETER_ALREADY_OPEN.equals(this.parameter)) {
-					while(iter.hasNext()) {
-						if(pageMngr.isOpen(iter.next())) {
-							return true;
-						}
-					}
-					return false;
-				}
-			}
-		}
-		return false;
-	}
+//	@Override
+//	public boolean isEnabled() {
+//		IPageMngr pageMngr = getPageManager();
+//		if(pageMngr == null) {
+//			return false;
+//		}
+//		
+//		// Try to close each selected editor.
+//		// There is no common type for object representing an editor. So,
+//		// We try to get the EObject, and try to close it as an Editor.
+//		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType( event, EObject.class );
+//		if( selectedProperties == null) {
+//			// nothing to do
+//			return false;
+//		}
+//		
+//		// Check each selected object
+//		// Return true if one of them is enabled
+//		for( EObject selected : selectedProperties) {
+//			
+//			if( isDuplicateDiagramAllowed || !pageMngr.isOpen(selected) ) {
+//				return true;
+//			}
+//		}
+//		
+//		
+//		return false;
+//	}
 
 	/**
 	 * 
@@ -122,26 +134,19 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	 * @throws CoreException
 	 */
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
-		if(data instanceof Hashtable && this.parameterID != null) {
-			this.parameter = (String)((Hashtable)data).get(this.parameterID);
+		if( ! (data instanceof Hashtable) ) {
+			return;
+		}
+		
+		@SuppressWarnings("rawtypes")
+		Hashtable map = (Hashtable)data;
+		
+		try {
+			isDuplicateDiagramAllowed = Boolean.parseBoolean((String)map.get(IS_DUPLICATE_EDITOR_ALLOWED_PARAMETER) );
+		} catch (Exception e) {
+			// silently fail;
 		}
 	}
-
-	/**
-	 * Returns the selected elements
-	 * 
-	 * @return
-	 *         the selected elements
-	 */
-	protected IStructuredSelection getSelectedElement() {
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
-			return (IStructuredSelection)selection;
-		}
-		return null;
-	}
-
-
 
 
 }

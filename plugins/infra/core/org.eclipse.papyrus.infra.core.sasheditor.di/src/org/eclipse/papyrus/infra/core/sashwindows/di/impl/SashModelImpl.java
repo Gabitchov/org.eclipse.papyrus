@@ -156,8 +156,29 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		if(pageRef == null)
 			return;
 
-		// Remove it
-		pageRef.getParent().getChildren().remove(pageRef);
+		// Get the folder containing the page
+		TabFolder folder = pageRef.getParent();
+		// Remove the page
+		folder.getChildren().remove(pageRef);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public void removePageAndEmptyFolder(Object pageIdentifier) {
+		PageRef pageRef = lookupPage(pageIdentifier);
+		if(pageRef == null)
+			return;
+
+		// Get the folder containing the page
+		TabFolder folder = pageRef.getParent();
+		// Remove the page
+		folder.getChildren().remove(pageRef);
+		// Remove parent if empty
+		removeEmptyFolder(folder);
 	}
 
 	/**

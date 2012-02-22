@@ -14,17 +14,15 @@
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * This handler allows to Close Diagrams and Tables
@@ -60,18 +58,33 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		
 		IPageMngr pageMngr = getPageManager();
-		if(selection instanceof IStructuredSelection && pageMngr != null) {
-			if(PARAMETER_SELECTION.equals(parameter)) {
-				Iterator<?> iter = ((IStructuredSelection)selection).iterator();
-				while(iter.hasNext()) {
-					pageMngr.closePage(iter.next());
-				}
-			} else if(PARAMETER_ALL.equals(parameter)) {
-				pageMngr.closeAllOpenedPages();
-			}
+		if(pageMngr == null) {
+			return null;
 		}
+		
+		// What kind of command ?
+		if(PARAMETER_ALL.equals(parameter)) {
+			pageMngr.closeAllOpenedPages();
+		}
+		
+		// Try to close each selected editor.
+		// There is no common type for object representing an editor. So,
+		// We try to get the EObject, and try to close it as an Editor.
+		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType( event, EObject.class );
+		if( selectedProperties == null) {
+			// nothing to do
+			return null;
+		}
+		
+		
+		// Check each selected object
+		for( EObject selected : selectedProperties) {
+			
+				pageMngr.closePage(selected);
+		}
+
 		return null;
 	}
 

@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
 
 /**
@@ -84,7 +85,7 @@ public class PageMngrImpl implements IPageMngr {
 	public void closePage(Object pageIdentifier) {
 		
 		contentChangedEventProvider.setDeliver(false);
-		diSashModel.getSashModel().removePage(pageIdentifier);
+		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
 	}
 
@@ -151,7 +152,7 @@ public class PageMngrImpl implements IPageMngr {
 		diSashModel.getPageList().removePage(pageIdentifier);
 		
 		contentChangedEventProvider.setDeliver(false);
-		diSashModel.getSashModel().removePage(pageIdentifier);
+		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
 	}
 
