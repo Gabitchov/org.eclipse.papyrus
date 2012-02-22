@@ -21,20 +21,29 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -200,5 +209,35 @@ public class SequenceDeleteHelper {
 				cmd.add(new DeleteCommand(editingDomain, (View)object));
 			}
 		}
+	}
+	
+	public static Command completeDeleteMessageCommand(DestroyElementRequest req) {
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils
+				.getCommandProvider(selectedEObject);
+		if (provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
+			if (deleteCommand != null) {
+				CompositeCommand command = new CompositeCommand(
+						deleteCommand.getLabel());
+				command.add(deleteCommand);
+				Message message = (Message) selectedEObject;
+				MessageEnd receiveEvent = message.getReceiveEvent();
+				if (receiveEvent != null) {
+					DestroyElementRequest myReq = new DestroyElementRequest(
+							req.getEditingDomain(), receiveEvent, false);
+					command.add(new DestroyElementCommand(myReq));
+				}
+				MessageEnd sendEvent = message.getSendEvent();
+				if (sendEvent != null) {
+					DestroyElementRequest myReq = new DestroyElementRequest(
+							req.getEditingDomain(), sendEvent, false);
+					command.add(new DestroyElementCommand(myReq));
+				}
+				return new ICommandProxy(command);
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 }
