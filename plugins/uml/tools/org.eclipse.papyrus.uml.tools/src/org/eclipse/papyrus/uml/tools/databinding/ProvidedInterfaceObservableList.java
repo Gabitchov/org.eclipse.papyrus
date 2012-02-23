@@ -36,17 +36,17 @@ public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	@Override
-	protected Command getRemoveCommand(Object value) {
+	public Command getRemoveCommand(Object value) {
 		throw new UnsupportedOperationException("TODO"); //TODO
 	}
 
 	@Override
-	protected Command getRemoveAllCommand(Collection<?> values) {
+	public Command getRemoveAllCommand(Collection<?> values) {
 		throw new UnsupportedOperationException("TODO"); //TODO
 	}
 
 	@Override
-	protected Command getAddCommand(int index, Object value) {
+	public Command getAddCommand(int index, Object value) {
 		if(!(value instanceof Interface)) {
 			throw new IllegalArgumentException("The value must be an Interface"); //$NON-NLS-1$
 		}
@@ -61,17 +61,17 @@ public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	@Override
-	protected Command getAddCommand(Object value) {
+	public Command getAddCommand(Object value) {
 		throw new UnsupportedOperationException("TODO"); //TODO
 	}
 
 	@Override
-	protected Command getAddAllCommand(Collection<?> values) {
+	public Command getAddAllCommand(Collection<?> values) {
 		throw new UnsupportedOperationException("TODO"); //TODO
 	}
 
 	@Override
-	protected Command getAddAllCommand(int index, Collection<?> values) {
+	public Command getAddAllCommand(int index, Collection<?> values) {
 		throw new UnsupportedOperationException("TODO"); //TODO
 	}
 

@@ -82,7 +82,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getAddCommand(int index, Object value) {
+	public Command getAddCommand(int index, Object value) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> values = new LinkedList<Object>(this);
@@ -98,7 +98,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getAddCommand(Object value) {
+	public Command getAddCommand(Object value) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> values = new LinkedList<Object>(this);
@@ -114,7 +114,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getAddAllCommand(Collection<?> values) {
+	public Command getAddAllCommand(Collection<?> values) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> result = new LinkedList<Object>(this);
@@ -131,7 +131,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getAddAllCommand(int index, Collection<?> values) {
+	public Command getAddAllCommand(int index, Collection<?> values) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> result = new LinkedList<Object>(this);
@@ -146,7 +146,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getClearCommand() {
+	public Command getClearCommand() {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			SetRequest request = new SetRequest(source, feature, Collections.EMPTY_LIST);
@@ -159,7 +159,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getRemoveCommand(int index) {
+	public Command getRemoveCommand(int index) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> values = new LinkedList<Object>(this);
@@ -175,7 +175,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getRemoveCommand(final Object value) {
+	public Command getRemoveCommand(final Object value) {
 		IElementEditService provider = getProvider();
 
 		if(provider != null) {
@@ -199,7 +199,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getRemoveAllCommand(Collection<?> values) {
+	public Command getRemoveAllCommand(Collection<?> values) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> result = new LinkedList<Object>(this);
@@ -214,7 +214,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected List<Command> getMoveCommands(int oldIndex, int newIndex) {
+	public List<Command> getMoveCommands(int oldIndex, int newIndex) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> values = new LinkedList<Object>(this);
@@ -231,7 +231,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getSetCommand(int index, Object value) {
+	public Command getSetCommand(int index, Object value) {
 		IElementEditService provider = getProvider();
 		if(provider != null) {
 			List<Object> values = new LinkedList<Object>(this);
