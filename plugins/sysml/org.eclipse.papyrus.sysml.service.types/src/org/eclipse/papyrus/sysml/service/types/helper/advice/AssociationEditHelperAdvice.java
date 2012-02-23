@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.service.types.helper.advice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -27,10 +28,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
@@ -50,6 +54,31 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /** Association edit helper advice */
 public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
+
+	/**
+	 * <pre>
+	 * {@inheritDoc}
+	 * 
+	 * avoid creation of association on another association
+	 * 
+	 * </pre>
+	 */
+	@Override
+	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
+		IElementType type = request.getElementType();
+		if(SysMLElementTypes.ASSOCIATION.equals(type)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if(type != null) {
+			List<IElementType> superTypes = Arrays.asList(type.getAllSuperTypes());
+			if(superTypes.contains(SysMLElementTypes.ASSOCIATION)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+
+		}
+
+		return super.getBeforeCreateRelationshipCommand(request);
+	}
 
 	/**
 	 * <pre>
@@ -166,6 +195,11 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		} else {
 			currentlyRefactoredElements.add(association);
 			request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
+		}
+
+		// not possible to have an association on another association, so reorient is forbidden here 
+		if(request.getNewRelationshipEnd() instanceof Association) {
+			return UnexecutableCommand.INSTANCE;
 		}
 
 		// Retrieve property ends of the Association (assumed to be binary)

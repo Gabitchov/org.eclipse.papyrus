@@ -65,6 +65,7 @@ public class TestLinkCreationCommentConstraintFromConstraint extends AbstractLin
 		isCreationAllowed.put(flowPropertyTargetView, false);
 		isCreationAllowed.put(enumerationLiteralTargetView, false);		
 
+		isCreationAllowed.put(associationTargetView, true);
 	}
 
 }

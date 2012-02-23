@@ -60,6 +60,7 @@ public class TestLinkCreationUsageForSources extends AbstractLinkCreationForSour
 		isCreationAllowed.put(flowPropertySourceView, false);
 		isCreationAllowed.put(enumerationLiteralSourceView, false);		
 
+		isCreationAllowed.put(associationSourceView, true);
 	}
 
 }

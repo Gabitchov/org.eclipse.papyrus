@@ -217,6 +217,14 @@ public class AbstractLinkCreationForSourcesTest extends AbstractLinkPrepareTest 
 		View sourceView = constraintPropertySourceView;
 		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
 	}
+
+	@Test
+	public void createLinkWithSourceAssociation() throws Exception {
+		View sourceView = associationSourceView;
+		boolean isAllowed = isCreationAllowed.get(sourceView);
+		createEdgeFromPalette(toolID, sourceView, null, isAllowed);
+	}
+
 	
 	@Test
 	public void createLinkWithSourceEnumerationLiteral() throws Exception {

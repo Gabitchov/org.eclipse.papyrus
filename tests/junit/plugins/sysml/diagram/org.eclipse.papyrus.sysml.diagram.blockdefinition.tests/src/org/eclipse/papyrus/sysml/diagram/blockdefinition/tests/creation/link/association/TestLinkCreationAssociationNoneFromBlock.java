@@ -11,6 +11,10 @@ import org.junit.BeforeClass;
  */
 public class TestLinkCreationAssociationNoneFromBlock extends AbstractLinkCreationFromElementTest {
 	
+
+	public TestLinkCreationAssociationNoneFromBlock() {
+	}
+
 	@BeforeClass
 	public static void initSource() throws Exception {
 		sourceView = blockSourceView;
@@ -64,7 +68,9 @@ public class TestLinkCreationAssociationNoneFromBlock extends AbstractLinkCreati
 		isCreationAllowed.put(constraintCLNTargetView, false);
 		isCreationAllowed.put(constraintPropertyTargetView, false);
 		isCreationAllowed.put(flowPropertyTargetView, false);
-		isCreationAllowed.put(enumerationLiteralTargetView, false);		
+		isCreationAllowed.put(enumerationLiteralTargetView, false);
+
+		isCreationAllowed.put(associationTargetView, false);
 
 	}
 }

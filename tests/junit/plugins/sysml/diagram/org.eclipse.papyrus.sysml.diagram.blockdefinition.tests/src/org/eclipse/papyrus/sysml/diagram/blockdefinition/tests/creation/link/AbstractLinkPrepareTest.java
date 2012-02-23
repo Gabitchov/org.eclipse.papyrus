@@ -2,11 +2,14 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.link;
 
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestPrepareUtils.createGraphicalNode;
+import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils.createEdgeFromPalette;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.AbstractTest;
@@ -14,6 +17,7 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 
 /**
@@ -62,6 +66,10 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 	// Inherited child label nodes
 	public static View slotSourceView, slotTargetView;
 	
+	// links (creation of association on association)
+	public static View associationSourceView, associationTargetView;
+
+
 	public static Map<View, Boolean> isCreationAllowed = new HashMap<View, Boolean>();
 	
 	@BeforeClass
@@ -180,5 +188,22 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 		
 		enumerationLiteralSourceView = createGraphicalNode(UMLElementTypes.ENUMERATION_LITERAL, UMLGraphicalTypes.SHAPE_UML_ENUMERATIONLITERAL_AS_LABEL_ID, enumLiteralSourceCpt);
 		enumerationLiteralTargetView = createGraphicalNode(UMLElementTypes.ENUMERATION_LITERAL, UMLGraphicalTypes.SHAPE_UML_ENUMERATIONLITERAL_AS_LABEL_ID, enumLiteralTargetCpt);	
+	}
+	
+	@BeforeClass
+	public static void prepareLinks() throws Exception {
+		// creates two blocks representation, and then creates an association between these 2 blocks
+		View sourceBlockView = createGraphicalNode(SysMLElementTypes.BLOCK, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, getDiagramView());
+		View targetBlockView = createGraphicalNode(SysMLElementTypes.BLOCK, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, getDiagramView());
+		
+		createEdgeFromPalette("blockdefinition.tool.association_none", sourceBlockView, targetBlockView, true);
+		createEdgeFromPalette("blockdefinition.tool.association_none", sourceBlockView, targetBlockView, true);
+		Set<Edge> edges = ViewUtil.getAllInnerEdges(sourceBlockView.getDiagram());
+		Assert.assertEquals("There should be 2 edges", 2, edges.size());
+		associationSourceView = edges.toArray(new Edge[]{})[0];
+		associationTargetView = edges.toArray(new Edge[]{})[1];
+		Assert.assertNotNull("association should not be null", associationSourceView);
+		Assert.assertNotNull("association should not be null", associationTargetView);
+
 	}
 }

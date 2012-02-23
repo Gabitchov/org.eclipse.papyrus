@@ -73,6 +73,7 @@ public class TestLinkCreationGeneralizationFromBlock extends AbstractLinkCreatio
 		isCreationAllowed.put(flowPropertyTargetView, false);
 		isCreationAllowed.put(enumerationLiteralTargetView, false);		
 
+		isCreationAllowed.put(associationTargetView, true);
 	}
 
 	@Ignore("UML Rules not implemented.")
@@ -94,6 +95,7 @@ public class TestLinkCreationGeneralizationFromBlock extends AbstractLinkCreatio
 		createEdgeFromPalette(toolID, blockSourceView, blockSourceView, false);
 	}
 	
+	@Ignore("This is not tested on creation. This should be tested on validation.")
 	@Test
 	public void createGeneralizationWithIndirectCycleIsForbidden() throws Exception {
 		View intermediate = createGraphicalNode(SysMLElementTypes.BLOCK, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, getDiagramView());

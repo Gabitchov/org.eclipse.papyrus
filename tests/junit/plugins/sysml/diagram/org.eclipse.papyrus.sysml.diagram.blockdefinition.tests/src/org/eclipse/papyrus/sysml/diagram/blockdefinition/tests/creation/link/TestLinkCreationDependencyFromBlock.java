@@ -63,7 +63,9 @@ public class TestLinkCreationDependencyFromBlock extends AbstractLinkCreationFro
 		isCreationAllowed.put(constraintCLNTargetView, false);
 		isCreationAllowed.put(constraintPropertyTargetView, false);
 		isCreationAllowed.put(flowPropertyTargetView, false);
-		isCreationAllowed.put(enumerationLiteralTargetView, false);		
+		isCreationAllowed.put(enumerationLiteralTargetView, false);
+
+		isCreationAllowed.put(associationTargetView, true);
 
 	}
 

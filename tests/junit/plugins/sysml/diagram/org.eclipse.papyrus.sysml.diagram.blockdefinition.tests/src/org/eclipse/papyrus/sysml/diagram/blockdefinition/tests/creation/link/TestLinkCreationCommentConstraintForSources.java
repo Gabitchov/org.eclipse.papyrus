@@ -60,6 +60,7 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		isCreationAllowed.put(flowPropertySourceView, false);
 		isCreationAllowed.put(enumerationLiteralSourceView, false);		
 
+		isCreationAllowed.put(associationSourceView, false);
 	}
 
 }

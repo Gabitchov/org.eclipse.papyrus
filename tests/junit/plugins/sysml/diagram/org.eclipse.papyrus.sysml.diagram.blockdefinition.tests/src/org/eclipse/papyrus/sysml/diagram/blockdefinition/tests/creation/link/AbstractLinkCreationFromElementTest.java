@@ -218,6 +218,12 @@ public class AbstractLinkCreationFromElementTest extends AbstractLinkPrepareTest
 		View targetView = constraintPropertyTargetView;
 		createEdgeFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView));
 	}
+
+	@Test
+	public void createLinkWithTargetAssociation() throws Exception {
+		View targetView = associationTargetView;
+		createEdgeFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView));
+	}
 	
 	@Test
 	public void createLinkWithTargetEnumerationLiteral() throws Exception {

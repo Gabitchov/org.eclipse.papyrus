@@ -61,6 +61,8 @@ public class TestLinkCreationAssociationNoneDirectedForSources extends AbstractL
 		isCreationAllowed.put(flowPropertySourceView, false);
 		isCreationAllowed.put(enumerationLiteralSourceView, false);		
 
+		isCreationAllowed.put(associationSourceView, false);
+
 	}
 
 }
