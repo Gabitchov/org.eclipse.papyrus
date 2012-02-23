@@ -78,7 +78,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	/**
 	 * Edit part representation used as a main element in the tree
 	 */
-	protected class RootEditPartRepresentation extends EditPartRepresentation {
+	public class RootEditPartRepresentation extends EditPartRepresentation {
 
 		/**
 		 * Constructor.

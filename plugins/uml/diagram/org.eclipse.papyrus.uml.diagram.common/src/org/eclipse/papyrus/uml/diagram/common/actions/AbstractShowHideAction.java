@@ -387,7 +387,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * This class provides some facilities to build the action.
 	 * 
 	 */
-	protected class EditPartRepresentation {
+	public class EditPartRepresentation {
 
 		/** the editpart represented by this class */
 		private IGraphicalEditPart representedEditPart;
