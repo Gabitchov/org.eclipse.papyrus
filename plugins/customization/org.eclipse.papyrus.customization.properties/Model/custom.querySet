@@ -11,11 +11,11 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>
-  <queries xsi:type="query:OCLModelQuery" name="isEcoreInstanceOf" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.views.properties.constraints.EMFInstanceOfConstraint'">
+  <queries xsi:type="query:OCLModelQuery" name="isEcoreInstanceOf" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>
-  <queries xsi:type="query:OCLModelQuery" name="isOclQuery" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.views.properties.constraints.EMFQueryConstraint'">
+  <queries xsi:type="query:OCLModelQuery" name="isOclQuery" lowerBound="1" query="self.constraintType.constraintClass = 'org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint'">
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/constraints/0.9#//ConstraintDescriptor"/>
   </queries>

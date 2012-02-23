@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.constraints.ConfigProperty;
+import org.eclipse.papyrus.infra.constraints.ConstraintsFactory;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
@@ -48,7 +48,7 @@ public class GenericPropertyModelElementFactory implements ModelElementFactory {
 		EClass referenceProperty = ConstraintsPackage.eINSTANCE.getReferenceProperty();
 		EStructuralFeature attributes = ConstraintsPackage.eINSTANCE.getSimpleConstraint_Properties();
 
-		return new GenericAttributeModelElement(source, domain, attributes, ContextsFactory.eINSTANCE, valueProperty, referenceProperty);
+		return new GenericAttributeModelElement(source, domain, attributes, ConstraintsFactory.eINSTANCE, valueProperty, referenceProperty);
 	}
 
 	//	public List<ModelElement> createFromDataSource(ModelElement currentElement, DataSource source, String propertyPath, DataContextElement context) {

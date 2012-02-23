@@ -123,7 +123,18 @@ public class GenericAttributeObservable extends AbstractObservableValue {
 		EObject attribute = findAttribute();
 		EList<? extends EObject> collection = (EList<? extends EObject>)source.eGet(createIn);
 
-		CompoundCommand command = new CompoundCommand(String.format("Set %s value", propertyPath)); //$NON-NLS-1$
+		CompoundCommand command = new CompoundCommand(String.format("Set %s value", propertyPath)) {
+
+			@Override
+			public boolean prepare() {
+				//Only test the first command's canExecute(), as the following ones depend on the execution of the first one
+				//Can we use a StrictCompoundCommand here ? 
+				if(commandList.isEmpty()) {
+					return true;
+				}
+				return commandList.get(0).canExecute();
+			}
+		};
 
 		if(value == null || value.equals("")) { //$NON-NLS-1$
 			if(attribute != null) {
