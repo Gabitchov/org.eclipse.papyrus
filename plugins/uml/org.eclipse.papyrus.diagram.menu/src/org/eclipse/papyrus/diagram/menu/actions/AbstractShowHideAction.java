@@ -30,8 +30,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.ui.IActionDelegate;
@@ -338,7 +338,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * This class provides some facilities to build the action.
 	 * 
 	 */
-	protected class EditPartRepresentation {
+	public class EditPartRepresentation {
 
 		/** the editpart represented by this class */
 		protected EditPart representedEditPart;

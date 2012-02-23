@@ -77,10 +77,11 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	/**
 	 * Edit part representation used as a main element in the tree
 	 */
-	protected class RootEditPartRepresentation extends EditPartRepresentation {
+	public class RootEditPartRepresentation extends EditPartRepresentation {
 
 		/**
 		 * Constructor.
+		 * 
 		 * @param representedEditPart
 		 *        the represented EditPart
 		 * @param eObject
@@ -331,12 +332,12 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				View currentView = currentRepresentation.getCompartmentView();
 				EditPart currentEditPart = currentRepresentation.getRepresentedEditPart(); // should not be null, because a view to  delete should be visible, and so have an existing associated edit part.
 				// if null, try to find it using gmf methods from the view
-				
+
 				if(currentEditPart == null) {
 					Activator.log.debug("Warning! An edit part representation wished to destroy a view, but no edit part exists currently!" + current);
 					currentEditPart = DiagramEditPartsUtil.getEditPartFromView(currentView, selectedElements.get(0)).getParent();
 				}
-				
+
 				if(currentEditPart != null) {
 					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.HIDE, currentView.getType());
 					req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
@@ -382,7 +383,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			}
-			
+
 			//			if(current instanceof View) {
 			//				EditPart ep = CompartmentUtils.getCompartmentTitleRepresentation(rep, (View)current).getParent();
 			//				req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.SHOW, ((View)current).getType());
