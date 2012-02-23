@@ -168,8 +168,6 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Binds the AbstractEditor (Either List or Value editor) to the semantic element
 	 */
 	protected void doBinding() {
-		boolean isReadOnly = getReadOnly();
-
 		if(listEditor != null) {
 			IObservableList inputObservableList = getInputObservableList();
 
@@ -185,6 +183,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			}
 		}
 
+		boolean isReadOnly = getReadOnly();
 		applyReadOnly(isReadOnly);
 
 		if(input.forceRefresh(propertyPath)) {
@@ -365,7 +364,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 *         True if this editor is read-only
 	 */
 	public boolean getReadOnly() {
-		boolean result = readOnly || !isEditable;
+		boolean result = readOnly || !isEditable || getInputObservable() == null;
 		return result;
 	}
 

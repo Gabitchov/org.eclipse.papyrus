@@ -80,16 +80,14 @@ public class DataSource implements IChangeListener {
 	public ModelElement getModelElement(String propertyPath) {
 		//ConfigurationManager.instance.getProperty(propertyPath)
 		String key = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
-		ModelElement element = elements.get(key);
-		if(element == null) { //Try to resolve the modelElements on-the-fly
-			element = DataSourceFactory.instance.getModelElementFromPropertyPath(this, propertyPath);
+		if(!elements.containsKey(key)) { //Try to resolve the modelElements on-the-fly
+			ModelElement element = DataSourceFactory.instance.getModelElementFromPropertyPath(this, propertyPath);
 			if(element == null) {
 				Activator.log.warn("Unable to find a ModelElement for " + propertyPath + ". Elements : " + elements); //$NON-NLS-1$ //$NON-NLS-2$
-				return null;
 			}
 			elements.put(key, element);
 		}
-		return element;
+		return elements.get(key);
 	}
 
 	private String getLocalPropertyPath(String propertyPath) {
@@ -340,7 +338,9 @@ public class DataSource implements IChangeListener {
 	 */
 	public void dispose() {
 		for(ModelElement element : elements.values()) {
-			element.dispose();
+			if(element != null) {
+				element.dispose();
+			}
 		}
 		elements.clear();
 	}
