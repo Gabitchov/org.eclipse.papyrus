@@ -75,8 +75,8 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 		up.setEnabled(ordered && !readOnly);
 		down.setEnabled(ordered && !readOnly);
 
-		browseWorkspace.setEnabled(allowBrowseWorkspace);
-		browseFileSystem.setEnabled(allowBrowseFileSystem);
+		browseWorkspace.setEnabled(allowBrowseWorkspace && !readOnly);
+		browseFileSystem.setEnabled(allowBrowseFileSystem && !readOnly);
 	}
 
 	public void allowBrowseWorkspace(boolean allowBrowseWorkspace) {
