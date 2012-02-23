@@ -13,13 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.appearance.helper;
 
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.emf.appearance.commands.SetQualifiedNameDepthCommand;
+import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 
+/**
+ * @deprecated Use AppearanceHelper (For getters) or AnnotationStyleProvider
+ *             (For Commands) instead.
+ */
+@Deprecated
 public class QualifiedNameHelper {
 
 	/**
@@ -29,27 +32,9 @@ public class QualifiedNameHelper {
 	 *        the view where is attach the element
 	 * @return the depth
 	 */
+	@Deprecated
 	public static int getQualifiedNameDepth(EModelElement modelElement) {
-		EAnnotation qualifiedNameAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.QUALIFIED_NAME);
-		if(qualifiedNameAnnotation != null) {
-			EMap<String, String> entries = qualifiedNameAnnotation.getDetails();
-
-			if(entries != null) {
-				String depthString = entries.get(VisualInformationPapyrusConstants.QUALIFIED_NAME_DEPTH);
-				if(depthString != null) {
-					Integer i = new Integer(depthString);
-					if(i != 1000) {
-						return i.intValue();
-					}
-				}
-			}
-		}
-
-		//CSS Value (TODO : Remove this dependency ; add an extension point)
-
-		//		return UMLCustomStyle.getCSSQualifiedNameDepth(modelElement);
-
-		return 1000;
+		return AppearanceHelper.getQualifiedNameDepth(modelElement);
 	}
 
 	/**
@@ -62,11 +47,11 @@ public class QualifiedNameHelper {
 	 * @param depth
 	 *        the depth
 	 * 
-	 * @return the sets the qualifed name depth command
+	 * @return the set qualified name depth command
 	 */
-	// @unused
+	@Deprecated
 	public static RecordingCommand getSetQualifedNameDepthCommand(TransactionalEditingDomain domain, EModelElement view, int depth) {
-		return new SetQualifiedNameDepthCommand(domain, view, depth);
+		return AnnotationStyleProvider.getSetQualifiedNameDepthCommand(domain, view, depth);
 	}
 
 }

@@ -251,40 +251,40 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		return result;
 	}
 
-	protected Command getAddCommand(int index, Object value) {
+	public Command getAddCommand(int index, Object value) {
 		return AddCommand.create(editingDomain, source, feature, value, index);
 	}
 
-	protected Command getAddCommand(Object value) {
+	public Command getAddCommand(Object value) {
 		return AddCommand.create(editingDomain, source, feature, value);
 	}
 
-	protected Command getAddAllCommand(Collection<?> values) {
+	public Command getAddAllCommand(Collection<?> values) {
 		return AddCommand.create(editingDomain, source, feature, values);
 	}
 
-	protected Command getAddAllCommand(int index, Collection<?> values) {
+	public Command getAddAllCommand(int index, Collection<?> values) {
 		return AddCommand.create(editingDomain, source, feature, values, index);
 	}
 
-	protected Command getClearCommand() {
+	public Command getClearCommand() {
 		return getRemoveAllCommand(new LinkedList<Object>(wrappedList));
 	}
 
-	protected Command getRemoveCommand(int index) {
+	public Command getRemoveCommand(int index) {
 		Object value = get(index);
 		return getRemoveCommand(value);
 	}
 
-	protected Command getRemoveCommand(Object value) {
+	public Command getRemoveCommand(Object value) {
 		return RemoveCommand.create(editingDomain, source, feature, value);
 	}
 
-	protected Command getRemoveAllCommand(Collection<?> values) {
+	public Command getRemoveAllCommand(Collection<?> values) {
 		return RemoveCommand.create(editingDomain, source, feature, values);
 	}
 
-	protected List<Command> getMoveCommands(int oldIndex, int newIndex) {
+	public List<Command> getMoveCommands(int oldIndex, int newIndex) {
 		Object value = get(oldIndex);
 		List<Command> commands = new LinkedList<Command>();
 		commands.add(getRemoveCommand(value));
@@ -292,7 +292,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		return commands;
 	}
 
-	protected Command getRetainAllCommand(Collection<?> values) {
+	public Command getRetainAllCommand(Collection<?> values) {
 		List<Object> objectsToRemove = new LinkedList<Object>();
 		for(Object object : values) {
 			if(!contains(object)) {
@@ -306,7 +306,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		}
 	}
 
-	protected Command getSetCommand(int index, Object value) {
+	public Command getSetCommand(int index, Object value) {
 		return SetCommand.create(editingDomain, source, feature, value, index);
 	}
 

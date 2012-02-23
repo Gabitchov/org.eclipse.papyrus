@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.appearance
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.appearance;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.emf.appearance.Activator
 Bundle-Vendor: %Bundle-Vendor
@@ -16,4 +16,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.infra.emf.appearance,
  org.eclipse.papyrus.infra.emf.appearance.commands,
- org.eclipse.papyrus.infra.emf.appearance.helper
+ org.eclipse.papyrus.infra.emf.appearance.helper,
+ org.eclipse.papyrus.infra.emf.appearance.style

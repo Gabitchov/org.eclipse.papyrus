@@ -13,13 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.appearance.helper;
 
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
+import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 
+/**
+ * @deprecated Use AppearanceHelper (For getters) or AnnotationStyleProvider
+ *             (For Commands) instead.
+ */
+@Deprecated
 public class ShadowFigureHelper {
 
 	/**
@@ -28,29 +31,9 @@ public class ShadowFigureHelper {
 	 * @param modelElement
 	 *        the view where is attach the element
 	 */
+	@Deprecated
 	public static boolean getShadowFigureValue(EModelElement modelElement) {
-		EAnnotation shadowAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.SHADOWFIGURE);
-		if(shadowAnnotation != null) {
-			EMap<String, String> entries = shadowAnnotation.getDetails();
-
-			if(entries != null) {
-				String gradientvalueString = entries.get(VisualInformationPapyrusConstants.SHADOWFIGURE_VALUE);
-				if(gradientvalueString != null) {
-					Boolean b = new Boolean(gradientvalueString);
-					if(b) {
-						return true;
-					}
-				}
-			}
-		}
-		//CSS Value (TODO : Remove this dependency ; add an extension point)
-
-		//		if(modelElement instanceof UMLCustomStyle) {
-		//			UMLCustomStyle cssElement = (UMLCustomStyle)modelElement;
-		//			return cssElement.getCSSShadow();
-		//		}
-
-		return false;
+		return AppearanceHelper.showShadow(modelElement);
 	}
 
 	/**
@@ -63,11 +46,11 @@ public class ShadowFigureHelper {
 	 * @param shadowFigureValue
 	 *        true to display the shadow on the figure
 	 * 
-	 * @return the command to set the gradient to true are false.
+	 * @return the command to set the shadow to true or false.
 	 */
-	// @unused
+	@Deprecated
 	public static RecordingCommand getShadowColorCommand(TransactionalEditingDomain domain, EModelElement view, boolean shadowFigureValue) {
-		return new SetShadowFigureCommand(domain, view, shadowFigureValue);
+		return AnnotationStyleProvider.getSetShadowCommand(domain, view, shadowFigureValue);
 	}
 
 }
