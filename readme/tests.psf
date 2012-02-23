@@ -5,7 +5,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/org.eclipse.papyrus.core.queries.configuration.tests,org.eclipse.papyrus.core.queries.configuration.tests"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/org.eclipse.papyrus.core.queries.test,org.eclipse.papyrus.core.queries.test"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/org.eclipse.papyrus.core.resourceloading.tests,org.eclipse.papyrus.core.resourceloading.tests"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/org.eclipse.papyrus.core.tests,org.eclipse.papyrus.core.tests"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests,org.eclipse.papyrus.infra.core.tests"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/uml/org.eclipse.papyrus.diagram.clazz.tests,org.eclipse.papyrus.diagram.clazz.tests"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/uml/org.eclipse.papyrus.diagram.common.tests,org.eclipse.papyrus.diagram.common.tests"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/debug/plugins/core/org.eclipse.papyrus.extendedtypes.edit,org.eclipse.papyrus.extendedtypes.edit"/>
