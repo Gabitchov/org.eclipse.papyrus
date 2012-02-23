@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.factory_override">
+		<factory
+			class="org.eclipse.papyrus.infra.gmfdiag.css.factory.CSSNotationFactory"
+			uri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+		</factory>
+	</extension>
+	<extension point="org.eclipse.papyrus.infra.core.model">
+		<model
+			classname="org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationModel"
+			description="Notation Model with CSS Support">
+		</model>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSRefreshHandler"
+			commandId="org.eclipse.ui.file.refresh">
+			<activeWhen>
+				<and>
+					<with variable="activePartId">
+						<equals value="org.eclipse.papyrus.infra.core.papyrusEditor">
+						</equals>
+					</with>
+					<with variable="activeContexts">
+						<iterate ifEmpty="false" operator="or">
+							<equals value="Papyrus CSS">
+							</equals>
+						</iterate>
+					</with>
+				</and>
+			</activeWhen>
+		</handler>
+	</extension>
+ <extension
+       point="org.eclipse.ui.contexts">
+    <context
+          description="A context used to indicate that the Papyrus CSS support is available"
+          id="Papyrus CSS"
+          name="Papyrus CSS context">
+    </context>
+ </extension>
+ <extension
+       point="org.eclipse.emf.ecore.generated_package">
+    <package
+          class="org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPackage"
+          genModel="model/ModelStyleSheets.genmodel"
+          uri="http://www.eclipse.org/papyrus/infra/gmfdiag/css">
+    </package>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.emf.appearance.styleProvider">
+    <styleprovider
+          priority="40"
+          styleProvider="org.eclipse.papyrus.infra.gmfdiag.css.provider.CSSAppearanceProvider">
+    </styleprovider>
+ </extension>
+</plugin>

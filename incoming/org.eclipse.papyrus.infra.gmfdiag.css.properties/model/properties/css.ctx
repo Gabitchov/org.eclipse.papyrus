@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="CSS">
+  <tabs label="Style" id="style" category="org.eclipse.papyrus" image="" priority="70">
+    <sections name="SingleStylableElement" sectionFile="ui/SingleStylableElement.xwt">
+      <widget href="ui/SingleStylableElement.xwt#/"/>
+    </sections>
+    <sections name="MultipleStylableElement" sectionFile="ui/MultipleStylableElement.xwt">
+      <widget href="ui/MultipleStylableElement.xwt#/"/>
+    </sections>
+    <sections name="SingleDiagram" sectionFile="ui/SingleDiagram.xwt">
+      <widget href="ui/SingleDiagram.xwt#/"/>
+    </sections>
+    <sections name="SingleStyleSheetReference" sectionFile="ui/SingleStyleSheetReference.xwt">
+      <widget href="ui/SingleStyleSheetReference.xwt#//@widgets.0"/>
+    </sections>
+    <sections name="SingleEmbeddedStyleSheet" sectionFile="ui/SingleEmbeddedStyleSheet.xwt">
+      <widget href="ui/SingleEmbeddedStyleSheet.xwt#//@widgets.0"/>
+    </sections>
+  </tabs>
+  <views name="SingleStylableElement" sections="//@tabs.0/@sections.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStylableElement" overrideable="false" overriddenConstraints="//@views.1/@constraints.0">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="View"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="MultipleStylableElement" sections="//@tabs.0/@sections.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStylableElement" overrideable="false">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="View"/>
+    </constraints>
+  </views>
+  <views name="Diagram" sections="//@tabs.0/@sections.2 //@tabs.0/@sections.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isDiagram" overrideable="false" overriddenConstraints="//@views.0/@constraints.0 //@views.1/@constraints.0">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
+  <views name="SingleStyleSheetReference" sections="//@tabs.0/@sections.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isStyleSheetReference">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/infra/gmfdiag/css"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StyleSheetReference"/>
+    </constraints>
+  </views>
+  <views name="SingleEmbeddedStyleSheet" sections="//@tabs.0/@sections.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isEmbeddedStyleSheet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/infra/gmfdiag/css"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="EmbeddedStyleSheet"/>
+    </constraints>
+  </views>
+  <dataContexts name="CSS" label="CSS">
+    <elements name="PapyrusCSSStyle">
+      <properties name="cssId" label="CSS ID" description="The CSS ID of this element. The ID should be unique within a Diagram. It can be used to retrieve the style properties applied to this element."/>
+      <properties name="cssClass" label="CSS Classes" multiplicity="-1"/>
+      <properties name="cssStyle" label="CSS Style"/>
+    </elements>
+    <elements name="DiagramStyle" supertypes="//@dataContexts.0/@elements.0">
+      <properties name="styleSheets" label="Diagram style sheets" multiplicity="-1" description="The style sheets associated to this diagram"/>
+    </elements>
+    <elements name="ModelStyleSheet">
+      <properties name="stylesheets" label="Model style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to the model"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts name="modelstylesheets" label="ModelCSS">
+    <elements name="StyleSheetReference">
+      <properties name="path" description="The path to the external style sheet"/>
+    </elements>
+    <elements name="EmbeddedStyleSheet">
+      <properties name="content" description="The style sheet contents"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>
