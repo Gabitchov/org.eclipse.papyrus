@@ -35,7 +35,7 @@
          commandId="org.eclipse.ui.file.refresh">
       <activeWhen>
          <with
-               variable="activeEditorId">
+               variable="activePartId">
             <equals
                   value="org.eclipse.papyrus.infra.core.papyrusEditor">
             </equals>
