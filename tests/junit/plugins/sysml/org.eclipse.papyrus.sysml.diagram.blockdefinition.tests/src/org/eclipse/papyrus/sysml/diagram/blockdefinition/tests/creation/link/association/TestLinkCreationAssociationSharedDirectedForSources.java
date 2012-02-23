@@ -60,6 +60,8 @@ public class TestLinkCreationAssociationSharedDirectedForSources extends Abstrac
 		isCreationAllowed.put(flowPropertySourceView, false);
 		isCreationAllowed.put(enumerationLiteralSourceView, false);		
 
+		isCreationAllowed.put(associationSourceView, false);
+
 	}
 
 }

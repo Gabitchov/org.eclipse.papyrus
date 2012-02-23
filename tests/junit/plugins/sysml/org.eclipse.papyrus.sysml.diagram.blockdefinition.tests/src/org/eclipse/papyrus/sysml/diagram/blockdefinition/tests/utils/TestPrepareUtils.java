@@ -7,17 +7,21 @@ import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.Edit
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -35,6 +39,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Assert;
 
 
 public class TestPrepareUtils {
@@ -110,6 +115,45 @@ public class TestPrepareUtils {
 		return (View)views.toArray()[0];
 	}
 	
+	public static View createGraphicalLink(IElementType elementType, String graphicalType, View containerView, EditPart sourceEP, EditPart targetEP) throws Exception {
+		CreateConnectionViewRequest request = createConnectionRequest(elementType, sourceEP, targetEP);
+
+		Command command = targetEP.getCommand(request);
+		Assert.assertNotNull("Command to create graphical link should not be null", command);
+		Assert.assertTrue("Command should be executable", command.canExecute());
+
+		getDiagramCommandStack().execute(command);
+
+		IAdaptable viewAdapter = (IAdaptable)request.getNewObject();
+		View newView = (View)viewAdapter.getAdapter(View.class);
+		Assert.assertNotNull("View should not be null", newView);
+
+		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
+		@SuppressWarnings("unchecked")
+		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(newView, erefs);
+
+		return (View)views.toArray()[0];
+
+	}
+	
+	public static CreateConnectionViewRequest createConnectionRequest(IElementType type, EditPart source, EditPart target) {
+		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, Activator.DIAGRAM_PREFERENCES_HINT);
+
+		connectionRequest.setSourceEditPart(null);
+		connectionRequest.setTargetEditPart(source);
+		connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
+		source.getCommand(connectionRequest);
+
+		// Now, setup the request in preparation to get the
+		// connection end
+		// command.
+		connectionRequest.setSourceEditPart(source);
+		connectionRequest.setTargetEditPart(target);
+		connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
+		return connectionRequest;
+	}
+	
+
 	public static View dropFromModelExplorer(IElementType elementType, View containerView) throws Exception {
 		EObject newObject = createElement(elementType, containerView);
 		return dropFromModelExplorer(newObject, containerView);

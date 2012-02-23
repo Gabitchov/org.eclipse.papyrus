@@ -397,6 +397,18 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
 	
+	<!-- Helper advice for Package (Manage SysML association creation: do not target association, actor if not directed association, etc) -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Package"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.PackageEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Package">
+	</adviceBinding>
+	
+	<!-- Helper advice for Actor (Manage SysML association creation: do not get out of an actor -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Actor"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.ActorEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Actor">
+	</adviceBinding>	
+	
 	</metamodel>
 </extension>
 
@@ -446,6 +458,8 @@
 		<advice ref="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Property" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Package" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Actor" />
 
 	</binding>
 	

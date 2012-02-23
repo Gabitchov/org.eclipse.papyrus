@@ -65,5 +65,6 @@ public class TestLinkCreationAssociationSharedFromBlock extends AbstractLinkCrea
 		isCreationAllowed.put(flowPropertyTargetView, false);
 		isCreationAllowed.put(enumerationLiteralTargetView, false);		
 
+		isCreationAllowed.put(associationTargetView, false);
 	}
 }

@@ -58,7 +58,9 @@ public class TestLinkCreationAssociationNoneForSources extends AbstractLinkCreat
 		isCreationAllowed.put(constraintCLNSourceView, false);
 		isCreationAllowed.put(constraintPropertySourceView, false);
 		isCreationAllowed.put(flowPropertySourceView, false);
-		isCreationAllowed.put(enumerationLiteralSourceView, false);		
+		isCreationAllowed.put(enumerationLiteralSourceView, false);
+
+		isCreationAllowed.put(associationSourceView, false);
 
 	}
 

@@ -60,6 +60,8 @@ public class TestLinkCreationAssociationCompositeForSources extends AbstractLink
 		isCreationAllowed.put(flowPropertySourceView, false);
 		isCreationAllowed.put(enumerationLiteralSourceView, false);		
 
+		isCreationAllowed.put(associationSourceView, false);
+
 	}
 
 }

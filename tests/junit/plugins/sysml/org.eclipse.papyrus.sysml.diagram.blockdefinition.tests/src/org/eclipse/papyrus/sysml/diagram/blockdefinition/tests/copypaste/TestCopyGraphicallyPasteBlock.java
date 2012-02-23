@@ -211,7 +211,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		Assert.assertEquals("Initial number of views do not fit expectations", 2, initialViews.size());
 		List<EObject> initialModelElements = new ArrayList<EObject>();
 		initialModelElements.addAll((List)getDiagramView().getElement().eGet(UMLPackage.eINSTANCE.getPackage_PackagedElement()));
-		Assert.assertEquals("Initial number of model elemnts do not fit expectations", 2, initialViews.size());
+		Assert.assertEquals("Initial number of model elemnts do not fit expectations", 2, initialModelElements.size());
 
 		TestUtils.copyEditParts(Arrays.<Object> asList(blockEP1, blockEP2));
 
@@ -429,7 +429,7 @@ public class TestCopyGraphicallyPasteBlock extends AbstractTest {
 		Assert.assertTrue("Model element should be stereotyped", addedBlock2.getAppliedStereotype("SysML::Blocks::Block") != null);
 
 		// check name
-		expectedName = "Copy_Of_Block1_1"; // Warning: this name already exists...
+		expectedName = "Copy_Of_Block_1"; // Warning: this name already exists...
 		Assert.assertEquals("Name of the element is not " + expectedName, expectedName, addedBlock2.getName());
 
 		// test undo

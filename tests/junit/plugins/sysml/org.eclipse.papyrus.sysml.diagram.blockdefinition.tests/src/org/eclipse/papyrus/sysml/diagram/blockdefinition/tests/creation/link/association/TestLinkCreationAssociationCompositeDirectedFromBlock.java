@@ -65,5 +65,6 @@ public class TestLinkCreationAssociationCompositeDirectedFromBlock extends Abstr
 		isCreationAllowed.put(flowPropertyTargetView, false);
 		isCreationAllowed.put(enumerationLiteralTargetView, false);		
 
+		isCreationAllowed.put(associationTargetView, false);
 	}
 }

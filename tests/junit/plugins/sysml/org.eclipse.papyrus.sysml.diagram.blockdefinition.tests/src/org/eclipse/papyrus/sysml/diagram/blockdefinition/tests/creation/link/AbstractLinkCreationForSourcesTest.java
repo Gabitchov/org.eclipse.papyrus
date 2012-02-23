@@ -223,4 +223,12 @@ public class AbstractLinkCreationForSourcesTest extends AbstractLinkPrepareTest 
 		View sourceView = enumerationLiteralSourceView;
 		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
 	}
+
+	@Test
+	public void createLinkWithSourceAssociation() throws Exception {
+		View sourceView = associationSourceView;
+		boolean isAllowed = isCreationAllowed.get(sourceView);
+		createEdgeFromPalette(toolID, sourceView, null, isAllowed);
+	}
+
 }

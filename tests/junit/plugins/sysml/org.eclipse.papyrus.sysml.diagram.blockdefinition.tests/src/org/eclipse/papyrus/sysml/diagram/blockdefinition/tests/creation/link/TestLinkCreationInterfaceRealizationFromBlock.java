@@ -64,6 +64,7 @@ public class TestLinkCreationInterfaceRealizationFromBlock extends AbstractLinkC
 		isCreationAllowed.put(flowPropertyTargetView, false);
 		isCreationAllowed.put(enumerationLiteralTargetView, false);		
 
+		isCreationAllowed.put(associationTargetView, false);
 	}
 
 }
