@@ -57,11 +57,14 @@
          </documentation>
       </annotation>
       <complexType>
-         <choice>
-            <element ref="advancededitor"/>
-            <element ref="simpleeditor"/>
-            <element ref="popupeditor"/>
-         </choice>
+         <sequence>
+            <choice>
+               <element ref="advancededitor"/>
+               <element ref="simpleeditor"/>
+               <element ref="popupeditor"/>
+            </choice>
+            <element ref="Priority" minOccurs="0" maxOccurs="1"/>
+         </sequence>
          <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
@@ -146,6 +149,47 @@
       </complexType>
    </element>
 
+   <element name="Priority">
+      <annotation>
+         <documentation>
+            The description for the priority of the editpart provider
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" use="required">
+            <annotation>
+               <documentation>
+                  The priority of the provider. It can be one of the following values:
+&lt;Lowest, Low, Medium, High, Highest&gt;. Consideration of dependencies has to be done when choosing the priority. A provider at a higher priority will take a chance first at deciding provision.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Lowest">
+                  </enumeration>
+                  <enumeration value="Low">
+                  </enumeration>
+                  <enumeration value="Medium">
+                  </enumeration>
+                  <enumeration value="High">
+                  </enumeration>
+                  <enumeration value="Highest">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
    <annotation>
       <appInfo>
          <meta.section type="since"/>
@@ -161,15 +205,6 @@
       </appInfo>
       <documentation>
          [Enter extension point usage example here.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
-         <meta.section type="apiInfo"/>
-      </appInfo>
-      <documentation>
-         [Enter API information here.]
       </documentation>
    </annotation>
 
