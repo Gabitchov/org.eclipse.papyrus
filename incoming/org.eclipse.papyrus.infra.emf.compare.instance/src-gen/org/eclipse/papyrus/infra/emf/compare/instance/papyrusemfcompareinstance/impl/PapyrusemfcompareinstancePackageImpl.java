@@ -221,7 +221,7 @@ public class PapyrusemfcompareinstancePackageImpl extends EPackageImpl implement
 		initEReference(getPapyrusEMFCompareInstance_Left(), theEcorePackage.getEObject(), null, "left", null, 0, 1, PapyrusEMFCompareInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusEMFCompareInstance_Right(), theEcorePackage.getEObject(), null, "right", null, 0, 1, PapyrusEMFCompareInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPapyrusEMFCompareInstance_Type(), ecorePackage.getEString(), "type", null, 0, 1, PapyrusEMFCompareInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPapyrusEMFCompareInstance_Name(), ecorePackage.getEString(), "name", null, 0, 1, PapyrusEMFCompareInstance.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPapyrusEMFCompareInstance_Name(), ecorePackage.getEString(), "name", null, 0, 1, PapyrusEMFCompareInstance.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -211,7 +211,7 @@ public class PapyrusEMFCompareInstanceImpl extends EModelElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String getName() {
 		// TODO: use the method described here : 

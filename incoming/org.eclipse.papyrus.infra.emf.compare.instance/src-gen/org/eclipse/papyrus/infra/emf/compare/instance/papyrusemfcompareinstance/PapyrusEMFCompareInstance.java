@@ -124,7 +124,7 @@ public interface PapyrusEMFCompareInstance extends EModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusemfcompareinstancePackage#getPapyrusEMFCompareInstance_Name()
-	 * @model changeable="false" volatile="true" derived="true"
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getName();
