@@ -234,6 +234,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		item.setData(DATA_EDITOR, null);
 		item.setText(simpleEditorPrefered ? getEditorItemName(null) + DEFAULT_EDITOR_LABEL : getEditorItemName(null));
 	}
+	
 
 	/**
 	 * Retrieves the {@link TableItem} name
