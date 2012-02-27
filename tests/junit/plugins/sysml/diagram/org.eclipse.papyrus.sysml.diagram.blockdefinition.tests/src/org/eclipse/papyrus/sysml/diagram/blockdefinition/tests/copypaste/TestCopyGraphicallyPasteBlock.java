@@ -20,12 +20,25 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.text.View;
+import junit.framework.Assert;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.AbstractTest;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.TestUtils;
-
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * Test class for Copy/paste actions
