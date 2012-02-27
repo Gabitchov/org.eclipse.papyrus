@@ -60,6 +60,8 @@ public class SignalPreferencePage extends BlockDefinitionDiagramNodePreferencePa
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
+		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 60);
 		// End of user code
 
 		// Initialize default visibility for compartments in preference page.
