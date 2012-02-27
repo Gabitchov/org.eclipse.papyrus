@@ -175,7 +175,7 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 			return super.createDeleteCommand(editingDomain, elementToDestroy);
 		}
 		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-		if(testArgs(elementToDestroy, null) && elementEditService != null) {
+		if(/*testArgs(elementToDestroy, null) && */elementEditService != null) {//372350: [Table Editor] Delete does not work
 			DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)editingDomain, (EObject)elementToDestroy, false);
 			ICommand command = elementEditService.getEditCommand(request);
 			if(command.canExecute()) {
