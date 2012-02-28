@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils;
 
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getDiagramCommandStack;
@@ -9,6 +22,7 @@ import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.Editor
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestPrepareUtils.createElement;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +36,14 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.action.global.GlobalAction;
 import org.eclipse.gmf.runtime.common.ui.action.internal.actions.global.GlobalCopyAction;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.PopupMenuCommand;
+import org.eclipse.gmf.runtime.diagram.ui.menus.PopupMenu;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -34,6 +53,7 @@ import org.eclipse.jface.commands.ActionHandler;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.gmf.diagram.common.commands.SelectAndExecuteCommand;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
@@ -42,7 +62,6 @@ import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
-
 
 public class TestUtils {
 
@@ -170,6 +189,97 @@ public class TestUtils {
 		}
 	}
 
+	public static void altDropFromModelExplorer(EObject eObject, View containerView, List<String> expectedCommandNames, boolean isAllowed) throws Exception {
+
+		// Find container EditPart (for command creation)
+		EditPart containerEditPart = getEditPart(containerView);
+
+		// Prepare drop request
+		DropObjectsRequest dropRequest = new DropObjectsRequest();
+		ArrayList<EObject> list = new ArrayList<EObject>();
+		list.add(eObject);
+		dropRequest.setObjects(list);
+		dropRequest.setLocation(new Point(200, 200));
+
+		// Get drop command
+		Command command = containerEditPart.getCommand(dropRequest);
+
+		// if the drop is not allowed the command should not be executable
+		if(!isAllowed) {
+			if((command == null) || (!command.canExecute())) {
+				// Ok the command cannot be executed.
+			} else {
+				fail("The command should not be executable.");
+			}
+
+		} else {
+			if((command == null) || (!command.canExecute())) {
+				fail("The command should be executable.");
+			} else {
+
+				// Simple command
+				if(expectedCommandNames.size() == 1) {
+					if(expectedCommandNames.get(0).equals(command.getLabel())) {
+						// Ok the command can be executed.
+						getDiagramCommandStack().execute(command);
+
+						// Test undo - redo
+						getDiagramCommandStack().undo();
+						getDiagramCommandStack().redo();
+
+						// Test the results then
+						// fail("Result tests not implemented.");
+					} else {
+						fail("The expected kind of command was {" + expectedCommandNames.get(0) + "}.");
+					}
+
+				} else if(expectedCommandNames.size() > 1) {
+
+					ICommand tmpCommand = (command instanceof ICommandProxy) ? ((ICommandProxy)command).getICommand() : null;
+					if((tmpCommand == null) || !(tmpCommand instanceof SelectAndExecuteCommand)) {
+						fail("The drop command is not a selact and execute command.");
+					}
+
+					// Field accessibility modification to review elementary drop command available as
+					// SelectAndExecuteCommand choices.
+					SelectAndExecuteCommand selectCommand = (SelectAndExecuteCommand)tmpCommand;
+					Field popupField = PopupMenuCommand.class.getDeclaredField("popupMenu");
+					popupField.setAccessible(true);
+					PopupMenu menu = (PopupMenu)popupField.get(selectCommand);
+
+					Field content = PopupMenu.class.getDeclaredField("content");
+					content.setAccessible(true);
+					List<CompoundCommand> commandList = (List<CompoundCommand>)content.get(menu);
+
+					if(commandList.size() != expectedCommandNames.size()) {
+						fail("Unexpected number of possible alternate drop command.");
+					}
+
+					for(int i = 0; i < commandList.size(); i++) {
+						CompoundCommand subCommand = commandList.get(i);
+						if(expectedCommandNames.get(i).equals(subCommand.getLabel())) {
+							// Ok the command can be executed.
+							getDiagramCommandStack().execute(subCommand);
+
+							// Test undo - redo
+							getDiagramCommandStack().undo();
+							getDiagramCommandStack().redo();
+
+							// Add one more undo to go back in initial state before testing next command
+							getDiagramCommandStack().undo();
+
+							// Test the results then
+							// fail("Result tests not implemented.");
+						} else {
+							fail("The expected kind of command was {" + expectedCommandNames.get(i) + "}.");
+						}
+
+					}
+				}
+			}
+		}
+	}
+
 	public static void createNodeFromPalette(String toolId, View containerView, boolean isAllowed) throws Exception {
 
 		if(isAllowed) {
@@ -212,7 +322,7 @@ public class TestUtils {
 					getDiagramCommandStack().undo();
 					getDiagramCommandStack().redo();
 				}
-				
+
 				// Test the results then
 				// fail("Result tests not implemented.");
 			}
@@ -233,93 +343,93 @@ public class TestUtils {
 			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
 			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
 			connectionTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
-			
-			return  connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
+
+			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
 		}
 
 		throw new Exception("Unexpected kind of creation tool.");
 	}
 
 	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed) throws Exception {
-	
+
 		if(isAllowed) {
 			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, true);
 		} else {
 			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, false);
 		}
-	
+
 	}
 
 	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute) throws Exception {
-	
+
 		// Find palette tool to simulate element creation and prepare request
 		Tool tool = getPaletteTool(toolId);
-		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest) getCreateRequest(tool);
-		
+		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest)getCreateRequest(tool);
+
 		// Test source creation command
-		createRequest.setSourceEditPart(getEditPart(sourceView));	
-		createRequest.setType(RequestConstants.REQ_CONNECTION_START);	
+		createRequest.setSourceEditPart(getEditPart(sourceView));
+		createRequest.setType(RequestConstants.REQ_CONNECTION_START);
 		Command srcCommand = getEditPart(sourceView).getCommand(createRequest);
-		
+
 		// Test source command
-		if ((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
-			if (targetView == null) { // Only test behavior on source
-				if (!isAllowed) { 
+		if((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
+			if(targetView == null) { // Only test behavior on source
+				if(!isAllowed) {
 					// Current behavior matches the expected results
 					return;
 				} else {
 					fail("The command should be executable.");
 				}
-				
+
 			} else { // Test complete creation, the command should necessary be executable
 				fail("The command should be executable.");
 			}
 
 		} else { // Executable command
-			if (targetView == null) { // Only test behavior on source
-				if (!isAllowed) { 
+			if(targetView == null) { // Only test behavior on source
+				if(!isAllowed) {
 					fail("The command should not be executable.");
 				} else {
 					// Current behavior matches the expected results - no execution test.
 					return;
 				}
-				
+
 			} else { // The command is executable and a target is provided - continue the test
-				
+
 				// Get target command (complete link creation)
 				createRequest.setSourceEditPart(getEditPart(sourceView));
 				createRequest.setTargetEditPart(getEditPart(targetView));
 				createRequest.setType(RequestConstants.REQ_CONNECTION_END);
 				Command tgtCommand = getEditPart(targetView).getCommand(createRequest);
-				
+
 				// Test the target command
-				if ((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
-						if (!isAllowed) { 
-							// Current behavior matches the expected results
-							return;
-						} else {
-							fail("The command should be executable.");
-						}
-				
+				if((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
+					if(!isAllowed) {
+						// Current behavior matches the expected results
+						return;
+					} else {
+						fail("The command should be executable.");
+					}
+
 				} else { // Executable command
-					if (!isAllowed) {
+					if(!isAllowed) {
 						fail("The command should not be executable.");
 					} else {
 						// Current behavior matches the expected results
 						if(execute) { // Test command execution
 							getDiagramCommandStack().execute(tgtCommand);
-			
+
 							// Test undo - redo
 							getDiagramCommandStack().undo();
 							getDiagramCommandStack().redo();
 						}
-						
+
 						// Test the results then
 						// fail("Result tests not implemented.");
 					}
 				}
-			}			
-			
+			}
+
 		}
 	}
 
@@ -348,7 +458,7 @@ public class TestUtils {
 		Assert.assertNotNull("Impossible to find copy command", copyCommand);
 
 		//EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
-		
+
 		// retrieve handler service for the copy command
 		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
