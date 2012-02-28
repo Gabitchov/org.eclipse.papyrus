@@ -10,23 +10,32 @@
  ******************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.dialog;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.views.modelexplorer.LinkNode;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -41,6 +50,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.CommonViewer;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * A dialog that allows searching elements in the Model navigator by name.
@@ -61,6 +75,8 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	private List<Object> matchedObjects = Collections.emptyList();
 
+	protected int currentIndex = 0;
+	
 	private Label matchesLabel;
 
 	private Text searchText;
@@ -74,7 +90,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param shell
 	 * @param modelNavigator
 	 * @deprecated Use {@link #NavigatorSearchDialog(Shell, TreeViewer)}
@@ -95,9 +111,10 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param shell Shell used to show this Dialog
-	 * @param viewer 
+	 * 
+	 * @param shell
+	 *        Shell used to show this Dialog
+	 * @param viewer
 	 * @param contentProvider
 	 * @param labelProvider
 	 * @param root
@@ -145,9 +162,26 @@ public class NavigatorSearchDialog extends TrayDialog {
     */
 	private void fireSetSelection( ISelection selection, boolean reveal) {
 		// Note : if we want to force reveal, it is possible to check if 
-		// selectionProvider instanceof Viewer, and then call selectionProvider.setSelection(selection, true).
-		// By default a TreeViewer reveal the selection.
-		viewer.setSelection(selection);
+				// selectionProvider instanceof Viewer, and then call selectionProvider.setSelection(selection, true).
+				// By default a TreeViewer reveal the selection.
+				if(viewer instanceof CommonViewer) {
+					if(selection instanceof IStructuredSelection) {
+						IStructuredSelection structured = (IStructuredSelection)selection;
+						ModelExplorerView.reveal(Iterables.transform(Lists.newArrayList(structured.iterator()), new Function<Object, EObject>() {
+
+							public EObject apply(Object arg0) {
+								if(arg0 instanceof IAdaptable) {
+									IAdaptable adapt = (IAdaptable)arg0;
+									return getAdapter(adapt, EObject.class);
+								}
+								return null;
+							}
+						}), (CommonViewer)viewer);
+					}
+				} else if(viewer instanceof Viewer) {
+					Viewer view = (Viewer)viewer;
+					view.setSelection(selection, true);
+				}
 	}
 	/*
 	 * (non-Javadoc)
@@ -196,18 +230,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				ISelection sel = viewer.getSelection();
-				if(!(sel instanceof StructuredSelection)) {
-					return;
+				if(currentIndex >= matchedObjects.size() - 1) {
+					currentIndex = 0;
+				} else {
+					currentIndex++;
 				}
-				StructuredSelection ssel = (StructuredSelection)sel;
-
-				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if(index == matchedObjects.size() - 1) {
-					index = -1;
-				}
-				index++;
-				fireSetSelection(new StructuredSelection(matchedObjects.get(index)), true);
+				fireSetSelection(new StructuredSelection(matchedObjects.get(currentIndex)), true);
 			}
 
 		});
@@ -218,18 +246,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				ISelection sel = viewer.getSelection();
-				if(!(sel instanceof StructuredSelection)) {
-					return;
+				if(currentIndex <= 0) {
+					currentIndex = matchedObjects.size() - 1;
+				} else {
+					currentIndex--;
 				}
-				StructuredSelection ssel = (StructuredSelection)sel;
-
-				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if(index == 0) {
-					index = matchedObjects.size() - 1;
-				}
-				index--;
-				fireSetSelection(new StructuredSelection(matchedObjects.get(index)), true);
+				fireSetSelection(new StructuredSelection(matchedObjects.get(currentIndex)), true);
 			}
 
 		});
@@ -247,8 +269,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 		caseButton = new Button(background, SWT.CHECK);
 		caseButton.setText("Case sensitive?");
-		GridData caseButtonData = new GridData(
-				GridData.HORIZONTAL_ALIGN_BEGINNING);
+		GridData caseButtonData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 		caseButtonData.horizontalSpan = 2;
 		caseButton.setSelection(false);
 		caseButton.setLayoutData(caseButtonData);
@@ -274,6 +295,14 @@ public class NavigatorSearchDialog extends TrayDialog {
 						| GridData.FILL_HORIZONTAL));
 
 	}
+	
+	protected void clearMatches() {
+		matchedObjects = Collections.emptyList();
+		currentIndex = 0;
+		backButton.setEnabled(false);
+		nextButton.setEnabled(false);
+		matchesLabel.setText("");
+	}
 
 	private void updateMatches() {
 		if(contentProvider == null && labelProvider == null) {
@@ -282,10 +311,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 		String pattern = searchText.getText();
 		if(pattern.length() == 0) {
-			matchedObjects = Collections.emptyList();
-			backButton.setEnabled(false);
-			nextButton.setEnabled(false);
-			matchesLabel.setText("No matchings.");
+			clearMatches();
 			return;
 		}
 
@@ -293,8 +319,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 			pattern = pattern.toUpperCase();
 		}
 
-		matchedObjects = searchPattern(pattern, Arrays.asList(contentProvider
-				.getElements(root)));
+		launchSearch(pattern, contentProvider.getElements(root));
 
 		// Update matches label
 		matchesLabel.setText(matchedObjects.size() + " matches found");
@@ -311,51 +336,86 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	}
 
-	private List<Object> searchPattern(String pattern, List<Object> objects) {
+	protected void launchSearch(final String pattern, final Object[] root) {
+		final boolean caseSensitive = caseButton.getSelection();
+
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(null);
+		try {
+			dialog.run(true, true, new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+					matchedObjects = searchPattern(pattern, caseSensitive, Arrays.asList(root), monitor);
+					currentIndex = 0;
+				}
+			});
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private List<Object> searchPattern(String pattern, boolean caseSensitive, List<Object> objects,  IProgressMonitor monitor) {
+		if(monitor.isCanceled()) {
+			return Collections.emptyList();
+		}
+
 		List<Object> matches = new ArrayList<Object>();
 
-		List<Object> childs = new ArrayList<Object>();
+		List<Object> children = new ArrayList<Object>();
 		String objectLabel;
-		boolean caseSensitive = caseButton.getSelection();
+
 		for(Object o : objects) {
 			// Search matches in this level
-//			if(!(o instanceof Diagram)) {
-				objectLabel = caseSensitive ? labelProvider.getText(o)
-						: labelProvider.getText(o).toUpperCase();
+			if(!(o instanceof Diagram)) {
+				objectLabel = caseSensitive ? labelProvider.getText(o) : labelProvider.getText(o).toUpperCase();
 
 				if(objectLabel.contains(pattern)) {
 					matches.add(o);
 				}
-
-				// Find childs
-
-				EObject parentEObj = (EObject)((IAdaptable)o).getAdapter(EObject.class);
+				EObject parentEObj = (EObject)getAdapter(o, EObject.class);
 
 				for(int i = 0; i < contentProvider.getChildren(o).length; i++) {
 					Object child = contentProvider.getChildren(o)[i];
-					if(child instanceof IAdaptable) {
+					//If child can be adapted into a LinkNode, find its referenced EObjects
+					if(getAdapter(child, LinkNode.class) != null) {
+						for(Object referencedObject : contentProvider.getChildren(child)) {
+							EObject referencedEObject = (EObject)((IAdaptable)referencedObject).getAdapter(EObject.class);
+							if(referencedEObject != null && (parentEObj == null || parentEObj.equals(referencedEObject.eContainer()))) {
+								children.add(referencedObject);
+							}
+						}
+					}
+					//If it is an EObject, add it to the list
+					else {
 						EObject eObject = (EObject)((IAdaptable)child).getAdapter(EObject.class);
-
-						//doesn't work for facets (Diagram and table)
-//						if(eObject != null && eObject.eContainer() != null && eObject.eContainer().equals(parentEObj)) {
-//							childs.add(child);
-//						}
-						
-						//to find diagrams, tables and others
-						if(eObject!=null){
-							childs.add(child);
+						if(eObject != null && eObject.eContainer() != null && (parentEObj == null || eObject.eContainer().equals(parentEObj))) {
+							children.add(child);
 						}
 					}
 				}
 			}
-//		}
-		if(!childs.isEmpty()) {
-			matches.addAll(searchPattern(pattern, childs));
+		}
+		if(!children.isEmpty()) {
+			matches.addAll(searchPattern(pattern, caseSensitive, children, monitor));
 		}
 
 		return matches;
 	}
 
+	@SuppressWarnings("unchecked")
+	public <T> T getAdapter(Object object, Class<? extends T> toAdapt) {
+		T result = null;
+		if(object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)object;
+			result = (T)adaptable.getAdapter(toAdapt);
+		}
+		if(result == null) {
+			result = (T)Platform.getAdapterManager().getAdapter(object, toAdapt);
+		}
+		return result;
+	}
+	
 	protected KeyListener getKeyListener() {
 		return new KeyListener() {
 

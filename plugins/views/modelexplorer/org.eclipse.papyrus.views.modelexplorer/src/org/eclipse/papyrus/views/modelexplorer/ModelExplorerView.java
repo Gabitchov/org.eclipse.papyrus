@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -36,6 +37,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -51,6 +53,10 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
+import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -75,6 +81,9 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}.
@@ -650,32 +659,95 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void revealSemanticElement(List<?> elementList) {
-		//for each element we reveal it
-		Iterator<?> elementListIterator = elementList.iterator();
-		ArrayList<Object> treeElementToSelect = new ArrayList<Object>();
-		while(elementListIterator.hasNext()) {
-			Object currentElement = elementListIterator.next();
-			//test if the type is an EObject
-			if(currentElement instanceof EObject) {
-				EObject currentEObject = (EObject)currentElement;
-				//the content provider exist?
-				if(getCommonViewer().getContentProvider() != null) {
-					//need the root in order to find all element in the tree
-					Object root = getCommonViewer().getInput();
-					//look for the path in order to access to this element
-					List<Object> path = searchPath(currentEObject, Arrays.asList(((ITreeContentProvider)getCommonViewer().getContentProvider()).getElements(root)));
-					if(path.size() > 0) {
-						//expand in the common viewer the path
-						expandItems(path, getCommonViewer().getTree().getItems());
-						treeElementToSelect.add(path.get(path.size() - 1));
-					}
-				}
+		reveal(elementList, getCommonViewer());
+	}
+
+	/**
+	 * Expands the given CommonViewer to reveal the given elements
+	 * @param elementList The elements to reveal
+	 * @param commonViewer The CommonViewer they are to be revealed in
+	 */
+	public static void reveal(Iterable<?> elementList, CommonViewer commonViewer) {
+		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
+		// filter out non EMF objects
+		Iterable<EObject> list = Iterables.transform(Iterables.filter(elementList, EObject.class), new Function<Object, EObject>() {
+
+			public EObject apply(Object from) {
+				return (EObject)from;
 			}
-			selectReveal(new StructuredSelection(treeElementToSelect));
+		});
+
+		for(EObject currentEObject : list) {
+			matchingItemsToSelect.add(new ModelElementItemMatchingItem(currentEObject));
+
+			// the content provider exist?
+			if(commonViewer.getContentProvider() != null) {
+				// retrieve the ancestors to reveal them
+				// and allow the selection of the object
+				ArrayList<EObject> parents = new ArrayList<EObject>();
+				EObject tmp = currentEObject.eContainer();
+				while(tmp != null) {
+					parents.add(tmp);
+					tmp = tmp.eContainer();
+				}
+
+				Iterable<EObject> reverseParents = Iterables.reverse(parents);
+
+				// reveal the resource if necessary
+				Resource r = parents.get(parents.size() - 1).eResource();
+				if(r != null) {
+					commonViewer.expandToLevel(new ReferencableMatchingItem(r.getResourceSet()), 1);
+					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+				}
+
+				/*
+				 * reveal the ancestors tree using expandToLevel on each of them
+				 * in the good order. This is a lot faster than going through the whole tree
+				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
+				 * to keep track of the revealed elements.
+				 * 
+				 * However we need to use a dedicated MatchingItem to do the matching,
+				 * and a specific comparer in our viewer so than the equals of MatchingItem is
+				 * used in priority.
+				 * 
+				 * Please refer to MatchingItem for more infos.
+				 */
+				EObject previousParent = null;
+				for(EObject parent : reverseParents) {
+					if(parent.eContainingFeature() != null && previousParent != null) {
+						commonViewer.expandToLevel(new LinkItemMatchingItem(previousParent, parent.eContainmentFeature()), 1);
+					}
+					commonViewer.expandToLevel(new ModelElementItemMatchingItem(parent), 1);
+					previousParent = parent;
+				}
+				commonViewer.expandToLevel(new LinkItemMatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature()), 1);
+			}
+		}
+
+		selectReveal(new StructuredSelection(matchingItemsToSelect), commonViewer);
+	}
+	
+	/**
+	 * Selects the given ISelection in the given CommonViwer
+	 * @param structuredSelection The ISelection to select
+	 * @param commonViewer The ComonViewer to select it in
+	 */
+	public static void selectReveal(ISelection structuredSelection, Viewer commonViewer) {
+		commonViewer.setSelection(structuredSelection, true);
+	}
+
+	/**
+	 * Selects and, if possible, reveals the given ISelection in the given CommonViwer
+	 * @param selection The ISelection to select
+	 * @param viewer The ComonViewer to select it in
+	 */
+	public static void reveal(ISelection selection, CommonViewer viewer) {
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structured = (IStructuredSelection)selection;
+			reveal(Lists.newArrayList(), viewer);
+		} else {
+			viewer.setSelection(selection);
 		}
 	}
 

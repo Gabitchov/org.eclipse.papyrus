@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+import org.eclipse.jface.viewers.IElementComparer;
+import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.internal.navigator.dnd.NavigatorDnDService;
@@ -30,21 +32,44 @@ public class CustomCommonViewer extends CommonViewer {
 	public CustomCommonViewer(String aViewerId, Composite aParent, int aStyle) {
 		super(aViewerId, aParent, aStyle);
 		// TODO Auto-generated constructor stub
+		setComparer(new IElementComparer() {
+
+			public int hashCode(Object element) {
+				if(element instanceof IReferencable) {
+					IReferencable ref = (IReferencable)element;
+					return ref.getElementBehind().hashCode();
+				}
+				if(element instanceof IMatchingItem) {
+					IMatchingItem matchItem = (IMatchingItem)element;
+					return matchItem.matchingItemHashcode();
+				}
+				return element.hashCode();
+			}
+
+			public boolean equals(Object a, Object b) {
+				if(a instanceof IMatchingItem) {
+					return ((IMatchingItem)a).matchingItemEquals(b);
+				}
+
+				if(b != null) {
+					return b.equals(a);
+				}
+				return false;
+			}
+		});
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected void initDragAndDrop() {
-		dropAdapter=null;
+		dropAdapter = null;
 		int operations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 
 		CommonDragAdapter dragAdapter = createDragAdapter();
-		addDragSupport(operations, dragAdapter.getSupportedDragTransfers(),
-				dragAdapter);
+		addDragSupport(operations, dragAdapter.getSupportedDragTransfers(), dragAdapter);
 		dropAdapter = createDropAdapter();
-		addDropSupport(operations, dropAdapter.getSupportedDropTransfers(),
-				dropAdapter);
+		addDropSupport(operations, dropAdapter.getSupportedDropTransfers(), dropAdapter);
 
 		NavigatorDnDService dnd = (NavigatorDnDService)getNavigatorContentService().getDnDService();
 		dnd.setDropAdaptor(dropAdapter);
@@ -52,6 +77,7 @@ public class CustomCommonViewer extends CommonViewer {
 
 	/**
 	 * get the listener in order to parameterize during the runtime the drop
+	 * 
 	 * @return the dropadapter
 	 */
 	public CommonDropAdapter getDropAdapter() {
