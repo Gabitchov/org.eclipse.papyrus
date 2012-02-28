@@ -88,6 +88,10 @@ import com.google.common.collect.Lists;
  * different Model, use a {@link ModelExplorerPageBookView}.
  * 
  */
+/**
+ * @author tfaure
+ *
+ */
 public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider {
 
 	/** The associated EditorPart */
@@ -524,10 +528,18 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
+	 */
 	public void revealSemanticElement(List<?> elementList) {
 		reveal(elementList, getCommonViewer());
 	}
 
+	/**
+	 * Expands the given CommonViewer to reveal the given elements
+	 * @param elementList The elements to reveal
+	 * @param commonViewer The CommonViewer they are to be revealed in
+	 */
 	public static void reveal(Iterable<?> elementList, CommonViewer commonViewer) {
 		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
 		// filter out non EMF objects
@@ -588,14 +600,24 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		selectReveal(new StructuredSelection(matchingItemsToSelect), commonViewer);
 	}
 
+	/**
+	 * Selects the given ISelection in the given CommonViwer
+	 * @param structuredSelection The ISelection to select
+	 * @param commonViewer The ComonViewer to select it in
+	 */
 	public static void selectReveal(ISelection structuredSelection, Viewer commonViewer) {
 		commonViewer.setSelection(structuredSelection, true);
 	}
 
+	/**
+	 * Selects and, if possible, reveals the given ISelection in the given CommonViwer
+	 * @param selection The ISelection to select
+	 * @param viewer The ComonViewer to select it in
+	 */
 	public static void reveal(ISelection selection, CommonViewer viewer) {
 		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection structured = (IStructuredSelection)selection;
-			reveal(Lists.newArrayList(), viewer);
+			reveal(Lists.newArrayList(structured.iterator()), viewer);
 		} else {
 			viewer.setSelection(selection);
 		}
