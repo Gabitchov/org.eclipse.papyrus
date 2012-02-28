@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
 import org.eclipse.ui.views.properties.IPropertySource;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 /**
@@ -37,7 +39,14 @@ public class AssociationEndTargetEditPart extends AssociationSourceNameEditPart 
 		// TODO Auto-generated constructor stub
 	}
 
-
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		if(UMLPackage.Literals.FEATURE__IS_STATIC.equals(event.getFeature())) {
+			refreshUnderline();
+		}
+		super.handleNotificationEvent(event);
+	}
+	
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
 	 * 
