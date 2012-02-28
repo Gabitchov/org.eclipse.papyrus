@@ -24,6 +24,7 @@ import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -36,6 +37,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
@@ -45,6 +47,10 @@ import org.eclipse.papyrus.core.ui.IRevealSemanticElement;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.modelexplorer.listener.DoubleClickListener;
+import org.eclipse.papyrus.modelexplorer.matching.IMatchingItem;
+import org.eclipse.papyrus.modelexplorer.matching.LinkItemMatchingItem;
+import org.eclipse.papyrus.modelexplorer.matching.ModelElementItemMatchingItem;
+import org.eclipse.papyrus.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -73,6 +79,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}. This
@@ -518,7 +525,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 	public void revealSemanticElement(List<?> elementList) {
-		ArrayList<MatchingItem> matchingItemsToSelect = new ArrayList<MatchingItem>();
+		reveal(elementList, getCommonViewer());
+	}
+
+	public static void reveal(Iterable<?> elementList, CommonViewer commonViewer) {
+		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
 		// filter out non EMF objects
 		Iterable<EObject> list = Iterables.transform(Iterables.filter(elementList, EObject.class), new Function<Object, EObject>() {
 
@@ -528,9 +539,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		});
 
 		for(EObject currentEObject : list) {
-			matchingItemsToSelect.add(new MatchingItem(currentEObject));
+			matchingItemsToSelect.add(new ModelElementItemMatchingItem(currentEObject));
+
 			// the content provider exist?
-			if(getCommonViewer().getContentProvider() != null) {
+			if(commonViewer.getContentProvider() != null) {
 				// retrieve the ancestors to reveal them
 				// and allow the selection of the object
 				ArrayList<EObject> parents = new ArrayList<EObject>();
@@ -541,6 +553,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				}
 
 				Iterable<EObject> reverseParents = Iterables.reverse(parents);
+
+				// reveal the resource if necessary
+				Resource r = parents.get(parents.size() - 1).eResource();
+				if(r != null) {
+					commonViewer.expandToLevel(new ReferencableMatchingItem(r.getResourceSet()), 1);
+					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+				}
 
 				/*
 				 * reveal the ancestors tree using expandToLevel on each of them
@@ -557,16 +576,30 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				EObject previousParent = null;
 				for(EObject parent : reverseParents) {
 					if(parent.eContainingFeature() != null && previousParent != null) {
-						getCommonViewer().expandToLevel(new MatchingItem(previousParent, parent.eContainmentFeature()), 1);
+						commonViewer.expandToLevel(new LinkItemMatchingItem(previousParent, parent.eContainmentFeature()), 1);
 					}
-					getCommonViewer().expandToLevel(new MatchingItem(parent), 1);
+					commonViewer.expandToLevel(new ModelElementItemMatchingItem(parent), 1);
 					previousParent = parent;
 				}
-				getCommonViewer().expandToLevel(new MatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature()), 1);
+				commonViewer.expandToLevel(new LinkItemMatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature()), 1);
 			}
 		}
 
-		selectReveal(new StructuredSelection(matchingItemsToSelect));
+		selectReveal(new StructuredSelection(matchingItemsToSelect), commonViewer);
 	}
+
+	public static void selectReveal(ISelection structuredSelection, Viewer commonViewer) {
+		commonViewer.setSelection(structuredSelection, true);
+	}
+
+	public static void reveal(ISelection selection, CommonViewer viewer) {
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structured = (IStructuredSelection)selection;
+			reveal(Lists.newArrayList(), viewer);
+		} else {
+			viewer.setSelection(selection);
+		}
+	}
+
 
 }

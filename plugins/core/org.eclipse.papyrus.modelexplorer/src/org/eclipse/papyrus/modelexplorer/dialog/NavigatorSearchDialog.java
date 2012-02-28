@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -28,10 +29,13 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.modelexplorer.LinkNode;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -46,6 +50,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.CommonViewer;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * A dialog that allows searching elements in the Model navigator by name.
@@ -83,7 +92,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param shell
 	 * @param modelNavigator
 	 * @deprecated Use {@link #NavigatorSearchDialog(Shell, TreeViewer)}
@@ -91,23 +100,22 @@ public class NavigatorSearchDialog extends TrayDialog {
 	public NavigatorSearchDialog(Shell shell, CommonNavigator modelNavigator) {
 		super(shell);
 		setShellStyle(SWT.DIALOG_TRIM | SWT.MODELESS);
-		IContentProvider cprovider = modelNavigator.getCommonViewer()
-				.getContentProvider();
+		IContentProvider cprovider = modelNavigator.getCommonViewer().getContentProvider();
 		if(cprovider instanceof ITreeContentProvider) {
 			contentProvider = (ITreeContentProvider)cprovider;
 		}
 		root = modelNavigator.getCommonViewer().getInput();
 		viewer = modelNavigator.getCommonViewer();
-		labelProvider = (ILabelProvider)modelNavigator.getCommonViewer()
-				.getLabelProvider();
+		labelProvider = (ILabelProvider)modelNavigator.getCommonViewer().getLabelProvider();
 
 	}
 
 	/**
 	 * Constructor.
-	 *
-	 * @param shell Shell used to show this Dialog
-	 * @param viewer 
+	 * 
+	 * @param shell
+	 *        Shell used to show this Dialog
+	 * @param viewer
 	 * @param contentProvider
 	 * @param labelProvider
 	 * @param root
@@ -128,9 +136,10 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param shell Shell used to show this Dialog
-	 * @param viewer 
+	 * 
+	 * @param shell
+	 *        Shell used to show this Dialog
+	 * @param viewer
 	 * @param contentProvider
 	 * @param labelProvider
 	 * @param root
@@ -149,17 +158,38 @@ public class NavigatorSearchDialog extends TrayDialog {
 	 * <p>
 	 * Subclasses must implement this method.
 	 * </p>
-	 *
-	 * @param selection the new selection
-	 * @param reveal <code>true</code> if the selection is to be made
-	 *   visible, and <code>false</code> otherwise
+	 * 
+	 * @param selection
+	 *        the new selection
+	 * @param reveal
+	 *        <code>true</code> if the selection is to be made
+	 *        visible, and <code>false</code> otherwise
 	 */
-	protected void fireSetSelection( ISelection selection, boolean reveal) {
+	@SuppressWarnings("unchecked")
+	protected void fireSetSelection(ISelection selection, boolean reveal) {
 		// Note : if we want to force reveal, it is possible to check if 
 		// selectionProvider instanceof Viewer, and then call selectionProvider.setSelection(selection, true).
 		// By default a TreeViewer reveal the selection.
-		viewer.setSelection(selection);
+		if(viewer instanceof CommonViewer) {
+			if(selection instanceof IStructuredSelection) {
+				IStructuredSelection structured = (IStructuredSelection)selection;
+				ModelExplorerView.reveal(Iterables.transform(Lists.newArrayList(structured.iterator()), new Function<Object, EObject>() {
+
+					public EObject apply(Object arg0) {
+						if(arg0 instanceof IAdaptable) {
+							IAdaptable adapt = (IAdaptable)arg0;
+							return getAdapter(adapt, EObject.class);
+						}
+						return null;
+					}
+				}), (CommonViewer)viewer);
+			}
+		} else if(viewer instanceof Viewer) {
+			Viewer view = (Viewer)viewer;
+			view.setSelection(selection, true);
+		}
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -191,12 +221,9 @@ public class NavigatorSearchDialog extends TrayDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 
-		launchButton = createButton(parent, IDialogConstants.PROCEED_ID, "Launch search",
-				true);
-		backButton = createButton(parent, IDialogConstants.BACK_ID,
-				IDialogConstants.BACK_LABEL, false);
-		nextButton = createButton(parent, IDialogConstants.NEXT_ID,
-				IDialogConstants.NEXT_LABEL, false);
+		launchButton = createButton(parent, IDialogConstants.PROCEED_ID, "Launch search", true);
+		backButton = createButton(parent, IDialogConstants.BACK_ID, IDialogConstants.BACK_LABEL, false);
+		nextButton = createButton(parent, IDialogConstants.NEXT_ID, IDialogConstants.NEXT_LABEL, false);
 
 
 		backButton.setEnabled(false);
@@ -265,8 +292,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 		caseButton = new Button(background, SWT.CHECK);
 		caseButton.setText("Case sensitive?");
-		GridData caseButtonData = new GridData(
-				GridData.HORIZONTAL_ALIGN_BEGINNING);
+		GridData caseButtonData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 		caseButtonData.horizontalSpan = 2;
 		caseButton.setSelection(false);
 		caseButton.setLayoutData(caseButtonData);
@@ -287,9 +313,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 		matchesLabel = new Label(background, SWT.None);
 		matchesLabel.setText("");
-		matchesLabel
-		.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING
-				| GridData.FILL_HORIZONTAL));
+		matchesLabel.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL));
 
 	}
 
@@ -353,46 +377,64 @@ public class NavigatorSearchDialog extends TrayDialog {
 	}
 
 	protected List<Object> searchPattern(String pattern, boolean caseSensitive, List<Object> objects, IProgressMonitor monitor) {
-		if (monitor.isCanceled()) {
+		if(monitor.isCanceled()) {
 			return Collections.emptyList();
 		}
 
 		List<Object> matches = new ArrayList<Object>();
 
-		List<Object> childs = new ArrayList<Object>();
+		List<Object> children = new ArrayList<Object>();
 		String objectLabel;
 
 		for(Object o : objects) {
 			// Search matches in this level
 			if(!(o instanceof Diagram)) {
-				objectLabel = caseSensitive ? labelProvider.getText(o)
-						: labelProvider.getText(o).toUpperCase();
+				objectLabel = caseSensitive ? labelProvider.getText(o) : labelProvider.getText(o).toUpperCase();
 
 				if(objectLabel.contains(pattern)) {
 					matches.add(o);
 				}
-
-				// Find childs
-
-				EObject parentEObj = (EObject)((IAdaptable)o).getAdapter(EObject.class);
+				EObject parentEObj = (EObject)getAdapter(o, EObject.class);
 
 				for(int i = 0; i < contentProvider.getChildren(o).length; i++) {
 					Object child = contentProvider.getChildren(o)[i];
-					if(child instanceof IAdaptable) {
+					//If child can be adapted into a LinkNode, find its referenced EObjects
+					if(getAdapter(child, LinkNode.class) != null) {
+						for(Object referencedObject : contentProvider.getChildren(child)) {
+							EObject referencedEObject = (EObject)((IAdaptable)referencedObject).getAdapter(EObject.class);
+							if(referencedEObject != null && (parentEObj == null || parentEObj.equals(referencedEObject.eContainer()))) {
+								children.add(referencedObject);
+							}
+						}
+					}
+					//If it is an EObject, add it to the list
+					else {
 						EObject eObject = (EObject)((IAdaptable)child).getAdapter(EObject.class);
-
-						if(eObject != null && eObject.eContainer() != null && eObject.eContainer().equals(parentEObj)) {
-							childs.add(child);
+						if(eObject != null && eObject.eContainer() != null && (parentEObj == null || eObject.eContainer().equals(parentEObj))) {
+							children.add(child);
 						}
 					}
 				}
 			}
 		}
-		if(!childs.isEmpty()) {
-			matches.addAll(searchPattern(pattern, caseSensitive, childs, monitor));
+		if(!children.isEmpty()) {
+			matches.addAll(searchPattern(pattern, caseSensitive, children, monitor));
 		}
 
 		return matches;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T getAdapter(Object object, Class<? extends T> toAdapt) {
+		T result = null;
+		if(object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)object;
+			result = (T)adaptable.getAdapter(toAdapt);
+		}
+		if(result == null) {
+			result = (T)Platform.getAdapterManager().getAdapter(object, toAdapt);
+		}
+		return result;
 	}
 
 }
