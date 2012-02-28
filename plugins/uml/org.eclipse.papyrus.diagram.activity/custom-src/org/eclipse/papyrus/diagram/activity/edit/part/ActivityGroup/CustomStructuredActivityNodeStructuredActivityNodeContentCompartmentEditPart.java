@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStr
  * @author arthur daussy
  * 
  */
-public class CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart extends StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart {
+public class CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart extends StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart  implements IGroupCompartmentEditPart{
 
 	public CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);

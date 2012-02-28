@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.activity.activitygroup.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.diagram.common.groups.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.preferences.ui.FontGroup;

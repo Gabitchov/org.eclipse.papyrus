@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegi
  * @author arthur daussy
  * 
  */
-public class CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart extends InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart {
+public class CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart extends InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart implements IGroupCompartmentEditPart {
 
 	public CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(View view) {
 		super(view);

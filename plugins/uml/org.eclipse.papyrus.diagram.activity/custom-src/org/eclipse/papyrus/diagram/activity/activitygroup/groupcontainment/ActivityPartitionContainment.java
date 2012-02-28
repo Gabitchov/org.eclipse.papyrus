@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2011 Atos.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,12 +8,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
+ *   Arthur Daussy (Atos) - Initial API and implementation
+ *   Arthur Daussy - 371712 : 372745: [ActivityDiagram] Major refactoring group framework
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.activity.groupcontainment;
+package org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -24,33 +26,35 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.activity.activitygroup.AbstractContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The descriptor for StructuredActivityNode node used by
+ * The descriptor for ActivityPartition node used by
  * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
-public class StructuredActivityNodeContainment extends AbstractContainerNodeDescriptor {
+public class ActivityPartitionContainment extends AbstractContainerNodeDescriptor {
+
+	private List<EReference> parentReferences;
 
 	/**
 	 * Get the eclass of the model eobject represented by the node
 	 * 
-	 * @return StructuredActivityNode eclass
+	 * @return ActivityPartition eclass
 	 */
 	public EClass getContainerEClass() {
-		return UMLPackage.eINSTANCE.getStructuredActivityNode();
+		return UMLPackage.eINSTANCE.getActivityPartition();
 	}
 
 	/**
 	 * Get the area in which contained children are located.
 	 * 
 	 * @param containerPart
-	 *        the StructuredActivityNode part
+	 *        the ActivityPartition part
 	 * @return the rectangle in which nodes are considered as children of this
 	 *         part
 	 */
@@ -61,35 +65,38 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	}
 
 	/**
-	 * Get the list of references linking the StructuredActivityNode to children
+	 * Get the list of references linking the ActivityPartition to children
 	 * element.
 	 * 
 	 * @return the references to contained elements
 	 */
 	public List<EReference> getChildrenReferences() {
-		List<EReference> references = new ArrayList<EReference>(2);
-		references.add(UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
-		references.add(UMLPackage.eINSTANCE.getStructuredActivityNode_Edge());
+		List<EReference> references = new ArrayList<EReference>(3);
+		references.add(UMLPackage.eINSTANCE.getActivityPartition_Node());
+		references.add(UMLPackage.eINSTANCE.getActivityPartition_Edge());
+		references.add(UMLPackage.eINSTANCE.getActivityPartition_Subpartition());
 		return references;
 	}
 
-	/**
-	 * Get the structured activity node content compartment edit part from a
-	 * view of the structured activity node.
-	 * 
-	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view
-	 *        or the primary view of the containing node
-	 * @param diagramPart
-	 *        the diagram edit part (used to recover parts from views)
-	 * @return the structured activity node content compartment edit part
-	 */
-	public IGraphicalEditPart getPartFromView(View nodeView, DiagramEditPart diagramPart) {
-		EditPart part = DiagramEditPartsUtil.getEditPartFromView(nodeView, diagramPart);
-		if(part instanceof GraphicalEditPart) {
-			String hint = "" + StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID;
-			return ((GraphicalEditPart)part).getChildBySemanticHintOnPrimaryView(hint);
+
+	@Override
+	public List<EReference> getParentReferences() {
+		if (parentReferences == null){
+			parentReferences = new ArrayList<EReference>();		
+			parentReferences.add(UMLPackage.Literals.ACTIVITY_PARTITION__SUPER_PARTITION);
+			parentReferences.add(UMLPackage.Literals.ACTIVITY_GROUP__IN_ACTIVITY);
 		}
-		return null;
+		return parentReferences;
 	}
+
+	@Override
+	public IGraphicalEditPart getCompartmentPartFromView(IGraphicalEditPart editpart) {
+		String hint = "" + ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID;
+		return ((GraphicalEditPart)editpart).getChildBySemanticHintOnPrimaryView(hint);
+	}
+
+	public int getGroupPriority() {
+		return IGroupPriority.ACTIVITY_PARTITION_PRIORITY;
+	}
+
 }

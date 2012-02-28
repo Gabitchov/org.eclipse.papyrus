@@ -70,7 +70,6 @@ import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
@@ -136,13 +135,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		return UMLElementTypes.getElementType(elementID);
 	}
 
-	@Override
-	protected Command getDropCommand(ChangeBoundsRequest request) {
-		if(Utils.isRequestGroupFrameworkConcerned(request)) {
-			return null;
-		}
-		return super.getDropCommand(request);
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -569,4 +561,12 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			executedCommands.clear();
 		}
 	}
+
+	@Override
+	protected Command getDropCommand(ChangeBoundsRequest request) {
+		
+		return super.getDropCommand(request);
+	}
+	
+	
 }

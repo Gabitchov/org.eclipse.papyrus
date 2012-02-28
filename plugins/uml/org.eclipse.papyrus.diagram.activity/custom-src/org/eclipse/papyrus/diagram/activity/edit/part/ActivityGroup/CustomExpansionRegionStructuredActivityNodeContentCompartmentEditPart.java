@@ -25,7 +25,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructured
  * @author arthur daussy
  * 
  */
-public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart extends ExpansionRegionStructuredActivityNodeContentCompartmentEditPart {
+public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart extends ExpansionRegionStructuredActivityNodeContentCompartmentEditPart  implements IGroupCompartmentEditPart{
 
 	public CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);

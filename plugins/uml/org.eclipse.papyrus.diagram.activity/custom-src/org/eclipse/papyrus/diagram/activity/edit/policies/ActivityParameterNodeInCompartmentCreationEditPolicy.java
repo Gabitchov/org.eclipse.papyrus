@@ -18,10 +18,10 @@ import java.util.List;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy;
 
 /**
  * This class provide customization of the CreationEditPolicy to support the
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEdit
  * Class created from PinInCompartmentCreationEditPolicy (composite diagram)
  * TODO change extend CreationEditPolicy by CreateInReferencingGroupEditPolicy
  */
-public class ActivityParameterNodeInCompartmentCreationEditPolicy extends CreateInGroupEditPolicy {
+public class ActivityParameterNodeInCompartmentCreationEditPolicy extends CreationEditPolicy {
 
 	@Override
 	public EditPart getTargetEditPart(Request request) {

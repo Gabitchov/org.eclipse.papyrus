@@ -16,8 +16,10 @@ package org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ScrollPane;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.activitygroup.editpolicy.ActivityPartitionActivityPartitionContentCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 
 /**
@@ -26,7 +28,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivity
  * @author arthur daussy
  * 
  */
-public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart extends ActivityPartitionActivityPartitionContentCompartmentEditPart {
+public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart extends ActivityPartitionActivityPartitionContentCompartmentEditPart implements IGroupCompartmentEditPart{
 
 	public CustomActivityPartitionActivityPartitionContentCompartmentEditPart(View view) {
 		super(view);
@@ -56,6 +58,13 @@ public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart 
 		result.getScrollPane().setScrollBarVisibility(ScrollPane.NEVER);
 		// result.getScrollPane().getViewport().setContentsTracksHeight(true);
 		return result;
+	}
+	
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityPartitionActivityPartitionContentCompartmentCreationEditPolicy());
 	}
 
 }

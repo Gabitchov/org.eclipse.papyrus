@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.activity.groupcontainment;
+package org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.EditPart;
@@ -40,23 +40,11 @@ public class ExpansionRegionContainment extends StructuredActivityNodeContainmen
 		return UMLPackage.eINSTANCE.getExpansionRegion();
 	}
 
-	/**
-	 * Get the expansion region content compartment edit part from a view of the
-	 * expansion region.
-	 * 
-	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view
-	 *        or the primary view of the containing node
-	 * @param diagramPart
-	 *        the diagram edit part (used to recover parts from views)
-	 * @return the expansion region content compartment edit part
-	 */
-	public IGraphicalEditPart getPartFromView(View nodeView, DiagramEditPart diagramPart) {
-		EditPart part = DiagramEditPartsUtil.getEditPartFromView(nodeView, diagramPart);
-		if(part instanceof GraphicalEditPart) {
-			String hint = "" + ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID;
-			return ((GraphicalEditPart)part).getChildBySemanticHintOnPrimaryView(hint);
-		}
-		return null;
+	@Override
+	public IGraphicalEditPart getCompartmentPartFromView(IGraphicalEditPart editpart) {
+		String hint = "" + ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID;
+		return ((GraphicalEditPart)editpart).getChildBySemanticHintOnPrimaryView(hint);
 	}
+
+
 }

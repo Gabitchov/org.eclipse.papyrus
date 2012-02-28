@@ -55,6 +55,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.activitygroup.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced;
 import org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint;
 import org.eclipse.papyrus.diagram.activity.draw2d.GravityConstrainedFlowLayoutConstraint;
@@ -72,7 +73,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabe
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.diagram.common.groups.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;

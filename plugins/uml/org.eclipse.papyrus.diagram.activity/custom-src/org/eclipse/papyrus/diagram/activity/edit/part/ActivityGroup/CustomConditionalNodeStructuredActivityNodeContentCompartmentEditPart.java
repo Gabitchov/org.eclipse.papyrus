@@ -25,7 +25,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructured
  * @author arthur daussy
  * 
  */
-public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart extends ConditionalNodeStructuredActivityNodeContentCompartmentEditPart {
+public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart extends ConditionalNodeStructuredActivityNodeContentCompartmentEditPart implements IGroupCompartmentEditPart {
 
 	public CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);

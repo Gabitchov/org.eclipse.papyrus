@@ -2576,28 +2576,28 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          name="ActivityGroup"
          id="org.eclipse.papyrus.diagram.activity.activitygroup">
          <modelContainer editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart"
-          descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.StructuredActivityNodeContainment"/>
+          descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.StructuredActivityNodeContainment"/>
          <modelContainer
-               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.ConditionalNodeContainment"
+               descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.ConditionalNodeContainment"
                editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPart">
          </modelContainer>
          <modelContainer
-               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.ExpansionRegionContainment"
+               descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.ExpansionRegionContainment"
                editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart">
          </modelContainer>
          <modelContainer
-               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.LoopNodeContainment"
+               descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.LoopNodeContainment"
                editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomLoopNodeStructuredActivityNodeContentCompartmentEditPart">
          </modelContainer>
          <modelContainer
-               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.SequenceNodeContainment"
+               descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.SequenceNodeContainment"
                editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart">
          </modelContainer>
          <referenceContainer
-               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.InterruptibleActivityRegionContainment"
+               descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.InterruptibleActivityRegionContainment"
                editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart"/>
          <referenceContainer
-               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.ActivityPartitionContainment"
+               descriptor="org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.ActivityPartitionContainment"
                editPartType="org.eclipse.papyrus.diagram.activity.edit.part.ActivityGroup.CustomActivityPartitionActivityPartitionContentCompartmentEditPart"/>
    </extension>
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
@@ -2626,6 +2626,18 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       </Priority>
    </editpolicyProvider>
 </extension>
+
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.diagram.activity.activitygroup.GroupEditPolicyProvider">
+      <Priority
+            name="High">
+      </Priority>
+   </editpolicyProvider>
+</extension>
+
+
 
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
@@ -2703,6 +2715,14 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
              id="org.eclipse.papyrus.SharedEditingDomainID">
        </editingDomain>
     </listener>
+    <!--
+    <listener
+          class="org.eclipse.papyrus.diagram.activity.activitygroup.listenner.GraphicalGroupChangeListener">
+       <editingDomain
+             id="org.eclipse.papyrus.SharedEditingDomainID">
+       </editingDomain>
+    </listener>
+    -->
     <!--
     <listener
           class="org.eclipse.papyrus.diagram.activity.pinandparametersynchronizer.PinAndParametersSynchronizer">

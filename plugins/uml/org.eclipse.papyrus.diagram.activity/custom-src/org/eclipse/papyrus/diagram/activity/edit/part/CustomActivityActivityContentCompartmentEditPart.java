@@ -1,9 +1,14 @@
 package org.eclipse.papyrus.diagram.activity.edit.part;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.activitygroup.editpolicy.ActivityContentCompartmentCreationEditPolicy;
+import org.eclipse.papyrus.diagram.activity.activitygroup.editpolicy.ActivityPartitionActivityPartitionContentCompartmentCreationEditPolicy;
+import org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment.ActivityPartitionContainment;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy;
 
 
 public class CustomActivityActivityContentCompartmentEditPart extends ActivityActivityContentCompartmentEditPart {
@@ -29,8 +34,18 @@ public class CustomActivityActivityContentCompartmentEditPart extends ActivityAc
 	 */
 	@Override
 	public boolean isSelectable() {
-		return false;
+		return true;
 	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityContentCompartmentCreationEditPolicy());	
+	}
+
+	
+	
+	
 
 
 }

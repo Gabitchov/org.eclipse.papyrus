@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.activity.groupcontainment;
+package org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.EditPart;
@@ -19,44 +19,32 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The descriptor for LoopNode node used by
+ * The descriptor for ConditionalNode node used by
  * org.eclipse.papyrus.diagram.common.groups.groupcontainment extension point.
  * 
  * @author vhemery
  */
-public class LoopNodeContainment extends StructuredActivityNodeContainment {
+public class ConditionalNodeContainment extends StructuredActivityNodeContainment {
 
 	/**
 	 * Get the eclass of the model eobject represented by the node
 	 * 
-	 * @return LoopNode eclass
+	 * @return ConditionalNode eclass
 	 */
 	public EClass getContainerEClass() {
-		return UMLPackage.eINSTANCE.getLoopNode();
+		return UMLPackage.eINSTANCE.getConditionalNode();
 	}
 
-	/**
-	 * Get the loop node content compartment edit part from a view of the loop
-	 * node.
-	 * 
-	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view
-	 *        or the primary view of the containing node
-	 * @param diagramPart
-	 *        the diagram edit part (used to recover parts from views)
-	 * @return the loop node content compartment edit part
-	 */
-	public IGraphicalEditPart getPartFromView(View nodeView, DiagramEditPart diagramPart) {
-		EditPart part = DiagramEditPartsUtil.getEditPartFromView(nodeView, diagramPart);
-		if(part instanceof GraphicalEditPart) {
-			String hint = "" + LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID;
-			return ((GraphicalEditPart)part).getChildBySemanticHintOnPrimaryView(hint);
-		}
-		return null;
+	@Override
+	public IGraphicalEditPart getCompartmentPartFromView(IGraphicalEditPart editpart) {
+		String hint = "" + ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID;
+		return ((GraphicalEditPart)editpart).getChildBySemanticHintOnPrimaryView(hint);
 	}
+
+
 }

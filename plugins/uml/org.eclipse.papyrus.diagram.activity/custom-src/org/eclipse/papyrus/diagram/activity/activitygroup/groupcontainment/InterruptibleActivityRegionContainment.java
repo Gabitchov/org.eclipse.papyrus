@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.activity.groupcontainment;
+package org.eclipse.papyrus.diagram.activity.activitygroup.groupcontainment;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.activitygroup.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -70,24 +70,20 @@ public class InterruptibleActivityRegionContainment extends AbstractContainerNod
 		return Collections.singletonList(UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node());
 	}
 
-	/**
-	 * Get the interruptible activity region content compartment edit part from
-	 * a view of the interruptible activity region.
-	 * 
-	 * @param nodeView
-	 *        a view of the node, which can be either the compartment's view
-	 *        or the primary view of the containing node
-	 * @param diagramPart
-	 *        the diagram edit part (used to recover parts from views)
-	 * @return the interruptible activity region content compartment edit part
-	 */
-	public IGraphicalEditPart getPartFromView(View nodeView, DiagramEditPart diagramPart) {
-		EditPart part = DiagramEditPartsUtil.getEditPartFromView(nodeView, diagramPart);
-		if(part instanceof GraphicalEditPart) {
-			String hint = "" + InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID;
-			return ((GraphicalEditPart)part).getChildBySemanticHintOnPrimaryView(hint);
-		}
-		return null;
+
+	@Override
+	public List<EReference> getParentReferences() {
+		return Collections.singletonList(UMLPackage.Literals.ACTIVITY_GROUP__IN_ACTIVITY);
+	}
+
+	@Override
+	public IGraphicalEditPart getCompartmentPartFromView(IGraphicalEditPart editpart) {
+		String hint = "" + InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID;
+		return ((GraphicalEditPart)editpart).getChildBySemanticHintOnPrimaryView(hint);
+	}
+
+	public int getGroupPriority() {
+		return IGroupPriority.INTERRUPTIBLE_REGION_PRIORITY;
 	}
 
 }
