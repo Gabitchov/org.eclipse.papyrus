@@ -695,7 +695,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				Iterable<EObject> reverseParents = Iterables.reverse(parents);
 
 				// reveal the resource if necessary
-				Resource r = parents.get(parents.size() - 1).eResource();
+				Resource r = null;
+				if (parents != null && !parents.isEmpty())
+				{
+					 r = parents.get(parents.size() - 1).eResource();
+				}
+				else if (parents != null)
+				{
+					r = currentEObject.eResource();
+				}
 				if(r != null) {
 					commonViewer.expandToLevel(new ReferencableMatchingItem(r.getResourceSet()), 1);
 					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
