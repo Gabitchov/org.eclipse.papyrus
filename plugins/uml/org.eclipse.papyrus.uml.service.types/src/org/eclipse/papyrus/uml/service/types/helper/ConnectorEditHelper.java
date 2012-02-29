@@ -83,7 +83,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 				return false;
 			}
 
-			// Cannot create a connector from a view to its own (or the opposite)
+			// Cannot create a connector from a view representing a Part to its own Port (or the opposite)
 			if((sourceView.getChildren().contains(targetView)) || (targetView.getChildren().contains(sourceView))) {
 				return false;
 			}
