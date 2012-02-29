@@ -31,7 +31,7 @@ public interface CSSAnnotations {
 	/**
 	 * The Diagram Stylesheets key
 	 */
-	public static final Object CSS_DIAGRAM_STYLESHEETS_KEY = "styleSheets"; //$NON-NLS-1$
+	public static final String CSS_DIAGRAM_STYLESHEETS_KEY = "css_stylesheets"; //$NON-NLS-1$
 
 	/**
 	 * The name of the EAnnotation containing css informations

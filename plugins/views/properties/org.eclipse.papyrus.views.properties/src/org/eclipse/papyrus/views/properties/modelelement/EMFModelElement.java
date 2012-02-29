@@ -187,8 +187,10 @@ public class EMFModelElement extends AbstractModelElement {
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
-
-		return new EMFContentProvider(getSource(featurePath), feature);
+		if(feature != null) {
+			return new EMFContentProvider(getSource(featurePath), feature);
+		}
+		return super.getContentProvider(propertyPath);
 	}
 
 	@Override

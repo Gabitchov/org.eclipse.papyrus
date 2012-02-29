@@ -83,10 +83,18 @@ public class StringEditionFactory implements ReferenceValueFactory {
 	}
 
 	public boolean canCreateObject() {
-		return false;
+		return true;
 	}
 
 	public Object createObject(Control widget) {
+		InputDialog dialog = new InputDialog(widget.getShell(), title, label, "", validator); //$NON-NLS-1$
+
+		int result = dialog.open();
+		if(result == Window.OK) {
+			String newValue = dialog.getText();
+			return newValue;
+		}
+
 		return null;
 	}
 

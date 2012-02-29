@@ -18,7 +18,6 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.StrictCompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -98,7 +97,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 			return;
 		}
 
-		CompoundCommand compoundCommand = new StrictCompoundCommand() {
+		CompoundCommand compoundCommand = new CompoundCommand() {
 
 			@Override
 			public void execute() {
@@ -117,6 +116,19 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 				super.redo();
 				refreshCacheList();
 			}
+
+			@Override
+			protected boolean prepare() {
+				if(commandList.isEmpty()) {
+					return false;
+				} else {
+					//We only test the first command, as the following ones might depend
+					//on the first command's execution. StrictCompoundCommands don't seem
+					//to be compatible with emf transaction (execute() is called by 
+					//canExecute(), before the transaction is started)
+					return commandList.get(0).canExecute();
+				}
+			}
 		};
 
 		for(Command cmd : commands) {
@@ -131,6 +143,14 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	 * Refresh the cached list by copying the real list
 	 */
 	protected void refreshCacheList() {
+		if(isDisposed()) {
+			//This observable can be disposed, but the commands might still be
+			//in the command stack. Undo() or Redo() will call this method, which
+			//should be ignored. The command should probably not call refresh directly ;
+			//we should have listeners on the concrete list... but it is not necessarily
+			//observable
+			return;
+		}
 		wrappedList.clear();
 		wrappedList.addAll(concreteList);
 		fireListChange(null);

@@ -12,6 +12,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,7 +30,6 @@ import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverter;
 import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
-import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.BooleanConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.IntegerConverter;
@@ -36,11 +37,15 @@ import org.eclipse.papyrus.infra.gmfdiag.css.converters.StringConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.enginecopy.ExtendedViewCSSImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.listener.StyleSheetChangeListener;
 import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.EmbeddedStyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReference;
 import org.w3c.css.sac.ConditionFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.w3c.dom.css.CSSValue;
 import org.w3c.dom.css.ViewCSS;
+import org.w3c.dom.stylesheets.StyleSheetList;
 
 /**
  * Base implementation for a hierarchic, lazy CSS Engine.
@@ -66,7 +71,12 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * Owned stylesheets
 	 */
-	private final List<URL> styleSheets = new LinkedList<URL>();
+	private final List<StyleSheet> styleSheets = new LinkedList<StyleSheet>();
+
+	/**
+	 * Owned stylesheets, by URL
+	 */
+	private final List<URL> styleSheetURLs = new LinkedList<URL>();
 
 	public ExtendedCSSEngineImpl() {
 		this(null);
@@ -93,6 +103,8 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		this.registerCSSValueConverter(new IntegerConverter());
 		this.registerCSSValueConverter(new StringConverter());
 		this.registerCSSValueConverter(new BooleanConverter());
+
+		setErrorHandler(new GMFErrorHandler());
 	}
 
 	/**
@@ -137,11 +149,13 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		return declarationsCache.get(element);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void addStyleSheet(URL styleSheetURL) {
-		styleSheets.add(styleSheetURL);
+	public void addStyleSheet(StyleSheet styleSheet) {
+		styleSheets.add(styleSheet);
+		reset();
+	}
+
+	public void addStyleSheet(URL styleSheet) {
+		styleSheetURLs.add(styleSheet);
 		reset();
 	}
 
@@ -174,13 +188,45 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	}
 
 	private void parseStyleSheets() {
-		for(URL styleSheetURL : styleSheets) {
+		for(URL styleSheet : styleSheetURLs) {
 			try {
-				parseStyleSheet(styleSheetURL.openStream());
+				parseStyleSheet(styleSheet.openStream());
 			} catch (IOException ex) {
-				Activator.log.error("Cannot parse styleSheet at URL : " + styleSheetURL, ex);
+				handleExceptions(ex);
 			}
 		}
+		for(StyleSheet styleSheet : styleSheets) {
+			try {
+				if(styleSheet instanceof EmbeddedStyleSheet) {
+					parseStyleSheet((EmbeddedStyleSheet)styleSheet);
+				} else if(styleSheet instanceof StyleSheetReference) {
+					parseStyleSheet((StyleSheetReference)styleSheet);
+				}
+			} catch (IOException ex) {
+				handleExceptions(ex);
+			}
+		}
+	}
+
+	/**
+	 * @see #addStyleSheet(StyleSheet)
+	 */
+	private void parseStyleSheet(EmbeddedStyleSheet styleSheet) throws IOException {
+		Reader reader = new StringReader(styleSheet.getContent());
+		parseStyleSheet(reader);
+	}
+
+	/**
+	 * @see #addStyleSheet(StyleSheet)
+	 */
+	protected void parseStyleSheet(StyleSheetReference styleSheet) throws IOException {
+		String path = styleSheet.getPath();
+		if(path.startsWith("/")) {
+			path = "platform:/resource" + path;
+		}
+
+		URL url = new URL(path);
+		parseStyleSheet(url.openStream());
 	}
 
 	@Override
@@ -231,10 +277,11 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	public ExtendedStyleSheetList getAllStylesheets() {
 		if(styleSheetsList == null) {
 			parseStyleSheets();
-			styleSheetsList = new ExtendedStyleSheetList(getDocumentCSS().getStyleSheets());
+			styleSheetsList = new ExtendedStyleSheetList();
 			if(parent != null) {
-				styleSheetsList.addAll(parent.getAllStylesheets());
+				styleSheetsList.addAll((StyleSheetList)parent.getAllStylesheets());
 			}
+			styleSheetsList.addAll(getDocumentCSS().getStyleSheets());
 		}
 
 		return styleSheetsList;

@@ -19,9 +19,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.creation.PropertyEditorFactory;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 /**
  * Provides a default implementation for ModelElement methods applied on the
@@ -74,17 +72,6 @@ public abstract class AbstractModelElement implements ModelElement {
 
 	public void setDataSource(DataSource source) {
 		this.dataSource = source;
-	}
-
-	/**
-	 * Finds the property associated to the given propertyPath
-	 * 
-	 * @param propertyPath
-	 *        The name of the property to retrieve
-	 * @return the property associated to the given propertyPath
-	 */
-	protected Property getProperty(String propertyPath) {
-		return ConfigurationManager.instance.getProperty(propertyPath, dataSource.getView().getContext());
 	}
 
 	/**

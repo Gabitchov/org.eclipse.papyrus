@@ -16,29 +16,25 @@ import java.net.URL;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.listener.StyleSheetChangeListener;
 import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
 import org.w3c.dom.css.CSSValue;
 
 @SuppressWarnings("restriction")
 public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
 
 	/**
+	 * Adds a stylesheet from a given StyleSheet model.
+	 * 
+	 * @param inputURL
+	 */
+	public void addStyleSheet(StyleSheet styleSheet);
+
+	/**
 	 * Adds a stylesheet from a given URL.
-	 * The kind of stylesheet (CSS vs CSSX) is determined according to the
-	 * file's extension (Standard parser for CSS, extended parser for CSSX)
 	 * 
 	 * @param inputURL
 	 */
 	public void addStyleSheet(URL inputURL);
-
-	/**
-	 * Adds a stylesheet from a given URL.
-	 * If extended is true, the CSSX parser will be used. Otherwise,
-	 * the standard CSS parser is used.
-	 * 
-	 * @param inputURL
-	 * @param extended
-	 */
-	public void addStyleSheet(URL inputURL, boolean extended);
 
 	/**
 	 * Resets the CSS cache

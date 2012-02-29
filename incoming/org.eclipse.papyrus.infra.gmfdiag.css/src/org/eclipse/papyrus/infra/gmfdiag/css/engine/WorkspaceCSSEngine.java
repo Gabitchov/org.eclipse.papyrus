@@ -32,6 +32,8 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 	private WorkspaceCSSEngine() {
 		super(BaseCSSEngine.instance);
 		try {
+			//TODO: Use an extension point to register themes
+			//TODO: Use a Preference page to select a theme
 			addStyleSheet(new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/papyrus_theme.css"));
 		} catch (MalformedURLException ex) {
 			Activator.log.error(ex);

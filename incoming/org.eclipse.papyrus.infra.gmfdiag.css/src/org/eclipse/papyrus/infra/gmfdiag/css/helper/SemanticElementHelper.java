@@ -24,21 +24,28 @@ public class SemanticElementHelper {
 	 * The result element can also be a Diagram
 	 */
 	public static EObject findSemanticElement(EObject notationElement) {
+		if (notationElement == null){
+			return null;
+		}
 		if(notationElement instanceof Diagram) {
 			return notationElement;
 		}
+		if(notationElement instanceof View) {
+			View view = (View)notationElement;
+			EObject semanticElement = view.getElement();
+			if(semanticElement != null) {
+				return semanticElement;
+			}
+			//The graphical element isn't related to a Semantic Element. The view becomes the semantic element.
+			//e.g. : Links in UML
+			return view;
+		}
 
-		EObject currentElement = notationElement;
+		EObject currentElement = notationElement.eContainer();
 
 		do {
 			if(currentElement instanceof View) {
-				View view = (View)currentElement;
-				if(view.getElement() != null) {
-					return view.getElement();
-				}
-				//The graphical element isn't related to a Semantic Element. The view becomes the semantic element.
-				//e.g. : Links in UML
-				return view;
+				return findSemanticElement(currentElement);
 			}
 			currentElement = currentElement.eContainer();
 		} while(currentElement != null);

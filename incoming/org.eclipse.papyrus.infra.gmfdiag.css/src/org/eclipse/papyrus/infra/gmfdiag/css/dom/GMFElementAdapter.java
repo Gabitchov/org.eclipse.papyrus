@@ -17,6 +17,7 @@ import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_
 import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_STYLE_KEY;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,14 +26,20 @@ import java.util.Map;
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.StringListValueStyle;
+import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
+import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -99,7 +106,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList {
 	}
 
 	public static String getCSSClass(EObject sourceElement) {
-		return getCSSValue(sourceElement, CSS_GMF_CLASS_KEY);
+		List<String> allClasses = getCSSValues(sourceElement, CSS_GMF_CLASS_KEY);
+		return ListHelper.deepToString(allClasses, " "); //$NON-NLS-1$
 	}
 
 	public static String getCSSStyle(EObject sourceElement) {
@@ -115,25 +123,42 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList {
 	}
 
 	private static String getCSSValue(EObject sourceElement, String key) {
-		EModelElement modelElement = findModelElement(sourceElement);
-		EAnnotation annotation = getStyleAnnotation(modelElement);
-		if(annotation == null) {
+		StringValueStyle style = (StringValueStyle)findStyle(sourceElement, key, NotationPackage.eINSTANCE.getStringValueStyle());
+		if(style == null) {
 			return null;
 		}
 
-		return annotation.getDetails().get(key);
+		return style.getStringValue();
 	}
 
-	private static EModelElement findModelElement(EObject sourceElement) {
+	private static List<String> getCSSValues(EObject sourceElement, String key) {
+		StringListValueStyle style = (StringListValueStyle)findStyle(sourceElement, key, NotationPackage.eINSTANCE.getStringListValueStyle());
+		if(style == null) {
+			return Collections.emptyList();
+		}
+
+		return style.getStringListValue();
+	}
+
+	private static NamedStyle findStyle(EObject sourceElement, String key, EClass type) {
+		View view = findView(sourceElement);
+		if(view == null) {
+			return null;
+		}
+
+		return view.getNamedStyle(type, key);
+	}
+
+	private static View findView(EObject sourceElement) {
 		if(sourceElement == null) {
 			return null;
 		}
 
-		if(sourceElement instanceof EModelElement) {
-			return (EModelElement)sourceElement;
+		if(sourceElement instanceof View) {
+			return (View)sourceElement;
 		}
 
-		return findModelElement(sourceElement.eContainer());
+		return findView(sourceElement.eContainer());
 	}
 
 	public GMFElementAdapter(View view, ExtendedCSSEngine engine) {

@@ -133,7 +133,7 @@ public class ViewEditor extends AbstractPropertyEditor {
 			return;
 		}
 
-		IObservable observable = input.getObservable(propertyPath);
+		IObservable observable = getInputObservable();
 		if(observable == null) {
 			return;
 		}
@@ -219,6 +219,12 @@ public class ViewEditor extends AbstractPropertyEditor {
 		}
 
 		self.setEnabled(!getReadOnly());
+	}
+
+	@Override
+	protected IObservable getInputObservable() {
+		//Override the generic behavior: ViewEditor doesn't rely on an AbstractEditor
+		return input.getObservable(propertyPath);
 	}
 
 	@Override

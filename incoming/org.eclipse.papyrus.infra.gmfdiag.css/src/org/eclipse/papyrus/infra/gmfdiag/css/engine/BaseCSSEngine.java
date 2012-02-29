@@ -38,7 +38,7 @@ public class BaseCSSEngine extends ExtendedCSSEngineImpl {
 
 	public static ExtendedCSSEngine instance = new BaseCSSEngine();
 
-	//Unsupported operations. The WorkspaceCSSEngine should never be used directly.
+	//Unsupported operations. The BaseCSSEngine should never be used directly.
 
 	@Override
 	public Element getElement(Object node) {

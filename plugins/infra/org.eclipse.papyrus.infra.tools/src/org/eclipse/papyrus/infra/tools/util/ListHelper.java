@@ -38,4 +38,22 @@ public class ListHelper {
 		}
 		return result;
 	}
+
+	public static String deepToString(List<?> list) {
+		return deepToString(list, ", ");
+	}
+
+	public static String deepToString(List<?> list, String separator) {
+		boolean firstElement = true;
+		String result = "";
+		for(Object item : list) {
+			if(firstElement) {
+				firstElement = false;
+			} else {
+				result += separator;
+			}
+			result += item == null ? null : item.toString();
+		}
+		return result;
+	}
 }

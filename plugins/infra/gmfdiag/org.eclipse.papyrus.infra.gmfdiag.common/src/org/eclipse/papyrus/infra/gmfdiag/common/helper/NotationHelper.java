@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -36,6 +37,10 @@ public class NotationHelper {
 			IAdaptable adaptable = (IAdaptable)source;
 			Object adapter = adaptable.getAdapter(View.class);
 			if(adapter != null) {
+				return (View)adapter;
+			}
+			adapter = adaptable.getAdapter(EObject.class);
+			if(adapter instanceof View) {
 				return (View)adapter;
 			}
 		}

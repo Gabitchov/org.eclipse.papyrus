@@ -59,19 +59,19 @@
       <properties name="cssStyle" label="CSS Style"/>
     </elements>
     <elements name="DiagramStyle" supertypes="//@dataContexts.0/@elements.0">
-      <properties name="styleSheets" label="Diagram style sheets" multiplicity="-1" description="The style sheets associated to this diagram"/>
+      <properties name="css_stylesheets" label="Diagram style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to this diagram"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts name="modelstylesheets" label="StyleSheets">
+    <elements name="StyleSheetReference">
+      <properties name="path" label="Path" description="The path to the external style sheet"/>
+    </elements>
+    <elements name="EmbeddedStyleSheet">
+      <properties name="content" label="Contents" description="The style sheet contents"/>
     </elements>
     <elements name="ModelStyleSheet">
       <properties name="stylesheets" label="Model style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to the model"/>
-    </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/environment.xmi#//@modelElementFactories.0"/>
-  </dataContexts>
-  <dataContexts name="modelstylesheets" label="ModelCSS">
-    <elements name="StyleSheetReference">
-      <properties name="path" description="The path to the external style sheet"/>
-    </elements>
-    <elements name="EmbeddedStyleSheet">
-      <properties name="content" description="The style sheet contents"/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>

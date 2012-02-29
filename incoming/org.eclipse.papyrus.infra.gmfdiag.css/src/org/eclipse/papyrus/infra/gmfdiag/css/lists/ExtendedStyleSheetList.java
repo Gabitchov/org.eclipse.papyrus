@@ -27,9 +27,7 @@ public class ExtendedStyleSheetList extends LinkedList<StyleSheet> implements St
 	}
 
 	public ExtendedStyleSheetList(StyleSheetList listToCopy) {
-		for(int i = 0; i < listToCopy.getLength(); i++) {
-			add(listToCopy.item(i));
-		}
+		addAll(listToCopy);
 	}
 
 	public ExtendedStyleSheetList(Collection<? extends StyleSheet> listToCopy) {
@@ -42,6 +40,12 @@ public class ExtendedStyleSheetList extends LinkedList<StyleSheet> implements St
 
 	public StyleSheet item(int index) {
 		return get(index);
+	}
+
+	public void addAll(StyleSheetList styleSheets) {
+		for(int i = 0; i < styleSheets.getLength(); i++) {
+			add(styleSheets.item(i));
+		}
 	}
 
 }

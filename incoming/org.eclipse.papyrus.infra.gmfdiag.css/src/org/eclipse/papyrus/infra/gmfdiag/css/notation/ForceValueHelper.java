@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 
 /**
  * This helper handles the EAnnotation used to distinguish between an EMF
@@ -69,8 +70,8 @@ public class ForceValueHelper {
 	}
 
 	private static boolean isCSSView(View view) {
-		return false;
-		//		return view != null && view.eResource() instanceof CSSNotationResource;
+		//		return false;
+		return view != null && view.eResource() instanceof CSSNotationResource;
 	}
 
 	private static boolean equals(Object value1, Object value2) {
@@ -83,6 +84,10 @@ public class ForceValueHelper {
 	public static void unsetValue(View view, EStructuralFeature feature) {
 		if(!isCSSView(view)) {
 			//Do not contaminate non-Papyrus models
+			return;
+		}
+
+		if(feature == null) {
 			return;
 		}
 
@@ -104,13 +109,12 @@ public class ForceValueHelper {
 	}
 
 	public static boolean isSet(View annotationContext, EObject style, EStructuralFeature feature, Object value) {
-		boolean defaultIsSet = style.eIsSet(feature);
 		if(!isCSSView(annotationContext)) {
 			//Do not contaminate non-Papyrus models
 			return true;
 		}
 
-		if(!defaultIsSet) {
+		if(!style.eIsSet(feature)) {
 			return false;
 		}
 

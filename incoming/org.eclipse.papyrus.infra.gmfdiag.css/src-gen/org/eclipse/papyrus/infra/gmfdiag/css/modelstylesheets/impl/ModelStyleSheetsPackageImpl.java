@@ -262,7 +262,7 @@ public class ModelStyleSheetsPackageImpl extends EPackageImpl implements ModelSt
 		initEClass(modelStyleSheetsEClass, ModelStyleSheets.class, "ModelStyleSheets", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelStyleSheets_Stylesheets(), this.getStyleSheet(), null, "stylesheets", null, 0, -1, ModelStyleSheets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(styleSheetEClass, StyleSheet.class, "StyleSheet", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(styleSheetEClass, StyleSheet.class, "StyleSheet", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(styleSheetReferenceEClass, StyleSheetReference.class, "StyleSheetReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStyleSheetReference_Path(), theEcorePackage.getEString(), "path", null, 1, 1, StyleSheetReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReference;
 
@@ -28,7 +29,8 @@ import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReferenc
  *
  * @generated
  */
-public class StyleSheetReferenceImpl extends StyleSheetImpl implements StyleSheetReference {
+public class StyleSheetReferenceImpl extends 
+EObjectImpl implements StyleSheetReference {
 	/**
 	 * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->

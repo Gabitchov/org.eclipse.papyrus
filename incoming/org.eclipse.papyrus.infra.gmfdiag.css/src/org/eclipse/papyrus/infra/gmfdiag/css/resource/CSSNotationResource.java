@@ -23,10 +23,12 @@ public class CSSNotationResource extends GMFResource {
 
 	public CSSNotationResource(URI uri) {
 		super(uri);
-		engine = new ModelCSSEngine(this);
 	}
 
 	public ExtendedCSSEngine getEngine() {
+		if(engine == null) {
+			engine = new ModelCSSEngine(this);
+		}
 		return engine;
 	}
 

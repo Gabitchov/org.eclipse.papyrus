@@ -11,29 +11,51 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.w3c.dom.Element;
 
 @SuppressWarnings("restriction")
 public class DiagramCSSEngine extends ExtendedCSSEngineImpl {
 
-	private Diagram diagram;
+	private CSSDiagram diagram;
 
-	public DiagramCSSEngine(ExtendedCSSEngine parent, Diagram diagram) {
+	public DiagramCSSEngine(ExtendedCSSEngine parent, CSSDiagram diagram) {
 		super(parent);
 		this.diagram = diagram;
 
 		setElementProvider(new GMFElementProvider());
+		for(StyleSheet styleSheet : diagram.getStyleSheets()) {
+			addStyleSheet(styleSheet);
+		}
+	}
+
+	@Override
+	protected void parseStyleSheet(StyleSheetReference styleSheet) throws IOException {
+		String path = styleSheet.getPath();
+		if(path.startsWith("/")) {
+			path = "platform:/plugin" + path;
+		} else {
+			URI uri = URI.createURI(styleSheet.getPath());
+			uri = uri.resolve(diagram.eResource().getURI());
+			path = uri.toString();
+		}
+		URL url = new URL(path);
+		parseStyleSheet(url.openStream());
 	}
 
 	/**

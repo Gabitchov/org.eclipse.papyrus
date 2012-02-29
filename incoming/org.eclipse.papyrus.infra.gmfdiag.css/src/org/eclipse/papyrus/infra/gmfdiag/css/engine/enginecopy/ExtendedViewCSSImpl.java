@@ -46,7 +46,8 @@ public class ExtendedViewCSSImpl implements ViewCSS {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * Implementation based on {@link ViewCSSImpl#getComputedStyle(Element, String)} The base implementations returns the first CSSStyleDeclaration.
+	 * Implementation based on {@link ViewCSSImpl#getComputedStyle(Element, String)}.
+	 * The base implementations returns the first CSSStyleDeclaration.
 	 * 
 	 * When a StyleDeclaration is found in a StyleSheet, it is added to a list of declarations.
 	 * Then, these declarations are merged
@@ -59,7 +60,7 @@ public class ExtendedViewCSSImpl implements ViewCSS {
 
 		//Stylesheets
 		for(StyleSheet styleSheet : styleSheetList) {
-			List<StyleWrapper> styleWrappers = getStyleWrappers((CSSStyleSheet)styleSheet, elt, pseudo);
+			List<StyleWrapper> styleWrappers = getStyleWrappers((CSSStyleSheet)styleSheet, elt, pseudo, declarations.size());
 			declarations.addAll(styleWrappers);
 		}
 
@@ -92,11 +93,10 @@ public class ExtendedViewCSSImpl implements ViewCSS {
 	 * 
 	 * Returns the StyleWrappers instead of a StyleDeclaration
 	 */
-	private List<StyleWrapper> getStyleWrappers(CSSStyleSheet styleSheet, Element elt, String pseudoElt) {
+	private List<StyleWrapper> getStyleWrappers(CSSStyleSheet styleSheet, Element elt, String pseudoElt, int position) {
 		List<StyleWrapper> styleDeclarations = new ArrayList<StyleWrapper>();
 		CSSRuleList ruleList = styleSheet.getCssRules();
 		int length = ruleList.getLength();
-		int position = 0;
 		for(int i = 0; i < length; i++) {
 			CSSRule rule = ruleList.item(i);
 			switch(rule.getType()) {

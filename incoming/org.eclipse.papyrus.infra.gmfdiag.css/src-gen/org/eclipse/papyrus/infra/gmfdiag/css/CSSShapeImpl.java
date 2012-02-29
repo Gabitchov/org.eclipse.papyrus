@@ -433,7 +433,9 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		super.eUnset(featureId);
 
 		EStructuralFeature feature = eDynamicFeature(featureId);
-		ForceValueHelper.unsetValue(this, feature);
+		if(feature != null) {
+			ForceValueHelper.unsetValue(this, feature);
+		}
 	}
 
 	public boolean showElementIcon() {

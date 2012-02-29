@@ -48,9 +48,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 */
 	protected DataSource input;
 
-	private boolean readOnly = false;
+	protected boolean readOnly = false;
 
-	private boolean isEditable = true;
+	protected boolean isEditable = true;
 
 	/**
 	 * The SWT Widget (For list properties only)
@@ -377,7 +377,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			try {
 				observableList = (IObservableList)input.getObservable(propertyPath);
 			} catch (Exception ex) {
-				Activator.log.error("Cannot find a valid IObservable for " + propertyPath, ex); //$NON-NLS-1$
+				Activator.log.error("Cannot find a valid IObservableList for " + propertyPath, ex); //$NON-NLS-1$
 			}
 		}
 
@@ -393,7 +393,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			try {
 				observableValue = (IObservableValue)input.getObservable(propertyPath);
 			} catch (Exception ex) {
-				Activator.log.error("Cannot find a valid IObservable for " + propertyPath, ex); //$NON-NLS-1$
+				Activator.log.error("Cannot find a valid IObservableValue for " + propertyPath, ex); //$NON-NLS-1$
 			}
 		}
 

@@ -11,12 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.DiagramCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 
-public class CSSDiagramImpl extends DiagramImpl {
+public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 
 	protected ExtendedCSSEngine engine;
 
@@ -32,6 +38,32 @@ public class CSSDiagramImpl extends DiagramImpl {
 			return ((CSSNotationResource)eResource()).getEngine();
 		}
 		return null;
+	}
+
+	public List<StyleSheet> getStyleSheets() {
+		List<StyleSheet> result = new LinkedList<StyleSheet>();
+
+		for(Object styleObject : getStyles()) {
+			if(styleObject instanceof NamedStyle) {
+
+				NamedStyle style = (NamedStyle)styleObject;
+
+				if(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY.equals(style.getName())) {
+					if(style instanceof EObjectListValueStyle) {
+
+						EObjectListValueStyle stylesheetsStyle = (EObjectListValueStyle)style;
+
+						for(Object eObjectValue : stylesheetsStyle.getEObjectListValue()) {
+							if(eObjectValue instanceof StyleSheet) {
+								result.add((StyleSheet)eObjectValue);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 
 }

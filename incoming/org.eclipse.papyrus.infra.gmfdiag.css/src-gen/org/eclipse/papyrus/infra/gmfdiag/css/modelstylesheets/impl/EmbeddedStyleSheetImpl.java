@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPackage;
 
@@ -28,7 +29,8 @@ import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPa
  *
  * @generated
  */
-public class EmbeddedStyleSheetImpl extends StyleSheetImpl implements EmbeddedStyleSheet {
+public class EmbeddedStyleSheetImpl extends 
+EObjectImpl implements EmbeddedStyleSheet {
 	/**
 	 * The default value of the '{@link #getContent() <em>Content</em>}' attribute.
 	 * <!-- begin-user-doc -->

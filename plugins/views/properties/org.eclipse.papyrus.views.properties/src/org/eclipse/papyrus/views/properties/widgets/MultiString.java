@@ -47,6 +47,7 @@ public class MultiString extends AbstractPropertyEditor {
 	protected void doBinding() {
 		editor.setOrdered(input.isOrdered(propertyPath));
 		editor.setUnique(input.isUnique(propertyPath));
+		editor.setDirectCreation(input.getDirectCreation(propertyPath));
 
 		if(getInputObservableList() instanceof ICommitListener) {
 			editor.addCommitListener((ICommitListener)getInputObservableList());

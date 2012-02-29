@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.emf.databinding;
 
 import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.databinding.EObjectObservableValue;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -70,7 +71,7 @@ public class EMFObservableValue extends EObjectObservableValue {
 			value = eObject;
 		}
 
-		SetCommand command = getSetCommand(value);
+		Command command = getSetCommand(value);
 		domain.getCommandStack().execute(command);
 	}
 
@@ -82,7 +83,7 @@ public class EMFObservableValue extends EObjectObservableValue {
 	 * @return
 	 *         The Set command used to edit the value
 	 */
-	protected SetCommand getSetCommand(Object value) {
+	protected Command getSetCommand(Object value) {
 		return new SetCommand(domain, eObject, eStructuralFeature, value);
 	}
 }

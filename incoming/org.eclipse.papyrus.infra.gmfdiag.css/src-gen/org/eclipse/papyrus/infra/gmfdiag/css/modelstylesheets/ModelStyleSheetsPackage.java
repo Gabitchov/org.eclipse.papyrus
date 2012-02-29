@@ -98,10 +98,10 @@ public interface ModelStyleSheetsPackage extends EPackage {
 	int MODEL_STYLE_SHEETS_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.impl.StyleSheetImpl <em>Style Sheet</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet <em>Style Sheet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.impl.StyleSheetImpl
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.impl.ModelStyleSheetsPackageImpl#getStyleSheet()
 	 * @generated
 	 */
@@ -287,10 +287,10 @@ public interface ModelStyleSheetsPackage extends EPackage {
 		EReference MODEL_STYLE_SHEETS__STYLESHEETS = eINSTANCE.getModelStyleSheets_Stylesheets();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.impl.StyleSheetImpl <em>Style Sheet</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet <em>Style Sheet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.impl.StyleSheetImpl
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.impl.ModelStyleSheetsPackageImpl#getStyleSheet()
 		 * @generated
 		 */
