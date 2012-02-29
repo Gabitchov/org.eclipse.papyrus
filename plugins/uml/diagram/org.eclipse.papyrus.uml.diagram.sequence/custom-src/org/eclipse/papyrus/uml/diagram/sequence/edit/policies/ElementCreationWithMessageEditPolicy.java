@@ -74,7 +74,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 						}
 						EditPart sourceEditPart = request.getSourceEditPart();
 						if (sourceEditPart instanceof ActionExecutionSpecificationEditPart || sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
-							return new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(),viewRequest.getConnectionViewDescriptor(),(ShapeNodeEditPart) targetEP, target, request.getLocation(), ift));
+							return new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(),viewRequest.getConnectionViewDescriptor(),(ShapeNodeEditPart) targetEP, target,sourceEP,request, ift));
 						}
 //						IHintedType elementType = null;
 //						if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {

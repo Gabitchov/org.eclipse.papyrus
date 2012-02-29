@@ -17,14 +17,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -37,7 +42,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * @author Mathieu Velten
  * 
  */
-public class CreateElementAndNodeCommand extends Command {
+public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 
 	protected ShapeNodeEditPart nodeEditPart;
 
@@ -56,6 +61,8 @@ public class CreateElementAndNodeCommand extends Command {
 	protected IHintedType elementType;
 
 	protected CreateViewRequest createViewRequest;
+	
+	private List affectedFiles;
 
 	/**
 	 * 
@@ -71,11 +78,23 @@ public class CreateElementAndNodeCommand extends Command {
 	 *        the location where to create the element figure.
 	 */
 	public CreateElementAndNodeCommand(TransactionalEditingDomain editingDomain, ShapeNodeEditPart nodeEditPart, EObject parent, IHintedType elementType, Point location) {
+		super(editingDomain, "Create element and node command", null);
 		this.nodeEditPart = nodeEditPart;
 		this.location = location;
 		this.parent = parent;
 		this.editingDomain = editingDomain;
 		this.elementType = elementType;
+	}
+	
+	public List getAffectedFiles() {
+		if (affectedFiles == null) {
+			if (getCreatedView() != null) {
+				affectedFiles = getWorkspaceFiles(getCreatedView());
+			} else {
+				affectedFiles = super.getAffectedFiles();
+			}			
+		}
+		return affectedFiles;
 	}
 
 	/**
@@ -101,15 +120,6 @@ public class CreateElementAndNodeCommand extends Command {
 			}
 		}
 		return null;
-	}
-
-	public void execute() {
-		super.execute();
-		element = createModelElement();
-		// create the view for the execution specification
-		if(element != null) {
-			createElementView();
-		}
 	}
 
 	public void undo() {
@@ -160,5 +170,16 @@ public class CreateElementAndNodeCommand extends Command {
 				}
 			}
 		}
+	}
+
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		element = createModelElement();
+		// create the view for the execution specification
+		if(element != null) {
+			createElementView();
+		}
+		return CommandResult.newOKCommandResult();
 	}
 }
