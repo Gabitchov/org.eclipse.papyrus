@@ -827,6 +827,14 @@ public class ServicesRegistry {
 		disposeServices(namedServices.values(), errors);
 		disposeServices(anonymousServices, errors);
 
+		// Clean up properties to help GC
+		addedServices.clear();
+		addedServices = null;
+		anonymousServices.clear();
+		anonymousServices = null;
+		namedServices.clear();
+		namedServices = null;
+		
 		// Report errors if any
 		if(errors.getExceptions().size() > 0)
 			throw errors;
@@ -944,6 +952,7 @@ public class ServicesRegistry {
 
 	/**
 	 * Dispose all started services.
+	 * Services are disposed in creation reverse order
 	 * 
 	 * @throws ServiceMultiException
 	 * 

@@ -91,13 +91,30 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	}
 
 	/**
-	 * @param isRecursive
+	 * Dispose all resources used by this part.
+	 * <br/>
+	 * The Part should not be used after it has been disposed.
 	 */
 	public void dispose() {
 
-		// detachListeners(editorControl, true);
+		//		detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
+		// clean up properties to help GC
+		partModel = null;
+	}
+	
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 * <br/> 
+	 * SWT resources have already been disposed. We don't need to dispose them again.
+	 * 
+	 */
+	@Override
+	public void disposeThisAndChildren() {
+		// clean up properties to help GC
+		partModel = null;
 	}
 
 	/**

@@ -53,6 +53,12 @@ public abstract class AbstractPanelPart extends AbstractPart {
 	abstract public void dispose();
 
 	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 */
+	abstract public void disposeThisAndChildren();
+	
+	/**
 	 * Visit the part.
 	 * 
 	 * @param visitor

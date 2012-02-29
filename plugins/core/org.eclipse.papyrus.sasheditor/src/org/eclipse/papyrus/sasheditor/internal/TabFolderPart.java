@@ -322,6 +322,30 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// getControl().dispose();
 		pTabFolder.dispose();
 	}
+	
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 * Associated items are disposed.
+	 */
+	@Override
+	public void disposeThisAndChildren() {
+		
+		// Dispose children if any
+		for( TabItemPart child : currentTabItems) {
+			if(child != null) {
+				child.disposeThisAndChildren();
+			}
+		}
+			
+		// clean up properties to help GC
+		partModel = null;
+		rawModel = null;
+		currentTabItems.clear();
+		currentTabItems = null;
+		dragOverListener = null;
+		
+	}
 
 	/**
 	 * 
@@ -746,11 +770,11 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * Synchronize the TabFolder with the models. The Tabs order is fixed and
-	 * can't be moved. So, we move the associated ITilepart if needed. For each
-	 * existing Tab, compare its model and the requested model. Synchronize if
-	 * necessary. If their is more new model, add new Tab If their is less
-	 * newModel, remove unused Tabs.
+	 * Synchronize the TabFolder with the models.
+	 * The Tabs order is fixed and can't be moved. So, we move the associated ITilepart if needed.
+	 * For each existing Tab, compare its model and the requested model. Synchronize if necessary.
+	 * If there is more new model, add new Tab
+	 * If there is less newModel, remove unused Tabs.
 	 * 
 	 * @param partLists
 	 */

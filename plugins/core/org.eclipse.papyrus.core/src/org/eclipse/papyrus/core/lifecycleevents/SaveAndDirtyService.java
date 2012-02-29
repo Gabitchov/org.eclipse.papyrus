@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -217,9 +218,28 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 */
 	public void disposeService() throws ServiceException {
 		if(transactionalEditingDomain != null) {
-			transactionalEditingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
+			// Check if commandStack is null (meaning that transactionalEditingDomain 
+			// is disposed
+			CommandStack commandStack = transactionalEditingDomain.getCommandStack();
+			if( commandStack != null) {
+				transactionalEditingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
+			}
 			transactionalEditingDomain.removeResourceSetListener(resourceSetListener);
+//			resourceSetListener = null;
 		}
+		
+		// clean properties in order to help GC
+		inputChangedListeners.clear();
+		inputChangedListeners = null;
+		multiDiagramEditor = null;
+//		servicesRegistry = null;
+		transactionalEditingDomain = null;
+		resourceSet = null;
+		lifeCycleEvent = null;
+		
+		postSaveListeners.clear();
+		saveListeners.clear();
+		preSaveListeners.clear();
 	}
 
 	/**
@@ -327,7 +347,10 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * @param propertyId
 	 */
 	private void fireIsDirtyChanged() {
-
+		if (inputChangedListeners == null)
+		{
+			return ;
+		}
 		for(IEditorInputChangedListener listener : inputChangedListeners) {
 			try {
 				listener.isDirtyChanged();

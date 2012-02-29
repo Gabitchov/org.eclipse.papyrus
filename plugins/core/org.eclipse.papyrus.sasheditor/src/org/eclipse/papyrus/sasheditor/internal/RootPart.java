@@ -49,7 +49,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * Raw model associated to this part. We store it because the PartModel do
 	 * not provide it
 	 */
-	private Object rawModel;
+//	private Object rawModel;
 
 	/**
 	 * Constructor.
@@ -59,15 +59,22 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	}
 
 	/**
-	 * Create the SWT controls. This Root as no control. Create the child part
-	 * and call the same method on the child.
+	 * Create the SWT controls.
+	 * This Root as no control. Children are created by the {@link #synchronize2(PartLists)} method.
 	 */
 	public void createPartControl(Composite parent) {
 		this.container = parent;
-		Object rawModel = getContentProvider().getRootModel();
-
-		// Create child part
-		// child = createChildPart(rawModel);
+	}
+	
+	/**
+	 * Dispose this part and its children.
+	 */
+	public void disposeThisAndChildren() {
+		if(child != null)
+			child.disposeThisAndChildren();
+		
+		// Detach properties to help GC
+		child = null;
 	}
 
 	/**
@@ -76,6 +83,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	public void dispose() {
 		if(child != null)
 			child.dispose();
+		child = null ;
 	}
 
 	/**

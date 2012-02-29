@@ -16,13 +16,16 @@ package org.eclipse.papyrus.sasheditor.internal;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.sasheditor.Activator;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.sasheditor.editor.IMultiEditorManager;
+import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.sasheditor.editor.SashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
@@ -37,6 +40,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.ErrorEditorPart;
 import org.eclipse.ui.internal.dnd.IDropTarget;
@@ -400,12 +405,87 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * @param isRecursive
 	 */
 	public void dispose() {
-
 		detachListeners(editorControl, true);
 		// dispose the SWT root control
 		editorControl.dispose();
 		// Dispose the editor.
-		editorPart.dispose();
+//		editorPart.dispose();
+		disposePart(editorPart);
+	}
+	
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 * <br/> 
+	 * SWT resources have already been disposed. We don't need to dispose them again.
+	 * 
+	 */
+	@Override
+	public void disposeThisAndChildren() {
+		
+		// Dispose the editor (normally this should be already done).
+		disposeEditorPart();
+		
+		// clean up properties to help GC
+		editorModel = null;
+//		editorPart = null;
+		rawModel = null;
+	}
+	
+	/**
+	 * Disposes the associated editor and its site.
+	 * Do not dispose it twice.
+	 * 
+	 * @param part
+	 *            The part to dispose; must not be <code>null</code>.
+	 * @copy copied from org.eclipse.ui.part.MultiPageEditorPart.disposePart(IWorkbenchPart) v3.8
+	 */
+	private void disposeEditorPart() {
+		
+		// Is the editor already disposed ?
+		if( editorPart == null ) {
+			return;
+		}
+		
+		final IWorkbenchPart part = editorPart;
+		editorPart = null;
+		
+		SafeRunner.run(new ISafeRunnable() {
+			public void run() {
+				IWorkbenchPartSite partSite = part.getSite();
+				part.dispose();
+				if (partSite instanceof IMultiPageEditorSite) {
+					((IMultiPageEditorSite) partSite).dispose();
+				}
+			}
+
+			public void handleException(Throwable e) {
+				// Exception has already being logged by Core. Do nothing.
+			}
+		});
+	}
+	
+	/**
+	 * Disposes the given part and its site.
+	 * 
+	 * @param part
+	 *            The part to dispose; must not be <code>null</code>.
+	 * @copy copied from org.eclipse.ui.part.MultiPageEditorPart.disposePart(IWorkbenchPart) v3.8
+	 */
+	private void disposePart(final IWorkbenchPart part) {
+		SafeRunner.run(new ISafeRunnable() {
+			public void run() {
+				IWorkbenchPartSite partSite = part.getSite();
+				part.dispose();
+				if (partSite instanceof IMultiPageEditorSite) {
+					((IMultiPageEditorSite) partSite).dispose();
+				}
+			}
+
+			public void handleException(Throwable e) {
+				// Exception has already being logged by Core. Do nothing.
+			}
+		});
 	}
 
 	/**

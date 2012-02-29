@@ -109,7 +109,9 @@ public class SashTabDecorationSynchronizer {
 	 * Detach listeners requested by the class.
 	 */
 	protected void detachListeners() {
-		container.removeLifeCycleListener(pageLifeCycleListener);
+		if(!container.isDisposed()) {
+			  container.removeLifeCycleListener(pageLifeCycleListener);
+		}
 	}
 
 	/**
@@ -127,16 +129,17 @@ public class SashTabDecorationSynchronizer {
 	}
 
 	/**
-	 * Stop listening onchange for the specified page.
-	 * 
+	 * Stop listening on change for the specified page.
 	 * @param page
 	 */
 	protected void detachPage(IPage page) {
-		if(page instanceof IEditorPage) {
-			log.fine("attachPage( " + page + " )");
-			IEditorPage editorPage = (IEditorPage)page;
-			editorPage.getIEditorPart().removePropertyListener(editorPartPropertyListener);
-		}
+		// IEditorPage are already disposed, so we don't need to remove anything
+//		if( page instanceof IEditorPage )
+//		{
+//			log.fine("attachPage( " + page + " )");
+//			IEditorPage editorPage = (IEditorPage)page;
+//			editorPage.getIEditorPart().removePropertyListener(editorPartPropertyListener);
+//		}
 	}
 
 	protected void refreshContainerTabForPage(IEditorPart source) {
@@ -154,14 +157,16 @@ public class SashTabDecorationSynchronizer {
 	protected void refreshContainerTabForPage(IPage page) {
 		container.refreshPageTab(page);
 	}
-
+	
 	/**
 	 * Iterate on pages owned by the container, and call detachPage for each.
 	 */
 	private void detachContainerPages() {
 		// Visit all pages of the container.
-		container.visit(new DetachVisitor());
-
+		if( ! container.isDisposed() ) {
+			container.visit(new DetachVisitor());
+		}
+		
 	}
 
 	/**

@@ -229,6 +229,25 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 		}
 		container = null;
 	}
+	
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 */
+	@Override
+	public void disposeThisAndChildren() {
+		
+		// Dispose children if any
+		for( AbstractPanelPart child : currentChildParts) {
+			if(child != null) {
+				child.disposeThisAndChildren();
+			}
+		}
+		
+		// clean up properties to help GC
+		model = null;
+		rawModel = null;
+	}
 
 	/**
 	 * Traverses the tree to find the part that intersects the given point

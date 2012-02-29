@@ -25,6 +25,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -446,6 +448,19 @@ public class ModelSet extends ResourceSetImpl {
 		for(Iterator<Resource> iter = getResources().iterator(); iter.hasNext();) {
 			iter.next().unload();
 			iter.remove();
+		}
+		
+		// Dispose Editing Domain
+		transactionalEditingDomain.dispose();
+		// Detach associated factories
+		if (adapterFactories!=null)
+		{
+			adapterFactories.clear();
+		}
+		EList<Adapter> adapters = eAdapters();
+		if (adapters!=null)
+		{
+			adapters.clear();
 		}
 	}
 

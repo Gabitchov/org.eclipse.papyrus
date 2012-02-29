@@ -72,7 +72,6 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 	@Override
 	public void dispose() {
 		super.dispose();
-
 		ISaveAndDirtyService saveAndDirtyService;
 		try {
 			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
@@ -82,6 +81,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			// the service can't be found. Maybe it is already disposed.
 			// Do nothing
 		}
+		diagram = null ;
 
 	}
 

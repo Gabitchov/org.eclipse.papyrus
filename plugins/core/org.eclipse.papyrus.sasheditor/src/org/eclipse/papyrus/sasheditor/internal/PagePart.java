@@ -188,6 +188,20 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	abstract public void setFocus();
 
 	/**
+	 * Dispose the part.
+	 * <br/>
+	 * The part and its associated resource are disposed.
+	 * 
+	 */
+	abstract public void dispose();
+
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 */
+	abstract public void disposeThisAndChildren();
+	
+	/**
 	 * Garbage the part.
 	 */
 	abstract public void garbage();

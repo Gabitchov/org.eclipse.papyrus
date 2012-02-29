@@ -148,7 +148,7 @@ public class TabItemPart {
 		setItemControl(null);
 		parent = null;
 		control.dispose();
-		// Orphan associates Tiles
+		// Orphan associated Tiles
 		childPart.orphan();
 	}
 
@@ -185,6 +185,23 @@ public class TabItemPart {
 		}
 	}
 
+	/**
+	 * Dispose this part and all its children.
+	 * The method is called recursively on children of the part.
+	 * Associated items are disposed.
+	 */
+	public void disposeThisAndChildren() {
+		
+		// Dispose child if any
+		if(childPart != null) {
+			childPart.disposeThisAndChildren();
+			childPart = null;
+		}
+
+		// Dispose this.
+		parent = null;
+	}
+	
 	/**
 	 * Dispose the associated control. Only dispose this tabitem, not the
 	 * childpart.
