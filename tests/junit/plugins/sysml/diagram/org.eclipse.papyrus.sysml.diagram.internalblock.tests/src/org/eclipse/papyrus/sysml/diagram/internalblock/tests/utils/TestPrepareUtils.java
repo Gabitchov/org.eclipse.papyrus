@@ -49,13 +49,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
 import org.eclipse.papyrus.sysml.blocks.Block;
-import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -161,10 +159,16 @@ public class TestPrepareUtils {
 		return GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 	}
 
-	public static void setBlockEncapsulated(Element block) throws Exception {
-		Block blockApp = UMLUtil.getStereotypeApplication(block, Block.class);
-		SetCommand setCommand = new SetCommand(getTransactionalEditingDomain(), blockApp, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
-		getDiagramCommandStack().execute(new EMFtoGEFCommandWrapper(setCommand));
+	public static void setBlockEncapsulated(final Element block) throws Exception {
+		AbstractTransactionalCommand setCommand = new AbstractTransactionalCommand(getTransactionalEditingDomain(), "Set Block isEncapsulated", null) {
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				Block blockApp = UMLUtil.getStereotypeApplication(block, Block.class);
+				blockApp.setIsEncapsulated(true);
+				return CommandResult.newOKCommandResult(block);
+			}
+		};
+		getDiagramCommandStack().execute(new ICommandProxy(setCommand));
 	}
 	
 	public static EObject createLink(IElementType elementType, EObject source, EObject target) throws Exception {
