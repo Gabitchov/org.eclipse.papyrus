@@ -25,8 +25,6 @@ import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
 import org.eclipse.papyrus.infra.services.decoration.util.DecorationUtils;
 import org.eclipse.papyrus.infra.services.decoration.util.IDecoration;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class DecorationService.
  */
@@ -57,7 +55,6 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * Instantiates a new decoration service.
 	 */
 	public DecorationService() {
-		System.out.println("DecorationService created");
 	}
 
 	/**
@@ -69,8 +66,6 @@ public class DecorationService extends Observable implements IDecorationService 
 	 */
 
 	public void startService() throws ServiceException {
-		System.out.println("DecorationService started");
-
 	}
 
 	/**
@@ -82,8 +77,6 @@ public class DecorationService extends Observable implements IDecorationService 
 	 */
 
 	public void disposeService() throws ServiceException {
-		System.out.println("DecorationService stoped");
-
 	}
 
 	//Notify all Listeners when a marker has been added or removed
