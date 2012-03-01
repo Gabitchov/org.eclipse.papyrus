@@ -15,41 +15,36 @@ import org.eclipse.gmf.runtime.notation.ImageStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSImageStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSImageStyleDelegate implements CSSImageStyle{
-	
+public class CSSImageStyleDelegate implements CSSImageStyle {
+
 	private ImageStyle imageStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSImageStyleDelegate(ImageStyle imageStyle, ExtendedCSSEngine engine){
+	public CSSImageStyleDelegate(ImageStyle imageStyle, ExtendedCSSEngine engine) {
 		this.imageStyle = imageStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.imageStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public java.lang.Boolean getCSSAntiAlias(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "antiAlias");
+	public java.lang.Boolean getCSSAntiAlias() {
+		CSSValue cssValue = engine.retrievePropertyValue(imageStyle, "antiAlias");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_AntiAlias().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_AntiAlias().getDefaultValue();
 			return (java.lang.Boolean)defaultValue;
 		}
 		return null;
 	}
 
-	public java.lang.Boolean getCSSMaintainAspectRatio(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "maintainAspectRatio");
+	public java.lang.Boolean getCSSMaintainAspectRatio() {
+		CSSValue cssValue = engine.retrievePropertyValue(imageStyle, "maintainAspectRatio");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio().getDefaultValue();
 			return (java.lang.Boolean)defaultValue;
 		}
 		return null;

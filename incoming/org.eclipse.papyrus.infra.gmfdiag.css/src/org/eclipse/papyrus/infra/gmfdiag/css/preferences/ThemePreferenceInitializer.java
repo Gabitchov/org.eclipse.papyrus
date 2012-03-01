@@ -9,21 +9,17 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.engine;
+package org.eclipse.papyrus.infra.gmfdiag.css.preferences;
 
-import org.w3c.dom.css.CSSValue;
+import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 
 
-/**
- * An interface for Lazy CSS Engine
- * 
- * The Engine doesn't modify an Element. Instead, for an element, it returns the
- * value of the required property.
- * 
- * @author Camille Letavernier
- */
-public interface LazyCSSEngine {
+public class ThemePreferenceInitializer extends AbstractPreferenceInitializer {
 
-	public CSSValue retrievePropertyValue(Object node, String property);
+	@Override
+	public void initializeDefaultPreferences() {
+		//		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		//		store.setDefault(ThemePreferencesPage.CURRENT_THEME, null);
+	}
 
 }

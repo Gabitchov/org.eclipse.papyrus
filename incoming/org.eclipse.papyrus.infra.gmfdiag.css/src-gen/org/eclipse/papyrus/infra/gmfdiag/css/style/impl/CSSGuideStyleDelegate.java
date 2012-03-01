@@ -14,21 +14,16 @@ package org.eclipse.papyrus.infra.gmfdiag.css.style.impl;
 import org.eclipse.gmf.runtime.notation.GuideStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSGuideStyle;
-import org.w3c.dom.Element;
 
-@SuppressWarnings("restriction")
-public class CSSGuideStyleDelegate implements CSSGuideStyle{
-	
+public class CSSGuideStyleDelegate implements CSSGuideStyle {
+
 	private GuideStyle guideStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSGuideStyleDelegate(GuideStyle guideStyle, ExtendedCSSEngine engine){
+	public CSSGuideStyleDelegate(GuideStyle guideStyle, ExtendedCSSEngine engine) {
 		this.guideStyle = guideStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.guideStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////

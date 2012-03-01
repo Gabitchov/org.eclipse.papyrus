@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="theme" name="CSS Theme" schema="schema/theme.exsd"/>
 	<extension point="org.eclipse.emf.ecore.factory_override">
 		<factory
 			class="org.eclipse.papyrus.infra.gmfdiag.css.factory.CSSNotationFactory"
@@ -55,5 +56,29 @@
           priority="40"
           styleProvider="org.eclipse.papyrus.infra.gmfdiag.css.provider.CSSAppearanceProvider">
     </styleprovider>
+ </extension>
+ <extension
+       point="org.eclipse.ui.preferencePages">
+    <page
+          category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+          class="org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferencesPage"
+          id="org.eclipse.papyrus.infra.gmfdiag.css.theme"
+          name="CSS Theme">
+    </page>
+ </extension>
+ <extension
+       point="org.eclipse.core.runtime.preferences">
+    <initializer
+          class="org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferenceInitializer">
+    </initializer>
+ </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.gmfdiag.css.theme">
+    <theme
+          id="papyrus_theme">
+       <stylesheet
+             stylesheetPath="resources/papyrus_theme.css">
+       </stylesheet>
+    </theme>
  </extension>
 </plugin>

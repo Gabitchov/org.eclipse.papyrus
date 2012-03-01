@@ -9,21 +9,15 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.engine;
+package org.eclipse.papyrus.views.properties.modelelement;
 
-import org.w3c.dom.css.CSSValue;
+import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 
 
-/**
- * An interface for Lazy CSS Engine
- * 
- * The Engine doesn't modify an Element. Instead, for an element, it returns the
- * value of the required property.
- * 
- * @author Camille Letavernier
- */
-public interface LazyCSSEngine {
+public class PreferencesModelElementFactory implements ModelElementFactory {
 
-	public CSSValue retrievePropertyValue(Object node, String property);
+	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
+		return new PreferencesModelElement(context);
+	}
 
 }

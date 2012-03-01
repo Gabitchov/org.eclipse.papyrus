@@ -19,95 +19,90 @@ import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSRoutingStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSRoutingStyleDelegate implements CSSRoutingStyle{
-	
+public class CSSRoutingStyleDelegate implements CSSRoutingStyle {
+
 	private RoutingStyle routingStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSRoutingStyleDelegate(RoutingStyle routingStyle, ExtendedCSSEngine engine){
+	public CSSRoutingStyleDelegate(RoutingStyle routingStyle, ExtendedCSSEngine engine) {
 		this.routingStyle = routingStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.routingStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public int getCSSRoundedBendpointsRadius(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "roundedBendpointsRadius");
+	public int getCSSRoundedBendpointsRadius() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "roundedBendpointsRadius");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius().getDefaultValue();
 			return (Integer)defaultValue;
 		}
 		return (Integer)engine.convert(cssValue, Integer.class, null);
 	}
 
-	public Routing getCSSRouting(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "routing");
+	public Routing getCSSRouting() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "routing");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_Routing().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_Routing().getDefaultValue();
 			return (Routing)defaultValue;
 		}
 		return Routing.get(cssValue.getCssText());
 	}
 
-	public Smoothness getCSSSmoothness(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "smoothness");
+	public Smoothness getCSSSmoothness() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "smoothness");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_Smoothness().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_Smoothness().getDefaultValue();
 			return (Smoothness)defaultValue;
 		}
 		return Smoothness.get(cssValue.getCssText());
 	}
 
-	public boolean isCSSAvoidObstructions(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "avoidObstructions");
+	public boolean isCSSAvoidObstructions() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "avoidObstructions");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions().getDefaultValue();
 			return (Boolean)defaultValue;
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);
 	}
 
-	public boolean isCSSClosestDistance(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "closestDistance");
+	public boolean isCSSClosestDistance() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "closestDistance");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance().getDefaultValue();
 			return (Boolean)defaultValue;
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);
 	}
 
-	public JumpLinkStatus getCSSJumpLinkStatus(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "jumpLinkStatus");
+	public JumpLinkStatus getCSSJumpLinkStatus() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "jumpLinkStatus");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus().getDefaultValue();
 			return (JumpLinkStatus)defaultValue;
 		}
 		return JumpLinkStatus.get(cssValue.getCssText());
 	}
 
-	public JumpLinkType getCSSJumpLinkType(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "jumpLinkType");
+	public JumpLinkType getCSSJumpLinkType() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "jumpLinkType");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType().getDefaultValue();
 			return (JumpLinkType)defaultValue;
 		}
 		return JumpLinkType.get(cssValue.getCssText());
 	}
 
-	public boolean isCSSJumpLinksReverse(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "jumpLinksReverse");
+	public boolean isCSSJumpLinksReverse() {
+		CSSValue cssValue = engine.retrievePropertyValue(routingStyle, "jumpLinksReverse");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse().getDefaultValue();
 			return (Boolean)defaultValue;
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);

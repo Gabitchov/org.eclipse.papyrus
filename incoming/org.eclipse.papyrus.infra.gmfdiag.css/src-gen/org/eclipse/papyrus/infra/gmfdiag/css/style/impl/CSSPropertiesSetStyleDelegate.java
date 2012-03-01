@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.PropertiesSetStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSPropertiesSetStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSPropertiesSetStyleDelegate implements CSSPropertiesSetStyle{
-	
+public class CSSPropertiesSetStyleDelegate implements CSSPropertiesSetStyle {
+
 	private PropertiesSetStyle propertiesSetStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSPropertiesSetStyleDelegate(PropertiesSetStyle propertiesSetStyle, ExtendedCSSEngine engine){
+	public CSSPropertiesSetStyleDelegate(PropertiesSetStyle propertiesSetStyle, ExtendedCSSEngine engine) {
 		this.propertiesSetStyle = propertiesSetStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.propertiesSetStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public java.lang.String getCSSName(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "name");
+	public java.lang.String getCSSName() {
+		CSSValue cssValue = engine.retrievePropertyValue(propertiesSetStyle, "name");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getNamedStyle_Name().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getNamedStyle_Name().getDefaultValue();
 			return (String)defaultValue;
 		}
 		return (String)engine.convert(cssValue, String.class, null);

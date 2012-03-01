@@ -11,35 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
-import java.net.URL;
-
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.listener.StyleSheetChangeListener;
 import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
+import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
 @SuppressWarnings("restriction")
 public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
-
-	/**
-	 * Adds a stylesheet from a given StyleSheet model.
-	 * 
-	 * @param inputURL
-	 */
-	public void addStyleSheet(StyleSheet styleSheet);
-
-	/**
-	 * Adds a stylesheet from a given URL.
-	 * 
-	 * @param inputURL
-	 */
-	public void addStyleSheet(URL inputURL);
-
-	/**
-	 * Resets the CSS cache
-	 */
-	public void resetCache();
 
 	/**
 	 * Adds a listener to be notified each time a StyleSheet has changed
@@ -47,6 +26,13 @@ public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
 	 * @param listener
 	 */
 	public void addStyleSheetChangeListener(StyleSheetChangeListener listener);
+
+	/**
+	 * Removes a StyleSheetChangeListener
+	 * 
+	 * @param listener
+	 */
+	public void removeStyleSheetChangedListener(StyleSheetChangeListener listener);
 
 	/**
 	 * @return The list of all stylesheets for this Engine, including the
@@ -60,4 +46,32 @@ public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
 	 * This method never throws an Exception
 	 */
 	public Object convert(CSSValue cssValue, Object toType, Object context);
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Should be called when the StyleSheets have changed
+	 */
+	public void reset();
+
+	/**
+	 * Resets the CSS cache
+	 * 
+	 * Should be called when the semantic model has changed.
+	 */
+	public void resetCache();
+
+	/**
+	 * Notifies a change from the given Element
+	 * 
+	 * @param element
+	 */
+	public void notifyChange(Element element);
+
+	/**
+	 * Notifies the Engine that the given widget has been disposed
+	 * 
+	 * @param nativeWidget
+	 */
+	public void handleDispose(Object nativeWidget);
 }

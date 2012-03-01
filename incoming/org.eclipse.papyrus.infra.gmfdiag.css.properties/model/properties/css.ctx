@@ -75,4 +75,10 @@
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
+  <dataContexts name="Preferences" label="Preferences">
+    <elements name="org.eclipse.papyrus.infra.gmfdiag.css">
+      <properties name="currentTheme" label="" description="The theme currently applied to all Papyrus Diagrams in your workspace. The theme can be changed in the preferences."/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.2"/>
+  </dataContexts>
 </contexts:Context>

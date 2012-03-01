@@ -47,7 +47,6 @@ public class CustomStyleValueCommand extends AbstractCommand {
 		createStyle = valueStyle == null;
 		if(createStyle) {
 			valueStyle = createStyle();
-			System.out.println("Create a new " + styleClass.getName());
 		} else {
 			oldValue = valueStyle.eGet(styleFeature);
 		}
@@ -73,7 +72,6 @@ public class CustomStyleValueCommand extends AbstractCommand {
 		NamedStyle valueStyle = view.getNamedStyle(styleClass, styleName);;
 		if(createStyle) {
 			view.getStyles().remove(valueStyle);
-			System.out.println("Remove the new " + styleClass.getName());
 		} else {
 			valueStyle.eSet(styleFeature, oldValue);
 		}

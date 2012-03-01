@@ -14,21 +14,16 @@ package org.eclipse.papyrus.infra.gmfdiag.css.style.impl;
 import org.eclipse.gmf.runtime.notation.DiagramLinkStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDiagramLinkStyle;
-import org.w3c.dom.Element;
 
-@SuppressWarnings("restriction")
-public class CSSDiagramLinkStyleDelegate implements CSSDiagramLinkStyle{
-	
+public class CSSDiagramLinkStyleDelegate implements CSSDiagramLinkStyle {
+
 	private DiagramLinkStyle diagramLinkStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSDiagramLinkStyleDelegate(DiagramLinkStyle diagramLinkStyle, ExtendedCSSEngine engine){
+	public CSSDiagramLinkStyleDelegate(DiagramLinkStyle diagramLinkStyle, ExtendedCSSEngine engine) {
 		this.diagramLinkStyle = diagramLinkStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.diagramLinkStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////

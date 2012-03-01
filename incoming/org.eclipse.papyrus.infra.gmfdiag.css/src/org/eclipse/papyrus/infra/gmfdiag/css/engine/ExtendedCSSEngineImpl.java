@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.e4.ui.css.core.dom.ExtendedDocumentCSS;
 import org.eclipse.e4.ui.css.core.dom.parsers.CSSParser;
 import org.eclipse.e4.ui.css.core.dom.parsers.CSSParserFactory;
@@ -30,6 +31,8 @@ import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverter;
 import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
+import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.BooleanConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.IntegerConverter;
@@ -71,12 +74,12 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * Owned stylesheets
 	 */
-	private final List<StyleSheet> styleSheets = new LinkedList<StyleSheet>();
+	protected final List<StyleSheet> styleSheets = new LinkedList<StyleSheet>();
 
 	/**
 	 * Owned stylesheets, by URL
 	 */
-	private final List<URL> styleSheetURLs = new LinkedList<URL>();
+	protected final List<URL> styleSheetURLs = new LinkedList<URL>();
 
 	public ExtendedCSSEngineImpl() {
 		this(null);
@@ -128,43 +131,26 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public CSSValue retrievePropertyValue(Element element, String property) {
-		if(element == null || property == null) {
+	public CSSValue retrievePropertyValue(Object node, String property) {
+		if(node == null || property == null) {
 			return null;
 		}
 
-		CSSStyleDeclaration declaration = getStyleDeclaration(element);
+		CSSStyleDeclaration declaration = getStyleDeclaration(node);
 
 		return declaration.getPropertyCSSValue(property);
 	}
 
-	private CSSStyleDeclaration getStyleDeclaration(Element element) {
-		return getStyleDeclaration(element, null);
+	private CSSStyleDeclaration getStyleDeclaration(Object node) {
+		return getStyleDeclaration(node, null);
 	}
 
-	private CSSStyleDeclaration getStyleDeclaration(Element element, String pseudo) {
+	private CSSStyleDeclaration getStyleDeclaration(Object node, String pseudo) {
+		Element element = getElement(node);
 		if(!declarationsCache.containsKey(element)) {
 			declarationsCache.put(element, getViewCSS().getComputedStyle(element, pseudo));
 		}
 		return declarationsCache.get(element);
-	}
-
-	public void addStyleSheet(StyleSheet styleSheet) {
-		styleSheets.add(styleSheet);
-		reset();
-	}
-
-	public void addStyleSheet(URL styleSheet) {
-		styleSheetURLs.add(styleSheet);
-		reset();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void addStyleSheet(URL inputURL, boolean extended) {
-		//TODO : Extended CSS
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -177,6 +163,10 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		fireStyleSheetChanged();
 	}
 
+	protected void reloadStyleSheets() {
+		//Do nothing
+	}
+
 	//FIXME : Determine precisely the lifecycle of the cache
 	//When is it built ; when is it cleaned
 	/**
@@ -187,7 +177,8 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		styleSheetsList = null;
 	}
 
-	private void parseStyleSheets() {
+	protected void parseStyleSheets() {
+		reloadStyleSheets();
 		for(URL styleSheet : styleSheetURLs) {
 			try {
 				parseStyleSheet(styleSheet.openStream());
@@ -274,6 +265,10 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		styleSheetListeners.add(listener);
 	}
 
+	public void removeStyleSheetChangedListener(StyleSheetChangeListener listener) {
+		styleSheetListeners.remove(listener);
+	}
+
 	public ExtendedStyleSheetList getAllStylesheets() {
 		if(styleSheetsList == null) {
 			parseStyleSheets();
@@ -313,7 +308,25 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	@Override
 	public void dispose() {
+		styleSheetListeners.clear();
+		if(parent != null) {
+			parent.removeStyleSheetChangedListener(this);
+		}
+
 		getElementsContext(); //FIXME: Avoid a NullPointerException in super.dispose()...
 		super.dispose();
+	}
+
+	public void notifyChange(Element elementAdapter) {
+		resetCache(); //TODO: We should only refresh a subset of the cache
+		try {
+			(new RefreshHandler()).execute(null);
+		} catch (ExecutionException ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	public void handleDispose(Object nativeWidget) {
+		super.handleWidgetDisposed(nativeWidget);
 	}
 }

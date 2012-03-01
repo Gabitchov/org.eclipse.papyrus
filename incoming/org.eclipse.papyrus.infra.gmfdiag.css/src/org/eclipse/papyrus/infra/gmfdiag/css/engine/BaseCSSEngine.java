@@ -30,7 +30,7 @@ public class BaseCSSEngine extends ExtendedCSSEngineImpl {
 
 	private BaseCSSEngine() {
 		try {
-			addStyleSheet(new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/base.css")); //$NON-NLS-1$ //$NON-NLS-2$
+			styleSheetURLs.add(new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/base.css")); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (MalformedURLException ex) {
 			Activator.log.error(ex);
 		}

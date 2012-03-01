@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSHintedDiagramLinkStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSHintedDiagramLinkStyleDelegate implements CSSHintedDiagramLinkStyle{
-	
+public class CSSHintedDiagramLinkStyleDelegate implements CSSHintedDiagramLinkStyle {
+
 	private HintedDiagramLinkStyle hintedDiagramLinkStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSHintedDiagramLinkStyleDelegate(HintedDiagramLinkStyle hintedDiagramLinkStyle, ExtendedCSSEngine engine){
+	public CSSHintedDiagramLinkStyleDelegate(HintedDiagramLinkStyle hintedDiagramLinkStyle, ExtendedCSSEngine engine) {
 		this.hintedDiagramLinkStyle = hintedDiagramLinkStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.hintedDiagramLinkStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public java.lang.String getCSSHint(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "hint");
+	public java.lang.String getCSSHint() {
+		CSSValue cssValue = engine.retrievePropertyValue(hintedDiagramLinkStyle, "hint");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getHintedDiagramLinkStyle_Hint().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getHintedDiagramLinkStyle_Hint().getDefaultValue();
 			return (String)defaultValue;
 		}
 		return (String)engine.convert(cssValue, String.class, null);

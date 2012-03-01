@@ -16,32 +16,27 @@ import org.eclipse.gmf.runtime.notation.LineTypeStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSLineTypeStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSLineTypeStyleDelegate implements CSSLineTypeStyle{
-	
+public class CSSLineTypeStyleDelegate implements CSSLineTypeStyle {
+
 	private LineTypeStyle lineTypeStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSLineTypeStyleDelegate(LineTypeStyle lineTypeStyle, ExtendedCSSEngine engine){
+	public CSSLineTypeStyleDelegate(LineTypeStyle lineTypeStyle, ExtendedCSSEngine engine) {
 		this.lineTypeStyle = lineTypeStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.lineTypeStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public LineType getCSSLineType(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "lineType");
+	public LineType getCSSLineType() {
+		CSSValue cssValue = engine.retrievePropertyValue(lineTypeStyle, "lineType");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getLineTypeStyle_LineType().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getLineTypeStyle_LineType().getDefaultValue();
 			return (LineType)defaultValue;
 		}
 		return LineType.get(cssValue.getCssText());

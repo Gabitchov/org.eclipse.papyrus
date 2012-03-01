@@ -11,15 +11,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.resource;
 
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
 
-
+@SuppressWarnings("restriction")
 public class CSSNotationResource extends GMFResource {
 
 	private ExtendedCSSEngine engine;
+
+	private Adapter disposeListener;
 
 	public CSSNotationResource(URI uri) {
 		super(uri);
@@ -28,8 +36,37 @@ public class CSSNotationResource extends GMFResource {
 	public ExtendedCSSEngine getEngine() {
 		if(engine == null) {
 			engine = new ModelCSSEngine(this);
+			getResourceSet().eAdapters().add(disposeListener = new ResourceDisposeListener());
 		}
 		return engine;
 	}
 
+	private void disposeEngine(Object notifier) {
+		if(engine != null) {
+			engine.dispose();
+			engine = null;
+			((ResourceSet)notifier).eAdapters().remove(disposeListener);
+		}
+	}
+
+	private class ResourceDisposeListener extends AdapterImpl {
+
+		@Override
+		public void notifyChanged(Notification notification) {
+			switch(notification.getEventType()) {
+			case Notification.REMOVE_MANY:
+				for(Object oldValue : (Collection<?>)notification.getOldValue()) {
+					if(oldValue == CSSNotationResource.this) {
+						disposeEngine(notification.getNotifier());
+					}
+				}
+				break;
+			case Notification.REMOVE:
+				if(notification.getOldValue() == CSSNotationResource.this) {
+					disposeEngine(notification.getNotifier());
+				}
+				break;
+			}
+		}
+	}
 }

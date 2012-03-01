@@ -27,16 +27,21 @@ import org.w3c.dom.Element;
 @SuppressWarnings("restriction")
 public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 
-	private Resource model;
+	private final Resource model;
 
 	public ModelCSSEngine(Resource model) {
 		super(WorkspaceCSSEngine.instance);
 		this.model = model;
+	}
+
+	@Override
+	protected void reloadStyleSheets() {
+		this.styleSheets.clear();
 		for(EObject eObject : model.getContents()) {
 			if(eObject instanceof ModelStyleSheets) {
 				ModelStyleSheets styleSheets = (ModelStyleSheets)eObject;
 				for(StyleSheet styleSheet : styleSheets.getStylesheets()) {
-					addStyleSheet(styleSheet);
+					this.styleSheets.add(styleSheet);
 				}
 			}
 		}

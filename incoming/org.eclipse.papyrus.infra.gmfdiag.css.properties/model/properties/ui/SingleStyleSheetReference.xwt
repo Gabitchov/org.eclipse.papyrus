@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:x="http://www.eclipse.org/xwt"
+<Composite
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
@@ -11,6 +11,7 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringFileSelector input="{Binding}"
+			allowWorkspace="true" allowFileSystem="false"
 			property="modelstylesheets:StyleSheetReference:path"></ppe:StringFileSelector>
 	</Composite>
 </Composite>

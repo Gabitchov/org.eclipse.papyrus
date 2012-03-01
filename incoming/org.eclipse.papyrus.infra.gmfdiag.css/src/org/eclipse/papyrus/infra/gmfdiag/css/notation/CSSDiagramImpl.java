@@ -11,9 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
@@ -22,15 +27,27 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 
+@SuppressWarnings("restriction")
 public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 
 	protected ExtendedCSSEngine engine;
 
+	private Adapter disposeListener;
+
 	public ExtendedCSSEngine getEngine() {
 		if(engine == null) {
 			engine = new DiagramCSSEngine(getModelEngine(), this);
+			eResource().eAdapters().add(disposeListener = new DiagramDisposeListener());
 		}
 		return engine;
+	}
+
+	private void disposeEngine(Object notifier) {
+		if(engine != null) {
+			engine.dispose();
+			engine = null;
+			((Resource)notifier).eAdapters().remove(disposeListener);
+		}
 	}
 
 	protected ExtendedCSSEngine getModelEngine() {
@@ -64,6 +81,27 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 		}
 
 		return result;
+	}
+
+	private class DiagramDisposeListener extends AdapterImpl {
+
+		@Override
+		public void notifyChanged(Notification notification) {
+			switch(notification.getEventType()) {
+			case Notification.REMOVE:
+				if(notification.getOldValue() == CSSDiagramImpl.this) {
+					disposeEngine(notification.getNotifier());
+				}
+				break;
+			case Notification.REMOVE_MANY:
+				for(Object object : (Collection<?>)notification.getOldValue()) {
+					if(object == CSSDiagramImpl.this) {
+						disposeEngine(notification.getNotifier());
+					}
+				}
+				break;
+			}
+		}
 	}
 
 }

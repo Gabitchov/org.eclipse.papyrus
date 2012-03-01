@@ -94,4 +94,9 @@ Constraint {
 Package {
 	fillColor: white;
 }
-	
+
+/** This is the Diagram's root element. It doesn't support 
+gradient and should have the same color as the diagram */
+SequenceDiagram > Interaction {
+	fillColor:white; 
+}

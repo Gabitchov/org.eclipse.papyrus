@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css.factory;
 import org.eclipse.gmf.runtime.notation.ArrowStyle;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.BasicSemanticCompartment;
-import org.eclipse.gmf.runtime.notation.ByteArrayValueStyle;
 import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.Compartment;
 import org.eclipse.gmf.runtime.notation.Connector;
@@ -52,7 +51,6 @@ import org.eclipse.gmf.runtime.notation.impl.NotationFactoryImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSArrowStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSBasicCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSBasicSemanticCompartmentImpl;
-import org.eclipse.papyrus.infra.gmfdiag.css.CSSByteArrayValueStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSCanonicalStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSConnectorImpl;
@@ -194,11 +192,6 @@ public class CSSNotationFactory extends NotationFactoryImpl {
 	@Override
 	public DataTypeStyle createDataTypeStyle() {
 		return new CSSDataTypeStyleImpl();
-	}
-
-	@Override
-	public ByteArrayValueStyle createByteArrayValueStyle() {
-		return new CSSByteArrayValueStyleImpl();
 	}
 
 	@Override

@@ -87,7 +87,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 		ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {
-			EditionDialog dialog = new EditionDialog(widget.getShell());
+			EditionDialog dialog = new EditionDialog(widget.getShell(), true);
 			dialog.setViews(views);
 			dialog.setInput(source);
 			dialog.setTitle(getCreationDialogTitle());

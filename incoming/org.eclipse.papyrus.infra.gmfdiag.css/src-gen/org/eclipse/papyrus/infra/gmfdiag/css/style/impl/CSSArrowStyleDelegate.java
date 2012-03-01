@@ -16,22 +16,17 @@ import org.eclipse.gmf.runtime.notation.ArrowType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSArrowStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
 public class CSSArrowStyleDelegate implements CSSArrowStyle {
 
 	private ArrowStyle arrowStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
 	public CSSArrowStyleDelegate(ArrowStyle arrowStyle, ExtendedCSSEngine engine) {
 		this.arrowStyle = arrowStyle;
 		this.engine = engine;
-		this.element = engine.getElement(this.arrowStyle);
 	}
 
 	////////////////////////////////////////////////
@@ -39,7 +34,7 @@ public class CSSArrowStyleDelegate implements CSSArrowStyle {
 	////////////////////////////////////////////////
 
 	public ArrowType getCSSArrowSource() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "arrowSource");
+		CSSValue cssValue = engine.retrievePropertyValue(arrowStyle, "arrowSource");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getArrowStyle_ArrowSource().getDefaultValue();
 			return (ArrowType)defaultValue;
@@ -48,7 +43,7 @@ public class CSSArrowStyleDelegate implements CSSArrowStyle {
 	}
 
 	public ArrowType getCSSArrowTarget() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "arrowTarget");
+		CSSValue cssValue = engine.retrievePropertyValue(arrowStyle, "arrowTarget");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getArrowStyle_ArrowTarget().getDefaultValue();
 			return (ArrowType)defaultValue;

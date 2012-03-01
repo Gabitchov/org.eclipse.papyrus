@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RoundedCornersStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSRoundedCornersStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSRoundedCornersStyleDelegate implements CSSRoundedCornersStyle{
-	
+public class CSSRoundedCornersStyleDelegate implements CSSRoundedCornersStyle {
+
 	private RoundedCornersStyle roundedCornersStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSRoundedCornersStyleDelegate(RoundedCornersStyle roundedCornersStyle, ExtendedCSSEngine engine){
+	public CSSRoundedCornersStyleDelegate(RoundedCornersStyle roundedCornersStyle, ExtendedCSSEngine engine) {
 		this.roundedCornersStyle = roundedCornersStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.roundedCornersStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public int getCSSRoundedBendpointsRadius(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "roundedBendpointsRadius");
+	public int getCSSRoundedBendpointsRadius() {
+		CSSValue cssValue = engine.retrievePropertyValue(roundedCornersStyle, "roundedBendpointsRadius");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius().getDefaultValue();
 			return (Integer)defaultValue;
 		}
 		return (Integer)engine.convert(cssValue, Integer.class, null);

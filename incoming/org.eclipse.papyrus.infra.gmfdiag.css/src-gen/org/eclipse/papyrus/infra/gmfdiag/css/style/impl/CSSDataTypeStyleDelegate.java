@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.DataTypeStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDataTypeStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSDataTypeStyleDelegate implements CSSDataTypeStyle{
-	
+public class CSSDataTypeStyleDelegate implements CSSDataTypeStyle {
+
 	private DataTypeStyle dataTypeStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSDataTypeStyleDelegate(DataTypeStyle dataTypeStyle, ExtendedCSSEngine engine){
+	public CSSDataTypeStyleDelegate(DataTypeStyle dataTypeStyle, ExtendedCSSEngine engine) {
 		this.dataTypeStyle = dataTypeStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.dataTypeStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public java.lang.String getCSSName(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "name");
+	public java.lang.String getCSSName() {
+		CSSValue cssValue = engine.retrievePropertyValue(dataTypeStyle, "name");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getNamedStyle_Name().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getNamedStyle_Name().getDefaultValue();
 			return (String)defaultValue;
 		}
 		return (String)engine.convert(cssValue, String.class, null);

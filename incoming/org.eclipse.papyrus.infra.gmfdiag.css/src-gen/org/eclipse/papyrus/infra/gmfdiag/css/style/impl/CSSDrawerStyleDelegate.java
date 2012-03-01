@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.DrawerStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDrawerStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSDrawerStyleDelegate implements CSSDrawerStyle{
-	
+public class CSSDrawerStyleDelegate implements CSSDrawerStyle {
+
 	private DrawerStyle drawerStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSDrawerStyleDelegate(DrawerStyle drawerStyle, ExtendedCSSEngine engine){
+	public CSSDrawerStyleDelegate(DrawerStyle drawerStyle, ExtendedCSSEngine engine) {
 		this.drawerStyle = drawerStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.drawerStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public boolean isCSSCollapsed(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "collapsed");
+	public boolean isCSSCollapsed() {
+		CSSValue cssValue = engine.retrievePropertyValue(drawerStyle, "collapsed");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getDrawerStyle_Collapsed().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getDrawerStyle_Collapsed().getDefaultValue();
 			return (Boolean)defaultValue;
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);

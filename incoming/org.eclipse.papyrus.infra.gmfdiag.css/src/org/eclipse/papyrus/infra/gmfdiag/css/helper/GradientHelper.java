@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
 
@@ -40,10 +39,10 @@ public class GradientHelper {
 
 	//TODO: The Engine should provide a method to handle complex composite properties.
 	//The base CSS Engine provides such a feature. However, it is not powerful enough.
-	public static GradientData computeGradient(ExtendedCSSEngine engine, Element element) {
+	public static GradientData computeGradient(ExtendedCSSEngine engine, Object node) {
 		//Type 1
-		CSSValue gradientColor = engine.retrievePropertyValue(element, "gradientColor");
-		CSSValue gradientStyle = engine.retrievePropertyValue(element, "gradientStyle");
+		CSSValue gradientColor = engine.retrievePropertyValue(node, "gradientColor");
+		CSSValue gradientStyle = engine.retrievePropertyValue(node, "gradientStyle");
 
 		if(gradientColor != null || gradientStyle != null) {
 			int color1 = (Integer)engine.convert(gradientColor, ColorToGMFConverter.GMFColor, null);
@@ -54,7 +53,7 @@ public class GradientHelper {
 		}
 
 		//Type 2
-		CSSValue gradient = engine.retrievePropertyValue(element, "gradient");
+		CSSValue gradient = engine.retrievePropertyValue(node, "gradient");
 
 		if(gradient != null) {
 			String gradientString = gradient.getCssText();

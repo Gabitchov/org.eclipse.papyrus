@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSCanonicalStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSCanonicalStyleDelegate implements CSSCanonicalStyle{
-	
+public class CSSCanonicalStyleDelegate implements CSSCanonicalStyle {
+
 	private CanonicalStyle canonicalStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSCanonicalStyleDelegate(CanonicalStyle canonicalStyle, ExtendedCSSEngine engine){
+	public CSSCanonicalStyleDelegate(CanonicalStyle canonicalStyle, ExtendedCSSEngine engine) {
 		this.canonicalStyle = canonicalStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.canonicalStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public boolean isCSSCanonical(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "canonical");
+	public boolean isCSSCanonical() {
+		CSSValue cssValue = engine.retrievePropertyValue(canonicalStyle, "canonical");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getCanonicalStyle_Canonical().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getCanonicalStyle_Canonical().getDefaultValue();
 			return (Boolean)defaultValue;
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);

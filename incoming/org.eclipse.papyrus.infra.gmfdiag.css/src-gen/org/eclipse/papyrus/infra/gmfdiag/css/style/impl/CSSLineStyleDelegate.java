@@ -15,41 +15,36 @@ import org.eclipse.gmf.runtime.notation.LineStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSLineStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSLineStyleDelegate implements CSSLineStyle{
-	
+public class CSSLineStyleDelegate implements CSSLineStyle {
+
 	private LineStyle lineStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSLineStyleDelegate(LineStyle lineStyle, ExtendedCSSEngine engine){
+	public CSSLineStyleDelegate(LineStyle lineStyle, ExtendedCSSEngine engine) {
 		this.lineStyle = lineStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.lineStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public int getCSSLineColor(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "lineColor");
+	public int getCSSLineColor() {
+		CSSValue cssValue = engine.retrievePropertyValue(lineStyle, "lineColor");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineColor().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineColor().getDefaultValue();
 			return (Integer)defaultValue;
 		}
 		return (Integer)engine.convert(cssValue, "GMFColor", null);
 	}
 
-	public int getCSSLineWidth(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "lineWidth");
+	public int getCSSLineWidth() {
+		CSSValue cssValue = engine.retrievePropertyValue(lineStyle, "lineWidth");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineWidth().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineWidth().getDefaultValue();
 			return (Integer)defaultValue;
 		}
 		return (Integer)engine.convert(cssValue, Integer.class, null);

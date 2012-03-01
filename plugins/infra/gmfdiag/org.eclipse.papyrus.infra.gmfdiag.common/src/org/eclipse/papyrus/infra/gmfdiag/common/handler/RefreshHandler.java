@@ -39,7 +39,6 @@ public class RefreshHandler extends AbstractHandler {
 				DiagramHelper.refresh(topEditPart, true);
 			}
 		}
-
 		return null;
 	}
 }

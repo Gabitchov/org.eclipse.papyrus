@@ -15,22 +15,17 @@ import org.eclipse.gmf.runtime.notation.DiagramStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDiagramStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
 public class CSSDiagramStyleDelegate implements CSSDiagramStyle {
 
 	private DiagramStyle diagramStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
 	public CSSDiagramStyleDelegate(DiagramStyle diagramStyle, ExtendedCSSEngine engine) {
 		this.diagramStyle = diagramStyle;
 		this.engine = engine;
-		this.element = engine.getElement(this.diagramStyle);
 	}
 
 	////////////////////////////////////////////////
@@ -38,7 +33,7 @@ public class CSSDiagramStyleDelegate implements CSSDiagramStyle {
 	////////////////////////////////////////////////
 
 	public int getCSSPageX() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "pageX");
+		CSSValue cssValue = engine.retrievePropertyValue(diagramStyle, "pageX");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageX().getDefaultValue();
 			return (Integer)defaultValue;
@@ -47,7 +42,7 @@ public class CSSDiagramStyleDelegate implements CSSDiagramStyle {
 	}
 
 	public int getCSSPageY() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "pageY");
+		CSSValue cssValue = engine.retrievePropertyValue(diagramStyle, "pageY");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageY().getDefaultValue();
 			return (Integer)defaultValue;
@@ -56,7 +51,7 @@ public class CSSDiagramStyleDelegate implements CSSDiagramStyle {
 	}
 
 	public int getCSSPageWidth() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "pageWidth");
+		CSSValue cssValue = engine.retrievePropertyValue(diagramStyle, "pageWidth");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageWidth().getDefaultValue();
 			return (Integer)defaultValue;
@@ -65,7 +60,7 @@ public class CSSDiagramStyleDelegate implements CSSDiagramStyle {
 	}
 
 	public int getCSSPageHeight() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "pageHeight");
+		CSSValue cssValue = engine.retrievePropertyValue(diagramStyle, "pageHeight");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getPageStyle_PageHeight().getDefaultValue();
 			return (Integer)defaultValue;
@@ -74,7 +69,7 @@ public class CSSDiagramStyleDelegate implements CSSDiagramStyle {
 	}
 
 	public java.lang.String getCSSDescription() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "description");
+		CSSValue cssValue = engine.retrievePropertyValue(diagramStyle, "description");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getDescriptionStyle_Description().getDefaultValue();
 			return (String)defaultValue;

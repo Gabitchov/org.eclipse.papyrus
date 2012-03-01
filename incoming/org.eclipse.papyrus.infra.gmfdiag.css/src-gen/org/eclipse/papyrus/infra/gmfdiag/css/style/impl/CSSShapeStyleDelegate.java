@@ -16,22 +16,17 @@ import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.GradientHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSShapeStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
 public class CSSShapeStyleDelegate implements CSSShapeStyle {
 
 	private ShapeStyle shapeStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
 	public CSSShapeStyleDelegate(ShapeStyle shapeStyle, ExtendedCSSEngine engine) {
 		this.shapeStyle = shapeStyle;
 		this.engine = engine;
-		this.element = engine.getElement(this.shapeStyle);
 	}
 
 	////////////////////////////////////////////////
@@ -39,7 +34,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	////////////////////////////////////////////////
 
 	public int getCSSFontColor() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "fontColor");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "fontColor");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_FontColor().getDefaultValue();
 			return (Integer)defaultValue;
@@ -48,7 +43,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public java.lang.String getCSSFontName() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "fontName");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "fontName");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_FontName().getDefaultValue();
 			return (String)defaultValue;
@@ -57,7 +52,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public int getCSSFontHeight() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "fontHeight");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "fontHeight");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_FontHeight().getDefaultValue();
 			return (Integer)defaultValue;
@@ -66,7 +61,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public boolean isCSSBold() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "bold");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "bold");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_Bold().getDefaultValue();
 			return (Boolean)defaultValue;
@@ -75,7 +70,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public boolean isCSSItalic() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "italic");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "italic");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_Italic().getDefaultValue();
 			return (Boolean)defaultValue;
@@ -84,7 +79,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public boolean isCSSUnderline() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "underline");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "underline");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_Underline().getDefaultValue();
 			return (Boolean)defaultValue;
@@ -93,7 +88,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public boolean isCSSStrikeThrough() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "strikeThrough");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "strikeThrough");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().getDefaultValue();
 			return (Boolean)defaultValue;
@@ -102,7 +97,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public java.lang.String getCSSDescription() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "description");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "description");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getDescriptionStyle_Description().getDefaultValue();
 			return (String)defaultValue;
@@ -111,7 +106,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public int getCSSFillColor() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "fillColor");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "fillColor");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_FillColor().getDefaultValue();
 			return (Integer)defaultValue;
@@ -120,7 +115,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public int getCSSTransparency() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "transparency");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "transparency");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_Transparency().getDefaultValue();
 			return (Integer)defaultValue;
@@ -129,11 +124,11 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient() {
-		return GradientHelper.computeGradient(engine, element);
+		return GradientHelper.computeGradient(engine, shapeStyle);
 	}
 
 	public int getCSSLineColor() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "lineColor");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "lineColor");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineColor().getDefaultValue();
 			return (Integer)defaultValue;
@@ -142,7 +137,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public int getCSSLineWidth() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "lineWidth");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "lineWidth");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getLineStyle_LineWidth().getDefaultValue();
 			return (Integer)defaultValue;
@@ -151,7 +146,7 @@ public class CSSShapeStyleDelegate implements CSSShapeStyle {
 	}
 
 	public int getCSSRoundedBendpointsRadius() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "roundedBendpointsRadius");
+		CSSValue cssValue = engine.retrievePropertyValue(shapeStyle, "roundedBendpointsRadius");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius().getDefaultValue();
 			return (Integer)defaultValue;

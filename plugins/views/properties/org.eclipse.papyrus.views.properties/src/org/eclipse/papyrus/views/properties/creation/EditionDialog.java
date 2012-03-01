@@ -61,6 +61,24 @@ public class EditionDialog extends SelectionDialog {
 
 	private Set<XWTSection> sections = new HashSet<XWTSection>();
 
+	private boolean cancelable = false;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param shell
+	 *        The shell in which the dialog will be opened
+	 * @param cancelable
+	 *        Whether the cancel button is active or not. The values are data-binded, ie.
+	 *        edited in real time, before the ok button is pressed. If the cancel button
+	 *        is active, callers are responsible for undoing the changes.
+	 */
+	protected EditionDialog(Shell shell, boolean cancelable) {
+		super(shell);
+		this.cancelable = cancelable;
+	}
+
 	/**
 	 * 
 	 * Constructor.
@@ -69,7 +87,7 @@ public class EditionDialog extends SelectionDialog {
 	 *        The shell in which the dialog will be opened
 	 */
 	protected EditionDialog(Shell shell) {
-		super(shell);
+		this(shell, false);
 	}
 
 	@Override
@@ -90,7 +108,7 @@ public class EditionDialog extends SelectionDialog {
 		display();
 
 		//The values are data-binded, thus are edited in real time. It is not possible to cancel (However, Ctrl+Z should work)
-		getButton(IDialogConstants.CANCEL_ID).setEnabled(false);
+		getButton(IDialogConstants.CANCEL_ID).setEnabled(cancelable);
 	}
 
 	@Override

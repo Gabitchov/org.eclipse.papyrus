@@ -17,14 +17,18 @@ import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_
 import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_STYLE_KEY;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
@@ -37,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.StringListValueStyle;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
@@ -44,7 +49,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 @SuppressWarnings("restriction")
-public class GMFElementAdapter extends ElementAdapter implements NodeList {
+public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener {
 
 	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
 	public static final Map<String, String> diagramNameMappings = new HashMap<String, String>();
@@ -100,6 +105,10 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList {
 	 * The parent node of this element
 	 */
 	private Node parentNode;
+
+	private Adapter styleListener;
+
+	private CustomStyleListener cssStyleListener;
 
 	public static String getCSSID(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_ID_KEY);
@@ -163,15 +172,42 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList {
 
 	public GMFElementAdapter(View view, ExtendedCSSEngine engine) {
 		super(view, engine);
-
 		notationElement = view;
+		listenNotationElement();
 	}
 
-	private EObject getSemanticElement() {
+	public EObject getSemanticElement() {
 		if(semanticElement == null) {
 			semanticElement = SemanticElementHelper.findSemanticElement(notationElement);
+			listenSemanticElement();
 		}
 		return semanticElement;
+	}
+
+	private Adapter getStyleListener() {
+		if(styleListener == null) {
+			styleListener = new StyleListener(this);
+		}
+		return styleListener;
+	}
+
+	private void listenNotationElement() {
+		notationElement.eAdapters().add(getStyleListener());
+
+		Collection<String> cssStyles = Arrays.asList(new String[]{ CSS_GMF_CLASS_KEY, CSS_GMF_ID_KEY, CSS_GMF_STYLE_KEY });
+
+		notationElement.eAdapters().add(cssStyleListener = new CustomStyleListener(notationElement, this, cssStyles));
+	}
+
+	private ExtendedCSSEngine getEngine() {
+		return (ExtendedCSSEngine)engine;
+	}
+
+	private void listenSemanticElement() {
+		//FIXME: The semantic hierarchy is never refresh (children & parentNode)
+		if(semanticElement != null) {
+			semanticElement.eAdapters().add(getStyleListener());
+		}
 	}
 
 	/**
@@ -315,6 +351,62 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList {
 		}
 
 		return childList.toArray(new Node[childList.size()]);
+	}
+
+	//////////////////////
+	//	Handle events	//
+	//////////////////////
+
+	public EObject getNotationElement() {
+		return notationElement;
+	}
+
+	public void semanticElementChanged() {
+		if(semanticElement != null && semanticElement != notationElement) {
+			semanticElement.eAdapters().remove(styleListener);
+			semanticElement = null;
+		}
+
+		localName = null;
+		parentNode = null;
+		namespaceURI = null;
+		children = null;
+		getEngine().notifyChange(this);
+	}
+
+	//Change incoming from one of the cssCustomStyles (class, id or local style)
+	public void handleChange(ChangeEvent event) {
+		//Notify the CSS Engine
+		getEngine().notifyChange(this);
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		notationElement.eAdapters().remove(cssStyleListener);
+		cssStyleListener.dispose();
+
+		notationElement.eAdapters().remove(styleListener);
+
+		if(semanticElement != null) {
+			semanticElement.eAdapters().remove(styleListener);
+		}
+	}
+
+	public void notationPropertyChanged() {
+		//Notify the CSSEngine
+		getEngine().notifyChange(this);
+	}
+
+	public void semanticPropertyChanged() {
+		//Notify the CSSEngine
+		getEngine().notifyChange(this);
+	}
+
+	public void notationElementDisposed() {
+		dispose();
+		//Notify the CSSEngine
+		getEngine().handleDispose(notationElement);
 	}
 
 }

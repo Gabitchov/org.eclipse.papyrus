@@ -9,14 +9,16 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom;
+package org.eclipse.papyrus.infra.gmfdiag.common.listener;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.IChangeListener;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
@@ -24,29 +26,32 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
 
-public class CustomStyleListener implements Adapter {
+public class CustomStyleListener extends AdapterImpl {
 
-	private Notifier target;
+	private final Collection<String> styleNames;
 
-	private String styleName;
-
-	private IChangeListener listener;
+	private final IChangeListener listener;
 
 	private boolean disposed;
 
-	private View source;
-
-	private EStructuralFeature listenedFeature;
+	private final EStructuralFeature listenedFeature;
 
 	public CustomStyleListener(View source, EStructuralFeature listenedFeature, IChangeListener listener, String styleName) {
-		this.styleName = styleName;
+		this(source, listenedFeature, listener, Collections.singleton(styleName));
+	}
+
+	public CustomStyleListener(View source, IChangeListener listener, Collection<String> styleNames) {
+		this(source, null, listener, styleNames);
+	}
+
+	public CustomStyleListener(View source, EStructuralFeature listenedFeature, IChangeListener listener, Collection<String> styleNames) {
+		this.styleNames = styleNames;
 		this.listener = listener;
-		this.source = source;
 		this.listenedFeature = listenedFeature;
 		for(Object styleObject : source.getStyles()) {
 			if(styleObject instanceof NamedStyle) {
 				NamedStyle style = (NamedStyle)styleObject;
-				if(styleName.equals(style.getName())) {
+				if(styleNames.contains(style.getName())) {
 					//FIXME: If a style's name is change, we won't be notified. We should probably listen on all styles
 					style.eAdapters().add(this);
 				}
@@ -54,6 +59,7 @@ public class CustomStyleListener implements Adapter {
 		}
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {
 		if(disposed) {
 			((Notifier)notification.getNotifier()).eAdapters().remove(this);
@@ -81,8 +87,8 @@ public class CustomStyleListener implements Adapter {
 			}
 		}
 
-		if(notification.getFeature() == listenedFeature) {
-			if(notification.getNotifier() instanceof NamedStyle && styleName.equals(((NamedStyle)notification.getNotifier()).getName())) {
+		if(notification.getFeature() == listenedFeature || listenedFeature == null) {
+			if(notification.getNotifier() instanceof NamedStyle && styleNames.contains(((NamedStyle)notification.getNotifier()).getName())) {
 				if(!notification.isTouch()) {
 					listener.handleChange(null);
 				}
@@ -102,33 +108,15 @@ public class CustomStyleListener implements Adapter {
 
 	private void handleChange(EObject value) {
 		if(value instanceof NamedStyle) {
-			if(styleName.equals(((NamedStyle)value).getName())) {
+			if(styleNames.contains(((NamedStyle)value).getName())) {
 				listener.handleChange(null);
 				return;
 			}
 		}
 	}
 
-	public Notifier getTarget() {
-		return target;
-	}
-
-	public void setTarget(Notifier newTarget) {
-		if(disposed) {
-			return;
-		}
-		this.target = newTarget;
-	}
-
-	public boolean isAdapterForType(Object type) {
-		return false;
-	}
-
 	public void dispose() {
 		this.disposed = true;
-		listener = null;
-		target = null;
-		source = null;
 	}
 
 }

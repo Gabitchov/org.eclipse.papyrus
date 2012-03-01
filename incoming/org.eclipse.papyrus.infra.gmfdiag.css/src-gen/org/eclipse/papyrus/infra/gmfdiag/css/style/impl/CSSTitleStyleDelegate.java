@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSTitleStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSTitleStyleDelegate implements CSSTitleStyle{
-	
+public class CSSTitleStyleDelegate implements CSSTitleStyle {
+
 	private TitleStyle titleStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSTitleStyleDelegate(TitleStyle titleStyle, ExtendedCSSEngine engine){
+	public CSSTitleStyleDelegate(TitleStyle titleStyle, ExtendedCSSEngine engine) {
 		this.titleStyle = titleStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.titleStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public boolean isCSSShowTitle(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "showTitle");
+	public boolean isCSSShowTitle() {
+		CSSValue cssValue = engine.retrievePropertyValue(titleStyle, "showTitle");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getTitleStyle_ShowTitle().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getTitleStyle_ShowTitle().getDefaultValue();
 			return (Boolean)defaultValue;
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);

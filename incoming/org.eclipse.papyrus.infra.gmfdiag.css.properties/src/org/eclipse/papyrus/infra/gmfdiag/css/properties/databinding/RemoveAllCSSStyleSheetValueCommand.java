@@ -12,17 +12,15 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.custom.RemoveAllCustomStyleListValueCommand;
 
 
@@ -38,13 +36,13 @@ public class RemoveAllCSSStyleSheetValueCommand extends RemoveAllCustomStyleList
 	public void execute() {
 		for(Object value : values) {
 			if(value instanceof EObject) {
-				EObject eObject = (EObject)value;
-				Map<EObject, Collection<EStructuralFeature.Setting>> references = EcoreUtil.CrossReferencer.find(Collections.singletonList(eObject));
+				EObject styleSheet = (EObject)value;
+				Collection<EStructuralFeature.Setting> references = PapyrusEcoreUtils.getUsages(styleSheet);
 				//We're removing the last reference to this styleSheet (Only if the stylesheet is contained
 				//in the same resource as the view referencing it... We don't modify external models)
-				if(references.size() == 1 && eObject.eResource() == view.eResource()) {
-					deletedEObjects.add(eObject);
-					eObject.eResource().getContents().remove(eObject);
+				if(references.size() == 1 && styleSheet.eResource() == view.eResource()) {
+					deletedEObjects.add(styleSheet);
+					styleSheet.eResource().getContents().remove(styleSheet);
 				}
 			}
 		}

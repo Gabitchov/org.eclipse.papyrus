@@ -15,32 +15,27 @@ import org.eclipse.gmf.runtime.notation.DescriptionStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDescriptionStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSDescriptionStyleDelegate implements CSSDescriptionStyle{
-	
+public class CSSDescriptionStyleDelegate implements CSSDescriptionStyle {
+
 	private DescriptionStyle descriptionStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSDescriptionStyleDelegate(DescriptionStyle descriptionStyle, ExtendedCSSEngine engine){
+	public CSSDescriptionStyleDelegate(DescriptionStyle descriptionStyle, ExtendedCSSEngine engine) {
 		this.descriptionStyle = descriptionStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.descriptionStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public java.lang.String getCSSDescription(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "description");
+	public java.lang.String getCSSDescription() {
+		CSSValue cssValue = engine.retrievePropertyValue(descriptionStyle, "description");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getDescriptionStyle_Description().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getDescriptionStyle_Description().getDefaultValue();
 			return (String)defaultValue;
 		}
 		return (String)engine.convert(cssValue, String.class, null);

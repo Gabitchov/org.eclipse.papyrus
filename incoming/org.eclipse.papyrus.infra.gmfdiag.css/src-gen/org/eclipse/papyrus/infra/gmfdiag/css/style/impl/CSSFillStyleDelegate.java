@@ -16,22 +16,17 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.GradientHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSFillStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
 public class CSSFillStyleDelegate implements CSSFillStyle {
 
 	private FillStyle fillStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
 	public CSSFillStyleDelegate(FillStyle fillStyle, ExtendedCSSEngine engine) {
 		this.fillStyle = fillStyle;
 		this.engine = engine;
-		this.element = engine.getElement(this.fillStyle);
 	}
 
 	////////////////////////////////////////////////
@@ -39,7 +34,7 @@ public class CSSFillStyleDelegate implements CSSFillStyle {
 	////////////////////////////////////////////////
 
 	public int getCSSFillColor() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "fillColor");
+		CSSValue cssValue = engine.retrievePropertyValue(fillStyle, "fillColor");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_FillColor().getDefaultValue();
 			return (Integer)defaultValue;
@@ -48,7 +43,7 @@ public class CSSFillStyleDelegate implements CSSFillStyle {
 	}
 
 	public int getCSSTransparency() {
-		CSSValue cssValue = engine.retrievePropertyValue(element, "transparency");
+		CSSValue cssValue = engine.retrievePropertyValue(fillStyle, "transparency");
 		if(cssValue == null) {
 			Object defaultValue = NotationPackage.eINSTANCE.getFillStyle_Transparency().getDefaultValue();
 			return (Integer)defaultValue;
@@ -57,6 +52,6 @@ public class CSSFillStyleDelegate implements CSSFillStyle {
 	}
 
 	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient() {
-		return GradientHelper.computeGradient(engine, element);
+		return GradientHelper.computeGradient(engine, fillStyle);
 	}
 }

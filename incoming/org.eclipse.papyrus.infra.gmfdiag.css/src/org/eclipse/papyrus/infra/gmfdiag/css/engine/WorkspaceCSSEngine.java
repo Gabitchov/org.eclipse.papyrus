@@ -11,12 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
-import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferencesPage;
 import org.w3c.dom.Element;
 
 /**
@@ -31,16 +30,17 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 
 	private WorkspaceCSSEngine() {
 		super(BaseCSSEngine.instance);
-		try {
-			//TODO: Use an extension point to register themes
-			//TODO: Use a Preference page to select a theme
-			addStyleSheet(new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/papyrus_theme.css"));
-		} catch (MalformedURLException ex) {
-			Activator.log.error(ex);
-		}
 	}
 
 	public static ExtendedCSSEngine instance = new WorkspaceCSSEngine();
+
+	@Override
+	protected void reloadStyleSheets() {
+		styleSheetURLs.clear();
+		for(URL styleSheetURL : ThemePreferencesPage.getWorkspaceStyleSheets()) {
+			styleSheetURLs.add(styleSheetURL);
+		}
+	}
 
 	//Unsupported operations. The WorkspaceCSSEngine should never be used directly.
 

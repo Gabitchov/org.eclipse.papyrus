@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
 import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
 
 /**

@@ -16,41 +16,36 @@ import org.eclipse.gmf.runtime.notation.FilteringStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSFilteringStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSFilteringStyleDelegate implements CSSFilteringStyle{
-	
+public class CSSFilteringStyleDelegate implements CSSFilteringStyle {
+
 	private FilteringStyle filteringStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSFilteringStyleDelegate(FilteringStyle filteringStyle, ExtendedCSSEngine engine){
+	public CSSFilteringStyleDelegate(FilteringStyle filteringStyle, ExtendedCSSEngine engine) {
 		this.filteringStyle = filteringStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.filteringStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public Filtering getCSSFiltering(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "filtering");
+	public Filtering getCSSFiltering() {
+		CSSValue cssValue = engine.retrievePropertyValue(filteringStyle, "filtering");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getFilteringStyle_Filtering().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getFilteringStyle_Filtering().getDefaultValue();
 			return (Filtering)defaultValue;
 		}
 		return Filtering.get(cssValue.getCssText());
 	}
 
-	public java.util.List getCSSFilteringKeys(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "filteringKeys");
+	public java.util.List getCSSFilteringKeys() {
+		CSSValue cssValue = engine.retrievePropertyValue(filteringStyle, "filteringKeys");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getFilteringStyle_FilteringKeys().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getFilteringStyle_FilteringKeys().getDefaultValue();
 			return (java.util.List)defaultValue;
 		}
 		return null;

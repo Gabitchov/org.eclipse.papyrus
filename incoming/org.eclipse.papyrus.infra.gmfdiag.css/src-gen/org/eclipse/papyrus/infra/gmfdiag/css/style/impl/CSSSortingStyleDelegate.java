@@ -16,41 +16,36 @@ import org.eclipse.gmf.runtime.notation.Sorting;
 import org.eclipse.gmf.runtime.notation.SortingStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSSortingStyle;
-import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
-@SuppressWarnings("restriction")
-public class CSSSortingStyleDelegate implements CSSSortingStyle{
-	
+public class CSSSortingStyleDelegate implements CSSSortingStyle {
+
 	private SortingStyle sortingStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSSortingStyleDelegate(SortingStyle sortingStyle, ExtendedCSSEngine engine){
+	public CSSSortingStyleDelegate(SortingStyle sortingStyle, ExtendedCSSEngine engine) {
 		this.sortingStyle = sortingStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.sortingStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
 	//	Implements a getter for each CSS property //
 	////////////////////////////////////////////////
 
-	public Sorting getCSSSorting(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "sorting");
+	public Sorting getCSSSorting() {
+		CSSValue cssValue = engine.retrievePropertyValue(sortingStyle, "sorting");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getSortingStyle_Sorting().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getSortingStyle_Sorting().getDefaultValue();
 			return (Sorting)defaultValue;
 		}
 		return Sorting.get(cssValue.getCssText());
 	}
 
-	public java.util.Map getCSSSortingKeys(){
-		CSSValue cssValue = engine.retrievePropertyValue(element, "sortingKeys");
+	public java.util.Map getCSSSortingKeys() {
+		CSSValue cssValue = engine.retrievePropertyValue(sortingStyle, "sortingKeys");
 		if(cssValue == null) {
-			Object defaultValue = NotationPackage.eINSTANCE.getSortingStyle_SortingKeys().getDefaultValue(); 
+			Object defaultValue = NotationPackage.eINSTANCE.getSortingStyle_SortingKeys().getDefaultValue();
 			return (java.util.Map)defaultValue;
 		}
 		return null;

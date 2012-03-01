@@ -14,21 +14,16 @@ package org.eclipse.papyrus.infra.gmfdiag.css.style.impl;
 import org.eclipse.gmf.runtime.notation.MultiDiagramLinkStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSMultiDiagramLinkStyle;
-import org.w3c.dom.Element;
 
-@SuppressWarnings("restriction")
-public class CSSMultiDiagramLinkStyleDelegate implements CSSMultiDiagramLinkStyle{
-	
+public class CSSMultiDiagramLinkStyleDelegate implements CSSMultiDiagramLinkStyle {
+
 	private MultiDiagramLinkStyle multiDiagramLinkStyle;
 
 	private ExtendedCSSEngine engine;
 
-	private Element element;
-
-	public CSSMultiDiagramLinkStyleDelegate(MultiDiagramLinkStyle multiDiagramLinkStyle, ExtendedCSSEngine engine){
+	public CSSMultiDiagramLinkStyleDelegate(MultiDiagramLinkStyle multiDiagramLinkStyle, ExtendedCSSEngine engine) {
 		this.multiDiagramLinkStyle = multiDiagramLinkStyle;
- 		this.engine = engine;
-		this.element = engine.getElement(this.multiDiagramLinkStyle);
+		this.engine = engine;
 	}
 
 	////////////////////////////////////////////////
