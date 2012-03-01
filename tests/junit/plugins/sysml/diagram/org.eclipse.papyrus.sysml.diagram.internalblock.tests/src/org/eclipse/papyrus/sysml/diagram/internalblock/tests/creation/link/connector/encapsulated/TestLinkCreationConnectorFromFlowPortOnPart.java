@@ -24,6 +24,7 @@ public class TestLinkCreationConnectorFromFlowPortOnPart extends AbstractLinkCre
 	
 	@BeforeClass
 	public static void initSource() throws Exception {
+		// Nested element are in the part that holds the flowport.
 		sourceView = flowportOnPartSourceView;
 	}	
 	
@@ -41,27 +42,27 @@ public class TestLinkCreationConnectorFromFlowPortOnPart extends AbstractLinkCre
 		isCreationAllowed.put(blockTargetView, false);
 
 		isCreationAllowed.put(actorPartTargetView, true);
-		isCreationAllowed.put(nestedActorPartTargetView, false);
+		isCreationAllowed.put(nestedActorPartTargetView, true);
 		
 		isCreationAllowed.put(portOnBlockTargetView, true);
 		isCreationAllowed.put(portOnPartTargetView, true);
-		isCreationAllowed.put(portOnNestedPartTargetView, false);
+		isCreationAllowed.put(portOnNestedPartTargetView, true);
 		
 		isCreationAllowed.put(flowportOnBlockTargetView, true);
 		isCreationAllowed.put(flowportOnPartTargetView, true);
-		isCreationAllowed.put(flowportOnNestedPartTargetView, false);
+		isCreationAllowed.put(flowportOnNestedPartTargetView, true);
 		
 		isCreationAllowed.put(partTargetView, true);
-		isCreationAllowed.put(nestedPartTargetView, false);
+		isCreationAllowed.put(nestedPartTargetView, true);
 		
 		isCreationAllowed.put(propertyTargetView, true);
-		isCreationAllowed.put(nestedPropertyTargetView, false);
+		isCreationAllowed.put(nestedPropertyTargetView, true);
 		
 		isCreationAllowed.put(referenceTargetView, true);
-		isCreationAllowed.put(nestedReferenceTargetView, false);
+		isCreationAllowed.put(nestedReferenceTargetView, true);
 		
 		isCreationAllowed.put(valueTargetView, true);
-		isCreationAllowed.put(nestedValueTargetView, false);
+		isCreationAllowed.put(nestedValueTargetView, true);
 		
 		isCreationAllowed.put(commentTargetView, false);
 		isCreationAllowed.put(commentCNTargetView, false);

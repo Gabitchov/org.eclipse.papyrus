@@ -25,7 +25,7 @@ public class AbstractLinkCreationFromElementTest extends org.eclipse.papyrus.sys
 	
 	@BeforeClass
 	public static void setPartBlockEncapsulated() throws Exception {
-		TestPrepareUtils.setBlockEncapsulated((Element) (partContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type())));
+		TestPrepareUtils.setBlockEncapsulated((Element) (partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type())));
 	}
 	
 }

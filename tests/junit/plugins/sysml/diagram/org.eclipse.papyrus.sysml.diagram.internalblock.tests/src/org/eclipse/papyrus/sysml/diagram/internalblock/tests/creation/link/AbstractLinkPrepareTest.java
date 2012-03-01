@@ -63,7 +63,8 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 	public static View commentSourceView, commentTargetView, commentCNSourceView, commentCNTargetView;
 	public static View constraintSourceView, constraintTargetView, constraintCNSourceView, constraintCNTargetView;
 
-	public static View partContainer; // Its type block may be set encapsulated for testing purpose.
+	public static View partContainer1; // Its type block may be set encapsulated for testing purpose.
+	public static View partContainer2; // Its type block may be set encapsulated for testing purpose.
 
 	public static Map<View, Boolean> isCreationAllowed = new HashMap<View, Boolean>();
 	
@@ -88,9 +89,11 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 	public static void prepareCustomNodes() throws Exception {
 		View container = ViewUtil.getChildBySemanticHint(getDiagramView(), SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
 		View blockStructureView = ViewUtil.getChildBySemanticHint(container, SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID);
-		partContainer = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
-		View partStructureView = ViewUtil.getChildBySemanticHint(partContainer, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
-		View nestedPartContainer = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		partContainer1 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
+		View partStructureView = ViewUtil.getChildBySemanticHint(partContainer1, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+		partContainer2 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
+		View nestedPartContainer1 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		View nestedPartContainer2 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
 
 		// Prepare elements for link creation tests		
 
@@ -107,17 +110,17 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 		// Port & FlowPorts no distinction made on FlowPorts kind...
 		portOnBlockSourceView = createGraphicalNode(UMLElementTypes.PORT, UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, container);
 		portOnBlockTargetView = createGraphicalNode(UMLElementTypes.PORT, UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, container);
-		portOnPartSourceView = createGraphicalNode(UMLElementTypes.PORT, (EObject)partContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, partContainer);;
-		portOnPartTargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)partContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, partContainer);;
-		portOnNestedPartSourceView = createGraphicalNode(UMLElementTypes.PORT, (EObject)nestedPartContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, nestedPartContainer);;
-		portOnNestedPartTargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)nestedPartContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, nestedPartContainer);;
+		portOnPartSourceView = createGraphicalNode(UMLElementTypes.PORT, (EObject)partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, partContainer1);
+		portOnPartTargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)partContainer2.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, partContainer2);
+		portOnNestedPartSourceView = createGraphicalNode(UMLElementTypes.PORT, (EObject)nestedPartContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, nestedPartContainer1);
+		portOnNestedPartTargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)nestedPartContainer2.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, nestedPartContainer2);
 
 		flowportOnBlockSourceView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, container);
 		flowportOnBlockTargetView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, container);
-		flowportOnPartSourceView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)partContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, partContainer);;
-		flowportOnPartTargetView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)partContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, partContainer);;
-		flowportOnNestedPartSourceView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)nestedPartContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, nestedPartContainer);;
-		flowportOnNestedPartTargetView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)nestedPartContainer.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, nestedPartContainer);;
+		flowportOnPartSourceView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, partContainer1);
+		flowportOnPartTargetView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)partContainer2.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, partContainer2);
+		flowportOnNestedPartSourceView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)nestedPartContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, nestedPartContainer1);
+		flowportOnNestedPartTargetView = createGraphicalNode(SysMLElementTypes.FLOW_PORT, (EObject)nestedPartContainer2.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, nestedPartContainer2);
 		
 		partSourceView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
 		partTargetView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
