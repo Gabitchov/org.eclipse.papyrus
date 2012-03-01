@@ -72,7 +72,6 @@ public class MarkersMonitorService implements IService {
 	 * Instantiates a new markers monitor service.
 	 */
 	public MarkersMonitorService() {
-		System.out.println("MarkersMonitorService created");
 	}
 
 	/**
@@ -102,8 +101,6 @@ public class MarkersMonitorService implements IService {
 	public void startService() throws ServiceException {
 		//Start Listening
 		FileChangeManager.getInstance().addFileObserver(this.fileObserver);
-		System.out.println("MarkersMonitorService Started");
-
 	}
 
 	/**
@@ -115,7 +112,6 @@ public class MarkersMonitorService implements IService {
 	public void disposeService() throws ServiceException {
 		//Stop Listening
 		FileChangeManager.getInstance().removeFileObserver(this.fileObserver);
-		System.out.println("MarkersMonitorService Stoped");
 	}
 
 	/**
@@ -139,16 +135,16 @@ public class MarkersMonitorService implements IService {
 			for(int i = 0; i < markers.length; i++) {
 				EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null, ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
 				int severity = markers[i].getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-				if(eObjectFromMarker != null && severity > IMarker.SEVERITY_INFO)
+				if(eObjectFromMarker != null && severity > IMarker.SEVERITY_INFO) {
 					try {
 						decorationService.addDecoration(markers[i].toString(), eObjectFromMarker, severity, (String)markers[i].getAttribute(IMarker.MESSAGE));
 					} catch (CoreException e) {
 						Activator.log.error(e.getMessage(), e);
 					}
+				}
 			}
 
 		} catch (ServiceException e1) {
-			// TODO Auto-generated catch block
 			Activator.log.error(e1.getMessage(), e1);
 		}
 	}
@@ -241,8 +237,9 @@ public class MarkersMonitorService implements IService {
 		public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(null, attributes, domain);
 			int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-			if(eObjectFromMarker != null && severity == IMarker.SEVERITY_INFO)
+			if(eObjectFromMarker != null && severity == IMarker.SEVERITY_INFO) {
 				decorationService.removeDecoration(marker.toString());
+			}
 		}
 
 		/**
@@ -254,12 +251,13 @@ public class MarkersMonitorService implements IService {
 		public void handleMarkerChanged(IMarker marker) {
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(marker, null, domain);
 			int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-			if(eObjectFromMarker != null && severity > IMarker.SEVERITY_INFO)
+			if(eObjectFromMarker != null && severity > IMarker.SEVERITY_INFO) {
 				try {
 					decorationService.addDecoration(marker.toString(), eObjectFromMarker, severity, (String)marker.getAttribute(IMarker.MESSAGE));
 				} catch (CoreException e) {
 					Activator.log.error(e.getMessage(), e);
 				}
+			}
 		}
 	}
 
