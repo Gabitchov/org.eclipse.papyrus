@@ -45,7 +45,7 @@ import org.eclipse.uml2.uml.MessageSort;
 /**
  * @generated
  */
-public class Message2EditPart extends ConnectionNodeEditPart
+public class Message2EditPart extends AbstractMessageEditPart
 
 implements ITreeBranchEditPart {
 

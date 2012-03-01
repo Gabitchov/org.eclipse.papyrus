@@ -21,9 +21,11 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart.MessageEndHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * @generated
@@ -128,6 +130,12 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().getConstrainedElements().remove(getOldTarget());
 		getOldSource().getConstrainedElements().add(getNewTarget());
+		if(getOldTarget() instanceof MessageEnd) {
+			MessageEndHelper.removeConnectionSourceFromMessageEnd((MessageEnd) getOldTarget(), getOldSource() );
+		}
+		if(getNewTarget() instanceof MessageEnd) {
+			MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd) getNewTarget(), getOldSource());
+		}
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

@@ -24,7 +24,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
@@ -47,7 +46,7 @@ import org.eclipse.uml2.uml.MessageSort;
 /**
  * @generated
  */
-public class MessageEditPart extends ConnectionNodeEditPart
+public class MessageEditPart extends AbstractMessageEditPart
 
 implements ITreeBranchEditPart {
 
