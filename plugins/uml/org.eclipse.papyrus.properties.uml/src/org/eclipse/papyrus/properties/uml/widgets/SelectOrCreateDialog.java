@@ -22,6 +22,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -35,6 +38,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.properties.uml.messages.Messages;
 import org.eclipse.papyrus.widgets.editors.ITreeSelectorDialog;
@@ -92,6 +96,8 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 
 	private ComboViewer typeComboViewer = null;
 
+	private AbstractObservableValue viewerObservable = null;
+
 	private Combo creationTypeCombo = null;
 
 	private Button creationParentButton;
@@ -105,8 +111,6 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 	private ILabelProvider elementLabelProvider;
 
 	private TransactionalEditingDomain transactionalEditingDomain;
-
-	private EStructuralFeature createInFeature;
 
 	/**
 	 * 
@@ -298,6 +302,7 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 			creationTypeCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 			typeComboViewer.setLabelProvider(typeLabelProvider);
 			typeComboViewer.add(possibleTypes.toArray());
+			getStructuredViewerObservable().setValue(typeComboViewer);
 			if(possibleTypes.size() > 1) {
 				// initialize selection
 				defaultType = (EClass)possibleTypes.toArray()[0];
@@ -612,6 +617,9 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 				this.existingElements.add((EObject)object);
 			}
 		}
+		if(provider instanceof IChangeListener) {
+			getStructuredViewerObservable().addChangeListener((IChangeListener)provider);
+		}
 	}
 
 	public void setDescription(String description) {
@@ -622,7 +630,7 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 		//Useful ?
 	}
 
-	public void setInitialElementSelections(List selectedElements) {
+	public void setInitialElementSelections(List<?> selectedElements) {
 		if(selectedElements.isEmpty()) {
 			return;
 		}
@@ -656,7 +664,6 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 		if(parentObject != null) {
 			this.mapTypesPossibleParents.put(type, Collections.singletonList(parentObject));
 		}
-		this.createInFeature = feature;
 	}
 
 	/**
@@ -669,6 +676,39 @@ public class SelectOrCreateDialog extends FormDialog implements ITreeSelectorDia
 		if(domain instanceof TransactionalEditingDomain) {
 			this.transactionalEditingDomain = (TransactionalEditingDomain)domain;
 		}
+	}
+
+	public AbstractObservableValue getStructuredViewerObservable() {
+		if(viewerObservable == null) {
+			viewerObservable = new AbstractObservableValue() {
+
+				public Object getValueType() {
+					return StructuredViewer.class;
+				}
+
+				@Override
+				protected Object doGetValue() {
+					return typeComboViewer;
+				}
+
+				@Override
+				protected void doSetValue(final Object value) {
+					fireValueChange(new ValueDiff() {
+
+						@Override
+						public Object getOldValue() {
+							return null;
+						}
+
+						@Override
+						public Object getNewValue() {
+							return value;
+						}
+					});
+				}
+			};
+		}
+		return viewerObservable;
 	}
 
 }

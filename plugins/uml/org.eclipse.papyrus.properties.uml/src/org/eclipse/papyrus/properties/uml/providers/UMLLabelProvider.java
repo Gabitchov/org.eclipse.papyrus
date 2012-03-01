@@ -17,7 +17,6 @@ import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.properties.providers.IFilteredLabelProvider;
@@ -34,9 +33,8 @@ import org.eclipse.uml2.uml.Element;
  * 
  * @author Camille Letavernier
  */
-public class UMLLabelProvider extends LabelProvider implements IDetailLabelProvider, IFilteredLabelProvider {
-
-	private ILabelProvider modiscoLabelProvider;
+@SuppressWarnings("restriction")
+public class UMLLabelProvider extends MoDiscoLabelProvider implements IDetailLabelProvider, IFilteredLabelProvider {
 
 	private ILabelProvider eObjectLabelProvider;
 
@@ -46,21 +44,21 @@ public class UMLLabelProvider extends LabelProvider implements IDetailLabelProvi
 	 * 
 	 */
 	public UMLLabelProvider() {
-		modiscoLabelProvider = new MoDiscoLabelProvider();
-		//		modiscoLabelProvider = new CustomizableModelLabelProvider(Activator.getDefault().getCustomizationManager());
 		eObjectLabelProvider = new EditorLabelProvider();
 	}
 
 	@Override
 	public String getText(Object inputObject) {
 		inputObject = getInput(inputObject);
-		return getProviderFor(inputObject).getText(inputObject);
+		ILabelProvider prov = getProviderFor(inputObject);
+		return (prov == this ? super.getText(inputObject) : prov.getText(inputObject));
 	}
 
 	@Override
 	public Image getImage(Object inputObject) {
 		inputObject = getInput(inputObject);
-		return getProviderFor(inputObject).getImage(inputObject);
+		ILabelProvider prov = getProviderFor(inputObject);
+		return (prov == this ? super.getImage(inputObject) : prov.getImage(inputObject));
 	}
 
 	/**
@@ -98,10 +96,9 @@ public class UMLLabelProvider extends LabelProvider implements IDetailLabelProvi
 		if(inputObject == null || inputObject instanceof EObject) {
 			return eObjectLabelProvider;
 		}
-
-		return modiscoLabelProvider;
+		return this;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */

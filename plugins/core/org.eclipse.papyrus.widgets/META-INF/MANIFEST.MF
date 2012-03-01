@@ -15,7 +15,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.ui.ide;bundle-version="3.7.0",
- com.ibm.icu;bundle-version="4.4.2"
+ com.ibm.icu;bundle-version="4.4.2",
+ org.eclipse.emf.facet.infra.browser.uicore,
+ org.eclipse.emf.facet.infra.browser.custom,
+ org.eclipse.emf.facet.infra.browser.custom.core,
+ org.eclipse.ui.navigator,
+ org.eclipse.papyrus.modelexplorer
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
@@ -23,5 +28,5 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.widgets.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.widgets
+Bundle-SymbolicName: org.eclipse.papyrus.widgets;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

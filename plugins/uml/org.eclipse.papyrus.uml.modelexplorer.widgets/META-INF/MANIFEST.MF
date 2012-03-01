@@ -5,7 +5,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.modelexplorer.widgets;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
- org.eclipse.papyrus.service.edit;bundle-version="0.8.0"
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
+ org.eclipse.core.databinding;bundle-version="1.4.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

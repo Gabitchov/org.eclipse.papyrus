@@ -16,6 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
@@ -32,7 +34,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Camille Letavernier
  * 
  */
-public class EncapsulatedContentProvider implements IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider {
+public class EncapsulatedContentProvider implements IChangeListener, IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider {
 
 	/**
 	 * The encapsulated static content provider
@@ -223,5 +225,11 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 			return ((IAdaptableContentProvider)encapsulated).getContainerValue(selection);
 		}
 		return selection;
+	}
+
+	public void handleChange(ChangeEvent event) {
+		if(encapsulated instanceof IChangeListener) {
+			((IChangeListener)encapsulated).handleChange(event);
+		}
 	}
 }

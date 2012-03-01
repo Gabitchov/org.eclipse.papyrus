@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.widgets;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -164,7 +166,9 @@ public class UMLElementMEBContentProvider extends GraphicalModelExplorerBasedCon
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		super.inputChanged(viewer, oldInput, newInput);
 		if(this.viewer != null) {
-			this.viewer.setFilters(new ViewerFilter[]{ new UMLHierarchicViewerFilter(this) });
+			List<ViewerFilter> filters = new LinkedList<ViewerFilter>(Arrays.asList(this.viewer.getFilters()));
+			filters.add(new UMLHierarchicViewerFilter(this));
+			this.viewer.setFilters(filters.toArray(new ViewerFilter[filters.size()]));
 		}
 	}
 

@@ -35,6 +35,7 @@ import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
  * This a View Filter that use a IHierarchicContentProvider
  *
  */
+@SuppressWarnings("restriction")
 public class HierarchicViewerFilter extends AbstractTreeFilter {
 
 	/**
@@ -88,6 +89,7 @@ public class HierarchicViewerFilter extends AbstractTreeFilter {
 						for(Object child : children) {
 							if(isVisible(viewer, element, child) || hasOneVisibleChild(viewer, child, contentProvider, visitedElements)) {
 								result = true;
+								break;
 							}
 						}
 					}
@@ -119,6 +121,14 @@ public class HierarchicViewerFilter extends AbstractTreeFilter {
 								result = true;
 							}
 						}
+					}
+				}
+			} else {
+				Object[] children = contentProvider.getChildren(element);
+				for(Object child : children) {
+					if(isVisible(viewer, element, child) || hasOneVisibleChild(viewer, child, contentProvider, visitedElements)) {
+						result = true;
+						break;
 					}
 				}
 			}

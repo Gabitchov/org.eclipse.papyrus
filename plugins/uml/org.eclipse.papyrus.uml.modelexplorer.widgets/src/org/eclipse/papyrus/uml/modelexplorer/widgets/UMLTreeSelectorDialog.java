@@ -29,6 +29,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.widgets.AdvancedMETreeDialog;
 import org.eclipse.papyrus.modelexplorer.widgets.EclassComparator;
+import org.eclipse.papyrus.modelexplorer.widgets.HierarchicViewerFilter;
 import org.eclipse.papyrus.modelexplorer.widgets.MetaclassLabelProvider;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
@@ -159,8 +160,18 @@ public class UMLTreeSelectorDialog extends AdvancedMETreeDialog {
 			}
 		});
 
-		ViewerFilter[] filters = { new UMLHierarchicViewerFilter(contentProvider) };
-		getViewer().setFilters(filters);
+		ViewerFilter[] existingFilters = getViewer().getFilters();
+		List<ViewerFilter> newFiltersList = new ArrayList<ViewerFilter>();
+		for(int i = 0; i < existingFilters.length; i++) {
+			ViewerFilter filter = existingFilters[i];
+			if(!(filter instanceof HierarchicViewerFilter)) {
+				newFiltersList.add(existingFilters[i]);
+			}
+		}
+		newFiltersList.add(new UMLHierarchicViewerFilter(contentProvider));
+
+		ViewerFilter[] result = (ViewerFilter[])newFiltersList.toArray(new ViewerFilter[newFiltersList.size()]);
+		getViewer().setFilters(result);
 		getShell().pack();
 
 

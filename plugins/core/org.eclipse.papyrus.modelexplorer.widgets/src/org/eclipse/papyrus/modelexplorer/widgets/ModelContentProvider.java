@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Support for AdaptableContentProvider
+ *	Philippe Roland (ATOS) philippe.roland@atos.net - 
  *
  *****************************************************************************/
 
@@ -22,6 +23,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -32,21 +36,22 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
 import org.eclipse.papyrus.modelexplorer.SemanticFromModelExplorer;
 import org.eclipse.papyrus.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 
 /**
- * This is a modisco content provider on which we can parameter the root element
+ * This is a custom abstract content provider on which we can parameter the root element
  */
-public class ModelContentProvider extends MoDiscoContentProvider implements IStaticContentProvider, IAdaptableContentProvider {
+@SuppressWarnings("restriction")
+public abstract class ModelContentProvider implements IStaticContentProvider, IAdaptableContentProvider, ITreeContentProvider, IChangeListener {
 
 	/**
 	 * the root element of the tree explorer
 	 */
 	protected EObject semanticRoot = null;
 
+	protected ITreeContentProvider commonContentProvider = null;
 
 	/**
 	 * The StructuredViewer on which this content provider is applied
@@ -61,23 +66,12 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 	 * {@inheritDoc}
 	 */
 	public Object[] getElements() {
-		return super.getElements(EditorUtils.getMultiDiagramEditor().getServicesRegistry());
-	}
-
-	@Override
-	public EObject[] getRootElements(Object inputElement) {
-		//if the semantic root is null, we use the default behavior
-		if(semanticRoot == null) {
-			return super.getRootElements(inputElement);
-		} else {
-			//we call the super, to ensure that all variable are initialized
-			super.getRootElements(inputElement);
-			EObject[] eobjectArray = { semanticRoot };
-			return eobjectArray;
+		if(commonContentProvider == null) {
+			initContentProvider();
 		}
+		return commonContentProvider.getElements(EditorUtils.getMultiDiagramEditor().getServicesRegistry());
 	}
 
-	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if(viewer instanceof StructuredViewer) {
 			this.viewer = (StructuredViewer)viewer;
@@ -201,5 +195,48 @@ public class ModelContentProvider extends MoDiscoContentProvider implements ISta
 			}
 		}
 		return true;
+	}
+
+	public void dispose() {
+	}
+
+	public Object[] getElements(Object inputElement) {
+		if(commonContentProvider == null) {
+			initContentProvider();
+		}
+		return commonContentProvider.getElements(inputElement);
+	}
+
+	public Object[] getChildren(Object parentElement) {
+		if(commonContentProvider == null) {
+			initContentProvider();
+		}
+		return commonContentProvider.getChildren(parentElement);
+	}
+
+	public Object getParent(Object element) {
+		if(commonContentProvider == null) {
+			initContentProvider();
+		}
+		return commonContentProvider.getParent(element);
+	}
+
+	public boolean hasChildren(Object element) {
+		if(commonContentProvider == null) {
+			initContentProvider();
+		}
+		return commonContentProvider.hasChildren(element);
+	}
+
+	protected abstract void initContentProvider();
+
+	public void handleChange(ChangeEvent event) {
+		if(event.getObservable() instanceof AbstractObservableValue) {
+			Object viewer = ((AbstractObservableValue)event.getObservable()).getValue();
+			if(viewer instanceof StructuredViewer) {
+				this.viewer = (StructuredViewer)viewer;
+				initContentProvider();
+			}
+		}
 	}
 }

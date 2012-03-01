@@ -61,11 +61,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.ui.internal.navigator.NavigatorContentService;
+import org.eclipse.ui.navigator.INavigatorFilterService;
 
 /**
  * this is a content provider based on the model explorer on which we can filter wanted meta-classes
  * It can only filter if wantedMetaclass and metaclassNotWanted are Eclass
  */
+@SuppressWarnings("restriction")
 public class GraphicalModelExplorerBasedContentProvider extends ModelContentProvider implements IMetaclassFilteredContentProvider, IHierarchicContentProvider, IGraphicalContentProvider, ISelectionChangedListener, ICommitListener {
 
 
@@ -222,9 +225,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 
 		});
 
-		List<ViewerFilter> filters = new LinkedList<ViewerFilter>(Arrays.asList(viewer.getFilters()));
-		filters.add(patternFilter);
-		viewer.setFilters(filters.toArray(new ViewerFilter[filters.size()]));
+		viewer.addFilter(patternFilter);
 	}
 
 	/**
@@ -510,7 +511,7 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		super.inputChanged(viewer, oldInput, newInput);
 		if(this.viewer != null && newInput != null && this.viewer.getControl() != null && !this.viewer.getControl().isDisposed()) {
-			this.viewer.setFilters(new ViewerFilter[]{ new HierarchicViewerFilter(this) });
+			this.viewer.addFilter(new HierarchicViewerFilter(this));
 			this.viewer.addSelectionChangedListener(this);
 		}
 	}
@@ -552,5 +553,18 @@ public class GraphicalModelExplorerBasedContentProvider extends ModelContentProv
 	public void dispose() {
 		viewer.removeSelectionChangedListener(this);
 		super.dispose();
+	}
+
+	@Override
+	protected void initContentProvider() {
+		NavigatorContentService service = new NavigatorContentService("org.eclipse.papyrus.modelexplorer.modelexplorer", viewer);
+		commonContentProvider = service.createCommonContentProvider();
+		if(viewer != null) {
+			INavigatorFilterService filterService = service.getFilterService();
+			ViewerFilter[] visibleFilters = filterService.getVisibleFilters(true);
+			for(int i = 0; i < visibleFilters.length; i++) {
+				viewer.addFilter(visibleFilters[i]);
+			}
+		}
 	}
 }

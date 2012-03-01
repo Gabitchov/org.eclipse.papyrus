@@ -11,12 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.editors;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -26,6 +30,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.widgets.Activator;
@@ -61,6 +66,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	private Object input = null;
 
 	private final Set<ICommitListener> commitListeners = new HashSet<ICommitListener>();
+
+	private AbstractObservableValue viewerObservable;
 
 	/**
 	 * 
@@ -107,6 +114,9 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		if(contentProvider instanceof ICommitListener) {
 			commitListeners.add((ICommitListener)contentProvider);
 		}
+		if(provider instanceof IChangeListener) {
+			getStructuredViewerObservable().addChangeListener((IChangeListener)provider);
+		}
 	}
 
 	@Override
@@ -122,13 +132,19 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		treeViewer = new TreeViewer(getDialogArea(), SWT.BORDER);
-		treeViewer.setFilters(new ViewerFilter[]{ new PatternFilter() });
+		List<ViewerFilter> filters = new LinkedList<ViewerFilter>(Arrays.asList(treeViewer.getFilters()));
+		filters.add(new PatternFilter());
+		treeViewer.setFilters(filters.toArray(new ViewerFilter[filters.size()]));
+
 		if(labelProvider != null) {
 			treeViewer.setLabelProvider(labelProvider);
 		}
 		if(contentProvider != null) {
 			treeViewer.setContentProvider(contentProvider);
 			if(treeViewer.getInput() == null) {
+				//It's important that we do this before setting the input
+				//This lets it initialize
+				getStructuredViewerObservable().setValue(treeViewer);
 				doSetInput();
 			}
 
@@ -259,4 +275,37 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		super.okPressed();
 	}
 
+	public AbstractObservableValue getStructuredViewerObservable() {
+		if(viewerObservable == null) {
+			viewerObservable = new AbstractObservableValue() {
+
+				public Object getValueType() {
+					return StructuredViewer.class;
+				}
+
+				@Override
+				protected Object doGetValue() {
+					return treeViewer;
+				}
+
+				@Override
+				protected void doSetValue(final Object value) {
+					fireValueChange(new ValueDiff() {
+
+						@Override
+						public Object getOldValue() {
+							return null;
+						}
+
+						@Override
+						public Object getNewValue() {
+							return value;
+						}
+					});
+				}
+
+			};
+		}
+		return viewerObservable;
+	}
 }

@@ -13,8 +13,10 @@ package org.eclipse.papyrus.widgets.editors;
 
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.widgets.providers.IHierarchicContentProvider;
 
 
 
@@ -57,7 +59,7 @@ public interface ITreeSelectorDialog {
 	 * 
 	 * @param singletonList
 	 */
-	public void setInitialElementSelections(List selectedElements);
+	public void setInitialElementSelections(List<?> selectedElements);
 
 
 	/**
@@ -85,4 +87,10 @@ public interface ITreeSelectorDialog {
 	 */
 	public void setTitle(String label);
 
+	/**
+	 * Retrieves an IObservable object that will notify observers whenever the dialog's viewer is modified
+	 * 
+	 * @return an IObservable object monitoring this dialog's structuredViewer
+	 */
+	public IObservable getStructuredViewerObservable();
 }
