@@ -57,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForEle
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
@@ -148,6 +149,10 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		
+		// Fixed bug id=364701 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=364701)
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
+				new InteractionOperandDragDropEditPolicy());
 	}
 
 	/**
@@ -365,6 +370,9 @@ AbstractBorderedShapeEditPart {
 		 * @generated
 		 */
 		public CustomInteractionOperandFigure() {
+			// this.setLayoutManager(new XYLayout());
+			// Fixed bug id=364701 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=364701)
+			// by using StackLayout instead of XYLayout
 			this.setLayoutManager(new XYLayout());
 
 			this.setLineStyle(Graphics.LINE_DASH);
@@ -1361,14 +1369,14 @@ AbstractBorderedShapeEditPart {
 							List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(currentlyCoveredLifeline);
 							coveredLifelinesToAdd.removeAll(continuationCoveredLifelines);
 							if(!coveredLifelinesToAdd.isEmpty()) {
-								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
+								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd),true);
 							}
 
 							// Delete old covered lifelines (not covered anymore)
 							List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(continuationCoveredLifelines);
 							coveredLifelinesToRemove.removeAll(currentlyCoveredLifeline);
 							if(!coveredLifelinesToRemove.isEmpty()) {
-								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove),true);
 							}
 						}
 					}

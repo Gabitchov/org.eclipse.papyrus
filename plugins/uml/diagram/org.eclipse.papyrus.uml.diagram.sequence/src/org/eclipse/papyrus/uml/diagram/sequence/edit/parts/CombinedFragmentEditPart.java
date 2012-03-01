@@ -1207,14 +1207,14 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 						List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(combinedFragmentCoveredLifelines);
 						coveredLifelinesToAdd.removeAll(operandCoveredLifelines);
 						if(!coveredLifelinesToAdd.isEmpty()) {
-							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
+							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd),true);
 						}
 
 						// Delete old covered lifelines (not covered anymore)
 						List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
 						coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);
 						if(!coveredLifelinesToRemove.isEmpty()) {
-							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove),true);
 						}
 					}
 				}

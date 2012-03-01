@@ -32,6 +32,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -489,6 +491,27 @@ public class CommandHelper {
 			} else {
 				commandStack.execute(command);
 			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Execute a EMF command without history
+	 * 
+	 * @param editingDomain
+	 *        The editing domain
+	 * @param command
+	 *        The command
+	 * @param flag
+	 */
+	public static void executeCommandWithoutHistory(EditingDomain editingDomain, org.eclipse.emf.common.command.Command command,boolean flag) {
+		TransactionalCommandStackImpl stack = new TransactionalCommandStackImpl();
+		stack.setEditingDomain((InternalTransactionalEditingDomain)editingDomain);
+		try {
+			stack.execute(command,Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (RollbackException e) {

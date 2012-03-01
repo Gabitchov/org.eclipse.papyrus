@@ -16,26 +16,35 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LayoutManager;
+import org.eclipse.draw2d.ScrollPane;
+import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 
 /**
  * @generated
@@ -80,17 +89,20 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
+		result.getScrollPane().setVerticalScrollBarVisibility(ScrollPane.NEVER);
 		result.setTitleVisibility(false);
 		result.setBorder(null);
 		IFigure contentPane = result.getContentPane();
 		if(contentPane != null) {
 			contentPane.setBorder(null);
-			LayoutManager layout = contentPane.getLayoutManager();
-			if(layout instanceof ConstrainedToolbarLayout) {
-				ConstrainedToolbarLayout constrainedToolbarLayout = (ConstrainedToolbarLayout)layout;
-				constrainedToolbarLayout.setStretchMajorAxis(true);
-				constrainedToolbarLayout.setStretchMinorAxis(true);
-			}
+			//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697)
+			contentPane.setLayoutManager(new XYLayout());
+//			LayoutManager layout = contentPane.getLayoutManager();
+//			if(layout instanceof ConstrainedToolbarLayout) {
+//				ConstrainedToolbarLayout constrainedToolbarLayout = (ConstrainedToolbarLayout)layout;
+//				constrainedToolbarLayout.setStretchMajorAxis(true);
+//				constrainedToolbarLayout.setStretchMinorAxis(true);
+//			}
 		}
 		return result;
 	}
@@ -103,15 +115,31 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, createCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
 
+	}
+
+	private EditPolicy createCreationEditPolicy() {
+		return new CreationEditPolicy(){
+			protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
+				ICommandProxy commandProxy = (ICommandProxy)super.getCreateElementAndViewCommand(request);
+				CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
+				
+				IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
+				if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
+					//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
+					//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
+					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this,request, command);
+				}
+				return commandProxy;
+			}
+		};
 	}
 
 	/**

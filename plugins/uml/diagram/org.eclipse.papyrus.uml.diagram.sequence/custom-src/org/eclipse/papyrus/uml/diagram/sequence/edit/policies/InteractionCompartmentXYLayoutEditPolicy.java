@@ -57,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -84,16 +85,25 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				if(child instanceof LifelineEditPart) {
 					addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
 				} else if(child instanceof CombinedFragmentEditPart) {
+					// Add restrictions to change the size
+					if(!OperandBoundsComputeHelper.checkRedistrictOnCFResize(request,child)){
+						return null;
+					}
 					Command resizeChildrenCommand = getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
 					if(resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
 						compoundCmd.add(resizeChildrenCommand);
-					} else if(resizeChildrenCommand != null) {
-						return UnexecutableCommand.INSTANCE;
-					}
+					} 
+//					else if(resizeChildrenCommand != null) {
+//						return UnexecutableCommand.INSTANCE;
+//					}
 				}
 
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
 				compoundCmd.add(changeConstraintCommand);
+				
+				if(child instanceof CombinedFragmentEditPart) {
+					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd,request,(CombinedFragmentEditPart)child);
+				}
 			}
 		}
 		return compoundCmd.unwrap();

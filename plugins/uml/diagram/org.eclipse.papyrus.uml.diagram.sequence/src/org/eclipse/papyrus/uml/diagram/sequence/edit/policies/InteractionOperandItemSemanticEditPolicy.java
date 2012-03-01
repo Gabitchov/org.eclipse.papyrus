@@ -20,6 +20,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -61,6 +62,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 
 /**
  * @generated
@@ -107,7 +109,7 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
@@ -117,6 +119,10 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 			ICommand deleteCommand = provider.getEditCommand(req);
 
 			if(deleteCommand != null) {
+				if(deleteCommand instanceof ICompositeCommand){
+					OperandBoundsComputeHelper.addUpdateBoundsCommandForOperandDelelete(this.getHost(),(ICompositeCommand)deleteCommand);
+				}
+				
 				return new ICommandProxy(deleteCommand);
 			}
 		}

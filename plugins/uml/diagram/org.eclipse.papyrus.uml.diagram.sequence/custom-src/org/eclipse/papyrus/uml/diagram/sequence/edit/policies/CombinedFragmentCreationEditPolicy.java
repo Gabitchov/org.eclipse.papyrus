@@ -19,10 +19,14 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -40,6 +44,8 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 
+		Command createElementAndViewCmd = super.getCreateElementAndViewCommand(request);
+
 		if(isDerivedCombinedFragment(request.getViewAndElementDescriptor().getSemanticHint())) {
 
 			Rectangle selectionRect = getSelectionRectangle(request);
@@ -47,8 +53,23 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), null);
 
 			request.getExtendedData().put(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS, coveredInteractionFragments);
+			
+			// Add updating bounds command for Combined fragment createment
+			String hint = request.getViewAndElementDescriptor().getSemanticHint();
+			if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)){
+				if (createElementAndViewCmd instanceof ICommandProxy) {
+					ICommandProxy commandProxy = (ICommandProxy) createElementAndViewCmd;
+					ICommand realCmd = commandProxy.getICommand();
+					if (realCmd instanceof CompositeCommand) {
+						ICommand createUpdateBoundsCmd = OperandBoundsComputeHelper.createUpdateCFAndIOBoundsForCFCreationCommand(this.getHost(),request);
+						if (createUpdateBoundsCmd != null)
+							((CompositeCommand) realCmd)
+									.add(createUpdateBoundsCmd);
+					}
+				}
+			}
 		}
-		return super.getCreateElementAndViewCommand(request);
+		return createElementAndViewCmd;
 	}
 
 	/**
