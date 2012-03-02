@@ -19,9 +19,9 @@ import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheets;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.w3c.dom.Element;
 
 @SuppressWarnings("restriction")

@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPackage;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
 
@@ -32,7 +32,7 @@ public class StyleSheetFactory extends EcorePropertyEditorFactory {
 
 	public StyleSheetFactory(View context) {
 		super(NotationPackage.eINSTANCE.getEObjectListValueStyle_EObjectListValue());
-		this.type = ModelStyleSheetsPackage.eINSTANCE.getStyleSheet();
+		this.type = StylesheetsPackage.eINSTANCE.getStyleSheet();
 		this.context = context;
 	}
 

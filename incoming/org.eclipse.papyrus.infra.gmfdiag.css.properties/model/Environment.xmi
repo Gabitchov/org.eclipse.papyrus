@@ -6,4 +6,7 @@
   <modelElementFactories
       name="CSS CustomStyle Factory"
       factoryClass="org.eclipse.papyrus.infra.gmfdiag.css.properties.modelelement.CSSModelElementFactory"/>
+  <modelElementFactories
+      name="CSS Preferences"
+      factoryClass="org.eclipse.papyrus.infra.gmfdiag.css.properties.modelelement.CSSPreferencesModelElementFactory"/>
 </environment:Environment>

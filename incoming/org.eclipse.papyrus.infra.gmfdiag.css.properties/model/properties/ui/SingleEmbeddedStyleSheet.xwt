@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation"
+<Composite
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:x="http://www.eclipse.org/xwt">
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation">
 	<Composite.layout>
 		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -10,6 +10,8 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
+		<ppe:StringEditor property="modelstylesheets:EmbeddedStyleSheet:label"
+			input="{Binding}"></ppe:StringEditor>
 		<ppe:StringMultiline input="{Binding}"
 			property="modelstylesheets:EmbeddedStyleSheet:content"></ppe:StringMultiline>
 	</Composite>

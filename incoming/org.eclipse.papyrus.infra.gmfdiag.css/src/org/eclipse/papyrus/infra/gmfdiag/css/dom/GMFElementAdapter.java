@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
 
 import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_ANNOTATION;
+import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY;
 import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_CLASS_KEY;
 import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_ID_KEY;
 import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_STYLE_KEY;
@@ -44,6 +45,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -194,7 +196,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	private void listenNotationElement() {
 		notationElement.eAdapters().add(getStyleListener());
 
-		Collection<String> cssStyles = Arrays.asList(new String[]{ CSS_GMF_CLASS_KEY, CSS_GMF_ID_KEY, CSS_GMF_STYLE_KEY });
+		Collection<String> cssStyles = Arrays.asList(new String[]{ CSS_GMF_CLASS_KEY, CSS_GMF_ID_KEY, CSS_GMF_STYLE_KEY, CSS_DIAGRAM_STYLESHEETS_KEY });
 
 		notationElement.eAdapters().add(cssStyleListener = new CustomStyleListener(notationElement, this, cssStyles));
 	}
@@ -374,8 +376,14 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		getEngine().notifyChange(this);
 	}
 
-	//Change incoming from one of the cssCustomStyles (class, id or local style)
+	//Change incoming from one of the cssCustomStyles (class, id, local style or diagram stylesheets)
 	public void handleChange(ChangeEvent event) {
+		if(notationElement instanceof CSSDiagram) {
+			//TODO: Use a finer grained event (We should reset only when the 
+			//change occurs on a DiagramStyleSheet)
+			getEngine().reset();
+		}
+
 		//Notify the CSS Engine
 		getEngine().notifyChange(this);
 	}

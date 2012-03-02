@@ -23,9 +23,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.SemanticElementHelper;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.w3c.dom.Element;
 
 @SuppressWarnings("restriction")

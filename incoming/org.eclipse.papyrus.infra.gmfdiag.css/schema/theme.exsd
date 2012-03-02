@@ -17,9 +17,12 @@
          </appinfo>
       </annotation>
       <complexType>
-         <sequence>
-            <element ref="theme" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
+         <choice>
+            <sequence>
+               <element ref="themeContribution" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+            <element ref="themeDefinition" minOccurs="0" maxOccurs="unbounded"/>
+         </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -47,7 +50,7 @@
       </complexType>
    </element>
 
-   <element name="theme">
+   <element name="themeContribution">
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
             <element ref="stylesheet"/>
@@ -57,6 +60,9 @@
                <documentation>
                   
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.gmfdiag.css.theme/themeDefinition/@id"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -72,6 +78,35 @@
                <appinfo>
                   <meta.attribute kind="resource"/>
                </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="themeDefinition">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

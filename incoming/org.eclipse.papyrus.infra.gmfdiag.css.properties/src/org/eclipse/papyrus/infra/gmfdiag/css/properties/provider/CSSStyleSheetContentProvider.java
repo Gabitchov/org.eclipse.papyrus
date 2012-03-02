@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPackage;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 
 
@@ -29,7 +29,7 @@ public class CSSStyleSheetContentProvider extends EMFContentProvider {
 	private EObject context;
 
 	public CSSStyleSheetContentProvider(EObject sourceEObject) {
-		super(sourceEObject, ModelStyleSheetsPackage.eINSTANCE.getModelStyleSheets_Stylesheets());
+		super(sourceEObject, StylesheetsPackage.eINSTANCE.getModelStyleSheets_Stylesheets());
 		this.context = sourceEObject;
 	}
 

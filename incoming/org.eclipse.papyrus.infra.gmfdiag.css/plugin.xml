@@ -74,11 +74,16 @@
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.gmfdiag.css.theme">
-    <theme
-          id="papyrus_theme">
+    <themeDefinition
+          icon="icons/papyrus.png"
+          id="org.eclipse.papyrus.css.papyrus_theme"
+          label="Papyrus Theme">
+    </themeDefinition>
+    <themeContribution
+          id="org.eclipse.papyrus.css.papyrus_theme">
        <stylesheet
              stylesheetPath="resources/papyrus_theme.css">
        </stylesheet>
-    </theme>
+    </themeContribution>
  </extension>
 </plugin>

@@ -100,3 +100,10 @@ gradient and should have the same color as the diagram */
 SequenceDiagram > Interaction {
 	fillColor:white; 
 }
+
+SequenceDiagram CombinedFragment, 
+SequenceDiagram ConsiderIgnoreFragment, 
+SequenceDiagram CombinedFragment *,
+SequenceDiagram ConsiderIgnoreFragment *{
+	fillColor:white;
+}

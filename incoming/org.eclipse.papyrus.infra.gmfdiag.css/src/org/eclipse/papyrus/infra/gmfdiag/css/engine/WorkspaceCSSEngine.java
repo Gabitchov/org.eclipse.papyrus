@@ -15,7 +15,7 @@ import java.net.URL;
 
 import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
-import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferencesPage;
+import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
 import org.w3c.dom.Element;
 
 /**
@@ -37,7 +37,7 @@ public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 	@Override
 	protected void reloadStyleSheets() {
 		styleSheetURLs.clear();
-		for(URL styleSheetURL : ThemePreferencesPage.getWorkspaceStyleSheets()) {
+		for(URL styleSheetURL : ThemeManager.instance.getWorkspaceStyleSheets()) {
 			styleSheetURLs.add(styleSheetURL);
 		}
 	}

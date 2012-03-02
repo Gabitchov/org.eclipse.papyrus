@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.DiagramCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 
 @SuppressWarnings("restriction")
 public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {

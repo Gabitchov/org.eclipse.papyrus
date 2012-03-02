@@ -55,8 +55,8 @@
   <dataContexts name="CSS" label="CSS">
     <elements name="PapyrusCSSStyle">
       <properties name="cssId" label="CSS ID" description="The CSS ID of this element. The ID should be unique within a Diagram. It can be used to retrieve the style properties applied to this element."/>
-      <properties name="cssClass" label="CSS Classes" multiplicity="-1"/>
-      <properties name="cssStyle" label="CSS Style"/>
+      <properties name="cssClass" label="CSS Classes" multiplicity="-1" description="The list of CSS Classes associated to this element. Classes are string identifiers, used by the CSS Stylesheets to identify a set of elements on which styles should be applied."/>
+      <properties name="cssStyle" label="CSS Style" description="The list of CSS properties applied to this element. This is a local style, which will only be applied on the selected element."/>
     </elements>
     <elements name="DiagramStyle" supertypes="//@dataContexts.0/@elements.0">
       <properties name="css_stylesheets" label="Diagram style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to this diagram"/>
@@ -65,9 +65,10 @@
   </dataContexts>
   <dataContexts name="modelstylesheets" label="StyleSheets">
     <elements name="StyleSheetReference">
-      <properties name="path" label="Path" description="The path to the external style sheet"/>
+      <properties name="path" label="Path" description="The path to an external style sheet file"/>
     </elements>
     <elements name="EmbeddedStyleSheet">
+      <properties name="label" label="" description="The stylesheet's label"/>
       <properties name="content" label="Contents" description="The style sheet contents"/>
     </elements>
     <elements name="ModelStyleSheet">
@@ -79,6 +80,6 @@
     <elements name="org.eclipse.papyrus.infra.gmfdiag.css">
       <properties name="currentTheme" label="" description="The theme currently applied to all Papyrus Diagrams in your workspace. The theme can be changed in the preferences."/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.2"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.properties/model/Environment.xmi#//@modelElementFactories.1"/>
   </dataContexts>
 </contexts:Context>

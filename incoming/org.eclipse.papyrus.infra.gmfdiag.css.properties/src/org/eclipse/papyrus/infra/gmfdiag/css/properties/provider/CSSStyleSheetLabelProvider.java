@@ -12,8 +12,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.provider;
 
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.EmbeddedStyleSheet;
-import org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 
 
 public class CSSStyleSheetLabelProvider extends EMFLabelProvider {
@@ -23,7 +23,11 @@ public class CSSStyleSheetLabelProvider extends EMFLabelProvider {
 		if(element instanceof StyleSheetReference) {
 			return ((StyleSheetReference)element).getPath();
 		} else if(element instanceof EmbeddedStyleSheet) {
-			return "EmbeddedStyleSheet";
+			EmbeddedStyleSheet styleSheet = (EmbeddedStyleSheet)element;
+			if(styleSheet.getLabel() == null || "".equals(styleSheet)) {
+				return "EmbeddedStyleSheet";
+			}
+			return styleSheet.getLabel();
 		}
 		return super.getText(element);
 	}
