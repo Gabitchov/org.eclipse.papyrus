@@ -114,20 +114,27 @@ public class ProfileApplicationHelper {
 	 * @param target
 	 *        the target controlled resource
 	 */
-	public static void relocateStereotypeApplications(Package pack, Resource target) {
+	public static void nestedRelocateStereotypeApplications(Package pack, Resource target) {
+		relocateStereotypeApplications(pack, target);
 		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(pack, false); i.hasNext();) {
 			EObject current = i.next();
 			if(current instanceof Element) {
-				Element element = (Element)current;
-				EList<EObject> stereotypeApplications = element.getStereotypeApplications();
-				if(!stereotypeApplications.isEmpty()) {
-					for(EObject e : stereotypeApplications) {
-						int size = target.getContents().size();
-						target.getContents().add(size, e);
-					}
-				}
+				relocateStereotypeApplications((Element)current, target);
 			}
 		}
+	}
+	
+	/**
+	 * Relocate stereotype applications for the an element in the controlled resource
+	 * 
+	 * @param element
+	 *        the element for which stereotype application must be relocated
+	 * @param target
+	 *        the target controlled resource
+	 */
+	public static void relocateStereotypeApplications(Element element, Resource targetResource) {
+		EList<EObject> stereotypeApplications = element.getStereotypeApplications();
+			targetResource.getContents().addAll(stereotypeApplications);
 	}
 
 	/**
