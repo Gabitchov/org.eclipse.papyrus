@@ -52,7 +52,7 @@ public class UMLProfileControlCommand implements IControlCommand {
 			commandToModify.append(new ChangeCommand(domain, new Runnable() {
 
 				public void run() {
-					ProfileApplicationHelper.relocateStereotypeApplications((Package)selection, target);
+					ProfileApplicationHelper.nestedRelocateStereotypeApplications((Package)selection, target);
 				}
 			}));
 			break;
