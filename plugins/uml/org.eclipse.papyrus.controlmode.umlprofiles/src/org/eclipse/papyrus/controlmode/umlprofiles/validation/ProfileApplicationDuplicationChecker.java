@@ -101,6 +101,9 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 	 * @return validation status
 	 */
 	public IStatus validate(IValidationContext ctx) {
+		// save original loading stategy
+		int currentStrategyId = new StrategyChooser().getCurrentStrategy();
+
 		try {
 			if(ctx.equals(lastValidatedContext)) {
 				return ctx.createSuccessStatus();
@@ -151,6 +154,8 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 			Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.error_during_validation, rte));
 			// ensure that the constraint's failure does not prevent modification
 			return ctx.createSuccessStatus();
+		} finally {
+			StrategyChooser.setCurrentStrategy(currentStrategyId);
 		}
 	}
 
