@@ -48,9 +48,7 @@ import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.uml.UmlModel;
-import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -164,52 +162,40 @@ public class PapyrusControlAction extends ControlAction {
 				NotificationBuilder.createAsyncPopup("You must perform control action from the resource:\n" + eObject.eResource().getURI().trimFileExtension().toString() + " for this element").setType(Type.INFO).run();
 				return;
 			}
-			
-			if (!getDiagram(eObject)) {
+
+			if(!getDiagram(eObject)) {
 				NotificationBuilder.createAsyncPopup("The selected package must contain a diagram to perform control action").setType(Type.INFO).run();
 				return;
 			}
 
-			Resource controlledModel = getControlledResource();
+			final Resource controlledModel = getControlledResource();
 			if(controlledModel == null) {
 				return;
 			}
-			try {
-				ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
-				IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
-				if (status.isOK()) {
-					notifySave();					
-				} else {
-					NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to control").run();
-				}
-			} catch (ExecutionException e) {
-				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
-				EMFEditUIPlugin.INSTANCE.log(e);
-			}
-		}
-	}
-	
-	/**
-	 * Display asynchronous popup to inform user about the control action
-	 */
-	protected void notifySave() {
-		new NotificationBuilder().setMessage("Your element has been controlled.\nYou need to save your model to see modifications in your workspace.\nDo you want to save ?").addAction(new NotificationRunnable() {
-			public void run(IContext context) {
-				try {
+
+			NotificationBuilder.createYesNo("This control action will save your model, do you want to continue ?", new Runnable() {
+
+				public void run() {
 					Display.getDefault().syncExec(new Runnable() {
+
 						public void run() {
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+							try {
+								ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
+								IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
+								if(status.isOK()) {
+									PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+								} else {
+									NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to control").run();
+								}
+							} catch (ExecutionException e) {
+								MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
+								EMFEditUIPlugin.INSTANCE.log(e);
+							}
 						}
 					});
-				} catch (Exception e) {
-					e.printStackTrace();
 				}
-			}
-
-			public String getLabel() {
-				return "Save";
-			}
-		}).setTemporary(true).setAsynchronous(true).setType(Type.INFO).setDelay(2000).run();
+			}, null).run();
+		}
 	}
 
 	/**
