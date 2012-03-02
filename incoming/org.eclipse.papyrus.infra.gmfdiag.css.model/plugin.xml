@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse version="3.0"?>
 
 <!--
 -->
-
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://www.eclipse.org/papyrus/infra/gmfdiag/css"
-            class="org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage"
-            genModel="Model/StyleSheets.genmodel"/>
+      <package class="org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage" genModel="Model/StyleSheets.genmodel" uri="http://www.eclipse.org/papyrus/infra/gmfdiag/css"/>
    </extension>
 
+   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+      <facetset file="Model/StyleSheets.facetSet"/>
+   </extension>
+   <extension point="org.eclipse.emf.facet.infra.query.registration">
+      <modelqueryset file="Model/StyleSheets.querySet"/>
+   </extension>
 </plugin>
