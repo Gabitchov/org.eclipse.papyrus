@@ -54,6 +54,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * @generated
@@ -87,7 +88,13 @@ public class Message4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return SequenceDeleteHelper.completeDeleteMessageCommand(req);
+		CompoundCommand destroyElementCommand = new CompoundCommand();
+		Command deleteCommand = SequenceDeleteHelper.completeDeleteMessageCommand(req);
+		destroyElementCommand.add(deleteCommand);
+		 
+		SequenceUtil.addRestoreConstraintOfLifelineCommand(destroyElementCommand, getHost());
+
+		return destroyElementCommand;
 	}
 
 	/**

@@ -42,8 +42,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -57,6 +59,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -572,6 +575,23 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		// Return the SetBoundsCommand only for the Lifeline and with the
 		// sizeDelta modified in order to preserve the links' anchors positions
 		return cmd;
+	}
+	
+	/**
+	 * Align lifeline in vertical direction
+	 * Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
+	 */
+	protected Rectangle getBoundsOffest(CreateViewRequest request,
+			Rectangle bounds, CreateViewRequest.ViewDescriptor viewDescriptor) {
+		int translate = request.getViewDescriptors().indexOf(viewDescriptor) * 10;
+		Rectangle target = bounds.getCopy().translate(translate, translate);
+
+		if (((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint()
+				.equals(viewDescriptor.getSemanticHint())) {
+			target.setY(SequenceUtil.LIFELINE_VERTICAL_OFFSET);
+		}
+
+		return target;
 	}
 
 }

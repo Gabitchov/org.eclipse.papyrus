@@ -50,6 +50,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -57,8 +58,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -66,7 +69,9 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
@@ -81,6 +86,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -111,6 +117,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class SequenceUtil {
 
 	private static final double MAXIMAL_DISTANCE_FROM_EVENT = 10;
+
+	/**
+	 * Default vertical offset of lifeline
+	 */
+	public static final int LIFELINE_VERTICAL_OFFSET = 10;
 
 	/**
 	 * Title for dialog of block message sort modification error
@@ -1488,4 +1499,49 @@ public class SequenceUtil {
 		}
 		return null;
 	}
+	
+	/**
+	 * Check whether the Lifeline is Create Message's target node 
+	 * @param lifelineEP
+	 * @return boolean
+	 */
+	public static boolean isCreateMessageEndLifeline(LifelineEditPart lifelineEP){
+		List<Object> targetConnections = lifelineEP.getTargetConnections();
+		if(targetConnections!=null && targetConnections.size()>0){
+			for(int i = 0;i<targetConnections.size();i++){
+				Object connection = targetConnections.get(i);
+				if(connection instanceof Message4EditPart){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * restore constraint of the target lifeline after delete Create Message
+	 * @param deleteViewsCommand
+	 * @param editPart
+	 */
+	public static void addRestoreConstraintOfLifelineCommand(CompoundCommand deleteViewsCommand,EditPart editPart){
+		if(editPart instanceof Message4EditPart) {
+			Message4EditPart part = (Message4EditPart)editPart;
+			if(part.getTarget() instanceof LifelineEditPart){
+				LifelineEditPart target = (LifelineEditPart)part.getTarget();
+				if(target.getModel() instanceof Shape){
+					Shape view = (ShapeImpl) target.getModel();
+					if(view.getLayoutConstraint() instanceof Bounds){
+						Bounds bounds = (Bounds) view.getLayoutConstraint();
+						ICommand boundsCommand = new SetBoundsCommand(
+								target.getEditingDomain(),
+								DiagramUIMessages.SetLocationCommand_Label_Resize,
+								new EObjectAdapter(view), new Rectangle(bounds.getX(),
+										SequenceUtil.LIFELINE_VERTICAL_OFFSET, bounds.getWidth(), bounds.getHeight()));
+						deleteViewsCommand.add(new ICommandProxy(boundsCommand));
+					}
+				}
+			}
+		}
+	}
+
 }

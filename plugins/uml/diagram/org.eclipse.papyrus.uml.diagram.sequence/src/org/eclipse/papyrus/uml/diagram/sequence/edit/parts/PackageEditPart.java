@@ -18,6 +18,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -26,6 +28,7 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
@@ -34,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragD
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.PackageItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * @generated
@@ -75,6 +79,22 @@ public class PackageEditPart extends DiagramEditPart {
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		
+		//fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+	}
+
+	private EditPolicy createLayoutEditPolicy() {
+		return new XYLayoutEditPolicy() {
+			protected Command createAddCommand(EditPart child, Object constraint) {
+				if (child instanceof LifelineEditPart) {
+					if (!SequenceUtil.isCreateMessageEndLifeline((LifelineEditPart) child)) {
+						return null;
+					}
+				}
+				return super.createAddCommand(child, constraint);
+			}
+		};
 	}
 
 	/**

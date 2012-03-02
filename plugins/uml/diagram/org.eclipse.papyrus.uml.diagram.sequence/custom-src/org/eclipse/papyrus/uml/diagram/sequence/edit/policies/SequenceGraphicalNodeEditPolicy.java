@@ -31,13 +31,19 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -180,7 +186,30 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, request.getLocation());
+		// move source point to the bottom if it is contained in LifelineNameContainerFigure
+		EditPart targetEditPart = request.getTargetEditPart();
+		if (targetEditPart != null
+				&& targetEditPart instanceof LifelineEditPart) {
+			LifelineEditPart target = (LifelineEditPart) targetEditPart;
+			if (target.getPrimaryShape() != null) {
+				Rectangle sourceBounds = target.getPrimaryShape()
+						.getFigureLifelineNameContainerFigure().getBounds()
+						.getCopy();
+				Point sourcePointCopy = request.getLocation().getCopy();
+				target.getFigure().translateToRelative(sourcePointCopy);
+				if (sourcePointCopy.y() < sourceBounds.getBottom().y()) {
+					target.getFigure().translateToAbsolute(sourceBounds);
+					request.getLocation()
+							.setY(sourceBounds.getBottom().y()+1);
+				}
+			}
+
+		}
+
+		request.getExtendedData().put(
+				SequenceRequestConstant.SOURCE_LOCATION_DATA,
+				request.getLocation());
+
 		return super.getConnectionCreateCommand(request);
 	}
 
@@ -194,8 +223,9 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// disable the following code if we are not creating a message.
+		String requestHint = null;
 		if(request instanceof CreateConnectionViewRequest) {
-			String requestHint = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint();
+			requestHint = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint();
 			if(!isMessageHint(requestHint)) {
 				return command;
 			}
@@ -242,6 +272,34 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 		//			}
 		//		}
+		
+		// change constraint of the target lifeline after added a Create Message
+		if (request.getTargetEditPart() instanceof LifelineEditPart
+				&& !(request.getSourceEditPart().equals(request
+						.getTargetEditPart()))) {
+			if (requestHint.equals((((IHintedType) UMLElementTypes.Message_4006).getSemanticHint()))) {
+				LifelineEditPart target = (LifelineEditPart) request
+						.getTargetEditPart();
+				Point sourcePointCopy = sourcePoint.getCopy();
+				target.getFigure().translateToRelative(sourcePointCopy);
+				if(target.getModel() instanceof Shape){
+					Shape targetView = (Shape) target.getModel();
+					if(targetView.getLayoutConstraint() instanceof Bounds){
+						Bounds bounds = (Bounds) targetView.getLayoutConstraint();
+						int centerHeight = target.getPrimaryShape()
+								.getFigureLifelineNameContainerFigure().getBounds()
+								.getSize().height / 2;
+						ICommand boundsCommand = new SetBoundsCommand(
+								target.getEditingDomain(),
+								DiagramUIMessages.SetLocationCommand_Label_Resize,
+								new EObjectAdapter(targetView), new Rectangle(
+										bounds.getX(), sourcePointCopy.y() - centerHeight,
+										bounds.getWidth(), bounds.getHeight()));
+						command = command.chain(new ICommandProxy(boundsCommand));
+					}
+				}
+			}
+		}
 
 		return command;
 	}
