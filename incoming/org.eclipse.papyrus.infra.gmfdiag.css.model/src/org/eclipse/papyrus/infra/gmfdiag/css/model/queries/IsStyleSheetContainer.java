@@ -4,10 +4,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.uml2.uml.Element;
 
-public class IsStyleSheetContainer implements IJavaModelQuery<EObject, Boolean> {
+public class IsStyleSheetContainer implements IJavaModelQuery<Element, Boolean> {
 
-	public Boolean evaluate(EObject context, ParameterValueList args)
+	public Boolean evaluate(Element context, ParameterValueList args)
 			throws ModelQueryExecutionException {
 		if (context.eResource() == null){
 			return false;

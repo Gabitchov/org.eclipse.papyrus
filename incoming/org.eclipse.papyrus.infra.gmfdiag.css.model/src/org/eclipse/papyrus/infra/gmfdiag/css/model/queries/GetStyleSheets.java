@@ -11,18 +11,19 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.uml2.uml.Element;
 
 public class GetStyleSheets implements
-		IJavaModelQuery<EObject, Collection<EObject>> {
+		IJavaModelQuery<Element, Collection<StyleSheet>> {
 
-	public Collection<EObject> evaluate(EObject context,
+	public Collection<StyleSheet> evaluate(Element context,
 			ParameterValueList args) throws ModelQueryExecutionException {
 		ResourceSet resourceSet = context.eResource().getResourceSet();
 		if (resourceSet == null) {
 			return findStyleSheets(context.eResource());
 		}
 
-		List<EObject> result = new LinkedList<EObject>();
+		List<StyleSheet> result = new LinkedList<StyleSheet>();
 		for (Resource resource : context.eResource().getResourceSet()
 				.getResources()) {
 			result.addAll(findStyleSheets(resource));
@@ -31,11 +32,11 @@ public class GetStyleSheets implements
 		return result;
 	}
 
-	private Collection<EObject> findStyleSheets(Resource eResource) {
-		List<EObject> result = new LinkedList<EObject>();
+	private Collection<StyleSheet> findStyleSheets(Resource eResource) {
+		List<StyleSheet> result = new LinkedList<StyleSheet>();
 		for (EObject rootElement : eResource.getContents()){
 			if (rootElement instanceof StyleSheet){
-				result.add(rootElement);
+				result.add((StyleSheet)rootElement);
 			}
 		}
 		return result;
