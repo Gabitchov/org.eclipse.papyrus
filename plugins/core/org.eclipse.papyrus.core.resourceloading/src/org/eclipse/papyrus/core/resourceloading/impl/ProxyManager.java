@@ -105,7 +105,12 @@ public class ProxyManager implements IProxyManager {
 	 * @see org.eclipse.papyrus.core.resourceloading.IProxyManager#loadResource(URI)
 	 */
 	public boolean loadResource(URI uri) {
-		boolean result = availableStrategies.get(getCurrentStrategy()).loadResource(modelSet, uri);
+		int currentStrategyId = getCurrentStrategy();
+		ILoadingStrategy currentStrategy = availableStrategies.get(currentStrategyId);
+		if (currentStrategy == null) {
+			currentStrategy = availableStrategies.entrySet().iterator().next().getValue();
+		}
+		boolean result = currentStrategy.loadResource(modelSet, uri);
 		Iterator<ILoadingStrategyExtension> iterator = strategyExtensions.iterator();
 		while(!result && iterator.hasNext()) {
 			ILoadingStrategyExtension extension = (ILoadingStrategyExtension)iterator.next();
