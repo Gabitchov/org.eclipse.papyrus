@@ -18,5 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query;bundle-version="0.1.1",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.1",
  org.eclipse.emf.facet.infra.facet;bundle-version="0.1.1",
- org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.1"
+ org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.1",
+ org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.2"
 Bundle-ActivationPolicy: lazy
