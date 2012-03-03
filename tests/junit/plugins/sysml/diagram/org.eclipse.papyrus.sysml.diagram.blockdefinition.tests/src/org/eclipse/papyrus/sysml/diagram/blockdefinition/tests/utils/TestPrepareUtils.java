@@ -43,13 +43,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
@@ -71,47 +71,47 @@ public class TestPrepareUtils {
 	public static EObject createElement(IElementType elementType, EObject container) throws Exception {
 		CreateElementRequest createElementRequest = new CreateElementRequest(getTransactionalEditingDomain(), container, elementType);
 
-		if (elementType == SysMLElementTypes.PART_PROPERTY) {
+		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), container.eContainer(), SysMLElementTypes.BLOCK);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(container.eContainer()).getEditCommand(createTypeRequest);
 			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
-			
+
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-		
-		} else if (elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
+
+		} else if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), container.eContainer(), SysMLElementTypes.BLOCK);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(container.eContainer()).getEditCommand(createTypeRequest);
 			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
-			
+
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-				
-		} else if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+
+		} else if(elementType == SysMLElementTypes.VALUE_PROPERTY) {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), container.eContainer(), UMLElementTypes.DATA_TYPE);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(container.eContainer()).getEditCommand(createTypeRequest);
 			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
-			
+
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
-				
+
 		}
-		
+
 		ICommand createElementCommand = ElementEditServiceUtils.getCommandProvider(container).getEditCommand(createElementRequest);
 		getDiagramCommandStack().execute(new ICommandProxy(createElementCommand));
-		
+
 		return GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 	}
 
 	public static EObject createLink(IElementType elementType, EObject source, EObject target) throws Exception {
 		CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(getTransactionalEditingDomain(), source, target, elementType);
-		
+
 		ICommand createRelationshipCommand = ElementEditServiceUtils.getCommandProvider(elementType).getEditCommand(createRelationshipRequest);
 		getDiagramCommandStack().execute(new ICommandProxy(createRelationshipCommand));
-		
+
 		return GMFCommandUtils.getCommandEObjectResult(createRelationshipCommand);
 	}
-	
+
 	public static View createGraphicalNode(IElementType elementType, String graphicalType, View containerView) throws Exception {
 
 		EObject newObject = createElement(elementType, containerView);
@@ -127,7 +127,7 @@ public class TestPrepareUtils {
 
 		return (View)views.toArray()[0];
 	}
-	
+
 	public static View createGraphicalLink(IElementType elementType, String graphicalType, View containerView, EditPart sourceEP, EditPart targetEP) throws Exception {
 		CreateConnectionViewRequest request = createConnectionRequest(elementType, sourceEP, targetEP);
 
@@ -148,7 +148,7 @@ public class TestPrepareUtils {
 		return (View)views.toArray()[0];
 
 	}
-	
+
 	public static CreateConnectionViewRequest createConnectionRequest(IElementType type, EditPart source, EditPart target) {
 		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, Activator.DIAGRAM_PREFERENCES_HINT);
 
@@ -165,7 +165,7 @@ public class TestPrepareUtils {
 		connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
 		return connectionRequest;
 	}
-	
+
 
 	public static View dropFromModelExplorer(IElementType elementType, View containerView) throws Exception {
 		EObject newObject = createElement(elementType, containerView);

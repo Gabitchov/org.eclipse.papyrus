@@ -95,7 +95,7 @@ public class EditorUtils {
 				return editPart;
 			}
 		}
-		
+
 		throw new Exception("Unable to find edit part for the given view.");
 	}
 
@@ -111,11 +111,11 @@ public class EditorUtils {
 	public static DiagramCommandStack getDiagramCommandStack() throws Exception {
 		return getDiagramEditingDomain().getDiagramCommandStack();
 	}
-	
+
 	public static CommandStack getCommandStack() throws Exception {
 		return getTransactionalEditingDomain().getCommandStack();
 	}
-	
+
 	public static TransactionalEditingDomain getTransactionalEditingDomain() throws Exception {
 
 		ServicesRegistry serviceRegistry = (ServicesRegistry)getEditor().getAdapter(ServicesRegistry.class);
@@ -126,7 +126,7 @@ public class EditorUtils {
 			throw new Exception("Unable to retrieve service.", e);
 		}
 	}
-	
+
 	public static IEditorPart getEditor() throws Exception {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 	}

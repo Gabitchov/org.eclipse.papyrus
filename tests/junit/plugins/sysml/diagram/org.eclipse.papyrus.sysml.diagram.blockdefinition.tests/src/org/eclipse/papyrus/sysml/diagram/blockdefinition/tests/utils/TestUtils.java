@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils;
 
-import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramCommandStack;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramEditor;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getDiagramView;
 import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.EditorUtils.getEditPart;
@@ -26,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ParameterizedCommand;
+import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IOperationHistoryListener;
+import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -45,10 +47,10 @@ import org.eclipse.jface.commands.ActionHandler;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
@@ -84,11 +86,7 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getDiagramCommandStack().execute(command);
-
-				// Test undo - redo
-				getDiagramCommandStack().undo();
-				getDiagramCommandStack().redo();
+				defaultExecutionTest(command);
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -125,11 +123,7 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getDiagramCommandStack().execute(command);
-
-				// Test undo - redo
-				getDiagramCommandStack().undo();
-				getDiagramCommandStack().redo();
+				defaultExecutionTest(command);
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -170,11 +164,7 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getDiagramCommandStack().execute(command);
-
-				// Test undo - redo
-				getDiagramCommandStack().undo();
-				getDiagramCommandStack().redo();
+				defaultExecutionTest(command);
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -218,13 +208,9 @@ public class TestUtils {
 			} else {
 				// Ok the command can be executed.
 				if(execute) {
-					getDiagramCommandStack().execute(command);
-
-					// Test undo - redo
-					getDiagramCommandStack().undo();
-					getDiagramCommandStack().redo();
+					defaultExecutionTest(command);
 				}
-				
+
 				// Test the results then
 				// fail("Result tests not implemented.");
 			}
@@ -245,93 +231,89 @@ public class TestUtils {
 			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
 			// Don't forget to set the diagram viewer (required for preferenceHints to mimic manual creation)
 			connectionTool.setViewer(getDiagramEditor().getDiagramGraphicalViewer());
-			
-			return  connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
+
+			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
 		}
 
 		throw new Exception("Unexpected kind of creation tool.");
 	}
 
 	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed) throws Exception {
-	
+
 		if(isAllowed) {
 			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, true);
 		} else {
 			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, false);
 		}
-	
+
 	}
 
 	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute) throws Exception {
-	
+
 		// Find palette tool to simulate element creation and prepare request
 		Tool tool = getPaletteTool(toolId);
-		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest) getCreateRequest(tool);
-		
+		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest)getCreateRequest(tool);
+
 		// Test source creation command
-		createRequest.setSourceEditPart(getEditPart(sourceView));	
-		createRequest.setType(RequestConstants.REQ_CONNECTION_START);	
+		createRequest.setSourceEditPart(getEditPart(sourceView));
+		createRequest.setType(RequestConstants.REQ_CONNECTION_START);
 		Command srcCommand = getEditPart(sourceView).getCommand(createRequest);
-		
+
 		// Test source command
-		if ((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
-			if (targetView == null) { // Only test behavior on source
-				if (!isAllowed) { 
+		if((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
+			if(targetView == null) { // Only test behavior on source
+				if(!isAllowed) {
 					// Current behavior matches the expected results
 					return;
 				} else {
 					fail("The command should be executable.");
 				}
-				
+
 			} else { // Test complete creation, the command should necessary be executable
 				fail("The command should be executable.");
 			}
 
 		} else { // Executable command
-			if (targetView == null) { // Only test behavior on source
-				if (!isAllowed) { 
+			if(targetView == null) { // Only test behavior on source
+				if(!isAllowed) {
 					fail("The command should not be executable.");
 				} else {
 					// Current behavior matches the expected results - no execution test.
 					return;
 				}
-				
+
 			} else { // The command is executable and a target is provided - continue the test
-				
+
 				// Get target command (complete link creation)
 				createRequest.setSourceEditPart(getEditPart(sourceView));
 				createRequest.setTargetEditPart(getEditPart(targetView));
 				createRequest.setType(RequestConstants.REQ_CONNECTION_END);
 				Command tgtCommand = getEditPart(targetView).getCommand(createRequest);
-				
+
 				// Test the target command
-				if ((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
-						if (!isAllowed) { 
-							// Current behavior matches the expected results
-							return;
-						} else {
-							fail("The command should be executable.");
-						}
-				
+				if((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
+					if(!isAllowed) {
+						// Current behavior matches the expected results
+						return;
+					} else {
+						fail("The command should be executable.");
+					}
+
 				} else { // Executable command
-					if (!isAllowed) {
+					if(!isAllowed) {
 						fail("The command should not be executable.");
 					} else {
 						// Current behavior matches the expected results
 						if(execute) { // Test command execution
-							getDiagramCommandStack().execute(tgtCommand);
-			
-							// Test undo - redo
-							getDiagramCommandStack().undo();
-							getDiagramCommandStack().redo();
+							defaultExecutionTest(tgtCommand);
 						}
-						
+
 						// Test the results then
 						// fail("Result tests not implemented.");
 					}
 				}
-			}			
-			
+			}
+
 		}
 	}
 
@@ -360,7 +342,7 @@ public class TestUtils {
 		Assert.assertNotNull("Impossible to find copy command", copyCommand);
 
 		//EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
-		
+
 		// retrieve handler service for the copy command
 		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
@@ -440,6 +422,63 @@ public class TestUtils {
 			// execute the copy command
 			handlerService.executeCommand(parameterizedCommand, null);
 		}
+	}
 
+	// History event type variable to store history error events.
+	public static int historyEventType = OperationHistoryEvent.DONE;
+
+	/**
+	 * Test execution, undo, redo of the given command.
+	 * 
+	 * @param command
+	 *        the command to test.
+	 * @throws Exception
+	 */
+	public static void defaultExecutionTest(Command command) throws Exception {
+
+		// Execution in the diagram command stack (like Papyrus usual execution for GEF commands). This is important especially for
+		// composed command like Drop links which create intermediate view during execution. With EMF command stack, the whole command
+		// tries to execute and the edit part of the intermediate created views are not created before the command ends. 
+		// The diagram command stack let edit part being created after each view creation.
+
+		// The problem in using the DiagramCommandStack (vs EMF CommandStack) is that it hides any exception that can possibly occur during
+		// command execution. This would let the test finish without error (the command result is not tested currently) while the execution failed.
+
+		// For this matter the DiagramCommandStack history is observed to detect execution issues.
+
+		// Add diagram command stack operation history listener
+		IOperationHistory history = EditorUtils.getDiagramEditingDomain().getActionManager().getOperationHistory();
+		IOperationHistoryListener historyChange = new IOperationHistoryListener() {
+
+			public void historyNotification(OperationHistoryEvent event) {
+				// Store history events
+				historyEventType = event.getEventType();
+			}
+		};
+		history.addOperationHistoryListener(historyChange);
+
+		// Test execution
+		historyEventType = OperationHistoryEvent.DONE;
+		EditorUtils.getDiagramCommandStack().execute(command);
+		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			fail("Command execution failed ()");
+		}
+
+		// Test undo
+		historyEventType = OperationHistoryEvent.DONE;
+		EditorUtils.getDiagramCommandStack().undo();
+		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			fail("Command undo failed ()");
+		}
+
+		// Test redo
+		historyEventType = OperationHistoryEvent.DONE;
+		EditorUtils.getDiagramCommandStack().redo();
+		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			fail("Command redo failed ()");
+		}
+
+		// Remove listener.
+		history.removeOperationHistoryListener(historyChange);
 	}
 }
