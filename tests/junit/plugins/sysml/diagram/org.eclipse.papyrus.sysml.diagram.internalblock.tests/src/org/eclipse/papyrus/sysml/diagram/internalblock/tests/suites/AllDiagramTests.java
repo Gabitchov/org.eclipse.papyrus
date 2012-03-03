@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites;
 
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.TestDiagramCreation;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnDiagram;
-import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.link.TestLinkDropOnDiagram;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnDiagram;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -27,7 +26,6 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestDiagramCreation.class,
 	TestNodeCreationOnDiagram.class,
 	TestNodeDropOnDiagram.class,
-	TestLinkDropOnDiagram.class
 })
 public class AllDiagramTests {
 

@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils;
 
-import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getDiagramCommandStack;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getEditPart;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getTransactionalEditingDomain;
 
@@ -49,6 +48,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -72,7 +72,6 @@ public class TestPrepareUtils {
 
 	public static void changeVisibility(View view) throws Exception {
 		SetCommand changeVisibilityCommand = new SetCommand(getTransactionalEditingDomain(), view, NotationPackage.eINSTANCE.getView_Visible(), !view.isVisible());
-		//getCommandStack().execute(new EMFtoGEFCommandWrapper(changeVisibilityCommand));
 		getTransactionalEditingDomain().getCommandStack().execute(changeVisibilityCommand);
 	}
 
@@ -90,7 +89,7 @@ public class TestPrepareUtils {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, UMLElementTypes.ACTOR);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
-			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
+			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
 			
 			// If container is a Property, substitute container by the Property type
 			if (container instanceof Property) {
@@ -103,7 +102,7 @@ public class TestPrepareUtils {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, SysMLElementTypes.BLOCK);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
-			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
+			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
 			
 			// If container is a Property, substitute container by the Property type
 			if (container instanceof Property) {
@@ -116,7 +115,7 @@ public class TestPrepareUtils {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, SysMLElementTypes.BLOCK);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
-			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
+			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
 			
 			// If container is a Property, substitute container by the Property type
 			if (container instanceof Property) {
@@ -129,7 +128,7 @@ public class TestPrepareUtils {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, UMLElementTypes.DATA_TYPE);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
-			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
+			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
 			
 			// If container is a Property, substitute container by the Property type
 			if (container instanceof Property) {
@@ -142,7 +141,7 @@ public class TestPrepareUtils {
 			// Create type
 			CreateElementRequest createTypeRequest = new CreateElementRequest(getTransactionalEditingDomain(), typeOwner, SysMLElementTypes.FLOW_SPECIFICATION);
 			ICommand createTypeCommand = ElementEditServiceUtils.getCommandProvider(typeOwner).getEditCommand(createTypeRequest);
-			getDiagramCommandStack().execute(new ICommandProxy(createTypeCommand));
+			getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createTypeCommand));
 			
 			// If container is a Property, substitute container by the Property type
 			if (container instanceof Property) {
@@ -154,7 +153,7 @@ public class TestPrepareUtils {
 		}
 		
 		ICommand createElementCommand = ElementEditServiceUtils.getCommandProvider(container).getEditCommand(createElementRequest);
-		getDiagramCommandStack().execute(new ICommandProxy(createElementCommand));
+		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createElementCommand));
 		
 		return GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 	}
@@ -168,14 +167,14 @@ public class TestPrepareUtils {
 				return CommandResult.newOKCommandResult(block);
 			}
 		};
-		getDiagramCommandStack().execute(new ICommandProxy(setCommand));
+		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(setCommand));
 	}
 	
 	public static EObject createLink(IElementType elementType, EObject source, EObject target) throws Exception {
 		CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(getTransactionalEditingDomain(), source, target, elementType);
 		
 		ICommand createRelationshipCommand = ElementEditServiceUtils.getCommandProvider(elementType).getEditCommand(createRelationshipRequest);
-		getDiagramCommandStack().execute(new ICommandProxy(createRelationshipCommand));
+		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createRelationshipCommand));
 		
 		return GMFCommandUtils.getCommandEObjectResult(createRelationshipCommand);
 	}
@@ -201,7 +200,7 @@ public class TestPrepareUtils {
 			
 		};
 
-		getDiagramCommandStack().execute(new ICommandProxy(createConnectorCommand));
+		getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(createConnectorCommand));
 		
 		return GMFCommandUtils.getCommandEObjectResult(createConnectorCommand);
 	}
@@ -212,7 +211,7 @@ public class TestPrepareUtils {
 		// Add view
 		ViewDescriptor viewDescriptor = new ViewDescriptor(new SemanticAdapter(newObject, null), Node.class, graphicalType, ViewUtil.APPEND, true, Activator.DIAGRAM_PREFERENCES_HINT);
 		CreateCommand createViewCommand = new CreateCommand(getTransactionalEditingDomain(), viewDescriptor, containerView);
-		getDiagramCommandStack().execute(new ICommandProxy(createViewCommand));
+		EditorUtils.getDiagramCommandStack().execute(new ICommandProxy(createViewCommand));
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
@@ -228,7 +227,7 @@ public class TestPrepareUtils {
 		// Add view
 		ViewDescriptor viewDescriptor = new ViewDescriptor(new SemanticAdapter(newObject, null), Node.class, graphicalType, ViewUtil.APPEND, true, Activator.DIAGRAM_PREFERENCES_HINT);
 		CreateCommand createViewCommand = new CreateCommand(getTransactionalEditingDomain(), viewDescriptor, containerView);
-		getDiagramCommandStack().execute(new ICommandProxy(createViewCommand));
+		EditorUtils.getDiagramCommandStack().execute(new ICommandProxy(createViewCommand));
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
@@ -244,7 +243,7 @@ public class TestPrepareUtils {
 		Assert.assertNotNull("Command to create graphical link should not be null", command);
 		Assert.assertTrue("Command should be executable", command.canExecute());
 
-		getDiagramCommandStack().execute(command);
+		EditorUtils.getDiagramCommandStack().execute(command);
 
 		IAdaptable viewAdapter = (IAdaptable)request.getNewObject();
 		View newView = (View)viewAdapter.getAdapter(View.class);
@@ -295,7 +294,7 @@ public class TestPrepareUtils {
 
 		// Get drop command
 		Command command = containerEditPart.getCommand(dropRequest);
-		getDiagramCommandStack().execute(command);
+		EditorUtils.getDiagramCommandStack().execute(command);
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")

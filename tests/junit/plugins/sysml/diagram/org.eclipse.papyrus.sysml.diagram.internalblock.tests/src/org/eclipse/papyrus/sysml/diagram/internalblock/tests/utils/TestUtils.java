@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils;
 
-import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getDiagramCommandStack;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getDiagramEditor;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getDiagramView;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getEditPart;
@@ -29,6 +28,9 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.eclipse.core.commands.ParameterizedCommand;
+import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IOperationHistoryListener;
+import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -91,11 +93,7 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getDiagramCommandStack().execute(command);
-
-				// Test undo - redo
-				getDiagramCommandStack().undo();
-				getDiagramCommandStack().redo();
+				defaultExecutionTest(command);
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -132,11 +130,7 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getDiagramCommandStack().execute(command);
-
-				// Test undo - redo
-				getDiagramCommandStack().undo();
-				getDiagramCommandStack().redo();
+				defaultExecutionTest(command);
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -177,11 +171,7 @@ public class TestUtils {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				getDiagramCommandStack().execute(command);
-
-				// Test undo - redo
-				getDiagramCommandStack().undo();
-				getDiagramCommandStack().redo();
+				defaultExecutionTest(command);
 
 				// Test the results then
 				// fail("Result tests not implemented.");
@@ -221,11 +211,7 @@ public class TestUtils {
 				if(expectedCommandNames.size() == 1) {
 					if(expectedCommandNames.get(0).equals(command.getLabel())) {
 						// Ok the command can be executed.
-						getDiagramCommandStack().execute(command);
-
-						// Test undo - redo
-						getDiagramCommandStack().undo();
-						getDiagramCommandStack().redo();
+						defaultExecutionTest(command);
 
 						// Test the results then
 						// fail("Result tests not implemented.");
@@ -259,14 +245,10 @@ public class TestUtils {
 						CompoundCommand subCommand = commandList.get(i);
 						if(expectedCommandNames.get(i).equals(subCommand.getLabel())) {
 							// Ok the command can be executed.
-							getDiagramCommandStack().execute(subCommand);
-
-							// Test undo - redo
-							getDiagramCommandStack().undo();
-							getDiagramCommandStack().redo();
+							defaultExecutionTest(subCommand);
 
 							// Add one more undo to go back in initial state before testing next command
-							getDiagramCommandStack().undo();
+							EditorUtils.getDiagramCommandStack().undo();
 
 							// Test the results then
 							// fail("Result tests not implemented.");
@@ -316,11 +298,7 @@ public class TestUtils {
 			} else {
 				// Ok the command can be executed.
 				if(execute) {
-					getDiagramCommandStack().execute(command);
-
-					// Test undo - redo
-					getDiagramCommandStack().undo();
-					getDiagramCommandStack().redo();
+					defaultExecutionTest(command);
 				}
 
 				// Test the results then
@@ -417,11 +395,7 @@ public class TestUtils {
 					} else {
 						// Current behavior matches the expected results
 						if(execute) { // Test command execution
-							getDiagramCommandStack().execute(tgtCommand);
-
-							// Test undo - redo
-							getDiagramCommandStack().undo();
-							getDiagramCommandStack().redo();
+							defaultExecutionTest(tgtCommand);
 						}
 
 						// Test the results then
@@ -538,6 +512,63 @@ public class TestUtils {
 			// execute the copy command
 			handlerService.executeCommand(parameterizedCommand, null);
 		}
+	}
 
+	// History event type variable to store history error events.
+	public static int historyEventType = OperationHistoryEvent.DONE;
+
+	/**
+	 * Test execution, undo, redo of the given command.
+	 * 
+	 * @param command
+	 *        the command to test.
+	 * @throws Exception
+	 */
+	public static void defaultExecutionTest(Command command) throws Exception {
+
+		// Execution in the diagram command stack (like Papyrus usual execution for GEF commands). This is important especially for
+		// composed command like Drop links which create intermediate view during execution. With EMF command stack, the whole command
+		// tries to execute and the edit part of the intermediate created views are not created before the command ends. 
+		// The diagram command stack let edit part being created after each view creation.
+
+		// The problem in using the DiagramCommandStack (vs EMF CommandStack) is that it hides any exception that can possibly occur during
+		// command execution. This would let the test finish without error (the command result is not tested currently) while the execution failed.
+
+		// For this matter the DiagramCommandStack history is observed to detect execution issues.
+
+		// Add diagram command stack operation history listener
+		IOperationHistory history = EditorUtils.getDiagramEditingDomain().getActionManager().getOperationHistory();
+		IOperationHistoryListener historyChange = new IOperationHistoryListener() {
+
+			public void historyNotification(OperationHistoryEvent event) {
+				// Store history events
+				historyEventType = event.getEventType();
+			}
+		};
+		history.addOperationHistoryListener(historyChange);
+
+		// Test execution
+		historyEventType = OperationHistoryEvent.DONE;
+		EditorUtils.getDiagramCommandStack().execute(command);
+		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			fail("Command execution failed ()");
+		}
+
+		// Test undo
+		historyEventType = OperationHistoryEvent.DONE;
+		EditorUtils.getDiagramCommandStack().undo();
+		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			fail("Command undo failed ()");
+		}
+
+		// Test redo
+		historyEventType = OperationHistoryEvent.DONE;
+		EditorUtils.getDiagramCommandStack().redo();
+		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			fail("Command redo failed ()");
+		}
+
+		// Remove listener.
+		history.removeOperationHistoryListener(historyChange);
 	}
 }
