@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.matching;
 
-import org.eclipse.papyrus.modelexplorer.IReferencable;
 
 /***
  * An IMatchingItem implementation that matches for IReferencables

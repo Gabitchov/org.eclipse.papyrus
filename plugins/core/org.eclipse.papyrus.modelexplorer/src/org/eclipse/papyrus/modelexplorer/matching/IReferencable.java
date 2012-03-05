@@ -12,11 +12,12 @@
  *  Philippe Roland (Atos) philippe.roland@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorer;
+package org.eclipse.papyrus.modelexplorer.matching;
 
 /**
- * This interface is used to refer any object wishing to transparently
- * offer access to another child object
+ * This interface can be implemented by facet objects to offer access to
+ *  an underlying object. This referenced object will be used in the matching algo
+ *  when using the synchronize feature for example.
  * 
  * @author proland
  * 
