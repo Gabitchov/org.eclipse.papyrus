@@ -431,4 +431,5 @@ public class Messages extends NLS {
 
 	public static String ShowHideContentsAction_Title;
 
+	public static String CommonDeferredCreateConnectionViewCommand_NullConnectionCommand;
 }
