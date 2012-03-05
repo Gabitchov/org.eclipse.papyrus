@@ -149,8 +149,9 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 	protected void initializeDiagramContent(Diagram diagram) {
 
 		// Create a view for the canvasDomainElement in the new diagram
-		View view = ViewService.getInstance().createNode(new SemanticAdapter(canvasDomainElement, null), diagram, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, ViewUtil.APPEND, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-
+		View view = ViewService.getInstance().createNode(new SemanticAdapter(canvasDomainElement, null), diagram, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		view.setElement(diagram.getElement());
+		
 		// Update the view position and size (should adapt to canvas current size)
 		Bounds viewBounds = (Bounds)((Node)view).getLayoutConstraint();
 		viewBounds.setX(DEFAULT_MARGIN);
