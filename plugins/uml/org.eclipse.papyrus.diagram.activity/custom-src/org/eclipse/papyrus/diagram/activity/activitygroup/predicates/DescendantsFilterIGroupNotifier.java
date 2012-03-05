@@ -29,25 +29,31 @@ import com.google.common.collect.Iterables;
  * @author arthur daussy
  * 
  */
-public class DescendantsFilter implements Predicate<EObject> {
+public class DescendantsFilterIGroupNotifier implements Predicate<IGroupNotifier> {
 
-	private Iterable<? extends EObject> initialCollection;
+	private Iterable<? extends IGroupNotifier> initialCollection;
 
 
-	public DescendantsFilter(Iterable<? extends EObject> initialCollection) {
+	public DescendantsFilterIGroupNotifier(Iterable<? extends IGroupNotifier> initialCollection){
 		super();
 		this.initialCollection = initialCollection;
 	}
 
 
 
-
-	public boolean apply(EObject input) {
-		for(EObject target : initialCollection) {
-			if (target == input){
+	public boolean apply(IGroupNotifier input) {
+		for(IGroupNotifier target : initialCollection) {
+			EObject targetEObject = target.getEObject();
+			EObject inputEObject = input.getEObject();
+			if (targetEObject == inputEObject){
 				continue;
 			}
-			if(EcoreUtil.isAncestor(input, target)) {
+			
+			if (inputEObject == null){				
+				return false;
+			}
+			
+			if(EcoreUtil.isAncestor(inputEObject, targetEObject)) {
 				return false;
 			}
 		}

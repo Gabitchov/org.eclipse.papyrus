@@ -16,17 +16,16 @@ package org.eclipse.papyrus.diagram.activity.activitygroup.editpolicy;
 
 import org.eclipse.papyrus.diagram.activity.activitygroup.IContainerNodeDescriptor;
 
-
 /**
- * Creation edit policy for Activiyt partition
+ * Handle creation in interruptible activity region content compartment
  * @author adaussy
  *
  */
-public class ActivityPartitionActivityPartitionContentCompartmentCreationEditPolicy extends GroupCreationEditPolicy {
+public class InterruptibleActivityRegionContentCompartmentCreationEditPolicy extends GroupCreationEditPolicy {
 
-	public ActivityPartitionActivityPartitionContentCompartmentCreationEditPolicy(IContainerNodeDescriptor groupDescriptor) {
+	public InterruptibleActivityRegionContentCompartmentCreationEditPolicy(IContainerNodeDescriptor groupDescriptor) {
 		super(groupDescriptor);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

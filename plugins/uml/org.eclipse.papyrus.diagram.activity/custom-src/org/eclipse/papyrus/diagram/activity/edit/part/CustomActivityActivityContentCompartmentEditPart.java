@@ -37,12 +37,6 @@ public class CustomActivityActivityContentCompartmentEditPart extends ActivityAc
 		return true;
 	}
 
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityContentCompartmentCreationEditPolicy());	
-	}
-
 	
 	
 	

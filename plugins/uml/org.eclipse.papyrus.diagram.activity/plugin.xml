@@ -2364,8 +2364,8 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             mode="Live"
             severity="ERROR" statusCode="200">
             
-            <description><![CDATA[The handler body has one input, and that input is the same as the exception input]]></description>
-            <message><![CDATA[The handler body has one input, and that input is the same as the exception input]]></message>
+            <description><![CDATA[The handler body has one input, and that input is the same as the exception input.]]></description>
+            <message><![CDATA[The handler body has one input, and that input is the same as the exception input.]]></message>
             <target class="uml.ExceptionHandler"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_StructuredActivityNode_Constraint3"
@@ -2374,8 +2374,8 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             mode="Live"
             severity="ERROR" statusCode="200">
             
-            <description><![CDATA[If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a]]></description>
-            <message><![CDATA[If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a]]></message>
+            <description><![CDATA[If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a StructuredActivityNode with output pins that correspond in number and types to those of the protected node.]]></description>
+            <message><![CDATA[If the protected node is a StructuredActivityNode with output pins, then the exception handler body must also be a StructuredActivityNode with output pins that correspond in number and types to those of the protected node.]]></message>
             <target class="uml.ExceptionHandler"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateExceptionHandler_validateException_SourceAndTargetEdge_Constraint1"

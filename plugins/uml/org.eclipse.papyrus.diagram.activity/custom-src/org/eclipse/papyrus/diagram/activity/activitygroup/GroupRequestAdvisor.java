@@ -17,44 +17,30 @@ package org.eclipse.papyrus.diagram.activity.activitygroup;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.EventObject;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.ResourceSetListener;
-import org.eclipse.emf.transaction.ResourceSetListenerImpl;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.TransactionalCommandStack;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.diagram.activity.activitygroup.editpolicy.notifiers.GroupNotifyingEditPolicy;
 import org.eclipse.papyrus.diagram.activity.activitygroup.editpolicy.notifiers.IGroupNotifier;
 import org.eclipse.papyrus.diagram.activity.activitygroup.predicates.DescendantsFilter;
-import org.eclipse.papyrus.diagram.activity.activitygroup.request.AbstractGroupRequest;
+import org.eclipse.papyrus.diagram.activity.activitygroup.predicates.DescendantsFilterIGroupNotifier;
 import org.eclipse.papyrus.diagram.activity.activitygroup.request.IGroupRequest;
 import org.eclipse.papyrus.diagram.activity.activitygroup.request.SetDeferredRequest;
-import org.eclipse.papyrus.diagram.activity.activitygroup.request.IGroupRequest.GroupRequestType;
 import org.eclipse.papyrus.diagram.activity.activitygroup.utils.DebugUtils;
 import org.eclipse.papyrus.diagram.activity.activitygroup.utils.Utils;
 import org.eclipse.papyrus.diagram.activity.commands.DeferredSetValueCommand;
@@ -65,15 +51,17 @@ import org.eclipse.papyrus.diagram.common.commands.RemoveValueRequest;
 import org.eclipse.papyrus.log.LogHelper;
 
 import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 
 
 public class GroupRequestAdvisor implements IGroupRequestAdvisor {
+	/**
+	 * Exception message
+	 */
+	private static final String UNABLE_TO_GET_THE_INTIAL_TARGET_REQUEST_BOUNDS = "Unable to get the intial target request bounds";////$NON-NLS-1$
 
 	private static final String GROUP_FRAMEWORK_GRAPHICAL_PARENT = "GroupFramework_GraphicalParent";
 
@@ -365,19 +353,7 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 	 * @return
 	 */
 	protected Multimap<EReference, IGroupNotifier> fillRequestWithAllPossibleChildren(IGroupRequest request) {
-		final Rectangle newBounds = getInitalTargetRequestNewBounds(request);
-		final List<EReference> references = request.getNodeDescpitor().getChildrenReferences();
-		Multimap<EReference, EObject> childrenEReferenceMap = ArrayListMultimap.create();
-		Multimap<EReference, IGroupNotifier> result = ArrayListMultimap.create();
-		getReferenceElements(request, newBounds, references, childrenEReferenceMap, result, false);
-		/*
-		 * Filter descendant model
-		 */
-		for(EReference ref : childrenEReferenceMap.keySet()) {
-			Collection<EObject> filteredCollection = Collections2.filter(childrenEReferenceMap.get(ref), new DescendantsFilter(childrenEReferenceMap.get(ref)));
-			request.getChildrenEReferenceMap().putAll(ref, filteredCollection);
-		}
-
+		final Multimap<EReference, IGroupNotifier> result = fillReqestWithReferendedElement(request,false,false);
 		/**
 		 * TODO filter graphical parent which currently moving
 		 * I1 in ActPart1
@@ -388,6 +364,17 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 		 * Debug
 		 */
 		DebugUtils.displayMultipmapDebug(CHILDREN_REFERENCES_ARE, request.getChildrenEReferenceMap());
+		return result;
+	}
+	
+	public EObject getPossibleModelParent(IGroupRequest request){
+		Multimap<EReference, IGroupNotifier> parentsMap = fillReqestWithReferendedElement(request, true, true);
+		Collection<IGroupNotifier> parents = parentsMap.values();
+		EObject result = null;
+		Iterator<IGroupNotifier> ite = parents.iterator();
+		while (result == null && ite.hasNext()){
+			result = ite.next().getEObject();
+		}
 		return result;
 	}
 
@@ -404,19 +391,20 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 	 *        Map in the request to fill
 	 * @param result
 	 *        {@link Map} which link a {@link EReference} to a {@link IGroupNotifier}
+	 * @param containementOnly true if we are looking for containing references only
 	 */
-	protected void getReferenceElements(IGroupRequest request, final Rectangle newBounds, final List<EReference> references, Multimap<EReference, EObject> eReferenceMapToFillInRequest, Multimap<EReference, IGroupNotifier> result, boolean include) {
+	protected void getReferenceElements(IGroupRequest request, final Rectangle newBounds, final List<EReference> references, Multimap<EReference, EObject> eReferenceMapToFillInRequest, Multimap<EReference, IGroupNotifier> result, boolean include, boolean containementOnly) {
 		for(IGroupNotifier input : listenners.values()) {
 			EObject inputEObject = input.getEObject();
 			if(inputEObject == null) {
 				continue;
 			}
 			Object adapter = request.getTargetElement().getAdapter(EObject.class);
-			EObject targetElement = null;
-			if(adapter instanceof EObject) {
-				targetElement = (EObject)adapter;
-			}
-			if(targetElement == null || inputEObject.equals(adapter)) {
+//			EObject targetElement = null;
+//			if(adapter instanceof EObject) {
+//				targetElement = (EObject)adapter;
+//			}
+			if(inputEObject.equals(adapter)) {
 				continue;
 			}
 
@@ -427,11 +415,14 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 				EClass eoBjectType = inputEObject.eClass();
 				if(refType.isSuperTypeOf(eoBjectType)) {
 					refenceFounded = ref;
-
+					break;
 				}
 			}
-			if(refenceFounded != null && input.isIncludedIn(newBounds)) {
+			if(refenceFounded != null) {
 				if((include && input.includes(newBounds)) || (!include && input.isIncludedIn(newBounds))) {
+					if (containementOnly && refenceFounded.getEOpposite() != null &&  !refenceFounded.getEOpposite().isContainment()){
+						continue;
+					}
 					eReferenceMapToFillInRequest.put(refenceFounded, inputEObject);
 					result.put(refenceFounded, input);
 				}
@@ -447,39 +438,28 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 	 * @param request
 	 * @return
 	 */
-	protected Multimap<EObject, IGroupNotifier> fillRequestWithAllPossibleParent(IGroupRequest request) {
-		final Rectangle newBounds = getInitalTargetRequestNewBounds(request);
-		final List<EReference> references = request.getNodeDescpitor().getParentReferences();
-		final Multimap<EObject, IGroupNotifier> result = ArrayListMultimap.create();
-		final Multimap<EReference, EObject> parentEReferenceMap = ArrayListMultimap.create();
-		for(IGroupNotifier input : listenners.values()) {
-			EObject inputEObject = input.getEObject();
-			if(inputEObject == null) {
-				continue;
-			}
-			Object adapter = request.getTargetElement().getAdapter(EObject.class);
-			EObject targetElement = null;
-			if(adapter instanceof EObject) {
-				targetElement = (EObject)adapter;
-			}
-			if(targetElement == null || inputEObject.equals(adapter)) {
-				continue;
-			}
-			EReference referenceFound = null;
-			for(EReference ref : references) {
-				EClass refType = ref.getEReferenceType();
-				EClass eoBjectType = inputEObject.eClass();
-				if(refType.isSuperTypeOf(eoBjectType)) {
-					referenceFound = ref;
-					break;
-				}
-			}
-			if(referenceFound != null && input.includes(newBounds)) {
-				parentEReferenceMap.put(referenceFound, inputEObject);
-				result.put(inputEObject, input);
+	protected Multimap<EReference, IGroupNotifier> fillRequestWithAllPossibleParent(IGroupRequest request) {
+		final Multimap<EReference, IGroupNotifier> result = fillReqestWithReferendedElement(request,true,false);
 
-			}
+		/*
+		 * Debug
+		 */
+		DebugUtils.displayMultipmapDebug(ALL_PARENT_REFERENCES_ARE, request.getParentEReferenceMap());
+		return result;
+	}
+
+	protected Multimap<EReference, IGroupNotifier> fillReqestWithReferendedElement(IGroupRequest request,boolean lookingForParent,boolean onlyContainment) {
+		final Rectangle newBounds = getInitalTargetRequestNewBounds(request);
+		List<EReference> references = null;
+		if (lookingForParent){
+			references = request.getNodeDescpitor().getParentReferences();
+		} else {
+			references = request.getNodeDescpitor().getChildrenReferences();
 		}
+		final Multimap<EReference, IGroupNotifier> auxResult = ArrayListMultimap.create();
+		final Multimap<EReference, IGroupNotifier> result = ArrayListMultimap.create();
+		final Multimap<EReference, EObject> parentEReferenceMap = ArrayListMultimap.create();
+		getReferenceElements(request, newBounds, references, parentEReferenceMap, auxResult, lookingForParent, onlyContainment);
 		/*
 		 * Filter ancestors
 		 */
@@ -493,11 +473,16 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 			Collection<EObject> filteredCollection = Collections2.filter(parentEReferenceMap.get(ref), new DescendantsFilter(parentEReferenceMap.values()));
 			request.getParentEReferenceMap().putAll(ref, filteredCollection);
 		}
-
-		/*
-		 * Debug
-		 */
-		DebugUtils.displayMultipmapDebug(ALL_PARENT_REFERENCES_ARE, request.getParentEReferenceMap());
+		for(EReference ref : auxResult.keySet()) {
+			/*
+			 * Filter descendant
+			 * Example :
+			 * 1 - ActPart1 include in Act1 then Act1 disappear
+			 * 2 - ActPart1 include in ActPart2 then ActPart1 disappear
+			 */
+			Iterable<IGroupNotifier> resultCollection = Iterables.filter(auxResult.get(ref), new DescendantsFilterIGroupNotifier(auxResult.values()));
+			result.putAll(ref, resultCollection);
+		}
 		return result;
 	}
 
@@ -510,7 +495,13 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 	 * @return
 	 */
 	public static Rectangle getInitalTargetRequestNewBounds(final IGroupRequest request) {
-		return Utils.getAbslotueRequestBounds((ChangeBoundsRequest)request.getInitialRequest(), request.getHostRequest());
+		Request initialRequest = request.getInitialRequest();
+		if (initialRequest instanceof ChangeBoundsRequest){			
+			return Utils.getAbslotueRequestBounds((ChangeBoundsRequest)initialRequest, request.getHostRequest());
+		} else if(initialRequest instanceof CreateViewRequest){
+			return Utils.getAbslotueRequestBounds((CreateViewRequest)initialRequest);
+		}
+		throw new RuntimeException(UNABLE_TO_GET_THE_INTIAL_TARGET_REQUEST_BOUNDS);
 	}
 
 

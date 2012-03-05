@@ -21,12 +21,17 @@ import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.diagram.activity.activitygroup.IContainerNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
 
 public class ActivityContentCompartmentCreationEditPolicy extends GroupCreationEditPolicy {
 
 	
+	public ActivityContentCompartmentCreationEditPolicy(IContainerNodeDescriptor groupDescriptor) {
+		super(groupDescriptor);
+	}
+
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 

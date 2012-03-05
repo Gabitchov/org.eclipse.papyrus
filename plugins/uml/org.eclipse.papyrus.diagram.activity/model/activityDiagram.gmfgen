@@ -6307,9 +6307,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ActivityPartitionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ActivityPartitionDescriptor"
-            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class ActivityPartitionDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fActivityPartitionCompartment; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fPartitionLabel; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureCompartmentLabelActivityPartition; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public ActivityPartitionDescriptor() {&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced layoutThis = new org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvanced();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;layoutThis.setStretchMinorAxis(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;layoutThis.setMinorAlignment(&#xD;&#xA;FlowLayout.ALIGN_CENTER);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;layoutThis.setMajorAlignment(&#xD;&#xA;FlowLayout.ALIGN_TOPLEFT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;layoutThis.setMajorSpacing(&#xD;&#xA;0);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;layoutThis.setMinorSpacing(&#xD;&#xA;0);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;layoutThis.setHorizontal(&#xD;&#xA;false);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;this.setOutline(false);&#xD;&#xA;this.setBorder(createBorder0());&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fFigureCompartmentLabelActivityPartition = new org.eclipse.draw2d.RectangleFigure();&#xD;&#xA;fFigureCompartmentLabelActivityPartition.setOutline(false);&#xD;&#xA;fFigureCompartmentLabelActivityPartition.setLineWidth(0);&#xD;&#xA;fFigureCompartmentLabelActivityPartition.setBorder(createBorder1());&#xD;&#xA;&#xD;&#xA;org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelActivityPartition = new org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;constraintFFigureCompartmentLabelActivityPartition.setHasMinsize(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fFigureCompartmentLabelActivityPartition, constraintFFigureCompartmentLabelActivityPartition);&#xD;&#xA;&#xD;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutFFigureCompartmentLabelActivityPartition = new org.eclipse.draw2d.FlowLayout();&#xD;&#xA;&#x9;layoutFFigureCompartmentLabelActivityPartition.setStretchMinorAxis(true);&#xD;&#xA;&#x9;layoutFFigureCompartmentLabelActivityPartition.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_CENTER&#xD;&#xA;);&#xD;&#xA;&#xD;&#xA;&#x9;layoutFFigureCompartmentLabelActivityPartition.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_CENTER&#xD;&#xA;);&#xD;&#xA;&#x9;layoutFFigureCompartmentLabelActivityPartition.setMajorSpacing(0);&#xD;&#xA;&#x9;layoutFFigureCompartmentLabelActivityPartition.setMinorSpacing(0);&#xD;&#xA;&#x9;layoutFFigureCompartmentLabelActivityPartition.setHorizontal(true);&#xD;&#xA;&#xD;&#xA;&#x9;fFigureCompartmentLabelActivityPartition.setLayoutManager(layoutFFigureCompartmentLabelActivityPartition);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fPartitionLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fFigureCompartmentLabelActivityPartition.add(fPartitionLabel);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fActivityPartitionCompartment = new org.eclipse.draw2d.RectangleFigure();&#xD;&#xA;fActivityPartitionCompartment.setFill(false);&#xD;&#xA;fActivityPartitionCompartment.setOutline(false);&#xD;&#xA;fActivityPartitionCompartment.setLineWidth(0);&#xD;&#xA;&#xD;&#xA;org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint constraintFActivityPartitionCompartment = new org.eclipse.papyrus.diagram.activity.draw2d.FlowLayoutAdvancedConstraint();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;constraintFActivityPartitionCompartment.setFill(&#xD;&#xA;true);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.Border createBorder0() {&#xD;&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.common.draw2d.LinesBorder result = new org.eclipse.papyrus.diagram.common.draw2d.LinesBorder();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;result.setSides(&#xD;&#xA;PositionConstants.TOP | PositionConstants.LEFT | PositionConstants.RIGHT);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return result;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.Border createBorder1() {&#xD;&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.common.draw2d.LinesBorder result = new org.eclipse.papyrus.diagram.common.draw2d.LinesBorder();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;result.setSides(&#xD;&#xA;PositionConstants.BOTTOM);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;result.setLeftInset(&#xD;&#xA;5);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;result.setRightInset(&#xD;&#xA;5);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;result.setTopInset(&#xD;&#xA;5);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;result.setBottomInset(&#xD;&#xA;5);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return result;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getActivityPartitionCompartment() {&#xD;&#xA;&#x9;&#x9;return fActivityPartitionCompartment;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getPartitionLabel() {&#xD;&#xA;&#x9;&#x9;return fPartitionLabel;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureCompartmentLabelActivityPartition() {&#xD;&#xA;&#x9;&#x9;return fFigureCompartmentLabelActivityPartition;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.ActivityPartitionFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -6347,7 +6346,7 @@
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getPartitionLabel"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -8978,20 +8977,12 @@
             figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7009"
@@ -9013,20 +9004,12 @@
             figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7010"
@@ -9048,20 +9031,12 @@
             figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7012"
@@ -9083,20 +9058,12 @@
             figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7005"
@@ -9118,20 +9085,12 @@
             figureQualifiedClassName="org.eclipse.draw2d.RoundedRectangle"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7006"
@@ -9153,20 +9112,12 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7007"
@@ -9187,20 +9138,12 @@
             figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.InterruptibleActivityRegionFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInGroupEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.XYLayoutEditGroupPolicy"/>
       </compartments>
       <compartments
           visualID="7014"
@@ -17025,5 +16968,11 @@
         comment=""
         name="Delete service elements"
         genView="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.87"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="elements that intherit form UMLNodeEditpart"
+        genView="/0/@diagram/@childNodes.63"
+        name="UMLNodeEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

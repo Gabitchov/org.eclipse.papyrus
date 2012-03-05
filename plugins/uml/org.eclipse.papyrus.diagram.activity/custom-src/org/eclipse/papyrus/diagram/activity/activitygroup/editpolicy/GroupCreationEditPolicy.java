@@ -27,21 +27,51 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GroupEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RefreshConnectionsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.activitygroup.ContainerNodeDescriptorRegistry;
+import org.eclipse.papyrus.diagram.activity.activitygroup.GroupRequestAdvisor;
+import org.eclipse.papyrus.diagram.activity.activitygroup.IContainerNodeDescriptor;
+import org.eclipse.papyrus.diagram.activity.activitygroup.request.AbstractGroupRequest;
+import org.eclipse.papyrus.diagram.activity.activitygroup.request.IGroupRequest;
 import org.eclipse.papyrus.diagram.activity.activitygroup.utils.Utils;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class GroupCreationEditPolicy extends CreationEditPolicy {
+	/**
+	 * Node descriptor
+	 */
+	private IContainerNodeDescriptor groupDescriptor;
 	
 	
+	
+	public GroupCreationEditPolicy(IContainerNodeDescriptor groupDescriptor) {
+		super();
+		this.groupDescriptor = groupDescriptor;
+	}
+	
+	
+	
+	protected IContainerNodeDescriptor getGroupDescriptor() {
+		return groupDescriptor;
+	}
+
+
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
 		Iterator editParts = request.getEditParts().iterator();
@@ -66,18 +96,21 @@ public class GroupCreationEditPolicy extends CreationEditPolicy {
 				cc.compose(getReparentViewCommand((IGraphicalEditPart)ep));
 			}
 			else if ( context != null) {
-				if (isVisuallyContained((IGraphicalEditPart)ep, request)){					
+//				if (isVisuallyContained((IGraphicalEditPart)ep, request)){					
 					if ( shouldReparentModel(semantic, context)){
 						cc.compose(getReparentCommand((IGraphicalEditPart)ep));					
-					}else if(shouldGraphicalyReparent(semantic, context)){
+					}
+					else if(shouldGraphicalyReparent(semantic, context)){
 						cc.compose(getReparentViewCommand((IGraphicalEditPart)ep));
 					}
-				}  else {
-					return UnexecutableCommand.INSTANCE;
-				}
+//				}  
+//				else {
+//					return UnexecutableCommand.INSTANCE;
+//				}
 			} 
 		}
 		return cc.isEmpty() ? null : new ICommandProxy(cc.reduce());
+//		return super.getReparentCommand(request);
 	}
 	/**
 	 * Return true if the node is visually contained
@@ -224,7 +257,89 @@ public class GroupCreationEditPolicy extends CreationEditPolicy {
 		}
 		return super.getTargetEditPart(request);
 	}
+	@Override
+	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
+		// get the element descriptor
+				CreateElementRequestAdapter requestAdapter =
+					request.getViewAndElementDescriptor().getCreateElementRequestAdapter();
 
+				// get the semantic request
+				CreateElementRequest createElementRequest =
+					(CreateElementRequest) requestAdapter.getAdapter(
+						CreateElementRequest.class);
+
+			
+					tryToFindModelParentFromGroupFramework(createElementRequest,new AbstractGroupRequest((IGraphicalEditPart)getHost(),request,request.getViewAndElementDescriptor().getElementAdapter(),ContainerNodeDescriptorRegistry.getInstance().getContainerNodeDescriptor(UMLPackage.Literals.ACTIVITY_NODE)) {
+						public GroupRequestType getGroupRequestType() {
+							return GroupRequestType.CREATION;
+						}
+					});
+					if (createElementRequest.getContainer() == null){						
+						// complete the semantic request by filling in the host's semantic
+						// element as the context
+						View view = (View)getHost().getModel();
+						EObject hostElement = ViewUtil.resolveSemanticElement(view);
+						
+						if (hostElement == null && view.getElement() == null) {
+							hostElement = view;
+						}			
+						
+						// Returns null if host is unresolvable so that trying to create a
+						// new element in an unresolved shape will not be allowed.
+						if (hostElement == null) {
+							return null;
+						}
+						createElementRequest.setContainer(hostElement);
+					}
+				
+
+				// get the create element command based on the elementdescriptor's
+				// request
+				Command createElementCommand =
+					getHost().getCommand(
+						new EditCommandRequestWrapper(
+							(CreateElementRequest)requestAdapter.getAdapter(
+								CreateElementRequest.class), request.getExtendedData()));
+
+				if (createElementCommand == null) { 
+					return UnexecutableCommand.INSTANCE;
+				}		
+				if(!createElementCommand.canExecute()){
+					return createElementCommand;
+				}
+				// create the semantic create wrapper command
+				SemanticCreateCommand semanticCommand =
+					new SemanticCreateCommand(requestAdapter, createElementCommand);
+				Command viewCommand = getCreateCommand(request);
+
+				Command refreshConnectionCommand =
+					getHost().getCommand(
+						new RefreshConnectionsRequest(((List)request.getNewObject())));
+
+
+				// form the compound command and return
+		        CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());
+				cc.compose(semanticCommand);
+				cc.compose(new CommandProxy(viewCommand));
+				if ( refreshConnectionCommand != null ) {
+					cc.compose(new CommandProxy(refreshConnectionCommand));
+				}
+
+				return new ICommandProxy(cc);
+	}
+	/**
+	 * Try to set the container of the request thanks to the group framework
+	 * @param createElementRequest
+	 */
+	protected void tryToFindModelParentFromGroupFramework(CreateElementRequest createElementRequest,IGroupRequest request) {
+		EObject parent = GroupRequestAdvisor.getInstance().getPossibleModelParent(request);
+		if (parent != null){
+			createElementRequest.setContainer(parent);
+		}
+	}
+
+	
+	
 	
 	
 	

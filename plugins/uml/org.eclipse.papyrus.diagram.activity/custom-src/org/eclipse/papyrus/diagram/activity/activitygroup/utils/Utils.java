@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
@@ -28,6 +29,7 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -94,7 +96,6 @@ public class Utils {
 	 */
 	public static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
 		// take bounds from figure
-		part.getTopGraphicEditPart().getParent().refresh();
 		Rectangle bounds = part.getFigure().getBounds().getCopy();
 
 		if(part.getNotationView() instanceof Node) {
@@ -267,6 +268,19 @@ private static UMLItemProviderAdapterFactory adapter = new UMLItemProviderAdapte
 		auxRequest.setResizeDirection(req.getResizeDirection());
 		auxRequest.setSizeDelta(req.getSizeDelta());
 		return auxRequest;
+	}
+
+	public static Rectangle getAbslotueRequestBounds(CreateViewRequest initialRequest) {
+
+		Point location = initialRequest.getLocation();
+		Dimension size = initialRequest.getSize();
+		/**
+		 * TODO get default size
+		 */
+		Rectangle creationBounds = new Rectangle(location!=null?location:new Point(0, 0), size!=null?size:new Dimension(20, 20));
+		
+
+		return creationBounds;
 	}
 
 
