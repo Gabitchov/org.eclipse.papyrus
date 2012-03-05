@@ -47,7 +47,9 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 		}
 		if(!found) {
 			modelQueryAdapter = createDefaultIModelSetQueryAdapter();
-			eAdapters.add((Adapter) modelQueryAdapter);
+			if (modelQueryAdapter instanceof Adapter) {
+				eAdapters.add((Adapter) modelQueryAdapter);
+			}
 		}
 
 	}
@@ -63,7 +65,7 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	 * @param modelsManager
 	 */
 	public void dispose(ModelSet modelsManager) {
-		if(modelQueryAdapter != null) {
+		if(modelQueryAdapter instanceof Adapter) {
 			modelsManager.eAdapters().remove(modelQueryAdapter);
 		}
 
