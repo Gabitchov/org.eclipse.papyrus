@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -150,7 +150,8 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 
 		// Create a view for the canvasDomainElement in the new diagram
 		View view = ViewService.getInstance().createNode(new SemanticAdapter(canvasDomainElement, null), diagram, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, ViewUtil.APPEND, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-
+		view.setElement(diagram.getElement());
+		
 		// Update the view position and size (should adapt to canvas current size)
 		Bounds viewBounds = (Bounds)((Node)view).getLayoutConstraint();
 		viewBounds.setX(DEFAULT_MARGIN);
