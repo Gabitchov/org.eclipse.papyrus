@@ -45,7 +45,7 @@ public class EditorUtils {
 		} catch (ServiceException e) {
 			throw new Exception("Unable to retrieve service.", e);
 		} catch (ClassCastException e) {
-			throw new Exception("Active diagram is not a BDD.", e);
+			throw new Exception("Active diagram is not an IBD.", e);
 		}
 	}
 

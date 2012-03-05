@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.link;
 
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.EditorUtils.getDiagramView;
-import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestPrepareUtils.createElement;
+import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestPrepareUtils.createGraphicalNode;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestPrepareUtils.createLink;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestUtils.dropFromModelExplorer;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.AbstractTest;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.junit.BeforeClass;
@@ -32,19 +33,17 @@ import org.junit.Test;
  */
 public class TestLinkDropOnDiagram extends AbstractTest {
 
-	public static EObject portSource;
 	public static EObject constraintTarget;
-	public static EObject partTarget;
-	
 	public static EObject dependency;
-	public static EObject connector;
 	
 	@BeforeClass
 	public static void prepare() throws Exception {
+
 		View blockView = ViewUtil.getChildBySemanticHint(getDiagramView(), SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
-		constraintTarget = createElement(UMLElementTypes.CONSTRAINT, getDiagramView());
-		
-		dependency = createLink(UMLElementTypes.DEPENDENCY, blockView.getElement(), constraintTarget);
+		// Warning the Constraint (the dependency ends) view has to be shown in diagram for DnD to execute correctly.
+		View constraintTargetView = createGraphicalNode(UMLElementTypes.CONSTRAINT, ElementTypes.CONSTRAINT.getSemanticHint(), getDiagramView());
+
+		dependency = createLink(UMLElementTypes.DEPENDENCY, blockView.getElement(), constraintTargetView.getElement());
 	}
 
 	@Test
