@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.Messages;
 
 /**
  * This class is used to create a connection view
@@ -166,7 +167,11 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		// modification in order to fix the bug
 		CreateConnectionViewRequest createRequest = new CreateConnectionViewRequest(viewDescriptor);
 		createConnectionCmd = CreateConnectionViewRequest.getCreateCommand(createRequest, sourceEditPart, targetEditPart);
-
+		
+		if (createConnectionCmd == null) {
+			throw new ExecutionException(Messages.CommonDeferredCreateConnectionViewCommand_NullConnectionCommand);
+		}
+		
 		if(createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();
 		}
