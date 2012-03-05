@@ -2259,10 +2259,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_INTEGERVALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:19: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:19: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:21: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             int alt13=4;
             int LA13_0 = input.LA(1);
 
@@ -2308,9 +2308,9 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     {
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:22: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -2328,17 +2328,17 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:23: '0'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:23: '0'
                             {
                             match('0'); 
 
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:27: '1' .. '9' ( ( '_' )? '0' .. '9' )*
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:27: '1' .. '9' ( ( '_' )? '0' .. '9' )*
                             {
                             matchRange('1','9'); 
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:36: ( ( '_' )? '0' .. '9' )*
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:36: ( ( '_' )? '0' .. '9' )*
                             loop2:
                             do {
                                 int alt2=2;
@@ -2351,9 +2351,9 @@ public class InternalAlfLexer extends Lexer {
 
                                 switch (alt2) {
                             	case 1 :
-                            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:37: ( '_' )? '0' .. '9'
+                            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:37: ( '_' )? '0' .. '9'
                             	    {
-                            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:37: ( '_' )?
+                            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:37: ( '_' )?
                             	    int alt1=2;
                             	    int LA1_0 = input.LA(1);
 
@@ -2362,7 +2362,7 @@ public class InternalAlfLexer extends Lexer {
                             	    }
                             	    switch (alt1) {
                             	        case 1 :
-                            	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:37: '_'
+                            	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:37: '_'
                             	            {
                             	            match('_'); 
 
@@ -2391,9 +2391,9 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:54: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:54: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
                     {
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:54: ( '0b' | '0B' )
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:54: ( '0b' | '0B' )
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -2421,7 +2421,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt4) {
                         case 1 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:55: '0b'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:55: '0b'
                             {
                             match("0b"); 
 
@@ -2429,7 +2429,7 @@ public class InternalAlfLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:60: '0B'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:60: '0B'
                             {
                             match("0B"); 
 
@@ -2440,7 +2440,7 @@ public class InternalAlfLexer extends Lexer {
                     }
 
                     matchRange('0','1'); 
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:75: ( ( '_' )? '0' .. '1' )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:75: ( ( '_' )? '0' .. '1' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -2453,9 +2453,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:76: ( '_' )? '0' .. '1'
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:76: ( '_' )? '0' .. '1'
                     	    {
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:76: ( '_' )?
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:76: ( '_' )?
                     	    int alt5=2;
                     	    int LA5_0 = input.LA(1);
 
@@ -2464,7 +2464,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt5) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:76: '_'
+                    	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:76: '_'
                     	            {
                     	            match('_'); 
 
@@ -2487,9 +2487,9 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:92: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:92: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     {
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:92: ( '0x' | '0X' )
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:92: ( '0x' | '0X' )
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -2517,7 +2517,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt7) {
                         case 1 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:93: '0x'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:93: '0x'
                             {
                             match("0x"); 
 
@@ -2525,7 +2525,7 @@ public class InternalAlfLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:98: '0X'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:98: '0X'
                             {
                             match("0X"); 
 
@@ -2544,7 +2544,7 @@ public class InternalAlfLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:133: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:133: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     loop9:
                     do {
                         int alt9=2;
@@ -2557,9 +2557,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:134: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:134: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
                     	    {
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:134: ( '_' )?
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:134: ( '_' )?
                     	    int alt8=2;
                     	    int LA8_0 = input.LA(1);
 
@@ -2568,7 +2568,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt8) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:134: '_'
+                    	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:134: '_'
                     	            {
                     	            match('_'); 
 
@@ -2599,10 +2599,10 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:170: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:170: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
                     {
                     match('0'); 
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:174: ( '_' )?
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:174: ( '_' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -2611,7 +2611,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:174: '_'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:174: '_'
                             {
                             match('_'); 
 
@@ -2621,7 +2621,7 @@ public class InternalAlfLexer extends Lexer {
                     }
 
                     matchRange('0','7'); 
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:188: ( ( '_' )? '0' .. '7' )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:188: ( ( '_' )? '0' .. '7' )*
                     loop12:
                     do {
                         int alt12=2;
@@ -2634,9 +2634,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:189: ( '_' )? '0' .. '7'
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:189: ( '_' )? '0' .. '7'
                     	    {
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:189: ( '_' )?
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:189: ( '_' )?
                     	    int alt11=2;
                     	    int LA11_0 = input.LA(1);
 
@@ -2645,7 +2645,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt11) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19333:189: '_'
+                    	            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19036:189: '_'
                     	            {
                     	            match('_'); 
 
@@ -2686,10 +2686,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' ) )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:9: ( ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' ) )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
             {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:11: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* | '\\'' ( options {greedy=false; } : . )* '\\'' )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2707,7 +2707,7 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:12: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     {
                     if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                         input.consume();
@@ -2718,7 +2718,7 @@ public class InternalAlfLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
                     loop14:
                     do {
                         int alt14=2;
@@ -2755,10 +2755,10 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:70: '\\'' ( options {greedy=false; } : . )* '\\''
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:70: '\\'' ( options {greedy=false; } : . )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:75: ( options {greedy=false; } : . )*
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:75: ( options {greedy=false; } : . )*
                     loop15:
                     do {
                         int alt15=2;
@@ -2774,7 +2774,7 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19335:103: .
+                    	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19038:103: .
                     	    {
                     	    matchAny(); 
 
@@ -2809,11 +2809,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19337:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19337:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19040:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19040:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19337:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19040:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop17:
             do {
                 int alt17=3;
@@ -2829,7 +2829,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19337:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19040:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2845,7 +2845,7 @@ public class InternalAlfLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19337:61: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19040:61: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2882,8 +2882,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19339:17: ( '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19339:19: '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19042:17: ( '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19042:19: '/*' ~ ( '@' ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -2896,7 +2896,7 @@ public class InternalAlfLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19339:31: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19042:31: ( options {greedy=false; } : . )*
             loop18:
             do {
                 int alt18=2;
@@ -2921,7 +2921,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt18) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19339:59: .
+            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19042:59: .
             	    {
             	    matchAny(); 
 
@@ -2951,12 +2951,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:17: ( '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:19: '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:17: ( '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:19: '//' (~ ( ( '\\n' | '\\r' | '@' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:24: (~ ( ( '\\n' | '\\r' | '@' ) ) )*
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:24: (~ ( ( '\\n' | '\\r' | '@' ) ) )*
             loop19:
             do {
                 int alt19=2;
@@ -2969,7 +2969,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:24: ~ ( ( '\\n' | '\\r' | '@' ) )
+            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:24: ~ ( ( '\\n' | '\\r' | '@' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='?')||(input.LA(1)>='A' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2989,7 +2989,7 @@ public class InternalAlfLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:44: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:44: ( ( '\\r' )? '\\n' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2998,9 +2998,9 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:45: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:45: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:45: ( '\\r' )?
+                    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:45: ( '\\r' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3009,7 +3009,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt20) {
                         case 1 :
-                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19341:45: '\\r'
+                            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19044:45: '\\r'
                             {
                             match('\r'); 
 
@@ -3041,10 +3041,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19343:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19343:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19046:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19046:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19343:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19046:12: ( '0' .. '9' )+
             int cnt22=0;
             loop22:
             do {
@@ -3058,7 +3058,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19343:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19046:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3090,10 +3090,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19345:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19345:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19048:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19048:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19345:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19048:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt23=0;
             loop23:
             do {
@@ -3147,8 +3147,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19347:16: ( . )
-            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19347:18: .
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19050:16: ( . )
+            // ../org.eclipse.papyrus.alf.ui/src-gen/org/eclipse/papyrus/alf/ui/contentassist/antlr/internal/InternalAlf.g:19050:18: .
             {
             matchAny(); 
 

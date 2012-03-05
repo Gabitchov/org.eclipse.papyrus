@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -26,7 +22,7 @@ import org.eclipse.papyrus.alf.alf.LinkOperationTupleElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.alf.alf.impl.LinkOperationTupleElementImpl#getObjectOrRole <em>Object Or Role</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.alf.alf.impl.LinkOperationTupleElementImpl#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.papyrus.alf.alf.impl.LinkOperationTupleElementImpl#getRoleIndex <em>Role Index</em>}</li>
  *   <li>{@link org.eclipse.papyrus.alf.alf.impl.LinkOperationTupleElementImpl#getObject <em>Object</em>}</li>
  * </ul>
@@ -37,24 +33,24 @@ import org.eclipse.papyrus.alf.alf.LinkOperationTupleElement;
 public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container implements LinkOperationTupleElement
 {
   /**
-   * The default value of the '{@link #getObjectOrRole() <em>Object Or Role</em>}' attribute.
+   * The default value of the '{@link #getRole() <em>Role</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObjectOrRole()
+   * @see #getRole()
    * @generated
    * @ordered
    */
-  protected static final String OBJECT_OR_ROLE_EDEFAULT = null;
+  protected static final String ROLE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getObjectOrRole() <em>Object Or Role</em>}' attribute.
+   * The cached value of the '{@link #getRole() <em>Role</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObjectOrRole()
+   * @see #getRole()
    * @generated
    * @ordered
    */
-  protected String objectOrRole = OBJECT_OR_ROLE_EDEFAULT;
+  protected String role = ROLE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRoleIndex() <em>Role Index</em>}' containment reference.
@@ -67,24 +63,14 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
   protected Expression roleIndex;
 
   /**
-   * The default value of the '{@link #getObject() <em>Object</em>}' attribute.
+   * The cached value of the '{@link #getObject() <em>Object</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getObject()
    * @generated
    * @ordered
    */
-  protected static final String OBJECT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getObject() <em>Object</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getObject()
-   * @generated
-   * @ordered
-   */
-  protected String object = OBJECT_EDEFAULT;
+  protected Expression object;
 
   /**
    * <!-- begin-user-doc -->
@@ -112,9 +98,9 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getObjectOrRole()
+  public String getRole()
   {
-    return objectOrRole;
+    return role;
   }
 
   /**
@@ -122,12 +108,12 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setObjectOrRole(String newObjectOrRole)
+  public void setRole(String newRole)
   {
-    String oldObjectOrRole = objectOrRole;
-    objectOrRole = newObjectOrRole;
+    String oldRole = role;
+    role = newRole;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT_OR_ROLE, oldObjectOrRole, objectOrRole));
+      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE, oldRole, role));
   }
 
   /**
@@ -183,7 +169,7 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getObject()
+  public Expression getObject()
   {
     return object;
   }
@@ -193,12 +179,37 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setObject(String newObject)
+  public NotificationChain basicSetObject(Expression newObject, NotificationChain msgs)
   {
-    String oldObject = object;
+    Expression oldObject = object;
     object = newObject;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT, oldObject, object));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT, oldObject, newObject);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setObject(Expression newObject)
+  {
+    if (newObject != object)
+    {
+      NotificationChain msgs = null;
+      if (object != null)
+        msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT, null, msgs);
+      if (newObject != null)
+        msgs = ((InternalEObject)newObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT, null, msgs);
+      msgs = basicSetObject(newObject, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT, newObject, newObject));
   }
 
   /**
@@ -213,6 +224,8 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
     {
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE_INDEX:
         return basicSetRoleIndex(null, msgs);
+      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT:
+        return basicSetObject(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -227,8 +240,8 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
-      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT_OR_ROLE:
-        return getObjectOrRole();
+      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE:
+        return getRole();
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE_INDEX:
         return getRoleIndex();
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT:
@@ -247,14 +260,14 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
-      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT_OR_ROLE:
-        setObjectOrRole((String)newValue);
+      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE:
+        setRole((String)newValue);
         return;
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE_INDEX:
         setRoleIndex((Expression)newValue);
         return;
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT:
-        setObject((String)newValue);
+        setObject((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -270,14 +283,14 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
-      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT_OR_ROLE:
-        setObjectOrRole(OBJECT_OR_ROLE_EDEFAULT);
+      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE:
+        setRole(ROLE_EDEFAULT);
         return;
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE_INDEX:
         setRoleIndex((Expression)null);
         return;
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT:
-        setObject(OBJECT_EDEFAULT);
+        setObject((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -293,12 +306,12 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
-      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT_OR_ROLE:
-        return OBJECT_OR_ROLE_EDEFAULT == null ? objectOrRole != null : !OBJECT_OR_ROLE_EDEFAULT.equals(objectOrRole);
+      case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE:
+        return ROLE_EDEFAULT == null ? role != null : !ROLE_EDEFAULT.equals(role);
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__ROLE_INDEX:
         return roleIndex != null;
       case AlfPackage.LINK_OPERATION_TUPLE_ELEMENT__OBJECT:
-        return OBJECT_EDEFAULT == null ? object != null : !OBJECT_EDEFAULT.equals(object);
+        return object != null;
     }
     return super.eIsSet(featureID);
   }
@@ -314,10 +327,8 @@ public class LinkOperationTupleElementImpl extends MinimalEObjectImpl.Container 
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (objectOrRole: ");
-    result.append(objectOrRole);
-    result.append(", object: ");
-    result.append(object);
+    result.append(" (role: ");
+    result.append(role);
     result.append(')');
     return result.toString();
   }

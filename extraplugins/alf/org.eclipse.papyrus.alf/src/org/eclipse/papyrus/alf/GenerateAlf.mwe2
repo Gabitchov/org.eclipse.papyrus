@@ -11,6 +11,7 @@ var runtimeProject = "../${projectName}"
 
 Workflow {
     bean = StandaloneSetup {
+    	scanClassPath  = true
 		platformUri = "${runtimeProject}/.."
 	}
 
@@ -21,6 +22,9 @@ Workflow {
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}.ui/src-gen"
 	}
+	
+	
+	
 
 	component = Generator {
 		pathRtProject = runtimeProject
@@ -38,9 +42,11 @@ Workflow {
 			fragment = ecore.EcoreGeneratorFragment {
 			// referencedGenModels = "uri to genmodel, uri to next genmodel"
 			}
-
-			// the serialization component
-			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
+			// Serializer 2.0
+           	fragment = serializer.SerializerFragment {
+           		generateStub = false
+           	}
+			
 
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
@@ -70,6 +76,11 @@ Workflow {
 			//fragment = exporting.QualifiedNamesFragment {}
 			//fragment = builder.BuilderIntegrationFragment {}
 
+			// generator API
+            fragment = generator.GeneratorFragment {
+                generateMwe = false
+                generateJavaMain = false
+            }
 			// formatter API 
 			fragment = formatting.FormatterFragment {}
 

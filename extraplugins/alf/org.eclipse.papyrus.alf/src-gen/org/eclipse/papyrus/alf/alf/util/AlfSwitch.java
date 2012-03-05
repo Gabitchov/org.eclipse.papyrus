@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.util;
 
@@ -464,6 +460,20 @@ public class AlfSwitch<T> extends Switch<T>
         T result = caseInstanceCreationExpression(instanceCreationExpression);
         if (result == null) result = caseValueSpecification(instanceCreationExpression);
         if (result == null) result = caseNonLiteralValueSpecification(instanceCreationExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AlfPackage.INSTANCE_CREATION_TUPLE:
+      {
+        InstanceCreationTuple instanceCreationTuple = (InstanceCreationTuple)theEObject;
+        T result = caseInstanceCreationTuple(instanceCreationTuple);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AlfPackage.INSTANCE_CREATION_TUPLE_ELEMENT:
+      {
+        InstanceCreationTupleElement instanceCreationTupleElement = (InstanceCreationTupleElement)theEObject;
+        T result = caseInstanceCreationTupleElement(instanceCreationTupleElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1637,6 +1647,38 @@ public class AlfSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInstanceCreationExpression(InstanceCreationExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Instance Creation Tuple</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Instance Creation Tuple</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInstanceCreationTuple(InstanceCreationTuple object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Instance Creation Tuple Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Instance Creation Tuple Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInstanceCreationTupleElement(InstanceCreationTupleElement object)
   {
     return null;
   }

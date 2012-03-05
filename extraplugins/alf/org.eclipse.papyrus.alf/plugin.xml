@@ -11,7 +11,7 @@
 	
   </extension>
   <extension
-        point="org.eclipse.papyrus.extensionpoints.uml2.UMLLibrary">
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
      <library
            description="Alf Library (v0.8)"
            name="AlfLibrary"

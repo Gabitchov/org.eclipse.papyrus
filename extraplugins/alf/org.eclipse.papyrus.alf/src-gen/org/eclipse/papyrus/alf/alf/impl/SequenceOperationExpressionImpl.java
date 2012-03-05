@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -15,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.alf.alf.AlfPackage;
+import org.eclipse.papyrus.alf.alf.QualifiedNameWithBinding;
 import org.eclipse.papyrus.alf.alf.SequenceOperationExpression;
 import org.eclipse.papyrus.alf.alf.SuffixExpression;
 import org.eclipse.papyrus.alf.alf.Tuple;
@@ -37,24 +34,14 @@ import org.eclipse.papyrus.alf.alf.Tuple;
 public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implements SequenceOperationExpression
 {
   /**
-   * The default value of the '{@link #getOperationName() <em>Operation Name</em>}' attribute.
+   * The cached value of the '{@link #getOperationName() <em>Operation Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getOperationName()
    * @generated
    * @ordered
    */
-  protected static final String OPERATION_NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getOperationName() <em>Operation Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperationName()
-   * @generated
-   * @ordered
-   */
-  protected String operationName = OPERATION_NAME_EDEFAULT;
+  protected QualifiedNameWithBinding operationName;
 
   /**
    * The cached value of the '{@link #getTuple() <em>Tuple</em>}' containment reference.
@@ -102,7 +89,7 @@ public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getOperationName()
+  public QualifiedNameWithBinding getOperationName()
   {
     return operationName;
   }
@@ -112,12 +99,37 @@ public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setOperationName(String newOperationName)
+  public NotificationChain basicSetOperationName(QualifiedNameWithBinding newOperationName, NotificationChain msgs)
   {
-    String oldOperationName = operationName;
+    QualifiedNameWithBinding oldOperationName = operationName;
     operationName = newOperationName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME, oldOperationName, operationName));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME, oldOperationName, newOperationName);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperationName(QualifiedNameWithBinding newOperationName)
+  {
+    if (newOperationName != operationName)
+    {
+      NotificationChain msgs = null;
+      if (operationName != null)
+        msgs = ((InternalEObject)operationName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME, null, msgs);
+      if (newOperationName != null)
+        msgs = ((InternalEObject)newOperationName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME, null, msgs);
+      msgs = basicSetOperationName(newOperationName, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME, newOperationName, newOperationName));
   }
 
   /**
@@ -226,6 +238,8 @@ public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implem
   {
     switch (featureID)
     {
+      case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME:
+        return basicSetOperationName(null, msgs);
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__TUPLE:
         return basicSetTuple(null, msgs);
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__SUFFIX:
@@ -265,7 +279,7 @@ public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implem
     switch (featureID)
     {
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME:
-        setOperationName((String)newValue);
+        setOperationName((QualifiedNameWithBinding)newValue);
         return;
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__TUPLE:
         setTuple((Tuple)newValue);
@@ -288,7 +302,7 @@ public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implem
     switch (featureID)
     {
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME:
-        setOperationName(OPERATION_NAME_EDEFAULT);
+        setOperationName((QualifiedNameWithBinding)null);
         return;
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__TUPLE:
         setTuple((Tuple)null);
@@ -311,30 +325,13 @@ public class SequenceOperationExpressionImpl extends SuffixExpressionImpl implem
     switch (featureID)
     {
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME:
-        return OPERATION_NAME_EDEFAULT == null ? operationName != null : !OPERATION_NAME_EDEFAULT.equals(operationName);
+        return operationName != null;
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__TUPLE:
         return tuple != null;
       case AlfPackage.SEQUENCE_OPERATION_EXPRESSION__SUFFIX:
         return suffix != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (operationName: ");
-    result.append(operationName);
-    result.append(')');
-    return result.toString();
   }
 
 } //SequenceOperationExpressionImpl

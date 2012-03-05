@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -28,30 +24,30 @@ package org.eclipse.papyrus.alf.alf;
 public interface SequenceOperationExpression extends SuffixExpression
 {
   /**
-   * Returns the value of the '<em><b>Operation Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Operation Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Operation Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Operation Name</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Operation Name</em>' attribute.
-   * @see #setOperationName(String)
+   * @return the value of the '<em>Operation Name</em>' containment reference.
+   * @see #setOperationName(QualifiedNameWithBinding)
    * @see org.eclipse.papyrus.alf.alf.AlfPackage#getSequenceOperationExpression_OperationName()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getOperationName();
+  QualifiedNameWithBinding getOperationName();
 
   /**
-   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SequenceOperationExpression#getOperationName <em>Operation Name</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.SequenceOperationExpression#getOperationName <em>Operation Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Operation Name</em>' attribute.
+   * @param value the new value of the '<em>Operation Name</em>' containment reference.
    * @see #getOperationName()
    * @generated
    */
-  void setOperationName(String value);
+  void setOperationName(QualifiedNameWithBinding value);
 
   /**
    * Returns the value of the '<em><b>Tuple</b></em>' containment reference.

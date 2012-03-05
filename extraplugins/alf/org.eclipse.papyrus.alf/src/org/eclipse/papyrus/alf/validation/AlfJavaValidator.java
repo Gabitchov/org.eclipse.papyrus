@@ -78,9 +78,9 @@ import org.eclipse.papyrus.alf.validation.typing.TypeFacade;
 import org.eclipse.papyrus.alf.validation.typing.TypeFacadeFactory;
 import org.eclipse.papyrus.alf.validation.typing.TypeUtils;
 import org.eclipse.papyrus.alf.validation.typing.VoidFacade;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.extensionpoints.uml2.library.RegisteredLibrary;
-import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.uml.extensionpoints.library.RegisteredLibrary;
+import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -177,7 +177,7 @@ public class AlfJavaValidator extends AbstractAlfJavaValidator {
 						OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
 						setContextClassifier(contextClassifier) ;
 					} catch (ExecutionException e) {
-						org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
+						System.err.println(e);
 					}
 				}
 				else {

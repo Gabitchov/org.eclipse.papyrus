@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="alf"
-    nsURI="http://www.eclipse.org/papyrus/alf/Alf" nsPrefix="alf">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="alf" nsURI="http://www.eclipse.org/papyrus/alf/Alf" nsPrefix="alf">
   <eClassifiers xsi:type="ecore:EClass" name="Test">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" upperBound="-1"
         eType="#//Expression" containment="true"/>
@@ -13,10 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LITERAL" eSuperTypes="#//ValueSpecification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LITERAL" eSuperTypes="#//ValueSpecification"/>
   <eClassifiers xsi:type="ecore:EClass" name="BOOLEAN_LITERAL" eSuperTypes="#//LITERAL">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//BooleanValue"/>
   </eClassifiers>
@@ -161,13 +156,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpressionWithoutDot">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="#//Tuple"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExpression" eSuperTypes="#//SuffixExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//Expression"
@@ -185,10 +173,11 @@
         upperBound="-1" eType="#//LinkOperationTupleElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LinkOperationTupleElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectOrRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="role" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roleIndex" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LinkOperationKind">
     <eLiterals name="CREATE" literal="createLink"/>
@@ -196,7 +185,8 @@
     <eLiterals name="CLEAR" value="2" literal="clearAssoc"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceOperationExpression" eSuperTypes="#//SuffixExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationName" eType="#//QualifiedNameWithBinding"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="#//Tuple"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
@@ -255,20 +245,26 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SuperInvocationExpression" eSuperTypes="#//ValueSpecification #//NonLiteralValueSpecification">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operationCallWithoutDot"
-        eType="#//OperationCallExpressionWithoutDot" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operationCall" eType="#//OperationCallExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="#//Tuple"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationName" eType="#//QualifiedNameWithBinding"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationExpression" eSuperTypes="#//ValueSpecification #//NonLiteralValueSpecification">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constructor" eType="#//QualifiedNameWithBinding"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="#//Tuple"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tuple" eType="#//InstanceCreationTuple"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceConstuctionCompletion"
-        eType="#//SequenceConstructionCompletion" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//SuffixExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationTuple">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceCreationTupleElement"
+        upperBound="-1" eType="#//InstanceCreationTupleElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceCreationTupleElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="role" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionOrAccessCompletion">
@@ -286,12 +282,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartialSequenceConstructionCompletion">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//SequenceConstructionExpression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SequenceConstructionCompletion">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicityIndicator"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//SequenceConstructionExpression"
         containment="true"/>
   </eClassifiers>

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -60,6 +56,8 @@ import org.eclipse.papyrus.alf.alf.InclusiveOrExpression;
 import org.eclipse.papyrus.alf.alf.InlineStatement;
 import org.eclipse.papyrus.alf.alf.InstanceCreationExpression;
 import org.eclipse.papyrus.alf.alf.InstanceCreationInvocationStatement;
+import org.eclipse.papyrus.alf.alf.InstanceCreationTuple;
+import org.eclipse.papyrus.alf.alf.InstanceCreationTupleElement;
 import org.eclipse.papyrus.alf.alf.InvocationOrAssignementOrDeclarationStatement;
 import org.eclipse.papyrus.alf.alf.IsUniqueOperation;
 import org.eclipse.papyrus.alf.alf.LinkOperationExpression;
@@ -475,6 +473,20 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * @generated
    */
   private EClass instanceCreationExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass instanceCreationTupleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass instanceCreationTupleElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1893,7 +1905,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLinkOperationTupleElement_ObjectOrRole()
+  public EAttribute getLinkOperationTupleElement_Role()
   {
     return (EAttribute)linkOperationTupleElementEClass.getEStructuralFeatures().get(0);
   }
@@ -1913,9 +1925,9 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLinkOperationTupleElement_Object()
+  public EReference getLinkOperationTupleElement_Object()
   {
-    return (EAttribute)linkOperationTupleElementEClass.getEStructuralFeatures().get(2);
+    return (EReference)linkOperationTupleElementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1933,9 +1945,9 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSequenceOperationExpression_OperationName()
+  public EReference getSequenceOperationExpression_OperationName()
   {
-    return (EAttribute)sequenceOperationExpressionEClass.getEStructuralFeatures().get(0);
+    return (EReference)sequenceOperationExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2266,6 +2278,56 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
   public EReference getInstanceCreationExpression_Suffix()
   {
     return (EReference)instanceCreationExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInstanceCreationTuple()
+  {
+    return instanceCreationTupleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInstanceCreationTuple_InstanceCreationTupleElement()
+  {
+    return (EReference)instanceCreationTupleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInstanceCreationTupleElement()
+  {
+    return instanceCreationTupleElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getInstanceCreationTupleElement_Role()
+  {
+    return (EAttribute)instanceCreationTupleElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInstanceCreationTupleElement_Object()
+  {
+    return (EReference)instanceCreationTupleElementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3798,12 +3860,12 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     createEReference(linkOperationTupleEClass, LINK_OPERATION_TUPLE__LINK_OPERATION_TUPLE_ELEMENT);
 
     linkOperationTupleElementEClass = createEClass(LINK_OPERATION_TUPLE_ELEMENT);
-    createEAttribute(linkOperationTupleElementEClass, LINK_OPERATION_TUPLE_ELEMENT__OBJECT_OR_ROLE);
+    createEAttribute(linkOperationTupleElementEClass, LINK_OPERATION_TUPLE_ELEMENT__ROLE);
     createEReference(linkOperationTupleElementEClass, LINK_OPERATION_TUPLE_ELEMENT__ROLE_INDEX);
-    createEAttribute(linkOperationTupleElementEClass, LINK_OPERATION_TUPLE_ELEMENT__OBJECT);
+    createEReference(linkOperationTupleElementEClass, LINK_OPERATION_TUPLE_ELEMENT__OBJECT);
 
     sequenceOperationExpressionEClass = createEClass(SEQUENCE_OPERATION_EXPRESSION);
-    createEAttribute(sequenceOperationExpressionEClass, SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME);
+    createEReference(sequenceOperationExpressionEClass, SEQUENCE_OPERATION_EXPRESSION__OPERATION_NAME);
     createEReference(sequenceOperationExpressionEClass, SEQUENCE_OPERATION_EXPRESSION__TUPLE);
     createEReference(sequenceOperationExpressionEClass, SEQUENCE_OPERATION_EXPRESSION__SUFFIX);
 
@@ -3850,6 +3912,13 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     createEReference(instanceCreationExpressionEClass, INSTANCE_CREATION_EXPRESSION__CONSTRUCTOR);
     createEReference(instanceCreationExpressionEClass, INSTANCE_CREATION_EXPRESSION__TUPLE);
     createEReference(instanceCreationExpressionEClass, INSTANCE_CREATION_EXPRESSION__SUFFIX);
+
+    instanceCreationTupleEClass = createEClass(INSTANCE_CREATION_TUPLE);
+    createEReference(instanceCreationTupleEClass, INSTANCE_CREATION_TUPLE__INSTANCE_CREATION_TUPLE_ELEMENT);
+
+    instanceCreationTupleElementEClass = createEClass(INSTANCE_CREATION_TUPLE_ELEMENT);
+    createEAttribute(instanceCreationTupleElementEClass, INSTANCE_CREATION_TUPLE_ELEMENT__ROLE);
+    createEReference(instanceCreationTupleElementEClass, INSTANCE_CREATION_TUPLE_ELEMENT__OBJECT);
 
     sequenceConstructionOrAccessCompletionEClass = createEClass(SEQUENCE_CONSTRUCTION_OR_ACCESS_COMPLETION);
     createEAttribute(sequenceConstructionOrAccessCompletionEClass, SEQUENCE_CONSTRUCTION_OR_ACCESS_COMPLETION__MULTIPLICITY_INDICATOR);
@@ -4251,12 +4320,12 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
     initEReference(getLinkOperationTuple_LinkOperationTupleElement(), this.getLinkOperationTupleElement(), null, "linkOperationTupleElement", null, 0, -1, LinkOperationTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(linkOperationTupleElementEClass, LinkOperationTupleElement.class, "LinkOperationTupleElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLinkOperationTupleElement_ObjectOrRole(), ecorePackage.getEString(), "objectOrRole", null, 0, 1, LinkOperationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLinkOperationTupleElement_Role(), ecorePackage.getEString(), "role", null, 0, 1, LinkOperationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLinkOperationTupleElement_RoleIndex(), this.getExpression(), null, "roleIndex", null, 0, 1, LinkOperationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getLinkOperationTupleElement_Object(), ecorePackage.getEString(), "object", null, 0, 1, LinkOperationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLinkOperationTupleElement_Object(), this.getExpression(), null, "object", null, 0, 1, LinkOperationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sequenceOperationExpressionEClass, SequenceOperationExpression.class, "SequenceOperationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSequenceOperationExpression_OperationName(), ecorePackage.getEString(), "operationName", null, 0, 1, SequenceOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSequenceOperationExpression_OperationName(), this.getQualifiedNameWithBinding(), null, "operationName", null, 0, 1, SequenceOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSequenceOperationExpression_Tuple(), this.getTuple(), null, "tuple", null, 0, 1, SequenceOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSequenceOperationExpression_Suffix(), this.getSuffixExpression(), null, "suffix", null, 0, 1, SequenceOperationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4301,8 +4370,15 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage
 
     initEClass(instanceCreationExpressionEClass, InstanceCreationExpression.class, "InstanceCreationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInstanceCreationExpression_Constructor(), this.getQualifiedNameWithBinding(), null, "constructor", null, 0, 1, InstanceCreationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInstanceCreationExpression_Tuple(), this.getTuple(), null, "tuple", null, 0, 1, InstanceCreationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInstanceCreationExpression_Tuple(), this.getInstanceCreationTuple(), null, "tuple", null, 0, 1, InstanceCreationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstanceCreationExpression_Suffix(), this.getSuffixExpression(), null, "suffix", null, 0, 1, InstanceCreationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(instanceCreationTupleEClass, InstanceCreationTuple.class, "InstanceCreationTuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInstanceCreationTuple_InstanceCreationTupleElement(), this.getInstanceCreationTupleElement(), null, "instanceCreationTupleElement", null, 0, -1, InstanceCreationTuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(instanceCreationTupleElementEClass, InstanceCreationTupleElement.class, "InstanceCreationTupleElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInstanceCreationTupleElement_Role(), ecorePackage.getEString(), "role", null, 0, 1, InstanceCreationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInstanceCreationTupleElement_Object(), this.getExpression(), null, "object", null, 0, 1, InstanceCreationTupleElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sequenceConstructionOrAccessCompletionEClass, SequenceConstructionOrAccessCompletion.class, "SequenceConstructionOrAccessCompletion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSequenceConstructionOrAccessCompletion_MultiplicityIndicator(), ecorePackage.getEBoolean(), "multiplicityIndicator", null, 0, 1, SequenceConstructionOrAccessCompletion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

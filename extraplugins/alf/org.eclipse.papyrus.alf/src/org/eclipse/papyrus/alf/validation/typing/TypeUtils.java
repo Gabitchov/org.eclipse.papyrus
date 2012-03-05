@@ -1053,23 +1053,23 @@ public class TypeUtils {
 			}
 		}
 		
-		if (s.isATemplate()) {
-			// A binding needs to be done, with the type of the prefix as an actual.
-			Map<TemplateParameter, ParameterableElement> substitutions = new HashMap<TemplateParameter, ParameterableElement>() ;
-			for (TemplateParameter tp : ((TemplateableElement)s.getActualSignatureObject()).getOwnedTemplateSignature().getOwnedParameters()) {
-				substitutions.put(tp,typeOfPrefix.getTypeFacade().extractActualType()) ;
-			}
-			String sLabelInCaseOfErrorInBinding = "" + s.getLabel() ;
-			s = s.bindTemplate(substitutions) ;
-			if (s == null) { // a problem occurred with binding
-				EObject source = exp.eContainer() ;
-				EStructuralFeature containtFeature = exp.eContainingFeature() ;
-				String errorMessage = "Could not implicitly bind behavior " + sLabelInCaseOfErrorInBinding + " with actual parameter " + typeOfPrefix.getTypeFacade().getLabel() ;
-				ErrorTypeFacade unsupportedCase = 
-					TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
-				return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
-			}
-		}
+//		if (s.isATemplate()) {
+//			// A binding needs to be done, with the type of the prefix as an actual.
+//			Map<TemplateParameter, ParameterableElement> substitutions = new HashMap<TemplateParameter, ParameterableElement>() ;
+//			for (TemplateParameter tp : ((TemplateableElement)s.getActualSignatureObject()).getOwnedTemplateSignature().getOwnedParameters()) {
+//				substitutions.put(tp,typeOfPrefix.getTypeFacade().extractActualType()) ;
+//			}
+//			String sLabelInCaseOfErrorInBinding = "" + s.getLabel() ;
+//			s = s.bindTemplate(substitutions) ;
+//			if (s == null) { // a problem occurred with binding
+//				EObject source = exp.eContainer() ;
+//				EStructuralFeature containtFeature = exp.eContainingFeature() ;
+//				String errorMessage = "Could not implicitly bind behavior " + sLabelInCaseOfErrorInBinding + " with actual parameter " + typeOfPrefix.getTypeFacade().getLabel() ;
+//				ErrorTypeFacade unsupportedCase = 
+//					TypeFacadeFactory.eInstance.createErrorTypeFacade(errorMessage, source, containtFeature) ;
+//				return TypeExpressionFactory.eInstance.createTypeExpression(unsupportedCase) ;
+//			}
+//		}
 		
 		// The signature has been resolved.
 		// Needs to determine if this is a valid signature. i.e. must have its first parameter with direction in or inout, and multiplicity *

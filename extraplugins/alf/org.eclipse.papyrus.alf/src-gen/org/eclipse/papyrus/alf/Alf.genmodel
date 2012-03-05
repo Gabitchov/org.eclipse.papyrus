@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.alf/src-gen"
-    editDirectory="/org.eclipse.papyrus.alf.edit/src" editorDirectory="/org.eclipse.papyrus.alf.editor/src"
-    modelPluginID="org.eclipse.papyrus.alf" forceOverwrite="true" modelName="Alf"
-    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.alf/src-gen" editDirectory="/org.eclipse.papyrus.alf.edit/src"
+    editorDirectory="/org.eclipse.papyrus.alf.editor/src" modelPluginID="org.eclipse.papyrus.alf"
+    forceOverwrite="true" modelName="Alf" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.alf.edit"
     editorPluginID="org.eclipse.papyrus.alf.editor">
   <genPackages prefix="Alf" basePackage="org.eclipse.papyrus.alf" disposableProviderFactory="true"
@@ -57,9 +55,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//Test/statements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//Test/block"/>
     </genClasses>
-    <genClasses ecoreClass="Alf.ecore#//LITERAL">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//LITERAL/suffix"/>
-    </genClasses>
+    <genClasses ecoreClass="Alf.ecore#//LITERAL"/>
     <genClasses ecoreClass="Alf.ecore#//BOOLEAN_LITERAL">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//BOOLEAN_LITERAL/value"/>
     </genClasses>
@@ -165,11 +161,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//OperationCallExpression/tuple"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//OperationCallExpression/suffix"/>
     </genClasses>
-    <genClasses ecoreClass="Alf.ecore#//OperationCallExpressionWithoutDot">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//OperationCallExpressionWithoutDot/operationName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//OperationCallExpressionWithoutDot/tuple"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//OperationCallExpressionWithoutDot/suffix"/>
-    </genClasses>
     <genClasses ecoreClass="Alf.ecore#//PropertyCallExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//PropertyCallExpression/propertyName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//PropertyCallExpression/index"/>
@@ -183,12 +174,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//LinkOperationTuple/linkOperationTupleElement"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//LinkOperationTupleElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//LinkOperationTupleElement/objectOrRole"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//LinkOperationTupleElement/role"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//LinkOperationTupleElement/roleIndex"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//LinkOperationTupleElement/object"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//LinkOperationTupleElement/object"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//SequenceOperationExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//SequenceOperationExpression/operationName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceOperationExpression/operationName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceOperationExpression/tuple"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceOperationExpression/suffix"/>
     </genClasses>
@@ -224,15 +215,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//ThisExpression/suffix"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//SuperInvocationExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//SuperInvocationExpression/className"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SuperInvocationExpression/operationCallWithoutDot"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SuperInvocationExpression/operationCall"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SuperInvocationExpression/tuple"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SuperInvocationExpression/operationName"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//InstanceCreationExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/constructor"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/tuple"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/sequenceConstuctionCompletion"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationExpression/suffix"/>
+    </genClasses>
+    <genClasses ecoreClass="Alf.ecore#//InstanceCreationTuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationTuple/instanceCreationTupleElement"/>
+    </genClasses>
+    <genClasses ecoreClass="Alf.ecore#//InstanceCreationTupleElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//InstanceCreationTupleElement/role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//InstanceCreationTupleElement/object"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//SequenceConstructionOrAccessCompletion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//SequenceConstructionOrAccessCompletion/multiplicityIndicator"/>
@@ -245,10 +241,6 @@
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//PartialSequenceConstructionCompletion">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//PartialSequenceConstructionCompletion/expression"/>
-    </genClasses>
-    <genClasses ecoreClass="Alf.ecore#//SequenceConstructionCompletion">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Alf.ecore#//SequenceConstructionCompletion/multiplicityIndicator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceConstructionCompletion/expression"/>
     </genClasses>
     <genClasses ecoreClass="Alf.ecore#//SequenceConstructionExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Alf.ecore#//SequenceConstructionExpression/sequenceElement"/>

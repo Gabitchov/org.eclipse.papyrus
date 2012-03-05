@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -62,12 +58,12 @@ public interface InstanceCreationExpression extends ValueSpecification, NonLiter
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Tuple</em>' containment reference.
-   * @see #setTuple(Tuple)
+   * @see #setTuple(InstanceCreationTuple)
    * @see org.eclipse.papyrus.alf.alf.AlfPackage#getInstanceCreationExpression_Tuple()
    * @model containment="true"
    * @generated
    */
-  Tuple getTuple();
+  InstanceCreationTuple getTuple();
 
   /**
    * Sets the value of the '{@link org.eclipse.papyrus.alf.alf.InstanceCreationExpression#getTuple <em>Tuple</em>}' containment reference.
@@ -77,7 +73,7 @@ public interface InstanceCreationExpression extends ValueSpecification, NonLiter
    * @see #getTuple()
    * @generated
    */
-  void setTuple(Tuple value);
+  void setTuple(InstanceCreationTuple value);
 
   /**
    * Returns the value of the '<em><b>Suffix</b></em>' containment reference.

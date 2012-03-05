@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -119,6 +115,8 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
       case AlfPackage.THIS_EXPRESSION: return createThisExpression();
       case AlfPackage.SUPER_INVOCATION_EXPRESSION: return createSuperInvocationExpression();
       case AlfPackage.INSTANCE_CREATION_EXPRESSION: return createInstanceCreationExpression();
+      case AlfPackage.INSTANCE_CREATION_TUPLE: return createInstanceCreationTuple();
+      case AlfPackage.INSTANCE_CREATION_TUPLE_ELEMENT: return createInstanceCreationTupleElement();
       case AlfPackage.SEQUENCE_CONSTRUCTION_OR_ACCESS_COMPLETION: return createSequenceConstructionOrAccessCompletion();
       case AlfPackage.ACCESS_COMPLETION: return createAccessCompletion();
       case AlfPackage.PARTIAL_SEQUENCE_CONSTRUCTION_COMPLETION: return createPartialSequenceConstructionCompletion();
@@ -780,6 +778,28 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory
   {
     InstanceCreationExpressionImpl instanceCreationExpression = new InstanceCreationExpressionImpl();
     return instanceCreationExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InstanceCreationTuple createInstanceCreationTuple()
+  {
+    InstanceCreationTupleImpl instanceCreationTuple = new InstanceCreationTupleImpl();
+    return instanceCreationTuple;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InstanceCreationTupleElement createInstanceCreationTupleElement()
+  {
+    InstanceCreationTupleElementImpl instanceCreationTupleElement = new InstanceCreationTupleElementImpl();
+    return instanceCreationTupleElement;
   }
 
   /**

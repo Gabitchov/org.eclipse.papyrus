@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.util;
 
@@ -327,6 +323,16 @@ public class AlfAdapterFactory extends AdapterFactoryImpl
       public Adapter caseInstanceCreationExpression(InstanceCreationExpression object)
       {
         return createInstanceCreationExpressionAdapter();
+      }
+      @Override
+      public Adapter caseInstanceCreationTuple(InstanceCreationTuple object)
+      {
+        return createInstanceCreationTupleAdapter();
+      }
+      @Override
+      public Adapter caseInstanceCreationTupleElement(InstanceCreationTupleElement object)
+      {
+        return createInstanceCreationTupleElementAdapter();
       }
       @Override
       public Adapter caseSequenceConstructionOrAccessCompletion(SequenceConstructionOrAccessCompletion object)
@@ -1346,6 +1352,36 @@ public class AlfAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstanceCreationExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.alf.alf.InstanceCreationTuple <em>Instance Creation Tuple</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.alf.alf.InstanceCreationTuple
+   * @generated
+   */
+  public Adapter createInstanceCreationTupleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.alf.alf.InstanceCreationTupleElement <em>Instance Creation Tuple Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.alf.alf.InstanceCreationTupleElement
+   * @generated
+   */
+  public Adapter createInstanceCreationTupleElementAdapter()
   {
     return null;
   }

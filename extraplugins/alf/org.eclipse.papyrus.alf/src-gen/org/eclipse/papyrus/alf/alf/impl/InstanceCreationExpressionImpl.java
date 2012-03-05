@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf.impl;
 
@@ -16,9 +12,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.alf.alf.AlfPackage;
 import org.eclipse.papyrus.alf.alf.InstanceCreationExpression;
+import org.eclipse.papyrus.alf.alf.InstanceCreationTuple;
 import org.eclipse.papyrus.alf.alf.QualifiedNameWithBinding;
 import org.eclipse.papyrus.alf.alf.SuffixExpression;
-import org.eclipse.papyrus.alf.alf.Tuple;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +51,7 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
    * @generated
    * @ordered
    */
-  protected Tuple tuple;
+  protected InstanceCreationTuple tuple;
 
   /**
    * The cached value of the '{@link #getSuffix() <em>Suffix</em>}' containment reference.
@@ -141,7 +137,7 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public Tuple getTuple()
+  public InstanceCreationTuple getTuple()
   {
     return tuple;
   }
@@ -151,9 +147,9 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTuple(Tuple newTuple, NotificationChain msgs)
+  public NotificationChain basicSetTuple(InstanceCreationTuple newTuple, NotificationChain msgs)
   {
-    Tuple oldTuple = tuple;
+    InstanceCreationTuple oldTuple = tuple;
     tuple = newTuple;
     if (eNotificationRequired())
     {
@@ -168,7 +164,7 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTuple(Tuple newTuple)
+  public void setTuple(InstanceCreationTuple newTuple)
   {
     if (newTuple != tuple)
     {
@@ -286,7 +282,7 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
         setConstructor((QualifiedNameWithBinding)newValue);
         return;
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__TUPLE:
-        setTuple((Tuple)newValue);
+        setTuple((InstanceCreationTuple)newValue);
         return;
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         setSuffix((SuffixExpression)newValue);
@@ -309,7 +305,7 @@ public class InstanceCreationExpressionImpl extends ValueSpecificationImpl imple
         setConstructor((QualifiedNameWithBinding)null);
         return;
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__TUPLE:
-        setTuple((Tuple)null);
+        setTuple((InstanceCreationTuple)null);
         return;
       case AlfPackage.INSTANCE_CREATION_EXPRESSION__SUFFIX:
         setSuffix((SuffixExpression)null);

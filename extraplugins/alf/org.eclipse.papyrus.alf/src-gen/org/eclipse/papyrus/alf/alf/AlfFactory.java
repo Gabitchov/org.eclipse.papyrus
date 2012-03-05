@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
-
  */
 package org.eclipse.papyrus.alf.alf;
 
@@ -475,6 +471,24 @@ public interface AlfFactory extends EFactory
    * @generated
    */
   InstanceCreationExpression createInstanceCreationExpression();
+
+  /**
+   * Returns a new object of class '<em>Instance Creation Tuple</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Instance Creation Tuple</em>'.
+   * @generated
+   */
+  InstanceCreationTuple createInstanceCreationTuple();
+
+  /**
+   * Returns a new object of class '<em>Instance Creation Tuple Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Instance Creation Tuple Element</em>'.
+   * @generated
+   */
+  InstanceCreationTupleElement createInstanceCreationTupleElement();
 
   /**
    * Returns a new object of class '<em>Sequence Construction Or Access Completion</em>'.
