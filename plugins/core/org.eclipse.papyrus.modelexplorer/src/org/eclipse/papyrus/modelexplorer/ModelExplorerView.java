@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -51,6 +52,7 @@ import org.eclipse.papyrus.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.modelexplorer.matching.ReferencableMatchingItem;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -568,16 +570,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				// reveal the resource if necessary
 				Resource r = null;
-				if (parents != null && !parents.isEmpty())
-				{
+				if (!parents.isEmpty()) {
 					 r = parents.get(parents.size() - 1).eResource();
-				}
-				else if (parents != null)
-				{
+				} else {
 					r = currentEObject.eResource();
 				}
-				if(r != null) {
-					commonViewer.expandToLevel(new ReferencableMatchingItem(r.getResourceSet()), 1);
+
+				ResourceSet rs = r.getResourceSet();
+				if(r != null && rs instanceof ModelSet && ((ModelSet)rs).isAdditionalResource(r.getURI())) {
+					commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
 					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
 				}
 
