@@ -68,9 +68,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ConstraintPropertyEditPart extends
-
-AbstractBorderedShapeEditPart {
+public class ConstraintPropertyEditPart extends AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -107,10 +105,8 @@ AbstractBorderedShapeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintPropertyItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConstraintPropertyCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateParameterEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -127,9 +123,7 @@ AbstractBorderedShapeEditPart {
 				View childView = (View)child.getModel();
 				switch(SysmlVisualIDRegistry.getVisualID(childView)) {
 				case Property2EditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -175,14 +169,12 @@ AbstractBorderedShapeEditPart {
 			((ConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 			return true;
 		}
-
 		//Papyrus Gencode :Affixed Parameter locator
 		if(childEditPart instanceof Property2EditPart) {
 			IBorderItemLocator locator = new ParameterPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((Property2EditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -242,7 +234,6 @@ AbstractBorderedShapeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -343,12 +334,10 @@ AbstractBorderedShapeEditPart {
 		 * @generated
 		 */
 		public ConstraintPropertyFigureDescriptor() {
-
 			GridLayout layoutThis = new GridLayout();
 			layoutThis.numColumns = 1;
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
-
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(25), getMapMode().DPtoLP(25)));
 			this.setLineWidth(1);
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(200), getMapMode().DPtoLP(120)));
@@ -359,9 +348,7 @@ AbstractBorderedShapeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fConstraintPropertyFigureLabel = new CenteredWrappedLabel();
-
 			GridData constraintFConstraintPropertyFigureLabel = new GridData();
 			constraintFConstraintPropertyFigureLabel.verticalAlignment = GridData.END;
 			constraintFConstraintPropertyFigureLabel.horizontalAlignment = GridData.CENTER;
@@ -371,9 +358,7 @@ AbstractBorderedShapeEditPart {
 			constraintFConstraintPropertyFigureLabel.grabExcessHorizontalSpace = true;
 			constraintFConstraintPropertyFigureLabel.grabExcessVerticalSpace = true;
 			this.add(fConstraintPropertyFigureLabel, constraintFConstraintPropertyFigureLabel);
-
 			fConstraintLabel = new WrappingLabel();
-
 			GridData constraintFConstraintLabel = new GridData();
 			constraintFConstraintLabel.verticalAlignment = GridData.BEGINNING;
 			constraintFConstraintLabel.horizontalAlignment = GridData.END;
@@ -383,7 +368,6 @@ AbstractBorderedShapeEditPart {
 			constraintFConstraintLabel.grabExcessHorizontalSpace = true;
 			constraintFConstraintLabel.grabExcessVerticalSpace = true;
 			this.add(fConstraintLabel, constraintFConstraintLabel);
-
 		}
 
 		/**
@@ -418,7 +402,6 @@ AbstractBorderedShapeEditPart {
 		public WrappingLabel getConstraintLabel() {
 			return fConstraintLabel;
 		}
-
 	}
 
 	/**
@@ -428,7 +411,6 @@ AbstractBorderedShapeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -448,7 +430,6 @@ AbstractBorderedShapeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
@@ -494,5 +475,4 @@ AbstractBorderedShapeEditPart {
 		notifier.unlistenAll();
 		super.removeNotify();
 	}
-
 }

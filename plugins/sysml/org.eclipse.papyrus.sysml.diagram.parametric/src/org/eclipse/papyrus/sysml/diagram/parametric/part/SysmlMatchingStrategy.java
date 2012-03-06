@@ -34,7 +34,6 @@ public class SysmlMatchingStrategy implements IEditorMatchingStrategy {
 		} catch (PartInitException e) {
 			return false;
 		}
-
 		if(editorInput.equals(input)) {
 			return true;
 		}
@@ -43,5 +42,4 @@ public class SysmlMatchingStrategy implements IEditorMatchingStrategy {
 		}
 		return false;
 	}
-
 }

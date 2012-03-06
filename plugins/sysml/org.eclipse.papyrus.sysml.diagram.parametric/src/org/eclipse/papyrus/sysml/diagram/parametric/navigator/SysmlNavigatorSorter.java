@@ -36,5 +36,4 @@ public class SysmlNavigatorSorter extends ViewerSorter {
 		}
 		return GROUP_CATEGORY;
 	}
-
 }

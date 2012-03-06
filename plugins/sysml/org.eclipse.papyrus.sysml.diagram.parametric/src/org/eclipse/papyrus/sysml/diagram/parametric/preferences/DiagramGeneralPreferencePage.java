@@ -28,6 +28,5 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(SysmlDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setPreferenceKey(ParametricEditPart.MODEL_ID);
-
 	}
 }

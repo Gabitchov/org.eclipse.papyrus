@@ -305,12 +305,10 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 			Collection result = new ArrayList();
 			return result.toArray();
 		}
-
 		if(parentElement instanceof SysmlNavigatorGroup) {
 			SysmlNavigatorGroup group = (SysmlNavigatorGroup)parentElement;
 			return group.getChildren();
 		}
-
 		if(parentElement instanceof SysmlNavigatorItem) {
 			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem)parentElement;
 			if(navigatorItem.isLeaf() || !isOwnView(navigatorItem.getView())) {
@@ -318,7 +316,6 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 			}
 			return getViewChildren(navigatorItem.getView(), parentElement);
 		}
-
 		return EMPTY_ARRAY;
 	}
 
@@ -327,47 +324,31 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
-
 		case ConstraintPropertyEditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintPropertyEditPart(view, parentElement);
-
 		}
-
 		case PropertyEditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForPropertyEditPart(view, parentElement);
-
 		}
-
 		case Property2EditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForProperty2EditPart(view, parentElement);
-
 		}
-
 		case ParametricEditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForParametricEditPart(view, parentElement);
-
 		}
-
 		case ConnectorEditPart.VISUAL_ID:
 		{
-
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConnectorEditPart(view, parentElement);
-
 		}
-
 		}
 		return EMPTY_ARRAY;
 	}
@@ -499,5 +480,4 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
-
 }

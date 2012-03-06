@@ -194,15 +194,10 @@ public class SysmlElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Resource_1000, ResourcePackage.eINSTANCE.getResource());
-
 			elements.put(ConstraintProperty_2003, ConstraintsPackage.eINSTANCE.getConstraintProperty());
-
 			elements.put(Property_2005, UMLPackage.eINSTANCE.getProperty());
-
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
-
 			elements.put(Connector_4001, UMLPackage.eINSTANCE.getConnector());
 		}
 		return (ENamedElement)elements.get(type);
@@ -248,5 +243,4 @@ public class SysmlElementTypes {
 		}
 		return null;
 	}
-
 }

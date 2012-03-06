@@ -41,37 +41,26 @@ public class SysmlEditPartFactory implements EditPartFactory {
 		if(model instanceof View) {
 			View view = (View)model;
 			switch(SysmlVisualIDRegistry.getVisualID(view)) {
-
 			case ParametricEditPart.VISUAL_ID:
 				return new ParametricEditPart(view);
-
 			case ConstraintPropertyEditPart.VISUAL_ID:
 				return new ConstraintPropertyEditPart(view);
-
 			case ConstraintPropertyNameEditPart.VISUAL_ID:
 				return new ConstraintPropertyNameEditPart(view);
-
 			case ConstraintLabelEditPart.VISUAL_ID:
 				return new ConstraintLabelEditPart(view);
-
 			case PropertyEditPart.VISUAL_ID:
 				return new PropertyEditPart(view);
-
 			case PropertyNameEditPart.VISUAL_ID:
 				return new PropertyNameEditPart(view);
-
 			case Property2EditPart.VISUAL_ID:
 				return new Property2EditPart(view);
-
 			case PropertyName2EditPart.VISUAL_ID:
 				return new PropertyName2EditPart(view);
-
 			case ConnectorEditPart.VISUAL_ID:
 				return new ConnectorEditPart(view);
-
 			case ConnectorNameEditPart.VISUAL_ID:
 				return new ConnectorNameEditPart(view);
-
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

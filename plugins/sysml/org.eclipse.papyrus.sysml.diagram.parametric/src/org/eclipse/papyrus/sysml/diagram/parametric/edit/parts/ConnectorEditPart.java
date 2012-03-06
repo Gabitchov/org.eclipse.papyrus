@@ -26,9 +26,7 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ConnectorItemS
 /**
  * @generated
  */
-public class ConnectorEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -99,7 +97,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new ConnectorFigure();
 	}
@@ -126,7 +123,6 @@ implements ITreeBranchEditPart {
 		 */
 		public ConnectorFigure() {
 			this.setLineWidth(1);
-
 			createContents();
 		}
 
@@ -134,12 +130,9 @@ implements ITreeBranchEditPart {
 		 * @generated NOT protected
 		 */
 		protected void createContents() {
-
 			fConnectorLabel = new WrappingLabel();
 			fConnectorLabel.setText("");
-
 			this.add(fConnectorLabel);
-
 		}
 
 		/**
@@ -148,7 +141,5 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getConnectorLabel() {
 			return fConnectorLabel;
 		}
-
 	}
-
 }

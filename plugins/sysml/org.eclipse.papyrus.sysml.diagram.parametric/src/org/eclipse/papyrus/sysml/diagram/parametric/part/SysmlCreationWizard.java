@@ -116,7 +116,6 @@ public class SysmlCreationWizard extends Wizard implements INewWizard {
 		diagramModelFilePage.setTitle(Messages.SysmlCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage.setDescription(Messages.SysmlCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
-
 		domainModelFilePage = new SysmlCreationWizardPage("DomainModelFile", getSelection(), "sysml") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {

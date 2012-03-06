@@ -69,7 +69,6 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
-
 		myFileCreationPage = new WizardNewFileCreationPage(Messages.SysmlNewDiagramFileWizard_CreationPageName, StructuredSelection.EMPTY);
 		myFileCreationPage.setTitle(Messages.SysmlNewDiagramFileWizard_CreationPageTitle);
 		myFileCreationPage.setDescription(NLS.bind(Messages.SysmlNewDiagramFileWizard_CreationPageDescription, ParametricEditPart.MODEL_ID));
@@ -85,12 +84,10 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage.setFileName(SysmlDiagramEditorUtil.getUniqueFileName(filePath, fileName, "sysml_diagram")); //$NON-NLS-1$
-
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(Messages.SysmlNewDiagramFileWizard_RootSelectionPageName);
 		diagramRootElementSelectionPage.setTitle(Messages.SysmlNewDiagramFileWizard_RootSelectionPageTitle);
 		diagramRootElementSelectionPage.setDescription(Messages.SysmlNewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
-
 		myEditingDomain = editingDomain;
 	}
 

@@ -67,5 +67,4 @@ public abstract class SysmlAbstractNavigatorItem extends PlatformObject {
 	public Object getParent() {
 		return myParent;
 	}
-
 }

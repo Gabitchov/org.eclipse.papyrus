@@ -147,7 +147,6 @@ public class SysmlNavigatorActionProvider extends CommonActionProvider {
 			if(myDiagram == null || myDiagram.eResource() == null) {
 				return;
 			}
-
 			IEditorInput editorInput = getEditorInput(myDiagram);
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
@@ -175,7 +174,5 @@ public class SysmlNavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}
-
 	}
-
 }

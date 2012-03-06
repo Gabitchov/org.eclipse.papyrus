@@ -47,7 +47,6 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public SysmlPaletteFactory() {
-
 	}
 
 	/**
@@ -63,13 +62,11 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATECONNECTOR3CREATIONTOOL)) {
 			return createConnector3CreationTool();
 		}
-
 		// default return: null
 		return null;
 	}
 
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}
@@ -80,7 +77,6 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createConstraintProperty1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.ConstraintProperty_2003);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -92,7 +88,6 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(SysmlElementTypes.Property_3002);
 		types.add(SysmlElementTypes.Property_2005);
-
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
@@ -103,9 +98,7 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createConnector3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.Connector_4001);
-
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
-
 }

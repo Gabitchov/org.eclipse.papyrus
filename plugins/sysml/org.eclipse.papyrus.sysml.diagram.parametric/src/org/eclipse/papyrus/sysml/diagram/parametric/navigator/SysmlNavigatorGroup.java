@@ -106,5 +106,4 @@ public class SysmlNavigatorGroup extends SysmlAbstractNavigatorItem {
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}
-
 }

@@ -87,5 +87,4 @@ public class SysmlSheetLabelProvider extends BaseLabelProvider implements ILabel
 		}
 		return null;
 	}
-
 }

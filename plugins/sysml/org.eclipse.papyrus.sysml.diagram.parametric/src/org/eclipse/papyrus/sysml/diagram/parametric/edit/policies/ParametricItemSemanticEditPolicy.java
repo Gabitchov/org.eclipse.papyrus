@@ -76,5 +76,4 @@ public class ParametricItemSemanticEditPolicy extends SysmlBaseItemSemanticEditP
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

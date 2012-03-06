@@ -105,18 +105,15 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		 * if (op.getViewKind() == Edge.class)
 		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
-
 		// check Diagram Type should be the class diagram
 		String modelID = SysmlVisualIDRegistry.getModelID(op.getContainerView());
 		if(!getDiagramProvidedId().equals(modelID)) {
 			return false;
 		}
-
 		int visualID = SysmlVisualIDRegistry.getVisualID(op.getSemanticHint());
 		if(Node.class.isAssignableFrom(op.getViewKind())) {
 			return SysmlVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 		}
-
 		return true;
 	}
 
@@ -273,20 +270,14 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		node.setElement(domainElement);
 		// node.setElement(((ConstraintProperty)
 		// domainElement).getBase_Property());
-
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
 		initForegroundFromPrefs(node, prefStore, "ConstraintProperty");
-
 		initFontStyleFromPrefs(node, prefStore, "ConstraintProperty");
-
 		initBackgroundFromPrefs(node, prefStore, "ConstraintProperty");
-
 		Node label5001 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
 		Node label5004 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintLabelEditPart.VISUAL_ID));
-
 		// create the associated properties
 		Type type = ((ConstraintProperty)domainElement).getBase_Property().getType();
 		if(type != null && type instanceof StructuredClassifier) {
@@ -309,15 +300,10 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Property");
-
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
-
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Property");
-
 		Node label5002 = createLabel(node, SysmlVisualIDRegistry.getType(PropertyNameEditPart.VISUAL_ID));
-
 		return node;
 	}
 
@@ -333,20 +319,14 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Property");
-
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
-
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Property");
-
 		Node label5003 = createLabel(node, SysmlVisualIDRegistry.getType(PropertyName2EditPart.VISUAL_ID));
 		label5003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-
 		Location location5003 = (Location)label5003.getLayoutConstraint();
 		location5003.setX(0);
 		location5003.setY(5);
-
 		return node;
 	}
 
@@ -367,26 +347,19 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Connector");
-
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Connector");
-
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
-
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Connector");
-
 		Node label6001 = createLabel(edge, SysmlVisualIDRegistry.getType(ConnectorNameEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6001 = (Location)label6001.getLayoutConstraint();
 		location6001.setX(0);
 		location6001.setY(40);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Connector");
-
 		return edge;
 	}
 
@@ -442,7 +415,6 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
 		String fontConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.FONT);
 		String fontColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FONT);
-
 		FontStyle viewFontStyle = (FontStyle)view.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if(viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
@@ -450,7 +422,6 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 			viewFontStyle.setFontHeight(fontData.getHeight());
 			viewFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			viewFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-
 			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(store, fontColorConstant);
 			viewFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
@@ -472,19 +443,14 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		String fillColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL);
 		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY);
-
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
-
 		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
-
-		;
+		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());;
 		if(store.getBoolean(gradientPolicyConstant)) {
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
-
 }

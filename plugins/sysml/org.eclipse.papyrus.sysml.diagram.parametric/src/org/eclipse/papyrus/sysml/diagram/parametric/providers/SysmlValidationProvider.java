@@ -162,5 +162,4 @@ public class SysmlValidationProvider {
 	static String formatElement(EObject object) {
 		return EMFCoreUtil.getQualifiedName(object, true);
 	}
-
 }

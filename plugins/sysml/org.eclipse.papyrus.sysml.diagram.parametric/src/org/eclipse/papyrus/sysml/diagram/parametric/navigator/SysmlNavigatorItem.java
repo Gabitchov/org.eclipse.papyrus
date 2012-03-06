@@ -93,5 +93,4 @@ public class SysmlNavigatorItem extends SysmlAbstractNavigatorItem {
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}
-
 }

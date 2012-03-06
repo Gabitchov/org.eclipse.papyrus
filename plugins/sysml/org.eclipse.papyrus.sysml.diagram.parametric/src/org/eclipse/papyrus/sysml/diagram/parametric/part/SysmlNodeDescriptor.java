@@ -51,5 +51,4 @@ public class SysmlNodeDescriptor {
 	public int getVisualID() {
 		return myVisualID;
 	}
-
 }

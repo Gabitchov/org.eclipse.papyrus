@@ -342,7 +342,6 @@ public class SysmlDiagramUpdater {
 			if(ConnectorEditPart.VISUAL_ID != SysmlVisualIDRegistry.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-
 			ConnectableElement src = null;
 			ConnectableElement dst = null;
 			EList<ConnectorEnd> ends = link.getEnds();
@@ -350,14 +349,11 @@ public class SysmlDiagramUpdater {
 				src = ends.get(0).getRole();
 				dst = ends.get(1).getRole();
 			}
-
 			if(src != source) {
 				continue;
 			}
 			result.add(new SysmlLinkDescriptor(src, dst, link, SysmlElementTypes.Connector_4001, ConnectorEditPart.VISUAL_ID));
-
 		}
 		return result;
 	}
-
 }

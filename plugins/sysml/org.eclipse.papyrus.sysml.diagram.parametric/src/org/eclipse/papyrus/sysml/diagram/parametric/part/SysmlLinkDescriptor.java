@@ -101,5 +101,4 @@ public class SysmlLinkDescriptor extends SysmlNodeDescriptor {
 	public IAdaptable getSemanticAdapter() {
 		return mySemanticAdapter;
 	}
-
 }

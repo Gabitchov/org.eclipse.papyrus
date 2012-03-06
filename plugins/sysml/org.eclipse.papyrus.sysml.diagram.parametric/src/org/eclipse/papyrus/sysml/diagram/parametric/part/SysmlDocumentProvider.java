@@ -82,7 +82,6 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 		}
 		IEditorInput editorInput = (IEditorInput)element;
 		IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
-
 		ResourceSetInfo info = new ResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
 		info.fStatus = null;
@@ -177,9 +176,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			public void setTarget(Notifier newTarget) {
 				myTarger = newTarget;
 			}
-
 		});
-
 		return editingDomain;
 	}
 
@@ -304,7 +301,6 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			}
 			ResourcesPlugin.getWorkspace().validateEdit((IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
-
 		super.doValidateState(element, computationContext);
 	}
 
@@ -476,7 +472,6 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
 		if(toCreateOrModify.exists())
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
-
 		IResource parent = toCreateOrModify;
 		do {
 			/*
@@ -488,7 +483,6 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
 		} while(parent != null && !parent.exists());
-
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
 
@@ -596,7 +590,6 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 			}
 		}
 		changedResource.unload();
-
 		fireElementContentAboutToBeReplaced(info.getEditorInput());
 		removeUnchangedElementListeners(info.getEditorInput(), info);
 		info.fStatus = null;
@@ -916,9 +909,7 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 				}
 				return true;
 			}
-
 		}
-
 	}
 
 	/**
@@ -974,7 +965,6 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 						}
 						if(dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
-
 							if(!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
@@ -983,7 +973,5 @@ public class SysmlDocumentProvider extends AbstractDocumentProvider implements I
 				}
 			}
 		}
-
 	}
-
 }

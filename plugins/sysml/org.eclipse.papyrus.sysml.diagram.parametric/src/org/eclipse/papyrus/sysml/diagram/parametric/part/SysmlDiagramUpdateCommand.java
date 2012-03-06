@@ -62,7 +62,6 @@ public class SysmlDiagramUpdateCommand implements IHandler {
 					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy)it.next();
 					nextEditPolicy.refresh();
 				}
-
 			}
 		}
 		return null;
@@ -87,5 +86,4 @@ public class SysmlDiagramUpdateCommand implements IHandler {
 	 */
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 	}
-
 }

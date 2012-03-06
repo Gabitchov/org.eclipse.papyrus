@@ -201,5 +201,4 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

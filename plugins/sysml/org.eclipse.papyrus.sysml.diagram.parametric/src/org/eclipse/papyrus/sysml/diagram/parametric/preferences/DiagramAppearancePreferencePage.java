@@ -26,6 +26,5 @@ public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 	 */
 	public DiagramAppearancePreferencePage() {
 		setPreferenceStore(SysmlDiagramEditorPlugin.getInstance().getPreferenceStore());
-
 	}
 }

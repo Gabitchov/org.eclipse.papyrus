@@ -115,7 +115,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -239,7 +238,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -247,7 +245,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -319,7 +316,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -401,9 +397,7 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -430,7 +424,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -438,7 +431,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -446,7 +438,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -608,7 +599,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -723,11 +713,9 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -752,5 +740,4 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
-
 }

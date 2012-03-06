@@ -90,7 +90,6 @@ public class SysmlNavigatorLinkHelper implements ILinkHelper {
 		if(false == aSelection.getFirstElement() instanceof SysmlAbstractNavigatorItem) {
 			return;
 		}
-
 		SysmlAbstractNavigatorItem abstractNavigatorItem = (SysmlAbstractNavigatorItem)aSelection.getFirstElement();
 		View navigatorView = null;
 		if(abstractNavigatorItem instanceof SysmlNavigatorItem) {
@@ -124,5 +123,4 @@ public class SysmlNavigatorLinkHelper implements ILinkHelper {
 			}
 		}
 	}
-
 }

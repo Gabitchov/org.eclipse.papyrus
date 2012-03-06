@@ -135,21 +135,15 @@ public class SysmlVisualIDRegistry {
 		}
 		switch(containerVisualID) {
 		case ParametricEditPart.VISUAL_ID:
-			if(ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())) {
 				return ConstraintPropertyEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 				return PropertyEditPart.VISUAL_ID;
 			}
 			break;
 		case ConstraintPropertyEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())
-
-			) {
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 				return Property2EditPart.VISUAL_ID;
 			}
 			break;
@@ -221,9 +215,7 @@ public class SysmlVisualIDRegistry {
 		if(domainElement == null) {
 			return -1;
 		}
-		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())
-
-		) {
+		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())) {
 			return ConnectorEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -261,24 +253,16 @@ public class SysmlVisualIDRegistry {
 		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
 		ViewInfo viewInfo = null;
 		ViewInfo labelInfo = null;
-
 		viewInfo = new BaseViewInfo(2003, ViewInfo.Node, "ConstraintProperty");
 		root.addNode(1000, viewInfo);
-
 		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Property");
 		root.addNode(1000, viewInfo);
-
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
-
 		root.addNode(2003, viewInfo);
-
 		return root;
 	}
-
 }

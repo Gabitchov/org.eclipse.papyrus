@@ -189,7 +189,6 @@ public class SysmlDomainNavigatorContentProvider implements ICommonContentProvid
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(resource), parentElement);
 		}
-
 		if(parentElement instanceof SysmlDomainNavigatorItem) {
 			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(((SysmlDomainNavigatorItem)parentElement).getEObject()), parentElement);
 		}
@@ -226,5 +225,4 @@ public class SysmlDomainNavigatorContentProvider implements ICommonContentProvid
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
-
 }

@@ -362,6 +362,5 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String SysmlModelingAssistantProviderMessage;
-
 	// TODO: put accessor fields manually
 }

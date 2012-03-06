@@ -77,7 +77,6 @@ public class ConstraintPropertyCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -92,9 +91,7 @@ public class ConstraintPropertyCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
@@ -102,21 +99,16 @@ public class ConstraintPropertyCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConstraintProperty newElement = ConstraintsFactory.eINSTANCE.createConstraintProperty();
-
 		EObject elementToEdit = getElementToEdit();
-
 		if(elementToEdit instanceof Class) {
 			Class aClass = (Class)elementToEdit;
 			Property property = UMLFactory.eINSTANCE.createProperty();
 			aClass.getOwnedAttributes().add(property);
 			newElement.setBase_Property(property);
 		}
-
 		Resource owner = ResourceUtil.getResource(elementToEdit);
 		owner.getEobjects().add(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -134,5 +126,4 @@ public class ConstraintPropertyCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -75,7 +75,6 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			SysmlNavigatorGroup group = (SysmlNavigatorGroup)element;
 			return SysmlDiagramEditorPlugin.getInstance().getBundledImage(group.getIcon());
 		}
-
 		if(element instanceof SysmlNavigatorItem) {
 			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem)element;
 			if(!isOwnView(navigatorItem.getView())) {
@@ -83,7 +82,6 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			}
 			return getImage(navigatorItem.getView());
 		}
-
 		return super.getImage(element);
 	}
 
@@ -116,7 +114,6 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			image = SysmlElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
-
 		if(image == null) {
 			image = imageRegistry.get("Navigator?ImageNotFound"); //$NON-NLS-1$
 			imageRegistry.put(key, image);
@@ -132,7 +129,6 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			SysmlNavigatorGroup group = (SysmlNavigatorGroup)element;
 			return group.getGroupName();
 		}
-
 		if(element instanceof SysmlNavigatorItem) {
 			SysmlNavigatorItem navigatorItem = (SysmlNavigatorItem)element;
 			if(!isOwnView(navigatorItem.getView())) {
@@ -140,7 +136,6 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			}
 			return getText(navigatorItem.getView());
 		}
-
 		return super.getText(element);
 	}
 
@@ -270,5 +265,4 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	private boolean isOwnView(View view) {
 		return ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view));
 	}
-
 }
