@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.resource.util.ResourceUtil;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
@@ -34,9 +36,11 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -143,6 +147,8 @@ public class SysmlDiagramUpdater {
 			return getConstraintProperty_2003ContainedLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005ContainedLinks(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_2006ContainedLinks(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002ContainedLinks(view);
 		case ConnectorEditPart.VISUAL_ID:
@@ -160,6 +166,8 @@ public class SysmlDiagramUpdater {
 			return getConstraintProperty_2003IncomingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005IncomingLinks(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_2006IncomingLinks(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002IncomingLinks(view);
 		case ConnectorEditPart.VISUAL_ID:
@@ -177,6 +185,8 @@ public class SysmlDiagramUpdater {
 			return getConstraintProperty_2003OutgoingLinks(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005OutgoingLinks(view);
+		case CommentEditPart.VISUAL_ID:
+			return getComment_2006OutgoingLinks(view);
 		case Property2EditPart.VISUAL_ID:
 			return getProperty_3002OutgoingLinks(view);
 		case ConnectorEditPart.VISUAL_ID:
@@ -209,6 +219,16 @@ public class SysmlDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<SysmlLinkDescriptor> getComment_2006ContainedLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<SysmlLinkDescriptor> getProperty_3002ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -235,6 +255,18 @@ public class SysmlDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connector_4001(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<SysmlLinkDescriptor> getComment_2006IncomingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
 		return result;
 	}
 
@@ -246,6 +278,7 @@ public class SysmlDiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connector_4001(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
 		return result;
 	}
 
@@ -253,7 +286,11 @@ public class SysmlDiagramUpdater {
 	 * @generated
 	 */
 	public static List<SysmlLinkDescriptor> getConnector_4001IncomingLinks(View view) {
-		return Collections.emptyList();
+		Connector modelElement = (Connector)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -270,6 +307,16 @@ public class SysmlDiagramUpdater {
 		Property modelElement = (Property)view.getElement();
 		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Connector_4001(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<SysmlLinkDescriptor> getComment_2006OutgoingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
 		return result;
 	}
 
@@ -317,6 +364,20 @@ public class SysmlDiagramUpdater {
 	}
 
 	/**
+	 * @generated
+	 */
+	private static Collection<SysmlLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(Element target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
+				result.add(new SysmlLinkDescriptor(setting.getEObject(), target, SysmlElementTypes.CommentAnnotatedElement_4002, CommentLinkEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	private static Collection getOutgoingTypeModelFacetLinks_Connector_4001(ConnectableElement source) {
@@ -353,6 +414,18 @@ public class SysmlDiagramUpdater {
 				continue;
 			}
 			result.add(new SysmlLinkDescriptor(src, dst, link, SysmlElementTypes.Connector_4001, ConnectorEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<SysmlLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(Comment source) {
+		LinkedList<SysmlLinkDescriptor> result = new LinkedList<SysmlLinkDescriptor>();
+		for(Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element)destinations.next();
+			result.add(new SysmlLinkDescriptor(source, destination, SysmlElementTypes.CommentAnnotatedElement_4002, CommentLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}

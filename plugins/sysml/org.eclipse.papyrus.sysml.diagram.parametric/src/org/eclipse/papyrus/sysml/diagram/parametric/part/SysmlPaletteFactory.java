@@ -46,6 +46,16 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATECOMMENT4CREATIONTOOL = "createComment4CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELINK5CREATIONTOOL = "createLink5CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public SysmlPaletteFactory() {
 	}
 
@@ -61,6 +71,12 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATECONNECTOR3CREATIONTOOL)) {
 			return createConnector3CreationTool();
+		}
+		if(toolId.equals(CREATECOMMENT4CREATIONTOOL)) {
+			return createComment4CreationTool();
+		}
+		if(toolId.equals(CREATELINK5CREATIONTOOL)) {
+			return createLink5CreationTool();
 		}
 		// default return: null
 		return null;
@@ -98,6 +114,26 @@ public class SysmlPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createConnector3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(SysmlElementTypes.Connector_4001);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createComment4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(SysmlElementTypes.Comment_2006);
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLink5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(SysmlElementTypes.CommentAnnotatedElement_4002);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}

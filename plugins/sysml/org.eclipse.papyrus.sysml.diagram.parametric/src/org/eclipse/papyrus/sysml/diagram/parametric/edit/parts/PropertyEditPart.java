@@ -307,8 +307,9 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(SysmlElementTypes.Connector_4001);
+		types.add(SysmlElementTypes.CommentAnnotatedElement_4002);
 		return types;
 	}
 
@@ -320,6 +321,8 @@ public class PropertyEditPart extends ShapeNodeEditPart {
 		if(relationshipType == SysmlElementTypes.Connector_4001) {
 			types.add(SysmlElementTypes.Property_2005);
 			types.add(SysmlElementTypes.Property_3002);
+		} else if(relationshipType == SysmlElementTypes.CommentAnnotatedElement_4002) {
+			types.add(SysmlElementTypes.Comment_2006);
 		}
 		return types;
 	}

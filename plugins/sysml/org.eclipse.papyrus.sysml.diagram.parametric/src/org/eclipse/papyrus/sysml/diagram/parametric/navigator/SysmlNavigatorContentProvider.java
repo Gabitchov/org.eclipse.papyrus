@@ -324,30 +324,30 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
+		case ParametricEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForParametricEditPart(view, parentElement);
+		}
 		case ConstraintPropertyEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConstraintPropertyEditPart(view, parentElement);
-		}
-		case PropertyEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPropertyEditPart(view, parentElement);
 		}
 		case Property2EditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForProperty2EditPart(view, parentElement);
 		}
-		case ParametricEditPart.VISUAL_ID:
-		{
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForParametricEditPart(view, parentElement);
-		}
 		case ConnectorEditPart.VISUAL_ID:
 		{
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForConnectorEditPart(view, parentElement);
+		}
+		case PropertyEditPart.VISUAL_ID:
+		{
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForPropertyEditPart(view, parentElement);
 		}
 		}
 		return EMPTY_ARRAY;

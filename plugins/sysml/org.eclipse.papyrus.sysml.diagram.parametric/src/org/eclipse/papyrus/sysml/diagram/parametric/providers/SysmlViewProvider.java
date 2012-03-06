@@ -55,6 +55,9 @@ import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElement
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentBodyLabelEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
@@ -176,6 +179,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				}
 				switch(visualID) {
 				case ConstraintPropertyEditPart.VISUAL_ID:
+				case CommentEditPart.VISUAL_ID:
 				case Property2EditPart.VISUAL_ID:
 				case PropertyEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
@@ -187,7 +191,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				}
 			}
 		}
-		return ConstraintPropertyEditPart.VISUAL_ID == visualID || PropertyEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID;
+		return ConstraintPropertyEditPart.VISUAL_ID == visualID || PropertyEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -238,6 +242,8 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 			return createConstraintProperty_2003(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyEditPart.VISUAL_ID:
 			return createProperty_2005(domainElement, containerView, index, persisted, preferencesHint);
+		case CommentEditPart.VISUAL_ID:
+			return createComment_2006(domainElement, containerView, index, persisted, preferencesHint);
 		case Property2EditPart.VISUAL_ID:
 			return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
 		}
@@ -254,6 +260,8 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		switch(SysmlVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case ConnectorEditPart.VISUAL_ID:
 			return createConnector_4001(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+		case CommentLinkEditPart.VISUAL_ID:
+			return createCommentAnnotatedElement_4002(containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -310,6 +318,25 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	/**
 	 * @generated
 	 */
+	public Node createComment_2006(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(SysmlVisualIDRegistry.getType(CommentEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Comment");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
+		Node label5005 = createLabel(node, SysmlVisualIDRegistry.getType(CommentBodyLabelEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Node createProperty_3002(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
@@ -360,6 +387,33 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		location6001.setX(0);
 		location6001.setY(40);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Connector");
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createCommentAnnotatedElement_4002(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(SysmlVisualIDRegistry.getType(CommentLinkEditPart.VISUAL_ID));
+		edge.setElement(null);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "CommentLink");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "CommentLink");
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "CommentLink");
 		return edge;
 	}
 

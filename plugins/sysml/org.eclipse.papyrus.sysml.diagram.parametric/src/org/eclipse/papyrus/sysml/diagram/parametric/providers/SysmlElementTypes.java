@@ -29,6 +29,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
@@ -82,12 +84,22 @@ public class SysmlElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Comment_2006 = getElementType("org.eclipse.papyrus.sysml.diagram.parametric.Comment_2006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Property_3002 = getElementType("org.eclipse.papyrus.sysml.diagram.parametric.Property_3002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Connector_4001 = getElementType("org.eclipse.papyrus.sysml.diagram.parametric.Connector_4001"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CommentAnnotatedElement_4002 = getElementType("org.eclipse.papyrus.sysml.diagram.parametric.CommentAnnotatedElement_4002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -197,8 +209,10 @@ public class SysmlElementTypes {
 			elements.put(Resource_1000, ResourcePackage.eINSTANCE.getResource());
 			elements.put(ConstraintProperty_2003, ConstraintsPackage.eINSTANCE.getConstraintProperty());
 			elements.put(Property_2005, UMLPackage.eINSTANCE.getProperty());
+			elements.put(Comment_2006, UMLPackage.eINSTANCE.getComment());
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Connector_4001, UMLPackage.eINSTANCE.getConnector());
+			elements.put(CommentAnnotatedElement_4002, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -219,8 +233,10 @@ public class SysmlElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Resource_1000);
 			KNOWN_ELEMENT_TYPES.add(ConstraintProperty_2003);
 			KNOWN_ELEMENT_TYPES.add(Property_2005);
+			KNOWN_ELEMENT_TYPES.add(Comment_2006);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Connector_4001);
+			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4002);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -236,10 +252,14 @@ public class SysmlElementTypes {
 			return ConstraintProperty_2003;
 		case PropertyEditPart.VISUAL_ID:
 			return Property_2005;
+		case CommentEditPart.VISUAL_ID:
+			return Comment_2006;
 		case Property2EditPart.VISUAL_ID:
 			return Property_3002;
 		case ConnectorEditPart.VISUAL_ID:
 			return Connector_4001;
+		case CommentLinkEditPart.VISUAL_ID:
+			return CommentAnnotatedElement_4002;
 		}
 		return null;
 	}

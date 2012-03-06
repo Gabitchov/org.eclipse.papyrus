@@ -24,6 +24,8 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentBodyLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
@@ -88,6 +90,21 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 	/**
 	 * @generated
 	 */
+	private CommentParser commentBody_5005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommentBody_5005Parser() {
+		if(commentBody_5005Parser == null) {
+			commentBody_5005Parser = new CommentParser();
+		}
+		return commentBody_5005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private PropertyLabelParser propertyName_5003Parser;
 
 	/**
@@ -126,6 +143,8 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 			return getConstraintPropertyLabel_5004Parser();
 		case PropertyNameEditPart.VISUAL_ID:
 			return getPropertyName_5002Parser();
+		case CommentBodyLabelEditPart.VISUAL_ID:
+			return getCommentBody_5005Parser();
 		case PropertyName2EditPart.VISUAL_ID:
 			return getPropertyName_5003Parser();
 		case ConnectorNameEditPart.VISUAL_ID:

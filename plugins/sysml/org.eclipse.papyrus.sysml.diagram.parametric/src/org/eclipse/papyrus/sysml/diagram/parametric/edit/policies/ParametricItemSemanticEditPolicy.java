@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.ConstraintPropertyCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
@@ -45,6 +46,9 @@ public class ParametricItemSemanticEditPolicy extends SysmlBaseItemSemanticEditP
 		}
 		if(SysmlElementTypes.Property_2005 == req.getElementType()) {
 			return getGEFWrapper(new PropertyCreateCommand(req));
+		}
+		if(SysmlElementTypes.Comment_2006 == req.getElementType()) {
+			return getGEFWrapper(new CommentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

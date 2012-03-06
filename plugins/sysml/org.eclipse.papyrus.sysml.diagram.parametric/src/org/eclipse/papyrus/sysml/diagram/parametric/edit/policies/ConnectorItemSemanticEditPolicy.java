@@ -20,8 +20,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.CommentLinkCreateCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.CommentLinkReorientCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 
 /**
@@ -48,5 +53,47 @@ public class ConnectorItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPo
 		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if(SysmlElementTypes.CommentAnnotatedElement_4002 == req.getElementType()) {
+			return null;
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if(SysmlElementTypes.CommentAnnotatedElement_4002 == req.getElementType()) {
+			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		return null;
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		switch(getVisualID(req)) {
+		case CommentLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentLinkReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 }

@@ -7,7 +7,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -41,8 +40,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
@@ -52,13 +51,10 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlTextSelectionEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlParserProvider;
-import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -70,12 +66,12 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class ConstraintLabelEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class CommentBodyLabelEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5004;
+	public static final int VISUAL_ID = 5005;
 
 	/**
 	 * @generated
@@ -97,16 +93,24 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
 	 * @generated
 	 */
-	public ConstraintLabelEditPart(View view) {
+	public CommentBodyLabelEditPart(View view) {
 		super(view);
 	}
 
@@ -118,15 +122,14 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SysmlTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ParametricEditPart.NodeLabelDragPolicy());
-		installEditPolicy(RequestConstants.REQ_SEMANTIC_WRAPPER, new NoDeleteFromModelEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getText();
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -138,8 +141,8 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setText(text);
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -151,8 +154,8 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getIcon();
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -164,8 +167,8 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -176,7 +179,7 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(HTMLCornerBentFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -206,19 +209,9 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if(parserElement == null) {
-			return null;
-		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for(View view : views) {
-			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return SysmlElementTypes.getImage(parserElement.eClass());
-			}
-		}
 		return null;
 	}
 
@@ -319,7 +312,7 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = SysmlParserProvider.getParser(SysmlElementTypes.ConstraintProperty_2003, getParserElement(), SysmlVisualIDRegistry.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart.VISUAL_ID));
+			parser = SysmlParserProvider.getParser(SysmlElementTypes.Comment_2006, getParserElement(), SysmlVisualIDRegistry.getType(org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentBodyLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -476,8 +469,8 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -493,8 +486,8 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -563,14 +556,13 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View)getModel();
 	}
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -626,6 +618,8 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -641,6 +635,7 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -712,9 +707,6 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 				}
 			}
 		}
-		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
-			refreshLabel();
-		}
 		super.handleNotificationEvent(event);
 	}
 
@@ -726,6 +718,9 @@ public class ConstraintLabelEditPart extends CompartmentEditPart implements ITex
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

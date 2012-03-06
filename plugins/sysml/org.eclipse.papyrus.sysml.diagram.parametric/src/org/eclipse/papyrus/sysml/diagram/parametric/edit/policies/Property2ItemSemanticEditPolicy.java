@@ -23,11 +23,15 @@ import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.CommentLinkCreateCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.ConnectorCreateCommand;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.commands.ConnectorReorientCommand;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 
@@ -80,6 +84,9 @@ public class Property2ItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPo
 		if(SysmlElementTypes.Connector_4001 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(SysmlElementTypes.CommentAnnotatedElement_4002 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -89,6 +96,9 @@ public class Property2ItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPo
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(SysmlElementTypes.Connector_4001 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(SysmlElementTypes.CommentAnnotatedElement_4002 == req.getElementType()) {
+			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -105,5 +115,19 @@ public class Property2ItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPo
 			return getGEFWrapper(new ConnectorReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		switch(getVisualID(req)) {
+		case CommentLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentLinkReorientCommand(req));
+		}
+		return super.getReorientReferenceRelationshipCommand(req);
 	}
 }

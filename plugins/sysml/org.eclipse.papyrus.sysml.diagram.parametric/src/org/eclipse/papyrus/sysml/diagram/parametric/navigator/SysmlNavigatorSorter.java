@@ -24,7 +24,7 @@ public class SysmlNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 4003;
+	private static final int GROUP_CATEGORY = 4004;
 
 	/**
 	 * @generated

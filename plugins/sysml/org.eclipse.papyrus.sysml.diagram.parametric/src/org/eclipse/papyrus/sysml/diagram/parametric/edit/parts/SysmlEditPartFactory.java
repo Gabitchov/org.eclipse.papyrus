@@ -53,6 +53,10 @@ public class SysmlEditPartFactory implements EditPartFactory {
 				return new PropertyEditPart(view);
 			case PropertyNameEditPart.VISUAL_ID:
 				return new PropertyNameEditPart(view);
+			case CommentEditPart.VISUAL_ID:
+				return new CommentEditPart(view);
+			case CommentBodyLabelEditPart.VISUAL_ID:
+				return new CommentBodyLabelEditPart(view);
 			case Property2EditPart.VISUAL_ID:
 				return new Property2EditPart(view);
 			case PropertyName2EditPart.VISUAL_ID:
@@ -61,6 +65,8 @@ public class SysmlEditPartFactory implements EditPartFactory {
 				return new ConnectorEditPart(view);
 			case ConnectorNameEditPart.VISUAL_ID:
 				return new ConnectorNameEditPart(view);
+			case CommentLinkEditPart.VISUAL_ID:
+				return new CommentLinkEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

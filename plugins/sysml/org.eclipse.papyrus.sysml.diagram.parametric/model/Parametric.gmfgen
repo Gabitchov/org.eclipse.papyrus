@@ -288,6 +288,61 @@
           </modelFacet>
         </labels>
       </topLevelNodes>
+      <topLevelNodes
+          visualID="2006">
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.sysml.diagram.parametric.Comment_2006"
+            displayName="Comment"
+            editHelperClassName="CommentEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.4">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5005"
+            editPartClassName="CommentBodyLabelEditPart"
+            itemSemanticEditPolicyClassName="CommentBodyLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getCornerBentFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.5"
+              editorPattern=""
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+          </modelFacet>
+        </labels>
+      </topLevelNodes>
       <links
           visualID="4001"
           editPartClassName="ConnectorEditPart"
@@ -341,6 +396,26 @@
           </modelFacet>
         </labels>
       </links>
+      <links
+          visualID="4002"
+          editPartClassName="CommentLinkEditPart"
+          itemSemanticEditPolicyClassName="CommentLinkItemSemanticEditPolicy"
+          createCommandClassName="CommentLinkCreateCommand"
+          reorientCommandClassName="CommentLinkReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            displayName="CommentLink"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
+        </modelFacet>
+      </links>
       <palette>
         <groups
             title="Parametric"
@@ -366,6 +441,22 @@
               description="Create new Connector"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
               genLinks="/0/@diagram/@links.0"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Comment"
+              description="Create a Comment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              createMethodName="createComment4CreationTool"
+              genNodes="/0/@diagram/@topLevelNodes.2"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Link"
+              description="Create of a link for comment"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
+              createMethodName="createLink5CreationTool"
+              genLinks="/0/@diagram/@links.1"/>
         </groups>
       </palette>
       <preferencePages
@@ -507,6 +598,8 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return ModelValidationHelper.validateNestedConnectorEnd(context, ctx);"/>
+        <expressions
+            body="return &quot;&quot;;"/>
       </providers>
     </expressionProviders>
     <labelParsers
@@ -529,6 +622,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintLabelParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.common.parser.CommentParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

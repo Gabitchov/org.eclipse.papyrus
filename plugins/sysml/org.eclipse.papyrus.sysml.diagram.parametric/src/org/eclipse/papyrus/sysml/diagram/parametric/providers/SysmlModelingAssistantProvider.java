@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
@@ -51,9 +52,10 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
 		if(editPart instanceof ParametricEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 			types.add(SysmlElementTypes.ConstraintProperty_2003);
 			types.add(SysmlElementTypes.Property_2005);
+			types.add(SysmlElementTypes.Comment_2006);
 			return types;
 		}
 		if(editPart instanceof ConstraintPropertyEditPart) {
@@ -72,6 +74,9 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PropertyEditPart) {
 			return ((PropertyEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof Property2EditPart) {
 			return ((Property2EditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -85,6 +90,9 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
 		if(targetEditPart instanceof PropertyEditPart) {
 			return ((PropertyEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof Property2EditPart) {
 			return ((Property2EditPart)targetEditPart).getMARelTypesOnTarget();
@@ -101,6 +109,9 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof PropertyEditPart) {
 			return ((PropertyEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof Property2EditPart) {
 			return ((Property2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -115,6 +126,9 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof PropertyEditPart) {
 			return ((PropertyEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof Property2EditPart) {
 			return ((Property2EditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -128,6 +142,9 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
 		if(sourceEditPart instanceof PropertyEditPart) {
 			return ((PropertyEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof CommentEditPart) {
+			return ((CommentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof Property2EditPart) {
 			return ((Property2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);

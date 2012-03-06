@@ -22,6 +22,8 @@ import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentBodyLabelEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
@@ -141,6 +143,9 @@ public class SysmlVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
 				return PropertyEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPart.VISUAL_ID;
+			}
 			break;
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
@@ -177,6 +182,9 @@ public class SysmlVisualIDRegistry {
 			if(PropertyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			if(ConstraintPropertyNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -191,6 +199,11 @@ public class SysmlVisualIDRegistry {
 			break;
 		case PropertyEditPart.VISUAL_ID:
 			if(PropertyNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case CommentEditPart.VISUAL_ID:
+			if(CommentBodyLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -257,10 +270,14 @@ public class SysmlVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Property");
 		root.addNode(1000, viewInfo);
+		viewInfo = new BaseViewInfo(2006, ViewInfo.Node, "Comment");
+		root.addNode(1000, viewInfo);
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
 		root.addNode(2003, viewInfo);
 		return root;

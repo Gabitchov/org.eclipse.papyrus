@@ -44,6 +44,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.resource.ResourcePackage;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
@@ -103,7 +104,7 @@ public class ParametricCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = SysmlVisualIDRegistry.getVisualID(view);
-		return visualID == ConstraintPropertyEditPart.VISUAL_ID || visualID == PropertyEditPart.VISUAL_ID;
+		return visualID == ConstraintPropertyEditPart.VISUAL_ID || visualID == PropertyEditPart.VISUAL_ID || visualID == CommentEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -114,6 +115,7 @@ public class ParametricCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(ResourcePackage.eINSTANCE.getResource_Eobjects());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -268,6 +270,16 @@ public class ParametricCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(SysmlDiagramUpdater.getProperty_2005ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case CommentEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(SysmlDiagramUpdater.getComment_2006ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

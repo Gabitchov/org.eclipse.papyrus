@@ -51,8 +51,10 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers.SysmlBaseEditHe
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 
@@ -355,7 +357,26 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateCommentAnnotatedElement_4002(Comment source, Element target) {
+			if(source != null) {
+				if(source.getAnnotatedElements().contains(target)) {
+					return false;
+				}
+			}
+			return canExistCommentAnnotatedElement_4002(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistConnector_4001(StructuredClassifier container, Connector linkInstance, ConnectableElement source, ConnectableElement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistCommentAnnotatedElement_4002(Comment source, Element target) {
 			return true;
 		}
 
