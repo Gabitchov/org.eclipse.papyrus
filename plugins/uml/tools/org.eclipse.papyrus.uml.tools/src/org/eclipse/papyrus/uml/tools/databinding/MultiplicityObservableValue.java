@@ -171,8 +171,8 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 
 	@Override
 	public void dispose() {
-		lowerBound.removeChangeListener(this);
-		upperBound.removeChangeListener(this);
+		lowerValue.removeChangeListener(this);
+		upperValue.removeChangeListener(this);
 		if(lowerValueSpecification != null) {
 			lowerValueSpecification.removeChangeListener(this);
 			lowerValueSpecification.dispose();
@@ -182,9 +182,11 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 			upperValueSpecification.dispose();
 		}
 
+		lowerValue.dispose();
+		upperValue.dispose();
+
 		lowerBound.dispose();
 		upperBound.dispose();
-
 
 		super.dispose();
 	}
