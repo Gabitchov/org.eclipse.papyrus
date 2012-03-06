@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference"
-            name="UMLConnectionPointReference">
+              category="org.eclipse.papyrus.preferences.xtextcategory"
+              class="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.UMLConnectionPointReferenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.connectionpointreference.editor.xtext.UMLConnectionPointReference"
+              name="UMLConnectionPointReference">
             <keywordReference id="org.eclipse.papyrus.connectionpointreference.editor.xtext.ui.keyword_UMLConnectionPointReference"/>
         </page>
         <page

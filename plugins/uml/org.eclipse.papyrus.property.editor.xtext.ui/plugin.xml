@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.property.editor.xtext.ui.UmlPropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.property.editor.xtext.UmlProperty"
-            name="UmlProperty">
+              category="org.eclipse.papyrus.preferences.xtextcategory"
+              class="org.eclipse.papyrus.property.editor.xtext.ui.UmlPropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.property.editor.xtext.UmlProperty"
+              name="UmlProperty">
             <keywordReference id="org.eclipse.papyrus.property.editor.xtext.ui.keyword_UmlProperty"/>
         </page>
         <page

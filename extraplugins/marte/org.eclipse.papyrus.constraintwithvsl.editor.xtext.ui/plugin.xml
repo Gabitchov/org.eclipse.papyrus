@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.ConstraintWithVSLlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.constraintwithvsl.editor.xtext.ConstraintWithVSLl"
-            name="ConstraintWithVSLl">
+              category="org.eclipse.papyrus.preferences.xtextcategory"
+              class="org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.ConstraintWithVSLlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.constraintwithvsl.editor.xtext.ConstraintWithVSLl"
+              name="ConstraintWithVSLl">
             <keywordReference id="org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.keyword_ConstraintWithVSLl"/>
         </page>
         <page

@@ -32,6 +32,12 @@
             id="org.eclipse.papyrus.preferences.pathmaps"
             name="Pathmaps">
       </page>
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class=" org.eclipse.ui.internal.dialogs.EmptyPreferencePage"
+            id="org.eclipse.papyrus.preferences.xtextcategory"
+            name="Direct editors">
+      </page>
    </extension>
    <extension
          point="org.eclipse.ui.propertyPages">

@@ -54,9 +54,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.transition.editor.xtext.ui.UmlTransitionExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.transition.editor.xtext.UmlTransition"
-            name="UmlTransition">
+              category="org.eclipse.papyrus.preferences.xtextcategory"
+              class="org.eclipse.papyrus.transition.editor.xtext.ui.UmlTransitionExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.transition.editor.xtext.UmlTransition"
+              name="UmlTransition">
             <keywordReference id="org.eclipse.papyrus.transition.editor.xtext.ui.keyword_UmlTransition"/>
         </page>
         <page
