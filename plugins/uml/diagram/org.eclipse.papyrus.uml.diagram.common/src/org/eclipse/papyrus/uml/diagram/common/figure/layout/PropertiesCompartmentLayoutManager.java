@@ -37,18 +37,19 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 		for(int i = 0; i < container.getChildren().size(); i++) {
 			
 			IFigure fig=((IFigure)container.getChildren().get(i));
-			if( fig instanceof AppliedStereotypeCompartmentFigure){
-				if(((AppliedStereotypeCompartmentFigure)fig).isExpanded()){
-					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize(hint, hint2).height + MARGIN_Y;
-					minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize(hint, hint2).width);
+			if( container instanceof AppliedStereotypeCompartmentFigure){
+				if(((AppliedStereotypeCompartmentFigure)container).isExpanded()){
+					minimumHeight = minimumHeight + fig.getPreferredSize(hint, hint2).height + MARGIN_Y;
+					minimumWith = Math.max(minimumWith, fig.getPreferredSize(hint, hint2).width);
 				}
 				else{
-					minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height + MARGIN_Y;
-					minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize().width);
+					minimumHeight = minimumHeight + fig.getPreferredSize().height + MARGIN_Y;
+					minimumWith = Math.max(minimumWith, fig.getPreferredSize().width);
 				}
 			}
 			else{
-				minimumWith = Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize(hint, hint2).width);
+				minimumWith = Math.max(minimumWith, fig.getPreferredSize(hint, hint2).width);
+				minimumHeight = minimumHeight + fig.getPreferredSize().height + MARGIN_Y;
 			}
 			
 		}

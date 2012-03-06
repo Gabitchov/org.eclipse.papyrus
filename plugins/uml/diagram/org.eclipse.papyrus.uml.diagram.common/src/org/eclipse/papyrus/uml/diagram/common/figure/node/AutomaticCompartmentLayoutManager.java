@@ -145,7 +145,17 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 				if( visibleCompartments.contains(currentCompartment)){
 					
 					Rectangle bound = new Rectangle(currentCompartment.getBounds());
-					bound.setSize(getPreferedSize(currentCompartment));
+					currentCompartment.invalidate();
+					Dimension pref=currentCompartment.getPreferredSize();
+					currentCompartment.invalidate();
+					Dimension prefConstraint=currentCompartment.getPreferredSize(container.getBounds().width-40,-1);
+					if( pref.width<prefConstraint.width){
+						bound.setSize(pref);
+					}
+					else{
+						bound.setSize(prefConstraint);
+					}
+					//bound.setSize(getPreferedSize(currentCompartment));
 					if(visibleCompartments.indexOf(currentCompartment) > 0) {
 						bound.y = (visibleCompartments.get(visibleCompartments.indexOf(currentCompartment) - 1)).getBounds().getBottomLeft().y + 1;
 						bound.x = container.getBounds().x + 3;
@@ -259,6 +269,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * @return true if this is the case
 	 */
 	public boolean isAGMFContainer(IFigure figure) {
+		if (figure instanceof StereotypePropertiesCompartment){return false;}
 		if(figure.getChildren().size() > 0) {
 			if(figure.getChildren().get(0) instanceof ResizableCompartmentFigure) {
 				return true;

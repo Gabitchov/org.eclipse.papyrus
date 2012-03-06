@@ -108,9 +108,9 @@ public class PackageFigure extends NodeNamedElementFigure {
 			lastRectangle.height = getBounds().y + getBounds().height - lastRectangle.y;
 			lastRectangle.x = container.getBounds().x;
 			lastRectangle.width = getBounds().width;
-			getPackageableElementFigure().setBounds(lastRectangle);
+			//getPackageableElementFigure().setBounds(lastRectangle);
 			if(getGMFPackageableElementContainer() != null) {
-				getGMFPackageableElementContainer().setBounds(lastRectangle);
+				//getGMFPackageableElementContainer().setBounds(lastRectangle);
 			}
 		}
 
