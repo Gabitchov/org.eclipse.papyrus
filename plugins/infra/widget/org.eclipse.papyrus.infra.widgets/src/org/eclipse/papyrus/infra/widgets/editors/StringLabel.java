@@ -67,6 +67,10 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 	 *        The Label provider used to display the current value
 	 */
 	public void setLabelProvider(final ILabelProvider labelProvider) {
+		if(labelProvider == null) {
+			return;
+		}
+
 		this.labelProvider = labelProvider;
 		if(this.binding != null) {
 			this.binding.updateModelToTarget();
@@ -98,15 +102,8 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 
 		Object value = getValue();
 
-		String text;
-		Image image = null;
-
-		if(value instanceof String) {
-			text = (String)value;
-		} else {
-			text = this.labelProvider.getText(this.modelProperty.getValue());
-			image = this.labelProvider.getImage(this.modelProperty.getValue());
-		}
+		String text = this.labelProvider.getText(value);
+		Image image = this.labelProvider.getImage(value);
 
 		this.valueLabel.setText(text);
 		this.valueLabel.setImage(image);
