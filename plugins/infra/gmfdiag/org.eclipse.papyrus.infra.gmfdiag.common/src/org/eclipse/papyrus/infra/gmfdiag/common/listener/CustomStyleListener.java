@@ -30,6 +30,7 @@ public class CustomStyleListener extends AdapterImpl {
 
 	private final Collection<String> styleNames;
 
+	//FIXME: Use a specific listener
 	private final IChangeListener listener;
 
 	private boolean disposed;
@@ -52,7 +53,8 @@ public class CustomStyleListener extends AdapterImpl {
 			if(styleObject instanceof NamedStyle) {
 				NamedStyle style = (NamedStyle)styleObject;
 				if(styleNames.contains(style.getName())) {
-					//FIXME: If a style's name is change, we won't be notified. We should probably listen on all styles
+					//FIXME: If a style's name is changed, we won't be notified. We should probably listen on all styles
+					//FIXME: If the style is an EObjectValueStyle or EObjectListValueStyle, we should also listen on values
 					style.eAdapters().add(this);
 				}
 			}
@@ -61,11 +63,15 @@ public class CustomStyleListener extends AdapterImpl {
 
 	@Override
 	public void notifyChanged(Notification notification) {
+		//The listener has been disposed: remove it from the notifier
+		//and ignore the notification
 		if(disposed) {
 			((Notifier)notification.getNotifier()).eAdapters().remove(this);
 			return;
 		}
 
+		//A style object has been added or removed on the notifier: begin or 
+		//stop listening the notifier, and notify our listener (if needed)
 		if(notification.getFeature() == NotationPackage.eINSTANCE.getView_Styles()) {
 			switch(notification.getEventType()) {
 			case Notification.ADD:
@@ -85,13 +91,13 @@ public class CustomStyleListener extends AdapterImpl {
 				}
 				break;
 			}
+			return;
 		}
 
+		//If the change occurred on one style instance, notify the listener (If needed)
 		if(notification.getFeature() == listenedFeature || listenedFeature == null) {
-			if(notification.getNotifier() instanceof NamedStyle && styleNames.contains(((NamedStyle)notification.getNotifier()).getName())) {
-				if(!notification.isTouch()) {
-					listener.handleChange(null);
-				}
+			if(!notification.isTouch()) {
+				handleChange(notification.getNotifier());
 			}
 		}
 	}
@@ -106,11 +112,12 @@ public class CustomStyleListener extends AdapterImpl {
 		handleChange(newValue);
 	}
 
-	private void handleChange(EObject value) {
+	private void handleChange(Object value) {
 		if(value instanceof NamedStyle) {
 			if(styleNames.contains(((NamedStyle)value).getName())) {
+				//FIXME: Build a usable event, so that listeners don't need to reset
+				//the whole CSS Engine/refresh the whole diagram each time.
 				listener.handleChange(null);
-				return;
 			}
 		}
 	}

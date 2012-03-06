@@ -24,7 +24,7 @@ public class CSSStyleSheetLabelProvider extends EMFLabelProvider {
 			return ((StyleSheetReference)element).getPath();
 		} else if(element instanceof EmbeddedStyleSheet) {
 			EmbeddedStyleSheet styleSheet = (EmbeddedStyleSheet)element;
-			if(styleSheet.getLabel() == null || "".equals(styleSheet)) {
+			if(styleSheet.getLabel() == null || "".equals(styleSheet.getLabel())) {
 				return "EmbeddedStyleSheet";
 			}
 			return styleSheet.getLabel();

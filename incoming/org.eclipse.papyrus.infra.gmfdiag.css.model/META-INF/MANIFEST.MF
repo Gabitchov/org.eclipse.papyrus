@@ -20,5 +20,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.facet;bundle-version="0.1.1",
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.1",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.2",
- org.eclipse.uml2.uml;bundle-version="3.2.100"
+ org.eclipse.uml2.uml;bundle-version="4.0.0"
 Bundle-ActivationPolicy: lazy

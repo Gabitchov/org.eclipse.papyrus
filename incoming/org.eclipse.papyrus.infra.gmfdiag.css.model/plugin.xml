@@ -16,6 +16,8 @@
       <modelqueryset file="Model/StyleSheets.querySet"/>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization file="Model/StyleSheets.uiCustom"/>
+      <browserCustomization
+            file="Model/StyleSheets.uiCustom"
+            loadByDefault="true"/>
    </extension>
 </plugin>

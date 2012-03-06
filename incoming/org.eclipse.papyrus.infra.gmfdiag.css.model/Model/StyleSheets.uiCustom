@@ -3,7 +3,7 @@
   <types metaclassName="StyleSheets.StyleSheetsContainer">
     <references referenceName="styleSheets">
       <customizedFeatures customizedFeature="collapseLink">
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
