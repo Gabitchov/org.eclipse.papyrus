@@ -10,6 +10,7 @@
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
 import org.eclipse.gmf.runtime.emf.type.core.AbstractElementTypeEnumerator;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 
 public class InheritedElementTypes extends AbstractElementTypeEnumerator {
@@ -80,5 +81,13 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final IHintedType CONTAINMENT_ADDED_LINK = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AddedLink_4022"); //$NON-NLS-1$
 
 	public static final IHintedType CONTAINMENT_CIRCLE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"); //$NON-NLS-1$
+	
+	/** Class Diagram :: Comment */
+	public static final IHintedType COMMENT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Comment_2012"); //$NON-NLS-1$
 
+	public static final String BODY_LABEL_HINT = "5038"; //$NON-NLS-1$
+	
+	/** Class Diagram :: Comment link */
+	public static final IHintedType COMMENT_LINK = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.CommentAnnotatedElement_4013"); //$NON-NLS-1$
+	
 }

@@ -66,7 +66,17 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 			if(RequirementDiagramElementTypes.NAMED_ELEMENT.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.NAMED_ELEMENT_NAME_LABEL_HINT.equals(hint)) {
 				return true;
 			}
-
+			
+			/** Comment */
+			if(RequirementDiagramElementTypes.COMMENT.getSemanticHint().equals(hint)) {
+				return true;
+			}
+			
+			if(RequirementDiagramElementTypes.COMMENT_LINK.getSemanticHint().equals(hint)) {
+				return true;
+			}
+			
+			
 			/** Containment */
 			if(RequirementDiagramElementTypes.CONTAINMENT_CIRCLE.getSemanticHint().equals(hint)) {
 				return true;
@@ -80,7 +90,7 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 			}
 
 			/** ContainmentLink */
-			if((RequirementDiagramElementTypes.CONTAINMENT_LINK.getSemanticHint().equals(hint)) || (RequirementDiagramElementTypes.CONTAINMENT_ADDED_LINK.getSemanticHint().equals(hint))) {
+			if((RequirementDiagramElementTypes.CONTAINMENT_LINK.getSemanticHint().equals(hint)) || (RequirementDiagramElementTypes.CONTAINMENT_ADDED_LINK.getSemanticHint().equals(hint)) || RequirementDiagramElementTypes.BODY_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 

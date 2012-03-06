@@ -114,7 +114,7 @@
 			"3011"       = Reception CLN
 			"3014"       = Class CLN								
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2008, 3010, 2007, 3009, 2097, 3032"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2008, 3010, 2007, 3009, 2097, 3032, 2012"/>
 		<!-- CLN -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3012, 3013, 3011, 3014"/> 
  		<!-- 
@@ -198,6 +198,14 @@
 
 		<context views="Class, Package, NamedElement, ContainmentCircle"/>
 		<context views="Abstraction, ContainmentLink"/>
+  <object
+        class="org.eclipse.gmf.runtime.notation.Node"
+        id="Comment">
+     <method
+           name="getType()"
+           value="2012, 5038">
+     </method>
+  </object>
 								
 	</editpartProvider>
 

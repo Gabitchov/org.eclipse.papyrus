@@ -28,6 +28,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.sysml.diagram.requirement.Messages;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -70,6 +71,11 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		if((elementType == RequirementDiagramElementTypes.CONTAINMENT_ADDED_LINK) || (elementType == RequirementDiagramElementTypes.CONTAINMENT_LINK)) {
 			return true;
 		}
+		
+		if((elementType == RequirementDiagramElementTypes.COMMENT_LINK)) {
+			return true;
+		}
+		
 
 		return false;
 	}
@@ -106,10 +112,14 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		if(elementType == RequirementDiagramElementTypes.CONTAINMENT_CIRCLE) {
 			return true;
 		}
+		
+		if (elementType == RequirementDiagramElementTypes.COMMENT){
+			return true;
+		}
 
 		// SemanticHint may be null (especially when drop from ModelExplorer)
 		EObject eobject = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
-		if(eobject instanceof NamedElement) {
+		if(eobject instanceof NamedElement || eobject instanceof Comment) {
 			return true;
 		}
 
@@ -146,6 +156,10 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		} else if(eobject instanceof NamedElement) {
 			if(containerView instanceof Diagram) {
 				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.NAMED_ELEMENT.getSemanticHint(), index, persisted, preferencesHint);
+			}
+		} else if(eobject instanceof Comment){
+			if (containerView instanceof Diagram){
+				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.COMMENT.getSemanticHint(), index, persisted, preferencesHint);
 			}
 		}
 

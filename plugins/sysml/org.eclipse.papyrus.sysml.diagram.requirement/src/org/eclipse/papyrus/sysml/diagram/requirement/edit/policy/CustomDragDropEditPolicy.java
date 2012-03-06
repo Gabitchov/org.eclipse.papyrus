@@ -7,6 +7,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEdi
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramElementTypes;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.Comment;
 
 public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 
@@ -37,6 +38,9 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 					semanticHint = RequirementDiagramElementTypes.CLASS.getSemanticHint();
 				}
 			}
+			if ((domainElement instanceof Comment)){
+				semanticHint = RequirementDiagramElementTypes.COMMENT.getSemanticHint();
+			}
 		}
 
 		// Fill the semantic hint during the drop when the top level is the an element in the Requirement Diagram  (a Package for instance)
@@ -49,6 +53,9 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 				if(domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
 					semanticHint = RequirementDiagramElementTypes.CLASS_CN.getSemanticHint();
 				}
+			}
+			if ((domainElement instanceof Comment)){
+				semanticHint = RequirementDiagramElementTypes.COMMENT.getSemanticHint();
 			}
 		}
 
