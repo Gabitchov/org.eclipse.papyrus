@@ -16,8 +16,6 @@ import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -155,20 +153,7 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 			return;
 		}
 
-		if(targetToModelStrategy == null) {
-			targetToModelStrategy = new UpdateValueStrategy();
-		}
-
 		binding = getBindingContext().bindValue(widgetObservable, modelProperty, targetToModelStrategy, modelToTargetStrategy);
-		binding.getValidationStatus().addChangeListener(new IChangeListener() {
-
-			public void handleChange(ChangeEvent event) {
-				Status status = (Status)((IObservableValue)event.getObservable()).getValue();
-				if(status.getSeverity() != Status.OK) {
-					Activator.log.error("Binding error (" + status.getSeverity() + ") : " + status.getMessage(), status.getException());
-				}
-			}
-		});
 	}
 
 	/**
