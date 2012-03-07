@@ -72,7 +72,7 @@ public class GroupNotifyingEditPolicy extends GroupListenerEditPolicy {
 				return new ICommandProxy(cc);
 			}
 		}
-		return super.getCommand(request);
+		return null;
 	}
 	/**
 	 * Set the art concern by the request to "Moving state" {@link IGroupNotifier#isPartMoving()}
@@ -136,4 +136,6 @@ public class GroupNotifyingEditPolicy extends GroupListenerEditPolicy {
 	protected IGroupRequestAdvisor getGroupRequestAdvisor() {
 		return GroupRequestAdvisor.getInstance();
 	}
+
+
 }

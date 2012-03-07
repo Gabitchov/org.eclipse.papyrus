@@ -72,12 +72,6 @@ public abstract class GroupListenerEditPolicy extends GraphicalNodeEditPolicy im
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc IGroupNotifier#getAdaptableView()}
-	 */
-	public IAdaptable getAdaptableView() {
-		return getViewAdapter();
-	}
 
 	/**
 	 * Override to unregister this edit part from the group framework
@@ -226,7 +220,21 @@ public abstract class GroupListenerEditPolicy extends GraphicalNodeEditPolicy im
 	}
 
 
+	public IAdaptable getAdaptableView() {
+		return getViewAdapter();
+	}
 
+	@Override
+	public void eraseTargetFeedback(Request request) {
+	
+	}
+
+	@Override
+	public void showSourceFeedback(Request request) {
+		
+	}
+	
+	
 
 
 }
