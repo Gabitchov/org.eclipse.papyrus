@@ -50,7 +50,7 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-              category="org.eclipse.papyrus.preferences.xtextcategory"
+              category="org.eclipse.papyrus.embeddededitors"
               class="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.ui.StereotypeApplicationWithVSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
               id="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.StereotypeApplicationWithVSL"
               name="StereotypeApplicationWithVSL">

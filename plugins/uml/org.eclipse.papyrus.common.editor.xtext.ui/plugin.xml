@@ -50,7 +50,7 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-              category="org.eclipse.papyrus.preferences.xtextcategory"
+              category="org.eclipse.papyrus.embeddededitors"
               class="org.eclipse.papyrus.common.editor.xtext.ui.UmlCommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
               id="org.eclipse.papyrus.common.editor.xtext.UmlCommon"
               name="UmlCommon">
