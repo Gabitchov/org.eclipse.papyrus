@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
+import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
@@ -31,6 +32,8 @@ public class TestElementTypeRegistryContent {
 
 	private static final String PAPYRUS_ELEMENT_TYPE_PREFIX = "org.eclipse.papyrus.sysml."; //$NON-NLS-1$
 
+	private static final String PAPYRUS_ST_APPLICATION_TYPE_PREFIX = "org.eclipse.papyrus.sysml.stereotype."; //$NON-NLS-1$
+
 	@Test
 	public void testRegistryContentForSysMLModelElements() {
 		
@@ -43,6 +46,22 @@ public class TestElementTypeRegistryContent {
 				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
 					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+	
+	@Test
+	public void testRegistryContentForStereotypeApplicationsInModelElements() {
+		
+		// Iterate over SysML ModelElements sub-profile contents
+		Iterator<EObject> it = ModelelementsPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+								
+				EClass eClass = (EClass) eObject;
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -94,6 +113,22 @@ public class TestElementTypeRegistryContent {
 	}
 	
 	@Test
+	public void testRegistryContentForStereotypeApplicationsInBlocks() {
+		
+		// Iterate over SysML Blocks sub-profile contents
+		Iterator<EObject> it = BlocksPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
+				
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+	
+	@Test
 	public void testRegistryContentForSysMLConstraints() {
 		
 		// Iterate over SysML Constraints sub-profile contents
@@ -109,6 +144,38 @@ public class TestElementTypeRegistryContent {
 		}
 	}
 	
+	@Test
+	public void testRegistryContentForStereotypeApplicationsInConstraints() {
+		
+		// Iterate over SysML Constraints sub-profile contents
+		Iterator<EObject> it = ConstraintsPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+								
+				EClass eClass = (EClass) eObject;
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+	
+	@Test
+	public void testRegistryContentForStereotypeApplicationsInActivities() {
+		
+		// Iterate over SysML Activities sub-profile contents
+		Iterator<EObject> it = ActivitiesPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+								
+				EClass eClass = (EClass) eObject;
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+		
 	@Test
 	public void testRegistryContentForSysMLRequirements() {
 		
@@ -131,6 +198,22 @@ public class TestElementTypeRegistryContent {
 				
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
 					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+
+	@Test
+	public void testRegistryContentForStereotypeApplicationsInRequirements() {
+		
+		// Iterate over SysML Requirements sub-profile contents
+		Iterator<EObject> it = RequirementsPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {			
+				EClass eClass = (EClass) eObject;
+				
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
@@ -162,6 +245,22 @@ public class TestElementTypeRegistryContent {
 	}
 	
 	@Test
+	public void testRegistryContentForStereotypeApplicationsInAllocations() {
+		
+		// Iterate over SysML Allocations sub-profile contents
+		Iterator<EObject> it = AllocationsPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
+				
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+	
+	@Test
 	public void testRegistryContentForSysMLPortAndFlows() {
 		
 		// Iterate over SysML PortAndFlows sub-profile contents
@@ -173,6 +272,22 @@ public class TestElementTypeRegistryContent {
 				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
 					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+			}
+		}
+	}
+	
+	@Test
+	public void testRegistryContentForStereotypeApplicationsInPortAndFlows() {
+		
+		// Iterate over SysML PortAndFlows sub-profile contents
+		Iterator<EObject> it = PortandflowsPackage.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+								
+				EClass eClass = (EClass) eObject;
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
 	}
