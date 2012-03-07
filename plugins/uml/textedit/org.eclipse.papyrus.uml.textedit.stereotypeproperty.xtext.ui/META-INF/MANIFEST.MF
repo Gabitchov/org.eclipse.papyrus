@@ -14,10 +14,27 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;visibi
  org.eclipse.xtext.builder,
  org.antlr.runtime,
  org.eclipse.papyrus.alf;bundle-version="0.9.0",
- org.eclipse.papyrus.alf.ui;bundle-version="0.9.0"
+ org.eclipse.papyrus.alf.ui;bundle-version="0.9.0",
+ org.eclipse.xtext.gmf.glue;bundle-version="0.9.0",
+ org.eclipse.uml2.uml;bundle-version="4.0.0",
+ org.eclipse.papyrus.uml.commands;bundle-version="0.9.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
+ org.eclipse.core.expressions;bundle-version="3.4.200",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.profile;bundle-version="0.9.0"
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.ui.internal.StereotypePropertyActivator
+Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contributions,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.labeling,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.outline,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.quickfix
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator

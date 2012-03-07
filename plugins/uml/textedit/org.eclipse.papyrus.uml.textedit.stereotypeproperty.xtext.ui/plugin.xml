@@ -6,42 +6,42 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="stereotypeproperty"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            name="StereotypeProperty Editor">
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            name="AppliedStereotypeProperty Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.validate">
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.validate">
          <activeWhen>
             <reference
-                    definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
             </reference>
          </activeWhen>
       </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+        <definition id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.eclipse.papyrus.uml.textedit.StereotypeProperty" 
+                        value="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -50,33 +50,33 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            name="StereotypeProperty">
-            <keywordReference id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"/>
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            name="AppliedStereotypeProperty">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
         </page>
         <page
-            category="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty.coloring"
+            category="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.coloring"
             name="Syntax Coloring">
-            <keywordReference id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
         </page>
         <page
-            category="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty.templates"
+            category="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.templates"
             name="Templates">
-            <keywordReference id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            name="StereotypeProperty">
-            <keywordReference id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"/>
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            name="AppliedStereotypeProperty">
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -86,14 +86,14 @@
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"
-            label="StereotypeProperty"/>
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"
+            label="AppliedStereotypeProperty"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty.validate"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.validate"
             name="Validate">
       </command>
     </extension>
@@ -101,12 +101,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.validate"
+                 commandId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -116,7 +116,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+                	<reference definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -124,11 +124,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -139,13 +139,13 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="stereotypeproperty">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="stereotypeproperty">
         </resourceServiceProvider>
     </extension>
@@ -155,27 +155,27 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
       </participant>
    </extension>
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty.compiler.preferencePage"
+            category="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.compiler.preferencePage"
             name="Compiler">
-            <keywordReference id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="org.eclipse.papyrus.uml.textedit.StereotypeProperty"
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.StereotypeProperty.compiler.propertyPage"
+            category="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.compiler.propertyPage"
             name="Compiler">
-            <keywordReference id="org.eclipse.papyrus.uml.textedit.ui.keyword_StereotypeProperty"/>
+            <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -187,11 +187,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened">
+					definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -211,7 +211,7 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.papyrus.uml.textedit.StereotypeProperty.Editor.opened"/>
+					<reference definitionId="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -220,8 +220,22 @@
    <extension
          point="org.eclipse.ui.ide.markerResolution">
       <markerResolutionGenerator
-            class="org.eclipse.papyrus.uml.textedit.ui.StereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
+            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
+   </extension>
+   
+    <!-- MANUAL EXTENSION POINT-->
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            contributor="CEA LIST"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+            language="Advanced Property Textual Editor"
+            objectToEdit="org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty">
+         <popupeditor
+               editorConfiguration="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contributions.StereotypePropertyPopupEditorConfigurationContribution">
+         </popupeditor>
+      </DirectEditor>
    </extension>
 
 </plugin>

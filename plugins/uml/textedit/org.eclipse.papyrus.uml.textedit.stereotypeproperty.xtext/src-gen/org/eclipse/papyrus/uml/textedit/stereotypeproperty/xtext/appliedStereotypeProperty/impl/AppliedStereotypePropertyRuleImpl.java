@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,10 +11,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.papyrus.alf.alf.Expression;
-
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 
 import org.eclipse.uml2.uml.Property;
 
@@ -63,7 +51,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
    * @generated
    * @ordered
    */
-  protected Expression value;
+  protected ExpressionValueRule value;
 
   /**
    * <!-- begin-user-doc -->
@@ -134,7 +122,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getValue()
+  public ExpressionValueRule getValue()
   {
     return value;
   }
@@ -144,9 +132,9 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(ExpressionValueRule newValue, NotificationChain msgs)
   {
-    Expression oldValue = value;
+    ExpressionValueRule oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -161,7 +149,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Expression newValue)
+  public void setValue(ExpressionValueRule newValue)
   {
     if (newValue != value)
     {
@@ -226,7 +214,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
         setProperty((Property)newValue);
         return;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
-        setValue((Expression)newValue);
+        setValue((ExpressionValueRule)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -246,7 +234,7 @@ public class AppliedStereotypePropertyRuleImpl extends MinimalEObjectImpl.Contai
         setProperty((Property)null);
         return;
       case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE:
-        setValue((Expression)null);
+        setValue((ExpressionValueRule)null);
         return;
     }
     super.eUnset(featureID);

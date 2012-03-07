@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.util;
 
 import org.eclipse.emf.ecore.EObject;
@@ -90,6 +79,13 @@ public class AppliedStereotypePropertySwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AppliedStereotypePropertyPackage.EXPRESSION_VALUE_RULE:
+      {
+        ExpressionValueRule expressionValueRule = (ExpressionValueRule)theEObject;
+        T result = caseExpressionValueRule(expressionValueRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -106,6 +102,22 @@ public class AppliedStereotypePropertySwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAppliedStereotypePropertyRule(AppliedStereotypePropertyRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression Value Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression Value Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressionValueRule(ExpressionValueRule object)
   {
     return null;
   }

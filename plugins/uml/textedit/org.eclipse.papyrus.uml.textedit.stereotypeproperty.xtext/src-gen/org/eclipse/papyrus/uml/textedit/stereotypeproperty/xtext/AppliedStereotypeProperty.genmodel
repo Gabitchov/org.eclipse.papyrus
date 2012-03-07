@@ -14,5 +14,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AppliedStereotypeProperty.ecore#//AppliedStereotypePropertyRule/property"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AppliedStereotypeProperty.ecore#//AppliedStereotypePropertyRule/value"/>
     </genClasses>
+    <genClasses ecoreClass="AppliedStereotypeProperty.ecore#//ExpressionValueRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AppliedStereotypeProperty.ecore#//ExpressionValueRule/expression"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

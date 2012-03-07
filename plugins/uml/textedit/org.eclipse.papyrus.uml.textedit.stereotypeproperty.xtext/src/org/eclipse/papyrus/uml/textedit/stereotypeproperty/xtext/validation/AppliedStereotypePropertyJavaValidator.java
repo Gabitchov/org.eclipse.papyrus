@@ -12,10 +12,29 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation;
+
+import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Namespace;
  
 
 public class AppliedStereotypePropertyJavaValidator extends AbstractAppliedStereotypePropertyJavaValidator {
 
+	
+	private static AppliedStereotypeProperty contextElement;
+	// the namespace
+	private static Namespace model;
+
+	public static void init(AppliedStereotypeProperty _contextElement) {
+		contextElement = _contextElement ;
+		if (contextElement != null) {
+			Element elem = contextElement.getBaseElement().getOwner() ;
+			while (elem.getOwner() != null) {
+				elem = elem.getOwner() ;
+			}
+			model = (Namespace)elem ;
+		}
+	}
 //	@Check
 //	public void checkGreetingStartsWithCapital(Greeting greeting) {
 //		if (!Character.isUpperCase(greeting.getName().charAt(0))) {

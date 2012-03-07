@@ -94,9 +94,9 @@ ruleAppliedStereotypePropertyRule returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); 
 	    }
-		lv_value_1_0=ruleExpression		{
+		lv_value_1_0=ruleExpressionValueRule		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAppliedStereotypePropertyRuleRule());
 	        }
@@ -104,6 +104,49 @@ ruleAppliedStereotypePropertyRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
+        		"ExpressionValueRule");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleExpressionValueRule
+entryRuleExpressionValueRule returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getExpressionValueRuleRule()); }
+	 iv_ruleExpressionValueRule=ruleExpressionValueRule 
+	 { $current=$iv_ruleExpressionValueRule.current; } 
+	 EOF 
+;
+
+// Rule ExpressionValueRule
+ruleExpressionValueRule returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='=' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getExpressionValueRuleAccess().getEqualsSignKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); 
+	    }
+		lv_expression_1_0=ruleExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getExpressionValueRuleRule());
+	        }
+       		set(
+       			$current, 
+       			"expression",
+        		lv_expression_1_0, 
         		"Expression");
 	        afterParserOrEnumRuleCall();
 	    }

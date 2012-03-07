@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer;
 
 import org.eclipse.emf.ecore.EObject;
@@ -111,6 +98,7 @@ import org.eclipse.papyrus.alf.alf.WhileStatement;
 import org.eclipse.papyrus.alf.serializer.AbstractAlfSemanticSequencer;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services.AppliedStereotypePropertyGrammarAccess;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
@@ -782,6 +770,12 @@ public class AbstractAppliedStereotypePropertySemanticSequencer extends Abstract
 					return; 
 				}
 				else break;
+			case AppliedStereotypePropertyPackage.EXPRESSION_VALUE_RULE:
+				if(context == grammarAccess.getExpressionValueRuleRule()) {
+					sequence_ExpressionValueRule(context, (ExpressionValueRule) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
@@ -860,7 +854,7 @@ public class AbstractAppliedStereotypePropertySemanticSequencer extends Abstract
 	
 	/**
 	 * Constraint:
-	 *     (property=[Property|ID] value=Expression)
+	 *     (property=[Property|ID] value=ExpressionValueRule)
 	 */
 	protected void sequence_AppliedStereotypePropertyRule(EObject context, AppliedStereotypePropertyRule semanticObject) {
 		if(errorAcceptor != null) {
@@ -872,7 +866,7 @@ public class AbstractAppliedStereotypePropertySemanticSequencer extends Abstract
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getPropertyPropertyIDTerminalRuleCall_0_0_1(), semanticObject.getProperty());
-		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionParserRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -1048,6 +1042,22 @@ public class AbstractAppliedStereotypePropertySemanticSequencer extends Abstract
 	 */
 	protected void sequence_ExclusiveOrExpression(EObject context, ExclusiveOrExpression semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expression=Expression
+	 */
+	protected void sequence_ExpressionValueRule(EObject context, ExpressionValueRule semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.EXPRESSION_VALUE_RULE__EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AppliedStereotypePropertyPackage.Literals.EXPRESSION_VALUE_RULE__EXPRESSION));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0(), semanticObject.getExpression());
+		feeder.finish();
 	}
 	
 	

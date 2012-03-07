@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -24,6 +13,7 @@ import org.eclipse.papyrus.alf.alf.AlfPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyFactory;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -45,6 +35,13 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
    * @generated
    */
   private EClass appliedStereotypePropertyRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionValueRuleEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -153,6 +150,26 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExpressionValueRule()
+  {
+    return expressionValueRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExpressionValueRule_Expression()
+  {
+    return (EReference)expressionValueRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public AppliedStereotypePropertyFactory getAppliedStereotypePropertyFactory()
   {
     return (AppliedStereotypePropertyFactory)getEFactoryInstance();
@@ -181,6 +198,9 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
     appliedStereotypePropertyRuleEClass = createEClass(APPLIED_STEREOTYPE_PROPERTY_RULE);
     createEReference(appliedStereotypePropertyRuleEClass, APPLIED_STEREOTYPE_PROPERTY_RULE__PROPERTY);
     createEReference(appliedStereotypePropertyRuleEClass, APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE);
+
+    expressionValueRuleEClass = createEClass(EXPRESSION_VALUE_RULE);
+    createEReference(expressionValueRuleEClass, EXPRESSION_VALUE_RULE__EXPRESSION);
   }
 
   /**
@@ -220,7 +240,10 @@ public class AppliedStereotypePropertyPackageImpl extends EPackageImpl implement
     // Initialize classes and features; add operations and parameters
     initEClass(appliedStereotypePropertyRuleEClass, AppliedStereotypePropertyRule.class, "AppliedStereotypePropertyRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAppliedStereotypePropertyRule_Property(), theUMLPackage.getProperty(), null, "property", null, 0, 1, AppliedStereotypePropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAppliedStereotypePropertyRule_Value(), theAlfPackage.getExpression(), null, "value", null, 0, 1, AppliedStereotypePropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAppliedStereotypePropertyRule_Value(), this.getExpressionValueRule(), null, "value", null, 0, 1, AppliedStereotypePropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionValueRuleEClass, ExpressionValueRule.class, "ExpressionValueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpressionValueRule_Expression(), theAlfPackage.getExpression(), null, "expression", null, 0, 1, ExpressionValueRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

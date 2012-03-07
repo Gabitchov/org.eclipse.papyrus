@@ -1,16 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+/**
+ */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty;
 
 import org.eclipse.emf.ecore.EClass;
@@ -103,6 +92,34 @@ public interface AppliedStereotypePropertyPackage extends EPackage
    */
   int APPLIED_STEREOTYPE_PROPERTY_RULE_FEATURE_COUNT = 2;
 
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.ExpressionValueRuleImpl <em>Expression Value Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.ExpressionValueRuleImpl
+   * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.AppliedStereotypePropertyPackageImpl#getExpressionValueRule()
+   * @generated
+   */
+  int EXPRESSION_VALUE_RULE = 1;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_VALUE_RULE__EXPRESSION = 0;
+
+  /**
+   * The number of structural features of the '<em>Expression Value Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_VALUE_RULE_FEATURE_COUNT = 1;
+
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule <em>Rule</em>}'.
@@ -135,6 +152,27 @@ public interface AppliedStereotypePropertyPackage extends EPackage
    * @generated
    */
   EReference getAppliedStereotypePropertyRule_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule <em>Expression Value Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expression Value Rule</em>'.
+   * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule
+   * @generated
+   */
+  EClass getExpressionValueRule();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule#getExpression()
+   * @see #getExpressionValueRule()
+   * @generated
+   */
+  EReference getExpressionValueRule_Expression();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -184,6 +222,24 @@ public interface AppliedStereotypePropertyPackage extends EPackage
      * @generated
      */
     EReference APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE = eINSTANCE.getAppliedStereotypePropertyRule_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.ExpressionValueRuleImpl <em>Expression Value Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.ExpressionValueRuleImpl
+     * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.AppliedStereotypePropertyPackageImpl#getExpressionValueRule()
+     * @generated
+     */
+    EClass EXPRESSION_VALUE_RULE = eINSTANCE.getExpressionValueRule();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRESSION_VALUE_RULE__EXPRESSION = eINSTANCE.getExpressionValueRule_Expression();
 
   }
 
