@@ -85,48 +85,50 @@ public abstract class AbstractNestedClassifierListenerEditPolicy extends Listene
 		try {
 			IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart)getHost();
 			EObject element = graphicalEditPart.resolveSemanticElement();
-			for(EStructuralFeature feature : getEStructuralFeaturesToListen()) {
-				Object values = element.eGet(feature);
-				if(values instanceof Collection<?>) {
-					final Collection<?> valuesFeature = (Collection<?>)values;
-					//transform child to view
-					Iterable<View> objectToView = Iterables.transform((EList<Object>)graphicalEditPart.getNotationView().getChildren(), new Function<Object, View>() {
+			if (element != null) {
+				for(EStructuralFeature feature : getEStructuralFeaturesToListen()) {
+					Object values = element.eGet(feature);
+					if(values instanceof Collection<?>) {
+						final Collection<?> valuesFeature = (Collection<?>)values;
+						//transform child to view
+						Iterable<View> objectToView = Iterables.transform((EList<Object>)graphicalEditPart.getNotationView().getChildren(), new Function<Object, View>() {
 
-						public View apply(Object from) {
-							if(from instanceof View) {
-								return (View)from;
-							}
-							return null;
-						}
-					});
-					//get the view to delete (View which refer to element which is not in the collection referred by the listenned feature)
-					Iterable<View> viewToDelete = Iterables.filter(objectToView, new Predicate<View>() {
-
-						public boolean apply(View input) {
-							if(input != null) {
-								return !valuesFeature.contains(input.getElement());
-							}
-							return false;
-						}
-					});
-					CompositeCommand cc = new CompositeCommand("Delete nested class view for old nested classifier");////$NON-NLS-N$
-					for(final View v : viewToDelete) {
-						ICommand cmd = new AbstractTransactionalCommand(graphicalEditPart.getEditingDomain(), cc.getLabel(), null) {
-
-							@Override
-							protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-								if(v != null) {
-									ViewUtil.destroy(v);
-									return CommandResult.newOKCommandResult();
+							public View apply(Object from) {
+								if(from instanceof View) {
+									return (View)from;
 								}
-								return CommandResult.newErrorCommandResult("The view to delete is equal to null");////$NON-NLS-0$
+								return null;
 							}
-						};
-						if(cmd != null && cmd.canExecute()) {
-							cc.compose(cmd);
+						});
+						//get the view to delete (View which refer to element which is not in the collection referred by the listenned feature)
+						Iterable<View> viewToDelete = Iterables.filter(objectToView, new Predicate<View>() {
+
+							public boolean apply(View input) {
+								if(input != null) {
+									return !valuesFeature.contains(input.getElement());
+								}
+								return false;
+							}
+						});
+						CompositeCommand cc = new CompositeCommand("Delete nested class view for old nested classifier");////$NON-NLS-N$
+						for(final View v : viewToDelete) {
+							ICommand cmd = new AbstractTransactionalCommand(graphicalEditPart.getEditingDomain(), cc.getLabel(), null) {
+
+								@Override
+								protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+									if(v != null) {
+										ViewUtil.destroy(v);
+										return CommandResult.newOKCommandResult();
+									}
+									return CommandResult.newErrorCommandResult("The view to delete is equal to null");////$NON-NLS-0$
+								}
+							};
+							if(cmd != null && cmd.canExecute()) {
+								cc.compose(cmd);
+							}
 						}
+						executeCommand(new ICommandProxy(cc.reduce()));
 					}
-					executeCommand(new ICommandProxy(cc.reduce()));
 				}
 			}
 		} catch (ClassCastException e) {
