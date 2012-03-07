@@ -27,7 +27,9 @@ public class TestElementTypeRegistryContent {
 	private static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
 
 	private static final String PAPYRUS_ELEMENT_TYPE_PREFIX = "org.eclipse.papyrus.uml."; //$NON-NLS-1$
-	
+
+	private static final String PAPYRUS_ST_APPLICATION_TYPE_PREFIX = "org.eclipse.papyrus.uml.stereotype."; //$NON-NLS-1$
+
 	private static final String PAPYRUS_INVALID_PREFIX = "org.eclipse.papyrus.uml.diagram"; //$NON-NLS-1$
 
 	@Test
@@ -67,13 +69,35 @@ public class TestElementTypeRegistryContent {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
 				
-				if (!"Trace".equals(eClass.getName())) {
+				if (!"Trace".equals(eClass.getName()) && !"Refine".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
 					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
+
+			}
+		}
+	}
+	
+	@Test
+	public void testRegistryContentForUMLStandardStereotypeApplication() {
+		
+		// Iterate over UML2 Standard profile contents
+		Iterator<EObject> it = L2Package.eINSTANCE.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = it.next();
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
+
+				if (!"Trace".equals(eClass.getName()) && !"Refine".equals(eClass.getName())) {
+					// Not implemented
+					continue;
+				}
+				
+				assertTrue("No type found in Papyrus context for " + eClass.getName(), 
+					ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 
 			}
 		}
