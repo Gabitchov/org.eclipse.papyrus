@@ -65,8 +65,8 @@ public class GroupEditPolicyProvider implements IEditPolicyProvider {
 			IGraphicalEditPart graphEditpart = (IGraphicalEditPart)editPart;
 			//is top edit part of the element
 			IGraphicalEditPart parentEditPart = (IGraphicalEditPart)editPart.getParent();
-			if(!graphEditpart.resolveSemanticElement().equals(parentEditPart.resolveSemanticElement())) {
-				EObject resolveSemanticElement = graphEditpart.resolveSemanticElement();
+			EObject resolveSemanticElement = graphEditpart.resolveSemanticElement();
+			if(resolveSemanticElement!= null && !resolveSemanticElement.equals(parentEditPart.resolveSemanticElement())) {
 				if(resolveSemanticElement instanceof ActivityNode) {
 					graphEditpart.installEditPolicy(IGroupEditPolicies.GROUP_FRAMEWORK_NOTIFYING_EDIT_POLICY, new ActivityNodeEditPolicy(ContainerNodeDescriptorRegistry.getInstance().getContainerNodeDescriptor(UMLPackage.Literals.ACTIVITY_NODE)));
 				}
