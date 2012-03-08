@@ -6,7 +6,6 @@
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance#//PapyrusTableInstance"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusTableQuery#GetContainedTables"/>
     </eStructuralFeatures>
-    <conditionQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusTableQuery#IsTableContainer"/>
   </eClassifiers>
   <extendedPackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
 </facet:FacetSet>

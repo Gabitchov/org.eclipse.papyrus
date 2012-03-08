@@ -16,11 +16,6 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistryExtended;
 import org.eclipse.papyrus.modelexplorer.queries.AbstractGetEditorIconQuery;
 

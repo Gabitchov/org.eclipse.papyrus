@@ -31,14 +31,14 @@ public class GetContainedDiagrams extends AbstractEditorContainerQuery implement
 
 	public Collection<org.eclipse.gmf.runtime.notation.Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
-			public boolean apply(EStructuralFeature.Setting arg0) {
-				return arg0.getEObject() instanceof Diagram;
+			public boolean apply(EStructuralFeature.Setting setting) {
+				return setting.getEObject() instanceof Diagram;
 			}
 		};
 		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
 
-			public Diagram apply(EStructuralFeature.Setting arg0) {
-				return (Diagram) arg0.getEObject();
+			public Diagram apply(EStructuralFeature.Setting setting) {
+				return (Diagram) setting.getEObject();
 			}
 			
 		};

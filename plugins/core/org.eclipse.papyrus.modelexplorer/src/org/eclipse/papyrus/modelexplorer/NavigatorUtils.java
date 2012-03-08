@@ -309,56 +309,50 @@ public class NavigatorUtils {
 		if(result == null) {
 			result = (T)Platform.getAdapterManager().getAdapter(o, theClass);
 		}
-		if (result == null && theClass.isInstance(o))
-		{
-			result = (T)o ;
+		if(result == null && theClass.isInstance(o)) {
+			result = (T)o;
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Search all the elements referencing the context,
-	 * filter the results by the predicate 
+	 * filter the results by the predicate
+	 * 
 	 * @return
 	 */
-	public static boolean find (EObject toFind, Predicate<Setting> predicate)
-	{
-		if (toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null)
-		{
+	public static boolean find(EObject toFind, Predicate<Setting> predicate) {
+		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
 			return false;
 		}
 		ResourceSet resourceSet = toFind.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-		if (adapter == null)
-		{
+		if(adapter == null) {
 			adapter = new ECrossReferenceAdapter();
 			resourceSet.eAdapters().add(adapter);
 		}
 		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
 		return Iterables.filter(settings, predicate).iterator().hasNext();
 	}
-	
+
 	/**
 	 * Search all the elements referencing the context,
 	 * filter the results by the predicate and apply the function to return the desired types
+	 * 
 	 * @return
 	 */
-	public static <T> Collection<T> findFilterAndApply (EObject toFind, Predicate<Setting> predicate, Function<Setting,T> function)
-	{
-		if (toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null)
-		{
+	public static <T> Collection<T> findFilterAndApply(EObject toFind, Predicate<Setting> predicate, Function<Setting, T> function) {
+		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
 			return Collections.emptyList();
 		}
 		ResourceSet resourceSet = toFind.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-		if (adapter == null)
-		{
+		if(adapter == null) {
 			adapter = new ECrossReferenceAdapter();
 			resourceSet.eAdapters().add(adapter);
 		}
-		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
-		return Lists.newLinkedList(Iterables.transform(Iterables.filter(settings, predicate),function));
+		Collection<Setting> settings = adapter.getInverseReferences(toFind, true);
+		return Lists.newLinkedList(Iterables.transform(Iterables.filter(settings, predicate), function));
 	}
-	
-	
+
 }

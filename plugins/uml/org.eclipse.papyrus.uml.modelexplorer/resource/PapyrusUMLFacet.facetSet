@@ -6,7 +6,6 @@
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusBrowserQuery#GetContainedDiagrams"/>
     </eStructuralFeatures>
-    <conditionQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusBrowserQuery#IsDiagramContainer"/>
   </eClassifiers>
   <extendedPackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
 </facet:FacetSet>
