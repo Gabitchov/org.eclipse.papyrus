@@ -274,20 +274,24 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	protected String getLabelText() {
 		// do not edit label if hidden
-		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
-		if(decisionSet) {
-			String text = null;
-			EObject parserElement = getParserElement();
-			if(parserElement != null && getParser() != null) {
-				text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+		DecisionNode resolveSemanticElement = (DecisionNode)resolveSemanticElement();
+		if ( resolveSemanticElement != null){			
+			boolean decisionSet = resolveSemanticElement.getDecisionInput() != null;
+			if(decisionSet) {
+				String text = null;
+				EObject parserElement = getParserElement();
+				if(parserElement != null && getParser() != null) {
+					text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+				}
+				if(text == null || text.length() == 0) {
+					text = defaultText;
+				}
+				return text;
+			} else {
+				return "";
 			}
-			if(text == null || text.length() == 0) {
-				text = defaultText;
-			}
-			return text;
-		} else {
-			return "";
 		}
+		return "";
 	}
 
 	/**
