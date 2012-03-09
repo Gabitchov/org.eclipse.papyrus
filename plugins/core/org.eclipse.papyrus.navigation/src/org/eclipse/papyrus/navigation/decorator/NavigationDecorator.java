@@ -13,20 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.navigation.decorator;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -37,7 +31,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.navigation.NavigableElement;
 import org.eclipse.papyrus.navigation.NavigationHelper;
