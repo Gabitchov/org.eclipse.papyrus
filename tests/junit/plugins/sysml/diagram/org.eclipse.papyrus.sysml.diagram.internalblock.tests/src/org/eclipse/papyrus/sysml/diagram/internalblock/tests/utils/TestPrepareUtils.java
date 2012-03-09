@@ -249,12 +249,7 @@ public class TestPrepareUtils {
 		View newView = (View)viewAdapter.getAdapter(View.class);
 		Assert.assertNotNull("View should not be null", newView);
 
-		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
-		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(newView, erefs);
-
-		return (View)views.toArray()[0];
-
+		return newView;
 	}
 	
 	public static CreateConnectionViewRequest createConnectionRequest(IElementType type, EditPart source, EditPart target) {

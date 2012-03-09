@@ -23,6 +23,7 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -33,6 +34,7 @@ import org.eclipse.core.commands.operations.IOperationHistoryListener;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -40,6 +42,7 @@ import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.action.global.GlobalAction;
 import org.eclipse.gmf.runtime.common.ui.action.internal.actions.global.GlobalCopyAction;
@@ -50,12 +53,15 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.commands.ActionHandler;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.gmf.diagram.common.commands.SelectAndExecuteCommand;
+import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
@@ -64,6 +70,9 @@ import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class TestUtils {
 
@@ -407,6 +416,89 @@ public class TestUtils {
 		}
 	}
 
+	public static void reorientRelationshipSource(View relationshipView, View newSourceView, boolean isAllowed) throws Exception {
+		reorientRelationship((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed);
+	}
+
+	public static void reorientRelationshipTarget(View relationshipView, View newTargetView, boolean isAllowed) throws Exception {
+		reorientRelationship((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed);
+	}
+
+	public static void reorientRelationship(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed) throws Exception {
+		
+		// Prepare request and add
+		String reconnectDirection = (ReorientRelationshipRequest.REORIENT_SOURCE == reorientDirection) ? RequestConstants.REQ_RECONNECT_SOURCE : RequestConstants.REQ_RECONNECT_TARGET;
+
+		ReconnectRequest reconnectRequest = new ReconnectRequest(relationshipView);
+		reconnectRequest.setTargetEditPart(getEditPart(newEndView));
+		reconnectRequest.setConnectionEditPart((ConnectionEditPart)getEditPart(relationshipView));
+		reconnectRequest.setType(reconnectDirection);
+
+		// Get command
+		Command reorientCommand = getEditPart(newEndView).getCommand(reconnectRequest);
+
+		// Test the target command
+		if((reorientCommand == null) || !(reorientCommand.canExecute())) { // Non-executable command
+			if(!isAllowed) {
+				// Current behavior matches the expected results
+				return;
+			} else {
+				fail("The command should be executable.");
+			}
+
+		} else { // Executable command
+			if(!isAllowed) {
+				fail("The command should not be executable.");
+			} else {
+				defaultExecutionTest(reorientCommand);
+
+				// Test the results then
+				// fail("Result tests not implemented.");
+			}
+		}
+	}
+
+	public static void reorientConnectorSource(View relationshipView, View newSourceView, boolean isAllowed) throws Exception {
+		List<Property> nestedPath = Collections.emptyList();
+		reorientConnectorSource((Connector)relationshipView, newSourceView, isAllowed, nestedPath);
+	}
+
+	public static void reorientConnectorTarget(View relationshipView, View newTargetView, boolean isAllowed) throws Exception {
+		List<Property> nestedPath = Collections.emptyList();
+		reorientConnectorTarget((Connector)relationshipView, newTargetView, isAllowed, nestedPath);
+	}
+	
+	public static void reorientConnectorSource(View relationshipView, View newSourceView, boolean isAllowed, List<Property> nestedPath) throws Exception {
+		reorientConnector((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, nestedPath);
+	}
+
+	public static void reorientConnectorTarget(View relationshipView, View newTargetView, boolean isAllowed, List<Property> nestedPath) throws Exception {
+		reorientConnector((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, nestedPath);
+	}
+	
+	public static void reorientConnector(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed, List<Property> nestedPath) throws Exception {
+		reorientRelationship(relationshipView, newEndView, reorientDirection, isAllowed);
+		
+		// Abort if the command is not supposed to be executable
+		if (! isAllowed) {
+			return;
+		}
+		
+		// If previous test have not failed the execution / undo / re-do has been done
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) relationshipView.getElement();
+		ConnectorEnd modifiedConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(0) : connector.getEnds().get(1);
+		NestedConnectorEnd nestedConnectorEnd = UMLUtil.getStereotypeApplication(modifiedConnectorEnd, NestedConnectorEnd.class);
+
+		if (nestedPath.isEmpty()) {
+			Assert.assertNull("No nested connector end stereotype should be applied.", nestedConnectorEnd);
+		} else {
+			Assert.assertNotNull("Nested connector end stereotype should be applied.", nestedConnectorEnd);
+			if (! nestedConnectorEnd.getPropertyPath().equals(nestedPath)) {
+				fail("The nested property path is incorrect.");
+			}
+		}
+	}
+	
 	/**
 	 * Copy the list of objects into the Clipboard
 	 * 
