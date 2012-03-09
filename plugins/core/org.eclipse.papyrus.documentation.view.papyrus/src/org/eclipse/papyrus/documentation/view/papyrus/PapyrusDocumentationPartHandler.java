@@ -15,8 +15,6 @@ package org.eclipse.papyrus.documentation.view.papyrus;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -89,7 +87,7 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 					if(eObject instanceof Diagram) {
 						diagram = (Diagram)eObject;
 					} else {
-						List<Diagram> diagrams = DiagramsUtil.getAssociatedDiagrams(eObject, null);
+						List<Diagram> diagrams = DiagramsUtil.getAssociatedDiagrams(eObject);
 						if(!diagrams.isEmpty()) {
 							diagram = diagrams.get(0);
 						}

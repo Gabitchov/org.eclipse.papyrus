@@ -18,10 +18,10 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 
 /**
  * This destroy command uses the first generic cross referencer founded instead
@@ -40,17 +40,12 @@ public class DestroyElementPapyrusCommand extends DestroyElementCommand {
 
 	@Override
 	protected void tearDownIncomingReferences(EObject destructee) {
-		ECrossReferenceAdapter crossReferencer = ECrossReferenceAdapter.getCrossReferenceAdapter(destructee);
+		Collection<Setting> usages = PapyrusEcoreUtils.getUsages(destructee);
 
-		if(crossReferencer != null) {
-			Collection<Setting> inverseReferences = crossReferencer.getInverseReferences(destructee);
-			if(inverseReferences != null) {
-				for(Setting setting : inverseReferences) {
-					EReference eRef = (EReference)setting.getEStructuralFeature();
-					if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
-						EcoreUtil.remove(setting.getEObject(), eRef, destructee);
-					}
-				}
+		for(Setting setting : usages) {
+			EReference eRef = (EReference)setting.getEStructuralFeature();
+			if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
+				EcoreUtil.remove(setting.getEObject(), eRef, destructee);
 			}
 		}
 	}

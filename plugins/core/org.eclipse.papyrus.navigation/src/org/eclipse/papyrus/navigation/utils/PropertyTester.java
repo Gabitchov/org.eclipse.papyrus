@@ -62,7 +62,7 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 						
 						if(parent != null) {
 							while(parent != null && !result) {
-								result = !DiagramsUtil.getAssociatedDiagrams(parent, null).isEmpty();
+								result = !DiagramsUtil.getAssociatedDiagrams(parent).isEmpty();
 								parent = parent.eContainer();
 							}
 						}

@@ -57,6 +57,7 @@ import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
 import org.eclipse.papyrus.resource.sasheditor.DiModelUtils;
@@ -330,15 +331,11 @@ public class RenameModelChange extends Change {
 			protected void doExecute() {
 				for(URI uri : uriMap.keySet()) {
 					Resource r = resourceSet.getResource(uri, false);
-					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-					if(adapter != null) {
-						adapter = new ECrossReferenceAdapter();
-						adapter.setTarget(resourceSet);
-					}
+
 					if(r != null) {
 						for(Iterator<EObject> i = EcoreUtil.getAllProperContents(r, false); i.hasNext();) {
 							EObject e = i.next();
-							Collection<Setting> references = adapter.getInverseReferences(e);
+							Collection<Setting> references = PapyrusEcoreUtils.getUsages(e);
 							for(Setting s : references) {
 								EObject eObject = s.getEObject();
 								if(eObject != null && eObject.eResource() != null && domain.isReadOnly(eObject.eResource())) {

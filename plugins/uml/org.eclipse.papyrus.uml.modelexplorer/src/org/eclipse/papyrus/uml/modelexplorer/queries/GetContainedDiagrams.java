@@ -14,34 +14,18 @@ package org.eclipse.papyrus.uml.modelexplorer.queries;
 
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.modelexplorer.queries.AbstractEditorContainerQuery;
 import org.eclipse.uml2.uml.Element;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 
 /** Get the collection of all contained diagrams */
 public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
-	public Collection<org.eclipse.gmf.runtime.notation.Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
-			public boolean apply(EStructuralFeature.Setting setting) {
-				return setting.getEObject() instanceof Diagram;
-			}
-		};
-		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
-
-			public Diagram apply(EStructuralFeature.Setting setting) {
-				return (Diagram) setting.getEObject();
-			}
-			
-		};
-		return NavigatorUtils.findFilterAndApply(context, p, f) ;
+	public Collection<Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+		return DiagramsUtil.getAssociatedDiagrams(context);
 	}
 }

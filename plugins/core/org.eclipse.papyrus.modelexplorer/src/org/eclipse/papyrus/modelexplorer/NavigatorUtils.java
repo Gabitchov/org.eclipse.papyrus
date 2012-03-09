@@ -10,9 +10,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
@@ -29,11 +26,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 /**
  * Utility method for Model Navigator.
@@ -313,46 +305,6 @@ public class NavigatorUtils {
 			result = (T)o;
 		}
 		return result;
-	}
-
-	/**
-	 * Search all the elements referencing the context,
-	 * filter the results by the predicate
-	 * 
-	 * @return
-	 */
-	public static boolean find(EObject toFind, Predicate<Setting> predicate) {
-		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
-			return false;
-		}
-		ResourceSet resourceSet = toFind.eResource().getResourceSet();
-		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-		if(adapter == null) {
-			adapter = new ECrossReferenceAdapter();
-			resourceSet.eAdapters().add(adapter);
-		}
-		Collection<Setting> settings = adapter.getInverseReferences(toFind, false);
-		return Iterables.filter(settings, predicate).iterator().hasNext();
-	}
-
-	/**
-	 * Search all the elements referencing the context,
-	 * filter the results by the predicate and apply the function to return the desired types
-	 * 
-	 * @return
-	 */
-	public static <T> Collection<T> findFilterAndApply(EObject toFind, Predicate<Setting> predicate, Function<Setting, T> function) {
-		if(toFind == null || toFind.eResource() == null || toFind.eResource().getResourceSet() == null) {
-			return Collections.emptyList();
-		}
-		ResourceSet resourceSet = toFind.eResource().getResourceSet();
-		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-		if(adapter == null) {
-			adapter = new ECrossReferenceAdapter();
-			resourceSet.eAdapters().add(adapter);
-		}
-		Collection<Setting> settings = adapter.getInverseReferences(toFind, true);
-		return Lists.newLinkedList(Iterables.transform(Iterables.filter(settings, predicate), function));
 	}
 
 }

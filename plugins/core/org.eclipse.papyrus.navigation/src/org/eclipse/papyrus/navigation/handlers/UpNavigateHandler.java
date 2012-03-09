@@ -46,7 +46,7 @@ public class UpNavigateHandler extends AbstractHandler {
 			List<Diagram> diagrams = Collections.emptyList();
 			if(parent != null) {
 				while(parent != null && diagrams.size() == 0) {
-					diagrams = DiagramsUtil.getAssociatedDiagrams(parent, null);
+					diagrams = DiagramsUtil.getAssociatedDiagrams(parent);
 					parent = parent.eContainer();
 				}
 				openDialog(papyrusEditor, diagrams);

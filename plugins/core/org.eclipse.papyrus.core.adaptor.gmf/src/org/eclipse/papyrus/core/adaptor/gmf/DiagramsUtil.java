@@ -13,15 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.adaptor.gmf;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 
 public class DiagramsUtil {
@@ -34,42 +36,19 @@ public class DiagramsUtil {
 	 *        can be null, it will then try to retrieve it from the element.
 	 * @return the list of diagrams associated with the given element
 	 */
-	public static List<Diagram> getAssociatedDiagrams(EObject element, ResourceSet resourceSet) {
-		if(resourceSet == null) {
-			if(element != null && element.eResource() != null) {
-				resourceSet = element.eResource().getResourceSet();
+	public static List<Diagram> getAssociatedDiagrams(EObject element) {
+		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
+			public boolean apply(EStructuralFeature.Setting setting) {
+				return setting.getEObject() instanceof Diagram;
 			}
-		}
+		};
+		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
 
-		if(resourceSet instanceof DiResourceSet) {
-			Resource notationResource = ((DiResourceSet)resourceSet).getAssociatedNotationResource(element);
-			return getAssociatedDiagramsFromNotationResource(element, notationResource);
-		}
-
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * Gets the diagrams associated to element.
-	 * 
-	 * @param element
-	 * @param notationResource
-	 *        the notation resource where to look for diagrams
-	 * @return the list of diagrams associated with the given element
-	 */
-	public static List<Diagram> getAssociatedDiagramsFromNotationResource(EObject element, Resource notationResource) {
-		if(notationResource != null) {
-			LinkedList<Diagram> diagrams = new LinkedList<Diagram>();
-			for(EObject eObj : notationResource.getContents()) {
-				if(eObj instanceof Diagram) {
-					Diagram diagram = (Diagram)eObj;
-					if(element.equals(diagram.getElement())) {
-						diagrams.add(diagram);
-					}
-				}
+			public Diagram apply(EStructuralFeature.Setting setting) {
+				return (Diagram) setting.getEObject();
 			}
-			return diagrams;
-		}
-		return Collections.EMPTY_LIST;
+
+		};
+		return Lists.newLinkedList(Iterables.transform(Iterables.filter(PapyrusEcoreUtils.getUsages(element), p), f));
 	}
 }

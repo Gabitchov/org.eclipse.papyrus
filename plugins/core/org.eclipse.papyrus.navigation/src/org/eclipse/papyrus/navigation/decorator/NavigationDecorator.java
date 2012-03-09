@@ -46,7 +46,7 @@ import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.papyrus.ui.toolbox.draw2d.ManuallyDrawnShortcutDecorationFigure;
 import org.eclipse.swt.graphics.Color;
 
-public class NavigationDecorator extends AbstractDecorator implements Adapter {
+public class NavigationDecorator extends AbstractDecorator {
 
 	private static final String EXTENSION_ID = "org.eclipse.papyrus.navigation.navigationColorProviders";
 
@@ -72,8 +72,6 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 		}
 	}
 
-	private Set<Resource> listenedNotationResources = new HashSet<Resource>();
-
 	private ManuallyDrawnShortcutDecorationFigure shortcutFigure = new ManuallyDrawnShortcutDecorationFigure();
 
 	private IGraphicalEditPart gep = null;
@@ -87,12 +85,6 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 
 		String decoratorVisibility = Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DECORATOR_VISIBILITY);
 		displayOnly = INavigationPreferenceConstant.DISPLAY_ONLY.equals(decoratorVisibility);
-	}
-
-	@Override
-	public void deactivate() {
-		super.deactivate();
-		removeListenerFromAllResources();
 	}
 
 	public void activate() {
@@ -114,15 +106,9 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 			View view = gep.getNotationView();
 			EObject element = gep.resolveSemanticElement();
 
-			removeListenerFromAllResources();
-
 			Diagram currentDiagram = null;
 			if(view != null) {
 				currentDiagram = view.getDiagram();
-			}
-
-			if(currentDiagram != null) {
-				addResourceListener(currentDiagram.eResource());
 			}
 
 			List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(element);
@@ -132,32 +118,23 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 			for(NavigableElement navElement : navElements) {
 				if(navElement instanceof ExistingNavigableElement) {
 					EObject eObj = navElement.getElement();
-					Resource res = eObj.eResource();
-					if(res != null && res.getResourceSet() instanceof DiResourceSet) {
-						Resource notationResource = ((DiResourceSet)res.getResourceSet()).getAssociatedNotationResource(eObj);
 
-						addResourceListener(notationResource);
+					List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(eObj);
 
-						List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagramsFromNotationResource(eObj, notationResource);
-
-						if(associatedDiagrams != null) {
-							for(Diagram diag : associatedDiagrams) {
-								addResourceListener(diag.eResource());
-								if(!diag.equals(currentDiagram)) {
-									for(IColorProvider provider : navigationColorProviders) {
-										Color color = provider.getBackground(navElement);
-										if(color != null) {
-											if(shortcutColor == null) {
-												shortcutColor = color;
-											} else if(!shortcutColor.equals(color)) {
-												// more than one color for this
-												// element :
-												// just use white in this case
-												shortcutColor = ColorConstants.white;
-											}
-											break;
-										}
+					for(Diagram diag : associatedDiagrams) {
+						if(!diag.equals(currentDiagram)) {
+							for(IColorProvider provider : navigationColorProviders) {
+								Color color = provider.getBackground(navElement);
+								if(color != null) {
+									if(shortcutColor == null) {
+										shortcutColor = color;
+									} else if(!shortcutColor.equals(color)) {
+										// more than one color for this
+										// element :
+										// just use white in this case
+										shortcutColor = ColorConstants.white;
 									}
+									break;
 								}
 							}
 						}
@@ -172,45 +149,6 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 				shortcutFigure.setBackgroundColor(shortcutColor);
 			}
 		}
-	}
-
-	private void addResourceListener(Resource r) {
-		if(r != null) {
-			synchronized(listenedNotationResources) {
-				if(listenedNotationResources.add(r)) {
-					r.eAdapters().add(this);
-				}
-			}
-		}
-	}
-
-	private void removeListenerFromAllResources() {
-		synchronized(listenedNotationResources) {
-			for(Resource r : listenedNotationResources) {
-				r.eAdapters().remove(this);
-			}
-			listenedNotationResources.clear();
-		}
-	}
-
-	public void notifyChanged(Notification notification) {
-		if(!notification.isTouch() && notification.getFeatureID(Resource.class) == Resource.RESOURCE__CONTENTS) {
-			refresh();
-		}
-	}
-
-	Notifier notifier;
-
-	public Notifier getTarget() {
-		return notifier;
-	}
-
-	public void setTarget(Notifier newTarget) {
-		notifier = newTarget;
-	}
-
-	public boolean isAdapterForType(Object type) {
-		return false;
 	}
 
 }

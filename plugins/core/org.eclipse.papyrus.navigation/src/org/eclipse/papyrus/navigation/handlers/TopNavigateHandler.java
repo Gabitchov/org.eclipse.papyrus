@@ -49,7 +49,7 @@ public class TopNavigateHandler extends AbstractHandler {
 			List<Diagram> associatedDiag = Collections.emptyList();
 			if(parent != null) {
 				while(parent != null) {
-					associatedDiag = DiagramsUtil.getAssociatedDiagrams(parent, null);
+					associatedDiag = DiagramsUtil.getAssociatedDiagrams(parent);
 					if(!associatedDiag.isEmpty()) {
 						diagramsTemp.add(associatedDiag);
 					}
