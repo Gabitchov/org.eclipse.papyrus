@@ -230,10 +230,14 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		}
 
 		Element element = (Element)resolveSemanticElement();
-		FlowPort flowPort = ElementUtil.getStereotypeApplication(element, FlowPort.class);
+		if (element != null) {
+			FlowPort flowPort = ElementUtil.getStereotypeApplication(element, FlowPort.class);
 
-		Image image = Activator.getInstance().getFlowPortImage(flowPort, side);
-		getPrimaryShape().setImage(image);
+			if (flowPort != null) {
+				Image image = Activator.getInstance().getFlowPortImage(flowPort, side);
+				getPrimaryShape().setImage(image);
+			}
+		}
 	}
 
 	/**
