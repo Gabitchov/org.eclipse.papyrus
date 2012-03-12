@@ -49,6 +49,7 @@ import org.eclipse.gmf.runtime.common.ui.action.internal.actions.global.GlobalCo
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.PopupMenuCommand;
 import org.eclipse.gmf.runtime.diagram.ui.menus.PopupMenu;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -70,7 +71,9 @@ import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -338,16 +341,11 @@ public class TestUtils {
 	}
 
 	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed) throws Exception {
-
-		if(isAllowed) {
-			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, true);
-		} else {
-			createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, false);
-		}
-
+		// Execute command only when the command is expected to be executable
+		createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, isAllowed);
 	}
 
-	public static void createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute) throws Exception {
+	public static EObject createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute) throws Exception {
 
 		// Find palette tool to simulate element creation and prepare request
 		Tool tool = getPaletteTool(toolId);
@@ -363,7 +361,7 @@ public class TestUtils {
 			if(targetView == null) { // Only test behavior on source
 				if(!isAllowed) {
 					// Current behavior matches the expected results
-					return;
+					return null;
 				} else {
 					fail("The command should be executable.");
 				}
@@ -378,7 +376,7 @@ public class TestUtils {
 					fail("The command should not be executable.");
 				} else {
 					// Current behavior matches the expected results - no execution test.
-					return;
+					return null;
 				}
 
 			} else { // The command is executable and a target is provided - continue the test
@@ -393,7 +391,7 @@ public class TestUtils {
 				if((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
 					if(!isAllowed) {
 						// Current behavior matches the expected results
-						return;
+						return null;
 					} else {
 						fail("The command should be executable.");
 					}
@@ -405,6 +403,23 @@ public class TestUtils {
 						// Current behavior matches the expected results
 						if(execute) { // Test command execution
 							defaultExecutionTest(tgtCommand);
+
+							// Retrieve created object via nested ElementAndViewCreationRequest.
+							CreateConnectionViewAndElementRequest subRequest = (CreateConnectionViewAndElementRequest)createRequest.getAllRequests().get(0);
+
+							// Specific case for comment - constraint link button
+							if("internalblock.tool.comment_constraint_link".equals(toolId)) {
+								if(sourceView.getElement() instanceof Comment) {
+									subRequest = (CreateConnectionViewAndElementRequest)createRequest.getAllRequests().get(0);
+								} else if(sourceView.getElement() instanceof Constraint) {
+									subRequest = (CreateConnectionViewAndElementRequest)createRequest.getAllRequests().get(1);
+								} else {
+									return null;
+								}
+							}
+
+							View newView = (View)subRequest.getConnectionViewDescriptor().getAdapter(View.class);
+							return newView.getElement();
 						}
 
 						// Test the results then
@@ -413,6 +428,49 @@ public class TestUtils {
 				}
 			}
 
+		}
+		return null;
+	}
+
+	public static void createEdgeConnectorFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, List<Property> nestedSourcePath, List<Property> nestedTargetPath) throws Exception {
+		createEdgeConnectorFromPalette(toolId, sourceView, targetView, isAllowed, isAllowed, nestedSourcePath, nestedTargetPath);
+	}
+
+	public static void createEdgeConnectorFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute, List<Property> nestedSourcePath, List<Property> nestedTargetPath) throws Exception {
+		EObject newLink = createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, execute);
+
+		// Abort if the command is not supposed to be executable
+		if(!isAllowed) {
+			return;
+		}
+
+		if((newLink == null) || (!(newLink instanceof org.eclipse.uml2.uml.Connector))) {
+			fail("No edge or unexpected kind of edge created.");
+		}
+
+		// If previous test have not failed the execution / undo / re-do has been done
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)newLink;
+
+		// Test source connector end	
+		NestedConnectorEnd sourceNestedConnectorEnd = UMLUtil.getStereotypeApplication(connector.getEnds().get(0), NestedConnectorEnd.class);
+		if(nestedSourcePath.isEmpty()) {
+			Assert.assertNull("No nested connector end stereotype should be applied on source.", sourceNestedConnectorEnd);
+		} else {
+			Assert.assertNotNull("Nested connector end stereotype should be applied on source.", sourceNestedConnectorEnd);
+			if(!sourceNestedConnectorEnd.getPropertyPath().equals(nestedSourcePath)) {
+				fail("The nested property path is incorrect for source.");
+			}
+		}
+
+		// Test target connector end	
+		NestedConnectorEnd targetNestedConnectorEnd = UMLUtil.getStereotypeApplication(connector.getEnds().get(1), NestedConnectorEnd.class);
+		if(nestedTargetPath.isEmpty()) {
+			Assert.assertNull("No nested connector end stereotype should be applied on target.", targetNestedConnectorEnd);
+		} else {
+			Assert.assertNotNull("Nested connector end stereotype should be applied on target.", targetNestedConnectorEnd);
+			if(!targetNestedConnectorEnd.getPropertyPath().equals(nestedTargetPath)) {
+				fail("The nested property path is incorrect for target.");
+			}
 		}
 	}
 
@@ -425,7 +483,7 @@ public class TestUtils {
 	}
 
 	public static void reorientRelationship(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed) throws Exception {
-		
+
 		// Prepare request and add
 		String reconnectDirection = (ReorientRelationshipRequest.REORIENT_SOURCE == reorientDirection) ? RequestConstants.REQ_RECONNECT_SOURCE : RequestConstants.REQ_RECONNECT_TARGET;
 
@@ -467,7 +525,7 @@ public class TestUtils {
 		List<Property> nestedPath = Collections.emptyList();
 		reorientConnectorTarget((Connector)relationshipView, newTargetView, isAllowed, nestedPath);
 	}
-	
+
 	public static void reorientConnectorSource(View relationshipView, View newSourceView, boolean isAllowed, List<Property> nestedPath) throws Exception {
 		reorientConnector((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, nestedPath);
 	}
@@ -475,30 +533,30 @@ public class TestUtils {
 	public static void reorientConnectorTarget(View relationshipView, View newTargetView, boolean isAllowed, List<Property> nestedPath) throws Exception {
 		reorientConnector((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, nestedPath);
 	}
-	
+
 	public static void reorientConnector(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed, List<Property> nestedPath) throws Exception {
 		reorientRelationship(relationshipView, newEndView, reorientDirection, isAllowed);
-		
+
 		// Abort if the command is not supposed to be executable
-		if (! isAllowed) {
+		if(!isAllowed) {
 			return;
 		}
-		
+
 		// If previous test have not failed the execution / undo / re-do has been done
-		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) relationshipView.getElement();
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)relationshipView.getElement();
 		ConnectorEnd modifiedConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(0) : connector.getEnds().get(1);
 		NestedConnectorEnd nestedConnectorEnd = UMLUtil.getStereotypeApplication(modifiedConnectorEnd, NestedConnectorEnd.class);
 
-		if (nestedPath.isEmpty()) {
+		if(nestedPath.isEmpty()) {
 			Assert.assertNull("No nested connector end stereotype should be applied.", nestedConnectorEnd);
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied.", nestedConnectorEnd);
-			if (! nestedConnectorEnd.getPropertyPath().equals(nestedPath)) {
+			if(!nestedConnectorEnd.getPropertyPath().equals(nestedPath)) {
 				fail("The nested property path is incorrect.");
 			}
 		}
 	}
-	
+
 	/**
 	 * Copy the list of objects into the Clipboard
 	 * 

@@ -21,11 +21,11 @@ import org.junit.BeforeClass;
 /**
  * JUnit tests for Link creation with specified source element (via palette tools).
  */
-public class AbstractLinkCreationFromElementTest extends org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.AbstractLinkCreationFromElementTest {
-	
+public class AbstractLinkCreationFromElementTest extends org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.AbstractLinkCreationFromElementTest {
+
 	@BeforeClass
 	public static void setPartBlockEncapsulated() throws Exception {
-		TestPrepareUtils.setBlockEncapsulated((Element) (partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type())));
+		TestPrepareUtils.setBlockEncapsulated((Element)(partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type())));
 	}
-	
+
 }

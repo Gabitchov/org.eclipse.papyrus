@@ -22,43 +22,43 @@ import org.junit.BeforeClass;
  * JUnit tests for Dependency link creation test (via palette tools).
  */
 public class TestLinkCreationConnectorForSources extends AbstractLinkCreationForSourcesTest {
-	
+
 	@BeforeClass
 	public static void initToolID() throws Exception {
-		toolID = "internalblock.tool.connector";	
-	}	
-	
+		toolID = "internalblock.tool.connector";
+	}
+
 	@BeforeClass
 	public static void initExpectedResults() throws Exception {
-		
+
 		// Initialize source creation results
 		isCreationAllowed = new HashMap<View, Boolean>();
-		
+
 		isCreationAllowed.put(blockSourceView, false);
-		
+
 		isCreationAllowed.put(actorPartSourceView, true);
 		isCreationAllowed.put(nestedActorPartSourceView, true);
-		
+
 		isCreationAllowed.put(portOnBlockSourceView, true);
 		isCreationAllowed.put(portOnPartSourceView, true);
 		isCreationAllowed.put(portOnNestedPartSourceView, true);
-		
+
 		isCreationAllowed.put(flowportOnBlockSourceView, true);
 		isCreationAllowed.put(flowportOnPartSourceView, true);
 		isCreationAllowed.put(flowportOnNestedPartSourceView, true);
-		
+
 		isCreationAllowed.put(partSourceView, true);
 		isCreationAllowed.put(nestedPartSourceView, true);
-		
+
 		isCreationAllowed.put(propertySourceView, true);
 		isCreationAllowed.put(nestedPropertySourceView, true);
-		
+
 		isCreationAllowed.put(referenceSourceView, true);
 		isCreationAllowed.put(nestedReferenceSourceView, true);
-		
+
 		isCreationAllowed.put(valueSourceView, true);
 		isCreationAllowed.put(nestedValueSourceView, true);
-		
+
 		isCreationAllowed.put(commentSourceView, false);
 		isCreationAllowed.put(commentCNSourceView, false);
 		isCreationAllowed.put(constraintSourceView, false);
