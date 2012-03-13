@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.diagram.common,
  org.eclipse.papyrus.diagram.common.actions,
  org.eclipse.papyrus.diagram.common.actions.handlers,
+ org.eclipse.papyrus.diagram.common.adapters,
  org.eclipse.papyrus.diagram.common.command.wrappers,
  org.eclipse.papyrus.diagram.common.commands,
  org.eclipse.papyrus.diagram.common.dialogs,

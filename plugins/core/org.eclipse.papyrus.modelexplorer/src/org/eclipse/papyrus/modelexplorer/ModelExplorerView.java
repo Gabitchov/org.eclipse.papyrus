@@ -240,7 +240,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		super.createPartControl(aParent);
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
-		getCommonViewer().addDoubleClickListener(new DoubleClickListener());
+		DoubleClickListener listener = new DoubleClickListener();
+		getCommonViewer().addDoubleClickListener(listener);
 		Tree tree = getCommonViewer().getTree();
 		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 

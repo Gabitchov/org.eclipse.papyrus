@@ -33,4 +33,21 @@
             class="org.eclipse.papyrus.table.common.factory.PapyrusCommandFactory">
       </commandFactory>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance"
+            class="org.eclipse.papyrus.table.common.adapters.TableAdapterFActory">
+         <adapter
+               type="org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenable">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2"
+            class="org.eclipse.papyrus.table.common.adapters.TableAdapterFActory">
+         <adapter
+               type="org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenable">
+         </adapter>
+      </factory>
+   </extension>
 </plugin>

@@ -661,4 +661,14 @@
       </ViewId>
    </GlobalActionHandlerProvider>
 </extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.gmf.runtime.notation.Diagram"
+         class="org.eclipse.papyrus.diagram.common.adapters.DiagramAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenable">
+      </adapter>
+   </factory>
+</extension>
 </plugin>

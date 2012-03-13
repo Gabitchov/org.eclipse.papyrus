@@ -401,6 +401,25 @@
     </command>
 		<!-- <visibleWhen checkEnabled="true"/> -->		
   </menuContribution>
+ <menuContribution
+       allPopups="true"
+       locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.popup.openreferences.command"
+          icon="icons/etool16/forward.gif"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.openreferences"
+          label="&amp;Open Referencing Diagram(s)"
+          style="push"
+          tooltip="Open Referencing Diagrams">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+       <parameter
+             name="org.eclipse.papyrus.modelexplorer.openreferences"
+             value="TRUE">
+       </parameter>
+    </command>
+ </menuContribution>
        
 </extension>
 
@@ -569,6 +588,17 @@
          description="The Command to duplicate the selected element"
          id="org.eclipse.papyrus.modelexplorer.duplicate.command"
          name="Duplicate ">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to open diagram referencing the element in the current tab"
+         id="org.eclipse.papyrus.modelexplorer.popup.openreferences.command"
+         name="Open Referencing Diagrams Command">
+      <commandParameter
+            id="org.eclipse.papyrus.modelexplorer.openreferences"
+            name="displayReferences"
+            optional="true">
+      </commandParameter>
    </command>
 </extension>
 <extension
@@ -794,6 +824,44 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         commandId="org.eclipse.papyrus.modelexplorer.popup.openreferences.command">
+      <class
+            class="org.eclipse.papyrus.modelexplorer.handler.OpenHandler">
+         <parameter
+               name="displayReferences"
+               value="TRUE">
+         </parameter>
+      </class>
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                 <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   value="true">
+             </test>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.eclipse.papyrus.modelexplorer.tester.isOpenable"
+                       value="false">
+                 </test>
+               </and>
+            </with>
+            <with
+                  variable="activeEditor">
+               <instanceof
+                     value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+               </instanceof>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
 <extension
       point="org.eclipse.core.expressions.propertyTesters">
@@ -802,7 +870,7 @@
          class="org.eclipse.papyrus.modelexplorer.provider.PropertyTester"
          id="org.eclipse.papyrus.modelexplorer.tester"
          namespace="org.eclipse.papyrus.modelexplorer.tester"
-         properties="isDiagram, isEObject, isPage"
+         properties="isDiagram, isEObject, isPage, isOpenable"
          type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
    <propertyTester

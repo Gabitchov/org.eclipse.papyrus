@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.listener;
 
-import java.util.Iterator;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -23,7 +20,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.Messages;
-import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.modelexplorer.handler.OpenHandler;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
@@ -48,8 +44,8 @@ public class DoubleClickListener implements IDoubleClickListener {
 			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
 		}
 		if(pageMngr != null) {
-			if(selection instanceof IStructuredSelection) {	
-				OpenHandler.openSelectedElement(selection, pageMngr);	
+			if(selection instanceof IStructuredSelection) { 
+				OpenHandler.openSelectedElement(selection, pageMngr);
 			}
 
 		}
