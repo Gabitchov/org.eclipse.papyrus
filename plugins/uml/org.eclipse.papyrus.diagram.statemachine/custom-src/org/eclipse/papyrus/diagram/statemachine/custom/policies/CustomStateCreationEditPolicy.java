@@ -31,6 +31,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomVertexCrea
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.State;
 
@@ -65,7 +66,7 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 						// starting point is the state node on
 						// which mouse was moving
 						View stateView = (View)getHost().getModel();
-						View stateCompartmentView = (View)stateView.getChildren().get(1);
+						View stateCompartmentView = (ViewUtil.getChildBySemanticHint(stateView,UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID)));
 
 						// get and adaptable for it, to pass on to commands
 						IAdaptable adaptableForStateCompartmentView = (IAdaptable)new SemanticAdapter(null, stateCompartmentView);
@@ -99,11 +100,7 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 						// starting point is the state node on
 						// which mouse was moving
 						View stateView = (View)getHost().getModel();
-						/*
-						 * TO Check from last version
-						 * 
-						 * View stateCompartmentView = (View)stateView.getChildren().get(1);
-						 */
+
 						View stateCompartmentView = ViewUtil.getChildBySemanticHint(stateView, String.valueOf(StateCompartmentEditPart.VISUAL_ID));
 
 						// transfer the request to the super method to deal with regular Entry/ExitPoint creation

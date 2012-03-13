@@ -92,6 +92,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateN
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateBehaviorCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
@@ -804,6 +805,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "State");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "State");
 		Node label6001 = createLabel(node, UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
+		createCompartment(node, UMLVisualIDRegistry.getType(StateBehaviorCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID), false, false, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "State");
 		return node;

@@ -17,12 +17,14 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -98,6 +100,12 @@ public class StateEditPart extends NamedElementEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof StateNameEditPart) {
 			((StateNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			return true;
+		}
+		if(childEditPart instanceof StateBehaviorCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getBehaviorStateCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((StateBehaviorCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof StateCompartmentEditPart) {
@@ -233,6 +241,9 @@ public class StateEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof StateBehaviorCompartmentEditPart) {
+			return getPrimaryShape().getBehaviorStateCompartmentFigure();
+		}
 		if(editPart instanceof StateCompartmentEditPart) {
 			return getPrimaryShape().getStateCompartmentFigure();
 		}
@@ -339,6 +350,26 @@ public class StateEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getTargetEditPart(Request request) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(type == UMLElementTypes.Behavior_690) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateBehaviorCompartmentEditPart.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Behavior_691) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateBehaviorCompartmentEditPart.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Behavior_692) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateBehaviorCompartmentEditPart.VISUAL_ID));
+			}
+		}
+		return super.getTargetEditPart(request);
+	}
+
+	/**
+	 * @generated
+	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Transition_7000) {
@@ -429,6 +460,12 @@ public class StateEditPart extends NamedElementEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof StateNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof StateBehaviorCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getBehaviorStateCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.remove(((StateBehaviorCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof StateCompartmentEditPart) {

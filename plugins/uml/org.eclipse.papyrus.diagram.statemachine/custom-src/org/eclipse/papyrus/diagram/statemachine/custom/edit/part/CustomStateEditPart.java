@@ -26,7 +26,6 @@ public class CustomStateEditPart extends StateEditPart {
 
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
 //		installEditPolicy("deferredTrigger", new DeferredTriggersOnStateCanonicalEditPolicy());
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);

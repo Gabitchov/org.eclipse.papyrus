@@ -14,25 +14,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
 
-import java.util.Collections;
-
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
-import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateBehaviorCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
-
 
 /**
  * This listener will handle the creation of visual for element for behavior (/do /entry /exit).
@@ -40,18 +31,18 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Arthur Daussy
  * 
  */
-public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
+public class StateBehaviorsListener extends 
+AbstractStateListener {
 
 	protected static NotificationFilter filter;
-	
+
 	@Override
 	public NotificationFilter getFilter() {
-		if (filter == null){
+		if(filter == null) {
 			filter = NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__DO_ACTIVITY).or(NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__EXIT)).or(NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__ENTRY));
 		}
 		return filter;
 	}
-
 
 	/**
 	 * Handle modification on behavior attribute of state (entry , exit , do activity)
@@ -60,117 +51,66 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 	 */
 	@Override
 	protected CompositeCommand getModificationCommand(Notification notif) {
-		Request dropRequest = null;
-		Request deleteRequest = null;
 		if(notif.getEventType() == Notification.SET) {
 			Object object = notif.getNewValue();
-
 			Object oldObject = notif.getOldValue();
-			final StateEditPart stateEditPart = getContainingEditPart(notif.getNotifier());
-			if (stateEditPart != null){
-				
-				if(object instanceof Behavior) {
-					//Get the request to create the editPart
-					dropRequest = getCreateRequest(object, stateEditPart);
-				}
-				//Get the request to delete the editPart
-				deleteRequest = getDeleteRequest(oldObject, stateEditPart);
-				//handle both request if needed
-				CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
-				org.eclipse.gef.commands.Command cmd1 = getCommandFromRequest(dropRequest, stateEditPart);
-				/**
-				 * Create Command
-				 */
-				if(cmd1 != null && cmd1.canExecute()) {
-					cc.compose(new CommandProxy(cmd1));
-				}
-				/**
-				 * Delete Command
-				 */
-				org.eclipse.gef.commands.Command cmd2 = getCommandFromRequest(deleteRequest, stateEditPart);
-				if(cmd2 != null && cmd2.canExecute()) {
-					cc.compose(new CommandProxy(cmd2));
-				}
-				/**
-				 * Refresh layout
-				 */
-				ChangeBoundsRequest chReq = new ChangeBoundsRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_REFRESH);
-				chReq.setEditParts(stateEditPart);
-				chReq.setMoveDelta(new Point(0, 0));
-				Command cmd3 = stateEditPart.getCommand(chReq);
-				if(cmd3 != null && cmd3.canExecute()) {
-					cc.compose(new CommandProxy(cmd3));
-				}
-				return cc;
-			}
+			CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
+			/**
+			 * Create Command
+			 */
+			getCreationCommand(notif, object, cc);
+			/**
+			 * Delete Command
+			 */
+			getDestroyCommand(oldObject, cc);
+			/**
+			 * Refresh layout
+			 * If any problems with layout uncomments following
+			 */
+//			StateEditPart stateEditPart = getContainingEditPart(notif.getNotifier());
+//			if(stateEditPart != null) {
+//				ChangeBoundsRequest chReq = new ChangeBoundsRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_REFRESH);
+//				chReq.setEditParts(stateEditPart);
+//				chReq.setMoveDelta(new Point(0, 0));
+//				Command cmd3 = stateEditPart.getCommand(chReq);
+//				if(cmd3 != null && cmd3.canExecute()) {
+//					cc.compose(new CommandProxy(cmd3));
+//				}
+//			}
+			return cc;
 		}
 		return null;
 	}
-
-	/**
-	 * Handle the request passed in argument
-	 * 1. Look for the command
-	 * 2. Execute the command
-	 * 
-	 * @param request
-	 */
-	protected org.eclipse.gef.commands.Command getCommandFromRequest(Request request, IGraphicalEditPart editPart) {
-		if(request != null) {
-			return editPart.getCommand(request);
-		}
-		return null;
+	@Override
+	protected int getCompartmentID() {
+		return StateBehaviorCompartmentEditPart.VISUAL_ID;
 	}
 
 	/**
-	 * Get the request to delete the EditPart of corresponding behavior
+	 * Get the semantic id from the feature
 	 * 
-	 * @param notif
-	 * @param request
-	 *        (
+	 * @param feature
 	 * @return
 	 */
-	private Request getDeleteRequest(Object oldObject, StateEditPart stateEditPart) {
-		Request request = null;
-		//When unset the feature
-		if(oldObject instanceof Behavior) {
-			Behavior oldBehavior = (Behavior)oldObject;
-			IGraphicalEditPart iGrapEditPart = getChildByEObject(oldBehavior, stateEditPart, false);
-			if(iGrapEditPart != null) {
-				request = new GroupRequest(RequestConstants.REQ_DELETE);
-				((GroupRequest)request).setEditParts(iGrapEditPart);
-			}
+	@Override
+	protected String getFactoryHint(EStructuralFeature feature) {
+		int result;
+		switch(feature.getFeatureID()) {
+		case UMLPackage.STATE__DO_ACTIVITY:
+			result = DoActivityStateBehaviorStateEditPart.VISUAL_ID;
+			break;
+		case UMLPackage.STATE__ENTRY:
+			result = EntryStateBehaviorEditPart.VISUAL_ID;
+			break;
+		case UMLPackage.STATE__EXIT:
+			result = ExitStateBehaviorEditPart.VISUAL_ID;
+			break;
+		default:
+			result = -1;
+			break;
 		}
-		return request;
+		return UMLVisualIDRegistry.getType(result);
 	}
-
-	private Request getCreateRequest(Object object, StateEditPart stateEditPart) {
-		Request request;
-		Behavior behavior = (Behavior)object;
-		request = new DropObjectsRequest();
-		((DropObjectsRequest)request).setLocation(new Point(1, 1));
-		((DropObjectsRequest)request).setObjects(Collections.singletonList(behavior));
-		return request;
-	}
-
-	/**
-	 * Get the containing edit part (stateEditPart)
-	 * 
-	 * @param oldBehavior
-	 * @return
-	 */
-	protected StateEditPart getContainingEditPart(Object toTest) {
-		//If not EObject found return null;
-		if(toTest == null && toTest instanceof EObject) {
-			return null;
-		}
-		IGraphicalEditPart found = getChildByEObject((EObject)toTest, getDiagramEditPart(), false);
-		if(found instanceof StateEditPart) {
-			return (StateEditPart)found;
-		}
-		return null;
-	}
-
-
 
 
 }

@@ -442,6 +442,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String StateBehaviorCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**

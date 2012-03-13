@@ -158,9 +158,9 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateDeferredTriggerItemSemanticEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonMovableNonResizableEditPolicy());
@@ -170,8 +170,8 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -183,8 +183,8 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -196,8 +196,8 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
+		if(figure instanceof WrappingLabel) {
+			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -209,8 +209,8 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof WrappingLabel) {
+			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -277,11 +277,11 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 */
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
-		Object pdEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
+		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
-		Object sfEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
 		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
@@ -491,16 +491,16 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void refreshLabel() {
-		org.eclipse.gef.EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
-		Object pdEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
+		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
-		Object sfEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
 		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
@@ -511,8 +511,8 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -528,8 +528,8 @@ public class StateDeferredTriggerEditPart extends CompartmentEditPart implements
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
-			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 

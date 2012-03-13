@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHis
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateBehaviorCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
@@ -1058,6 +1059,8 @@ public class UMLDiagramUpdater {
 			return getStateMachineStateMachineCompartment_2002SemanticChildren(view);
 		case StateCompartmentEditPart.VISUAL_ID:
 			return getStateStateCompartment_6002SemanticChildren(view);
+		case StateBehaviorCompartmentEditPart.VISUAL_ID:
+			return getStateBehaviorStateCompartment_6003SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -1106,28 +1109,6 @@ public class UMLDiagramUpdater {
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == EntryStateBehaviorEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		{
-			Behavior childElement = modelElement.getDoActivity();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == DoActivityStateBehaviorStateEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		{
-			Behavior childElement = modelElement.getExit();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ExitStateBehaviorEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		for(Iterator<?> it = modelElement.getIncomings().iterator(); it.hasNext();) {
-			Transition childElement = (Transition)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == InternalTransitionEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
 			}
 		}
 		for(Iterator<?> it = modelElement.getDeferrableTriggers().iterator(); it.hasNext();) {
@@ -1289,6 +1270,43 @@ public class UMLDiagramUpdater {
 			if(visualID == ConnectionPointReferenceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getStateBehaviorStateCompartment_6003SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		State modelElement = (State)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		{
+			Behavior childElement = modelElement.getEntry();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == EntryStateBehaviorEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		{
+			Behavior childElement = modelElement.getDoActivity();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == DoActivityStateBehaviorStateEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		{
+			Behavior childElement = modelElement.getExit();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ExitStateBehaviorEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		return result;

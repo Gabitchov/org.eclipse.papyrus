@@ -37,7 +37,7 @@ import org.eclipse.ui.PlatformUI;
  * committed
  * 
  * @author arthur daussy
- * 
+ * @deprecated use {@link AbstractPapyrusModifcationTriggerListener}
  */
 public abstract class AbstractModifcationTriggerListener<T> extends TriggerListener {
 

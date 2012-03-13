@@ -27,10 +27,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.commands.CommentAnnotatedEl
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.ConnectionPointReferenceCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.diagram.statemachine.edit.commands.DoActivityStateBehaviorStateCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.EntryStateBehaviorCreateCommand;
-import org.eclipse.papyrus.diagram.statemachine.edit.commands.ExitStateBehaviorCreateCommand;
-import org.eclipse.papyrus.diagram.statemachine.edit.commands.InternalTransitionCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.RegionCreateCommand;
@@ -43,10 +40,10 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrained
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateBehaviorCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
@@ -74,21 +71,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
-				break;
-			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
-				break;
-			case ExitStateBehaviorEditPart.VISUAL_ID:
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
-				break;
-			case InternalTransitionEditPart.VISUAL_ID:
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
@@ -207,6 +189,28 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
+			case StateBehaviorCompartmentEditPart.VISUAL_ID:
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+					case EntryStateBehaviorEditPart.VISUAL_ID:
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case ExitStateBehaviorEditPart.VISUAL_ID:
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					}
+				}
+				break;
 			case StateCompartmentEditPart.VISUAL_ID:
 				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
@@ -287,15 +291,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Behavior_690 == req.getElementType()) {
 			return getGEFWrapper(new EntryStateBehaviorCreateCommand(req));
-		}
-		if(UMLElementTypes.Behavior_691 == req.getElementType()) {
-			return getGEFWrapper(new DoActivityStateBehaviorStateCreateCommand(req));
-		}
-		if(UMLElementTypes.Behavior_692 == req.getElementType()) {
-			return getGEFWrapper(new ExitStateBehaviorCreateCommand(req));
-		}
-		if(UMLElementTypes.Transition_680 == req.getElementType()) {
-			return getGEFWrapper(new InternalTransitionCreateCommand(req));
 		}
 		if(UMLElementTypes.Trigger_693 == req.getElementType()) {
 			return getGEFWrapper(new StateDeferredTriggerCreateCommand(req));

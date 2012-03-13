@@ -30,13 +30,14 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.papyrus.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Listenner to set deferred trigger
  */
-public class DeferredTriggerStateListener extends AbstractModifcationTriggerListener {
+public class DeferredTriggerStateListener extends AbstractPapyrusModifcationTriggerListener {
 
 	@Override
 	public NotificationFilter getFilter() {

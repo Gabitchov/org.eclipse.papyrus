@@ -272,7 +272,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 				// check whether any region is already shown in the state compartment
 				if(stateView.getChildren().size() < 2)
 					return UnexecutableCommand.INSTANCE;
-				View compartment = (View)stateView.getChildren().get(1);
+				
+				View compartment = (ViewUtil.getChildBySemanticHint(stateView,UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID)));
 				if(!compartment.getChildren().isEmpty())
 					//then do not allow the drag and drop on state, this forces the drag and drop on an displayed region (see above)
 					return UnexecutableCommand.INSTANCE;
@@ -382,10 +383,10 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 						View view = (View)getViewAdapter().getAdapter(View.class);
-						if((view != null) && (view.getChildren().size() >= 2) && (view.getChildren().get(1) != null)) {
+						if((view != null) && (view.getChildren().size() >= 2) && ((ViewUtil.getChildBySemanticHint(view,UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID)))!= null)) {
 							ENamedElement namedElement = PackageUtil.getElement((String)getPropertyId());
 							if(namedElement instanceof EStructuralFeature)
-								ViewUtil.setStructuralFeatureValue((View)view.getChildren().get(1), (EStructuralFeature)namedElement, getNewValue());
+								ViewUtil.setStructuralFeatureValue((ViewUtil.getChildBySemanticHint(view,UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID))), (EStructuralFeature)namedElement, getNewValue());
 						}
 						return CommandResult.newOKCommandResult();
 					}

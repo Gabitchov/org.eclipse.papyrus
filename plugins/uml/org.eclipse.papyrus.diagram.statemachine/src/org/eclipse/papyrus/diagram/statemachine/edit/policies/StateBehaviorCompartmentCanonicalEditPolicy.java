@@ -32,12 +32,9 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -46,7 +43,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
+public class StateBehaviorCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -72,10 +69,8 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Entry());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_DeferrableTrigger());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_Region());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Connection());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_DoActivity());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Exit());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -87,28 +82,11 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getState_6000SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getStateBehaviorStateCompartment_6003SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private boolean isMyDiagramElement(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch(visualID) {
-		case EntryStateBehaviorEditPart.VISUAL_ID:
-		case StateDeferredTriggerEditPart.VISUAL_ID:
-		case RegionEditPart.VISUAL_ID:
-		case PseudostateEntryPointEditPart.VISUAL_ID:
-		case PseudostateExitPointEditPart.VISUAL_ID:
-		case ConnectionPointReferenceEditPart.VISUAL_ID:
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -121,12 +99,20 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	private boolean isMyDiagramElement(View view) {
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == EntryStateBehaviorEditPart.VISUAL_ID || visualID == DoActivityStateBehaviorStateEditPart.VISUAL_ID || visualID == ExitStateBehaviorEditPart.VISUAL_ID;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void refreshSemantic() {
 		if(resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getState_6000SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getStateBehaviorStateCompartment_6003SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();

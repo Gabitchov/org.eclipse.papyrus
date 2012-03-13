@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.papyrus.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
@@ -42,7 +43,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author adaussy
  *
  */
-public class InternalStateListener extends AbstractModifcationTriggerListener {
+public class InternalStateListener extends AbstractPapyrusModifcationTriggerListener {
 
 	protected NotificationFilter filter;
 	

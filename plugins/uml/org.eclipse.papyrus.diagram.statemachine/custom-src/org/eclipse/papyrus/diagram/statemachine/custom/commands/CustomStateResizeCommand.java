@@ -11,6 +11,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -18,6 +19,9 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
 public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 
@@ -62,8 +66,9 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		View state = (View)adaptable.getAdapter(View.class);
-		View stateLabel = (View)state.getChildren().get(0);
-		View stateCompartment = (View)state.getChildren().get(1);
+		
+		View stateLabel = ViewUtil.getChildBySemanticHint(state,UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
+		View stateCompartment = (ViewUtil.getChildBySemanticHint(state,UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID)));
 
 		// a bunch of initializations
 		int direction = request.getResizeDirection();

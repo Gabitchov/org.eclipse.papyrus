@@ -13,6 +13,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -21,7 +22,9 @@ import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.figure.node.StereotypePropertiesCompartment;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomStateMachineResizeCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
 public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 
@@ -65,7 +68,7 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 
 		View stateMachineLabelView = (View)getModel();
 		View stateMachineView = (View)stateMachineLabelView.eContainer();
-		View stateMachineCompartView = (View)stateMachineView.getChildren().get(1);
+		View stateMachineCompartView = (ViewUtil.getChildBySemanticHint(stateMachineView,UMLVisualIDRegistry.getType(StateMachineCompartmentEditPart.VISUAL_ID)));
 
 		int stateMachineHeight = Zone.getHeight(stateMachineView);
 		int stateMachineWidth = Zone.getWidth(stateMachineView);

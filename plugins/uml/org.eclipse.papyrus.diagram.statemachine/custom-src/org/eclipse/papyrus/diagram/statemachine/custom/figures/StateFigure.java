@@ -55,13 +55,17 @@ public class StateFigure extends CompartmentFigure {
 
 	/** The State Internal Transition Compartment */
 	private final static String INTERNAL_LABEL_COMPARTMENT = "internalLabelCompartment";
+	
+	
+	/** The compartment (do , exit, entry) compartment */
+	private static final String BEHAVIOR_COMPARTMENT = "behaviorCompartment";
 
 	/** The List of Compartment */
 	private final static List<String> COMPARTMENT = new ArrayList<String>() {
 
 		private static final long serialVersionUID = 1L;
 		{
-			//			add(INTERNAL_LABEL_COMPARTMENT);
+			add(BEHAVIOR_COMPARTMENT);
 			add(STATE_COMPARTMENT);
 		}
 	};
@@ -173,8 +177,13 @@ public class StateFigure extends CompartmentFigure {
 	 * 
 	 * @return
 	 */
-	public RectangleFigure getInternalLabelCompartmentFigure() {
-		return getCompartment(INTERNAL_LABEL_COMPARTMENT);
+	/**
+	 * Get the behavior state compartment figure (do, entry, exit).
+	 * 
+	 * @return
+	 */
+	public RectangleFigure getBehaviorStateCompartmentFigure() {
+		return getCompartment(BEHAVIOR_COMPARTMENT);
 	}
 
 
