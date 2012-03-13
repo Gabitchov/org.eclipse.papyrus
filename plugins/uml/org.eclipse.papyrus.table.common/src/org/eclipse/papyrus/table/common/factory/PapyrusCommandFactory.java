@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Olivier Mélois (ATOS) olivier.melois@atos.fr : modification of the CreateAddCommand method.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.table.common.factory;
@@ -16,6 +17,9 @@ package org.eclipse.papyrus.table.common.factory;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -29,13 +33,23 @@ import org.eclipse.emf.facet.infra.browser.custom.ReferenceView;
 import org.eclipse.emf.facet.infra.browser.custom.StaticFeatureValue;
 import org.eclipse.emf.facet.infra.browser.custom.TypeView;
 import org.eclipse.emf.facet.infra.facet.Facet;
+import org.eclipse.emf.facet.infra.facet.FacetReference;
+import org.eclipse.emf.facet.infra.facet.FacetStructuralFeature;
+import org.eclipse.emf.facet.infra.facet.core.FacetContext;
+import org.eclipse.emf.facet.infra.facet.core.exception.EmfFacetFacetException;
+import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException;
 import org.eclipse.emf.facet.widgets.celleditors.internal.DefaultCommandFactory;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
+import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Row;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
+import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.internal.painter.Customization;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -43,6 +57,8 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.table.common.Activator;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * 
@@ -54,8 +70,8 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 	/**
 	 * 
 	 * @see org.eclipse.emf.facet.widgets.celleditors.internal.DefaultCommandFactory#handles(org.eclipse.emf.edit.domain.EditingDomain)
-	 *
-	 *  {@inheritDoc}
+	 * 
+	 *      {@inheritDoc}
 	 */
 	@Override
 	public boolean handles(final EditingDomain editingDomain) {
@@ -88,7 +104,8 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 	}
 
 	/**
-	 * The ElementEditService can be used for UML Element and for view and for... others things, but it doesn't work correctly with the nattable widget
+	 * The ElementEditService can be used for UML Element and for view and for... others things, but it doesn't work correctly with the nattable
+	 * widget
 	 * elements
 	 * 
 	 * @param owner
@@ -109,15 +126,15 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 			return true;
 		} else if(owner instanceof Customization) {
 			return true;
-		} else if(owner instanceof TypeView){
+		} else if(owner instanceof TypeView) {
 			return true;
-		}else if(owner instanceof ReferenceView){
+		} else if(owner instanceof ReferenceView) {
 			return true;
-		}else if(owner instanceof AttributeView){
+		} else if(owner instanceof AttributeView) {
 			return true;
-		}else if(owner instanceof CustomViewFeature){
+		} else if(owner instanceof CustomViewFeature) {
 			return true;
-		}else if(owner instanceof StaticFeatureValue){
+		} else if(owner instanceof StaticFeatureValue) {
 			return true;
 		}
 		//we add this test,because, it is possible that we forget some emf-facet elements
@@ -129,6 +146,7 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		}
 		return false;
 	}
+
 
 	/**
 	 * 
@@ -146,20 +164,75 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
 		if(testArgs(owner, feature) && elementEditService != null) {
 			EObject current = (EObject)owner;
-			Object values = current.eGet((EStructuralFeature)feature);
-			if(values instanceof List<?>) {
-				ArrayList<Object> newList = new ArrayList<Object>();
-				newList.addAll((List<?>)values);
-				newList.add(value);
-				SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, current, (EStructuralFeature)feature, newList);
-				ICommand command = elementEditService.getEditCommand(request);
-				if(command.canExecute()) {
-					return new GMFtoEMFCommandWrapper(command);
+
+			if (feature instanceof FacetStructuralFeature)
+			{
+				return createAddFacetValueCommand(editingDomain, current, (FacetStructuralFeature) feature, value);
+			}
+			else {
+				Object values = current.eGet((EStructuralFeature)feature);
+				if(values instanceof List<?>) {
+					ArrayList<Object> newList = new ArrayList<Object>();
+					newList.addAll((List<?>)values);
+					newList.add(value);
+					SetRequest request = new SetRequest((TransactionalEditingDomain)editingDomain, current, (EStructuralFeature)feature, newList);
+					ICommand command = elementEditService.getEditCommand(request);
+					if(command.canExecute()) {
+						return new GMFtoEMFCommandWrapper(command);
+					}
 				}
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
+	/**
+	 * Private method to deal with the case when the feature comes from a facet. Indeed, eGet does not work in this case,
+	 * as the feature does not come directly from the element we want to retrieve it from.
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("restriction")
+	private Command createAddFacetValueCommand(final EditingDomain editingDomain, final EObject owner, final FacetStructuralFeature feature, final Object value) {
+		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		INatTableWidgetProvider provider = (INatTableWidgetProvider)editor.getAdapter(INatTableWidgetProvider.class);
+		if(provider != null) {
+			INatTableWidget widget = provider.getNatTableWidget();
+			if(widget instanceof NatTableWidget) {
+				NatTableWidget concreteWidget = (NatTableWidget)widget;
+				//The context allows to manipulate features that belongs to a facet.
+				FacetContext facetContext = concreteWidget.getFacetContext();
+				if(facetContext.getFacetFeatures(owner).contains(feature)) {
+					try {
+						Object oldValue = facetContext.get(owner, (FacetReference)feature);
+						if(oldValue instanceof List<?> && editingDomain instanceof TransactionalEditingDomain) {
+							final List valueList = (List<?>)oldValue;
+							//Creation of a command to add the new value to the current list.
+							AbstractTransactionalCommand addFacetValueCommand = new AbstractTransactionalCommand((TransactionalEditingDomain)editingDomain, "add value", null) {
+
+								@Override
+								protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+									valueList.add(value);
+									return CommandResult.newOKCommandResult();
+								}
+							};
+							
+							return new GMFtoEMFCommandWrapper(addFacetValueCommand);
+						}
+					} catch (ModelQueryException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (EmfFacetFacetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+
 
 	/**
 	 * 
@@ -175,7 +248,7 @@ public class PapyrusCommandFactory extends DefaultCommandFactory {
 			return super.createDeleteCommand(editingDomain, elementToDestroy);
 		}
 		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-		if(/*testArgs(elementToDestroy, null) && */elementEditService != null) {//372350: [Table Editor] Delete does not work
+		if(/* testArgs(elementToDestroy, null) && */elementEditService != null) {//372350: [Table Editor] Delete does not work
 			DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain)editingDomain, (EObject)elementToDestroy, false);
 			ICommand command = elementEditService.getEditCommand(request);
 			if(command.canExecute()) {

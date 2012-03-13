@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<query:ModelQuerySet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="assign" description="Query Set for assign comments">
+  <associatedMetamodels href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+  <associatedMetamodels href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+  <queries xsi:type="query:JavaModelQuery" name="HasAssignStereotypeQuery" description="Test if an element is a package and has the apply stereotype" implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.HasAssignStereotypeQuery">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="CreateAssignCommentQuery" description="Creates a new comment and apply the assign stereotype to it" lowerBound="1" implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.CreateAssignCommentQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="GetFromQuery" description="GetQuery used to display the &quot;from&quot; attribute" upperBound="-1" implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.GetFromQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetFromQuery" description="SetQuery used to modify the &quot;from&quot; attribute" upperBound="-1" implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.SetFromQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="SetToQuery" description="SetQuery used to modify the &quot;to&quot; attribute" upperBound="-1" implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.SetToQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="GetToQuery" description="GetQuery used to display the &quot;to&quot; attribute" upperBound="-1" implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.GetToQuery">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
+  </queries>
+</query:ModelQuerySet>

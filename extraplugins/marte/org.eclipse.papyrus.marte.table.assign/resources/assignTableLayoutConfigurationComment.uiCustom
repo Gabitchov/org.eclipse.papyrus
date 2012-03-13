@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/3.0.0/UML">
+  <types metaclassName="uml.Comment">
+    <attributes attributeName="body">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </attributes>
+    <references referenceName="eAnnotations">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="owner">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="ownedElement">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="ownedComment">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="annotatedElement">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+</uicustom:MetamodelView>

@@ -4,17 +4,21 @@ Export-Package: org.eclipse.papyrus.table.common,org.eclipse.papyrus.t
  e.papyrus.table.common.factory,org.eclipse.papyrus.table.common.handl
  ers,org.eclipse.papyrus.table.common.messages,org.eclipse.papyrus.tab
  le.common.modelresource,org.eclipse.papyrus.table.common.util
-Require-Bundle: org.eclipse.emf.facet.widgets.nattable.instance,org.ec
- lipse.emf.facet.widgets.nattable,org.eclipse.papyrus.diagram.common;b
- undle-version="0.8.0",org.eclipse.papyrus.widgets,org.eclipse.papyrus
- .properties,org.eclipse.emf.databinding;bundle-version="1.2.0",org.ec
- lipse.papyrus.table.instance;bundle-version="0.8.0",org.eclipse.emf.f
- acet.infra.query.core;bundle-version="0.1.0",org.eclipse.emf.facet.in
- fra.query.editor;bundle-version="0.1.0",org.eclipse.emf.facet.query.j
- ava;bundle-version="0.1.0",org.eclipse.emf.facet.infra.common.core;bu
- ndle-version="0.1.0",org.eclipse.papyrus.service.edit;bundle-version=
- "0.8.0",org.eclipse.papyrus.commands;bundle-version="0.8.1",org.eclip
- se.core.expressions
+Require-Bundle: org.eclipse.emf.facet.widgets.nattable.instance,
+ org.eclipse.emf.facet.widgets.nattable,
+ org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
+ org.eclipse.papyrus.widgets,
+ org.eclipse.papyrus.properties,
+ org.eclipse.emf.databinding;bundle-version="1.2.0",
+ org.eclipse.papyrus.table.instance;bundle-version="0.8.0",
+ org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.query.editor;bundle-version="0.1.0",
+ org.eclipse.emf.facet.query.java;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
+ org.eclipse.papyrus.commands;bundle-version="0.8.1",
+ org.eclipse.core.expressions,
+ org.eclipse.emf.facet.infra.facet.core
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

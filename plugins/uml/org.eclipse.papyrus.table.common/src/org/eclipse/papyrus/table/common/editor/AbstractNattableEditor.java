@@ -335,4 +335,14 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 			papyrusTable.eAdapters().add(this.tableNameListener);
 		}
 	}
+	
+	/**
+	 * Adds rows to the widget (used to initialize the table by adding rows to it)
+	 * @param newElements
+	 */
+	protected void addRows(List<EObject> newElements){
+		if (this.natTableWidget != null){
+			this.natTableWidget.addRows(newElements);
+		}
+	}
 }
