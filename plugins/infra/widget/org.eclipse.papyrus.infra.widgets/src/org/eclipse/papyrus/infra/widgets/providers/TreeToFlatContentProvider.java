@@ -89,9 +89,7 @@ public class TreeToFlatContentProvider extends AbstractStaticContentProvider {
 
 		for(Object root : ((IStaticContentProvider)contentProvider).getElements()) {
 			if(exploreBranch(null, root)) {
-				if(isValidValue(root)) {
-					result.add(root);
-				}
+				result.add(root);
 				getElementsList(root, result, browsedElements);
 			}
 		}
@@ -99,22 +97,11 @@ public class TreeToFlatContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
-	protected boolean isValidValue(Object element) {
-		if(contentProvider instanceof IHierarchicContentProvider) {
-			return (((IHierarchicContentProvider)contentProvider).isValidValue(element));
-		} else {
-			return true;
-		}
-	}
-
 	protected void getElementsList(Object parent, Collection<Object> result, Set<Object> browsedElements) {
 		for(Object child : contentProvider.getChildren(parent)) {
 			Object childValue = getValue(child);
 			if(!result.contains(childValue)) { //Avoid infinite recursion
-				if(isValidValue(childValue)) {
-					result.add(childValue);
-				}
-
+				result.add(childValue);
 				if(exploreBranch(parent, child)) {
 					getElementsList(child, result, browsedElements);
 				}
