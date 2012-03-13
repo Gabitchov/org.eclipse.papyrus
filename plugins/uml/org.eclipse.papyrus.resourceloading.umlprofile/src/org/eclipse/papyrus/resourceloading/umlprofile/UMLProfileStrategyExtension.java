@@ -16,7 +16,6 @@ package org.eclipse.papyrus.resourceloading.umlprofile;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.core.modelsetquery.IFillableModelSetQueryAdapter;
 import org.eclipse.papyrus.core.modelsetquery.IModelSetQueryAdapter;
-import org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryInitializer;
+import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.resourceloading.ILoadingStrategyExtension;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
@@ -46,23 +45,13 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		Resource modelResource = UmlUtils.getUmlModel(modelSet).getResource();
 		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
-			IFillableModelSetQueryAdapter adapter = null;
-			for(Adapter a : modelSet.eAdapters()) {
-				if(a instanceof IFillableModelSetQueryAdapter) {
-					adapter = (IFillableModelSetQueryAdapter)a;
-					break;
-				}
-			}
-			if(adapter == null) {
-				IModelSetQueryAdapter anAdapter = ModelSetQueryInitializer.createDefaultIModelSetQueryAdapter();
-				if (anAdapter instanceof IFillableModelSetQueryAdapter) {
-					modelSet.eAdapters().add((Adapter) anAdapter);
-				}
-			}
+			IModelSetQueryAdapter adapter = ModelSetQuery.getExistingTypeCacheAdapter(modelSet);
+
 			if(!modelResource.getContents().isEmpty()) {
-				if(adapter != null) {
+				if(adapter instanceof IFillableModelSetQueryAdapter) {
+					IFillableModelSetQueryAdapter fillableAdapter = (IFillableModelSetQueryAdapter)adapter;
 					Collection<EObject> applications = null;
-					if(!adapter.isAlreadyComputed(UMLPackage.Literals.PROFILE_APPLICATION)) {
+					if(!fillableAdapter.isAlreadyComputed(UMLPackage.Literals.PROFILE_APPLICATION)) {
 						// set the profile applications in the cache at the first time
 						applications = new HashSet<EObject>();
 						// a profile application can only be stored in a package
@@ -76,10 +65,10 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 								}
 							}
 						}
-						adapter.addEntriesInCache(UMLPackage.Literals.PROFILE_APPLICATION, (HashSet<EObject>)applications);
+						fillableAdapter.addEntriesInCache(UMLPackage.Literals.PROFILE_APPLICATION, (HashSet<EObject>)applications);
 					} else {
 						// get the profile applications in the cache
-						applications = adapter.getReachableObjectsOfType(modelResource.getContents().get(0), UMLPackage.Literals.PROFILE_APPLICATION);
+						applications = fillableAdapter.getReachableObjectsOfType(modelResource.getContents().get(0), UMLPackage.Literals.PROFILE_APPLICATION);
 					}
 					if(applications != null) {
 						// compare profile applications with the specified uri
