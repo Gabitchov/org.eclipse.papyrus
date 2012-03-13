@@ -20,6 +20,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.parsers.EntryStateBehavio
 import org.eclipse.papyrus.diagram.statemachine.custom.parsers.ExitStateBehaviorParser;
 import org.eclipse.papyrus.diagram.statemachine.custom.parsers.InternalTransitionParser;
 import org.eclipse.papyrus.diagram.statemachine.custom.parsers.TransitionPropertiesParser;
+import org.eclipse.papyrus.diagram.statemachine.custom.parsers.TriggerParser;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
@@ -52,6 +53,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHis
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardEditPart;
@@ -387,6 +389,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TriggerParser trigger_693Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTrigger_693Parser() {
+		if(trigger_693Parser == null) {
+			trigger_693Parser = new TriggerParser();
+		}
+		return trigger_693Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getFinalStateName_5001Parser() {
 		if(finalStateName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -507,6 +524,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getBehavior_691Parser();
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 			return getBehavior_692Parser();
+		case StateDeferredTriggerEditPart.VISUAL_ID:
+			return getTrigger_693Parser();
 		case TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_7001Parser();
 		case TransitionGuardEditPart.VISUAL_ID:

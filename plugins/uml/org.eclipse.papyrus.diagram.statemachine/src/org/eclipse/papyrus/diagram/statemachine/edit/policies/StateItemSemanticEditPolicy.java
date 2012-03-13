@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.commands.InternalTransition
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.RegionCreateCommand;
+import org.eclipse.papyrus.diagram.statemachine.edit.commands.StateDeferredTriggerCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.TransitionCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.TransitionReorientCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPoint
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
@@ -87,6 +89,11 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InternalTransitionEditPart.VISUAL_ID:
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
+			case StateDeferredTriggerEditPart.VISUAL_ID:
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
@@ -289,6 +296,9 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		if(UMLElementTypes.Transition_680 == req.getElementType()) {
 			return getGEFWrapper(new InternalTransitionCreateCommand(req));
+		}
+		if(UMLElementTypes.Trigger_693 == req.getElementType()) {
+			return getGEFWrapper(new StateDeferredTriggerCreateCommand(req));
 		}
 		if(UMLElementTypes.Region_3000 == req.getElementType()) {
 			return getGEFWrapper(new RegionCreateCommand(req));

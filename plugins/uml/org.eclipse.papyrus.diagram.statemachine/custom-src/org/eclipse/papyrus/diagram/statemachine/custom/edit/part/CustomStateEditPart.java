@@ -28,8 +28,11 @@ public class CustomStateEditPart extends StateEditPart {
 	protected void createDefaultEditPolicies() {
 		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
+//		installEditPolicy("deferredTrigger", new DeferredTriggersOnStateCanonicalEditPolicy());
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 
 	}
+	
+	
 }

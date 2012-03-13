@@ -46,7 +46,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.locators.CustomEntryExitP
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateCreationEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateLayoutEditPolicy;
-import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.statemachine.custom.policies.StateCustomDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.StateItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -141,7 +141,7 @@ public class StateEditPart extends NamedElementEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomStateLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new StateCustomDragDropEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomStateCreationEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());

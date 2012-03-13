@@ -38,6 +38,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateE
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -58,6 +59,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
 
@@ -133,6 +135,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getTrigger_693ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getConnectionPointReference_18000IncomingLinks(View view) {
 		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -198,6 +207,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getTrigger_693IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getConnectionPointReference_18000OutgoingLinks(View view) {
 		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -256,6 +272,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getTrigger_693OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getContainedLinks(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case PackageEditPart.VISUAL_ID:
@@ -302,6 +325,8 @@ public class UMLDiagramUpdater {
 			return getBehavior_691ContainedLinks(view);
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 			return getBehavior_692ContainedLinks(view);
+		case StateDeferredTriggerEditPart.VISUAL_ID:
+			return getTrigger_693ContainedLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000ContainedLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -454,6 +479,8 @@ public class UMLDiagramUpdater {
 			return getBehavior_691IncomingLinks(view);
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 			return getBehavior_692IncomingLinks(view);
+		case StateDeferredTriggerEditPart.VISUAL_ID:
+			return getTrigger_693IncomingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000IncomingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -580,6 +607,8 @@ public class UMLDiagramUpdater {
 			return getBehavior_691OutgoingLinks(view);
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 			return getBehavior_692OutgoingLinks(view);
+		case StateDeferredTriggerEditPart.VISUAL_ID:
+			return getTrigger_693OutgoingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000OutgoingLinks(view);
 		case GeneralizationEditPart.VISUAL_ID:
@@ -1097,6 +1126,14 @@ public class UMLDiagramUpdater {
 			Transition childElement = (Transition)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == InternalTransitionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator<?> it = modelElement.getDeferrableTriggers().iterator(); it.hasNext();) {
+			Trigger childElement = (Trigger)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == StateDeferredTriggerEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}

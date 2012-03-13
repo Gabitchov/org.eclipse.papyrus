@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionEd
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
@@ -177,6 +178,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Trigger_693 = getElementType("org.eclipse.papyrus.diagram.statemachine.StateDeferredTrigger_693"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Transition_7000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Transition_7000"); //$NON-NLS-1$
 
 	/**
@@ -225,6 +231,7 @@ public class UMLElementTypes {
 			elements.put(Behavior_690, UMLPackage.eINSTANCE.getBehavior());
 			elements.put(Behavior_691, UMLPackage.eINSTANCE.getBehavior());
 			elements.put(Behavior_692, UMLPackage.eINSTANCE.getBehavior());
+			elements.put(Trigger_693, UMLPackage.eINSTANCE.getTrigger());
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
 			elements.put(Generalization_19000, UMLPackage.eINSTANCE.getGeneralization());
 			elements.put(CommentAnnotatedElement_667, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
@@ -282,6 +289,8 @@ public class UMLElementTypes {
 			return Behavior_691;
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 			return Behavior_692;
+		case StateDeferredTriggerEditPart.VISUAL_ID:
+			return Trigger_693;
 		case TransitionEditPart.VISUAL_ID:
 			return Transition_7000;
 		case GeneralizationEditPart.VISUAL_ID:
@@ -425,6 +434,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Behavior_690);
 			KNOWN_ELEMENT_TYPES.add(Behavior_691);
 			KNOWN_ELEMENT_TYPES.add(Behavior_692);
+			KNOWN_ELEMENT_TYPES.add(Trigger_693);
 			KNOWN_ELEMENT_TYPES.add(Transition_7000);
 			KNOWN_ELEMENT_TYPES.add(Generalization_19000);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_667);

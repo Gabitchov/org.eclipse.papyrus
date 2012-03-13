@@ -14,17 +14,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
 
-import java.util.NoSuchElementException;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.RootEditPart;
-import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -36,38 +31,29 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-
-
 public abstract class AbstractModifcationTriggerListener extends TriggerListener {
 
 	@Override
 	protected Command trigger(TransactionalEditingDomain domain, Notification notification) {
 		if(notification != null) {
-			Object feature = notification.getFeature();
-			if(feature instanceof EStructuralFeature) {
-				EStructuralFeature eStructuralFeature = (EStructuralFeature)feature;
-				if(isCorrectStructuralfeature(eStructuralFeature)) {
-					CompositeCommand cc = getModificationCommand(notification);
-					if(cc != null) {
-						return new GMFtoEMFCommandWrapper(cc);
-					}
-				}
+			CompositeCommand cc = getModificationCommand(notification);
+			if(cc != null) {
+				return new GMFtoEMFCommandWrapper(cc);
 			}
 		}
 		return null;
 	}
 
-	/**
-	 * Return true if the {@link EStructuralFeature} correspond to one which this trigger will handle
-	 * 
-	 * @param eStructuralFeature
-	 * @return
-	 */
-	protected abstract boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature);
+	@Override
+	public abstract NotificationFilter getFilter();
 
-
+	//	/**
+	//	 * Return true if the {@link EStructuralFeature} correspond to one which this trigger will handle
+	//	 * 
+	//	 * @param eStructuralFeature
+	//	 * @return
+	//	 */
+	//	protected abstract boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature);
 	protected abstract CompositeCommand getModificationCommand(Notification notif);
 
 	/**
@@ -98,6 +84,4 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 		}
 		return null;
 	}
-
-
 }

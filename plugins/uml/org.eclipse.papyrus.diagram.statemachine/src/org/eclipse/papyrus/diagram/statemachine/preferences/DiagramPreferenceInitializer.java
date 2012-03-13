@@ -26,6 +26,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		DoActivityStateBehaviorPreferencePage.initDefaults(store);
 		ConstraintPreferencePage.initDefaults(store);
 		CommentPreferencePage.initDefaults(store);
+		DeferredTriggerPreferencePage.initDefaults(store);
 		PseudostatePreferencePage.initDefaults(store);
 		ConnectionPointReferencePreferencePage.initDefaults(store);
 		RegionPreferencePage.initDefaults(store);

@@ -271,6 +271,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DoActivityStateBehaviorStateEditPart(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
 				return new ExitStateBehaviorEditPart(view);
+			case StateDeferredTriggerEditPart.VISUAL_ID:
+				return new StateDeferredTriggerEditPart(view);
 			case RegionCompartmentEditPart.VISUAL_ID:
 				return new RegionCompartmentEditPart(view);
 			case StateMachineCompartmentEditPart.VISUAL_ID:

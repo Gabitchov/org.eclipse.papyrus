@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   "Arthur Daussy <a href="mailto:arthur.daussy@atos.net">arthur.daussy@atos.net</a>" 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
+ *   "Arthur Daussy <a href="mailto:arthur.daussy@atos.net">arthur.daussy@atos.net</a>" 365405: 365404: [State Machine Diagram] Internal transition should be displayed as label on the state figure
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.edit.parts;
@@ -65,7 +65,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditP
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.UMLTextNonMovableNonResizableEditPolicy;
-import org.eclipse.papyrus.diagram.statemachine.edit.policies.ExitStateBehaviorItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.statemachine.edit.policies.StateDeferredTriggerItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -94,12 +94,12 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ExitStateBehaviorEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class StateDeferredTriggerEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 692;
+	public static final int VISUAL_ID = 693;
 
 	/**
 	 * @generated
@@ -138,7 +138,7 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public ExitStateBehaviorEditPart(View view) {
+	public StateDeferredTriggerEditPart(View view) {
 		super(view);
 	}
 
@@ -157,10 +157,10 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExitStateBehaviorItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateDeferredTriggerItemSemanticEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonMovableNonResizableEditPolicy());
@@ -170,8 +170,8 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getText();
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -183,8 +183,8 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setText(text);
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -196,8 +196,8 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getIcon();
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -209,8 +209,8 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -277,11 +277,11 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 */
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		Object pdEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
 		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		Object sfEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
 		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
@@ -354,7 +354,7 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Behavior_692, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Trigger_693, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -491,16 +491,16 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		org.eclipse.gef.EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(maskLabelPolicy == null) {
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		Object pdEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
 		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
 		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		Object sfEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
 		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
 			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
 		}
@@ -511,8 +511,8 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -528,8 +528,8 @@ public class ExitStateBehaviorEditPart extends CompartmentEditPart implements IT
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 

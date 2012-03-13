@@ -1,5 +1,3 @@
-package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
-
 /*****************************************************************************
  * Copyright (c) 2011 Atos.
  *
@@ -14,17 +12,21 @@ package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
  * 
  *
  *****************************************************************************/
+package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
+
 import java.util.Collections;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -35,15 +37,21 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
+/**
+ * Listen the feature TRANSITION__KIND in order to change the apparence of an internal transition
+ * @author adaussy
+ *
+ */
 public class InternalStateListener extends AbstractModifcationTriggerListener {
 
+	protected NotificationFilter filter;
+	
 	@Override
-	protected boolean isCorrectStructuralfeature(EStructuralFeature eStructuralFeature) {
-		if(UMLPackage.Literals.TRANSITION__KIND.equals(eStructuralFeature)) {
-			return true;
+	public NotificationFilter getFilter() {
+		if (filter == null){
+			filter = NotificationFilter.createFeatureFilter(UMLPackage.Literals.TRANSITION__KIND);
 		}
-		return false;
+		return filter;
 	}
 
 	@Override
@@ -56,7 +64,7 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 			//Handle deletion of the old EditPart
 			boolean becomingInternal = isBecomingInternal(notif);
 			IGraphicalEditPart availableEditPart = getChildByEObject(eNotifier, getDiagramEditPart(), becomingInternal);
-			//If there no current represent nothing has to be done
+			//If there no current representation nothing has to be done
 			if(availableEditPart == null) {
 				return null;
 			}
@@ -65,10 +73,11 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 				cc.compose(new CommandProxy(deleteCommant));
 			}
 			//handle addition of the new EditPart
-			Command creationCommaned = getCreationCommand(becomingInternal, eNotifier);
+			 ICommand creationCommaned = getCreationCommand(becomingInternal, eNotifier);
 			if(creationCommaned != null && creationCommaned.canExecute()) {
-				cc.compose(new CommandProxy(creationCommaned));
+				cc.compose(creationCommaned);
 			}
+			
 			return cc;
 		}
 
@@ -116,7 +125,7 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 		return availableEditPart.getCommand(request);
 	}
 
-	private Command getCreationCommand(boolean isBecomingInternal, EObject eNotifier) {
+	private ICommand getCreationCommand(boolean isBecomingInternal, EObject eNotifier) {
 		//		IGraphicalEditPart
 		if(eNotifier instanceof Transition) {
 			Transition transition = (Transition)eNotifier;
@@ -131,10 +140,26 @@ public class InternalStateListener extends AbstractModifcationTriggerListener {
 				dropTarget = dropTarget.getChildBySemanticHint(String.valueOf(RegionCompartmentEditPart.VISUAL_ID));
 			}
 			if(dropTarget != null) {
+				CompositeCommand cc = new CompositeCommand("Add transition drop request command");
+				
 				Request request = new DropObjectsRequest();
 				((DropObjectsRequest)request).setLocation(new Point(1, 1));
 				((DropObjectsRequest)request).setObjects(Collections.singletonList(transition));
-				return dropTarget.getCommand(request);
+				Command command = dropTarget.getCommand(request);
+				if (command != null){
+					cc.compose(new CommandProxy(command));
+				}
+				/**
+				 * Refresh layout
+				 */
+				ChangeBoundsRequest chReq = new ChangeBoundsRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_REFRESH);
+				chReq.setEditParts(dropTarget);
+				chReq.setMoveDelta(new Point(0, 0));
+				Command cmd3 = dropTarget.getCommand(chReq);
+				if(cmd3 != null && cmd3.canExecute()) {
+					cc.compose(new CommandProxy(cmd3));
+				}
+				return cc;
 			}
 		}
 		return null;

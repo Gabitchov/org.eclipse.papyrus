@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateS
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -161,6 +162,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(InternalTransitionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StateDeferredTriggerEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(RegionEditPart.VISUAL_ID == nodeVisualID) {
@@ -462,6 +466,9 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
 				return InternalTransitionEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getTrigger().isSuperTypeOf(domainElement.eClass())) {
+				return StateDeferredTriggerEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
 				return RegionEditPart.VISUAL_ID;
 			}
@@ -615,6 +622,8 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(691, ViewInfo.Node, "Behavior");
 		root.addNode(6000, viewInfo);
 		viewInfo = new BaseViewInfo(692, ViewInfo.Node, "Behavior");
+		root.addNode(6000, viewInfo);
+		viewInfo = new BaseViewInfo(693, ViewInfo.Node, "Trigger");
 		root.addNode(6000, viewInfo);
 		return root;
 	}

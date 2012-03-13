@@ -147,7 +147,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692,693"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000,19000,667,670"/>
       </viewProvider>
    </extension>
@@ -160,7 +160,7 @@
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692"/>
+            <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692,693"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="7000,19000,667,670"/>
@@ -422,6 +422,16 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.StateDeferredTrigger_693"
+               name="%metatype.name.Trigger_693"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Trigger"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.DeferredTriggerEditHelper">
+            <param name="semanticHint" value="693"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.statemachine.Transition_7000"
                name="%metatype.name.Transition_7000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -492,6 +502,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.EntryStateBehavior_690"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.DoActivityStateBehavior_691"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.ExitStateBehavior_692"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.StateDeferredTrigger_693"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Transition_7000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Generalization_19000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.CommentAnnotatedElement_667"/>
@@ -828,6 +839,13 @@
 			class="org.eclipse.papyrus.diagram.statemachine.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.CommentPreferencePage"
             name="Comment Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.DeferredTriggerPreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.DeferredTriggerPreferencePage"
+            name="DeferredTrigger Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1290,6 +1308,12 @@
 	            id="org.eclipse.papyrus.SharedEditingDomainID">
 	      </editingDomain>
 	   </listener>
+    <listener
+          class="org.eclipse.papyrus.diagram.statemachine.custom.listeners.DeferredTriggerStateListener">
+       <editingDomain
+             id="org.eclipse.papyrus.SharedEditingDomainID">
+       </editingDomain>
+    </listener>
 	</extension>
 
 

@@ -29,7 +29,6 @@
 package org.eclipse.papyrus.diagram.statemachine.custom.parsers;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -53,20 +52,14 @@ import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.CallEvent;
-import org.eclipse.uml2.uml.ChangeEvent;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueBehavior;
-import org.eclipse.uml2.uml.OpaqueExpression;
-import org.eclipse.uml2.uml.SignalEvent;
-import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.ValueSpecification;
 
 
 public class TransitionPropertiesParser implements IParser, ISemanticParser {

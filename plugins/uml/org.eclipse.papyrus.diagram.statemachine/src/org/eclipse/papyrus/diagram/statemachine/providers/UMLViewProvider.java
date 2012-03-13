@@ -93,6 +93,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateS
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -265,6 +266,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExitStateBehavior");
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ExitStateBehavior");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTrigger_693(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(StateDeferredTriggerEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DeferredTrigger");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "DeferredTrigger");
 		return node;
 	}
 
@@ -477,6 +493,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createBehavior_691(domainElement, containerView, index, persisted, preferencesHint);
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 			return createBehavior_692(domainElement, containerView, index, persisted, preferencesHint);
+		case StateDeferredTriggerEditPart.VISUAL_ID:
+			return createTrigger_693(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -1000,6 +1018,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case EntryStateBehaviorEditPart.VISUAL_ID:
 				case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
 				case ExitStateBehaviorEditPart.VISUAL_ID:
+				case StateDeferredTriggerEditPart.VISUAL_ID:
 				case InternalTransitionEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
@@ -1010,7 +1029,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return StateMachineEditPart.VISUAL_ID == visualID || RegionEditPart.VISUAL_ID == visualID || FinalStateEditPart.VISUAL_ID == visualID || StateEditPart.VISUAL_ID == visualID || PseudostateInitialEditPart.VISUAL_ID == visualID || PseudostateJoinEditPart.VISUAL_ID == visualID || PseudostateForkEditPart.VISUAL_ID == visualID || PseudostateChoiceEditPart.VISUAL_ID == visualID || PseudostateJunctionEditPart.VISUAL_ID == visualID || PseudostateShallowHistoryEditPart.VISUAL_ID == visualID || PseudostateDeepHistoryEditPart.VISUAL_ID == visualID || PseudostateTerminateEditPart.VISUAL_ID == visualID || PseudostateEntryPointEditPart.VISUAL_ID == visualID || PseudostateExitPointEditPart.VISUAL_ID == visualID || ConnectionPointReferenceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || InternalTransitionEditPart.VISUAL_ID == visualID || EntryStateBehaviorEditPart.VISUAL_ID == visualID || DoActivityStateBehaviorStateEditPart.VISUAL_ID == visualID || ExitStateBehaviorEditPart.VISUAL_ID == visualID;
+		return StateMachineEditPart.VISUAL_ID == visualID || RegionEditPart.VISUAL_ID == visualID || FinalStateEditPart.VISUAL_ID == visualID || StateEditPart.VISUAL_ID == visualID || PseudostateInitialEditPart.VISUAL_ID == visualID || PseudostateJoinEditPart.VISUAL_ID == visualID || PseudostateForkEditPart.VISUAL_ID == visualID || PseudostateChoiceEditPart.VISUAL_ID == visualID || PseudostateJunctionEditPart.VISUAL_ID == visualID || PseudostateShallowHistoryEditPart.VISUAL_ID == visualID || PseudostateDeepHistoryEditPart.VISUAL_ID == visualID || PseudostateTerminateEditPart.VISUAL_ID == visualID || PseudostateEntryPointEditPart.VISUAL_ID == visualID || PseudostateExitPointEditPart.VISUAL_ID == visualID || ConnectionPointReferenceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || InternalTransitionEditPart.VISUAL_ID == visualID || EntryStateBehaviorEditPart.VISUAL_ID == visualID || DoActivityStateBehaviorStateEditPart.VISUAL_ID == visualID || ExitStateBehaviorEditPart.VISUAL_ID == visualID || StateDeferredTriggerEditPart.VISUAL_ID == visualID;
 	}
 
 	/**

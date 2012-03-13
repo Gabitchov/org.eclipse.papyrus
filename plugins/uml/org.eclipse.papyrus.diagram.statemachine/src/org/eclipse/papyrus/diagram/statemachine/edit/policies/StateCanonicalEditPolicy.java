@@ -40,6 +40,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEdi
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateDeferredTriggerEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -77,6 +78,7 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_DoActivity());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Exit());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getVertex_Incoming());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_DeferrableTrigger());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_Region());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getState_Connection());
@@ -108,6 +110,7 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
 		case ExitStateBehaviorEditPart.VISUAL_ID:
 		case InternalTransitionEditPart.VISUAL_ID:
+		case StateDeferredTriggerEditPart.VISUAL_ID:
 		case RegionEditPart.VISUAL_ID:
 		case PseudostateEntryPointEditPart.VISUAL_ID:
 		case PseudostateExitPointEditPart.VISUAL_ID:

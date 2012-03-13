@@ -64,6 +64,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.diagram.statemachine.custom.policies.UMLTextNonMovableNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.InternalTransitionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.UMLTextSelectionEditPolicy;
@@ -162,6 +163,7 @@ public class InternalTransitionEditPart extends CompartmentEditPart implements I
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonMovableNonResizableEditPolicy());
 	}
 
 	/**

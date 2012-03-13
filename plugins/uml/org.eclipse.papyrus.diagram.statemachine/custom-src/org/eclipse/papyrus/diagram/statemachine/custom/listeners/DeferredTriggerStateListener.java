@@ -9,12 +9,13 @@
  *
  * Contributors:
  *   Atos - Initial API and implementation
- *   Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
+ *   Arthur Daussy Bug 366026 - [ActivityDiagram] Refactoring in order to try respect Generation Gap Pattern 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,60 +31,80 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
-import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLPackage;
-
-
 /**
- * This listener will handle the creation of visual for element for behavior (/do /entry /exit).
- * 
- * @author Arthur Daussy
- * 
+ * Listenner to set deferred trigger
  */
-public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
+public class DeferredTriggerStateListener extends AbstractModifcationTriggerListener {
 
-	protected static NotificationFilter filter;
-	
 	@Override
 	public NotificationFilter getFilter() {
-		if (filter == null){
-			filter = NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__DO_ACTIVITY).or(NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__EXIT)).or(NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__ENTRY));
-		}
-		return filter;
+		return NotificationFilter.createFeatureFilter(UMLPackage.Literals.STATE__DEFERRABLE_TRIGGER);
 	}
 
-
-	/**
-	 * Handle modification on behavior attribute of state (entry , exit , do activity)
-	 * 
-	 * @param notif
-	 */
 	@Override
 	protected CompositeCommand getModificationCommand(Notification notif) {
 		Request dropRequest = null;
 		Request deleteRequest = null;
-		if(notif.getEventType() == Notification.SET) {
-			Object object = notif.getNewValue();
-
-			Object oldObject = notif.getOldValue();
-			final StateEditPart stateEditPart = getContainingEditPart(notif.getNotifier());
-			if (stateEditPart != null){
-				
-				if(object instanceof Behavior) {
+		Object object = notif.getNewValue();
+		Object oldObject = notif.getOldValue();
+		final StateEditPart stateEditPart = getContainingEditPart(notif.getNotifier());
+		if(stateEditPart != null) {
+			//handle both request if needed
+			CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
+			switch(notif.getEventType()) {
+			case Notification.SET:
+			case Notification.ADD:
+				if(object instanceof Trigger) {
 					//Get the request to create the editPart
-					dropRequest = getCreateRequest(object, stateEditPart);
+					dropRequest = getCreateRequest((EObject)object, stateEditPart);
+					org.eclipse.gef.commands.Command cmd1 = getCommandFromRequest(dropRequest, stateEditPart);
+					/**
+					 * Create Command
+					 */
+					if(cmd1 != null && cmd1.canExecute()) {
+						cc.compose(new CommandProxy(cmd1));
+					}
 				}
+				break;
+			case Notification.ADD_MANY:
+				if (object instanceof List<?>){
+					for (Object o : (List)object){
+						if (o instanceof Trigger){
+							//Get the request to create the editPart
+							dropRequest = getCreateRequest((EObject)o, stateEditPart);
+							org.eclipse.gef.commands.Command cmd1 = getCommandFromRequest(dropRequest, stateEditPart);
+							/**
+							 * Create Command
+							 */
+							if(cmd1 != null && cmd1.canExecute()) {
+								cc.compose(new CommandProxy(cmd1));
+							}
+						}
+					}
+				}
+			break;
+			case Notification.REMOVE_MANY:
+				if (oldObject instanceof List<?>){
+					for (Object o : (List)oldObject){
+						
+							//Get the request to delete the editPart
+							deleteRequest = getDeleteRequest(o, stateEditPart);
+							/**
+							 * Delete Command
+							 */
+							org.eclipse.gef.commands.Command cmd2 = getCommandFromRequest(deleteRequest, stateEditPart);
+							if(cmd2 != null && cmd2.canExecute()) {
+								cc.compose(new CommandProxy(cmd2));
+							}
+						
+					}
+				}
+				break;
+			case Notification.REMOVE:
 				//Get the request to delete the editPart
 				deleteRequest = getDeleteRequest(oldObject, stateEditPart);
-				//handle both request if needed
-				CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
-				org.eclipse.gef.commands.Command cmd1 = getCommandFromRequest(dropRequest, stateEditPart);
-				/**
-				 * Create Command
-				 */
-				if(cmd1 != null && cmd1.canExecute()) {
-					cc.compose(new CommandProxy(cmd1));
-				}
 				/**
 				 * Delete Command
 				 */
@@ -91,18 +112,21 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 				if(cmd2 != null && cmd2.canExecute()) {
 					cc.compose(new CommandProxy(cmd2));
 				}
-				/**
-				 * Refresh layout
-				 */
-				ChangeBoundsRequest chReq = new ChangeBoundsRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_REFRESH);
-				chReq.setEditParts(stateEditPart);
-				chReq.setMoveDelta(new Point(0, 0));
-				Command cmd3 = stateEditPart.getCommand(chReq);
-				if(cmd3 != null && cmd3.canExecute()) {
-					cc.compose(new CommandProxy(cmd3));
-				}
-				return cc;
+				break;
+			default:
+				break;
 			}
+			/*
+			 * Refresh layout
+			 */
+			ChangeBoundsRequest chReq = new ChangeBoundsRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_REFRESH);
+			chReq.setEditParts(stateEditPart);
+			chReq.setMoveDelta(new Point(0, 0));
+			Command cmd3 = stateEditPart.getCommand(chReq);
+			if(cmd3 != null && cmd3.canExecute()) {
+				cc.compose(new CommandProxy(cmd3));
+			}
+			return cc;
 		}
 		return null;
 	}
@@ -132,8 +156,8 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 	private Request getDeleteRequest(Object oldObject, StateEditPart stateEditPart) {
 		Request request = null;
 		//When unset the feature
-		if(oldObject instanceof Behavior) {
-			Behavior oldBehavior = (Behavior)oldObject;
+		if(oldObject instanceof Trigger) {
+			Trigger oldBehavior = (Trigger)oldObject;
 			IGraphicalEditPart iGrapEditPart = getChildByEObject(oldBehavior, stateEditPart, false);
 			if(iGrapEditPart != null) {
 				request = new GroupRequest(RequestConstants.REQ_DELETE);
@@ -143,12 +167,11 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 		return request;
 	}
 
-	private Request getCreateRequest(Object object, StateEditPart stateEditPart) {
+	private Request getCreateRequest(EObject object, StateEditPart stateEditPart) {
 		Request request;
-		Behavior behavior = (Behavior)object;
 		request = new DropObjectsRequest();
-		((DropObjectsRequest)request).setLocation(new Point(1, 1));
-		((DropObjectsRequest)request).setObjects(Collections.singletonList(behavior));
+		((DropObjectsRequest)request).setLocation(new Point(1, 1));		
+		((DropObjectsRequest)request).setObjects(Collections.singletonList(object));
 		return request;
 	}
 
@@ -169,8 +192,4 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 		}
 		return null;
 	}
-
-
-
-
 }

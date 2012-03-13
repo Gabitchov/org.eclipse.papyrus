@@ -15,9 +15,6 @@
 
 package org.eclipse.papyrus.diagram.statemachine.custom.parsers;
 
-import org.eclipse.papyrus.umlutils.ICustomAppearence;
-import org.eclipse.papyrus.umlutils.OperationUtil;
-import org.eclipse.papyrus.umlutils.SignalUtil;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.AnyReceiveEvent;
 import org.eclipse.uml2.uml.CallEvent;
