@@ -12,7 +12,7 @@
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.services.edit.matcher;
+package org.eclipse.papyrus.infra.services.edit.internal.matcher;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;

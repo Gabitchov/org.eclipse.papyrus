@@ -13,7 +13,7 @@
  * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.services.edit.context;
+package org.eclipse.papyrus.infra.services.edit.internal.context;
 
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;

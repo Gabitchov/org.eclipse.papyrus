@@ -9,7 +9,7 @@
 	     to avoid undesired activation and possible side effects)
 	  -->
 	<clientContext id="org.eclipse.papyrus.infra.services.edit.TypeContext">
-		<matcher class="org.eclipse.papyrus.infra.services.edit.matcher.NoContextEnablementMatcher"/>
+		<matcher class="org.eclipse.papyrus.infra.services.edit.internal.matcher.NoContextEnablementMatcher"/>
 	</clientContext>
 
 </extension>
