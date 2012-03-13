@@ -46,6 +46,7 @@ import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfigurat
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.emf.workspace.EMFOperationCommand;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -163,7 +164,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
 			//Create the transactional command
-			AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$
+			AbstractEMFOperation operation = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$
 
 				@Override
 				protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -179,14 +180,10 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 					return Status.OK_STATUS;
 				}
 			};
-
+			EMFOperationCommand command = new EMFOperationCommand(domain, operation);
 			// Execute the command
-			try {
-				CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				Activator.getDefault().helper.error("Can't create Table Editor", e); //$NON-NLS-1$
-			}
-
+			
+			domain.getCommandStack().execute(command);
 		}
 	}
 
