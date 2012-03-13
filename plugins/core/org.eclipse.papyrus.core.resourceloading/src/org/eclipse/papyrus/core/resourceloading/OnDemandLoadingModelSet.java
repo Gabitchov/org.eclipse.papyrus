@@ -3,11 +3,14 @@
  */
 package org.eclipse.papyrus.core.resourceloading;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.core.resourceloading.LoadedAssociatedResourceManager.LoadedAssociatedResource;
 import org.eclipse.papyrus.core.resourceloading.impl.ProxyManager;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.ModelSet;
@@ -28,6 +31,7 @@ import org.eclipse.papyrus.resource.uml.UmlUtils;
  * @author emilien perico
  * 
  */
+@SuppressWarnings("deprecation")
 public class OnDemandLoadingModelSet extends DiResourceSet {
 
 	/** Set that enables to always load the uri with any strategy. */
@@ -58,8 +62,6 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 		super.unload();
 		proxyManager.dispose();
 	}
-
-
 
 	/**
 	 * @see org.eclipse.emf.ecore.resource.impl.ResourceSetImpl#getEObject(org.eclipse.emf.common.util.URI, boolean)
@@ -92,4 +94,43 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 		uriLoading.add(alwaysLoadedUri);
 	}
 
+	/**
+	 * Load the associated resources of a main URI (usually corresponding
+	 * to a controlled resource).
+	 * It uses the informations from the loadedAssociatedResource extension point
+	 * to know which file extensions to load.
+	 * 
+	 * @param mainURI the URI of the main resource
+	 */
+	public void loadAssociatedResources(URI mainURI) {
+
+		URI trimmedURI = mainURI.trimFileExtension();
+		Collection<LoadedAssociatedResource> loadedAssociatedResources = LoadedAssociatedResourceManager.getInstance().getLoadedAssociatedResources().values();
+
+		if (trimmedURI.isPlatformResource()) {
+			for (LoadedAssociatedResource loadedAssociatedResource : loadedAssociatedResources) {
+				if (loadedAssociatedResource.isAutoLoad()) {
+					URI loadedAssociatedResourceURI = trimmedURI.appendFileExtension(loadedAssociatedResource.getFileExtension());
+					try {
+						Resource r = super.getResource(loadedAssociatedResourceURI, true);
+						if (r != null && !r.isLoaded()) {
+							r.load(null);
+						}
+					} catch (Exception e) {
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public Resource getResource(URI uri, boolean loadOnDemand) {
+		Resource resource = super.getResource(uri, loadOnDemand);
+
+		if (resource != null && loadOnDemand) {
+			loadAssociatedResources(uri);
+		}
+
+		return resource;
+	}
 }

@@ -2,9 +2,11 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.core.resourceloading,org.eclipse.p
  apyrus.core.resourceloading.impl,org.eclipse.papyrus.core.resourceloa
  ding.strategies,org.eclipse.papyrus.core.resourceloading.util
-Require-Bundle: org.eclipse.papyrus.core,org.eclipse.papyrus.controlmo
- de.history,org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.0",org.
- eclipse.core.expressions
+Require-Bundle: org.eclipse.papyrus.core,
+ org.eclipse.papyrus.controlmode.history,
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.0",
+ org.eclipse.core.expressions,
+ org.eclipse.papyrus.preferences
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

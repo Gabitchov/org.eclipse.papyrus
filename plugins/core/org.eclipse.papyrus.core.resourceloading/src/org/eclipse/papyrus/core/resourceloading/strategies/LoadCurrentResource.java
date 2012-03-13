@@ -25,7 +25,7 @@ public class LoadCurrentResource implements ILoadingStrategy {
 	 * Controlled resources from the current one are not loaded
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {
-		return (!uri.isPlatform() && !uri.isFile());
+		return (!uri.isPlatformResource() && !uri.isFile());
 	}
 
 }

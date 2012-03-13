@@ -28,6 +28,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
@@ -35,6 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -352,8 +354,15 @@ public class PartActivationListener implements IPartListener {
 
 			public void execute() {
 				for(URI uri : urisToUpdate) {
-					LoadingUtils.unloadResourcesFromModelSet(modelSet, uri, false);
-					LoadingUtils.loadResourcesInModelSet(modelSet, uri);
+					ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+					dialog.open();
+					IProgressMonitor monitor = dialog.getProgressMonitor();
+
+					LoadingUtils.unloadWithAssociatedResources(uri, modelSet, true, monitor);
+					LoadingUtils.loadWithAssociatedResources(uri, modelSet, true, monitor);
+
+					monitor.done();
+					dialog.close();
 				}
 			}
 

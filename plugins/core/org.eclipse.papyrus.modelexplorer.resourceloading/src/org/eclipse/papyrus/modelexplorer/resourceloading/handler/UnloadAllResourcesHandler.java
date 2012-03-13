@@ -16,6 +16,7 @@ package org.eclipse.papyrus.modelexplorer.resourceloading.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -23,22 +24,18 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Handler for the load resource action.
  * This actions load a resource in the model set, which is not yet loaded (due to resource loading strategy).
  */
-public class UnloadResourceHandler extends AbstractCommandHandler {
-
+public class UnloadAllResourcesHandler extends AbstractCommandHandler {
 
 	/**
 	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#getCommand()
@@ -48,22 +45,30 @@ public class UnloadResourceHandler extends AbstractCommandHandler {
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		List<EObject> selection = getSelectedElements();
-		if(editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
-			final ModelSet set = (ModelSet)editingDomain.getResourceSet();
+		if(editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && !selection.isEmpty()) {
+			final ModelSet modelSet = (ModelSet)editingDomain.getResourceSet();
 			CompoundCommand command = new CompoundCommand();
 			List<URI> handledURI = new ArrayList<URI>();
 			// ensure main URI is never unloaded
-			URI mainURI = NotationUtils.getNotationModel(set).getResourceURI().trimFileExtension();
+			URI mainURI = NotationUtils.getNotationModel(modelSet).getResourceURI().trimFileExtension();
 			handledURI.add(mainURI);
 			for(EObject sel : selection) {
 				if(!sel.eIsProxy()) {
-					final URI uriTrim = sel.eResource().getURI().trimFileExtension();
-					if(!handledURI.contains(uriTrim)) {
-						handledURI.add(uriTrim);
+					final URI uri = sel.eResource().getURI();
+					final URI trimmedURI = uri.trimFileExtension();
+					if(!handledURI.contains(trimmedURI)) {
+						handledURI.add(trimmedURI);
 						Command cmd = new AbstractCommand() {
 
 							public void redo() {
-								LoadingUtils.unloadResourcesFromModelSet(set, uriTrim);
+								ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+								dialog.open();
+								IProgressMonitor monitor = dialog.getProgressMonitor();
+
+								LoadingUtils.unloadWithAssociatedResources(uri, modelSet, true, monitor);
+
+								monitor.done();
+								dialog.close();
 							}
 
 							public void execute() {
@@ -82,36 +87,6 @@ public class UnloadResourceHandler extends AbstractCommandHandler {
 			return command;
 		}
 		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * Get currently opened editor
-	 * 
-	 * @return editor
-	 */
-	protected IEditorPart getEditor() {
-		IEditorPart editor = null;
-		IWorkbenchWindow activeWorkbenchWindow = getActiveWorkbenchWindow();
-		if(activeWorkbenchWindow != null) {
-			IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-			if(activePage != null) {
-				editor = activePage.getActiveEditor();
-			}
-		}
-		return editor;
-	}
-
-	/**
-	 * Get the active workbench window
-	 * 
-	 * @return window
-	 */
-	protected IWorkbenchWindow getActiveWorkbenchWindow() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		if(workbench != null) {
-			return workbench.getActiveWorkbenchWindow();
-		}
-		return null;
 	}
 
 }

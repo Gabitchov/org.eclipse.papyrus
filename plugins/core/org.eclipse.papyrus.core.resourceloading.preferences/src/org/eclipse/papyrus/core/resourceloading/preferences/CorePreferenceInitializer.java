@@ -15,6 +15,7 @@ package org.eclipse.papyrus.core.resourceloading.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.preferences.Activator;
 
 /**
  * This preference initializer initializes diagram preferences specific to the
@@ -34,6 +35,6 @@ public class CorePreferenceInitializer extends AbstractPreferenceInitializer {
 	 * Get the preference store
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return CorePlugin.getDefault().getPreferenceStore();
+		return Activator.getDefault().getPreferenceStore();
 	}
 }

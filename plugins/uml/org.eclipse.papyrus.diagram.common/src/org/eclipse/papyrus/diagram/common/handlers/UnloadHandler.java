@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,9 +26,11 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -49,25 +52,33 @@ public class UnloadHandler extends GraphicalCommandHandler {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
-			final ModelSet set = (ModelSet)editingDomain.getResourceSet();
+			final ModelSet modelSet = (ModelSet)editingDomain.getResourceSet();
 			CompoundCommand command = new CompoundCommand();
 			List<URI> handledURI = new ArrayList<URI>();
 			// ensure main URI is never unloaded
-			URI mainURI = NotationUtils.getNotationModel(set).getResourceURI().trimFileExtension();
+			URI mainURI = NotationUtils.getNotationModel(modelSet).getResourceURI().trimFileExtension();
 			handledURI.add(mainURI);
 			for(IGraphicalEditPart selPart : selection) {
 				View view = (View)((IAdaptable)selPart).getAdapter(View.class);
 				if(view != null) {
 					EObject sel = view.getElement();
 					if(!sel.eIsProxy()) {
-						final URI uriTrim = sel.eResource().getURI().trimFileExtension();
+						final URI uri = sel.eResource().getURI();
+						final URI uriTrim = uri.trimFileExtension();
 						if(!handledURI.contains(uriTrim)) {
 							handledURI.add(uriTrim);
 							Command cmd = new Command() {
 
 								@Override
 								public void redo() {
-									LoadingUtils.unloadResourcesFromModelSet(set, uriTrim);
+									ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+									dialog.open();
+									IProgressMonitor monitor = dialog.getProgressMonitor();
+
+									LoadingUtils.unloadWithAssociatedResources(uri, modelSet, true, monitor);
+
+									monitor.done();
+									dialog.close();
 								}
 
 								@Override

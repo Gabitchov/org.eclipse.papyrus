@@ -11,10 +11,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
 public class UnloadResourcesEditorFactory implements IPluggableEditorFactory {
 
-	private EditorDescriptor editorDescriptor;
-
-	private ServicesRegistry serviceRegistry;
-
 	public IPageModel createIPageModel(Object pageIdentifier) {
 		URI uri = null;
 		if(pageIdentifier instanceof InternalEObject) {
@@ -34,8 +30,6 @@ public class UnloadResourcesEditorFactory implements IPluggableEditorFactory {
 	}
 
 	public void init(ServicesRegistry serviceRegistry, EditorDescriptor editorDescriptor) {
-		this.editorDescriptor = editorDescriptor;
-		this.serviceRegistry = serviceRegistry;
 	}
 
 }

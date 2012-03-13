@@ -32,7 +32,7 @@ public class LoadControlledResources implements ILoadingStrategy {
 	 * Other resources used from references are not loaded
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {
-		boolean result = !uri.isPlatform() && !uri.isFile();
+		boolean result = !uri.isPlatformResource() && !uri.isFile();
 		if(!result) {
 			URI initialURI = SashModelUtils.getInitialURI(modelSet).trimFileExtension().appendFileExtension(uri.fileExtension());
 			URI uriInitialTrimFragment = initialURI.trimFragment();

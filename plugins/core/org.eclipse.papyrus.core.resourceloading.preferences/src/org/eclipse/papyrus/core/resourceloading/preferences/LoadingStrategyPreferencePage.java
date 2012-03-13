@@ -15,11 +15,10 @@ package org.eclipse.papyrus.core.resourceloading.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.preferences.ui.AbstractGroup;
 import org.eclipse.swt.widgets.Composite;
 
 public class LoadingStrategyPreferencePage extends AbstractPapyrusNodePreferencePage {
-
-	private LoadinStrategyGroup groupComposite;
 
 	/**
 	 * @generated
@@ -40,8 +39,10 @@ public class LoadingStrategyPreferencePage extends AbstractPapyrusNodePreference
 	 */
 	@Override
 	protected void createPageContents(Composite parent) {
-		groupComposite = new LoadinStrategyGroup(parent, getTitle(), this);
-		addAbstractGroup(groupComposite);
+		AbstractGroup group = new LoadinStrategyGroup(parent, getTitle(), this);
+		addAbstractGroup(group);
+		group = new LoadedAssociatedResourceGroup(parent, getTitle(), this);
+		addAbstractGroup(group);
 	}
 
 	/**

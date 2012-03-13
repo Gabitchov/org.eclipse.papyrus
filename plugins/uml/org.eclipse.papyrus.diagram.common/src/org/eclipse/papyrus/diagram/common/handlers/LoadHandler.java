@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,8 +30,10 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.resourceloading.util.LoadingUtils;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Handler for the load resource action. This actions load a resource in the
@@ -49,8 +52,9 @@ public class LoadHandler extends GraphicalCommandHandler {
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
-			final ModelSet set = (ModelSet)editingDomain.getResourceSet();
+			final ModelSet modelSet = (ModelSet)editingDomain.getResourceSet();
 			CompoundCommand command = new CompoundCommand();
+			
 			List<URI> handledURI = new ArrayList<URI>();
 			for(IGraphicalEditPart selPart : selection) {
 				View view = (View)((IAdaptable)selPart).getAdapter(View.class);
@@ -64,15 +68,22 @@ public class LoadHandler extends GraphicalCommandHandler {
 							EObject linked = target.getElement();
 							if(linked != null && linked.eIsProxy()) {
 								InternalEObject internal = (InternalEObject)linked;
-								URI uriProxy = internal.eProxyURI();
-								final URI uriTrim = uriProxy.trimFragment().trimFileExtension();
+								final URI uriProxy = internal.eProxyURI().trimFragment();
+								final URI uriTrim = uriProxy.trimFileExtension();
 								if(!handledURI.contains(uriTrim)) {
 									handledURI.add(uriTrim);
 									Command cmd = new Command() {
 
 										@Override
 										public void redo() {
-											LoadingUtils.loadResourcesInModelSet(set, uriTrim);
+											ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+											dialog.open();
+											IProgressMonitor monitor = dialog.getProgressMonitor();
+
+											LoadingUtils.loadWithAssociatedResources(uriProxy, modelSet, true, monitor);
+
+											monitor.done();
+											dialog.close();
 										}
 
 										@Override
@@ -92,15 +103,22 @@ public class LoadHandler extends GraphicalCommandHandler {
 					}
 					if(sel != null && sel.eIsProxy()) {
 						InternalEObject internal = (InternalEObject)sel;
-						URI uriProxy = internal.eProxyURI();
-						final URI uriTrim = uriProxy.trimFragment().trimFileExtension();
+						final URI uriProxy = internal.eProxyURI().trimFragment();
+						final URI uriTrim = uriProxy.trimFileExtension();
 						if(!handledURI.contains(uriTrim)) {
 							handledURI.add(uriTrim);
 							Command cmd = new Command() {
 
 								@Override
 								public void redo() {
-									LoadingUtils.loadResourcesInModelSet(set, uriTrim);
+									ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+									dialog.open();
+									IProgressMonitor monitor = dialog.getProgressMonitor();
+
+									LoadingUtils.loadWithAssociatedResources(uriProxy, modelSet, false, monitor);
+
+									monitor.done();
+									dialog.close();
 								}
 
 								@Override

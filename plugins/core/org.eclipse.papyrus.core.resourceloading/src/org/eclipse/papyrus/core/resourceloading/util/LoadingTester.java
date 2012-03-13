@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
@@ -37,6 +38,8 @@ public class LoadingTester extends PropertyTester {
 
 	/** property to test if the selected elements are in not loaded resources */
 	public static final String IS_ALL_NOTLOADED = "isAllNotLoaded"; //$NON-NLS-1$
+	
+	public static final String IS_ASSOCIATED_RESOURCE_LOADED = "isAssociatedResourceLoaded"; //$NON-NLS-1$
 
 	/**
 	 * Test a property
@@ -58,7 +61,42 @@ public class LoadingTester extends PropertyTester {
 			boolean answer = isInNotLoadedResource((IStructuredSelection)receiver);
 			return new Boolean(answer).equals(expectedValue);
 		}
+		if(IS_ASSOCIATED_RESOURCE_LOADED.equals(property) && receiver instanceof IStructuredSelection && args.length > 0 && args[0] instanceof String) {
+			boolean answer = isAssociatedResourceLoaded((IStructuredSelection)receiver, (String)args[0]);
+			return new Boolean(answer).equals(expectedValue);
+		}
 		return false;
+	}
+	
+	private boolean isAssociatedResourceLoaded(IStructuredSelection selection, String fileExtension) {
+		Iterator<?> iter = selection.iterator();
+		while(iter.hasNext()) {
+			Object obj = iter.next();
+			if(obj instanceof IAdaptable) {
+				View view = (View)((IAdaptable)obj).getAdapter(View.class);
+				EObject eObject;
+				if(view != null) {
+					eObject = view.getElement();
+				} else {
+					eObject = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
+					if(eObject != null) {
+						Resource r = eObject.eResource();
+						if (r != null && r.getURI() != null) {
+							URI associatedResourceURI = r.getURI().trimFragment().trimFileExtension().appendFileExtension(fileExtension);
+							ResourceSet resourceSet = r.getResourceSet();
+
+							if (resourceSet != null) {
+								Resource associatedResource = resourceSet.getResource(associatedResourceURI, false);
+								if (associatedResource == null || !associatedResource.isLoaded()) {
+									return false;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

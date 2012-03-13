@@ -3,14 +3,9 @@
  */
 package org.eclipse.papyrus.core.resourceloading;
 
-import org.eclipse.papyrus.controlmode.history.HistoryModel;
-import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
-import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
-import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.core.services.IServiceFactory;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.ModelSet;
 
 
