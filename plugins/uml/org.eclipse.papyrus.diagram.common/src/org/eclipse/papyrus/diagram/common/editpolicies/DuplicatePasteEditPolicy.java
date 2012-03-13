@@ -83,7 +83,7 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 
 	@SuppressWarnings("unchecked")
 	protected Command getPasteCommand(PasteRequest request) {
-		List notationView = new ArrayList();
+		List<View> notationView = new ArrayList<View>();
 		if(request.getElementToPaste() != null && request.getElementToPaste().size() > 0) {
 			notationView.addAll(request.getElementToPaste());
 			HashSet semanticElement = new HashSet();
@@ -104,7 +104,7 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	 */
 	@SuppressWarnings("unchecked")
 	private Command getDuplicateCommand(DuplicateRequest request) {
-		List notationViewsToDuplicate = new ArrayList();
+		List<View> notationViewsToDuplicate = new ArrayList<View>();
 		Set elementsToDuplicate = new HashSet();
 
 		for(Iterator iter = request.getEditParts().iterator(); iter.hasNext();) {

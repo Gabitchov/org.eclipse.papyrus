@@ -13,26 +13,35 @@
  *****************************************************************************/
 package org.eclipse.papyrus.pastemanager.command;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 
 /**
@@ -48,6 +57,9 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 
 	/** list of object to duplicate */
 	protected List<Object> eObjectsToBeDuplicated = null;
+
+	/** Constant used as a key for the parameters map of the duplication request */
+	public static final String ADDITIONAL_DUPLICATED_ELEMENTS = "Additional_Duplicated_Elements";
 
 	/**
 	 * Constructor.
@@ -131,7 +143,13 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 			// if this is a shape a new position is set in order to avoid superposition
 			while(iterator.hasNext()) {
 				Object object = (Object)iterator.next();
-				if(object instanceof View) {
+				if(object instanceof Diagram) {
+					Diagram diagramView = (Diagram)object;
+					if(container != null && container.eResource() != null) {
+						container.eResource().getContents().add(diagramView);
+					}
+
+				} else if(object instanceof View) {
 					View duplicatedView = (View)object;
 					if(object instanceof Shape) {
 						LayoutConstraint layoutConstraint = ((Shape)object).getLayoutConstraint();
@@ -145,7 +163,16 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 					}
 				}
 			}
+
+			ICommand externalObjectsDuplicateCommand = getExternalObjectsDuplicateCommand((Map<?, ?>)result.getReturnValue());
+			if(externalObjectsDuplicateCommand != null && externalObjectsDuplicateCommand.canExecute()) {
+				IStatus status = externalObjectsDuplicateCommand.execute(progressMonitor, info);
+				if(!status.isOK()) {
+					return CommandResult.newErrorCommandResult(status.getException());
+				}
+			}
 		}
+
 		return result;
 	}
 
@@ -158,5 +185,31 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 	 */
 	protected ICommand lookForDuplicateCommandOwner(ICommandProxy command) {
 		return command.getICommand();
+	}
+
+	/**
+	 * Returns the list of external objects to duplicate
+	 * 
+	 * @return the list of external objects to duplicate or an empty list if not elements are found to add.
+	 */
+	protected ICommand getExternalObjectsDuplicateCommand(Map duplicatedElementsMap) {
+		CompositeCommand result = new CompositeCommand("Duplicate External Objects");
+		Set<Object> duplicatedExternalElements = new HashSet<Object>();
+
+		for(Object o : duplicatedElementsMap.keySet()) {
+			if(o instanceof EObject) {
+				EObject object = (EObject)o;
+				DuplicateElementsRequest request = new DuplicateElementsRequest(Collections.singletonList(object));
+				request.setAllDuplicatedElementsMap(duplicatedElementsMap);
+				request.setParameter(PapyrusDuplicateWrapperCommand.ADDITIONAL_DUPLICATED_ELEMENTS, duplicatedExternalElements);
+				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
+				ICommand command = service.getEditCommand(request);
+				if(command != null) {
+					result.add(command);
+				}
+			}
+		}
+
+		return (result.isEmpty()) ? null : result.reduce();
 	}
 }

@@ -661,6 +661,29 @@
       </ViewId>
    </GlobalActionHandlerProvider>
 </extension>
+
+<!-- ElementType bindings for diagram duplication with paste command -->
+ <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <adviceBinding
+               class="org.eclipse.papyrus.diagram.common.advice.GMFDiagramDuplicateEditHelperAdvice"
+               id="org.eclipse.papyrus.diagram.common.advice.GMFDiagramDuplicateEditHelperAdvice"
+               inheritance="all"
+               typeId="org.eclipse.papyrus.uml.Element">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration -->
+	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+	
+		<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />
+		<advice ref="org.eclipse.papyrus.diagram.common.advice.GMFDiagramDuplicateEditHelperAdvice" />
+	</binding>
+</extension>
 <extension
       point="org.eclipse.core.runtime.adapters">
    <factory

@@ -19,9 +19,11 @@ import java.awt.datatransfer.DataFlavor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
@@ -137,7 +139,7 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 			//else
 		}
 		/* Send the request to the target edit part of the paste command for the currently selected part */
-		ArrayList objectToPaste = new ArrayList();
+		List objectToPaste = new ArrayList();
 		if(papyrusCliboard != null && papyrusCliboard.size() >= 1) {
 			objectToPaste.addAll(papyrusCliboard);
 			
@@ -167,21 +169,92 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 				}
 
 			}
+
+			// RS: add the diagrams and the tables for duplication. Warning: dependencies to the diagram and tables, whereas the table and diagrams should contribute !!!
+			// TODO: upgrade the framework to ask advices for duplication
+
 			//creation of duplicate request to obtain the functionnality of GMF
 			DuplicateElementsRequest duplicateElementRequest = new DuplicateElementsRequest(targetEditPart.getEditingDomain(), objectToPaste);
+
+			//ICommand externalObjectsDuplicateCommand = getExternalObjectsDuplicateCommand(duplicateElementRequest);
+
 
 			//add the wrapper
 			RootEditPart topEditPart = targetEditPart.getRoot();
 			if(topEditPart.getChildren().get(0) instanceof DiagramEditPart) {
 
-				org.eclipse.gef.commands.Command gefCommand = ((DiagramEditPart)topEditPart.getChildren().get(0)).getCommand(new EditCommandRequestWrapper(duplicateElementRequest));
-				ICommand command = new PapyrusDuplicateWrapperCommand(targetEditPart.getEditingDomain(), "", objectToPaste, (ICommandProxy)gefCommand, (View)targetEditPart.getModel());
-				return command;
+				Command gefCommand = ((DiagramEditPart)topEditPart.getChildren().get(0)).getCommand(new EditCommandRequestWrapper(duplicateElementRequest));
+				return new PapyrusDuplicateWrapperCommand(targetEditPart.getEditingDomain(), "", objectToPaste, (ICommandProxy)gefCommand, (View)targetEditPart.getModel());
 			}
 		}
 
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	//	/**
+	//	 * Returns the list of external objects to duplicate
+	//	 * 
+	//	 * @return the list of external objects to duplicate or an empty list if not elements are found to add.
+	//	 */
+	//	protected ICommand getExternalObjectsDuplicateCommand(DuplicateElementsRequest duplicateElementsRequest) {
+	//		ICommand result = null;
+	//		Set<Object> duplicatedElements = new HashSet<Object>();
+	//
+	//		for(Object o : duplicateElementsRequest.getElementsToBeDuplicated()) {
+	//			if(o instanceof EObject) {
+	//				EObject object = (EObject)o;
+	//				DuplicateElementsRequest request = new DuplicateElementsRequest(duplicateElementsRequest.getEditingDomain(), Collections.singletonList(object));
+	//				request.setParameter(PapyrusDuplicateWrapperCommand.ADDITIONAL_DUPLICATED_ELEMENTS, duplicatedElements);
+	//				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
+	//				ICommand command = service.getEditCommand(request);
+	//				if(command != null) {
+	//					if(result == null) {
+	//						result = command;
+	//					} else {
+	//						result.compose(command);
+	//					}
+	//				}
+	//			}
+	//		}
+	//
+	//		return result;
+	//	}
+
+	//	/**
+	//	 * Returns the list of external objects to duplicate
+	//	 * 
+	//	 * @return the list of external objects to duplicate or an empty list if not elements are found to add.
+	//	 */
+	//	protected ICommand getExternalObjectsDuplicateCommand(List<Object> objectToPaste) {
+	//		ICommand result = null;
+	//
+	//		for(Object o : objectToPaste) {
+	//			if(o instanceof EObject) {
+	//				ICommand command = getExternalObjectDuplicateCommand((EObject)o);
+	//				if(command != null) {
+	//					if(result == null) {
+	//						result = command;
+	//					} else {
+	//						result.compose(command);
+	//					}
+	//				}
+	//			}
+	//		}
+	//
+	//		return result;
+	//	}
+	//
+	//	/**
+	//	 * Returns the command that duplicates external content for a given object
+	//	 * 
+	//	 * @param object
+	//	 *        the object for which external objects to duplicate are searched
+	//	 * @return the command to duplicate external objects or <code>null</code> if no command shall be done
+	//	 */
+	//	protected ICommand getExternalObjectDuplicateCommand(EObject object) {
+	//		IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
+	//		ICommand command = service.getEditCommand(new DuplicateElementsRequest(Collections.singletonList(object)));
+	//		return command;
+	//	}
 
 }

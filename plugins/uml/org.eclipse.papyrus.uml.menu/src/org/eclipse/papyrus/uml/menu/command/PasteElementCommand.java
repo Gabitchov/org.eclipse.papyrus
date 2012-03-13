@@ -15,9 +15,16 @@ package org.eclipse.papyrus.uml.menu.command;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -26,14 +33,17 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.menu.Activator;
 import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -51,7 +61,7 @@ public class PasteElementCommand extends AbstractCommand {
 
 	protected EObject targetOwner;
 
-	protected ICommand command;
+	protected CompositeCommand command;
 
 	//the prefix for the duplicated object
 	protected String COPY_OF = "CopyOf";
@@ -82,10 +92,15 @@ public class PasteElementCommand extends AbstractCommand {
 			}
 
 			//3. Copy all eObjects (inspired from PasteFromClipboardCommand)
-			Collection<EObject> duplicatedObject = EcoreUtil.copyAll(eobjectsTopaste);
-
+			// Collection<EObject> duplicatedObject = EcoreUtil.copyAll(eobjectsTopaste);
+			EcoreUtil.Copier copier = new EcoreUtil.Copier();
+			copier.copyAll(eobjectsTopaste);
+			copier.copyReferences();
+			Map<EObject, EObject> duplicatedObjects = new HashMap<EObject, EObject>();
+			duplicatedObjects.putAll(copier);
+			
 			//4. filter eobject that are UML elements and application of stereotypes
-			Iterator<EObject> iter = duplicatedObject.iterator();
+			Iterator<EObject> iter = duplicatedObjects.values().iterator();
 			eobjectTopaste = new ArrayList<EObject>();
 			stereotypeApplicationTopaste = new ArrayList<EObject>();
 			while(iter.hasNext()) {
@@ -95,25 +110,47 @@ public class PasteElementCommand extends AbstractCommand {
 					isaUMLElement = true;
 				}
 				//functionality that comes from UML2 plugins
-				if((UMLUtil.getStereotype(eObject) == null) && isaUMLElement) {
-					eobjectTopaste.add(eObject);
-				} else {
+				Stereotype st = UMLUtil.getStereotype(eObject);
+				if(st != null) {
 					stereotypeApplicationTopaste.add(eObject);
+				} else if(isaUMLElement) {
+					eobjectTopaste.add(eObject);
 				}
 			}
 			this.targetOwner = targetOwner;
 
 			//5. prepare the move command to move UML element to their new owner
-			MoveRequest moveRequest = new MoveRequest(targetOwner, eobjectTopaste);
+			//Nota: move only the "root" semantic elements to be paste
+			List<EObject> objectsToMove = new ArrayList<EObject>();
+			Iterator<EObject> it = eobjectsTopaste.iterator();
+			while(it.hasNext()) {
+				EObject eObject = it.next();
+				boolean isaUMLElement = false;
+				if(eObject instanceof Element) {
+					isaUMLElement = true;
+				}
+				//functionality that comes from UML2 plugins
+				if((UMLUtil.getStereotype(eObject) == null) && isaUMLElement) {
+					// this is one of the original elements to paste, not a stereotype.
+					// the copy of this one should be moved
+					EObject copyObject = duplicatedObjects.get(eObject);
+					if(copyObject != null) {
+						objectsToMove.add(copyObject);
+					}
+				}
+			}
+
+
+			MoveRequest moveRequest = new MoveRequest(targetOwner, objectsToMove);
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 			if(provider != null) {
 				command = new CompositeCommand("Copy Object");
 				command.compose(provider.getEditCommand(moveRequest));
 			}
 
-			//5 bis. Rename the duplicated object
-			for(int i = 0; i < eobjectTopaste.size(); i++) {
-				EObject element = eobjectTopaste.get(i);
+			//5 bis. Rename the duplicated objects (only the root elements that are copied, no need to rename *all* nested elements)
+			for(int i = 0; i < objectsToMove.size(); i++) {
+				EObject element = objectsToMove.get(i);
 				if(element instanceof NamedElement && domain instanceof TransactionalEditingDomain) {
 					String newName = NLS.bind(COPY_OF + "_{0}_", ((NamedElement)element).getName());
 					String incrementedName = NamedElementUtil.getDefaultNameWithIncrementFromBase(newName, targetOwner.eContents());
@@ -123,6 +160,12 @@ public class PasteElementCommand extends AbstractCommand {
 					}
 				}
 			}
+			
+			ICommand externalObjectsDuplicateCommand = getExternalObjectsDuplicateCommand(duplicatedObjects);
+			if(externalObjectsDuplicateCommand != null && command != null) {
+				command.compose(externalObjectsDuplicateCommand);
+			}
+			
 		}
 	}
 
@@ -136,7 +179,7 @@ public class PasteElementCommand extends AbstractCommand {
 			try {
 				command.execute(new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
-
+				Activator.log.error(e);
 			}
 		}
 		//7. move stereotypes applications into the resource
@@ -171,7 +214,7 @@ public class PasteElementCommand extends AbstractCommand {
 			try {
 				command.redo(new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
-
+				Activator.log.error(e);
 			}
 		}
 		//7. move stereotype application into the resource 
@@ -193,9 +236,10 @@ public class PasteElementCommand extends AbstractCommand {
 		// for steps 1. 2. 3. 4. 5. see constructor
 		//6. Undo the move command for UML element
 		try {
-			command.undo(new NullProgressMonitor(), null);
+			IProgressMonitor monitor = new NullProgressMonitor();
+			command.undo(monitor, null);
 		} catch (ExecutionException e) {
-
+			Activator.log.error(e);
 		}
 		//7. remove stereotype application from the resource
 		Iterator<EObject> stereoApplIter = stereotypeApplicationTopaste.iterator();
@@ -203,5 +247,31 @@ public class PasteElementCommand extends AbstractCommand {
 			EObject eObject = (EObject)stereoApplIter.next();
 			targetOwner.eResource().getContents().remove(eObject);
 		}
+	}
+
+	/**
+	 * Returns the list of external objects to duplicate
+	 * 
+	 * @return the list of external objects to duplicate or an empty list if not elements are found to add.
+	 */
+	protected ICommand getExternalObjectsDuplicateCommand(Map duplicatedElementsMap) {
+		CompositeCommand result = new CompositeCommand("Duplicate Diagrams");
+		Set<Object> duplicatedExternalElements = new HashSet<Object>();
+
+		for(Object o : duplicatedElementsMap.keySet()) {
+			if(o instanceof EObject) {
+				EObject object = (EObject)o;
+				DuplicateElementsRequest request = new DuplicateElementsRequest(Collections.singletonList(object));
+				request.setAllDuplicatedElementsMap(duplicatedElementsMap);
+				request.setParameter("Additional_Duplicated_Elements", duplicatedExternalElements);
+				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
+				ICommand command = service.getEditCommand(request);
+				if(command != null) {
+					result.add(command);
+				}
+			}
+		}
+
+		return result.isEmpty() ? null : result.reduce();
 	}
 }
