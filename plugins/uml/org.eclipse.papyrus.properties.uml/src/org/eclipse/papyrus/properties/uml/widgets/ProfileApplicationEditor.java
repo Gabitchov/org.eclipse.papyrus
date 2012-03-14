@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Olivier Mélois (Atos) olivier.melois@atos.net - BUG 373710
  *****************************************************************************/
 package org.eclipse.papyrus.properties.uml.widgets;
 
@@ -136,7 +137,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels);
 
 			profileDialog.open();
-			ArrayList<Profile> profilesToApply = profileDialog.getResult();
+			ArrayList<Profile> profilesToApply = profileDialog.getValidResult();
 
 			Message message = new Message(Messages.ProfileApplicationEditor_WaitMessageTitle, Messages.ProfileApplicationEditor_WaitMessage);
 			message.open();

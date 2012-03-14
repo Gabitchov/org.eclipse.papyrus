@@ -11,6 +11,7 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Emilien Perico (Atos Origin) - fix bug on refresh 
+ *  Olivier Mélois (Atos) olivier.melois@atos.net - BUG 373710
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositesformodel;
@@ -231,7 +232,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels);
 
 			profileDialog.open();
-			ArrayList<Profile> profilestoApply = (ArrayList<Profile>)profileDialog.getResult();
+			ArrayList<Profile> profilestoApply = (ArrayList<Profile>)profileDialog.getValidResult();
 
 			Message message = new Message("Profile application", "Applying profile...");
 			message.open();
