@@ -41,10 +41,7 @@ public class GenericTransformAction extends Action {
 	private static final String ERROR_TITLE = "Impossible to continue transformation.";
 
 	/** message in error dialog */
-	private static final String ERROR_MESSAGE = "The transformation can not continue.\n"
-			+ "Some objects referencing your selection could not be able to reference the result of the transformation.\n"
-			+ "For UML and SysML, applied stereotypes could not be applicable on the result of the transformation.\n"
-			+ "Before performing the transformation please delete or unapply the elements listed bellow.";
+	private static final String ERROR_MESSAGE = "The transformation can not continue.";
 
 	/** title of error dialog */
 	private static final String WARNING_TITLE = "Warning: transformation command";
@@ -113,7 +110,7 @@ public class GenericTransformAction extends Action {
 		} else {
 			ErrorDialog errorDialog = new ErrorDialog(Display.getDefault()
 					.getActiveShell(), ERROR_TITLE, ERROR_MESSAGE, messages,
-					IStatus.WARNING);
+					IStatus.ERROR | IStatus.WARNING);
 			errorDialog.open();
 		}
 	}

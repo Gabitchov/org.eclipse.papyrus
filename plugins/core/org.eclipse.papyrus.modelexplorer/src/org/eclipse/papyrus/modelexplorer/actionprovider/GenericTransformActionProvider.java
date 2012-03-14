@@ -41,6 +41,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.modelexplorer.actions.GenericTransformAction;
 import org.eclipse.papyrus.modelexplorer.actions.GenericTransformer;
 
@@ -96,17 +97,18 @@ public class GenericTransformActionProvider extends
 			if (p instanceof EPackage) {
 				EPackage pack = (EPackage) p;
 				if (pack.getNsPrefix() != null
+						&& extension != null
 						&& extension.toLowerCase().equals(
 								pack.getNsPrefix().toLowerCase())) {
 					addClassifiers(pack, eClassifiers);
-					factories.put(pack.getNsURI(), GenericTransformer
-							.getFactory(pack.getNsURI()));
+					factories.put(pack.getNsURI(),
+							GenericTransformer.getFactory(pack.getNsURI()));
 					List<EPackage> packages = ConverterUtil
 							.computeRequiredPackages(pack);
 					for (EPackage pTmp : packages) {
 						addClassifiers(pTmp, eClassifiers);
-						factories.put(pTmp.getNsURI(), GenericTransformer
-								.getFactory(pTmp.getNsURI()));
+						factories.put(pTmp.getNsURI(),
+								GenericTransformer.getFactory(pTmp.getNsURI()));
 					}
 					break;
 				}
@@ -169,8 +171,14 @@ public class GenericTransformActionProvider extends
 			for (EClassifier descriptor : eClassifiers) {
 				Object selected = ((IStructuredSelection) selection)
 						.getFirstElement();
+				EObject selectedElement = null;
 				if (selected instanceof EObject) {
-					final EObject selectedElement = (EObject) selected;
+					selectedElement = (EObject) selected;
+				} else {
+					selectedElement = NavigatorUtils.getElement(selected,
+							EObject.class);
+				}
+				if (selectedElement != null) {
 					if (descriptor instanceof EClass
 							&& selectedElement.eContainingFeature() != null) {
 						final EClass eclass = (EClass) descriptor;
@@ -186,27 +194,22 @@ public class GenericTransformActionProvider extends
 								eclass, containgType))
 								&& !eclass.equals(selectedElement.eClass())
 								&& !eclass.isAbstract()) {
-							if (selection instanceof IStructuredSelection
-									&& ((IStructuredSelection) selection)
-											.size() == 1) {
 
-								AdapterFactory adapterFactory = factories
-										.get(eclass.getEPackage().getNsURI());
-								Action transformAction = new GenericTransformAction(
-										eclass, adapterFactory, selectedElement);
-								actions.add(transformAction);
-								if (adapterFactory != null) {
-									EObject tmpEobject = eclass.getEPackage()
-											.getEFactoryInstance().create(
-													eclass);
-									IItemLabelProvider provider = (IItemLabelProvider) adapterFactory
-											.adapt(tmpEobject,
-													IItemLabelProvider.class);
-									transformAction
-											.setImageDescriptor(ExtendedImageRegistry.INSTANCE
-													.getImageDescriptor(provider
-															.getImage(tmpEobject)));
-								}
+							AdapterFactory adapterFactory = factories
+									.get(eclass.getEPackage().getNsURI());
+							Action transformAction = new GenericTransformAction(
+									eclass, adapterFactory, selectedElement);
+							actions.add(transformAction);
+							if (adapterFactory != null) {
+								EObject tmpEobject = eclass.getEPackage()
+										.getEFactoryInstance().create(eclass);
+								IItemLabelProvider provider = (IItemLabelProvider) adapterFactory
+										.adapt(tmpEobject,
+												IItemLabelProvider.class);
+								transformAction
+										.setImageDescriptor(ExtendedImageRegistry.INSTANCE
+												.getImageDescriptor(provider
+														.getImage(tmpEobject)));
 							}
 						}
 					}

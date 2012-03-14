@@ -35,9 +35,11 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -297,6 +299,7 @@ public class GenericTransformer {
 											.getDiagram())) {
 								diagramEditPart = ((IDiagramWorkbenchPart) editorPart)
 										.getDiagramEditPart();
+								break;
 							}
 						}
 					}
@@ -321,7 +324,9 @@ public class GenericTransformer {
 						req.setLocation(new Point());
 					}
 					Command partCreationCmd = containerPart.getCommand(req);
-					partCreationCmd.execute();
+					if (partCreationCmd.canExecute()){
+						partCreationCmd.execute();
+					}
 					View newView = null;
 					if (partCreationCmd instanceof ICommandProxy) {
 						CommandResult res = ((ICommandProxy) partCreationCmd)
@@ -409,6 +414,7 @@ public class GenericTransformer {
 	public static HashSet<EClass> getAllSuperTypes(EClass class1) {
 		HashSet<EClass> results = new HashSet<EClass>();
 		results.addAll(class1.getEAllSuperTypes());
+		results.add(EcorePackage.Literals.EOBJECT);
 		return results;
 	}
 
@@ -453,8 +459,18 @@ public class GenericTransformer {
 	 */
 	public MultiStatus isTransformationPossible(EClass eclass) {
 		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, 0,
-				"Type incompatibility", null);
+				"", null);
 		if (element != null) {
+			EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(element);
+			if (domain != null && domain.isReadOnly(element.eResource())) {
+				Status s = new Status(
+						Status.ERROR,
+						Activator.PLUGIN_ID,
+						String.format(
+								"the resource %s is read only, the operation is not applicable",
+								element.eResource().getURI().toString()));
+				result.add(s);
+			}
 			Collection<Setting> usages = PapyrusEcoreUtils.getUsages(element);
 			if (usages != null) {
 				for (EStructuralFeature.Setting nonNavigableInverseReference : usages) {
@@ -475,8 +491,8 @@ public class GenericTransformer {
 									Status.WARNING,
 									Activator.PLUGIN_ID,
 									String.format(
-											"an element typed %s references your selection, we can not assign instead of your selection an object typed %s",
-											econtainer, eclass.getName()));
+											"an element typed %s references your selection, it expects the type %s instead of %s, the operation can not continue",
+											econtainer, structuralFeature.getEType().getName(), eclass.getName()));
 							result.add(s);
 						}
 					}

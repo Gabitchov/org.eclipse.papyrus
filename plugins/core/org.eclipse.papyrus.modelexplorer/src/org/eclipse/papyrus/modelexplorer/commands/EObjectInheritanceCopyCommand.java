@@ -15,6 +15,7 @@ package org.eclipse.papyrus.modelexplorer.commands;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -274,11 +276,12 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	 * @return true, if is compatible
 	 */
 	public static boolean isCompatible(EClassifier type, EClassifier target) {
-		Collection<EClassifier> types = new LinkedList<EClassifier>();
+		Collection<EClassifier> types = new HashSet<EClassifier>();
 		if (target instanceof EClass) {
 			EClass eclass = (EClass) target;
 			types.addAll(eclass.getEAllSuperTypes());
 		}
+		types.add(EcorePackage.Literals.EOBJECT);
 		if (!types.contains(target)) {
 			types.add(target);
 		}
