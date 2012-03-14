@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.papyrus.uml.standard;bundle-version="0.7.0",
  org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0",
- org.eclipse.papyrus.service.edit;bundle-version="0.8.2"
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.2",
+ org.eclipse.papyrus.properties;bundle-version="0.8.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier
