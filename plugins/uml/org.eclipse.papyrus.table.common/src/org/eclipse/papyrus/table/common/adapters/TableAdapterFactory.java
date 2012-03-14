@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenable;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenableWithContainer;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 import com.google.common.base.Function;
@@ -33,7 +34,8 @@ public class TableAdapterFactory implements IAdapterFactory {
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if(adapterType == IOpenable.class) {
 			if (adaptableObject instanceof PapyrusTableInstance){
-				return new IOpenable.Openable(adaptableObject);
+				PapyrusTableInstance papyrusTableInstance = (PapyrusTableInstance)adaptableObject;
+				return new IOpenableWithContainer.Openable(adaptableObject,papyrusTableInstance.getTable().getContext());
 			}
 			if (adaptableObject instanceof TableInstance2){
 				TableInstance2 instance = (TableInstance2)adaptableObject;
@@ -46,7 +48,8 @@ public class TableAdapterFactory implements IAdapterFactory {
 				};
 				Function<Setting, IOpenable> f = new Function<EStructuralFeature.Setting, IOpenable>() {
 					public IOpenable apply(Setting arg0) {
-						return new IOpenable.Openable(arg0.getEObject());
+						PapyrusTableInstance tab = (PapyrusTableInstance)arg0.getEObject();
+						return new IOpenableWithContainer.Openable(arg0.getEObject(),tab.getTable().getContext());
 					}
 				};
 				return Iterables.transform(Iterables.filter(usages, p),f).iterator().next();

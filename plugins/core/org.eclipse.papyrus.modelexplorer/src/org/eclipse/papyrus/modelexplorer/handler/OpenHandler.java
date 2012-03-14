@@ -21,10 +21,8 @@ import java.util.Iterator;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
@@ -36,7 +34,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.modelexplorer.provider.ReferencingLabelProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenable;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
@@ -177,7 +176,8 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 			{
 				ListDialog dialog = new ListDialog(Display.getDefault().getActiveShell());
 				dialog.setContentProvider(new ArrayContentProvider());
-				dialog.setLabelProvider(new MoDiscoLabelProvider());
+				
+				dialog.setLabelProvider(new ReferencingLabelProvider());
 				dialog.setAddCancelButton(true);
 				dialog.setTitle("Element Selection");
 				dialog.setMessage("This element is visible in several diagrams\nPlease choose the diagram to display :");
@@ -248,20 +248,9 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	
 	public static <T> T getAdapter (Object object, Class<T> toAdapt)
 	{
-		T result = null ;
-		if(object instanceof IAdaptable) {
-			IAdaptable iadaptable = (IAdaptable)object;
-			result = (T)iadaptable.getAdapter(toAdapt);
-		}
-		if (result == null)
-		{
-			result = (T)Platform.getAdapterManager().getAdapter(object, toAdapt);
-		}
-		return result ;
+		return NavigatorUtils.getElement(object, toAdapt);
 	}
 	
-	
-
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()

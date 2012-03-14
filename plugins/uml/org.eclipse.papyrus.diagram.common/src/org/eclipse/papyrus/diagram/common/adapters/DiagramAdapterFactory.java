@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.common.adapters;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenable;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.IOpenableWithContainer;
 
 
 public class DiagramAdapterFactory implements IAdapterFactory{
@@ -24,7 +25,8 @@ public class DiagramAdapterFactory implements IAdapterFactory{
 		if (adapterType == IOpenable.class)
 		{
 			if (adaptableObject instanceof Diagram){
-				return new IOpenable.Openable(adaptableObject);
+				Diagram diagram = (Diagram)adaptableObject;
+				return new IOpenableWithContainer.Openable(adaptableObject,diagram.getElement());
 			}
 		}
 		return null;

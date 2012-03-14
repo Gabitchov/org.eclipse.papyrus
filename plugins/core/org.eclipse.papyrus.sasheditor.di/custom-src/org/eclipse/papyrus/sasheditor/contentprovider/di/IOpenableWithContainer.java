@@ -13,23 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.contentprovider.di;
 
-
 /**
- * Interface for adaptation, if instantiated it mean it can be opened
+ * Interface for adaptation, an IOpenable provides the getPageIdentifier to know how to open it
  * @author tfaure
  *
  */
-public interface IOpenable {
-	Object getPageIdentifier() ;
-	static class Openable implements IOpenable
+public interface IOpenableWithContainer extends IOpenable{
+	Object getContainer() ;
+	static class Openable extends IOpenable.Openable implements IOpenableWithContainer
 	{
-		private final Object identifier;
-		public Openable (Object identifier)
+		private final Object container;
+		public Openable (Object identifier, Object container)
 		{
-			this.identifier = identifier;
+			super(identifier);
+			this.container = container;
 		}
-		public Object getPageIdentifier() {
-			return identifier;
+		public Object getContainer() {
+			return container;
 		}
 	}
 }
