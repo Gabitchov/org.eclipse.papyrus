@@ -398,58 +398,60 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			}
 		}
 
-		SetRequest monoRequest=getOrderChangeCommand(getEditingDomain(), objectOwner, objectLocation, objectToMove.get(0), before);
-		if( monoRequest!=null){
-			monoRequestList.add(monoRequest);
+		if (!objectToMove.isEmpty()) {
+			SetRequest monoRequest=getOrderChangeCommand(getEditingDomain(), objectOwner, objectLocation, objectToMove.get(0), before);
+			if( monoRequest!=null){
+				monoRequestList.add(monoRequest);
 
 
-			if( moveNeeded){
-				MoveRequest moveRequest= new MoveRequest(objectOwner, objectToMove);
-				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(moveRequest.getTargetContainer());
+				if( moveNeeded){
+					MoveRequest moveRequest= new MoveRequest(objectOwner, objectToMove);
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(moveRequest.getTargetContainer());
+					if(provider != null) {
+						// Retrieve delete command from the Element Edit service
+						ICommand command = provider.getEditCommand(moveRequest);
+						cc.append(new GMFtoEMFCommandWrapper(command));
+					}
+				}
+
+				ArrayList<EObject>values= new ArrayList<EObject>();
+				if(objectOwner.eGet(monoRequest.getFeature()) instanceof Collection<?>){
+					//get all element of this efeature
+					values.addAll((Collection<EObject>)objectOwner.eGet(monoRequest.getFeature()));
+				}
+				Iterator<EObject>itetToMove= objectToMove.iterator();
+				int nextIndex=1;
+				while(itetToMove.hasNext()) {
+					EObject currentObject = (EObject)itetToMove.next();
+
+					if(objectToMove instanceof List){
+						values.remove(currentObject);
+						if( values.indexOf(objectLocation)==-1||(values.indexOf(objectLocation)+nextIndex)>values.size()){
+							values.add(currentObject);
+						}
+						else if (before){
+							values.add(values.indexOf(objectLocation), currentObject);
+						}
+						else{
+							values.add(values.indexOf(objectLocation)+nextIndex, currentObject);
+							nextIndex++;
+						}
+
+					}
+				}
+
+				//the request is ready to be constructed
+				monoRequest= new SetRequest(monoRequest.getElementToEdit(), monoRequest.getFeature(), values);
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(monoRequest.getElementToEdit());
 				if(provider != null) {
 					// Retrieve delete command from the Element Edit service
-					ICommand command = provider.getEditCommand(moveRequest);
+					ICommand command = provider.getEditCommand(monoRequest);
 					cc.append(new GMFtoEMFCommandWrapper(command));
 				}
+
+
+				result.add(cc);
 			}
-
-			ArrayList<EObject>values= new ArrayList<EObject>();
-			if(objectOwner.eGet(monoRequest.getFeature()) instanceof Collection<?>){
-				//get all element of this efeature
-				values.addAll((Collection<EObject>)objectOwner.eGet(monoRequest.getFeature()));
-			}
-			Iterator<EObject>itetToMove= objectToMove.iterator();
-			int nextIndex=1;
-			while(itetToMove.hasNext()) {
-				EObject currentObject = (EObject)itetToMove.next();
-
-				if(objectToMove instanceof List){
-					values.remove(currentObject);
-					if( values.indexOf(objectLocation)==-1||(values.indexOf(objectLocation)+nextIndex)>values.size()){
-						values.add(currentObject);
-					}
-					else if (before){
-						values.add(values.indexOf(objectLocation), currentObject);
-					}
-					else{
-						values.add(values.indexOf(objectLocation)+nextIndex, currentObject);
-						nextIndex++;
-					}
-
-				}
-			}
-
-			//the request is ready to be constructed
-			monoRequest= new SetRequest(monoRequest.getElementToEdit(), monoRequest.getFeature(), values);
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(monoRequest.getElementToEdit());
-			if(provider != null) {
-				// Retrieve delete command from the Element Edit service
-				ICommand command = provider.getEditCommand(monoRequest);
-				cc.append(new GMFtoEMFCommandWrapper(command));
-			}
-
-
-			result.add(cc);
 		}
 		return result;
 	}
