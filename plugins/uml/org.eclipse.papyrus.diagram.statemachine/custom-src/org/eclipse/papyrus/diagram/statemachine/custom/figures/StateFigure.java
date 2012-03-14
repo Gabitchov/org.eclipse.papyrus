@@ -56,6 +56,9 @@ public class StateFigure extends CompartmentFigure {
 	/** The State Internal Transition Compartment */
 	private final static String INTERNAL_LABEL_COMPARTMENT = "internalLabelCompartment";
 	
+	/** The State Internal Transition Compartment */
+	private final static String INTERNAL_TRANSITION_COMPARTMENT = "internalTransitionCompartment";
+	
 	
 	/** The compartment (do , exit, entry) compartment */
 	private static final String BEHAVIOR_COMPARTMENT = "behaviorCompartment";
@@ -66,10 +69,11 @@ public class StateFigure extends CompartmentFigure {
 		private static final long serialVersionUID = 1L;
 		{
 			add(BEHAVIOR_COMPARTMENT);
+			add(INTERNAL_TRANSITION_COMPARTMENT);
 			add(STATE_COMPARTMENT);
 		}
 	};
-
+	
 	/**
 	 * Default Constructor
 	 */
@@ -171,7 +175,18 @@ public class StateFigure extends CompartmentFigure {
 	public RectangleFigure getStateCompartmentFigure() {
 		return getCompartment(STATE_COMPARTMENT);
 	}
+	
+	/**
+	 * Get the state compartment for internal transitions
+	 * 
+	 * @return
+	 */
+	public RectangleFigure getInternalTransitionStateCompartmentFigure() {
+		return getCompartment(INTERNAL_TRANSITION_COMPARTMENT);
+	}
 
+	
+	
 	/**
 	 * Get the IOnternal State compartment figure
 	 * 

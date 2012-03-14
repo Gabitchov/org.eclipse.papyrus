@@ -17,7 +17,7 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "BehaviorStateCompartment", "StateCompartment" };
+	public static final String compartments[] = { "Internal Behaviors Compartment", "Internal Transitions Compartment", "StateCompartment" };
 
 	/**
 	 * @generated
@@ -77,8 +77,9 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("BehaviorStateCompartment", Boolean.TRUE);
-		map.put("StateCompartment", Boolean.TRUE);
+		map.put("Internal Behaviors Compartment", Boolean.FALSE);
+		map.put("Internal Transitions Compartment", Boolean.FALSE);
+		map.put("StateCompartment", Boolean.FALSE);
 		return map;
 	}
 
@@ -87,7 +88,8 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("BehaviorStateCompartment", Boolean.TRUE);
+		map.put("Internal Behaviors Compartment", Boolean.FALSE);
+		map.put("Internal Transitions Compartment", Boolean.FALSE);
 		return map;
 	}
 

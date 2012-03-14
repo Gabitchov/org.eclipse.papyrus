@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeE
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -806,6 +807,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "State");
 		Node label6001 = createLabel(node, UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StateBehaviorCompartmentEditPart.VISUAL_ID), true, true, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(InternalTransitionsCompartmentEditPart.VISUAL_ID), true, true, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID), false, false, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "State");
 		return node;

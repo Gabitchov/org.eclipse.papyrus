@@ -108,6 +108,12 @@ public class StateEditPart extends NamedElementEditPart {
 			pane.add(((StateBehaviorCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
+		if(childEditPart instanceof InternalTransitionsCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getInternalTransitionStateCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((InternalTransitionsCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
 		if(childEditPart instanceof StateCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -244,6 +250,9 @@ public class StateEditPart extends NamedElementEditPart {
 		if(editPart instanceof StateBehaviorCompartmentEditPart) {
 			return getPrimaryShape().getBehaviorStateCompartmentFigure();
 		}
+		if(editPart instanceof InternalTransitionsCompartmentEditPart) {
+			return getPrimaryShape().getInternalTransitionStateCompartmentFigure();
+		}
 		if(editPart instanceof StateCompartmentEditPart) {
 			return getPrimaryShape().getStateCompartmentFigure();
 		}
@@ -363,6 +372,9 @@ public class StateEditPart extends NamedElementEditPart {
 			if(type == UMLElementTypes.Behavior_692) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateBehaviorCompartmentEditPart.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Transition_680) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InternalTransitionsCompartmentEditPart.VISUAL_ID));
+			}
 		}
 		return super.getTargetEditPart(request);
 	}
@@ -466,6 +478,12 @@ public class StateEditPart extends NamedElementEditPart {
 			IFigure pane = getPrimaryShape().getBehaviorStateCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((StateBehaviorCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof InternalTransitionsCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getInternalTransitionStateCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.remove(((InternalTransitionsCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof StateCompartmentEditPart) {

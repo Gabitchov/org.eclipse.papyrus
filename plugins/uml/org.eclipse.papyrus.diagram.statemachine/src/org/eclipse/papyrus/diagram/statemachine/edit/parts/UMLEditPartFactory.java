@@ -281,6 +281,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new StateCompartmentEditPart(view);
 			case StateBehaviorCompartmentEditPart.VISUAL_ID:
 				return new StateBehaviorCompartmentEditPart(view);
+			case InternalTransitionsCompartmentEditPart.VISUAL_ID:
+				return new InternalTransitionsCompartmentEditPart(view);
 			case TransitionEditPart.VISUAL_ID:
 				return new TransitionEditPart(view);
 			case TransitionNameEditPart.VISUAL_ID:

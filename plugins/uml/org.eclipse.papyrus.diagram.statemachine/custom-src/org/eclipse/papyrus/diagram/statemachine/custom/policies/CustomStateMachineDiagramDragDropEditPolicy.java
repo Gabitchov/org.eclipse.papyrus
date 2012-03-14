@@ -274,7 +274,10 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 					return UnexecutableCommand.INSTANCE;
 				
 				View compartment = (ViewUtil.getChildBySemanticHint(stateView,UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID)));
-				if(!compartment.getChildren().isEmpty())
+				/*
+				 * Correct potential NPE
+				 */
+				if(compartment == null || !compartment.getChildren().isEmpty())
 					//then do not allow the drag and drop on state, this forces the drag and drop on an displayed region (see above)
 					return UnexecutableCommand.INSTANCE;
 

@@ -56,13 +56,13 @@ AbstractStateListener {
 			Object oldObject = notif.getOldValue();
 			CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of one of the behaviros of selected state");//$NON-NLS-0$
 			/**
-			 * Create Command
-			 */
-			getCreationCommand(notif, object, cc);
-			/**
 			 * Delete Command
 			 */
 			getDestroyCommand(oldObject, cc);
+			/**
+			 * Create Command
+			 */
+			getCreationCommand(notif, object, cc);
 			/**
 			 * Refresh layout
 			 * If any problems with layout uncomments following

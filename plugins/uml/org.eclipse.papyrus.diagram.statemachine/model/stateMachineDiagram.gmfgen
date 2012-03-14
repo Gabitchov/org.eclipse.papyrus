@@ -221,8 +221,8 @@
           editPartClassName="StateEditPart"
           itemSemanticEditPolicyClassName="StateItemSemanticEditPolicy"
           canonicalEditPolicyClassName="StateCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.17 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
-          compartments="/0/@diagram/@compartments.3 /0/@diagram/@compartments.2"
+          childNodes="/0/@diagram/@childNodes.20 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
+          compartments="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.2"
           graphicalNodeEditPolicyClassName="StateGraphicalNodeEditPolicy"
           createCommandClassName="StateCreateCommand"
           containers="/0/@diagram/@compartments.0">
@@ -1632,6 +1632,7 @@
           canonicalEditPolicyClassName="InternalTransitionCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="InternalTransitionGraphicalNodeEditPolicy"
           createCommandClassName="InternalTransitionCreateCommand"
+          containers="/0/@diagram/@compartments.4"
           labelReadOnly="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1693,7 +1694,7 @@
           canonicalEditPolicyClassName="EntryStateBehaviorCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="EntryStateBehaviorGraphicalNodeEditPolicy"
           createCommandClassName="EntryStateBehaviorCreateCommand"
-          containers="/0/@diagram/@childNodes.2 /0/@diagram/@compartments.3">
+          containers="/0/@diagram/@compartments.3">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -2306,13 +2307,38 @@
           itemSemanticEditPolicyClassName="StateBehaviorCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="StateBehaviorCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19"
-          title="BehaviorStateCompartment"
+          title="Internal Behaviors Compartment"
+          hideIfEmpty="false"
           node="/0/@diagram/@childNodes.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getBehaviorStateCompartmentFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="6004"
+          editPartClassName="InternalTransitionsCompartmentEditPart"
+          itemSemanticEditPolicyClassName="InternalTransitionsCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="InternalTransitionsCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.16"
+          title="Internal Transitions Compartment"
+          hideIfEmpty="false"
+          node="/0/@diagram/@childNodes.2">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getInternalTransitionStateCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2755,5 +2781,15 @@
         genView="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
         name="UMLNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentVisibilityPreference"
+        comment="Set vibility to false"
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:CompartmentTitleVisibilityPreference"
+        comment=""
+        visibleByDefault="false"
+        compartments="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

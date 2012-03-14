@@ -24,6 +24,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPar
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -152,10 +154,10 @@ public class UMLVisualIDRegistry {
 			if(StateBehaviorCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(StateCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(InternalTransitionsCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(EntryStateBehaviorEditPart.VISUAL_ID == nodeVisualID) {
+			if(StateCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(StateDeferredTriggerEditPart.VISUAL_ID == nodeVisualID) {
@@ -349,6 +351,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case InternalTransitionsCompartmentEditPart.VISUAL_ID:
+			if(InternalTransitionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case TransitionEditPart.VISUAL_ID:
 			if(TransitionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -459,9 +466,6 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case StateEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_690(containerView, (Behavior)domainElement)) {
-				return EntryStateBehaviorEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getTrigger().isSuperTypeOf(domainElement.eClass())) {
 				return StateDeferredTriggerEditPart.VISUAL_ID;
 			}
@@ -552,6 +556,11 @@ public class UMLVisualIDRegistry {
 				return ExitStateBehaviorEditPart.VISUAL_ID;
 			}
 			break;
+		case InternalTransitionsCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
+				return InternalTransitionEditPart.VISUAL_ID;
+			}
+			break;
 		}
 		return -1;
 	}
@@ -623,8 +632,8 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(668, ViewInfo.Node, "Constraint");
 		root.addNode(3002, viewInfo);
 		viewInfo = new BaseViewInfo(680, ViewInfo.Node, "Transition");
+		root.addNode(6004, viewInfo);
 		viewInfo = new BaseViewInfo(690, ViewInfo.Node, "Behavior");
-		root.addNode(6000, viewInfo);
 		root.addNode(6003, viewInfo);
 		viewInfo = new BaseViewInfo(691, ViewInfo.Node, "Behavior");
 		root.addNode(6003, viewInfo);

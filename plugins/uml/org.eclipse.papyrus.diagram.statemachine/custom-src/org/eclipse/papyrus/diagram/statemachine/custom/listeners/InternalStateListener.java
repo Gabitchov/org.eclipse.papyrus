@@ -14,42 +14,60 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.listeners;
 
-import java.util.Collections;
+import java.util.NoSuchElementException;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
+import org.eclipse.papyrus.diagram.common.util.predicates.ViewTypePredicate;
+import org.eclipse.papyrus.diagram.statemachine.custom.commands.CreateViewCommand;
+import org.eclipse.papyrus.diagram.statemachine.custom.commands.HideShowCompartmentIfEmptyCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterators;
+
 /**
  * Listen the feature TRANSITION__KIND in order to change the apparence of an internal transition
+ * 
  * @author adaussy
- *
+ * 
  */
 public class InternalStateListener extends AbstractPapyrusModifcationTriggerListener {
 
+	private static final String UNABLE_TO_RETREIVE_THE_STATE_EDIT_PART = "Unable to retreive the state edit part";
+
 	protected NotificationFilter filter;
-	
+
 	@Override
 	public NotificationFilter getFilter() {
-		if (filter == null){
+		if(filter == null) {
 			filter = NotificationFilter.createFeatureFilter(UMLPackage.Literals.TRANSITION__KIND);
 		}
 		return filter;
@@ -60,31 +78,31 @@ public class InternalStateListener extends AbstractPapyrusModifcationTriggerList
 		Object newValue = notif.getNewValue();
 		Object notifier = notif.getNotifier();
 		if(newValue instanceof TransitionKind && notifier instanceof EObject) {
+			/*
+			 * If set to local nothing has to be done
+			 */
+			if(TransitionKind.LOCAL_LITERAL.equals((TransitionKind)newValue)) {
+				return null;
+			}
 			CompositeCommand cc = new CompositeCommand("Modification command triggered by modedication of the kind of the current selected transition");//$NON-NLS-0$
 			EObject eNotifier = (EObject)notifier;
 			//Handle deletion of the old EditPart
 			boolean becomingInternal = isBecomingInternal(notif);
-			IGraphicalEditPart availableEditPart = getChildByEObject(eNotifier, getDiagramEditPart(), becomingInternal);
-			//If there no current representation nothing has to be done
-			if(availableEditPart == null) {
-				return null;
-			}
-			Command deleteCommant = getDeleteCommand(becomingInternal, availableEditPart);
+			ICommand deleteCommant = getDeleteCommand(becomingInternal, eNotifier);
 			if(deleteCommant != null && deleteCommant.canExecute()) {
-				cc.compose(new CommandProxy(deleteCommant));
+				cc.compose(deleteCommant);
 			}
 			//handle addition of the new EditPart
-			 ICommand creationCommaned = getCreationCommand(becomingInternal, eNotifier);
-			if(creationCommaned != null && creationCommaned.canExecute()) {
-				cc.compose(creationCommaned);
+			ICommand creationCommand = getCreationCommand(becomingInternal, eNotifier);
+			if(creationCommand != null && creationCommand.canExecute()) {
+				cc.compose(creationCommand);
 			}
 			
 			return cc;
 		}
-
 		return null;
 	}
-
+	
 	/**
 	 * Return true if the the current feature indicate that the new value of the feature is {@link TransitionKind#INTERNAL}
 	 * 
@@ -98,71 +116,150 @@ public class InternalStateListener extends AbstractPapyrusModifcationTriggerList
 			return TransitionKind.INTERNAL_LITERAL.equals(newKind);
 		}
 		return false;
-
 	}
 
 	/**
-	 * Get the command to delete the old EditPart
+	 * Delete the old represenation of the transition
 	 * 
 	 * @param isBecomingInternal
-	 *        Boolean true if transition is going to kind X -> Internal
-	 * @param availableEditPart
-	 *        Existing editpart of the transition
+	 * @param eObject
 	 * @return
 	 */
-	private Command getDeleteCommand(boolean isBecomingInternal, IGraphicalEditPart availableEditPart) {
-		if(isBecomingInternal) {
-			//Get the old transition editpart
-			if(!(availableEditPart instanceof TransitionEditPart)) {
-				return null;
-			}
-		} else {
-			if(!(availableEditPart instanceof InternalTransitionEditPart)) {
-				return null;
+	private ICommand getDeleteCommand(boolean isBecomingInternal, EObject eObject) {
+		Iterable<View> viewToDelete = getReferencingView(eObject, new ViewTypePredicate(getFactoryHint(!isBecomingInternal)));
+		CompositeCommand cc = new CompositeCommand("Delete views representing the transition in its old state");////$NON-NLS-1$
+		for(View v : viewToDelete) {
+			DestroyElementRequest request = new DestroyElementRequest(v, false);
+			DestroyElementPapyrusCommand destroyCommand = new DestroyElementPapyrusCommand(request);
+			if(destroyCommand != null && destroyCommand.canExecute()) {
+				cc.compose(destroyCommand);
 			}
 		}
-		Request request = new GroupRequest(RequestConstants.REQ_DELETE);
-		((GroupRequest)request).setEditParts(availableEditPart);
-		return availableEditPart.getCommand(request);
+		return cc.reduce();
 	}
 
-	private ICommand getCreationCommand(boolean isBecomingInternal, EObject eNotifier) {
+	protected String getFactoryHint(boolean isBecomingInternal) {
+		return UMLVisualIDRegistry.getType(isBecomingInternal ? InternalTransitionEditPart.VISUAL_ID : TransitionEditPart.VISUAL_ID);
+	}
+
+	protected int getCompartmentID(boolean isBecomingInternal) {
+		return isBecomingInternal ? InternalTransitionsCompartmentEditPart.VISUAL_ID : RegionCompartmentEditPart.VISUAL_ID;
+	}
+	/**
+	 * Get the command to create the new views
+	 */
+	private ICommand getCreationCommand(final boolean isBecomingInternal, EObject eNotifier) {
 		//		IGraphicalEditPart
 		if(eNotifier instanceof Transition) {
-			Transition transition = (Transition)eNotifier;
-			IGraphicalEditPart dropTarget = null;
-			dropTarget = getChildByEObject(transition.getSource(), getDiagramEditPart(), isBecomingInternal);
-			if(isBecomingInternal) {
-				dropTarget = getChildByEObject(transition.getSource(), getDiagramEditPart(), false);
-			} else {
-				//get the region
-				dropTarget = getChildByEObject(transition.getContainer(), getDiagramEditPart(), false);
-				//get the compartment
-				dropTarget = dropTarget.getChildBySemanticHint(String.valueOf(RegionCompartmentEditPart.VISUAL_ID));
-			}
-			if(dropTarget != null) {
-				CompositeCommand cc = new CompositeCommand("Add transition drop request command");
-				
-				Request request = new DropObjectsRequest();
-				((DropObjectsRequest)request).setLocation(new Point(1, 1));
-				((DropObjectsRequest)request).setObjects(Collections.singletonList(transition));
-				Command command = dropTarget.getCommand(request);
-				if (command != null){
-					cc.compose(new CommandProxy(command));
+			final Transition transition = (Transition)eNotifier;
+			Iterable<View> newContainerViews = getReferencingView(transition.getSource(), new ViewTypePredicate(UMLVisualIDRegistry.getType(StateEditPart.VISUAL_ID)));
+			 
+			/*
+			 * Create IElementType adapter
+			 */
+			EObjectAdapter transitionAdapter = createIElementTypeAdapter(isBecomingInternal, transition);
+			ViewDescriptor descriptor = new ViewDescriptor(transitionAdapter, isBecomingInternal ? Node.class : Edge.class, getFactoryHint(isBecomingInternal), UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+			CompositeCommand cc = new CompositeCommand("Create transition view");////$NON-NLS-1$
+			for(View containerView : newContainerViews) {
+				EditingDomain editinDomain = AdapterFactoryEditingDomain.getEditingDomainFor(transition);
+				if(editinDomain instanceof TransactionalEditingDomain) {
+					CreateViewCommand createViewCommand = new CreateViewCommand((TransactionalEditingDomain)editinDomain, descriptor, isBecomingInternal ? ViewUtil.getChildBySemanticHint(containerView, UMLVisualIDRegistry.getType(getCompartmentID(isBecomingInternal))) : containerView.getDiagram());
+					SetConnectionEndsCommand setConnexionEndCommand = null;
+					if(!isBecomingInternal) {
+						setConnexionEndCommand = getCreateConnexionCommand(transition, descriptor, containerView, editinDomain, setConnexionEndCommand);
+					}
+					if(createViewCommand != null && createViewCommand.canExecute()) {
+						cc.compose(createViewCommand);
+						if(setConnexionEndCommand != null) {
+							cc.compose(setConnexionEndCommand);
+						}
+					}
 				}
-				/**
-				 * Refresh layout
-				 */
-				ChangeBoundsRequest chReq = new ChangeBoundsRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_REFRESH);
-				chReq.setEditParts(dropTarget);
-				chReq.setMoveDelta(new Point(0, 0));
-				Command cmd3 = dropTarget.getCommand(chReq);
-				if(cmd3 != null && cmd3.canExecute()) {
-					cc.compose(new CommandProxy(cmd3));
-				}
-				return cc;
 			}
+			for(View containerView : newContainerViews) {
+				EditingDomain editinDomain = AdapterFactoryEditingDomain.getEditingDomainFor(transition);
+				if(editinDomain instanceof TransactionalEditingDomain) {
+					HideShowCompartmentIfEmptyCommand hideCommand = new HideShowCompartmentIfEmptyCommand((TransactionalEditingDomain)editinDomain, "Hide/show compartment",ViewUtil.getChildBySemanticHint(containerView, UMLVisualIDRegistry.getType(InternalTransitionsCompartmentEditPart.VISUAL_ID)));
+					if (hideCommand.canExecute()){
+						cc.compose(hideCommand);
+					}
+				}
+			}
+			return cc;
 		}
 		return null;
+	}
+
+	/**
+	 * Get the command to create the edge ( case is not becoming internal)
+	 * 
+	 * @param transition
+	 * @param descriptor
+	 * @param containerView
+	 * @param editinDomain
+	 * @param setConnexionEndCommand
+	 * @return
+	 */
+	protected SetConnectionEndsCommand getCreateConnexionCommand(final Transition transition, ViewDescriptor descriptor, View containerView, EditingDomain editinDomain, SetConnectionEndsCommand setConnexionEndCommand) {
+		try {
+			EObject stateView = getStateView(transition, containerView);
+			if(stateView != null) {
+				setConnexionEndCommand = new SetConnectionEndsCommand((TransactionalEditingDomain)editinDomain, "Set source/target of the transition");////$NON-NLS-1$							
+				setConnexionEndCommand.setEdgeAdaptor(descriptor);
+				setConnexionEndCommand.setNewSourceAdaptor(new EObjectAdapter(stateView));
+				setConnexionEndCommand.setNewTargetAdaptor(new EObjectAdapter(stateView));
+			} else {
+				throw new RuntimeException(UNABLE_TO_RETREIVE_THE_STATE_EDIT_PART);////$NON-NLS-1$
+			}
+		} catch (NoSuchElementException e) {
+			throw new RuntimeException(UNABLE_TO_RETREIVE_THE_STATE_EDIT_PART);////$NON-NLS-1$
+		}
+		return setConnexionEndCommand;
+	}
+
+	/**
+	 * Retrieve the state view (source and/or target of the transition)
+	 * 
+	 * @param transition
+	 * @param containerView
+	 * @return
+	 */
+	protected EObject getStateView(final Transition transition, View containerView) {
+		if (containerView!= null && containerView.getElement() != null && containerView.getElement().equals(transition.getSource())){
+			return containerView;
+		}
+		return Iterators.find( containerView.eAllContents(), new Predicate<EObject>() {
+
+			public boolean apply(EObject input) {
+				if(input instanceof View) {
+					View v = (View)input;
+					EObject object = v.getElement();
+					if(object != null && object.equals(transition.getSource()) && v.getType().equals(StateEditPart.VISUAL_ID)) {
+						return true;
+					}
+				}
+				return false;
+			}
+		});
+	}
+
+	/**
+	 * Create an {@link IElementType} adapter to create a corresponding transation representation
+	 * 
+	 * @param isBecomingInternal
+	 * @param transition
+	 * @return
+	 */
+	protected EObjectAdapter createIElementTypeAdapter(final boolean isBecomingInternal, final Transition transition) {
+		return new EObjectAdapter(transition) {
+
+			@Override
+			public Object getAdapter(Class adapter) {
+				if(IElementType.class.equals(adapter)) {
+					return UMLElementTypes.getElementType(isBecomingInternal ? InternalTransitionEditPart.VISUAL_ID : TransitionEditPart.VISUAL_ID);
+				}
+				return super.getAdapter(adapter);
+			}
+		};
 	}
 }

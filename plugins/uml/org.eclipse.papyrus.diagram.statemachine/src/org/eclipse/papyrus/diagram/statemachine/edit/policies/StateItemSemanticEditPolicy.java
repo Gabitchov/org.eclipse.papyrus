@@ -27,7 +27,6 @@ import org.eclipse.papyrus.diagram.statemachine.edit.commands.CommentAnnotatedEl
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.ConnectionPointReferenceCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.diagram.statemachine.edit.commands.EntryStateBehaviorCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.RegionCreateCommand;
@@ -40,6 +39,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConstraintConstrained
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.InternalTransitionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
@@ -70,11 +71,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
-			case EntryStateBehaviorEditPart.VISUAL_ID:
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
-				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
-				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
-				break;
 			case StateDeferredTriggerEditPart.VISUAL_ID:
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
@@ -211,6 +207,18 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 					}
 				}
 				break;
+			case InternalTransitionsCompartmentEditPart.VISUAL_ID:
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+					case InternalTransitionEditPart.VISUAL_ID:
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					}
+				}
+				break;
 			case StateCompartmentEditPart.VISUAL_ID:
 				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
@@ -289,9 +297,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Behavior_690 == req.getElementType()) {
-			return getGEFWrapper(new EntryStateBehaviorCreateCommand(req));
-		}
 		if(UMLElementTypes.Trigger_693 == req.getElementType()) {
 			return getGEFWrapper(new StateDeferredTriggerCreateCommand(req));
 		}
