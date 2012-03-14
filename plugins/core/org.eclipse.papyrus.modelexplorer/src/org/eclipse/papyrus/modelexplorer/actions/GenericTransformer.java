@@ -35,11 +35,13 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -458,6 +460,7 @@ public class GenericTransformer {
 	 * @return the multi status
 	 */
 	public MultiStatus isTransformationPossible(EClass eclass) {
+		ComposedAdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, 0,
 				"", null);
 		if (element != null) {
@@ -484,15 +487,15 @@ public class GenericTransformer {
 							String econtainer = structuralFeature.eContainer() instanceof EClassifier ? ((EClassifier) structuralFeature
 									.eContainer()).getName()
 									+ " ( "
-									+ nonNavigableInverseReference.getEObject()
-											.toString() + " )"
+									+ new ReflectiveItemProvider(factory).getText(nonNavigableInverseReference.getEObject())
+											 + ")"
 									: structuralFeature.eContainer().toString();
 							Status s = new Status(
 									Status.WARNING,
 									Activator.PLUGIN_ID,
 									String.format(
-											"an element typed %s references your selection, it expects the type %s instead of %s, the operation can not continue",
-											econtainer, structuralFeature.getEType().getName(), eclass.getName()));
+											"the relation %s defined in %s references your selection, it expects the type %s instead of %s, the operation can not continue",
+											structuralFeature.getName(),econtainer, structuralFeature.getEType().getName(), eclass.getName()));
 							result.add(s);
 						}
 					}
