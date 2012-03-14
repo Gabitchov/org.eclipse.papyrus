@@ -23,10 +23,12 @@ import org.junit.runners.Suite.SuiteClasses;
 	AllCreationLinkTests.class,
 	AllCreationCustomNodeTests.class,
 	AllCreationInheritedNodeTests.class,
+	AllDropLinkTests.class,
 	AllDropNodeTests.class,
 	AllDropInheritedTests.class,
 	AllAlternateDropTests.class,
-	AllDropLinkTests.class
+	AllReorientLinkTests.class,
+	AllSetEncapsulationTests.class
 })
 public class AllTests {
 

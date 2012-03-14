@@ -150,6 +150,13 @@ public class TestPrepareUtils {
 			}
 			createElementRequest.getParameters().put(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), GMFCommandUtils.getCommandEObjectResult(createTypeCommand)));
 				
+		} else if (elementType == UMLElementTypes.PROPERTY) {
+			
+			// If container is a Property, substitute container by the Property type
+			if (container instanceof Property) {
+				container = ((Property) container).getType();
+				createElementRequest.setContainer(container);
+			}				
 		}
 		
 		ICommand createElementCommand = ElementEditServiceUtils.getCommandProvider(container).getEditCommand(createElementRequest);
@@ -158,12 +165,12 @@ public class TestPrepareUtils {
 		return GMFCommandUtils.getCommandEObjectResult(createElementCommand);
 	}
 
-	public static void setBlockEncapsulated(final Element block) throws Exception {
+	public static void setBlockIsEncapsulated(final Element block, final boolean isEncapsulated) throws Exception {
 		AbstractTransactionalCommand setCommand = new AbstractTransactionalCommand(getTransactionalEditingDomain(), "Set Block isEncapsulated", null) {
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Block blockApp = UMLUtil.getStereotypeApplication(block, Block.class);
-				blockApp.setIsEncapsulated(true);
+				blockApp.setIsEncapsulated(isEncapsulated);
 				return CommandResult.newOKCommandResult(block);
 			}
 		};

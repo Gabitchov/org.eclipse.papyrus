@@ -20,12 +20,10 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 
-	AllCreationInheritedLinkTests.class,
-	
 	AllCreationConnectorTests.class,
 	AllCreationConnectorWithEncapsulatedPartTests.class,
-	
-	AllCreationDependencyTests.class
+	AllCreationDependencyTests.class,
+	AllCreationInheritedLinkTests.class,
 
 	})
 public class AllCreationLinkTests {

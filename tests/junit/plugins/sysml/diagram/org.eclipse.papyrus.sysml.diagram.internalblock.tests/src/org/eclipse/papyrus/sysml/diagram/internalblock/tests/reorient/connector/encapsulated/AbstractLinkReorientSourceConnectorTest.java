@@ -25,6 +25,6 @@ public class AbstractLinkReorientSourceConnectorTest extends org.eclipse.papyrus
 
 	@BeforeClass
 	public static void setPartBlockEncapsulated() throws Exception {
-		TestPrepareUtils.setBlockEncapsulated((Element) (partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type())));
+		TestPrepareUtils.setBlockIsEncapsulated((Element) (partContainer1.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type())), true);
 	}
 }

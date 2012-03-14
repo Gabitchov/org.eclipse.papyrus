@@ -24,6 +24,7 @@ import static org.junit.Assert.fail;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -54,7 +55,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.commands.ActionHandler;
@@ -62,6 +65,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.gmf.diagram.common.commands.SelectAndExecuteCommand;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.blocks.Block;
+import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
@@ -71,9 +78,8 @@ import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -405,21 +411,20 @@ public class TestUtils {
 							defaultExecutionTest(tgtCommand);
 
 							// Retrieve created object via nested ElementAndViewCreationRequest.
-							CreateConnectionViewAndElementRequest subRequest = (CreateConnectionViewAndElementRequest)createRequest.getAllRequests().get(0);
-
-							// Specific case for comment - constraint link button
-							if("internalblock.tool.comment_constraint_link".equals(toolId)) {
-								if(sourceView.getElement() instanceof Comment) {
-									subRequest = (CreateConnectionViewAndElementRequest)createRequest.getAllRequests().get(0);
-								} else if(sourceView.getElement() instanceof Constraint) {
-									subRequest = (CreateConnectionViewAndElementRequest)createRequest.getAllRequests().get(1);
-								} else {
-									return null;
-								}
+							View newView = null;				
+							Iterator<?> it = createRequest.getAllRequests().iterator();
+							while(it.hasNext() && newView == null) {
+								CreateConnectionViewAndElementRequest subRequest = (CreateConnectionViewAndElementRequest) it.next();
+								newView = (View)subRequest.getConnectionViewDescriptor().getAdapter(View.class);
 							}
-
-							View newView = (View)subRequest.getConnectionViewDescriptor().getAdapter(View.class);
-							return newView.getElement();
+							
+							
+							if (newView != null) {
+								return newView.getElement();
+							} else {
+								fail("No edge seem to have been created.");
+							}
+								
 						}
 
 						// Test the results then
@@ -557,6 +562,39 @@ public class TestUtils {
 		}
 	}
 
+	public static void setEncapsulationDeleteConnectorTest(Element block, View sourceView, View targetView, boolean canCreateConnector, boolean isConnectorDestroyExpected) throws Exception {
+		
+		if (! canCreateConnector) {
+			return; // abort
+		}
+		
+		// Make sure the block is not encapsulated before Connector creation.
+		TestPrepareUtils.setBlockIsEncapsulated(block, false);
+		
+		// Create connector
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) createEdgeFromPalette("internalblock.tool.connector", sourceView, targetView, true, true);
+		
+		// Prepare set encapsulated command and execute (with undo, re-do).
+		Block blockApp = UMLUtil.getStereotypeApplication(block, Block.class);
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(blockApp);
+		if (provider == null) { fail("Could not get IElementEditService for Block stereotype application."); }
+		
+		IEditCommandRequest setEncapsulationRequest = new SetRequest(getTransactionalEditingDomain(), blockApp, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
+		ICommand setEncapsulationCommand = provider.getEditCommand(setEncapsulationRequest);
+		defaultExecutionTest(new ICommandProxy(setEncapsulationCommand));
+		
+		// Test if the Connector have been destroyed
+		if (isConnectorDestroyExpected) {			
+			if (connector.eResource() != null) { // connector destroyed has no container 
+				fail("Connector was expected to be destroyed.");
+			}
+		} else {
+			if (connector.eResource() == null) { // connector destroyed has no container 
+				fail("Connector was not expected to be destroyed.");
+			}
+		}
+	}
+	
 	/**
 	 * Copy the list of objects into the Clipboard
 	 * 
