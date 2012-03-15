@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -41,6 +41,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
@@ -117,11 +118,15 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		if((editPart instanceof PackagePackageableElementCompartmentEditPartCN) || (editPart instanceof PackagePackageableElementCompartmentEditPart)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
+
 		}
 
 		if((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPartTN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
+
 		}
 
 		if((editPart instanceof PackageEditPart) || (editPart instanceof PackageEditPartCN)) {

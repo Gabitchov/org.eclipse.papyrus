@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
+ * Copyright (c) 2010-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -27,6 +27,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
@@ -127,6 +128,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());
+			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 		}
 
 		if(editPart instanceof BlockCompositeEditPart) {
@@ -136,6 +138,8 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 
 		if(editPart instanceof StructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new StructureClassifierDropEditPolicy());
+			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
+
 		}
 
 		if(editPart instanceof DependencyEditPart) {

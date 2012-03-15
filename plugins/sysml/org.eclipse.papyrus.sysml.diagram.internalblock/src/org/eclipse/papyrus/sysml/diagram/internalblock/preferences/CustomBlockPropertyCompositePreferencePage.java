@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -88,6 +88,8 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
+		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 200);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 100);
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE| DISP_UNDEFINED_TYPE);
 		// End of user code
 		
