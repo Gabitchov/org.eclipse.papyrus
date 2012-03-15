@@ -142,7 +142,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 
 			// Apply selected profile if ok was selected
 			if(Dialog.OK == returnValue) {
-				return (ArrayList<Profile>)profileDialog.getValidResult();
+				return (ArrayList<Profile>)profileDialog.getResult();
 			} else {
 				new ArrayList<Profile>();
 			}

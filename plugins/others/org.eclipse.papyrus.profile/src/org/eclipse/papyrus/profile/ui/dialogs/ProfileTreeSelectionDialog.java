@@ -15,7 +15,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.dialogs;
 
-import java.rmi.activation.Activator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,9 +31,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.PopupBuilder;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
@@ -143,6 +142,7 @@ public class ProfileTreeSelectionDialog extends ElementImportTreeSelectionDialog
 								validProfiles.add(profile);
 							} else {
 								invalidProfiles.add(profile);
+								Activator.logError(diagnostic.toString());
 							}
 						};
 					}
