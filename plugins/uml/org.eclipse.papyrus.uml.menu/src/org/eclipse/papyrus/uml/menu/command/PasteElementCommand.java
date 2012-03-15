@@ -91,6 +91,27 @@ public class PasteElementCommand extends AbstractCommand {
 				}
 			}
 
+			// 2b retrieve now the original stereotype application
+			List<EObject> originalStereotypeApplications = new ArrayList<EObject>();
+			Iterator<EObject> selecIterator = eobjectsTopaste.iterator();
+			while(selecIterator.hasNext()) {
+				EObject eObject = selecIterator.next();
+
+				if(eObject instanceof Element) {
+					originalStereotypeApplications.addAll(((Element)eObject).getStereotypeApplications());
+				}
+				//copy stereotype contained into
+				Iterator<EObject> iter = eObject.eAllContents();
+				while(iter.hasNext()) {
+					EObject subeObject = (EObject)iter.next();
+					if(subeObject instanceof Element) {
+						originalStereotypeApplications.addAll(((Element)subeObject).getStereotypeApplications());
+					}
+
+				}
+			}
+			eobjectsTopaste.addAll(originalStereotypeApplications);
+
 			//3. Copy all eObjects (inspired from PasteFromClipboardCommand)
 			// Collection<EObject> duplicatedObject = EcoreUtil.copyAll(eobjectsTopaste);
 			EcoreUtil.Copier copier = new EcoreUtil.Copier();
@@ -111,12 +132,23 @@ public class PasteElementCommand extends AbstractCommand {
 				}
 				//functionality that comes from UML2 plugins
 				Stereotype st = UMLUtil.getStereotype(eObject);
-				if(st != null) {
-					stereotypeApplicationTopaste.add(eObject);
-				} else if(isaUMLElement) {
+				if(isaUMLElement && !originalStereotypeApplications.contains(eObject)) {
 					eobjectTopaste.add(eObject);
 				}
 			}
+
+			// 4b retrieve stereotypeapplications to paste
+			Iterator<EObject> stereotypeIterator = originalStereotypeApplications.listIterator();
+			while(stereotypeIterator.hasNext()) {
+				EObject originalStereotypeApp = stereotypeIterator.next();
+				EObject duplicateStereotype = duplicatedObjects.get(originalStereotypeApp);
+				if(duplicateStereotype == null) {
+					Activator.log.debug("warning a stereotype could not be copied/paste : " + originalStereotypeApp);
+				} else {
+					stereotypeApplicationTopaste.add(duplicateStereotype);
+				}
+			}
+
 			this.targetOwner = targetOwner;
 
 			//5. prepare the move command to move UML element to their new owner
@@ -130,7 +162,7 @@ public class PasteElementCommand extends AbstractCommand {
 					isaUMLElement = true;
 				}
 				//functionality that comes from UML2 plugins
-				if((UMLUtil.getStereotype(eObject) == null) && isaUMLElement) {
+				if((isaUMLElement && !originalStereotypeApplications.contains(eObject))) {// UML element, but not a stereotype => should be moved
 					// this is one of the original elements to paste, not a stereotype.
 					// the copy of this one should be moved
 					EObject copyObject = duplicatedObjects.get(eObject);

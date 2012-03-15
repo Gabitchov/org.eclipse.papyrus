@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.menu.handler;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.AbstractCommand.NonDirtying;
@@ -25,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AbstractOverrideableCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * Handler for the Copy Action
@@ -48,24 +46,24 @@ public class CopyHandler extends AbstractEMFCommandHandler {
 		if(editingDomain != null && !selection.isEmpty()) {
 			final Collection<Object> stereotypedSelection = new ArrayList<Object>();
 			stereotypedSelection.addAll(getSelectedElements());
-			Iterator<EObject> selecIterator = selection.iterator();
-			while(selecIterator.hasNext()) {
-				EObject eObject = (EObject)selecIterator.next();
-
-				if(eObject instanceof Element) {
-					stereotypedSelection.addAll(((Element)eObject).getStereotypeApplications());
-				}
-				//copy stereotype contained into
-				Iterator<EObject> iter = eObject.eAllContents();
-				while(iter.hasNext()) {
-					EObject subeObject = (EObject)iter.next();
-					if(subeObject instanceof Element) {
-						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
-					}
-
-				}
-
-			}
+			//			Iterator<EObject> selecIterator = selection.iterator();
+			//			while(selecIterator.hasNext()) {
+			//				EObject eObject = (EObject)selecIterator.next();
+			//
+			//				if(eObject instanceof Element) {
+			//					stereotypedSelection.addAll(((Element)eObject).getStereotypeApplications());
+			//				}
+			//				//copy stereotype contained into
+			//				Iterator<EObject> iter = eObject.eAllContents();
+			//				while(iter.hasNext()) {
+			//					EObject subeObject = (EObject)iter.next();
+			//					if(subeObject instanceof Element) {
+			//						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+			//					}
+			//
+			//				}
+			//
+			//			}
 
 			return new PutInClipboardCommand(editingDomain, stereotypedSelection);
 			//return CopyToClipboardCommand.create(getEditingDomain(), stereotypedSelection);
