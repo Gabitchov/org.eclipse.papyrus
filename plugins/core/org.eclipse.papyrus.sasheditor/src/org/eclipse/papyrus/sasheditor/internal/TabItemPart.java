@@ -102,12 +102,14 @@ public class TabItemPart {
 	 * @param modelPart
 	 */
 	protected void resetChild(PagePart newChild) {
-		childPart.orphan();
-		newChild.reparent(parent);
-		childPart = newChild;
-		setItemControl(childPart.getControl());
-
-		refreshTabDecorations();
+		if (newChild != null){			
+			childPart.orphan();
+			newChild.reparent(parent);
+			childPart = newChild;
+			setItemControl(childPart.getControl());
+			
+			refreshTabDecorations();
+		}
 	}
 
 	/**
