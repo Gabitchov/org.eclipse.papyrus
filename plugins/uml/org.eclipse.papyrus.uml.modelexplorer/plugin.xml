@@ -30,14 +30,14 @@
                </instanceof>
             </or>
          </possibleChildren>
-         <actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
+         <!--<actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
             <enablement>
                <or>
                   <adapt type="org.eclipse.emf.ecore.EObject">
                   </adapt>
                </or>
             </enablement>
-         </actionProvider>
+         </actionProvider>-->
          <actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider">
             <enablement>
                <and>
