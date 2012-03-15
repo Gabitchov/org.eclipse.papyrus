@@ -62,11 +62,13 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Pin;
@@ -213,11 +215,13 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		XMIResource xmiResource = null;
 		if(callAction instanceof CallOperationAction) {
 			CallOperationAction callOperationAction = (CallOperationAction)callAction;
-			xmiResource = PinAndParameterSynchronizer.getXMIResource(callOperationAction);
+			Operation operation = callOperationAction.getOperation();
+			xmiResource = operation!=null?PinAndParameterSynchronizer.getXMIResource(operation):null;
 			operationArgument = Lists.newArrayList(callOperationAction.getOperation().getOwnedParameters());
 		} else if(callAction instanceof CallBehaviorAction) {
 			CallBehaviorAction callBehaviorAction = (CallBehaviorAction)callAction;
-			xmiResource = PinAndParameterSynchronizer.getXMIResource(callBehaviorAction);
+			Behavior behavior = callBehaviorAction.getBehavior();
+			xmiResource = behavior!=null?PinAndParameterSynchronizer.getXMIResource(behavior):null;
 			operationArgument = Lists.newArrayList(callBehaviorAction.getBehavior().getOwnedParameters());
 		}
 		if(operationArgument == null) {
