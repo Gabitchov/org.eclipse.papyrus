@@ -21,8 +21,8 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.properties.util.EMFHelper; // Too bad it is located in oep.properties...
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.EMFUtil;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 
@@ -53,7 +53,7 @@ public class PackageEditHelperAdvice extends AbstractEditHelperAdvice {
 				// The association is bidirectional. Check if that is possible.
 				
 				// The target can be read-only only if the association is directed.
-				if (EMFHelper.isReadOnly(target)) {
+				if (EMFUtil.isReadOnly(target)) {
 					return UnexecutableCommand.INSTANCE;
 				}
 				// association should be directed to the actor. In this case, the property is owned by the association, not by the actor
