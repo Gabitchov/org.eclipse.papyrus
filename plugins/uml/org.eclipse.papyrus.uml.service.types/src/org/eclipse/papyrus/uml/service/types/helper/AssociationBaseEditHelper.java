@@ -1,20 +1,17 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
-
-import java.util.Arrays;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -25,7 +22,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.AssociationReorientCommand;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -119,9 +119,13 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 		}
 
 		// Propose a container if none is set in request.
-		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{ source, target }), UMLPackage.eINSTANCE.getPackage());
-		req.setContainer(proposedContainer);
-
+		//EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{ source, target }), UMLPackage.eINSTANCE.getPackage());
+		View sourceView = (View)req.getParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW);
+		if (sourceView != null) {
+			Diagram diagram = sourceView.getDiagram();
+			EObject proposedContainer = EMFCoreUtil.getContainer(diagram.getElement(), UMLPackage.Literals.PACKAGE);
+			req.setContainer(proposedContainer);
+		}
 		return new CreateRelationshipCommand(req);
 	}
 

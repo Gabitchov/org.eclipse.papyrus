@@ -13,20 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
 import org.eclipse.papyrus.uml.service.types.helper.advice.AbstractStereotypedElementEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.utils.EMFUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -99,5 +108,39 @@ public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
+	}
+	
+	@Override
+	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
+		// test if the creation is for a SysML association
+
+		IElementType type = request.getElementType();
+		if(hasSuperType(type, SysMLElementTypes.ASSOCIATION)) {
+			// test source and target...
+			EObject source = request.getSource();
+			// The source of an association cannot be read-only.
+			if (EMFUtil.isReadOnly(source)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
+		return super.getBeforeCreateRelationshipCommand(request);
+	}
+	
+	protected boolean hasSuperType(IElementType elementType, IElementType typeToTest) {
+		if(elementType == null || typeToTest == null) {
+			return false;
+		}
+
+		if(elementType.equals(typeToTest)) {
+			return true;
+		}
+
+		List<IElementType> superTypes = Arrays.asList(elementType.getAllSuperTypes());
+			if(superTypes.contains(typeToTest)) {
+				return true;
+			}
+
+		return false;
 	}
 }
