@@ -1,15 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -32,7 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.ConnectorReorientCommand;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -103,7 +102,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
 
-		if(!noSourceAndTarget && !canCreate(source, target, getSourceView(req), getTargetView(req))) {
+		if(!noSourceAndTarget && !canCreate(source, target, RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req))) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -115,7 +114,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 		}
 
 		// Propose a semantic container for the new Connector.
-		StructuredClassifier proposedContainer = deduceContainer(getSourceView(req), getTargetView(req));
+		StructuredClassifier proposedContainer = deduceContainer(RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req));
 		if(proposedContainer == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -162,7 +161,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 	 */
 	private Property getSourcePartWithPort(IEditCommandRequest req) {
 		Property result = null;
-		View parentView = ViewUtil.getContainerView(getSourceView(req));
+		View parentView = ViewUtil.getContainerView(RequestParameterUtils.getSourceView(req));
 		EObject semanticParent = parentView.getElement();
 		if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
 			result = (Property)semanticParent;
@@ -178,31 +177,13 @@ public class ConnectorEditHelper extends ElementEditHelper {
 	 */
 	private Property getTargetPartWithPort(IEditCommandRequest req) {
 		Property result = null;
-		View parentView = ViewUtil.getContainerView(getTargetView(req));
+		View parentView = ViewUtil.getContainerView(RequestParameterUtils.getTargetView(req));
 		EObject semanticParent = parentView.getElement();
 		if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
 			result = (Property)semanticParent;
 		}
 
 		return result;
-	}
-
-	/**
-	 * This method provides the source graphical view provided as {@link ConfigureRequest} parameter.
-	 * 
-	 * @return the source view
-	 */
-	private View getSourceView(IEditCommandRequest req) {
-		return (View)req.getParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW);
-	}
-
-	/**
-	 * This method provides the target graphical view provided as {@link ConfigureRequest} parameter.
-	 * 
-	 * @return the target view
-	 */
-	private View getTargetView(IEditCommandRequest req) {
-		return (View)req.getParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_TARGET_VIEW);
 	}
 
 	/**
@@ -227,15 +208,11 @@ public class ConnectorEditHelper extends ElementEditHelper {
 
 				// Add source connector end
 				ConnectorEnd sourceEnd = UMLFactory.eINSTANCE.createConnectorEnd();
-				sourceEnd.setLower(1);
-				sourceEnd.setUpper(1);
 				sourceEnd.setRole(sourceRole);
 				sourceEnd.setPartWithPort(sourcePartWithPort);
 
 				// Add target connector end
 				ConnectorEnd targetEnd = UMLFactory.eINSTANCE.createConnectorEnd();
-				targetEnd.setLower(1);
-				targetEnd.setUpper(1);
 				targetEnd.setRole(targetRole);
 				targetEnd.setPartWithPort(targetPartWithPort);
 

@@ -1,11 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper.advice;
@@ -72,8 +75,6 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 	protected Property createSourceProperty(Type targetType) {
 
 		Property sourceProperty = UMLFactory.eINSTANCE.createProperty();
-		sourceProperty.setLower(1);
-		sourceProperty.setUpper(1);
 		sourceProperty.setType(targetType);
 		sourceProperty.setName(targetType.getName().toLowerCase());
 
@@ -90,8 +91,6 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 	protected Property createTargetProperty(Type sourceType) {
 
 		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
-		targetProperty.setLower(1);
-		targetProperty.setUpper(1);
 		targetProperty.setType(sourceType);
 		targetProperty.setName(sourceType.getName().toLowerCase());
 

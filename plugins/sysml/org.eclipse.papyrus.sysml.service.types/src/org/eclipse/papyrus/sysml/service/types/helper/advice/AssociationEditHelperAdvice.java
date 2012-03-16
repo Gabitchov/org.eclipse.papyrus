@@ -47,7 +47,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -151,7 +151,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest req) {
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
-		List<EObject> dependentsToKeep = (req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP) != null) ? (List<EObject>)req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP) : new ArrayList<EObject>();
+		List<EObject> dependentsToKeep = (RequestParameterUtils.getDependentsToKeep(req) != null) ? RequestParameterUtils.getDependentsToKeep(req) : new ArrayList<EObject>();
 
 		Association association = (Association)req.getElementToDestroy();
 		for(Property end : association.getMemberEnds()) {
@@ -186,15 +186,14 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Retrieve re-oriented association and add it to the list of re-factored elements
 		Association association = (Association)request.getRelationship();
-		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>)request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) : new ArrayList<EObject>();
+		List<EObject> currentlyRefactoredElements = (RequestParameterUtils.getAssociationRefactoredElements(request) != null) ? RequestParameterUtils.getAssociationRefactoredElements(request) : new ArrayList<EObject>();
 
 		if(currentlyRefactoredElements.contains(association)) {
 			// Abort - already treated 
 			return null;
 
 		} else {
-			currentlyRefactoredElements.add(association);
-			request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
+			RequestParameterUtils.addAssociationRefactoredElement(request, association);
 		}
 
 		// not possible to have an association on another association, so reorient is forbidden here 
@@ -282,7 +281,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		@SuppressWarnings("unchecked")
 		Collection<View> associationViews = EMFCoreUtil.getReferencers(association, refs);
 
-		View currentlyReorientedView = (View)request.getParameter(RequestParameterConstants.GRAPHICAL_RECONNECTED_EDGE);
+		View currentlyReorientedView = RequestParameterUtils.getReconnectedEdge(request);
 		viewsToDestroy.addAll(associationViews);
 		viewsToDestroy.remove(currentlyReorientedView);
 

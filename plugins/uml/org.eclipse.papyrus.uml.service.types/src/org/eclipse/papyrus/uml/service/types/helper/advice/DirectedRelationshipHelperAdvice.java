@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
+ * Copyright (c) 2010-2012 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.DirectedRelationship;
 
 /**
@@ -66,7 +66,7 @@ public class DirectedRelationshipHelperAdvice extends AbstractEditHelperAdvice {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		// Find Views that are referencing current DirectedRelationship
-		View currentlyReorientedView = (View)request.getParameter(RequestParameterConstants.GRAPHICAL_RECONNECTED_EDGE);
+		View currentlyReorientedView = RequestParameterUtils.getReconnectedEdge(request);
 		viewsToDestroy.addAll(CrossReferencerUtil.getCrossReferencingViews(relationship, null));
 		viewsToDestroy.remove(currentlyReorientedView);
 

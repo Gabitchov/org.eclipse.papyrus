@@ -1824,12 +1824,6 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.MessageEnd">
 	</adviceBinding>
 	
-	<!-- Helper advice for MultiplicityElement multiplicity initialization -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.MultiplicityElementMultiplicityInitializerHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.MultiplicityElement">
-	</adviceBinding>
-	
 	<!-- Helper advice for NamedElement -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.NamedElement"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementHelperAdvice"
@@ -2125,7 +2119,6 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
 		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />
-		<advice ref="org.eclipse.papyrus.uml.advice.MultiplicityElementMultiplicityInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NamedElement" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NamedElementNameInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />

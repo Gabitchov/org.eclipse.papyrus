@@ -48,6 +48,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ClassifierUtils;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -100,8 +101,6 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	protected Property createSourceProperty(Type targetType) {
 
 		Property sourceProperty = UMLFactory.eINSTANCE.createProperty();
-		sourceProperty.setLower(1);
-		sourceProperty.setUpper(1);
 		sourceProperty.setType(targetType);
 		sourceProperty.setName(targetType.getName().toLowerCase());
 
@@ -118,8 +117,6 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	protected Property createTargetProperty(Type sourceType) {
 
 		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
-		targetProperty.setLower(1);
-		targetProperty.setUpper(1);
 		targetProperty.setType(sourceType);
 		targetProperty.setName(sourceType.getName().toLowerCase());
 
@@ -391,7 +388,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		@SuppressWarnings("unchecked")
 		Collection<View> associationViews = EMFCoreUtil.getReferencers(association, refs);
 
-		View currentlyReorientedView = (View)request.getParameter(RequestParameterConstants.GRAPHICAL_RECONNECTED_EDGE);
+		View currentlyReorientedView = RequestParameterUtils.getReconnectedEdge(request);
 		viewsToDestroy.addAll(associationViews);
 		viewsToDestroy.remove(currentlyReorientedView);
 

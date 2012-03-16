@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.command;
@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -57,8 +57,8 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
 		newEnd = request.getNewRelationshipEnd();
-		newEndView = (View)request.getParameter(RequestParameterConstants.EDGE_REORIENT_REQUEST_END_VIEW);
-		reorientedEdgeView = (Edge)request.getParameter(RequestParameterConstants.GRAPHICAL_RECONNECTED_EDGE);
+		reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(request);
+		newEndView = RequestParameterUtils.getReconnectedEndView(request);
 	}
 
 	/**
@@ -232,19 +232,19 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	 * 
 	 * @return the new {@link Connector} end graphical parent.
 	 */
-	protected Element getNewEndParent() {
-		EObject parent = ViewUtil.getContainerView(newEndView).getElement();
+	protected Element getEndParent(View endView) {
+		EObject parent = ViewUtil.getContainerView(endView).getElement();
 		return (parent instanceof Element) ? (Element)parent : null;
 	}
 
 	/**
-	 * Get the new {@link Connector} end graphical parent.
+	 * Get the new {@link Connector} end part with port.
 	 * 
-	 * @return the new {@link Connector} end graphical parent.
+	 * @return the new {@link Connector} end part with port.
 	 */
 	private Property getNewPartWithPort() {
 		Property partWithPort = null;
-		Element newEndParent = getNewEndParent();
+		Element newEndParent = getEndParent(newEndView);
 
 		if((newEndParent != null) && (newEndParent instanceof Property) && !(newEndParent instanceof Port)) {
 			partWithPort = (Property)newEndParent;
