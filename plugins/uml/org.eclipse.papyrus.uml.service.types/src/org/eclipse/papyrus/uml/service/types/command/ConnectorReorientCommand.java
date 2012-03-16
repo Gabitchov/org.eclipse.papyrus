@@ -17,12 +17,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -47,7 +50,11 @@ public class ConnectorReorientCommand extends EditElementCommand {
 
 	private final View newEndView;
 
+	private final View oppositeEndView;
+
 	private final Edge reorientedEdgeView;
+
+	private ConnectorUtils utils = new ConnectorUtils();
 
 	/**
 	 * Constructor.
@@ -59,6 +66,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		newEnd = request.getNewRelationshipEnd();
 		reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(request);
 		newEndView = RequestParameterUtils.getReconnectedEndView(request);
+		oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
 	}
 
 	/**
@@ -73,76 +81,44 @@ public class ConnectorReorientCommand extends EditElementCommand {
 			return false;
 		}
 
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			return canReorientSource();
-		}
-
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			return canReorientTarget();
-		}
-
-		return false;
+		return canReorient(newEndView, oppositeEndView);
 	}
 
-	/**
-	 * <pre>
-	 * This method test if the {@link Connector} can be re-oriented to a new source.
-	 * </pre>
-	 * 
-	 * @return true if the link end can be re-oriented to a new source
-	 */
-	protected boolean canReorientSource() {
+	private boolean canReorient(View newEndView, View oppositeEndView) {
+		
 		// Verify possible type of new source
-		if(!(getNewSource() instanceof ConnectableElement)) {
+		if((newEndView.getElement() == null) || !(newEndView.getElement() instanceof ConnectableElement)) {
 			return false;
 		}
 
-		if((reorientedEdgeView.getTarget() != null) && (newEndView != null)) {
+		if((newEndView != null) && (oppositeEndView != null)) {
 			// Cannot create a self connector on a view
-			if(reorientedEdgeView.getTarget() == newEndView) {
+			if(newEndView == oppositeEndView) {
 				return false;
 			}
 
-			// Cannot create a connector from a view to its own (or the opposite)
-			if((reorientedEdgeView.getTarget().getChildren().contains(newEndView)) || (newEndView.getChildren().contains(reorientedEdgeView.getTarget()))) {
+			// Cannot create a connector from a view representing a Part to its own Port (or the opposite)
+			if((newEndView.getChildren().contains(oppositeEndView)) || (oppositeEndView.getChildren().contains(newEndView))) {
 				return false;
 			}
-		}
-
-		if(deduceContainer(reorientedEdgeView.getTarget(), newEndView) == null) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * <pre>
-	 * This method test if the {@link Connector} can be re-oriented to a new target.
-	 * </pre>
-	 * 
-	 * @return true if the link end can be re-oriented to a new target
-	 */
-	protected boolean canReorientTarget() {
-		// Verify possible type of new target
-		if(!(getNewTarget() instanceof ConnectableElement)) {
-			return false;
-		}
-
-		if((reorientedEdgeView.getSource() != null) && (newEndView != null)) {
-			// Cannot create a self connector on a view
-			if(reorientedEdgeView.getSource() == newEndView) {
+			
+			// Cannot connect two Port owned by the same view
+			if ((newEndView.getElement() instanceof Port) && (oppositeEndView.getElement() instanceof Port)) {
+				if (ViewUtil.getContainerView(newEndView) == ViewUtil.getContainerView(oppositeEndView)) {
+					return false;
+				}
+			}
+			
+			// Cannot connect a Part to one of its (possibly indirect) containment, must connect to one of its Port.
+			if (utils.getStructureContainers(newEndView).contains(oppositeEndView) 
+				|| utils.getStructureContainers(oppositeEndView).contains(newEndView)) {
 				return false;
 			}
-
-			// Cannot create a connector from a view to its own (or the opposite)
-			if((reorientedEdgeView.getSource().getChildren().contains(newEndView)) || (newEndView.getChildren().contains(reorientedEdgeView.getSource()))) {
+			
+			// Ensure container can be deduced
+			if(deduceContainer(newEndView, oppositeEndView) == null) {
 				return false;
 			}
-		}
-
-		if(deduceContainer(reorientedEdgeView.getSource(), newEndView) == null) {
-			return false;
 		}
 
 		return true;
@@ -152,13 +128,25 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
+
+		EObject oldOwner = getLink().eContainer();
+
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+			StructuredClassifier newOwner = deduceContainer(reorientedEdgeView.getTarget(), newEndView);
+			if (oldOwner != newOwner) {
+				replaceOwner(getLink(), newOwner);
+			}
 			return reorientSource();
 		}
+		
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+			StructuredClassifier newOwner = deduceContainer(reorientedEdgeView.getSource(), newEndView);
+			if (oldOwner != newOwner) {
+				replaceOwner(getLink(), newOwner);
+			}
 			return reorientTarget();
 		}
-
+		
 		throw new IllegalStateException();
 	}
 
@@ -166,19 +154,22 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		// Nothing to do here on the connector itself, the connector end remains
 		// the same but related to new Port or PartWithPort.
 		ConnectorEnd reorientedEnd = getLink().getEnds().get(0);
-		return reorientEnd(reorientedEnd, (ConnectableElement)getNewSource(), getNewPartWithPort());
+		ConnectorEnd oppositeEnd = getLink().getEnds().get(1);
+		return reorientEnd(reorientedEnd, oppositeEnd, (ConnectableElement)getNewSource(), getNewPartWithPort(), getNewOppositePartWithPort());
 	}
 
 	protected CommandResult reorientTarget() throws ExecutionException {
 		// Nothing to do here on the connector itself, the connector end remains
 		// the same but related to new Port or PartWithPort.		
 		ConnectorEnd reorientedEnd = getLink().getEnds().get(1);
-		return reorientEnd(reorientedEnd, (ConnectableElement)getNewTarget(), getNewPartWithPort());
+		ConnectorEnd oppositeEnd = getLink().getEnds().get(0);
+		return reorientEnd(reorientedEnd, oppositeEnd, (ConnectableElement)getNewTarget(), getNewPartWithPort(), getNewOppositePartWithPort());
 	}
 
-	private CommandResult reorientEnd(ConnectorEnd end, ConnectableElement role, Property partWithPort) throws ExecutionException {
+	private CommandResult reorientEnd(ConnectorEnd end, ConnectorEnd oppositeEnd, ConnectableElement role, Property partWithPort, Property oppositePartWithPort) throws ExecutionException {
 		end.setRole(role);
 		end.setPartWithPort(partWithPort);
+		oppositeEnd.setPartWithPort(oppositePartWithPort);
 		return CommandResult.newOKCommandResult();
 	}
 
@@ -237,6 +228,16 @@ public class ConnectorReorientCommand extends EditElementCommand {
 		return (parent instanceof Element) ? (Element)parent : null;
 	}
 
+	private void replaceOwner(Connector connector, StructuredClassifier newOwner) {
+		// Change owner and Connector name (possibly already exists in new container)
+		if (newOwner.getOwnedConnector(connector.getName()) != null) {
+			String replacementName = NamedElementHelper.getDefaultNameWithIncrementFromBase("connector", newOwner.eContents()); // //$NON-NLS-0$
+			connector.setName(replacementName);
+		}
+		// Replace connector owner
+		newOwner.getOwnedConnectors().add(connector);
+	}
+	
 	/**
 	 * Get the new {@link Connector} end part with port.
 	 * 
@@ -245,55 +246,41 @@ public class ConnectorReorientCommand extends EditElementCommand {
 	private Property getNewPartWithPort() {
 		Property partWithPort = null;
 		Element newEndParent = getEndParent(newEndView);
-
-		if((newEndParent != null) && (newEndParent instanceof Property) && !(newEndParent instanceof Port)) {
-			partWithPort = (Property)newEndParent;
+		if(newEnd instanceof Port) {
+			// Only look for PartWithPort if the role is a Port.
+			
+			if((newEndParent != null) && (newEndParent instanceof Property) && !(newEndParent instanceof Port)) {
+				// Only add PartWithPort for assembly (not for delegation)
+				if(!EcoreUtil.isAncestor(ViewUtil.getContainerView(newEndView), oppositeEndView)) {
+					partWithPort = (Property)newEndParent;
+				}
+			}
 		}
 		return partWithPort;
 	}
 
-
 	/**
-	 * Tries to find a common StructuredClassifier container to add the new Connector.
+	 * Get the new {@link Connector} opposite end part with port.
 	 * 
-	 * @param source
-	 *        the source graphical view
-	 * @param target
-	 *        the target graphical view
-	 * @return a common StructuredClassifier container (graphical search)
+	 * @return the new {@link Connector} opposite end part with port.
 	 */
-	private StructuredClassifier deduceContainer(View source, View target) {
-
-		StructuredClassifier containerProposedBySource = proposedContainer(source);
-		StructuredClassifier containerProposedByTarget = proposedContainer(target);
-
-		StructuredClassifier deducedContainer = null;
-
-		if((containerProposedBySource != null) && (containerProposedByTarget != null)) {
-			if(containerProposedBySource == containerProposedByTarget) {
-				deducedContainer = containerProposedBySource;
+	private Property getNewOppositePartWithPort() {
+		Property partWithPort = null;
+		Element oppositeEndParent = getEndParent(oppositeEndView);
+		if(oppositeEndView.getElement() instanceof Port) {
+			// Only look for PartWithPort if the role is a Port.
+				
+			if((oppositeEndParent != null) && (oppositeEndParent instanceof Property) && !(oppositeEndParent instanceof Port)) {
+				// Only add PartWithPort for assembly (not for delegation)
+				if(!EcoreUtil.isAncestor(ViewUtil.getContainerView(oppositeEndView), newEndView)) {
+					partWithPort = (Property)oppositeEndParent;
+				}
 			}
 		}
-
-		return deducedContainer;
+		return partWithPort;
 	}
-
-	/**
-	 * Parse view hierarchy to find a view representing a StructureClassifier is found.
-	 * 
-	 * @param view
-	 *        the graphical view
-	 * @return null or a StructuredClassifier represented by the view or one of its parent
-	 */
-	private StructuredClassifier proposedContainer(View view) {
-
-		for(View currentView = view; currentView != null; currentView = ViewUtil.getContainerView(currentView)) {
-			EObject semanticElement = currentView.getElement();
-			if(semanticElement instanceof StructuredClassifier) {
-				return (StructuredClassifier)semanticElement;
-			}
-		}
-
-		return null;
+			
+	private StructuredClassifier deduceContainer(View source, View target) {
+		return new ConnectorUtils().deduceContainer(source, target);
 	}
 }

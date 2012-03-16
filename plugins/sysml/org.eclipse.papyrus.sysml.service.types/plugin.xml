@@ -401,6 +401,18 @@
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Classifier">
 	</adviceBinding>
 	
+	<!-- Helper advice for Block (To deal with owned SysML Connector = Connector owned by a Block) -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.BlockConnector"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.BlockConnectorEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.Block">
+	</adviceBinding>
+		
+	<!-- Helper advice for Connector (SysML Connector = Connector owned by a Block) -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Connector"
+		class="org.eclipse.papyrus.sysml.service.types.helper.advice.ConnectorEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Connector">
+	</adviceBinding>
+	
 	<!-- Helper advice for Property (Manage SysML association refactor during set type) -->
 	<adviceBinding id="org.eclipse.papyrus.sysml.advice.Property"
 		class="org.eclipse.papyrus.sysml.service.types.helper.advice.PropertyEditHelperAdvice"
@@ -796,6 +808,20 @@
 	</metamodel>
 </extension>
 
+<!-- Helper advice declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks">
+		
+	<!-- Helper advice for Block (Stereotype application) -->
+	<adviceBinding id="org.eclipse.papyrus.sysml.stereotype.advice.Block"
+		class="org.eclipse.papyrus.sysml.service.types.stereotype.helper.advice.BlockEditHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.sysml.stereotype.Block">
+	</adviceBinding>	
+
+	</metamodel>
+</extension>
+
 <!-- SysML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
@@ -896,11 +922,16 @@
 		<elementType ref="org.eclipse.papyrus.sysml.Verify" />
 		<elementType ref="org.eclipse.papyrus.sysml.View" />
 		<elementType ref="org.eclipse.papyrus.sysml.ViewPoint" />
+		
+		<!-- Advice bindings declaration -->
 		<advice ref="org.eclipse.papyrus.sysml.advice.ConstraintBlockPropertyHelperAdvice" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Classifier" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.BlockConnector" />
+		<advice ref="org.eclipse.papyrus.sysml.advice.Connector" />		
 		<advice ref="org.eclipse.papyrus.sysml.advice.Property" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Package" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Actor" />
+		<advice ref="org.eclipse.papyrus.sysml.stereotype.advice.Block" />	
 
 	</binding>
 	

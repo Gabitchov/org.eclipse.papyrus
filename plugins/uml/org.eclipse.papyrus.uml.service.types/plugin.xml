@@ -1776,6 +1776,12 @@
 		inheritance="none" typeId="org.eclipse.papyrus.uml.CollaborationUse">
 	</adviceBinding>
 	
+	<!-- Helper advice for Connector -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Connector"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectorHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Connector">
+	</adviceBinding>
+		
 	<!-- Helper advice for ConnectorEnd -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.ConnectorEnd"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectorEndHelperAdvice"
@@ -1852,6 +1858,12 @@
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.Property"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+	
+	<!-- Helper advice for StructuredClassifier -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.StructuredClassifier"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.StructuredClassifierHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.StructuredClassifier">
 	</adviceBinding>
 	
 	</metamodel>
@@ -2137,6 +2149,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
 		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Connector" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.ConnectorEnd" />
 		<advice ref="org.eclipse.papyrus.uml.advice.DirectedRelationship" />
 		<advice ref="org.eclipse.papyrus.uml.advice.EncapsulatedClassifier" />
@@ -2150,7 +2163,8 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Property" />
-
+		<advice ref="org.eclipse.papyrus.uml.advice.StructuredClassifier" />
+		
 		<!-- Stereotype application declaration -->
 		
 			<!-- Standard L2 -->			

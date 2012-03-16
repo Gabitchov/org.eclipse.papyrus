@@ -13,10 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -31,6 +34,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.ConnectorReorientCommand;
+import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -86,6 +90,18 @@ public class ConnectorEditHelper extends ElementEditHelper {
 			if((sourceView.getChildren().contains(targetView)) || (targetView.getChildren().contains(sourceView))) {
 				return false;
 			}
+
+			// Cannot connect two Port owned by the same view
+			if((sourceView.getElement() instanceof Port) && (targetView.getElement() instanceof Port)) {
+				if(ViewUtil.getContainerView(sourceView) == ViewUtil.getContainerView(targetView)) {
+					return false;
+				}
+			}
+
+			// Cannot connect a Part to one of its (possibly indirect) containment, must connect to one of its Port.
+			if(getStructureContainers(sourceView).contains(targetView) || getStructureContainers(targetView).contains(sourceView)) {
+				return false;
+			}
 		}
 
 		return true;
@@ -114,7 +130,7 @@ public class ConnectorEditHelper extends ElementEditHelper {
 		}
 
 		// Propose a semantic container for the new Connector.
-		StructuredClassifier proposedContainer = deduceContainer(RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req));
+		StructuredClassifier proposedContainer = deduceContainer(req);
 		if(proposedContainer == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -161,12 +177,19 @@ public class ConnectorEditHelper extends ElementEditHelper {
 	 */
 	private Property getSourcePartWithPort(IEditCommandRequest req) {
 		Property result = null;
-		View parentView = ViewUtil.getContainerView(RequestParameterUtils.getSourceView(req));
-		EObject semanticParent = parentView.getElement();
-		if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
-			result = (Property)semanticParent;
-		}
+		if(getSourceRole(req) instanceof Port) {
+			// Only look for PartWithPort if the role is a Port.
 
+			View parentView = ViewUtil.getContainerView(RequestParameterUtils.getSourceView(req));
+			EObject semanticParent = parentView.getElement();
+			if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
+				// Only add PartWithPort for assembly (not for delegation)
+				if(!EcoreUtil.isAncestor(parentView, RequestParameterUtils.getTargetView(req))) {
+					result = (Property)semanticParent;
+				}
+			}
+
+		}
 		return result;
 	}
 
@@ -177,10 +200,18 @@ public class ConnectorEditHelper extends ElementEditHelper {
 	 */
 	private Property getTargetPartWithPort(IEditCommandRequest req) {
 		Property result = null;
-		View parentView = ViewUtil.getContainerView(RequestParameterUtils.getTargetView(req));
-		EObject semanticParent = parentView.getElement();
-		if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
-			result = (Property)semanticParent;
+		if(getTargetRole(req) instanceof Port) {
+			// Only look for PartWithPort if the role is a Port.
+
+			View parentView = ViewUtil.getContainerView(RequestParameterUtils.getTargetView(req));
+			EObject semanticParent = parentView.getElement();
+			if((semanticParent instanceof Property) && !(semanticParent instanceof Port)) {
+				// Only add PartWithPort for assembly (not for delegation)
+				if(!EcoreUtil.isAncestor(parentView, RequestParameterUtils.getSourceView(req))) {
+					result = (Property)semanticParent;
+				}
+			}
+
 		}
 
 		return result;
@@ -226,47 +257,11 @@ public class ConnectorEditHelper extends ElementEditHelper {
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 
-	/**
-	 * Tries to find a common StructuredClassifier container to add the new Connector.
-	 * 
-	 * @param source
-	 *        the source graphical view
-	 * @param target
-	 *        the target graphical view
-	 * @return a common StructuredClassifier container (graphical search)
-	 */
-	private StructuredClassifier deduceContainer(View source, View target) {
-
-		StructuredClassifier containerProposedBySource = proposedContainer(source);
-		StructuredClassifier containerProposedByTarget = proposedContainer(target);
-
-		StructuredClassifier deducedContainer = null;
-
-		if((containerProposedBySource != null) && (containerProposedByTarget != null)) {
-			if(containerProposedBySource == containerProposedByTarget) {
-				deducedContainer = containerProposedBySource;
-			}
-		}
-
-		return deducedContainer;
+	private StructuredClassifier deduceContainer(CreateRelationshipRequest request) {
+		return new ConnectorUtils().deduceContainer(RequestParameterUtils.getSourceView(request), RequestParameterUtils.getTargetView(request));
 	}
 
-	/**
-	 * Parse view hierarchy to find a view representing a StructureClassifier is found.
-	 * 
-	 * @param view
-	 *        the graphical view
-	 * @return null or a StructuredClassifier represented by the view or one of its parent
-	 */
-	private StructuredClassifier proposedContainer(View view) {
-
-		for(View currentView = view; currentView != null; currentView = ViewUtil.getContainerView(currentView)) {
-			EObject semanticElement = currentView.getElement();
-			if(semanticElement instanceof StructuredClassifier) {
-				return (StructuredClassifier)semanticElement;
-			}
-		}
-
-		return null;
+	private List<View> getStructureContainers(View view) {
+		return new ConnectorUtils().getStructureContainers(view);
 	}
 }
