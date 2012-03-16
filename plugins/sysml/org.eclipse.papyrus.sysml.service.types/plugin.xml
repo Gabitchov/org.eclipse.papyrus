@@ -422,12 +422,442 @@
 	</metamodel>
 </extension>
 
+<!-- SysML ModelElements package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements">
+	
+	<!-- Declaration of IElementTypes -->
+	
+	<!-- IMetamodelType for Conform (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Conform" name="SysML::Stereotype::Conform"
+		eclass="Conform"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Conform"/>
+	</metamodelType>
+
+	<!-- IMetamodelType for View (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.View" name="SysML::Stereotype::View"
+		eclass="View"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::View"/>
+	</metamodelType>
+	
+		<!-- IMetamodelType for ViewPoint (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ViewPoint" name="SysML::Stereotype::ViewPoint"
+		eclass="ViewPoint"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ViewPoint"/>
+	</metamodelType>
+	
+		<!-- IMetamodelType for Rationale (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Rationale" name="SysML::Stereotype::Rationale"
+		eclass="Rationale"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Rationale"/>
+	</metamodelType>
+	
+		<!-- IMetamodelType for Problem (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Problem" name="SysML::Stereotype::Problem"
+		eclass="Problem"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Problem"/>
+	</metamodelType>	
+	
+	</metamodel>
+</extension>
+	
+<!-- SysML Blocks package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks">
+	
+	<!-- Declaration of IElementTypes -->
+		
+	<!-- IMetamodelType for Block (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Block" name="SysML::Stereotype::Block"
+		eclass="Block"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Block"/>
+	</metamodelType>
+
+	<!-- IMetamodelType for DistributedProperty (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.DistributedProperty" name="SysML::Stereotype::DistributedProperty"
+		eclass="DistributedProperty"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::DistributedProperty"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Dimension (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Dimension" name="SysML::Stereotype::Dimension"
+		eclass="Dimension"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Dimension"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Unit (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Unit" name="SysML::Stereotype::Unit"
+		eclass="Unit"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Unit"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ValueType (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ValueType" name="SysML::Stereotype::ValueType"
+		eclass="ValueType"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ValueType"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for NestedConnectorEnd (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.NestedConnectorEnd" name="SysML::Stereotype::NestedConnectorEnd"
+		eclass="NestedConnectorEnd"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::NestedConnectorEnd"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ParticipantProperty (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ParticipantProperty" name="SysML::Stereotype::ParticipantProperty"
+		eclass="ParticipantProperty"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ParticipantProperty"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConnectorProperty (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ConnectorProperty" name="SysML::Stereotype::ConnectorProperty"
+		eclass="ConnectorProperty"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ConnectorProperty"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for BindingConnector (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.BindingConnector" name="SysML::Stereotype::BindingConnector"
+		eclass="BindingConnector"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::BindingConnector"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for PropertySpecificType (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.PropertySpecificType" name="SysML::Stereotype::PropertySpecificType"
+		eclass="PropertySpecificType"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::PropertySpecificType"/>
+	</metamodelType>	
+	
+	</metamodel>
+</extension>
+
+<!-- SysML PortAndFlows package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows">
+	
+	<!-- Declaration of IElementTypes -->
+		
+	<!-- IMetamodelType for FlowPort (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.FlowPort" name="SysML::Stereotype::FlowPort"
+		eclass="FlowPort"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::FlowPort"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for FlowProperty (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.FlowProperty" name="SysML::Stereotype::FlowProperty"
+		eclass="FlowProperty"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::FlowProperty"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for FlowSpecification (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.FlowSpecification" name="SysML::Stereotype::FlowSpecification"
+		eclass="FlowSpecification"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::FlowSpecification"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ItemFlow (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ItemFlow" name="SysML::Stereotype::ItemFlow"
+		eclass="ItemFlow"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ItemFlow"/>
+	</metamodelType>
+			
+	</metamodel>
+</extension>
+
+<!-- SysML Constraints package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints">
+	
+	<!-- Declaration of IElementTypes -->
+		
+	<!-- IMetamodelType for ConstraintBlock (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ConstraintBlock" name="SysML::Stereotype::ConstraintBlock"
+		eclass="ConstraintBlock"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ConstraintBlock"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ConstraintProperty (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ConstraintProperty" name="SysML::Stereotype::ConstraintProperty"
+		eclass="ConstraintProperty"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ConstraintProperty"/>
+	</metamodelType>
+				
+	</metamodel>
+</extension>
+
+<!-- SysML Activities package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Activities">
+	
+	<!-- Declaration of IElementTypes -->
+		
+	<!-- IMetamodelType for Optional (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Optional" name="SysML::Stereotype::Optional"
+		eclass="Optional"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Optional"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Rate (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Rate" name="SysML::Stereotype::Rate"
+		eclass="Rate"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Rate"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Probability (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Probability" name="SysML::Stereotype::Probability"
+		eclass="Probability"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Probability"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Continuous (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Continuous" name="SysML::Stereotype::Continuous"
+		eclass="Continuous"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Continuous"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Discrete (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Discrete" name="SysML::Stereotype::Discrete"
+		eclass="Discrete"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Discrete"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for ControlOperator (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.ControlOperator" name="SysML::Stereotype::ControlOperator"
+		eclass="ControlOperator"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::ControlOperator"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for NoBuffer (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.NoBuffer" name="SysML::Stereotype::NoBuffer"
+		eclass="NoBuffer"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::NoBuffer"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Overwrite (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Overwrite" name="SysML::Stereotype::Overwrite"
+		eclass="Overwrite"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Overwrite"/>
+	</metamodelType>
+			
+	</metamodel>
+</extension>
+
+<!-- SysML Allocations package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations">
+	
+	<!-- Declaration of IElementTypes -->
+		
+	<!-- IMetamodelType for Allocate (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Allocate" name="SysML::Stereotype::Allocate"
+		eclass="Allocate"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Allocate"/>
+	</metamodelType>
+
+	<!-- IMetamodelType for Allocated (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Allocated" name="SysML::Stereotype::Allocated"
+		eclass="Allocated"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Allocated"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for AllocateActivityPartition (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.AllocateActivityPartition" name="SysML::Stereotype::AllocateActivityPartition"
+		eclass="AllocateActivityPartition"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::AllocateActivityPartition"/>
+	</metamodelType>
+			
+	</metamodel>
+</extension>
+
+<!-- SysML Requirements package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements">
+	
+	<!-- Declaration of IElementTypes -->
+		
+	<!-- IMetamodelType for DeriveReqt (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.DeriveReqt" name="SysML::Stereotype::DeriveReqt"
+		eclass="DeriveReqt"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::DeriveReqt"/>
+	</metamodelType>
+
+	<!-- IMetamodelType for Verify (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Verify" name="SysML::Stereotype::Verify"
+		eclass="Verify"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Verify"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Copy (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Copy" name="SysML::Stereotype::Copy"
+		eclass="Copy"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Copy"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Satisfy (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Satisfy" name="SysML::Stereotype::Satisfy"
+		eclass="Satisfy"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Satisfy"/>
+	</metamodelType>
+
+	<!-- IMetamodelType for TestCase (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.TestCase" name="SysML::Stereotype::TestCase"
+		eclass="TestCase"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::TestCase"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for Requirement (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.Requirement" name="SysML::Stereotype::Requirement"
+		eclass="Requirement"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::Requirement"/>
+	</metamodelType>
+	
+	<!-- IMetamodelType for RequirementRelated (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.sysml.stereotype.RequirementRelated" name="SysML::Stereotype::RequirementRelated"
+		eclass="RequirementRelated"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="SysML::Stereotype::RequirementRelated"/>
+	</metamodelType>
+
+	</metamodel>
+</extension>
+
 <!-- SysML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-	
+
+		<!-- Stereotype application declaration -->
+		
+			<!-- ModelElements -->			
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Conform" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.View" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ViewPoint" />	
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Rationale" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Problem" />		
+
+			<!-- Blocks -->
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Block" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.DistributedProperty" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Dimension" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Unit" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ValueType" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.NestedConnectorEnd" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ParticipantProperty" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ConnectorProperty" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.BindingConnector" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.PropertySpecificType" />
+			
+			<!-- PortAndFlows -->
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.FlowPort" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.FlowProperty" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.FlowSpecification" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ItemFlow" />
+
+			<!-- Constraints -->				
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ConstraintBlock" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ConstraintProperty" />
+		
+			<!-- Activities -->				
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Optional" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Rate" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Probability" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Continuous" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Discrete" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.ControlOperator" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.NoBuffer" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Overwrite" />
+				
+			<!-- Allocations -->	
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Allocate" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Allocated" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.AllocateActivityPartition" />						
+			
+			<!-- Requirements -->
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.DeriveReqt" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Verify" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Copy" />	
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Satisfy" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.TestCase" />
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.Requirement" />				
+		<elementType ref="org.eclipse.papyrus.sysml.stereotype.RequirementRelated" />					
+					
+		<!-- SysML declaration -->
 		<elementType ref="org.eclipse.papyrus.sysml.ActorPartProperty" />
 		<elementType ref="org.eclipse.papyrus.sysml.Allocate" />
 		<elementType ref="org.eclipse.papyrus.sysml.Association" />
@@ -470,7 +900,7 @@
 		<advice ref="org.eclipse.papyrus.sysml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Property" />
 		<advice ref="org.eclipse.papyrus.sysml.advice.Package" />
-		<advice ref="org.eclipse.papyrus.sysml.advice.Actor" />		
+		<advice ref="org.eclipse.papyrus.sysml.advice.Actor" />
 
 	</binding>
 	

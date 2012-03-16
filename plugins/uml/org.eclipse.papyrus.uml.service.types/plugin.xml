@@ -1857,6 +1857,32 @@
 	</metamodel>
 </extension>
 
+<!-- Standard package stereotype declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2">
+	
+	<!-- Declaration of IElementTypes -->
+	
+	<!-- IMetamodelType for Trace (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.uml.stereotype.Trace" name="UML::Stereotype::Trace"
+		eclass="Trace"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Stereotype::Trace"/>
+	</metamodelType>
+
+	<!-- IMetamodelType for Refine (Stereotype application) -->
+	<metamodelType id="org.eclipse.papyrus.uml.stereotype.Refine" name="UML::Stereotype::Refine"
+		eclass="Refine"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultEditHelper"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+			<param name="semanticHint" value="UML::Stereotype::Refine"/>
+	</metamodelType>
+	
+	</metamodel>
+</extension>
+
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
@@ -2125,6 +2151,12 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Property" />
 
+		<!-- Stereotype application declaration -->
+		
+			<!-- Standard L2 -->			
+		<elementType ref="org.eclipse.papyrus.uml.stereotype.Trace" />
+		<elementType ref="org.eclipse.papyrus.uml.stereotype.Refine" />	
+		
 	</binding>
 	
 </extension>
