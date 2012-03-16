@@ -11,18 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.dialogs;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
-import org.eclipse.papyrus.properties.providers.IFilteredLabelProvider;
 import org.eclipse.papyrus.widgets.providers.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * Copied from org.eclipse.papyrus.properties.uml.providers.UMLLabelProvider.
@@ -35,8 +30,9 @@ import org.eclipse.uml2.uml.Element;
  * 
  * @author Camille Letavernier
  */
-@SuppressWarnings("restriction")
-public class UMLLabelProvider extends MoDiscoLabelProvider implements IDetailLabelProvider, IFilteredLabelProvider {
+public class UMLLabelProvider extends LabelProvider implements IDetailLabelProvider {
+
+	private ILabelProvider modiscoLabelProvider;
 
 	private ILabelProvider eObjectLabelProvider;
 
@@ -46,48 +42,18 @@ public class UMLLabelProvider extends MoDiscoLabelProvider implements IDetailLab
 	 * 
 	 */
 	public UMLLabelProvider() {
+		modiscoLabelProvider = new MoDiscoLabelProvider();
 		eObjectLabelProvider = new EditorLabelProvider();
 	}
 
 	@Override
 	public String getText(Object inputObject) {
-		inputObject = getInput(inputObject);
-		ILabelProvider prov = getProviderFor(inputObject);
-		return (prov == this ? super.getText(inputObject) : prov.getText(inputObject));
+		return getProviderFor(inputObject).getText(inputObject);
 	}
 
 	@Override
 	public Image getImage(Object inputObject) {
-		inputObject = getInput(inputObject);
-		ILabelProvider prov = getProviderFor(inputObject);
-		return (prov == this ? super.getImage(inputObject) : prov.getImage(inputObject));
-	}
-
-	/**
-	 * Returns the right object to be displayed : if the input is a selection,
-	 * returns the selected element.
-	 * 
-	 * @param inputObject
-	 * @return
-	 */
-	protected Object getInput(Object inputObject) {
-		if(inputObject instanceof IStructuredSelection) {
-			Object input = ((IStructuredSelection)inputObject).getFirstElement();
-			if(input instanceof EObject) {
-				return input;
-			}
-			if(input instanceof ITreeElement) {
-				return input;
-			}
-			if(input instanceof IAdaptable) {
-				EObject eObject = (EObject)((IAdaptable)input).getAdapter(EObject.class);
-				if(eObject != null) {
-					return eObject;
-				}
-			}
-			return input;
-		}
-		return inputObject;
+		return getProviderFor(inputObject).getImage(inputObject);
 	}
 
 	/**
@@ -98,43 +64,12 @@ public class UMLLabelProvider extends MoDiscoLabelProvider implements IDetailLab
 		if(inputObject == null || inputObject instanceof EObject) {
 			return eObjectLabelProvider;
 		}
-		return this;
+
+		return modiscoLabelProvider;
 	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
+
 	public String getDetail(Object object) {
 		return getText(object);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean accept(IStructuredSelection selection) {
-		if(selection.isEmpty()) {
-			return false;
-		}
-		Object element = selection.getFirstElement();
-		EObject eObject = null;
-		if(element instanceof EObject) {
-			eObject = (EObject)element;
-		} else if(element instanceof IAdaptable) {
-			eObject = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-		}
-
-		if(eObject == null) {
-			return false;
-		}
-
-		if(eObject instanceof Element) {
-			return true;
-		}
-		if(eObject instanceof Diagram) {
-			return true;
-		}
-
-		return false;
 	}
 
 }
