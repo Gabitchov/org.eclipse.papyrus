@@ -271,7 +271,16 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 			URI semanticURI = containerResource.getURI();
 			URI trimmedURI = semanticURI.trimFileExtension();
 			URI notationURI = trimmedURI.appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
-			Resource resource = domain.getResourceSet().getResource(notationURI, true);
+
+			// ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
+			//Resource resource = domain.getResourceSet().getResource(notationURI, true);
+			ResourceSet resourceSet = containerResource.getResourceSet();
+			if(resourceSet == null) {
+				resourceSet = domain.getResourceSet(); // ALG: Is this case actually possible? If not, we could simply remove the domain parameter.
+			}
+			// END ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
+			Resource resource = resourceSet.getResource(notationURI, true);
+
 			return resource;
 		}
 		return null;

@@ -265,7 +265,7 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Copier for tables, where only views and internal references are duplicated, not the semantic elements themselves.
 	 */
@@ -332,7 +332,14 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 			URI semanticURI = containerResource.getURI();
 			URI trimmedURI = semanticURI.trimFileExtension();
 			URI diURI = trimmedURI.appendFileExtension(DiModel.DI_FILE_EXTENSION);
-			Resource resource = domain.getResourceSet().getResource(diURI, true);
+			// ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
+			//Resource resource = domain.getResourceSet().getResource(notationURI, true);
+			ResourceSet resourceSet = containerResource.getResourceSet();
+			if(resourceSet == null) {
+				resourceSet = domain.getResourceSet(); // ALG: Is this case actually possible? If not, we could simply remove the domain parameter.
+			}
+			// END ALG Bug 354826 : 354826: [model explorer] copy/paste a package does not copy diagrams (should) - Comment 5
+			Resource resource = resourceSet.getResource(diURI, true);
 			return resource;
 		}
 		return null;
