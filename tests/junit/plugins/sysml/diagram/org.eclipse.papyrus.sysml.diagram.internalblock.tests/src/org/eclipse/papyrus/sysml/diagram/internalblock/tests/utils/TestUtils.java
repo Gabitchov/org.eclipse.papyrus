@@ -595,6 +595,51 @@ public class TestUtils {
 		}
 	}
 
+	public static void reorientConnectorSourceAndTestDelegate(View relationshipView, View newSourceView, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
+		reorientConnectorAndTestDelegate((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
+	}
+
+	public static void reorientConnectorTargetAndTestDelegate(View relationshipView, View newTargetView, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
+		reorientConnectorAndTestDelegate((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
+	}
+
+	public static void reorientConnectorAndTestDelegate(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
+		reorientRelationship(relationshipView, newEndView, reorientDirection, isAllowed);
+
+		// Abort if the command is not supposed to be executable
+		if(!isAllowed) {
+			return;
+		}
+
+		// If previous test have not failed the execution / undo / re-do has been done
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)relationshipView.getElement();
+		ConnectorEnd modifiedConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(0) : connector.getEnds().get(1);
+		ConnectorEnd oppositeConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(1) : connector.getEnds().get(0);
+
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) { // re-orient source
+			// Test source connector end
+			if(modifiedConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+				fail("The partWithPort is incorrect for source (re-oriented).");
+			}
+
+			// Test target connector end	
+			if(oppositeConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+				fail("The partWithPort is incorrect for target (opposite end).");
+			}
+		} else { // re-orient target
+			// Test source connector end
+			if(modifiedConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+				fail("The partWithPort is incorrect for target (re-oriented).");
+			}
+
+			// Test target connector end	
+			if(oppositeConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+				fail("The partWithPort is incorrect for source (opposite end).");
+			}
+		}
+		
+	}
+	
 	public static void setEncapsulationDeleteConnectorTest(Element block, View sourceView, View targetView, boolean canCreateConnector, boolean isConnectorDestroyExpected) throws Exception {
 		
 		if (! canCreateConnector) {

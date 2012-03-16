@@ -26,9 +26,10 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestLinkReorientTargetDependency.class,
 	org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.TestLinkReorientSourceConnector.class,
 	org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.TestLinkReorientTargetConnector.class,
+	org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.delegation.TestLinkReorientSourceConnector.class,
+	org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.delegation.TestLinkReorientTargetConnector.class,
 	org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.encapsulated.TestLinkReorientSourceConnector.class,
 	org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.encapsulated.TestLinkReorientTargetConnector.class,
-	
 	})
 public class AllReorientLinkTests {
 

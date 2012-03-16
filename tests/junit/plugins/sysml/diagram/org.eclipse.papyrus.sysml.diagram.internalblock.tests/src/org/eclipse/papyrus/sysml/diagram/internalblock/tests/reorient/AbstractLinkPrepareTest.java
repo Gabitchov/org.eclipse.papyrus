@@ -56,14 +56,14 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 	public static View nestedReferenceSourceView, nestedReferenceTargetView;
 	public static View valueSourceView, valueTargetView;
 	public static View nestedValueSourceView, nestedValueTargetView;
-		
+	
 	// Inherited nodes
 	public static View commentSourceView, commentTargetView, commentCNSourceView, commentCNTargetView;
 	public static View constraintSourceView, constraintTargetView, constraintCNSourceView, constraintCNTargetView;
 
-	public static View partContainer1; // Its type block may be set encapsulated for testing purpose.
-	public static View partContainer2; // Its type block may be set encapsulated for testing purpose.
-
+	public static View partContainer1, partContainer2; // Its type block may be set encapsulated for testing purpose.
+	public static View nestedPartContainer1, nestedPartContainer2;
+	
 	public static Map<View, Boolean> isReorientAllowed = new HashMap<View, Boolean>();
 	
 	@BeforeClass
@@ -90,8 +90,8 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 		partContainer1 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
 		View partStructureView = ViewUtil.getChildBySemanticHint(partContainer1, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
 		partContainer2 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
-		View nestedPartContainer1 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
-		View nestedPartContainer2 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		nestedPartContainer1 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		nestedPartContainer2 = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
 
 		// Prepare elements for link creation tests		
 
