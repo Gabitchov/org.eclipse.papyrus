@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -49,7 +49,7 @@ public class PartDropHelper extends ElementHelper {
 		}
 					
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);

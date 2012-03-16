@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
+ * Copyright (c) 2010-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -26,6 +26,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
@@ -33,6 +34,7 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPr
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomNestedBlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.EncapsulatedClassifierDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.StructureClassifierDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.TypedElementDropEditPolicy;
@@ -118,6 +120,11 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(editPart instanceof BlockPropertyCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockPropertyCompositeSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof NestedBlockPropertyCompositeEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomNestedBlockPropertyCompositeSemanticEditPolicy());
 		}
 		
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {

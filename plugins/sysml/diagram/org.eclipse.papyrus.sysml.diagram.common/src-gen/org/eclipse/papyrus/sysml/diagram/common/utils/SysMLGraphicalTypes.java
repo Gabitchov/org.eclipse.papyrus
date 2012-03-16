@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,6 +25,8 @@ public class SysMLGraphicalTypes {
 	public static final String SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID = "shape_sysml_block_as_composite"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_blockproperty_as_composite"; //$NON-NLS-1$
+
+	public static final String SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_nestedblockproperty_as_composite"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID = "shape_sysml_dimension_as_classifier"; //$NON-NLS-1$
 

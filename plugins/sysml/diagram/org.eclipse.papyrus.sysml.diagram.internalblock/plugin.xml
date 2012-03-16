@@ -331,8 +331,8 @@
 	<!-- Custom graphical types view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomViewProvider">
 		<Priority name="Medium"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, shape_sysml_nestedblockproperty_as_composite"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="UML::Dependency, UML::Connector"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_connector, link_uml_dependency"/>
 		
@@ -432,7 +432,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomNodeGraphicalTypes">
-			<method name="getType()" value="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite"/>
+			<method name="getType()" value="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, shape_sysml_nestedblockproperty_as_composite"/>
 		</object>
 		
 		<object
@@ -553,11 +553,23 @@
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockCompositePreferencePage"
 		name="Block">
 	</page>
-		
+	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
 		name="PartAndReferences">
+	</page>
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
+		name="block property">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomNestedBlockPropertyCompositePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
+		name="nested property">
 	</page>
 		
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
@@ -664,7 +676,7 @@
 <!-- Diagram specific advices -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 
 	<!-- Property specific advices (remove inconsistent views when a Property type is set) -->		
 	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice"
@@ -680,14 +692,14 @@
 				
 	</metamodel>
 </extension>
-	
+
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Bindings declaration to shared IClientContext -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice"/>
-		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice"/>				
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice"/>
 	</binding>
 		
 </extension>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.edit.part;
 
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractShapeCompartmentEditPart;
 
 public class BlockPropertyStructureCompartmentEditPart extends AbstractShapeCompartmentEditPart {
@@ -28,6 +30,7 @@ public class BlockPropertyStructureCompartmentEditPart extends AbstractShapeComp
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		// Start of user code custom edit policies
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockPropertyStructureCompartmentSemanticEditPolicy());
 		// End of user code
 	}
 

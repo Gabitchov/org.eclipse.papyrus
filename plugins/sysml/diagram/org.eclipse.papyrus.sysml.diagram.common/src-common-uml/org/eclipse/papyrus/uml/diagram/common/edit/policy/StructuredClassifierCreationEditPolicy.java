@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -69,7 +69,7 @@ public class StructuredClassifierCreationEditPolicy extends CreationEditPolicy {
 	@Override
 	protected Command getCreateCommand(CreateViewRequest request) {
 
-		// This overrides getCreatCommand in order to use a specific CreateViewCommand (instead of
+		// This overrides getCreateCommand in order to use a specific CreateViewCommand (instead of
 		// org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand.
 
 		// The original CreateCommand#canExecute() implementation rely on ViewProvider#provides(CreateViewForKindOperation op)

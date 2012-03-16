@@ -44,6 +44,7 @@ import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -53,6 +54,67 @@ public class BlockDropHelper extends ElementHelper {
 
 	public BlockDropHelper(TransactionalEditingDomain editDomain) {
 		this.editDomain = editDomain;
+	}
+	
+	public Command getDropAsStructureItemOnPart(DropObjectsRequest request, GraphicalEditPart host, IElementType elementType) {
+		String label = "";
+		if (elementType == SysMLElementTypes.PART_PROPERTY) {
+			label = "Create a new Part";
+		}
+		if (elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
+			label = "Create a new Reference";
+		}
+		if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+			label = "Create a new ActorPart";
+		}
+		if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+			label = "Create a new Value";
+		}
+		if (elementType == UMLElementTypes.PROPERTY) {
+			label = "Create a new Property";
+		}
+		CompoundCommand cc = new CompoundCommand(label);
+		
+		Object droppedEObject = request.getObjects().get(0);
+		if (! isValidStructureItemType(droppedEObject, elementType)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		// Verify target nature
+		EObject target = getHostEObject(host);
+		if ((! (target instanceof TypedElement)) || (((TypedElement) target).getType() == null)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		// The target type has to be a Block (will hold the created Port)
+		Type targetType = ((TypedElement) target).getType();
+		if (! ((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(targetType)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		// Prepare a command for the element creation and the drop in diagram
+		
+		// 1. Prepare creation command
+		ICommand createElementCommand = null;
+		CreateElementRequest createElementRequest = new CreateElementRequest(getEditingDomain(), targetType, elementType);
+		createElementRequest.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new ConfigureFeatureCommandFactory(UMLPackage.eINSTANCE.getTypedElement_Type(), request.getObjects().get(0)));
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetType);
+		if(provider != null) {
+			createElementCommand = provider.getEditCommand(createElementRequest);
+		}				
+		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
+			
+		// 2. Prepare the drop command
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
+		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+		createViewRequest.setLocation(request.getLocation().getCopy());		
+		Command viewCreateCommand = host.getCommand(createViewRequest);
+
+		// 3. Create the compound command
+		cc.add(new ICommandProxy(createElementCommand));
+		cc.add(viewCreateCommand);
+		
+		return cc;
 	}
 	
 	public Command getDropAsStructureItem(DropObjectsRequest request, GraphicalEditPart host, IElementType elementType) {

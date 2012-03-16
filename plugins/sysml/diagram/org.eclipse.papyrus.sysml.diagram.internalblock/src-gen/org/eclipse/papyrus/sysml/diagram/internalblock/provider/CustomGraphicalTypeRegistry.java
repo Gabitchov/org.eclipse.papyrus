@@ -19,6 +19,7 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
 public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
@@ -30,6 +31,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 
 		// Nodes
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID);
+		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID);
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID);
 		knownNodes.add(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID);
@@ -62,13 +64,13 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			|| ((ISpecializationType)SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(domainElement)
-			|| (domainElement instanceof Property)) {
+			|| ((domainElement instanceof Property) && !(domainElement instanceof Port))) {
 
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
-				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
+				return SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
 			
 			return UNDEFINED_TYPE;
@@ -84,6 +86,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
+				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
+			}
+			if(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
 			return UNDEFINED_TYPE;
@@ -124,6 +129,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
 				return UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
 			}
+			if(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
+				return UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
+			}
 			return UNDEFINED_TYPE;
 		}
 		return super.getNodeGraphicalType(domainElement, containerType);
@@ -144,7 +152,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
-				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
+				return SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
 			
 			return UNDEFINED_TYPE;
@@ -160,6 +168,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
+				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
+			}
+			if(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
 			
@@ -200,6 +211,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 				return UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
 			}
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
+				return UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
+			}
+			if(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
 				return UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
 			}
 			return UNDEFINED_TYPE;
