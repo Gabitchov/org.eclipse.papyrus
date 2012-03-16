@@ -43,10 +43,9 @@ public abstract class AbstractLoadAssociatedResourceHandler extends AbstractReso
 							}
 						}
 
-						public void undo() {
-							if(r != null) {
-								r.unload();
-							}
+						@Override
+						public boolean canUndo() {
+							return false;
 						}
 
 						public boolean canExecute() {

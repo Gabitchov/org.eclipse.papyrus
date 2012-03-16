@@ -59,6 +59,11 @@ public class LoadAllResourcesHandler extends AbstractResourceHandler {
 					}
 
 					@Override
+					public boolean canUndo() {
+						return false;
+					}
+
+					@Override
 					public boolean canExecute() {
 						return true;
 					}

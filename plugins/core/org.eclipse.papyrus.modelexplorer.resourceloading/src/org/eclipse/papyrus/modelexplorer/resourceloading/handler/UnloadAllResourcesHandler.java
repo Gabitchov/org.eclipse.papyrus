@@ -76,6 +76,11 @@ public class UnloadAllResourcesHandler extends AbstractCommandHandler {
 							}
 
 							@Override
+							public boolean canUndo() {
+								return false;
+							}
+
+							@Override
 							public boolean canExecute() {
 								return true;
 							}
