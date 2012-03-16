@@ -14,10 +14,25 @@
 package org.eclipse.papyrus.readonly;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 public interface IReadOnlyHandler {
 
-	boolean isReadOnly(IFile[] files);
+	/**
+	 * Check if a set of files is read-only.
+	 * A set of files is usually considered read-only if at least
+	 * one of them is read only.
+	 * 
+	 * @param files
+	 * @return
+	 */
+	boolean isReadOnly(IFile[] files, EditingDomain editingDomain);
 
-	boolean enableWrite(IFile[] files);
+	/**
+	 * Try to enable write access on a set of files.
+	 * 
+	 * @param files
+	 * @return false if it fails to get write access.
+	 */
+	boolean enableWrite(IFile[] files, EditingDomain editingDomain);
 }

@@ -74,7 +74,12 @@ public class PapyrusAsyncNotificationPopup extends AbstractNotificationPopup {
 
 					@Override
 					public void linkActivated(HyperlinkEvent e) {
-						run(r);
+						Display.getDefault().asyncExec(new Runnable() {
+
+							public void run() {
+								PapyrusAsyncNotificationPopup.this.run(r);
+							}
+						});
 					}
 				});
 				first = false;

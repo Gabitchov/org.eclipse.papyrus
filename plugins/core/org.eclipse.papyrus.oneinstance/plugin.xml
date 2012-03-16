@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.papyrus.readonly.readOnlyHandler">
       <readOnlyHandler
-            class="org.eclipse.papyrus.svn.SVNLockHandler"
-            priority="200">
+            class="org.eclipse.papyrus.oneinstance.OneInstanceReadOnlyHandler"
+            priority="50">
       </readOnlyHandler>
    </extension>
 

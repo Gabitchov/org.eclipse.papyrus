@@ -6,7 +6,7 @@
          point="org.eclipse.papyrus.readonly.readOnlyHandler">
       <readOnlyHandler
             class="org.eclipse.papyrus.readonly.FSReadOnlyHandler"
-            priority="10">
+            priority="100">
       </readOnlyHandler>
    </extension>
    <extension
@@ -90,7 +90,7 @@
 <extension
       point="org.eclipse.papyrus.core.transactionalEditingDomainProvider">
    <transactionalEditingDomainProvider
-         class="org.eclipse.papyrus.readonly.ReadOnlyTransactionalEditingDomainProvider"
+         class="org.eclipse.papyrus.readonly.PapyrusROTransactionalEditingDomainProvider"
          priority="10">
    </transactionalEditingDomainProvider>
 </extension>

@@ -49,7 +49,7 @@
 
    <element name="readOnlyHandler">
       <complexType>
-         <attribute name="class" type="string">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -59,7 +59,7 @@
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="priority" type="string">
+         <attribute name="priority" type="string" use="required">
             <annotation>
                <documentation>
                   

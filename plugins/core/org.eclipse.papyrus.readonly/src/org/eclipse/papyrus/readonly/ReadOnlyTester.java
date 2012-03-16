@@ -18,6 +18,7 @@ import java.util.Iterator;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 
@@ -35,7 +36,9 @@ public class ReadOnlyTester extends PropertyTester {
 				Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(obj);
 				if(businessObject instanceof EObject) {
 					Resource resource = ((EObject)businessObject).eResource();
-					return ReadOnlyManager.isReadOnly(resource);
+					if (resource != null && resource.getResourceSet() != null) {
+						return ReadOnlyManager.isReadOnly(resource, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(resource.getResourceSet()));
+					}
 				}
 			}
 		}

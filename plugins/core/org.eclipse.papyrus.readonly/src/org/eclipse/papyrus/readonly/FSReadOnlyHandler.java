@@ -18,12 +18,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourceAttributes;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
 public class FSReadOnlyHandler implements IReadOnlyHandler {
 
-	public boolean isReadOnly(IFile[] files) {
+	public boolean isReadOnly(IFile[] files, EditingDomain editingDomain) {
 		for(IFile file : files) {
 			if(file != null && file.isReadOnly()) {
 				return true;
@@ -32,8 +33,7 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 		return false;
 	}
 
-	// TODO ask user
-	public boolean enableWrite(final IFile[] files) {
+	public boolean enableWrite(final IFile[] files, EditingDomain editingDomain) {
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
 		Display.getCurrent().syncExec(new Runnable() {
 

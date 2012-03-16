@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 public class ReadOnlyManager {
 
@@ -71,37 +72,35 @@ public class ReadOnlyManager {
 		}
 	}
 
-	public static boolean isReadOnly(Resource resource) {
+	public static boolean isReadOnly(Resource resource, EditingDomain editingDomain) {
+		IFile file = null;
 		if(resource != null && resource.getURI() != null) {
 			if (resource.getURI().isPlatform()) {
-				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true)));
-				if(isReadOnly(file)) {
-					return true;
-				}
-			} else {
+				file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true)));
+			}
+		}
+
+		return isReadOnly(file, editingDomain);
+	}
+
+	public static boolean isReadOnly(IFile file, EditingDomain editingDomain) {
+		IFile[] files = file != null ? new IFile[]{ file } : new IFile[]{};
+		return isReadOnly(files, editingDomain);
+	}
+
+	public static boolean isReadOnly(IFile[] files, EditingDomain editingDomain) {
+		for(int i = 0; i < orderedHandlersArray.length; i++) {
+			if(orderedHandlersArray[i].isReadOnly(files, editingDomain)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public static boolean isReadOnly(IFile file) {
-		return isReadOnly(new IFile[]{ file });
-	}
-
-	public static boolean isReadOnly(IFile[] files) {
+	public static boolean enableWrite(IFile[] files, EditingDomain editingDomain) {
 		for(int i = 0; i < orderedHandlersArray.length; i++) {
-			if(orderedHandlersArray[i].isReadOnly(files)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public static boolean enableWrite(IFile[] files) {
-		for(int i = 0; i < orderedHandlersArray.length; i++) {
-			if(orderedHandlersArray[i].isReadOnly(files)) {
-				boolean ok = orderedHandlersArray[i].enableWrite(files);
+			if(orderedHandlersArray[i].isReadOnly(files, editingDomain)) {
+				boolean ok = orderedHandlersArray[i].enableWrite(files, editingDomain);
 				if(!ok) {
 					return false;
 				}

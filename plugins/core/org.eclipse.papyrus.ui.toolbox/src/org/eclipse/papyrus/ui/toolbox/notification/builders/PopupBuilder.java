@@ -18,6 +18,7 @@ import org.eclipse.papyrus.ui.toolbox.notification.popups.IconAndMessagePapyrusP
 import org.eclipse.papyrus.ui.toolbox.notification.popups.MessagePapyrusPopup;
 import org.eclipse.papyrus.ui.toolbox.notification.popups.PopupNotification;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
@@ -44,13 +45,14 @@ public class PopupBuilder implements IBuilder {
 		if(wrapper.getMessage() != null) {
 			message = wrapper.getMessage();
 		}
+		Shell activeShell = new Shell(Display.getDefault());
 		if(wrapper.getType() != null) {
-			popup = new IconAndMessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message, wrapper.getType());
+			popup = new IconAndMessagePapyrusPopup(activeShell, toolkit, message, wrapper.getType());
 		} else if(wrapper.getImage() != null) {
-			popup = new IconAndMessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message);
+			popup = new IconAndMessagePapyrusPopup(activeShell, toolkit, message);
 			((IconAndMessagePapyrusPopup)popup).setImage(wrapper.getImage());
 		} else {
-			popup = new MessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message);
+			popup = new MessagePapyrusPopup(activeShell, toolkit, message);
 		}
 		popup.setTitle(title);
 		popup.setUseHtml(wrapper.isHtml());

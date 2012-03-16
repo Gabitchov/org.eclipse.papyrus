@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.team.FileModificationValidationContext;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.readonly.IReadOnlyHandler;
 import org.eclipse.team.svn.core.IStateFilter;
 import org.eclipse.team.svn.core.svnstorage.SVNRemoteStorage;
@@ -27,7 +28,7 @@ public class SVNLockHandler implements IReadOnlyHandler {
 
 	SVNTeamModificationValidator validator = new SVNTeamModificationValidator();
 
-	public boolean isReadOnly(IFile[] files) {
+	public boolean isReadOnly(IFile[] files, EditingDomain editingDomain) {
 
 		IResource[] needsLockResources = FileUtility.filterResources(files, IStateFilter.SF_NEEDS_LOCK, IResource.DEPTH_ZERO);
 		for(IResource needsLockResource : needsLockResources) {
@@ -39,7 +40,7 @@ public class SVNLockHandler implements IReadOnlyHandler {
 		return false;
 	}
 
-	public boolean enableWrite(IFile[] files) {
+	public boolean enableWrite(IFile[] files, EditingDomain editingDomain) {
 
 		IStatus result = validator.validateEdit(files, FileModificationValidationContext.VALIDATE_PROMPT);
 
