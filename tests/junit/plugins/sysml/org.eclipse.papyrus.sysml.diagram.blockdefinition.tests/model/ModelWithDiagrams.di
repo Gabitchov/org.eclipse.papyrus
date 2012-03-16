@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi" xmlns:org.eclipse.papyrus.table.instance.papyrustableinstance="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance" xmlns:tableinstance="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance" xmlns:tableinstance2="http://www.eclipse.org/EMF_Facet/Table/0.1.0/tableinstance2" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi" xmlns:history="http://www.eclipse.org/papyrus/0.7.0/controlmode" xmlns:org.eclipse.papyrus.table.instance.papyrustableinstance="http://www.eclipse.org/Papyrus/Table/0.8.0/papyrustableinstance" xmlns:tableinstance="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/tableinstance" xmlns:tableinstance2="http://www.eclipse.org/EMF_Facet/Table/0.1.0/tableinstance2" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8">
   <di:SashWindowsMngr>
     <pageList>
       <availablePage>
@@ -14,8 +14,9 @@
       <availablePage>
         <emfPageIdentifier href="ModelWithDiagrams.notation#_2snlgGOfEeGA2PidaF_0QA"/>
       </availablePage>
-      <availablePage emfPageIdentifier="/1"/>
-      <availablePage emfPageIdentifier="/4"/>
+      <availablePage>
+        <emfPageIdentifier href="P4.notation#_YdqCUG69EeGa5blT8v2xrQ"/>
+      </availablePage>
     </pageList>
     <sashModel currentSelection="/0/@sashModel/@windows.0/@children.0">
       <windows>
@@ -94,9 +95,7 @@
     <rows>
       <element href="ModelWithDiagrams.uml#_G7R2QGeiEeGOntYbC8mMqw"/>
     </rows>
-    <rows>
-      <element href="ModelWithDiagrams.uml#_9SsYEGh1EeGlqco_XlYG8g"/>
-    </rows>
+    <rows/>
     <localCustomizations metamodelURI="http://www.eclipse.org/emf/2002/Ecore">
       <types metaclassName="ecore.EModelElement">
         <references referenceName="eAnnotations">
@@ -258,9 +257,7 @@
     <columns xsi:type="tableinstance:ReferenceColumn">
       <reference href="http://www.eclipse.org/uml2/3.0.0/UML#//Abstraction/mapping"/>
     </columns>
-    <rows>
-      <element href="ModelWithDiagrams.uml#_9SsYEGh1EeGlqco_XlYG8g"/>
-    </rows>
+    <rows/>
     <localCustomizations metamodelURI="http://www.eclipse.org/emf/2002/Ecore">
       <types metaclassName="ecore.EModelElement">
         <references referenceName="eAnnotations">
@@ -689,4 +686,10 @@
     </localCustomizations>
   </tableinstance2:TableInstance2>
   <org.eclipse.papyrus.table.instance.papyrustableinstance:PapyrusTableInstance name="AllocationTable" type="PapyrusAllocationTable" table="/7"/>
+  <history:ControledResource resourceURL="ModelWithDiagrams.uml">
+    <children resourceURL="P4.uml"/>
+  </history:ControledResource>
+  <history:ControledResource resourceURL="ModelWithDiagrams.notation">
+    <children resourceURL="P4.notation"/>
+  </history:ControledResource>
 </xmi:XMI>

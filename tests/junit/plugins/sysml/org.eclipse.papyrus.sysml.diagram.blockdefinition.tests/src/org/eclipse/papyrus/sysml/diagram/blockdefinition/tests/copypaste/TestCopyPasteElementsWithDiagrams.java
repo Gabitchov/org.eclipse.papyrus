@@ -48,11 +48,14 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Stereotype;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -121,6 +124,18 @@ public class TestCopyPasteElementsWithDiagrams {
 	/** initial number of diagrams */
 	private static final int initialNumberOfDiagrams = 4;
 
+	private static final int initialNumberOfDiagramsP4 = 1;
+	/** package P4 */
+	private static View viewPackageP4_P1;
+
+	private static GraphicalEditPart editPartPackageP4_P1;
+
+	/** block B1_P4 */
+	private static View viewBlockB1_P4_P1;
+
+	private static GraphicalEditPart editPartBlockB1_P4_P1;
+
+
 	/**
 	 * Initialization of the test: open Papyrus editor with a given model
 	 * 
@@ -145,6 +160,10 @@ public class TestCopyPasteElementsWithDiagrams {
 		IFile emptyModel_di = testProject.getFile("ModelWithDiagrams.di");
 		IFile emptyModel_no = testProject.getFile("ModelWithDiagrams.notation");
 		IFile emptyModel_uml = testProject.getFile("ModelWithDiagrams.uml");
+		IFile locaProfile_uml = testProject.getFile("LocalProfile.profile.uml");
+		IFile controledModel_di = testProject.getFile("P4.di");
+		IFile controledModel_no = testProject.getFile("P4.notation");
+		IFile controledModel_uml = testProject.getFile("P4.uml");
 
 		// isInitialized = isInitialized || emptyModel_di.exists();
 
@@ -153,6 +172,10 @@ public class TestCopyPasteElementsWithDiagrams {
 			emptyModel_di.create(Activator.getInstance().getBundle().getResource("/model/ModelWithDiagrams.di").openStream(), true, new NullProgressMonitor());
 			emptyModel_no.create(Activator.getInstance().getBundle().getResource("/model/ModelWithDiagrams.notation").openStream(), true, new NullProgressMonitor());
 			emptyModel_uml.create(Activator.getInstance().getBundle().getResource("/model/ModelWithDiagrams.uml").openStream(), true, new NullProgressMonitor());
+			locaProfile_uml.create(Activator.getInstance().getBundle().getResource("/model/LocalProfile.profile.uml").openStream(), true, new NullProgressMonitor());
+			controledModel_di.create(Activator.getInstance().getBundle().getResource("/model/P4.di").openStream(), true, new NullProgressMonitor());
+			controledModel_no.create(Activator.getInstance().getBundle().getResource("/model/P4.notation").openStream(), true, new NullProgressMonitor());
+			controledModel_uml.create(Activator.getInstance().getBundle().getResource("/model/P4.uml").openStream(), true, new NullProgressMonitor());
 		}
 
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
@@ -190,6 +213,12 @@ public class TestCopyPasteElementsWithDiagrams {
 		if(viewPackageP2 == null)
 			throw new Exception("Impossible to cast into a view:" + editPartPackageP2.getModel());
 		
+		/** package P4 */
+		editPartPackageP4_P1 = EditorUtils.getEditPart(diagramEditPart, "P4_P1", null, true, false, false);
+		viewPackageP4_P1 = (editPartPackageP4_P1.getModel() instanceof View) ? (View)editPartPackageP4_P1.getModel() : null;
+		if(viewPackageP4_P1 == null)
+			throw new Exception("Impossible to cast into a view:" + editPartPackageP4_P1.getModel());
+
 		/** Block B1_P1 */
 		editPartBlockB1_P1 = EditorUtils.getEditPart(diagramEditPart, "B1_P1", SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, true, false, false);
 		viewBlockB1_P1 = (editPartBlockB1_P1.getModel() instanceof View) ? (View)editPartBlockB1_P1.getModel() : null;
@@ -226,6 +255,13 @@ public class TestCopyPasteElementsWithDiagrams {
 		if(viewBlockB2_P1_P1 == null)
 			throw new Exception("Impossible to cast into a view:" + editPartBlockB2_P1_P1.getModel());
 
+		/** Block B1_P4 */
+		editPartBlockB1_P4_P1 = EditorUtils.getEditPart(diagramEditPart, "B1_P4_P1", SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID, true, false, false);
+		viewBlockB1_P4_P1 = (editPartBlockB1_P4_P1.getModel() instanceof View) ? (View)editPartBlockB1_P4_P1.getModel() : null;
+		if(viewBlockB1_P4_P1 == null)
+			throw new Exception("Impossible to cast into a view:" + editPartBlockB1_P4_P1.getModel());
+
+
 		/** diagrams */
 		Diagram currentDiagramView = diagramEditPart.getDiagramView();
 		Collection<Diagram> diagrams = getDiagrams(currentDiagramView);
@@ -259,9 +295,67 @@ public class TestCopyPasteElementsWithDiagrams {
 	 *         exception thrown in case of problems
 	 */
 	@Test
-	public void testCopyPasteSimplePackageWithDiagram() throws Exception {
+	@Ignore
+	public void testCopyPasteSimplePackageWithOneBlockAndOneDiagram() throws Exception {
+		int expectedNumberOfDiagramsInNewPackage = 1;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage;
+		int expected = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
+
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+
+		// copy of P4_P1 into SysML Model.
+		// should copy the BDD in P4_P1
+		TestUtils.copyEditParts(Arrays.<Object> asList((editPartPackageP4_P1)));
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+		TestUtils.pasteWithModelEditParts(EditorUtils.getDiagramEditPart(), true);
+
+		// check the sysml model => should have a new copy of p4
+		Package sysmlModel = (Package)getDiagramView().getElement();
+		Package newPackage = sysmlModel.getNestedPackage("Copy_Of_P4_1");
+		Assert.assertNotNull("Impossible to get the new Package", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+
+		// check the new diagrams..
+		Collection<Diagram> newListOfDiagrams = getDiagrams(getDiagramView());
+		Assert.assertEquals("There should be " + expected + " diagrams after paste", expected, newListOfDiagrams.size());
+		List<Diagram> newPackageDiagrams = getOwnedDiagrams(newPackage, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
+		List<Diagram> newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
+		checkElements(newPackage, viewPackageP4_P1.getElement(), newPackage, viewPackageP4_P1.getElement());
+
+		// test undo
+		EditorUtils.getCommandStack().undo();
+		newPackage = sysmlModel.getNestedPackage("Copy_Of_P4_1");
+		Assert.assertNull("New Package was not deleted during undo()", newPackage);
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+
+		// test redo
+		EditorUtils.getCommandStack().redo();
+		newPackage = sysmlModel.getNestedPackage("Copy_Of_P4_1");
+		Assert.assertNotNull("Impossible to get the new Package during redo()", newPackage);
+		Assert.assertTrue("Editor should be in dirty state", EditorUtils.getDiagramEditor().isDirty());
+		newPackageDiagrams = getOwnedDiagrams(newPackage, false);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package after paste", expectedNumberOfDiagramsInNewPackage, newPackageDiagrams.size());
+		newPackageAndChildrenDiagrams = getOwnedDiagrams(newPackage, true);
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newPackageAndChildrenDiagrams.size());
+		checkElements(newPackage, viewPackageP4_P1.getElement(), newPackage, viewPackageP4_P1.getElement());
+
+		// do undo to get back previous state
+		EditorUtils.getCommandStack().undo();
+		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
+	}
+
+	/**
+	 * Test the copy of a {@link Block} and paste in a {@link Diagram}
+	 * 
+	 * @throws Exception
+	 *         exception thrown in case of problems
+	 */
+	@Test
+	public void testCopyPasteSimplePackageWithAllocationAndDiagram() throws Exception {
 		int expectedNumberOfDiagramsInNewPackage = 0;
-		int expectedNumberOfDiagramsInNewPackageAndChildren = 1;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 1;
 		int expected = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
 
 		Assert.assertTrue("Editor should not be in dirty state", ! EditorUtils.getDiagramEditor().isDirty());
@@ -319,7 +413,7 @@ public class TestCopyPasteElementsWithDiagrams {
 	public void testCopyPastePackageWithSeveralDiagrams() throws Exception {
 		String NEW_P1_NAME = "Copy_Of_P1_1";
 		int expectedNumberOfDiagramsInNewPackage = 0;
-		int expectedNumberOfDiagramsInNewPackageAndChildren = 2;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 2;
 		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
 
 		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
@@ -379,9 +473,9 @@ public class TestCopyPasteElementsWithDiagrams {
 	@Test
 	public void testCopyPasteBlockWithOneDiagram() throws Exception {
 		String NEW_BLOCK_NAME = "Copy_Of_B1_1";
-		int expectedNumberOfDiagramsInNewBlock = 1;
-		int expectedNumberOfDiagramsInNewBlockAndChildren = 1;
-		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewBlockAndChildren;
+		int expectedNumberOfDiagramsInNewPackage = 1;
+		int expectedNumberOfDiagramsInNewPackageAndChildren = expectedNumberOfDiagramsInNewPackage + 0;
+		int expectedNumberOfDiagrams = initialNumberOfDiagrams + expectedNumberOfDiagramsInNewPackageAndChildren;
 
 		Assert.assertTrue("Editor should not be in dirty state", !EditorUtils.getDiagramEditor().isDirty());
 
@@ -399,9 +493,9 @@ public class TestCopyPasteElementsWithDiagrams {
 		Collection<Diagram> newListOfDiagrams = getDiagrams(getDiagramView());
 		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after paste", expectedNumberOfDiagrams, newListOfDiagrams.size());
 		List<Diagram> newBlockDiagrams = getOwnedDiagrams(newBlock, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewBlock + " diagrams in Block after paste", expectedNumberOfDiagramsInNewBlock, newBlockDiagrams.size());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Block after paste", expectedNumberOfDiagramsInNewPackage, newBlockDiagrams.size());
 		List<Diagram> newBlockAndChildrenDiagrams = getOwnedDiagrams(newBlock, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewBlockAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewBlockAndChildren, newBlockAndChildrenDiagrams.size());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Package and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newBlockAndChildrenDiagrams.size());
 		//checkElements(newBlock, viewBlockB1_P1.getElement(), newBlock, viewBlockB1_P1.getElement());
 
 		// test undo
@@ -418,9 +512,9 @@ public class TestCopyPasteElementsWithDiagrams {
 		newListOfDiagrams = getDiagrams(getDiagramView());
 		Assert.assertEquals("There should be " + expectedNumberOfDiagrams + " diagrams after redo", expectedNumberOfDiagrams, newListOfDiagrams.size());
 		newBlockDiagrams = getOwnedDiagrams(newBlock, false);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewBlock + " diagrams in Block after redo", expectedNumberOfDiagramsInNewBlock, newBlockDiagrams.size());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackage + " diagrams in Block after redo", expectedNumberOfDiagramsInNewPackage, newBlockDiagrams.size());
 		newBlockAndChildrenDiagrams = getOwnedDiagrams(newBlock, true);
-		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewBlockAndChildren + " diagrams in Block and children after paste", expectedNumberOfDiagramsInNewBlockAndChildren, newBlockAndChildrenDiagrams.size());
+		Assert.assertEquals("There should be " + expectedNumberOfDiagramsInNewPackageAndChildren + " diagrams in Block and children after paste", expectedNumberOfDiagramsInNewPackageAndChildren, newBlockAndChildrenDiagrams.size());
 		//checkElements(newBlock, viewBlockB1_P1.getElement(), newBlock, viewBlockB1_P1.getElement());
 
 
@@ -541,8 +635,11 @@ public class TestCopyPasteElementsWithDiagrams {
 									checkElements(copyFeature, originalFeature, copyMainObject, originalMainObject);
 								}
 							} else {
-								// outside value => copy should be the same as original
-								Assert.assertTrue(getErrorMessage(newEObject, originalEObject, "Copy element should not have changed", feature), copyFeature.equals(originalFeature));
+								// outside value => copy should be the same as original (problem if not from the same resource...)
+								if(copyFeature.eResource().equals(originalFeature.eResource())) {
+									Assert.assertTrue(getErrorMessage(newEObject, originalEObject, "Copy element should not have changed", feature), copyFeature.equals(originalFeature));
+								}
+
 								// no need to check content here: elements were not duplicated
 							}
 						}
@@ -569,6 +666,22 @@ public class TestCopyPasteElementsWithDiagrams {
 				}
 			}
 		}
+
+		// check Stereotype Application for current Object, if UML element
+		if(originalEObject instanceof Element) {
+			// retrieve the list of stereotypes
+			Element originalElement = ((Element)originalEObject);
+			List<Stereotype> originalStereotypesList = originalElement.getAppliedStereotypes();
+			List<EObject> originalStereotypeApplications = originalElement.getStereotypeApplications();
+
+			Element newElement = ((Element)newEObject);
+			List<Stereotype> newStereotypesList = newElement.getAppliedStereotypes();
+			List<EObject> newStereotypeApplications = newElement.getStereotypeApplications();
+
+			Assert.assertEquals(getErrorMessage(newEObject, originalEObject, "Original and Copy do not have the same number of applied stereotypes", null), originalStereotypesList.size(), newStereotypesList.size());
+			Assert.assertEquals(getErrorMessage(newEObject, originalEObject, "Original and Copy do not have the same number of stereotype Applications", null), originalStereotypeApplications.size(), newStereotypeApplications.size());
+
+		}
 	}
 
 	protected static String getErrorMessage(EObject newEObject, EObject originalEObject, String shortErrorMessage, EStructuralFeature feature) {
@@ -578,10 +691,11 @@ public class TestCopyPasteElementsWithDiagrams {
 		errorMessage += "\n- copy: ";
 		errorMessage += newEObject;
 		errorMessage += "\n- feature: ";
-		errorMessage += feature.getName();
-		if(feature instanceof EReference) {
+		if(feature instanceof EReference) { // warning, feature can be null
+			errorMessage += feature.getName();
 			errorMessage += "[EReference]";
 		} else if(feature instanceof EAttribute) {
+			errorMessage += feature.getName();
 			errorMessage += "[EAttribute]";
 		}
 		return errorMessage;

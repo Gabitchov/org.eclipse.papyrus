@@ -24,6 +24,7 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,7 +40,9 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.pastemanager.command.PapyrusDuplicateWrapperCommand;
+import org.eclipse.papyrus.resource.notation.NotationModel;
 
 
 /**
@@ -223,9 +226,15 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 			copier.copyReferences();
 
 			EObject duplicate = copier.get(diagramToDuplicate);
-			Resource containerResource = diagramToDuplicate.eResource();
-			if(containerResource != null) {
-				containerResource.getContents().add(duplicate);
+			Resource targetResource = getNotationResourceForDiagram(duplicate, getEditingDomain());
+			if(targetResource != null) {
+				targetResource.getContents().add(duplicate);
+			} else {
+				targetResource = diagramToDuplicate.eResource();
+				if(targetResource != null) {
+					Activator.log.warn("It was not possible to find the Resource with the target EObject");
+					targetResource.getContents().add(duplicate);
+				}
 			}
 			return CommandResult.newOKCommandResult(getAllDuplicatedObjectsMap());
 		}
@@ -235,6 +244,37 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 			// should add some tests here? no need to test containement feature like previous, Diagram has no owner...
 			return true;
 		}
+	}
+
+	/**
+	 * Returns the notation resource where to add the new diagram
+	 * 
+	 * @param eObject
+	 *        the semantic object linked to the diagram or the diagram itself.
+	 * @param domain
+	 *        the editing domain
+	 * @return the resource where the diagram should be added.
+	 *         TODO this method should be handled by the resource plugin.
+	 */
+	public Resource getNotationResourceForDiagram(EObject eObject, TransactionalEditingDomain domain) {
+		EObject semanticObject = eObject;
+		if(eObject instanceof Diagram) {
+			semanticObject = ((Diagram)eObject).getElement();
+		}
+		if(semanticObject == null) {
+			return null;
+		}
+
+		Resource containerResource = semanticObject.eResource();
+
+		if(containerResource != null) {
+			URI semanticURI = containerResource.getURI();
+			URI trimmedURI = semanticURI.trimFileExtension();
+			URI notationURI = trimmedURI.appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+			Resource resource = domain.getResourceSet().getResource(notationURI, true);
+			return resource;
+		}
+		return null;
 	}
 
 	/**

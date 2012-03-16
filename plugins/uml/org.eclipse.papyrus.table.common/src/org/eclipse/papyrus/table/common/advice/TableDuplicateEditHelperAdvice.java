@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -39,6 +41,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsComma
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.papyrus.pastemanager.command.PapyrusDuplicateWrapperCommand;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.table.common.Activator;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 
@@ -237,10 +241,20 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 			// Add the duplicates to the original's container.
 			EObject duplicatePapyrusTableInstance = (EObject)copier.get(papyrusTableInstanceToDuplicate);
 			EObject duplicateTableInstance = (EObject)copier.get(tableInstanceToDuplicate);
-			Resource containerResource = papyrusTableInstanceToDuplicate.eResource();
-			if(containerResource != null) {
-				containerResource.getContents().add(duplicateTableInstance);
-				containerResource.getContents().add(duplicatePapyrusTableInstance);
+
+			Resource targetResource = getNewResourceForTable(duplicateTableInstance, getEditingDomain());
+			//	Resource containerResource = papyrusTableInstanceToDuplicate.eResource();
+			if(targetResource != null) {
+				targetResource.getContents().add(duplicateTableInstance);
+				targetResource.getContents().add(duplicatePapyrusTableInstance);
+			} else { // no resource found, try to add in resource of the original table
+				targetResource = papyrusTableInstanceToDuplicate.eResource();
+				if(targetResource != null) {
+					Activator.helper.warn("It was not possible to find the Resource with the target EObject");
+					targetResource.getContents().add(duplicateTableInstance);
+					targetResource.getContents().add(duplicatePapyrusTableInstance);
+				}
+				return CommandResult.newErrorCommandResult("Impossible to find a resource for the new table");
 			}
 			return CommandResult.newOKCommandResult(getAllDuplicatedObjectsMap());
 		}
@@ -286,5 +300,41 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 			}
 			return object;
 		}
+	}
+
+	/**
+	 * Returns the notation resource where to add the new diagram
+	 * 
+	 * @param eObject
+	 *        the semantic object linked to the diagram or the diagram itself.
+	 * @param domain
+	 *        the editing domain
+	 * @return the resource where the diagram should be added.
+	 *         TODO this method should be handled by the resource plugin.
+	 */
+	public Resource getNewResourceForTable(EObject eObject, TransactionalEditingDomain domain) {
+		EObject semanticObject = eObject;
+		if(eObject instanceof PapyrusTableInstance) {
+			TableInstance2 tableInstance = ((PapyrusTableInstance)eObject).getTable();
+			if(tableInstance != null) {
+				semanticObject = tableInstance.getContext();
+			}
+		} else if(eObject instanceof TableInstance2) {
+			semanticObject = ((TableInstance2)eObject).getContext();
+		}
+		if(semanticObject == null) {
+			return null;
+		}
+
+		Resource containerResource = semanticObject.eResource();
+
+		if(containerResource != null) {
+			URI semanticURI = containerResource.getURI();
+			URI trimmedURI = semanticURI.trimFileExtension();
+			URI diURI = trimmedURI.appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			Resource resource = domain.getResourceSet().getResource(diURI, true);
+			return resource;
+		}
+		return null;
 	}
 }

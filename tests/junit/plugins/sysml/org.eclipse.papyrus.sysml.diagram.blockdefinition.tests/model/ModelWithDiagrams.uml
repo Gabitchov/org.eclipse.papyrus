@@ -44,8 +44,6 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_G7R2QGeiEeGOntYbC8mMqw" name="Allocate1" supplier="_9GgVMGOeEeGA2PidaF_0QA" client="_-pKawGOeEeGA2PidaF_0QA"/>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_N9qKQGhaEeGrDdCH7SVVEg" name="Dependency1" supplier="_-pKawGOeEeGA2PidaF_0QA" client="_9GgVMGOeEeGA2PidaF_0QA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_9SsYEGh1EeGlqco_XlYG8g" name="Allocate2" supplier="_9GgVMGOeEeGA2PidaF_0QA" client="_DWJHQGOfEeGA2PidaF_0QA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_uGrSIGh7EeGlqco_XlYG8g" name="Allocate3" supplier="_9GgVMGOeEeGA2PidaF_0QA" client="_nKOpwGhBEeGRPYomsG5n2A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_8StgwGOeEeGA2PidaF_0QA" name="P2">
       <packagedElement xmi:type="uml:Class" xmi:id="_BcNxMGOfEeGA2PidaF_0QA" name="B1_P2" clientDependency="_-SfkAGh8EeGlqco_XlYG8g">
@@ -66,10 +64,10 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HM_nkGOgEeGA2PidaF_0QA" value="1"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_DWJHQGOfEeGA2PidaF_0QA" name="B2_P2" clientDependency="_9SsYEGh1EeGlqco_XlYG8g"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DWJHQGOfEeGA2PidaF_0QA" name="B2_P2"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_jup6wGhBEeGRPYomsG5n2A" name="P3">
-      <packagedElement xmi:type="uml:Class" xmi:id="_nKOpwGhBEeGRPYomsG5n2A" name="B1_P3" clientDependency="_uGrSIGh7EeGlqco_XlYG8g">
+      <packagedElement xmi:type="uml:Class" xmi:id="_nKOpwGhBEeGRPYomsG5n2A" name="B1_P3">
         <ownedAttribute xmi:id="_q7WyAGhBEeGRPYomsG5n2A" name="b2_p3" type="_pUlogGhBEeGRPYomsG5n2A" association="_q7MZ8GhBEeGRPYomsG5n2A">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q7WyAWhBEeGRPYomsG5n2A" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q7WyAmhBEeGRPYomsG5n2A" value="1"/>
@@ -91,6 +89,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_-SfkAGh8EeGlqco_XlYG8g" name="Allocate1" supplier="_nKOpwGhBEeGRPYomsG5n2A" client="_BcNxMGOfEeGA2PidaF_0QA"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" href="P4.uml#_RRmEQG69EeGa5blT8v2xrQ"/>
     <profileApplication xmi:id="_x0RzAGOeEeGA2PidaF_0QA">
       <eAnnotations xmi:id="_x0RzAWOeEeGA2PidaF_0QA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
@@ -157,6 +156,18 @@
       </eAnnotations>
       <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
     </profileApplication>
+    <profileApplication xmi:id="_65vIsG6AEeGkMNp1V3nayg">
+      <eAnnotations xmi:id="_67ElcG6AEeGkMNp1V3nayg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_FyGj8G6CEeG9Xq4xiAqx-g">
+      <eAnnotations xmi:id="_FzS2wG6CEeG9Xq4xiAqx-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="LocalProfile.profile.uml#_DG6JAG6CEeG9Xq4xiAqx-g"/>
+      </eAnnotations>
+      <appliedProfile href="LocalProfile.profile.uml#_6qfWUG6BEeG9Xq4xiAqx-g"/>
+    </profileApplication>
   </uml:Model>
   <Blocks:Block xmi:id="_9HLDkGOeEeGA2PidaF_0QA" base_Class="_9GgVMGOeEeGA2PidaF_0QA"/>
   <Blocks:Block xmi:id="_-pNeEGOeEeGA2PidaF_0QA" base_Class="_-pKawGOeEeGA2PidaF_0QA"/>
@@ -172,7 +183,5 @@
   <Allocations:Allocate xmi:id="_HB6pwGeiEeGOntYbC8mMqw" base_Abstraction="_G7R2QGeiEeGOntYbC8mMqw"/>
   <Blocks:Block xmi:id="_nKTiQGhBEeGRPYomsG5n2A" base_Class="_nKOpwGhBEeGRPYomsG5n2A"/>
   <Blocks:Block xmi:id="_pUor0GhBEeGRPYomsG5n2A" base_Class="_pUlogGhBEeGRPYomsG5n2A"/>
-  <Allocations:Allocate xmi:id="_9TfpUGh1EeGlqco_XlYG8g" base_Abstraction="_9SsYEGh1EeGlqco_XlYG8g"/>
-  <Allocations:Allocate xmi:id="_uKO8cGh7EeGlqco_XlYG8g" base_Abstraction="_uGrSIGh7EeGlqco_XlYG8g"/>
   <Allocations:Allocate xmi:id="_-WCAMGh8EeGlqco_XlYG8g" base_Abstraction="_-SfkAGh8EeGlqco_XlYG8g"/>
 </xmi:XMI>
