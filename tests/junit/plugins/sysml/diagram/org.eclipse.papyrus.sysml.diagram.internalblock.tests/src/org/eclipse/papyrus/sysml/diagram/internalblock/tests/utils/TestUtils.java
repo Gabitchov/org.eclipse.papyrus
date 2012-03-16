@@ -78,6 +78,7 @@ import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -479,6 +480,38 @@ public class TestUtils {
 		}
 	}
 
+	public static void createEdgeConnectorAndTestDelegateFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
+		createEdgeConnectorAndTestDelegateFromPalette(toolId, sourceView, targetView, isAllowed, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
+	}
+
+	public static void createEdgeConnectorAndTestDelegateFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
+		EObject newLink = createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, execute);
+
+		// Abort if the command is not supposed to be executable
+		if(!isAllowed) {
+			return;
+		}
+
+		if((newLink == null) || (!(newLink instanceof org.eclipse.uml2.uml.Connector))) {
+			fail("No edge or unexpected kind of edge created.");
+		}
+
+		// If previous test have not failed the execution / undo / re-do has been done
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)newLink;
+
+		// Test source connector end	
+		ConnectorEnd sourceConnectorEnd = connector.getEnds().get(0);
+		if(sourceConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+			fail("The partWithPort is incorrect for source.");
+		}
+
+		// Test target connector end	
+		ConnectorEnd targetConnectorEnd = connector.getEnds().get(1);
+		if(targetConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+			fail("The partWithPort is incorrect for target.");
+		}
+	}
+	
 	public static void reorientRelationshipSource(View relationshipView, View newSourceView, boolean isAllowed) throws Exception {
 		reorientRelationship((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed);
 	}

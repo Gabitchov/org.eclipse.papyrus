@@ -21,6 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 
 	AllCreationConnectorTests.class,
+	AllCreationConnectorWithDelegateTests.class,
 	AllCreationConnectorWithEncapsulatedPartTests.class,
 	AllCreationDependencyTests.class,
 	AllCreationInheritedLinkTests.class,
