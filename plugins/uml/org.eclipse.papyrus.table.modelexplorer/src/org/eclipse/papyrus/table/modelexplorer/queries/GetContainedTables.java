@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.table.modelexplorer.queries;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -31,6 +33,7 @@ import org.eclipse.papyrus.table.instance.papyrustableinstance.Papyrustableinsta
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 
@@ -58,11 +61,22 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 						return setting.getEObject() instanceof PapyrusTableInstance && PapyrustableinstancePackage.Literals.PAPYRUS_TABLE_INSTANCE__TABLE == setting.getEStructuralFeature();
 					}
 				};
-				return (PapyrusTableInstance) Iterables.filter(references, p2).iterator().next().getEObject();
+				Iterator<Setting> iterator = Iterables.filter(references, p2).iterator();
+				if (iterator.hasNext()){
+					return (PapyrusTableInstance) iterator.next().getEObject();
+				}
+				return null ;
 			}
 			
 		};
-		return Sets.newHashSet(Iterables.transform(Iterables.filter(PapyrusEcoreUtils.getUsages(context), p), f));
+		Iterable<PapyrusTableInstance> transform = Iterables.transform(Iterables.filter(PapyrusEcoreUtils.getUsages(context), p), f);
+		transform = Iterables.filter(transform, new Predicate<PapyrusTableInstance>() {
+
+			public boolean apply(PapyrusTableInstance arg0) {
+				return arg0 != null;
+			}
+		});
+		return Sets.newHashSet(transform);
 	}
 
 }

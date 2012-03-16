@@ -20,10 +20,12 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.adaptor.gmf.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -59,12 +61,11 @@ public class DeleteDiagramHandler extends AbstractCommandHandler {
 						if(pageMngr.isOpen(diagram)) {
 							pageMngr.closePage(diagram);
 						}
-						pageMngr.removePage(diagram);
 					}
 				};
-				EList<EObject> diags = diagram.eResource().getContents();
+				// the destroy element command is a good way to destroy the cross reference
 				command.append(sashRemoveComd);
-				command.append(new RemoveCommand(editingDomain, diags, diagram));
+				command.append(new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(diagram, false))));
 			}
 			return command.isEmpty() ? UnexecutableCommand.INSTANCE : command;
 		}
