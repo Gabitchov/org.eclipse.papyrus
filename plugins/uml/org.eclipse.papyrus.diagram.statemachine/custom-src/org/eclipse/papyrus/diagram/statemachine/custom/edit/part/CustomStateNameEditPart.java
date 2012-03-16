@@ -10,6 +10,7 @@
  * Contributors:
  * 
  * 		Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own mechanisms
+ *		Olivier Mélois (Atos) olivier.melois@atos.net - Bug 374060 - [state machine] QN of submachine state cannot be adapted 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.edit.part;
@@ -69,7 +70,6 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
 		StateFigure stateFigure = ((StateEditPart)getParent()).getPrimaryShape();
@@ -86,7 +86,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 
 
 		if(state.isSubmachineState()) {
-			stateFigure.setSubmachineStateName(state.getName() + " : " + state.getSubmachine().getQualifiedName());
+			stateFigure.setSubmachineStateName(state.getName() + " : " + state.getSubmachine().getName());
 			stateFigure.setIsSubmachineState(true);
 		} else
 			stateFigure.setIsSubmachineState(false);
