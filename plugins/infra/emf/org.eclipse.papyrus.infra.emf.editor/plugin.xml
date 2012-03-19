@@ -5,8 +5,8 @@
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
             contributorId="CustomizablePropertyView"
-            labelProvider="org.eclipse.papyrus.properties.providers.SelectionLabelProvider"
-            tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
+            labelProvider="org.eclipse.papyrus.views.properties.providers.SelectionLabelProvider"
+            tabDescriptorProvider="org.eclipse.papyrus.views.properties.xwt.XWTTabDescriptorProvider">
       </propertyContributor>
    </extension>
    <extension

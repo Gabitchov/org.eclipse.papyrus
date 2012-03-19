@@ -20,10 +20,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
@@ -99,7 +98,8 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		}
 
 		try {
-			ModelSet root = ModelUtils.getModelSetChecked(EditorUtils.getServiceRegistry());
+			ModelSet root = ServiceUtilsForResource.getInstance().getModelSet(eObject.eResource());
+			//ModelSet root = ModelUtils.getModelSetChecked(EditorUtils.getServiceRegistry());
 
 			if(feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
 				//TODO : Use a specific content provider here, when it exists
