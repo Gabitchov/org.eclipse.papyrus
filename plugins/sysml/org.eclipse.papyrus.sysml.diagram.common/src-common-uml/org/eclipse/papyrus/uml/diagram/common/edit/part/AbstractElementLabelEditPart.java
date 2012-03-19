@@ -70,6 +70,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSnapBackEditPolicy;
+import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
@@ -125,6 +126,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new TextSelectionEditPolicy());
 		installEditPolicy(EditPolicyRoles.SNAP_FEEDBACK_ROLE, new DefaultSnapBackEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LabelDefaultSemanticEditPolicy());
 	}
 
 	/**
