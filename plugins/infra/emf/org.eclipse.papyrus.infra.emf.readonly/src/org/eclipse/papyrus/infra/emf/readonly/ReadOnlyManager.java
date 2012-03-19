@@ -11,7 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.readonly;
+package org.eclipse.papyrus.infra.emf.readonly;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -46,7 +46,7 @@ public class ReadOnlyManager {
 	}
 
 	static {
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.readonly", "readOnlyHandler");
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.infra.emf.readonly", "readOnlyHandler");
 
 		List<HandlerPriorityPair> handlerPriorityPairs = new LinkedList<HandlerPriorityPair>();
 		for(IConfigurationElement elem : configElements) {

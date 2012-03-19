@@ -11,7 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.readonly;
+package org.eclipse.papyrus.infra.emf.readonly;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

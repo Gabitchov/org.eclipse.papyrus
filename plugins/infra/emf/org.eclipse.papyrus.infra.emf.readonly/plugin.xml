@@ -5,14 +5,14 @@
    <extension
          point="org.eclipse.papyrus.readonly.readOnlyHandler">
       <readOnlyHandler
-            class="org.eclipse.papyrus.readonly.FSReadOnlyHandler"
+            class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             priority="10">
       </readOnlyHandler>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.readonly.handlers.EnableWriteHandler"
+            class="org.eclipse.papyrus.infra.emf.readonly.handlers.EnableWriteHandler"
             commandId="org.eclipse.papyrus.readonly.EnableWriteCommand">
          <enabledWhen>
             <and>
@@ -90,14 +90,14 @@
 <extension
       point="org.eclipse.papyrus.infra.core.transactionalEditingDomainProvider">
    <transactionalEditingDomainProvider
-         class="org.eclipse.papyrus.readonly.ReadOnlyTransactionalEditingDomainProvider"
+         class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTransactionalEditingDomainProvider"
          priority="10">
    </transactionalEditingDomainProvider>
 </extension>
 <extension
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
-         class="org.eclipse.papyrus.readonly.ReadOnlyTester"
+         class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTester"
          id="org.eclipse.papyrus.readonly.tester"
          namespace="org.eclipse.papyrus.readonly.tester"
          properties="isReadOnly"
@@ -107,7 +107,7 @@
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.commands.operationApprover">
    <operationApprover
-         class="org.eclipse.papyrus.readonly.FSReadOnlyOneFileApprover"
+         class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyOneFileApprover"
          priority="10">
    </operationApprover>
 </extension>

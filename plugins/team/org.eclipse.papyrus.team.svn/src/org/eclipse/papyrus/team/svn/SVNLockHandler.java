@@ -11,13 +11,13 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.svn;
+package org.eclipse.papyrus.team.svn;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.team.FileModificationValidationContext;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.papyrus.readonly.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler;
 import org.eclipse.team.svn.core.IStateFilter;
 import org.eclipse.team.svn.core.svnstorage.SVNRemoteStorage;
 import org.eclipse.team.svn.core.utility.FileUtility;

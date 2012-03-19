@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.readonly.handlers;
+package org.eclipse.papyrus.infra.emf.readonly.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
-import org.eclipse.papyrus.readonly.ReadOnlyManager;
 import org.eclipse.ui.PlatformUI;
 
 public class EnableWriteHandler extends AbstractHandler {

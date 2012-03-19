@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.readonly.readOnlyHandler">
+         point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
-            class="org.eclipse.papyrus.svn.SVNLockHandler"
+            class="org.eclipse.papyrus.team.svn.SVNLockHandler"
             priority="20">
       </readOnlyHandler>
    </extension>
