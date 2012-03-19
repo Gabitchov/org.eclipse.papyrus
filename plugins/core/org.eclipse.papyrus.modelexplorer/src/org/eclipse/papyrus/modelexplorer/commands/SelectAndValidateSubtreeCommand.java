@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.papyrus.validation.AbstractValidateCommand;
+import org.eclipse.papyrus.validation.ValidationTool;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
 
@@ -48,6 +49,8 @@ public class SelectAndValidateSubtreeCommand extends AbstractValidateCommand {
 		int result = dialog.open();
 
 		if(result == IDialogConstants.OK_ID) {
+			ValidationTool vt = new ValidationTool(selectedElement);
+			vt.deleteSubMarkers();
 			runValidation(selectedElement);
 		}
 		return null;

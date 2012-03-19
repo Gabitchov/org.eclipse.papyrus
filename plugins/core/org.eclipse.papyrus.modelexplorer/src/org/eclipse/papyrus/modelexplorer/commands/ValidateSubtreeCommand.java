@@ -21,12 +21,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.validation.AbstractValidateCommand;
+import org.eclipse.papyrus.validation.ValidationTool;
 
 
 public class ValidateSubtreeCommand extends AbstractValidateCommand {
-	
-	public ValidateSubtreeCommand (EObject selectedElement) {
-		super ("Validate subtree", TransactionUtil.getEditingDomain (selectedElement), selectedElement);
+
+	public ValidateSubtreeCommand(EObject selectedElement) {
+		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
 	}
 
 	/**
@@ -35,7 +36,9 @@ public class ValidateSubtreeCommand extends AbstractValidateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		runValidation (selectedElement);
+		ValidationTool vt = new ValidationTool(selectedElement);
+		vt.deleteSubMarkers();
+		runValidation(selectedElement);
 		return null;
-	}		
+	}
 }
