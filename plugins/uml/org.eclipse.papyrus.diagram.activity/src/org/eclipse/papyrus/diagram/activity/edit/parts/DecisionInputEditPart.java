@@ -275,7 +275,7 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 	protected String getLabelText() {
 		// do not edit label if hidden
 		DecisionNode resolveSemanticElement = (DecisionNode)resolveSemanticElement();
-		if ( resolveSemanticElement != null){			
+		if(resolveSemanticElement != null) {
 			boolean decisionSet = resolveSemanticElement.getDecisionInput() != null;
 			if(decisionSet) {
 				String text = null;

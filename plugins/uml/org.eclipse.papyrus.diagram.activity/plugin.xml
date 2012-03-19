@@ -2737,10 +2737,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
     <metamodel
           nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
        <adviceBinding
-             class="org.eclipse.papyrus.diagram.activity.EditHelperAdvice.ActivityEdgeEditHelperAdvice"
-             id="org.eclipse.papyrus.diagram.activity.ActivityEdgeEditHelperAdvice"
+             class="org.eclipse.papyrus.diagram.activity.edit.helper.advice.ActivityNodeEditHelperAdvice"
+             id="org.eclipse.papyrus.uml.diagram.activity.ActivityNode"
              inheritance="all"
-             typeId="org.eclipse.papyrus.uml.ActivityEdge">
+             typeId="org.eclipse.papyrus.uml.ActivityNode">
        </adviceBinding>
     </metamodel>
  </extension>
@@ -4078,6 +4078,15 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          </visibleWhen>
       </command>
    </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+   <binding
+         context="org.eclipse.papyrus.service.edit.TypeContext">
+      <elementType
+            ref="org.eclipse.papyrus.uml.diagram.activity.ActivityNode">
+      </elementType>
+   </binding>
 </extension>
 
 
