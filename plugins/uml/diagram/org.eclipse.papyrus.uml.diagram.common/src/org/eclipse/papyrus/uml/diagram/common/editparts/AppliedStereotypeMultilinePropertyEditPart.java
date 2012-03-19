@@ -663,7 +663,6 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if(configuration == null) {
-			System.err.println(AppliedStereotypeProperty.class.getName());
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT +AppliedStereotypeProperty.class.getName());
 			if(languagePreferred != null && !languagePreferred.equals("")) {
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
