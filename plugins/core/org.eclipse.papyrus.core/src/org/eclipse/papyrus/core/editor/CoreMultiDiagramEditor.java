@@ -41,8 +41,10 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.core.Messages;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
@@ -52,7 +54,6 @@ import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedAc
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
-import org.eclipse.papyrus.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.resource.ModelMultiException;
@@ -64,12 +65,8 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
-import org.eclipse.papyrus.sasheditor.editor.IPage;
-import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -80,6 +77,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -274,7 +272,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	protected ISashWindowsContentProvider createPageProvider() {
-		throw new UnsupportedOperationException("Not implemented. Should not be called as the ContentProvider is already initialized.");
+		throw new UnsupportedOperationException("Not implemented. Should not be called as the ContentProvider is already initialized."); //$NON-NLS-1$
 	}
 
 	/**
@@ -304,7 +302,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		try {
 			return sashModelMngr.getIPageMngr();
 		} catch (Exception e) {
-			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called");
+			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called"); //$NON-NLS-1$
 		}
 	}
 
@@ -323,11 +321,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Get it from the contributor.
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
 		if(contributor instanceof CoreComposedActionBarContributor) {
-			log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
+			log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor."); //$NON-NLS-1$
 			return ((CoreComposedActionBarContributor)contributor).getActionBarContributorRegistry();
 		} else {
 			// Create a registry.
-			log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
+			log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry."); //$NON-NLS-1$
 			return createActionBarContributorRegistry();
 		}
 
@@ -433,7 +431,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-
+		assertOneEditorOpen(site);
 		// Init super
 		super.init(site, input);
 
@@ -512,10 +510,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(object, IItemLabelProvider.class);
 				if(object instanceof EObject) {
 					if(((EObject)object).eIsProxy()) {
-						return "Proxy - " + object;
+						return "Proxy - " + object; //$NON-NLS-1$
 					}
 				}
-				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString();
+				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString(); //$NON-NLS-1$
 			}
 		};
 		servicesRegistry.add(ILabelProvider.class, 1, labelProvider);
@@ -535,10 +533,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
 			log.error(e);
-			throw new PartInitException("errors in model", e);
+			throw new PartInitException("errors in model", e); //$NON-NLS-1$
 		} catch (ServiceException e) {
 			log.error(e);
-			throw new PartInitException("could not initialize services", e);
+			throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
 		}
 
 		// Get required services
@@ -549,10 +547,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
 			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		} catch (ServiceException e) {
-			log.error("A required service is missing.", e);
+			log.error("A required service is missing.", e); //$NON-NLS-1$
 			// if one of the services above fail to start, the editor can't run
 			// => stop
-			throw new PartInitException("could not initialize services", e);
+			throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
 		}
 
 		// Set the content provider providing editors.
@@ -566,6 +564,29 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Listen on input changed from the ISaveAndDirtyService
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+	}
+
+	/**
+	 * Analyse if editors are opened
+	 * if yes the user can choose to close the other ones
+	 * @param site
+	 * @throws PartInitException
+	 */
+	protected void assertOneEditorOpen(IEditorSite site) throws PartInitException {
+		IWorkbenchWindow window = site.getWorkbenchWindow();
+		if (OneInstanceUtils.isPapyrusOpen(window,this))
+		{
+			String errorMessage = Messages.CoreMultiDiagramEditor_only_one;
+			if (MessageDialog.openQuestion(window.getShell(), Messages.CoreMultiDiagramEditor_warning, Messages.CoreMultiDiagramEditor_do_you_want_to_close +
+					Messages.CoreMultiDiagramEditor_if_not_close)){
+				if (!OneInstanceUtils.closeAllPapyrusOpened(window, this)){
+					throw new PartInitException(errorMessage) ;
+				}
+			}
+			else {
+				throw new PartInitException(errorMessage) ;
+			}
+		}
 	}
 
 	/**
@@ -607,13 +628,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		ISashWindowsContainer container = getISashWindowsContainer();
 
 		// TODO : use a constant
-		MenuManager menuManager = new MenuManager("tabmenu");
-		menuManager.add(new Separator("tabcommands"));
+		MenuManager menuManager = new MenuManager("tabmenu"); //$NON-NLS-1$
+		menuManager.add(new Separator("tabcommands")); //$NON-NLS-1$
 		menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		container.setFolderTabMenuManager(menuManager);
 
 		// TODO : use a constant
-		getSite().registerContextMenu("org.eclipse.papyrus.core.editor.ui.tabmenu", menuManager, getSite().getSelectionProvider());
+		getSite().registerContextMenu("org.eclipse.papyrus.core.editor.ui.tabmenu", menuManager, getSite().getSelectionProvider()); //$NON-NLS-1$
 
 	}
 
@@ -713,7 +734,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
-		return "TreeOutlinePage";
+		return "TreeOutlinePage"; //$NON-NLS-1$
 
 	}
 
@@ -793,7 +814,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @see org.eclipse.papyrus.core.editor.IMultiDiagramEditor#getDiagramEditDomain()
 	 */
 	public DiagramEditDomain getDiagramEditDomain() {
-		throw new UnsupportedOperationException("Not implemented. Should not be called.");
+		throw new UnsupportedOperationException("Not implemented. Should not be called."); //$NON-NLS-1$
 	}
 
 	/**
@@ -816,7 +837,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
 		for(IViewReference view : page.getViewReferences()) {
-			if(view.getId().equals("org.eclipse.papyrus.modelexplorer.modelexplorer")) {
+			if(view.getId().equals("org.eclipse.papyrus.modelexplorer.modelexplorer")) { //$NON-NLS-1$
 				page.activate(view.getPart(false));
 				IWorkbenchPart part = view.getPart(false);
 				if(part instanceof IGotoMarker) {

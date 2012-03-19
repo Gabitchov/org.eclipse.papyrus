@@ -29,10 +29,12 @@ import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.editor.OneInstanceUtils;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -40,6 +42,7 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
+import org.eclipse.papyrus.wizards.pages.ErrorPage;
 import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
@@ -50,6 +53,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.part.PageSite;
 
 /**
  * Create new model file and initialize a selected diagram. This wizard create
@@ -83,12 +87,38 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** Current workbench. */
 	private IWorkbench workbench;
 
+	private IWizardPage errorPage = new ErrorPage(new Status(IStatus.WARNING, Activator.PLUGIN_ID, Messages.CreateModelWizard_please_close_message));
+
 	/**
 	 * Instantiates a new creates the model wizard.
 	 */
 	public CreateModelWizard() {
 		super();
-		setWindowTitle(Messages.CreateModelWizard_new_papyrus_model_title);
+		setWindowTitle(""); //$NON-NLS-1$
+	}
+
+	
+	@Override
+	public IWizardPage getStartingPage() {
+		boolean addErrorPage = false ;
+		if (OneInstanceUtils.isPapyrusOpen(workbench.getActiveWorkbenchWindow(), null)) {
+			if (MessageDialog.openQuestion(workbench.getActiveWorkbenchWindow().getShell(), Messages.CreateModelWizard_warning, Messages.CreateModelWizard_only_one +
+				Messages.CreateModelWizard_are_not_saved)) {
+				if (!OneInstanceUtils.closeAllPapyrusOpened(workbench.getActiveWorkbenchWindow(), null)) {
+					addErrorPage = true; 
+				}
+			}
+			else {
+				addErrorPage = true; 
+			}
+		}
+		if (addErrorPage){
+			errorPage.setWizard(this);
+			return errorPage ;
+		}
+		else {
+			return super.getStartingPage();
+		}
 	}
 
 

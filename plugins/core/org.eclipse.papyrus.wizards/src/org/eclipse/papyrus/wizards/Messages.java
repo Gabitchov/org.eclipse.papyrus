@@ -11,8 +11,13 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "messages"; //$NON-NLS-1$
 
-	/** The Create model wizard_new_papyrus_model_title. */
-	public static String CreateModelWizard_new_papyrus_model_title;
+	public static String CreateModelWizard_are_not_saved;
+
+	public static String CreateModelWizard_only_one;
+
+	public static String CreateModelWizard_please_close_message;
+
+	public static String CreateModelWizard_warning;
 
 	/** The Create several models wizard_cannot_initiate_page. */
 	public static String CreateSeveralModelsWizard_cannot_initiate_page;
