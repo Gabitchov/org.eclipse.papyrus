@@ -55,6 +55,7 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.tests.build.feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.tests.infra.services.feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.tests.infra.core.feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.tests.uml.diagram.feature" type="4"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1326288464751_5" label="build.main" name="build.main">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.mdt.papyrus.releng.buckminster" type="4"/>
@@ -88,7 +89,6 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.views.documentation.feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.views.modelexplorer.feature" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.views.properties.feature" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.tests.uml.diagram.feature" type="4"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1326288087191_1" label="build.extra" name="build.extra">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.extra.build.feature" type="4"/>
