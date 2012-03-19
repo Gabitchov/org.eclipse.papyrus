@@ -48,5 +48,4 @@ public class ComponentCompositeCompartmentItemSemanticEditPolicyCN extends UMLBa
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

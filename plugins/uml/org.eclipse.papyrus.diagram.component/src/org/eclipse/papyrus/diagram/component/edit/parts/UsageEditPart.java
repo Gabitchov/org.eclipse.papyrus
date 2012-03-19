@@ -11,9 +11,7 @@ import org.eclipse.papyrus.diagram.component.edit.policies.UsageItemSemanticEdit
 /**
  * @generated
  */
-public class UsageEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class UsageEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -53,5 +51,4 @@ implements ITreeBranchEditPart {
 	public UsageDecoration getPrimaryShape() {
 		return (UsageDecoration)getFigure();
 	}
-
 }

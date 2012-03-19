@@ -14,9 +14,7 @@ import org.eclipse.papyrus.diagram.component.edit.policies.ComponentRealizationI
 /**
  * @generated
  */
-public class ComponentRealizationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -106,5 +104,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure)getFigure();
 	}
-
 }

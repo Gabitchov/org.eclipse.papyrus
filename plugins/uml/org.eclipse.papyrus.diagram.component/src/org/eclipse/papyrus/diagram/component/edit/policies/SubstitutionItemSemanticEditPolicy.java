@@ -227,5 +227,4 @@ public class SubstitutionItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

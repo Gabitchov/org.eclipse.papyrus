@@ -30,7 +30,5 @@ public class ConstraintConstrainedElementPreferencePage extends AbstractPapyrusL
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

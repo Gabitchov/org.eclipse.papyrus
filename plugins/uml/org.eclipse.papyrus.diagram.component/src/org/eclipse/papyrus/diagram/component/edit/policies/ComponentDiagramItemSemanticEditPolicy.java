@@ -113,5 +113,4 @@ public class ComponentDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

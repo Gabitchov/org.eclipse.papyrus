@@ -69,7 +69,6 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		}
 		IEditorInput editorInput = (IEditorInput)element;
 		IDiagramDocument document = (IDiagramDocument)createDocument(editorInput);
-
 		ResourceSetInfo info = new ResourceSetInfo(document, editorInput);
 		info.setModificationStamp(computeModificationStamp(info));
 		info.fStatus = null;
@@ -164,9 +163,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			public void setTarget(Notifier newTarget) {
 				myTarger = newTarget;
 			}
-
 		});
-
 		return editingDomain;
 	}
 
@@ -291,7 +288,6 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			}
 			ResourcesPlugin.getWorkspace().validateEdit((IFile[])files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
-
 		super.doValidateState(element, computationContext);
 	}
 
@@ -463,7 +459,6 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
 		if(toCreateOrModify.exists())
 			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
-
 		IResource parent = toCreateOrModify;
 		do {
 			/*
@@ -475,7 +470,6 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
 		} while(parent != null && !parent.exists());
-
 		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
 	}
 
@@ -583,7 +577,6 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			}
 		}
 		changedResource.unload();
-
 		fireElementContentAboutToBeReplaced(info.getEditorInput());
 		removeUnchangedElementListeners(info.getEditorInput(), info);
 		info.fStatus = null;
@@ -903,9 +896,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				}
 				return true;
 			}
-
 		}
-
 	}
 
 	/**
@@ -961,7 +952,6 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 						}
 						if(dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
-
 							if(!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
@@ -970,7 +960,5 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				}
 			}
 		}
-
 	}
-
 }

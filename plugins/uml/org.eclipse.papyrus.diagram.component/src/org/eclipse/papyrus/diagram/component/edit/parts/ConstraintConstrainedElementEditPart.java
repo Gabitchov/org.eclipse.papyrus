@@ -12,9 +12,7 @@ import org.eclipse.papyrus.diagram.component.edit.policies.ConstraintConstrained
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,7 +42,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -66,9 +63,6 @@ implements ITreeBranchEditPart {
 		 */
 		public CommentLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

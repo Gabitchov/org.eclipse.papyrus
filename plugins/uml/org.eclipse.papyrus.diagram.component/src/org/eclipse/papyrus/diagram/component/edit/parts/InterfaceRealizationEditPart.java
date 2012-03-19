@@ -12,9 +12,7 @@ import org.eclipse.papyrus.diagram.component.edit.policies.InterfaceRealizationI
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,7 +42,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new SimpleDependency();
 	}
@@ -66,9 +63,6 @@ implements ITreeBranchEditPart {
 		 */
 		public SimpleDependency() {
 			this.setForegroundColor(ColorConstants.black);
-
 		}
-
 	}
-
 }

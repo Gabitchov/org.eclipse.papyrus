@@ -32,6 +32,5 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setPreferenceKey(ComponentDiagramEditPart.MODEL_ID);
-
 	}
 }

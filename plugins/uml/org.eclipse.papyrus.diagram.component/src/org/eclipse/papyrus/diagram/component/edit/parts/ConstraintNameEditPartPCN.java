@@ -218,7 +218,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -226,7 +225,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -298,7 +296,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -380,9 +377,7 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -409,7 +404,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -417,7 +411,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -425,7 +418,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -586,7 +578,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -721,11 +712,9 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -755,7 +744,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -764,7 +752,6 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -772,7 +759,5 @@ public class ConstraintNameEditPartPCN extends CompartmentEditPart implements IT
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

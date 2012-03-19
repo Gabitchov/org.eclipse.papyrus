@@ -15,9 +15,7 @@ import org.eclipse.papyrus.diagram.component.edit.policies.ManifestationItemSema
 /**
  * @generated
  */
-public class ManifestationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ManifestationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -107,5 +105,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

@@ -106,7 +106,6 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -298,7 +297,6 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -380,9 +378,7 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -409,7 +405,6 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -417,7 +412,6 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -425,7 +419,6 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -696,7 +689,6 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -721,5 +713,4 @@ public class ComponentRealizationAppliedStereotypeEditPart extends LabelEditPart
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 }
