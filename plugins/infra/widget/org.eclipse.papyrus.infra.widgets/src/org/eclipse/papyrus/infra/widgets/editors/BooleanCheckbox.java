@@ -89,7 +89,7 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object getValue() {
+	public Boolean getValue() {
 		return checkbox.getSelection();
 	}
 
@@ -112,5 +112,12 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	@Override
 	public void setLabel(String label) {
 		checkbox.setText(label);
+	}
+
+	public void setValue(Boolean selected) {
+		if(modelProperty != null) {
+			modelProperty.setValue(selected);
+		}
+		checkbox.setSelection(selected);
 	}
 }

@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="notation">
+  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="75">
+    <sections name="Single Edge" sectionFile="ui/SingleEdge.xwt">
+      <widget href="ui/SingleEdge.xwt#/"/>
+    </sections>
+    <sections name="Single Node" sectionFile="ui/SingleNode.xwt">
+      <widget href="ui/SingleNode.xwt#/"/>
+    </sections>
+    <sections name="Single LayoutConstraint" sectionFile="ui/SingleLayoutConstraint.xwt">
+      <widget href="ui/SingleLayoutConstraint.xwt#/"/>
+    </sections>
+    <sections name="Single Size" sectionFile="ui/SingleSize.xwt">
+      <widget href="ui/SingleSize.xwt#/"/>
+    </sections>
+    <sections name="Single Location" sectionFile="ui/SingleLocation.xwt">
+      <widget href="ui/SingleLocation.xwt#/"/>
+    </sections>
+    <sections name="Single Bounds" sectionFile="ui/SingleBounds.xwt">
+      <widget href="ui/SingleBounds.xwt#/"/>
+    </sections>
+    <sections name="Single Ratio" sectionFile="ui/SingleRatio.xwt">
+      <widget href="ui/SingleRatio.xwt#/"/>
+    </sections>
+    <sections name="Single Anchor" sectionFile="ui/SingleAnchor.xwt">
+      <widget href="ui/SingleAnchor.xwt#/"/>
+    </sections>
+    <sections name="Single Bendpoints" sectionFile="ui/SingleBendpoints.xwt">
+      <widget href="ui/SingleBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Single IdentityAnchor" sectionFile="ui/SingleIdentityAnchor.xwt">
+      <widget href="ui/SingleIdentityAnchor.xwt#/"/>
+    </sections>
+    <sections name="Single View" sectionFile="ui/SingleView.xwt">
+      <widget href="ui/SingleView.xwt#/"/>
+    </sections>
+    <sections name="Single RelativeBendpoints" sectionFile="ui/SingleRelativeBendpoints.xwt">
+      <widget href="ui/SingleRelativeBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Single Diagram" sectionFile="ui/SingleDiagram.xwt">
+      <widget href="ui/SingleDiagram.xwt#/"/>
+    </sections>
+    <sections name="Single Image" sectionFile="ui/SingleImage.xwt">
+      <widget href="ui/SingleImage.xwt#/"/>
+    </sections>
+    <sections name="Single Guide" sectionFile="ui/SingleGuide.xwt">
+      <widget href="ui/SingleGuide.xwt#/"/>
+    </sections>
+    <sections name="Single NodeEntry" sectionFile="ui/SingleNodeEntry.xwt">
+      <widget href="ui/SingleNodeEntry.xwt#/"/>
+    </sections>
+    <sections name="Single StringToPropertyValueMapEntry" sectionFile="ui/SingleStringToPropertyValueMapEntry.xwt">
+      <widget href="ui/SingleStringToPropertyValueMapEntry.xwt#/"/>
+    </sections>
+    <sections name="Single PropertyValue" sectionFile="ui/SinglePropertyValue.xwt">
+      <widget href="ui/SinglePropertyValue.xwt#/"/>
+    </sections>
+    <sections name="Single StringObjectConverter" sectionFile="ui/SingleStringObjectConverter.xwt">
+      <widget href="ui/SingleStringObjectConverter.xwt#/"/>
+    </sections>
+    <sections name="Single Shape" sectionFile="ui/SingleShape.xwt">
+      <widget href="ui/SingleShape.xwt#/"/>
+    </sections>
+    <sections name="Single Compartment" sectionFile="ui/SingleCompartment.xwt">
+      <widget href="ui/SingleCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single ListCompartment" sectionFile="ui/SingleListCompartment.xwt">
+      <widget href="ui/SingleListCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single Connector" sectionFile="ui/SingleConnector.xwt">
+      <widget href="ui/SingleConnector.xwt#/"/>
+    </sections>
+    <sections name="Single StandardDiagram" sectionFile="ui/SingleStandardDiagram.xwt">
+      <widget href="ui/SingleStandardDiagram.xwt#/"/>
+    </sections>
+    <sections name="Single DecorationNode" sectionFile="ui/SingleDecorationNode.xwt">
+      <widget href="ui/SingleDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Single BasicDecorationNode" sectionFile="ui/SingleBasicDecorationNode.xwt">
+      <widget href="ui/SingleBasicDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Single BasicCompartment" sectionFile="ui/SingleBasicCompartment.xwt">
+      <widget href="ui/SingleBasicCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single BasicSemanticCompartment" sectionFile="ui/SingleBasicSemanticCompartment.xwt">
+      <widget href="ui/SingleBasicSemanticCompartment.xwt#/"/>
+    </sections>
+    <sections name="Single SemanticListCompartment" sectionFile="ui/SingleSemanticListCompartment.xwt">
+      <widget href="ui/SingleSemanticListCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple Edge" sectionFile="ui/MultipleEdge.xwt">
+      <widget href="ui/MultipleEdge.xwt#/"/>
+    </sections>
+    <sections name="Multiple Node" sectionFile="ui/MultipleNode.xwt">
+      <widget href="ui/MultipleNode.xwt#/"/>
+    </sections>
+    <sections name="Multiple LayoutConstraint" sectionFile="ui/MultipleLayoutConstraint.xwt">
+      <widget href="ui/MultipleLayoutConstraint.xwt#/"/>
+    </sections>
+    <sections name="Multiple Size" sectionFile="ui/MultipleSize.xwt">
+      <widget href="ui/MultipleSize.xwt#/"/>
+    </sections>
+    <sections name="Multiple Location" sectionFile="ui/MultipleLocation.xwt">
+      <widget href="ui/MultipleLocation.xwt#/"/>
+    </sections>
+    <sections name="Multiple Bounds" sectionFile="ui/MultipleBounds.xwt">
+      <widget href="ui/MultipleBounds.xwt#/"/>
+    </sections>
+    <sections name="Multiple Ratio" sectionFile="ui/MultipleRatio.xwt">
+      <widget href="ui/MultipleRatio.xwt#/"/>
+    </sections>
+    <sections name="Multiple Anchor" sectionFile="ui/MultipleAnchor.xwt">
+      <widget href="ui/MultipleAnchor.xwt#/"/>
+    </sections>
+    <sections name="Multiple Bendpoints" sectionFile="ui/MultipleBendpoints.xwt">
+      <widget href="ui/MultipleBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Multiple IdentityAnchor" sectionFile="ui/MultipleIdentityAnchor.xwt">
+      <widget href="ui/MultipleIdentityAnchor.xwt#/"/>
+    </sections>
+    <sections name="Multiple View" sectionFile="ui/MultipleView.xwt">
+      <widget href="ui/MultipleView.xwt#/"/>
+    </sections>
+    <sections name="Multiple RelativeBendpoints" sectionFile="ui/MultipleRelativeBendpoints.xwt">
+      <widget href="ui/MultipleRelativeBendpoints.xwt#/"/>
+    </sections>
+    <sections name="Multiple Diagram" sectionFile="ui/MultipleDiagram.xwt">
+      <widget href="ui/MultipleDiagram.xwt#/"/>
+    </sections>
+    <sections name="Multiple Image" sectionFile="ui/MultipleImage.xwt">
+      <widget href="ui/MultipleImage.xwt#/"/>
+    </sections>
+    <sections name="Multiple Guide" sectionFile="ui/MultipleGuide.xwt">
+      <widget href="ui/MultipleGuide.xwt#/"/>
+    </sections>
+    <sections name="Multiple NodeEntry" sectionFile="ui/MultipleNodeEntry.xwt">
+      <widget href="ui/MultipleNodeEntry.xwt#/"/>
+    </sections>
+    <sections name="Multiple StringToPropertyValueMapEntry" sectionFile="ui/MultipleStringToPropertyValueMapEntry.xwt">
+      <widget href="ui/MultipleStringToPropertyValueMapEntry.xwt#/"/>
+    </sections>
+    <sections name="Multiple PropertyValue" sectionFile="ui/MultiplePropertyValue.xwt">
+      <widget href="ui/MultiplePropertyValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple StringObjectConverter" sectionFile="ui/MultipleStringObjectConverter.xwt">
+      <widget href="ui/MultipleStringObjectConverter.xwt#/"/>
+    </sections>
+    <sections name="Multiple Shape" sectionFile="ui/MultipleShape.xwt">
+      <widget href="ui/MultipleShape.xwt#/"/>
+    </sections>
+    <sections name="Multiple Compartment" sectionFile="ui/MultipleCompartment.xwt">
+      <widget href="ui/MultipleCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple ListCompartment" sectionFile="ui/MultipleListCompartment.xwt">
+      <widget href="ui/MultipleListCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple Connector" sectionFile="ui/MultipleConnector.xwt">
+      <widget href="ui/MultipleConnector.xwt#/"/>
+    </sections>
+    <sections name="Multiple StandardDiagram" sectionFile="ui/MultipleStandardDiagram.xwt">
+      <widget href="ui/MultipleStandardDiagram.xwt#/"/>
+    </sections>
+    <sections name="Multiple DecorationNode" sectionFile="ui/MultipleDecorationNode.xwt">
+      <widget href="ui/MultipleDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Multiple BasicDecorationNode" sectionFile="ui/MultipleBasicDecorationNode.xwt">
+      <widget href="ui/MultipleBasicDecorationNode.xwt#/"/>
+    </sections>
+    <sections name="Multiple BasicCompartment" sectionFile="ui/MultipleBasicCompartment.xwt">
+      <widget href="ui/MultipleBasicCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple BasicSemanticCompartment" sectionFile="ui/MultipleBasicSemanticCompartment.xwt">
+      <widget href="ui/MultipleBasicSemanticCompartment.xwt#/"/>
+    </sections>
+    <sections name="Multiple SemanticListCompartment" sectionFile="ui/MultipleSemanticListCompartment.xwt">
+      <widget href="ui/MultipleSemanticListCompartment.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single Diagram" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleDiagram">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
+  <views name="Single Edge" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleEdge">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Edge"/>
+    </constraints>
+  </views>
+  <views name="Single Node" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleNode">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Node"/>
+    </constraints>
+  </views>
+  <views name="Single LayoutConstraint" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayoutConstraint">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="LayoutConstraint"/>
+    </constraints>
+  </views>
+  <views name="Single Size" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleSize">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Size"/>
+    </constraints>
+  </views>
+  <views name="Single Location" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLocation">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Location"/>
+    </constraints>
+  </views>
+  <views name="Single Bounds" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBounds">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Bounds"/>
+    </constraints>
+  </views>
+  <views name="Single Ratio" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRatio">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Ratio"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single Anchor" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAnchor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Anchor"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single Bendpoints" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBendpoints">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Bendpoints"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single IdentityAnchor" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIdentityAnchor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="IdentityAnchor"/>
+    </constraints>
+  </views>
+  <views name="Single View" sections="//@tabs.0/@sections.10" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleView">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="View"/>
+    </constraints>
+  </views>
+  <views name="Single RelativeBendpoints" sections="//@tabs.0/@sections.11" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRelativeBendpoints">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="RelativeBendpoints"/>
+    </constraints>
+  </views>
+  <views name="Single Image" sections="//@tabs.0/@sections.13" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleImage">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Image"/>
+    </constraints>
+  </views>
+  <views name="Single Guide" sections="//@tabs.0/@sections.14" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleGuide">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Guide"/>
+    </constraints>
+  </views>
+  <views name="Single NodeEntry" sections="//@tabs.0/@sections.15" automaticContext="true" datacontexts="//@dataContexts.0/@elements.15">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleNodeEntry">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="NodeEntry"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single StringToPropertyValueMapEntry" sections="//@tabs.0/@sections.16" automaticContext="true" datacontexts="//@dataContexts.0/@elements.16">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringToPropertyValueMapEntry">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StringToPropertyValueMapEntry"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single PropertyValue" sections="//@tabs.0/@sections.17" automaticContext="true" datacontexts="//@dataContexts.0/@elements.17">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertyValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyValue"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single StringObjectConverter" sections="//@tabs.0/@sections.18" automaticContext="true" datacontexts="//@dataContexts.0/@elements.18">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringObjectConverter">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StringObjectConverter"/>
+    </constraints>
+  </views>
+  <views name="Single Shape" sections="//@tabs.0/@sections.19" automaticContext="true" datacontexts="//@dataContexts.0/@elements.19">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleShape">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Shape"/>
+    </constraints>
+  </views>
+  <views name="Single Compartment" sections="//@tabs.0/@sections.20" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Compartment"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single ListCompartment" sections="//@tabs.0/@sections.21" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleListCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="ListCompartment"/>
+    </constraints>
+  </views>
+  <views name="Single Connector" sections="//@tabs.0/@sections.22" automaticContext="true" datacontexts="//@dataContexts.0/@elements.22">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleConnector">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Connector"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single StandardDiagram" sections="//@tabs.0/@sections.23" automaticContext="true" datacontexts="//@dataContexts.0/@elements.23">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStandardDiagram">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StandardDiagram"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single DecorationNode" sections="//@tabs.0/@sections.24" automaticContext="true" datacontexts="//@dataContexts.0/@elements.24">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleDecorationNode">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="DecorationNode"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single BasicDecorationNode" sections="//@tabs.0/@sections.25" automaticContext="true" datacontexts="//@dataContexts.0/@elements.25">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBasicDecorationNode">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="BasicDecorationNode"/>
+    </constraints>
+  </views>
+  <views name="Single BasicCompartment" sections="//@tabs.0/@sections.26" automaticContext="true" datacontexts="//@dataContexts.0/@elements.26">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBasicCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="BasicCompartment"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single BasicSemanticCompartment" sections="//@tabs.0/@sections.27" automaticContext="true" datacontexts="//@dataContexts.0/@elements.27">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBasicSemanticCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="BasicSemanticCompartment"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single SemanticListCompartment" sections="//@tabs.0/@sections.28" automaticContext="true" datacontexts="//@dataContexts.0/@elements.28">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleSemanticListCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="SemanticListCompartment"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Edge" sections="//@tabs.0/@sections.29" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleEdge">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Edge"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Node" sections="//@tabs.0/@sections.30" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleNode">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Node"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple LayoutConstraint" sections="//@tabs.0/@sections.31" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayoutConstraint">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="LayoutConstraint"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Size" sections="//@tabs.0/@sections.32" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleSize">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Size"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Location" sections="//@tabs.0/@sections.33" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLocation">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Location"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Bounds" sections="//@tabs.0/@sections.34" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBounds">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Bounds"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Ratio" sections="//@tabs.0/@sections.35" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRatio">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Ratio"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Anchor" sections="//@tabs.0/@sections.36" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAnchor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Anchor"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Bendpoints" sections="//@tabs.0/@sections.37" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBendpoints">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Bendpoints"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple IdentityAnchor" sections="//@tabs.0/@sections.38" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIdentityAnchor">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="IdentityAnchor"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple View" sections="//@tabs.0/@sections.39" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleView">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="View"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple RelativeBendpoints" sections="//@tabs.0/@sections.40" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRelativeBendpoints">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="RelativeBendpoints"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Diagram" sections="//@tabs.0/@sections.41" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleDiagram">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Diagram"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Image" sections="//@tabs.0/@sections.42" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleImage">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Image"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Guide" sections="//@tabs.0/@sections.43" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleGuide">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Guide"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple NodeEntry" sections="//@tabs.0/@sections.44" automaticContext="true" datacontexts="//@dataContexts.0/@elements.15">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleNodeEntry">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="NodeEntry"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple StringToPropertyValueMapEntry" sections="//@tabs.0/@sections.45" automaticContext="true" datacontexts="//@dataContexts.0/@elements.16">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringToPropertyValueMapEntry">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StringToPropertyValueMapEntry"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple PropertyValue" sections="//@tabs.0/@sections.46" automaticContext="true" datacontexts="//@dataContexts.0/@elements.17">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertyValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyValue"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple StringObjectConverter" sections="//@tabs.0/@sections.47" automaticContext="true" datacontexts="//@dataContexts.0/@elements.18">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringObjectConverter">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StringObjectConverter"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Shape" sections="//@tabs.0/@sections.48" automaticContext="true" datacontexts="//@dataContexts.0/@elements.19">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleShape">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Shape"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Compartment" sections="//@tabs.0/@sections.49" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Compartment"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple ListCompartment" sections="//@tabs.0/@sections.50" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleListCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="ListCompartment"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Connector" sections="//@tabs.0/@sections.51" automaticContext="true" datacontexts="//@dataContexts.0/@elements.22">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleConnector">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="Connector"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple StandardDiagram" sections="//@tabs.0/@sections.52" automaticContext="true" datacontexts="//@dataContexts.0/@elements.23">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStandardDiagram">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="StandardDiagram"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple DecorationNode" sections="//@tabs.0/@sections.53" automaticContext="true" datacontexts="//@dataContexts.0/@elements.24">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleDecorationNode">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="DecorationNode"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple BasicDecorationNode" sections="//@tabs.0/@sections.54" automaticContext="true" datacontexts="//@dataContexts.0/@elements.25">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBasicDecorationNode">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="BasicDecorationNode"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple BasicCompartment" sections="//@tabs.0/@sections.55" automaticContext="true" datacontexts="//@dataContexts.0/@elements.26">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBasicCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="BasicCompartment"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple BasicSemanticCompartment" sections="//@tabs.0/@sections.56" automaticContext="true" datacontexts="//@dataContexts.0/@elements.27">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBasicSemanticCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="BasicSemanticCompartment"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple SemanticListCompartment" sections="//@tabs.0/@sections.57" automaticContext="true" datacontexts="//@dataContexts.0/@elements.28">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleSemanticListCompartment">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="SemanticListCompartment"/>
+    </constraints>
+  </views>
+  <dataContexts name="notation" label="notation">
+    <elements name="Edge" supertypes="//@dataContexts.0/@elements.10">
+      <properties name="source" type="Reference"/>
+      <properties name="target" type="Reference"/>
+      <properties name="bendpoints" type="Reference"/>
+      <properties name="sourceAnchor" type="Reference"/>
+      <properties name="targetAnchor" type="Reference"/>
+    </elements>
+    <elements name="Node" supertypes="//@dataContexts.0/@elements.10">
+      <properties name="layoutConstraint" type="Reference"/>
+    </elements>
+    <elements name="LayoutConstraint"/>
+    <elements name="Size" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="width" type="Integer"/>
+      <properties name="height" type="Integer"/>
+    </elements>
+    <elements name="Location" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="x" type="Integer"/>
+      <properties name="y" type="Integer"/>
+    </elements>
+    <elements name="Bounds" supertypes="//@dataContexts.0/@elements.4 //@dataContexts.0/@elements.3"/>
+    <elements name="Ratio" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="value"/>
+    </elements>
+    <elements name="Anchor"/>
+    <elements name="Bendpoints"/>
+    <elements name="IdentityAnchor" supertypes="//@dataContexts.0/@elements.7">
+      <properties name="id"/>
+    </elements>
+    <elements name="View">
+      <properties name="visible" type="Boolean"/>
+      <properties name="type"/>
+      <properties name="mutable" type="Boolean"/>
+      <properties name="sourceEdges" type="Reference" multiplicity="-1"/>
+      <properties name="targetEdges" type="Reference" multiplicity="-1"/>
+      <properties name="persistedChildren" type="Reference" multiplicity="-1"/>
+      <properties name="styles" type="Reference" multiplicity="-1"/>
+      <properties name="element" type="Reference"/>
+      <properties name="diagram" type="Reference"/>
+      <properties name="transientChildren" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="RelativeBendpoints" supertypes="//@dataContexts.0/@elements.8">
+      <properties name="points"/>
+    </elements>
+    <elements name="Diagram" supertypes="//@dataContexts.0/@elements.10">
+      <properties name="name" label="Name"/>
+      <properties name="measurementUnit" type="Enumeration"/>
+      <properties name="persistedEdges" type="Reference" multiplicity="-1"/>
+      <properties name="TransientEdges" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="Image">
+      <properties name="data"/>
+    </elements>
+    <elements name="Guide">
+      <properties name="position" type="Integer"/>
+      <properties name="nodeMap" type="Reference" multiplicity="-1"/>
+    </elements>
+    <elements name="NodeEntry">
+      <properties name="value" type="Enumeration"/>
+      <properties name="key" type="Reference"/>
+    </elements>
+    <elements name="StringToPropertyValueMapEntry">
+      <properties name="key"/>
+      <properties name="value" type="Reference"/>
+    </elements>
+    <elements name="PropertyValue" supertypes="//@dataContexts.0/@elements.18">
+      <properties name="rawValue"/>
+      <properties name="instanceType" type="Reference"/>
+    </elements>
+    <elements name="StringObjectConverter"/>
+    <elements name="Shape" supertypes="//@dataContexts.0/@elements.1"/>
+    <elements name="Compartment" supertypes="//@dataContexts.0/@elements.26"/>
+    <elements name="ListCompartment" supertypes="//@dataContexts.0/@elements.26"/>
+    <elements name="Connector" supertypes="//@dataContexts.0/@elements.0"/>
+    <elements name="StandardDiagram" supertypes="//@dataContexts.0/@elements.12"/>
+    <elements name="DecorationNode" supertypes="//@dataContexts.0/@elements.25"/>
+    <elements name="BasicDecorationNode" supertypes="//@dataContexts.0/@elements.1"/>
+    <elements name="BasicCompartment" supertypes="//@dataContexts.0/@elements.24"/>
+    <elements name="BasicSemanticCompartment" supertypes="//@dataContexts.0/@elements.25"/>
+    <elements name="SemanticListCompartment" supertypes="//@dataContexts.0/@elements.27"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.2"/>
+  </dataContexts>
+</contexts:Context>

@@ -630,4 +630,8 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 			control.setEnabled(enabled);
 		}
 	}
+
+	public void setSelector(IElementSelector selector) {
+		this.selector = selector;
+	}
 }

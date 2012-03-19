@@ -47,13 +47,16 @@ public class EnumRadio extends AbstractValueEditor {
 
 	protected ILabelProvider labelProvider = new LabelProvider();
 
-	protected Map<Button, Object> values = new HashMap<Button, Object>();
+	protected final Map<Button, Object> values = new HashMap<Button, Object>();
 
 	protected int numColumns = -1;
 
 	public EnumRadio(Composite parent, int style) {
-		super(parent, SWT.NONE);
+		this(parent, SWT.NONE, null);
+	}
 
+	public EnumRadio(Composite parent, int style, String label) {
+		super(parent, style, label);
 		buttonsArea = factory.createComposite(this);
 		buttonsArea.setLayoutData(getDefaultLayoutData());
 		GridLayout layout = new GridLayout(1, true);
@@ -80,6 +83,27 @@ public class EnumRadio extends AbstractValueEditor {
 		if(labelProvider != null) {
 			this.labelProvider = labelProvider;
 		}
+
+		disposeButtons();
+		if(widgetObservable != null) {
+			widgetObservable.dispose();
+		}
+
+		SelectObservableValue observable = new SelectObservableValue();
+		for(Object value : contentProvider.getElements()) {
+			Button button = factory.createButton(buttonsArea, labelProvider.getText(value), SWT.RADIO);
+			button.setBackground(buttonsArea.getBackground()); //For Radio buttons, we need to force the color
+			button.setData(value);
+			button.setToolTipText(toolTipText);
+			IObservableValue buttonObservable = WidgetProperties.selection().observe(button);
+			observable.addOption(value, buttonObservable);
+
+			values.put(button, value);
+		}
+
+		setWidgetObservable(observable, true);
+		updateLayout();
+
 		doBinding();
 	}
 
@@ -91,31 +115,6 @@ public class EnumRadio extends AbstractValueEditor {
 			binding.dispose();
 		}
 		values.clear();
-	}
-
-	@Override
-	protected void doBinding() {
-		disposeButtons();
-
-		if(modelProperty != null && contentProvider != null) {
-			SelectObservableValue observable = new SelectObservableValue();
-			for(Object value : contentProvider.getElements()) {
-				Button button = factory.createButton(buttonsArea, labelProvider.getText(value), SWT.RADIO);
-				button.setBackground(buttonsArea.getBackground()); //For Radio buttons, we need to force the color
-				button.setData(value);
-				button.setToolTipText(toolTipText);
-				IObservableValue buttonObservable = WidgetProperties.selection().observe(button);
-				observable.addOption(value, buttonObservable);
-
-				values.put(button, value);
-			}
-
-			setWidgetObservable(observable);
-
-			super.doBinding();
-		}
-
-		updateLayout();
 	}
 
 	/**
@@ -190,5 +189,21 @@ public class EnumRadio extends AbstractValueEditor {
 			button.setToolTipText(text);
 		}
 		super.setLabelToolTipText(text);
+	}
+
+	public void setValue(Object value) {
+		if(modelProperty != null) {
+			modelProperty.setValue(value);
+		}
+		if(widgetObservable != null) {
+			widgetObservable.setValue(value);
+		} else {
+			for(Button button : values.keySet()) {
+				if(values.get(button) == value) {
+					button.setSelection(true);
+					return;
+				}
+			}
+		}
 	}
 }

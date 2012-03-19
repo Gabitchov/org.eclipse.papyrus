@@ -39,6 +39,7 @@ import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -252,6 +253,12 @@ public class EditionDialog extends SelectionDialog {
 		}
 
 		getShell().pack();
+		Point size = getShell().getSize();
+		int minWidth = 600;
+		if(size.x < minWidth) {
+			size.x = minWidth;
+		}
+		getShell().setSize(size);
 	}
 
 	/**

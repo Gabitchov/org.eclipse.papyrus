@@ -114,9 +114,7 @@ public class ForceValueHelper {
 			return true;
 		}
 
-		if(!style.eIsSet(feature)) {
-			return false;
-		}
+		//		return false;
 
 		if(equals(value, feature.getDefaultValue())) {
 			EAnnotation eAnnotation = annotationContext.getEAnnotation(CSSAnnotations.CSS_FORCE_VALUE);

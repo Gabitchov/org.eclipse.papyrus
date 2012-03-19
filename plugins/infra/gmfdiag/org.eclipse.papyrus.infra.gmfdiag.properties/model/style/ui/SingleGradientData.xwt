@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
+	text="Gradient">
+	<Composite.layout>
+		<ppel:PropertiesLayout makeColumnsEqualWidth="false"
+			numColumns="1"></ppel:PropertiesLayout>
+	</Composite.layout>
+	<ppe:BooleanCheckbox input="{Binding}"
+		property="notation:GradientData:activate"></ppe:BooleanCheckbox>
+	<gmf:XWTAwareColorPicker input="{Binding}"
+		property="notation:GradientData:gradientColor1"></gmf:XWTAwareColorPicker>
+	<ppe:EnumRadio input="{Binding}"
+		property="notation:GradientData:gradientStyle"></ppe:EnumRadio>
+</Composite>

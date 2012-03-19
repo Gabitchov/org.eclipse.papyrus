@@ -303,7 +303,7 @@ public abstract class AbstractEditor extends Composite {
 
 	protected void setLabelToolTipText(String text) {
 		toolTipText = text;
-		if(label != null) {
+		if(label != null && !label.isDisposed()) {
 			label.setToolTipText(text);
 		}
 	}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="notation:SortingStyle:sortingKeys"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="notation:DrawerStyle:collapsed"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}" property="notation:View:visible"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}" property="notation:View:mutable"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="notation:TitleStyle:showTitle"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}" property="notation:SortingStyle:sorting"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}" property="notation:FilteringStyle:filtering"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="notation:SortingStyle:sortedObjects"></ppe:MultiReference>
+	</Composite>
+</Composite>

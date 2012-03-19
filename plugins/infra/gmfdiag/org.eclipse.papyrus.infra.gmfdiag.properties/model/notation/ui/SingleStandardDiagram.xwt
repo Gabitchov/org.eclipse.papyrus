@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:j="clr-namespace:java.lang"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="notation:Diagram:name"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="notation:DescriptionStyle:description"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}" property="notation:View:visible"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}" property="notation:View:mutable"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}" property="notation:PageStyle:pageX"></ppe:IntegerEditor>
+		<ppe:IntegerEditor input="{Binding}" property="notation:PageStyle:pageY"></ppe:IntegerEditor>
+		<ppe:IntegerEditor input="{Binding}"
+			property="notation:PageStyle:pageWidth"></ppe:IntegerEditor>
+		<ppe:IntegerEditor input="{Binding}"
+			property="notation:PageStyle:pageHeight"></ppe:IntegerEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}" property="notation:Diagram:measurementUnit"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}" property="notation:View:element"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="notation:View:sourceEdges"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="notation:View:targetEdges"></ppe:MultiReference>
+	</Composite>
+</Composite>

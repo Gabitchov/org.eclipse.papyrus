@@ -37,14 +37,14 @@ public class StandardSelector implements IElementSelector {
 	/**
 	 * The AbstractValueEditor class used for instantiating this selector
 	 */
-	private Class<? extends AbstractValueEditor> editorClass;
+	protected Class<? extends AbstractValueEditor> editorClass;
 
 	/**
 	 * The AbstractValueEditor used by this selector
 	 */
-	private AbstractValueEditor editor;
+	protected AbstractValueEditor editor;
 
-	private Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
+	protected Set<IElementSelectionListener> elementSelectionListeners = new HashSet<IElementSelectionListener>();
 
 	/**
 	 * Instantiates this selector, using the specified editor class
@@ -62,8 +62,9 @@ public class StandardSelector implements IElementSelector {
 	 */
 	public Object[] getSelectedElements() {
 		Object value = editor.getValue();
-		if(value == null)
+		if(value == null) {
 			return new Object[]{};
+		}
 
 		return new Object[]{ value };
 	}

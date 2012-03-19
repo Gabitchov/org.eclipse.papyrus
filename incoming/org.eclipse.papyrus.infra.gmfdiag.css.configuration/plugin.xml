@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format?after=org.eclipse.papyrus.uml.diagram.menu.commands.CopyAppearancePropertiesCommand">
+         <separator
+               name="org.eclipse.papyrus.infra.gmfdiag.css.separator"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.infra.gmfdiag.css.createStyle"
+               icon="icons/sourceEditor.gif"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.gmfdiag.css.editStyle"
+               icon="icons/sourceEditor.gif"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Creates a new style based on the selected item"
+            id="org.eclipse.papyrus.infra.gmfdiag.css.createStyle"
+            name="Create a new style">
+      </command>
+      <command
+            description="Replace an existing style based on the selected item"
+            id="org.eclipse.papyrus.infra.gmfdiag.css.editStyle"
+            name="Edit an existing style">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler.CreateStyleHandler"
+            commandId="org.eclipse.papyrus.infra.gmfdiag.css.createStyle">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler.EditStyleHandler"
+            commandId="org.eclipse.papyrus.infra.gmfdiag.css.editStyle">
+      </handler>
+   </extension>
+
+</plugin>

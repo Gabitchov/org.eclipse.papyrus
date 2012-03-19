@@ -12,6 +12,8 @@
 package org.eclipse.papyrus.infra.widgets.editors;
 
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.selectors.StandardSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.swt.widgets.Composite;
 
@@ -157,6 +159,18 @@ public class MultipleStringEditor extends MultipleValueEditor {
 
 	private void init() {
 		setFactory(new StringEditionFactory());
+	}
+
+	public void setContentProvider(final IStaticContentProvider provider) {
+		IElementSelector selector = new StandardSelector(StringCombo.class) {
+
+			@Override
+			public void createControls(Composite parent) {
+				super.createControls(parent);
+				((StringCombo)editor).setProviders(provider, null);
+			}
+		};
+		setSelector(selector);
 	}
 
 }

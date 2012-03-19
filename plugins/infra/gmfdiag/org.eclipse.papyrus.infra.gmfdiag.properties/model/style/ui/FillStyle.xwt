@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
+	text="Fill">
+	<Composite.layout>
+		<GridLayout></GridLayout>
+	</Composite.layout>
+	<Group text="Fill">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Group.layout>
+		<gmf:XWTAwareColorPicker input="{Binding}"
+			property="notation:FillStyle:fillColor"></gmf:XWTAwareColorPicker>
+		<ppe:IntegerSpinner input="{Binding}"
+			property="notation:FillStyle:transparency"></ppe:IntegerSpinner>
+	</Group>
+	<Group text="Gradient">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:ViewEditor view="style:SingleGradientData"
+			input="{Binding}" property="notation:FillStyle:gradient"></ppe:ViewEditor>
+	</Group>
+</Composite>

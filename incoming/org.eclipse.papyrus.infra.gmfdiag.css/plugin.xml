@@ -43,14 +43,6 @@
     </context>
  </extension>
  <extension
-       point="org.eclipse.emf.ecore.generated_package">
-    <package
-          class="org.eclipse.papyrus.infra.gmfdiag.css.modelstylesheets.ModelStyleSheetsPackage"
-          genModel="model/ModelStyleSheets.genmodel"
-          uri="http://www.eclipse.org/papyrus/infra/gmfdiag/css">
-    </package>
- </extension>
- <extension
        point="org.eclipse.papyrus.infra.emf.appearance.styleProvider">
     <styleprovider
           priority="40"

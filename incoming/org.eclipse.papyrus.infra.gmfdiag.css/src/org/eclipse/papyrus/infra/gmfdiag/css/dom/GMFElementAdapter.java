@@ -286,7 +286,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	@Override
 	public String getAttribute(String attr) {
-		EStructuralFeature feature = semanticElement.eClass().getEStructuralFeature(attr);
+		EStructuralFeature feature = getSemanticElement().eClass().getEStructuralFeature(attr);
 		if(feature != null) {
 			Object value = semanticElement.eGet(feature);
 			if(value != null) {

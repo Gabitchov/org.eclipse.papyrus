@@ -160,7 +160,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 				//TODO : Handle the exception here. Display something ?
 				Activator.log.error(ex);
 			}
+
 			updateLabel();
+			updateDescription();
 		}
 	}
 
@@ -228,9 +230,9 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 */
 	public void setProperty(String path) {
 		propertyPath = path;
+		checkInput();
 		updateLabel();
 		updateDescription();
-		checkInput();
 	}
 
 	/**

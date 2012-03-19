@@ -4,8 +4,7 @@
    <extension
          point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="model/properties/css.ctx"
-            loadDefault="true">
+            contextModel="model/properties/css.ctx">
       </context>
    </extension>
    <extension

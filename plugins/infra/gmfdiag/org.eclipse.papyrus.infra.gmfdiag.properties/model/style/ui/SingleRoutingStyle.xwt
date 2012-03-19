@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:j="clr-namespace:java.lang"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<GridLayout numColumns="2" makeColumnsEqualWidth="true"></GridLayout>
+	</Composite.layout>
+	<Group text="Routing">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Group.layout>
+		<Group text="Styles">
+			<Group.layout>
+				<FillLayout></FillLayout>
+			</Group.layout>
+			<ppe:EnumRadio numColumns="2" input="{Binding}"
+				property="notation:RoutingStyle:routing" showLabel="false"></ppe:EnumRadio>
+		</Group>
+		<Composite>
+			<Composite.layout>
+				<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+					numColumns="2"></ppel:PropertiesLayout>
+			</Composite.layout>
+			<ppe:BooleanCheckbox input="{Binding}"
+				property="notation:RoutingStyle:avoidObstructions"></ppe:BooleanCheckbox>
+			<ppe:BooleanCheckbox input="{Binding}"
+				property="notation:RoutingStyle:closestDistance"></ppe:BooleanCheckbox>
+		</Composite>
+	</Group>
+	<Group text="Jump links">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Group.layout>
+		<Group text="Status">
+			<Group.layout>
+				<ppel:PropertiesLayout></ppel:PropertiesLayout>
+			</Group.layout>
+			<ppe:EnumRadio numColumns="2" input="{Binding}"
+				property="notation:RoutingStyle:jumpLinkStatus" showLabel="false"></ppe:EnumRadio>
+		</Group>
+		<Group text="Type">
+			<Group.layout>
+				<ppel:PropertiesLayout></ppel:PropertiesLayout>
+			</Group.layout>
+			<ppe:EnumRadio input="{Binding}" numColumns="2"
+				property="notation:RoutingStyle:jumpLinkType" showLabel="false"></ppe:EnumRadio>
+		</Group>
+		<ppe:BooleanCheckbox input="{Binding}"
+			property="notation:RoutingStyle:jumpLinksReverse"></ppe:BooleanCheckbox>
+	</Group>
+	<Group text="Smoothness">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:EnumRadio input="{Binding}" numColumns="2"
+			property="notation:RoutingStyle:smoothness" showLabel="false"></ppe:EnumRadio>
+	</Group>
+</Composite>

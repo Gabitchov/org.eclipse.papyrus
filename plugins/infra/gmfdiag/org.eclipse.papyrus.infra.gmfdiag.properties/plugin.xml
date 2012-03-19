@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="stylehandler" name="StyleHandler" schema="schema/stylehandler.exsd"/>
    <extension
          point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="model/notation.ctx">
+            contextModel="model/style/style.ctx">
+      </context>
+      <context
+            contextModel="model/notation/notation.ctx">
       </context>
    </extension>
    <extension
@@ -12,6 +16,13 @@
       <environment
             environmentModel="model/Environment.xmi">
       </environment>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.properties.stylehandler">
+      <stylehandler
+            priority="100"
+            provider="org.eclipse.papyrus.infra.gmfdiag.properties.extension.NotationStyleHandlerProvider">
+      </stylehandler>
    </extension>
 
 </plugin>

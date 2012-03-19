@@ -61,7 +61,7 @@ public class GMFModelElement extends EMFModelElement {
 	}
 
 	@Override
-	public IObservable doGetObservable(String propertyPath) {
+	protected IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(propertyPath);
 

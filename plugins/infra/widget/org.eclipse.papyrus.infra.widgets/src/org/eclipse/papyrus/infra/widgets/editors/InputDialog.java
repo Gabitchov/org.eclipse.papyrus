@@ -16,6 +16,7 @@ import java.util.Collections;
 
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -24,7 +25,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
@@ -58,7 +58,7 @@ public class InputDialog extends SelectionDialog {
 	/**
 	 * The text widget used to input a new string
 	 */
-	protected Text input;
+	protected AbstractValueEditor editor;
 
 	/**
 	 * The dialog's title
@@ -69,6 +69,11 @@ public class InputDialog extends SelectionDialog {
 	 * The label describing the kind of text to input
 	 */
 	protected String labelText;
+
+	/**
+	 * The content provider used to suggest predefined values to the user
+	 */
+	protected IStaticContentProvider contentProvider;
 
 	/**
 	 * 
@@ -109,15 +114,24 @@ public class InputDialog extends SelectionDialog {
 		errorLabel.setVisible(false);
 
 		Label label = new Label(getDialogArea(), SWT.None);
-		if(labelText != null)
+		if(labelText != null) {
 			label.setText(labelText);
+		}
 		label.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
-		input = new Text(getDialogArea(), SWT.BORDER);
-		input.setText(initialValue);
-		input.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		if(contentProvider != null) {
+			editor = new StringCombo(getDialogArea(), SWT.BORDER);
+			((StringCombo)editor).setValue(initialValue);
+			((StringCombo)editor).setContentProvider(contentProvider);
+		} else {
+			editor = new StringEditor(getDialogArea(), SWT.BORDER);
+			((StringEditor)editor).setValue(initialValue);
+		}
+		//		input = new Text(getDialogArea(), SWT.BORDER);
+		//		input.setText(initialValue);
+		editor.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
-		input.addKeyListener(new KeyListener() {
+		editor.addKeyListener(new KeyListener() {
 
 			public void keyPressed(KeyEvent e) {
 				//Nothing
@@ -131,8 +145,9 @@ public class InputDialog extends SelectionDialog {
 
 		getShell().setImage(Activator.getDefault().getImage("/icons/papyrus.png")); //$NON-NLS-1$
 
-		if(title != null)
+		if(title != null) {
 			getShell().setText(title);
+		}
 
 		validate();
 		getShell().pack();
@@ -150,7 +165,7 @@ public class InputDialog extends SelectionDialog {
 			return;
 		}
 
-		String errorMessage = validator.isValid(input.getText());
+		String errorMessage = validator.isValid((String)editor.getValue());
 		if(errorMessage == null) {
 			errorLabel.setVisible(false);
 			errorImage.setVisible(false);
@@ -167,7 +182,7 @@ public class InputDialog extends SelectionDialog {
 
 	@Override
 	protected void okPressed() {
-		setResult(Collections.singletonList(input.getText()));
+		setResult(Collections.singletonList((String)editor.getValue()));
 		super.okPressed();
 	}
 
@@ -177,9 +192,19 @@ public class InputDialog extends SelectionDialog {
 	 */
 	public String getText() {
 		Object[] result = getResult();
-		if(result == null || result.length == 0)
+		if(result == null || result.length == 0) {
 			return null;
+		}
 		return (String)result[0];
+	}
+
+	/**
+	 * Sets a content provider to suggest predefined values to the user
+	 * 
+	 * @param contentProvider
+	 */
+	public void setContentProvider(IStaticContentProvider contentProvider) {
+		this.contentProvider = contentProvider;
 	}
 
 }

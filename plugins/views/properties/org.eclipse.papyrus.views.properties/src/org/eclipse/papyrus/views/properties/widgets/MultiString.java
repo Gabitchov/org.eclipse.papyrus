@@ -12,8 +12,10 @@
 package org.eclipse.papyrus.views.properties.widgets;
 
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleStringEditor;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -48,6 +50,15 @@ public class MultiString extends AbstractPropertyEditor {
 		editor.setOrdered(input.isOrdered(propertyPath));
 		editor.setUnique(input.isUnique(propertyPath));
 		editor.setDirectCreation(input.getDirectCreation(propertyPath));
+		ReferenceValueFactory factory = input.getValueFactory(propertyPath);
+		if(factory != null) {
+			editor.setFactory(input.getValueFactory(propertyPath));
+		}
+
+		IStaticContentProvider provider = input.getContentProvider(propertyPath);
+		if(provider != null) {
+			editor.setContentProvider(provider);
+		}
 
 		if(getInputObservableList() instanceof ICommitListener) {
 			editor.addCommitListener((ICommitListener)getInputObservableList());

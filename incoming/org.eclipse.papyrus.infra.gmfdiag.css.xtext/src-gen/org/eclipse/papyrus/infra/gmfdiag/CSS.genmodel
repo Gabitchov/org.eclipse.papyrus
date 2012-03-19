@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext" forceOverwrite="true"
+    modelName="CSS" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.infra.gmfdiag.css.xtext.editor">
+  <genPackages prefix="Css" basePackage="org.eclipse.papyrus.infra.gmfdiag" disposableProviderFactory="true"
+      ecorePackage="CSS.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CSS.ecore#//UNARY">
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//UNARY/NEG"/>
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//UNARY/PLUS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CSS.ecore#//KIND">
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//KIND/FIRST_CHILD"/>
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//KIND/SIBLING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CSS.ecore#//ATTRIBUTE_OP">
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//ATTRIBUTE_OP/EQUALS"/>
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//ATTRIBUTE_OP/CONTAINS"/>
+      <genEnumLiterals ecoreEnumLiteral="CSS.ecore#//ATTRIBUTE_OP/UNEQUALS"/>
+    </genEnums>
+    <genClasses ecoreClass="CSS.ecore#//Stylesheet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Stylesheet/charset"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Stylesheet/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Stylesheet/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Content"/>
+    <genClasses ecoreClass="CSS.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Import/string"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Import/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Import/media"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Media">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Media/media"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Media/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Page">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Page/pseudo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Page/declarations"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//PseudoPage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//PseudoPage/id"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Ruleset">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Ruleset/selectors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Ruleset/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Selector"/>
+    <genClasses ecoreClass="CSS.ecore#//CompositeSelector">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//CompositeSelector/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//CompositeSelector/combinator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//CompositeSelector/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//SimpleSelector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//SimpleSelector/elementName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//SimpleSelector/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//SelectorCondition"/>
+    <genClasses ecoreClass="CSS.ecore#//Combinator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Combinator/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Declaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Declaration/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Declaration/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Declaration/important"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Expression/terms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Expression/subterms"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Subterm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Subterm/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Subterm/term"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Term"/>
+    <genClasses ecoreClass="CSS.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Function/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Function/args"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Name">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Name/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Number">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Number/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Number/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Percentage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Percentage/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Percentage/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Percentage/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Length">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Length/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Length/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Length/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Ems">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Ems/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Ems/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Ems/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Exs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Exs/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Exs/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Exs/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Angle">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Angle/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Angle/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Angle/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Time">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Time/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Time/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Time/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Frequency">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Frequency/op"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Frequency/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Frequency/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Uri">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Uri/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//StringValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//StringValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//HexColor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//HexColor/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Class">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Class/class"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Attribute/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//AttributeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//AttributeValue/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//AttributeValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//Pseudo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Pseudo/pseudo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//Pseudo/args"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//CSSId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//CSSId/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//UnaryOperator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//UnaryOperator/operator"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

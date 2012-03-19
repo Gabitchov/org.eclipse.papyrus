@@ -12,18 +12,20 @@
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 
 /**
- * Tests if the selection is an EditPart
+ * Tests if the selection is an EditPart (Excluding DiagramEditPart)
  * 
  * @author Camille Letavernier
  */
 public class IsEditPartConstraint extends AbstractConstraint {
 
+	@Override
 	public boolean match(Object selection) {
-		return selection instanceof EditPart;
+		return selection instanceof EditPart && !(selection instanceof DiagramEditPart);
 	}
 
 	/**

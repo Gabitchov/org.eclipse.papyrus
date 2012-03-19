@@ -1,0 +1,92 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *****************************************************************************/
+ 
+/**
+*	Papyrus 0.9 CSS
+*	Test stylesheet for #getAvailableClasses()
+*/
+
+/******************************************************** 
+ * All cX should be matched for Interfaces (c01 ~ c17) 
+ * xX should not be matched for Interfaces
+ *******************************************************/
+
+
+/**************** Simple selectors *********************/
+
+
+*.c01{
+	
+}
+
+Interface.c02{
+	
+}
+
+.c03 {
+	
+}
+
+.c04, .c05, .c06 {
+	
+}
+
+Class.x01{
+	
+}
+
+#x05 {
+	
+}
+
+/************ Combinator selectors **************/
+
+.c07 .c08 {
+	
+}
+.c09 Class.x02{
+	
+}
+
+.c10 > Class.x03{
+	
+}
+
+Interface.c11 + Class.x04 {
+	
+}
+
+*.c12 + Interface.c13 {
+	
+}
+
+/************* Combinator Conditions ****************/
+
+#x06:x07 {
+	
+}
+
+.c14#x8:x09{
+	
+}
+
+Interface.c15#x10{
+	
+}
+
+#x11.c16 {
+	
+}
+
+#x12.c17:x13 {
+	
+}

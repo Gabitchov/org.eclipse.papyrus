@@ -19,7 +19,6 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.BaseCSSEngine;
 
 public class CSSRefreshHandler extends RefreshHandler {
 
-	@SuppressWarnings("restriction")
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		BaseCSSEngine.instance.reset();

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -43,6 +44,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.swt.widgets.Display;
 import org.w3c.css.sac.ConditionFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSStyleDeclaration;
@@ -70,6 +72,8 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	private ExtendedStyleSheetList styleSheetsList;
 
 	private final Set<StyleSheetChangeListener> styleSheetListeners = new HashSet<StyleSheetChangeListener>();
+
+	private final Map<String, Collection<String>> availableClasses = new HashMap<String, Collection<String>>();
 
 	/**
 	 * Owned stylesheets
@@ -175,6 +179,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	public void resetCache() {
 		declarationsCache.clear();
 		styleSheetsList = null;
+		availableClasses.clear();
 	}
 
 	protected void parseStyleSheets() {
@@ -319,11 +324,17 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	public void notifyChange(Element elementAdapter) {
 		resetCache(); //TODO: We should only refresh a subset of the cache
-		try {
-			(new RefreshHandler()).execute(null);
-		} catch (ExecutionException ex) {
-			Activator.log.error(ex);
-		}
+		Display.getCurrent().asyncExec(new Runnable() {
+
+			public void run() {
+				try {
+					(new RefreshHandler()).execute(null);
+				} catch (ExecutionException ex) {
+					Activator.log.error(ex);
+				}
+			}
+		});
+
 	}
 
 	public void handleDispose(Object nativeWidget) {

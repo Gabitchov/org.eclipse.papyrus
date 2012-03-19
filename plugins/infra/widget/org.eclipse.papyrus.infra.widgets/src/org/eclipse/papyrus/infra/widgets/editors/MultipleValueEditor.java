@@ -178,6 +178,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		updateControls();
 	}
 
+	public void setSelector(IElementSelector selector) {
+		this.selector = selector;
+		this.dialog.setSelector(selector);
+	}
+
 	protected void updateControls() {
 
 		boolean enableAddAction = true;

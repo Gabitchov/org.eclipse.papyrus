@@ -12,16 +12,21 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.creation.StyleSheetFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding.DiagramStyleSheetObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetLabelProvider;
+import org.eclipse.papyrus.infra.gmfdiag.css.provider.CSSClassContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.CustomStyleModelElement;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 
@@ -40,6 +45,11 @@ public class CSSModelElement extends CustomStyleModelElement {
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		if(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
 			return new StyleSheetFactory((View)this.source);
+		}
+		if(CSSAnnotations.CSS_GMF_CLASS_KEY.equals(propertyPath)) {
+			StringEditionFactory factory = new StringEditionFactory();
+			factory.setContentProvider(getContentProvider(propertyPath));
+			return factory;
 		}
 
 		return super.getValueFactory(propertyPath);
@@ -63,7 +73,28 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
-		return new CSSStyleSheetContentProvider(source);
+		if(propertyPath.equals(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY)) {
+			return new CSSStyleSheetContentProvider(source);
+		}
+
+		if(propertyPath.equals(CSSAnnotations.CSS_GMF_CLASS_KEY)) {
+			Diagram diagram = ((View)source).getDiagram();
+			if(diagram instanceof CSSDiagramImpl) {
+
+				EObject semanticElement = ((View)source).getElement();
+
+				if(semanticElement != null) {
+					//TODO: For Diagrams, we should use the right DiagramKind (See GMFElementAdapter)
+					//Until then, we list all available classes (*)
+					String elementName = source instanceof Diagram ? "*" : semanticElement.eClass().getName();
+					return new CSSClassContentProvider(elementName, ((CSSDiagramImpl)diagram).getEngine());
+				}
+			}
+
+			return null;
+		}
+
+		return null;
 	}
 
 }

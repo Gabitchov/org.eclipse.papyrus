@@ -1,0 +1,208 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+/**
+ * CSS 2.1 Grammar
+ */
+grammar org.eclipse.papyrus.infra.gmfdiag.CSS hidden(ML_COMMENT)
+//with org.eclipse.xtext.common.Terminals
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate css "http://www.eclipse.org/papyrus/infra/gmfdiag/CSS"
+
+//Do not create a Stylesheet for WS* (This seems to cause a serialization problem when editing an EMF Model from an Empty file)
+//Do not ignore WS as @charset must be followed by exactly one Space.
+Stylesheet:
+	('@charset ' charset=STRING ';')?
+	(WS | CDO | CDC)* (imports+=Import (CDO WS* | CDC WS*)*)*
+	(contents+=Content (CDO WS* | CDC WS*)*)*;
+
+Content:
+	Ruleset | Media | Page;
+
+Import:
+	'@import' (WS* string=STRING | WS uri=Uri) WS* (media+=ID WS* (',' WS* media+=ID)*)? ';' WS*;
+
+Media:
+	'@media' WS media+=ID WS* (',' WS* media+=ID)* '{' WS* (rules+=Ruleset)* '}' WS*;
+
+Page:
+	{Page}
+	'@page' WS* pseudo=PseudoPage? '{' WS* declarations+=Declaration? (';' WS* declarations+=Declaration?)* '}' WS*;
+
+PseudoPage:
+	':' id=ID WS*;
+
+Ruleset:
+	selectors+=Selector (',' WS* selectors+=Selector)* '{' WS* properties+=Declaration? (';' WS*
+	properties+=Declaration?)* '}' WS*;
+
+Selector:
+	(SimpleSelector WS* | CompositeSelector);
+
+	//left=SimpleSelector (combinator=Combinator right=Selector | WS+ (combinator=Combinator? right=Selector)?)?;
+CompositeSelector:
+	left=SimpleSelector (WS+ | WS* combinator=Combinator) right=Selector;
+
+SimpleSelector:
+	(elementName=(ID | '*') condition+=(SelectorCondition)*) | (condition+=(SelectorCondition)+);
+
+SelectorCondition:
+	CSSId | Class | Attribute | Pseudo;
+
+Combinator:
+	kind=KIND WS*;
+
+Declaration:
+	property=ID WS* ':' WS* expression=Expression (important?=T_IMPORTANT WS*)?;
+
+Expression:
+	terms=Term (subterms+=Subterm)*;
+
+Subterm:
+	operator=Operator? term=Term;
+
+Term:
+	(Number | Percentage | Length | Ems | Exs | Angle | Time | Frequency | Name | StringValue | Uri | HexColor | Function)
+	WS*;
+
+Function:
+	name=ID '(' WS* args=Expression ')';
+
+Name:
+	value=ID;
+
+	//Terms  
+Number:
+	op=UnaryOperator? value=T_NUM;
+
+Percentage:
+	op=UnaryOperator? value=T_NUM unit=PC_UNIT;
+
+Length:
+	op=UnaryOperator? value=T_NUM unit=LEN_UNIT;
+
+Ems:
+	op=UnaryOperator? value=T_NUM unit=EM_UNIT;
+
+Exs:
+	op=UnaryOperator? value=T_NUM unit=EX_UNIT;
+
+Angle:
+	op=UnaryOperator? value=T_NUM unit=ANGLE_UNIT;
+
+Time:
+	op=UnaryOperator? value=T_NUM unit=TIME_UNIT;
+
+Frequency:
+	op=UnaryOperator? value=T_NUM unit=FREQ_UNIT;
+
+Uri:
+	'url(' WS? value=STRING WS? ')' /* | 'url(' WS? url=URL WS? ')' */; //TODO
+StringValue:
+	value=STRING;
+
+	//terminal URL:
+//	(('!' | '#' | '$' | '%' | '&' | '*' | '-' | '~') /* | NON_ASCII  |  ESCAPE */)*;
+
+//terminal NON_ASCII:
+//	(\0240..\0377) //Chars 160 to 255
+//;
+//terminal UNICODE:
+//	'\\' HEXA (HEXA (HEXA (HEXA (HEXA (HEXA)?)?)?)?)? ('\r\n' | ' ' | '\t' | '\r' | '\n')?;
+//
+//terminal ESCAPE:
+//	UNICODE | ('\\' !('\r' | '\n' | '0'..'9' | 'a'..'f' | 'A'..'F'));
+HexColor:
+	value=HASH;
+
+Operator:
+	'/' WS* | ',' WS*;
+
+Class:
+	class=T_CLASS;
+
+Attribute:
+	'[' WS* name=ID WS* value=AttributeValue? ']';
+
+AttributeValue:
+	operator=ATTRIBUTE_OP WS* value=(ID | STRING) WS*;
+
+Pseudo:
+	':' (pseudo=ID | (pseudo=ID '(' WS* (args=ID WS*)? ')'));
+
+CSSId:
+	value=HASH;
+
+UnaryOperator:
+	operator=UNARY;
+
+enum UNARY:
+	NEG='-' | PLUS='+';
+
+enum KIND:
+	FIRST_CHILD='>' | SIBLING='+';
+
+enum ATTRIBUTE_OP:
+	EQUALS='=' | CONTAINS='~=' | UNEQUALS='!=';
+
+terminal HASH:
+	'#' ('A'..'Z' | 'a'..'z' | '0'..'9')+;
+
+terminal T_CLASS:
+	'.' ID;
+
+terminal T_IMPORTANT:
+	'!important'; //This is not the exact CSS Grammar
+terminal PC_UNIT:
+	'%';
+
+terminal LEN_UNIT:
+	'px' | 'cm' | 'mm' | 'in' | 'pt' | 'pc';
+
+terminal EM_UNIT:
+	'em';
+
+terminal EX_UNIT:
+	'ex';
+
+terminal ANGLE_UNIT:
+	'deg' | 'rad' | 'grad';
+
+terminal TIME_UNIT:
+	's' | 'ms';
+
+terminal FREQ_UNIT:
+	'hz' | 'mhz';
+
+terminal T_NUM:
+	('0'..'9')+ | ('0'..'9')* "." ('0'..'9')+;
+
+terminal ID:
+	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+terminal STRING:
+	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | '"'))* '"' |
+	"'" ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | "'"))* "'";
+
+terminal CDO:
+	'<!--';
+
+terminal CDC:
+	'-->';
+
+terminal ML_COMMENT:
+	'/*'->'*/'; //Doesn't exactly match CSS Comments... */ can be protected by \ : \*/ doesn't close the comment in XText, while it does in CSS 
+terminal WS:
+	(' ' | '\t' | '\r' | '\n')+;
+
+terminal ANY_OTHER:
+	.;
+

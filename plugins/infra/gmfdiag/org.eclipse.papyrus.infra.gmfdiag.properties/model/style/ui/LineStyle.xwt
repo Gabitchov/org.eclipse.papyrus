@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	text="Line">
+	<Composite.layout>
+		<GridLayout></GridLayout>
+	</Composite.layout>
+	<Group text="Line">
+		<Group.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:IntegerEditor input="{Binding}"
+			property="notation:LineStyle:lineWidth"></ppe:IntegerEditor>
+		<gmf:XWTAwareColorPicker input="{Binding}"
+			property="notation:LineStyle:lineColor"></gmf:XWTAwareColorPicker>
+	</Group>
+</Composite>

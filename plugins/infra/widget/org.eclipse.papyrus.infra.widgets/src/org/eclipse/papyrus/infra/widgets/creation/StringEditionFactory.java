@@ -17,6 +17,7 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
+import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Control;
 
 /**
@@ -32,6 +33,8 @@ public class StringEditionFactory implements ReferenceValueFactory {
 	private String label = Messages.StringEditionFactory_EnterANewValue;
 
 	private IInputValidator validator;
+
+	private IStaticContentProvider contentProvider;
 
 	/**
 	 * 
@@ -88,6 +91,9 @@ public class StringEditionFactory implements ReferenceValueFactory {
 
 	public Object createObject(Control widget) {
 		InputDialog dialog = new InputDialog(widget.getShell(), title, label, "", validator); //$NON-NLS-1$
+		if(contentProvider != null) {
+			dialog.setContentProvider(contentProvider);
+		}
 
 		int result = dialog.open();
 		if(result == Window.OK) {
@@ -112,6 +118,9 @@ public class StringEditionFactory implements ReferenceValueFactory {
 		}
 
 		InputDialog dialog = new InputDialog(widget.getShell(), title, label, (String)object, validator);
+		if(contentProvider != null) {
+			dialog.setContentProvider(contentProvider);
+		}
 
 		int result = dialog.open();
 		if(result == Window.OK) {
@@ -129,5 +138,9 @@ public class StringEditionFactory implements ReferenceValueFactory {
 	 */
 	public void setValidator(IInputValidator validator) {
 		this.validator = validator;
+	}
+
+	public void setContentProvider(IStaticContentProvider provider) {
+		this.contentProvider = provider;
 	}
 }
