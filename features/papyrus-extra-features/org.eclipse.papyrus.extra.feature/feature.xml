@@ -40,4 +40,8 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.marte.textedit.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.infra.gmfdiag.css.feature"
+         version="0.0.0"/>
+
 </feature>

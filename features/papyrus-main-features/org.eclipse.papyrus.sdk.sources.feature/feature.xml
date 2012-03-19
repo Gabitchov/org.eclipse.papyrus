@@ -106,15 +106,19 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.others.source.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.infra.emf.source.feature"
          version="0.0.0"/>
 
    <includes
          id="org.eclipse.papyrus.customization.fragment.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.uml.textedit.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.team.feature"
          version="0.0.0"/>
 
 </feature>
