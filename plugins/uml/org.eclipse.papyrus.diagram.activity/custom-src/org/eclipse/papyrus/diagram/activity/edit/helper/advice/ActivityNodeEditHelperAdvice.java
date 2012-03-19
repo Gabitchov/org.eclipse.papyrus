@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.activity.edit.helper.advice;
 
 import java.util.HashSet;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -42,8 +43,15 @@ public class ActivityNodeEditHelperAdvice extends AbstractEditHelperAdvice {
 		EObject eObject = request.getElementToDestroy();
 		if (eObject instanceof ActivityNode){
 			ActivityNode activityNode = (ActivityNode)eObject;
-			HashSet<ActivityEdge> edges = Sets.newHashSet(activityNode.getIncomings());
-			edges.addAll(activityNode.getOutgoings());
+			EList<ActivityEdge> incomings = activityNode.getIncomings();
+			EList<ActivityEdge> outgoings = activityNode.getOutgoings();
+			HashSet<ActivityEdge> edges = Sets.newHashSet();
+			if (incomings != null && !incomings.isEmpty()){
+				edges.addAll(incomings);
+			}
+			if (outgoings != null && !outgoings.isEmpty()){				
+				edges.addAll(outgoings);
+			}
 			if (!edges.isEmpty()){
 				CompositeCommand cc = new CompositeCommand("Detele Incomings and outgoings edges from activity node");////$NON-NLS-1$
 				for (ActivityEdge e : edges){
