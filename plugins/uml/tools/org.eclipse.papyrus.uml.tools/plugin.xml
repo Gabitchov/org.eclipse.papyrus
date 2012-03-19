@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<!-- Register the UML delegating constraint provider -->
+<extension
+      point="org.eclipse.emf.validation.constraintProviders">
+   <category
+         id="org.eclipse.papyrus.uml.tools.uml"
+         name="UML Metamodel Constraints">
+   </category>
+   <constraintProvider
+         cache="true"
+         class="org.eclipse.uml2.uml.validation.DelegatingConstraintProvider"
+         mode="Batch">
+      <package
+            namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
+      </package>
+      
+      <!-- Put the UML metamodel constraints into this category. -->
+      <category path="org.eclipse.papyrus.uml.tools.uml"/>
+      
+      <!-- EMF Facet replaces the UML Validator with one that delegates
+           to the ModelValidationService, which not only doesn't work
+           with the delegating provider, but would be a dependency
+           cycle anyways. -->
+      <eValidatorProvider class="org.eclipse.uml2.uml.validation.IEValidatorProvider$UML"/>
+   </constraintProvider>
+</extension>
+<!-- Bind the UML metamodel constraint provider's constraints to the Papyrus application. -->
+<extension
+      point="org.eclipse.emf.validation.constraintBindings">
+   <clientContext
+         id="org.eclipse.papyrus.uml.tools.context">
+      <selector
+            class="org.eclipse.papyrus.infra.services.validation.PapyrusClientSelector">
+      </selector>
+   </clientContext>
+   <binding
+         context="org.eclipse.papyrus.uml.tools.context"
+         category="org.eclipse.papyrus.uml.tools.uml">
+   </binding>
+</extension>
+</plugin>
