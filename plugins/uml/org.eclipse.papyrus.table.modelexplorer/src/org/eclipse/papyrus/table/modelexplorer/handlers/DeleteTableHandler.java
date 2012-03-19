@@ -18,22 +18,13 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
-import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.adaptor.gmf.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrusTableInstance;
-import org.eclipse.papyrus.table.instance.papyrustableinstance.PapyrustableinstancePackage;
-import org.eclipse.swt.internal.win32.BLENDFUNCTION;
 
 /**
  * Handler for the delete Table action
