@@ -50,8 +50,6 @@ public class CompositeFigure extends CompartmentFigure {
 	 */
 	public CompositeFigure() {
 		this("component");
-		Image img = Activator.getPluginIconImage(UMLDiagramEditorPlugin.ID, "icons/obj16/ComponentIcon.gif");
-		setAppliedStereotypeIcon(img, PositionConstants.RIGHT);
 	}
 
 	/**
