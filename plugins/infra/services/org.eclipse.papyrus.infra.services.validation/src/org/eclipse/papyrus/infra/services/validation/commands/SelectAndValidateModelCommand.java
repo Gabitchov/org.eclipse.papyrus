@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -51,6 +52,10 @@ public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 			// replace selection by model instead of current selection
 			while(selectedObject.eContainer() != null) {
 				selectedObject = selectedObject.eContainer();
+			}
+			Resource resource = getResource();
+			if ((resource != null) && (eclipseResourcesUtil != null)) {
+				eclipseResourcesUtil.deleteMarkers(getResource());
 			}
 			runValidation(selectedObject);
 		}
