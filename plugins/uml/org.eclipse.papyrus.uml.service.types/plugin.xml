@@ -153,9 +153,11 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for Behavior -->
-	<metamodelType id="org.eclipse.papyrus.uml.Behavior" name="UML::Behavior"
-		eclass="Behavior"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="Behavior"
+       id="org.eclipse.papyrus.uml.Behavior"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::Behavior">
 			<param name="semanticHint" value="UML::Behavior"/>
 	</metamodelType>
 	
@@ -1554,7 +1556,6 @@
 	<!-- IMetamodelType for StructuredActivityNode -->
 	<metamodelType
        eclass="StructuredActivityNode"
-       edithelper="org.eclipse.papyrus.uml.service.types.helper.StructuredActivityNodeEditHelper"
        id="org.eclipse.papyrus.uml.StructuredActivityNode"
        kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
        name="UML::StructuredActivityNode">
