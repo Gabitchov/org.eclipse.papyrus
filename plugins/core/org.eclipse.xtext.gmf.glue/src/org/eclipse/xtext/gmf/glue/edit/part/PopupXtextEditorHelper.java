@@ -100,7 +100,7 @@ import com.google.inject.Injector;
 
 public class PopupXtextEditorHelper implements IPopupEditorHelper {
 
-	private IGraphicalEditPart hostEditPart;
+	private static IGraphicalEditPart hostEditPart;
 	private IEditorPart diagramEditor;
 	private int editorOffset;
 	private int initialEditorSize;
@@ -112,6 +112,14 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	private EObject semanticElement ;
 	private String textToEdit ;
 	
+	/**
+	 * get the hos editpart
+	 * @return the editpart
+	 */
+	public static IGraphicalEditPart getHostEditPart() {
+		return hostEditPart;
+	}
+
 	/**
 	 * The file extension used to dynamically select the appropriate xtext editor
 	 */
