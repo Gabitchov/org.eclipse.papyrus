@@ -1909,6 +1909,12 @@
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
+ <adviceBinding
+       class="org.eclipse.papyrus.uml.service.types.helper.advice.ElementEditHelperAdvice"
+       id="org.eclipse.papyrus.uml.advice.Element"
+       inheritance="all"
+       typeId="org.eclipse.papyrus.uml.Element">
+ </adviceBinding>
 	
 	</metamodel>
 </extension>
@@ -1938,6 +1944,9 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Property" />
+  <advice
+        ref="org.eclipse.papyrus.uml.advice.Element">
+  </advice>
 
 	</binding>
 	
