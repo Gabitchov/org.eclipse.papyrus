@@ -20,13 +20,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.uml.alf.validation.AlfJavaValidator;
 import org.eclipse.xtext.validation.ComposedChecks;
 
-@ComposedChecks(validators= {org.eclipse.xtext.validation.ImportUriValidator.class, org.eclipse.xtext.validation.NamesAreUniqueValidator.class})
+
 public class AbstractAppliedStereotypePropertyJavaValidator extends AlfJavaValidator {
 
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
 	    result.add(org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage.eINSTANCE);
+	    result.add(org.eclipse.papyrus.uml.alf.alf.AlfPackage.eINSTANCE);
 		return result;
 	}
 
