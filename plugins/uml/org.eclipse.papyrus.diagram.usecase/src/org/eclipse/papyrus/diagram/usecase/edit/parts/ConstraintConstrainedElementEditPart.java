@@ -55,7 +55,6 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new DashedLineConnection();
 	}
@@ -78,9 +77,6 @@ public class ConstraintConstrainedElementEditPart extends ConnectionNodeEditPart
 		public DashedLineConnection() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

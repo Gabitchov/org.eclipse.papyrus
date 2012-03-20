@@ -27,9 +27,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.policies.UsageItemSemanticEditPo
 /**
  * @generated
  */
-public class UsageEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -118,5 +116,4 @@ implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

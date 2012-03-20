@@ -39,5 +39,4 @@ public class UseCasePointsItemSemanticEditPolicyTN extends UMLBaseItemSemanticEd
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

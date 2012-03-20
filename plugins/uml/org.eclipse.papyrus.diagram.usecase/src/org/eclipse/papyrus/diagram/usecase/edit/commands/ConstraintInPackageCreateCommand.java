@@ -75,7 +75,6 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,27 +89,20 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
-
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 		Namespace childHolder = (Namespace)getElementToEdit();
 		childHolder.getOwnedRules().add(newElement);
-
 		ElementInitializers.getInstance().init_Constraint_3010(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -128,5 +120,4 @@ public class ConstraintInPackageCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

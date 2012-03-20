@@ -309,7 +309,6 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -391,9 +390,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -420,7 +417,6 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -428,7 +424,6 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -436,7 +431,6 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -598,7 +592,6 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -745,5 +738,4 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	protected IFigure createFigurePrim() {
 		return new WrappingLabel();
 	}
-
 }

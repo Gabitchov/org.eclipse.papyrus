@@ -119,7 +119,6 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -311,7 +310,6 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -393,9 +391,7 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -422,7 +418,6 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -430,7 +425,6 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -438,7 +432,6 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -709,7 +702,6 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -734,5 +726,4 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/stereotype.gif";//$NON-NLS-1$
 	}
-
 }

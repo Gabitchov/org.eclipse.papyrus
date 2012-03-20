@@ -110,7 +110,6 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -302,7 +301,6 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -384,9 +382,7 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -413,7 +409,6 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -421,7 +416,6 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -429,7 +423,6 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -696,7 +689,6 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -727,7 +719,5 @@ public class IncludeLink_fixedEditPart extends LabelEditPart implements ITextAwa
 		public IncludeLink_fixed() {
 			this.setText("\u00ABinclude\u00BB");
 		}
-
 	}
-
 }

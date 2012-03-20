@@ -111,7 +111,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -303,7 +302,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -385,9 +383,7 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -414,7 +410,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -422,7 +417,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -430,7 +424,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -592,7 +585,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -705,7 +697,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -730,5 +721,4 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
-
 }

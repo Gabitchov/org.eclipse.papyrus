@@ -48,14 +48,12 @@ public class PackageImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = UseCaseDiagramEditPart.MODEL_ID + "_PackageImport";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -73,7 +71,6 @@ public class PackageImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -83,5 +80,4 @@ public class PackageImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

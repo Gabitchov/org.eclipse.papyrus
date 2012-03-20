@@ -231,7 +231,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -239,7 +238,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -311,7 +309,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -393,9 +390,7 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -422,7 +417,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -430,7 +424,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -438,7 +431,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -599,7 +591,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -734,11 +725,9 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -768,7 +757,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -777,7 +765,6 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
 
 	/**
@@ -785,7 +772,5 @@ public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implem
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
 }

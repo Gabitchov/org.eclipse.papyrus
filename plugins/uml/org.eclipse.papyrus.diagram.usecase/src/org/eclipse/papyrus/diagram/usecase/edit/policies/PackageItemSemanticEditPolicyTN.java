@@ -65,7 +65,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -186,5 +185,4 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

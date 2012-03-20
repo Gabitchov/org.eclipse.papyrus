@@ -66,9 +66,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * @generated
  */
-public class UseCaseAsRectangleEditPartTN extends
-
-ShapeNodeEditPart {
+public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -110,7 +108,6 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-
 		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
@@ -147,14 +144,12 @@ ShapeNodeEditPart {
 			((UseCaseAsRectangleNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getUseCaseAsClassFigure_name());
 			return true;
 		}
-
 		if(childEditPart instanceof UseCasePointsInRectangleEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseAsClass_points();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsInRectangleEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -213,7 +208,6 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -891,16 +885,12 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		public UseCaseAsClassFigure() {
-
 			ToolbarLayout layoutThis = new ToolbarLayout();
 			layoutThis.setStretchMinorAxis(true);
 			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
-
 			layoutThis.setSpacing(0);
 			layoutThis.setVertical(true);
-
 			this.setLayoutManager(layoutThis);
-
 			this.setLineWidth(1);
 			createContents();
 		}
@@ -909,47 +899,31 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			RectangleFigure useCaseAsClassFigure_Header0 = new RectangleFigure();
 			useCaseAsClassFigure_Header0.setLineWidth(1);
 			useCaseAsClassFigure_Header0.setBorder(new LineBorder(null, getMapMode().DPtoLP(1)));
-
 			this.add(useCaseAsClassFigure_Header0);
-
 			ToolbarLayout layoutUseCaseAsClassFigure_Header0 = new ToolbarLayout();
 			layoutUseCaseAsClassFigure_Header0.setStretchMinorAxis(true);
 			layoutUseCaseAsClassFigure_Header0.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-
 			layoutUseCaseAsClassFigure_Header0.setSpacing(0);
 			layoutUseCaseAsClassFigure_Header0.setVertical(true);
-
 			useCaseAsClassFigure_Header0.setLayoutManager(layoutUseCaseAsClassFigure_Header0);
-
 			RectangleFigure useCaseAsClassFigure_NameContainer1 = new RectangleFigure();
 			useCaseAsClassFigure_NameContainer1.setOutline(false);
 			useCaseAsClassFigure_NameContainer1.setLineWidth(1);
-
 			useCaseAsClassFigure_Header0.add(useCaseAsClassFigure_NameContainer1);
-
 			CenterLayout layoutUseCaseAsClassFigure_NameContainer1 = new CenterLayout();
-
 			useCaseAsClassFigure_NameContainer1.setLayoutManager(layoutUseCaseAsClassFigure_NameContainer1);
-
 			fUseCaseAsClassFigure_name = new WrappingLabel();
 			fUseCaseAsClassFigure_name.setText("");
-
 			fUseCaseAsClassFigure_name.setFont(FUSECASEASCLASSFIGURE_NAME_FONT);
-
 			fUseCaseAsClassFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			useCaseAsClassFigure_NameContainer1.add(fUseCaseAsClassFigure_name);
-
 			fUseCaseAsClass_points = new RectangleFigure();
 			fUseCaseAsClass_points.setLineWidth(1);
-
 			this.add(fUseCaseAsClass_points);
 			fUseCaseAsClass_points.setLayoutManager(new StackLayout());
-
 		}
 
 		/**
@@ -984,7 +958,6 @@ ShapeNodeEditPart {
 		public RectangleFigure getUseCaseAsClass_points() {
 			return fUseCaseAsClass_points;
 		}
-
 	}
 
 	/**
@@ -999,7 +972,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1019,7 +991,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

@@ -55,7 +55,6 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new CommentLinkDescriptor();
 	}
@@ -78,9 +77,6 @@ public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart impl
 		public CommentLinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
 	}
-
 }

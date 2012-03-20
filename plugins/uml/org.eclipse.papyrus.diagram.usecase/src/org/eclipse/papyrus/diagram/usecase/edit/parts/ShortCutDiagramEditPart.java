@@ -66,9 +66,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ShortCutDiagramEditPart extends
-
-AbstractShortCutDiagramEditPart {
+public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 
 	/**
 	 * @generated
@@ -129,7 +127,6 @@ AbstractShortCutDiagramEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -205,7 +202,6 @@ AbstractShortCutDiagramEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -270,7 +266,6 @@ AbstractShortCutDiagramEditPart {
 	 * @generated NOT
 	 */
 	public void refresh() {
-
 		refreshIcons();
 		super.refresh();
 	}
@@ -327,9 +322,7 @@ AbstractShortCutDiagramEditPart {
 	private void refreshIcons() {
 		Image image;
 		image = getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement());
-
 		getPrimaryShape().setIcon(image);
-
 	}
 
 	/**
@@ -355,7 +348,6 @@ AbstractShortCutDiagramEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -375,7 +367,6 @@ AbstractShortCutDiagramEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

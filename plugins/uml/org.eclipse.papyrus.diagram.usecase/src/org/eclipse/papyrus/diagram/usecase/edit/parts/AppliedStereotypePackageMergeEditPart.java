@@ -111,7 +111,6 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -303,7 +302,6 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -385,9 +383,7 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -414,7 +410,6 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -422,7 +417,6 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -430,7 +424,6 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -697,7 +690,6 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -722,5 +714,4 @@ public class AppliedStereotypePackageMergeEditPart extends LabelEditPart impleme
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/stereotype.gif";//$NON-NLS-1$
 	}
-
 }

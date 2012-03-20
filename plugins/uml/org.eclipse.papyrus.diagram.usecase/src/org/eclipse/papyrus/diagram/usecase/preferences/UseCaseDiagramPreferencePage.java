@@ -42,5 +42,4 @@ public class UseCaseDiagramPreferencePage extends AbstractPapyrusPreferencePage 
 	public static void initDefaults(IPreferenceStore store) {
 		// Do nothing
 	}
-
 }

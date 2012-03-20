@@ -48,14 +48,12 @@ public class ExtendPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = UseCaseDiagramEditPart.MODEL_ID + "_Extend";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
@@ -73,7 +71,6 @@ public class ExtendPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -83,5 +80,4 @@ public class ExtendPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

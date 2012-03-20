@@ -90,7 +90,6 @@ public class AssociationCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		CreateAssociationSupplement cacs = new CreateAssociationSupplement(container, source, target);
 		Association newElement = (Association)cacs.doDefaultElementCreation(getEditingDomain(), null);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
@@ -158,5 +157,4 @@ public class AssociationCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

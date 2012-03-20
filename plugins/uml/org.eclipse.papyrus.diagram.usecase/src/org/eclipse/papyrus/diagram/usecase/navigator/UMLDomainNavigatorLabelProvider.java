@@ -103,5 +103,4 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public String getDescription(Object anElement) {
 		return null;
 	}
-
 }

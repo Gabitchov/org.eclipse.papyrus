@@ -60,9 +60,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class UseCaseInComponentEditPart extends
-
-ShapeNodeEditPart implements IPapyrusEditPart {
+public class UseCaseInComponentEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -149,14 +147,12 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			((UseCaseInComponentNameEditPart)childEditPart).setLabel(getPrimaryShape().getUseCaseFigure_name());
 			return true;
 		}
-
 		if(childEditPart instanceof UseCasePointsInComponentEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsInComponentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -879,7 +875,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -899,7 +894,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
