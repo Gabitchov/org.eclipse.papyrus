@@ -136,7 +136,7 @@ public class PageMngrImpl implements IPageMngr {
 	public void closePage(Object pageIdentifier) {
 
 		contentChangedEventProvider.setDeliver(false);
-		diSashModel.getSashModel().removePage(pageIdentifier);
+		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
 	}
 
@@ -231,7 +231,7 @@ public class PageMngrImpl implements IPageMngr {
 		diSashModel.getPageList().removePage(pageIdentifier);
 
 		contentChangedEventProvider.setDeliver(false);
-		diSashModel.getSashModel().removePage(pageIdentifier);
+		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);
 		contentChangedEventProvider.setDeliver(true);
 	}
 

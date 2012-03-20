@@ -97,6 +97,14 @@ public interface SashModel extends EObject {
 	void removePage(Object pageIdentifier);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
+	 * @generated
+	 */
+	public void removePageAndEmptyFolder(Object pageIdentifier);
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc -->
 	 * Lookup the pageRef identified by the pageIdentifier. Return the pageRef
 	 * or null if not found. Lookup in the entire SashModel structure. <!--
