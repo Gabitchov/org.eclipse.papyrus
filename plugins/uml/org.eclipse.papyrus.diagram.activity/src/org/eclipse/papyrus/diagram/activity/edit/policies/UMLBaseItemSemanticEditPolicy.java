@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -318,7 +319,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-		return getGEFWrapper(new MoveElementsCommand(req));
+		EObject targetCEObject = req.getTargetContainer();
+		if(targetCEObject != null) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
+			if(provider != null) {
+				ICommand moveCommand = provider.getEditCommand(req);
+				if(moveCommand != null) {
+					return new ICommandProxy(moveCommand);
+				}
+			}
+			return UnexecutableCommand.INSTANCE;
+		} else {
+			return getGEFWrapper(new MoveElementsCommand(req));
+		}
 	}
 
 	/**
