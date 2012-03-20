@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *	 Olivier Mélois (Atos) : olivier.melois@atos.net - 371712
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.helper;
@@ -36,6 +37,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -64,6 +66,7 @@ import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndCreateAttribu
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndCreateParameterDialog;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndLinkDialog;
 import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
+import org.eclipse.papyrus.diagram.activity.handlers.SynchronizePinsParametersHandler;
 import org.eclipse.papyrus.diagram.activity.helper.datastructure.LinkPinToParameter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -103,6 +106,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.Variable;
+
+import com.google.common.collect.Iterables;
 
 /**
  * The PinAndParameterSynchronizer is a validator (see corresponding extensions)
@@ -2374,6 +2379,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @return
 	 */
 	public static Parameter getLinkedParemeter(Pin p, XMIResource xmiResource) {
+		
 		if(p != null && xmiResource != null) {
 			EAnnotation eAnnotation = p.getEAnnotation(IPinToParameterLinkCommand.PIN_TO_PARAMETER_LINK);
 			if(eAnnotation != null && !eAnnotation.getDetails().isEmpty()) {
@@ -2396,126 +2402,89 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @return command
 	 */
 	public static CompoundCommand getResetPinsCmd(CallAction action) {
-		// Get the editing domain
+		// Getting the editing domain
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		CompoundCommand globalCmd = new CompoundCommand();
 		Element behaviorStructural = null;
+		List<Parameter> parameters = Collections.emptyList();
 		if(action instanceof CallBehaviorAction) {
 			behaviorStructural = ((CallBehaviorAction)action).getBehavior();
+			parameters = ((Behavior) behaviorStructural).getOwnedParameters();
 		} else if(action instanceof CallOperationAction) {
 			behaviorStructural = ((CallOperationAction)action).getOperation();
+			parameters = ((Operation) behaviorStructural).getOwnedParameters();
 		}
 		XMIResource xmiResource = getXMIResource(behaviorStructural);
-		// remove argument pins
+		
+		// Removing input pins that are not up to date.
 		Collection<Parameter> parameterWhichPinNotDeleted = new ArrayList<Parameter>();
-		if(!action.getArguments().isEmpty()) {
-			for(InputPin p : action.getArguments()) {
-				boolean toDetele = true;
-				Parameter pa = getLinkedParemeter(p, xmiResource);
-				if(pa != null) {
-					parameterWhichPinNotDeleted.add((Parameter)pa);
-					toDetele = false;
+		Iterable<Pin> allPins = Iterables.concat(action.getArguments(),action.getResults());
+		for(Pin pin : allPins) {
+			if (SynchronizePinsParametersHandler.isUpToDate(pin, xmiResource)){
+				Parameter pa = getLinkedParemeter(pin, xmiResource);
+				parameterWhichPinNotDeleted.add((Parameter)pa);
+			} else {
+				EReference feature = null; 
+				if (pin instanceof InputPin){
+					feature = UMLPackage.eINSTANCE.getInvocationAction_Argument();
+				} else if (pin instanceof OutputPin){
+					feature = UMLPackage.eINSTANCE.getCallAction_Result();
 				}
-				if(toDetele) {
-					Command cmd = RemoveCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getInvocationAction_Argument(), p);
-					globalCmd.append(cmd);
-				}
-			}
-		}
-		// remove result pins
-		if(!action.getResults().isEmpty()) {
-			for(OutputPin p : action.getResults()) {
-				boolean toDetele = true;
-				Parameter pa = getLinkedParemeter(p, xmiResource);
-				if(pa != null) {
-					parameterWhichPinNotDeleted.add((Parameter)pa);
-					toDetele = false;
-				}
-				if(toDetele) {
-					Command cmd = RemoveCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCallAction_Result(), p);
-					globalCmd.append(cmd);
-				}
+				//Removing the pin.
+				Command cmd = RemoveCommand.create(editingdomain, action, feature , pin);
+				cmd.canExecute();
+				globalCmd.append(cmd);
 			}
 		}
 
-		/*
-		 * No need to reset this pin
-		 */
-		//		if(action instanceof CallOperationAction) {
-		//			// remove target pin
-		//			InputPin target = ((CallOperationAction)action).getTarget();
-		//			if(target != null) {
-		//				Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCallOperationAction_Target(), null);
-		//				globalCmd.append(cmd);
-		//			}
-		//		}
-		// recover parameters
-		List<Parameter> parameters = Collections.emptyList();
-		if(action instanceof CallOperationAction) {
-			Operation operation = ((CallOperationAction)action).getOperation();
-			if(operation != null) {
-				parameters = operation.getOwnedParameters();
-			}
-		}
-		if(action instanceof CallBehaviorAction) {
-			Behavior behavior = ((CallBehaviorAction)action).getBehavior();
-			if(behavior != null) {
-				parameters = behavior.getOwnedParameters();
-			}
-		}
-		// add pins corresponding to parameters
-		Map<Integer, Parameter> inParameters = new HashMap<Integer, Parameter>();
-		Map<Integer, Parameter> outParameters = new HashMap<Integer, Parameter>();
-		int inIndex = 0;
-		int outIndex = 0;
-		for(Parameter param : parameters) {
-			switch(param.getDirection()) {
-			case IN_LITERAL:
-				if(!parameterWhichPinNotDeleted.contains(param)) {
-					inParameters.put(inIndex, param);
-				}
-				inIndex++;
-				break;
-			case OUT_LITERAL:
-			case RETURN_LITERAL:
-				if(!parameterWhichPinNotDeleted.contains(param)) {
-					outParameters.put(outIndex, param);
-				}
-				outIndex++;
-				break;
-			case INOUT_LITERAL:
-				if(!parameterWhichPinNotDeleted.contains(param)) {
-					inParameters.put(inIndex, param);
-				}
-				inIndex++;
-				if(!parameterWhichPinNotDeleted.contains(param)) {
-					outParameters.put(outIndex, param);
-				}
-				outIndex++;
-				break;
-			}
-		}
-		if(!inParameters.isEmpty() || !outParameters.isEmpty()) {
-			Command cmd = getAddPinsCmd(action, inParameters, outParameters, null);
+		//Splitting parameters
+		Map<Integer, Parameter> inParams = new HashMap<Integer, Parameter>();
+		Map<Integer, Parameter> outParams = new HashMap<Integer, Parameter>();
+		splitParameters(parameters, parameterWhichPinNotDeleted, inParams, outParams);
+
+		//Creating new pins.
+		if(!inParams.isEmpty() || !outParams.isEmpty()) {
+			Command cmd = getAddPinsCmd(action, inParams, outParams, null);
 			globalCmd.append(cmd);
 		}
-		/*
-		 * No need to reset this pin
-		 */
-		//		if(action instanceof CallOperationAction) {
-		//			// add target pin
-		//			Operation operation = ((CallOperationAction)action).getOperation();
-		//			if(operation != null) {
-		//				InputPin targetPin = createTargetPin(operation);
-		//				Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCallOperationAction_Target(), targetPin);
-		//				globalCmd.append(cmd);
-		//			}
-		//		}
+
 		return globalCmd;
 	}
+	
+	/**
+	 * Split a list of parameters in two lists : in and out parameters. If a parameter is to be ignored, then "null" is added to the 
+	 * corresponding list instead.
+	 */
+	public static void splitParameters(List<Parameter> allParams, Collection<Parameter> paramsToIgnore, Map<Integer, Parameter> inParams, Map<Integer, Parameter> outParams){
+		Integer inIndex = 0;
+		Integer outIndex = 0;
+		for(Parameter param : allParams) {
+			ParameterDirectionKind direction = param.getDirection();
+			//In
+			if (direction == ParameterDirectionKind.IN_LITERAL 
+					|| direction == ParameterDirectionKind.INOUT_LITERAL){
+				if(!paramsToIgnore.contains(param)) {
+					inParams.put(inIndex,param);
+				} 
+				inIndex ++;
+			}
+			//Out
+			if (direction == ParameterDirectionKind.OUT_LITERAL 
+					|| direction == ParameterDirectionKind.INOUT_LITERAL
+					|| direction == ParameterDirectionKind.RETURN_LITERAL){
+				if(!paramsToIgnore.contains(param)) {
+					outParams.put(outIndex,param);
+				} 
+				outIndex ++;
+			}
+		}
+	}
+	
+	
+	
 
 	/**
-	 * Retreveive the XMIResource
+	 * Retrieves the XMIResource
 	 * 
 	 * @param behaviorStructural
 	 * @return

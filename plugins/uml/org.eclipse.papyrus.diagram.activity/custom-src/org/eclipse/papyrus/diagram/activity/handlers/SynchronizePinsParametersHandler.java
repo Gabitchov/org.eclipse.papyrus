@@ -10,13 +10,16 @@
  * Contributors:
  *   Arthur Daussy (Atos) - Initial API and implementation
  *   Arthur Daussy - 371712 : [Activitydiagram] Papyrus should provide a way to manually resynchronize pins and parameters on Call Actions
+ *   Olivier Mélois (Atos) : olivier.melois@atos.net - 371712
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.handlers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,8 +42,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -50,7 +56,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.activity.commands.CreatePinToParameterLinkEAnnotation;
+import org.eclipse.papyrus.diagram.activity.helper.IPinToParameterLinkCommand;
 import org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer;
+import org.eclipse.papyrus.diagram.activity.helper.datastructure.LinkPinToParameter;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLMarkerNavigationProvider;
 import org.eclipse.papyrus.diagram.common.commands.DestroyElementPapyrusCommand;
@@ -71,6 +81,7 @@ import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
@@ -123,7 +134,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 
 
 	/**
-	 * Synchronized Call Action
+	 * Synchronizes a Call Action
 	 * 
 	 * @param callAction
 	 */
@@ -132,10 +143,149 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 			createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "Unable to synchronize pins on " + callAction.getQualifiedName() + " : the ressource is unreachable", Type.WARNING);
 			return;
 		}
-		if(isUpOfDate(callAction)) {
+
+		//Trying to match pins of the callAction with parameters of same index/direction/type.
+		//The pins that can not be matched will be destroyed by the "syncCallActionWhenOutdated" method.
+		matchPinsAndParams(callAction);
+
+		if(isUpToDate(callAction)) {
 			createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The call action " + callAction.getQualifiedName() + " is up to date", Type.INFO);
-			return;
+		} else {
+			//Synchronization when a link between pins and params already exists but is outdated.
+			syncCallActionWhenOutdated(callAction);
+			createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The call action " + callAction.getQualifiedName() + " has been synchronized", Type.INFO);
 		}
+		//Renaming pins according to their associated parameters.
+		renamePins(callAction);
+	}
+
+	/**
+	 * Rename the pins according to their parameters when possible.
+	 * 
+	 * @param callAction
+	 */
+	private static void renamePins(final CallAction callAction) {
+		//Command used as renaming the pins change the model.
+		AbstractTransactionalCommand renamePinsCommand = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "renaming pins", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				Iterable<Pin> allPins = Iterables.concat(callAction.getResults(), callAction.getArguments());
+				Element behaviorStructural = null;
+				if(callAction instanceof CallBehaviorAction) {
+					behaviorStructural = ((CallBehaviorAction)callAction).getBehavior();
+				} else if(callAction instanceof CallOperationAction) {
+					behaviorStructural = ((CallOperationAction)callAction).getOperation();
+				}
+				XMIResource xmiResource = PinAndParameterSynchronizer.getXMIResource(behaviorStructural);
+
+				for(Pin pin : allPins) {
+					Parameter parameter = PinAndParameterSynchronizer.getLinkedParemeter(pin, xmiResource);
+					if(parameter != null) {
+						String paramName = parameter.getName();
+						pin.setName(paramName);
+					}
+				}
+
+				return CommandResult.newOKCommandResult();
+			}
+		};
+		ICommandProxy renamePinsCommandProxy = new ICommandProxy(renamePinsCommand);
+		executeCommand(renamePinsCommandProxy, callAction);
+	}
+
+	/**
+	 * Method used to match the pins of a call action with parameters of that same call action,
+	 * when the pins do not have eAnnotations already linking to parameters. If no match can
+	 * be performed, the pin is destroyed along with its edges.
+	 * 
+	 * @param callAction
+	 */
+	private static void matchPinsAndParams(CallAction callAction) {
+		List<InputPin> inputPins = Lists.newArrayList(callAction.getArguments());
+		List<OutputPin> outputPins = Lists.newArrayList(callAction.getResults());
+
+		//The command that is going to be executed.
+		CompoundCommand linkingPinsAndParamsCommand = new CompoundCommand();
+
+		List<Parameter> callActionParams = getParametersFromCallAction(callAction);
+		Map<Integer, Parameter> inputParameters = new HashMap<Integer, Parameter>();
+		Map<Integer, Parameter> outputParameters = new HashMap<Integer, Parameter>();
+		//Splitting parameters.
+		PinAndParameterSynchronizer.splitParameters(callActionParams, Collections.<Parameter> emptyList(), inputParameters, outputParameters);
+
+		//Matching pins and parameters.
+		matchPinsAndParams(inputPins, inputParameters, linkingPinsAndParamsCommand);
+		matchPinsAndParams(outputPins, outputParameters, linkingPinsAndParamsCommand);
+
+		//Execution of the command
+		executeCommand(new EMFtoGEFCommandWrapper(linkingPinsAndParamsCommand), callAction);
+	}
+
+	/**
+	 * Refinement for the matchPinsAndParams(CallAction) method.
+	 * 
+	 * @param pins
+	 *        : the list of all input (xor output) pins. The list will be filtered
+	 *        to try to just perform a matching on pins that do not have eAnnotations linking
+	 *        to parameters.
+	 * @param parameters
+	 *        : parameters with the same direction as the pins.
+	 * @param globalCmd
+	 *        : the command used to create the eAnnotations.
+	 */
+	private static void matchPinsAndParams(List<? extends Pin> pins, Map<Integer, Parameter> parameters, CompoundCommand globalCmd) {
+		for(int pinIndex = 0; pinIndex < pins.size(); pinIndex++) {
+			Pin pin = pins.get(pinIndex);
+			//The matching is performed only on pins that do not have a pin-to-parameter link.
+			if(lacksPinToParameterLink(pin)) {
+				Parameter paramWithSameIndex = parameters.get(pinIndex);
+				boolean foundMatchingParam = false;
+				if(paramWithSameIndex != null) {
+					//A parameter has been found with the same index as the pin. If both have the same type, a link is created.
+					if(pin.getType() == paramWithSameIndex.getType()) {
+						LinkPinToParameter link = new LinkPinToParameter(pin, paramWithSameIndex);
+						CreatePinToParameterLinkEAnnotation linkCommand = new CreatePinToParameterLinkEAnnotation(EditorUtils.getTransactionalEditingDomain(), link);
+						if(linkCommand != null) {
+							globalCmd.append(linkCommand);
+							foundMatchingParam = true;
+						}
+						createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The pin " + pin.getQualifiedName() + " " + "has been linked to the parameter " + paramWithSameIndex.getQualifiedName(), Type.INFO);
+					}
+				}
+				if(!foundMatchingParam) {
+					createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The pin " + pin.getQualifiedName() + " will be deleted, along with its edges", Type.WARNING);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Checks whether a pin lacks the Pin-to-Parameter link
+	 */
+	private static boolean lacksPinToParameterLink(Pin pin) {
+		return pin.getEAnnotation(IPinToParameterLinkCommand.PIN_TO_PARAMETER_LINK) == null;
+	}
+
+	/**
+	 * @param callAction
+	 * @return the parameters from the behavior or the operation of the call action.
+	 */
+	private static List<Parameter> getParametersFromCallAction(CallAction callAction) {
+		List<Parameter> result = null;
+		if(callAction instanceof CallBehaviorAction) {
+			result = ((CallBehaviorAction)callAction).getBehavior().getOwnedParameters();
+
+		} else if(callAction instanceof CallOperationAction) {
+			result = ((CallOperationAction)callAction).getOperation().getOwnedParameters();
+		}
+		return result;
+	}
+
+	/**
+	 * Refining for the syncCallAction method.
+	 */
+	private static void syncCallActionWhenOutdated(CallAction callAction) {
 		//Command to reset all pins
 		final CompoundCommand cmd = PinAndParameterSynchronizer.getResetPinsCmd(callAction);
 
@@ -175,7 +325,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 						UMLItemProviderAdapterFactory umlAdapterFactory = new UMLItemProviderAdapterFactory();
 						IItemLabelProvider edgeLabelProvider = (IItemLabelProvider)umlAdapterFactory.adapt(activityEdge, IItemLabelProvider.class);
 						IItemLabelProvider callActionLabelProvider = (IItemLabelProvider)umlAdapterFactory.adapt(callAction, IItemLabelProvider.class);
-						UMLMarkerNavigationProvider.addMarker(target, activityEdge.eResource().getURIFragment(activityEdge), EMFCoreUtil.getQualifiedName(callAction, true), "The edge " + edgeLabelProvider.getText(activityEdge) + " has been delete since " + callActionLabelProvider.getText(callAction) + " has been synchronized", IStatus.WARNING);
+						UMLMarkerNavigationProvider.addMarker(target, activityEdge.eResource().getURIFragment(activityEdge), EMFCoreUtil.getQualifiedName(callAction, true), "The edge " + edgeLabelProvider.getText(activityEdge) + " has been deleted since " + callActionLabelProvider.getText(callAction) + " has been synchronized", IStatus.WARNING);
 					}
 					//Destroy all edge
 					EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(activityEdge);
@@ -189,7 +339,6 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 				}
 				//Reset all pin
 				executeCommand(new EMFtoGEFCommandWrapper(cmd), callAction);
-				createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The call action " + callAction.getQualifiedName() + " has been synchronized", Type.INFO);
 			}
 		}
 	}
@@ -208,7 +357,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 	 * @param callAction
 	 * @return
 	 */
-	private static boolean isUpOfDate(CallAction callAction) {
+	private static boolean isUpToDate(CallAction callAction) {
 		ArrayList<Parameter> operationArgument = null;
 		ArrayList<InputPin> callActionArgument = Lists.newArrayList(callAction.getArguments());
 		ArrayList<OutputPin> callActionResult = Lists.newArrayList(callAction.getResults());
@@ -216,43 +365,74 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		if(callAction instanceof CallOperationAction) {
 			CallOperationAction callOperationAction = (CallOperationAction)callAction;
 			Operation operation = callOperationAction.getOperation();
-			xmiResource = operation!=null?PinAndParameterSynchronizer.getXMIResource(operation):null;
+			xmiResource = operation != null ? PinAndParameterSynchronizer.getXMIResource(operation) : null;
 			operationArgument = Lists.newArrayList(callOperationAction.getOperation().getOwnedParameters());
 		} else if(callAction instanceof CallBehaviorAction) {
 			CallBehaviorAction callBehaviorAction = (CallBehaviorAction)callAction;
 			Behavior behavior = callBehaviorAction.getBehavior();
-			xmiResource = behavior!=null?PinAndParameterSynchronizer.getXMIResource(behavior):null;
+			xmiResource = behavior != null ? PinAndParameterSynchronizer.getXMIResource(behavior) : null;
 			operationArgument = Lists.newArrayList(callBehaviorAction.getBehavior().getOwnedParameters());
 		}
 		if(operationArgument == null) {
 			return true;
 		}
 
-		//test arguments elements
-		final Set<Parameter> operationArgumentFounded = new HashSet<Parameter>();
+		//checking if each pin is up to date.
+		final Set<Parameter> operationArgumentFound = new HashSet<Parameter>();
 		for(InputPin p : callActionArgument) {
-			Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(p, xmiResource);
-			if(pa == null) {
+			if(!isUpToDate(p, xmiResource)) {
 				return false;
+			} else {
+				Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(p, xmiResource);
+				operationArgumentFound.add(pa);
 			}
-			operationArgumentFounded.add(pa);
 		}
 		for(OutputPin p : callActionResult) {
-			Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(p, xmiResource);
-			if(pa == null) {
+			if(!isUpToDate(p, xmiResource)) {
 				return false;
+			} else {
+				Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(p, xmiResource);
+				operationArgumentFound.add(pa);
 			}
-			operationArgumentFounded.add(pa);
 		}
-		//Intersect bot parameter collection
-		Iterable<Parameter> intersection = Iterables.filter(operationArgument, new Predicate<Parameter>() {
+
+		// Checking whether new pins should be created (meaning some parameters do not have matching pins)
+		Iterable<Parameter> intersectionBetweenPinParamsAndAllParams = Iterables.filter(operationArgument, new Predicate<Parameter>() {
 
 			public boolean apply(Parameter input) {
-				return !operationArgumentFounded.contains(input);
+				return !operationArgumentFound.contains(input);
 			}
 		});
-		return Iterables.size(intersection) == 0;
+		return Iterables.size(intersectionBetweenPinParamsAndAllParams) == 0;
+	}
 
+	/**
+	 * Refining of the isUpToDate method (checks whether the pin has the same
+	 * type & direction than its associated parameter.
+	 */
+	public static boolean isUpToDate(Pin pin, XMIResource xmiResource) {
+		boolean result = false;
+		Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(pin, xmiResource);
+		if(pa != null) {
+			if(pin.getType() != null) {
+				result = pin.getType().isCompatibleWith(pa.getType());
+			} else {
+				result = (pin.getType() == pa.getType());
+			}
+			if(pin instanceof OutputPin) {
+				boolean directionIsOut;
+				directionIsOut = (pa.getDirection().getValue() == ParameterDirectionKind.OUT);
+				directionIsOut |= (pa.getDirection().getValue() == ParameterDirectionKind.INOUT);
+				directionIsOut |= (pa.getDirection().getValue() == ParameterDirectionKind.RETURN);
+				result &= directionIsOut;
+			} else if(pin instanceof InputPin) {
+				boolean directionIsIn;
+				directionIsIn = (pa.getDirection().getValue() == ParameterDirectionKind.IN);
+				directionIsIn |= (pa.getDirection().getValue() == ParameterDirectionKind.INOUT);
+				result &= directionIsIn;
+			}
+		}
+		return result;
 	}
 
 
