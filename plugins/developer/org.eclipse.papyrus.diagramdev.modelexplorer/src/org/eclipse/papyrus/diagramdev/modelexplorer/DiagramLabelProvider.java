@@ -17,22 +17,18 @@ package org.eclipse.papyrus.diagramdev.modelexplorer;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.providers.StandardEMFLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
+import org.osgi.framework.ServiceException;
 
 /**
  * the label provider that inherits of modisco label provider
  * 
  */
-public class DiagramLabelProvider extends MoDiscoLabelProviderWTooltips {
+public class DiagramLabelProvider extends StandardEMFLabelProvider {
 	
 	/** icon registry */
 	private IPageIconsRegistry editorRegistry=null;
@@ -76,7 +72,7 @@ public class DiagramLabelProvider extends MoDiscoLabelProviderWTooltips {
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
 			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			// Not found, return an empty one which return null for each
 			// request.
 			return new PageIconsRegistry();

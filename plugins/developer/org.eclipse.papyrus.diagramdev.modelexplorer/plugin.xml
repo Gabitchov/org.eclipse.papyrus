@@ -7,7 +7,7 @@
          activeByDefault="false"
          contentProvider="org.eclipse.papyrus.diagramdev.modelexplorer.DiagramContentProvider"
          icon="icon/Actor.gif"
-         id="org.eclipse.papyrus.modelexplorer.NotationNavigatorContent"
+         id="org.eclipse.papyrus.views.modelexplorer.NotationNavigatorContent"
          labelProvider="org.eclipse.papyrus.diagramdev.modelexplorer.DiagramLabelProvider"
          name="Notation Model Contents"
          priority="lower">
@@ -29,36 +29,6 @@
                </instanceof>
             </or>
          </possibleChildren>
-         <actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
-            <enablement>
-               <or>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-               </or>
-            </enablement>
-         </actionProvider>
-         <actionProvider class="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider" id="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider">
-            <enablement>
-               <and>
-                  <not>
-                     <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
-                     </instanceof>
-                  </not>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-               </and>
-            </enablement>
-         </actionProvider>
-         <dropAssistant class="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant" id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
-            <possibleDropTargets>
-               <or>
-                  <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
-                  </instanceof>
-                  <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
-                  </instanceof>
-               </or>
-            </possibleDropTargets>
-         </dropAssistant>
       </navigatorContent>
    </extension>
   

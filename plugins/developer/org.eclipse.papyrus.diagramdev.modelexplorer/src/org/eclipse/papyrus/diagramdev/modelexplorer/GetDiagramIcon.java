@@ -12,15 +12,15 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagramdev.modelexplorer;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.swt.graphics.Image;
+import org.osgi.framework.ServiceException;
 
 /** getDiagramIcon */
 public class GetDiagramIcon implements IJavaModelQuery<Diagram, String> {
@@ -52,7 +52,7 @@ public class GetDiagramIcon implements IJavaModelQuery<Diagram, String> {
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
 			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			// Not found, return an empty one which return null for each
 			// request.
 			return new PageIconsRegistry();

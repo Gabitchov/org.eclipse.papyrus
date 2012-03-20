@@ -16,11 +16,10 @@ package org.eclipse.papyrus.diagramdev.modelexplorer;
 import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.modelexplorer.Activator;
-import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
-import org.eclipse.papyrus.resource.ModelUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 
 /**
  * 
@@ -68,7 +67,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider{
 			return  result.toArray(eObject);
 
 		} catch (Exception e) {
-			Activator.log.error(e);
+			System.err.println(e);
 		}
 
 		return new EObject[0];
