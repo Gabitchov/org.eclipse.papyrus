@@ -3,7 +3,7 @@
 <plugin>
    <extension-point id="readOnlyHandler" name="readOnlyHandler" schema="schema/readOnlyHandler.exsd"/>
    <extension
-         point="org.eclipse.papyrus.readonly.readOnlyHandler">
+         point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             priority="10">
@@ -13,7 +13,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             class="org.eclipse.papyrus.infra.emf.readonly.handlers.EnableWriteHandler"
-            commandId="org.eclipse.papyrus.readonly.EnableWriteCommand">
+            commandId="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand">
          <enabledWhen>
             <and>
                <with variable="activeEditorId">
@@ -22,7 +22,7 @@
                <with
                      variable="selection">
                   <test
-                        property="org.eclipse.papyrus.readonly.tester.isReadOnly"
+                        property="org.eclipse.papyrus.infra.emf.readonly.tester.isReadOnly"
                         value="true">
                   </test>
                   <count
@@ -38,7 +38,7 @@
       <command
             description="Enable write"
             categoryId="org.eclipse.papyrus.editor.category"            
-            id="org.eclipse.papyrus.readonly.EnableWriteCommand"
+            id="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand"
             name="Enable write">
       </command>
    </extension>
@@ -49,7 +49,7 @@
 	<menuContribution
        allPopups="false"
        locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.views.modelexplorer.resourceloading.UnloadResource">
-        <command commandId="org.eclipse.papyrus.readonly.EnableWriteCommand"
+        <command commandId="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand"
 			icon="icons/enable_write.png"
 			label="Enable write"
 			style="push"
@@ -62,7 +62,7 @@
 		
 	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=fileMenu"
 		allPopups="false">
-		<command commandId="org.eclipse.papyrus.readonly.EnableWriteCommand"
+		<command commandId="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand"
 			icon="icons/enable_write.png"
 			label="Enable write"
 			style="push"
@@ -74,8 +74,8 @@
 	</menuContribution>
 
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-	<toolbar id="org.eclipse.papyrus.readonly.toolbar">
-		<command commandId="org.eclipse.papyrus.readonly.EnableWriteCommand"
+	<toolbar id="org.eclipse.papyrus.infra.emf.readonly.toolbar">
+		<command commandId="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand"
 			icon="icons/enable_write.png"
 			label="Enable write"
 			style="push"
@@ -98,8 +98,8 @@
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
          class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTester"
-         id="org.eclipse.papyrus.readonly.tester"
-         namespace="org.eclipse.papyrus.readonly.tester"
+         id="org.eclipse.papyrus.infra.emf.readonly.tester"
+         namespace="org.eclipse.papyrus.infra.emf.readonly.tester"
          properties="isReadOnly"
          type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
@@ -117,10 +117,10 @@
       <configuration
             perspectiveID="org.eclipse.papyrus.infra.core.perspective">
          <toolbar
-               toolbarID="org.eclipse.papyrus.readonly.toolbar">
+               toolbarID="org.eclipse.papyrus.infra.emf.readonly.toolbar">
          </toolbar>
          <command
-               commandID="org.eclipse.papyrus.readonly.EnableWriteCommand">
+               commandID="org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand">
          </command>
       </configuration>
    </extension>
