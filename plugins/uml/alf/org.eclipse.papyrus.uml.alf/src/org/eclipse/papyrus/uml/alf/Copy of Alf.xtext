@@ -1,0 +1,1013 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+
+grammar org.eclipse.papyrus.uml.alf.Alf with org.eclipse.xtext.common.Terminals
+
+generate alf "http://www.eclipse.org/papyrus/alf/Alf"
+
+/*
+  Test rule
+*/
+Test :
+	('testExpression' expression += Expression)*
+	('testStatementSequence' statement += StatementSequence)* 
+	('testUnit' unit += UnitDefinition) *;
+
+
+/*********************************
+* PrimitiveLiterals
+**********************************/
+
+BOOLEAN_LITERAL :
+	value = BooleanValue ;
+terminal BooleanValue : 'true' | 'false' ;
+
+NUMBER_LITERAL :
+	INTEGER_LITERAL | UNLIMITED_NATURAL ;
+
+INTEGER_LITERAL :
+	value = IntegerValue ;
+
+UNLIMITED_NATURAL :
+	value = '*' ;
+
+terminal IntegerValue :
+	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
+	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
+	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
+	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
+	; 
+
+STRING_LITERAL :
+	value = STRING ;
+
+/*********
+* UNITS *
+*********/
+UnitDefinition : 
+	( namespaceDeclaration = NamespaceDeclaration )?
+	( importDeclaration += ImportDeclaration )*
+	//( <DOCUMENTATION_COMMENT> )? =>> To be added
+	( comment = DocumentationComment )?
+	stereotypeAnnotations = StereotypeAnnotations 
+	namespaceDefinition = NamespaceDefinition ;
+
+DocumentationComment :
+	comment = ML_COMMENT ;
+	
+StereotypeAnnotations : 
+	{StereotypeAnnotations}( annotation += StereotypeAnnotation )* ;
+	
+StereotypeAnnotation : 
+	'@' stereotype = QualifiedName
+	( '(' taggedValues = TaggedValues ')' )? ;
+	
+TaggedValues : 
+	QualifiedNameList
+	| TaggedValueList ; 
+
+TaggedValueList : 
+	taggedValue += TaggedValue ( "," taggedValue += TaggedValue )* ;
+
+TaggedValue : 
+	name = Name '=>' value = LiteralExpression ;
+//| ( <PLUS> | <MINUS> )?
+
+NamespaceDeclaration : 
+	'namespace' qualifiedName = QualifiedName ';' ;
+	
+ImportDeclaration : 
+	visibility = ImportVisibilityIndicator 'import' importReference = ImportReference ';' ;
+	
+enum ImportVisibilityIndicator : 
+	PUBLIC = 'public' | 
+	PRIVATE = 'private' ;
+	
+ImportReference : 
+	colonQualifiedName = ColonQualifiedName ( '::' star='*' | aliasDefinition = AliasDefinition )?
+	| dotQualifiedName = DotQualifiedName ( '.' star='*' | aliasDefinition = AliasDefinition )?
+	| name = Name ( ( '::' | '.' ) star = '*' | alias = AliasDefinition )? ;
+	
+AliasDefinition : 
+	'as' name = Name ;
+	
+/* NAMESPACES */
+NamespaceDefinition : 
+	PackageDefinition | ClassifierDefinition ;
+
+enum VisibilityIndicator : 
+	PUBLIC = 'public' | 
+	PRIVATE = 'private' |
+	PROTECTED = 'protected' ;
+	
+/* PACKAGES */
+PackageDeclaration : 
+	'package' name = Name ;
+	
+PackageDefinition : 
+	declaration = PackageDeclaration body = PackageBody ;
+	
+PackageDefinitionOrStub : 
+	declaration = PackageDeclaration ( ';' | body = PackageBody ) ;
+	
+PackageBody : 
+	{PackageBody} '{'( packagedElement += PackagedElement )* '}' ;
+	
+PackagedElement : 
+	// TO be added( <DOCUMENTATION_COMMENT> )?
+	stereotypeAnnotations = StereotypeAnnotations
+	importVisibility = ImportVisibilityIndicator
+	packagedElementDefinition = PackagedElementDefinition ;
+
+PackagedElementDefinition : 
+	PackageDefinitionOrStub
+	| ClassifierDefinitionOrStub ;
+	
+/***************
+* CLASSIFIERS *
+***************/
+
+ClassifierDefinition : 
+	ClassDefinition
+	| ActiveClassDefinition
+	| DataTypeDefinition
+	| EnumerationDefinition
+	| AssociationDefinition
+	| SignalDefinition
+	| ActivityDefinition ;
+	
+ClassifierDefinitionOrStub : 
+	ClassDefinitionOrStub
+	| ActiveClassDefinitionOrStub
+	| DataTypeDefinitionOrStub
+	| EnumerationDefinitionOrStub
+	| AssociationDefinitionOrStub
+	| SignalDefinitionOrStub
+	| ActivityDefinitionOrStub ;
+	
+ClassifierSignature : 
+	name = Name ( templateParameters = TemplateParameters )?
+	( specializationClause = SpecializationClause )? ;
+	
+TemplateParameters : 
+	'<' classifierTemplateParameter += ClassifierTemplateParameter
+	( ',' classifierTemplateParameter += ClassifierTemplateParameter )* '>' ;
+	
+ClassifierTemplateParameter : 
+	// To be added( <DOCUMENTATION_COMMENT> )? 
+	name = Name
+	( 'specializes' specialized = QualifiedName )? ;
+	
+SpecializationClause : 
+	'specializes' specialized = QualifiedNameList ;
+	
+/* CLASSES */
+ClassDeclaration : 
+	( abstract ?= 'abstract' )? 'class' signature = ClassifierSignature ;
+
+ClassDefinition : 
+	declaration = ClassDeclaration body = ClassBody ;
+
+ClassDefinitionOrStub : 
+	declaration = ClassDeclaration ( ';' | body = ClassBody ) ;
+	
+ClassBody : 
+	{ClassBody}'{' ( classMember += ClassMember )* '}' ;
+	
+ClassMember : 
+	// To be added( <DOCUMENTATION_COMMENT> )?
+	stereotypeAnnotations = StereotypeAnnotations
+	( visibilityIndicator = VisibilityIndicator )?
+	classMemberDefinition = ClassMemberDefinition ;
+
+ClassMemberDefinition : 
+	ClassifierDefinitionOrStub
+	| FeatureDefinitionOrStub ;
+	
+/* ACTIVE CLASSES */
+ActiveClassDeclaration : 
+	( abstract ?= 'abstract' )? 'active' 'class' signature = ClassifierSignature ;
+	
+ActiveClassDefinition : 
+	declaration = ActiveClassDeclaration body = ActiveClassBody ;
+
+ActiveClassDefinitionOrStub : 
+	declaration = ActiveClassDeclaration ( ';' | body = ActiveClassBody ) ;
+	
+ActiveClassBody : 
+	{ActiveClassBody}'{' ( activerClassMember += ActiveClassMember )* '}'
+	( 'do' behaviorClause = BehaviorClause )? ;
+
+BehaviorClause : 
+	Block | Name ;
+
+ActiveClassMember : 
+	// To be added( <DOCUMENTATION_COMMENT> )?
+	stereotypeAnnotations = StereotypeAnnotations
+	( visibilityIndicator = VisibilityIndicator )?
+	activeClassMemberDefinition = ActiveClassMemberDefinition ;
+	
+ActiveClassMemberDefinition : 
+	ClassMemberDefinition
+	| ActiveFeatureDefinitionOrStub ;
+	
+/* DATA TYPES */
+DataTypeDeclaration : 
+	( abstract ?= 'abstract' )? 'datatype' signature = ClassifierSignature ;
+	
+DataTypeDefinition : 
+	declaration = DataTypeDeclaration body = StructuredBody ;
+	
+DataTypeDefinitionOrStub : 
+	declaration = DataTypeDeclaration ( ';' | body = StructuredBody ) ;
+	
+StructuredBody : 
+	{StructureBody}'{' ( structuredMember += StructuredMember )* '}' ;
+	
+StructuredMember : 
+	// To be added ( <DOCUMENTATION_COMMENT> )?
+	stereotypeAnnotations = StereotypeAnnotations ( public ?= 'public' )? propertyDefinition = PropertyDefinition ;
+	
+/* ASSOCIATIONS */
+AssociationDeclaration : 
+	( abstract ?= 'abstract' )? 'assoc' signature = ClassifierSignature ;
+	
+AssociationDefinition : 
+	declaration = AssociationDeclaration body = StructuredBody ;
+	
+AssociationDefinitionOrStub : 
+	declaration = AssociationDeclaration ( ';' | body = StructuredBody ) ;
+	
+/* ENUMERATIONS */
+EnumerationDeclaration : 
+	'enum' name = Name ( specializationClause = SpecializationClause )? ;
+	
+EnumerationDefinition : 
+	declaration = EnumerationDeclaration body = EnumerationBody ;
+	
+EnumerationDefinitionOrStub : 
+	declaration = EnumerationDeclaration ( ';' | body = EnumerationBody ) ;
+	
+EnumerationBody : 
+	'{' name += EnumerationLiteralName ( ',' name += EnumerationLiteralName )* '}' ;
+	
+EnumerationLiteralName : 
+	// To be added ( <DOCUMENTATION_COMMENT> )? 
+	Name ;
+	
+/* SIGNALS */
+SignalDeclaration : 
+	( abstract ?= 'abstract' )? 'signal' signature = ClassifierSignature ;
+	
+SignalDefinition : 
+	declaration = SignalDeclaration body = StructuredBody ;
+	
+SignalDefinitionOrStub : 
+	declaration = SignalDeclaration ( ';' | body = StructuredBody ) ;
+	
+/* ACTIVITIES */
+ActivityDeclaration : 
+	'activity' name = Name ( templateParameters = TemplateParameters )? 
+		formalParameters = FormalParameters ( ':' typePart = TypePart )? ;
+	
+ActivityDefinition : 
+	declaration = ActivityDeclaration body = Block ;
+	
+ActivityDefinitionOrStub : 
+	declaration = ActivityDeclaration ( ';' | body = Block ) ;
+	
+FormalParameters : 
+	{FormalParameters} '(' ( formalParameterList = FormalParameterList )? ')' ;
+	
+FormalParameterList : 
+	formalParameter += FormalParameter ( ',' formalParameter += FormalParameter )* ;
+	
+FormalParameter : 
+	// To be added ( <DOCUMENTATION_COMMENT> )?
+	stereotypeAnnotations = StereotypeAnnotations 
+	direction = ParameterDirection 
+	name = Name ':' type = TypePart ;
+	
+enum ParameterDirection : 
+	IN = 'in' | 
+	OUT = 'out' | 
+	INOUT = 'inout' ;
+	
+/* FEATURES */
+FeatureDefinitionOrStub : 
+	AttributeDefinition
+	| OperationDefinitionOrStub ;
+	
+ActiveFeatureDefinitionOrStub : 
+	ReceptionDefinition
+	| SignalReceptionDefinitionOrStub ;
+	
+/* PROPERTIES */
+PropertyDefinition : 
+	declaration = PropertyDeclaration ';' ;
+	
+AttributeDefinition : 
+	declaration = PropertyDeclaration ( attributeInitialize = AttributeInitializer )? ';' ;
+	
+AttributeInitializer : 
+	'=' expression = InitializationExpression ;
+	
+PropertyDeclaration : 
+	name = Name ':' ( 'compose' )? type = TypePart ;
+	
+TypePart : 
+	typeName = TypeName ( multiplicity = Multiplicity )? ;
+	
+Multiplicity : 
+	{Multiplicity} '[' ( range = MultiplicityRange )? ']'
+	( ordered ?= 'ordered' ( nonUnique ?= 'nonUnique' )? | nonUnique ?='nonUnique' ( ordered ?= 'ordered' )? | sequence ?= 'sequence' )? ;
+	
+MultiplicityRange : 
+	( lower = NUMBER_LITERAL '..' )? upper = NUMBER_LITERAL ;	
+//UnlimitedNaturalLiteral = <DECIMAL_LITERAL> | <STAR>
+
+/* OPERATIONS */
+OperationDeclaration : 
+	( abstract ?= 'abstract' )? name = Name formalParameters = FormalParameters
+	( ':' returnType = TypePart )? ( redefinition = RedefinitionClause )? ;
+	
+OperationDefinitionOrStub : 
+	declaration = OperationDeclaration ( ';' | body = Block ) ;
+	
+RedefinitionClause : 
+	'redefines' redefinedOperations = QualifiedNameList ;
+	
+/* RECEPTIONS */
+ReceptionDefinition : 
+	'receive' signalName = QualifiedName ';' ;
+	
+SignalReceptionDeclaration : 
+	'receive' 'signal' name = Name ( specializationClause = SpecializationClause )? ;
+
+SignalReceptionDefinitionOrStub : 
+	declaration = SignalReceptionDeclaration ( ';' | body = StructuredBody ) ;
+
+/*****************************
+* Statements
+******************************/
+
+StatementSequence : 
+	{StatementSequence}( statement += DocumentedStatement )* ;
+	
+DocumentedStatement : 
+	//( <DOCUMENTATION_COMMENT> )? Statement =>>> to be taken into account
+	Statement ;
+
+Statement : 
+	BlockStatement | 
+	//AnnotatedStatement| 
+	//InLineStatement |  
+	LocalNameDeclarationOrExpressionStatement 	| 
+	LocalNameDeclarationStatement 	| 
+	IfStatement	| 
+	SwitchStatement |	 
+	WhileStatement |	 
+	ForStatement |	 
+	DoStatement	| 
+	BreakStatement	| 
+	ReturnStatement	| 
+	AcceptStatement	| 
+	ClassifyStatement |
+	EmptyStatement
+	;
+	
+/* BLOCK */
+Block : 
+	'{' statementSequence = StatementSequence '}' ;
+	
+/* ANNOTATED STATEMENTS */
+//AnnotatedStatement : 
+//	'/@' (annotation = Annotations) '\n' statement = Statement ;
+//
+//Annotations : 
+//	annotation += Annotation ( '@' annotation+= Annotation )* ;
+//	
+//Annotation : 
+//	id = ID ( '(' nameList = NameList ')' )? ;
+//	
+//NameList : 
+//	name += Name ( ',' name+=Name )* ;
+//	
+///* IN-LINE STATEMENTS */
+//InLineStatement : 
+//	'/*@' id=ID '(' name = Name ')' ;
+//	//<DOCUMENTATION_COMMENT> =>>> to be taken into account
+	
+/* BLOCK STATEMENTS */
+BlockStatement : 
+	block = Block ;
+	
+/* EMPTY STATEMENTS */
+EmptyStatement : 
+	{EmptyStatement} ';' ;
+
+/* LOCAL NAME DECLARATION AND EXPRESSION STATEMENTS */
+LocalNameDeclarationOrExpressionStatement : 
+	qualifiedName = PotentiallyColonQualifiedName (qualifiednameToExpressionCompletion = NameToExpressionCompletion)?
+	( ( multiplicityIndicator = MultiplicityIndicator )? name = Name nameDeclarationCompletion = LocalNameDeclarationStatementCompletion
+		| nameToExpressionCompletion = NameToExpressionCompletion ';'
+	)
+	| nonNameExpression = NonNameExpression ';' ;
+
+LocalNameDeclarationStatement : 
+	'let' name = Name ':' type = TypeName ( multiplicityIndicator = MultiplicityIndicator )?
+	localNameDeclarationCompletion = LocalNameDeclarationStatementCompletion ;
+
+TypeName :
+	{TypeName}(qualifiedName = QualifiedName | 'any') ;
+	
+LocalNameDeclarationStatementCompletion : 
+	'=' initialization = InitializationExpression ';' ;
+
+InitializationExpression : 
+	Expression
+	| SequenceInitializationExpression
+	| InstanceInitializationExpression ;
+
+InstanceInitializationExpression :
+	'new' tuple = Tuple ;
+	
+/* IF STATEMENTS */
+IfStatement : 
+	'if' sequentialClausses = SequentialClauses ( finalClause = FinalClause )? ;
+	
+SequentialClauses : 
+	conccurentClauses += ConcurrentClauses
+	( 'else' 'if' conccurentClauses += ConcurrentClauses )* ;
+	
+ConcurrentClauses : 
+	nonFinalClause += NonFinalClause 
+	( 'or' 'if' nonFinalClause += NonFinalClause )* ;
+	
+NonFinalClause : 
+	'(' condition = Expression ')' block = Block ;
+	
+FinalClause : 
+	'else' block = Block ;
+	
+/* SWITCH STATEMENTS */
+SwitchStatement : 
+	'switch' '(' expression = Expression ')' '{' 
+		( switchClause += SwitchClause )*
+		( defaultClause = SwitchDefaultClause )?
+	'}' ;
+
+SwitchClause : 
+	switchCase += SwitchCase ( switchCase += SwitchCase )* statementSequence = NonEmptyStatementSequence ;
+
+SwitchCase : 
+	'case' expression = Expression ':' ;
+
+SwitchDefaultClause : 
+	'default' ':' statementSequence = NonEmptyStatementSequence ;
+	
+NonEmptyStatementSequence : 
+	( statement += Statement )+ ;
+	// Should be: ( statement += DocumentedStatement )+ ;
+
+/* WHILE STATEMENTS */
+WhileStatement : 
+	'while' '(' condition = Expression ')' block = Block ;
+	
+/* DO STATEMENTS */
+DoStatement :
+	'do' block = Block 'while' '(' condition = Expression ')' ';' ;
+	
+/* FOR STATEMENTS */
+ForStatement : 
+	'for' '(' control = ForControl ')' block = Block ;
+	
+ForControl : 
+	loopVariableDefinition += LoopVariableDefinition( ',' loopVariableDefinition += LoopVariableDefinition )* ;
+
+LoopVariableDefinition : 
+	(name = Name 'in' expression1 = Expression ( '::' expression2 = Expression )?)
+	| (type = QualifiedName name = Name ':' expression = Expression) ;
+	
+/* BREAK STATEMENTS */
+BreakStatement : 
+	{BreakStatement}'break' ';' ;
+	
+/* RETURN STATEMENTS */
+ReturnStatement : 
+	'return' expression = Expression ';' ;
+
+/* ACCEPT STATEMENTS */
+AcceptStatement : 
+	clause = AcceptClause
+	( simpleAccept = SimpleAcceptStatementCompletion
+	| compoundAccept = CompoundAcceptStatementCompletion ) ;
+
+SimpleAcceptStatementCompletion : 
+	{SimpleAcceptStatementCompletion}';' ;
+	
+CompoundAcceptStatementCompletion : 
+	block = Block ( 'or' acceptBlock += AcceptBlock )* ;
+
+AcceptBlock : 
+	clause = AcceptClause block = Block ;
+	
+AcceptClause : 
+	'accept' '(' ( name = Name ':' )? qualifiedNameList = QualifiedNameList ')' ;
+	
+/* CLASSIFY STATEMENTS */
+ClassifyStatement : 
+	'classify' expression = Expression clause = ClassificationClause ';' ;
+
+ClassificationClause : 
+	classifyFromClause = ClassificationFromClause ( classifyToClause = ClassificationToClause )?
+	| ( reclassyAllClause = ReclassifyAllClause )? classifyToClause = ClassificationToClause ;
+	
+ClassificationFromClause : 
+	'from' qualifiedNameList = QualifiedNameList ;
+	
+ClassificationToClause : 
+	'to' qualifiedNameList = QualifiedNameList ;
+
+ReclassifyAllClause : 
+	{ReclassifyAllClause}'from' '*' ;
+	
+QualifiedNameList : 
+	qualifiedName += QualifiedName ( ',' qualifiedName += QualifiedName )* ;
+
+/********************************
+* Names
+**********************************/
+
+Name : 
+	id = ID ;
+
+QualifiedName : 
+	unqualifiedName = UnqualifiedName ( completion = QualifiedNameCompletion)? ;
+
+//ADDED for implementation of QualifiedName 
+QualifiedNameCompletion :
+	ColonQualifiedNameCompletion | DotQualifiedNameCompletion ;
+/////////////////////////////////////////////////////
+	 
+PotentiallyAmbiguousQualifiedName : 
+	unqualifiedName = NameBinding ('::' colonCompletion += NameBinding)* ;
+//Simplified with respect to the real spec (i.e. no template-based qualified name possible with the '.' notation)
+
+ColonQualifiedName : 
+	unqualifiedName = UnqualifiedName completion = ColonQualifiedNameCompletion ;
+
+PotentiallyColonQualifiedName : 
+	unqualifiedName = UnqualifiedName (completion = ColonQualifiedNameCompletion)? ;
+	
+ColonQualifiedNameCompletion : 
+	( '::' binding += NameBinding )+ ;
+	
+DotQualifiedName : 
+	unqualifiedName = UnqualifiedName completion = DotQualifiedNameCompletion ;
+	
+DotQualifiedNameCompletion : 
+	( '.' binding += NameBinding )+ ;
+	
+UnqualifiedName : 
+	NameBinding ;
+
+NameBinding : 
+	name = Name ( templateBinding = TemplateBinding )? ;
+
+TemplateBinding : 
+	'<' ( NamedTemplateBinding | PositionalTemplateBinding ) '>' ;
+	
+PositionalTemplateBinding : 
+	qualifiedName += QualifiedName ( ',' qualifiedName += QualifiedName )* ;
+	
+NamedTemplateBinding : 
+	substitution += TemplateParameterSubstitution ( ',' substitution += TemplateParameterSubstitution )* ;
+	
+TemplateParameterSubstitution : 
+	parameter = Name '=>' argument = QualifiedName ;
+
+/*********************************
+* Expressions
+**********************************/
+
+Expression : 
+	unary = UnaryExpression completion = ExpressionCompletion ;
+	
+NonNameExpression : 
+	nonNameUnary = NonNameUnaryExpression completion = ExpressionCompletion ;
+
+NameToExpressionCompletion : 
+	( nameToPrimary = NameToPrimaryExpression )? completion = PrimaryToExpressionCompletion ;
+	
+PrimaryToExpressionCompletion : 
+	postfixCompletion = PostfixExpressionCompletion completion = ExpressionCompletion ;
+	
+ExpressionCompletion : 
+	AssignmentExpressionCompletion | ConditionalExpressionCompletion ;
+	
+/* PRIMARY EXPRESSIONS */
+
+PrimaryExpression : 
+	prefix = PrimaryExpressionPrefix
+	completion = PrimaryExpressionCompletion ;
+
+//ADDED for prefix of PrimaryExpression////////
+PrimaryExpressionPrefix :
+	( NameOrPrimaryExpression | BaseExpression | ParenthesizedExpression ) ;
+///////////////
+	
+BaseExpression : 
+	LiteralExpression
+	| ThisExpression
+	| SuperInvocationExpression
+	| InstanceCreationOrSequenceConstructionExpression
+	| SequenceAnyExpression ;
+	
+NameToPrimaryExpression : 
+	'.' ( LinkOperationCompletion | ClassExtentExpressionCompletion )
+	| SequenceConstructionExpressionCompletion
+	| BehaviorInvocation ;
+	
+PrimaryExpressionCompletion : 
+	{PrimaryExpressionCompletion}( completionItems += PrimaryExpressionCompletionItem)* ;
+
+//ADDED for PrimaryExpressionCompletion implem
+PrimaryExpressionCompletionItem :
+	FeatureCompletion | SequenceOperationOrReductionOrExpansion | Index ;
+FeatureCompletion :
+	feature = Feature (completion = FeatureInvocation)? ;
+//////////////////////////////////////////////////////////
+	
+/* LITERAL EXPRESSIONS */
+LiteralExpression : 
+	BOOLEAN_LITERAL
+	| NUMBER_LITERAL
+	| STRING_LITERAL;
+	
+/* NAME EXPRESSIONS */
+NameOrPrimaryExpression : 
+	nameOrPrimary = PotentiallyAmbiguousQualifiedName ( toPrimary = NameToPrimaryExpression )? ;
+	
+/* THIS EXPRESSIONS */
+ThisExpression : 
+	{ThisExpression}'this' ( tuple = Tuple )? ;
+
+/* PARENTHESIZED EXPRESSIONS */
+ParenthesizedExpression : 
+	'(' Expression ')' ;
+
+/* PROPERTY ACCESS EXPRESSIONS */
+Feature : 
+	'.' nameBinding = NameBinding ;
+	
+/* INVOCATION EXPRESSIONS */
+Tuple : 
+	{Tuple}'('
+	( namedTupleList = NamedTupleExpressionList | ( positionalTupleList = PositionalTupleExpressionList )? ) ')' ;
+
+
+PositionalTupleExpressionList : 
+	expression = Expression positionalTupleListCompletion = PositionalTupleExpressionListCompletion ;
+	
+PositionalTupleExpressionListCompletion : 
+	{PositionalTupleExpressionListCompletion}( ',' expression += Expression )* ;
+	
+NamedTupleExpressionList : 
+	namedExpression += NamedExpression ( ',' namedExpressions += NamedExpression )* ;
+	
+NamedExpression : 
+	name = Name '=>' expression = Expression ;
+	
+BehaviorInvocation : 
+	Tuple ;
+
+FeatureInvocation : 
+	Tuple ;
+
+SuperInvocationExpression : 
+	'super' ( '.' qualifiedName = QualifiedName )? tuple = Tuple ;
+	
+/* INSTANCE CREATION EXPRESSIONS */
+InstanceCreationOrSequenceConstructionExpression :
+	'new' qualifiedName = QualifiedName
+		completion = InstanceCreationOrSequenceConstructionExpressionCompletion ;
+
+//ADDED for implem of InstanceCreationOrSequenceConstructionExpression
+InstanceCreationOrSequenceConstructionExpressionCompletion :
+	SequenceConstructionExpressionCompletion | Tuple ;
+/////////////////////////////////////////////////////
+	
+/* LINK OPERATION EXPRESSIONS */
+LinkOperationCompletion : 
+	linkOperation = LinkOperation tuple = LinkOperationTuple ;
+	
+enum LinkOperation : 
+	CREATE ='createLink'
+	| DESTROY = 'destroyLink'
+	| CLEAR = 'clearAssoc' ;
+	
+LinkOperationTuple : 
+	{LinkOperationOrTuple}'('
+	( name = Name 
+		( index = Index 
+			( '=>' indexedNameCompletion = IndexedNamedExpressionListCompletion
+					| primaryToExpressionCompletion = PrimaryToExpressionCompletion positionalTupleCompletion = PositionalTupleExpressionListCompletion
+			)
+		 | '=>' indexedNameCompletion = IndexedNamedExpressionListCompletion
+	 )
+	 | positionalTupleList = PositionalTupleExpressionList)? ')' ;
+	 
+IndexedNamedExpressionListCompletion : 
+	expression = Expression ( ',' indexedNameExpression += IndexedNamedExpression )* ;
+	
+IndexedNamedExpression : 
+	name = Name ( index = Index )? '=>' expression = Expression ;
+	
+/* CLASS EXTENT EXPRESSIONS */
+ClassExtentExpressionCompletion : 
+	{ClassExtentExpressionCompletion}'allInstances' '(' ')' ;
+	
+/* SEQUENCE CONSTRUCTION EXPRESSIONS */
+SequenceAnyExpression : 
+	{SequenceAnyExpression}'any' completion = SequenceConstructionExpressionCompletion
+	| {SequenceAnyExpression}'null' ;
+	
+SequenceConstructionExpressionCompletion :
+	{SequenceConstructionExpressionCompletion}( multiplicityIndicator = MultiplicityIndicator )? '{'( sequenceElements = SequenceElements )? '}' ;
+
+MultiplicityIndicator : 
+	'[' ']' ;
+
+SequenceElements : 
+	expression = Expression ( '::' expressionCompletion = Expression | sequenceCompletion = SequenceElementListCompletion )
+	| initializationExpression = SequenceInitializationExpression sequenceCompletion = SequenceElementListCompletion ;
+	
+SequenceElementListCompletion : 
+	{SequenceElementListCompletion}( ',' sequenceElement += SequenceElement )* ( ',' )? ;
+
+SequenceElement : 
+	Expression | SequenceInitializationExpression ;
+	
+SequenceInitializationExpression : 
+	( 'new' )? '{' SequenceElements '}' ;
+	
+/* SEQUENCE ACCESS EXPRESSIONS */
+Index : 
+	'[' Expression ']' ;
+	
+/* SEQUENCE OPERATION, REDUCTION AND EXPANSION EXPRESSIONS */
+SequenceOperationOrReductionOrExpansion : 
+	'->'
+	( qualifiedName = QualifiedName tuple = Tuple | 'reduce' ( 'ordered' )? qualifiedName = QualifiedName
+	| expansionOperator = ExpansionOperator name = Name '(' expression = Expression ')') ;
+
+enum ExpansionOperator :
+	SELECT = 'select' |
+	COLLECT = 'collect' |
+	REJECT = 'reject' |
+	ITERATE = 'iterate' |
+	FORALL = 'forAll' |
+	EXISTS = 'exists'|
+	ONE = 'one' ;
+	
+/* INCREMENT OR DECREMENT EXPRESSIONS */
+PostfixExpressionCompletion : 
+	primaryCompletion = PrimaryExpressionCompletion ( postfixOperation = PostfixOperation )? ;
+	
+PostfixOperation : 
+	operator = AffixOperator ;
+
+PrefixExpression : 
+	operator = AffixOperator expression = PrimaryExpression ;
+	
+enum AffixOperator : 
+	INCR = '++' | 
+	DECR = '--'  ;
+	
+/* UNARY EXPRESSIONS */
+UnaryExpression : 
+	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression ;
+	
+PostfixOrCastExpression : 
+	NonNamePostfixOrCastExpression | NameOrPrimaryExpressionAlt ;
+
+// ADDED for implem of PostfixOrCastExpression
+NameOrPrimaryExpressionAlt :
+	nameOrPrimary = NameOrPrimaryExpression completion = PostfixExpressionCompletion ;
+/////////////////////////////////////////////////////////
+
+NonNameUnaryExpression : 
+	NonNamePostfixOrCastExpression | NonPostfixNonCastUnaryExpression ;
+
+NonNamePostfixOrCastExpression : 
+	'(' ( 'any' '(' castCompletion1 = CastCompletion | qualifiedName = PotentiallyAmbiguousQualifiedName 
+					( ')' castCompletion2 = CastCompletion
+					| nameToExpressionCompletion = NameToExpressionCompletion ')' postfixExpressionCompletion = PostfixExpressionCompletion
+					)
+		| nonNameExpression = NonNameExpression ')' postfixExpressionCompletion = PostfixExpressionCompletion)
+	| baseExpression = BaseExpression postfixExpressionCompletion = PostfixExpressionCompletion ;
+	
+NonPostfixNonCastUnaryExpression :
+	PrefixExpression
+	| NumericUnaryExpression
+	| BooleanNegationExpression
+	| BitStringComplementExpression
+	| IsolationExpression ;
+	
+BooleanNegationExpression : 
+	'!' unaryExpression = UnaryExpression ;
+	
+BitStringComplementExpression : 
+	'~' unaryExpression = UnaryExpression ;
+	
+NumericUnaryExpression : 
+	operator = NumericUnaryOperator unaryExpression = UnaryExpression ;
+	
+enum NumericUnaryOperator : 
+	PLUS ='+' | 
+	MINUS = '-' ;
+	
+IsolationExpression : 
+	'$' unaryExpression = UnaryExpression ;
+	
+//CastExpression : 
+//	'(' typeName = TypeName ')' castCompletion = CastCompletion ;
+	
+CastCompletion : 
+	PostfixOrCastExpression
+	| BooleanNegationExpression
+	| BitStringComplementExpression
+	| IsolationExpression ;
+	
+/* ARITHMETIC EXPRESSIONS */
+MultiplicativeExpression : 
+	unaryExpression = UnaryExpression completion = MultiplicativeExpressionCompletion ;
+	
+MultiplicativeExpressionCompletion :
+	  {MultiplicativeExpressionCompletion}( multiplicativeOperator += MultiplicativeOperator unaryExpression += UnaryExpression )* ;
+	 
+enum MultiplicativeOperator : 
+	STAR = '*' | 
+	DIV = '/' | 
+	MOD = '%' ;
+	
+AdditiveExpression : 
+	unaryExpression = UnaryExpression completion = AdditiveExpressionCompletion ;
+
+AdditiveExpressionCompletion : 
+	MultiplicativeExpressionCompletion 
+		( {AdditiveExpressionCompletion.firstCompletion = current} additiveOperator += AdditiveOperator multiplicativeExpression += MultiplicativeExpression
+			( additiveOperator += AdditiveOperator multiplicativeExpression += MultiplicativeExpression)*)? ;
+
+enum AdditiveOperator : 
+	PLUS = '+' | 
+	MINUS = '-'  ;
+/* SHIFT EXPRESSIONS */
+ShiftExpression : 
+	unaryExpression = UnaryExpression completion = ShiftExpressionCompletion ;
+
+ShiftExpressionCompletion : 
+	AdditiveExpressionCompletion 
+		({ShiftExpressionCompletion.firstCompletion = current} shiftOperator += ShiftOperator additiveExpression += AdditiveExpression 
+			( shiftOperator += ShiftOperator additiveExpression += AdditiveExpression )*)? ;
+	
+enum ShiftOperator : 
+	LSHIFT = '<<' | 
+	RSHIFT = '>>' | 
+	URSHIFT = '>>>' ;
+
+/* RELATIONAL EXPRESSIONS */
+RelationalExpression : 
+	unaryExpression = UnaryExpression completion = RelationalExpressionCompletion ;
+
+RelationalExpressionCompletion : 
+	ShiftExpressionCompletion 
+	({RelationalExpressionCompletion.firstCompletion = current}relationalOperator = RelationalOperator shiftExpression = ShiftExpression )? ;
+	
+enum RelationalOperator : 
+	LT = '<' | 
+	GT = '>' | 
+	LE = '<=' | 
+	GE = '>=' ;
+	
+/* CLASSIFICATION EXPRESSIONS */
+ClassificationExpression : 
+	RelationalExpression ({ClassificationExpression.expression = current} completion = ClassificationExpressionCompletion)? ;
+	//unaryExpression = UnaryExpression completion = ClassificationExpressionCompletion ;
+
+ClassificationExpressionCompletion : 
+	RelationalExpressionCompletion
+	({ClassificationExpressionCompletion.firstCompletion=current} classificationOperator = ClassificationOperator qualifiedName = QualifiedName )? ;
+	
+enum ClassificationOperator : 
+	INSTANCEOF = 'instanceof' | 
+	HASTYPE = 'hastype' ;
+/* EQUALITY EXPRESSIONS */
+EqualityExpression : 
+	unaryExpression = UnaryExpression completion = ClassificationExpressionCompletion ;
+
+EqualityExpressionCompletion : 
+	ClassificationExpressionCompletion 
+	( {EqualityExpressionCompletion.firstCompletion=current} equalityOperator += EqualityOperator classificationExpression += ClassificationExpression
+		( equalityOperator += EqualityOperator classificationExpression += ClassificationExpression)*)? ;
+	
+enum EqualityOperator : 
+	EQ = '==' | 
+	NE = '!=' ;
+/* LOGICAL EXPRESSIONS */
+AndExpression : 
+	unaryExpression = UnaryExpression completion = AndExpressionCompletion ;
+
+AndExpressionCompletion : 
+	EqualityExpressionCompletion 
+	( {AndExpressionCompletion.firstCompletion = current}'&' equalityExpression += EqualityExpression 
+		( '&' equalityExpression += EqualityExpression )*)? ;
+
+ExclusiveOrExpression : 
+	unaryExpression = UnaryExpression completion = ExclusiveOrExpressionCompletion ;
+
+ExclusiveOrExpressionCompletion : 
+	AndExpressionCompletion 
+	({ExclusiveOrExpressionCompletion.firstExpression=current} '^' andExpression += AndExpression 
+		( '^' andExpression += AndExpression )*)? ;
+
+InclusiveOrExpression : 
+	unaryExpression = UnaryExpression completion = InclusiveOrExpressionCompletion ;
+
+InclusiveOrExpressionCompletion : 
+	ExclusiveOrExpressionCompletion 
+	({InclusiveOrExpressionCompletion.firstCompletion=current} '|' exclusiveOrExpression += ExclusiveOrExpression 
+		( '|' exclusiveOrExpression += ExclusiveOrExpression )*)? ;
+	
+/* CONDITIONAL LOGICAL EXPRESSIONS */
+ConditionalAndExpression : 
+	unaryExpression = UnaryExpression completion = ConditionalAndExpressionCompletion ;
+
+ConditionalAndExpressionCompletion : 
+	InclusiveOrExpressionCompletion 
+	({ConditionalAndExpressionCompletion.firstCompletion = current} '&&' inclusiveOrExpression += InclusiveOrExpression 
+		( '&&' inclusiveOrExpression += InclusiveOrExpression )*)? ;
+
+ConditionalOrExpression : 
+	unaryExpression = UnaryExpression completion = ConditionalOrExpressionCompletion ;
+
+ConditionalOrExpressionCompletion : 
+	ConditionalAndExpressionCompletion 
+	({ConditionalOrExpressionCompletion.firstCompletion = current} '||' conditionalAndExpression += ConditionalAndExpression 
+		( '||' conditionalAndExpression += ConditionalAndExpression )*)? ;
+	
+/* CONDITIONAL-TEST EXPRESSIONS */
+//ConditionalExpression : 
+//	unaryExpression = UnaryExpression completion = ConditionalExpressionCompletion ;
+	
+ConditionalExpressionCompletion :  
+	ConditionalOrExpressionCompletion 
+	({ConditionalExpressionCompletion.firstCompletion = current} '?' expression1 = ConditionalOrExpression ':' expression2 = ConditionalOrExpression )? ;
+/* ASSIGNMENT EXPRESSIONS */
+AssignmentExpressionCompletion : 
+	operator = AssignmentOperator expression = Expression ;
+	
+enum AssignmentOperator : 
+	ASSIGN = '='
+	| PLUSASSIGN = '+='
+	| MINUSASSIGN = '-='
+	| STARASSIGN = '*='
+	| SLASHASSIGN = '/='
+	| REMASSIGN = '%='
+	| ANSASSIGN = '&='
+	| ORASSIGN = '|='
+	| XORASSIGN = '^='
+	| LSHIFTASSIGN = '<<='
+	| RSHIFTASSIGN = '>>='
+	| URSHIFTASSIGN = '>>>=' ;
+
+
+/****************
+* Terminals
+*****************/
+
+//terminal DOUBLE_COLON : '::' ;
+
+terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
+terminal STRING	: '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
+//terminal IDENTIFIER : ID  ;
+//terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
+
+//terminal DOCUMENTATION_COMMENT : '/*' -> '*/' ;
+ 
+//terminal ML_COMMENT	: '/°' -> '°/';
+//terminal SL_COMMENT 	: '°°' !('\n'|'\r')* ('\r'? '\n')?;
+
+//terminal WS			: (' '|'\t'|'\r'|'\n')+;

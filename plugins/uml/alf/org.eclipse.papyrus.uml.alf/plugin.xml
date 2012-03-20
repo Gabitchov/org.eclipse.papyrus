@@ -6,7 +6,7 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/alf/Alf" 
-       class = "org.eclipse.papyrus.alf.alf.AlfPackage"
+       class = "org.eclipse.papyrus.uml.alf.alf.AlfPackage"
        genModel = "org/eclipse/papyrus/alf/Alf.genmodel" /> 
 	
   </extension>
