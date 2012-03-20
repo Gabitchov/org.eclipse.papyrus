@@ -11,5 +11,26 @@
             needSeparator="false">
       </customAction>
    </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <adviceBinding
+               class="org.eclipse.papyrus.controlmode.ControledElementEditHelperAdvice"
+               id="org.eclipse.papyrus.uml.advice.Element"
+               inheritance="all"
+               typeId="org.eclipse.papyrus.uml.Element">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.service.edit.TypeContext">
+         <advice
+               ref="org.eclipse.papyrus.uml.advice.Element">
+         </advice>
+      </binding>
+   </extension>
 
 </plugin>
