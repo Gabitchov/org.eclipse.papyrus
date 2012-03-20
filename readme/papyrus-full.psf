@@ -9,7 +9,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/customization/org.eclipse.papyrus.customization.properties.model.xwt,org.eclipse.papyrus.customization.properties.model.xwt"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/editor/org.eclipse.papyrus.editor,org.eclipse.papyrus.editor"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/editor/org.eclipse.papyrus.editor.perspectiveconfiguration,org.eclipse.papyrus.editor.perspectiveconfiguration"/>
-<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors,org.eclipse.papyrus.extensionpoints.editors"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.papyrus.extensionpoints.editors,org.eclipse.papyrus.extensionpoints.editors"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.constraints,org.eclipse.papyrus.infra.constraints"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.constraints.edit,org.eclipse.papyrus.infra.constraints.edit"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.constraints.editor,org.eclipse.papyrus.infra.constraints.editor"/>
