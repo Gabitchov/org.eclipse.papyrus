@@ -62,7 +62,7 @@
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/org.eclipse.papyrus.infra.ui.resources,org.eclipse.papyrus.infra.ui.resources"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/org.eclipse.papyrus.infra.widgets,org.eclipse.papyrus.infra.widgets"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/widget/org.eclipse.papyrus.infra.widgets.toolbox,org.eclipse.papyrus.infra.widgets.toolbox"/>
-<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly,org.eclipse.papyrus.readonly"/>
+<project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly,org.eclipse.papyrus.infra.emf.readonly"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/team/org.eclipse.papyrus.team.svn,org.eclipse.papyrus.svn"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/org.eclipse.papyrus.sysml,org.eclipse.papyrus.sysml"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition,org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
@@ -199,7 +199,7 @@
 <item elementID="=org.eclipse.papyrus.infra.emf.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.emf.diagram.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.readonly" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.papyrus.infra.emf.readonly" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612506287_62" label="infra.gmfdiag" name="infra.gmfdiag">
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.outline" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
