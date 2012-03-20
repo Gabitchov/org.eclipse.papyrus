@@ -13,8 +13,8 @@
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.Iterator;
-import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -300,9 +300,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-		Map elementToMove = req.getElementsToMove();
-		if(elementToMove != null && !elementToMove.isEmpty()) {
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToMove.keySet().iterator().next());
+		EObject targetCEObject = req.getTargetContainer();
+		if(targetCEObject != null) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
 			if(provider != null) {
 				ICommand moveCommand = provider.getEditCommand(req);
 				if(moveCommand != null) {
