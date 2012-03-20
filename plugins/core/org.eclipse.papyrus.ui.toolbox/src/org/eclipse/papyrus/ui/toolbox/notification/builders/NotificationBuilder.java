@@ -385,7 +385,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createYesNo(String message, final Runnable yes, final Runnable no) {
-		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
+		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(false).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
 
 			public void run(IContext context) {
 				if(yes != null) {
@@ -454,7 +454,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createYesNo(String message, final NotificationRunnable yes, final NotificationRunnable no) {
-		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
+		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(false).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
 
 			public void run(IContext context) {
 				if(yes != null) {
