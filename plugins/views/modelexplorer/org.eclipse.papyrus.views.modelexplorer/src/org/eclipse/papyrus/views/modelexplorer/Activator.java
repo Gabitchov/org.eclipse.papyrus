@@ -124,11 +124,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
 	public CustomizationManager getCustomizationManager() {
-		if(this.fCustomizationManager == null) {
-			this.fCustomizationManager = new CustomizationManager();
-			init(this.fCustomizationManager);
-		}
-		return this.fCustomizationManager;
+	return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
 	}
 
 	private void init(final CustomizationManager customizationManager) {
