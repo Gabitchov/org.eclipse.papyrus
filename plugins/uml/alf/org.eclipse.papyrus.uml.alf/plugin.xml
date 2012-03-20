@@ -2,13 +2,11 @@
 <?eclipse version="3.0"?>
 
 <plugin>
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
+ <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/papyrus/alf/Alf" 
        class = "org.eclipse.papyrus.uml.alf.alf.AlfPackage"
-       genModel = "org/eclipse/papyrus/alf/Alf.genmodel" /> 
-	
+       genModel = "org/eclipse/papyrus/uml/alf/Alf.genmodel" /> 
   </extension>
   <extension
         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
@@ -23,7 +21,7 @@
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
            source="pathmap://Papyrus_Alf_LIBRARIES/"
-           target="platform:/plugin/org.eclipse.papyrus.alf/resources/">
+           target="platform:/plugin/org.eclipse.papyrus.uml.alf/resources/">
      </mapping>
   </extension>
 

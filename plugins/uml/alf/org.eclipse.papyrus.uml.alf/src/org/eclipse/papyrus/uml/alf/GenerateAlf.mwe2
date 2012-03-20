@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/papyrus/alf/Alf.xtext"
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/alf/Alf.xtext"
 var file.extensions = "alf"
 var projectName = "org.eclipse.papyrus.uml.alf"
 var runtimeProject = "../${projectName}"

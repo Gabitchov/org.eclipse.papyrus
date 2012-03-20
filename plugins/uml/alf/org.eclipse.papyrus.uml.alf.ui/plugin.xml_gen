@@ -10,7 +10,7 @@
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="alf"
-            id="org.eclipse.papyrus.alf.Alf"
+            id="org.eclipse.papyrus.uml.alf.Alf"
             name="Alf Editor">
         </editor>
     </extension>
@@ -21,27 +21,27 @@
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.eclipse.papyrus.alf.Alf.validate">
+            commandId="org.eclipse.papyrus.uml.alf.Alf.validate">
          <activeWhen>
             <reference
-                    definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
             </reference>
          </activeWhen>
       </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.eclipse.papyrus.alf.Alf.Editor.opened">
+        <definition id="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.eclipse.papyrus.alf.Alf" 
+                        value="org.eclipse.papyrus.uml.alf.Alf" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -51,21 +51,21 @@
             point="org.eclipse.ui.preferencePages">
         <page
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.alf.Alf"
+            id="org.eclipse.papyrus.uml.alf.Alf"
             name="Alf">
             <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
         </page>
         <page
-            category="org.eclipse.papyrus.alf.Alf"
+            category="org.eclipse.papyrus.uml.alf.Alf"
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.papyrus.alf.Alf.coloring"
+            id="org.eclipse.papyrus.uml.alf.Alf.coloring"
             name="Syntax Coloring">
             <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
         </page>
         <page
-            category="org.eclipse.papyrus.alf.Alf"
+            category="org.eclipse.papyrus.uml.alf.Alf"
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.papyrus.alf.Alf.templates"
+            id="org.eclipse.papyrus.uml.alf.Alf.templates"
             name="Templates">
             <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
         </page>
@@ -74,7 +74,7 @@
             point="org.eclipse.ui.propertyPages">
         <page
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.alf.Alf"
+            id="org.eclipse.papyrus.uml.alf.Alf"
             name="Alf">
             <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
             <enabledWhen>
@@ -93,7 +93,7 @@
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="org.eclipse.papyrus.alf.Alf.validate"
+            id="org.eclipse.papyrus.uml.alf.Alf.validate"
             name="Validate">
       </command>
     </extension>
@@ -101,12 +101,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.eclipse.papyrus.alf.Alf.validate"
+                 commandId="org.eclipse.papyrus.uml.alf.Alf.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -116,7 +116,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened">
+                	<reference definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -128,7 +128,7 @@
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened">
+                    definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -161,9 +161,9 @@
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="org.eclipse.papyrus.alf.Alf"
+            category="org.eclipse.papyrus.uml.alf.Alf"
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.eclipse.papyrus.alf.Alf.compiler.preferencePage"
+            id="org.eclipse.papyrus.uml.alf.Alf.compiler.preferencePage"
             name="Compiler">
             <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
         </page>
@@ -171,9 +171,9 @@
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="org.eclipse.papyrus.alf.Alf"
+            category="org.eclipse.papyrus.uml.alf.Alf"
             class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.eclipse.papyrus.alf.Alf.compiler.propertyPage"
+            id="org.eclipse.papyrus.uml.alf.Alf.compiler.propertyPage"
             name="Compiler">
             <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
             <enabledWhen>
@@ -191,7 +191,7 @@
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened">
+					definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -211,7 +211,7 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.papyrus.alf.Alf.Editor.opened"/>
+					<reference definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>

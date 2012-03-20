@@ -29,7 +29,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
-import org.eclipse.papyrus.alf.services.AlfGrammarAccess;
+import org.eclipse.papyrus.uml.alf.services.AlfGrammarAccess;
 
 }
 
