@@ -124,6 +124,27 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.papyrus.uml.textedit.property.xtext"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.uml.textedit.property.xtext.generator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.uml.textedit.property.xtext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.papyrus.uml.textedit.state.xtext"
          download-size="0"
          install-size="0"

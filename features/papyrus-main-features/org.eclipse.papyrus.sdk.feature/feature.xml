@@ -110,10 +110,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.uml.textedit.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.team.feature"
          version="0.0.0"/>
 
