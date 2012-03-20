@@ -47,16 +47,13 @@ public class DeploymentPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = DeploymentDiagramEditPart.MODEL_ID + "_Deployment";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
-
 
 	/**
 	 * @generated
@@ -74,9 +71,7 @@ public class DeploymentPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Name", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -87,5 +82,4 @@ public class DeploymentPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
 }

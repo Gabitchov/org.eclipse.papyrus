@@ -67,7 +67,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -97,8 +96,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ArtifactEditPartCN.VISUAL_ID:
-
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -118,7 +115,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 								break;
 							}
 						}
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -137,8 +133,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ExecutionEnvironmentEditPartCN.VISUAL_ID:
-
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -158,7 +152,6 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 								break;
 							}
 						}
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -282,5 +275,4 @@ public class ExecutionEnvironmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

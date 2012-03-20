@@ -41,5 +41,4 @@ public class UMLNodeDescriptor {
 	public int getVisualID() {
 		return myVisualID;
 	}
-
 }

@@ -93,20 +93,13 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
-
-
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
-
-
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
 		documentProvider = new GmfMultiDiagramDocumentProvider(editingDomain);
-
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
-
-
 	}
 
 	/**
@@ -265,7 +258,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		// remove palette service listener
 		// remove preference listener
 		PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
-
 		super.dispose();
 	}
 
@@ -299,13 +291,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 */
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
-
 				// customize menu...
 				viewer.setContextMenu(new PapyrusPaletteContextMenuProvider(viewer));
-
 				viewer.getKeyHandler().setParent(getPaletteKeyHandler());
 				viewer.getControl().addMouseListener(getPaletteMouseListener());
-
 				// Add a transfer drag target listener that is supported on
 				// palette template entries whose template is a creation tool.
 				// This will enable drag and drop of the palette shape creation
@@ -326,9 +315,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 * @return Palette Key Handler for the palette
 			 */
 			private KeyHandler getPaletteKeyHandler() {
-
 				if(paletteKeyHandler == null) {
-
 					paletteKeyHandler = new KeyHandler() {
 
 						/**
@@ -342,27 +329,18 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						public boolean keyReleased(KeyEvent event) {
-
 							if(event.keyCode == SWT.Selection) {
-
 								Tool tool = getPaletteViewer().getActiveTool().createTool();
-
 								if(toolSupportsAccessibility(tool)) {
-
 									tool.keyUp(event, getDiagramGraphicalViewer());
-
 									// deactivate current selection
 									getPaletteViewer().setActiveTool(null);
-
 									return true;
 								}
-
 							}
 							return super.keyReleased(event);
 						}
-
 					};
-
 				}
 				return paletteKeyHandler;
 			}
@@ -371,9 +349,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 * @return Palette Mouse listener for the palette
 			 */
 			private MouseListener getPaletteMouseListener() {
-
 				if(paletteMouseListener == null) {
-
 					paletteMouseListener = new MouseListener() {
 
 						/**
@@ -390,13 +366,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 */
 						public void mouseDoubleClick(MouseEvent e) {
 							Tool tool = getPaletteViewer().getActiveTool().createTool();
-
 							if(toolSupportsAccessibility(tool)) {
-
 								tool.setViewer(getDiagramGraphicalViewer());
 								tool.setEditDomain(getDiagramGraphicalViewer().getEditDomain());
 								tool.mouseDoubleClick(e, getDiagramGraphicalViewer());
-
 								// Current active tool should be deactivated,
 								// but if it is down here it will get
 								// reactivated deep in GEF palette code after
@@ -416,14 +389,11 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 								getPaletteViewer().setActiveTool(null);
 								clearActiveTool = false;
 							}
-
 						}
 					};
-
 				}
 				return paletteMouseListener;
 			}
-
 		};
 	}
 
@@ -441,7 +411,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-
 		// Enable Drop
 		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
@@ -455,7 +424,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 				return getEditingDomain();
 			}
 		});
-
 	}
 
 	/**

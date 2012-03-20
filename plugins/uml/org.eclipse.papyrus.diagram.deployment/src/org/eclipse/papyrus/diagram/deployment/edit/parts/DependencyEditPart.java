@@ -26,9 +26,7 @@ import org.eclipse.papyrus.diagram.deployment.edit.policies.DependencyItemSemant
 /**
  * @generated
  */
-public class DependencyEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -118,5 +116,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

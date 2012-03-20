@@ -452,6 +452,5 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
-
 	//TODO: put accessor fields manually	
 }

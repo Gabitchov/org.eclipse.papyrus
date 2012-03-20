@@ -26,5 +26,4 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSe
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}
-
 }

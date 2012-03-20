@@ -29,5 +29,4 @@ public class ArtifactCompositeCompartmentItemSemanticEditPolicyCN extends UMLBas
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

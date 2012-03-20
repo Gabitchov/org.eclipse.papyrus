@@ -60,7 +60,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {
-
 		if(selected instanceof EditPart) {
 			Object model = ((EditPart)selected).getModel();
 			return model instanceof View ? ((View)model).getElement() : null;
@@ -109,5 +108,4 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		}
 		return null;
 	}
-
 }

@@ -172,5 +172,4 @@ public abstract class UMLAbstractExpression {
 		}
 		return value;
 	}
-
 }

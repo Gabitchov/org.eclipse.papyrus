@@ -41,5 +41,4 @@ public class NodeCompositeCompartmentItemSemanticEditPolicyCN extends UMLBaseIte
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

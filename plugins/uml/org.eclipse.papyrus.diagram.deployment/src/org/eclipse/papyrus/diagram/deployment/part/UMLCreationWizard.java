@@ -106,7 +106,6 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		diagramModelFilePage.setTitle(Messages.UMLCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
-
 		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "umlDeployment") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {

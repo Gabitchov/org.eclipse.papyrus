@@ -118,7 +118,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -311,7 +310,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -393,9 +391,7 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -422,7 +418,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -430,7 +425,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -438,7 +432,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -599,7 +592,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -717,10 +709,6 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 				}
 			}
 		}
-
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -745,5 +733,4 @@ public class ManifestationNameEditPart extends LabelEditPart implements ITextAwa
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 }

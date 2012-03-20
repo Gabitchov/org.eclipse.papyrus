@@ -37,5 +37,4 @@ public class DeviceCompositeCompartmentItemSemanticEditPolicy extends UMLBaseIte
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

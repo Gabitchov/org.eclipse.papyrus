@@ -63,8 +63,6 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -79,31 +77,18 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
-
 		return true;
-
-
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-
-
 		Artifact newElement = UMLFactory.eINSTANCE.createArtifact();
-
 		Artifact owner = (Artifact)getElementToEdit();
 		owner.getNestedArtifacts().add(newElement);
-
-
 		ElementInitializers.getInstance().init_Artifact_28(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -121,5 +106,4 @@ public class ArtifactCreateCommandACN extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

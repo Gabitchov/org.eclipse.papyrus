@@ -64,8 +64,6 @@ public class NodeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -80,33 +78,22 @@ public class NodeCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		// Creation constraint for TopLevelNodes
 		if(!(getElementToEdit() instanceof Package)) {
 			return false;
 		}
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-
-
 		Node newElement = UMLFactory.eINSTANCE.createNode();
-
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
-
 		ElementInitializers.getInstance().init_Node_2008(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -124,5 +111,4 @@ public class NodeCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

@@ -85,5 +85,4 @@ public class DeploymentDiagramItemSemanticEditPolicy extends UMLBaseItemSemantic
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

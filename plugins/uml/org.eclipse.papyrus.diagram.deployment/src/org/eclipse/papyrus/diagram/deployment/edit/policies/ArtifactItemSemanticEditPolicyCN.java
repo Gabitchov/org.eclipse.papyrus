@@ -66,7 +66,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -96,8 +95,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ArtifactEditPartACN.VISUAL_ID:
-
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -117,7 +114,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 								break;
 							}
 						}
-
 						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -241,5 +237,4 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }
