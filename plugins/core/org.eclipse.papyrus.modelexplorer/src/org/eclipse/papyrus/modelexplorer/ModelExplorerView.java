@@ -53,6 +53,7 @@ import org.eclipse.papyrus.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -578,7 +579,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				}
 
 				ResourceSet rs = r.getResourceSet();
-				if(r != null && rs instanceof ModelSet && ((ModelSet)rs).isAdditionalResource(r.getURI())) {
+				if(r != null && rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
 					commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
 					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
 				}

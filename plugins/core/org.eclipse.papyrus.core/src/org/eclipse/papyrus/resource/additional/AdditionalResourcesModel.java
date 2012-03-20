@@ -68,7 +68,7 @@ public class AdditionalResourcesModel implements IModel {
 
 	public void saveModel() throws IOException {
 		for(Resource r : modelSet.getResources()) {
-			if(isAdditionalResource(r.getURI())) {
+			if(isAdditionalResource(getModelManager(), r.getURI())) {
 				EditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
 				// only save referenced models, if modified, not empty, not
 				// read-only and either platform or file
@@ -95,7 +95,7 @@ public class AdditionalResourcesModel implements IModel {
 		// Unload remaining resources
 		for(int i = 0; i < modelSet.getResources().size(); i++) {
 			Resource next = modelSet.getResources().get(i);
-			if(isAdditionalResource(next.getURI())) {
+			if(isAdditionalResource(getModelManager(), next.getURI())) {
 				next.unload();
 			}
 		}
@@ -119,10 +119,10 @@ public class AdditionalResourcesModel implements IModel {
 	 *        the specified URI of the resource
 	 * @return true if it is an additional resource
 	 */
-	public boolean isAdditionalResource(URI uri) {
+	public static boolean isAdditionalResource(ModelSet modelSet, URI uri) {
 		if(uri != null) {
 			String platformString = uri.trimFileExtension().toPlatformString(false);
-			return ((platformString == null) || !getModelManager().getFilenameWithoutExtension().toString().equals(platformString.toString()));
+			return ((platformString == null) || !modelSet.getFilenameWithoutExtension().toString().equals(platformString.toString()));
 		}
 		return false;
 	}
