@@ -164,6 +164,12 @@ Nightly builds won&apos;t be signed, contrary to other kind of builds.</descript
         <depthOption>infinity</depthOption>
         <ignoreExternalsOption>false</ignoreExternalsOption>
       </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>file:///svnroot/modeling/org.eclipse.mdt.papyrus/trunk/incoming</remote>
+        <local>sourceTree/incoming</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>false</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
     </locations>
     <excludedRegions></excludedRegions>
     <includedRegions></includedRegions>
