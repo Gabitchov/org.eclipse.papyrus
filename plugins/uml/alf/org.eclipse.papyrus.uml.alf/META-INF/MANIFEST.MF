@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.papyrus.alf
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.alf; singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
