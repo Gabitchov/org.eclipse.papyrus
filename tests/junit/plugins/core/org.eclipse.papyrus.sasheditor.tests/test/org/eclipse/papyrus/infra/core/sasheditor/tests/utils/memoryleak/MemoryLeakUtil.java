@@ -14,11 +14,12 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.tests.utils.memoryleak;
 
+import static org.junit.Assert.fail;
+
 import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
-import static org.junit.Assert.fail;
 
 /**
  * Provides an assertion method to verify that an object has been garbage collected.

@@ -5,8 +5,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.papyrus.infra.core.sasheditor.internal.PagePart;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashContainerEventsProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -10,8 +10,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChanged
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TabFolderModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;

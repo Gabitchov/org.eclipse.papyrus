@@ -5,8 +5,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 import junit.framework.TestCase;
 
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
-
 
 /**
  * Base class for testing real implementation of ContentProvider.

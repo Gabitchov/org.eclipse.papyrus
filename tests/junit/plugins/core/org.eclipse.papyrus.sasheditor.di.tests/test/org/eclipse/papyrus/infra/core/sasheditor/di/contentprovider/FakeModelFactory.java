@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
 
 
 /**

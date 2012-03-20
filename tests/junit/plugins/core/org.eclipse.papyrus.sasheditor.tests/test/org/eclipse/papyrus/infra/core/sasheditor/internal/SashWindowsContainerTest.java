@@ -19,8 +19,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.MessagePartModel;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.LookupFolderPartByRawModelVisitor;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.TabFolderPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
