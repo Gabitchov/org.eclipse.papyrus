@@ -90,16 +90,16 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 */
 	public Image getImage(View view) {
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
-		case ParametricEditPart.VISUAL_ID:
-			return getImage("Navigator?Diagram?http://www.eclipse.org/papyurs/0.7.0/Resource?Resource", SysmlElementTypes.Resource_1000); //$NON-NLS-1$
-		case ConstraintPropertyEditPart.VISUAL_ID:
-			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints?ConstraintProperty", SysmlElementTypes.ConstraintProperty_2003); //$NON-NLS-1$
-		case Property2EditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_3002); //$NON-NLS-1$
 		case ConnectorEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Connector", SysmlElementTypes.Connector_4001); //$NON-NLS-1$
+		case Property2EditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_3002); //$NON-NLS-1$
+		case ParametricEditPart.VISUAL_ID:
+			return getImage("Navigator?Diagram?http://www.eclipse.org/papyurs/0.7.0/Resource?Resource", SysmlElementTypes.Resource_1000); //$NON-NLS-1$
 		case PropertyEditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Property", SysmlElementTypes.Property_2005); //$NON-NLS-1$
+		case ConstraintPropertyEditPart.VISUAL_ID:
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints?ConstraintProperty", SysmlElementTypes.ConstraintProperty_2003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -147,16 +147,16 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch(SysmlVisualIDRegistry.getVisualID(view)) {
-		case ParametricEditPart.VISUAL_ID:
-			return getResource_1000Text(view);
-		case ConstraintPropertyEditPart.VISUAL_ID:
-			return getConstraintProperty_2003Text(view);
-		case Property2EditPart.VISUAL_ID:
-			return getProperty_3002Text(view);
 		case ConnectorEditPart.VISUAL_ID:
 			return getConnector_4001Text(view);
+		case Property2EditPart.VISUAL_ID:
+			return getProperty_3002Text(view);
+		case ParametricEditPart.VISUAL_ID:
+			return getResource_1000Text(view);
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_2005Text(view);
+		case ConstraintPropertyEditPart.VISUAL_ID:
+			return getConstraintProperty_2003Text(view);
 		}
 		return getUnknownElementText(view);
 	}
