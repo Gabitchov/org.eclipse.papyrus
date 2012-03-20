@@ -219,7 +219,6 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		
 		// dispose properties to help GC
 		setSelectionProvider(null);
-		mainEditorSite = null;
 		editor = null;
 		actionBarContributor = null;
 	}
