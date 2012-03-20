@@ -117,6 +117,10 @@
          id="org.eclipse.papyrus.sysml.modelexplorer.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.uml.textedit.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.e4.xwt"
          download-size="0"

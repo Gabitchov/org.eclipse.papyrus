@@ -117,4 +117,8 @@
          id="org.eclipse.papyrus.team.source.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.uml.textedit.source.feature"
+         version="0.0.0"/>
+
 </feature>
