@@ -32,8 +32,6 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Import-Package: org.apache.log4j,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.xtext.xtend2.lib
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.state.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
