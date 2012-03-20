@@ -150,8 +150,9 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * implemented by subclasses. Default implementation do nothing.
 	 */
 	protected void deactivate() {
-
-		tabsSynchronizer.dispose();
+		if (tabsSynchronizer != null) {
+			tabsSynchronizer.dispose();
+		}
 	}
 
 	/**
