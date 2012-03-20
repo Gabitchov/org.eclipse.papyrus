@@ -972,7 +972,9 @@ public class TabFolderPart extends AbstractTabFolderPart {
 
 		// Create the child PartModel. Delegate creation to this part PartModel.
 		IPageModel partModel = getPartModel().createChildSashModel(newModel);
-
+		if (partModel == null) {
+			partModel = new ErrorComponentModel(newModel);
+		}
 		if(partModel != null) {
 			// Delegate part creation to the container. This allow the container to
 			// provide appropriate
