@@ -335,7 +335,7 @@ public class DeviceEditPart extends DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Deployment_4001);
 		}
 		if(targetEditPart instanceof NodeEditPartCN) {
@@ -365,7 +365,7 @@ public class DeviceEditPart extends DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4002);
 		}
 		if(targetEditPart instanceof NodeEditPartCN) {
@@ -392,7 +392,7 @@ public class DeviceEditPart extends DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Generalization_4003);
 		}
 		if(targetEditPart instanceof NodeEditPartCN) {
@@ -422,7 +422,7 @@ public class DeviceEditPart extends DeploymentNodeEditPart {
 		if(targetEditPart instanceof ArtifactEditPart) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.deployment.edit.parts.NodeEditPart) {
+		if(targetEditPart instanceof NodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
 		if(targetEditPart instanceof NodeEditPartCN) {
