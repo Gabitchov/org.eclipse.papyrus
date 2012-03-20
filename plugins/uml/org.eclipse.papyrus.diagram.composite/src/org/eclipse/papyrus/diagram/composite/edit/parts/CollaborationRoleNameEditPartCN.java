@@ -108,8 +108,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,8 +121,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -235,7 +231,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -243,7 +238,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -315,7 +309,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -397,9 +390,7 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -426,7 +417,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -434,7 +424,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -442,7 +431,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -589,8 +577,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -686,8 +672,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -703,7 +687,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -735,11 +718,9 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -751,13 +732,10 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -772,7 +750,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -781,17 +758,12 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
-
 
 	/**
 	 * @generated
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
-
 }

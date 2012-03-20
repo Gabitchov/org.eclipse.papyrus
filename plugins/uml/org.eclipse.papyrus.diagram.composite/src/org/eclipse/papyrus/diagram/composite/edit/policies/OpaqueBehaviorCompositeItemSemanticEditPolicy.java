@@ -81,7 +81,6 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		super(UMLElementTypes.OpaqueBehavior_2065);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -95,8 +94,6 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -106,14 +103,12 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -295,5 +290,4 @@ public class OpaqueBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

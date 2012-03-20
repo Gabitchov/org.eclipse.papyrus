@@ -62,9 +62,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * @generated
  */
-public class DeploymentSpecificationEditPart extends
-
-ShapeNodeEditPart {
+public class DeploymentSpecificationEditPart extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -101,10 +99,6 @@ ShapeNodeEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -153,11 +147,8 @@ ShapeNodeEditPart {
 			((DeploymentSpecificationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNamedElementNameLabel());
 			return true;
 		}
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -196,7 +187,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -206,10 +196,8 @@ ShapeNodeEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5300,21 +5288,15 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class NamedElementDescriptor extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fNamedElementNameLabel;
-
 
 		/**
 		 * @generated
@@ -5329,23 +5311,12 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
-
 			fNamedElementNameLabel = new WrappingLabel();
 			fNamedElementNameLabel.setText("");
 			fNamedElementNameLabel.setForegroundColor(ColorConstants.black);
-
 			fNamedElementNameLabel.setFont(FNAMEDELEMENTNAMELABEL_FONT);
-
-
-
 			this.add(fNamedElementNameLabel);
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -5366,25 +5337,18 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
 		public WrappingLabel getNamedElementNameLabel() {
 			return fNamedElementNameLabel;
 		}
-
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font FNAMEDELEMENTNAMELABEL_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.BOLD);
-
-
-
 
 	/**
 	 * @generated
@@ -5393,7 +5357,6 @@ ShapeNodeEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -5413,7 +5376,6 @@ ShapeNodeEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

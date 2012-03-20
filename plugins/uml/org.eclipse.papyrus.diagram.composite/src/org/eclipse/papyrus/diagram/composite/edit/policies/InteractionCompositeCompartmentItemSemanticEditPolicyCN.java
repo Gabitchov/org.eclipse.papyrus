@@ -61,7 +61,6 @@ public class InteractionCompositeCompartmentItemSemanticEditPolicyCN extends UML
 		super(UMLElementTypes.Interaction_3073);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class InteractionCompositeCompartmentItemSemanticEditPolicyCN extends UML
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

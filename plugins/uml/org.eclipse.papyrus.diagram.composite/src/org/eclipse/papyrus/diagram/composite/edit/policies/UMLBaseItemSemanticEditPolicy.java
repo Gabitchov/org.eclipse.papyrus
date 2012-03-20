@@ -267,7 +267,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 			// Retrieve create command from the Element Edit service
 			ICommand createGMFCommand = provider.getEditCommand(req);
-
 			return getGEFWrapper(createGMFCommand);
 		}
 		return null;
@@ -312,11 +311,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
-
 	}
 
 	/**
@@ -365,7 +360,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -376,7 +370,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		return cached;
 	}
-
 
 	/**
 	 * @generated
@@ -390,14 +383,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			// use static method #getLinkConstraints() to access instance
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateLink_4001() {
 			return canExistLink_4001();
 		}
-
 
 		/**
 		 * @generated
@@ -408,10 +399,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistCommentAnnotatedElement_4002(source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -422,10 +411,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistConstraintConstrainedElement_4003(source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -434,14 +421,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistComponentRealization_4004(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
 			return canExistInterfaceRealization_4005(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -450,14 +435,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistSubstitution_4011(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateRealization_4006(Package container, NamedElement source, NamedElement target) {
 			return canExistRealization_4006(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -466,14 +449,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistManifestation_4012(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateAbstraction_4007(Package container, NamedElement source, NamedElement target) {
 			return canExistAbstraction_4007(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -482,14 +463,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistUsage_4008(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDeployment_4009(Package container, NamedElement source, NamedElement target) {
 			return canExistDeployment_4009(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -498,14 +477,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDependency_4017(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_4010(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -514,14 +491,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConnector_4013(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_4015(Classifier container, Classifier source, Classifier target) {
 			return canExistGeneralization_4015(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -532,10 +507,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistTimeObservationEvent_4018(source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -546,10 +519,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistDurationObservationEvent_4019(source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -560,10 +531,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-
 			return canExistInformationItemRepresented_4020(source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -571,7 +540,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
 			return canExistInformationFlow_4021(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -739,9 +707,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				//Information Flow source constraint
 				if(source != null) {
 					if(!((source instanceof Actor) || (source instanceof Node) || (source instanceof UseCase) || (source instanceof Artifact) || (source instanceof Class) || (source instanceof Component) || (source instanceof Port) || (source instanceof Property) || (source instanceof Interface) || (source instanceof Package) || (source instanceof ActivityNode) || (source instanceof ActivityPartition) || (source instanceof InstanceSpecification))) {
-
 						return false;
-
 					}
 					if(source instanceof InstanceSpecification) {
 						EList<Classifier> classes = ((InstanceSpecification)source).getClassifiers();
@@ -755,9 +721,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				//Information Flow target constraint
 				if(target != null) {
 					if(!((target instanceof Actor) || (target instanceof Node) || (target instanceof UseCase) || (target instanceof Artifact) || (target instanceof Class) || (target instanceof Component) || (target instanceof Port) || (target instanceof Property) || (target instanceof Interface) || (target instanceof Package) || (target instanceof ActivityNode) || (target instanceof ActivityPartition) || (target instanceof InstanceSpecification))) {
-
 						return false;
-
 					}
 					if(target instanceof InstanceSpecification) {
 						EList<Classifier> classes = ((InstanceSpecification)target).getClassifiers();
@@ -775,5 +739,4 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 		}
 	}
-
 }

@@ -60,7 +60,6 @@ public class ClassCompositeCompartmentItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.Class_2073);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -160,5 +159,4 @@ public class ClassCompositeCompartmentItemSemanticEditPolicy extends UMLBaseItem
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

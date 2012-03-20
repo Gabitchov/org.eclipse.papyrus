@@ -73,9 +73,6 @@ public class TimeConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticE
 		super(UMLElementTypes.TimeConstraint_3117);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -85,14 +82,12 @@ public class TimeConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticE
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -259,5 +254,4 @@ public class TimeConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticE
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

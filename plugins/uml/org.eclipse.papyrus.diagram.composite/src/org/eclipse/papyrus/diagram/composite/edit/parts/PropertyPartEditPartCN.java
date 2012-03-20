@@ -72,10 +72,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class PropertyPartEditPartCN extends
-
-
-org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
+public class PropertyPartEditPartCN extends org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 
 	/**
 	 * @generated
@@ -125,9 +122,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new EncapsulatedClassifierResizableShapeEditPolicy());
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -135,12 +129,7 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -152,9 +141,7 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PortEditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -196,32 +183,20 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			((PropertyPartNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof PropertyPartCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((PropertyPartCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
-
-
-
-
 		//Papyrus Gencode :Affixed Port locator
 		if(childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -276,7 +251,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -286,10 +260,8 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5152,10 +5124,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -5163,7 +5131,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -5183,7 +5150,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

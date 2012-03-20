@@ -59,10 +59,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class CollaborationUseEditPartCN extends
-
-
-NamedElementEditPart {
+public class CollaborationUseEditPartCN extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -102,9 +99,6 @@ NamedElementEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -112,12 +106,7 @@ NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -166,11 +155,8 @@ NamedElementEditPart {
 			((CollaborationUseNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -209,7 +195,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -219,10 +204,8 @@ NamedElementEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5085,10 +5068,6 @@ NamedElementEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -5096,7 +5075,6 @@ NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -5116,7 +5094,6 @@ NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

@@ -46,7 +46,6 @@ public class ManifestationCreateCommand extends EditElementCommand {
 	 */
 	protected final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -85,7 +84,6 @@ public class ManifestationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateManifestation_4012(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -93,7 +91,6 @@ public class ManifestationCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		Manifestation newElement = UMLFactory.eINSTANCE.createManifestation();
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
@@ -102,9 +99,7 @@ public class ManifestationCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
-
 
 	/**
 	 * @generated
@@ -167,5 +162,4 @@ public class ManifestationCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

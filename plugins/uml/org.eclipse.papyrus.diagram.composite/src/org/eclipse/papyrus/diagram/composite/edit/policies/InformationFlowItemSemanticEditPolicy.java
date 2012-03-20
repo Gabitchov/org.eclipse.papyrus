@@ -73,10 +73,6 @@ public class InformationFlowItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.InformationFlow_4021);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -86,7 +82,6 @@ public class InformationFlowItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -259,5 +254,4 @@ public class InformationFlowItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

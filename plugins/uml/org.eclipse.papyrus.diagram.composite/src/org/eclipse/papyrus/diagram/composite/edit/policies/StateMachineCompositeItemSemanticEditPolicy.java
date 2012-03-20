@@ -81,7 +81,6 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		super(UMLElementTypes.StateMachine_2063);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -95,8 +94,6 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -106,14 +103,12 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -295,5 +290,4 @@ public class StateMachineCompositeItemSemanticEditPolicy extends UMLBaseItemSema
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

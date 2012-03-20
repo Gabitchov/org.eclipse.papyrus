@@ -37,13 +37,7 @@ import org.eclipse.papyrus.diagram.composite.part.Messages;
 /**
  * @generated
  */
-public class CollaborationCompositeCompartmentEditPart
-
-
-
-extends ShapeCompartmentEditPart
-
-{
+public class CollaborationCompositeCompartmentEditPart extends ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -57,14 +51,12 @@ extends ShapeCompartmentEditPart
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.CollaborationCompositeCompartmentEditPart_title;
 	}
-
 
 	/**
 	 * @generated
@@ -82,9 +74,6 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -93,8 +82,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

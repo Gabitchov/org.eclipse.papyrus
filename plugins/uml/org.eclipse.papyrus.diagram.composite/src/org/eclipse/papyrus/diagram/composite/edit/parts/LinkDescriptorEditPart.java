@@ -26,9 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class LinkDescriptorEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class LinkDescriptorEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -51,10 +49,6 @@ implements ITreeBranchEditPart {
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -63,7 +57,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new LinkDescriptor();
 	}
@@ -75,14 +68,10 @@ implements ITreeBranchEditPart {
 		return (LinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -90,14 +79,6 @@ implements ITreeBranchEditPart {
 		public LinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
-
-
-
 	}
-
-
-
 }

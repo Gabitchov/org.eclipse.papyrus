@@ -38,9 +38,6 @@ public class InterfaceItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Interface_3110);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public class InterfaceItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditP
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -63,6 +59,4 @@ public class InterfaceItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditP
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

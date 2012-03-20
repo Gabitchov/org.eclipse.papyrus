@@ -30,7 +30,6 @@ public class EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN ex
 		super(UMLElementTypes.Enumeration_3079);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -40,5 +39,4 @@ public class EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN ex
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

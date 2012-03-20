@@ -56,10 +56,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class CommentEditPartCN extends
-
-
-AbstractCommentEditPart {
+public class CommentEditPartCN extends AbstractCommentEditPart {
 
 	/**
 	 * @generated
@@ -95,9 +92,6 @@ AbstractCommentEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -105,12 +99,7 @@ AbstractCommentEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -159,11 +148,8 @@ AbstractCommentEditPart {
 			((CommentBodyEditPartCN)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -202,7 +188,6 @@ AbstractCommentEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -212,10 +197,8 @@ AbstractCommentEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -703,10 +686,6 @@ AbstractCommentEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -714,7 +693,6 @@ AbstractCommentEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -734,7 +712,6 @@ AbstractCommentEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

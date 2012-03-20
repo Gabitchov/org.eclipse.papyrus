@@ -81,7 +81,6 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		super(UMLElementTypes.Interaction_3073);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -95,8 +94,6 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -106,14 +103,12 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -295,5 +290,4 @@ public class InteractionCompositeItemSemanticEditPolicyCN extends UMLBaseItemSem
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

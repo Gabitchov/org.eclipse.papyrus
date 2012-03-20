@@ -73,9 +73,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		super(UMLElementTypes.DurationObservation_2093);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -85,14 +82,12 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -259,5 +254,4 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

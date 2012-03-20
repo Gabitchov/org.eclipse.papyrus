@@ -81,11 +81,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class InformationFlowConveyedLabelEditPart extends LabelEditPart implements ITextAwareEditPart
-
-, ILabelRoleProvider
-
-{
+public class InformationFlowConveyedLabelEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -112,8 +108,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -127,9 +121,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
-
 	/**
 	 * @generated
 	 */
@@ -243,7 +234,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected EObject getParserElement() {
-
 		EObject element = resolveSemanticElement();
 		return element != null ? element : (View)getModel();
 	}
@@ -324,7 +314,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -406,9 +395,7 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -435,7 +422,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -443,7 +429,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -451,7 +436,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -598,8 +582,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -614,7 +596,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -703,8 +684,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -734,10 +713,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 				}
 			}
 		}
-
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -748,9 +723,6 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -765,6 +737,4 @@ public class InformationFlowConveyedLabelEditPart extends LabelEditPart implemen
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
-
 }

@@ -32,7 +32,6 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends UMLBaseItem
 		super(UMLElementTypes.Property_3070);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -48,5 +47,4 @@ public class PropertyPartCompartmentItemSemanticEditPolicyCN extends UMLBaseItem
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

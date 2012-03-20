@@ -61,7 +61,6 @@ public class ActivityCompositeCompartmentItemSemanticEditPolicy extends UMLBaseI
 		super(UMLElementTypes.Activity_2060);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class ActivityCompositeCompartmentItemSemanticEditPolicy extends UMLBaseI
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

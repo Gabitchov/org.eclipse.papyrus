@@ -56,10 +56,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class InteractionConstraintEditPart extends
-
-
-AbstractConstraintEditPart {
+public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 
 	/**
 	 * @generated
@@ -95,9 +92,6 @@ AbstractConstraintEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -105,12 +99,7 @@ AbstractConstraintEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -163,11 +152,8 @@ AbstractConstraintEditPart {
 			((InteractionConstraintSpecificationEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -209,7 +195,6 @@ AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -219,10 +204,8 @@ AbstractConstraintEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5435,10 +5418,6 @@ AbstractConstraintEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -5446,7 +5425,6 @@ AbstractConstraintEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -5466,7 +5444,6 @@ AbstractConstraintEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

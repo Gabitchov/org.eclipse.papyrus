@@ -79,11 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextAwareEditPart
-
-, ILabelRoleProvider
-
-{
+public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -110,8 +106,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -125,9 +119,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
-
 	/**
 	 * @generated
 	 */
@@ -319,7 +310,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -401,9 +391,7 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -430,7 +418,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -438,7 +425,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -446,7 +432,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -593,8 +578,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -690,8 +673,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -721,10 +702,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 				}
 			}
 		}
-
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -735,9 +712,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -752,6 +726,4 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
-
 }

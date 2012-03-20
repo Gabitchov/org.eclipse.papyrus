@@ -61,7 +61,6 @@ public class OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicyCN extends 
 		super(UMLElementTypes.OpaqueBehavior_3077);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class OpaqueBehaviorCompositeCompartmentItemSemanticEditPolicyCN extends 
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

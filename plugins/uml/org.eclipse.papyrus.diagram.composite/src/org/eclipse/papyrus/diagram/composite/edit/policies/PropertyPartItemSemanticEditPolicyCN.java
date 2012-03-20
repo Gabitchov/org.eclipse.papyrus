@@ -75,7 +75,6 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Property_3070);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -86,8 +85,6 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -97,14 +94,12 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -271,5 +266,4 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

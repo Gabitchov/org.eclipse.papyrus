@@ -38,7 +38,6 @@ public class CollaborationCompositeCompartmentItemSemanticEditPolicyCN extends U
 		super(UMLElementTypes.Collaboration_3086);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -72,5 +71,4 @@ public class CollaborationCompositeCompartmentItemSemanticEditPolicyCN extends U
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

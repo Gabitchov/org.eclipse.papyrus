@@ -60,7 +60,6 @@ public class ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicyCN ex
 		super(UMLElementTypes.ExecutionEnvironment_3083);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -160,5 +159,4 @@ public class ExecutionEnvironmentCompositeCompartmentItemSemanticEditPolicyCN ex
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

@@ -73,9 +73,6 @@ public class CallEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.CallEvent_2084);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -85,14 +82,12 @@ public class CallEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -259,5 +254,4 @@ public class CallEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

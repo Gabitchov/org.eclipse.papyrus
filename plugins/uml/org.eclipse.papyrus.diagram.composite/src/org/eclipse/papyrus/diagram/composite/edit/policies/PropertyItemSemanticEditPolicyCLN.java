@@ -38,9 +38,6 @@ public class PropertyItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Property_3101);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public class PropertyItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -63,6 +59,4 @@ public class PropertyItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

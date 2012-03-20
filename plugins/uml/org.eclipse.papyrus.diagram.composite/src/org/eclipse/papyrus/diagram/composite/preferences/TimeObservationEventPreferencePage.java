@@ -43,11 +43,5 @@ public class TimeObservationEventPreferencePage extends AbstractPapyrusLinkPrefe
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
-
 	}
-
-
-
-
 }

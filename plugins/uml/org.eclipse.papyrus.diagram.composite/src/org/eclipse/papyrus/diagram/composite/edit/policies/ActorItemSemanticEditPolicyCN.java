@@ -78,9 +78,6 @@ public class ActorItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 		super(UMLElementTypes.Actor_3091);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -90,14 +87,12 @@ public class ActorItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -279,5 +274,4 @@ public class ActorItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

@@ -78,9 +78,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.DataType_2068);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -90,14 +87,12 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -279,5 +274,4 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

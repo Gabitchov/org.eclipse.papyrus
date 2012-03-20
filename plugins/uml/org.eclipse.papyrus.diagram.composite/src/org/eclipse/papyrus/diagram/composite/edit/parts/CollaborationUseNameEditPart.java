@@ -109,8 +109,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -124,8 +122,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -237,7 +233,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -245,7 +240,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -317,7 +311,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -399,9 +392,7 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -428,7 +419,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -436,7 +426,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -444,7 +433,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -591,8 +579,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -607,7 +593,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -696,8 +681,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -713,7 +696,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -745,11 +727,9 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 				}
 			}
 		}
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -761,13 +741,10 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -782,7 +759,6 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -791,17 +767,12 @@ public class CollaborationUseNameEditPart extends CompartmentEditPart implements
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
-
 
 	/**
 	 * @generated
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
-
 }

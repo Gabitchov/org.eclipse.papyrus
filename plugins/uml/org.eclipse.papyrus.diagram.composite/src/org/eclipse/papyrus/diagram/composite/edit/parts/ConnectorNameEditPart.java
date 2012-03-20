@@ -83,11 +83,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEditPart
-
-, ILabelRoleProvider
-
-{
+public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -114,8 +110,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -129,9 +123,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
-
 	/**
 	 * @generated
 	 */
@@ -255,7 +246,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -263,7 +253,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -335,7 +324,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -417,9 +405,7 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -446,7 +432,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -454,7 +439,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -462,7 +446,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -609,8 +592,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -625,7 +606,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -714,8 +694,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -745,13 +723,9 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 				}
 			}
 		}
-
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -762,9 +736,6 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 		// Parent should assign one using setLabel() method
 		return null;
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -779,6 +750,4 @@ public class ConnectorNameEditPart extends LabelEditPart implements ITextAwareEd
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
-
 }

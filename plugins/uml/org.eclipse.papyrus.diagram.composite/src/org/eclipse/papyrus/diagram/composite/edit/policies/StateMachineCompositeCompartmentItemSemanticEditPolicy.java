@@ -61,7 +61,6 @@ public class StateMachineCompositeCompartmentItemSemanticEditPolicy extends UMLB
 		super(UMLElementTypes.StateMachine_2063);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class StateMachineCompositeCompartmentItemSemanticEditPolicy extends UMLB
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

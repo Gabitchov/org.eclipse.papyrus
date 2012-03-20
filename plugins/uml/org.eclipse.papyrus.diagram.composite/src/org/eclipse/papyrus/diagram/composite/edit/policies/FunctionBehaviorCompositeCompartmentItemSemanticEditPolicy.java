@@ -61,7 +61,6 @@ public class FunctionBehaviorCompositeCompartmentItemSemanticEditPolicy extends 
 		super(UMLElementTypes.FunctionBehavior_2064);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class FunctionBehaviorCompositeCompartmentItemSemanticEditPolicy extends 
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

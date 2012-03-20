@@ -26,9 +26,7 @@ import org.eclipse.papyrus.diagram.composite.edit.policies.GeneralizationItemSem
 /**
  * @generated
  */
-public class GeneralizationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -62,7 +60,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -72,7 +69,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -84,7 +80,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -94,7 +89,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -114,5 +108,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public GeneralizationFigure getPrimaryShape() {
 		return (GeneralizationFigure)getFigure();
 	}
-
 }

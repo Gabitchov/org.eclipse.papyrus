@@ -25,9 +25,7 @@ import org.eclipse.papyrus.diagram.composite.edit.policies.CommentAnnotatedEleme
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class CommentAnnotatedElementEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -49,10 +47,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentAnnotatedElementItemSemanticEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -61,7 +55,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new LinkDescriptor();
 	}
@@ -73,14 +66,10 @@ implements ITreeBranchEditPart {
 		return (LinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -88,14 +77,6 @@ implements ITreeBranchEditPart {
 		public LinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
-
-
-
-
 	}
-
-
-
 }

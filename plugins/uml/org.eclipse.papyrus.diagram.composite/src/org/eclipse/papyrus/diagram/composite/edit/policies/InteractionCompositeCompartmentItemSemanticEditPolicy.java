@@ -61,7 +61,6 @@ public class InteractionCompositeCompartmentItemSemanticEditPolicy extends UMLBa
 		super(UMLElementTypes.Interaction_2061);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class InteractionCompositeCompartmentItemSemanticEditPolicy extends UMLBa
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

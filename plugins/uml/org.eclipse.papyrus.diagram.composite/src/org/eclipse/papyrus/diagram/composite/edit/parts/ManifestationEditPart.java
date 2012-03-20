@@ -27,9 +27,7 @@ import org.eclipse.papyrus.diagram.composite.edit.policies.ManifestationItemSema
 /**
  * @generated
  */
-public class ManifestationEditPart extends
-
-UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ManifestationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -67,7 +65,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -77,7 +74,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -92,7 +88,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -102,7 +97,6 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -122,5 +116,4 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure)getFigure();
 	}
-
 }

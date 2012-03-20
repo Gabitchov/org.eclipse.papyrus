@@ -60,7 +60,6 @@ public class DeviceCompositeCompartmentItemSemanticEditPolicy extends UMLBaseIte
 		super(UMLElementTypes.Device_2070);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -160,5 +159,4 @@ public class DeviceCompositeCompartmentItemSemanticEditPolicy extends UMLBaseIte
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

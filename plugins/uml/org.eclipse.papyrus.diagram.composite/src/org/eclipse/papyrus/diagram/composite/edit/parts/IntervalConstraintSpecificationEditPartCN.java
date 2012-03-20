@@ -105,8 +105,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -300,7 +296,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -382,9 +377,7 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -411,7 +404,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -419,7 +411,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -427,7 +418,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -574,8 +564,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -590,7 +578,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -679,8 +666,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -696,7 +681,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -728,8 +712,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 				}
 			}
 		}
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -741,13 +723,10 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -762,7 +741,6 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
 	}
 
 	/**
@@ -771,17 +749,12 @@ public class IntervalConstraintSpecificationEditPartCN extends CompartmentEditPa
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
-
 	}
-
 
 	/**
 	 * @generated
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
-
 	}
-
-
 }

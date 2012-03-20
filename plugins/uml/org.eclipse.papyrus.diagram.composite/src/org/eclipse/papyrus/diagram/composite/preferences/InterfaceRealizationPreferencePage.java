@@ -48,16 +48,13 @@ public class InterfaceRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_InterfaceRealization";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
 		for(String role : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
-
 
 	/**
 	 * @generated
@@ -75,9 +72,7 @@ public class InterfaceRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
 		map.put("Name", Boolean.TRUE);
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 
@@ -87,6 +82,4 @@ public class InterfaceRealizationPreferencePage extends AbstractPapyrusLinkPrefe
 	protected TreeMap<String, String> getLabelRole() {
 		return getStaticLabelRole();
 	}
-
-
 }

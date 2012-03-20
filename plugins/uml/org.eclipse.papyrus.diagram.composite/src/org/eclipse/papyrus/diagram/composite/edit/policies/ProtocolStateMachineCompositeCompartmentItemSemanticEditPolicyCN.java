@@ -61,7 +61,6 @@ public class ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicyCN ex
 		super(UMLElementTypes.ProtocolStateMachine_3074);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -164,5 +163,4 @@ public class ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicyCN ex
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

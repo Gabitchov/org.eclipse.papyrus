@@ -73,9 +73,6 @@ public class DurationIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.DurationInterval_2106);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -85,14 +82,12 @@ public class DurationIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -259,5 +254,4 @@ public class DurationIntervalItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

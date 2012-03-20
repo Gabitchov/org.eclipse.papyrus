@@ -1198,7 +1198,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return constraintSpecification_6039Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -2252,7 +2251,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return class_3114Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -2673,7 +2671,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return informationFlowName_6032Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -3036,5 +3033,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

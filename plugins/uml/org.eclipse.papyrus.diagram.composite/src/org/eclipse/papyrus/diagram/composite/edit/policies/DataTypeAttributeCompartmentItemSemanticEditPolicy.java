@@ -30,7 +30,6 @@ public class DataTypeAttributeCompartmentItemSemanticEditPolicy extends UMLBaseI
 		super(UMLElementTypes.DataType_2068);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -40,5 +39,4 @@ public class DataTypeAttributeCompartmentItemSemanticEditPolicy extends UMLBaseI
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

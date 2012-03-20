@@ -68,5 +68,4 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 		View view = (View)decoratorTarget.getAdapter(View.class);
 		return view != null && CompositeStructureDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
-
 }

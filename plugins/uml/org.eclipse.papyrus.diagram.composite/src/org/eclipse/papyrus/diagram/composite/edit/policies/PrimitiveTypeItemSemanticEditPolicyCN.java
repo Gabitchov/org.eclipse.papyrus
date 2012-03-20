@@ -78,9 +78,6 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.PrimitiveType_3078);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -90,14 +87,12 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -279,5 +274,4 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

@@ -72,10 +72,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class OpaqueBehaviorCompositeEditPart extends
-
-
-NamedElementEditPart {
+public class OpaqueBehaviorCompositeEditPart extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -122,9 +119,6 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new BehaviorResizableShapeEditPolicy());
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -132,12 +126,7 @@ NamedElementEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -150,9 +139,7 @@ NamedElementEditPart {
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PortEditPart.VISUAL_ID:
 				case ParameterEditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -194,43 +181,26 @@ NamedElementEditPart {
 			((OpaqueBehaviorCompositeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof OpaqueBehaviorCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((OpaqueBehaviorCompositeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
-
-
-
-
 		//Papyrus Gencode :Affixed Port locator
 		if(childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-
 		//Papyrus Gencode :Affixed Port locator
 		if(childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -289,7 +259,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -299,10 +268,8 @@ NamedElementEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -5393,10 +5360,6 @@ NamedElementEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -5404,7 +5367,6 @@ NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -5424,7 +5386,6 @@ NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

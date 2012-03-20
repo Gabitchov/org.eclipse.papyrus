@@ -73,10 +73,6 @@ public class ManifestationItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.Manifestation_4012);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -86,7 +82,6 @@ public class ManifestationItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -259,5 +254,4 @@ public class ManifestationItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

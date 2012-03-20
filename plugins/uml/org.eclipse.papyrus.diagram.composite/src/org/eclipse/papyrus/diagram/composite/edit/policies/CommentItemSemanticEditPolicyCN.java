@@ -43,9 +43,6 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Comment_3097);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -55,14 +52,12 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -113,5 +108,4 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

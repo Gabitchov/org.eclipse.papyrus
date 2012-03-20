@@ -78,9 +78,6 @@ public class DeploymentSpecificationItemSemanticEditPolicy extends UMLBaseItemSe
 		super(UMLElementTypes.DeploymentSpecification_2078);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -90,14 +87,12 @@ public class DeploymentSpecificationItemSemanticEditPolicy extends UMLBaseItemSe
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -279,5 +274,4 @@ public class DeploymentSpecificationItemSemanticEditPolicy extends UMLBaseItemSe
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

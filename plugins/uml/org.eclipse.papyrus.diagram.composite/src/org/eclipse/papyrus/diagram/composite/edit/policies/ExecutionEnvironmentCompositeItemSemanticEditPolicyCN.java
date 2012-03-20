@@ -80,7 +80,6 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 		super(UMLElementTypes.ExecutionEnvironment_3083);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -91,8 +90,6 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 		return super.getCreateCommand(req);
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -102,14 +99,12 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -291,5 +286,4 @@ public class ExecutionEnvironmentCompositeItemSemanticEditPolicyCN extends UMLBa
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

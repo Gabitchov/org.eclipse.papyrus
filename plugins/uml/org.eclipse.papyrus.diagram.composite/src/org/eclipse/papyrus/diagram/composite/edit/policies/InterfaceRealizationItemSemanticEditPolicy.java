@@ -73,10 +73,6 @@ public class InterfaceRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.InterfaceRealization_4005);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -86,7 +82,6 @@ public class InterfaceRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
@@ -259,5 +254,4 @@ public class InterfaceRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

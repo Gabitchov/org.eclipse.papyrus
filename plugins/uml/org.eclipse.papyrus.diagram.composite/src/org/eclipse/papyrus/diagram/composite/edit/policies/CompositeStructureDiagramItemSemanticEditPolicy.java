@@ -88,7 +88,6 @@ public class CompositeStructureDiagramItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.Package_1000);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -288,5 +287,4 @@ public class CompositeStructureDiagramItemSemanticEditPolicy extends UMLBaseItem
 			this.diagram = currentDiagram;
 		}
 	}
-
 }

@@ -91,13 +91,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class EnumerationLiteralEditPartCLN
-
-
-
-extends CompartmentEditPart
-
-implements ITextAwareEditPart, IPrimaryEditPart {
+public class EnumerationLiteralEditPartCLN extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -124,8 +118,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -139,8 +131,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -262,7 +252,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -270,7 +259,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -342,7 +330,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -424,9 +411,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -453,7 +438,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -461,7 +445,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -469,7 +452,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -616,8 +598,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -632,7 +612,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -721,8 +700,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -738,8 +715,6 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -792,37 +767,22 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		return new LiteralEnumerationDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LiteralEnumerationDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
 		 */
 		public LiteralEnumerationDescriptor() {
 			this.setText("");
-
 			this.setFont(THIS_FONT);
-
-
 		}
-
-
-
-
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
-
 }

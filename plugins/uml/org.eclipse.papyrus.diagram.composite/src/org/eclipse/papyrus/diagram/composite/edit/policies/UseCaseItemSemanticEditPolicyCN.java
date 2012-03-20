@@ -78,9 +78,6 @@ public class UseCaseItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.UseCase_3096);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -90,14 +87,12 @@ public class UseCaseItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
 			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * @generated
@@ -279,5 +274,4 @@ public class UseCaseItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

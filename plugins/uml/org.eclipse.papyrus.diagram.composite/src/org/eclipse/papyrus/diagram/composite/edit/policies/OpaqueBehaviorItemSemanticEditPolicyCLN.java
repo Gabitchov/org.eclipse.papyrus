@@ -38,9 +38,6 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		super(UMLElementTypes.OpaqueBehavior_3108);
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -48,7 +45,6 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -63,6 +59,4 @@ public class OpaqueBehaviorItemSemanticEditPolicyCLN extends UMLBaseItemSemantic
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
-
-
 }

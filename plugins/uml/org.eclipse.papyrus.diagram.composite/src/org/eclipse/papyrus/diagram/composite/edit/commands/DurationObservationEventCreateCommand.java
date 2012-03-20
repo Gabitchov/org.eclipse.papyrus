@@ -68,7 +68,6 @@ public class DurationObservationEventCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDurationObservationEvent_4019(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -76,15 +75,11 @@ public class DurationObservationEventCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		if(getSource() != null && getTarget() != null) {
 			getSource().getEvents().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
-
 	}
-
-
 
 	/**
 	 * @generated
