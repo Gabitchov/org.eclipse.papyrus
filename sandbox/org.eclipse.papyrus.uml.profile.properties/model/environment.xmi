@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<environment:Environment
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+  <constraintTypes
+      label="IsAppliedStereotypeProperty"
+      constraintClass="org.eclipse.papyrus.uml.profile.properties.constraints.IsAppliedStereotypePropertyConstraint"/>
+  <modelElementFactories
+      name="Applied Stereotype Property"
+      factoryClass="org.eclipse.papyrus.uml.profile.properties.modelelement.AppliedStereotypePropertyModelElementFactory"/>
+</environment:Environment>

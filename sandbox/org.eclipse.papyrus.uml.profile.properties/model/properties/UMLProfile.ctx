@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="UMLProfile">
+  <tabs label="UML" id="uml" category="org.eclipse.papyrus" image="" priority="10">
+    <sections name="SingleString" sectionFile="ui/SingleString.xwt">
+      <widget href="ui/SingleString.xwt#/"/>
+    </sections>
+    <sections name="SingleInteger" sectionFile="ui/SingleInteger.xwt">
+      <widget href="ui/SingleInteger.xwt#/"/>
+    </sections>
+    <sections name="SingleReal" sectionFile="ui/SingleReal.xwt">
+      <widget href="ui/SingleReal.xwt#/"/>
+    </sections>
+    <sections name="SingleReference" sectionFile="ui/SingleReference.xwt">
+      <widget href="ui/SingleReference.xwt#/"/>
+    </sections>
+    <sections name="SingleBoolean" sectionFile="ui/SingleBoolean.xwt">
+      <widget href="ui/SingleBoolean.xwt#/"/>
+    </sections>
+    <sections name="SingleMultivaluedString" sectionFile="ui/SingleMultivaluedString.xwt">
+      <widget href="ui/SingleMultivaluedString.xwt#/"/>
+    </sections>
+    <sections name="SingleMultivaluedInteger" sectionFile="ui/SingleMultivaluedInteger.xwt">
+      <widget href="ui/SingleMultivaluedInteger.xwt#/"/>
+    </sections>
+    <sections name="SingleMultivaluedReal" sectionFile="ui/SingleMultivaluedReal.xwt">
+      <widget href="ui/SingleMultivaluedReal.xwt#/"/>
+    </sections>
+    <sections name="SingleMultivaluedReference" sectionFile="ui/SingleMultivaluedReference.xwt">
+      <widget href="ui/SingleMultivaluedReference.xwt#/"/>
+    </sections>
+    <sections name="SingleMultivaluedBoolean" sectionFile="ui/SingleMultivaluedBoolean.xwt">
+      <widget href="ui/SingleMultivaluedBoolean.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="SingleString" sections="//@tabs.0/@sections.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isStringProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="String"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="1"/>
+    </constraints>
+  </views>
+  <views name="SingleInteger" sections="//@tabs.0/@sections.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isIntegerProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Integer"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="1"/>
+    </constraints>
+  </views>
+  <views name="SingleReal" sections="//@tabs.0/@sections.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isRealProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Real"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="1"/>
+    </constraints>
+  </views>
+  <views name="SingleReference" sections="//@tabs.0/@sections.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isReferenceProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Reference"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="1"/>
+    </constraints>
+  </views>
+  <views name="SingleBoolean" sections="//@tabs.0/@sections.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isBooleanProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Boolean"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="1"/>
+    </constraints>
+  </views>
+  <views name="SingleMultivaluedString" sections="//@tabs.0/@sections.5">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultivaluedStringProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="String"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="-1"/>
+    </constraints>
+  </views>
+  <views name="SingleMultivaluedInteger" sections="//@tabs.0/@sections.6">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultivaluedIntegerProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Integer"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="-1"/>
+    </constraints>
+  </views>
+  <views name="SingleMultivaluedReal" sections="//@tabs.0/@sections.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultivaluedRealProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Real"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="-1"/>
+    </constraints>
+  </views>
+  <views name="SingleMultivaluedReference" sections="//@tabs.0/@sections.8">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultivaluedReferenceProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Reference"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="-1"/>
+    </constraints>
+  </views>
+  <views name="SingleMultivaluedBoolean" sections="//@tabs.0/@sections.9">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultivaluedBooleanProperty">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="propertyType" value="Boolean"/>
+      <properties xsi:type="constraints:ValueProperty" name="multiplicity" value="-1"/>
+    </constraints>
+  </views>
+  <dataContexts name="Profile" label="Profile">
+    <elements xsi:type="contexts:DataContextPackage" name="SingleValue">
+      <elements name="String">
+        <properties name="value" label="" description="The property's value"/>
+      </elements>
+      <elements name="Boolean">
+        <properties name="value" label="" type="Boolean" description="The property's value"/>
+      </elements>
+      <elements name="Integer">
+        <properties name="value" label="" type="Integer" description="The property's value"/>
+      </elements>
+      <elements name="Reference">
+        <properties name="value" label="" type="Reference" description="The property's value"/>
+      </elements>
+      <elements name="Real">
+        <properties name="value" label="" description="The property's value"/>
+      </elements>
+    </elements>
+    <elements xsi:type="contexts:DataContextPackage" name="MultiValue">
+      <elements name="String">
+        <properties name="values" label="" multiplicity="-1" description="The property's values"/>
+      </elements>
+      <elements name="Boolean">
+        <properties name="values" label="" type="Boolean" multiplicity="-1" description="The property's values"/>
+      </elements>
+      <elements name="Integer">
+        <properties name="values" label="" type="Integer" multiplicity="-1" description="The property's values"/>
+      </elements>
+      <elements name="Reference">
+        <properties name="values" label="" type="Reference" multiplicity="-1" description="The property's values"/>
+      </elements>
+      <elements name="Real">
+        <properties name="values" label="" multiplicity="-1" description="The property's values"/>
+      </elements>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.profile.properties/model/environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

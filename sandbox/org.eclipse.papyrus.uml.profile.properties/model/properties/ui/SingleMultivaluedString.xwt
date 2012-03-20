@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<ppe:MultiString input="{Binding}"
+		property="Profile:MultiValue:String:values"></ppe:MultiString>
+</Composite>
