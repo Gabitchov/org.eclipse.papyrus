@@ -30,12 +30,12 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.navigation.NavigableElement;
 import org.eclipse.papyrus.navigation.NavigationHelper;
 import org.eclipse.papyrus.navigation.preference.INavigationPreferenceConstant;
 import org.eclipse.papyrus.preferences.Activator;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.ui.toolbox.draw2d.ManuallyDrawnShortcutDecorationFigure;
 import org.eclipse.swt.graphics.Color;
 
@@ -112,7 +112,7 @@ public class NavigationDecorator extends AbstractDecorator {
 				if(navElement instanceof ExistingNavigableElement) {
 					EObject eObj = navElement.getElement();
 
-					List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(eObj);
+					List<Diagram> associatedDiagrams = NotationUtils.getAssociatedDiagrams(eObj);
 
 					for(Diagram diag : associatedDiagrams) {
 						if(!diag.equals(currentDiagram)) {

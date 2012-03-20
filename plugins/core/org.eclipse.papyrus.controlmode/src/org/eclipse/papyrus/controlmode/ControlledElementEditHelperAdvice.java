@@ -19,7 +19,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,9 +31,9 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
+import org.eclipse.papyrus.core.adaptor.gmf.MoveDiagramCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.diagram.common.commands.MoveDiagramCommand;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 
 /**
  * Edit Helper advice which will handle changing resource of element.
@@ -44,10 +43,10 @@ import org.eclipse.papyrus.diagram.common.commands.MoveDiagramCommand;
  * @author arthur daussy
  * 
  */
-public class ControledElementEditHelperAdvice extends AbstractEditHelperAdvice {
+public class ControlledElementEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
-	 * This case will handle moving an element from a resource to another (use case : controled mode. This will move into the new ressource :
+	 * This case will handle moving an element from a resource to another (use case : controlled mode. This will move into the new ressource :
 	 * -> The diagrams linked to this element
 	 * 
 	 */
@@ -88,15 +87,8 @@ public class ControledElementEditHelperAdvice extends AbstractEditHelperAdvice {
 		/*
 		 * Get all diagram from source EObject (its diagram and its descendant)
 		 */
-		List<Diagram> initalDiagrams = DiagramsUtil.getAssociatedDiagrams(sourceEObject);
-		TreeIterator<EObject> contents = sourceEObject.eAllContents();
-		while(contents.hasNext()) {
-			EObject child = contents.next();
-			List<Diagram> childDiagrams = DiagramsUtil.getAssociatedDiagrams(child);
-			if(childDiagrams != null && !childDiagrams.isEmpty()) {
-				initalDiagrams.addAll(childDiagrams);
-			}
-		}
+		List<Diagram> initialDiagrams = NotationUtils.getDiagrams(container);
+
 		/*
 		 * Get the notation model of the container
 		 * 1. If not loaded unexecutable command
@@ -107,7 +99,7 @@ public class ControledElementEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 		TransactionalEditingDomain editingDomain = getEditingDomain(container);
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, "Move related diagrams in new ressource");////$NON-NLS-1$
-		for(Diagram d : initalDiagrams) {
+		for(Diagram d : initialDiagrams) {
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("Move ");
 			stringBuilder.append(d.getName());

@@ -11,12 +11,12 @@
 package org.eclipse.papyrus.navigation.utils;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigation.Activator;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -62,7 +62,7 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 						
 						if(parent != null) {
 							while(parent != null && !result) {
-								result = !DiagramsUtil.getAssociatedDiagrams(parent).isEmpty();
+								result = !NotationUtils.getAssociatedDiagrams(parent).isEmpty();
 								parent = parent.eContainer();
 							}
 						}

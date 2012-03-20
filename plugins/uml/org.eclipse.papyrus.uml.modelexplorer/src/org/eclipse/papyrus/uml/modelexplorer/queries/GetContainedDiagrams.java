@@ -18,14 +18,14 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.modelexplorer.queries.AbstractEditorContainerQuery;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.uml2.uml.Element;
 
 /** Get the collection of all contained diagrams */
 public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
 	public Collection<Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		return DiagramsUtil.getAssociatedDiagrams(context);
+		return NotationUtils.getAssociatedDiagrams(context);
 	}
 }

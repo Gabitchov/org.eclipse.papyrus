@@ -11,7 +11,7 @@
  * Arthur daussy - arthur.daussy@atos.net - 374607: [model explorer] moving a model element in another model does not move associated diagrams
  *
  **/
-package org.eclipse.papyrus.diagram.common.commands;
+package org.eclipse.papyrus.core.adaptor.gmf;
 
 import java.util.List;
 
@@ -28,7 +28,6 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.diagram.common.Activator;
 
 /**
  * Command to move a diagram from a resource to another

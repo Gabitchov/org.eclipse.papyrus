@@ -20,16 +20,16 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.navigation.Activator;
-import org.eclipse.papyrus.navigation.utils.MultiDiagramDialog;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
+import org.eclipse.papyrus.navigation.Activator;
+import org.eclipse.papyrus.navigation.utils.MultiDiagramDialog;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * handler for Up command
@@ -49,7 +49,7 @@ public class TopNavigateHandler extends AbstractHandler {
 			List<Diagram> associatedDiag = Collections.emptyList();
 			if(parent != null) {
 				while(parent != null) {
-					associatedDiag = DiagramsUtil.getAssociatedDiagrams(parent);
+					associatedDiag = NotationUtils.getAssociatedDiagrams(parent);
 					if(!associatedDiag.isEmpty()) {
 						diagramsTemp.add(associatedDiag);
 					}

@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.documentation.DocumentationManager;
 import org.eclipse.papyrus.documentation.IDocumentationManager;
@@ -34,6 +33,7 @@ import org.eclipse.papyrus.documentation.view.SelectResourceDialog;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -87,7 +87,7 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 					if(eObject instanceof Diagram) {
 						diagram = (Diagram)eObject;
 					} else {
-						List<Diagram> diagrams = DiagramsUtil.getAssociatedDiagrams(eObject);
+						List<Diagram> diagrams = NotationUtils.getAssociatedDiagrams(eObject);
 						if(!diagrams.isEmpty()) {
 							diagram = diagrams.get(0);
 						}

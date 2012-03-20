@@ -16,7 +16,7 @@
       <metamodel
             nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <adviceBinding
-               class="org.eclipse.papyrus.controlmode.ControledElementEditHelperAdvice"
+               class="org.eclipse.papyrus.controlmode.ControlledElementEditHelperAdvice"
                id="org.eclipse.papyrus.uml.advice.Element"
                inheritance="all"
                typeId="org.eclipse.papyrus.uml.Element">

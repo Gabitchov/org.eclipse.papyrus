@@ -13,16 +13,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.resource.notation;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.core.modelsetquery.IModelSetQueryAdapter;
+import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.resource.ModelSet;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more
@@ -101,35 +112,20 @@ public class NotationUtils {
 	 * 
 	 * @return the associated diagram
 	 */
-	public static Diagram getAssociatedDiagram(Resource notationResource, EObject eObject) {
-		if(notationResource != null) {
-			for(EObject obj : notationResource.getContents()) {
-				if(obj instanceof Diagram) {
-					Diagram diagram = (Diagram)obj;
-					if(eObject != null && eObject.equals(diagram.getElement())) {
-						return diagram;
-					}
-				}
+	public static List<Diagram> getAssociatedDiagrams(EObject eObject) {
+		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
+			public boolean apply(EStructuralFeature.Setting setting) {
+				return setting.getEObject() instanceof Diagram;
 			}
-		}
-		return null;
-	}
+		};
+		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
 
-	/**
-	 * Gets the direct associated diagram of the specified eObject.
-	 * 
-	 * @param eObject
-	 * @param notationResource
-	 * @param resolve
-	 *        the resource if true
-	 * 
-	 * @return the associated diagram
-	 */
-	public static Diagram getAssociatedDiagram(Resource notationResource, EObject eObject, boolean resolve) {
-		if(notationResource != null && resolve) {
-			EcoreUtil.resolveAll(notationResource);
-		}
-		return getAssociatedDiagram(notationResource, eObject);
+			public Diagram apply(EStructuralFeature.Setting setting) {
+				return (Diagram) setting.getEObject();
+			}
+
+		};
+		return Lists.newArrayList(Iterables.transform(Iterables.filter(PapyrusEcoreUtils.getUsages(eObject), p), f));
 	}
 
 	/**
@@ -141,10 +137,14 @@ public class NotationUtils {
 	 * @return all the contained diagrams
 	 * 
 	 */
-	public static List<Diagram> getDiagrams(Resource notationResource, EObject eObject) {
-		List<Diagram> diagrams = new LinkedList<Diagram>();
-		if(notationResource != null) {
-			for(EObject obj : notationResource.getContents()) {
+	public static List<Diagram> getDiagrams(EObject eObject) {
+		List<Diagram> diagrams = new ArrayList<Diagram>();
+		IModelSetQueryAdapter typeCache = ModelSetQuery.getExistingTypeCacheAdapter(eObject);
+
+		if (typeCache != null) {
+			Collection<EObject> allDiagrams = typeCache.getReachableObjectsOfType(eObject, NotationPackage.Literals.DIAGRAM);
+
+			for (EObject obj : allDiagrams) {
 				if(obj instanceof Diagram) {
 					Diagram diagram = (Diagram)obj;
 					if(EcoreUtil.isAncestor(eObject, diagram.getElement())) {
@@ -153,24 +153,8 @@ public class NotationUtils {
 				}
 			}
 		}
-		return diagrams;
-	}
 
-	/**
-	 * Gets the all the diagrams contained in the specified ancestor eObject
-	 * 
-	 * @param notationResource
-	 * @param eObject
-	 * @param resolve
-	 *        the resource if true
-	 * 
-	 * @return all the contained diagrams
-	 */
-	public static List<Diagram> getDiagrams(Resource notationResource, EObject eObject, boolean resolve) {
-		if(notationResource != null && resolve) {
-			EcoreUtil.resolveAll(notationResource);
-		}
-		return getDiagrams(notationResource, eObject);
+		return diagrams;
 	}
 
 }

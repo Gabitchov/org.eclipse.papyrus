@@ -234,7 +234,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	private void uncontrolNotation(CompoundCommand compoundCommand) {
 		// First retrieve the Diagrams that match with the model object to Uncontrol
-		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(controlledNotation, eObject);
+		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(eObject);
 
 		if(!controlledDiagrams.isEmpty()) {
 			// PRE uncontrol operation

@@ -16,8 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.core.resourceloading.preferences,
  org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.2",
  org.eclipse.papyrus.service.edit;bundle-version="0.8.2",
- com.google.collect;bundle-version="1.0.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.8.2"
+ com.google.collect;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

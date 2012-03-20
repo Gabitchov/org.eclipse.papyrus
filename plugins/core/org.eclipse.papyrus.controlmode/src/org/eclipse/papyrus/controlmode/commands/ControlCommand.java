@@ -195,13 +195,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @return
 	 */
 	protected List<Diagram> getDiagrams(EObject eObject) {
-		List<Diagram> diagrams = new LinkedList<Diagram>();
-		// search for diagrams only in the notation resource corresponding to the model resource where eObject is.
-		// Some "sub diagrams" in the model can be in controlled resource, we must not move them.
-		Resource resource = eObject.eResource();
-		Resource notationResource = modelSet.getResource(resource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), false);
-		diagrams.addAll(NotationUtils.getDiagrams(notationResource, eObject));
-		return diagrams;
+		return NotationUtils.getDiagrams(eObject);
 	}
 
 	//	/**
