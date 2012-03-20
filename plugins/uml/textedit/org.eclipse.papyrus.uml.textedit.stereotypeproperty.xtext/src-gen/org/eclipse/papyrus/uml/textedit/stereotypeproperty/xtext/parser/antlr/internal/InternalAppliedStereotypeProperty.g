@@ -137,9 +137,9 @@ ruleExpressionValueRule returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0()); 
 	    }
-		lv_expression_1_0=ruleExpression		{
+		lv_expression_1_0=ruleSequenceElement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExpressionValueRuleRule());
 	        }
@@ -147,7 +147,7 @@ ruleExpressionValueRule returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_1_0, 
-        		"Expression");
+        		"SequenceElement");
 	        afterParserOrEnumRuleCall();
 	    }
 

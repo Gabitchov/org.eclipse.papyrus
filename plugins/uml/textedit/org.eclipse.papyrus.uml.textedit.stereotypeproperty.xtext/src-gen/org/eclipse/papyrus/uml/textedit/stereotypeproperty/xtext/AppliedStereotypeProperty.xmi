@@ -38,12 +38,12 @@
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="="/>
         <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.17"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.62"/>
         </elements>
       </alternatives>
     </rules>
   </xtext:Grammar>
-  <xtext:Grammar name="org.eclipse.papyrus.alf.Alf" usedGrammars="/2">
+  <xtext:Grammar name="org.eclipse.papyrus.uml.alf.Alf" usedGrammars="/2">
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="alf">
       <ePackage href="http://www.eclipse.org/papyrus/alf/Alf#/"/>
     </metamodelDeclarations>

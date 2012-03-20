@@ -1,10 +1,21 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.papyrus.alf.alf.Expression;
+import org.eclipse.papyrus.uml.alf.alf.SequenceElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,12 +44,12 @@ public interface ExpressionValueRule extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Expression</em>' containment reference.
-   * @see #setExpression(Expression)
+   * @see #setExpression(SequenceElement)
    * @see org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage#getExpressionValueRule_Expression()
    * @model containment="true"
    * @generated
    */
-  Expression getExpression();
+  SequenceElement getExpression();
 
   /**
    * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule#getExpression <em>Expression</em>}' containment reference.
@@ -48,6 +59,6 @@ public interface ExpressionValueRule extends EObject
    * @see #getExpression()
    * @generated
    */
-  void setExpression(Expression value);
+  void setExpression(SequenceElement value);
 
 } // ExpressionValueRule

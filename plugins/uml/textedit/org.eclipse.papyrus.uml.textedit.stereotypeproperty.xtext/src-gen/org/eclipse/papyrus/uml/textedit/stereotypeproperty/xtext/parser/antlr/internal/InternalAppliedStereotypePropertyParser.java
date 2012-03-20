@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr.internal; 
 
 import org.eclipse.xtext.*;
@@ -333,7 +346,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
 
 
     // $ANTLR start "ruleExpressionValueRule"
-    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:129:1: ruleExpressionValueRule returns [EObject current=null] : (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) ) ;
+    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:129:1: ruleExpressionValueRule returns [EObject current=null] : (otherlv_0= '=' ( (lv_expression_1_0= ruleSequenceElement ) ) ) ;
     public final EObject ruleExpressionValueRule() throws RecognitionException {
         EObject current = null;
 
@@ -344,27 +357,27 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
          enterRule(); 
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:132:28: ( (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:133:1: (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:132:28: ( (otherlv_0= '=' ( (lv_expression_1_0= ruleSequenceElement ) ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:133:1: (otherlv_0= '=' ( (lv_expression_1_0= ruleSequenceElement ) ) )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:133:1: (otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:133:3: otherlv_0= '=' ( (lv_expression_1_0= ruleExpression ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:133:1: (otherlv_0= '=' ( (lv_expression_1_0= ruleSequenceElement ) ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:133:3: otherlv_0= '=' ( (lv_expression_1_0= ruleSequenceElement ) )
             {
             otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleExpressionValueRule234); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getExpressionValueRuleAccess().getEqualsSignKeyword_0());
                 
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:137:1: ( (lv_expression_1_0= ruleExpression ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:138:1: (lv_expression_1_0= ruleExpression )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:137:1: ( (lv_expression_1_0= ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:138:1: (lv_expression_1_0= ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:138:1: (lv_expression_1_0= ruleExpression )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:139:3: lv_expression_1_0= ruleExpression
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:138:1: (lv_expression_1_0= ruleSequenceElement )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/parser/antlr/internal/InternalAppliedStereotypeProperty.g:139:3: lv_expression_1_0= ruleSequenceElement
             {
              
-            	        newCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); 
+            	        newCompositeNode(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleExpressionValueRule255);
-            lv_expression_1_0=ruleExpression();
+            pushFollow(FOLLOW_ruleSequenceElement_in_ruleExpressionValueRule255);
+            lv_expression_1_0=ruleSequenceElement();
 
             state._fsp--;
 
@@ -376,7 +389,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
                    			current, 
                    			"expression",
                     		lv_expression_1_0, 
-                    		"Expression");
+                    		"SequenceElement");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -1400,15 +1413,15 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
                             {
                             int LA7_2 = input.LA(2);
 
-                            if ( (LA7_2==48) ) {
+                            if ( ((LA7_2>=RULE_ID && LA7_2<=RULE_STRING)||(LA7_2>=13 && LA7_2<=15)||LA7_2==21||(LA7_2>=39 && LA7_2<=40)||(LA7_2>=43 && LA7_2<=45)||(LA7_2>=53 && LA7_2<=56)||(LA7_2>=83 && LA7_2<=84)) ) {
+                                alt7=2;
+                            }
+                            else if ( (LA7_2==48) ) {
                                 int LA7_6 = input.LA(3);
 
                                 if ( (LA7_6==57) ) {
                                     alt7=2;
                                 }
-                            }
-                            else if ( ((LA7_2>=RULE_ID && LA7_2<=RULE_STRING)||(LA7_2>=13 && LA7_2<=15)||LA7_2==21||(LA7_2>=39 && LA7_2<=40)||(LA7_2>=43 && LA7_2<=45)||(LA7_2>=53 && LA7_2<=56)||(LA7_2>=83 && LA7_2<=84)) ) {
-                                alt7=2;
                             }
                             }
                             break;
@@ -7211,6 +7224,11 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
 
             if ( (LA46_0==49) ) {
                 switch ( input.LA(2) ) {
+                case 52:
+                    {
+                    alt46=4;
+                    }
+                    break;
                 case 92:
                 case 93:
                 case 94:
@@ -7222,11 +7240,6 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
                 case 89:
                     {
                     alt46=1;
-                    }
-                    break;
-                case 52:
-                    {
-                    alt46=4;
                     }
                     break;
                 case 90:
@@ -18864,21 +18877,21 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     static final String DFA37_eotS =
         "\13\uffff";
     static final String DFA37_eofS =
-        "\3\uffff\1\12\7\uffff";
+        "\3\uffff\1\11\7\uffff";
     static final String DFA37_minS =
         "\1\56\3\4\7\uffff";
     static final String DFA37_maxS =
         "\1\61\1\127\1\136\1\155\7\uffff";
     static final String DFA37_acceptS =
-        "\4\uffff\1\3\1\7\1\5\1\6\1\4\1\1\1\2";
+        "\4\uffff\1\7\1\3\1\6\1\5\1\4\1\2\1\1";
     static final String DFA37_specialS =
         "\13\uffff}>";
     static final String[] DFA37_transitionS = {
             "\1\1\2\uffff\1\2",
-            "\1\3\67\uffff\1\5\30\uffff\3\4",
-            "\1\10\55\uffff\1\6\1\uffff\1\7\43\uffff\7\7",
-            "\1\12\7\uffff\2\12\3\uffff\3\12\1\uffff\1\11\25\12\3\uffff"+
-            "\4\12\10\uffff\2\12\5\uffff\1\12\17\uffff\2\12\20\uffff\13\12",
+            "\1\3\67\uffff\1\4\30\uffff\3\5",
+            "\1\10\55\uffff\1\7\1\uffff\1\6\43\uffff\7\6",
+            "\1\11\7\uffff\2\11\3\uffff\3\11\1\uffff\1\12\25\11\3\uffff"+
+            "\4\11\10\uffff\2\11\5\uffff\1\11\17\uffff\2\11\20\uffff\13\11",
             "",
             "",
             "",
@@ -18929,8 +18942,8 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_ruleExpressionValueRule_in_ruleAppliedStereotypePropertyRule151 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionValueRule_in_entryRuleExpressionValueRule187 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleExpressionValueRule197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleExpressionValueRule234 = new BitSet(new long[]{0x01E039800020E070L,0x0000000000180000L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionValueRule255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleExpressionValueRule234 = new BitSet(new long[]{0x03E039800020E070L,0x0000000000180000L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_ruleExpressionValueRule255 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLITERAL_in_entryRuleLITERAL293 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLITERAL303 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBOOLEAN_LITERAL_in_ruleLITERAL350 = new BitSet(new long[]{0x0000000000000002L});
@@ -18959,7 +18972,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_ruleQualifiedNamePath_in_ruleNameExpression1053 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleNameExpression1071 = new BitSet(new long[]{0x0002400000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNamePath_in_ruleNameExpression1105 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleNameExpression1123 = new BitSet(new long[]{0x0202C0000020C002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleNameExpression1123 = new BitSet(new long[]{0x03E2F9800020E072L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleTuple_in_ruleNameExpression1150 = new BitSet(new long[]{0x0002400000000002L});
     public static final BitSet FOLLOW_ruleSequenceConstructionOrAccessCompletion_in_ruleNameExpression1177 = new BitSet(new long[]{0x0002400000000002L});
     public static final BitSet FOLLOW_14_in_ruleNameExpression1203 = new BitSet(new long[]{0x0002400000000002L});
@@ -19252,13 +19265,13 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_48_in_ruleAccessCompletion8603 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePartialSequenceConstructionCompletion_in_entryRulePartialSequenceConstructionCompletion8639 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePartialSequenceConstructionCompletion8649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rulePartialSequenceConstructionCompletion8686 = new BitSet(new long[]{0x0200800000000000L});
+    public static final BitSet FOLLOW_48_in_rulePartialSequenceConstructionCompletion8686 = new BitSet(new long[]{0x03E039800020E070L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleSequenceConstructionExpression_in_rulePartialSequenceConstructionCompletion8707 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSequenceConstructionExpression_in_entryRuleSequenceConstructionExpression8743 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSequenceConstructionExpression8753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_ruleSequenceConstructionExpression8790 = new BitSet(new long[]{0x03E0B9800020E070L,0x0000000000180000L});
+    public static final BitSet FOLLOW_57_in_ruleSequenceConstructionExpression8790 = new BitSet(new long[]{0x03E039800020E070L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleSequenceElement_in_ruleSequenceConstructionExpression8811 = new BitSet(new long[]{0x0C00000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleSequenceConstructionExpression8825 = new BitSet(new long[]{0x03E0B9800020E070L,0x0000000000180000L});
+    public static final BitSet FOLLOW_18_in_ruleSequenceConstructionExpression8825 = new BitSet(new long[]{0x03E039800020E070L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleSequenceElement_in_ruleSequenceConstructionExpression8846 = new BitSet(new long[]{0x0800000000040000L});
     public static final BitSet FOLLOW_58_in_ruleSequenceConstructionExpression8867 = new BitSet(new long[]{0x01E039800020E070L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSequenceConstructionExpression8888 = new BitSet(new long[]{0x0800000000000000L});
@@ -19342,7 +19355,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_ruleQualifiedNameWithBinding_in_ruleLocalNameDeclarationStatement10855 = new BitSet(new long[]{0x0000800000001000L});
     public static final BitSet FOLLOW_47_in_ruleLocalNameDeclarationStatement10874 = new BitSet(new long[]{0x0001000000000000L});
     public static final BitSet FOLLOW_48_in_ruleLocalNameDeclarationStatement10899 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleLocalNameDeclarationStatement10913 = new BitSet(new long[]{0x03E0B9800020E070L,0x0000000000180000L});
+    public static final BitSet FOLLOW_12_in_ruleLocalNameDeclarationStatement10913 = new BitSet(new long[]{0x03E039800020E070L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleSequenceElement_in_ruleLocalNameDeclarationStatement10934 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
     public static final BitSet FOLLOW_65_in_ruleLocalNameDeclarationStatement10946 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement10982 = new BitSet(new long[]{0x0000000000000000L});
@@ -19529,7 +19542,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalAnt
     public static final BitSet FOLLOW_ruleAssignmentCompletion_in_ruleVariableDeclarationCompletion15347 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignmentCompletion_in_entryRuleAssignmentCompletion15383 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignmentCompletion15393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignmentOperator_in_ruleAssignmentCompletion15439 = new BitSet(new long[]{0x03E0B9800020E070L,0x0000000000180000L});
+    public static final BitSet FOLLOW_ruleAssignmentOperator_in_ruleAssignmentCompletion15439 = new BitSet(new long[]{0x03E039800020E070L,0x0000000000180000L});
     public static final BitSet FOLLOW_ruleSequenceElement_in_ruleAssignmentCompletion15460 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_83_in_ruleBooleanValue15510 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_84_in_ruleBooleanValue15527 = new BitSet(new long[]{0x0000000000000002L});

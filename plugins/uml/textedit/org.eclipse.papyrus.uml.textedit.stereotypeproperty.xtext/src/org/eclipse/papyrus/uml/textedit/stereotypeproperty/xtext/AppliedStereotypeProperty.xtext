@@ -1,4 +1,4 @@
-grammar org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty with org.eclipse.papyrus.alf.Alf
+grammar org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty with org.eclipse.papyrus.uml.alf.Alf
 
 
 import "http://www.eclipse.org/uml2/4.0.0/UML" as uml
@@ -13,4 +13,4 @@ AppliedStereotypePropertyRule :
 	property = [uml::Property] (value = ExpressionValueRule) ; 
 	
 ExpressionValueRule :
-	'=' expression = Expression ;
+	'=' expression = SequenceElement ;

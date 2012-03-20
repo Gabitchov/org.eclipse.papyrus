@@ -1,5 +1,16 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -11,7 +22,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.papyrus.alf.alf.Expression;
+import org.eclipse.papyrus.uml.alf.alf.SequenceElement;
 
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyPackage;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
@@ -39,7 +50,7 @@ public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implem
    * @generated
    * @ordered
    */
-  protected Expression expression;
+  protected SequenceElement expression;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,7 +78,7 @@ public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getExpression()
+  public SequenceElement getExpression()
   {
     return expression;
   }
@@ -77,9 +88,9 @@ public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpression(Expression newExpression, NotificationChain msgs)
+  public NotificationChain basicSetExpression(SequenceElement newExpression, NotificationChain msgs)
   {
-    Expression oldExpression = expression;
+    SequenceElement oldExpression = expression;
     expression = newExpression;
     if (eNotificationRequired())
     {
@@ -94,7 +105,7 @@ public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExpression(Expression newExpression)
+  public void setExpression(SequenceElement newExpression)
   {
     if (newExpression != expression)
     {
@@ -153,7 +164,7 @@ public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implem
     switch (featureID)
     {
       case AppliedStereotypePropertyPackage.EXPRESSION_VALUE_RULE__EXPRESSION:
-        setExpression((Expression)newValue);
+        setExpression((SequenceElement)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,7 +181,7 @@ public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implem
     switch (featureID)
     {
       case AppliedStereotypePropertyPackage.EXPRESSION_VALUE_RULE__EXPRESSION:
-        setExpression((Expression)null);
+        setExpression((SequenceElement)null);
         return;
     }
     super.eUnset(featureID);

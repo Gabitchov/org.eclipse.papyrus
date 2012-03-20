@@ -13,7 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.scoping;
 
-import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
+import java.util.ArrayList;
+
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gef.EditPart;
+import org.eclipse.papyrus.uml.alf.alf.PrimaryExpression;
+import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
+import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
+import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.scoping.impl.SimpleScope;
 
 /**
  * This class contains custom scoping description.
@@ -24,4 +37,23 @@ import org.eclipse.papyrus.alf.scoping.AlfScopeProvider;
  */
 public class AppliedStereotypePropertyScopeProvider extends AlfScopeProvider {
 
+	public IScope scope_AppliedStereotypePropertyRule_property(AppliedStereotypePropertyRule ctx, EReference ref) {
+		
+		IScope result = null ;
+		EditPart contextEObject=((EditPart)PopupXtextEditorHelper.getHostEditPart());
+		if( contextEObject instanceof IAdaptable){
+			AppliedStereotypeProperty appliedStereotypeProperty =(AppliedStereotypeProperty)contextEObject.getAdapter(AppliedStereotypeProperty.class);
+
+			ArrayList<org.eclipse.uml2.uml.Property> properties= new ArrayList<org.eclipse.uml2.uml.Property>();
+			properties.add(appliedStereotypeProperty.getStereotypeProperty());
+			Iterable<IEObjectDescription> visiblePropertiesIterable = Scopes.scopedElementsFor(properties) ;
+			result = new SimpleScope(visiblePropertiesIterable) ;
+		}
+		return result;
+	}
+
+	public IScope scope_PrimaryExpression_prefix(PrimaryExpression ctx, EReference ref) {
+		IScope result = null ;
+		return null;
+	}
 }

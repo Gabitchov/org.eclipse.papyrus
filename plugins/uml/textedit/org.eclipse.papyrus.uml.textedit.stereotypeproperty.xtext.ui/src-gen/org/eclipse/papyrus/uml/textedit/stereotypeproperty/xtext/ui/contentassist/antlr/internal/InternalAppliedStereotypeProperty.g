@@ -15791,8 +15791,8 @@ rule__ExpressionValueRule__ExpressionAssignment_1
     }
 :
 (
-{ before(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); }
-	ruleExpression{ after(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); }
+{ before(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0()); }
+	ruleSequenceElement{ after(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0()); }
 )
 
 ;

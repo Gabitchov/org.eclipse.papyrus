@@ -42710,25 +42710,25 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalCon
 
 
     // $ANTLR start "rule__ExpressionValueRule__ExpressionAssignment_1"
-    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15788:1: rule__ExpressionValueRule__ExpressionAssignment_1 : ( ruleExpression ) ;
+    // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15788:1: rule__ExpressionValueRule__ExpressionAssignment_1 : ( ruleSequenceElement ) ;
     public final void rule__ExpressionValueRule__ExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15792:1: ( ( ruleExpression ) )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15793:1: ( ruleExpression )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15792:1: ( ( ruleSequenceElement ) )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15793:1: ( ruleSequenceElement )
             {
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15793:1: ( ruleExpression )
-            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15794:1: ruleExpression
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15793:1: ( ruleSequenceElement )
+            // ../org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/stereotypeproperty/xtext/ui/contentassist/antlr/internal/InternalAppliedStereotypeProperty.g:15794:1: ruleSequenceElement
             {
-             before(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleExpression_in_rule__ExpressionValueRule__ExpressionAssignment_132064);
-            ruleExpression();
+             before(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0()); 
+            pushFollow(FOLLOW_ruleSequenceElement_in_rule__ExpressionValueRule__ExpressionAssignment_132064);
+            ruleSequenceElement();
 
             state._fsp--;
 
-             after(grammarAccess.getExpressionValueRuleAccess().getExpressionExpressionParserRuleCall_1_0()); 
+             after(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0()); 
 
             }
 
@@ -51347,7 +51347,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalCon
     public static final BitSet FOLLOW_rule__NameExpression__Group_0_1__0__Impl_in_rule__NameExpression__Group_0_1__010000 = new BitSet(new long[]{0x0000000000003040L});
     public static final BitSet FOLLOW_rule__NameExpression__Group_0_1__1_in_rule__NameExpression__Group_0_1__010003 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameExpression__PathAssignment_0_1_0_in_rule__NameExpression__Group_0_1__0__Impl10030 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NameExpression__Group_0_1__1__Impl_in_rule__NameExpression__Group_0_1__110061 = new BitSet(new long[]{0x0000000000003000L,0x0000000000080401L});
+    public static final BitSet FOLLOW_rule__NameExpression__Group_0_1__1__Impl_in_rule__NameExpression__Group_0_1__110061 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8401L});
     public static final BitSet FOLLOW_rule__NameExpression__Group_0_1__2_in_rule__NameExpression__Group_0_1__110064 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameExpression__IdAssignment_0_1_1_in_rule__NameExpression__Group_0_1__1__Impl10091 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameExpression__Group_0_1__2__Impl_in_rule__NameExpression__Group_0_1__210121 = new BitSet(new long[]{0x0000000000000002L});
@@ -51812,12 +51812,12 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalCon
     public static final BitSet FOLLOW_rule__AccessCompletion__AccessIndexAssignment_0_in_rule__AccessCompletion__Group__0__Impl20909 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AccessCompletion__Group__1__Impl_in_rule__AccessCompletion__Group__120939 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__AccessCompletion__Group__1__Impl20967 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PartialSequenceConstructionCompletion__Group__0__Impl_in_rule__PartialSequenceConstructionCompletion__Group__021002 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080400L});
+    public static final BitSet FOLLOW_rule__PartialSequenceConstructionCompletion__Group__0__Impl_in_rule__PartialSequenceConstructionCompletion__Group__021002 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8001L});
     public static final BitSet FOLLOW_rule__PartialSequenceConstructionCompletion__Group__1_in_rule__PartialSequenceConstructionCompletion__Group__021005 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__PartialSequenceConstructionCompletion__Group__0__Impl21033 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PartialSequenceConstructionCompletion__Group__1__Impl_in_rule__PartialSequenceConstructionCompletion__Group__121064 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__PartialSequenceConstructionCompletion__ExpressionAssignment_1_in_rule__PartialSequenceConstructionCompletion__Group__1__Impl21091 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group__0__Impl_in_rule__SequenceConstructionExpression__Group__021125 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8401L});
+    public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group__0__Impl_in_rule__SequenceConstructionExpression__Group__021125 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8001L});
     public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group__1_in_rule__SequenceConstructionExpression__Group__021128 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_83_in_rule__SequenceConstructionExpression__Group__0__Impl21156 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group__1__Impl_in_rule__SequenceConstructionExpression__Group__121187 = new BitSet(new long[]{0x4000000000000000L,0x0000000000200000L});
@@ -51828,7 +51828,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalCon
     public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Alternatives_2_in_rule__SequenceConstructionExpression__Group__2__Impl21277 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group__3__Impl_in_rule__SequenceConstructionExpression__Group__321307 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_84_in_rule__SequenceConstructionExpression__Group__3__Impl21335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group_2_0__0__Impl_in_rule__SequenceConstructionExpression__Group_2_0__021374 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8401L});
+    public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group_2_0__0__Impl_in_rule__SequenceConstructionExpression__Group_2_0__021374 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8001L});
     public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group_2_0__1_in_rule__SequenceConstructionExpression__Group_2_0__021377 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_62_in_rule__SequenceConstructionExpression__Group_2_0__0__Impl21405 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceConstructionExpression__Group_2_0__1__Impl_in_rule__SequenceConstructionExpression__Group_2_0__121436 = new BitSet(new long[]{0x0000000000000002L});
@@ -51934,7 +51934,7 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalCon
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__4__Impl_in_rule__LocalNameDeclarationStatement__Group__423798 = new BitSet(new long[]{0x0002000000000000L,0x0000000000000400L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5_in_rule__LocalNameDeclarationStatement__Group__423801 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group_4__0_in_rule__LocalNameDeclarationStatement__Group__4__Impl23828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5__Impl_in_rule__LocalNameDeclarationStatement__Group__523859 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8401L});
+    public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__5__Impl_in_rule__LocalNameDeclarationStatement__Group__523859 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8001L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__6_in_rule__LocalNameDeclarationStatement__Group__523862 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_49_in_rule__LocalNameDeclarationStatement__Group__5__Impl23890 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LocalNameDeclarationStatement__Group__6__Impl_in_rule__LocalNameDeclarationStatement__Group__623921 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
@@ -52274,14 +52274,14 @@ public class InternalAppliedStereotypePropertyParser extends AbstractInternalCon
     public static final BitSet FOLLOW_rule__VariableDeclarationCompletion__MultiplicityIndicatorAssignment_0_0_in_rule__VariableDeclarationCompletion__Group_0__0__Impl31775 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VariableDeclarationCompletion__Group_0__1__Impl_in_rule__VariableDeclarationCompletion__Group_0__131805 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__VariableDeclarationCompletion__Group_0__1__Impl31833 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__0__Impl_in_rule__AssignmentCompletion__Group__031868 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8401L});
+    public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__0__Impl_in_rule__AssignmentCompletion__Group__031868 = new BitSet(new long[]{0x00000007CE0031F0L,0x000007B93C8F8001L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__1_in_rule__AssignmentCompletion__Group__031871 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__OpAssignment_0_in_rule__AssignmentCompletion__Group__0__Impl31898 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__Group__1__Impl_in_rule__AssignmentCompletion__Group__131928 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AssignmentCompletion__RightHandSideAssignment_1_in_rule__AssignmentCompletion__Group__1__Impl31955 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__AppliedStereotypePropertyRule__PropertyAssignment_031998 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionValueRule_in_rule__AppliedStereotypePropertyRule__ValueAssignment_132033 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__ExpressionValueRule__ExpressionAssignment_132064 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSequenceElement_in_rule__ExpressionValueRule__ExpressionAssignment_132064 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanValue_in_rule__BOOLEAN_LITERAL__ValueAssignment32099 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INTEGERVALUE_in_rule__INTEGER_LITERAL__ValueAssignment32130 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_rule__UNLIMITED_LITERAL__ValueAssignment32166 = new BitSet(new long[]{0x0000000000000002L});
