@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.resource.IModel;
@@ -67,11 +68,13 @@ public class AdditionalResourcesModel implements IModel {
 
 	public void saveModel() throws IOException {
 		for(Resource r : modelSet.getResources()) {
-			if(modelSet.isAdditionalResource(r.getURI())) {
+			if(isAdditionalResource(r.getURI())) {
 				EditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
 				// only save referenced models, if modified, not empty, not
 				// read-only and either platform or file
-				if(!r.getContents().isEmpty() && r.isModified() && (editingDomain != null) && !editingDomain.isReadOnly(r) && (r.getURI().isPlatform() || r.getURI().isFile())) {
+				if(!r.getContents().isEmpty()
+					&& (editingDomain == null || !editingDomain.isReadOnly(r))
+					&& (r.getURI().isPlatform() || r.getURI().isFile())) {
 					r.save(Collections.EMPTY_MAP);
 				}
 			}
@@ -92,7 +95,7 @@ public class AdditionalResourcesModel implements IModel {
 		// Unload remaining resources
 		for(int i = 0; i < modelSet.getResources().size(); i++) {
 			Resource next = modelSet.getResources().get(i);
-			if(modelSet.isAdditionalResource(next.getURI())) {
+			if(isAdditionalResource(next.getURI())) {
 				next.unload();
 			}
 		}
@@ -109,4 +112,18 @@ public class AdditionalResourcesModel implements IModel {
 		return modelSet;
 	}
 
+	/**
+	 * Check is a resource is additional in the resource set
+	 * 
+	 * @param uri
+	 *        the specified URI of the resource
+	 * @return true if it is an additional resource
+	 */
+	public boolean isAdditionalResource(URI uri) {
+		if(uri != null) {
+			String platformString = uri.trimFileExtension().toPlatformString(false);
+			return ((platformString == null) || !getModelManager().getFilenameWithoutExtension().toString().equals(platformString.toString()));
+		}
+		return false;
+	}
 }

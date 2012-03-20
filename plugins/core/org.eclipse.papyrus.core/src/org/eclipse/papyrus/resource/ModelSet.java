@@ -137,8 +137,23 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	@Override
+	public Resource createResource(URI uri, String contentType) {
+		return setResourceOptions(super.createResource(uri, contentType));
+	}
+
+	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
-		Resource r = super.getResource(uri, loadOnDemand);
+		return setResourceOptions(super.getResource(uri, loadOnDemand));
+	}
+
+	/**
+	 * This method is called by getResource and createResource before returning
+	 * the resource to the caller so we can set options on the resource.
+	 * 
+	 * @param r
+	 * @return the same resource for convenience
+	 */
+	protected Resource setResourceOptions(Resource r) {
 		if(r instanceof ResourceImpl) {
 			ResourceImpl impl = (ResourceImpl)r;
 			if(impl.getIntrinsicIDToEObjectMap() == null) {
@@ -510,21 +525,6 @@ public class ModelSet extends ResourceSetImpl {
 			}
 
 		}
-	}
-
-	/**
-	 * Check is a resource is additional in the resource set
-	 * 
-	 * @param uri
-	 *        the specified URI of the resource
-	 * @return true if it is an additional resource
-	 */
-	public boolean isAdditionalResource(URI uri) {
-		if(uri != null) {
-			String platformString = uri.trimFileExtension().toPlatformString(false);
-			return ((platformString == null) || !getFilenameWithoutExtension().toString().equals(platformString.toString()));
-		}
-		return false;
 	}
 
 }
