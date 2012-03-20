@@ -21,12 +21,6 @@
   <!-- Papyrus sources -->
   <rm:searchPath name="sources">
   
-<!--     <rm:provider componentTypes="osgi.bundle" readerType="local"> -->
-<!--       <rm:uri format="{0}/plugins/core/{1}"> -->
-<!--         <bc:propertyRef key="local.repository"/> -->
-<!--         <bc:propertyRef key="buckminster.component"/> -->
-<!--       </rm:uri> -->
-<!--     </rm:provider> -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/customization/{1}">
         <bc:propertyRef key="local.repository"/>
@@ -116,25 +110,7 @@
     </rm:provider>
     
     <!-- /INFRA -->
-    
-<!--     <rm:provider componentTypes="osgi.bundle" readerType="local"> -->
-<!--       <rm:uri format="{0}/plugins/ocl/{1}"> -->
-<!--         <bc:propertyRef key="local.repository"/> -->
-<!--         <bc:propertyRef key="buckminster.component"/> -->
-<!--       </rm:uri> -->
-<!--     </rm:provider> -->
-<!--     <rm:provider componentTypes="osgi.bundle" readerType="local"> -->
-<!--       <rm:uri format="{0}/plugins/others/{1}"> -->
-<!--         <bc:propertyRef key="local.repository"/> -->
-<!--         <bc:propertyRef key="buckminster.component"/> -->
-<!--       </rm:uri> -->
-<!--     </rm:provider> -->
-<!--     <rm:provider componentTypes="osgi.bundle" readerType="local"> -->
-<!--       <rm:uri format="{0}/plugins/profile-tool/{1}"> -->
-<!--         <bc:propertyRef key="local.repository"/> -->
-<!--         <bc:propertyRef key="buckminster.component"/> -->
-<!--       </rm:uri> -->
-<!--     </rm:provider> -->
+
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/plugins/sysml/{1}">
         <bc:propertyRef key="local.repository"/>
