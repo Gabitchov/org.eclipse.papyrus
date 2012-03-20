@@ -7,8 +7,9 @@ Export-Package: org.eclipse.papyrus.ui.toolbox,org.eclipse.papyrus.ui.
  ui.toolbox.notification.popups,org.eclipse.papyrus.ui.toolbox.notific
  ation.utils,org.eclipse.papyrus.ui.toolbox.notification.view,org.ecli
  pse.papyrus.ui.toolbox.utils
-Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0",org.ec
- lipse.core.runtime,org.eclipse.ui
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.papyrus.core
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

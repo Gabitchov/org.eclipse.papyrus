@@ -2,9 +2,11 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.wizards,org.eclipse.papyrus.wizard
  s.category,org.eclipse.papyrus.wizards.kind,org.eclipse.papyrus.wizar
  ds.pages
-Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0",org.ec
- lipse.emf.edit.ui;bundle-version="2.4.0",org.eclipse.emf.ecore.edit;b
- undle-version="2.4.0",org.eclipse.ui.intro;bundle-version="3.4.0"
+Require-Bundle: org.eclipse.papyrus.core;bundle-version="0.8.0",
+ org.eclipse.emf.edit.ui;bundle-version="2.4.0",
+ org.eclipse.emf.ecore.edit;bundle-version="2.4.0",
+ org.eclipse.ui.intro;bundle-version="3.4.0",
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.2"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

@@ -16,9 +16,11 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
@@ -32,6 +34,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.wizards.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -152,7 +156,34 @@ public class SelectRootElementPage extends WizardPage {
 			// log
 			return null;
 		}
-		return new ModelSet().getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
+		ModelSet modelSet = new ModelSet();
+		Resource resource = null ;
+		try {
+			resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
+		}
+		catch (WrappedException e) {
+			resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), false);
+			error(resource, e.getMessage());
+			if (resource == null){
+				throw e;
+			}
+		}
+		if (!resource.getErrors().isEmpty()){
+			StringBuilder builder = new StringBuilder();
+			for (Diagnostic d : resource.getErrors()){
+				builder.append(String.format("<li>%s</li>", d.getMessage()));
+			}
+			error(resource, builder.toString());
+		}
+		return resource;
+	}
+
+	/**
+	 * @param resource
+	 * @param e
+	 */
+	private void error(Resource resource, String message) {
+		NotificationBuilder.createWarningPopup(String.format("<form>Problems encountered in your input model, after the save you could lose data :%s</form>",message)).setHTML(true).setType(Type.WARNING).run();
 	}
 
 	/**

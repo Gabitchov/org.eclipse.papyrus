@@ -532,8 +532,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// start remaining services
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
-			log.error(e);
-			throw new PartInitException("errors in model", e); //$NON-NLS-1$
+			try {
+				// with the ModelMultiException it is still possible to open the editors that's why the service registry is still started 
+				servicesRegistry.startRegistry();
+				warnUser(e);
+			} catch (ServiceException e1) {
+				log.error(e);
+				throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
+			}
 		} catch (ServiceException e) {
 			log.error(e);
 			throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
@@ -564,6 +570,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Listen on input changed from the ISaveAndDirtyService
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+	}
+
+	protected void warnUser(ModelMultiException e) {
+		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n"
+					+ "%s" 
+					+ "It is recommended to fix it before editing it", e.getMessage()));
 	}
 
 	/**

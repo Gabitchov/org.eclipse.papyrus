@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -143,7 +144,17 @@ public class ModelSet extends ResourceSetImpl {
 
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
-		return setResourceOptions(super.getResource(uri, loadOnDemand));
+		Resource resource = null;
+		try{
+			resource = super.getResource(uri, loadOnDemand);
+		}
+		catch(WrappedException e){
+			resource = super.getResource(uri, false);
+			if (resource == null){
+				throw e;
+			}
+		}
+		return setResourceOptions(resource);
 	}
 
 	/**
@@ -162,7 +173,7 @@ public class ModelSet extends ResourceSetImpl {
 		}
 		return r;
 	}
-
+	
 	/**
 	 * Create the transactional editing domain.
 	 * 
@@ -314,19 +325,18 @@ public class ModelSet extends ResourceSetImpl {
 			} catch (Exception e) {
 				// Record the exception
 				if(exceptions == null) {
-
 					exceptions = new ModelMultiException("Problems encountered while loading one of the models.");
 				}
 				exceptions.addException(model.getIdentifier(), e);
 			}
 		}
-
 		// call snippets to allow them to do their stuff
 		snippets.performStart(this);
 
 		// Report exceptions if any
-		if(exceptions != null)
+		if(exceptions != null){
 			throw exceptions;
+		}
 	}
 
 	/**
