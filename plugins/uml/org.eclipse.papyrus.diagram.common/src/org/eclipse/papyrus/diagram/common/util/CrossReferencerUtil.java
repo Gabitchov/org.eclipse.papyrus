@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -74,7 +75,8 @@ public class CrossReferencerUtil {
 
 					// Check if current view is owned by a diagram which type
 					// conforms to diagramType
-					if(diagramType.equals(view.getDiagram().getType())) {
+					Diagram diagram = view.getDiagram();
+					if(diagram != null && diagramType.equals(diagram.getType())) {
 						referencingObjects.add(view);
 					}
 
