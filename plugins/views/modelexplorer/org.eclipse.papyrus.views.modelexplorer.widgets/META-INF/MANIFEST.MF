@@ -21,4 +21,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.widgets.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.widgets;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

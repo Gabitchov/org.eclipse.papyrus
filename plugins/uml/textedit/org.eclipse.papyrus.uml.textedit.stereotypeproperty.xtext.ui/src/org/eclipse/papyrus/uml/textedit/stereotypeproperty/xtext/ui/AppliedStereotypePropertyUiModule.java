@@ -19,6 +19,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * Use this class to register components to be used within the IDE.
  */
 public class AppliedStereotypePropertyUiModule extends org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AbstractAppliedStereotypePropertyUiModule {
+
 	public AppliedStereotypePropertyUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

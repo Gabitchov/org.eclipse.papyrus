@@ -21,25 +21,28 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 
 /**
  * Represents a generated, default implementation of interface {@link IProposalProvider}.
- * Methods are dynamically dispatched on the first parameter, i.e., you can override them 
- * with a more concrete subtype. 
+ * Methods are dynamically dispatched on the first parameter, i.e., you can override them
+ * with a more concrete subtype.
  */
 @SuppressWarnings("all")
 public class AbstractAppliedStereotypePropertyProposalProvider extends AlfProposalProvider {
-		
+
 	public void completeAppliedStereotypePropertyRule_Property(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
+
 	public void completeAppliedStereotypePropertyRule_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
+
 	public void completeExpressionValueRule_Expression(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-    
+
 	public void complete_AppliedStereotypePropertyRule(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+
 	public void complete_ExpressionValueRule(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}

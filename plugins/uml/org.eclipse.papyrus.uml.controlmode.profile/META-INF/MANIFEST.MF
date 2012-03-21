@@ -17,4 +17,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.controlmode.profile.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.controlmode.profile;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

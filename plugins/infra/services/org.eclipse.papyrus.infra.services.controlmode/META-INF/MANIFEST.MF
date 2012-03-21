@@ -24,4 +24,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.controlmode;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

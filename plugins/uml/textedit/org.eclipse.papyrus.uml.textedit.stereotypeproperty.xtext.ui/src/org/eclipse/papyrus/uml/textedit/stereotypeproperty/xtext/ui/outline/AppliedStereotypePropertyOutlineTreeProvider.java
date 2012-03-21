@@ -20,5 +20,5 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
  * 
  */
 public class AppliedStereotypePropertyOutlineTreeProvider extends DefaultOutlineTreeProvider {
-	
+
 }

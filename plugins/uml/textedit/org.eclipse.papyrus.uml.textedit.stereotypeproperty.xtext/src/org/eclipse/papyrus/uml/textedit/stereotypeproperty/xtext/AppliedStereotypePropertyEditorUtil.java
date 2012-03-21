@@ -38,47 +38,56 @@ public class AppliedStereotypePropertyEditorUtil {
 
 
 	private static final String COMA = ",";
+
 	private static final String QUOTE = "\"";
+
 	private static final String VALUE_NULL = "= null";
+
 	private static final String EQUAL = "=";
+
 	private static final String BRAKET_END = "}";
+
 	private static final String HOOK_END = "]";
+
 	private static final String BRACKET_BEGIN = "{";
+
 	private static final String HOOK_BEGIN = "[";
+
 	/**
 	 * this method is used to display the content of stereotype application property to be edited
+	 * 
 	 * @param appliedStereotypeProperty
 	 * @return a string
 	 */
-	public static String getLabel(AppliedStereotypeProperty  appliedStereotypeProperty) {
+	public static String getLabel(AppliedStereotypeProperty appliedStereotypeProperty) {
 
 		final Property property = appliedStereotypeProperty.getStereotypeProperty();
-		final Stereotype stereotype=appliedStereotypeProperty.getStereotype();
-		final Element umlElement=appliedStereotypeProperty.getBaseElement();
+		final Stereotype stereotype = appliedStereotypeProperty.getStereotype();
+		final Element umlElement = appliedStereotypeProperty.getBaseElement();
 
 
-		String result= StereotypeUtil.displayPropertyValueToEdit(stereotype, property, umlElement, "");
-		
+		String result = StereotypeUtil.displayPropertyValueToEdit(stereotype, property, umlElement, "");
+
 		//first replace [ by {
-		result= result.replace(HOOK_BEGIN, BRACKET_BEGIN);
-		result= result.replace(HOOK_END, BRAKET_END);
-		if(!( result.contains(EQUAL))){			
-			result=result+VALUE_NULL;
+		result = result.replace(HOOK_BEGIN, BRACKET_BEGIN);
+		result = result.replace(HOOK_END, BRAKET_END);
+		if(!(result.contains(EQUAL))) {
+			result = result + VALUE_NULL;
 		}
-		if((property.getType().getName().equals("Integer"))||(property.getType().getName().equals("String"))){
-			
+		if((property.getType().getName().equals("Integer")) || (property.getType().getName().equals("String"))) {
+
 			return result;
 		}
-		
+
 		// transform into editable String ie  word to "word"
-		if(property.getType().eClass().getName().equals("DataType")||property.getType().eClass().getName().equals("PrimitiveType")){
-			if(!result.endsWith(VALUE_NULL)){
-				result= result.replace(BRACKET_BEGIN,HOOK_BEGIN+QUOTE);
-				result= result.replace(BRAKET_END,QUOTE+HOOK_END);
-				result= result.replace(COMA,QUOTE+COMA+QUOTE);
-				if( !result.endsWith(BRAKET_END)){
-					result=result.replace(EQUAL,EQUAL+QUOTE);
-					result=result+QUOTE;
+		if(property.getType().eClass().getName().equals("DataType") || property.getType().eClass().getName().equals("PrimitiveType")) {
+			if(!result.endsWith(VALUE_NULL)) {
+				result = result.replace(BRACKET_BEGIN, HOOK_BEGIN + QUOTE);
+				result = result.replace(BRAKET_END, QUOTE + HOOK_END);
+				result = result.replace(COMA, QUOTE + COMA + QUOTE);
+				if(!result.endsWith(BRAKET_END)) {
+					result = result.replace(EQUAL, EQUAL + QUOTE);
+					result = result + QUOTE;
 				}
 			}
 		}
@@ -87,56 +96,59 @@ public class AppliedStereotypePropertyEditorUtil {
 
 	/**
 	 * a method used to construct a qualified name from a alf name expression
+	 * 
 	 * @param nameExpression
 	 * @return a string that the qualified name
 	 */
-	public static String getQualifiedName (NameExpression nameExpression){
-		String nameSpace="";
-		Iterator<UnqualifiedName>iter=nameExpression.getPath().getNamespace().iterator();
+	public static String getQualifiedName(NameExpression nameExpression) {
+		String nameSpace = "";
+		Iterator<UnqualifiedName> iter = nameExpression.getPath().getNamespace().iterator();
 		while(iter.hasNext()) {
-			UnqualifiedName unqualifiedName = (UnqualifiedName)iter.next();
-			nameSpace=nameSpace+unqualifiedName.getName()+"::";
+			UnqualifiedName unqualifiedName = iter.next();
+			nameSpace = nameSpace + unqualifiedName.getName() + "::";
 
 		}
-		nameSpace=nameSpace+nameExpression.getId();
+		nameSpace = nameSpace + nameExpression.getId();
 		return nameSpace;
 	}
 
 	/**
 	 * get a list of all possible object in a model that can be a value for a Applied stereotype property
+	 * 
 	 * @param appliedStereotypeProperty
 	 * @return an array of object
 	 */
-	public static Object[] getPossibleElements(AppliedStereotypeProperty appliedStereotypeProperty){
-		EStructuralFeature foundStructuralFeature=null;
-		Iterator<EStructuralFeature> iterator= appliedStereotypeProperty.getStereotypeApplication().eClass().getEAllStructuralFeatures().iterator();
+	public static Object[] getPossibleElements(AppliedStereotypeProperty appliedStereotypeProperty) {
+		EStructuralFeature foundStructuralFeature = null;
+		Iterator<EStructuralFeature> iterator = appliedStereotypeProperty.getStereotypeApplication().eClass().getEAllStructuralFeatures().iterator();
 		while(iterator.hasNext()) {
-			EStructuralFeature eStructuralFeature = (EStructuralFeature)iterator.next();
-			if(eStructuralFeature.getName().equals(appliedStereotypeProperty.getStereotypeProperty().getName())){
-				foundStructuralFeature=eStructuralFeature;
+			EStructuralFeature eStructuralFeature = iterator.next();
+			if(eStructuralFeature.getName().equals(appliedStereotypeProperty.getStereotypeProperty().getName())) {
+				foundStructuralFeature = eStructuralFeature;
 			}
 		}
 
-		UMLContentProvider umlContentProvider = new UMLContentProvider(appliedStereotypeProperty.getStereotypeApplication(),foundStructuralFeature, appliedStereotypeProperty.getStereotype());
-		HierarchicToFlatContentProvider  treeToFlatContentProvider = new HierarchicToFlatContentProvider(umlContentProvider);
+		UMLContentProvider umlContentProvider = new UMLContentProvider(appliedStereotypeProperty.getStereotypeApplication(), foundStructuralFeature, appliedStereotypeProperty.getStereotype());
+		HierarchicToFlatContentProvider treeToFlatContentProvider = new HierarchicToFlatContentProvider(umlContentProvider);
 		return treeToFlatContentProvider.getElements();
-
 	}
 
 	/**
 	 * get the stereotype application that is link to the base element represented by the name expression from a list
+	 * 
 	 * @param nameExpression
-	 * @param result a list of object
+	 * @param result
+	 *        a list of object
 	 * @return may return null
 	 */
-	public static EObject getApplicationStereotypeFor(NameExpression nameExpression, Object[] result){
-		String qn=AppliedStereotypePropertyEditorUtil.getQualifiedName(nameExpression);
-		EObject foundStereotypeApplication=null;
+	public static EObject getApplicationStereotypeFor(NameExpression nameExpression, Object[] result) {
+		String qn = AppliedStereotypePropertyEditorUtil.getQualifiedName(nameExpression);
+		EObject foundStereotypeApplication = null;
 		//look for object
-		for (int i=0; i<result.length;i++){
-			if( result[i]instanceof EObject &&UMLUtil.getBaseElement((EObject)result[i])!=null){
-				if(((NamedElement)UMLUtil.getBaseElement((EObject)result[i])).getQualifiedName().equals(qn)){
-					foundStereotypeApplication= (EObject)result[i];
+		for(int i = 0; i < result.length; i++) {
+			if(result[i] instanceof EObject && UMLUtil.getBaseElement((EObject)result[i]) != null) {
+				if(((NamedElement)UMLUtil.getBaseElement((EObject)result[i])).getQualifiedName().equals(qn)) {
+					foundStereotypeApplication = (EObject)result[i];
 				}
 			}
 
@@ -146,28 +158,30 @@ public class AppliedStereotypePropertyEditorUtil {
 
 	/**
 	 * get the element that is represented by the name expression from a list
+	 * 
 	 * @param nameExpression
-	 * @param result a list of object
+	 * @param result
+	 *        a list of object
 	 * @return may return null
 	 */
-	public static EObject getNamedElementFor(NameExpression nameExpression, Object[] result){
-		String qn=AppliedStereotypePropertyEditorUtil.getQualifiedName(nameExpression);
-		EObject foundStereotypeApplication=null;
+	public static EObject getNamedElementFor(NameExpression nameExpression, Object[] result) {
+		String qn = AppliedStereotypePropertyEditorUtil.getQualifiedName(nameExpression);
+		EObject foundStereotypeApplication = null;
 		//look for object
-		for (int i=0; i<result.length;i++){
-			if(result[i] instanceof NamedElement&&((NamedElement)result[i]).getQualifiedName().equals(qn)){
-				foundStereotypeApplication= (NamedElement)result[i];
+		for(int i = 0; i < result.length; i++) {
+			if(result[i] instanceof NamedElement && ((NamedElement)result[i]).getQualifiedName().equals(qn)) {
+				foundStereotypeApplication = (NamedElement)result[i];
 			}
 		}
 		return foundStereotypeApplication;
 	}
 
-	public static ArrayList<INTEGER_LITERAL> get_INTEGER(EObject xtextObject){
-		ArrayList<INTEGER_LITERAL> result=new ArrayList<INTEGER_LITERAL>();
-		TreeIterator<EObject> iterator=xtextObject.eAllContents();
+	public static ArrayList<INTEGER_LITERAL> get_INTEGER(EObject xtextObject) {
+		ArrayList<INTEGER_LITERAL> result = new ArrayList<INTEGER_LITERAL>();
+		TreeIterator<EObject> iterator = xtextObject.eAllContents();
 		while(iterator.hasNext()) {
-			EObject eObject = (EObject)iterator.next();
-			if (eObject instanceof INTEGER_LITERAL){
+			EObject eObject = iterator.next();
+			if(eObject instanceof INTEGER_LITERAL) {
 				result.add((INTEGER_LITERAL)eObject);
 			}
 		}
@@ -175,24 +189,25 @@ public class AppliedStereotypePropertyEditorUtil {
 		return result;
 	}
 
-	public static ArrayList<BOOLEAN_LITERAL> get_BOOLEAN(EObject xtextObject){
-		ArrayList<BOOLEAN_LITERAL> result=new ArrayList<BOOLEAN_LITERAL>();
-		TreeIterator<EObject> iterator=xtextObject.eAllContents();
+	public static ArrayList<BOOLEAN_LITERAL> get_BOOLEAN(EObject xtextObject) {
+		ArrayList<BOOLEAN_LITERAL> result = new ArrayList<BOOLEAN_LITERAL>();
+		TreeIterator<EObject> iterator = xtextObject.eAllContents();
 		while(iterator.hasNext()) {
-			EObject eObject = (EObject)iterator.next();
-			if (eObject instanceof BOOLEAN_LITERAL){
+			EObject eObject = iterator.next();
+			if(eObject instanceof BOOLEAN_LITERAL) {
 				result.add((BOOLEAN_LITERAL)eObject);
 			}
 		}
 
 		return result;
 	}
-	public static ArrayList<STRING_LITERAL> get_STRING(EObject xtextObject){
-		ArrayList<STRING_LITERAL> result=new ArrayList<STRING_LITERAL>();
-		TreeIterator<EObject> iterator=xtextObject.eAllContents();
+
+	public static ArrayList<STRING_LITERAL> get_STRING(EObject xtextObject) {
+		ArrayList<STRING_LITERAL> result = new ArrayList<STRING_LITERAL>();
+		TreeIterator<EObject> iterator = xtextObject.eAllContents();
 		while(iterator.hasNext()) {
-			EObject eObject = (EObject)iterator.next();
-			if (eObject instanceof STRING_LITERAL){
+			EObject eObject = iterator.next();
+			if(eObject instanceof STRING_LITERAL) {
 				result.add((STRING_LITERAL)eObject);
 			}
 		}

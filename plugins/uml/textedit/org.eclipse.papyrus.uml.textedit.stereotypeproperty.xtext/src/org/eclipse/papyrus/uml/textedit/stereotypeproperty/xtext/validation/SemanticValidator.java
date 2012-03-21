@@ -18,9 +18,9 @@ import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
 
 /**
  * Custom implementation for IXtextSemanticValidator in the context of the textual editor for states
- *
+ * 
  * @author CEA LIST
- *
+ * 
  */
 public class SemanticValidator implements IXTextSemanticValidator {
 

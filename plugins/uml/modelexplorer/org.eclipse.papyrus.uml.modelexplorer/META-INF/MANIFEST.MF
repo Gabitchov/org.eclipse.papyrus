@@ -30,4 +30,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer;singleton:=
  true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

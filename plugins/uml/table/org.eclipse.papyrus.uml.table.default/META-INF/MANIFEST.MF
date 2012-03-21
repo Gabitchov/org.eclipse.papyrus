@@ -17,4 +17,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.table.defaultt.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.table.default;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

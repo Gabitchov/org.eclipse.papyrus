@@ -15,13 +15,12 @@
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;
 
 /**
- * Initialization support for running Xtext languages 
+ * Initialization support for running Xtext languages
  * without equinox extension registry
  */
-public class AppliedStereotypePropertyStandaloneSetup extends AppliedStereotypePropertyStandaloneSetupGenerated{
+public class AppliedStereotypePropertyStandaloneSetup extends AppliedStereotypePropertyStandaloneSetupGenerated {
 
 	public static void doSetup() {
 		new AppliedStereotypePropertyStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }
-

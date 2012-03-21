@@ -33,26 +33,27 @@ public class AppliedStereotypePropertyJavaValidator extends AbstractAppliedStere
 	public static final String NOT_EXIST = "AppliedStereotypeProperty.quickfix.NOT_EXIST";
 
 	private static AppliedStereotypeProperty contextElement;
+
 	// the namespace
 	private static Namespace model;
 
 	public static void init(AppliedStereotypeProperty _contextElement) {
-		contextElement = _contextElement ;
-		if (contextElement != null) {
-			Element elem = contextElement.getBaseElement().getOwner() ;
-			while (elem.getOwner() != null) {
-				elem = elem.getOwner() ;
+		contextElement = _contextElement;
+		if(contextElement != null) {
+			Element elem = contextElement.getBaseElement().getOwner();
+			while(elem.getOwner() != null) {
+				elem = elem.getOwner();
 			}
-			model = (Namespace)elem ;
+			model = (Namespace)elem;
 		}
 	}
 
 	@Check
 	public void checkAppliedStereotypePropertyRule_property(AppliedStereotypePropertyRule appliedStereotypePropertyRule) {
-		Property property=appliedStereotypePropertyRule.getProperty();
-		Property propertyContext= contextElement.getStereotypeProperty();
-		if(!( property.equals(contextElement.getStereotypeProperty()))){
-			error("bad property",AppliedStereotypePropertyPackage.eINSTANCE.getAppliedStereotypePropertyRule_Property() );
+		Property property = appliedStereotypePropertyRule.getProperty();
+		Property propertyContext = contextElement.getStereotypeProperty();
+		if(!(property.equals(contextElement.getStereotypeProperty()))) {
+			error("bad property", AppliedStereotypePropertyPackage.eINSTANCE.getAppliedStereotypePropertyRule_Property());
 		}
 	}
 
@@ -64,27 +65,27 @@ public class AppliedStereotypePropertyJavaValidator extends AbstractAppliedStere
 
 	@Check
 	public void checkNameExpression(NameExpression nameExpression) {
-		Object[] objectList=AppliedStereotypePropertyEditorUtil.getPossibleElements(contextElement);
+		Object[] objectList = AppliedStereotypePropertyEditorUtil.getPossibleElements(contextElement);
 		//if the property references a stereotyped element
-		if(contextElement.getStereotypeProperty().getType().eClass().getName().equals("Stereotype")){
-			if(AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(nameExpression, objectList)==null){
-				error(NOT_EXIST_DISPLAY, AlfPackage.eINSTANCE.getNameExpression_Id(),NOT_EXIST,NOT_EXIST_DISPLAY);
+		if(contextElement.getStereotypeProperty().getType().eClass().getName().equals("Stereotype")) {
+			if(AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(nameExpression, objectList) == null) {
+				error(NOT_EXIST_DISPLAY, AlfPackage.eINSTANCE.getNameExpression_Id(), NOT_EXIST, NOT_EXIST_DISPLAY);
 			}
 			return;
 		}
 		//if the property references an element
-		if(contextElement.getStereotypeProperty().getType() instanceof Element){
-			if(AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, objectList)==null){
-				error(NOT_EXIST_DISPLAY, AlfPackage.eINSTANCE.getNameExpression_Id(),NOT_EXIST,NOT_EXIST_DISPLAY);
+		if(contextElement.getStereotypeProperty().getType() instanceof Element) {
+			if(AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, objectList) == null) {
+				error(NOT_EXIST_DISPLAY, AlfPackage.eINSTANCE.getNameExpression_Id(), NOT_EXIST, NOT_EXIST_DISPLAY);
 			}
 			return;
 		}
 	}
-		//	@Check
-		//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-		//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-		//			warning("Name should start with a capital", MyDslPackage.Literals.GREETING__NAME);
-		//		}
-		//	}
+	//	@Check
+	//	public void checkGreetingStartsWithCapital(Greeting greeting) {
+	//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
+	//			warning("Name should start with a capital", MyDslPackage.Literals.GREETING__NAME);
+	//		}
+	//	}
 
-	}
+}

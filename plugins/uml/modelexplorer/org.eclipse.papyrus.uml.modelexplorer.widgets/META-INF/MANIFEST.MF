@@ -14,4 +14,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.widgets.Activa
  tor
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.widgets
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

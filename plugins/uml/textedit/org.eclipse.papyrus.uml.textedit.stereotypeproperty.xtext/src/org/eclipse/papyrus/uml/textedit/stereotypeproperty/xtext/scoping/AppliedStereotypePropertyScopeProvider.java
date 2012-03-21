@@ -32,28 +32,28 @@ import org.eclipse.xtext.scoping.impl.SimpleScope;
  * This class contains custom scoping description.
  * 
  * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping
- * on how and when to use it 
- *
+ * on how and when to use it
+ * 
  */
 public class AppliedStereotypePropertyScopeProvider extends AlfScopeProvider {
 
 	public IScope scope_AppliedStereotypePropertyRule_property(AppliedStereotypePropertyRule ctx, EReference ref) {
-		
-		IScope result = null ;
-		EditPart contextEObject=((EditPart)PopupXtextEditorHelper.getHostEditPart());
-		if( contextEObject instanceof IAdaptable){
-			AppliedStereotypeProperty appliedStereotypeProperty =(AppliedStereotypeProperty)contextEObject.getAdapter(AppliedStereotypeProperty.class);
 
-			ArrayList<org.eclipse.uml2.uml.Property> properties= new ArrayList<org.eclipse.uml2.uml.Property>();
+		IScope result = null;
+		EditPart contextEObject = ((EditPart)PopupXtextEditorHelper.getHostEditPart());
+		if(contextEObject instanceof IAdaptable) {
+			AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)contextEObject.getAdapter(AppliedStereotypeProperty.class);
+
+			ArrayList<org.eclipse.uml2.uml.Property> properties = new ArrayList<org.eclipse.uml2.uml.Property>();
 			properties.add(appliedStereotypeProperty.getStereotypeProperty());
-			Iterable<IEObjectDescription> visiblePropertiesIterable = Scopes.scopedElementsFor(properties) ;
-			result = new SimpleScope(visiblePropertiesIterable) ;
+			Iterable<IEObjectDescription> visiblePropertiesIterable = Scopes.scopedElementsFor(properties);
+			result = new SimpleScope(visiblePropertiesIterable);
 		}
 		return result;
 	}
 
 	public IScope scope_PrimaryExpression_prefix(PrimaryExpression ctx, EReference ref) {
-		IScope result = null ;
+		IScope result = null;
 		return null;
 	}
 }

@@ -18,4 +18,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.palette.customaction.Ac
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common.palette.customaction;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin
