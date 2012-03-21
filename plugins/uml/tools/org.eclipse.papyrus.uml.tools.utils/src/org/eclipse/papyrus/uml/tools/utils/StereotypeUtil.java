@@ -195,11 +195,11 @@ public class StereotypeUtil {
 
 		// property type is a metaclass
 		else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && ((org.eclipse.uml2.uml.Stereotype)propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
-			return getPropertyValueForMetaclassType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator);
+			return getPropertyValueForMetaclassType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,false);
 		}
 		// property type is a stereotype
 		else if(propType instanceof org.eclipse.uml2.uml.Stereotype) {
-			return getPropertyValueForStereotypeType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator);
+			return getPropertyValueForStereotypeType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,false);
 		}
 		// property is a composite class
 		else if((propType instanceof org.eclipse.uml2.uml.Class) && !(propType instanceof org.eclipse.uml2.uml.Stereotype) && property.isComposite()) {
@@ -207,7 +207,49 @@ public class StereotypeUtil {
 		}
 		// otherwise
 		else {
-			return getPropertyValue(property, stereotype, umlElement, EQUAL_SEPARATOR, separator);
+			return getPropertyValue(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,false);
+		}
+	}
+
+
+
+	/**
+	 * Computes the display of a property value.
+	 * 
+	 * @param stereotype
+	 *        the stereotype that contains the property to be displayed
+	 * @param property
+	 *        the property to be displayed
+	 * @param umlElement
+	 *        the element that is stereotyped by the specified
+	 * @param separator
+	 *        the separator between each property value, in case several properties are
+	 *        displayed for the same property
+	 * @return a string corresponding to the property value
+	 */
+	public static String displayPropertyValueToEdit(Stereotype stereotype, Property property, Element umlElement, String separator) {
+		org.eclipse.uml2.uml.Type propType = property.getType();
+
+		// property type is an enumeration
+		if(propType instanceof org.eclipse.uml2.uml.Enumeration) {
+			return getPropertyValueForEnumerationType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator);
+		}
+
+		// property type is a metaclass
+		else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && ((org.eclipse.uml2.uml.Stereotype)propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
+			return getPropertyValueForMetaclassType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,true);
+		}
+		// property type is a stereotype
+		else if(propType instanceof org.eclipse.uml2.uml.Stereotype) {
+			return getPropertyValueForStereotypeType(property, stereotype, umlElement, EQUAL_SEPARATOR, separator,true);
+		}
+		// property is a composite class
+		else if((propType instanceof org.eclipse.uml2.uml.Class) && !(propType instanceof org.eclipse.uml2.uml.Stereotype) && property.isComposite()) {
+			return /* FIXME stProp + */property.getName() + EQUAL_SEPARATOR + property.getName() + separator;
+		}
+		// otherwise
+		else {
+			return getPropertyValue(property, stereotype, umlElement, EQUAL_SEPARATOR, separator, true);
 		}
 	}
 
@@ -314,12 +356,12 @@ public class StereotypeUtil {
 
 			// property type is a metaclass
 			else if((propType instanceof org.eclipse.uml2.uml.Class) && (propType.getAppliedStereotypes() != null) && (propType.getAppliedStereotypes().size() > 0) && ((org.eclipse.uml2.uml.Stereotype)propType.getAppliedStereotypes().get(0)).getName().equals("Metaclass")) {
-				buffer.append(getPropertyValueForMetaclassType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+				buffer.append(getPropertyValueForMetaclassType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ",",false));
 			}
 
 			// property type is a stereotype
 			else if(propType instanceof org.eclipse.uml2.uml.Stereotype) {
-				buffer.append(getPropertyValueForStereotypeType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+				buffer.append(getPropertyValueForStereotypeType(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ",",false));
 			}
 
 			// property is a composite class
@@ -329,7 +371,7 @@ public class StereotypeUtil {
 
 			// otherwise
 			else {
-				buffer.append(getPropertyValue(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ","));
+				buffer.append(getPropertyValue(currentProp, stereotype, umlElement, EQUAL_SEPARATOR, ",",false));
 			}
 		}// display each property
 
@@ -398,11 +440,16 @@ public class StereotypeUtil {
 	 * @return String withe the following grammar propertyname EQUAL_SEPERATOR propertyValue
 	 *         PROPERTY_VALUE_SEPERATOR
 	 */
-	private static String getPropertyValueForMetaclassType(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR) {
+	private static String getPropertyValueForMetaclassType(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR, boolean withQualifiedName) {
 		String out = "";
 
 		if((property.getUpper() == 1) && (umlElement.getValue(stereotype, property.getName()) != null) && (umlElement.getValue(stereotype, property.getName()) instanceof NamedElement)) {
-			out = property.getName() + EQUAL_SEPARATOR + ((NamedElement)(umlElement.getValue(stereotype, property.getName()))).getName() + PROPERTY_VALUE_SEPARATOR;
+			if(withQualifiedName){
+				out = property.getName() + EQUAL_SEPARATOR + ((NamedElement)(umlElement.getValue(stereotype, property.getName()))).getQualifiedName() + PROPERTY_VALUE_SEPARATOR;
+			}
+			else{
+				out = property.getName() + EQUAL_SEPARATOR + ((NamedElement)(umlElement.getValue(stereotype, property.getName()))).getName() + PROPERTY_VALUE_SEPARATOR;
+			}
 		}
 
 		// multiplicity greater than one
@@ -412,7 +459,12 @@ public class StereotypeUtil {
 			if(values != null) {
 				for(int count = 0; count < values.size(); count++) {
 					if(values.get(count) instanceof NamedElement) {
-						elementNames.add(((NamedElement)values.get(count)).getName());
+						if(withQualifiedName){
+							elementNames.add(((NamedElement)values.get(count)).getQualifiedName());
+						}
+						else{
+							elementNames.add(((NamedElement)values.get(count)).getName());
+						}
 					}
 				}
 			}
@@ -442,7 +494,7 @@ public class StereotypeUtil {
 	 * @return String withe the following grammar propertyname EQUAL_SEPERATOR propertyValue
 	 *         PROPERTY_VALUE_SEPERATOR
 	 */
-	private static String getPropertyValueForStereotypeType(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR) {
+	private static String getPropertyValueForStereotypeType(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR, boolean withQualifiedName) {
 		String out = "";
 		if((property.getUpper() == 1) && (umlElement.getValue(stereotype, property.getName()) != null)) {
 
@@ -451,7 +503,12 @@ public class StereotypeUtil {
 			Element baseElement = UMLUtil.getBaseElement((EObject)value);
 
 			// display the base element's qualified name
-			out = property.getName() + EQUAL_SEPARATOR + ((NamedElement)baseElement).getName() + PROPERTY_VALUE_SEPARATOR;
+			if(withQualifiedName){
+				out = property.getName() + EQUAL_SEPARATOR + ((NamedElement)baseElement).getQualifiedName() + PROPERTY_VALUE_SEPARATOR;
+			}
+			else{
+				out = property.getName() + EQUAL_SEPARATOR + ((NamedElement)baseElement).getName() + PROPERTY_VALUE_SEPARATOR;
+			}
 		}
 
 		// multiplicity greater than one
@@ -461,7 +518,12 @@ public class StereotypeUtil {
 			ArrayList baseElements = new ArrayList();
 			if(values != null) {
 				for(int k = 0; k < values.size(); k++) {
-					baseElements.add(((NamedElement)UMLUtil.getBaseElement((EObject)values.get(k))).getName());
+					if(withQualifiedName){
+						baseElements.add(((NamedElement)UMLUtil.getBaseElement((EObject)values.get(k))).getQualifiedName());
+					}
+					else{
+						baseElements.add(((NamedElement)UMLUtil.getBaseElement((EObject)values.get(k))).getName());
+					}
 				}
 			}
 
@@ -491,11 +553,18 @@ public class StereotypeUtil {
 	 * @return String withe the following grammar propertyname EQUAL_SEPERATOR propertyValue
 	 *         PROPERTY_VALUE_SEPERATOR
 	 */
-	private static String getPropertyValue(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR) {
+	private static String getPropertyValue(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR,boolean withDelimitator) {
 		String out = "";
 		if((property.getLower() != 0) || umlElement.getValue(stereotype, property.getName()) != null) {
 			if(property.isSetDefault() || umlElement.getValue(stereotype, property.getName()) != null) {
-				out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;
+				if(withDelimitator){
+					out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;
+					out= out.replace("[", "[\"");
+					out= out.replace("]", "\"]");
+					out= out.replace(", ", "\",\"");
+				}
+				else{
+					out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;}
 			} else {
 				out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 			}
