@@ -23,6 +23,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -57,7 +59,16 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 	private IPageIconsRegistry editorRegistry;
 
+	protected HyperlinkHelperFactory hyperlinkHelperFactory;
+	
 	public NavigationEditPolicy() {
+		// initialization of code to extract hyperlinks.
+		// TODO : use extension points instead.
+		ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
+		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
+		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
+		hyperLinkHelpers.add(new WebHyperLinkHelper());
+		hyperlinkHelperFactory = new HyperlinkHelperFactory(hyperLinkHelpers);
 	}
 
 	/**
@@ -86,14 +97,22 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		// edit part that refers to default diagram
 
 		gep = (IGraphicalEditPart)getHost();
+	
 
-		final EObject semanticElement = ((IGraphicalEditPart)getHost()).resolveSemanticElement();
-
-		if(semanticElement == null) {
+		EObject shape = ((IGraphicalEditPart)getHost()).getNotationView();
+		
+		while (!(shape instanceof Shape || shape == null)) {
+			shape = shape.eContainer();
+		}
+		
+		final EObject semanticElement= gep.resolveSemanticElement();
+		
+		
+		if(shape == null | semanticElement == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		EditPartHyperLinkHelper diagramHelper = new EditPartHyperLinkHelper(gep);
+		EditPartHyperLinkHelper diagramHelper = new EditPartHyperLinkHelper((View) shape);
 
 		try {
 
@@ -111,18 +130,16 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			// add list of diagram navigables by using heuristic
 			if(navigationKind.equals(INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION)) {
 
-				// initialization of code to extract hyperlinks.
-				// TODO : use extension points instead.
-				ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
-				hyperLinkHelpers.add(new DiagramHyperLinkHelper());
-				hyperLinkHelpers.add(new DocumentHyperLinkHelper());
-				hyperLinkHelpers.add(new WebHyperLinkHelper());
-
-				final HyperlinkHelperFactory hyperlinkHelperFactory = new HyperlinkHelperFactory(hyperLinkHelpers);
+				final HyperlinkHelperFactory finalHyperlinkHelperFactory = this.hyperlinkHelperFactory;
 
 				// GETTING THE HYPERLINKS.
 				hyperLinkObjectList = (ArrayList<HyperlinkObject>)diagramHelper.getHyperlinksFromEditPart(hyperlinkHelperFactory);
 
+				// If there's only one hyperlink, setting it as default. 
+				if (hyperLinkObjectList.size() == 1){
+					hyperLinkObjectList.get(0).setIsDefault(true);
+				}
+				
 				// Default hyperlinks.
 				Predicate<HyperlinkObject> filterDefaultHyperlinks = new Predicate<HyperlinkObject>() {
 
@@ -136,11 +153,12 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				final ArrayList<HyperlinkObject> defaultHyperLinkObject = Lists.newArrayList(defaultHyperLinksIterable);
 
 				if(defaultHyperLinksCount == 0) {
+					final View shapeAsView = (View) shape;
 					Command command = new Command() {
 
 						@Override
 						public void execute() {
-							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (Element)gep.getNotationView().getElement(), gep.getNotationView(), topPackage((Element)semanticElement), hyperlinkHelperFactory);
+							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (Element)gep.getNotationView().getElement(), shapeAsView, topPackage((Element)semanticElement), finalHyperlinkHelperFactory);
 							hyperLinkManagerShell.setInput(hyperLinkObjectList);
 							hyperLinkManagerShell.open();
 						}

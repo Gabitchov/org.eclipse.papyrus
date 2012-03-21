@@ -615,7 +615,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			
 			// Retrieving the hyperlinks.
 			IGraphicalEditPart host = (IGraphicalEditPart) this.getHost();
-			EditPartHyperLinkHelper diagramHelper = new EditPartHyperLinkHelper(host);
+			EditPartHyperLinkHelper diagramHelper = new EditPartHyperLinkHelper(host.getNotationView());
 			hyperLinkObjectList = (ArrayList<HyperlinkObject>) diagramHelper.getHyperlinksFromEditPart(hyperlinkHelperFactory);
 			
 			xLoc = addObjectList(xLoc, hyperLinkObjectList);
@@ -677,5 +677,22 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 				hideDiagramAssistantAfterDelay(getDisappearanceDelay());
 			}
 		}
+	}
+
+	
+	/**
+	 * No need for disappearance delay.
+	 */
+	@Override
+	protected int getDisappearanceDelay() {
+		return 1000;
+	}
+	
+	/**
+	 * No need for appearance delay.
+	 */
+	@Override
+	protected int getAppearanceDelay() {
+		return 0;
 	}
 }

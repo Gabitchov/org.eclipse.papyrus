@@ -22,7 +22,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
@@ -39,10 +38,10 @@ import com.google.common.collect.Lists;
 
 public class EditPartHyperLinkHelper {
 
-	private IGraphicalEditPart editPart;
+	private View view;
 
-	public EditPartHyperLinkHelper(IGraphicalEditPart editPart) {
-		this.editPart = editPart;
+	public EditPartHyperLinkHelper(View view) {
+		this.view = view;
 	}
 
 	/**
@@ -154,13 +153,13 @@ public class EditPartHyperLinkHelper {
 		Predicate<HyperlinkObject> discardIrrelevantHyperlinks = new Predicate<HyperlinkObject>() {
 
 			public boolean apply(HyperlinkObject hyperlinkObject) {
-				return Iterables.contains(finalDiagrams, hyperlinkObject.getObject());
+				return hyperlinkObject.getObject() != null;
+				//return Iterables.contains(finalDiagrams, hyperlinkObject.getObject());
 			};
 		};
 
 		Iterable<Diagram> newlyPointedDiagrams = Iterables.filter(diagrams, discardAlreadyPointedDiagrams);
 		Iterable<HyperlinkObject> relevantExistingHyperlinks = Iterables.filter(existingHyperlinks, discardIrrelevantHyperlinks);
-
 		Iterable<HyperlinkObject> newHyperLinkDiagrams = Iterables.transform(newlyPointedDiagrams, getHyperlink);
 		//Concatenation of the relevant existing hyperlinks and the newly computed ones.
 		Iterable<HyperlinkObject> hyperLinkDiagramsToAdd = Iterables.concat(newHyperLinkDiagrams, relevantExistingHyperlinks);
@@ -182,7 +181,7 @@ public class EditPartHyperLinkHelper {
 		List<HyperlinkObject> result = null;
 
 		try {
-			existingHyperLinks = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(editPart.getNotationView());
+			existingHyperLinks = (ArrayList<HyperlinkObject>)hyperlinkHelperFactory.getAllreferenced(view);
 
 			Predicate<HyperlinkObject> keepHyperLinkDiagrams = new Predicate<HyperlinkObject>() {
 
@@ -196,7 +195,7 @@ public class EditPartHyperLinkHelper {
 			Iterable<HyperlinkObject> existingHyperLinkDiagrams = Iterables.filter(existingHyperLinks, keepHyperLinkDiagrams);
 			Iterable<HyperlinkObject> existingOtherHyperLinks = Iterables.filter(existingHyperLinks, discardHyperLinkDiagrams);
 
-			final EObject semanticElement = editPart.resolveSemanticElement();
+			final EObject semanticElement = view.getElement();
 			if(semanticElement != null) {
 				// Getting the list of navigable elements.
 				List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(semanticElement);
@@ -218,7 +217,7 @@ public class EditPartHyperLinkHelper {
 				// Getting the hyperlinks out of the diagram list.
 				Iterable<HyperlinkObject> hyperLinksToAdd = this.getAssociatedDiagramHyperlinksToAdd(currentDiagramsToAdd, existingHyperLinkDiagrams);
 
-				final Diagram currentDiagram = this.editPart.getNotationView().getDiagram();
+				final Diagram currentDiagram = view.getDiagram();
 				Predicate<HyperlinkObject> discardCurrentDiagram = new Predicate<HyperlinkObject>() {
 
 					public boolean apply(HyperlinkObject hyperlinkObject) {
