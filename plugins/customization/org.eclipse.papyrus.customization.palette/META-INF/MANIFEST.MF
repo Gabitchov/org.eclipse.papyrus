@@ -20,4 +20,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.customization.palette,
  org.eclipse.papyrus.customization.palette.dialog,
  org.eclipse.papyrus.customization.palette.proxies
-
+Bundle-Localization: fragment
