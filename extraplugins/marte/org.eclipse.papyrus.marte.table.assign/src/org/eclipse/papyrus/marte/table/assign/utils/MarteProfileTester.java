@@ -53,7 +53,9 @@ public class MarteProfileTester extends PropertyTester {
 					Element el = (Element)context;
 					Package pack = el.getNearestPackage();
 					//Verifying if the Marte applied profile 
-					result = pack.getAppliedProfile("MARTE::MARTE_Foundations::Alloc", true) != null; //$NON-NLS-1$
+					if (pack != null){
+						result = pack.getAppliedProfile("MARTE::MARTE_Foundations::Alloc", true) != null; //$NON-NLS-1$
+					}
 				}
 			}
 		}
