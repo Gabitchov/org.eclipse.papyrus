@@ -120,7 +120,7 @@ public class PredefinedBehaviorsAndTypesUtils {
 		for (ElementImport eImport : library.getElementImports()) {
 			if (eImport.getImportedElement() instanceof Behavior) {
 				SignatureFacade s = SignatureFacadeFactory.eInstance.createSignatureFacade(eImport) ;
-				TypeUtils.predefinedCollectionFunctions.put(eImport.getAlias() == null || eImport.getAlias().isEmpty() ? s.getName() : eImport.getAlias(), s) ;
+				TypeUtils.predefinedCollectionFunctions.put(eImport.getAlias() == null || eImport.getAlias().length()==0 ? s.getName() : eImport.getAlias(), s) ;
 			}
 		}
 	}

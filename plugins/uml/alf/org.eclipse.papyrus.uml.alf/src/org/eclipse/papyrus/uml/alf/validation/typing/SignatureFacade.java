@@ -236,7 +236,7 @@ public class SignatureFacade {
 		List<SignatureFacade> matchingSignatures = new ArrayList<SignatureFacade>() ;
 		for (SignatureFacade cddMatchingSignature : candidates) {
 			String compatibility = cddMatchingSignature.isCompatibleWithMe(arguments) ;
-			if (compatibility.isEmpty()) {
+			if (compatibility.length()==0) {
 				matchingSignatures.add(cddMatchingSignature) ;
 			}
 		}
