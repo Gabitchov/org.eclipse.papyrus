@@ -338,12 +338,12 @@
     </rm:provider>
     
     <!-- M2T (Jet) -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("M2T JET",0) -->
-      <rm:uri format="{0}/modeling/m2t/updates/milestones/">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
+<!--     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false"> -->
+<!--       updateFrom("M2T JET",0) -->
+<!--       <rm:uri format="{0}/modeling/m2t/updates/milestones/"> -->
+<!--         <bc:propertyRef key="eclipse.downloads"/> -->
+<!--       </rm:uri> -->
+<!--     </rm:provider> -->
     
     <!-- M2T Acceleo -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
