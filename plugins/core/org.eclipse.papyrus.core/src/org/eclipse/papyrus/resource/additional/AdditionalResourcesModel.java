@@ -73,7 +73,7 @@ public class AdditionalResourcesModel implements IModel {
 				// only save referenced models not
 				// read-only and either platform or file
 				if((editingDomain == null || !editingDomain.isReadOnly(r))
-					&& (r.getURI().isPlatform() || r.getURI().isFile())) {
+					&& (r.getURI().isPlatformResource() || r.getURI().isFile())) {
 					r.save(Collections.EMPTY_MAP);
 				}
 			}
