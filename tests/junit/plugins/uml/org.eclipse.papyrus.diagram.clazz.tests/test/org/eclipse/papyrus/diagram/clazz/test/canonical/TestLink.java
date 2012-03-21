@@ -130,22 +130,17 @@ public class TestLink extends AbstractPapyrusTestCase {
 		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
 		assertTrue(DESTROY_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,source.getSourceConnections().size()==0);
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==4);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,source.getSourceConnections().size()==0);
+		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==4);
 
-		EditingDomainUndoContext undoContext= new EditingDomainUndoContext(getEditingDomain());
-		try{
-			OperationHistoryFactory.getOperationHistory().undo(undoContext, new NullProgressMonitor(), null);
-		}catch (Exception e) {
-			System.err.println(e);
-		}
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,source.getSourceConnections().size()==1);
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==5);
+		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,source.getSourceConnections().size()==1);
+		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==5);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,source.getSourceConnections().size()==0);
-		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==4);
+		assertTrue(DESTROY_DELETION +TEST_THE_REDO,source.getSourceConnections().size()==0);
+		assertTrue(DESTROY_DELETION +TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==4);
 	}
 
 
@@ -251,7 +246,7 @@ public class TestLink extends AbstractPapyrusTestCase {
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
 		assertNotNull(CREATION+COMMAND_NULL,command);
 		assertTrue(CONTAINER_CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==1);
 		assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==5);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
@@ -463,7 +458,7 @@ public class TestLink extends AbstractPapyrusTestCase {
 		assertNotNull(CREATION+COMMAND_NULL,command);
 		assertTrue(CONTAINER_CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==allowed);
 		if(allowed){
-			diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 			assertTrue(CREATION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==2);
 			assertTrue(CREATION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==6);
 			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();

@@ -112,21 +112,12 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
 		assertTrue(DESTROY_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		//getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//getDiagramEditPart().getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-		getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getDiagramEditPart().getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==0);
 
-		EditingDomainUndoContext undoContext= new EditingDomainUndoContext(getEditingDomain());
-		try{
-			OperationHistoryFactory.getOperationHistory().undo(undoContext, new NullProgressMonitor(), null);
-		}catch (Exception e) {
-			System.err.println(e);
-		}
-
-		//diagramEditor.getEditingDomain().getCommandStack().undo();
-		//diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getDiagramEditPart().getChildren().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
@@ -242,6 +233,7 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 		assertTrue(CREATION+TEST_THE_UNDO,getRootView().getChildren().size()==0);
 		assertTrue(CREATION+TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		
 		assertTrue("CREATION: "+TEST_THE_REDO,getDiagramEditPart().getChildren().size()==1);
 
 	}
@@ -254,17 +246,11 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 	 */
 	public void testToManageTopNode(IElementType type, IElementType containerType) {
 		int i=0;
-		System.out.println(" print :" + (i++));
 		testToCreateANode(type);
-		System.out.println(" print :" + (i++));
 		testDestroy(type);
-		System.out.println(" print :" + (i++));
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		System.out.println(" print :" + (i++));
 		testViewDeletion(type);
-		System.out.println(" print :" + (i++));
 		testDrop(type);
-		System.out.println(" print :" + (i++));
 		testChangeContainer(type, containerType);
 	}
 

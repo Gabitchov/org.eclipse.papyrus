@@ -88,18 +88,12 @@ public class TestContainmentLink extends TestLink {
 		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
 		assertTrue(DESTROY_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==4);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION, ((Element)source.resolveSemanticElement()).getOwnedElements().size()==0);
 
-		EditingDomainUndoContext undoContext= new EditingDomainUndoContext(getEditingDomain());
-		try{
-			OperationHistoryFactory.getOperationHistory().undo(undoContext, new NullProgressMonitor(), null);
-		}catch (Exception e) {
-			System.err.println(e);
-		}
-
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==3);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size()==1);
