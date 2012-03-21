@@ -72,9 +72,9 @@ public class ControlledElementEditHelperAdvice extends AbstractEditHelperAdvice 
 					/*
 					 * Move related diagrams
 					 */
-					ICommand modeDiagramsCommand = getMoveDiagramsCommand(container, sourceEObject);
-					if(modeDiagramsCommand != null) {
-						cc.compose(modeDiagramsCommand);
+					ICommand moveDiagramsCommand = getMoveDiagramsCommand(container, sourceEObject);
+					if(moveDiagramsCommand != null) {
+						cc.compose(moveDiagramsCommand);
 					}
 					return cc;
 				}
@@ -87,7 +87,7 @@ public class ControlledElementEditHelperAdvice extends AbstractEditHelperAdvice 
 		/*
 		 * Get all diagram from source EObject (its diagram and its descendant)
 		 */
-		List<Diagram> initialDiagrams = NotationUtils.getDiagrams(container);
+		List<Diagram> initialDiagrams = NotationUtils.getAllDescendantDiagramsInResource(sourceEObject, getDiagramContainer(sourceEObject));
 
 		/*
 		 * Get the notation model of the container

@@ -53,8 +53,8 @@ import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
@@ -87,7 +87,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 
 	protected EObject eObject;
 
-	protected ModelSet modelSet;
+	protected DiResourceSet modelSet;
 
 	protected Resource controlledModel;
 
@@ -112,8 +112,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		addContext(new EditingDomainUndoContext(domain));
 
 		ResourceSet set = domain.getResourceSet();
-		if (set instanceof ModelSet) {
-			modelSet = (ModelSet) set;
+		if (set instanceof DiResourceSet) {
+			modelSet = (DiResourceSet) set;
 		}
 	}
 
@@ -195,7 +195,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @return
 	 */
 	protected List<Diagram> getDiagrams(EObject eObject) {
-		return NotationUtils.getDiagrams(eObject);
+		Resource notationResource = modelSet.getAssociatedNotationResource(eObject);
+		return NotationUtils.getAllDescendantDiagramsInResource(eObject, notationResource);
 	}
 
 	//	/**

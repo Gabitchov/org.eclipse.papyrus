@@ -131,13 +131,12 @@ public class NotationUtils {
 	/**
 	 * Gets the all the diagrams contained in the specified ancestor eObject
 	 * 
-	 * @param notationResource
 	 * @param eObject
 	 * 
 	 * @return all the contained diagrams
 	 * 
 	 */
-	public static List<Diagram> getDiagrams(EObject eObject) {
+	public static List<Diagram> getAllDescendantDiagrams(EObject eObject) {
 		List<Diagram> diagrams = new ArrayList<Diagram>();
 		IModelSetQueryAdapter typeCache = ModelSetQuery.getExistingTypeCacheAdapter(eObject);
 
@@ -154,6 +153,31 @@ public class NotationUtils {
 			}
 		}
 
+		return diagrams;
+	}
+
+	/**
+	 * Gets the all the diagrams contained in the specified ancestor eObject and
+	 * currently stored in the specified notation resource.
+	 * 
+	 * @param notationResource
+	 * @param eObject
+	 * 
+	 * @return all the contained diagrams
+	 * 
+	 */
+	public static List<Diagram> getAllDescendantDiagramsInResource(EObject eObject, Resource notationResource) {
+		List<Diagram> diagrams = new ArrayList<Diagram>();
+		if(notationResource != null) {
+			for(EObject obj : notationResource.getContents()) {
+				if(obj instanceof Diagram) {
+					Diagram diagram = (Diagram)obj;
+					if(EcoreUtil.isAncestor(eObject, diagram.getElement())) {
+						diagrams.add(diagram);
+					}
+				}
+			}
+		}
 		return diagrams;
 	}
 

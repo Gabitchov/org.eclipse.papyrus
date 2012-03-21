@@ -57,6 +57,7 @@ import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
 import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
@@ -83,7 +84,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 
 	private EObject eObject;
 
-	private ModelSet modelSet;
+	private DiResourceSet modelSet;
 
 	private Resource controlledModel;
 
@@ -130,8 +131,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		deleteResources = deleteUncontrolledResources;
 		
 		ResourceSet set = domain.getResourceSet();
-		if (set instanceof ModelSet) {
-			modelSet = (ModelSet) set;
+		if (set instanceof DiResourceSet) {
+			modelSet = (DiResourceSet) set;
 		}
 	}
 
@@ -234,7 +235,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	private void uncontrolNotation(CompoundCommand compoundCommand) {
 		// First retrieve the Diagrams that match with the model object to Uncontrol
-		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(eObject);
+		final List<Diagram> controlledDiagrams = NotationUtils.getAllDescendantDiagramsInResource(eObject, modelSet.getAssociatedNotationResource(eObject));
 
 		if(!controlledDiagrams.isEmpty()) {
 			// PRE uncontrol operation
