@@ -17,6 +17,10 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import plugin="org.apache.log4j"/>
+   </requires>
+
    <plugin
          id="org.eclipse.papyrus.infra.gmfdiag.commands"
          download-size="0"
