@@ -32,7 +32,6 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
@@ -287,7 +286,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()), hyperlinkHelperFactory);
+					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (Element)((IGraphicalEditPart)getHost()).getNotationView().getElement(), ((IGraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((IGraphicalEditPart)getHost()).getNotationView().getElement()), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 
@@ -529,7 +528,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	// @unused
 	protected ArrayList<Diagram> getSubDiagrams() {
-		Element host = (Element)((GraphicalEditPart)getHost()).getNotationView().getElement();
+		Element host = (Element)((IGraphicalEditPart)getHost()).getNotationView().getElement();
 		ArrayList<Diagram> result = new ArrayList<Diagram>();
 		if(host != null) {
 			try {
@@ -679,20 +678,4 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		}
 	}
 
-	
-	/**
-	 * No need for disappearance delay.
-	 */
-	@Override
-	protected int getDisappearanceDelay() {
-		return 1000;
-	}
-	
-	/**
-	 * No need for appearance delay.
-	 */
-	@Override
-	protected int getAppearanceDelay() {
-		return 0;
-	}
 }
