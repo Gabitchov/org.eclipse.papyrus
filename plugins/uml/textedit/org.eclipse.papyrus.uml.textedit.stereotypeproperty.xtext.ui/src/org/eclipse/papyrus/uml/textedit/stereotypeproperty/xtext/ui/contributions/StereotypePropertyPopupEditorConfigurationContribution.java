@@ -76,8 +76,8 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 			return null;
 		}
 		graphicalEditPart = (IGraphicalEditPart)editPart;
-		if (editPart instanceof IAdaptable){
-			final AppliedStereotypeProperty appliedStereotypeProperty=(AppliedStereotypeProperty) ((IAdaptable)editPart).getAdapter(AppliedStereotypeProperty.class);
+		if(editPart instanceof IAdaptable) {
+			final AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty)((IAdaptable)editPart).getAdapter(AppliedStereotypeProperty.class);
 			AppliedStereotypePropertyJavaValidator.init(appliedStereotypeProperty);
 			// retrieves the XText injector
 			Injector injector = AppliedStereotypePropertyActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty");
@@ -89,47 +89,46 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 			// and then merge it in the context UML model if necessary
 			IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
 
-				@Override
 				public void reconcile(EObject modelObject, EObject xtextObject) {
 
-					Object[] result=AppliedStereotypePropertyEditorUtil.getPossibleElements(appliedStereotypeProperty);
+					Object[] result = AppliedStereotypePropertyEditorUtil.getPossibleElements(appliedStereotypeProperty);
 					//ref element stereotype application
-					if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("Stereotype")){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("Stereotype")) {
 						reconcileRefToStereotypeApp(appliedStereotypeProperty, xtextObject, result);
 						return;
 					}
 
 					//int
-					if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Integer")){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Integer")) {
 						reconcileInteger(appliedStereotypeProperty, xtextObject);
 						return;
 					}
 					//boolean
-					if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Boolean")){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Boolean")) {
 						reconcileBoolean(appliedStereotypeProperty, xtextObject);
 						return;
 					}
 					//string
-					if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("String")){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("String")) {
 						reconcileString(appliedStereotypeProperty, xtextObject);
 						return;
 					}
 					//dataType
-					if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("DataType")){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("DataType")) {
 						reconcileString(appliedStereotypeProperty, xtextObject);
 						return;
 					}
 					//primitiveType
-					if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("PrimitiveType")){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("PrimitiveType")) {
 						reconcileString(appliedStereotypeProperty, xtextObject);
 						return;
 					}
-					if(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Enumeration){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Enumeration) {
 						reconcileEnumerationLiteral(appliedStereotypeProperty, xtextObject, result);
 						return;
 					}
 					//ref element
-					if(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Element){
+					if(appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Element) {
 						reconcileRefToElement(appliedStereotypeProperty, xtextObject, result);
 						return;
 
@@ -139,35 +138,38 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 				/**
 				 * this method is used to reconcile Enumeration literal with application of the stereotype
-				 * @param appliedStereotypeProperty the application of stereotype
-				 * @param xtextObject the AST of the grammar
-				 * @param possibleElement list of possible elements that can be used
+				 * 
+				 * @param appliedStereotypeProperty
+				 *        the application of stereotype
+				 * @param xtextObject
+				 *        the AST of the grammar
+				 * @param possibleElement
+				 *        list of possible elements that can be used
 				 */
 				protected void reconcileEnumerationLiteral(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject, Object[] possibleElement) {
-					ArrayList<NameExpression> eObjects=getAllElementRef(xtextObject);
+					ArrayList<NameExpression> eObjects = getAllElementRef(xtextObject);
 
 
 					//cardinality 1
-					if( appliedStereotypeProperty.getStereotypeProperty().getUpper()==1){
-						if (eObjects.size()==0){
+					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
+						if(eObjects.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
 							return;
-						}
-						else{
-							NameExpression nameExpression= eObjects.get(0);
-							String id= nameExpression.getId();
+						} else {
+							NameExpression nameExpression = eObjects.get(0);
+							String id = nameExpression.getId();
 							//EObject foundStereotypeApplication=AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, result);
-							EObject foundStereotypeApplication=null;
+							EObject foundStereotypeApplication = null;
 							//look for object
-							for (int i=0; i<possibleElement.length;i++){
-									if(possibleElement[i] instanceof EEnumLiteral&&((EEnumLiteral)possibleElement[i]).getName().equals(id)){
-										foundStereotypeApplication= (EEnumLiteral)possibleElement[i];
-									}
-									if(possibleElement[i] instanceof Enumerator&&((Enumerator)possibleElement[i]).getName().equals(id)){
-										updateProperties(appliedStereotypeProperty, (Enumerator)possibleElement[i]);
-									}
+							for(int i = 0; i < possibleElement.length; i++) {
+								if(possibleElement[i] instanceof EEnumLiteral && ((EEnumLiteral)possibleElement[i]).getName().equals(id)) {
+									foundStereotypeApplication = (EEnumLiteral)possibleElement[i];
+								}
+								if(possibleElement[i] instanceof Enumerator && ((Enumerator)possibleElement[i]).getName().equals(id)) {
+									updateProperties(appliedStereotypeProperty, possibleElement[i]);
+								}
 							}
-							if( foundStereotypeApplication!=null){
+							if(foundStereotypeApplication != null) {
 								updateProperties(appliedStereotypeProperty, foundStereotypeApplication);
 							}
 						}
@@ -176,23 +178,26 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 				/**
 				 * this method is used to reconcile references to Stereotype Application with the current application of the stereotype
-				 * @param appliedStereotypeProperty the application of stereotype
-				 * @param xtextObject the AST of the grammar
-				 * @param possibleElement list of possible elements that can be used
+				 * 
+				 * @param appliedStereotypeProperty
+				 *        the application of stereotype
+				 * @param xtextObject
+				 *        the AST of the grammar
+				 * @param possibleElement
+				 *        list of possible elements that can be used
 				 */
 				@SuppressWarnings("rawtypes")
 				protected void reconcileRefToStereotypeApp(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject, Object[] result) {
-					ArrayList<NameExpression> eObjects=getAllElementRef(xtextObject);
+					ArrayList<NameExpression> eObjects = getAllElementRef(xtextObject);
 
 					//cardinality 1
-					if( appliedStereotypeProperty.getStereotypeProperty().getUpper()==1){
-						if (eObjects.size()==0){
+					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
+						if(eObjects.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
 							return;
-						}
-						else{
-							NameExpression nameExpression= eObjects.get(0);
-							EObject foundStereotypeApplication=AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(nameExpression, result);
+						} else {
+							NameExpression nameExpression = eObjects.get(0);
+							EObject foundStereotypeApplication = AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(nameExpression, result);
 							updateProperties(appliedStereotypeProperty, foundStereotypeApplication);
 							return;
 						}
@@ -201,19 +206,18 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 					}
 					//cardinality *
-					else{
-						if (eObjects.size()==0){
+					else {
+						if(eObjects.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
-						}
-						else{
+						} else {
 							//iterate on NameExpression
-							ArrayList<EObject> stereotypeApplicationList= new ArrayList<EObject>();
-							Iterator<NameExpression> iterator= eObjects.iterator();
+							ArrayList<EObject> stereotypeApplicationList = new ArrayList<EObject>();
+							Iterator<NameExpression> iterator = eObjects.iterator();
 							while(iterator.hasNext()) {
 								NameExpression nameExpression = iterator.next();
-								EObject foundStereotypeApplication=AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(nameExpression, result);
-								if(foundStereotypeApplication!=null){
+								EObject foundStereotypeApplication = AppliedStereotypePropertyEditorUtil.getApplicationStereotypeFor(nameExpression, result);
+								if(foundStereotypeApplication != null) {
 									stereotypeApplicationList.add(foundStereotypeApplication);
 								}
 							}
@@ -227,36 +231,36 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 				/**
 				 * this method is used to reconcile integer with the current application of the stereotype
-				 * @param appliedStereotypeProperty the application of stereotype
-				 * @param xtextObject the AST of the grammar
+				 * 
+				 * @param appliedStereotypeProperty
+				 *        the application of stereotype
+				 * @param xtextObject
+				 *        the AST of the grammar
 				 */
 				@SuppressWarnings({ "rawtypes", "unchecked" })
 				protected void reconcileInteger(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject) {
-					ArrayList<INTEGER_LITERAL> intList=AppliedStereotypePropertyEditorUtil.get_INTEGER(xtextObject);
-					if( appliedStereotypeProperty.getStereotypeProperty().getUpper()==1){
-						if (intList.size()==0){
+					ArrayList<INTEGER_LITERAL> intList = AppliedStereotypePropertyEditorUtil.get_INTEGER(xtextObject);
+					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
+						if(intList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
 							return;
-						}
-						else{
-							INTEGER_LITERAL theint= intList.get(0);
-							Integer value=new Integer(theint.getValue());
+						} else {
+							INTEGER_LITERAL theint = intList.get(0);
+							Integer value = new Integer(theint.getValue());
 							updateProperties(appliedStereotypeProperty, value.intValue());
 							return;
 						}
-					}
-					else{
-						if (intList.size()==0){
+					} else {
+						if(intList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
-						}
-						else{
+						} else {
 							//iterate on NameExpression
-							ArrayList resultList= new ArrayList();
-							Iterator<INTEGER_LITERAL> iterator= resultList.iterator();
+							ArrayList resultList = new ArrayList();
+							Iterator<INTEGER_LITERAL> iterator = resultList.iterator();
 							while(iterator.hasNext()) {
-								INTEGER_LITERAL theint = (INTEGER_LITERAL)iterator.next();
-								Integer value=new Integer(theint.getValue());
+								INTEGER_LITERAL theint = iterator.next();
+								Integer value = new Integer(theint.getValue());
 								resultList.add(value.intValue());
 							}
 							updateProperties(appliedStereotypeProperty, resultList);
@@ -264,39 +268,40 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 						}
 					}
 				}
+
 				/**
 				 * this method is used to reconcile boolean with the current application of the stereotype
-				 * @param appliedStereotypeProperty the application of stereotype
-				 * @param xtextObject the AST of the grammar
+				 * 
+				 * @param appliedStereotypeProperty
+				 *        the application of stereotype
+				 * @param xtextObject
+				 *        the AST of the grammar
 				 */
-				
+
 				@SuppressWarnings("rawtypes")
 				protected void reconcileBoolean(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject) {
-					ArrayList<BOOLEAN_LITERAL> booleanList=AppliedStereotypePropertyEditorUtil.get_BOOLEAN(xtextObject);
-					if( appliedStereotypeProperty.getStereotypeProperty().getUpper()==1){
-						if (booleanList.size()==0){
+					ArrayList<BOOLEAN_LITERAL> booleanList = AppliedStereotypePropertyEditorUtil.get_BOOLEAN(xtextObject);
+					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
+						if(booleanList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
 							return;
-						}
-						else{
-							BOOLEAN_LITERAL theboolean= booleanList.get(0);
-							Boolean value=new Boolean(theboolean.getValue().toString());
+						} else {
+							BOOLEAN_LITERAL theboolean = booleanList.get(0);
+							Boolean value = new Boolean(theboolean.getValue().toString());
 							updateProperties(appliedStereotypeProperty, value.booleanValue());
 							return;
 						}
-					}
-					else{
-						if (booleanList.size()==0){
+					} else {
+						if(booleanList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
-						}
-						else{
+						} else {
 							//iterate on NameExpression
-							ArrayList<Boolean> resultList= new ArrayList<Boolean>();
-							Iterator<BOOLEAN_LITERAL> iterator= booleanList.iterator();
+							ArrayList<Boolean> resultList = new ArrayList<Boolean>();
+							Iterator<BOOLEAN_LITERAL> iterator = booleanList.iterator();
 							while(iterator.hasNext()) {
 								BOOLEAN_LITERAL theboolean = iterator.next();
-								Boolean value=new Boolean(theboolean.getValue().toString());
+								Boolean value = new Boolean(theboolean.getValue().toString());
 								resultList.add(value.booleanValue());
 							}
 							updateProperties(appliedStereotypeProperty, resultList);
@@ -307,24 +312,27 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 				/**
 				 * this method is used to reconcile references element with the current application of the stereotype
-				 * @param appliedStereotypeProperty the application of stereotype
-				 * @param xtextObject the AST of the grammar
-				 * @param possibleElement list of possible elements that can be used
+				 * 
+				 * @param appliedStereotypeProperty
+				 *        the application of stereotype
+				 * @param xtextObject
+				 *        the AST of the grammar
+				 * @param possibleElement
+				 *        list of possible elements that can be used
 				 */
 				@SuppressWarnings("rawtypes")
 				protected void reconcileRefToElement(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject, Object[] result) {
-					ArrayList<NameExpression> eObjects=getAllElementRef(xtextObject);
+					ArrayList<NameExpression> eObjects = getAllElementRef(xtextObject);
 
 
 					//cardinality 1
-					if( appliedStereotypeProperty.getStereotypeProperty().getUpper()==1){
-						if (eObjects.size()==0){
+					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
+						if(eObjects.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
 							return;
-						}
-						else{
-							NameExpression nameExpression= eObjects.get(0);
-							EObject foundStereotypeApplication=AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, result);
+						} else {
+							NameExpression nameExpression = eObjects.get(0);
+							EObject foundStereotypeApplication = AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, result);
 							updateProperties(appliedStereotypeProperty, foundStereotypeApplication);
 							return;
 						}
@@ -333,19 +341,18 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 					}
 					//cardinality *
-					else{
-						if (eObjects.size()==0){
+					else {
+						if(eObjects.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
-						}
-						else{
+						} else {
 							//iterate on NameExpression
-							ArrayList<EObject> stereotypeApplicationList= new ArrayList<EObject>();
-							Iterator<NameExpression> iterator= eObjects.iterator();
+							ArrayList<EObject> stereotypeApplicationList = new ArrayList<EObject>();
+							Iterator<NameExpression> iterator = eObjects.iterator();
 							while(iterator.hasNext()) {
 								NameExpression nameExpression = iterator.next();
-								EObject foundStereotypeApplication=AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, result);
-								if(foundStereotypeApplication!=null){
+								EObject foundStereotypeApplication = AppliedStereotypePropertyEditorUtil.getNamedElementFor(nameExpression, result);
+								if(foundStereotypeApplication != null) {
 									stereotypeApplicationList.add(foundStereotypeApplication);
 								}
 							}
@@ -360,34 +367,34 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 				/**
 				 * this method is used to reconcile Strings with the current application of the stereotype
-				 * @param appliedStereotypeProperty the application of stereotype
-				 * @param xtextObject the AST of the grammar
+				 * 
+				 * @param appliedStereotypeProperty
+				 *        the application of stereotype
+				 * @param xtextObject
+				 *        the AST of the grammar
 				 */
 				@SuppressWarnings("rawtypes")
 				protected void reconcileString(final AppliedStereotypeProperty appliedStereotypeProperty, EObject xtextObject) {
-					ArrayList<STRING_LITERAL> theStringList=AppliedStereotypePropertyEditorUtil.get_STRING(xtextObject);
-					if( appliedStereotypeProperty.getStereotypeProperty().getUpper()==1){
-						if (theStringList.size()==0){
+					ArrayList<STRING_LITERAL> theStringList = AppliedStereotypePropertyEditorUtil.get_STRING(xtextObject);
+					if(appliedStereotypeProperty.getStereotypeProperty().getUpper() == 1) {
+						if(theStringList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, null);
 							return;
-						}
-						else{
-							STRING_LITERAL theString= theStringList.get(0);
-							updateProperties(appliedStereotypeProperty,theString.getValue());
+						} else {
+							STRING_LITERAL theString = theStringList.get(0);
+							updateProperties(appliedStereotypeProperty, theString.getValue());
 							return;
 						}
-					}
-					else{
-						if (theStringList.size()==0){
+					} else {
+						if(theStringList.size() == 0) {
 							updateProperties(appliedStereotypeProperty, new ArrayList());
 							return;
-						}
-						else{
+						} else {
 							//iterate on NameExpression
-							ArrayList<String> resultList= new ArrayList<String>();
-							Iterator<STRING_LITERAL> iterator= theStringList.iterator();
+							ArrayList<String> resultList = new ArrayList<String>();
+							Iterator<STRING_LITERAL> iterator = theStringList.iterator();
 							while(iterator.hasNext()) {
-								STRING_LITERAL theString=iterator.next();
+								STRING_LITERAL theString = iterator.next();
 								resultList.add(theString.getValue());
 							}
 							updateProperties(appliedStereotypeProperty, resultList);
@@ -398,18 +405,21 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 
 			};
 			return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new SemanticValidator());
+		} else {
+			return null;
 		}
-		else{ return null;}
 	}
 
 	/**
-	 * this method create and execute a command to update the value of the property for the stereotype  property
+	 * this method create and execute a command to update the value of the property for the stereotype property
+	 * 
 	 * @param appliedStereotypeProperty
-	 * @param value the value that will be set
+	 * @param value
+	 *        the value that will be set
 	 */
-	protected void updateProperties(final AppliedStereotypeProperty appliedStereotypeProperty, final Object value){
-		TransactionalEditingDomain domain= graphicalEditPart.getEditingDomain();
-		RecordingCommand command = new RecordingCommand(domain,"UpdateAppliedStereotypeProperty") {
+	protected void updateProperties(final AppliedStereotypeProperty appliedStereotypeProperty, final Object value) {
+		TransactionalEditingDomain domain = graphicalEditPart.getEditingDomain();
+		RecordingCommand command = new RecordingCommand(domain, "UpdateAppliedStereotypeProperty") {
 
 			@Override
 			protected void doExecute() {
@@ -419,12 +429,13 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Popu
 		domain.getCommandStack().execute(command);
 
 	}
-	private ArrayList<NameExpression> getAllElementRef( EObject xtextObject){
-		ArrayList<NameExpression> result=new ArrayList<NameExpression>();
-		TreeIterator<EObject> iterator=xtextObject.eAllContents();
+
+	private ArrayList<NameExpression> getAllElementRef(EObject xtextObject) {
+		ArrayList<NameExpression> result = new ArrayList<NameExpression>();
+		TreeIterator<EObject> iterator = xtextObject.eAllContents();
 		while(iterator.hasNext()) {
 			EObject eObject = iterator.next();
-			if (eObject instanceof NameExpression){
+			if(eObject instanceof NameExpression) {
 				result.add((NameExpression)eObject);
 			}
 		}
