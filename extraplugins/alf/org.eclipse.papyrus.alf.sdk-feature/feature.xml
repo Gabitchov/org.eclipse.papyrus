@@ -31,28 +31,14 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <plugin
-         id="org.eclipse.papyrus.alf"
+         id="org.eclipse.papyrus.uml.alf"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.alf.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.operation.editor.xtext"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.operation.editor.xtext.ui"
+         id="org.eclipse.papyrus.uml.alf.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
