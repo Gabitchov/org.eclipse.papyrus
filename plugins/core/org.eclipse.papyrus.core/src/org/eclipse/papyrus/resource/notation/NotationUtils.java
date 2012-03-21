@@ -115,7 +115,7 @@ public class NotationUtils {
 	public static List<Diagram> getAssociatedDiagrams(EObject eObject) {
 		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
 			public boolean apply(EStructuralFeature.Setting setting) {
-				return setting.getEObject() instanceof Diagram;
+				return setting.getEObject() instanceof Diagram && NotationPackage.Literals.VIEW__ELEMENT.equals(setting.getEStructuralFeature());
 			}
 		};
 		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
