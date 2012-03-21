@@ -3,20 +3,10 @@ Export-Package: org.eclipse.papyrus.controlmode,
  org.eclipse.papyrus.controlmode.action,
  org.eclipse.papyrus.controlmode.commands,
  org.eclipse.papyrus.controlmode.ui
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.edit.ui,
- org.eclipse.gmf.runtime.notation,
- org.eclipse.ui.navigator,
+Require-Bundle: org.eclipse.ui.navigator,
  org.eclipse.papyrus.modelexplorer,
- org.eclipse.papyrus.core,
  org.eclipse.papyrus.controlmode.history,
- org.eclipse.papyrus.ui.toolbox,
- org.eclipse.papyrus.core.resourceloading,
- org.eclipse.papyrus.core.resourceloading.preferences,
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.2",
- org.eclipse.papyrus.service.edit;bundle-version="0.8.2",
- com.google.collect;bundle-version="1.0.0"
+ org.eclipse.papyrus.ui.toolbox
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

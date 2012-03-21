@@ -18,10 +18,6 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -56,14 +52,11 @@ public class MoveDiagramCommand extends AbstractTransactionalCommand {
 		getAffectedFiles().add(WorkspaceSynchronizer.getFile(newContainingRessource));
 	}
 
-	private static IStatus errorStatus = new Status(IStatus.ERROR, Activator.ID, "Unable to add diagram to new ressource");////$NON-NLS-1$
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		EList<EObject> contents = newContainingRessource.getContents();
-		if (contents == null){
-			return new CommandResult(errorStatus);
+		if (newContainingRessource != null) {
+			newContainingRessource.getContents().add(diagram);
 		}
-		contents.add(diagram);
 		return CommandResult.newOKCommandResult();
 	}
 }

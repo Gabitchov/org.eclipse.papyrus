@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -22,6 +23,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,7 +32,11 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.adaptor.gmf.MoveDiagramCommand;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.diagram.common.commands.MoveStereotypeApplicationsCommand;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.uml2.uml.Element;
 
@@ -45,14 +51,17 @@ import com.google.common.collect.UnmodifiableIterator;
 public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
-	 * This case will handle moving an element from a resource to another (use case : controled mode. This will move into the new ressource :
-	 * -> The stereotype linked to this element
-	 * 
+	 * This case will handle moving an element from a resource to another (use case : control mode).
+	 * This will move into the new resource :
+	 *  -> The stereotypes linked to this element and its descendant
+	 *  -> The diagrams linked to this element and its descendant
 	 */
 	@Override
 	protected ICommand getAfterMoveCommand(MoveRequest request) {
-		Map elementsToMove = request.getElementsToMove();
+		Map<?, ?> elementsToMove = request.getElementsToMove();
 		EObject container = request.getTargetContainer();
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(getEditingDomain(container), "Move related elements to new resource");////$NON-NLS-1$
+
 		for(Object o : elementsToMove.keySet()) {
 			EObject sourceEObject = null;
 			if(o instanceof EObject) {
@@ -60,63 +69,81 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 			} else if(o instanceof IAdaptable) {
 				sourceEObject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
 			}
-			Resource eResource = sourceEObject.eResource();
-			Resource containerEResource = container.eResource();
-			if(sourceEObject != null && eResource != null && container != null && containerEResource != null) {
+
+			if(sourceEObject != null && container != null && container.eResource() != null && container.eResource() != null) {
+				final Resource eResource = sourceEObject.eResource();
+				Resource containerEResource = container.eResource();
 				/*
 				 * Test if the moving element is going to be in a new resource
 				 */
-				if(!eResource.equals(containerEResource)) {
-					CompositeTransactionalCommand cc = new CompositeTransactionalCommand(getEditingDomain(container), "Move related element to new resource");////$NON-NLS-1$
+				if(!eResource.equals(containerEResource) && !AdapterFactoryEditingDomain.isControlled(sourceEObject)) {
 					/*
-					 * Iterator of all descednant
+					 * Move related diagrams
 					 */
-					UnmodifiableIterator<EObject> descendantElementIterator = Iterators.filter(sourceEObject.eAllContents(), new Predicate<EObject>() {
-
-						public boolean apply(EObject input) {
-							return input instanceof Element;
-						}
-					});
-					/*
-					 * Iterator of the source element
-					 */
-					UnmodifiableIterator<EObject> elementIterator = Iterators.forArray(sourceEObject);
-					/*
-					 * unifiedIterator = (elementIterator) U (descendantElementIterator)
-					 */
-					Iterator<EObject> unifiedIterator = Iterators.concat(elementIterator,descendantElementIterator);
-					while (unifiedIterator.hasNext()){
-						/*
-						 * Move related diagrams
-						 */
-						EObject next = unifiedIterator.next();
-						ICommand modeStereotypeCommand = getMoveStereotypeCommand(container, next);
-						if(modeStereotypeCommand != null) {
-							cc.compose(modeStereotypeCommand);
-						}						
+					ICommand moveDiagramsCommand = getMoveDiagramsCommand(container, sourceEObject);
+					if(moveDiagramsCommand != null) {
+						cc.compose(moveDiagramsCommand);
 					}
-					return cc;
+					/*
+					 * Move related stereotypes
+					 */
+					addAllMoveStereotypeCommand(cc, sourceEObject, container);
 				}
 			}
 		}
-		return super.getAfterMoveCommand(request);
+
+		if (!cc.isEmpty()) {
+			return cc;
+		}
+
+		return null;
 	}
+
+	protected void addAllMoveStereotypeCommand(CompositeTransactionalCommand cc, final EObject sourceEObject, EObject container) {
+		/*
+		 * Iterator of all descendant contained in the same resource as the source
+		 */
+		UnmodifiableIterator<EObject> descendantElementIterator = Iterators.filter(sourceEObject.eAllContents(), new Predicate<EObject>() {
+
+			public boolean apply(EObject input) {
+				return input.eResource() != null && input.eResource().equals(sourceEObject.eResource());
+			}
+		});
+		/*
+		 * Iterator of the source element
+		 */
+		UnmodifiableIterator<EObject> elementIterator = Iterators.singletonIterator(sourceEObject);
+		/*
+		 * unifiedIterator = (elementIterator) U (descendantElementIterator)
+		 */
+		Iterator<EObject> unifiedIterator = Iterators.concat(elementIterator, descendantElementIterator);
+		while (unifiedIterator.hasNext()){
+			/*
+			 * Move related diagrams
+			 */
+			EObject next = unifiedIterator.next();
+			ICommand modeStereotypeCommand = getMoveStereotypeCommand(container, next);
+			if(modeStereotypeCommand != null) {
+				cc.compose(modeStereotypeCommand);
+			}						
+		}
+	}
+
 	/**
 	 * Move all the stereotype of an element into a new resource
 	 * @param container
 	 * @param sourceEObject
 	 * @return
 	 */
-	protected ICommand getMoveStereotypeCommand(EObject container, EObject sourceEObject) {
-		if(sourceEObject instanceof Element) {
-			Element element = (Element)sourceEObject;
+	protected ICommand getMoveStereotypeCommand(EObject container, EObject obj) {
+		if(obj instanceof Element) {
+			Element element = (Element)obj;
 			EList<EObject> stereotypeApplications = element.getStereotypeApplications();
 			if(stereotypeApplications != null && !stereotypeApplications.isEmpty()) {
 				Resource eResource = container.eResource();
 				if(eResource != null) {
 					if(eResource.isLoaded()){
-						MoveStereotypeApplicationsCommand mvSteCommand = new MoveStereotypeApplicationsCommand(getEditingDomain(container), element, eResource);
-						return mvSteCommand;
+						return new MoveStereotypeApplicationsCommand(getEditingDomain(container), element, eResource);
 					} else {
 						return new UnexecutableCommand(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The new containing resource is not loaded"));////$NON-NLS-1$
 					}
@@ -125,6 +152,33 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 		return null;
 	}
+
+	protected ICommand getMoveDiagramsCommand(EObject container, EObject sourceEObject) {
+		/*
+		 * Get all diagram from source EObject (its diagram and its descendant)
+		 */
+		List<Diagram> initialDiagrams = NotationUtils.getAllDescendantDiagramsInResource(sourceEObject, getDiagramContainer(sourceEObject));
+
+		/*
+		 * Get the notation model of the container
+		 * 1. If not loaded unexecutable command
+		 */
+		Resource diagramContainer = getDiagramContainer(container);
+		if(diagramContainer == null) {
+			return new UnexecutableCommand(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unable to find a notation model to store diagram elements"));////$NON-NLS-1$
+		}
+		TransactionalEditingDomain editingDomain = getEditingDomain(container);
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, "Move related diagrams in new resource");////$NON-NLS-1$
+		for(Diagram d : initialDiagrams) {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("Move ");
+			stringBuilder.append(d.getName());
+			stringBuilder.append("into a new resource");
+			cc.compose(new MoveDiagramCommand(editingDomain, stringBuilder.toString(), d, diagramContainer));
+		}
+		return cc;
+	}
+
 	/**
 	 * Get the editing domain from an {@link EObject}
 	 * @param eObject
@@ -133,9 +187,24 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 	protected TransactionalEditingDomain getEditingDomain(EObject eObject) {
 		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		if(editingDomain instanceof TransactionalEditingDomain) {
-			TransactionalEditingDomain trEditingDomain = (TransactionalEditingDomain)editingDomain;
-			return trEditingDomain;
+			return (TransactionalEditingDomain)editingDomain;
 		}
-		throw new RuntimeException("Unable to retreive the transactionnal editin domain");////$NON-NLS-1$
+		throw new RuntimeException("Unable to retrieve the transactionnal editin domain");////$NON-NLS-1$
+	}
+
+	/**
+	 * Get the EObject which contains diagram in the new ressource
+	 * 
+	 * @param containerRessourceContentes
+	 * @return
+	 */
+	protected Resource getDiagramContainer(EObject newEobjectContainer) {
+		ResourceSet rs = newEobjectContainer.eResource().getResourceSet();
+		Resource diagramContainer = null;
+		if(rs instanceof DiResourceSet) {
+			DiResourceSet diResourceSet = (DiResourceSet)rs;
+			diagramContainer = diResourceSet.getAssociatedNotationResource(newEobjectContainer);
+		}
+		return diagramContainer;
 	}
 }
