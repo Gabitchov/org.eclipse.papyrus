@@ -15,7 +15,9 @@ package org.eclipse.papyrus.wizards.category;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
@@ -70,7 +72,21 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 				try {
 					resourceURI = myRoot.eResource().getURI();
 					// as resource already exists, use rs.getResource() not rs.createResource() here
-					resource = getResourceSet().getResource(resourceURI, true);
+					try {
+						resource = getResourceSet().getResource(resourceURI, true);
+					}
+					catch (WrappedException e){
+						if (e.getCause() instanceof ClassNotFoundException){
+							// in this case Papyrus can work in degraded mode
+							resource = getResourceSet().getResource(resourceURI, false);
+							if (resource == null){
+								throw e ;
+							}
+						}
+						else {
+							throw e;
+						}
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -284,6 +284,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("deprecation")
 	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
 		final Resource modelResource = diResourceSet.getAssociatedModelResource(container);
 		final Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
@@ -291,7 +292,13 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		
 		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
 		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelResource.getURI().toPlatformString(true))));
-		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(notationResource.getURI().toPlatformString(true))));
+
+		// if the diagram is creating the notation does not exist
+		Path notationPath = new Path(notationResource.getURI().toPlatformString(true));
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(notationPath);
+		if (file != null && file.exists()){
+			modifiedFiles.add(file);
+		}
 		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResource.getURI().toPlatformString(true))));
 
 		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {

@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
 
 /**
  * An abstract implmeentation of model. This class should be subclassed to fit
@@ -160,7 +161,10 @@ public abstract class AbstractBaseModel implements IModel {
 			resource = modelSet.getResource(resourceURI, true);
 		}
 		catch (WrappedException e){
-			resource = modelSet.getResource(resourceURI, false);
+			if (e.getCause() instanceof ClassNotFoundException){
+				// only this case is managed in degraded mode
+				resource = modelSet.getResource(resourceURI, false);
+			}
 			error = e ;
 		}
 		// call registered snippets

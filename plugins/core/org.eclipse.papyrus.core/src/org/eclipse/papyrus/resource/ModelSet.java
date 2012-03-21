@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.core.internal.resources.ResourceException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
@@ -145,15 +147,7 @@ public class ModelSet extends ResourceSetImpl {
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
 		Resource resource = null;
-		try{
-			resource = super.getResource(uri, loadOnDemand);
-		}
-		catch(WrappedException e){
-			resource = super.getResource(uri, false);
-			if (resource == null){
-				throw e;
-			}
-		}
+		resource = super.getResource(uri, loadOnDemand);
 		return setResourceOptions(resource);
 	}
 

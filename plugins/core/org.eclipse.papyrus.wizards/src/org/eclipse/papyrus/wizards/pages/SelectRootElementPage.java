@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -162,10 +163,11 @@ public class SelectRootElementPage extends WizardPage {
 			resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 		}
 		catch (WrappedException e) {
-			resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), false);
-			error(resource, e.getMessage());
-			if (resource == null){
-				throw e;
+			if (e.getCause() instanceof ClassNotFoundException){
+				resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), false);
+				if (resource == null){
+					throw e;
+				}
 			}
 		}
 		if (!resource.getErrors().isEmpty()){
