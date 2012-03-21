@@ -2715,6 +2715,18 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
              id="org.eclipse.papyrus.SharedEditingDomainID">
        </editingDomain>
     </listener>
+    <listener
+          class="org.eclipse.papyrus.diagram.activity.listeners.ObjectNodeListener">
+       <editingDomain
+             id="org.eclipse.papyrus.SharedEditingDomainID">
+       </editingDomain>
+    </listener>
+    <listener
+          class="org.eclipse.papyrus.diagram.activity.listeners.ObjectFlowListener">
+       <editingDomain
+             id="org.eclipse.papyrus.SharedEditingDomainID">
+       </editingDomain>
+    </listener>
     <!--
     <listener
           class="org.eclipse.papyrus.diagram.activity.activitygroup.listenner.GraphicalGroupChangeListener">
