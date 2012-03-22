@@ -112,15 +112,15 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(VIEW_DELETION +COMMAND_NULL,command);
 		assertTrue(VIEW_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(VIEW_DELETION +TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(VIEW_DELETION +TEST_THE_EXECUTION,compartment.getChildren().size()==0);
 		assertTrue(VIEW_DELETION +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
 		
-		diagramEditor.getEditingDomain().getCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(VIEW_DELETION +TEST_THE_UNDO,compartment.getChildren().size()==1);
 		assertTrue(VIEW_DELETION +TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
 		
-		diagramEditor.getEditingDomain().getCommandStack().redo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(VIEW_DELETION +TEST_THE_REDO,compartment.getChildren().size()==0);
 		assertTrue(VIEW_DELETION +TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
 		
@@ -152,13 +152,13 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(DESTROY_DELETION +COMMAND_NULL,command);
 		assertTrue(DESTROY_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,compartment.getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
-		diagramEditor.getEditingDomain().getCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		//assertTrue(DESTROY_DELETION +TEST_THE_UNDO,compartment.getChildren().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
-		diagramEditor.getEditingDomain().getCommandStack().redo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,compartment.getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
 	}
@@ -194,13 +194,13 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(DROP+COMMAND_NULL,command);
 		assertTrue(DROP +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DROP+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DROP +TEST_THE_EXECUTION,compartment.getChildren().size()!=0);
 		assertTrue(DROP +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
-		diagramEditor.getEditingDomain().getCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DROP+TEST_THE_UNDO,compartment.getChildren().size()==0);
 		assertTrue(DROP+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
-		diagramEditor.getEditingDomain().getCommandStack().redo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(DROP+TEST_THE_REDO,compartment.getChildren().size()!=0);
 		assertTrue(DROP+TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()!=0);
 		}
@@ -234,7 +234,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(CONTAINER_CREATION+COMMAND_NULL,command);
 		assertTrue(CONTAINER_CREATION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(CONTAINER_CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CONTAINER_CREATION+TEST_THE_EXECUTION,getRootView().getChildren().size()==2);
 		GraphicalEditPart newContainerEditPart= (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
@@ -255,15 +255,15 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(CHANGE_CONTAINER,command);
 		assertTrue(CHANGE_CONTAINER+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(CHANGE_CONTAINER+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,compartment.getChildren().size()==0);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==1);
-		diagramEditor.getEditingDomain().getCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CHANGE_CONTAINER+TEST_THE_UNDO,compartment.getChildren().size()==1);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==1);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==0);
-		diagramEditor.getEditingDomain().getCommandStack().redo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,compartment.getChildren().size()==0);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_REDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
 		assertTrue(CHANGE_CONTAINER+TEST_THE_EXECUTION,newCompartment.getChildren().size()==1);
@@ -295,12 +295,12 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(CREATION+COMMAND_NULL,command);
 		assertTrue(CREATION+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: "+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION+TEST_THE_EXECUTION,compartment.getChildren().size()==1);
-		diagramEditor.getEditingDomain().getCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(CREATION+TEST_THE_UNDO,compartment.getChildren().size()==0);
 		assertTrue(CREATION+TEST_THE_UNDO,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==0);
-		diagramEditor.getEditingDomain().getCommandStack().redo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue("CREATION: "+TEST_THE_REDO,compartment.getChildren().size()==1);
 						
 	}
@@ -321,7 +321,7 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		assertNotNull(CREATION+COMMAND_NULL,command);
 		assertTrue(CREATION+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(CREATION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CREATION+TEST_THE_EXECUTION,getRootView().getChildren().size()==1);
 		topNode = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
 	}
@@ -358,9 +358,9 @@ public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 		testToCreateATopNode(topNodeType);
 		testToCreateANode(type,containerType);
 		testDestroy(type,containerType);
-		diagramEditor.getEditingDomain().getCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testViewDeletion(type,containerType);
-		//diagramEditor.getEditingDomain().getCommandStack().undo();
+		//diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testDrop(type,containerType);
 		testChangeContainer(topNodeType,type, containerType);
 	}

@@ -114,19 +114,10 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
 		//getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		//getDiagramEditPart().getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-		getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getDiagramEditPart().getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==0);
-		
-		EditingDomainUndoContext undoContext= new EditingDomainUndoContext(getEditingDomain());
-		try{
-		OperationHistoryFactory.getOperationHistory().undo(undoContext, new NullProgressMonitor(), null);
-		}catch (Exception e) {
-			System.err.println(e);
-		}
-		
-		//diagramEditor.getEditingDomain().getCommandStack().undo();
-		//diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getDiagramEditPart().getChildren().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();

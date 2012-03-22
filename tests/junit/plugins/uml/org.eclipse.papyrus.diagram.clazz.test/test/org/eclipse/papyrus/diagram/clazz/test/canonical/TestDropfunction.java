@@ -72,13 +72,13 @@ public void testDropWithOrder(){
 			assertTrue(CREATION+TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 			assertTrue("CREATION: "+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
 			//creation of label
-			diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 			assertTrue(CREATION+TEST_THE_EXECUTION,compartment.getChildren().size()==1);
 			//deletion view
 			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 			command = ((GraphicalEditPart)compartment.getChildren().get(0)).getCommand(deleteViewRequest);
 			assertNotNull(VIEW_DELETION +COMMAND_NULL,command);
-			diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		}
 
 	}
@@ -114,7 +114,7 @@ public void testDropWithOrder(){
 		assertNotNull(DROP+COMMAND_NULL,command);
 		assertTrue(DROP +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DROP+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
-		diagramEditor.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(DROP +TEST_THE_EXECUTION,compartment.getChildren().size()==MAX);
 		assertTrue(DROP +TEST_THE_EXECUTION,((Element)((View)getTopEditPart().getModel()).getElement()).getOwnedElements().size()==MAX);
 		
