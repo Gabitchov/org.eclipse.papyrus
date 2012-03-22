@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
-import org.eclipse.papyrus.table.assign.utils.AssignCommentDeleter;
+import org.eclipse.papyrus.marte.table.assign.utils.AssignCommentDeleter;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 

@@ -6,6 +6,11 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
+    <references referenceName="to">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
   </types>
   <availableQuerySets>assign</availableQuerySets>
 </uicustom:MetamodelView>

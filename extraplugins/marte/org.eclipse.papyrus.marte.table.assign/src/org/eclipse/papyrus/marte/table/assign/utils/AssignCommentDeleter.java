@@ -11,7 +11,7 @@
  *  Olivier Mélois (ATOS) olivier.melois@atos.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.table.assign.utils;
+package org.eclipse.papyrus.marte.table.assign.utils;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
