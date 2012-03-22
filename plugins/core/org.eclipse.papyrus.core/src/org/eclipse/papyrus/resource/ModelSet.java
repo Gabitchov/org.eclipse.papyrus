@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -58,6 +59,10 @@ import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
  * 
  * @author cedric dumoulin
  * 
+ */
+/**
+ * @author mvelten
+ *
  */
 public class ModelSet extends ResourceSetImpl {
 	/**
@@ -149,10 +154,50 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
+	 * Retrieve and load the associated resource which have the given extension.
+	 * 
+	 * @param modelElement
+	 * @param associatedResourceExtension
+	 * @return
+	 */
+	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension) {
+		if(modelElement != null) {
+			return getAssociatedResource(modelElement.eResource(), associatedResourceExtension);
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieve and load the associated resource which have the given extension.
+	 * 
+	 * @param modelResource
+	 * @param associatedResourceExtension
+	 * @return
+	 */
+	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
+		Resource r = null;
+		if (modelResource != null) {
+			URI trimmedModelURI = modelResource.getURI().trimFileExtension();
+			try {
+				r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
+			} catch (WrappedException e){
+				if (e.getCause() instanceof ClassNotFoundException){
+					r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), false);
+					if (r == null){
+						throw e;
+					}
+				}
+			} catch (Exception e) {
+			}
+		}
+		return setResourceOptions(r);
+	}
+
+	/**
 	 * This method is called by getResource and createResource before returning
 	 * the resource to the caller so we can set options on the resource.
 	 * 
-	 * @param r
+	 * @param r, can be null
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {

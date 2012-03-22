@@ -24,11 +24,13 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommandWithTargetResource;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
 
@@ -145,10 +147,30 @@ public class NavigationHelper {
 			});
 		}
 
-		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(diResourceSet, navElement.getElement(), diagramName);
+		ICommand createDiagCommand = null;
+		if (creationCommandInterface instanceof ICreationCommandWithTargetResource) {
+			Resource targetResource = getTargetResource(navElement);
+			createDiagCommand = ((ICreationCommandWithTargetResource)creationCommandInterface)
+				.getCreateDiagramCommand(diResourceSet, targetResource, navElement.getElement(), diagramName);
+		} else {
+			createDiagCommand = creationCommandInterface.getCreateDiagramCommand(diResourceSet, navElement.getElement(), diagramName);
+		}
+
 		compositeCommand.add(createDiagCommand);
 		compositeCommand.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createDiagCommand));
 
 		return compositeCommand;
+	}
+
+	public static Resource getTargetResource(NavigableElement navElement) {
+		// find the first ExistingNavigableElement
+		// and retrieve the resource from the existing element
+		while(navElement instanceof CreatedNavigableElement) {
+			navElement = ((CreatedNavigableElement)navElement).getPreviousNavigableElement();
+		}
+		if (navElement != null && navElement.getElement() != null) {
+			return navElement.getElement().eResource();
+		}
+		return null;
 	}
 }

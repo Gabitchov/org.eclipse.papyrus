@@ -44,13 +44,15 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommandWithTargetResource;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.swt.widgets.Display;
@@ -71,7 +73,7 @@ import org.eclipse.ui.PlatformUI;
  * @author cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends AbstractHandler implements IHandler, ICreationCommand {
+public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends AbstractHandler implements IHandler, ICreationCommandWithTargetResource {
 
 	/**
 	 * Method called when the command is invoked.
@@ -280,15 +282,28 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		};
 		transactionalEditingDomain.getCommandStack().execute(command);
 	}
+	
+	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
+		return getCreateDiagramCommand(diResourceSet, null, container, diagramName);
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("deprecation")
-	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
-		final Resource modelResource = diResourceSet.getAssociatedModelResource(container);
-		final Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
-		final Resource diResource = diResourceSet.getAssociatedDiResource(container);
+	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final Resource targetResource, final EObject container, final String diagramName) {
+		final Resource modelResource;
+		final Resource notationResource;
+		final Resource diResource;
+		if (targetResource == null) {
+			modelResource = diResourceSet.getAssociatedModelResource(container);
+			notationResource = diResourceSet.getAssociatedNotationResource(container);
+			diResource = diResourceSet.getAssociatedDiResource(container);
+		} else {
+			modelResource = targetResource;
+			notationResource = diResourceSet.getAssociatedResource(targetResource, NotationModel.NOTATION_FILE_EXTENSION);
+			diResource = diResourceSet.getAssociatedResource(targetResource, DiModel.DI_FILE_EXTENSION);
+		}
 		
 		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
 		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelResource.getURI().toPlatformString(true))));

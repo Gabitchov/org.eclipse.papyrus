@@ -19,11 +19,9 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
 import org.eclipse.papyrus.resource.ModelException;
 import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
@@ -286,23 +284,6 @@ public class DiResourceSet extends ModelSet {
 			return modelElement.eResource();
 		}
 		return getModelResource();
-	}
-
-	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
-		URI trimmedModelURI = modelResource.getURI().trimFileExtension();
-		Resource r = null;
-		try {
-			r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
-		} catch (WrappedException e1){
-			if (e1.getCause() instanceof ClassNotFoundException){
-				r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension),false);
-				if (r == null){
-					throw e1;
-				}
-			}
-		} catch (Exception e) {
-		}
-		return r;
 	}
 
 	/**
