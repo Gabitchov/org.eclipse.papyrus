@@ -15,11 +15,9 @@ package org.eclipse.papyrus.uml.diagram.pkg;
 
 import org.eclipse.papyrus.navigation.CreateDiagramWithNavigationHandler;
 
-
 public class CreatePackageDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
 	public CreatePackageDiagramWithNavigationHandler() {
 		super(new PackageDiagramCreateCommand(), new PackageDiagramCreationCondition());
 	}
-
 }

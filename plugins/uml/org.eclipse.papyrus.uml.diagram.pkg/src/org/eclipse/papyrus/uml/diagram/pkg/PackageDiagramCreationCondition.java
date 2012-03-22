@@ -28,6 +28,4 @@ public class PackageDiagramCreationCondition extends PerspectiveContextDependenc
 		}
 		return false;
 	}
-
-
 }

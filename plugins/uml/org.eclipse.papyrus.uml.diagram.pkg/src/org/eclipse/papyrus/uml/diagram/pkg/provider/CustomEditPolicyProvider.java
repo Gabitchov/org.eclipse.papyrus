@@ -22,5 +22,4 @@ public class CustomEditPolicyProvider extends PackageDiagramEditPolicyProvider {
 		super.createEditPolicies(editPart);
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 	}
-
 }
