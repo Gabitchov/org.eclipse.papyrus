@@ -18,7 +18,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -52,7 +54,6 @@ import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -74,7 +75,12 @@ public class AssociationClassHelper extends ElementHelper {
 
 		CreateElementRequest request = new CreateElementRequest(domain, source, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
 		EditElementCommand c = new PropertyForComponentCreateCommand(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
@@ -86,7 +92,12 @@ public class AssociationClassHelper extends ElementHelper {
 
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();

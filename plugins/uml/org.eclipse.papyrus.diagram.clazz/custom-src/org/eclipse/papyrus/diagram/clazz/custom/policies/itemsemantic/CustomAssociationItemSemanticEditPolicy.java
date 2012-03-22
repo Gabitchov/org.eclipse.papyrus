@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
@@ -31,7 +32,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassLinkEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
@@ -74,8 +76,12 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(true);
+		
+		EObject selectedEObject = req.getElementToDestroy();
+		
+		
+		
+		CompoundCommand cmd = new CompoundCommand();
 		List<EObject> todestroy = new ArrayList<EObject>();
 		EObject mainObjectToDelete = req.getElementToDestroy();
 		todestroy.add(mainObjectToDelete);
@@ -84,12 +90,21 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 			Association association = (Association)mainObjectToDelete;
 			for(Property end : association.getMemberEnds()) {
 				if(end.getOwner() != association) {
-					todestroy.add(end);
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(end);
+					DestroyElementRequest Destructreq= new DestroyElementRequest(end, false);
+					if(provider != null) {
+						// Retrieve delete command from the Element Edit service
+						ICommand deleteCommand = provider.getEditCommand(Destructreq);
+						if(deleteCommand != null) {
+							cmd.add(new ICommandProxy( deleteCommand));
+						}
+					}
+					
 				}
 			}
 		}
-		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
-		return getGEFWrapper(cmd.reduce());
+		cmd.add(super.getDestroyElementCommand(req));
+		return cmd.unwrap();
 	}
 
 	/**
