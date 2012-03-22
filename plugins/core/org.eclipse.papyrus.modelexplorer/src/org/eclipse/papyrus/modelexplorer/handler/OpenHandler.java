@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.handler;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -49,6 +49,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 /**
  * This handler allows to Open Diagrams and Tables
@@ -156,7 +157,7 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 
 				
 			};
-			final ArrayList<IOpenable> list = Lists.newArrayList(Iterables.transform(Iterables.filter(usages, p), f));
+			final Set<IOpenable> list = Sets.newHashSet(Iterables.transform(Iterables.filter(usages, p), f));
 			IOpenable selected = null ;
 			if (list.isEmpty())
 			{
@@ -181,6 +182,9 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 				dialog.setAddCancelButton(true);
 				dialog.setTitle("Element Selection");
 				dialog.setMessage("This element is visible in several diagrams\nPlease choose the diagram to display :");
+				// Trick to use the modisco content provider getElements
+				// overriding the getRootElements methods allows the content to create the ModelElementItem
+				// needed for the label providers
 				dialog.setInput(new CustomizableModelContentProvider(Activator.getDefault().getCustomizationManager())
 				{
 
