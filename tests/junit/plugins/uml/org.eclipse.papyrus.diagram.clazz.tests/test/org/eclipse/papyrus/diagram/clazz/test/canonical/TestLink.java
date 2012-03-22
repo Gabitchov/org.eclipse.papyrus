@@ -121,6 +121,7 @@ public class TestLink extends AbstractPapyrusTestCase {
 
 
 		//DESTROY SEMANTIC+ VIEW
+		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==1);
 		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,source.getSourceConnections().size()==1);
 		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,getRootSemanticModel().getOwnedElements().size()==5);
 
@@ -131,14 +132,17 @@ public class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION +TEST_IF_THE_COMMAND_IS_CREATED,command!=UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION+TEST_IF_THE_COMMAND_CAN_BE_EXECUTED,command.canExecute()==true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,((Diagram)getRootView()).getEdges().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,source.getSourceConnections().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==4);
 
+		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,diagramEditor.getDiagramEditDomain().getDiagramCommandStack().canUndo()==true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-
+		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,((Diagram)getRootView()).getEdges().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,source.getSourceConnections().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==5);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		assertTrue(DESTROY_DELETION +INITIALIZATION_TEST,((Diagram)getRootView()).getEdges().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,source.getSourceConnections().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,getRootSemanticModel().getOwnedElements().size()==4);
 	}
