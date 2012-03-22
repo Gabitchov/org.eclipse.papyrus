@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
  org.eclipse.papyrus.uml.textedit.property.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.property.xtext.generator,
  org.eclipse.papyrus.uml.textedit.property.xtext.parser.antlr,
  org.eclipse.papyrus.uml.textedit.property.xtext.parser.antlr.internal,
  org.eclipse.papyrus.uml.textedit.property.xtext.scoping,
@@ -9,10 +10,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.impl,
  org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.util,
- org.eclipse.papyrus.uml.textedit.property.xtext.validation,
- types,
- types.impl,
- org.eclipse.papyrus.uml.textedit.property.xtext.generator
+ org.eclipse.papyrus.uml.textedit.property.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  de.itemis.xtext.antlr;resolution:=optional,

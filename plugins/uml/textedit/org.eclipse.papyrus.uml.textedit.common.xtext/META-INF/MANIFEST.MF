@@ -10,9 +10,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.common.xtext,
  org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon,
  org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl,
  org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.util,
- org.eclipse.papyrus.uml.textedit.common.xtext.validation,
- types,
- types.impl
+ org.eclipse.papyrus.uml.textedit.common.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
