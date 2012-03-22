@@ -29,8 +29,7 @@
    <extension
          point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="Model/Customization/Customization.ctx"
-            loadDefault="true">
+            contextModel="Model/Customization/Customization.ctx">
       </context>
    </extension>
    <extension

@@ -39,6 +39,9 @@
    </extension>
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor contributorId="CustomizationPropertyView" labelProvider="org.eclipse.papyrus.views.properties.providers.SelectionLabelProvider" tabDescriptorProvider="org.eclipse.papyrus.views.properties.xwt.XWTTabDescriptorProvider">
+         <propertyCategory
+               category="org.eclipse.papyrus">
+         </propertyCategory>
       </propertyContributor>
    </extension>
    <extension

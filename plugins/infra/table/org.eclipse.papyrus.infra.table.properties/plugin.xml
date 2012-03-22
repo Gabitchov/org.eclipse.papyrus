@@ -5,16 +5,13 @@
    <extension
          point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="model/papyrustableinstance.ctx"
-            loadDefault="true">
+            contextModel="model/papyrustableinstance.ctx">
       </context>
       <context
-            contextModel="model/tableinstance.ctx"
-            loadDefault="true">
+            contextModel="model/tableinstance.ctx">
       </context>
       <context
-            contextModel="model/tableinstance2.ctx"
-            loadDefault="true">
+            contextModel="model/tableinstance2.ctx">
       </context>
    </extension>
    <extension
