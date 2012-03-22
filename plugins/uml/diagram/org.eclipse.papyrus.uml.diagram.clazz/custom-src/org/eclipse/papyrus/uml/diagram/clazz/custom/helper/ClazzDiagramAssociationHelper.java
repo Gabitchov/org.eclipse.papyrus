@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.helper;
 
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -46,7 +48,13 @@ public class ClazzDiagramAssociationHelper {
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		EditElementCommand c = new PropertyCommandForAssociation(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//LookForElement.getCommandStack().execute(new ICommandProxy(c));
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
@@ -63,7 +71,12 @@ public class ClazzDiagramAssociationHelper {
 
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();

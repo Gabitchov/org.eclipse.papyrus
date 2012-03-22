@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -49,13 +50,28 @@ public class DestroyAssociationCommand extends DestroyElementCommand {
 		Association association = (Association)getElementToDestroy();
 		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), association.getMemberEnds().get(1), true);
 		DestroyElementCommand c = new DestroyElementCommand(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request = new DestroyElementRequest(getEditingDomain(), association.getMemberEnds().get(0), true);
 		c = new DestroyElementCommand(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request = new DestroyElementRequest(getEditingDomain(), association, true);
 		c = new DestroyElementCommand(request);
-		LookForElement.getCommandStack().execute(new ICommandProxy(c));
+		try {
+			c.execute(new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return CommandResult.newOKCommandResult();
 	}
 }
