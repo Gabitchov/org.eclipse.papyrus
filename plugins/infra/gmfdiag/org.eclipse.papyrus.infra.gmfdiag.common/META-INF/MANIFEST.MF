@@ -5,7 +5,8 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.figure.node,
  org.eclipse.papyrus.infra.gmfdiag.common.handler,
  org.eclipse.papyrus.infra.gmfdiag.common.helper,
- org.eclipse.papyrus.infra.gmfdiag.common.listener
+ org.eclipse.papyrus.infra.gmfdiag.common.listener,
+ org.eclipse.papyrus.infra.gmfdiag.common.providers
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
