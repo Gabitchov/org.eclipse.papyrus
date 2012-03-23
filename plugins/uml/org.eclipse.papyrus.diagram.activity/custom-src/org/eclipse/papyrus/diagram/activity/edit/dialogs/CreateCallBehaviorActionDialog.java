@@ -13,14 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -33,7 +31,8 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
+
+import com.google.common.collect.Sets;
 
 /**
  * This class provides a dialog to initialize a CallBehaviorAction at its
@@ -139,12 +138,8 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateCallActionDialog#getPossibleInvokedParents()
 	 */
 	@Override
-	protected Set<EObject> getPossibleInvokedParents(EObject actionParent) {
-		Collection<EObject> packages = ModelSetQuery.getObjectsOfType(actionParent, UMLPackage.eINSTANCE.getPackage());
-		Collection<EObject> behavioredClassifiers = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getBehavioredClassifier());
-		Set<EObject> result = new HashSet<EObject>(packages);
-		result.addAll(behavioredClassifiers);
-		return result;
+	protected Set<? extends EClassifier> getPossibleInvokedParents(EObject actionParent) {
+		return Sets.newHashSet(UMLPackage.Literals.PACKAGE, UMLPackage.Literals.BEHAVIORED_CLASSIFIER);
 	}
 
 	/**

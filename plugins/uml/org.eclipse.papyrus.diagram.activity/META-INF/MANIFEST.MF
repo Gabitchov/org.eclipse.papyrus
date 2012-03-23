@@ -63,7 +63,8 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.editor;bundle-version="0.8.2",
  org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.2",
  org.eclipse.papyrus.service.edit,
- com.google.collect;bundle-version="1.0.0"
+ com.google.collect;bundle-version="1.0.0",
+ org.eclipse.papyrus.properties.uml
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.8.2.qualifier

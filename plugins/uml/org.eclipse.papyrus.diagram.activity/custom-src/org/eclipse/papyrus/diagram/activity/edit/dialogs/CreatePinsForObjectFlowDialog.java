@@ -13,20 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
-import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.ui.helper.HelpComponentFactory;
+import org.eclipse.papyrus.properties.uml.widgets.UMLMultiEClassifierTreeSelectorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -40,7 +32,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -56,6 +47,8 @@ import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+
+import com.google.common.collect.Sets;
 
 /**
  * This class provides a dialog to initialize a CallBehaviorAction at its
@@ -90,8 +83,6 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 
 	private String creationName = NAME_INITIAL_VALUE;
 
-	private ILabelProvider labelProvider = null;
-
 	private Text creationTypeText = null;
 
 	private Button creationTypeButton = null;
@@ -110,7 +101,6 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 */
 	public CreatePinsForObjectFlowDialog(Shell shell, ActivityNode source, ActivityNode target) {
 		super(shell);
-		labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		initialSource = source;
 		initialTarget = target;
 	}
@@ -327,18 +317,12 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseType() {
-		Collection<EObject> types = ModelSetQuery.getObjectsOfType(initialSource, UMLPackage.eINSTANCE.getType());
-		Set<EObject> typesSet = new HashSet<EObject>(types);
-
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
+		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(),initialSource, Sets.newHashSet(UMLPackage.Literals.TYPE));
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
-		dialog.setFilter("*");
-		dialog.setMultipleSelection(false);
-		dialog.setElements(typesSet.toArray(new EObject[typesSet.size()]));
 		if(dialog.open() == Window.OK) {
-			creationType = (Type)dialog.getFirstResult();
-			creationTypeText.setText(labelProvider.getText(creationType));
+			creationType = (Type)dialog.getTheResult();
+			creationTypeText.setText(dialog.getText(creationType));
 		}
 	}
 

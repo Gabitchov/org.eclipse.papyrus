@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
@@ -56,14 +54,6 @@ public class ObjectNodeListener extends AbstractPapyrusModifcationTriggerListene
 			}
 		}
 		return cc ;
-	}
-
-	/**
-	 * @param cc
-	 * @param object
-	 */
-	private void manageUpper(CompositeCommand cc, final ObjectNode object) {
-		
 	}
 	
 }

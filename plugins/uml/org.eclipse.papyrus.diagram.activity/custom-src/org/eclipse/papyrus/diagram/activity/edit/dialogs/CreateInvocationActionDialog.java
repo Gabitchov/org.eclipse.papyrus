@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -21,6 +20,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -33,13 +33,13 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.diagram.common.ui.helper.HelpComponentFactory;
+import org.eclipse.papyrus.properties.uml.widgets.UMLMultiEClassifierTreeSelectorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -55,7 +55,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -507,15 +506,11 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseInvoked() {
-		Collection<EObject> elements = ModelSetQuery.getObjectsOfType(actionParent, getInvocationFeature().getEType());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
+		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(), actionParent, Collections.singleton(getInvocationFeature().getEType()));
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
-		dialog.setFilter("*");
-		dialog.setMultipleSelection(false);
-		dialog.setElements(elements.toArray(new EObject[elements.size()]));
 		if(dialog.open() == Window.OK) {
-			setInvokedSelection((EObject)dialog.getFirstResult());
+			setInvokedSelection((EObject)dialog.getTheResult());
 		}
 	}
 
@@ -540,15 +535,11 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseParent() {
-		Set<EObject> elements = getPossibleInvokedParents(actionParent);
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
+		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(), actionParent, getPossibleInvokedParents(actionParent),true);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
-		dialog.setFilter("*");
-		dialog.setMultipleSelection(false);
-		dialog.setElements(elements.toArray(new EObject[elements.size()]));
 		if(dialog.open() == Window.OK) {
-			setInvokedParent((EObject)dialog.getFirstResult());
+			setInvokedParent((EObject)dialog.getTheResult());
 		}
 	}
 
@@ -664,7 +655,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *        the parent of the action
 	 * @return collection of EObject possible owners
 	 */
-	abstract protected Set<EObject> getPossibleInvokedParents(EObject actionParent);
+	abstract protected Set<? extends EClassifier> getPossibleInvokedParents(EObject actionParent);
 
 	/**
 	 * Whether element can be parent of the new invoked element

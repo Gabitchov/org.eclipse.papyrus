@@ -8,7 +8,7 @@ Bundle-Activator: org.eclipse.papyrus.properties.uml.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.properties.model;bundle-version="0.8.0",
  org.eclipse.papyrus.properties;bundle-version="0.8.0",
- org.eclipse.papyrus.widgets;bundle-version="0.8.0",
+ org.eclipse.papyrus.widgets;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
  org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
  org.eclipse.gmf.runtime.emf.core,
@@ -30,5 +30,6 @@ Export-Package: org.eclipse.papyrus.properties.uml.constraints,
  org.eclipse.papyrus.properties.uml.datatype,
  org.eclipse.papyrus.properties.uml.modelelement,
  org.eclipse.papyrus.properties.uml.providers,
- org.eclipse.papyrus.properties.uml.util
+ org.eclipse.papyrus.properties.uml.util,
+ org.eclipse.papyrus.properties.uml.widgets
 Bundle-ActivationPolicy: lazy
