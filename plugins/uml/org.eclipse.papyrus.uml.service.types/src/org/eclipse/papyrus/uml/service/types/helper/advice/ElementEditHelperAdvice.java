@@ -81,7 +81,7 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 					 * Move related diagrams
 					 */
 					ICommand moveDiagramsCommand = getMoveDiagramsCommand(container, sourceEObject);
-					if(moveDiagramsCommand != null) {
+					if(moveDiagramsCommand != null && moveDiagramsCommand.canExecute()) {
 						cc.compose(moveDiagramsCommand);
 					}
 					/*
@@ -123,7 +123,7 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 			 */
 			EObject next = unifiedIterator.next();
 			ICommand modeStereotypeCommand = getMoveStereotypeCommand(container, next);
-			if(modeStereotypeCommand != null) {
+			if(modeStereotypeCommand != null && modeStereotypeCommand.canExecute()) {
 				cc.compose(modeStereotypeCommand);
 			}						
 		}
