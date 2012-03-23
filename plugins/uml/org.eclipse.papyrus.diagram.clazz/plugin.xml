@@ -76,7 +76,7 @@
          </propertySection>
       </propertySections>
    </extension>
-<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
       <viewProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>

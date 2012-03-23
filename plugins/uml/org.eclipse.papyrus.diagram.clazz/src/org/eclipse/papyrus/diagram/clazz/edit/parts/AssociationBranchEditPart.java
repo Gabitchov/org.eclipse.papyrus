@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationBranchEditPart;
-import org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationBranchItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSemanticEditPolicy;
@@ -108,13 +107,13 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new AssociationFigure();
+		return new org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+	public org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure getPrimaryShape() {
+		return (org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure)getFigure();
 	}
 }

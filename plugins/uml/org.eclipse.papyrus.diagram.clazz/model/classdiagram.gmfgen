@@ -4183,7 +4183,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
@@ -4289,7 +4289,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -4506,7 +4506,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
@@ -7404,7 +7404,7 @@
         comment="used to add its own superclass"
         genView="/0/@diagram/@links.2 /0/@diagram/@links.1"
         name="AbstractAssociationEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationEditPart"/>
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractAssociationEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for short cut"

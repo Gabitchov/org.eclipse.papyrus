@@ -11,14 +11,14 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
+package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
@@ -97,65 +97,72 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			if(getSource() == null || getTarget() == null) {
 				return;
 			}
-			if(((GraphicalEditPart)getSource()).resolveSemanticElement() == null || ((GraphicalEditPart)getTarget()).resolveSemanticElement() == null) {
-				return;
-			}
+			EObject sourceElement = ((GraphicalEditPart)getSource()).resolveSemanticElement();
+			EObject targetElement = ((GraphicalEditPart)getTarget()).resolveSemanticElement();
+			if(sourceElement == null || targetElement == null) {
+ 				return;
+ 			}
 
 			Property source = null;
 			Property target = null;
-
+			
 			// Get the association
 			Element umlElement = getUMLElement();
 			if(umlElement instanceof Association) {
-				Association association = (Association)getUMLElement();
-				assert (association.getMemberEnds().size() >= 2);
-				if(association.getMemberEnds() != null && association.getMemberEnds().size() >= 2) {
-					if(((Property)(association.getMemberEnds().get(0))).getType().equals(((GraphicalEditPart)getSource()).resolveSemanticElement())) {
-						source = ((Property)(association.getMemberEnds().get(0)));
-						target = ((Property)(association.getMemberEnds().get(1)));
-					} else {
-						source = ((Property)(association.getMemberEnds().get(1)));
-						target = ((Property)(association.getMemberEnds().get(0)));
-					}
-					int sourceType = 0;
-					int targetType = 0;
-					// to display the dot.
-					// owned?
-					if(!source.getOwner().equals(resolveSemanticElement())) {
-						sourceType += AssociationFigure.owned;
-						sourceType += AssociationFigure.navigable;
-					}
-					if(!target.getOwner().equals(resolveSemanticElement())) {
-						targetType += AssociationFigure.owned;
-						targetType += AssociationFigure.navigable;
-					}
-					// aggregation? for it the opposite is changed
-					if(source.getAggregation() == AggregationKind.SHARED_LITERAL) {
-						targetType += AssociationFigure.aggregation;
-					}
-					if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
-						sourceType += AssociationFigure.aggregation;
-					}
-					// composite? for it the opposite is changed
-					if(source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-						targetType += AssociationFigure.composition;
-					}
-					if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-						sourceType += AssociationFigure.composition;
-					}
+				Association association = (Association)umlElement;
 
-					// navigable?
-					if(association.getNavigableOwnedEnds().contains(source)) {
-						sourceType += AssociationFigure.navigable;
+				for (Property memberEnd : association.getMemberEnds()) {
+					// keep the first matching memberEnd
+					if (memberEnd.getType().equals(sourceElement) && source == null) {
+						source = memberEnd;
 					}
-					if(association.getNavigableOwnedEnds().contains(target)) {
-						targetType += AssociationFigure.navigable;
-					}
-					if(getPrimaryShape() instanceof AssociationFigure) {
-						((AssociationFigure)getPrimaryShape()).setEnd(sourceType, targetType);
+					// keep the last matching memberEnd
+					if (memberEnd.getType().equals(targetElement)) {
+						target = memberEnd;
 					}
 				}
 
+				if (source == null || target == null) {
+					return;
+				}
+
+				int sourceType = 0;
+				int targetType = 0;
+				// to display the dot.
+				// owned?
+				if(!source.getOwner().equals(resolveSemanticElement())) {
+					sourceType += AssociationFigure.owned;
+					sourceType += AssociationFigure.navigable;
+				}
+				if(!target.getOwner().equals(resolveSemanticElement())) {
+					targetType += AssociationFigure.owned;
+					targetType += AssociationFigure.navigable;
+				}
+				// aggregation? for it the opposite is changed
+				if(source.getAggregation() == AggregationKind.SHARED_LITERAL) {
+					targetType += AssociationFigure.aggregation;
+				}
+				if(target.getAggregation() == AggregationKind.SHARED_LITERAL) {
+					sourceType += AssociationFigure.aggregation;
+				}
+				// composite? for it the opposite is changed
+				if(source.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+					targetType += AssociationFigure.composition;
+				}
+				if(target.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+					sourceType += AssociationFigure.composition;
+				}
+
+				// navigable?
+				if(association.getNavigableOwnedEnds().contains(source)) {
+					sourceType += AssociationFigure.navigable;
+				}
+				if(association.getNavigableOwnedEnds().contains(target)) {
+					targetType += AssociationFigure.navigable;
+				}
+				if(getPrimaryShape() instanceof AssociationFigure) {
+					((AssociationFigure)getPrimaryShape()).setEnd(sourceType, targetType);
+				}
 			}
 
 		}
