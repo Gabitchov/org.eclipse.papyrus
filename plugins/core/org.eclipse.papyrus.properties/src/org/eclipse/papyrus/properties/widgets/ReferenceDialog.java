@@ -44,8 +44,21 @@ public class ReferenceDialog extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public ReferenceDialog(Composite parent, int style) {
-		editor = new org.eclipse.papyrus.widgets.editors.ReferenceDialog(parent, style);
+		editor = createReferenceDialog(parent, style);
 		setEditor(editor);
+	}
+
+	/**
+	 * Creates the reference dialog.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the reference dialog.
+	 */
+	protected org.eclipse.papyrus.widgets.editors.ReferenceDialog createReferenceDialog(Composite parent, int style) {
+		return new org.eclipse.papyrus.widgets.editors.ReferenceDialog(parent, style);
 	}
 
 	@Override

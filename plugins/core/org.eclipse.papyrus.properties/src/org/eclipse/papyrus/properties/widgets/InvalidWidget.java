@@ -35,11 +35,24 @@ public class InvalidWidget extends AbstractPropertyEditor {
 	 */
 	public InvalidWidget(Composite parent, int style) {
 		super();
-		StringLabel editor = new StringLabel(parent, style);
+		StringLabel editor = createStringLabel(parent, style);
 		setEditor(editor);
 
 		editor.getValueLabel().setText("Property view Error : invalid widget type"); //$NON-NLS-1$
 		editor.getValueLabel().setImage(Activator.getDefault().getImage("icons/error.gif")); //$NON-NLS-1$
+	}
+
+	/**
+	 * Creates the string label.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the string label.
+	 */
+	protected StringLabel createStringLabel(Composite parent, int style) {
+		return new StringLabel(parent, style);
 	}
 
 	@Override

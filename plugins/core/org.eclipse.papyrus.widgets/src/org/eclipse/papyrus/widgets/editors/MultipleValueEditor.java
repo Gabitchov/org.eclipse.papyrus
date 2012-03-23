@@ -166,7 +166,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		createListControls();
 
 		this.selector = selector;
-		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique, ordered);
+		dialog = createMultipleValueSelectorDialog(parent, selector, ordered, unique, label);
 		if(label != null) {
 			dialog.setTitle(label);
 		}
@@ -176,6 +176,25 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		this.ordered = ordered;
 		this.unique = unique;
 		updateControls();
+	}
+
+	/**
+	 * Creates the dialog for this editor
+	 * 
+	 * @param parent
+	 *        The Composite in which the dialog should be displayed
+	 * @param selector
+	 *        The element selector for this dialog
+	 * @param ordered
+	 *        Specify if the observed collection is ordered. If true, Up and Down controls are displayed.
+	 * @param unique
+	 *        Specify if the observed collection values are unique.
+	 * @param label
+	 *        The editor's label.
+	 * @return The new dialog for this editor
+	 */
+	protected MultipleValueSelectorDialog createMultipleValueSelectorDialog(Composite parent, IElementSelector selector, boolean ordered, boolean unique, String label) {
+		return new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique, ordered);
 	}
 
 	protected void updateControls() {

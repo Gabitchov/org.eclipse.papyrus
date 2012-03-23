@@ -57,7 +57,7 @@ public class BooleanCombo extends AbstractValueEditor {
 		CCombo combo = factory.createCCombo(this, style);
 		combo.setLayoutData(getDefaultLayoutData());
 		combo.setEditable(false);
-		viewer = new ComboViewer(combo);
+		viewer = createComboViewer(combo);
 
 		viewer.setContentProvider(new EncapsulatedContentProvider(new AbstractStaticContentProvider() {
 
@@ -71,6 +71,17 @@ public class BooleanCombo extends AbstractValueEditor {
 		setWidgetObservable(ViewerProperties.singleSelection().observe(viewer));
 
 		setCommitOnFocusLost(combo);
+	}
+
+	/**
+	 * Creates the combo viewer
+	 * 
+	 * @param combo
+	 *        The parent combo
+	 * @return the combo viewer.
+	 */
+	protected ComboViewer createComboViewer(CCombo combo) {
+		return new ComboViewer(combo);
 	}
 
 	/**

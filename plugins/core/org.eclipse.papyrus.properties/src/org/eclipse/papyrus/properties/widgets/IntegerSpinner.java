@@ -35,11 +35,24 @@ public class IntegerSpinner extends AbstractPropertyEditor {
 	 * @param style
 	 */
 	public IntegerSpinner(Composite parent, int style) {
-		spinner = new org.eclipse.papyrus.widgets.editors.IntegerSpinner(parent, style);
+		spinner = createIntegerSpinner(parent, style);
 		spinner.setMinimum(minimum);
 		spinner.setMaximum(maximum);
 		spinner.setIncrement(increment);
 		setEditor(spinner);
+	}
+
+	/**
+	 * Creates the integer spinner.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the integer spinner.
+	 */
+	protected org.eclipse.papyrus.widgets.editors.IntegerSpinner createIntegerSpinner(Composite parent, int style) {
+		return new org.eclipse.papyrus.widgets.editors.IntegerSpinner(parent, style);
 	}
 
 	/**

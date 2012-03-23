@@ -56,8 +56,21 @@ public class StringFileSelector extends AbstractPropertyEditor {
 	 * @param style
 	 */
 	public StringFileSelector(Composite parent, int style) {
-		selector = new org.eclipse.papyrus.widgets.editors.StringFileSelector(parent, style);
+		selector = createSelector(parent, style);
 		super.setEditor(selector);
+	}
+
+	/**
+	 * Creates the selector
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the selector
+	 */
+	protected org.eclipse.papyrus.widgets.editors.StringFileSelector createSelector(Composite parent, int style) {
+		return new org.eclipse.papyrus.widgets.editors.StringFileSelector(parent, style);
 	}
 
 	/**

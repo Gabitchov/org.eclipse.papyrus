@@ -39,8 +39,21 @@ public class IntegerMask extends AbstractPropertyEditor implements XWTCompliantM
 	 * @param style
 	 */
 	public IntegerMask(Composite parent, int style) {
-		editor = new org.eclipse.papyrus.widgets.editors.IntegerMask(parent, style);
+		editor = createIntegerMask(parent, style);
 		setEditor(editor);
+	}
+
+	/**
+	 * Creates the integer mask.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the integer mask.
+	 */
+	protected org.eclipse.papyrus.widgets.editors.IntegerMask createIntegerMask(Composite parent, int style) {
+		return new org.eclipse.papyrus.widgets.editors.IntegerMask(parent, style);
 	}
 
 	@Override

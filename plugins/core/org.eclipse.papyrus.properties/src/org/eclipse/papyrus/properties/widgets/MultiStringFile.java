@@ -21,8 +21,21 @@ public class MultiStringFile extends AbstractPropertyEditor {
 	public MultipleStringFileEditor editor;
 
 	public MultiStringFile(Composite parent, int style) {
-		editor = new MultipleStringFileEditor(parent, style);
+		editor = createMultipleStringFileEditor(parent, style);
 		setEditor(editor);
+	}
+
+	/**
+	 * Creates the multiple string file editor
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the multiple string file editor.
+	 */
+	protected MultipleStringFileEditor createMultipleStringFileEditor(Composite parent, int style) {
+		return new MultipleStringFileEditor(parent, style);
 	}
 
 	@Override

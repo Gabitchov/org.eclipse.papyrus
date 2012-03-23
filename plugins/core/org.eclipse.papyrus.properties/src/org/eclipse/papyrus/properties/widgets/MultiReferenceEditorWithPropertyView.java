@@ -46,13 +46,26 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 		//		parent.setBackground(getDisplay().getSystemColor(SWT.COLOR_RED));
 		((GridLayout)getLayout()).numColumns++;
 
-		multiReferenceEditor = new MultipleReferenceEditor(this, style);
+		multiReferenceEditor = createMultipleReferenceEditor(style);
 		multiReferenceEditor.addSelectionChangedListener(this);
 		multiReferenceEditor.setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, false, true));
 
 		propertiesComposite = new Composite(this, style);
 		propertiesComposite.setLayout(new FillLayout());
 		propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+	}
+
+	/**
+	 * Creates the multi reference editor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the multi reference editor.
+	 */
+	protected MultipleReferenceEditor createMultipleReferenceEditor(int style) {
+		return new MultipleReferenceEditor(this, style);
 	}
 
 	@Override
