@@ -18,19 +18,19 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.notation.Diagram;
 
 /**
  * Command to move a diagram from a resource to another
  * @author arthur daussy
  *
  */
-public class MoveDiagramCommand extends AbstractTransactionalCommand {
+public class MoveOpenableCommand extends AbstractTransactionalCommand {
 	/**
 	 * Containing resource
 	 */
@@ -38,9 +38,9 @@ public class MoveDiagramCommand extends AbstractTransactionalCommand {
 	/**
 	 * The diagram to move
 	 */
-	private Diagram diagram;
+	private EObject diagram;
 
-	public MoveDiagramCommand(TransactionalEditingDomain domain, String label, Diagram diagram, Resource newContainingRessource) {
+	public MoveOpenableCommand(TransactionalEditingDomain domain, String label, EObject diagram, Resource newContainingRessource) {
 		super(domain, label,null);
 		this.diagram = diagram;
 		this.newContainingRessource = newContainingRessource;
@@ -54,9 +54,12 @@ public class MoveDiagramCommand extends AbstractTransactionalCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		
 		if (newContainingRessource != null) {
 			newContainingRessource.getContents().add(diagram);
+			return CommandResult.newOKCommandResult();
+		}else {
+			return CommandResult.newErrorCommandResult("The new resource to add the diagram is null");////$NON-NLS-1$
 		}
-		return CommandResult.newOKCommandResult();
 	}
 }
