@@ -9,18 +9,17 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.resource;
+package org.eclipse.papyrus.infra.gmfdiag.css.tests.tests;
 
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
-public class CSSNotationModel extends NotationModel {
 
-	@Override
-	public void init(ModelSet modelManager) {
-		super.init(modelManager);
+@RunWith(Suite.class)
+@SuiteClasses({ CSSClassProviderTest.class
 
-		CSSHelper.installCSSSupport(getResourceSet());
-	}
+})
+public class AllTests {
+
 }

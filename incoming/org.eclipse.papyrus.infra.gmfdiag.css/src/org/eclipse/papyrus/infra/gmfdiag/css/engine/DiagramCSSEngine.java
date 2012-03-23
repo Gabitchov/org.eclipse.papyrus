@@ -52,14 +52,21 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 	@Override
 	protected void parseStyleSheet(StyleSheetReference styleSheet) throws IOException {
 		String path = styleSheet.getPath();
-		if(path.startsWith("/")) {
-			path = "platform:/resource" + path; //Either plug-in or workspace
+		if(path.startsWith("/")) { //Either plug-in or workspace
+			path = "platform:/resource" + path;
+			URL url = new URL(path);
+			try {
+				url.openConnection();
+			} catch (IOException ex) {
+				path = "platform:/plugin" + styleSheet.getPath();
+			}
 		} else {
 			URI uri = URI.createURI(styleSheet.getPath());
 			uri = uri.resolve(diagram.eResource().getURI());
 			path = uri.toString();
 		}
 		URL url = new URL(path);
+		System.out.println(path);
 		parseStyleSheet(url.openStream());
 	}
 

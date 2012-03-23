@@ -9,18 +9,16 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.resource;
+package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
-import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResourceFactory;
 
-public class CSSNotationModel extends NotationModel {
 
-	@Override
-	public void init(ModelSet modelManager) {
-		super.init(modelManager);
+public class CSSHelper {
 
-		CSSHelper.installCSSSupport(getResourceSet());
+	public static void installCSSSupport(ResourceSet resourceSet) {
+		CSSNotationResourceFactory factory = new CSSNotationResourceFactory();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("notation", factory); //$NON-NLS-1$
 	}
 }

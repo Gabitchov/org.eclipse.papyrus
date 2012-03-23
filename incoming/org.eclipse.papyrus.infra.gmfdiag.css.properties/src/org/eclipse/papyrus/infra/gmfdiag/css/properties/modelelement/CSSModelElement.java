@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.creation.StyleSheetFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding.DiagramStyleSheetObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetContentProvider;
@@ -79,7 +79,7 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 		if(propertyPath.equals(CSSAnnotations.CSS_GMF_CLASS_KEY)) {
 			Diagram diagram = ((View)source).getDiagram();
-			if(diagram instanceof CSSDiagramImpl) {
+			if(diagram instanceof CSSDiagram) {
 
 				EObject semanticElement = ((View)source).getElement();
 
@@ -87,7 +87,7 @@ public class CSSModelElement extends CustomStyleModelElement {
 					//TODO: For Diagrams, we should use the right DiagramKind (See GMFElementAdapter)
 					//Until then, we list all available classes (*)
 					String elementName = source instanceof Diagram ? "*" : semanticElement.eClass().getName();
-					return new CSSClassContentProvider(elementName, ((CSSDiagramImpl)diagram).getEngine());
+					return new CSSClassContentProvider(elementName, ((CSSDiagram)diagram).getEngine());
 				}
 			}
 
