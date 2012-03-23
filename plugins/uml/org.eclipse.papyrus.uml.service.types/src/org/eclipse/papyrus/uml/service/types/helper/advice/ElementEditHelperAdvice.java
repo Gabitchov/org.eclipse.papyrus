@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.adaptor.gmf.MoveDiagramCommand;
+import org.eclipse.papyrus.core.adaptor.gmf.MoveOpenableCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.diagram.common.commands.MoveStereotypeApplicationsCommand;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
@@ -174,7 +174,7 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 			stringBuilder.append("Move ");
 			stringBuilder.append(d.getName());
 			stringBuilder.append("into a new resource");
-			cc.compose(new MoveDiagramCommand(editingDomain, stringBuilder.toString(), d, diagramContainer));
+			cc.compose(new MoveOpenableCommand(editingDomain, stringBuilder.toString(), d, diagramContainer));
 		}
 		return cc;
 	}
