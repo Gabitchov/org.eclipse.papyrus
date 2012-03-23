@@ -70,7 +70,7 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 				sourceEObject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
 			}
 
-			if(sourceEObject != null && container != null && container.eResource() != null && container.eResource() != null) {
+			if(sourceEObject != null && container != null && sourceEObject.eResource() != null && container.eResource() != null) {
 				final Resource eResource = sourceEObject.eResource();
 				Resource containerEResource = container.eResource();
 				/*
