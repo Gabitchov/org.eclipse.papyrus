@@ -66,7 +66,6 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 			path = uri.toString();
 		}
 		URL url = new URL(path);
-		System.out.println(path);
 		parseStyleSheet(url.openStream());
 	}
 
