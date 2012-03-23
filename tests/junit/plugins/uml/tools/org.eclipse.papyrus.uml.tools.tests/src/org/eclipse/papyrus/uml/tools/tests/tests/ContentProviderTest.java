@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -46,8 +48,8 @@ public class ContentProviderTest {
 	public void init() {
 		try {
 			testModel = EMFHelper.loadEMFModel(new ResourceSetImpl(), URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/emf/TestModel.xmi", true));
-		} catch (IOException e) {
-
+		} catch (IOException ex) {
+			Activator.log.error(ex);
 		}
 
 		assertNotNull("Cannot load the EMF Tests model", testModel);
