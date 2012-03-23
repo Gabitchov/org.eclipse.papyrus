@@ -347,7 +347,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				}
 
 				if(currentEditPart != null) {
-					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.HIDE, currentView.getType());
+					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.HIDE, currentView);
 					req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
 					Command tmp = currentEditPart.getCommand(req);
 					if(tmp != null && tmp.canExecute()) {
@@ -383,7 +383,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				EditPartRepresentation parentRepresentation = currentRepresentation.getParentRepresentation();
 				IGraphicalEditPart parentEditPart = parentRepresentation.getRepresentedEditPart();
 				if(currentView != null && parentEditPart != null) {
-					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.SHOW, currentView.getType());
+					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.SHOW, currentView);
 					req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
 					Command tmp = parentEditPart.getCommand(req);
 					if(tmp != null && tmp.canExecute()) {

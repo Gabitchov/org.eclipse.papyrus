@@ -73,7 +73,7 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 			for(Iterator<?> iter = views.iterator(); iter.hasNext();) {
 				View childView = (View)iter.next();
 				if(ViewUtil.isPropertySupported(childView, request.getPropertyID())) {
-					if(childView.getType().equals(request.getCompartmentType())) {
+					if(childView.equals(request.getCompartment())) {
 						return new ICommandProxy(new SetPropertyCommand(getEditingDomain(), new EObjectAdapter(childView), request.getPropertyID(), request.getPropertyName(), request.getValue()));
 					}
 				}

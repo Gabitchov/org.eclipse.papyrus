@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
 import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
+import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * 
@@ -31,8 +32,8 @@ public class ShowHideCompartmentRequest extends ChangePropertyValueRequest {
 	/** type of this request */
 	public static final String SHOW_HIDE_COMPARTMENT = "Show/Hide Compartment"; //$NON-NLS-1$
 
-	/** the visualID of the compartment to show */
-	protected String compartmentType;
+	/** thethe view to show */
+	protected View compartmentType;
 
 	/** the property ID */
 	private static final String propertyID = "notation.View.visible"; //$NON-NLS-1$
@@ -53,9 +54,9 @@ public class ShowHideCompartmentRequest extends ChangePropertyValueRequest {
 	 * @param semanticHint
 	 *        the semanticHint for the compartment
 	 */
-	public ShowHideCompartmentRequest(Object value, String semanticHint) {
+	public ShowHideCompartmentRequest(Object value, View compartmentView) {
 		super(propertyName, propertyID, value);
-		this.compartmentType = semanticHint;
+		this.compartmentType = compartmentView;
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class ShowHideCompartmentRequest extends ChangePropertyValueRequest {
 	 * 
 	 * @return {@link #compartmentType}
 	 */
-	public String getCompartmentType() {
+	public View  getCompartment() {
 		return this.compartmentType;
 	}
 
