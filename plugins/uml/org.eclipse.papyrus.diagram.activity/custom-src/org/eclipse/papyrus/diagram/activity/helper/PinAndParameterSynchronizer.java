@@ -87,7 +87,9 @@ import org.eclipse.uml2.uml.DestroyObjectAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InvocationAction;
+import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
@@ -1831,6 +1833,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected static OutputPin createOutputPin(Parameter parameter) {
 		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		assignUpperBound(pin);
 		// Initialize name
 		pin.setName(parameter.getName());
 		// Synchronize type
@@ -1880,6 +1883,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected static InputPin createTargetPin(Operation operation) {
 		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		assignUpperBound(pin);
 		if(operation != null) {
 			Element owningType = operation.getOwner();
 			if(owningType instanceof Type) {
@@ -1898,6 +1902,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected OutputPin createResultPin(Classifier classifier) {
 		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		assignUpperBound(pin);
 		if(classifier != null) {
 			pin.setType(classifier);
 		}
@@ -1913,6 +1918,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected OutputPin createResultPin(Variable var) {
 		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		assignUpperBound(pin);
 		if(var != null) {
 			pin.setType(var.getType());
 		}
@@ -1928,6 +1934,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	public static InputPin createRequestPin() {
 		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		assignUpperBound(pin);
 		pin.setName(REQUEST_PIN_INITIALIZATION_NAME);
 		return pin;
 	}
@@ -1950,6 +1957,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		} else {
 			pin = UMLFactory.eINSTANCE.createInputPin();
 		}
+		assignUpperBound(pin);
 		// Initialize name
 		pin.setName(property.getName());
 		// Synchronize type
@@ -2009,6 +2017,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		} else {
 			pin = UMLFactory.eINSTANCE.createInputPin();
 		}
+		assignUpperBound(pin);
 		// Initialize name
 		pin.setName(parameter.getName());
 		// Synchronize type
@@ -2114,6 +2123,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				EList<Property> properties = action.getSignal().getAllAttributes();
 				for(Property argument : properties) {
 					InputPin argPin = UMLFactory.eINSTANCE.createInputPin();
+					assignUpperBound(argPin);
 					argPin.setName(argument.getName());
 					argPin.setType(argument.getType());
 					Command cmdArg = AddCommand.create(editingdomain, action, UMLPackage.Literals.INVOCATION_ACTION__ARGUMENT, Arrays.asList(argPin));
@@ -2142,6 +2152,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 		if(action.getInsertAt() == null) {
 			InputPin insertAtPin = UMLFactory.eINSTANCE.createInputPin();
+			assignUpperBound(insertAtPin);
 			insertAtPin.setName(INSERT_AT_IN_ADD_VARIABLE_VALUE_ACTION);
 			Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getAddVariableValueAction_InsertAt(), insertAtPin);
 			globalCmd.append(cmd);
@@ -2162,6 +2173,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		CompoundCommand globalCmd = new CompoundCommand();
 		if(action.getTarget() == null) {
 			InputPin targetPin = UMLFactory.eINSTANCE.createInputPin();
+			assignUpperBound(targetPin);
 			targetPin.setName(TARGET_IN_DESTROY_OBJECT_ACTION);
 			Command cmdTargetPin = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getDestroyObjectAction_Target(), targetPin);
 			globalCmd.append(cmdTargetPin);
@@ -2177,6 +2189,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	public static InputPin createValuePinInAddStructuralFeatureAction(StructuralFeatureAction action) {
 		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		assignUpperBound(pin);
 		if(action != null) {
 			StructuralFeature feature = action.getStructuralFeature();
 			if(feature != null && feature.getType() != null) {
@@ -2198,6 +2211,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected InputPin createValuePinInAddVariableValueAction(Variable var) {
 		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		assignUpperBound(pin);
 		if(var != null) {
 			Type owningType = var.getType();
 			if(owningType instanceof Type) {
@@ -2268,6 +2282,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	public static InputPin createObjectPinInStructuralFeatureAction(StructuralFeatureAction action) {
 		InputPin pin = UMLFactory.eINSTANCE.createInputPin();
+		assignUpperBound(pin);
 		if(action != null) {
 			Type type = getTypeFromStructuralFeature(action);
 			if(type != null) {
@@ -2300,12 +2315,19 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	public static OutputPin createResultPinInStructuralAction(StructuralFeatureAction action) {
 		OutputPin pin = UMLFactory.eINSTANCE.createOutputPin();
+		assignUpperBound(pin);
 		Type type = getTypeFromStructuralFeature(action);
 		if(type != null) {
 			pin.setType(type);
 		}
 		pin.setName(RESULT_PIN_READ_SRTUCTURAL_ACTION);
 		return pin;
+	}
+	
+	private static void assignUpperBound(ObjectNode node){
+		LiteralInteger literal = UMLFactory.eINSTANCE.createLiteralInteger();
+		literal.setValue(1);
+		node.setUpperBound(literal);
 	}
 
 	/**
