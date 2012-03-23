@@ -19,4 +19,5 @@ unwished behaviors, related to the base implementation (GMF, Papyrus...)
 
 * {
  	lineColor:black; /* Avoid the gray line-colors from default GMF connectors */
+ 	fontName:"Segoe UI";
 }

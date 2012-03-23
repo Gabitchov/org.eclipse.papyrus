@@ -9,4 +9,11 @@
   <modelElementFactories
       name="CSS Preferences"
       factoryClass="org.eclipse.papyrus.infra.gmfdiag.css.properties.modelelement.CSSPreferencesModelElementFactory"/>
+  <widgetTypes
+      label="CSS ResetStyle Button"
+      widgetClass="ResetStyleWidget"
+      namespace="//@namespaces.0"/>
+  <namespaces
+      name="css"
+      value="org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets"/>
 </environment:Environment>

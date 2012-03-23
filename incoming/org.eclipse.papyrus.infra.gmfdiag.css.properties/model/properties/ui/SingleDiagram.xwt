@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:css="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -9,10 +11,22 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:StringLabel
-			property="Preferences:org.eclipse.papyrus.infra.gmfdiag.css:currentTheme"
-			input="{Binding}"></ppe:StringLabel>
+		<ppe:StringLabel input="{Binding}"
+			property="Preferences:org.eclipse.papyrus.infra.gmfdiag.css:currentTheme"></ppe:StringLabel>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<GridLayout></GridLayout>
+		</Composite.layout>
+		<css:ResetStyleWidget></css:ResetStyleWidget>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
 			property="CSS:DiagramStyle:css_stylesheets"></ppe:MultiReference>
+		<ppe:MultiString property="CSS:PapyrusCSSStyle:cssClass"
+			input="{Binding}"></ppe:MultiString>
 	</Composite>
 </Composite>

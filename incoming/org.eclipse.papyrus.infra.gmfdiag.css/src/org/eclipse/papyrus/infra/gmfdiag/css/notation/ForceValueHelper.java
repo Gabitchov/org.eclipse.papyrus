@@ -82,12 +82,12 @@ public class ForceValueHelper {
 	}
 
 	public static void unsetValue(View view, EStructuralFeature feature) {
-		if(!isCSSView(view)) {
-			//Do not contaminate non-Papyrus models
+		if(feature == null) {
 			return;
 		}
 
-		if(feature == null) {
+		if(!isCSSView(view)) {
+			//Do not contaminate non-Papyrus models
 			return;
 		}
 

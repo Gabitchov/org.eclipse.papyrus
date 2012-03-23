@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:css="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets"
 	xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 	</Composite.layout>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+			<GridLayout></GridLayout>
 		</Composite.layout>
-		<ppe:StringEditor input="{Binding}" property="CSS:PapyrusCSSStyle:cssId"></ppe:StringEditor>
+		<css:ResetStyleWidget></css:ResetStyleWidget>
 	</Composite>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:MultiString input="{Binding}" property="CSS:PapyrusCSSStyle:cssClass"></ppe:MultiString>
-		<ppe:StringMultiline input="{Binding}"
-			property="CSS:PapyrusCSSStyle:cssStyle"></ppe:StringMultiline>
+		<ppe:MultiString input="{Binding}" property="CSS:PapyrusCSSStyle:cssClass"
+			customLabel="Applied styles"></ppe:MultiString>
 	</Composite>
 </Composite>

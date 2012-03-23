@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+<Composite
+	xmlns:css="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets"
 	xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
 	xmlns:x="http://www.eclipse.org/xwt">
 	<Composite.layout>
-		<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		<GridLayout numColumns="1"></GridLayout>
 	</Composite.layout>
-	<ppe:StringMultiline input="{Binding}"
-		property="CSS:PapyrusCSSStyle:cssStyle"></ppe:StringMultiline>
+	<css:ResetStyleWidget></css:ResetStyleWidget>
 </Composite>

@@ -31,7 +31,7 @@
       <properties xsi:type="constraints:ValueProperty" name="className" value="View"/>
     </constraints>
   </views>
-  <views name="Diagram" sections="//@tabs.0/@sections.2 //@tabs.0/@sections.0">
+  <views name="Diagram" sections="//@tabs.0/@sections.2">
     <constraints xsi:type="constraints:SimpleConstraint" name="isDiagram" overrideable="false" overriddenConstraints="//@views.0/@constraints.0 //@views.1/@constraints.0">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
