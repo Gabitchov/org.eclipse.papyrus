@@ -13,10 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.umlprofiles.commands;
 
-import java.util.ArrayList;
-
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -43,24 +40,26 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 	 * {@inheritDoc}
 	 */
 	public void uncontrol(EditingDomain domain, final EObject selection, STATE_CONTROL state, Resource source, final Resource target, CompoundCommand commandToModify) {
-		switch(state) {
-		case PRE_MODEL:
-			commandToModify.append(new ChangeCommand(domain, new Runnable() {
+		if (selection instanceof Package) {
+			switch(state) {
+			case PRE_MODEL:
+				commandToModify.append(new ChangeCommand(domain, new Runnable() {
 
-				public void run() {
-					unapplyDuplicateProfiles(selection, target);
-				}
-			}));
-			break;
-		case POST_MODEL:
-			commandToModify.append(new ChangeCommand(domain, new Runnable() {
+					public void run() {
+						unapplyDuplicateProfiles((Package)selection, target);
+					}
+				}));
+				break;
+			case POST_MODEL:
+				commandToModify.append(new ChangeCommand(domain, new Runnable() {
 
-				public void run() {
-					ProfileApplicationHelper.nestedRelocateStereotypeApplications((Package)selection, target);
-				}
-			}));
-			break;
-		default:
+					public void run() {
+						ProfileApplicationHelper.nestedRelocateStereotypeApplications((Package)selection, target);
+					}
+				}));
+				break;
+			default:
+			}
 		}
 	}
 
@@ -71,16 +70,10 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 	 * @param target
 	 *        the resource target
 	 */
-	private void unapplyDuplicateProfiles(final EObject selection, Resource target) {
-		Package _package = (Package)selection;
-		EList<Profile> allAppliedProfiles = _package.getAllAppliedProfiles();
-		if(!allAppliedProfiles.isEmpty()) {
-			for(Profile profile : new ArrayList<Profile>(_package.getAppliedProfiles())) {
-				if(allAppliedProfiles.contains(profile)) {
-					// profile is duplicated, unapply it
-					ProfileApplicationHelper.removeProfileApplicationDuplication(_package, profile, true);
-				}
-			}
+	private void unapplyDuplicateProfiles(final Package _package, Resource target) {
+		for(Profile profile : _package.getAppliedProfiles()) {
+			// profile is duplicated, unapply it
+			ProfileApplicationHelper.removeProfileApplicationDuplication(_package, profile, true);
 
 		}
 	}

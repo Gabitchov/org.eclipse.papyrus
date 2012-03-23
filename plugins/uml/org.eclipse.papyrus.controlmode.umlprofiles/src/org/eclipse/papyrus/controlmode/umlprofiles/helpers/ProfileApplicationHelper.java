@@ -74,7 +74,7 @@ public class ProfileApplicationHelper {
 					if(force || getParentPackageWithProfile(_package, profile, false) == null) {
 						// first remove eannotation to ensure it will not added again by checker
 						profileAppl.getEAnnotations().remove(profileAppl.getEAnnotation(DUPLICATED_PROFILE));
-						_package.unapplyProfile(profile);
+						_package.getProfileApplications().remove(profileAppl);
 					}
 					// else, there is another parent profile which justifies the duplication
 				}
