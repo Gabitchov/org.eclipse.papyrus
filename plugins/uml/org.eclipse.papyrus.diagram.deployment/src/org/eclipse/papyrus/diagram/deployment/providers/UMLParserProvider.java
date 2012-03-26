@@ -22,6 +22,8 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactNameEditPartACN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactNameEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintSpecificationEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyAppliedStereotypeEditPart;
@@ -360,6 +362,38 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser communicationPathName_35Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommunicationPathName_35Parser() {
+		if(communicationPathName_35Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			communicationPathName_35Parser = parser;
+		}
+		return communicationPathName_35Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser communicationPathName_36Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommunicationPathName_36Parser() {
+		if(communicationPathName_36Parser == null) {
+			communicationPathName_36Parser = new AppliedStereotypeParser();
+		}
+		return communicationPathName_36Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case CommentBodyEditPart.VISUAL_ID:
@@ -400,6 +434,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDependencyName_12Parser();
 		case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 			return getDependencyName_15Parser();
+		case CommunicationPathNameEditPart.VISUAL_ID:
+			return getCommunicationPathName_35Parser();
+		case CommunicationPathAppliedStereotypeEditPart.VISUAL_ID:
+			return getCommunicationPathName_36Parser();
 		}
 		return null;
 	}

@@ -55,6 +55,9 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactNameEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintNameEditPart;
@@ -314,6 +317,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createGeneralization_4003(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case DependencyEditPart.VISUAL_ID:
 			return createDependency_4004(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+		case CommunicationPathEditPart.VISUAL_ID:
+			return createCommunicationPath_4010(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -656,7 +661,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label14.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location14 = (Location)label14.getLayoutConstraint();
 		location14.setX(0);
-		location14.setY(60);
+		location14.setY(30);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Deployment");
 		return edge;
 	}
@@ -765,8 +770,46 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label15.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location15 = (Location)label15.getLayoutConstraint();
 		location15.setX(0);
-		location15.setY(60);
+		location15.setY(30);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Dependency");
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createCommunicationPath_4010(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(CommunicationPathEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "CommunicationPath");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "CommunicationPath");
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "CommunicationPath");
+		Node label35 = createLabel(edge, UMLVisualIDRegistry.getType(CommunicationPathNameEditPart.VISUAL_ID));
+		label35.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location35 = (Location)label35.getLayoutConstraint();
+		location35.setX(0);
+		location35.setY(20);
+		Node label36 = createLabel(edge, UMLVisualIDRegistry.getType(CommunicationPathAppliedStereotypeEditPart.VISUAL_ID));
+		label36.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location36 = (Location)label36.getLayoutConstraint();
+		location36.setX(0);
+		location36.setY(-20);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "CommunicationPath");
 		return edge;
 	}
 

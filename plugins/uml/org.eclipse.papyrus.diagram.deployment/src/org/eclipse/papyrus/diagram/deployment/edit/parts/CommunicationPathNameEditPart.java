@@ -1,15 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *	Amine EL KOUHEN (CEA LIST) Amine.Elkouhen@cea.fr
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.deployment.edit.parts;
 
 import java.util.Collections;
@@ -79,12 +67,12 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class DependencyAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
+public class CommunicationPathNameEditPart extends LabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 15;
+	public static final int VISUAL_ID = 35;
 
 	/**
 	 * @generated
@@ -123,13 +111,13 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 30));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathNameEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public DependencyAppliedStereotypeEditPart(View view) {
+	public CommunicationPathNameEditPart(View view) {
 		super(view);
 	}
 
@@ -216,7 +204,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	/**
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -339,7 +326,7 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Dependency_4004, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyAppliedStereotypeEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.CommunicationPath_4010, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -732,7 +719,7 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	public String getLabelRole() {
-		return "Stereotype";//$NON-NLS-1$
+		return "Name";//$NON-NLS-1$
 	}
 
 	/**

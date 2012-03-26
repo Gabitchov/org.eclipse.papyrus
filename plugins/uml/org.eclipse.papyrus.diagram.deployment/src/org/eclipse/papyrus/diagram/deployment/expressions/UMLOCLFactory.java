@@ -55,7 +55,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[1];
+		this.expressions = new UMLAbstractExpression[2];
 	}
 
 	/**
@@ -71,6 +71,7 @@ public class UMLOCLFactory {
 		}
 		if(cached.expressions[index] == null) {
 			final String[] exprBodies = new String[]{ "self.name.concat(\'.file\') ", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::DeploymentTarget)", //$NON-NLS-1$
 			};
 			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}

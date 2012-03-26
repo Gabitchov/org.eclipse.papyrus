@@ -14,6 +14,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.CommentAnnotatedElementReorientCommand;
+import org.eclipse.papyrus.diagram.deployment.edit.commands.CommunicationPathCreateCommand;
+import org.eclipse.papyrus.diagram.deployment.edit.commands.CommunicationPathReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.DependencyCreateCommand;
@@ -21,6 +23,7 @@ import org.eclipse.papyrus.diagram.deployment.edit.commands.DeploymentCreateComm
 import org.eclipse.papyrus.diagram.deployment.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ManifestationCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentEditPart;
@@ -88,6 +91,9 @@ public class DeviceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		if(UMLElementTypes.Dependency_4004 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.CommunicationPath_4010 == req.getElementType()) {
+			return getGEFWrapper(new CommunicationPathCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -112,6 +118,9 @@ public class DeviceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		}
 		if(UMLElementTypes.Dependency_4004 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommunicationPath_4010 == req.getElementType()) {
+			return getGEFWrapper(new CommunicationPathCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -138,6 +147,8 @@ public class DeviceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
+		case CommunicationPathEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommunicationPathReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

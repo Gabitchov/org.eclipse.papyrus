@@ -28,6 +28,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.CommentAnnotatedElementReorientCommand;
+import org.eclipse.papyrus.diagram.deployment.edit.commands.CommunicationPathCreateCommand;
+import org.eclipse.papyrus.diagram.deployment.edit.commands.CommunicationPathReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.DependencyCreateCommand;
@@ -35,6 +37,7 @@ import org.eclipse.papyrus.diagram.deployment.edit.commands.DeploymentCreateComm
 import org.eclipse.papyrus.diagram.deployment.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.commands.ManifestationCreateCommand;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentEditPart;
@@ -110,6 +113,7 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case CommunicationPathEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
@@ -123,6 +127,7 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case CommunicationPathEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
@@ -147,6 +152,7 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case CommunicationPathEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
@@ -160,6 +166,7 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case CommunicationPathEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
@@ -184,6 +191,7 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case CommunicationPathEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
@@ -197,6 +205,7 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 							case ManifestationEditPart.VISUAL_ID:
 							case GeneralizationEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
+							case CommunicationPathEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
@@ -244,6 +253,9 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.Dependency_4004 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.CommunicationPath_4010 == req.getElementType()) {
+			return getGEFWrapper(new CommunicationPathCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -268,6 +280,9 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		}
 		if(UMLElementTypes.Dependency_4004 == req.getElementType()) {
 			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommunicationPath_4010 == req.getElementType()) {
+			return getGEFWrapper(new CommunicationPathCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -294,6 +309,8 @@ public class DeviceItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
+		case CommunicationPathEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommunicationPathReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

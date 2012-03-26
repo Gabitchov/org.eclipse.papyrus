@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPartACN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
@@ -402,6 +403,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getDependency_4004ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case CommunicationPathEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getCommunicationPath_4010ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

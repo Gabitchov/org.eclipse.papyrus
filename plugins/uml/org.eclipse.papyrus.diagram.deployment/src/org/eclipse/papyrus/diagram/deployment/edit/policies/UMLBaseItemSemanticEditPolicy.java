@@ -3,8 +3,11 @@
  */
 package org.eclipse.papyrus.diagram.deployment.edit.policies;
 
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -36,6 +39,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper;
+import org.eclipse.papyrus.diagram.deployment.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.deployment.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.deployment.providers.UMLElementTypes;
@@ -45,6 +49,7 @@ import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
@@ -54,6 +59,8 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -420,6 +427,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateCommunicationPath_4010(Package container, Type source, Type target) {
+			return canExistCommunicationPath_4010(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistLink_4005() {
 			return true;
 		}
@@ -464,6 +478,36 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistDependency_4004(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistCommunicationPath_4010(Package container, CommunicationPath linkInstance, Type source, Type target) {
+			try {
+				if(source == null) {
+					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getType()); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getType(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
+						return false;
+					} // else fall-through
+				}
+				if(target == null) {
+					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getType()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getType(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
+						return false;
+					} // else fall-through
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 	}
 }

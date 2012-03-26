@@ -8,6 +8,7 @@ import org.eclipse.papyrus.diagram.deployment.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
@@ -208,6 +209,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_CommunicationPath_4010(CommunicationPath instance) {
+		try {
+			Object value_0 = name_CommunicationPath_4010(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String body_Comment_2001(Comment self) {
 		// Comment body init
 		return "";
@@ -311,6 +324,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Dependency_4004(Dependency self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CommunicationPath_4010(CommunicationPath self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

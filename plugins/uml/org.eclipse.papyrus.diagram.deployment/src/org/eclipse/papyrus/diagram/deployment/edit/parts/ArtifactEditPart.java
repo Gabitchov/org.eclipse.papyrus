@@ -308,11 +308,12 @@ public class ArtifactEditPart extends CompositeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Deployment_4001);
 		types.add(UMLElementTypes.Manifestation_4002);
 		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Dependency_4004);
+		types.add(UMLElementTypes.CommunicationPath_4010);
 		return types;
 	}
 
@@ -438,6 +439,33 @@ public class ArtifactEditPart extends CompositeEditPart {
 		if(targetEditPart instanceof ArtifactEditPartACN) {
 			types.add(UMLElementTypes.Dependency_4004);
 		}
+		if(targetEditPart instanceof ExecutionEnvironmentEditPart) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof DeviceEditPart) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPart) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof NodeEditPart) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof NodeEditPartCN) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof DeviceEditPartCN) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof ExecutionEnvironmentEditPartCN) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof ArtifactEditPartCN) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
+		if(targetEditPart instanceof ArtifactEditPartACN) {
+			types.add(UMLElementTypes.CommunicationPath_4010);
+		}
 		return types;
 	}
 
@@ -489,6 +517,16 @@ public class ArtifactEditPart extends CompositeEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_21);
 			types.add(UMLElementTypes.Artifact_25);
 			types.add(UMLElementTypes.Artifact_28);
+		} else if(relationshipType == UMLElementTypes.CommunicationPath_4010) {
+			types.add(UMLElementTypes.ExecutionEnvironment_2002);
+			types.add(UMLElementTypes.Device_2003);
+			types.add(UMLElementTypes.Artifact_2006);
+			types.add(UMLElementTypes.Node_2008);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.Artifact_25);
+			types.add(UMLElementTypes.Artifact_28);
 		}
 		return types;
 	}
@@ -497,13 +535,14 @@ public class ArtifactEditPart extends CompositeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4008);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4009);
 		types.add(UMLElementTypes.Deployment_4001);
 		types.add(UMLElementTypes.Manifestation_4002);
 		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Dependency_4004);
+		types.add(UMLElementTypes.CommunicationPath_4010);
 		return types;
 	}
 
@@ -550,6 +589,16 @@ public class ArtifactEditPart extends CompositeEditPart {
 			types.add(UMLElementTypes.Artifact_28);
 		} else if(relationshipType == UMLElementTypes.Dependency_4004) {
 			types.add(UMLElementTypes.Constraint_2005);
+			types.add(UMLElementTypes.ExecutionEnvironment_2002);
+			types.add(UMLElementTypes.Device_2003);
+			types.add(UMLElementTypes.Artifact_2006);
+			types.add(UMLElementTypes.Node_2008);
+			types.add(UMLElementTypes.Node_23);
+			types.add(UMLElementTypes.Device_16);
+			types.add(UMLElementTypes.ExecutionEnvironment_21);
+			types.add(UMLElementTypes.Artifact_25);
+			types.add(UMLElementTypes.Artifact_28);
+		} else if(relationshipType == UMLElementTypes.CommunicationPath_4010) {
 			types.add(UMLElementTypes.ExecutionEnvironment_2002);
 			types.add(UMLElementTypes.Device_2003);
 			types.add(UMLElementTypes.Artifact_2006);

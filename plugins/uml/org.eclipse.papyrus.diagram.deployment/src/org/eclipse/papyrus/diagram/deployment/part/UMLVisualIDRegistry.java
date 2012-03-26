@@ -21,6 +21,9 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactNameEditPartACN
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactNameEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintSpecificationEditPart;
@@ -495,6 +498,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case CommunicationPathEditPart.VISUAL_ID:
+			if(CommunicationPathNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommunicationPathAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -517,6 +528,9 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())) {
 			return DependencyEditPart.VISUAL_ID;
+		}
+		if(UMLPackage.eINSTANCE.getCommunicationPath().isSuperTypeOf(domainElement.eClass())) {
+			return CommunicationPathEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -592,6 +606,12 @@ public class UMLVisualIDRegistry {
 		labelInfo = new BaseViewInfo(12, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 		labelInfo = new BaseViewInfo(15, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+		labelInfo = new BaseViewInfo(35, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(36, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(23, ViewInfo.Node, "Node");
 		root.addNode(19, viewInfo);

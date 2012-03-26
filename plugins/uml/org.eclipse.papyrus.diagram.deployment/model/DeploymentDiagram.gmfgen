@@ -55,7 +55,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="Node"/>
+            displayName="Node"
+            metamodelType="/0/@diagram/@topLevelNodes.5/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.figure.nodes.NodeFigure">
@@ -155,8 +156,7 @@
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.deployment.Device_16"
             displayName="Device"
-            metamodelType="/0/@diagram/@topLevelNodes.3/@elementType"
-            editHelperAdviceClassName=""/>
+            metamodelType="/0/@diagram/@topLevelNodes.3/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.figure.nodes.DeviceFigure">
@@ -255,7 +255,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_21"
-            displayName="ExecutionEnvironment"/>
+            displayName="ExecutionEnvironment"
+            metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.deployment.custom.figure.nodes.ExecutionEnvironmentFigure">
@@ -1212,7 +1213,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
-                y="60"/>
+                y="30"/>
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -1454,7 +1455,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
-                y="60"/>
+                y="30"/>
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -1466,6 +1467,103 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
+      </links>
+      <links
+          visualID="4010"
+          editPartClassName="CommunicationPathEditPart"
+          itemSemanticEditPolicyClassName="CommunicationPathItemSemanticEditPolicy"
+          createCommandClassName="CommunicationPathCreateCommand"
+          reorientCommandClassName="CommunicationPathReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.deployment.CommunicationPath_4010"
+            displayName="CommunicationPath"
+            editHelperClassName="CommunicationPathEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideLabelEditPolicy"/>
+        <modelFacet
+            xsi:type="gmfgen:TypeLinkModelFacet">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CommunicationPath"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+          <sourceMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+          <targetMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Association/endType"/>
+        </modelFacet>
+        <labels
+            visualID="35"
+            editPartClassName="CommunicationPathNameEditPart"
+            itemSemanticEditPolicyClassName="CommunicationPathNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAssociationNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              editorPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="36"
+            editPartClassName="CommunicationPathAppliedStereotypeEditPart"
+            itemSemanticEditPolicyClassName="CommunicationPathAppliedStereotypeItemSemanticEditPolicy"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeAssociationLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="-20"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.2"
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.1"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.1"/>
       </links>
       <compartments
           visualID="17"
@@ -1767,6 +1865,15 @@
               createMethodName="createManifestationCreationTool"
               id="&quot;deployment.tool.manifestation&quot;"
               genLinks="/0/@diagram/@links.4"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Communication Path"
+              description="Create new Communication Path"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif"
+              createMethodName="createCommunicationPathCreationTool"
+              id="&quot;deployment.tool.communicationpath&quot;"
+              genLinks="/0/@diagram/@links.7"/>
         </groups>
       </palette>
       <preferencePages
@@ -1799,7 +1906,7 @@
         iD="org.eclipse.papyrus.diagram.deployment"
         name="Papyrus Deployment Diagram (Incubation)"
         provider="Eclipse Modeling Project"
-        version="0.9.0.qualifier">
+        version="0.8.2.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -1832,6 +1939,9 @@
           xsi:type="gmfgen:GenExpressionInterpreter">
         <expressions
             body="self.name.concat('.file') "/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.oclIsKindOf(uml::DeploymentTarget)"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
@@ -1851,14 +1961,14 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.CommentParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -1875,8 +1985,14 @@
       comment="Papyrus specific extension for GMFGen">
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="used to add its own superclass"
+        superGenViews="/0/@diagram/@links.7"
+        name="AbstractAssociationEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractAssociationEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Manages stereotype shown with External Label"
-        genView="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.6/@labels.1"
+        genView="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.7/@labels.1"
         name="EP_Stereotypes_EXT_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
     <extensionNodes
@@ -1906,7 +2022,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Label in charge to display applied stereotypes on links"
-        genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.6 /0/@diagram/@links.5"
+        genView="/0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.6 /0/@diagram/@links.5 /0/@diagram/@links.7"
         name="ExtendedUMLLinks"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
     <extensionNodes
@@ -1932,12 +2048,12 @@
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Name"
         role="Name"
-        linkLabels="/0/@diagram/@links.3/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.6/@labels.0"/>
+        linkLabels="/0/@diagram/@links.3/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.7/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Stereotype"
         role="Stereotype"
-        linkLabels="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.6/@labels.1"/>
+        linkLabels="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.7/@labels.1"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:CompartmentTitleVisibilityPreference"
         comment="Hidden Compartments Titles"

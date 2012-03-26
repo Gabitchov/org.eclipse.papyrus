@@ -376,6 +376,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createCommunicationPathCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createCommunicationPathCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String DeviceCompositeCompartmentEditPart_title;
 
 	/**

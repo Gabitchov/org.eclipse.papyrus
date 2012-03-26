@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPartACN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ArtifactEditPartCN;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.deployment.edit.parts.CommunicationPathEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.deployment.edit.parts.DependencyEditPart;
@@ -164,6 +165,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType CommunicationPath_4010 = getElementType("org.eclipse.papyrus.diagram.deployment.CommunicationPath_4010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -284,6 +290,7 @@ public class UMLElementTypes {
 			elements.put(Manifestation_4002, UMLPackage.eINSTANCE.getManifestation());
 			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
 			elements.put(Dependency_4004, UMLPackage.eINSTANCE.getDependency());
+			elements.put(CommunicationPath_4010, UMLPackage.eINSTANCE.getCommunicationPath());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -320,6 +327,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Manifestation_4002);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4003);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4004);
+			KNOWN_ELEMENT_TYPES.add(CommunicationPath_4010);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -367,6 +375,8 @@ public class UMLElementTypes {
 			return Generalization_4003;
 		case DependencyEditPart.VISUAL_ID:
 			return Dependency_4004;
+		case CommunicationPathEditPart.VISUAL_ID:
+			return CommunicationPath_4010;
 		}
 		return null;
 	}

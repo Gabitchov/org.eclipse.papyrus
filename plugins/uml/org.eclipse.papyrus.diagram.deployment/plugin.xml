@@ -306,7 +306,7 @@
          </propertySection>
       </propertySections>
    </extension>
-
+
 <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
 		<initializer class="org.eclipse.papyrus.diagram.deployment.preferences.DiagramPreferenceInitializer"/>
@@ -318,7 +318,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLDeploymentDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2005,2002,2003,2006,2008,23,16,21,25,28"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4008,4009,4001,4002,4003,4004"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4008,4009,4001,4002,4003,4004,4010"/>
       </viewProvider>
    </extension>
 
@@ -333,7 +333,7 @@
             <method name="getType()" value="2001,2005,2002,2003,2006,2008,23,16,21,25,28"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4005,4008,4009,4001,4002,4003,4004"/>
+            <method name="getType()" value="4005,4008,4009,4001,4002,4003,4004,4010"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="1,2,3,5,6,8,9,24,20,22,27,29"/>
@@ -439,30 +439,33 @@
             <param name="semanticHint" value="2008"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.Node_23"
                name="%metatype.name.Node_23"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <specializes id="org.eclipse.papyrus.diagram.deployment.Node_2008"/>
             <param name="semanticHint" value="23"/>
          </specializationType>
+      </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.Device_16"
                name="%metatype.name.Device_16"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.diagram.deployment.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.deployment.Device_2003"/>
             <param name="semanticHint" value="16"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_21"
                name="%metatype.name.ExecutionEnvironment_21"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <specializes id="org.eclipse.papyrus.diagram.deployment.ExecutionEnvironment_2002"/>
             <param name="semanticHint" value="21"/>
          </specializationType>
+      </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.deployment.Artifact_25"
@@ -546,6 +549,16 @@
             <param name="semanticHint" value="4004"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.deployment.CommunicationPath_4010"
+               name="%metatype.name.CommunicationPath_4010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CommunicationPath"
+               edithelper="org.eclipse.papyrus.diagram.deployment.edit.helpers.CommunicationPathEditHelper">
+            <param name="semanticHint" value="4010"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -577,6 +590,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.deployment.Manifestation_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.deployment.Generalization_4003"/>
          <elementType ref="org.eclipse.papyrus.diagram.deployment.Dependency_4004"/>
+         <elementType ref="org.eclipse.papyrus.diagram.deployment.CommunicationPath_4010"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -744,6 +758,16 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
  	</entry>
+	<entry
+       defineOnly="true"
+       description="Create new Communication Path"
+       id="deployment.tool.communicationpath"
+       kind="tool"
+       label="Communication Path"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif">
+ 	</entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -834,6 +858,10 @@
           id="deployment.tool.manifestation"
           path="/deployment.group.links">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="deployment.tool.communicationpath"
+          path="/deployment.group.links">
+    </predefinedEntry>
 
 
 			</contribution>
@@ -904,6 +932,14 @@
 			class="org.eclipse.papyrus.diagram.deployment.preferences.CommentAnnotatedElementPreferencePage"
             id="org.eclipse.papyrus.diagram.deployment.preferences.CommentAnnotatedElementPreferencePage"
             name="CommentAnnotatedElement Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLDeploymentDiagram"
+			class="org.eclipse.papyrus.diagram.deployment.preferences.CommunicationPathPreferencePage"
+            id="org.eclipse.papyrus.diagram.deployment.preferences.CommunicationPathPreferencePage"
+            name="CommunicationPath Link" />
 		
 		
 
