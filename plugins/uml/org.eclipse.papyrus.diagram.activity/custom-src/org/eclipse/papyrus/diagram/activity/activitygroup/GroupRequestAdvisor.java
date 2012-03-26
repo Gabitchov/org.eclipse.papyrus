@@ -273,24 +273,26 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 				}
 			});
 			for(final GroupNotifyingEditPolicy p : policies) {
-				if(DebugUtils.isDebugging()) {
-
-					StringBuilder stringBuilder = new StringBuilder();
-					stringBuilder.append("+++ Work for child ");
-					stringBuilder.append(Utils.getCorrectLabel(p.getEObject()));
-					stringBuilder.append(" +++");
-					DebugUtils.getLog().debug(stringBuilder.toString());
-				}
-				ChangeBoundsRequest auxChReq = Utils.getChangeBoundsRequestCopy((ChangeBoundsRequest)request.getInitialRequest(), p.getHostEditPart());
-				/*
-				 * Save graphical parent
-				 */
-				auxChReq.getExtendedData().put(GROUP_FRAMEWORK_GRAPHICAL_PARENT, compartementEditPart.resolveSemanticElement());
-
-				graphicalChildren.add(p.getEObject());
-				Command childCommand = p.getCommand(auxChReq);
-				if(childCommand != null && childCommand.canExecute()) {
-					cc.compose(new CommandProxy(childCommand));
+				if(p != null){					
+					if(DebugUtils.isDebugging()) {
+						
+						StringBuilder stringBuilder = new StringBuilder();
+						stringBuilder.append("+++ Work for child ");
+						stringBuilder.append(Utils.getCorrectLabel(p.getEObject()));
+						stringBuilder.append(" +++");
+						DebugUtils.getLog().debug(stringBuilder.toString());
+					}
+					ChangeBoundsRequest auxChReq = Utils.getChangeBoundsRequestCopy((ChangeBoundsRequest)request.getInitialRequest(), p.getHostEditPart());
+					/*
+					 * Save graphical parent
+					 */
+					auxChReq.getExtendedData().put(GROUP_FRAMEWORK_GRAPHICAL_PARENT, compartementEditPart.resolveSemanticElement());
+					
+					graphicalChildren.add(p.getEObject());
+					Command childCommand = p.getCommand(auxChReq);
+					if(childCommand != null && childCommand.canExecute()) {
+						cc.compose(new CommandProxy(childCommand));
+					}
 				}
 
 			}
