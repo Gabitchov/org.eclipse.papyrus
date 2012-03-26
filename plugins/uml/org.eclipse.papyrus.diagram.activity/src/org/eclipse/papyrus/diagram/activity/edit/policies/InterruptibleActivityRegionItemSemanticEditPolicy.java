@@ -45,6 +45,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.BroadcastSignalActionEdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CentralBufferNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
@@ -1332,6 +1333,31 @@ public class InterruptibleActivityRegionItemSemanticEditPolicy extends UMLBaseIt
 							}
 						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case CommentEditPartCN.VISUAL_ID:
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
+							}
+						}
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								break;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;

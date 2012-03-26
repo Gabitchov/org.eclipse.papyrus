@@ -23,6 +23,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.BroadcastSignalActionC
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CentralBufferNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CreateObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
@@ -186,6 +187,9 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentItemSemantic
 		}
 		if(UMLElementTypes.CentralBufferNode_3104 == req.getElementType()) {
 			return getGEFWrapper(new CentralBufferNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.Comment_3080 == req.getElementType()) {
+			return getGEFWrapper(new CommentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
