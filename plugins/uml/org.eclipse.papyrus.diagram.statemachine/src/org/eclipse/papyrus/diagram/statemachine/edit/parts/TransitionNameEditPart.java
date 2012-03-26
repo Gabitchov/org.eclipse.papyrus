@@ -189,14 +189,14 @@ public class TransitionNameEditPart extends LabelEditPart implements ITextAwareE
 	 * @generated
 	 */
 	public String getLabelRole() {
-		return "";//$NON-NLS-1$
+		return "Name";//$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	public String getIconPathRole() {
-		return "";//$NON-NLS-1$
+		return "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}
 
 	/**

@@ -32,7 +32,9 @@ public class TransitionPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	 */
 	private static TreeMap<String, String> getStaticLabelRole() {
 		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
-		map.put("", "");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("Name", "platform:/plugin/org.eclipse.papyrus.diagram.common/icons/label_role/name.png");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("Guard", "");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("Stereotype", "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif");//$NON-NLS-1$ //$NON-NLS-2$
 		return map;
 	}
 
@@ -41,7 +43,9 @@ public class TransitionPreferencePage extends AbstractPapyrusLinkPreferencePage 
 	 */
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("", Boolean.FALSE);//$NON-NLS-1$
+		map.put("Name", Boolean.FALSE);//$NON-NLS-1$
+		map.put("Guard", Boolean.TRUE);
+		map.put("Stereotype", Boolean.TRUE);
 		return map;
 	}
 
