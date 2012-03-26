@@ -2791,5 +2791,12 @@
         comment=""
         visibleByDefault="false"
         compartments="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Hide la labels"
+        role=""
+        iconPathRole=""
+        linkLabels="/0/@diagram/@links.0/@labels.0"
+        visibleByDefault="false"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
