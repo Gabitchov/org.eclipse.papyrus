@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.model.IClientSelector;
@@ -168,8 +169,11 @@ public class UMLValidationProvider {
 			}
 			if(object instanceof EObject) {
 				EObject eObj = (EObject)object;
-				ResourceSet set = eObj.eResource().getResourceSet();
-				return set instanceof ModelSet;
+				Resource eResource = eObj.eResource();
+				if (eResource != null){					
+					ResourceSet set = eResource.getResourceSet();
+					return set instanceof ModelSet;
+				}
 			}
 			return false;
 		}
