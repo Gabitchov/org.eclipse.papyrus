@@ -26,12 +26,8 @@ public class RefreshGroupsRequest extends AbstractGroupRequest {
 	
 	public RefreshGroupsRequest(IGraphicalEditPart host, IAdaptable target, IContainerNodeDescriptor nodeDescriptor) {
 		super(host, null, target, nodeDescriptor);
-		
-		/*
-		 * TODO see ChangeBoundsDeferredRequest
-		 */
 		request = new ChangeBoundsRequest();
-//		((ChangeBoundsRequest)request).set
+
 	}
 
 	public GroupRequestType getGroupRequestType() {

@@ -78,8 +78,8 @@ public abstract class GroupListenerEditPolicy extends GraphicalNodeEditPolicy im
 	 */
 	@Override
 	public void deactivate() {
-		super.deactivate();
 		GroupRequestAdvisor.getInstance().removeListenner(this);
+		super.deactivate();
 	}
 
 	/**
