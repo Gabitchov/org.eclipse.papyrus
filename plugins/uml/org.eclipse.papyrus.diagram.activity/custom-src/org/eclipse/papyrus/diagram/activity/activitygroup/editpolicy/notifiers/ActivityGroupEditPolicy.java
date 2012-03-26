@@ -81,12 +81,4 @@ public class ActivityGroupEditPolicy extends GroupNotifyingEditPolicy{
 		return false;
 	}
 
-
-	
-	
-
-	
-	
-
-
 }

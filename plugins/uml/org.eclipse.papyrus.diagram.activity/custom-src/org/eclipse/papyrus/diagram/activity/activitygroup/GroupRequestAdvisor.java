@@ -200,7 +200,7 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 				if(!allActualChildren.containsEntry(oldChildrenEntry.getValue(), ref)) {
 					EReference eOpposite = ref.getEOpposite();
 					if(!graphicalChildren.contains(oldChildrenEntry.getValue())) {
-						if(eOpposite != null && !eOpposite.isContainment()) {
+						if(eOpposite != null && !eOpposite.isContainment() && !ref.isContainment()) {
 							RemoveValueRequest rmVa = new RemoveValueRequest(targetElement, ref, Collections.singletonList(oldChildrenEntry.getValue()));
 							RemoveValueCommand rmCmd = new RemoveValueCommand(rmVa);
 							if(rmCmd != null) {
@@ -422,7 +422,7 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 			}
 			if(refenceFounded != null) {
 				if((include && input.includes(newBounds)) || (!include && input.isIncludedIn(newBounds))) {
-					if (containementOnly && refenceFounded.getEOpposite() != null &&  !refenceFounded.getEOpposite().isContainment()){
+					if (containementOnly && refenceFounded.getEOpposite() != null && !refenceFounded.getEOpposite().isContainment()){
 						continue;
 					}
 					eReferenceMapToFillInRequest.put(refenceFounded, inputEObject);

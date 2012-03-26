@@ -26,7 +26,6 @@ public class ActivityPartitionActivityPartitionContentCompartmentCreationEditPol
 
 	public ActivityPartitionActivityPartitionContentCompartmentCreationEditPolicy(IContainerNodeDescriptor groupDescriptor) {
 		super(groupDescriptor);
-		// TODO Auto-generated constructor stub
 	}
 	
 }
