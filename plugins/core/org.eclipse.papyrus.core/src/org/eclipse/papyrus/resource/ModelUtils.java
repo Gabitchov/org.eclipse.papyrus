@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.resource;
 
+import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
@@ -80,6 +81,14 @@ public class ModelUtils {
 	 */
 	public static ModelSet getModelSetChecked(ServicesRegistry servicesRegistry) throws ServiceException {
 		return servicesRegistry.getService(ModelSet.class);
+	}
+	
+	/**
+	 * Determine if a throwable can be managed in degraded mode
+	 * @param t
+	 */
+	public static boolean isDegradedModeAllowed (Throwable t){
+		return t instanceof org.eclipse.emf.ecore.xmi.ClassNotFoundException || t instanceof IllegalValueException;
 	}
 
 }

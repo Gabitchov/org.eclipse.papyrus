@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.resource.uml.UmlModel;
@@ -76,7 +77,7 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 						resource = getResourceSet().getResource(resourceURI, true);
 					}
 					catch (WrappedException e){
-						if (e.getCause() instanceof ClassNotFoundException){
+						if (ModelUtils.isDegradedModeAllowed(e.getCause())){
 							// in this case Papyrus can work in degraded mode
 							resource = getResourceSet().getResource(resourceURI, false);
 							if (resource == null){

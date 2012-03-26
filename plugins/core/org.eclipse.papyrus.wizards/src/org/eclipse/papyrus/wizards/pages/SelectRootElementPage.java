@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.wizards.Messages;
@@ -163,7 +164,7 @@ public class SelectRootElementPage extends WizardPage {
 			resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 		}
 		catch (WrappedException e) {
-			if (e.getCause() instanceof ClassNotFoundException){
+			if (ModelUtils.isDegradedModeAllowed(e.getCause())){
 				resource = modelSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), false);
 				if (resource == null){
 					throw e;

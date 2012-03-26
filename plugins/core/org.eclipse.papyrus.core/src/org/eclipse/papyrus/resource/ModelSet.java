@@ -181,7 +181,7 @@ public class ModelSet extends ResourceSetImpl {
 			try {
 				r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
 			} catch (WrappedException e){
-				if (e.getCause() instanceof ClassNotFoundException){
+				if (ModelUtils.isDegradedModeAllowed(e.getCause())){
 					r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), false);
 					if (r == null){
 						throw e;
