@@ -9113,7 +9113,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ReferencingGroupCustomDragAndDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -9139,7 +9139,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ReferencingGroupCustomDragAndDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
