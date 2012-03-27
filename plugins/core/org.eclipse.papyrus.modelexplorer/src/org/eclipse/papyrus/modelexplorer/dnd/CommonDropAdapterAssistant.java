@@ -387,7 +387,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				if (object instanceof IAdaptable) {
 					EObject eObjectchild = (EObject) ((IAdaptable) object).getAdapter(EObject.class);
 					//test if object is an eobject
-					if(eObjectchild!=null&& objectOwner!=null){
+					if(eObjectchild!=null&& objectOwner!=null && eObjectchild.eContainer()!= null){
 						if(!eObjectchild.eContainer().equals(objectOwner)){
 							moveNeeded=true;
 						}
