@@ -230,6 +230,8 @@ public class EditPartHyperLinkHelper {
 				// The result is the concatenation of the computed
 				// hyperlinkDiagrams and the other existing hyperlinks.
 				result = Lists.newArrayList(Iterables.concat(existingOtherHyperLinks, finalHyperLinksToAdd));
+			} else {
+				result = Collections.emptyList();
 			}
 		} catch (Exception e) {
 			org.eclipse.papyrus.diagram.common.Activator.log.error("Impossible to load hyperlinks", e);

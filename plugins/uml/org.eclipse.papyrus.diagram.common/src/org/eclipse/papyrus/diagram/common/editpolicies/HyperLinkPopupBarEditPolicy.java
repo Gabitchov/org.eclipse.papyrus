@@ -286,9 +286,15 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (Element)((IGraphicalEditPart)getHost()).getNotationView().getElement(), ((IGraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((IGraphicalEditPart)getHost()).getNotationView().getElement()), hyperlinkHelperFactory);
-					hyperLinkManagerShell.setInput(hyperLinkObjectList);
-					hyperLinkManagerShell.open();
+					Element element = (Element)((IGraphicalEditPart)getHost()).getNotationView().getElement();
+					if (element != null){
+						Package topPackage = topPackage(element);
+						if (topPackage != null){
+							hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), element, ((IGraphicalEditPart)getHost()).getNotationView(), topPackage, hyperlinkHelperFactory);
+							hyperLinkManagerShell.setInput(hyperLinkObjectList);
+							hyperLinkManagerShell.open();						
+						}
+					}
 
 				} else if(me.getSource() instanceof PopupBarLabelHandle) {
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperlinkObject) {
@@ -407,7 +413,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** mouse keys listener for the owner shape. */
 	private final PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
 
-	protected ArrayList<HyperlinkObject> hyperLinkObjectList;
+	protected List<HyperlinkObject> hyperLinkObjectList;
 
 	protected HyperlinkHelperFactory hyperlinkHelperFactory;
 
@@ -615,7 +621,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			// Retrieving the hyperlinks.
 			IGraphicalEditPart host = (IGraphicalEditPart) this.getHost();
 			EditPartHyperLinkHelper diagramHelper = new EditPartHyperLinkHelper(host.getNotationView());
-			hyperLinkObjectList = (ArrayList<HyperlinkObject>) diagramHelper.getHyperlinksFromEditPart(hyperlinkHelperFactory);
+			hyperLinkObjectList = (List<HyperlinkObject>) diagramHelper.getHyperlinksFromEditPart(hyperlinkHelperFactory);
 			
 			xLoc = addObjectList(xLoc, hyperLinkObjectList);
 			// add the PLUS button

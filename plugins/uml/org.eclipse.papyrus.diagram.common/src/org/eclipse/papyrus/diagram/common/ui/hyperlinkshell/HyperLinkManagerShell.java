@@ -18,6 +18,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -72,7 +73,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	protected HyperlinkHelperFactory hyperLinkHelperFactory;
 
-	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
+	public void setInput(List<HyperlinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
 		Iterator<HyperLinkTab> iter = tabList.iterator();

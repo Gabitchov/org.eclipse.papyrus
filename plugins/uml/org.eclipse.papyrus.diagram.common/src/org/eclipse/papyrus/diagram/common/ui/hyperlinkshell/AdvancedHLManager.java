@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -178,7 +179,7 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	}
 
 	@Override
-	public void setInput(ArrayList<HyperlinkObject> hyperLinkObjectList) {
+	public void setInput(List<HyperlinkObject> hyperLinkObjectList) {
 		super.setInput(hyperLinkObjectList);
 		defaultHyperLinkTab.setInput(allhypHyperlinkObjects);
 	}
