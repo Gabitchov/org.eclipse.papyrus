@@ -44,8 +44,10 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		node.setType(AppliedStereotypePropertyEditPart.ID);
-		ViewUtil.insertChildView(owner, node, -1, true);
+		ViewUtil.insertChildView(owner, node, -1, false);
 		node.setElement(property);
+		node.setMutable(true);
+		
 
 		
 	}

@@ -49,7 +49,8 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 		compartment.getStyles().add(ts);
 		compartment.setElement(StereotypeApplication);
 		compartment.setType(AppliedStereotypeConpartmentEditPart.ID);
-		ViewUtil.insertChildView(owner, compartment, ViewUtil.APPEND, true);
+		ViewUtil.insertChildView(owner, compartment, ViewUtil.APPEND, false);
+		compartment.setMutable(true);
 	}
 
 }
