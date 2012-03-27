@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_UVrRoGkdEeGGJOTenKBKAg" name="testProfile" metaclassReference="_YcYBQGkdEeGGJOTenKBKAg">
+  <eAnnotations xmi:id="_CL6gEHc4EeGpWpXSc4xZww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_sVoXAHc8EeGEMdTf3PnPPg" name="testProfile" nsURI="http:///schemas/testProfile/_rNfDMHc8EeGEMdTf3PnPPg/0" nsPrefix="testProfile">
+      <eAnnotations xmi:id="_v37ZEXc8EeGEMdTf3PnPPg" source="PapyrusVersion">
+        <details xmi:id="_v37ZEnc8EeGEMdTf3PnPPg" key="Version" value="0.0.1"/>
+        <details xmi:id="_v37ZE3c8EeGEMdTf3PnPPg" key="Comment" value=""/>
+        <details xmi:id="_v37ZFHc8EeGEMdTf3PnPPg" key="Copyright" value=""/>
+        <details xmi:id="_v37ZFXc8EeGEMdTf3PnPPg" key="Date" value="2012-03-26"/>
+        <details xmi:id="_v37ZFnc8EeGEMdTf3PnPPg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sVoXAXc8EeGEMdTf3PnPPg" name="Stereotype1">
+        <eAnnotations xmi:id="_sVoXAnc8EeGEMdTf3PnPPg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WJYD4GkdEeGGJOTenKBKAg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sVo-EHc8EeGEMdTf3PnPPg" name="testReftoStereotype2" ordered="false" upperBound="-1" eType="_sVqMMnc8EeGEMdTf3PnPPg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sVo-Enc8EeGEMdTf3PnPPg" name="base_Element" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sVo-FHc8EeGEMdTf3PnPPg" name="testUnaryReftoStereotype2" ordered="false" eType="_sVqMMnc8EeGEMdTf3PnPPg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sVplIHc8EeGEMdTf3PnPPg" name="testMyPrimituveType" ordered="false" lowerBound="1" eType="_sVqzQHc8EeGEMdTf3PnPPg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sVplInc8EeGEMdTf3PnPPg" name="testInt" ordered="false" unique="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sVplJHc8EeGEMdTf3PnPPg" name="testMultiString" ordered="false" unique="false" upperBound="-1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sVplJnc8EeGEMdTf3PnPPg" name="testRefToMetaclass" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sVqMMHc8EeGEMdTf3PnPPg" name="testRefToEnumeration" ordered="false" lowerBound="1" eType="_sVqzQnc8EeGEMdTf3PnPPg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_v33HoHc8EeGEMdTf3PnPPg" name="testDataType" ordered="false" lowerBound="1" eType="_v33usHc8EeGEMdTf3PnPPg"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sVqMMnc8EeGEMdTf3PnPPg" name="Stereotype2">
+        <eAnnotations xmi:id="_sVqMM3c8EeGEMdTf3PnPPg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WxelsGkdEeGGJOTenKBKAg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sVqMNHc8EeGEMdTf3PnPPg" name="base_Element" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EDataType" xmi:id="_sVqzQHc8EeGEMdTf3PnPPg" name="MyPrimitiveType" instanceClassName="java.lang.String">
+        <eAnnotations xmi:id="_sVqzQXc8EeGEMdTf3PnPPg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_apMeIGkdEeGGJOTenKBKAg"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_sVqzQnc8EeGEMdTf3PnPPg" name="Enumeration1">
+        <eAnnotations xmi:id="_sVqzQ3c8EeGEMdTf3PnPPg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Zym0YGkdEeGGJOTenKBKAg"/>
+        <eLiterals xmi:id="_sVqzRHc8EeGEMdTf3PnPPg" name="EnumerationLiteral1"/>
+        <eLiterals xmi:id="_sVqzRXc8EeGEMdTf3PnPPg" name="EnumerationLiteral2" value="1"/>
+        <eLiterals xmi:id="_sVqzRnc8EeGEMdTf3PnPPg" name="EnumerationLiteral3" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EDataType" xmi:id="_v33usHc8EeGEMdTf3PnPPg" name="DataType1" instanceClassName="java.lang.String">
+        <eAnnotations xmi:id="_v33usXc8EeGEMdTf3PnPPg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aNRXIGkdEeGGJOTenKBKAg"/>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_YcYBQGkdEeGGJOTenKBKAg" alias="Element">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+  </elementImport>
+  <packageImport xmi:id="_UVrRomkdEeGGJOTenKBKAg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_WJYD4GkdEeGGJOTenKBKAg" name="Stereotype1">
+    <ownedAttribute xmi:id="_dcMxQGkdEeGGJOTenKBKAg" name="testReftoStereotype2" type="_WxelsGkdEeGGJOTenKBKAg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jnpm4GkdEeGGJOTenKBKAg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jnpm4WkdEeGGJOTenKBKAg" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_erNiEGkdEeGGJOTenKBKAg" name="base_Element" association="_erNiEWkdEeGGJOTenKBKAg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_meyzIGkdEeGGJOTenKBKAg" name="testUnaryReftoStereotype2" visibility="public" type="_WxelsGkdEeGGJOTenKBKAg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vekKgGkdEeGGJOTenKBKAg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vekKgWkdEeGGJOTenKBKAg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_vetUcGkdEeGGJOTenKBKAg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_wshLYGkdEeGGJOTenKBKAg" name="testDataType" visibility="public" type="_aNRXIGkdEeGGJOTenKBKAg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1DBRkGkdEeGGJOTenKBKAg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1DBRkWkdEeGGJOTenKBKAg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1DBRkmkdEeGGJOTenKBKAg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_1ta5cGkdEeGGJOTenKBKAg" name="testMyPrimituveType" visibility="public" type="_apMeIGkdEeGGJOTenKBKAg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7KKO8GkdEeGGJOTenKBKAg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7KKO8WkdEeGGJOTenKBKAg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_7KTY4GkdEeGGJOTenKBKAg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_71vikGkdEeGGJOTenKBKAg" name="testInt" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AhPBUGkeEeGGJOTenKBKAg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AhPBUWkeEeGGJOTenKBKAg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_AhPBUmkeEeGGJOTenKBKAg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_BfRW4GkeEeGGJOTenKBKAg" name="testMultiString" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HnmnEGkeEeGGJOTenKBKAg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HnmnEWkeEeGGJOTenKBKAg" value="*"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_HnmnEmkeEeGGJOTenKBKAg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Lb0QgGz4EeGEKeJyQaxg3g" name="testRefToMetaclass">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_jAiq8G38EeGag98Jn1kDVw" name="testRefToEnumeration" visibility="public" type="_Zym0YGkdEeGGJOTenKBKAg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jQ6CMG38EeGag98Jn1kDVw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jQ6CMW38EeGag98Jn1kDVw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_jQ6CMm38EeGag98Jn1kDVw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_WxelsGkdEeGGJOTenKBKAg" name="Stereotype2">
+    <ownedAttribute xmi:id="_fTFaYGkdEeGGJOTenKBKAg" name="base_Element" association="_fTFaYWkdEeGGJOTenKBKAg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_Zym0YGkdEeGGJOTenKBKAg" name="Enumeration1">
+    <ownedLiteral xmi:id="_fc4W8G38EeGag98Jn1kDVw" name="EnumerationLiteral1"/>
+    <ownedLiteral xmi:id="_f6NMIG38EeGag98Jn1kDVw" name="EnumerationLiteral2"/>
+    <ownedLiteral xmi:id="_gPCzsG38EeGag98Jn1kDVw" name="EnumerationLiteral3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_aNRXIGkdEeGGJOTenKBKAg" name="DataType1"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_apMeIGkdEeGGJOTenKBKAg" name="MyPrimitiveType"/>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_erNiEWkdEeGGJOTenKBKAg" name="E_Stereotype1_Element1" memberEnd="_erNiEmkdEeGGJOTenKBKAg _erNiEGkdEeGGJOTenKBKAg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_erNiEmkdEeGGJOTenKBKAg" name="extension_Stereotype1" type="_WJYD4GkdEeGGJOTenKBKAg" aggregation="composite" association="_erNiEWkdEeGGJOTenKBKAg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_fTFaYWkdEeGGJOTenKBKAg" name="E_Stereotype2_Element1" memberEnd="_fTFaYmkdEeGGJOTenKBKAg _fTFaYGkdEeGGJOTenKBKAg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_fTFaYmkdEeGGJOTenKBKAg" name="extension_Stereotype2" type="_WxelsGkdEeGGJOTenKBKAg" aggregation="composite" association="_fTFaYWkdEeGGJOTenKBKAg"/>
+  </packagedElement>
+</uml:Profile>
