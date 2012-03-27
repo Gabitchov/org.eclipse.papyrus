@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.DefaultLabelColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.EContainerColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.MetaClassColumn;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -84,16 +85,38 @@ public class AssignTableEditor extends AbstractNattableEditor {
 		//Hiding useless columns.
 		final EList<Column> columns = this.rawModel.getTable().getColumns();
 		EditingDomain domain = getEditingDomain();
-		//Command used to change the model.
-		AbstractTransactionalCommand modifyAttribute = new AbstractTransactionalCommand((TransactionalEditingDomain)domain, "Hide rows", null) {
+		//Command used to change the model (here used to hide the columns not needed for the assign table)
+		AbstractTransactionalCommand modifyAttribute = new AbstractTransactionalCommand((TransactionalEditingDomain)domain, "Hide columns", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				for(Column current : columns ) {
+				int toColumnIndex = -1;
+				int fromColumnIndex = -1;
+				Column toColumn = null;
+				Column fromColumn = null;
+				for(int index = 0; index <columns.size();index++) {
+					Column current = columns.get(index);
 					if(current instanceof DefaultLabelColumn || current instanceof MetaClassColumn || current instanceof EContainerColumn){
 						current.setIsHidden(true);
 					}
+					if (current instanceof FacetReferenceColumn){
+						FacetReferenceColumn facetReferenceColumn = (FacetReferenceColumn) current;
+						String columnName = facetReferenceColumn.getReference().getName();
+						if (columnName.equals("to")){ //$NON-NLS-1$
+							toColumnIndex = index;
+							toColumn = current;
+						}
+						if (columnName.equals("from")){
+							fromColumnIndex = index;
+							fromColumn = current;
+						}
+					}
 				}
+				//Switching "from" and "to" if needed.
+				if (toColumnIndex < fromColumnIndex && toColumn != null && fromColumn != null){
+					columns.move(toColumnIndex, fromColumn);
+				}
+				
 				return CommandResult.newOKCommandResult();
 			}
 		};
