@@ -153,7 +153,6 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		} else {
 			//Synchronization when a link between pins and params already exists but is outdated.
 			syncCallActionWhenOutdated(callAction);
-			createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The call action " + callAction.getQualifiedName() + " has been synchronized", Type.INFO);
 		}
 		//Renaming pins according to their associated parameters.
 		renamePins(callAction);
@@ -302,14 +301,12 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 			Iterable<ActivityEdge> outgoing = Collections.emptyList();
 			Iterable<ActivityEdge> incoming = Collections.emptyList();
 			for(Pin p : callAction.getResults()) {
-				Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(p, xmiResource);
-				if(pa == null) {
+				if (!isUpToDate(p, xmiResource)){
 					outgoing = Iterables.concat(outgoing, p.getOutgoings());
 				}
 			}
 			for(Pin p : callAction.getArguments()) {
-				Parameter pa = PinAndParameterSynchronizer.getLinkedParemeter(p, xmiResource);
-				if(pa == null) {
+				if (!isUpToDate(p, xmiResource)){
 					incoming = Iterables.concat(incoming, p.getIncomings());
 				}
 			}
@@ -339,6 +336,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 				}
 				//Reset all pin
 				executeCommand(new EMFtoGEFCommandWrapper(cmd), callAction);
+				createNotification(SYNCHRONIZE_PINS_AND_PARAMETERS, "The call action " + callAction.getQualifiedName() + " has been synchronized", Type.INFO);
 			}
 		}
 	}

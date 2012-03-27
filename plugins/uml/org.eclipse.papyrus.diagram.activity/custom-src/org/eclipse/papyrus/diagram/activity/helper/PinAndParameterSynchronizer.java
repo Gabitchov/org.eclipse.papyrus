@@ -2323,8 +2323,8 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		pin.setName(RESULT_PIN_READ_SRTUCTURAL_ACTION);
 		return pin;
 	}
-	
-	private static void assignUpperBound(ObjectNode node){
+
+	private static void assignUpperBound(ObjectNode node) {
 		LiteralInteger literal = UMLFactory.eINSTANCE.createLiteralInteger();
 		literal.setValue(1);
 		node.setUpperBound(literal);
@@ -2401,7 +2401,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @return
 	 */
 	public static Parameter getLinkedParemeter(Pin p, XMIResource xmiResource) {
-		
+
 		if(p != null && xmiResource != null) {
 			EAnnotation eAnnotation = p.getEAnnotation(IPinToParameterLinkCommand.PIN_TO_PARAMETER_LINK);
 			if(eAnnotation != null && !eAnnotation.getDetails().isEmpty()) {
@@ -2431,29 +2431,29 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		List<Parameter> parameters = Collections.emptyList();
 		if(action instanceof CallBehaviorAction) {
 			behaviorStructural = ((CallBehaviorAction)action).getBehavior();
-			parameters = ((Behavior) behaviorStructural).getOwnedParameters();
+			parameters = ((Behavior)behaviorStructural).getOwnedParameters();
 		} else if(action instanceof CallOperationAction) {
 			behaviorStructural = ((CallOperationAction)action).getOperation();
-			parameters = ((Operation) behaviorStructural).getOwnedParameters();
+			parameters = ((Operation)behaviorStructural).getOwnedParameters();
 		}
 		XMIResource xmiResource = getXMIResource(behaviorStructural);
-		
+
 		// Removing input pins that are not up to date.
 		Collection<Parameter> parameterWhichPinNotDeleted = new ArrayList<Parameter>();
-		Iterable<Pin> allPins = Iterables.concat(action.getArguments(),action.getResults());
+		Iterable<Pin> allPins = Iterables.concat(action.getArguments(), action.getResults());
 		for(Pin pin : allPins) {
-			if (SynchronizePinsParametersHandler.isUpToDate(pin, xmiResource)){
+			if(SynchronizePinsParametersHandler.isUpToDate(pin, xmiResource)) {
 				Parameter pa = getLinkedParemeter(pin, xmiResource);
 				parameterWhichPinNotDeleted.add((Parameter)pa);
 			} else {
-				EReference feature = null; 
-				if (pin instanceof InputPin){
+				EReference feature = null;
+				if(pin instanceof InputPin) {
 					feature = UMLPackage.eINSTANCE.getInvocationAction_Argument();
-				} else if (pin instanceof OutputPin){
+				} else if(pin instanceof OutputPin) {
 					feature = UMLPackage.eINSTANCE.getCallAction_Result();
 				}
 				//Removing the pin.
-				Command cmd = RemoveCommand.create(editingdomain, action, feature , pin);
+				Command cmd = RemoveCommand.create(editingdomain, action, feature, pin);
 				cmd.canExecute();
 				globalCmd.append(cmd);
 			}
@@ -2472,38 +2472,35 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
 		return globalCmd;
 	}
-	
+
 	/**
-	 * Split a list of parameters in two lists : in and out parameters. If a parameter is to be ignored, then "null" is added to the 
+	 * Split a list of parameters in two lists : in and out parameters. If a parameter is to be ignored, then "null" is added to the
 	 * corresponding list instead.
 	 */
-	public static void splitParameters(List<Parameter> allParams, Collection<Parameter> paramsToIgnore, Map<Integer, Parameter> inParams, Map<Integer, Parameter> outParams){
+	public static void splitParameters(List<Parameter> allParams, Collection<Parameter> paramsToIgnore, Map<Integer, Parameter> inParams, Map<Integer, Parameter> outParams) {
 		Integer inIndex = 0;
 		Integer outIndex = 0;
 		for(Parameter param : allParams) {
 			ParameterDirectionKind direction = param.getDirection();
 			//In
-			if (direction == ParameterDirectionKind.IN_LITERAL 
-					|| direction == ParameterDirectionKind.INOUT_LITERAL){
+			if(direction == ParameterDirectionKind.IN_LITERAL || direction == ParameterDirectionKind.INOUT_LITERAL) {
 				if(!paramsToIgnore.contains(param)) {
-					inParams.put(inIndex,param);
-				} 
-				inIndex ++;
+					inParams.put(inIndex, param);
+				}
+				inIndex++;
 			}
 			//Out
-			if (direction == ParameterDirectionKind.OUT_LITERAL 
-					|| direction == ParameterDirectionKind.INOUT_LITERAL
-					|| direction == ParameterDirectionKind.RETURN_LITERAL){
+			if(direction == ParameterDirectionKind.OUT_LITERAL || direction == ParameterDirectionKind.INOUT_LITERAL || direction == ParameterDirectionKind.RETURN_LITERAL) {
 				if(!paramsToIgnore.contains(param)) {
-					outParams.put(outIndex,param);
-				} 
-				outIndex ++;
+					outParams.put(outIndex, param);
+				}
+				outIndex++;
 			}
 		}
 	}
-	
-	
-	
+
+
+
 
 	/**
 	 * Retrieves the XMIResource
