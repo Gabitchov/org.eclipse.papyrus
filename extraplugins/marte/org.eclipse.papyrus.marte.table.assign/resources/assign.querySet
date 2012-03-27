@@ -27,4 +27,8 @@
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Comment"/>
   </queries>
+  <queries xsi:type="query:JavaModelQuery" name="CanBePresentedInAssignTableQuery" description="Tests if an element can be put into the assign table." implementationClassName="org.eclipse.papyrus.marte.table.assign.queries.CanBePresentedInAssignTableQuery">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/3.0.0/UML#//Boolean"/>
+    <scope href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </queries>
 </query:ModelQuerySet>

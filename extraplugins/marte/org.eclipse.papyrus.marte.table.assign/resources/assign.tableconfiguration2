@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tableconfiguration2:TableConfiguration2 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:tableconfiguration2="http://www.eclipse.org/EMF_Facet/Table/0.1.0/tableconfiguration2">
   <defaultFacets href="emffacet:/facet/assign#//Assign"/>
+  <canBePresentedInTheTable xsi:type="query:JavaModelQuery" href="emffacet:/query/assign#CanBePresentedInAssignTableQuery"/>
   <defaultCustomizations href="emffacet:/customization/assignTableLayoutConfiguration#/"/>
   <defaultCustomizations href="emffacet:/customization/assignTableLayoutConfigurationComment#/"/>
   <instantiationMethod name="CreateAssignCommentQuery" description="creates assign comment">
