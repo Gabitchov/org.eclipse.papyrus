@@ -125,7 +125,7 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 			// identical. The latter is a generic system resource (File, ...),
 			// the former a
 			// model-aware representation of the resource
-			if(normalizedURI.path().endsWith(changedResourcePath)) {
+			if(normalizedURI != null && normalizedURI.path() != null && normalizedURI.path().endsWith(changedResourcePath)) {
 				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
 					// model itself has changed.
 					// mark main resource as changed. User will asked later,
