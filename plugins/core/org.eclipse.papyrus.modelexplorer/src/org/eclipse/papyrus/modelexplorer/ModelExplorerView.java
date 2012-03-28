@@ -578,10 +578,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					r = currentEObject.eResource();
 				}
 
-				ResourceSet rs = r.getResourceSet();
-				if(r != null && rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
-					commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
-					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+				
+				if (r != null) {
+					ResourceSet rs = r.getResourceSet();
+					if (rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
+						commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
+						commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+					}
 				}
 
 				/*
