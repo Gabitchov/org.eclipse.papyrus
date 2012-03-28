@@ -2508,6 +2508,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
             <target class="uml.Signal"/>
             <target class="uml.SendObjectAction"/>
             <target class="uml.BroadcastSignalAction"/>
+            <target class="uml.StructuredActivityNode"/>
          </constraint>
                   </constraints>
       </constraintProvider>

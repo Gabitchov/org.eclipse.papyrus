@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -92,12 +92,17 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadStructuralFeatureAction newElement = UMLFactory.eINSTANCE.createReadStructuralFeatureAction();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		// set appropriate parents
+		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		// Activity owner = (Activity)getElementToEdit();
+		// owner.getNodes().add(newElement);
 		ElementInitializers.getInstance().init_ReadStructuralFeatureAction_3088(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

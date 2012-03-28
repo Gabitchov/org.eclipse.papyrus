@@ -94,6 +94,8 @@ public class InitialNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT set appropriate parents
+	 * Set correct parent
+	 * TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InitialNode newElement = UMLFactory.eINSTANCE.createInitialNode();

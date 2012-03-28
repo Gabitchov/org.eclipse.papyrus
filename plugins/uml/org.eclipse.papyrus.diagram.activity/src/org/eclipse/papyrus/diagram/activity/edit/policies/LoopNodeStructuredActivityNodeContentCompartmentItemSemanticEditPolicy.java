@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.LoopNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ReadSelfActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ReadStructuralFeatureActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ReadVariableActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
@@ -190,6 +191,9 @@ public class LoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPol
 		}
 		if(UMLElementTypes.Comment_3080 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req));
+		}
+		if(UMLElementTypes.ReadSelfAction_3081 == req.getElementType()) {
+			return getGEFWrapper(new ReadSelfActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
