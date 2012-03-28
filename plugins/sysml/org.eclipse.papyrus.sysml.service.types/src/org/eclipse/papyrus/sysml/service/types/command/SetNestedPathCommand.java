@@ -11,7 +11,7 @@
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sysml.service.types.comand;
+package org.eclipse.papyrus.sysml.service.types.command;
 
 import java.util.List;
 

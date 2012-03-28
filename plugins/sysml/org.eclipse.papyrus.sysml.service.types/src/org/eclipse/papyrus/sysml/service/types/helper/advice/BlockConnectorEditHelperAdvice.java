@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.blocks.Block;
-import org.eclipse.papyrus.sysml.service.types.comand.SetNestedPathCommand;
+import org.eclipse.papyrus.sysml.service.types.command.SetNestedPathCommand;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
