@@ -51,12 +51,47 @@
             id="org.eclipse.papyrus.marte.table.assign.create.table"
             name="Marte assign table">
       </command>
+      <command
+            categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
+            defaultHandler="org.eclipse.papyrus.marte.table.assign.handlers.RemoveAssignHandler"
+            id="org.eclipse.papyrus.marte.table.assign.removeAssignCommand"
+            name="Remove assign">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="org.eclipse.papyrus.marte.table.assign.CreateAssignTableCommand"
             commandId="org.eclipse.papyrus.marte.table.assign.create.table">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.marte.table.assign.handlers.RemoveAssignHandler"
+            commandId="org.eclipse.ui.edit.delete">
+         <activeWhen>
+            <and>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                        value="true">
+                  </test>
+               </with>
+               <with
+                     variable="activePart">
+                  <and>
+                     <test
+                           property="org.eclipse.papyrus.marte.table.assign.assignTableTester.isAssignTable"
+                           value="true">
+                     </test>
+                     <test
+                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tablePartTester.isTableEditor"
+                           value="true">
+                     </test>
+                  </and>
+               </with>
+            </and>
+         </activeWhen>
       </handler>
    </extension>
    <extension
@@ -121,5 +156,15 @@
          <editingDomain
                id="org.eclipse.papyrus.SharedEditingDomainID">
          </editingDomain></listener>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.marte.table.assign.testers.isAssignTablePropertyTester"
+            id="org.eclipse.papyrus.marte.table.assign.assignTableTester"
+            namespace="org.eclipse.papyrus.marte.table.assign.assignTableTester"
+            properties="isAssignTable"
+            type="org.eclipse.ui.IWorkbenchPart">
+      </propertyTester>
    </extension>
 </plugin>

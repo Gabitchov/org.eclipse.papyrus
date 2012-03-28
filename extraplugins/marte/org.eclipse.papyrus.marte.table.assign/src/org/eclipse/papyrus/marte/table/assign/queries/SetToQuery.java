@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 
 
+@SuppressWarnings("restriction")
 /**
  * Query to assign values to the "to" attribute of a comment with an Assign stereotype.
  * @author omelois

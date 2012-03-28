@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Olivier Mélois (ATOS) olivier.melois@atos.net - BUG 374067
  *****************************************************************************/
 package org.eclipse.papyrus.table.common.internal;
 
@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import net.sourceforge.nattable.layer.cell.LayerCell;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.Command;
@@ -42,6 +44,7 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Tableinstan
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.Tableinstance2Package;
+import org.eclipse.emf.facet.widgets.nattable.internal.GridElement;
 import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.swt.widgets.Composite;
@@ -247,6 +250,28 @@ public class PapyrusNatTableWidget extends NatTableWidget implements IPapyrusNat
 			compoundCommand.append(setMetamodelView);
 		}
 		return compoundCommand;
+	}
+	
+	/**
+	 * Returns the list of model objects from the selected rows.
+	 * @author omelois
+	 */
+	@SuppressWarnings("restriction")
+	public Set<EObject> getModelElementsFromSelectedRow(){
+		Set<EObject> result = new HashSet<EObject>();
+		List<LayerCell> selectedCells = this.getSelectedCells();
+		for (LayerCell layerCell : selectedCells){
+			if(layerCell != null){
+				Object dataValue = layerCell.getDataValue();
+				if (dataValue instanceof GridElement){
+					Object element = ((GridElement) dataValue).getElement();
+					if(element instanceof EObject) {
+						result.add((EObject) element);
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 }

@@ -24,7 +24,8 @@ Require-Bundle: org.eclipse.emf.facet.widgets.nattable.instance,
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.infra.facet.core,
  com.google.collect;bundle-version="1.0.0",
- org.eclipse.papyrus.pastemanager;bundle-version="0.8.2"
+ org.eclipse.papyrus.pastemanager;bundle-version="0.8.2",
+ net.sourceforge.nattable.core;bundle-version="2.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.2.qualifier

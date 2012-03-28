@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.papyrus.table.common;bundle-version="0.8.2",
  com.google.collect;bundle-version="1.0.0",
  org.eclipse.papyrus.marte.static.profile;bundle-version="0.8.2",
  org.eclipse.papyrus.diagram.common;bundle-version="0.8.2",
- org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0"
+ org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0",
+ org.eclipse.papyrus.editor
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.marte.table.assign,

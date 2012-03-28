@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.Element;
 
 
 /**
- * AbstractQuery to get the values of the "from" attribute of an Assign
+ * AbstractQuery to get the values of the "to" attribute of an Assign
  * @author omelois
  *
  */

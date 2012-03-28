@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Column;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.DefaultLabelColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.EContainerColumn;
+import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.FacetReferenceColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.MetaClassColumn;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.Row;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
@@ -70,16 +71,40 @@ public class AssignAdditionListener extends AbstractPapyrusModifcationTriggerLis
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				//Getting the columns of the tables that the row is taken from.
-				//Irrelevant columns will be hidden.
+				//Irrelevant columns will be hidden. In addition, the "to" and "from" columns 
+				//might switch places.
 				if(newValue instanceof Row) {
 					Row row = (Row)newValue;
 					if(row.eContainer() instanceof TableInstance) {
 						TableInstance tableInstance = (TableInstance)row.eContainer();
 						EList<Column> columns = tableInstance.getColumns();
-						for(Column current : columns) {
+
+						//The "from" and the "to" columns are switched if "to" appears before "from"
+						int toColumnIndex = -1;
+						int fromColumnIndex = -1;
+						Column fromColumn = null;
+
+						for(int index = 0; index < columns.size(); index++) {
+							Column current = columns.get(index);
+							//These three are the columns that cannot be hidden with the customUI configuration file.
 							if(current instanceof DefaultLabelColumn || current instanceof MetaClassColumn || current instanceof EContainerColumn) {
 								current.setIsHidden(true);
 							}
+							if(current instanceof FacetReferenceColumn) {
+								FacetReferenceColumn facetReferenceColumn = (FacetReferenceColumn)current;
+								String columnName = facetReferenceColumn.getReference().getName();
+								if(columnName.equals("to")) { //$NON-NLS-1$
+									toColumnIndex = index;
+								}
+								if(columnName.equals("from")) { //$NON-NLS-1$
+									fromColumnIndex = index;
+									fromColumn = current;
+								}
+							}
+						}
+						//Switching "from" and "to" if needed.
+						if(toColumnIndex < fromColumnIndex && fromColumn != null) {
+							columns.move(toColumnIndex, fromColumn);
 						}
 					}
 				}
@@ -87,10 +112,10 @@ public class AssignAdditionListener extends AbstractPapyrusModifcationTriggerLis
 			}
 		};
 		//END OF HIDE_COLUMNS_COMMAND
-	
+
 		cc.compose(hideColumnsCommand);
 		return cc;
 	}
-	
+
 
 }

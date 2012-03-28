@@ -10,13 +10,16 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
+ *  Olivier Mélois (ATOS) olivier.melois@atos.net - BUG 374067
  *****************************************************************************/
 package org.eclipse.papyrus.table.common.editor;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
@@ -47,6 +50,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.table.common.Activator;
 import org.eclipse.papyrus.table.common.internal.IPapyrusNatTableWidget;
+import org.eclipse.papyrus.table.common.internal.PapyrusNatTableWidget;
 import org.eclipse.papyrus.table.common.internal.TableEditorInput;
 import org.eclipse.papyrus.table.common.listener.ModelTriggerListener;
 import org.eclipse.papyrus.table.common.listener.TableTriggerListener;
@@ -344,5 +348,17 @@ public abstract class AbstractNattableEditor extends org.eclipse.papyrus.table.c
 		if (this.natTableWidget != null){
 			this.natTableWidget.addRows(newElements);
 		}
+	}
+	
+
+	/**
+	 * Get the elements from the selected rows.
+	 * @author omelois
+	 */
+	public Set<EObject> getModelElementsFromSelectedRow(){
+		if(this.natTableWidget instanceof PapyrusNatTableWidget){
+			return ((PapyrusNatTableWidget) this.natTableWidget).getModelElementsFromSelectedRow();
+		}
+		return new HashSet<EObject>();
 	}
 }
