@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
@@ -49,7 +50,7 @@ public class PartDropHelper extends ElementHelper {
 		}
 					
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedEObject, null), Node.class, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
@@ -60,7 +61,7 @@ public class PartDropHelper extends ElementHelper {
 	private boolean isValidPart(Object object, EObject dropTarget) {
 		boolean isValid = false;
 		
-		// The drop object is supposed to be a Port (or FlowPort)
+		// The drop object is supposed to be a Property
 		if ((object != null) && (object instanceof Property) && !(object instanceof Port)) {
 			
 			// The dropTarget has to be a TypedElement with a non-null Type

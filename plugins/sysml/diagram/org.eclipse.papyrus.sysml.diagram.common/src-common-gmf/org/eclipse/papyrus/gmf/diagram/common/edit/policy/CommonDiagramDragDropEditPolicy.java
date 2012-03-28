@@ -56,6 +56,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
@@ -219,7 +220,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, droppedObjectGraphicalType, ViewUtil.APPEND, true, getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, droppedObjectGraphicalType, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(absoluteLocation);
 

@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -69,7 +70,7 @@ public class PortDropHelper extends ElementHelper {
 		}
 					
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, graphicalType, ViewUtil.APPEND, true, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, graphicalType, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(location);		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
