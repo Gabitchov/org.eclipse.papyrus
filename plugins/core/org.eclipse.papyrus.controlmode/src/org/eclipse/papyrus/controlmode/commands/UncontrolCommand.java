@@ -53,11 +53,11 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContex
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
 import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
@@ -84,7 +84,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 
 	private EObject eObject;
 
-	private DiResourceSet modelSet;
+	private ModelSet modelSet;
 
 	private Resource controlledModel;
 
@@ -131,8 +131,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		deleteResources = deleteUncontrolledResources;
 		
 		ResourceSet set = domain.getResourceSet();
-		if (set instanceof DiResourceSet) {
-			modelSet = (DiResourceSet) set;
+		if (set instanceof ModelSet) {
+			modelSet = (ModelSet) set;
 		}
 	}
 
@@ -180,8 +180,14 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION).toString());
 			this.controlledDI = getEditingDomain().getResourceSet().getResource(newDiURI, true);
 		}
+
 		if (modelSet == null) {
-			modelSet = EditorUtils.getDiResourceSet();
+			try {
+				modelSet = EditorUtils.getServiceRegistry().getService(ModelSet.class);
+			} catch (Exception e) {}
+		}
+		if (modelSet == null) {
+			return new Status(IStatus.ERROR, ControlModePlugin.PLUGIN_ID, "no ModelSet has been found");
 		}
 		
 		CompoundCommand compoundCommand = new CompoundCommand();
@@ -235,7 +241,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	private void uncontrolNotation(CompoundCommand compoundCommand) {
 		// First retrieve the Diagrams that match with the model object to Uncontrol
-		final List<Diagram> controlledDiagrams = NotationUtils.getAllDescendantDiagramsInResource(eObject, modelSet.getAssociatedNotationResource(eObject));
+		final List<Diagram> controlledDiagrams = NotationUtils.getAllDescendantDiagramsInResource(eObject, modelSet.getAssociatedResource(eObject, NotationModel.NOTATION_FILE_EXTENSION));
 
 		if(!controlledDiagrams.isEmpty()) {
 			// PRE uncontrol operation

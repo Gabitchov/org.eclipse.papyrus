@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
@@ -53,8 +54,8 @@ import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
@@ -87,7 +88,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 
 	protected EObject eObject;
 
-	protected DiResourceSet modelSet;
+	protected ModelSet modelSet;
 
 	protected Resource controlledModel;
 
@@ -112,8 +113,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		addContext(new EditingDomainUndoContext(domain));
 
 		ResourceSet set = domain.getResourceSet();
-		if (set instanceof DiResourceSet) {
-			modelSet = (DiResourceSet) set;
+		if (set instanceof ModelSet) {
+			modelSet = (ModelSet) set;
 		}
 	}
 
@@ -154,7 +155,12 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (modelSet == null) {
-			modelSet = EditorUtils.getDiResourceSet();
+			try {
+				modelSet = EditorUtils.getServiceRegistry().getService(ModelSet.class);
+			} catch (Exception e) {}
+		}
+		if (modelSet == null) {
+			return new Status(IStatus.ERROR, ControlModePlugin.PLUGIN_ID, "no ModelSet has been found");
 		}
 
 		// Create the URI from models that will be created
@@ -195,7 +201,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @return
 	 */
 	protected List<Diagram> getDiagrams(EObject eObject) {
-		Resource notationResource = modelSet.getAssociatedNotationResource(eObject);
+		Resource notationResource = modelSet.getAssociatedResource(eObject, NotationModel.NOTATION_FILE_EXTENSION);
 		return NotationUtils.getAllDescendantDiagramsInResource(eObject, notationResource);
 	}
 
