@@ -1041,8 +1041,12 @@ public class UMLValidationHelper {
 		// out check
 		List<Parameter> outs = getParameters(action.getOperation(), Direction.OUT);
 		int indexOuts = 0;
+		EList<OutputPin> outputs = action.getOutputs();
+		if(outs.size() != outputs.size()) {
+			return ctx.createFailureStatus(String.format("pins of %s does not have the same number of output pins as output parameters of the operation %s", action.getName(), action.getOperation().getName()));
+		}
 		for(Parameter p : outs) {
-			IStatus status = validatePin(indexOuts, p, action.getOutputs(), ctx);
+			IStatus status = validatePin(indexOuts, p, outputs, ctx);
 			if(!status.isOK()) {
 				return status;
 			}
