@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,15 +23,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
@@ -61,16 +57,9 @@ public class PortDropHelper extends ElementHelper {
 		if (! isValidPort(droppedPort, getHostEObject(host))) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
-		// Prepare a command for the FlowPort creation and the drop in diagram
-		
-		String graphicalType = UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID;
-		if (((ISpecializationType)SysMLElementTypes.FLOW_PORT).getMatcher().matches((EObject) droppedPort)) {
-			graphicalType = SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
-		}
 					
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, graphicalType, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(location);		
 		Command viewCreateCommand = host.getCommand(createViewRequest);

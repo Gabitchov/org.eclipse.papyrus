@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -39,10 +39,8 @@ import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandF
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Signal;
@@ -108,7 +106,7 @@ public class TypeDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 			
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
@@ -153,7 +151,7 @@ public class TypeDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 			
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
@@ -186,7 +184,7 @@ public class TypeDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 			
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
@@ -231,7 +229,7 @@ public class TypeDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 			
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, ViewUtil.APPEND, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());		
 		Command viewCreateCommand = host.getCommand(createViewRequest);
