@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -109,7 +109,9 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 
 	private String getNodeGraphicalType(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		String graphicalType = null;
-		if(semanticHint != null) {
+		
+		// Some ViewDescriptor constructors initialize unspecified semanticHint with ""
+		if((semanticHint != null) && (! "".equals(semanticHint))) {
 			graphicalType = registry.getNodeGraphicalType(semanticHint, containerView.getType());
 
 		} else {
@@ -130,7 +132,8 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 
 	private String getEdgeGraphicalType(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		String graphicalType = null;
-		if(semanticHint != null) {
+		// Some ViewDescriptor constructors initialize unspecified semanticHint with ""
+		if((semanticHint != null) && (! "".equals(semanticHint))) {
 			graphicalType = registry.getEdgeGraphicalType(semanticHint);
 
 		} else {
