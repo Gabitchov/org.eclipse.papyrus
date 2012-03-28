@@ -334,7 +334,7 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 			EReference ref = entry.getKey();
 			if(ref != null) {
 				EReference eOpposite = ref.getEOpposite();
-				if(eOpposite != null && !eOpposite.isContainment()) {
+				if(eOpposite != null && !eOpposite.isContainment() && !ref.isContainment()) {
 					SetDeferredRequest setRq = new SetDeferredRequest(request.getHostRequest().getEditingDomain(), request.getTargetElement(), ref, entry.getValue());
 					DeferredSetValueCommand setCmd = new DeferredSetValueCommand(setRq);
 					if(setCmd != null) {
