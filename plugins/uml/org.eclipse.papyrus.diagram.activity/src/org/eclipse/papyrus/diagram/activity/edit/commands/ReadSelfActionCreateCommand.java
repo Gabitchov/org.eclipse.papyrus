@@ -80,8 +80,8 @@ public class ReadSelfActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT
-	 * Set correct parent
-	 * TODO Change generation
+	 *            Set correct parent
+	 *            TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadSelfAction newElement = UMLFactory.eINSTANCE.createReadSelfAction();

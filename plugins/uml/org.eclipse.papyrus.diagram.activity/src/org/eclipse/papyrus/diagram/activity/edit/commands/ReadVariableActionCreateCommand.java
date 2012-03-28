@@ -93,8 +93,8 @@ public class ReadVariableActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT
-	 * Set correct parent
-	 * TODO change generation
+	 *            Set correct parent
+	 *            TODO change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadVariableAction newElement = UMLFactory.eINSTANCE.createReadVariableAction();

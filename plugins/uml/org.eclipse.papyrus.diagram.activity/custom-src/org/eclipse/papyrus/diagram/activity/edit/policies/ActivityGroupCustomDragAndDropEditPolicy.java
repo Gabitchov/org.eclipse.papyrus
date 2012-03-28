@@ -24,6 +24,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -38,7 +39,7 @@ import org.eclipse.uml2.uml.Element;
  * @author adaussy
  *
  */
-public class ReferencingGroupCustomDragAndDropEditPolicy extends CustomDiagramDragDropEditPolicy {
+public class ActivityGroupCustomDragAndDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 
 	/**
 	 * Override in order to accept drop of element which are not directly containing by a referencing group
@@ -81,8 +82,15 @@ public class ReferencingGroupCustomDragAndDropEditPolicy extends CustomDiagramDr
 			IContainerNodeDescriptor descriptor = ContainerNodeDescriptorRegistry.getInstance().getContainerNodeDescriptor(getContainerEClass());
 			if(getHost().getModel() instanceof Diagram) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
-			} else if((graphicalParent instanceof Element) && (descriptor.canIBeGraphicalParentOf(droppedObject.eClass()) || descriptor.canIBeModelParentOf(droppedObject.eClass()))) {
-				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
+			} else if((graphicalParent instanceof Element)) {
+				if(descriptor.canIBeModelParentOf(droppedObject.eClass())){
+					if (droppedObject.eContainer() != null && !droppedObject.eContainer().equals(getHostObject())){
+						return UnexecutableCommand.INSTANCE;
+					}
+					return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
+				} else if (descriptor.canIBeGraphicalParentOf(droppedObject.eClass())){
+					return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject, dropRequest);
+				}
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}

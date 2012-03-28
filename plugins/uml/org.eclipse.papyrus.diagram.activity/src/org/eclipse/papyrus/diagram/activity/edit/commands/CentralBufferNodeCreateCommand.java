@@ -80,8 +80,8 @@ public class CentralBufferNodeCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT
-	 * Set correct parent (for Strucutred Activity node case)
-	 * TODO Change generation
+	 *            Set correct parent (for Strucutred Activity node case)
+	 *            TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CentralBufferNode newElement = UMLFactory.eINSTANCE.createCentralBufferNode();

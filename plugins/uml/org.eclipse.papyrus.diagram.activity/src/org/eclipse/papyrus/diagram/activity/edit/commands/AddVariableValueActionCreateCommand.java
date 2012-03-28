@@ -93,8 +93,8 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT
-	 * Set correct parent
-	 * TODO change generation
+	 *            Set correct parent
+	 *            TODO change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		AddVariableValueAction newElement = UMLFactory.eINSTANCE.createAddVariableValueAction();

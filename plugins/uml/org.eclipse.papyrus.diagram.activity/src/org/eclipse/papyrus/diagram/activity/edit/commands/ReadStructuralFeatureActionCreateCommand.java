@@ -93,7 +93,7 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 
 	/**
 	 * @generated NOT
-	 * TODO Change generation
+	 *            TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadStructuralFeatureAction newElement = UMLFactory.eINSTANCE.createReadStructuralFeatureAction();

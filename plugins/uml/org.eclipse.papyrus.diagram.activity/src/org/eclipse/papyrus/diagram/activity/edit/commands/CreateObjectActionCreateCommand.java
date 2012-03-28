@@ -80,8 +80,8 @@ public class CreateObjectActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT
-	 * Set Correct parent
-	 * TODO Change generation
+	 *            Set Correct parent
+	 *            TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CreateObjectAction newElement = UMLFactory.eINSTANCE.createCreateObjectAction();

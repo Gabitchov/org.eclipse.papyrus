@@ -93,8 +93,8 @@ public class AddStructuralFeatureValueActionCreateCommand extends EditElementCom
 
 	/**
 	 * @generated NOT
-	 * Set correct parent for structured activity node
-	 * TODO Change generation
+	 *            Set correct parent for structured activity node
+	 *            TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		AddStructuralFeatureValueAction newElement = UMLFactory.eINSTANCE.createAddStructuralFeatureValueAction();

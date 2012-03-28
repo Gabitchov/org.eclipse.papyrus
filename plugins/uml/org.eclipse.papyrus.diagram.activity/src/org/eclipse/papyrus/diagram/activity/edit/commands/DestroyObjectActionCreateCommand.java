@@ -93,8 +93,8 @@ public class DestroyObjectActionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated NOT
-	 * Set Correct parent
-	 * TODO Change generation
+	 *            Set Correct parent
+	 *            TODO Change generation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		DestroyObjectAction newElement = UMLFactory.eINSTANCE.createDestroyObjectAction();
