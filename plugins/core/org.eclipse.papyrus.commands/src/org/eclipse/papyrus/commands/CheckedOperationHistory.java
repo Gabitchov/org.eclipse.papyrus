@@ -34,8 +34,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.workspace.EMFCommandOperation;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 
 public class CheckedOperationHistory implements IOperationHistory {
@@ -150,6 +153,14 @@ public class CheckedOperationHistory implements IOperationHistory {
 		return Status.OK_STATUS;
 	}
 
+	protected ICommand convert(CompoundCommand compoundCommand) {
+		CompositeCommand cc = new CompositeCommand(compoundCommand.getLabel());
+		for (Command c : compoundCommand.getCommandList()) {
+			cc.add(convert(c));
+		}
+		return cc.reduce();
+	}
+
 	/**
 	 * the unified command stack wraps ICommand GMFtoEMFCommandWrapper
 	 * which are wrapped in EMFCommandOperation,
@@ -161,15 +172,26 @@ public class CheckedOperationHistory implements IOperationHistory {
 	protected IUndoableOperation unwrap(IUndoableOperation operation) {
 		if(operation instanceof EMFCommandOperation) {
 			Command emfCommand = ((EMFCommandOperation)operation).getCommand();
-			if(emfCommand instanceof GMFtoEMFCommandWrapper) {
-				ICommand gmfCommand = ((GMFtoEMFCommandWrapper)emfCommand).getGMFCommand();
-				if(gmfCommand != null) {
-					return gmfCommand;
-				}
+			ICommand gmfCommand = convert(emfCommand);
+			if (gmfCommand != null) {
+				return gmfCommand;
 			}
 		}
 
 		return operation;
+	}
+
+	protected ICommand convert(Command emfCommand) {
+		if (emfCommand instanceof CompoundCommand) {
+			return convert((CompoundCommand)emfCommand);
+		}
+		if(emfCommand instanceof GMFtoEMFCommandWrapper) {
+			ICommand gmfCommand = ((GMFtoEMFCommandWrapper)emfCommand).getGMFCommand();
+			if(gmfCommand != null) {
+				return gmfCommand;
+			}
+		}
+		return new EMFtoGMFCommandWrapper(emfCommand);
 	}
 
 	public IStatus execute(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

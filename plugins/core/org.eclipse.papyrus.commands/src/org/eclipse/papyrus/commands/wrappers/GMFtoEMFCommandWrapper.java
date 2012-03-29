@@ -42,13 +42,11 @@ public class GMFtoEMFCommandWrapper extends AbstractCommand {
 	}
 
 	private Object getGMFReturnValue() {
-
-		Object returnValue = null;
-		if((getGMFCommand() != null) && (getGMFCommand().getCommandResult() != null)) {
-			returnValue = getGMFCommand().getCommandResult().getReturnValue();
+		if(getGMFCommand().getCommandResult() != null) {
+			return getGMFCommand().getCommandResult().getReturnValue();
 		}
 
-		return returnValue;
+		return null;
 	}
 
 	/**
@@ -146,6 +144,24 @@ public class GMFtoEMFCommandWrapper extends AbstractCommand {
 		} catch (ExecutionException e) {
 		}
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.Command#getAffectedObjects()
+	 */
+	public Collection<?> getAffectedObjects() {
+		return gmfCommand.getAffectedFiles();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.emf.common.command.Command#getDescription()
+	 */
+	public String getDescription() {
+		return gmfCommand.getLabel();
 	}
 
 }

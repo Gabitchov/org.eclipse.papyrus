@@ -107,7 +107,7 @@
 <extension
       point="org.eclipse.papyrus.commands.operationApprover">
    <operationApprover
-         class="org.eclipse.papyrus.readonly.FSReadOnlyOneFileApprover"
+         class="org.eclipse.papyrus.readonly.ReadOnlyOneFileApprover"
          priority="10">
    </operationApprover>
 </extension>

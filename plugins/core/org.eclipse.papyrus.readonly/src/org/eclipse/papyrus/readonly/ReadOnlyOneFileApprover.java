@@ -37,7 +37,7 @@ import org.eclipse.papyrus.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.onefile.utils.OneFileUtils;
 
-public class FSReadOnlyOneFileApprover implements IOperationApprover2 {
+public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 
 	public IStatus proceedRedoing(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
 		return proceedExecuting(operation, history, info);
@@ -53,8 +53,6 @@ public class FSReadOnlyOneFileApprover implements IOperationApprover2 {
 		if(operation instanceof ICommand) {
 			ICommand command = (ICommand)operation;
 			List<IFile> affectedFiles = command.getAffectedFiles();
-
-
 
 			for(IFile affectedFile : affectedFiles) {
 				if(affectedFile == null)

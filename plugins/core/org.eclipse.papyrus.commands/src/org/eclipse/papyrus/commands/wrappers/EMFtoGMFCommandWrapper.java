@@ -10,7 +10,12 @@
  ******************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
@@ -127,4 +132,26 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 		return emfCommand.canUndo();
 	}
 
+	@Override
+	public List getAffectedFiles() {
+		ArrayList affectedFiles = new ArrayList();
+		for (Object o : emfCommand.getAffectedObjects()) {
+			if (o instanceof IFile) {
+				affectedFiles.add(o);
+			}
+		}
+		return affectedFiles;
+	}
+
+	@Override
+	public CommandResult getCommandResult() {
+		Collection<?> res = emfCommand.getResult();
+		if (res != null && !res.isEmpty()) {
+			if (res.size() == 1) {
+				return CommandResult.newOKCommandResult(res.iterator().next());
+			}
+			return CommandResult.newOKCommandResult(res);
+		}
+		return CommandResult.newOKCommandResult();
+	}
 }

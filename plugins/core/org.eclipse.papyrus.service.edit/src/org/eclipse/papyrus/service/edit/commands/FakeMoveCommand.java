@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
@@ -30,7 +31,14 @@ public class FakeMoveCommand extends EditElementCommand {
 		@Override
 		public List getElementsToEdit() {
 			ArrayList l = new ArrayList();
-			l.addAll(getElementsToMove().keySet());
+			for (Object elementToMove : getElementsToMove().keySet()) {
+				if (elementToMove instanceof EObject) {
+					EObject parent = ((EObject)elementToMove).eContainer();
+					if (parent != null) {
+						l.add(parent);
+					}
+				}
+			}
 			l.add(getTargetContainer());
 			return l;
 		}

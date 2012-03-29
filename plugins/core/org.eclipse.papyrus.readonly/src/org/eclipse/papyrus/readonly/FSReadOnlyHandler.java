@@ -40,7 +40,9 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 			public void run() {
 				String message = "Do you want to remove read only flag on those files ?\n\n";
 				for(IFile file : files) {
-					message += file.getName() + "\n";
+					if(file != null && file.isReadOnly()) {
+						message += file.getName() + "\n";
+					}
 				}
 				doEnableWrite.set(MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Enable write", message));
 			}
@@ -49,7 +51,7 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 		if(doEnableWrite.get()) {
 			boolean ok = true;
 			for(IFile file : files) {
-				if(file != null) {
+				if(file != null && file.isReadOnly()) {
 					try {
 						ResourceAttributes att = file.getResourceAttributes();
 						att.setReadOnly(false);
