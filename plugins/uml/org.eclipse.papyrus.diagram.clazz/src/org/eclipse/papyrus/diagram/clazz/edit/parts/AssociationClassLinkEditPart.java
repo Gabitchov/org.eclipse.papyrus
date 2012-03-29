@@ -21,11 +21,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationClassLinkItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClassLinkItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractAssociationEditPart;
+import org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure;
 
 /**
  * @generated
  */
-public class AssociationClassLinkEditPart extends org.eclipse.papyrus.diagram.common.editparts.AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationClassLinkEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -106,13 +108,13 @@ public class AssociationClassLinkEditPart extends org.eclipse.papyrus.diagram.co
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure();
+		return new AssociationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure getPrimaryShape() {
-		return (org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure)getFigure();
+	public AssociationFigure getPrimaryShape() {
+		return (AssociationFigure)getFigure();
 	}
 }

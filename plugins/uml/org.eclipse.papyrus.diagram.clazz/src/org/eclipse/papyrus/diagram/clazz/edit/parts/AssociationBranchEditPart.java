@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationBra
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomAssociationBranchItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure;
 
 /**
  * @generated
@@ -107,13 +108,13 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure();
+		return new AssociationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure getPrimaryShape() {
-		return (org.eclipse.papyrus.diagram.common.figure.edge.AssociationFigure)getFigure();
+	public AssociationFigure getPrimaryShape() {
+		return (AssociationFigure)getFigure();
 	}
 }
