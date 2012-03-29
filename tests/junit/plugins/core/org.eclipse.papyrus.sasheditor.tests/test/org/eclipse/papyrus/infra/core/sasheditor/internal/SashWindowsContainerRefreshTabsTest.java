@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.FakeMultiSashPageEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.TextEditorPartModel;
 import org.eclipse.swt.SWT;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
