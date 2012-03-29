@@ -9,7 +9,8 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *	 Olivier Mélois (Atos) : olivier.melois@atos.net - 371712
+ *	 Olivier Melois (Atos) : olivier.melois@atos.net - 371712
+ *   Arthur Daussy (Atos) : arthur.daussy@atos.net - 371712
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.helper;
@@ -110,6 +111,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.Variable;
 
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * The PinAndParameterSynchronizer is a validator (see corresponding extensions)
@@ -1349,12 +1351,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					// handle parameter direction
 					ParameterDirectionKind dir = ((Parameter)removedValue).getDirection();
 					removedParameterIndexes.put(event.getPosition(), dir);
-				}else if (removedValue instanceof List<?>){
+				} else if(removedValue instanceof List<?>) {
 					List<?> col = (List<?>)removedValue;
-					if(!col.isEmpty()){
-						for (int i = 0 ; i < col.size(); i++){
+					if(!col.isEmpty()) {
+						for(int i = 0; i < col.size(); i++) {
 							Object object = col.get(i);
-							if (object instanceof Parameter){
+							if(object instanceof Parameter) {
 								removedParameterIndexes.put(i, ((Parameter)object).getDirection());
 							}
 						}
@@ -1455,12 +1457,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				Object addedValue = event.getNewValue();
 				if(addedValue instanceof Parameter) {
 					addedParameters.add((Parameter)addedValue);
-				} else if (addedValue instanceof List<?>){
+				} else if(addedValue instanceof List<?>) {
 					List<?> col = (List<?>)addedValue;
-					if(!col.isEmpty()){
-						for (int i = 0 ; i < col.size(); i++){
+					if(!col.isEmpty()) {
+						for(int i = 0; i < col.size(); i++) {
 							Object object = col.get(i);
-							if (object instanceof Parameter){
+							if(object instanceof Parameter) {
 								addedParameters.add((Parameter)object);
 							}
 						}
@@ -1522,8 +1524,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		CompoundCommand globalCmd = new CompoundCommand();
 		// explore referencing actions
 		List<InvocationAction> callingActions = getCallingActions(element);
-		
-		
 		for(InvocationAction action : callingActions) {
 			if(action instanceof CallAction) {
 				CompoundCommand cmd = getAddPinsCmd((CallAction)action, addedInputPinMap, addedOutputPinMap, null);
@@ -1557,12 +1557,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				Object removedValue = event.getOldValue();
 				if(removedValue instanceof Property) {
 					removedAttributeIndexes.add(event.getPosition());
-				}else if (removedValue instanceof List<?>){
+				} else if(removedValue instanceof List<?>) {
 					List<?> col = (List<?>)removedValue;
-					if(!col.isEmpty()){
-						for (int i = 0 ; i < col.size(); i++){
+					if(!col.isEmpty()) {
+						for(int i = 0; i < col.size(); i++) {
 							Object object = col.get(i);
-							if (object instanceof Property){
+							if(object instanceof Property) {
 								removedAttributeIndexes.add(i);
 							}
 						}
@@ -1608,12 +1608,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				Object addedValue = event.getNewValue();
 				if(addedValue instanceof Property) {
 					addedAttributes.add((Property)addedValue);
-				}else if (addedValue instanceof List<?>){
+				} else if(addedValue instanceof List<?>) {
 					List<?> col = (List<?>)addedValue;
-					if(!col.isEmpty()){
-						for (int i = 0 ; i < col.size(); i++){
+					if(!col.isEmpty()) {
+						for(int i = 0; i < col.size(); i++) {
 							Object object = col.get(i);
-							if (object instanceof Property){
+							if(object instanceof Property) {
 								addedAttributes.add((Property)object);
 							}
 						}
@@ -1792,14 +1792,12 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					// pins added after
 					int addIndex = nextKey - numberOfPinsToAdd;
 					Command cmd = AddCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getInvocationAction_Argument(), pin, addIndex);
-					if(action instanceof CallAction) {
-						LinkPinToParameter link = new LinkPinToParameter(pin, addedInputPinMap.get(nextKey));
-						CreatePinToParameterLinkEAnnotation linkCommand = new CreatePinToParameterLinkEAnnotation(EditorUtils.getTransactionalEditingDomain(), link);
-						if(linkCommand != null) {
-							globalCmd.append(linkCommand);
-						}
-					}
+					LinkPinToParameter link = new LinkPinToParameter(pin, addedInputPinMap.get(nextKey));
+					CreatePinToParameterLinkEAnnotation linkCommand = new CreatePinToParameterLinkEAnnotation(EditorUtils.getTransactionalEditingDomain(), link);
 					globalCmd.append(cmd);
+					if(linkCommand != null && linkCommand.canExecute()) {
+						globalCmd.append(linkCommand);
+					}
 				}
 				nextKey--;
 			}
@@ -2443,7 +2441,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @return
 	 */
 	public static Parameter getLinkedParemeter(Pin p, XMIResource xmiResource) {
-
 		if(p != null && xmiResource != null) {
 			EAnnotation eAnnotation = p.getEAnnotation(IPinToParameterLinkCommand.PIN_TO_PARAMETER_LINK);
 			if(eAnnotation != null && !eAnnotation.getDetails().isEmpty()) {
@@ -2479,10 +2476,10 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			parameters = ((Operation)behaviorStructural).getOwnedParameters();
 		}
 		XMIResource xmiResource = getXMIResource(behaviorStructural);
-
 		// Removing input pins that are not up to date.
 		Collection<Parameter> parameterWhichPinNotDeleted = new ArrayList<Parameter>();
 		Iterable<Pin> allPins = Iterables.concat(action.getArguments(), action.getResults());
+		List<Command> removesCommand = Lists.newArrayList();
 		for(Pin pin : allPins) {
 			if(SynchronizePinsParametersHandler.isUpToDate(pin, xmiResource)) {
 				Parameter pa = getLinkedParemeter(pin, xmiResource);
@@ -2496,27 +2493,26 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				}
 				//Removing the pin.
 				Command cmd = RemoveCommand.create(editingdomain, action, feature, pin);
-				if (cmd.canExecute()){					
-					globalCmd.append(cmd);
+				if(cmd.canExecute()) {
+					removesCommand.add(cmd);
 				}
 			}
 		}
-
-		
-		
-		
 		//Splitting parameters
 		Map<Integer, Parameter> inParams = new HashMap<Integer, Parameter>();
 		Map<Integer, Parameter> outParams = new HashMap<Integer, Parameter>();
 		splitParameters(parameters, parameterWhichPinNotDeleted, inParams, outParams);
-		
-
 		//Creating new pins.
 		if(!inParams.isEmpty() || !outParams.isEmpty()) {
 			Command cmd = getAddPinsCmd(action, inParams, outParams, null);
 			globalCmd.append(cmd);
 		}
-		
+		/*
+		 * Appen remove command after create command since create command calculate index of new pins before removing those pins 
+		 */
+		for(Command rmComand : removesCommand) {
+			globalCmd.append(rmComand);
+		}
 		/*
 		 * No need to reset this pin
 		 */
@@ -2529,7 +2525,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				globalCmd.append(cmd);
 			}
 		}
-
 		return globalCmd;
 	}
 
@@ -2558,9 +2553,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			}
 		}
 	}
-
-
-
 
 	/**
 	 * Retrieves the XMIResource
