@@ -257,7 +257,10 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 *        this Reference
 	 */
 	public void setContentProvider(IStaticContentProvider provider) {
-		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
+		EncapsulatedContentProvider encapsulated = new EncapsulatedContentProvider(provider);
+		encapsulated.setStrictContainmentDisplay(true);
+		dialog.setContentProvider(encapsulated);
+		
 		if(getValue() != null) {
 			setInitialSelection(Collections.singletonList(getValue()));
 		}

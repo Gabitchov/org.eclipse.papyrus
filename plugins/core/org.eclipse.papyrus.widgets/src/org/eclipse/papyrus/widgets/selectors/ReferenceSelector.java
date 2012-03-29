@@ -316,6 +316,7 @@ public class ReferenceSelector implements IElementSelector {
 	 */
 	public void setContentProvider(IStaticContentProvider staticContentProvider) {
 		this.contentProvider = new EncapsulatedContentProvider(staticContentProvider);
+		this.contentProvider.setStrictContainmentDisplay(true);
 		if(fTree != null) {
 			fTree.getViewer().setContentProvider(contentProvider);
 			fTree.getViewer().setInput(""); //$NON-NLS-1$
@@ -335,7 +336,7 @@ public class ReferenceSelector implements IElementSelector {
 		final PatternFilter filter = new PatternFilter();
 		filter.setPattern("*"); //$NON-NLS-1$
 
-		fTree = new FilteredTree(content, SWT.MULTI | SWT.BORDER, new PatternFilter(), true);
+		fTree = new FilteredTree(content, SWT.MULTI | SWT.BORDER, filter, true);
 
 		//fList = new FilteredList(content, SWT.MULTI | SWT.BORDER, labelProvider, true, true, true);
 		fTree.getViewer().getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));

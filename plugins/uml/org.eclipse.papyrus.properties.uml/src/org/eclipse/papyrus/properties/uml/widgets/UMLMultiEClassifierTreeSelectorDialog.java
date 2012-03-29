@@ -129,6 +129,7 @@ public class UMLMultiEClassifierTreeSelectorDialog extends TreeSelectorDialog {
 	private class InternalContentProvider extends EncapsulatedContentProvider {
 		public InternalContentProvider(Element source,
 				Set<? extends EClassifier> eclassifiers) {
+			setStrictContainmentDisplay(true);
 			Package root = null;
 			if (((Element) source).getNearestPackage() != null) {
 				root = PackageUtil.getRootPackage((Element) source);

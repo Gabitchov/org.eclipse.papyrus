@@ -124,6 +124,7 @@ public class ReferenceCombo extends AbstractValueEditor { //implements Selection
 	 */
 	public void setContentProvider(IStaticContentProvider provider) {
 		this.contentProvider = new EncapsulatedContentProvider(provider);
+		this.contentProvider.setStrictContainmentDisplay(true);
 		viewer.setContentProvider(contentProvider);
 		viewer.setInput(""); //$NON-NLS-1$
 		updateControls();

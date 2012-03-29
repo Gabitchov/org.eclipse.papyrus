@@ -11,13 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.providers;
 
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.widgets.editors.AbstractEditor;
@@ -40,7 +43,10 @@ public class EncapsulatedContentProvider implements IChangeListener, IHierarchic
 	 * The encapsulated static content provider
 	 */
 	protected IStaticContentProvider encapsulated;
-
+	protected boolean strictContainmentReferences = false ;
+	// if detectRecusriveAccess a cache is maintained and the cache does not add duplicates in parent Element
+	protected Map<Object,Set<Object>> visitedObjects = new HashMap<Object,Set<Object>>();
+	
 	/**
 	 * 
 	 * Constructor.
@@ -58,6 +64,10 @@ public class EncapsulatedContentProvider implements IChangeListener, IHierarchic
 	 * 
 	 */
 	protected EncapsulatedContentProvider() {
+	}
+	
+	public void setStrictContainmentDisplay(boolean displayOnlyContainment){
+		strictContainmentReferences = displayOnlyContainment;
 	}
 
 	/**
@@ -150,6 +160,12 @@ public class EncapsulatedContentProvider implements IChangeListener, IHierarchic
 	 */
 	public Object[] getChildren(Object parentElement) {
 		if(encapsulated instanceof ITreeContentProvider) {
+			if (strictContainmentReferences && parentElement instanceof LinkItem){
+				LinkItem link = (LinkItem) parentElement ;
+				if (link.getReference() != null && !link.getReference().isContainment()){
+					return new Object[0];
+				}
+			}
 			return ((ITreeContentProvider)encapsulated).getChildren(parentElement);
 		} else {
 			return new Object[0];
