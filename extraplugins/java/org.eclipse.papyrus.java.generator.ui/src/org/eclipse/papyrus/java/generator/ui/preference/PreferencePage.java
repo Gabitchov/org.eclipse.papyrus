@@ -52,6 +52,12 @@ public class PreferencePage
 
 		// implements methods of inherits interfaces and abstract class
 		addField(new BooleanFieldEditor(
+				PreferenceConstants.P_STOP_ON_FIRST_ERROR,
+				"Stop on first error",
+				getFieldEditorParent()));
+
+		// implements methods of inherits interfaces and abstract class
+		addField(new BooleanFieldEditor(
 				PreferenceConstants.P_IMPLEMENT_METHODS_OF_INTERFACES_AND_ABSTRACT_CLASS,
 				"Implement methods of inherits interfaces and abstract class",
 				getFieldEditorParent()));

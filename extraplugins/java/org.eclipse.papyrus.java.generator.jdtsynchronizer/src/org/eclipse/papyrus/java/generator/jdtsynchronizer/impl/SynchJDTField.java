@@ -113,20 +113,40 @@ public class SynchJDTField extends SynchJDTCommentable {
 
 
 		} catch (JavaModelException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			String msg = "Can't generate field (class='"
 					+ field.getOwner().getQualifiedName()
 					+ "', msg= " + e.getMessage()
 					+ ", buffer=" + buffer.toString()
 					+ ")";
-			System.err.println(msg);
-			throw new JDTVisitorException( msg, e.getCause());
+//			System.err.println(msg);
+//			throw new JDTVisitorException( msg, e.getCause());
+			propagateException(msg, e);
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new JDTVisitorException(e.getMessage(), e.getCause());
+//			e.printStackTrace();
+//			throw new JDTVisitorException(e.getMessage(), e.getCause());
+			propagateException(e.getMessage(), e);
 		}
 	}
 
+	/**
+	 * Propagate a {@link JDTVisitorException} if the flag is not set 
+	 * @param msg
+	 * @param e
+	 * @throws JDTVisitorException
+	 */
+	private void propagateException(String msg, Throwable e) throws JDTVisitorException {
+		
+		if(preference.stopOnFirstError()) {
+			throw new JDTVisitorException(msg, e.getCause());
+		}
+		else {
+			// Show error
+			System.err.println(msg);
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	protected BodyDeclaration searchElementToInsert(CompilationUnit cu,
 			IJavaElement field) {

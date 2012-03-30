@@ -188,11 +188,13 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 			// add javadoc to method			
 			createJavaDocFor(imethod, imethod.getCompilationUnit(), method.getComment(), "");
 		} catch (JavaModelException e) {
-			e.printStackTrace();
-			throw new JDTVisitorException(e.getMessage(), e.getCause());
+//			e.printStackTrace();
+//			throw new JDTVisitorException(e.getMessage(), e.getCause());
+			propagateException(e.getMessage(), e);
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new JDTVisitorException(e.getMessage(), e.getCause());
+//			e.printStackTrace();
+//			throw new JDTVisitorException(e.getMessage(), e.getCause());
+			propagateException(e.getMessage(), e);
 		}
 
 
@@ -205,9 +207,16 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 
 
 	@Override
-	// search the method to insert Javadoc
-	protected BodyDeclaration searchElementToInsert(CompilationUnit cu,
-			IJavaElement method) {
+	/**
+	 * search the method to insert Javadoc
+	 * 
+	 * @see org.eclipse.papyrus.java.generator.jdtsynchronizer.impl.SynchJDTCommentable#searchElementToInsert(org.eclipse.jdt.core.dom.CompilationUnit, org.eclipse.jdt.core.IJavaElement)
+	 *
+	 * @param cu
+	 * @param method
+	 * @return
+	 */
+	protected BodyDeclaration searchElementToInsert(CompilationUnit cu, IJavaElement method) {
 
 		// search Itype parent
 		if(method.getParent() instanceof IType) {
@@ -278,6 +287,26 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 
 
 		return lst;
+	}
+
+
+
+	/**
+	 * Propagate a {@link JDTVisitorException} if the flag is not set 
+	 * @param msg
+	 * @param e
+	 * @throws JDTVisitorException
+	 */
+	private void propagateException(String msg, Throwable e) throws JDTVisitorException {
+		
+		if(preference.stopOnFirstError()) {
+			throw new JDTVisitorException(msg, e.getCause());
+		}
+		else {
+			// Show error
+			System.err.println(msg);
+			e.printStackTrace();
+		}
 	}
 
 }

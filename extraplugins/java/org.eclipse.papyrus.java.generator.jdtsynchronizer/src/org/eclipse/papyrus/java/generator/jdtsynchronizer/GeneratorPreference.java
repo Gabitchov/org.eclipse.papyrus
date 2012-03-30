@@ -60,5 +60,11 @@ public interface GeneratorPreference {
 	 * @return generic class to use for the association * (multi-value)
 	 */
 	public String genericClassForMultiValue();
+	
+	/**
+	 * Return true if we want to stop on first error, false if we want to continue anyway.
+	 * @return
+	 */
+	public boolean stopOnFirstError();
 
 }

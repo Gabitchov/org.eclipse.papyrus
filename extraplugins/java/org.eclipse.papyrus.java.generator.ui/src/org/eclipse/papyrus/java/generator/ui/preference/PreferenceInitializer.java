@@ -39,6 +39,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_GENERATE_SETTERS, true);
 		store.setDefault(PreferenceConstants.P_FILTER_OF_PACKAGE_NOT_TO_GENERATE, "java.*;javax.*");
 		store.setDefault(PreferenceConstants.P_GENERIC_CLASS_FOR_MULTIVALUE, "java.util.List");
+		store.setDefault(PreferenceConstants.P_STOP_ON_FIRST_ERROR, true);
 	}
 
 }

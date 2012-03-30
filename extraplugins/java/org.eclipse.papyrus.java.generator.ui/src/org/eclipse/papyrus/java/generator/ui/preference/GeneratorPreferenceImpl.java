@@ -79,4 +79,9 @@ public class GeneratorPreferenceImpl implements GeneratorPreference {
 		return store.getString(PreferenceConstants.P_GENERIC_CLASS_FOR_MULTIVALUE);
 	}
 
+	@Override
+	public boolean stopOnFirstError() {
+		return store.getBoolean(PreferenceConstants.P_STOP_ON_FIRST_ERROR);
+	}
+
 }

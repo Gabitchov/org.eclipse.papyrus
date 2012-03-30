@@ -32,4 +32,6 @@ public class PreferenceConstants {
 	public static final String P_FILTER_OF_PACKAGE_NOT_TO_GENERATE = "filterOfPackageNotToGenerate";
 
 	public static final String P_GENERIC_CLASS_FOR_MULTIVALUE = "genericClassForMultiValue";
+
+	public static final String P_STOP_ON_FIRST_ERROR = "stopOnFirstError";
 }
