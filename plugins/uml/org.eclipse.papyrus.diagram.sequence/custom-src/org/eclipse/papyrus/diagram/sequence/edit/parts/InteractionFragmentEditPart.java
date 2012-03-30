@@ -137,30 +137,33 @@ public abstract class InteractionFragmentEditPart extends ShapeNodeEditPart {
 	 */
 	public void updateCoveredLifelines(Bounds newBounds) {
 		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
-		InteractionFragment combinedFragment = (InteractionFragment)resolveSemanticElement();
-		EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
-
-		List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>();
-		List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>();
-		for(Object child : getParent().getChildren()) {
-			if(child instanceof LifelineEditPart) {
-				LifelineEditPart lifelineEditPart = (LifelineEditPart)child;
-				Lifeline lifeline = (Lifeline)lifelineEditPart.resolveSemanticElement();
-				if(newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
-					if(!coveredLifelines.contains(lifeline)) {
-						coveredLifelinesToAdd.add(lifeline);
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if ( resolveSemanticElement instanceof InteractionFragment){		
+			InteractionFragment combinedFragment = (InteractionFragment)resolveSemanticElement;
+			EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
+			
+			List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>();
+			List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>();
+			for(Object child : getParent().getChildren()) {
+				if(child instanceof LifelineEditPart) {
+					LifelineEditPart lifelineEditPart = (LifelineEditPart)child;
+					Lifeline lifeline = (Lifeline)lifelineEditPart.resolveSemanticElement();
+					if(newBound.intersects(lifelineEditPart.getFigure().getBounds())) {
+						if(!coveredLifelines.contains(lifeline)) {
+							coveredLifelinesToAdd.add(lifeline);
+						}
+					} else if(coveredLifelines.contains(lifeline)) {
+						coveredLifelinesToRemove.add(lifeline);
 					}
-				} else if(coveredLifelines.contains(lifeline)) {
-					coveredLifelinesToRemove.add(lifeline);
 				}
 			}
-		}
-
-		if(!coveredLifelinesToAdd.isEmpty()) {
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
-		}
-		if(!coveredLifelinesToRemove.isEmpty()) {
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+			
+			if(!coveredLifelinesToAdd.isEmpty()) {
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
+			}
+			if(!coveredLifelinesToRemove.isEmpty()) {
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+			}
 		}
 
 	}

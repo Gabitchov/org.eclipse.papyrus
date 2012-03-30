@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -78,28 +79,31 @@ public class SetClassifierPropertyOwnerAction implements IObjectActionDelegate {
 		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart || selectedElement instanceof AssociationClassRoleSourceEditPart || selectedElement instanceof AssociationClassRoleTargetEditPart) {
 			Type owner = null;
 			//2. look for the future owner of the property, run only for binary association
-			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
-			if(property.getOwner() instanceof Association) {
-				//look for the owner of the property to Set
-				Association association = (Association)property.getOwner();
-				List<Type> ownerList = association.getEndTypes();
-				if(ownerList.get(0).equals(property.getType()) && ownerList.size() > 1) {
-					owner = (Type)ownerList.get(1);
-				} else {
-					owner = (Type)ownerList.get(0);
+			EObject resolveSemanticElement = ((GraphicalEditPart)selectedElement).resolveSemanticElement();
+			if (resolveSemanticElement instanceof Property){				
+				Property property = (Property)resolveSemanticElement;
+				if(property.getOwner() instanceof Association) {
+					//look for the owner of the property to Set
+					Association association = (Association)property.getOwner();
+					List<Type> ownerList = association.getEndTypes();
+					if(ownerList.get(0).equals(property.getType()) && ownerList.size() > 1) {
+						owner = (Type)ownerList.get(1);
+					} else {
+						owner = (Type)ownerList.get(0);
+					}
 				}
-			}
-			// this is a classifier , construct and run the command
-
-			EStructuralFeature feature = UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
-			if(owner instanceof org.eclipse.uml2.uml.Class) {
-				List<Property> attributeList = new ArrayList<Property>();
-				attributeList.addAll(((org.eclipse.uml2.uml.Class)owner).getAttributes());
-				attributeList.add(property);
-				SetRequest setRequest = new SetRequest(owner, feature, attributeList);
-				SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-				command.add(new ICommandProxy(setValueCommand));
-				selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+				// this is a classifier , construct and run the command
+				
+				EStructuralFeature feature = UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
+				if(owner instanceof org.eclipse.uml2.uml.Class) {
+					List<Property> attributeList = new ArrayList<Property>();
+					attributeList.addAll(((org.eclipse.uml2.uml.Class)owner).getAttributes());
+					attributeList.add(property);
+					SetRequest setRequest = new SetRequest(owner, feature, attributeList);
+					SetValueCommand setValueCommand = new SetValueCommand(setRequest);
+					command.add(new ICommandProxy(setValueCommand));
+					selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+				}
 			}
 		}
 	}

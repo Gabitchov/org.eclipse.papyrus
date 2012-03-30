@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +38,7 @@ import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
@@ -1548,30 +1550,33 @@ public class LifelineEditPart extends NamedElementEditPart {
 		// Get the valid rectangle bounds representing the lifeline
 		updateRectangleBounds(rect);
 
-		Lifeline lifeline = (Lifeline)resolveSemanticElement();
-		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
-
-		List<InteractionFragment> coveredByLifelinesToAdd = new ArrayList<InteractionFragment>();
-		List<InteractionFragment> coveredByLifelinesToRemove = new ArrayList<InteractionFragment>();
-		for(Object child : getParent().getChildren()) {
-			if(child instanceof InteractionFragmentEditPart) {
-				InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart)child;
-				InteractionFragment interactionFragment = (InteractionFragment)interactionFragmentEditPart.resolveSemanticElement();
-				if(rect.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
-					if(!coveredByLifelines.contains(interactionFragment)) {
-						coveredByLifelinesToAdd.add(interactionFragment);
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement instanceof Lifeline){		
+			Lifeline lifeline = (Lifeline)resolveSemanticElement;
+			EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
+			
+			List<InteractionFragment> coveredByLifelinesToAdd = new ArrayList<InteractionFragment>();
+			List<InteractionFragment> coveredByLifelinesToRemove = new ArrayList<InteractionFragment>();
+			for(Object child : getParent().getChildren()) {
+				if(child instanceof InteractionFragmentEditPart) {
+					InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart)child;
+					InteractionFragment interactionFragment = (InteractionFragment)interactionFragmentEditPart.resolveSemanticElement();
+					if(rect.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
+						if(!coveredByLifelines.contains(interactionFragment)) {
+							coveredByLifelinesToAdd.add(interactionFragment);
+						}
+					} else if(coveredByLifelines.contains(interactionFragment)) {
+						coveredByLifelinesToRemove.add(interactionFragment);
 					}
-				} else if(coveredByLifelines.contains(interactionFragment)) {
-					coveredByLifelinesToRemove.add(interactionFragment);
 				}
 			}
-		}
-
-		if(!coveredByLifelinesToAdd.isEmpty()) {
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd));
-		}
-		if(!coveredByLifelinesToRemove.isEmpty()) {
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToRemove));
+			
+			if(!coveredByLifelinesToAdd.isEmpty()) {
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd));
+			}
+			if(!coveredByLifelinesToRemove.isEmpty()) {
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToRemove));
+			}
 		}
 	}
 
@@ -1934,8 +1939,12 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @return inner ConnectableElements
 	 */
 	public List<Property> getProperties() {
-		Lifeline lifeline = (Lifeline)resolveSemanticElement();
-		return getProperties(lifeline);
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement instanceof Lifeline){			
+			Lifeline lifeline = (Lifeline)resolveSemanticElement;
+			return getProperties(lifeline);
+		}
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1948,10 +1957,13 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(properties != null) {
 			for(EditPart editPart : (List<EditPart>)getChildren()) {
 				if(editPart instanceof LifelineEditPart) {
-					Lifeline lifeline = (Lifeline)((LifelineEditPart)editPart).resolveSemanticElement();
-					ConnectableElement represents = lifeline.getRepresents();
-					if(properties.contains(represents)) {
-						properties.remove(represents);
+					EObject resolveSemanticElement = ((LifelineEditPart)editPart).resolveSemanticElement();
+					if ( resolveSemanticElement instanceof Lifeline){
+						Lifeline lifeline = (Lifeline)resolveSemanticElement;
+						ConnectableElement represents = lifeline.getRepresents();
+						if(properties.contains(represents)) {
+							properties.remove(represents);
+						}						
 					}
 				}
 			}

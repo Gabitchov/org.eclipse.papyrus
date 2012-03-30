@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.command;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -78,20 +79,23 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 		
 
 		// target is the association end of the association branch
-		association = (Association)branchSource.resolveSemanticElement();
-		associationNodeEditPart = branchSource;
-		
-		Property associationEndToRemove=MultiAssociationHelper.getPropertyToListen((Edge)selectedElement.getModel(), association);
-		
-
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(associationEndToRemove);
-		if(provider != null) {
-			DestroyElementRequest destroyRequest= new DestroyElementRequest(associationEndToRemove,false); 
-			// Retrieve delete command from the Element Edit service
+		EObject resolveSemanticElement = branchSource.resolveSemanticElement();
+		if (resolveSemanticElement instanceof Association){			
+			association = (Association)resolveSemanticElement;
+			associationNodeEditPart = branchSource;
+			
+			Property associationEndToRemove=MultiAssociationHelper.getPropertyToListen((Edge)selectedElement.getModel(), association);
+			
+			
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(associationEndToRemove);
+			if(provider != null) {
+				DestroyElementRequest destroyRequest= new DestroyElementRequest(associationEndToRemove,false); 
+				// Retrieve delete command from the Element Edit service
 				ICommand deleteCommand = provider.getEditCommand(destroyRequest);
 				if(deleteCommand != null) {
 					command.add(new ICommandProxy(deleteCommand));
 				}
+			}
 		}
 		
 	

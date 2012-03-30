@@ -42,9 +42,12 @@ public class AbstractTemplateParameterEditPart extends UMLCompartmentEditPart {
 	 * to listen parameters
 	 */
 	protected void addOwnedParamListeners() {
-		EObject ownedParam = ((TemplateParameter)resolveSemanticElement()).getOwnedParameteredElement();
-		if(ownedParam != null) {
-			addListenerFilter(LISTEN_OWNED_PARAM, this, ownedParam);
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if ( resolveSemanticElement instanceof TemplateParameter){			
+			EObject ownedParam = ((TemplateParameter)resolveSemanticElement).getOwnedParameteredElement();
+			if(ownedParam != null) {
+				addListenerFilter(LISTEN_OWNED_PARAM, this, ownedParam);
+			}
 		}
 	}
 

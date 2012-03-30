@@ -81,6 +81,8 @@ import org.eclipse.uml2.uml.ObjectNode;
  */
 public class CentralBufferNodeSelectionEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
+	private static final String EMPTY_STRING = "";////$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -270,7 +272,11 @@ public class CentralBufferNodeSelectionEditPart extends LabelEditPart implements
 	 */
 	protected String getLabelText() {
 		// do not edit label if hidden
-		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (!(resolveSemanticElement instanceof ObjectNode)){
+			return EMPTY_STRING;////$NON-NLS-N$
+		}
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement).getSelection() != null;
 		if(selectionSet) {
 			String text = null;
 			EObject parserElement = getParserElement();
@@ -282,7 +288,7 @@ public class CentralBufferNodeSelectionEditPart extends LabelEditPart implements
 			}
 			return text;
 		} else {
-			return "";
+			return EMPTY_STRING;
 		}
 	}
 
@@ -308,7 +314,7 @@ public class CentralBufferNodeSelectionEditPart extends LabelEditPart implements
 		// do not edit label if hidden
 		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
 		if(getParserElement() == null || getParser() == null || !selectionSet) {
-			return ""; //$NON-NLS-1$
+			return EMPTY_STRING; //$NON-NLS-1$
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
 	}
@@ -679,7 +685,7 @@ public class CentralBufferNodeSelectionEditPart extends LabelEditPart implements
 	protected void initExtendedEditorConfiguration() {
 		if(configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if(languagePreferred != null && !languagePreferred.equals("")) {
+			if(languagePreferred != null && !languagePreferred.equals(EMPTY_STRING)) {
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
 				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
@@ -694,7 +700,7 @@ public class CentralBufferNodeSelectionEditPart extends LabelEditPart implements
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals(EMPTY_STRING) && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;

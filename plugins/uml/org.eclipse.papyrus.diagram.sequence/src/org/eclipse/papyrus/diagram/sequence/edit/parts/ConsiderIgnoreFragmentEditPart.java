@@ -23,6 +23,7 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -1043,24 +1044,27 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 * Update operator kind
 	 */
 	protected void updateHeaderLabel() {
-		ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-		StringBuilder operatorKind = new StringBuilder();
-		operatorKind.append(considerIgnoreFragment.getInteractionOperator().getName());
-		EList<NamedElement> messages = considerIgnoreFragment.getMessages();
-		if(messages != null && messages.size() > 0) {
-			StringBuilder sb = new StringBuilder();
-			for(int i = 0; i < messages.size(); i++) {
-				String name = messages.get(i).getName();
-				if(name != null) {
-					sb.append(name).append(",");
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement instanceof ConsiderIgnoreFragment){			
+			ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement;
+			StringBuilder operatorKind = new StringBuilder();
+			operatorKind.append(considerIgnoreFragment.getInteractionOperator().getName());
+			EList<NamedElement> messages = considerIgnoreFragment.getMessages();
+			if(messages != null && messages.size() > 0) {
+				StringBuilder sb = new StringBuilder();
+				for(int i = 0; i < messages.size(); i++) {
+					String name = messages.get(i).getName();
+					if(name != null) {
+						sb.append(name).append(",");
+					}
+				}
+				if(sb.length() > 0) {
+					operatorKind.append(" {").append(sb.deleteCharAt(sb.length() - 1).toString()).append("}");
 				}
 			}
-			if(sb.length() > 0) {
-				operatorKind.append(" {").append(sb.deleteCharAt(sb.length() - 1).toString()).append("}");
-			}
+			
+			getPrimaryShape().getHeaderLabel().setText(operatorKind.toString());
 		}
-
-		getPrimaryShape().getHeaderLabel().setText(operatorKind.toString());
 	}
 
 	/**
@@ -1079,9 +1083,12 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	 */
 	public void activate() {
 		super.activate();
-		ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement();
-		for(NamedElement message : considerIgnoreFragment.getMessages()) {
-			notifier.listenObject(message);
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if ( resolveSemanticElement instanceof ConsiderIgnoreFragment){
+			ConsiderIgnoreFragment considerIgnoreFragment = (ConsiderIgnoreFragment)resolveSemanticElement;
+			for(NamedElement message : considerIgnoreFragment.getMessages()) {
+				notifier.listenObject(message);
+			}			
 		}
 	}
 

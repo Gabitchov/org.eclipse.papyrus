@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
@@ -130,7 +131,14 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Operation getUMLElement(GraphicalEditPart editPart) {
-		return (Operation)((View)editPart.getModel()).getElement();
+		View model = (View)editPart.getModel();
+		if (model != null){			
+			EObject element = model.getElement();
+			if (element instanceof Operation){				
+				return (Operation)element;
+			}
+		}
+		return null;
 	}
 
 }

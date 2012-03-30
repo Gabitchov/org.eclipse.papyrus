@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.action;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -80,15 +81,18 @@ public class SetAggregationPropertyAction implements IObjectActionDelegate {
 		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart || selectedElement instanceof AssociationClassRoleSourceEditPart || selectedElement instanceof AssociationClassRoleTargetEditPart) {
 
 			//2. look for the future owner of the property, run only for binary association
-			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
-			if(aggregationKind != null) {
-
-				// add property in association
-
-				SetRequest setRequest = new SetRequest(property, feature, aggregationKind);
-				SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-				command.add(new ICommandProxy(setValueCommand));
-				selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+			EObject resolveSemanticElement = ((GraphicalEditPart)selectedElement).resolveSemanticElement();
+			if (resolveSemanticElement instanceof Property){				
+				Property property = (Property)resolveSemanticElement;
+				if(aggregationKind != null) {
+					
+					// add property in association
+					
+					SetRequest setRequest = new SetRequest(property, feature, aggregationKind);
+					SetValueCommand setValueCommand = new SetValueCommand(setRequest);
+					command.add(new ICommandProxy(setValueCommand));
+					selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+				}
 			}
 		}
 	}

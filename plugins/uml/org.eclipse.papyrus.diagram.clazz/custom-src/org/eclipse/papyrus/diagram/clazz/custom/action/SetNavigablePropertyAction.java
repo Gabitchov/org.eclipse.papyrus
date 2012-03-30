@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -75,18 +76,21 @@ public class SetNavigablePropertyAction implements IObjectActionDelegate {
 		if(selectedElement instanceof AssociationEndSourceEditPart || selectedElement instanceof AssociationEndTargetEditPart || selectedElement instanceof AssociationClassRoleSourceEditPart || selectedElement instanceof AssociationClassRoleTargetEditPart) {
 
 			//2. look for the future owner of the property, run only for binary association
-			Property property = (Property)((GraphicalEditPart)selectedElement).resolveSemanticElement();
-			if(property.getAssociation() != null) {
-				// add property in association
-
-				EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();
-				List<Property> attributeList = new ArrayList<Property>();
-				attributeList.addAll(property.getAssociation().getNavigableOwnedEnds());
-				attributeList.add(property);
-				SetRequest setRequest = new SetRequest(property.getAssociation(), feature, attributeList);
-				SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-				command.add(new ICommandProxy(setValueCommand));
-				selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+			EObject resolveSemanticElement = ((GraphicalEditPart)selectedElement).resolveSemanticElement();
+			if ( resolveSemanticElement instanceof Property){				
+				Property property = (Property)resolveSemanticElement;
+				if(property.getAssociation() != null) {
+					// add property in association
+					
+					EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();
+					List<Property> attributeList = new ArrayList<Property>();
+					attributeList.addAll(property.getAssociation().getNavigableOwnedEnds());
+					attributeList.add(property);
+					SetRequest setRequest = new SetRequest(property.getAssociation(), feature, attributeList);
+					SetValueCommand setValueCommand = new SetValueCommand(setRequest);
+					command.add(new ICommandProxy(setValueCommand));
+					selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+				}
 			}
 		}
 	}

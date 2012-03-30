@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -49,18 +50,21 @@ public class CollaborationRoleItemSemanticEditPolicy extends CollaborationRoleIt
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
 		GraphicalEditPart graphicalParent = (GraphicalEditPart)getHost().getParent();
-		Collaboration collaboration = (Collaboration)graphicalParent.resolveSemanticElement();
-
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(collaboration);
-		if(provider != null) {
-
-			// Retrieve delete command from the Element Edit service
-			DestroyReferenceRequest setRequest = new DestroyReferenceRequest(collaboration, UMLPackage.eINSTANCE.getCollaboration_CollaborationRole(), req.getElementToDestroy(), false);
-
-			ICommand setCommand = provider.getEditCommand(setRequest);
-
-			if(setCommand != null) {
-				return new ICommandProxy(setCommand.reduce());
+		EObject resolveSemanticElement = graphicalParent.resolveSemanticElement();
+		if (resolveSemanticElement instanceof Collaboration){			
+			Collaboration collaboration = (Collaboration)resolveSemanticElement;
+			
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(collaboration);
+			if(provider != null) {
+				
+				// Retrieve delete command from the Element Edit service
+				DestroyReferenceRequest setRequest = new DestroyReferenceRequest(collaboration, UMLPackage.eINSTANCE.getCollaboration_CollaborationRole(), req.getElementToDestroy(), false);
+				
+				ICommand setCommand = provider.getEditCommand(setRequest);
+				
+				if(setCommand != null) {
+					return new ICommandProxy(setCommand.reduce());
+				}
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

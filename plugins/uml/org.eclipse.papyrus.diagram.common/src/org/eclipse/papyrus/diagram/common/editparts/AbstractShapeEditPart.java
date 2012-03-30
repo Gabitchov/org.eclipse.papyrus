@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.common.editparts;
 import java.net.MalformedURLException;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -106,7 +107,11 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 	}
 
 	protected Element getUMLElement() {
-		return (Element)resolveSemanticElement();
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement instanceof Element){			
+			return (Element)resolveSemanticElement;
+		}
+		return null;
 	}
 
 	/**
@@ -117,17 +122,20 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 		StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
 		if(tokenizer.hasMoreTokens()) {
 			String firstStereotypeName = tokenizer.nextToken();
-			Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
-			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(getUMLElement(), stereotype, SHAPE_CONSTANT);
-			if(icon != null) {
-				if(icon.getLocation() != "" && icon.getLocation() != null) {
-					try {
-						getPrimaryShape().setIcon(icon.getLocation());
-					} catch (MalformedURLException e) {
-						Activator.log.error(icon.getLocation() + " " + e.getLocalizedMessage(), e);
+			Element umlElement = getUMLElement();
+			if (umlElement != null){				
+				Stereotype stereotype = umlElement.getAppliedStereotype(firstStereotypeName);
+				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(umlElement, stereotype, SHAPE_CONSTANT);
+				if(icon != null) {
+					if(icon.getLocation() != "" && icon.getLocation() != null) {
+						try {
+							getPrimaryShape().setIcon(icon.getLocation());
+						} catch (MalformedURLException e) {
+							Activator.log.error(icon.getLocation() + " " + e.getLocalizedMessage(), e);
+						}
+					} else {
+						getPrimaryShape().setIcon(Activator.getShape(umlElement, stereotype, false));
 					}
-				} else {
-					getPrimaryShape().setIcon(Activator.getShape(getUMLElement(), stereotype, false));
 				}
 			}
 		}

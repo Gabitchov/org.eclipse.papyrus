@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -110,7 +111,11 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	 * @return AcceptEventAction model element
 	 */
 	public AcceptEventAction getAction() {
-		return (AcceptEventAction)editPart.resolveSemanticElement();
+		EObject resolveSemanticElement = editPart.resolveSemanticElement();
+		if ( resolveSemanticElement instanceof AcceptEventAction){			
+			return (AcceptEventAction)resolveSemanticElement;
+		}
+		return null;
 	}
 
 	/**

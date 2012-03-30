@@ -92,6 +92,8 @@ import org.eclipse.uml2.uml.Feature;
  */
 public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
+	private static final String EMPTY_STRING = "";
+
 	/**
 	 * @generated
 	 */
@@ -274,9 +276,9 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	protected String getLabelText() {
 		// do not edit label if hidden
-		DecisionNode resolveSemanticElement = (DecisionNode)resolveSemanticElement();
-		if(resolveSemanticElement != null) {
-			boolean decisionSet = resolveSemanticElement.getDecisionInput() != null;
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if(resolveSemanticElement instanceof DecisionNode) {
+			boolean decisionSet = ((DecisionNode)resolveSemanticElement).getDecisionInput() != null;
 			if(decisionSet) {
 				String text = null;
 				EObject parserElement = getParserElement();
@@ -288,10 +290,10 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 				}
 				return text;
 			} else {
-				return "";
+				return EMPTY_STRING;
 			}
 		}
-		return "";
+		return EMPTY_STRING;
 	}
 
 	/**
@@ -314,11 +316,15 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	public String getEditText() {
 		// do not edit label if hidden
-		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
-		if(getParserElement() == null || getParser() == null || !decisionSet) {
-			return ""; //$NON-NLS-1$
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if ( resolveSemanticElement instanceof DecisionNode){
+			boolean decisionSet = ((DecisionNode)resolveSemanticElement).getDecisionInput() != null;
+			if(getParserElement() == null || getParser() == null || !decisionSet) {
+				return EMPTY_STRING; //$NON-NLS-1$
+			}
+			return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());			
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return EMPTY_STRING;////$NON-NLS-1$
 	}
 
 	/**
@@ -701,7 +707,7 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 	protected void initExtendedEditorConfiguration() {
 		if(configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if(languagePreferred != null && !languagePreferred.equals("")) {
+			if(languagePreferred != null && !languagePreferred.equals(EMPTY_STRING)) {
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
 				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
@@ -714,7 +720,7 @@ public class DecisionInputEditPart extends LabelEditPart implements ITextAwareEd
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals(EMPTY_STRING) && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;

@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutListener;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -229,14 +230,17 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 			getBorderItemLocator().getCurrentSideOfParent();
 		}
 
-		Element element = (Element)resolveSemanticElement();
-		if (element != null) {
-			FlowPort flowPort = ElementUtil.getStereotypeApplication(element, FlowPort.class);
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if ( resolveSemanticElement instanceof Element){			
+			Element element = (Element)resolveSemanticElement;
 
+			FlowPort flowPort = ElementUtil.getStereotypeApplication(element, FlowPort.class);
+				
 			if (flowPort != null) {
 				Image image = Activator.getInstance().getFlowPortImage(flowPort, side);
 				getPrimaryShape().setImage(image);
 			}
+			
 		}
 	}
 

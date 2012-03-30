@@ -1234,13 +1234,17 @@ public class SequenceUtil {
 		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
 		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
 
-		ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
+		EObject resolveSemanticElement = executionSpecificationEP.resolveSemanticElement();
+		if (resolveSemanticElement instanceof ExecutionSpecification){
+			ExecutionSpecification es = (ExecutionSpecification)resolveSemanticElement;
+			iftToCheckForUpdate.put(es, absoluteNewBounds);
+			
+			iftToCheckForUpdate.put(es.getStart(), top);
+			
+			iftToCheckForUpdate.put(es.getFinish(), bottom);
+			
+		}
 
-		iftToCheckForUpdate.put(es, absoluteNewBounds);
-
-		iftToCheckForUpdate.put(es.getStart(), top);
-
-		iftToCheckForUpdate.put(es.getFinish(), bottom);
 
 		List<ConnectionEditPart> sourceConnectionEPs = executionSpecificationEP.getSourceConnections();
 

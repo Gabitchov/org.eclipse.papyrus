@@ -25,6 +25,7 @@ import org.eclipse.draw2d.XYAnchor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -1164,8 +1165,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 */
 	public void activate() {
 		super.activate();
-		Interaction interaction = (Interaction)resolveSemanticElement();
-		if(interaction != null) {
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement instanceof Interaction){			
+			Interaction interaction = (Interaction)resolveSemanticElement;
 			for(Gate formalGate : interaction.getFormalGates()) {
 				notifier.listenObject(formalGate);
 			}

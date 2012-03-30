@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -1009,7 +1010,10 @@ ShapeNodeEditPart {
 		Lifeline attachedLifeline = null;
 		EditPart editPartParent = getParent();
 		if(editPartParent instanceof LifelineEditPart) {
-			attachedLifeline = (Lifeline)((LifelineEditPart)editPartParent).resolveSemanticElement();
+			EObject resolveSemanticElement = ((LifelineEditPart)editPartParent).resolveSemanticElement();
+			if (resolveSemanticElement instanceof Lifeline){				
+				attachedLifeline = (Lifeline)resolveSemanticElement;
+			}
 		}
 		return attachedLifeline;
 	}

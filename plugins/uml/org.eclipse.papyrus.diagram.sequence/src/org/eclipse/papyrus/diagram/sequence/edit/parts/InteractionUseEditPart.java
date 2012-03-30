@@ -21,6 +21,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -1213,14 +1214,17 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @return true if there is a formal gate corresponding to the actual gate
 	 */
 	private boolean checkActualGateExistence(Gate actualGate) {
-		InteractionUse interactionUse = (InteractionUse)resolveSemanticElement();
-		Interaction interaction = interactionUse.getRefersTo();
-		if(interaction != null) {
-			// Find if the corresponding formal gate exists
-			for(Gate formalGate : interaction.getFormalGates()) {
-				if(formalGate.getName().equals(actualGate.getName())) {
-					return true;
-				}
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement instanceof InteractionUse){			
+			InteractionUse interactionUse = (InteractionUse)resolveSemanticElement;
+			Interaction interaction = interactionUse.getRefersTo();
+			
+				// Find if the corresponding formal gate exists
+				for(Gate formalGate : interaction.getFormalGates()) {
+					if(formalGate.getName().equals(actualGate.getName())) {
+						return true;
+					}
+				
 			}
 		}
 		return false;

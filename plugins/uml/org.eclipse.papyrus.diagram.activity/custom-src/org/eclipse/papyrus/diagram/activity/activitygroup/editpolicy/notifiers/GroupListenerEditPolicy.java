@@ -87,7 +87,10 @@ public abstract class GroupListenerEditPolicy extends GraphicalNodeEditPolicy im
 	 */
 	@Override
 	public void activate() {
-		GroupRequestAdvisor.getInstance().addListenner(getHostEditPart().resolveSemanticElement(), this);
+		EObject resolveSemanticElement = getHostEditPart().resolveSemanticElement();
+		if (resolveSemanticElement != null){			
+			GroupRequestAdvisor.getInstance().addListenner(resolveSemanticElement, this);
+		}
 		super.activate();
 	}
 
