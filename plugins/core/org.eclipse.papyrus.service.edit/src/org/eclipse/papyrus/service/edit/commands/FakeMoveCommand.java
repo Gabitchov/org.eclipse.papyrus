@@ -2,6 +2,7 @@ package org.eclipse.papyrus.service.edit.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -31,11 +32,14 @@ public class FakeMoveCommand extends EditElementCommand {
 		@Override
 		public List getElementsToEdit() {
 			ArrayList l = new ArrayList();
-			for (Object elementToMove : getElementsToMove().keySet()) {
-				if (elementToMove instanceof EObject) {
-					EObject parent = ((EObject)elementToMove).eContainer();
-					if (parent != null) {
-						l.add(parent);
+			Map elementsToMove = getElementsToMove();
+			if (getElementsToMove() != null) {
+				for (Object elementToMove : elementsToMove.keySet()) {
+					if (elementToMove instanceof EObject) {
+						EObject parent = ((EObject)elementToMove).eContainer();
+						if (parent != null) {
+							l.add(parent);
+						}
 					}
 				}
 			}
