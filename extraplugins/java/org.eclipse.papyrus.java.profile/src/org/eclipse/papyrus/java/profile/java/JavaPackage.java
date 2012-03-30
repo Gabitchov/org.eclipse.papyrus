@@ -852,13 +852,22 @@ public interface JavaPackage extends EPackage {
 	int PRIMITIVE_TYPE__BASE_PRIMITIVE_TYPE = JAVA_GEN_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Collection Implementation Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS = JAVA_GEN_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = JAVA_GEN_FEATURE_COUNT + 2;
+	int PRIMITIVE_TYPE_FEATURE_COUNT = JAVA_GEN_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaProjectImpl <em>Project</em>}' class.
@@ -1475,6 +1484,17 @@ public interface JavaPackage extends EPackage {
 	EReference getPrimitiveType_Base_PrimitiveType();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.profile.java.PrimitiveType#getCollectionImplementationClass <em>Collection Implementation Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Collection Implementation Class</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.PrimitiveType#getCollectionImplementationClass()
+	 * @see #getPrimitiveType()
+	 * @generated
+	 */
+	EAttribute getPrimitiveType_CollectionImplementationClass();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.profile.java.JavaProject <em>Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1875,6 +1895,14 @@ public interface JavaPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRIMITIVE_TYPE__BASE_PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType_Base_PrimitiveType();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection Implementation Class</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS = eINSTANCE.getPrimitiveType_CollectionImplementationClass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaProjectImpl <em>Project</em>}' class.

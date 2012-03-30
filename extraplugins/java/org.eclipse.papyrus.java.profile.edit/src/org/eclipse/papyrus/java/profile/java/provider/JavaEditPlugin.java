@@ -46,8 +46,8 @@ public final class JavaEditPlugin extends EMFPlugin {
 	public JavaEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
 		     UMLEditPlugin.INSTANCE,
+		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

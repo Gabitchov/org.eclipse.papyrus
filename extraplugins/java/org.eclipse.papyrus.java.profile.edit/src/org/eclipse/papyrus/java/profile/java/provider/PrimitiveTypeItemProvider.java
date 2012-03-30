@@ -63,6 +63,7 @@ public class PrimitiveTypeItemProvider
 
 			addImplementationClassPropertyDescriptor(object);
 			addBase_PrimitiveTypePropertyDescriptor(object);
+			addCollectionImplementationClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class PrimitiveTypeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Collection Implementation Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCollectionImplementationClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PrimitiveType_collectionImplementationClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PrimitiveType_collectionImplementationClass_feature", "_UI_PrimitiveType_type"),
+				 JavaPackage.Literals.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns PrimitiveType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,6 +172,7 @@ public class PrimitiveTypeItemProvider
 
 		switch (notification.getFeatureID(PrimitiveType.class)) {
 			case JavaPackage.PRIMITIVE_TYPE__IMPLEMENTATION_CLASS:
+			case JavaPackage.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.java.profile.java.PrimitiveType;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl#getImplementationClass <em>Implementation Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl#getBase_PrimitiveType <em>Base Primitive Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl#getCollectionImplementationClass <em>Collection Implementation Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +61,26 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 	 * @ordered
 	 */
 	protected org.eclipse.uml2.uml.PrimitiveType base_PrimitiveType;
+
+	/**
+	 * The default value of the '{@link #getCollectionImplementationClass() <em>Collection Implementation Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCollectionImplementationClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COLLECTION_IMPLEMENTATION_CLASS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCollectionImplementationClass() <em>Collection Implementation Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCollectionImplementationClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected String collectionImplementationClass = COLLECTION_IMPLEMENTATION_CLASS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,6 +165,27 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCollectionImplementationClass() {
+		return collectionImplementationClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCollectionImplementationClass(String newCollectionImplementationClass) {
+		String oldCollectionImplementationClass = collectionImplementationClass;
+		collectionImplementationClass = newCollectionImplementationClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JavaPackage.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS, oldCollectionImplementationClass, collectionImplementationClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -152,6 +194,8 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 			case JavaPackage.PRIMITIVE_TYPE__BASE_PRIMITIVE_TYPE:
 				if (resolve) return getBase_PrimitiveType();
 				return basicGetBase_PrimitiveType();
+			case JavaPackage.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS:
+				return getCollectionImplementationClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,6 +213,9 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 				return;
 			case JavaPackage.PRIMITIVE_TYPE__BASE_PRIMITIVE_TYPE:
 				setBase_PrimitiveType((org.eclipse.uml2.uml.PrimitiveType)newValue);
+				return;
+			case JavaPackage.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS:
+				setCollectionImplementationClass((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,6 +235,9 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 			case JavaPackage.PRIMITIVE_TYPE__BASE_PRIMITIVE_TYPE:
 				setBase_PrimitiveType((org.eclipse.uml2.uml.PrimitiveType)null);
 				return;
+			case JavaPackage.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS:
+				setCollectionImplementationClass(COLLECTION_IMPLEMENTATION_CLASS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -204,6 +254,8 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case JavaPackage.PRIMITIVE_TYPE__BASE_PRIMITIVE_TYPE:
 				return base_PrimitiveType != null;
+			case JavaPackage.PRIMITIVE_TYPE__COLLECTION_IMPLEMENTATION_CLASS:
+				return COLLECTION_IMPLEMENTATION_CLASS_EDEFAULT == null ? collectionImplementationClass != null : !COLLECTION_IMPLEMENTATION_CLASS_EDEFAULT.equals(collectionImplementationClass);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,6 +272,8 @@ public class PrimitiveTypeImpl extends JavaGenImpl implements PrimitiveType {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (implementationClass: ");
 		result.append(implementationClass);
+		result.append(", collectionImplementationClass: ");
+		result.append(collectionImplementationClass);
 		result.append(')');
 		return result.toString();
 	}

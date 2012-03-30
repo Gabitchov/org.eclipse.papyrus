@@ -39,7 +39,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I53D_PfZEd-PNYpgO1g6_g"/>
       </children>
       <element xmi:type="uml:Stereotype" href="java.profile.uml#_zW6S4N0zEd6P1qtlpBOZyg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I5t6AffZEd-PNYpgO1g6_g" x="44" y="414" width="178" height="115"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I5t6AffZEd-PNYpgO1g6_g" x="44" y="414" width="178" height="127"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_I8PpkPfZEd-PNYpgO1g6_g" type="1026" fontHeight="8" transparency="0" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_I8PpkvfZEd-PNYpgO1g6_g" source="ShadowFigure">
@@ -176,7 +176,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SDeT4PfZEd-PNYpgO1g6_g"/>
       </children>
       <element xmi:type="uml:Stereotype" href="java.profile.uml#_DPxB8N00Ed6P1qtlpBOZyg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SDeT0ffZEd-PNYpgO1g6_g" x="732" y="414" width="187" height="61"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SDeT0ffZEd-PNYpgO1g6_g" x="732" y="414" width="187" height="115"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_TFCegPfZEd-PNYpgO1g6_g" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TFCegvfZEd-PNYpgO1g6_g" source="ShadowFigure">
@@ -326,6 +326,10 @@
           <element xmi:type="uml:Property" href="java.profile.uml#_tw0n8N2SEd6P1qtlpBOZyg"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_KtrVgffaEd-PNYpgO1g6_g" x="33" y="19"/>
         </children>
+        <children xmi:type="notation:Shape" xmi:id="_lPtMMHpoEeG6sMpxGcut-Q" type="3002" fontName="Segoe UI" lineColor="0">
+          <element xmi:type="uml:Property" href="java.profile.uml#__K6mcHpnEeG6sMpxGcut-Q"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_lPtMMXpoEeG6sMpxGcut-Q" x="106" y="19"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_aUd5qvfZEd-PNYpgO1g6_g"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_aUd5q_fZEd-PNYpgO1g6_g"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aUd5rPfZEd-PNYpgO1g6_g"/>
@@ -336,7 +340,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aUd5sPfZEd-PNYpgO1g6_g"/>
       </children>
       <element xmi:type="uml:Stereotype" href="java.profile.uml#_q2aFQN2SEd6P1qtlpBOZyg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aUd5offZEd-PNYpgO1g6_g" x="252" y="414" width="217" height="73"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aUd5offZEd-PNYpgO1g6_g" x="252" y="414" width="217" height="115"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_eAzBcPfZEd-PNYpgO1g6_g" type="1031" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eAzBcvfZEd-PNYpgO1g6_g" source="ShadowFigure">
