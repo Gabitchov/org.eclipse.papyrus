@@ -99,15 +99,7 @@ public class TriggerTextGetter extends UMLSwitch<String> {
 	}
 
 	public String caseCallEvent(CallEvent object) {
-		StringBuilder result = new StringBuilder();
-		if(object.getOperation() != null) {
-			String operation = object.getOperation().getName();
-			//String operation = OperationUtil.getCustomLabel(object.getOperation(), ICustomAppearence.DEFAULT_UML_OPERATION);
-			result.append(operation);
-		} else {
-			result.append(object.getName());
-		}
-		return result.toString();
+		return object.getName();
 	}
 
 	public String caseReceiveOperationEvent(ReceiveOperationEvent object) {
