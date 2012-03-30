@@ -31,10 +31,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -45,6 +47,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.core.adaptor.gmf.MoveOpenableCommand;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
@@ -53,6 +56,8 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.dnd.DND;
@@ -149,6 +154,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 					ICommand command = provider.getEditCommand(setRequest);
 
 					if(command != null) {
+						Resource targetNotationResource = getTargetNotationResource(targetOwner);
+						if (targetNotationResource != null && !targetNotationResource.equals(childElement.eResource())) {
+							// move diagram in the correct resource
+							command = CompositeCommand.compose(command, new MoveOpenableCommand(domain, "", childElement, targetNotationResource));
+						}
+
 						return new GMFtoEMFCommandWrapper(command);
 					}
 				}
@@ -157,6 +168,15 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		// Failed : stop here with unexecutable command
 		return UnexecutableCommand.INSTANCE;
 	}
+
+	protected Resource getTargetNotationResource(EObject targetOwner) {
+		if (targetOwner.eResource() != null && targetOwner.eResource().getResourceSet() instanceof ModelSet) {
+			ModelSet modelSet = (ModelSet)targetOwner.eResource().getResourceSet();
+			return modelSet.getAssociatedResource(targetOwner, NotationModel.NOTATION_FILE_EXTENSION);
+		}
+		return null;
+	}
+
 	/**
 	 * get the SetRequest to put an eobject before or after another EObject
 	 * It will look for the good role of the child eobject, the field set is not complete
