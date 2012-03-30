@@ -80,8 +80,8 @@ public class JDTParentItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFlagsPropertyDescriptor(object);
 			addChildrenPropertyDescriptor(object);
+			addFlagsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

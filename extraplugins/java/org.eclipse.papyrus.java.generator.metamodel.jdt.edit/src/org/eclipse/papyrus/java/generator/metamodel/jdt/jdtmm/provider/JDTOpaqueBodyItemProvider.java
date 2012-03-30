@@ -1,19 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2011 Nicolas Deblock & Cedric Dumoulin & Manuel Giles.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- * 	Nicolas Deblock  nico.deblock@gmail.com  - Meta-model conception
- * 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Meta-model conception 
- * 	Manuel Giles	 giles.manu@live.fr		 - Meta-model conception
- *
- *****************************************************************************/ 
-
 /**
  * <copyright>
  * </copyright>
@@ -39,17 +23,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParentJavaElement;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParentJavaElement} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class JDTParentJavaElementItemProvider
-	extends JDTJavaElementItemProvider
+public class JDTOpaqueBodyItemProvider
+	extends JDTMethodBodyItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -62,7 +46,7 @@ public class JDTParentJavaElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JDTParentJavaElementItemProvider(AdapterFactory adapterFactory) {
+	public JDTOpaqueBodyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -77,54 +61,42 @@ public class JDTParentJavaElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addChildrenPropertyDescriptor(object);
-			addFlagsPropertyDescriptor(object);
+			add_bodyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Flags feature.
+	 * This adds a property descriptor for the body feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFlagsPropertyDescriptor(Object object) {
+	protected void add_bodyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_JDTParent_flags_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_JDTParent_flags_feature", "_UI_JDTParent_type"),
-				 JdtmmPackage.Literals.JDT_PARENT__FLAGS,
+				 getString("_UI_JDTOpaqueBody__body_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_JDTOpaqueBody__body_feature", "_UI_JDTOpaqueBody_type"),
+				 JdtmmPackage.Literals.JDT_OPAQUE_BODY__BODY,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Children feature.
+	 * This returns JDTOpaqueBody.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addChildrenPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_JDTParent_children_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_JDTParent_children_feature", "_UI_JDTParent_type"),
-				 JdtmmPackage.Literals.JDT_PARENT__CHILDREN,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/JDTOpaqueBody"));
 	}
 
 	/**
@@ -135,10 +107,10 @@ public class JDTParentJavaElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((JDTParentJavaElement)object).getElementName();
+		String label = ((JDTOpaqueBody)object).get_body();
 		return label == null || label.length() == 0 ?
-			getString("_UI_JDTParentJavaElement_type") :
-			getString("_UI_JDTParentJavaElement_type") + " " + label;
+			getString("_UI_JDTOpaqueBody_type") :
+			getString("_UI_JDTOpaqueBody_type") + " " + label;
 	}
 
 	/**
@@ -152,8 +124,8 @@ public class JDTParentJavaElementItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(JDTParentJavaElement.class)) {
-			case JdtmmPackage.JDT_PARENT_JAVA_ELEMENT__FLAGS:
+		switch (notification.getFeatureID(JDTOpaqueBody.class)) {
+			case JdtmmPackage.JDT_OPAQUE_BODY__BODY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

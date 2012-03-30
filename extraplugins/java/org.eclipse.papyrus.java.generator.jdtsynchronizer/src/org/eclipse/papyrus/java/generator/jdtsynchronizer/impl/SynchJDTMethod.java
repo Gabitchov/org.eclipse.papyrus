@@ -34,6 +34,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.papyrus.java.generator.jdtsynchronizer.GeneratorPreference;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException;
@@ -153,14 +154,31 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 				}
 
 
-				// the type of the compilation unit
-				if(itype.isInterface() || Flags.isAbstract(method.getFlags()))
+				// Do we need a body ?
+				if(itype.isInterface() || Flags.isAbstract(method.getFlags())) {
 					methodStr.append(";");
+				}
 				else {
-					methodStr.append(" {\n\t// TODO Auto-generated method\n");
-					if(method.getReturnType() != null)
-						methodStr.append("\treturn " + SynchTools.defaultReturn(method.getReturnType().getType().getElementName()) + ";\n");
-					methodStr.append("}");
+					// Generate Body. Open the body
+					methodStr.append(" {");
+					// If there is a declared body, use it. Otherwise, use the default body.
+					if( method.getBodies().size() >0) {
+
+						for( JDTMethodBody body : method.getBodies()) {
+							methodStr.append("\n\t");
+							methodStr.append(body.asText());
+						}
+//						methodStr.append("\n");
+					} 
+					else {
+						// Default body
+						methodStr.append(" \n\t// TODO Auto-generated method");
+						if(method.getReturnType() != null)
+							methodStr.append("\n\treturn " + SynchTools.defaultReturn(method.getReturnType().getType().getElementName()) + ";");
+
+					}
+					// Close the body
+					methodStr.append("\n }");
 				}
 
 				// create the method

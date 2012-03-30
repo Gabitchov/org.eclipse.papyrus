@@ -33,7 +33,7 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class JDTClassImpl extends JDTTypeImpl implements JDTClass {
@@ -41,7 +41,6 @@ public class JDTClassImpl extends JDTTypeImpl implements JDTClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected JDTClassImpl() {
@@ -51,7 +50,6 @@ public class JDTClassImpl extends JDTTypeImpl implements JDTClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

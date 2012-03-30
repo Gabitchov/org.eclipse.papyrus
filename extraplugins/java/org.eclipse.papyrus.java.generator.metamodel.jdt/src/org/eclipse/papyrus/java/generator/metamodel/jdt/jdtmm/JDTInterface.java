@@ -27,8 +27,8 @@ package org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JDT Interface</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#getJDTInterface()
  * @model
  * @generated

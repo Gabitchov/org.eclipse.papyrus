@@ -29,15 +29,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JDT Member</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getTypeParameters <em>Type Parameters</em>}</li>
- * <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getTypeParameters <em>Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility <em>Visibility</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#getJDTMember()
  * @model abstract="true"
  * @generated
@@ -47,14 +47,12 @@ public interface JDTMember extends JDTParentJavaElement {
 	/**
 	 * Returns the value of the '<em><b>Type Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter#getDeclaringMember
-	 * <em>Declaring Member</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter#getDeclaringMember <em>Declaring Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type Parameters</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Type Parameters</em>' containment reference list.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#getJDTMember_TypeParameters()
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter#getDeclaringMember
@@ -72,7 +70,6 @@ public interface JDTMember extends JDTParentJavaElement {
 	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind
 	 * @see #setVisibility(VisibilityKind)
@@ -86,9 +83,7 @@ public interface JDTMember extends JDTParentJavaElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Visibility</em>' attribute.
+	 * @param value the new value of the '<em>Visibility</em>' attribute.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind
 	 * @see #getVisibility()
 	 * @generated

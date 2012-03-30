@@ -40,7 +40,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmFactory
  * @model kind="package"
  * @generated
@@ -51,7 +50,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNAME = "jdtmm";
@@ -60,7 +58,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http:///jdtmm.ecore";
@@ -69,7 +66,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "jdtmm";
@@ -78,78 +74,97 @@ public interface JdtmmPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	JdtmmPackage eINSTANCE = org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaElementImpl <em>JDT Java Element</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodBodyImpl <em>JDT Method Body</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodBodyImpl
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTMethodBody()
+	 * @generated
+	 */
+	int JDT_METHOD_BODY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_METHOD_BODY__OWNER = 0;
+
+	/**
+	 * The number of structural features of the '<em>JDT Method Body</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_METHOD_BODY_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaElementImpl <em>JDT Java Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaElementImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTJavaElement()
 	 * @generated
 	 */
-	int JDT_JAVA_ELEMENT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_JAVA_ELEMENT__PARENT = 0;
+	int JDT_JAVA_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_JAVA_ELEMENT__ELEMENT_NAME = 1;
+	int JDT_JAVA_ELEMENT__ELEMENT_NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_JAVA_ELEMENT__ELEMENT_TYPE = 2;
+	int JDT_JAVA_ELEMENT__ELEMENT_TYPE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_JAVA_ELEMENT__COMMENT = 3;
+	int JDT_JAVA_ELEMENT__COMMENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_JAVA_ELEMENT__GENERATED = 4;
+	int JDT_JAVA_ELEMENT__GENERATED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_JAVA_ELEMENT__PARENT = 4;
 
 	/**
 	 * The number of structural features of the '<em>JDT Java Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -159,49 +174,16 @@ public interface JdtmmPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl <em>JDT Parent</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTParent()
 	 * @generated
 	 */
-	int JDT_PARENT = 1;
+	int JDT_PARENT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl <em>JDT Parent Java Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARENT__FLAGS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARENT__CHILDREN = 1;
-
-	/**
-	 * The number of structural features of the '<em>JDT Parent</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARENT_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl
-	 * <em>JDT Parent Java Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTParentJavaElement()
 	 * @generated
@@ -209,20 +191,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_PARENT_JAVA_ELEMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARENT_JAVA_ELEMENT__PARENT = JDT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -232,7 +203,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -242,7 +212,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -252,37 +221,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PARENT_JAVA_ELEMENT__GENERATED = JDT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_PARENT_JAVA_ELEMENT__FLAGS = JDT_JAVA_ELEMENT_FEATURE_COUNT + 0;
+	int JDT_PARENT_JAVA_ELEMENT__PARENT = JDT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_PARENT_JAVA_ELEMENT__CHILDREN = JDT_JAVA_ELEMENT_FEATURE_COUNT + 1;
+	int JDT_PARENT_JAVA_ELEMENT__CHILDREN = JDT_JAVA_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARENT_JAVA_ELEMENT__FLAGS = JDT_JAVA_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>JDT Parent Java Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -292,7 +266,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl <em>JDT Member</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTMember()
 	 * @generated
@@ -300,20 +273,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_MEMBER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_MEMBER__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -323,7 +285,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -333,7 +294,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -343,37 +303,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_MEMBER__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_MEMBER__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_MEMBER__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_MEMBER__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_MEMBER__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -383,7 +348,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -393,582 +357,55 @@ public interface JdtmmPackage extends EPackage {
 	 * The number of structural features of the '<em>JDT Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_MEMBER_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl
-	 * <em>JDT Type Parameter</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl <em>JDT Type Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTTypeParameter()
 	 * @generated
 	 */
-	int JDT_TYPE_PARAMETER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER__PARENT = JDT_JAVA_ELEMENT__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER__ELEMENT_NAME = JDT_JAVA_ELEMENT__ELEMENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER__ELEMENT_TYPE = JDT_JAVA_ELEMENT__ELEMENT_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER__COMMENT = JDT_JAVA_ELEMENT__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Generated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER__GENERATED = JDT_JAVA_ELEMENT__GENERATED;
-
-	/**
-	 * The feature id for the '<em><b>Declaring Member</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER__DECLARING_MEMBER = JDT_JAVA_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>JDT Type Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_PARAMETER_FEATURE_COUNT = JDT_JAVA_ELEMENT_FEATURE_COUNT + 1;
+	int JDT_TYPE_PARAMETER = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTFieldImpl <em>JDT Field</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTFieldImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTField()
 	 * @generated
 	 */
-	int JDT_FIELD = 5;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__PARENT = JDT_MEMBER__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__ELEMENT_NAME = JDT_MEMBER__ELEMENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__ELEMENT_TYPE = JDT_MEMBER__ELEMENT_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__COMMENT = JDT_MEMBER__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Generated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__GENERATED = JDT_MEMBER__GENERATED;
-
-	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__FLAGS = JDT_MEMBER__FLAGS;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__CHILDREN = JDT_MEMBER__CHILDREN;
-
-	/**
-	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__TYPE_PARAMETERS = JDT_MEMBER__TYPE_PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__VISIBILITY = JDT_MEMBER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__OWNER = JDT_MEMBER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Final</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__FINAL = JDT_MEMBER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__STATIC = JDT_MEMBER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Is Multi Valued</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__IS_MULTI_VALUED = JDT_MEMBER_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__TYPE = JDT_MEMBER_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__VALUE = JDT_MEMBER_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Generate Getter</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__GENERATE_GETTER = JDT_MEMBER_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Generate Setter</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD__GENERATE_SETTER = JDT_MEMBER_FEATURE_COUNT + 8;
-
-	/**
-	 * The number of structural features of the '<em>JDT Field</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_FIELD_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 9;
+	int JDT_FIELD = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl <em>JDT Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTType()
 	 * @generated
 	 */
-	int JDT_TYPE = 6;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__PARENT = JDT_MEMBER__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__ELEMENT_NAME = JDT_MEMBER__ELEMENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__ELEMENT_TYPE = JDT_MEMBER__ELEMENT_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__COMMENT = JDT_MEMBER__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Generated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__GENERATED = JDT_MEMBER__GENERATED;
-
-	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__FLAGS = JDT_MEMBER__FLAGS;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__CHILDREN = JDT_MEMBER__CHILDREN;
-
-	/**
-	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__TYPE_PARAMETERS = JDT_MEMBER__TYPE_PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__VISIBILITY = JDT_MEMBER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__METHODS = JDT_MEMBER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__COMPILATION_UNIT = JDT_MEMBER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__CLASS = JDT_MEMBER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__INTERFACE = JDT_MEMBER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Enum</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__ENUM = JDT_MEMBER_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Final</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__FINAL = JDT_MEMBER_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__STATIC = JDT_MEMBER_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__TYPES = JDT_MEMBER_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__OWNER = JDT_MEMBER_FEATURE_COUNT + 9;
-
-	/**
-	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_INTERFACES = JDT_MEMBER_FEATURE_COUNT + 10;
-
-	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_CLASS = JDT_MEMBER_FEATURE_COUNT + 11;
-
-	/**
-	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_INTERFACE_NAMES = JDT_MEMBER_FEATURE_COUNT + 12;
-
-	/**
-	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_CLASS_NAME = JDT_MEMBER_FEATURE_COUNT + 13;
-
-	/**
-	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__FIELDS = JDT_MEMBER_FEATURE_COUNT + 14;
-
-	/**
-	 * The number of structural features of the '<em>JDT Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 15;
+	int JDT_TYPE = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodImpl <em>JDT Method</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTMethod()
 	 * @generated
 	 */
-	int JDT_METHOD = 7;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_METHOD__PARENT = JDT_MEMBER__PARENT;
+	int JDT_METHOD = 1;
 
 	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -978,7 +415,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -988,7 +424,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -998,37 +433,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_METHOD__GENERATED = JDT_MEMBER__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__FLAGS = JDT_MEMBER__FLAGS;
+	int JDT_METHOD__PARENT = JDT_MEMBER__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_METHOD__CHILDREN = JDT_MEMBER__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_METHOD__FLAGS = JDT_MEMBER__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1038,150 +478,630 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_METHOD__VISIBILITY = JDT_MEMBER__VISIBILITY;
 
 	/**
-	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__RETURN_TYPE = JDT_MEMBER_FEATURE_COUNT + 0;
+	int JDT_METHOD__OWNER = JDT_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_METHOD__RETURN_TYPE = JDT_MEMBER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__PARAMETERS = JDT_MEMBER_FEATURE_COUNT + 1;
+	int JDT_METHOD__PARAMETERS = JDT_MEMBER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 2;
+	int JDT_METHOD__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Final</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__FINAL = JDT_MEMBER_FEATURE_COUNT + 3;
+	int JDT_METHOD__FINAL = JDT_MEMBER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__STATIC = JDT_MEMBER_FEATURE_COUNT + 4;
+	int JDT_METHOD__STATIC = JDT_MEMBER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Exceptions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__EXCEPTIONS = JDT_MEMBER_FEATURE_COUNT + 5;
+	int JDT_METHOD__EXCEPTIONS = JDT_MEMBER_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Synchronized</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__SYNCHRONIZED = JDT_MEMBER_FEATURE_COUNT + 6;
+	int JDT_METHOD__SYNCHRONIZED = JDT_MEMBER_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Constructor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__CONSTRUCTOR = JDT_MEMBER_FEATURE_COUNT + 7;
+	int JDT_METHOD__CONSTRUCTOR = JDT_MEMBER_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * The feature id for the '<em><b>Bodies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD__OWNER = JDT_MEMBER_FEATURE_COUNT + 8;
+	int JDT_METHOD__BODIES = JDT_MEMBER_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>JDT Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_METHOD_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 9;
+	int JDT_METHOD_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARENT__CHILDREN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARENT__FLAGS = 1;
+
+	/**
+	 * The number of structural features of the '<em>JDT Parent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER__ELEMENT_NAME = JDT_JAVA_ELEMENT__ELEMENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER__ELEMENT_TYPE = JDT_JAVA_ELEMENT__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER__COMMENT = JDT_JAVA_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER__GENERATED = JDT_JAVA_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER__PARENT = JDT_JAVA_ELEMENT__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Declaring Member</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER__DECLARING_MEMBER = JDT_JAVA_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>JDT Type Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_PARAMETER_FEATURE_COUNT = JDT_JAVA_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__ELEMENT_NAME = JDT_MEMBER__ELEMENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__ELEMENT_TYPE = JDT_MEMBER__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__COMMENT = JDT_MEMBER__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__GENERATED = JDT_MEMBER__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__PARENT = JDT_MEMBER__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__CHILDREN = JDT_MEMBER__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__FLAGS = JDT_MEMBER__FLAGS;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__TYPE_PARAMETERS = JDT_MEMBER__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__VISIBILITY = JDT_MEMBER__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__FIELDS = JDT_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__COMPILATION_UNIT = JDT_MEMBER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__CLASS = JDT_MEMBER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__INTERFACE = JDT_MEMBER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Enum</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__ENUM = JDT_MEMBER_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Final</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__FINAL = JDT_MEMBER_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__STATIC = JDT_MEMBER_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__TYPES = JDT_MEMBER_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__OWNER = JDT_MEMBER_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_INTERFACES = JDT_MEMBER_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_CLASS = JDT_MEMBER_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_INTERFACE_NAMES = JDT_MEMBER_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_CLASS_NAME = JDT_MEMBER_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__METHODS = JDT_MEMBER_FEATURE_COUNT + 14;
+
+	/**
+	 * The number of structural features of the '<em>JDT Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 15;
+
+	/**
+	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__ELEMENT_NAME = JDT_MEMBER__ELEMENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__ELEMENT_TYPE = JDT_MEMBER__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__COMMENT = JDT_MEMBER__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__GENERATED = JDT_MEMBER__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__PARENT = JDT_MEMBER__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__CHILDREN = JDT_MEMBER__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__FLAGS = JDT_MEMBER__FLAGS;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__TYPE_PARAMETERS = JDT_MEMBER__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__VISIBILITY = JDT_MEMBER__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Final</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__FINAL = JDT_MEMBER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__STATIC = JDT_MEMBER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Is Multi Valued</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__IS_MULTI_VALUED = JDT_MEMBER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__TYPE = JDT_MEMBER_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__VALUE = JDT_MEMBER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Generate Getter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__GENERATE_GETTER = JDT_MEMBER_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Generate Setter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__GENERATE_SETTER = JDT_MEMBER_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__OWNER = JDT_MEMBER_FEATURE_COUNT + 8;
+
+	/**
+	 * The number of structural features of the '<em>JDT Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTClassImpl <em>JDT Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTClassImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTClass()
 	 * @generated
 	 */
-	int JDT_CLASS = 15;
+	int JDT_CLASS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTInterfaceImpl <em>JDT Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTInterfaceImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTInterface()
 	 * @generated
 	 */
-	int JDT_INTERFACE = 16;
+	int JDT_INTERFACE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTEnumImpl <em>JDT Enum</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTEnumImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTEnum()
 	 * @generated
 	 */
-	int JDT_ENUM = 17;
+	int JDT_ENUM = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeRootImpl <em>JDT Type Root</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeRootImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTTypeRoot()
 	 * @generated
@@ -1189,11 +1109,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_TYPE_ROOT = 10;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTCompilationUnitImpl
-	 * <em>JDT Compilation Unit</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTCompilationUnitImpl <em>JDT Compilation Unit</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTCompilationUnitImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTCompilationUnit()
 	 * @generated
@@ -1201,46 +1119,39 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_COMPILATION_UNIT = 9;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportDeclarationImpl
-	 * <em>JDT Import Declaration</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportDeclarationImpl <em>JDT Import Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportDeclarationImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTImportDeclaration()
 	 * @generated
 	 */
-	int JDT_IMPORT_DECLARATION = 18;
+	int JDT_IMPORT_DECLARATION = 19;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportContainerImpl
-	 * <em>JDT Import Container</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportContainerImpl <em>JDT Import Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportContainerImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTImportContainer()
 	 * @generated
 	 */
-	int JDT_IMPORT_CONTAINER = 19;
+	int JDT_IMPORT_CONTAINER = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParameterImpl <em>JDT Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParameterImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTParameter()
 	 * @generated
 	 */
-	int JDT_PARAMETER = 8;
+	int JDT_PARAMETER = 15;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentImpl
-	 * <em>JDT Package Fragment</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentImpl <em>JDT Package Fragment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTPackageFragment()
 	 * @generated
@@ -1248,11 +1159,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_PACKAGE_FRAGMENT = 11;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentRootImpl
-	 * <em>JDT Package Fragment Root</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentRootImpl <em>JDT Package Fragment Root</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentRootImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTPackageFragmentRoot()
 	 * @generated
@@ -1260,11 +1169,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_PACKAGE_FRAGMENT_ROOT = 12;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaProjectImpl <em>JDT Java Project</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaProjectImpl <em>JDT Java Project</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaProjectImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTJavaProject()
 	 * @generated
@@ -1272,11 +1179,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_JAVA_PROJECT = 13;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl <em>JDT Java Model</em>}'
-	 * class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl <em>JDT Java Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTJavaModel()
 	 * @generated
@@ -1284,170 +1189,9 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_JAVA_MODEL = 14;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__PARENT = JDT_MEMBER__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__ELEMENT_NAME = JDT_MEMBER__ELEMENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__ELEMENT_TYPE = JDT_MEMBER__ELEMENT_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__COMMENT = JDT_MEMBER__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Generated</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__GENERATED = JDT_MEMBER__GENERATED;
-
-	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__FLAGS = JDT_MEMBER__FLAGS;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__CHILDREN = JDT_MEMBER__CHILDREN;
-
-	/**
-	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__TYPE_PARAMETERS = JDT_MEMBER__TYPE_PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__VISIBILITY = JDT_MEMBER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Parameter Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__PARAMETER_OWNER = JDT_MEMBER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Final</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__FINAL = JDT_MEMBER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Is Multi Valued</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__IS_MULTI_VALUED = JDT_MEMBER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__TYPE = JDT_MEMBER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Return Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER__RETURN_OWNER = JDT_MEMBER_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>JDT Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PARAMETER_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE_ROOT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1457,7 +1201,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1467,7 +1210,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1477,57 +1219,51 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_TYPE_ROOT__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_TYPE_ROOT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_TYPE_ROOT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_TYPE_ROOT__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE_ROOT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The number of structural features of the '<em>JDT Type Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_TYPE_ROOT_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_COMPILATION_UNIT__PARENT = JDT_TYPE_ROOT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1537,7 +1273,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1547,7 +1282,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1557,37 +1291,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_COMPILATION_UNIT__GENERATED = JDT_TYPE_ROOT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_COMPILATION_UNIT__FLAGS = JDT_TYPE_ROOT__FLAGS;
+	int JDT_COMPILATION_UNIT__PARENT = JDT_TYPE_ROOT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_COMPILATION_UNIT__CHILDREN = JDT_TYPE_ROOT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_COMPILATION_UNIT__FLAGS = JDT_TYPE_ROOT__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Package Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1597,7 +1336,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1607,27 +1345,15 @@ public interface JdtmmPackage extends EPackage {
 	 * The number of structural features of the '<em>JDT Compilation Unit</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_COMPILATION_UNIT_FEATURE_COUNT = JDT_TYPE_ROOT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PACKAGE_FRAGMENT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1637,7 +1363,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1647,7 +1372,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1657,37 +1381,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PACKAGE_FRAGMENT__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_PACKAGE_FRAGMENT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_PACKAGE_FRAGMENT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PACKAGE_FRAGMENT__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PACKAGE_FRAGMENT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Package Fragment Root</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1697,7 +1426,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Compilation Units</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1707,27 +1435,15 @@ public interface JdtmmPackage extends EPackage {
 	 * The number of structural features of the '<em>JDT Package Fragment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PACKAGE_FRAGMENT_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_PACKAGE_FRAGMENT_ROOT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1737,7 +1453,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1747,7 +1462,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1757,37 +1471,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PACKAGE_FRAGMENT_ROOT__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_PACKAGE_FRAGMENT_ROOT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_PACKAGE_FRAGMENT_ROOT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PACKAGE_FRAGMENT_ROOT__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PACKAGE_FRAGMENT_ROOT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Java Project</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1797,7 +1516,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Package Fragments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1807,27 +1525,15 @@ public interface JdtmmPackage extends EPackage {
 	 * The number of structural features of the '<em>JDT Package Fragment Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_PACKAGE_FRAGMENT_ROOT_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_JAVA_PROJECT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1837,7 +1543,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1847,7 +1552,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1857,37 +1561,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_JAVA_PROJECT__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_JAVA_PROJECT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_JAVA_PROJECT__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_JAVA_PROJECT__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_JAVA_PROJECT__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Java Model</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1897,7 +1606,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Package Fragment Roots</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1907,27 +1615,15 @@ public interface JdtmmPackage extends EPackage {
 	 * The number of structural features of the '<em>JDT Java Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_JAVA_PROJECT_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_JAVA_MODEL__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1937,7 +1633,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1947,7 +1642,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1957,37 +1651,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_JAVA_MODEL__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_JAVA_MODEL__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_JAVA_MODEL__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_JAVA_MODEL__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_JAVA_MODEL__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Java Project</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1997,27 +1696,150 @@ public interface JdtmmPackage extends EPackage {
 	 * The number of structural features of the '<em>JDT Java Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_JAVA_MODEL_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_CLASS__PARENT = JDT_TYPE__PARENT;
+	int JDT_PARAMETER__ELEMENT_NAME = JDT_MEMBER__ELEMENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__ELEMENT_TYPE = JDT_MEMBER__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__COMMENT = JDT_MEMBER__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__GENERATED = JDT_MEMBER__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__PARENT = JDT_MEMBER__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__CHILDREN = JDT_MEMBER__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__FLAGS = JDT_MEMBER__FLAGS;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__TYPE_PARAMETERS = JDT_MEMBER__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__VISIBILITY = JDT_MEMBER__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Parameter Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__PARAMETER_OWNER = JDT_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Final</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__FINAL = JDT_MEMBER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Multi Valued</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__IS_MULTI_VALUED = JDT_MEMBER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__TYPE = JDT_MEMBER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Return Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__RETURN_OWNER = JDT_MEMBER_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>JDT Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER_FEATURE_COUNT = JDT_MEMBER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2027,7 +1849,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2037,7 +1858,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2047,37 +1867,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_CLASS__GENERATED = JDT_TYPE__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_CLASS__FLAGS = JDT_TYPE__FLAGS;
+	int JDT_CLASS__PARENT = JDT_TYPE__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_CLASS__CHILDREN = JDT_TYPE__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_CLASS__FLAGS = JDT_TYPE__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2087,27 +1912,24 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_CLASS__VISIBILITY = JDT_TYPE__VISIBILITY;
 
 	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_CLASS__METHODS = JDT_TYPE__METHODS;
+	int JDT_CLASS__FIELDS = JDT_TYPE__FIELDS;
 
 	/**
 	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2117,7 +1939,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2127,7 +1948,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2137,7 +1957,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Enum</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2147,7 +1966,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2157,7 +1975,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Final</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2167,7 +1984,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2177,7 +1993,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2187,7 +2002,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2197,7 +2011,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2207,7 +2020,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2217,7 +2029,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2227,47 +2038,33 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_CLASS__SUPER_CLASS_NAME = JDT_TYPE__SUPER_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_CLASS__FIELDS = JDT_TYPE__FIELDS;
+	int JDT_CLASS__METHODS = JDT_TYPE__METHODS;
 
 	/**
 	 * The number of structural features of the '<em>JDT Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_CLASS_FEATURE_COUNT = JDT_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_INTERFACE__PARENT = JDT_TYPE__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2277,7 +2074,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2287,7 +2083,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2297,37 +2092,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_INTERFACE__GENERATED = JDT_TYPE__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_INTERFACE__FLAGS = JDT_TYPE__FLAGS;
+	int JDT_INTERFACE__PARENT = JDT_TYPE__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_INTERFACE__CHILDREN = JDT_TYPE__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_INTERFACE__FLAGS = JDT_TYPE__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2337,27 +2137,24 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_INTERFACE__VISIBILITY = JDT_TYPE__VISIBILITY;
 
 	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_INTERFACE__METHODS = JDT_TYPE__METHODS;
+	int JDT_INTERFACE__FIELDS = JDT_TYPE__FIELDS;
 
 	/**
 	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2367,7 +2164,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2377,7 +2173,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2387,7 +2182,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Enum</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2397,7 +2191,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2407,7 +2200,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Final</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2417,7 +2209,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2427,7 +2218,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2437,7 +2227,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2447,7 +2236,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2457,7 +2245,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2467,7 +2254,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2477,47 +2263,33 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_INTERFACE__SUPER_CLASS_NAME = JDT_TYPE__SUPER_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_INTERFACE__FIELDS = JDT_TYPE__FIELDS;
+	int JDT_INTERFACE__METHODS = JDT_TYPE__METHODS;
 
 	/**
 	 * The number of structural features of the '<em>JDT Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_INTERFACE_FEATURE_COUNT = JDT_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_ENUM__PARENT = JDT_TYPE__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2527,7 +2299,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2537,7 +2308,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2547,37 +2317,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_ENUM__GENERATED = JDT_TYPE__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_ENUM__FLAGS = JDT_TYPE__FLAGS;
+	int JDT_ENUM__PARENT = JDT_TYPE__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_ENUM__CHILDREN = JDT_TYPE__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_ENUM__FLAGS = JDT_TYPE__FLAGS;
+
+	/**
 	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2587,27 +2362,24 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_ENUM__VISIBILITY = JDT_TYPE__VISIBILITY;
 
 	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_ENUM__METHODS = JDT_TYPE__METHODS;
+	int JDT_ENUM__FIELDS = JDT_TYPE__FIELDS;
 
 	/**
 	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2617,7 +2389,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2627,7 +2398,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2637,7 +2407,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Enum</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2647,7 +2416,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2657,7 +2425,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Final</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2667,7 +2434,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2677,7 +2443,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2687,7 +2452,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2697,7 +2461,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2707,7 +2470,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2717,7 +2479,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2727,47 +2488,33 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_ENUM__SUPER_CLASS_NAME = JDT_TYPE__SUPER_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_ENUM__FIELDS = JDT_TYPE__FIELDS;
+	int JDT_ENUM__METHODS = JDT_TYPE__METHODS;
 
 	/**
 	 * The number of structural features of the '<em>JDT Enum</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_ENUM_FEATURE_COUNT = JDT_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_IMPORT_DECLARATION__PARENT = JDT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2777,7 +2524,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2787,7 +2533,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2797,37 +2542,33 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_IMPORT_DECLARATION__GENERATED = JDT_JAVA_ELEMENT__GENERATED;
 
 	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_IMPORT_DECLARATION__PARENT = JDT_JAVA_ELEMENT__PARENT;
+
+	/**
 	 * The number of structural features of the '<em>JDT Import Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_IMPORT_DECLARATION_FEATURE_COUNT = JDT_JAVA_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_IMPORT_CONTAINER__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
-
-	/**
 	 * The feature id for the '<em><b>Element Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2837,7 +2578,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2847,7 +2587,6 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2857,37 +2596,42 @@ public interface JdtmmPackage extends EPackage {
 	 * The feature id for the '<em><b>Generated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_IMPORT_CONTAINER__GENERATED = JDT_PARENT_JAVA_ELEMENT__GENERATED;
 
 	/**
-	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_IMPORT_CONTAINER__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+	int JDT_IMPORT_CONTAINER__PARENT = JDT_PARENT_JAVA_ELEMENT__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_IMPORT_CONTAINER__CHILDREN = JDT_PARENT_JAVA_ELEMENT__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Flags</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_IMPORT_CONTAINER__FLAGS = JDT_PARENT_JAVA_ELEMENT__FLAGS;
+
+	/**
 	 * The number of structural features of the '<em>JDT Import Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2897,70 +2641,100 @@ public interface JdtmmPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTExceptionImpl <em>JDT Exception</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTExceptionImpl
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTException()
 	 * @generated
 	 */
-	int JDT_EXCEPTION = 20;
+	int JDT_EXCEPTION = 21;
 
 	/**
 	 * The number of structural features of the '<em>JDT Exception</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int JDT_EXCEPTION_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTOpaqueBodyImpl <em>JDT Opaque Body</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTOpaqueBodyImpl
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTOpaqueBody()
+	 * @generated
+	 */
+	int JDT_OPAQUE_BODY = 22;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_OPAQUE_BODY__OWNER = JDT_METHOD_BODY__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_OPAQUE_BODY__BODY = JDT_METHOD_BODY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>JDT Opaque Body</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_OPAQUE_BODY_FEATURE_COUNT = JDT_METHOD_BODY_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 21;
+	int VISIBILITY_KIND = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault <em>True False Default</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getTrueFalseDefault()
 	 * @generated
 	 */
-	int TRUE_FALSE_DEFAULT = 22;
+	int TRUE_FALSE_DEFAULT = 24;
 
 	/**
 	 * The meta object id for the '<em>boolean</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getboolean()
 	 * @generated
 	 */
-	int BOOLEAN = 24;
+	int BOOLEAN = 27;
 
 	/**
 	 * The meta object id for the '<em>int</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getint()
 	 * @generated
 	 */
-	int INT = 23;
+	int INT = 26;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see java.lang.String
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getString()
 	 * @generated
@@ -2972,29 +2746,47 @@ public interface JdtmmPackage extends EPackage {
 	 * The meta object id for the '<em>JDT Visitor Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTVisitorException()
 	 * @generated
 	 */
-	int JDT_VISITOR_EXCEPTION = 26;
+	int JDT_VISITOR_EXCEPTION = 28;
 
 	/**
 	 * The meta object id for the '<em>Visitor</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getVisitor()
 	 * @generated
 	 */
-	int VISITOR = 27;
+	int VISITOR = 29;
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody <em>JDT Method Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>JDT Method Body</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody
+	 * @generated
+	 */
+	EClass getJDTMethodBody();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody#getOwner()
+	 * @see #getJDTMethodBody()
+	 * @generated
+	 */
+	EReference getJDTMethodBody_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement <em>JDT Java Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Java Element</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement
 	 * @generated
@@ -3002,11 +2794,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTJavaElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getParent
-	 * <em>Parent</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Parent</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getParent()
 	 * @see #getJDTJavaElement()
@@ -3015,11 +2805,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTJavaElement_Parent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getElementName
-	 * <em>Element Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getElementName <em>Element Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Element Name</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getElementName()
 	 * @see #getJDTJavaElement()
@@ -3028,11 +2816,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTJavaElement_ElementName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getElementType
-	 * <em>Element Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getElementType <em>Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Element Type</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getElementType()
 	 * @see #getJDTJavaElement()
@@ -3041,11 +2827,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTJavaElement_ElementType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getComment
-	 * <em>Comment</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getComment <em>Comment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Comment</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#getComment()
 	 * @see #getJDTJavaElement()
@@ -3054,11 +2838,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTJavaElement_Comment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#isGenerated
-	 * <em>Generated</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#isGenerated <em>Generated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Generated</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement#isGenerated()
 	 * @see #getJDTJavaElement()
@@ -3070,7 +2852,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent <em>JDT Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Parent</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent
 	 * @generated
@@ -3081,7 +2862,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent#getFlags <em>Flags</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Flags</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent#getFlags()
 	 * @see #getJDTParent()
@@ -3090,11 +2870,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTParent_Flags();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent#getChildren
-	 * <em>Children</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Children</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParent#getChildren()
 	 * @see #getJDTParent()
@@ -3106,7 +2884,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember <em>JDT Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Member</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember
 	 * @generated
@@ -3114,11 +2891,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTMember();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getTypeParameters <em>Type Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getTypeParameters <em>Type Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Type Parameters</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getTypeParameters()
 	 * @see #getJDTMember()
@@ -3127,11 +2902,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTMember_TypeParameters();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility
-	 * <em>Visibility</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility <em>Visibility</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Visibility</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility()
 	 * @see #getJDTMember()
@@ -3140,11 +2913,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTMember_Visibility();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParentJavaElement
-	 * <em>JDT Parent Java Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParentJavaElement <em>JDT Parent Java Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Parent Java Element</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParentJavaElement
 	 * @generated
@@ -3152,11 +2923,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTParentJavaElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter <em>JDT Type Parameter</em>}
-	 * '.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter <em>JDT Type Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Type Parameter</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter
 	 * @generated
@@ -3164,11 +2933,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTTypeParameter();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter#getDeclaringMember <em>Declaring Member</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter#getDeclaringMember <em>Declaring Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Declaring Member</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter#getDeclaringMember()
 	 * @see #getJDTTypeParameter()
@@ -3180,7 +2947,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField <em>JDT Field</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Field</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField
 	 * @generated
@@ -3188,11 +2954,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTField();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getOwner
-	 * <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Owner</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getOwner()
 	 * @see #getJDTField()
@@ -3204,7 +2968,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Type</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getType()
 	 * @see #getJDTField()
@@ -3216,7 +2979,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getValue()
 	 * @see #getJDTField()
@@ -3225,11 +2987,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTField_Value();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getGenerateGetter
-	 * <em>Generate Getter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getGenerateGetter <em>Generate Getter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Generate Getter</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getGenerateGetter()
 	 * @see #getJDTField()
@@ -3238,11 +2998,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTField_GenerateGetter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getGenerateSetter
-	 * <em>Generate Setter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getGenerateSetter <em>Generate Setter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Generate Setter</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#getGenerateSetter()
 	 * @see #getJDTField()
@@ -3251,11 +3009,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTField_GenerateSetter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isAbstract <em>Abstract</em>}
-	 * '.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isAbstract <em>Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Abstract</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isAbstract()
 	 * @see #getJDTField()
@@ -3267,7 +3023,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isFinal <em>Final</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Final</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isFinal()
 	 * @see #getJDTField()
@@ -3279,7 +3034,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isStatic <em>Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Static</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isStatic()
 	 * @see #getJDTField()
@@ -3288,11 +3042,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTField_Static();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isMultiValued
-	 * <em>Is Multi Valued</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isMultiValued <em>Is Multi Valued</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Is Multi Valued</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField#isMultiValued()
 	 * @see #getJDTField()
@@ -3304,7 +3056,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType <em>JDT Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Type</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType
 	 * @generated
@@ -3312,11 +3063,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getMethods
-	 * <em>Methods</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getMethods <em>Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Methods</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getMethods()
 	 * @see #getJDTType()
@@ -3325,11 +3074,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTType_Methods();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getCompilationUnit
-	 * <em>Compilation Unit</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getCompilationUnit <em>Compilation Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Compilation Unit</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getCompilationUnit()
 	 * @see #getJDTType()
@@ -3341,7 +3088,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isClass <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Class</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isClass()
 	 * @see #getJDTType()
@@ -3350,11 +3096,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTType_Class();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isInterface
-	 * <em>Interface</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isInterface <em>Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Interface</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isInterface()
 	 * @see #getJDTType()
@@ -3366,7 +3110,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isEnum <em>Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Enum</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isEnum()
 	 * @see #getJDTType()
@@ -3375,11 +3118,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTType_Enum();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isAbstract <em>Abstract</em>}
-	 * '.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isAbstract <em>Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Abstract</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isAbstract()
 	 * @see #getJDTType()
@@ -3391,7 +3132,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isFinal <em>Final</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Final</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isFinal()
 	 * @see #getJDTType()
@@ -3403,7 +3143,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isStatic <em>Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Static</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isStatic()
 	 * @see #getJDTType()
@@ -3412,11 +3151,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTType_Static();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getTypes
-	 * <em>Types</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getTypes <em>Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Types</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getTypes()
 	 * @see #getJDTType()
@@ -3425,11 +3162,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTType_Types();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getOwner
-	 * <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Owner</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getOwner()
 	 * @see #getJDTType()
@@ -3438,11 +3173,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTType_Owner();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaces
-	 * <em>Super Interfaces</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaces <em>Super Interfaces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Super Interfaces</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaces()
 	 * @see #getJDTType()
@@ -3451,11 +3184,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTType_SuperInterfaces();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClass
-	 * <em>Super Class</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClass <em>Super Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Super Class</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClass()
 	 * @see #getJDTType()
@@ -3464,11 +3195,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTType_SuperClass();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaceNames
-	 * <em>Super Interface Names</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaceNames <em>Super Interface Names</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute list '<em>Super Interface Names</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaceNames()
 	 * @see #getJDTType()
@@ -3477,11 +3206,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTType_SuperInterfaceNames();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClassName
-	 * <em>Super Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClassName <em>Super Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Super Class Name</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClassName()
 	 * @see #getJDTType()
@@ -3490,11 +3217,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTType_SuperClassName();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getFields
-	 * <em>Fields</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getFields <em>Fields</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Fields</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getFields()
 	 * @see #getJDTType()
@@ -3506,7 +3231,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod <em>JDT Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Method</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod
 	 * @generated
@@ -3514,11 +3238,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTMethod();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getReturnType
-	 * <em>Return Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getReturnType <em>Return Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Return Type</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getReturnType()
 	 * @see #getJDTMethod()
@@ -3527,11 +3249,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTMethod_ReturnType();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getParameters()
 	 * @see #getJDTMethod()
@@ -3540,11 +3260,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTMethod_Parameters();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getExceptions
-	 * <em>Exceptions</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getExceptions <em>Exceptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Exceptions</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getExceptions()
 	 * @see #getJDTMethod()
@@ -3553,11 +3271,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTMethod_Exceptions();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isSynchronized
-	 * <em>Synchronized</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isSynchronized <em>Synchronized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Synchronized</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isSynchronized()
 	 * @see #getJDTMethod()
@@ -3566,11 +3282,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTMethod_Synchronized();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isConstructor
-	 * <em>Constructor</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isConstructor <em>Constructor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Constructor</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isConstructor()
 	 * @see #getJDTMethod()
@@ -3579,11 +3293,20 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTMethod_Constructor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isAbstract
-	 * <em>Abstract</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getBodies <em>Bodies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @return the meta object for the containment reference list '<em>Bodies</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getBodies()
+	 * @see #getJDTMethod()
+	 * @generated
+	 */
+	EReference getJDTMethod_Bodies();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isAbstract <em>Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Abstract</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isAbstract()
 	 * @see #getJDTMethod()
@@ -3595,7 +3318,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isFinal <em>Final</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Final</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isFinal()
 	 * @see #getJDTMethod()
@@ -3607,7 +3329,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isStatic <em>Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Static</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#isStatic()
 	 * @see #getJDTMethod()
@@ -3616,11 +3337,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTMethod_Static();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getOwner
-	 * <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Owner</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod#getOwner()
 	 * @see #getJDTMethod()
@@ -3632,7 +3351,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTClass <em>JDT Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Class</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTClass
 	 * @generated
@@ -3643,7 +3361,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTInterface <em>JDT Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Interface</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTInterface
 	 * @generated
@@ -3654,7 +3371,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTEnum <em>JDT Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Enum</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTEnum
 	 * @generated
@@ -3665,7 +3381,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeRoot <em>JDT Type Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Type Root</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeRoot
 	 * @generated
@@ -3673,11 +3388,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTTypeRoot();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit
-	 * <em>JDT Compilation Unit</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit <em>JDT Compilation Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Compilation Unit</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit
 	 * @generated
@@ -3685,11 +3398,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTCompilationUnit();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit#getPackageFragment <em>Package Fragment</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit#getPackageFragment <em>Package Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Package Fragment</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit#getPackageFragment()
 	 * @see #getJDTCompilationUnit()
@@ -3698,11 +3409,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTCompilationUnit_PackageFragment();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit#getTypes <em>Types</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit#getTypes <em>Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Types</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit#getTypes()
 	 * @see #getJDTCompilationUnit()
@@ -3711,11 +3420,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTCompilationUnit_Types();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTImportDeclaration
-	 * <em>JDT Import Declaration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTImportDeclaration <em>JDT Import Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Import Declaration</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTImportDeclaration
 	 * @generated
@@ -3723,11 +3430,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTImportDeclaration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTImportContainer
-	 * <em>JDT Import Container</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTImportContainer <em>JDT Import Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Import Container</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTImportContainer
 	 * @generated
@@ -3738,7 +3443,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter <em>JDT Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Parameter</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter
 	 * @generated
@@ -3746,11 +3450,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTParameter();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getParameterOwner <em>Parameter Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getParameterOwner <em>Parameter Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Parameter Owner</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getParameterOwner()
 	 * @see #getJDTParameter()
@@ -3762,7 +3464,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#isFinal <em>Final</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Final</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#isFinal()
 	 * @see #getJDTParameter()
@@ -3771,11 +3472,9 @@ public interface JdtmmPackage extends EPackage {
 	EAttribute getJDTParameter_Final();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#isMultiValued
-	 * <em>Is Multi Valued</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#isMultiValued <em>Is Multi Valued</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Is Multi Valued</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#isMultiValued()
 	 * @see #getJDTParameter()
@@ -3787,7 +3486,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Type</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getType()
 	 * @see #getJDTParameter()
@@ -3796,11 +3494,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTParameter_Type();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getReturnOwner
-	 * <em>Return Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getReturnOwner <em>Return Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Return Owner</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter#getReturnOwner()
 	 * @see #getJDTParameter()
@@ -3812,7 +3508,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTException <em>JDT Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Exception</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTException
 	 * @generated
@@ -3820,10 +3515,30 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTException();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody <em>JDT Opaque Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>JDT Opaque Body</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody
+	 * @generated
+	 */
+	EClass getJDTOpaqueBody();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody#get_body <em>body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>body</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody#get_body()
+	 * @see #getJDTOpaqueBody()
+	 * @generated
+	 */
+	EAttribute getJDTOpaqueBody__body();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind <em>Visibility Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for enum '<em>Visibility Kind</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind
 	 * @generated
@@ -3834,7 +3549,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault <em>True False Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for enum '<em>True False Default</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault
 	 * @generated
@@ -3845,7 +3559,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaModel <em>JDT Java Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Java Model</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaModel
 	 * @generated
@@ -3853,11 +3566,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTJavaModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaModel#getJavaProject <em>Java Project</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaModel#getJavaProject <em>Java Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Java Project</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaModel#getJavaProject()
 	 * @see #getJDTJavaModel()
@@ -3869,7 +3580,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for data type '<em>boolean</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for data type '<em>boolean</em>'.
 	 * @model instanceClass="boolean"
 	 * @generated
@@ -3880,7 +3590,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for data type '<em>int</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for data type '<em>int</em>'.
 	 * @model instanceClass="int"
 	 * @generated
@@ -3888,11 +3597,9 @@ public interface JdtmmPackage extends EPackage {
 	EDataType getint();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment
-	 * <em>JDT Package Fragment</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment <em>JDT Package Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Package Fragment</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment
 	 * @generated
@@ -3900,11 +3607,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTPackageFragment();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment#getPackageFragmentRoot <em>Package Fragment Root</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment#getPackageFragmentRoot <em>Package Fragment Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Package Fragment Root</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment#getPackageFragmentRoot()
 	 * @see #getJDTPackageFragment()
@@ -3913,11 +3618,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTPackageFragment_PackageFragmentRoot();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment#getCompilationUnits <em>Compilation Units</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment#getCompilationUnits <em>Compilation Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Compilation Units</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment#getCompilationUnits()
 	 * @see #getJDTPackageFragment()
@@ -3926,11 +3629,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTPackageFragment_CompilationUnits();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot
-	 * <em>JDT Package Fragment Root</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot <em>JDT Package Fragment Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Package Fragment Root</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot
 	 * @generated
@@ -3938,11 +3639,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTPackageFragmentRoot();
 
 	/**
-	 * Returns the meta object for the container reference '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot#getJavaProject <em>Java Project</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot#getJavaProject <em>Java Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Java Project</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot#getJavaProject()
 	 * @see #getJDTPackageFragmentRoot()
@@ -3951,11 +3650,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTPackageFragmentRoot_JavaProject();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot#getPackageFragments <em>Package Fragments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot#getPackageFragments <em>Package Fragments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Package Fragments</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot#getPackageFragments()
 	 * @see #getJDTPackageFragmentRoot()
@@ -3967,7 +3664,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject <em>JDT Java Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>JDT Java Project</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject
 	 * @generated
@@ -3975,11 +3671,9 @@ public interface JdtmmPackage extends EPackage {
 	EClass getJDTJavaProject();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject#getJavaModel
-	 * <em>Java Model</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject#getJavaModel <em>Java Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the container reference '<em>Java Model</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject#getJavaModel()
 	 * @see #getJDTJavaProject()
@@ -3988,11 +3682,9 @@ public interface JdtmmPackage extends EPackage {
 	EReference getJDTJavaProject_JavaModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject#getPackageFragmentRoots <em>Package Fragment Roots</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject#getPackageFragmentRoots <em>Package Fragment Roots</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Package Fragment Roots</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject#getPackageFragmentRoots()
 	 * @see #getJDTJavaProject()
@@ -4004,7 +3696,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.lang.String <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for data type '<em>String</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"
@@ -4013,11 +3704,9 @@ public interface JdtmmPackage extends EPackage {
 	EDataType getString();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException
-	 * <em>JDT Visitor Exception</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException <em>JDT Visitor Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for data type '<em>JDT Visitor Exception</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException
 	 * @model instanceClass="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException"
@@ -4029,7 +3718,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor <em>Visitor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for data type '<em>Visitor</em>'.
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor
 	 * @model instanceClass="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor"
@@ -4041,7 +3729,6 @@ public interface JdtmmPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -4057,17 +3744,32 @@ public interface JdtmmPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaElementImpl
-		 * <em>JDT Java Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodBodyImpl <em>JDT Method Body</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
+		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodBodyImpl
+		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTMethodBody()
+		 * @generated
+		 */
+		EClass JDT_METHOD_BODY = eINSTANCE.getJDTMethodBody();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JDT_METHOD_BODY__OWNER = eINSTANCE.getJDTMethodBody_Owner();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaElementImpl <em>JDT Java Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaElementImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTJavaElement()
 		 * @generated
@@ -4078,7 +3780,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_JAVA_ELEMENT__PARENT = eINSTANCE.getJDTJavaElement_Parent();
@@ -4087,7 +3788,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_JAVA_ELEMENT__ELEMENT_NAME = eINSTANCE.getJDTJavaElement_ElementName();
@@ -4096,7 +3796,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_JAVA_ELEMENT__ELEMENT_TYPE = eINSTANCE.getJDTJavaElement_ElementType();
@@ -4105,7 +3804,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_JAVA_ELEMENT__COMMENT = eINSTANCE.getJDTJavaElement_Comment();
@@ -4114,17 +3812,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Generated</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_JAVA_ELEMENT__GENERATED = eINSTANCE.getJDTJavaElement_Generated();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl <em>JDT Parent</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl <em>JDT Parent</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTParent()
 		 * @generated
@@ -4135,7 +3830,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Flags</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_PARENT__FLAGS = eINSTANCE.getJDTParent_Flags();
@@ -4144,17 +3838,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Children</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PARENT__CHILDREN = eINSTANCE.getJDTParent_Children();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl <em>JDT Member</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl <em>JDT Member</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTMember()
 		 * @generated
@@ -4165,7 +3856,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_MEMBER__TYPE_PARAMETERS = eINSTANCE.getJDTMember_TypeParameters();
@@ -4174,17 +3864,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_MEMBER__VISIBILITY = eINSTANCE.getJDTMember_Visibility();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl
-		 * <em>JDT Parent Java Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl <em>JDT Parent Java Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTParentJavaElement()
 		 * @generated
@@ -4192,11 +3879,9 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_PARENT_JAVA_ELEMENT = eINSTANCE.getJDTParentJavaElement();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl
-		 * <em>JDT Type Parameter</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl <em>JDT Type Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTTypeParameter()
 		 * @generated
@@ -4207,17 +3892,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Declaring Member</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE_PARAMETER__DECLARING_MEMBER = eINSTANCE.getJDTTypeParameter_DeclaringMember();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTFieldImpl <em>JDT Field</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTFieldImpl <em>JDT Field</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTFieldImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTField()
 		 * @generated
@@ -4228,7 +3910,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_FIELD__OWNER = eINSTANCE.getJDTField_Owner();
@@ -4237,7 +3918,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_FIELD__TYPE = eINSTANCE.getJDTField_Type();
@@ -4246,7 +3926,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__VALUE = eINSTANCE.getJDTField_Value();
@@ -4255,7 +3934,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Generate Getter</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__GENERATE_GETTER = eINSTANCE.getJDTField_GenerateGetter();
@@ -4264,7 +3942,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Generate Setter</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__GENERATE_SETTER = eINSTANCE.getJDTField_GenerateSetter();
@@ -4273,7 +3950,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__ABSTRACT = eINSTANCE.getJDTField_Abstract();
@@ -4282,7 +3958,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__FINAL = eINSTANCE.getJDTField_Final();
@@ -4291,7 +3966,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__STATIC = eINSTANCE.getJDTField_Static();
@@ -4300,7 +3974,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Is Multi Valued</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_FIELD__IS_MULTI_VALUED = eINSTANCE.getJDTField_IsMultiValued();
@@ -4309,7 +3982,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl <em>JDT Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTType()
 		 * @generated
@@ -4320,7 +3992,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__METHODS = eINSTANCE.getJDTType_Methods();
@@ -4329,7 +4000,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Compilation Unit</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__COMPILATION_UNIT = eINSTANCE.getJDTType_CompilationUnit();
@@ -4338,7 +4008,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__CLASS = eINSTANCE.getJDTType_Class();
@@ -4347,7 +4016,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Interface</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__INTERFACE = eINSTANCE.getJDTType_Interface();
@@ -4356,7 +4024,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Enum</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__ENUM = eINSTANCE.getJDTType_Enum();
@@ -4365,7 +4032,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__ABSTRACT = eINSTANCE.getJDTType_Abstract();
@@ -4374,7 +4040,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__FINAL = eINSTANCE.getJDTType_Final();
@@ -4383,7 +4048,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__STATIC = eINSTANCE.getJDTType_Static();
@@ -4392,7 +4056,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Types</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__TYPES = eINSTANCE.getJDTType_Types();
@@ -4401,7 +4064,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__OWNER = eINSTANCE.getJDTType_Owner();
@@ -4410,7 +4072,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Super Interfaces</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__SUPER_INTERFACES = eINSTANCE.getJDTType_SuperInterfaces();
@@ -4419,7 +4080,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Super Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__SUPER_CLASS = eINSTANCE.getJDTType_SuperClass();
@@ -4428,7 +4088,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Super Interface Names</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__SUPER_INTERFACE_NAMES = eINSTANCE.getJDTType_SuperInterfaceNames();
@@ -4437,7 +4096,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Super Class Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_TYPE__SUPER_CLASS_NAME = eINSTANCE.getJDTType_SuperClassName();
@@ -4446,17 +4104,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_TYPE__FIELDS = eINSTANCE.getJDTType_Fields();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodImpl <em>JDT Method</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodImpl <em>JDT Method</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTMethod()
 		 * @generated
@@ -4467,7 +4122,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_METHOD__RETURN_TYPE = eINSTANCE.getJDTMethod_ReturnType();
@@ -4476,7 +4130,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_METHOD__PARAMETERS = eINSTANCE.getJDTMethod_Parameters();
@@ -4485,7 +4138,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Exceptions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_METHOD__EXCEPTIONS = eINSTANCE.getJDTMethod_Exceptions();
@@ -4494,7 +4146,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Synchronized</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_METHOD__SYNCHRONIZED = eINSTANCE.getJDTMethod_Synchronized();
@@ -4503,16 +4154,22 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Constructor</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_METHOD__CONSTRUCTOR = eINSTANCE.getJDTMethod_Constructor();
 
 		/**
+		 * The meta object literal for the '<em><b>Bodies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JDT_METHOD__BODIES = eINSTANCE.getJDTMethod_Bodies();
+
+		/**
 		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_METHOD__ABSTRACT = eINSTANCE.getJDTMethod_Abstract();
@@ -4521,7 +4178,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_METHOD__FINAL = eINSTANCE.getJDTMethod_Final();
@@ -4530,7 +4186,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_METHOD__STATIC = eINSTANCE.getJDTMethod_Static();
@@ -4539,17 +4194,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_METHOD__OWNER = eINSTANCE.getJDTMethod_Owner();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTClassImpl <em>JDT Class</em>}'
-		 * class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTClassImpl <em>JDT Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTClassImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTClass()
 		 * @generated
@@ -4557,11 +4209,9 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_CLASS = eINSTANCE.getJDTClass();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTInterfaceImpl
-		 * <em>JDT Interface</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTInterfaceImpl <em>JDT Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTInterfaceImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTInterface()
 		 * @generated
@@ -4572,7 +4222,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTEnumImpl <em>JDT Enum</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTEnumImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTEnum()
 		 * @generated
@@ -4580,11 +4229,9 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_ENUM = eINSTANCE.getJDTEnum();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeRootImpl <em>JDT Type Root</em>}
-		 * ' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeRootImpl <em>JDT Type Root</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeRootImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTTypeRoot()
 		 * @generated
@@ -4592,11 +4239,9 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_TYPE_ROOT = eINSTANCE.getJDTTypeRoot();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTCompilationUnitImpl
-		 * <em>JDT Compilation Unit</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTCompilationUnitImpl <em>JDT Compilation Unit</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTCompilationUnitImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTCompilationUnit()
 		 * @generated
@@ -4607,7 +4252,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Package Fragment</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_COMPILATION_UNIT__PACKAGE_FRAGMENT = eINSTANCE.getJDTCompilationUnit_PackageFragment();
@@ -4616,17 +4260,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Types</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_COMPILATION_UNIT__TYPES = eINSTANCE.getJDTCompilationUnit_Types();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportDeclarationImpl
-		 * <em>JDT Import Declaration</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportDeclarationImpl <em>JDT Import Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportDeclarationImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTImportDeclaration()
 		 * @generated
@@ -4634,11 +4275,9 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_IMPORT_DECLARATION = eINSTANCE.getJDTImportDeclaration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportContainerImpl
-		 * <em>JDT Import Container</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportContainerImpl <em>JDT Import Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTImportContainerImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTImportContainer()
 		 * @generated
@@ -4646,11 +4285,9 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_IMPORT_CONTAINER = eINSTANCE.getJDTImportContainer();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParameterImpl
-		 * <em>JDT Parameter</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParameterImpl <em>JDT Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParameterImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTParameter()
 		 * @generated
@@ -4661,7 +4298,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Parameter Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PARAMETER__PARAMETER_OWNER = eINSTANCE.getJDTParameter_ParameterOwner();
@@ -4670,7 +4306,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_PARAMETER__FINAL = eINSTANCE.getJDTParameter_Final();
@@ -4679,7 +4314,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Is Multi Valued</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute JDT_PARAMETER__IS_MULTI_VALUED = eINSTANCE.getJDTParameter_IsMultiValued();
@@ -4688,7 +4322,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PARAMETER__TYPE = eINSTANCE.getJDTParameter_Type();
@@ -4697,17 +4330,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Return Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PARAMETER__RETURN_OWNER = eINSTANCE.getJDTParameter_ReturnOwner();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTExceptionImpl
-		 * <em>JDT Exception</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTExceptionImpl <em>JDT Exception</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTExceptionImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTException()
 		 * @generated
@@ -4715,11 +4345,27 @@ public interface JdtmmPackage extends EPackage {
 		EClass JDT_EXCEPTION = eINSTANCE.getJDTException();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind <em>Visibility Kind</em>}'
-		 * enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTOpaqueBodyImpl <em>JDT Opaque Body</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
+		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTOpaqueBodyImpl
+		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTOpaqueBody()
+		 * @generated
+		 */
+		EClass JDT_OPAQUE_BODY = eINSTANCE.getJDTOpaqueBody();
+
+		/**
+		 * The meta object literal for the '<em><b>body</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JDT_OPAQUE_BODY__BODY = eINSTANCE.getJDTOpaqueBody__body();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind <em>Visibility Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getVisibilityKind()
 		 * @generated
@@ -4727,11 +4373,9 @@ public interface JdtmmPackage extends EPackage {
 		EEnum VISIBILITY_KIND = eINSTANCE.getVisibilityKind();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault
-		 * <em>True False Default</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault <em>True False Default</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getTrueFalseDefault()
 		 * @generated
@@ -4739,11 +4383,9 @@ public interface JdtmmPackage extends EPackage {
 		EEnum TRUE_FALSE_DEFAULT = eINSTANCE.getTrueFalseDefault();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl
-		 * <em>JDT Java Model</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl <em>JDT Java Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTJavaModel()
 		 * @generated
@@ -4754,7 +4396,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Java Project</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_JAVA_MODEL__JAVA_PROJECT = eINSTANCE.getJDTJavaModel_JavaProject();
@@ -4763,7 +4404,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em>boolean</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getboolean()
 		 * @generated
 		 */
@@ -4773,18 +4413,15 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em>int</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getint()
 		 * @generated
 		 */
 		EDataType INT = eINSTANCE.getint();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentImpl
-		 * <em>JDT Package Fragment</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentImpl <em>JDT Package Fragment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTPackageFragment()
 		 * @generated
@@ -4795,7 +4432,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Package Fragment Root</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PACKAGE_FRAGMENT__PACKAGE_FRAGMENT_ROOT = eINSTANCE.getJDTPackageFragment_PackageFragmentRoot();
@@ -4804,17 +4440,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Compilation Units</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PACKAGE_FRAGMENT__COMPILATION_UNITS = eINSTANCE.getJDTPackageFragment_CompilationUnits();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentRootImpl
-		 * <em>JDT Package Fragment Root</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentRootImpl <em>JDT Package Fragment Root</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTPackageFragmentRootImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTPackageFragmentRoot()
 		 * @generated
@@ -4825,7 +4458,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Java Project</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PACKAGE_FRAGMENT_ROOT__JAVA_PROJECT = eINSTANCE.getJDTPackageFragmentRoot_JavaProject();
@@ -4834,17 +4466,14 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Package Fragments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_PACKAGE_FRAGMENT_ROOT__PACKAGE_FRAGMENTS = eINSTANCE.getJDTPackageFragmentRoot_PackageFragments();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaProjectImpl
-		 * <em>JDT Java Project</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaProjectImpl <em>JDT Java Project</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaProjectImpl
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTJavaProject()
 		 * @generated
@@ -4855,7 +4484,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Java Model</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_JAVA_PROJECT__JAVA_MODEL = eINSTANCE.getJDTJavaProject_JavaModel();
@@ -4864,7 +4492,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Package Fragment Roots</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference JDT_JAVA_PROJECT__PACKAGE_FRAGMENT_ROOTS = eINSTANCE.getJDTJavaProject_PackageFragmentRoots();
@@ -4873,7 +4500,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em>String</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see java.lang.String
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getString()
 		 * @generated
@@ -4884,7 +4510,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em>JDT Visitor Exception</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getJDTVisitorException()
 		 * @generated
@@ -4895,7 +4520,6 @@ public interface JdtmmPackage extends EPackage {
 		 * The meta object literal for the '<em>Visitor</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor
 		 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JdtmmPackageImpl#getVisitor()
 		 * @generated

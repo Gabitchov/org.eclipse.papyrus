@@ -197,6 +197,16 @@ public class SynchTools {
 			itype.getCompilationUnit().createImport(_import, null, null);
 	}
 
+	/**
+	 * Get the multivalued declaration for the specified typeName.
+	 * 
+	 * @param type The enclosing type that will contains the declaration. Requested to ajust import.
+	 * @param typeName The type for wich a multivalued statement is requested
+	 * @param preference The preferences
+	 * @return The multivalued statement for the specified typeName.
+	 * 
+	 * @throws JavaModelException
+	 */
 	public static String getMultiValued(IType type, String typeName, GeneratorPreference preference) throws JavaModelException {
 		// create the import
 		String _classQualifiedName = preference.genericClassForMultiValue();

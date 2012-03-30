@@ -42,11 +42,11 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl#getChildren <em>Children</em>}</li>
- * <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl#getFlags <em>Flags</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentImpl#getFlags <em>Flags</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
@@ -55,7 +55,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	 * The default value of the '{@link #getFlags() <em>Flags</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFlags()
 	 * @generated
 	 * @ordered
@@ -66,7 +65,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	 * The cached value of the '{@link #getFlags() <em>Flags</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFlags()
 	 * @generated
 	 * @ordered
@@ -76,7 +74,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected JDTParentImpl() {
@@ -86,7 +83,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +93,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<JDTJavaElement> getChildren() {
@@ -107,7 +102,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getFlags() {
@@ -117,13 +111,12 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFlags(int newFlags) {
 		int oldFlags = flags;
 		flags = newFlags;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, JdtmmPackage.JDT_PARENT__FLAGS, oldFlags, flags));
 	}
 
@@ -155,16 +148,15 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_PARENT__CHILDREN:
-			return getChildren();
-		case JdtmmPackage.JDT_PARENT__FLAGS:
-			return getFlags();
+		switch (featureID) {
+			case JdtmmPackage.JDT_PARENT__CHILDREN:
+				return getChildren();
+			case JdtmmPackage.JDT_PARENT__FLAGS:
+				return getFlags();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -172,15 +164,14 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_PARENT__FLAGS:
-			setFlags((Integer)newValue);
-			return;
+		switch (featureID) {
+			case JdtmmPackage.JDT_PARENT__FLAGS:
+				setFlags((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -188,15 +179,14 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_PARENT__FLAGS:
-			setFlags(FLAGS_EDEFAULT);
-			return;
+		switch (featureID) {
+			case JdtmmPackage.JDT_PARENT__FLAGS:
+				setFlags(FLAGS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -204,16 +194,15 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_PARENT__CHILDREN:
-			return isSetChildren();
-		case JdtmmPackage.JDT_PARENT__FLAGS:
-			return flags != FLAGS_EDEFAULT;
+		switch (featureID) {
+			case JdtmmPackage.JDT_PARENT__CHILDREN:
+				return isSetChildren();
+			case JdtmmPackage.JDT_PARENT__FLAGS:
+				return flags != FLAGS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -221,13 +210,11 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (flags: ");
@@ -239,7 +226,6 @@ public abstract class JDTParentImpl extends EObjectImpl implements JDTParent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetChildren() {

@@ -41,10 +41,10 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl#getJavaProject <em>Java Project</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTJavaModelImpl#getJavaProject <em>Java Project</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJavaModel {
@@ -53,7 +53,6 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	 * The cached value of the '{@link #getJavaProject() <em>Java Project</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getJavaProject()
 	 * @generated
 	 * @ordered
@@ -63,7 +62,6 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected JDTJavaModelImpl() {
@@ -73,7 +71,6 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,11 +81,10 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<JDTJavaProject> getJavaProject() {
-		if(javaProject == null) {
+		if (javaProject == null) {
 			javaProject = new EObjectContainmentWithInverseEList<JDTJavaProject>(JDTJavaProject.class, this, JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT, JdtmmPackage.JDT_JAVA_PROJECT__JAVA_MODEL);
 		}
 		return javaProject;
@@ -97,15 +93,14 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getJavaProject()).basicAdd(otherEnd, msgs);
+		switch (featureID) {
+			case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getJavaProject()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -113,14 +108,13 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
-			return ((InternalEList<?>)getJavaProject()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
+				return ((InternalEList<?>)getJavaProject()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -128,14 +122,13 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
-			return getJavaProject();
+		switch (featureID) {
+			case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
+				return getJavaProject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -143,17 +136,16 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
-			getJavaProject().clear();
-			getJavaProject().addAll((Collection<? extends JDTJavaProject>)newValue);
-			return;
+		switch (featureID) {
+			case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
+				getJavaProject().clear();
+				getJavaProject().addAll((Collection<? extends JDTJavaProject>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -161,15 +153,14 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
-			getJavaProject().clear();
-			return;
+		switch (featureID) {
+			case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
+				getJavaProject().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -177,14 +168,13 @@ public class JDTJavaModelImpl extends JDTParentJavaElementImpl implements JDTJav
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
-			return javaProject != null && !javaProject.isEmpty();
+		switch (featureID) {
+			case JdtmmPackage.JDT_JAVA_MODEL__JAVA_PROJECT:
+				return javaProject != null && !javaProject.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -437,6 +437,29 @@ public class JdtmmItemProviderAdapterFactory extends JdtmmAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JDTOpaqueBodyItemProvider jdtOpaqueBodyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJDTOpaqueBodyAdapter() {
+		if (jdtOpaqueBodyItemProvider == null) {
+			jdtOpaqueBodyItemProvider = new JDTOpaqueBodyItemProvider(this);
+		}
+
+		return jdtOpaqueBodyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -535,21 +558,22 @@ public class JdtmmItemProviderAdapterFactory extends JdtmmAdapterFactory impleme
 	 * @generated
 	 */
 	public void dispose() {
+		if (jdtMethodItemProvider != null) jdtMethodItemProvider.dispose();
 		if (jdtTypeParameterItemProvider != null) jdtTypeParameterItemProvider.dispose();
 		if (jdtFieldItemProvider != null) jdtFieldItemProvider.dispose();
-		if (jdtMethodItemProvider != null) jdtMethodItemProvider.dispose();
-		if (jdtParameterItemProvider != null) jdtParameterItemProvider.dispose();
 		if (jdtCompilationUnitItemProvider != null) jdtCompilationUnitItemProvider.dispose();
 		if (jdtPackageFragmentItemProvider != null) jdtPackageFragmentItemProvider.dispose();
 		if (jdtPackageFragmentRootItemProvider != null) jdtPackageFragmentRootItemProvider.dispose();
 		if (jdtJavaProjectItemProvider != null) jdtJavaProjectItemProvider.dispose();
 		if (jdtJavaModelItemProvider != null) jdtJavaModelItemProvider.dispose();
+		if (jdtParameterItemProvider != null) jdtParameterItemProvider.dispose();
 		if (jdtClassItemProvider != null) jdtClassItemProvider.dispose();
 		if (jdtInterfaceItemProvider != null) jdtInterfaceItemProvider.dispose();
 		if (jdtEnumItemProvider != null) jdtEnumItemProvider.dispose();
 		if (jdtImportDeclarationItemProvider != null) jdtImportDeclarationItemProvider.dispose();
 		if (jdtImportContainerItemProvider != null) jdtImportContainerItemProvider.dispose();
 		if (jdtExceptionItemProvider != null) jdtExceptionItemProvider.dispose();
+		if (jdtOpaqueBodyItemProvider != null) jdtOpaqueBodyItemProvider.dispose();
 	}
 
 }

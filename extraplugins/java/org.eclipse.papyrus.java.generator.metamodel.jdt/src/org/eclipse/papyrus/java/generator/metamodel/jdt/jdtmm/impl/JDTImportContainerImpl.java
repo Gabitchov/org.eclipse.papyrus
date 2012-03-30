@@ -33,7 +33,7 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class JDTImportContainerImpl extends JDTParentJavaElementImpl implements JDTImportContainer {
@@ -41,7 +41,6 @@ public class JDTImportContainerImpl extends JDTParentJavaElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected JDTImportContainerImpl() {
@@ -51,7 +50,6 @@ public class JDTImportContainerImpl extends JDTParentJavaElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

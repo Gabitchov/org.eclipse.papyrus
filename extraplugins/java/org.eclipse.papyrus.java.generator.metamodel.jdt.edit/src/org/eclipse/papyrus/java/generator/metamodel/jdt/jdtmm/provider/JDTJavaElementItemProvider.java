@@ -80,11 +80,11 @@ public class JDTJavaElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParentPropertyDescriptor(object);
 			addElementNamePropertyDescriptor(object);
 			addElementTypePropertyDescriptor(object);
 			addCommentPropertyDescriptor(object);
 			addGeneratedPropertyDescriptor(object);
+			addParentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

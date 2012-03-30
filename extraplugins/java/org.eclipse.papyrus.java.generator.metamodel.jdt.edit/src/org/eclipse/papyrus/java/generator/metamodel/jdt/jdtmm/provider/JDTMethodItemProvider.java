@@ -236,6 +236,7 @@ public class JDTMethodItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(JdtmmPackage.Literals.JDT_METHOD__RETURN_TYPE);
 			childrenFeatures.add(JdtmmPackage.Literals.JDT_METHOD__PARAMETERS);
+			childrenFeatures.add(JdtmmPackage.Literals.JDT_METHOD__BODIES);
 		}
 		return childrenFeatures;
 	}
@@ -299,6 +300,7 @@ public class JDTMethodItemProvider
 				return;
 			case JdtmmPackage.JDT_METHOD__RETURN_TYPE:
 			case JdtmmPackage.JDT_METHOD__PARAMETERS:
+			case JdtmmPackage.JDT_METHOD__BODIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -325,6 +327,11 @@ public class JDTMethodItemProvider
 			(createChildParameter
 				(JdtmmPackage.Literals.JDT_METHOD__PARAMETERS,
 				 JdtmmFactory.eINSTANCE.createJDTParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(JdtmmPackage.Literals.JDT_METHOD__BODIES,
+				 JdtmmFactory.eINSTANCE.createJDTOpaqueBody()));
 	}
 
 	/**

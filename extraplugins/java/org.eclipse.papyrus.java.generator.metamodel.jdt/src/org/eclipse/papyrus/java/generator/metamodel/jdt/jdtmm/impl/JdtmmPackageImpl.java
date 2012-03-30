@@ -23,7 +23,6 @@
 package org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -31,9 +30,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTClass;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTCompilationUnit;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTEnum;
@@ -47,6 +44,8 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaModel;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaProject;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTOpaqueBody;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragment;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTPackageFragmentRoot;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParameter;
@@ -57,7 +56,6 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeRoot;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmFactory;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
-
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.TrueFalseDefault;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor;
@@ -67,7 +65,6 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
@@ -75,7 +72,13 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	private EClass jdtMethodBodyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass jdtJavaElementEClass = null;
@@ -83,7 +86,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtParentEClass = null;
@@ -91,7 +93,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtMemberEClass = null;
@@ -99,7 +100,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtParentJavaElementEClass = null;
@@ -107,7 +107,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtTypeParameterEClass = null;
@@ -115,7 +114,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtFieldEClass = null;
@@ -123,7 +121,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtTypeEClass = null;
@@ -131,7 +128,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtMethodEClass = null;
@@ -139,7 +135,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtCompilationUnitEClass = null;
@@ -147,7 +142,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtTypeRootEClass = null;
@@ -155,7 +149,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtPackageFragmentEClass = null;
@@ -163,7 +156,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtPackageFragmentRootEClass = null;
@@ -171,7 +163,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtJavaProjectEClass = null;
@@ -179,7 +170,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtClassEClass = null;
@@ -187,7 +177,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtInterfaceEClass = null;
@@ -195,7 +184,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtEnumEClass = null;
@@ -203,7 +191,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtImportDeclarationEClass = null;
@@ -211,7 +198,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtImportContainerEClass = null;
@@ -219,7 +205,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtParameterEClass = null;
@@ -227,7 +212,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtExceptionEClass = null;
@@ -235,7 +219,13 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	private EClass jdtOpaqueBodyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum visibilityKindEEnum = null;
@@ -243,7 +233,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum trueFalseDefaultEEnum = null;
@@ -251,7 +240,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass jdtJavaModelEClass = null;
@@ -259,7 +247,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType intEDataType = null;
@@ -267,7 +254,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType stringEDataType = null;
@@ -275,7 +261,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType jdtVisitorExceptionEDataType = null;
@@ -283,7 +268,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType visitorEDataType = null;
@@ -291,19 +275,19 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType booleanEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#eNS_URI
 	 * @see #init()
@@ -316,7 +300,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -324,18 +307,16 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>
-	 * This method is used to initialize {@link JdtmmPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
-	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>This method is used to initialize {@link JdtmmPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static JdtmmPackage init() {
-		if(isInited)
-			return (JdtmmPackage)EPackage.Registry.INSTANCE.getEPackage(JdtmmPackage.eNS_URI);
+		if (isInited) return (JdtmmPackage)EPackage.Registry.INSTANCE.getEPackage(JdtmmPackage.eNS_URI);
 
 		// Obtain or create and register package
 		JdtmmPackageImpl theJdtmmPackage = (JdtmmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof JdtmmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new JdtmmPackageImpl());
@@ -351,7 +332,7 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		// Mark meta-data to indicate it can't be changed
 		theJdtmmPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(JdtmmPackage.eNS_URI, theJdtmmPackage);
 		return theJdtmmPackage;
@@ -360,7 +341,24 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EClass getJDTMethodBody() {
+		return jdtMethodBodyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getJDTMethodBody_Owner() {
+		return (EReference)jdtMethodBodyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getJDTJavaElement() {
@@ -370,57 +368,51 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTJavaElement_Parent() {
-		return (EReference)jdtJavaElementEClass.getEStructuralFeatures().get(0);
+		return (EReference)jdtJavaElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTJavaElement_ElementName() {
+		return (EAttribute)jdtJavaElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJDTJavaElement_ElementType() {
 		return (EAttribute)jdtJavaElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTJavaElement_ElementType() {
+	public EAttribute getJDTJavaElement_Comment() {
 		return (EAttribute)jdtJavaElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTJavaElement_Comment() {
+	public EAttribute getJDTJavaElement_Generated() {
 		return (EAttribute)jdtJavaElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getJDTJavaElement_Generated() {
-		return (EAttribute)jdtJavaElementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTParent() {
@@ -430,27 +422,24 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTParent_Flags() {
-		return (EAttribute)jdtParentEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)jdtParentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTParent_Children() {
-		return (EReference)jdtParentEClass.getEStructuralFeatures().get(1);
+		return (EReference)jdtParentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTMember() {
@@ -460,7 +449,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTMember_TypeParameters() {
@@ -470,7 +458,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTMember_Visibility() {
@@ -480,7 +467,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTParentJavaElement() {
@@ -490,7 +476,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTTypeParameter() {
@@ -500,7 +485,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTTypeParameter_DeclaringMember() {
@@ -510,7 +494,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTField() {
@@ -520,97 +503,87 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTField_Owner() {
-		return (EReference)jdtFieldEClass.getEStructuralFeatures().get(0);
+		return (EReference)jdtFieldEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTField_Type() {
-		return (EReference)jdtFieldEClass.getEStructuralFeatures().get(5);
+		return (EReference)jdtFieldEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTField_Value() {
+		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJDTField_GenerateGetter() {
 		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTField_GenerateGetter() {
+	public EAttribute getJDTField_GenerateSetter() {
 		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTField_GenerateSetter() {
-		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(8);
+	public EAttribute getJDTField_Abstract() {
+		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTField_Abstract() {
+	public EAttribute getJDTField_Final() {
 		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTField_Final() {
+	public EAttribute getJDTField_Static() {
 		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTField_Static() {
+	public EAttribute getJDTField_IsMultiValued() {
 		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getJDTField_IsMultiValued() {
-		return (EAttribute)jdtFieldEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTType() {
@@ -620,17 +593,15 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_Methods() {
-		return (EReference)jdtTypeEClass.getEStructuralFeatures().get(0);
+		return (EReference)jdtTypeEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_CompilationUnit() {
@@ -640,7 +611,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_Class() {
@@ -650,7 +620,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_Interface() {
@@ -660,7 +629,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_Enum() {
@@ -670,7 +638,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_Abstract() {
@@ -680,7 +647,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_Final() {
@@ -690,7 +656,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_Static() {
@@ -700,7 +665,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_Types() {
@@ -710,7 +674,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_Owner() {
@@ -720,7 +683,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_SuperInterfaces() {
@@ -730,7 +692,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_SuperClass() {
@@ -740,7 +701,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_SuperInterfaceNames() {
@@ -750,7 +710,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTType_SuperClassName() {
@@ -760,17 +719,15 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTType_Fields() {
-		return (EReference)jdtTypeEClass.getEStructuralFeatures().get(14);
+		return (EReference)jdtTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTMethod() {
@@ -780,97 +737,96 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTMethod_ReturnType() {
-		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getJDTMethod_Parameters() {
 		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EReference getJDTMethod_Parameters() {
+		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getJDTMethod_Exceptions() {
-		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(5);
+		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTMethod_Synchronized() {
-		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getJDTMethod_Constructor() {
 		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTMethod_Abstract() {
-		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(2);
+	public EAttribute getJDTMethod_Constructor() {
+		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTMethod_Final() {
+	public EReference getJDTMethod_Bodies() {
+		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJDTMethod_Abstract() {
 		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EAttribute getJDTMethod_Static() {
+	public EAttribute getJDTMethod_Final() {
 		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EReference getJDTMethod_Owner() {
-		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(8);
+	public EAttribute getJDTMethod_Static() {
+		return (EAttribute)jdtMethodEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EReference getJDTMethod_Owner() {
+		return (EReference)jdtMethodEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getJDTCompilationUnit() {
@@ -880,7 +836,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTCompilationUnit_PackageFragment() {
@@ -890,7 +845,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTCompilationUnit_Types() {
@@ -900,7 +854,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTTypeRoot() {
@@ -910,7 +863,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTPackageFragment() {
@@ -920,7 +872,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTPackageFragment_PackageFragmentRoot() {
@@ -930,7 +881,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTPackageFragment_CompilationUnits() {
@@ -940,7 +890,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTPackageFragmentRoot() {
@@ -950,7 +899,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTPackageFragmentRoot_JavaProject() {
@@ -960,7 +908,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTPackageFragmentRoot_PackageFragments() {
@@ -970,7 +917,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTJavaProject() {
@@ -980,7 +926,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTJavaProject_JavaModel() {
@@ -990,7 +935,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTJavaProject_PackageFragmentRoots() {
@@ -1000,7 +944,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTClass() {
@@ -1010,7 +953,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTInterface() {
@@ -1020,7 +962,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTEnum() {
@@ -1030,7 +971,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTImportDeclaration() {
@@ -1040,7 +980,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTImportContainer() {
@@ -1050,7 +989,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTParameter() {
@@ -1060,7 +998,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTParameter_ParameterOwner() {
@@ -1070,7 +1007,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTParameter_Final() {
@@ -1080,7 +1016,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getJDTParameter_IsMultiValued() {
@@ -1090,7 +1025,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTParameter_Type() {
@@ -1100,7 +1034,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTParameter_ReturnOwner() {
@@ -1110,7 +1043,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTException() {
@@ -1120,7 +1052,24 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EClass getJDTOpaqueBody() {
+		return jdtOpaqueBodyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJDTOpaqueBody__body() {
+		return (EAttribute)jdtOpaqueBodyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getVisibilityKind() {
@@ -1130,7 +1079,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getTrueFalseDefault() {
@@ -1140,7 +1088,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getJDTJavaModel() {
@@ -1150,7 +1097,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getJDTJavaModel_JavaProject() {
@@ -1160,7 +1106,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getint() {
@@ -1170,7 +1115,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getString() {
@@ -1180,7 +1124,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getJDTVisitorException() {
@@ -1190,7 +1133,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getVisitor() {
@@ -1200,7 +1142,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getboolean() {
@@ -1210,7 +1151,6 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JdtmmFactory getJdtmmFactory() {
@@ -1220,35 +1160,36 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
-		jdtJavaElementEClass = createEClass(JDT_JAVA_ELEMENT);
-		createEReference(jdtJavaElementEClass, JDT_JAVA_ELEMENT__PARENT);
-		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__ELEMENT_NAME);
-		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__ELEMENT_TYPE);
-		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__COMMENT);
-		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__GENERATED);
+		jdtMethodBodyEClass = createEClass(JDT_METHOD_BODY);
+		createEReference(jdtMethodBodyEClass, JDT_METHOD_BODY__OWNER);
 
-		jdtParentEClass = createEClass(JDT_PARENT);
-		createEAttribute(jdtParentEClass, JDT_PARENT__FLAGS);
-		createEReference(jdtParentEClass, JDT_PARENT__CHILDREN);
+		jdtMethodEClass = createEClass(JDT_METHOD);
+		createEReference(jdtMethodEClass, JDT_METHOD__OWNER);
+		createEReference(jdtMethodEClass, JDT_METHOD__RETURN_TYPE);
+		createEReference(jdtMethodEClass, JDT_METHOD__PARAMETERS);
+		createEAttribute(jdtMethodEClass, JDT_METHOD__ABSTRACT);
+		createEAttribute(jdtMethodEClass, JDT_METHOD__FINAL);
+		createEAttribute(jdtMethodEClass, JDT_METHOD__STATIC);
+		createEReference(jdtMethodEClass, JDT_METHOD__EXCEPTIONS);
+		createEAttribute(jdtMethodEClass, JDT_METHOD__SYNCHRONIZED);
+		createEAttribute(jdtMethodEClass, JDT_METHOD__CONSTRUCTOR);
+		createEReference(jdtMethodEClass, JDT_METHOD__BODIES);
 
 		jdtMemberEClass = createEClass(JDT_MEMBER);
 		createEReference(jdtMemberEClass, JDT_MEMBER__TYPE_PARAMETERS);
@@ -1256,22 +1197,22 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 
 		jdtParentJavaElementEClass = createEClass(JDT_PARENT_JAVA_ELEMENT);
 
+		jdtParentEClass = createEClass(JDT_PARENT);
+		createEReference(jdtParentEClass, JDT_PARENT__CHILDREN);
+		createEAttribute(jdtParentEClass, JDT_PARENT__FLAGS);
+
+		jdtJavaElementEClass = createEClass(JDT_JAVA_ELEMENT);
+		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__ELEMENT_NAME);
+		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__ELEMENT_TYPE);
+		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__COMMENT);
+		createEAttribute(jdtJavaElementEClass, JDT_JAVA_ELEMENT__GENERATED);
+		createEReference(jdtJavaElementEClass, JDT_JAVA_ELEMENT__PARENT);
+
 		jdtTypeParameterEClass = createEClass(JDT_TYPE_PARAMETER);
 		createEReference(jdtTypeParameterEClass, JDT_TYPE_PARAMETER__DECLARING_MEMBER);
 
-		jdtFieldEClass = createEClass(JDT_FIELD);
-		createEReference(jdtFieldEClass, JDT_FIELD__OWNER);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__ABSTRACT);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__FINAL);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__STATIC);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__IS_MULTI_VALUED);
-		createEReference(jdtFieldEClass, JDT_FIELD__TYPE);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__VALUE);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__GENERATE_GETTER);
-		createEAttribute(jdtFieldEClass, JDT_FIELD__GENERATE_SETTER);
-
 		jdtTypeEClass = createEClass(JDT_TYPE);
-		createEReference(jdtTypeEClass, JDT_TYPE__METHODS);
+		createEReference(jdtTypeEClass, JDT_TYPE__FIELDS);
 		createEReference(jdtTypeEClass, JDT_TYPE__COMPILATION_UNIT);
 		createEAttribute(jdtTypeEClass, JDT_TYPE__CLASS);
 		createEAttribute(jdtTypeEClass, JDT_TYPE__INTERFACE);
@@ -1285,25 +1226,18 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		createEReference(jdtTypeEClass, JDT_TYPE__SUPER_CLASS);
 		createEAttribute(jdtTypeEClass, JDT_TYPE__SUPER_INTERFACE_NAMES);
 		createEAttribute(jdtTypeEClass, JDT_TYPE__SUPER_CLASS_NAME);
-		createEReference(jdtTypeEClass, JDT_TYPE__FIELDS);
+		createEReference(jdtTypeEClass, JDT_TYPE__METHODS);
 
-		jdtMethodEClass = createEClass(JDT_METHOD);
-		createEReference(jdtMethodEClass, JDT_METHOD__RETURN_TYPE);
-		createEReference(jdtMethodEClass, JDT_METHOD__PARAMETERS);
-		createEAttribute(jdtMethodEClass, JDT_METHOD__ABSTRACT);
-		createEAttribute(jdtMethodEClass, JDT_METHOD__FINAL);
-		createEAttribute(jdtMethodEClass, JDT_METHOD__STATIC);
-		createEReference(jdtMethodEClass, JDT_METHOD__EXCEPTIONS);
-		createEAttribute(jdtMethodEClass, JDT_METHOD__SYNCHRONIZED);
-		createEAttribute(jdtMethodEClass, JDT_METHOD__CONSTRUCTOR);
-		createEReference(jdtMethodEClass, JDT_METHOD__OWNER);
-
-		jdtParameterEClass = createEClass(JDT_PARAMETER);
-		createEReference(jdtParameterEClass, JDT_PARAMETER__PARAMETER_OWNER);
-		createEAttribute(jdtParameterEClass, JDT_PARAMETER__FINAL);
-		createEAttribute(jdtParameterEClass, JDT_PARAMETER__IS_MULTI_VALUED);
-		createEReference(jdtParameterEClass, JDT_PARAMETER__TYPE);
-		createEReference(jdtParameterEClass, JDT_PARAMETER__RETURN_OWNER);
+		jdtFieldEClass = createEClass(JDT_FIELD);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__ABSTRACT);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__FINAL);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__STATIC);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__IS_MULTI_VALUED);
+		createEReference(jdtFieldEClass, JDT_FIELD__TYPE);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__VALUE);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__GENERATE_GETTER);
+		createEAttribute(jdtFieldEClass, JDT_FIELD__GENERATE_SETTER);
+		createEReference(jdtFieldEClass, JDT_FIELD__OWNER);
 
 		jdtCompilationUnitEClass = createEClass(JDT_COMPILATION_UNIT);
 		createEReference(jdtCompilationUnitEClass, JDT_COMPILATION_UNIT__PACKAGE_FRAGMENT);
@@ -1326,6 +1260,13 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		jdtJavaModelEClass = createEClass(JDT_JAVA_MODEL);
 		createEReference(jdtJavaModelEClass, JDT_JAVA_MODEL__JAVA_PROJECT);
 
+		jdtParameterEClass = createEClass(JDT_PARAMETER);
+		createEReference(jdtParameterEClass, JDT_PARAMETER__PARAMETER_OWNER);
+		createEAttribute(jdtParameterEClass, JDT_PARAMETER__FINAL);
+		createEAttribute(jdtParameterEClass, JDT_PARAMETER__IS_MULTI_VALUED);
+		createEReference(jdtParameterEClass, JDT_PARAMETER__TYPE);
+		createEReference(jdtParameterEClass, JDT_PARAMETER__RETURN_OWNER);
+
 		jdtClassEClass = createEClass(JDT_CLASS);
 
 		jdtInterfaceEClass = createEClass(JDT_INTERFACE);
@@ -1338,14 +1279,17 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 
 		jdtExceptionEClass = createEClass(JDT_EXCEPTION);
 
+		jdtOpaqueBodyEClass = createEClass(JDT_OPAQUE_BODY);
+		createEAttribute(jdtOpaqueBodyEClass, JDT_OPAQUE_BODY__BODY);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		trueFalseDefaultEEnum = createEEnum(TRUE_FALSE_DEFAULT);
 
 		// Create data types
+		stringEDataType = createEDataType(STRING);
 		intEDataType = createEDataType(INT);
 		booleanEDataType = createEDataType(BOOLEAN);
-		stringEDataType = createEDataType(STRING);
 		jdtVisitorExceptionEDataType = createEDataType(JDT_VISITOR_EXCEPTION);
 		visitorEDataType = createEDataType(VISITOR);
 	}
@@ -1353,22 +1297,19 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -1381,52 +1322,44 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		jdtMethodEClass.getESuperTypes().add(this.getJDTMember());
 		jdtMemberEClass.getESuperTypes().add(this.getJDTParentJavaElement());
 		jdtParentJavaElementEClass.getESuperTypes().add(this.getJDTJavaElement());
 		jdtParentJavaElementEClass.getESuperTypes().add(this.getJDTParent());
 		jdtTypeParameterEClass.getESuperTypes().add(this.getJDTJavaElement());
-		jdtFieldEClass.getESuperTypes().add(this.getJDTMember());
 		jdtTypeEClass.getESuperTypes().add(this.getJDTMember());
-		jdtMethodEClass.getESuperTypes().add(this.getJDTMember());
-		jdtParameterEClass.getESuperTypes().add(this.getJDTMember());
+		jdtFieldEClass.getESuperTypes().add(this.getJDTMember());
 		jdtCompilationUnitEClass.getESuperTypes().add(this.getJDTTypeRoot());
 		jdtTypeRootEClass.getESuperTypes().add(this.getJDTParentJavaElement());
 		jdtPackageFragmentEClass.getESuperTypes().add(this.getJDTParentJavaElement());
 		jdtPackageFragmentRootEClass.getESuperTypes().add(this.getJDTParentJavaElement());
 		jdtJavaProjectEClass.getESuperTypes().add(this.getJDTParentJavaElement());
 		jdtJavaModelEClass.getESuperTypes().add(this.getJDTParentJavaElement());
+		jdtParameterEClass.getESuperTypes().add(this.getJDTMember());
 		jdtClassEClass.getESuperTypes().add(this.getJDTType());
 		jdtInterfaceEClass.getESuperTypes().add(this.getJDTType());
 		jdtEnumEClass.getESuperTypes().add(this.getJDTType());
 		jdtImportDeclarationEClass.getESuperTypes().add(this.getJDTJavaElement());
 		jdtImportContainerEClass.getESuperTypes().add(this.getJDTParentJavaElement());
+		jdtOpaqueBodyEClass.getESuperTypes().add(this.getJDTMethodBody());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(jdtJavaElementEClass, JDTJavaElement.class, "JDTJavaElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJDTJavaElement_Parent(), this.getJDTParent(), this.getJDTParent_Children(), "parent", null, 0, 1, JDTJavaElement.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTJavaElement_ElementName(), this.getString(), "elementName", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTJavaElement_ElementType(), this.getint(), "elementType", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTJavaElement_Comment(), this.getString(), "comment", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTJavaElement_Generated(), this.getboolean(), "generated", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(jdtMethodBodyEClass, JDTMethodBody.class, "JDTMethodBody", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJDTMethodBody_Owner(), this.getJDTMethod(), this.getJDTMethod_Bodies(), "owner", null, 1, 1, JDTMethodBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		addEOperation(jdtJavaElementEClass, this.getString(), "getQualifiedName", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEOperation(jdtMethodBodyEClass, this.getString(), "asText", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		EOperation op = addEOperation(jdtJavaElementEClass, null, "accept", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getVisitor(), "visitor", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEException(op, this.getJDTVisitorException());
-
-		addEOperation(jdtJavaElementEClass, this.getString(), "getJDTSignature", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(jdtParentEClass, JDTParent.class, "JDTParent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getJDTParent_Flags(), this.getint(), "flags", null, 1, 1, JDTParent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTParent_Children(), this.getJDTJavaElement(), this.getJDTJavaElement_Parent(), "children", null, 0, -1, JDTParent.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		op = addEOperation(jdtParentEClass, null, "setFlag", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getint(), "flag", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getboolean(), "value", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = addEOperation(jdtParentEClass, this.getboolean(), "isFlagSet", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getint(), "flag", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(jdtMethodEClass, JDTMethod.class, "JDTMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJDTMethod_Owner(), this.getJDTType(), this.getJDTType_Methods(), "owner", null, 1, 1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTMethod_ReturnType(), this.getJDTParameter(), this.getJDTParameter_ReturnOwner(), "returnType", null, 0, 1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTMethod_Parameters(), this.getJDTParameter(), this.getJDTParameter_ParameterOwner(), "parameters", null, 0, -1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTMethod_Abstract(), this.getboolean(), "abstract", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTMethod_Final(), this.getboolean(), "final", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTMethod_Static(), this.getboolean(), "static", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTMethod_Exceptions(), this.getJDTType(), null, "exceptions", null, 0, -1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTMethod_Synchronized(), this.getboolean(), "synchronized", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTMethod_Constructor(), this.getboolean(), "constructor", null, 1, 1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTMethod_Bodies(), this.getJDTMethodBody(), this.getJDTMethodBody_Owner(), "bodies", null, 0, -1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(jdtMemberEClass, JDTMember.class, "JDTMember", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getJDTMember_TypeParameters(), this.getJDTTypeParameter(), this.getJDTTypeParameter_DeclaringMember(), "typeParameters", null, 0, -1, JDTMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1434,22 +1367,37 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 
 		initEClass(jdtParentJavaElementEClass, JDTParentJavaElement.class, "JDTParentJavaElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(jdtParentEClass, JDTParent.class, "JDTParent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJDTParent_Children(), this.getJDTJavaElement(), this.getJDTJavaElement_Parent(), "children", null, 0, -1, JDTParent.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTParent_Flags(), this.getint(), "flags", null, 1, 1, JDTParent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		EOperation op = addEOperation(jdtParentEClass, null, "setFlag", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "flag", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getboolean(), "value", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(jdtParentEClass, this.getboolean(), "isFlagSet", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getint(), "flag", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(jdtJavaElementEClass, JDTJavaElement.class, "JDTJavaElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getJDTJavaElement_ElementName(), this.getString(), "elementName", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTJavaElement_ElementType(), this.getint(), "elementType", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTJavaElement_Comment(), this.getString(), "comment", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTJavaElement_Generated(), this.getboolean(), "generated", null, 1, 1, JDTJavaElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTJavaElement_Parent(), this.getJDTParent(), this.getJDTParent_Children(), "parent", null, 0, 1, JDTJavaElement.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		addEOperation(jdtJavaElementEClass, this.getString(), "getQualifiedName", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(jdtJavaElementEClass, null, "accept", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getVisitor(), "visitor", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getJDTVisitorException());
+
+		addEOperation(jdtJavaElementEClass, this.getString(), "getJDTSignature", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(jdtTypeParameterEClass, JDTTypeParameter.class, "JDTTypeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getJDTTypeParameter_DeclaringMember(), this.getJDTMember(), this.getJDTMember_TypeParameters(), "declaringMember", null, 0, 1, JDTTypeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(jdtFieldEClass, JDTField.class, "JDTField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJDTField_Owner(), this.getJDTType(), this.getJDTType_Fields(), "owner", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_Abstract(), this.getboolean(), "abstract", "false", 1, 1, JDTField.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_Final(), this.getboolean(), "final", "false", 1, 1, JDTField.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_Static(), this.getboolean(), "static", "false", 1, 1, JDTField.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_IsMultiValued(), this.getboolean(), "isMultiValued", "false", 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTField_Type(), this.getJDTType(), null, "type", null, 0, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_Value(), this.getString(), "value", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_GenerateGetter(), this.getTrueFalseDefault(), "generateGetter", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTField_GenerateSetter(), this.getTrueFalseDefault(), "generateSetter", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(jdtTypeEClass, JDTType.class, "JDTType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJDTType_Methods(), this.getJDTMethod(), this.getJDTMethod_Owner(), "methods", null, 0, -1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTType_Fields(), this.getJDTField(), this.getJDTField_Owner(), "fields", null, 0, -1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getJDTType_CompilationUnit(), this.getJDTCompilationUnit(), this.getJDTCompilationUnit_Types(), "compilationUnit", null, 0, 1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJDTType_Class(), this.getboolean(), "class", "false", 1, 1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJDTType_Interface(), this.getboolean(), "interface", "false", 1, 1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1463,25 +1411,18 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		initEReference(getJDTType_SuperClass(), this.getJDTType(), null, "superClass", null, 0, 1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJDTType_SuperInterfaceNames(), this.getString(), "superInterfaceNames", null, 0, -1, JDTType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJDTType_SuperClassName(), this.getString(), "superClassName", null, 1, 1, JDTType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTType_Fields(), this.getJDTField(), this.getJDTField_Owner(), "fields", null, 0, -1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTType_Methods(), this.getJDTMethod(), this.getJDTMethod_Owner(), "methods", null, 0, -1, JDTType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(jdtMethodEClass, JDTMethod.class, "JDTMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJDTMethod_ReturnType(), this.getJDTParameter(), this.getJDTParameter_ReturnOwner(), "returnType", null, 0, 1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTMethod_Parameters(), this.getJDTParameter(), this.getJDTParameter_ParameterOwner(), "parameters", null, 0, -1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTMethod_Abstract(), this.getboolean(), "abstract", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTMethod_Final(), this.getboolean(), "final", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTMethod_Static(), this.getboolean(), "static", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTMethod_Exceptions(), this.getJDTType(), null, "exceptions", null, 0, -1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTMethod_Synchronized(), this.getboolean(), "synchronized", "false", 1, 1, JDTMethod.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTMethod_Constructor(), this.getboolean(), "constructor", null, 1, 1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTMethod_Owner(), this.getJDTType(), this.getJDTType_Methods(), "owner", null, 1, 1, JDTMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(jdtParameterEClass, JDTParameter.class, "JDTParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJDTParameter_ParameterOwner(), this.getJDTMethod(), this.getJDTMethod_Parameters(), "parameterOwner", null, 0, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTParameter_Final(), this.getboolean(), "final", "false", 1, 1, JDTParameter.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getJDTParameter_IsMultiValued(), this.getboolean(), "isMultiValued", "false", 1, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTParameter_Type(), this.getJDTType(), null, "type", null, 0, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getJDTParameter_ReturnOwner(), this.getJDTMethod(), this.getJDTMethod_ReturnType(), "returnOwner", null, 0, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(jdtFieldEClass, JDTField.class, "JDTField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getJDTField_Abstract(), this.getboolean(), "abstract", "false", 1, 1, JDTField.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTField_Final(), this.getboolean(), "final", "false", 1, 1, JDTField.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTField_Static(), this.getboolean(), "static", "false", 1, 1, JDTField.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTField_IsMultiValued(), this.getboolean(), "isMultiValued", "false", 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTField_Type(), this.getJDTType(), null, "type", null, 0, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTField_Value(), this.getString(), "value", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTField_GenerateGetter(), this.getTrueFalseDefault(), "generateGetter", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTField_GenerateSetter(), this.getTrueFalseDefault(), "generateSetter", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTField_Owner(), this.getJDTType(), this.getJDTType_Fields(), "owner", null, 1, 1, JDTField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(jdtCompilationUnitEClass, JDTCompilationUnit.class, "JDTCompilationUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getJDTCompilationUnit_PackageFragment(), this.getJDTPackageFragment(), this.getJDTPackageFragment_CompilationUnits(), "packageFragment", null, 0, 1, JDTCompilationUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1504,6 +1445,13 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		initEClass(jdtJavaModelEClass, JDTJavaModel.class, "JDTJavaModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getJDTJavaModel_JavaProject(), this.getJDTJavaProject(), this.getJDTJavaProject_JavaModel(), "javaProject", null, 0, -1, JDTJavaModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(jdtParameterEClass, JDTParameter.class, "JDTParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJDTParameter_ParameterOwner(), this.getJDTMethod(), this.getJDTMethod_Parameters(), "parameterOwner", null, 0, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTParameter_Final(), this.getboolean(), "final", "false", 1, 1, JDTParameter.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getJDTParameter_IsMultiValued(), this.getboolean(), "isMultiValued", "false", 1, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTParameter_Type(), this.getJDTType(), null, "type", null, 0, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJDTParameter_ReturnOwner(), this.getJDTMethod(), this.getJDTMethod_ReturnType(), "returnOwner", null, 0, 1, JDTParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		initEClass(jdtClassEClass, JDTClass.class, "JDTClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(jdtInterfaceEClass, JDTInterface.class, "JDTInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1515,6 +1463,9 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		initEClass(jdtImportContainerEClass, JDTImportContainer.class, "JDTImportContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(jdtExceptionEClass, JDTException.class, "JDTException", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(jdtOpaqueBodyEClass, JDTOpaqueBody.class, "JDTOpaqueBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getJDTOpaqueBody__body(), this.getString(), "_body", null, 1, 1, JDTOpaqueBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");
@@ -1528,9 +1479,9 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		addEEnumLiteral(trueFalseDefaultEEnum, TrueFalseDefault.DEFAULT);
 
 		// Initialize data types
+		initEDataType(stringEDataType, String.class, "String", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(intEDataType, int.class, "int", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(booleanEDataType, boolean.class, "boolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(stringEDataType, String.class, "String", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(jdtVisitorExceptionEDataType, JDTVisitorException.class, "JDTVisitorException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(visitorEDataType, JDTVisitor.class, "Visitor", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
@@ -1538,10 +1489,10 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
-		// union
-		createUnionAnnotations();
 		// redefines
 		createRedefinesAnnotations();
+		// union
+		createUnionAnnotations();
 		// subsets
 		createSubsetsAnnotations();
 	}
@@ -1550,135 +1501,147 @@ public class JdtmmPackageImpl extends EPackageImpl implements JdtmmPackage {
 	 * Initializes the annotations for <b>union</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createUnionAnnotations() {
-		String source = "union";
-		addAnnotation(getJDTParent_Children(),
-				source,
-				new String[]{
-				});
+		String source = "union";				
+		addAnnotation
+		  (getJDTParent_Children(), 
+		   source, 
+		   new String[] {
+		   });													
 	}
 
 	/**
 	 * Initializes the annotations for <b>redefines</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createRedefinesAnnotations() {
-		String source = "redefines";
-		addAnnotation(getJDTField_Owner(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
-		addAnnotation(getJDTType_CompilationUnit(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
-		addAnnotation(getJDTType_Owner(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
-		addAnnotation(getJDTMethod_Owner(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
-		addAnnotation(getJDTCompilationUnit_PackageFragment(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
-		addAnnotation(getJDTPackageFragment_PackageFragmentRoot(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
-		addAnnotation(getJDTPackageFragmentRoot_JavaProject(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
-				});
+		String source = "redefines";			
+		addAnnotation
+		  (getJDTMethod_Owner(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });				
+		addAnnotation
+		  (getJDTType_CompilationUnit(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });			
+		addAnnotation
+		  (getJDTType_Owner(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });			
+		addAnnotation
+		  (getJDTField_Owner(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });		
+		addAnnotation
+		  (getJDTCompilationUnit_PackageFragment(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });			
+		addAnnotation
+		  (getJDTPackageFragment_PackageFragmentRoot(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });			
+		addAnnotation
+		  (getJDTPackageFragmentRoot_JavaProject(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTJavaElement/parent")
+		   });		
 	}
 
 	/**
 	 * Initializes the annotations for <b>subsets</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createSubsetsAnnotations() {
-		String source = "subsets";
-		addAnnotation(getJDTType_Methods(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
-		addAnnotation(getJDTType_Types(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
-		addAnnotation(getJDTType_Fields(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
-		addAnnotation(getJDTCompilationUnit_Types(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
-		addAnnotation(getJDTPackageFragment_CompilationUnits(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
-		addAnnotation(getJDTPackageFragmentRoot_PackageFragments(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
-		addAnnotation(getJDTJavaProject_PackageFragmentRoots(),
-				source,
-				new String[]{
-				},
-				new URI[]{
-				URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
-				});
+		String source = "subsets";					
+		addAnnotation
+		  (getJDTType_Fields(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });			
+		addAnnotation
+		  (getJDTType_Types(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });			
+		addAnnotation
+		  (getJDTType_Methods(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });				
+		addAnnotation
+		  (getJDTCompilationUnit_Types(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });			
+		addAnnotation
+		  (getJDTPackageFragment_CompilationUnits(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });			
+		addAnnotation
+		  (getJDTPackageFragmentRoot_PackageFragments(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });		
+		addAnnotation
+		  (getJDTJavaProject_PackageFragmentRoots(), 
+		   source, 
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//JDTParent/children")
+		   });
 	}
 
 } //JdtmmPackageImpl

@@ -33,7 +33,7 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class JDTTypeRootImpl extends JDTParentJavaElementImpl implements JDTTypeRoot {
@@ -41,7 +41,6 @@ public abstract class JDTTypeRootImpl extends JDTParentJavaElementImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected JDTTypeRootImpl() {
@@ -51,7 +50,6 @@ public abstract class JDTTypeRootImpl extends JDTParentJavaElementImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

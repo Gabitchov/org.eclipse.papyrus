@@ -35,7 +35,7 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class JDTExceptionImpl extends EObjectImpl implements JDTException {
@@ -43,7 +43,6 @@ public class JDTExceptionImpl extends EObjectImpl implements JDTException {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected JDTExceptionImpl() {
@@ -53,7 +52,6 @@ public class JDTExceptionImpl extends EObjectImpl implements JDTException {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

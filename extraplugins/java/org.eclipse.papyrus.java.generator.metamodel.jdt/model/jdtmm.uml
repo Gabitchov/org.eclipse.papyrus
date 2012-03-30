@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_zfh1MGHXEeCX0Yi87Khu0A" name="jdtmm">
+    <ownedComment xmi:id="_3g9ZAHpHEeGZ7KofW4oPeQ" annotatedElement="_UXps8HpHEeGZ7KofW4oPeQ">
+      <body>Can have different type of body: opaque, expr (not yet implemented, ...)</body>
+    </ownedComment>
     <packagedElement xmi:type="uml:Class" xmi:id="_1FwMIGHXEeCX0Yi87Khu0A" name="JDTJavaElement" isAbstract="true">
       <ownedAttribute xmi:id="_JrpDVGHeEeCX0Yi87Khu0A" name="parent" type="_tQ7LoGHcEeCX0Yi87Khu0A" isReadOnly="true" association="_JrpDU2HeEeCX0Yi87Khu0A">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JrpDVWHeEeCX0Yi87Khu0A" value="1"/>
@@ -153,6 +156,10 @@
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_pZsrUJLEEeCLJqKiP0wqKg">
           <value xsi:nil="true"/>
         </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_dvu2oHpHEeGZ7KofW4oPeQ" name="bodies" type="_UXps8HpHEeGZ7KofW4oPeQ" aggregation="composite" association="_dvx58HpHEeGZ7KofW4oPeQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dvu2oXpHEeGZ7KofW4oPeQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dvu2onpHEeGZ7KofW4oPeQ"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_Ko2hMGHYEeCX0Yi87Khu0A" name="JDTType" isAbstract="true">
@@ -414,6 +421,20 @@ JDTParent and JDTJavaElement</body>
       <ownedLiteral xmi:id="_uFpkgIXIEeCQsIB6sI2lFg" name="false"/>
       <ownedLiteral xmi:id="_vJpYIIXIEeCQsIB6sI2lFg" name="default"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UXps8HpHEeGZ7KofW4oPeQ" name="JDTMethodBody" isAbstract="true">
+      <ownedAttribute xmi:id="_dvx58XpHEeGZ7KofW4oPeQ" name="owner" type="_JO_yUGHYEeCX0Yi87Khu0A" association="_dvx58HpHEeGZ7KofW4oPeQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dvx58npHEeGZ7KofW4oPeQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dvx583pHEeGZ7KofW4oPeQ" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_564g8HpLEeGZ7KofW4oPeQ" name="asText">
+        <ownedParameter xmi:id="_-6ToUHpLEeGZ7KofW4oPeQ" name="result" type="_8e3HsGHXEeCX0Yi87Khu0A" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XnDBIHpHEeGZ7KofW4oPeQ" name="JDTOpaqueBody">
+      <generalization xmi:id="_ca4jkHpHEeGZ7KofW4oPeQ" general="_UXps8HpHEeGZ7KofW4oPeQ"/>
+      <ownedAttribute xmi:id="_U2HYkHmtEeGZ7KofW4oPeQ" name="  body" type="_8e3HsGHXEeCX0Yi87Khu0A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_dvx58HpHEeGZ7KofW4oPeQ" name="jDTMethod_methodBody_0" memberEnd="_dvx58XpHEeGZ7KofW4oPeQ _dvu2oHpHEeGZ7KofW4oPeQ"/>
     <profileApplication xmi:id="__8ly0GHXEeCX0Yi87Khu0A">
       <eAnnotations xmi:id="__-hsgGHXEeCX0Yi87Khu0A" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>

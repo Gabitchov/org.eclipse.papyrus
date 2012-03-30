@@ -27,8 +27,8 @@ package org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>JDT Parent Java Element</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#getJDTParentJavaElement()
  * @model abstract="true"
  * @generated

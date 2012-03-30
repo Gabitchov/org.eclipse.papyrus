@@ -1,19 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2011 Nicolas Deblock & Cedric Dumoulin & Manuel Giles.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- * 	Nicolas Deblock  nico.deblock@gmail.com  - Meta-model conception
- * 	Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Meta-model conception 
- * 	Manuel Giles	 giles.manu@live.fr		 - Meta-model conception
- *
- *****************************************************************************/
-
 /**
  * <copyright>
  * </copyright>
@@ -29,34 +13,34 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember;
-import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethodBody;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>JDT Type Parameter</b></em>'.
+ * An implementation of the model object '<em><b>JDT Method Body</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl#getDeclaringMember <em>Declaring Member</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMethodBodyImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeParameter {
-
+public abstract class JDTMethodBodyImpl extends EObjectImpl implements JDTMethodBody {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected JDTTypeParameterImpl() {
+	protected JDTMethodBodyImpl() {
 		super();
 	}
 
@@ -67,7 +51,7 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return JdtmmPackage.Literals.JDT_TYPE_PARAMETER;
+		return JdtmmPackage.Literals.JDT_METHOD_BODY;
 	}
 
 	/**
@@ -75,9 +59,9 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JDTMember getDeclaringMember() {
-		if (eContainerFeatureID() != JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER) return null;
-		return (JDTMember)eContainer();
+	public JDTMethod getOwner() {
+		if (eContainerFeatureID() != JdtmmPackage.JDT_METHOD_BODY__OWNER) return null;
+		return (JDTMethod)eContainer();
 	}
 
 	/**
@@ -85,8 +69,8 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDeclaringMember(JDTMember newDeclaringMember, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDeclaringMember, JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER, msgs);
+	public NotificationChain basicSetOwner(JDTMethod newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, JdtmmPackage.JDT_METHOD_BODY__OWNER, msgs);
 		return msgs;
 	}
 
@@ -95,20 +79,31 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeclaringMember(JDTMember newDeclaringMember) {
-		if (newDeclaringMember != eInternalContainer() || (eContainerFeatureID() != JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER && newDeclaringMember != null)) {
-			if (EcoreUtil.isAncestor(this, newDeclaringMember))
+	public void setOwner(JDTMethod newOwner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != JdtmmPackage.JDT_METHOD_BODY__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newDeclaringMember != null)
-				msgs = ((InternalEObject)newDeclaringMember).eInverseAdd(this, JdtmmPackage.JDT_MEMBER__TYPE_PARAMETERS, JDTMember.class, msgs);
-			msgs = basicSetDeclaringMember(newDeclaringMember, msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, JdtmmPackage.JDT_METHOD__BODIES, JDTMethod.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER, newDeclaringMember, newDeclaringMember));
+			eNotify(new ENotificationImpl(this, Notification.SET, JdtmmPackage.JDT_METHOD_BODY__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String asText() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -119,10 +114,10 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetDeclaringMember((JDTMember)otherEnd, msgs);
+				return basicSetOwner((JDTMethod)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -135,8 +130,8 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
-				return basicSetDeclaringMember(null, msgs);
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
+				return basicSetOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,8 +144,8 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
-				return eInternalContainer().eInverseRemove(this, JdtmmPackage.JDT_MEMBER__TYPE_PARAMETERS, JDTMember.class, msgs);
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
+				return eInternalContainer().eInverseRemove(this, JdtmmPackage.JDT_METHOD__BODIES, JDTMethod.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -163,8 +158,8 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
-				return getDeclaringMember();
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
+				return getOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,8 +172,8 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
-				setDeclaringMember((JDTMember)newValue);
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
+				setOwner((JDTMethod)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,8 +187,8 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
-				setDeclaringMember((JDTMember)null);
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
+				setOwner((JDTMethod)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -207,10 +202,10 @@ public class JDTTypeParameterImpl extends JDTJavaElementImpl implements JDTTypeP
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case JdtmmPackage.JDT_TYPE_PARAMETER__DECLARING_MEMBER:
-				return getDeclaringMember() != null;
+			case JdtmmPackage.JDT_METHOD_BODY__OWNER:
+				return getOwner() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //JDTTypeParameterImpl
+} //JDTMethodBodyImpl

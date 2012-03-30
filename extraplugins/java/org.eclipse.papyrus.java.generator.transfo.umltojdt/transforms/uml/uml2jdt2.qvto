@@ -889,6 +889,8 @@ mapping uml::Operation::operationToMethod() : JDTMethod
 	returnType := self.ownedParameter->select(m| m.direction.repr()="return")->first().map parameterToParameter();
 	parameters := self.ownedParameter->select(m| m.direction.repr()!="return")-> map parameterToParameter();
 
+    // Body
+    bodies := self.method -> map BehaviorToMethodBody();
 	// exception
 	exceptions := self.raisedException -> map transformTypeToType();
 }
@@ -905,6 +907,52 @@ mapping uml::Parameter::parameterToParameter() : jdtmm::JDTParameter
 	// type
 	type := self.type.map transformTypeToType();
 }
+
+/**
+ *
+ */
+mapping uml::Behavior::BehaviorToMethodBody() : jdtmm::JDTMethodBody {
+	init {
+		var jdtBody := object JDTOpaqueBody {};
+		jdtBody._body := "Don't know how to map a Behavior to a Java Body";
+		result := jdtBody;
+	}
+}
+
+/**
+ *
+ */
+mapping uml::OpaqueBehavior::BehaviorToMethodBody() : jdtmm::JDTMethodBody {
+	init {
+		result := self.map OpaqueBehaviorToOpaqueBody();
+	}
+	
+}
+
+/**
+ *
+ */
+mapping uml::OpaqueBehavior::OpaqueBehaviorToOpaqueBody() : jdtmm::JDTOpaqueBody {
+	
+	log("OpaqueBehavior found");
+	
+	
+	
+	// Look for the java index
+	var  index : Integer := self.language->indexOf("Java");
+	if ( index >= 0) then {
+		_body := self.body->at(index);
+	}
+	else {
+	  _body := "// No 'Java' body found. Please set a 'Java' body in the OpaqueBehavior associted to method.";
+	} 
+	endif;
+}
+	
+	
+
+
+
 /**
  * Get or create the PackageFragment corresponding to the TypeMarker
  */

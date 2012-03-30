@@ -40,7 +40,6 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitor
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
@@ -49,16 +48,16 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static JdtmmFactory init() {
 		try {
-			JdtmmFactory theJdtmmFactory = (JdtmmFactory)EPackage.Registry.INSTANCE.getEFactory("http:///jdtmm.ecore");
-			if(theJdtmmFactory != null) {
+			JdtmmFactory theJdtmmFactory = (JdtmmFactory)EPackage.Registry.INSTANCE.getEFactory("http:///jdtmm.ecore"); 
+			if (theJdtmmFactory != null) {
 				return theJdtmmFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new JdtmmFactoryImpl();
@@ -68,7 +67,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JdtmmFactoryImpl() {
@@ -78,107 +76,89 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case JdtmmPackage.JDT_TYPE_PARAMETER:
-			return createJDTTypeParameter();
-		case JdtmmPackage.JDT_FIELD:
-			return createJDTField();
-		case JdtmmPackage.JDT_METHOD:
-			return createJDTMethod();
-		case JdtmmPackage.JDT_PARAMETER:
-			return createJDTParameter();
-		case JdtmmPackage.JDT_COMPILATION_UNIT:
-			return createJDTCompilationUnit();
-		case JdtmmPackage.JDT_PACKAGE_FRAGMENT:
-			return createJDTPackageFragment();
-		case JdtmmPackage.JDT_PACKAGE_FRAGMENT_ROOT:
-			return createJDTPackageFragmentRoot();
-		case JdtmmPackage.JDT_JAVA_PROJECT:
-			return createJDTJavaProject();
-		case JdtmmPackage.JDT_JAVA_MODEL:
-			return createJDTJavaModel();
-		case JdtmmPackage.JDT_CLASS:
-			return createJDTClass();
-		case JdtmmPackage.JDT_INTERFACE:
-			return createJDTInterface();
-		case JdtmmPackage.JDT_ENUM:
-			return createJDTEnum();
-		case JdtmmPackage.JDT_IMPORT_DECLARATION:
-			return createJDTImportDeclaration();
-		case JdtmmPackage.JDT_IMPORT_CONTAINER:
-			return createJDTImportContainer();
-		case JdtmmPackage.JDT_EXCEPTION:
-			return createJDTException();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID()) {
+			case JdtmmPackage.JDT_METHOD: return createJDTMethod();
+			case JdtmmPackage.JDT_TYPE_PARAMETER: return createJDTTypeParameter();
+			case JdtmmPackage.JDT_FIELD: return createJDTField();
+			case JdtmmPackage.JDT_COMPILATION_UNIT: return createJDTCompilationUnit();
+			case JdtmmPackage.JDT_PACKAGE_FRAGMENT: return createJDTPackageFragment();
+			case JdtmmPackage.JDT_PACKAGE_FRAGMENT_ROOT: return createJDTPackageFragmentRoot();
+			case JdtmmPackage.JDT_JAVA_PROJECT: return createJDTJavaProject();
+			case JdtmmPackage.JDT_JAVA_MODEL: return createJDTJavaModel();
+			case JdtmmPackage.JDT_PARAMETER: return createJDTParameter();
+			case JdtmmPackage.JDT_CLASS: return createJDTClass();
+			case JdtmmPackage.JDT_INTERFACE: return createJDTInterface();
+			case JdtmmPackage.JDT_ENUM: return createJDTEnum();
+			case JdtmmPackage.JDT_IMPORT_DECLARATION: return createJDTImportDeclaration();
+			case JdtmmPackage.JDT_IMPORT_CONTAINER: return createJDTImportContainer();
+			case JdtmmPackage.JDT_EXCEPTION: return createJDTException();
+			case JdtmmPackage.JDT_OPAQUE_BODY: return createJDTOpaqueBody();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch(eDataType.getClassifierID()) {
-		case JdtmmPackage.VISIBILITY_KIND:
-			return createVisibilityKindFromString(eDataType, initialValue);
-		case JdtmmPackage.TRUE_FALSE_DEFAULT:
-			return createTrueFalseDefaultFromString(eDataType, initialValue);
-		case JdtmmPackage.INT:
-			return createintFromString(eDataType, initialValue);
-		case JdtmmPackage.BOOLEAN:
-			return createbooleanFromString(eDataType, initialValue);
-		case JdtmmPackage.STRING:
-			return createStringFromString(eDataType, initialValue);
-		case JdtmmPackage.JDT_VISITOR_EXCEPTION:
-			return createJDTVisitorExceptionFromString(eDataType, initialValue);
-		case JdtmmPackage.VISITOR:
-			return createVisitorFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch (eDataType.getClassifierID()) {
+			case JdtmmPackage.VISIBILITY_KIND:
+				return createVisibilityKindFromString(eDataType, initialValue);
+			case JdtmmPackage.TRUE_FALSE_DEFAULT:
+				return createTrueFalseDefaultFromString(eDataType, initialValue);
+			case JdtmmPackage.STRING:
+				return createStringFromString(eDataType, initialValue);
+			case JdtmmPackage.INT:
+				return createintFromString(eDataType, initialValue);
+			case JdtmmPackage.BOOLEAN:
+				return createbooleanFromString(eDataType, initialValue);
+			case JdtmmPackage.JDT_VISITOR_EXCEPTION:
+				return createJDTVisitorExceptionFromString(eDataType, initialValue);
+			case JdtmmPackage.VISITOR:
+				return createVisitorFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch(eDataType.getClassifierID()) {
-		case JdtmmPackage.VISIBILITY_KIND:
-			return convertVisibilityKindToString(eDataType, instanceValue);
-		case JdtmmPackage.TRUE_FALSE_DEFAULT:
-			return convertTrueFalseDefaultToString(eDataType, instanceValue);
-		case JdtmmPackage.INT:
-			return convertintToString(eDataType, instanceValue);
-		case JdtmmPackage.BOOLEAN:
-			return convertbooleanToString(eDataType, instanceValue);
-		case JdtmmPackage.STRING:
-			return convertStringToString(eDataType, instanceValue);
-		case JdtmmPackage.JDT_VISITOR_EXCEPTION:
-			return convertJDTVisitorExceptionToString(eDataType, instanceValue);
-		case JdtmmPackage.VISITOR:
-			return convertVisitorToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch (eDataType.getClassifierID()) {
+			case JdtmmPackage.VISIBILITY_KIND:
+				return convertVisibilityKindToString(eDataType, instanceValue);
+			case JdtmmPackage.TRUE_FALSE_DEFAULT:
+				return convertTrueFalseDefaultToString(eDataType, instanceValue);
+			case JdtmmPackage.STRING:
+				return convertStringToString(eDataType, instanceValue);
+			case JdtmmPackage.INT:
+				return convertintToString(eDataType, instanceValue);
+			case JdtmmPackage.BOOLEAN:
+				return convertbooleanToString(eDataType, instanceValue);
+			case JdtmmPackage.JDT_VISITOR_EXCEPTION:
+				return convertJDTVisitorExceptionToString(eDataType, instanceValue);
+			case JdtmmPackage.VISITOR:
+				return convertVisitorToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTTypeParameter createJDTTypeParameter() {
@@ -189,7 +169,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTField createJDTField() {
@@ -200,7 +179,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTMethod createJDTMethod() {
@@ -211,7 +189,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTCompilationUnit createJDTCompilationUnit() {
@@ -222,7 +199,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTPackageFragment createJDTPackageFragment() {
@@ -233,7 +209,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTPackageFragmentRoot createJDTPackageFragmentRoot() {
@@ -244,7 +219,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTJavaProject createJDTJavaProject() {
@@ -255,7 +229,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTClass createJDTClass() {
@@ -266,7 +239,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTInterface createJDTInterface() {
@@ -277,7 +249,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTEnum createJDTEnum() {
@@ -288,7 +259,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTImportDeclaration createJDTImportDeclaration() {
@@ -299,7 +269,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTImportContainer createJDTImportContainer() {
@@ -310,7 +279,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTParameter createJDTParameter() {
@@ -321,7 +289,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTException createJDTException() {
@@ -332,20 +299,27 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public JDTOpaqueBody createJDTOpaqueBody() {
+		JDTOpaqueBodyImpl jdtOpaqueBody = new JDTOpaqueBodyImpl();
+		return jdtOpaqueBody;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VisibilityKind createVisibilityKindFromString(EDataType eDataType, String initialValue) {
 		VisibilityKind result = VisibilityKind.get(initialValue);
-		if(result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertVisibilityKindToString(EDataType eDataType, Object instanceValue) {
@@ -355,20 +329,17 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TrueFalseDefault createTrueFalseDefaultFromString(EDataType eDataType, String initialValue) {
 		TrueFalseDefault result = TrueFalseDefault.get(initialValue);
-		if(result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertTrueFalseDefaultToString(EDataType eDataType, Object instanceValue) {
@@ -378,7 +349,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTJavaModel createJDTJavaModel() {
@@ -389,7 +359,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Integer createintFromString(EDataType eDataType, String initialValue) {
@@ -399,7 +368,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertintToString(EDataType eDataType, Object instanceValue) {
@@ -409,7 +377,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String createStringFromString(EDataType eDataType, String initialValue) {
@@ -419,7 +386,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertStringToString(EDataType eDataType, Object instanceValue) {
@@ -429,7 +395,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTVisitorException createJDTVisitorExceptionFromString(EDataType eDataType, String initialValue) {
@@ -439,7 +404,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertJDTVisitorExceptionToString(EDataType eDataType, Object instanceValue) {
@@ -449,7 +413,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JDTVisitor createVisitorFromString(EDataType eDataType, String initialValue) {
@@ -459,7 +422,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertVisitorToString(EDataType eDataType, Object instanceValue) {
@@ -469,7 +431,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Boolean createbooleanFromString(EDataType eDataType, String initialValue) {
@@ -479,7 +440,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertbooleanToString(EDataType eDataType, Object instanceValue) {
@@ -489,7 +449,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public JdtmmPackage getJdtmmPackage() {
@@ -499,7 +458,6 @@ public class JdtmmFactoryImpl extends EFactoryImpl implements JdtmmFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */
