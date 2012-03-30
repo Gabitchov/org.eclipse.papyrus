@@ -132,7 +132,7 @@ public interface ICustomAppearence {
 	/**
 	 * default uml operation display.
 	 */
-	public final static int DEFAULT_UML_OPERATION = DISP_VISIBILITY | DISP_NAME | DISP_PARAMETER_DIRECTION | DISP_PARAMETER_TYPE | DISP_RT_TYPE | DISP_MOFIFIERS;
+	public final static int DEFAULT_UML_OPERATION = DISP_VISIBILITY | DISP_NAME | DISP_PARAMETER_NAME | DISP_PARAMETER_DIRECTION | DISP_PARAMETER_TYPE | DISP_RT_TYPE | DISP_MOFIFIERS;
 
 	/**
 	 * default uml Property in composite diagrams.
