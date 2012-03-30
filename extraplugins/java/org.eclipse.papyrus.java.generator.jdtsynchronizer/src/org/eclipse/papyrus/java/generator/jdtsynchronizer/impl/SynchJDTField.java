@@ -64,6 +64,7 @@ public class SynchJDTField extends SynchJDTCommentable {
 
 		field = (JDTField)element;
 
+		StringBuffer buffer = new StringBuffer();
 		try {
 			IField ifield = SynchTools.searchIJavaElement(itype.getFields(), field.getElementName());
 			if(ifield == null && field.getType() != null) {
@@ -71,7 +72,6 @@ public class SynchJDTField extends SynchJDTCommentable {
 				// create import when it's not a primitive type
 				SynchTools.createImport(itype, field.getOwner(), field.getType());
 
-				StringBuffer buffer = new StringBuffer();
 
 				// visibility
 				buffer.append("\n" + SynchTools.getVisibility(field).toString());
@@ -104,14 +104,23 @@ public class SynchJDTField extends SynchJDTCommentable {
 				// add javadoc to method			
 				createJavaDocFor(ifield, ifield.getCompilationUnit(), field.getComment(), "");
 			}
-			else if(field.getType() == null)
-				System.err.println("Attention gerer le type null");
+			else if(field.getType() == null) {
+				System.err.println("No type specified for "
+						+ field.getOwner().getQualifiedName()
+						+ "." + field.getElementName() );
+			}
 
 
 
 		} catch (JavaModelException e) {
 			e.printStackTrace();
-			throw new JDTVisitorException(e.getMessage(), e.getCause());
+			String msg = "Can't generate field (class='"
+					+ field.getOwner().getQualifiedName()
+					+ "', msg= " + e.getMessage()
+					+ ", buffer=" + buffer.toString()
+					+ ")";
+			System.err.println(msg);
+			throw new JDTVisitorException( msg, e.getCause());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new JDTVisitorException(e.getMessage(), e.getCause());

@@ -66,17 +66,23 @@ main() {
   uml.TAGVALUE_IMPLEMENTATION_CLASS := "implementationClass";
   uml.NO_PACKAGE := null;
   
+  // Select only object that we want to generate
+  var types : Set(uml::Type) := uml.objects()[uml::Type]->select(o | o.oclIsTypeOf(uml::Class) 
+             or o.oclIsTypeOf(uml::Interface)
+             or o.oclIsTypeOf(uml::PrimitiveType)
+             or o.oclIsTypeOf(uml::Enumeration) );
+             
   log('------------------------ Start marking input elements');
   // First pass: mark uml::Type objects
-  uml.objects()[uml::Type] -> map markUmlType("generated", "defaultProject");
+  types -> map markUmlType("generated", "defaultProject");
   // show result
   log('------------------------  Show results');
-  uml.objects()[uml::Type] -> map showMarkedType();
+  types -> map showMarkedType();
   log('------------------------  Show packages results');
   uml.objects()[uml::Package] -> map showMarkedType();
   // Second pass: transform marked objects
   log('------------------------  Start transformation');
-  uml.objects()[uml::Type] -> map transformTypeToType();
+  types -> map transformTypeToType();
 
   log('------------------------  Done');
 
@@ -608,7 +614,10 @@ mapping uml::Class::generateClass() : JDTmm::JDTClass
     superInterfaces := self.generalInterfacesForClass() -> map transformTypeToType();
    	// Properties
 	fields := self.ownedAttribute.map propertyToField();
-	fields += self.ownedAttribute.map propertyToAssociationField();
+	// Compute property from associations
+	// This is already computed from the previous case, as such
+	// properties are marked with owner=Classifier
+//	fields += self.ownedAttribute.map propertyToAssociationField();
 	fields += self[uml::AssociationClass].memberEnd.map propertyToFieldOfAssociationClass();	
 	
 	//fields.type := self->generateClass() -> asOrderedSet() -> first();
@@ -618,7 +627,7 @@ mapping uml::Class::generateClass() : JDTmm::JDTClass
 
 
 /**
- * Createa Compilation Unit, and set its packageFragment 
+ * Create a Compilation Unit, and set its packageFragment 
  */
 mapping uml::Type::type2CompilationUnit() : JDTCompilationUnit 
 	inherits NamedElement::transformNamedElementToJavaElement
@@ -760,6 +769,7 @@ mapping uml::PrimitiveType::generateCuPrimitiveType() : JDTmm::JDTClass
   
   // Compute elementName
   // Check if another name is set in instanceClassname
+  // Set only the last name, because the package name is set previously in the compilationUnit.
   var instanceName : String := self.getStringTaggedValue(uml.STEREOTYPE_PRIMITIVETYPE, uml.TAGVALUE_IMPLEMENTATION_CLASS, null);
   elementName := if( instanceName.oclIsUndefined()) 
                    then self.name

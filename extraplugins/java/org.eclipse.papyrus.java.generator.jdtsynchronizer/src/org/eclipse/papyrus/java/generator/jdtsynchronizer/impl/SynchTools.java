@@ -23,6 +23,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.java.generator.jdtsynchronizer.GeneratorPreference;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType;
 
@@ -214,6 +215,25 @@ public class SynchTools {
 
 		type.getCompilationUnit().createImport(_classQualifiedName, null, null);
 		return _class + "<" + getPrimiveTypeClass(typeName) + ">";
+	}
+
+	/**
+	 * Get the multivalued declaration for the specified typeName.
+	 * 
+	 * @param type The enclosing type that will contains the declaration. Requested to ajust import.
+	 * @param typeName The type for wich a multivalued statement is requested
+	 * @param preference The preferences
+	 * @return The multivalued statement for the specified typeName.
+	 * 
+	 * @throws JavaModelException
+	 */
+	public static String getMultiValued(IType type, JDTType valueType, GeneratorPreference preference) throws JavaModelException {
+		// create the import
+		String _classQualifiedName = preference.genericClassForMultiValue();
+		String _class = _classQualifiedName.substring(_classQualifiedName.lastIndexOf(".") + 1);
+
+		type.getCompilationUnit().createImport(_classQualifiedName, null, null);
+		return _class + "<" + getPrimiveTypeClass(valueType.getElementName()) + ">";
 	}
 
 }
