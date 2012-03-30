@@ -20,16 +20,15 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -306,15 +305,14 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 		
 		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
-		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelResource.getURI().toPlatformString(true))));
+		modifiedFiles.add(WorkspaceSynchronizer.getFile(modelResource));
 
 		// if the diagram is creating the notation does not exist
-		Path notationPath = new Path(notationResource.getURI().toPlatformString(true));
-		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(notationPath);
+		IFile file = WorkspaceSynchronizer.getFile(notationResource);
 		if (file != null && file.exists()){
 			modifiedFiles.add(file);
 		}
-		modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(diResource.getURI().toPlatformString(true))));
+		modifiedFiles.add(WorkspaceSynchronizer.getFile(diResource));
 
 		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
 

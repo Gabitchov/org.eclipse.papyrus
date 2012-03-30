@@ -19,6 +19,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 
@@ -135,9 +138,20 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	@Override
 	public List getAffectedFiles() {
 		ArrayList affectedFiles = new ArrayList();
-		for (Object o : emfCommand.getAffectedObjects()) {
-			if (o instanceof IFile) {
-				affectedFiles.add(o);
+		Collection<?> affectedObjects = emfCommand.getAffectedObjects();
+		if (affectedObjects != null) {
+			for (Object o : affectedObjects) {
+				if (o instanceof IFile) {
+					affectedFiles.add(o);
+				} else if (o instanceof EObject) {
+					Resource res = ((EObject)o).eResource();
+					if (res != null) {
+						IFile file = WorkspaceSynchronizer.getFile(res);
+						if (file != null) {
+							affectedFiles.add(file);
+						}
+					}
+				}
 			}
 		}
 		return affectedFiles;

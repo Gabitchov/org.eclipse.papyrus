@@ -23,13 +23,9 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.facet.infra.query.ModelQuery;
@@ -45,12 +41,12 @@ import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidgetInternalUti
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration2.TableConfiguration2;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.emf.workspace.EMFOperationCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -164,26 +160,22 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
 			//Create the transactional command
-			AbstractEMFOperation operation = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$
+			AbstractTransactionalCommand command = new AbstractTransactionalCommand(domain, "Create Table Editor", null) {
 
 				@Override
-				protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					try {
 						AbstractCreateNattableEditorCommand.this.doExecute(serviceRegistry);
 					} catch (ServiceException e) {
-						e.printStackTrace();
-						return Status.CANCEL_STATUS;
+						return CommandResult.newErrorCommandResult(e);
 					} catch (NotFoundException e) {
-						e.printStackTrace();
-						return Status.CANCEL_STATUS;
+						return CommandResult.newErrorCommandResult(e);
 					}
-					return Status.OK_STATUS;
+					return CommandResult.newOKCommandResult();
 				}
 			};
-			EMFOperationCommand command = new EMFOperationCommand(domain, operation);
-			// Execute the command
-			
-			domain.getCommandStack().execute(command);
+
+			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
 		}
 	}
 
