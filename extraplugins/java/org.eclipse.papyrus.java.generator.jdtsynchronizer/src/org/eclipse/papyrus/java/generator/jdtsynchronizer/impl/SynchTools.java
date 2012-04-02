@@ -92,7 +92,7 @@ public class SynchTools {
 	 * @return true if typename is a primive type
 	 */
 	public static boolean isPrimiveType(String typename) {
-		if(typename.equals("byte"))
+		if(typename.equals("byte") )
 			return true;
 		if(typename.equals("char"))
 			return true;
@@ -100,7 +100,7 @@ public class SynchTools {
 			return true;
 		if(typename.equals("float"))
 			return true;
-		if(typename.equals("int"))
+		if(typename.equals("int") )
 			return true;
 		if(typename.equals("long"))
 			return true;

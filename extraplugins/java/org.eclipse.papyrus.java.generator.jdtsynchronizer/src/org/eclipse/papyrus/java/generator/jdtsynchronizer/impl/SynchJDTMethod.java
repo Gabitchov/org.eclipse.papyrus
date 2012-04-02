@@ -106,10 +106,17 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 				}
 				else {
 					// return type
-					if(method.getReturnType() != null)
-						methodStr.append(method.getReturnType().getType().getElementName() + " ");
-					else
+					if(method.getReturnType() != null) {
+						// Compute the type, taken into account multivalue
+						String type = getTypeAsString(method.getReturnType());
+						// put the import package	
+						SynchTools.createImport(itype, method.getOwner(), method.getReturnType().getType());
+						
+						methodStr.append(type + " ");
+					}
+					else {
 						methodStr.append("void ");
+					}
 					// method name
 					methodStr.append(method.getElementName() + "(");
 				}
@@ -120,11 +127,8 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 					String typeName = p.getElementName();
 					String type = "Undefined";
 					if(p.getType() != null) {
-						type = null;
-						if(p.isMultiValued())
-							type = SynchTools.getMultiValued(itype, p.getType().getElementName(), preference);
-						else
-							type = p.getType().getElementName();
+						// Compute the type, taken into account multivalue
+						type = getTypeAsString(p);
 						// put the import package	
 						SynchTools.createImport(itype, method.getOwner(), p.getType());
 					}
@@ -199,6 +203,23 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 
 
 	}
+
+
+	/**
+	 * Get the type of the parameter as a String. Take into account the multivalue setting.
+	 * @param p
+	 * @return
+	 * @throws JavaModelException
+	 */
+	private String getTypeAsString(JDTParameter p) throws JavaModelException {
+		String type;
+		if(p.isMultiValued())
+			type = SynchTools.getMultiValued(itype, p.getType().getElementName(), preference);
+		else
+			type = p.getType().getElementName();
+		return type;
+	}
+
 
 
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_2N_coHy1EeGgQY3xJFttRg" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_7o4_EHy1EeGgQY3xJFttRg" name="mapTypeToType" isAbstract="true">
+    <generalization xmi:id="_Bgu8MHy2EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-BnJ8Hy1EeGgQY3xJFttRg" name="transformNamedElementToJavaElement" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_HsU7wHy2EeGgQY3xJFttRg" name="generateClass">
+    <generalization xmi:id="_J-RJMHy2EeGgQY3xJFttRg" general="_7o4_EHy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_N9PgMHy2EeGgQY3xJFttRg" name="type2CompilationUnit">
+    <generalization xmi:id="_PXScUHy2EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_SBMd0Hy2EeGgQY3xJFttRg" name="generateCuInterface">
+    <generalization xmi:id="_U19rgHy2EeGgQY3xJFttRg" general="_TH4ZEHy2EeGgQY3xJFttRg"/>
+    <generalization xmi:id="_WTWPgHy2EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TH4ZEHy2EeGgQY3xJFttRg" name="GenerateInterface">
+    <generalization xmi:id="_erQVoHy2EeGgQY3xJFttRg" general="_7o4_EHy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bZitQHy2EeGgQY3xJFttRg" name="generateNestedInterface">
+    <generalization xmi:id="_dMZK8Hy2EeGgQY3xJFttRg" general="_TH4ZEHy2EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_lW6VUHy2EeGgQY3xJFttRg" name="generateNestedEnumeration">
+    <generalization xmi:id="_rf1bYHy2EeGgQY3xJFttRg" general="_pXhrEHy2EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mWF6YHy2EeGgQY3xJFttRg" name="generateCuEnumeration">
+    <generalization xmi:id="_srYogHy2EeGgQY3xJFttRg" general="_pXhrEHy2EeGgQY3xJFttRg"/>
+    <generalization xmi:id="_t4kNUHy2EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_pXhrEHy2EeGgQY3xJFttRg" name="generateEnumeration">
+    <generalization xmi:id="_iSBykHy3EeGgQY3xJFttRg" general="_7o4_EHy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__1H5gHy2EeGgQY3xJFttRg" name="generateNestedClass">
+    <generalization xmi:id="_KF0GMHy3EeGgQY3xJFttRg" general="_HsU7wHy2EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AawWIHy3EeGgQY3xJFttRg" name="generateCUClass">
+    <generalization xmi:id="_Kosw0Hy3EeGgQY3xJFttRg" general="_HsU7wHy2EeGgQY3xJFttRg"/>
+    <generalization xmi:id="_L1f7IHy3EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eOY-AHy3EeGgQY3xJFttRg" name="generateCuPrimitiveType">
+    <generalization xmi:id="_hT8ZsHy3EeGgQY3xJFttRg" general="_7o4_EHy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_DUd4wHy4EeGgQY3xJFttRg" name="propertyToField">
+    <generalization xmi:id="_a5TcEHy4EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_G8tx0Hy4EeGgQY3xJFttRg" name="operationToMethod">
+    <generalization xmi:id="_aZWJoHy4EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IlAlUHy4EeGgQY3xJFttRg" name="parameterToParameter">
+    <generalization xmi:id="_Z3VowHy4EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PlWbkHy4EeGgQY3xJFttRg" name="generateCuClass">
+    <generalization xmi:id="_Zc1eEHy4EeGgQY3xJFttRg" general="_-BnJ8Hy1EeGgQY3xJFttRg"/>
+  </packagedElement>
+</uml:Model>

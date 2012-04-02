@@ -97,9 +97,10 @@ public class RunGenerator {
 		}
 
 		if(outObjects.size() > 1) {
-			System.err.println("Warning, JDT modele has more one root");
+			System.err.println("Warning, JDT modele has more than one root. Found root:");
 			for(EObject el : outObjects)
 				System.err.println(((JDTJavaElement)el).getElementName());
+			System.err.println("-------");
 		}
 
 		//finally, we synchronize the JDT model with org.eclipse.jdt.core

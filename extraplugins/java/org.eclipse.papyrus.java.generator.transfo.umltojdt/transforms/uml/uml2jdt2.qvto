@@ -44,6 +44,9 @@ intermediate property UMLmm::TAGVALUE_NAME : String;
 intermediate property UMLmm::TAGVALUE_GENERATED : String;
 intermediate property UMLmm::TAGVALUE_IMPLEMENTATION_CLASS : String;
 intermediate property UMLmm::NO_PACKAGE : String;
+/** Default name values for generation */
+intermediate property UMLmm::GENERATION_DEFAULT_SRC_NAME : String;
+intermediate property UMLmm::GENERATION_DEFAULT_PROJECT_NAME : String;
 
 /**
  *  The main operation. This is the entry point of the transformation.
@@ -56,7 +59,7 @@ main() {
   uml.STEREOTYPE_JAVA_CLASS := "java::JavaClass";
   uml.STEREOTYPE_JAVA_PROJECT := "java::JavaProject";
   uml.STEREOTYPE_JAVA_SRC_FOLDER := "java::JavaSrcFolder";
-  uml.STEREOTYPE_JAVA_PACKAGE := "java::JavaPackage";
+  uml.STEREOTYPE_JAVA_PACKAGE := "java::JavaPackage_";
   uml.STEREOTYPE_PRIMITIVETYPE := "java::PrimitiveType";
   
   uml.TAGVALUE_SRC := "srcName";
@@ -66,15 +69,20 @@ main() {
   uml.TAGVALUE_IMPLEMENTATION_CLASS := "implementationClass";
   uml.NO_PACKAGE := null;
   
+  // Default names
+  uml.GENERATION_DEFAULT_SRC_NAME := "generated";
+  uml.GENERATION_DEFAULT_PROJECT_NAME := "defaultProject";
+  
   // Select only object that we want to generate
-  var types : Set(uml::Type) := uml.objects()[uml::Type]->select(o | o.oclIsTypeOf(uml::Class) 
+  var types : Set(uml::Type) := uml.objects()[uml::Type]->select(o | 
+             o.oclIsTypeOf(uml::Class) 
              or o.oclIsTypeOf(uml::Interface)
              or o.oclIsTypeOf(uml::PrimitiveType)
              or o.oclIsTypeOf(uml::Enumeration) );
              
   log('------------------------ Start marking input elements');
   // First pass: mark uml::Type objects
-  types -> map markUmlType("generated", "defaultProject");
+  types -> map markUmlType(uml.GENERATION_DEFAULT_SRC_NAME, uml.GENERATION_DEFAULT_PROJECT_NAME);
   // show result
   log('------------------------  Show results');
   types -> map showMarkedType();
@@ -159,11 +167,14 @@ query uml::NamedElement::isGenerated() : Boolean {
 
 
 /**
+ * Compute additional data associated to self.
+ * How to compute such datas is dependant of the type of self, so dispatch to the appropriate method.
+ *
  * Common ancestor. Dispatch to correct method according to the element's type.
  */
 helper NamedElement::getData(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
 	
-	log("NamedElement::getData() " + self.name);
+//	log("NamedElement::getData(self.name=" + self.name + ") ");
 
 	// overloading doesn't work, so we do it manually
 	if( self.oclIsKindOf(uml::PrimitiveType)) then {
@@ -183,11 +194,12 @@ helper NamedElement::getData(defaultSrcName : String, defaultProjectName : Strin
 }
 
 /**
- *
+ * Compute the additional data for a uml::Type.
+ * Recursively set the additional data for the parent (owner) of this type.
  */
 helper Type::getDataFromType( defaultSrcName : String, defaultProjectName : String) : TypeMarker {
 	
-	log("Type::getDataFromType()");
+	log( "Type::getDataFromType(self.name=" + self.name + ")");
 	// Check if data already exist
 	if not self.data.oclIsUndefined()
 	then 
@@ -203,7 +215,7 @@ helper Type::getDataFromType( defaultSrcName : String, defaultProjectName : Stri
 	  then {
 	  //
 	  var parentData : TypeMarker := parent.getData(defaultSrcName, defaultProjectName);
-	  data.srcName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_SRC, parentData.srcName);
+	    data.srcName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_SRC, parentData.srcName);
 	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_PROJECT, parentData.projectName );
 	  	data.packageName := parentData.packageName;
 	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_CLASS, uml.TAGVALUE_GENERATED, true );
@@ -222,12 +234,15 @@ helper Type::getDataFromType( defaultSrcName : String, defaultProjectName : Stri
 }
 
 /**
+ * Compute the additional data for a uml::Type.
+ * Recursively set the additional data for the parent (owner) of this type.
+ *
  * Primitive types are stored in the package declared in uml.TAGVALUE_IMPLEMENTATION_CLASS.
  * If no implementation class is declared, use the same scheme as Classes.
  */
 helper PrimitiveType::getDataFromPrimitiveType( defaultSrcName : String, defaultProjectName : String) : TypeMarker {
 	
-	log("Type::getDataFromPrimitiveType()");
+	log("Type::getDataFromPrimitiveType(self.name=" + self.name + ")");
 	// Check if data already exist
 	if not self.data.oclIsUndefined()
 	then 
@@ -322,7 +337,7 @@ query String::lastNameFromQualifiedName( ) : String {
  */
 helper Package::getDataFromPackage(defaultSrcName : String, defaultProjectName : String) : TypeMarker {
 	
-	log("Type::getDataFromPackage() " + self.name);
+	log("Type::getDataFromPackage(self.name=" + self.name + ")");
 	// Check if data already exist
 	if not self.data.oclIsUndefined()
 	then 
@@ -330,30 +345,35 @@ helper Package::getDataFromPackage(defaultSrcName : String, defaultProjectName :
 	endif;
 	
 	var data : TypeMarker;
-	// Switch to correct helper, according to stereotype
-	if( self.isStereotyped( uml.STEREOTYPE_JAVA_SRC_FOLDER) ) then {
-	  // SrcFolder
-	  data :=  self.createDataFromSrcFolder(defaultSrcName, defaultProjectName);
-	}
- 	else {
-      if ( self.isStereotyped( uml.STEREOTYPE_JAVA_PROJECT) ) then {
-        // JavaProject
-	    data :=  self.createDataFromJavaProject(defaultSrcName, defaultProjectName);
-	  }
-	  else {
-	    if( self.oclIsTypeOf(uml::Model) ) then {
-	      // uml::Model
-	      data :=  self.createDataFromUmlModel(defaultSrcName, defaultProjectName);
-	    }
-	    else {
-	      // Default Package
-	      data :=  self.createDataFromSimplePackage(defaultSrcName, defaultProjectName);
-	    } endif;
-	      
-	  } endif;
-	  	
-	} endif;
-
+    
+    // Switch to correct helper, according to stereotype
+    switch {
+    	case (self.isStereotyped( uml.STEREOTYPE_JAVA_SRC_FOLDER) ) {
+    		// SrcFolder
+	        data :=  self.createDataFromSrcFolder(defaultSrcName, defaultProjectName);
+    	}
+    	case ( self.isStereotyped( uml.STEREOTYPE_JAVA_PROJECT) ) {
+    		// JavaProject
+	        data :=  self.createDataFromJavaProject(defaultSrcName, defaultProjectName);
+    	}
+    	case ( self.isStereotyped( uml.STEREOTYPE_JAVA_PACKAGE)) {
+    		// Treat it as a Java Package
+    		// uml::Model and uml::Package can be marked with this stereotype.
+    		// When a uml::Model is marked as package, it is not considered anymore as a root for packages
+	        data :=  self.createDataFromSimplePackage(defaultSrcName, defaultProjectName);
+    	}
+    	case ( self.oclIsTypeOf(uml::Model) ) {
+    		// uml::Model
+    		// uml::Model is considered as the root of packages. 
+    		// So, stop on type Model, except if a STEREOTYPE_JAVA_PACKAGE is set.
+	        data :=  self.createDataFromUmlModel(defaultSrcName, defaultProjectName);
+    	}
+    	else {
+    		// Default Package
+	        data :=  self.createDataFromSimplePackage(defaultSrcName, defaultProjectName);
+    	}
+    };
+    
 	self.data := data;
 	return data;
 }
@@ -411,8 +431,9 @@ helper Package::createDataFromSimplePackage(defaultSrcName : String, defaultProj
 	  	data.generated := if parentData.generated = false then false else self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_GENERATED, true ) endif;
 	  }
 	  else {
+	  	// This is the root node, and maybe the stereotype overide some values.
 	  	data.srcName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_SRC, defaultSrcName );
-	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_PROJECT, defaultProjectName );
+	  	data.projectName := self.getStringTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_PROJECT, self.name );
 	  	data.packageName := self.getStringTaggedValue(uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_NAME, self.name);
 	  	data.generated := self.getBooleanTaggedValue( uml.STEREOTYPE_JAVA_PACKAGE, uml.TAGVALUE_GENERATED, true );
 	  }
@@ -513,16 +534,28 @@ mapping uml::NamedElement::showMarkedType()
 }
 
 /**
- * Map a model to a JavaModel
+ * Map a model to a JavaModel.
+ * Compute and associate additional data (in a TypeMarker class) to the type. 
+ * Recursively ensure that the data are associated to the container of this type.
  */
 mapping uml::Type::markUmlType(defaultSrcName : String, defaultProjectName : String) 
 //  when { self.isCompilationUnit() }
 {
-  log("------ try to get data for " + self.name);
+//  log("------ try to get data for " + self.name);
   if( self.data.oclIsUndefined() ) then {
-    log("try to get data for " + self.name);
+    log("Compute associated data for '" + self.name + "'");
   	self.data := self.getData( defaultSrcName, defaultProjectName);
   }	endif;
+}
+
+/**
+ * Map a model to a JavaModel.
+ * Compute and associate additional data (in a TypeMarker class) to the type. 
+ * Recursively ensure that the data are associated to the container of this type.
+ */
+mapping uml::Type::markUmlType() 
+{
+  self.map markUmlType( uml.GENERATION_DEFAULT_SRC_NAME, uml.GENERATION_DEFAULT_PROJECT_NAME);
 }
 
 /**
@@ -573,7 +606,7 @@ helper createOrRetrieveJavaModel2() : JDTJavaModel {
  * Generate a Class that should be a CompilationUnit and set its CompilationUnit
  */
 mapping uml::Class::generateCuClass() : JDTmm::JDTClass 
-  inherits Class::generateClass, NamedElement::transformNamedElementToJavaElement
+  inherits Class::generateClass /*, NamedElement::transformNamedElementToJavaElement */
   when { self.isCompilationUnit() }
 {	
   log("------- transform", self.qualifiedName);	
@@ -651,7 +684,7 @@ mapping uml::Type::type2CompilationUnit() : JDTCompilationUnit
  * Generate a Interface that should be a CompilationUnit and set its CompilationUnit
  */
 mapping uml::Interface::generateCuInterface() : JDTmm::JDTInterface 
-  inherits Interface::generateInterface, NamedElement::transformNamedElementToJavaElement
+  inherits Interface::generateInterface /*, NamedElement::transformNamedElementToJavaElement */
   when { self.isCompilationUnit() }
 {	
   log("------- transform", self.qualifiedName);	
@@ -696,7 +729,7 @@ mapping uml::Interface::generateInterface() : JDTmm::JDTInterface
  * Generate a Enumeration that should be a CompilationUnit and set its CompilationUnit
  */
 mapping uml::Enumeration::generateCuEnumeration() : JDTmm::JDTEnum 
-  inherits Enumeration::generateEnumeration, NamedElement::transformNamedElementToJavaElement
+  inherits Enumeration::generateEnumeration /*, NamedElement::transformNamedElementToJavaElement */
   when { self.isCompilationUnit() }
 {	
   log("------- transform", self.qualifiedName);	
@@ -789,6 +822,12 @@ mapping uml::PrimitiveType::generateCuPrimitiveType() : JDTmm::JDTClass
 abstract mapping uml::Classifier::mapTypeToType() : JDTmm::JDTType 
 	inherits NamedElement::transformNamedElementToJavaElement
 {
+	
+	// Ensure that data are set
+	if( self.data.oclIsUndefined()) then {
+		self.map markUmlType();
+	} endif;
+	
 	elementName := self.name;
 	// visibility
 	visibility := self.visibility.visibilityToVisibility();
@@ -919,7 +958,11 @@ mapping uml::Parameter::parameterToParameter() : jdtmm::JDTParameter
 }
 
 /**
+ * Transform a Behavior to a JDTMethodBody.
+ * Root rule of transforming a Behavior to a JDTMethodBody. The real transformation ois done in sub-rules 
+ * (with the same name, but different input type).
  *
+ * Behavior can't be transformed to JDTMethodBody, so create a JDTMethodBody with an error message.
  */
 mapping uml::Behavior::BehaviorToMethodBody() : jdtmm::JDTMethodBody {
 	init {
@@ -930,7 +973,8 @@ mapping uml::Behavior::BehaviorToMethodBody() : jdtmm::JDTMethodBody {
 }
 
 /**
- *
+ * Transform an OpaqueBehavior to a MethodBody.
+ * As we return a subclass of JDTMethodBody, delegate to the appropriate rule.
  */
 mapping uml::OpaqueBehavior::BehaviorToMethodBody() : jdtmm::JDTMethodBody {
 	init {
@@ -940,13 +984,11 @@ mapping uml::OpaqueBehavior::BehaviorToMethodBody() : jdtmm::JDTMethodBody {
 }
 
 /**
- *
+ * Transform an OpaqueBehavior to a OpaqueBody
  */
 mapping uml::OpaqueBehavior::OpaqueBehaviorToOpaqueBody() : jdtmm::JDTOpaqueBody {
 	
-	log("OpaqueBehavior found");
-	
-	
+//	log("OpaqueBehavior found");
 	
 	// Look for the java index
 	var  index : Integer := self.language->indexOf("Java");
@@ -1070,7 +1112,7 @@ mapping TypeMarker::typeMarkerToJavaProject() : JDTJavaProject {
 	init {
 		// Lookup if there is a Project already created for this projectName
 		// resolveIn return a list of object created with the specified mapping rule
-		// Then, we lloup in the list for an element with the requested name.
+		// Then, we loukup in the list for an element with the requested name.
 		result := resolveIn(TypeMarker::typeMarkerToJavaProject)
 		    ->select( project  | self.projectName=project.oclAsType(JDTJavaProject).elementName)->first().oclAsType(JDTJavaProject);
 
