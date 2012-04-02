@@ -74,6 +74,16 @@ public class StyleCreationDialog extends TrayDialog {
 
 	private CLabel errorLabel;
 
+	private StringFileSelector externalStylesheetEditor;
+
+	private StringEditor embeddedStylesheetEditor;
+
+	private ReferenceDialog appliedStylesheetEditor;
+
+	private boolean ignoreEvents = false;
+
+	private AbstractEditor stylesheetSource;
+
 	/**
 	 * 
 	 * @param shell
@@ -151,6 +161,12 @@ public class StyleCreationDialog extends TrayDialog {
 		//There must be a stylesheet
 		if(getStylesheet() == null) {
 			setError("You must select a Stylesheet");
+			result = false;
+		}
+
+		//EmbeddedStyleSheets are not yet supported
+		if(getStylesheet() instanceof EmbeddedStyleSheet) {
+			setError("Edition of embedded stylesheets is not yet supported. Please select an external stylesheet");
 			result = false;
 		}
 
@@ -331,19 +347,26 @@ public class StyleCreationDialog extends TrayDialog {
 		parent.setLayout(new GridLayout(1, false));
 
 		//Create or use an existing External Stylesheet
-		StringFileSelector externalStylesheet = new StringFileSelector(parent, SWT.NONE);
-		externalStylesheet.setAllowFileSystem(false);
-		externalStylesheet.setLabel("External stylesheet:");
-		externalStylesheet.setToolTipText("Create or use an existing external CSS Stylesheet");
-		externalStylesheet.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
-		externalStylesheet.addCommitListener(new ICommitListener() {
+		externalStylesheetEditor = new StringFileSelector(parent, SWT.NONE);
+		externalStylesheetEditor.setAllowFileSystem(false);
+		externalStylesheetEditor.setLabel("External stylesheet:");
+		externalStylesheetEditor.setToolTipText("Create or use an existing external CSS Stylesheet");
+		externalStylesheetEditor.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+		externalStylesheetEditor.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
 				String path = (String)((StringEditor)editor).getValue();
-				if(path != null && !"".equals(path)) {
-					StyleSheetReference stylesheetReference = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
-					stylesheetReference.setPath(path);
+
+
+				if((path != null && !"".equals(path)) || stylesheetSource == externalStylesheetEditor) {
+					StyleSheetReference stylesheetReference = null;
+					if(path != null && !"".equals(path)) {
+						stylesheetReference = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
+						stylesheetReference.setPath(path);
+					}
+
 					stylesheet = stylesheetReference;
+					resetStylesheetEditors(externalStylesheetEditor);
 					updateButtons();
 				}
 			}
@@ -353,18 +376,25 @@ public class StyleCreationDialog extends TrayDialog {
 		orLabel.setText("-- OR --");
 
 		//Create a new Embedded Stylesheet
-		StringEditor embeddedStylesheet = new StringEditor(parent, SWT.NONE);
-		embeddedStylesheet.setLabel("New local stylesheet:");
-		embeddedStylesheet.setToolTipText("Create a new local stylesheet. The stylesheet will be embedded in the current model. Unsupported yet");
-		embeddedStylesheet.setReadOnly(true);
-		embeddedStylesheet.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
-		embeddedStylesheet.addCommitListener(new ICommitListener() {
+		embeddedStylesheetEditor = new StringEditor(parent, SWT.NONE);
+		embeddedStylesheetEditor.setLabel("New local stylesheet:");
+
+		//FIXME: Change the tooltip text when the X-Text editor can edit local stylesheets 
+		embeddedStylesheetEditor.setToolTipText("Enter the new local stylesheet's name");
+		//		embeddedStylesheetEditor.setToolTipText("Create a new local stylesheet. The stylesheet will be embedded in the current model. Unsupported yet");
+
+		//FIXME: Set read only to false when the X-Text editor can edit local stylesheets
+		embeddedStylesheetEditor.setReadOnly(true);
+		embeddedStylesheetEditor.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+		embeddedStylesheetEditor.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
+				//TODO: Check empty names & set the stylesheet to null when the name is null/empty
 				String name = (String)((StringEditor)editor).getValue();
 				EmbeddedStyleSheet embeddedStylesheet = StylesheetsFactory.eINSTANCE.createEmbeddedStyleSheet();
 				embeddedStylesheet.setLabel(name);
 				stylesheet = embeddedStylesheet;
+				resetStylesheetEditors(embeddedStylesheetEditor);
 				updateButtons();
 			}
 		});
@@ -373,21 +403,46 @@ public class StyleCreationDialog extends TrayDialog {
 		orLabel.setText("-- OR --");
 
 		//Use an existing applied stylesheet (Either Reference or Embedded)
-		ReferenceDialog appliedStylesheet = new ReferenceDialog(parent, SWT.NONE);
-		appliedStylesheet.setLabel("Applied stylesheet:");
-		appliedStylesheet.setToolTipText("Use an existing stylesheet, from the stylesheets applied to the current model");
-		appliedStylesheet.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
-		appliedStylesheet.setContentProvider(new CSSStyleSheetContentProvider(contextView));
-		appliedStylesheet.setLabelProvider(new CSSStyleSheetLabelProvider());
-		appliedStylesheet.addCommitListener(new ICommitListener() {
+		appliedStylesheetEditor = new ReferenceDialog(parent, SWT.NONE);
+		appliedStylesheetEditor.setLabel("Applied stylesheet:");
+		appliedStylesheetEditor.setToolTipText("Use an existing stylesheet, from the stylesheets applied to the current model");
+		appliedStylesheetEditor.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+		appliedStylesheetEditor.setContentProvider(new CSSStyleSheetContentProvider(contextView));
+		appliedStylesheetEditor.setLabelProvider(new CSSStyleSheetLabelProvider());
+		appliedStylesheetEditor.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
 				StyleSheet value = (StyleSheet)((ReferenceDialog)editor).getValue();
-				stylesheet = value;
+				if(!(ignoreEvents && value == null)) {
+					stylesheet = value;
+					resetStylesheetEditors(appliedStylesheetEditor);
+				}
 				updateButtons();
 			}
 		});
 
+	}
+
+	private void resetStylesheetEditors(AbstractEditor stylesheetSource) {
+		if(ignoreEvents) {
+			return;
+		}
+
+		ignoreEvents = true;
+		if(stylesheetSource != externalStylesheetEditor) {
+			externalStylesheetEditor.setValue(null);
+		}
+
+		if(stylesheetSource != embeddedStylesheetEditor) {
+			embeddedStylesheetEditor.setValue(null);
+		}
+
+		if(stylesheetSource != appliedStylesheetEditor) {
+			appliedStylesheetEditor.setValue(null);
+		}
+
+		this.stylesheetSource = stylesheetSource;
+		ignoreEvents = false;
 	}
 
 	public String getCSSClass() {
