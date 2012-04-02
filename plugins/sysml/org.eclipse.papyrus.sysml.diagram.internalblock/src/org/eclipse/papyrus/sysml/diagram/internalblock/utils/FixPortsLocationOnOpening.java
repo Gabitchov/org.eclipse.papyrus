@@ -66,10 +66,12 @@ public class FixPortsLocationOnOpening {
 				
 				int parentWidth = parentViewBounds.getWidth();
 				int parentHeight = parentViewBounds.getHeight();
-				if ((parentWidth == -1) && (parentHeight == -1)) {
-					// warning the size may not be set in notation (default size), in such a case get default size from preferences.
-					String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentView.getType();
+				// warning the size may not be set in notation (default size), in such a case get default size from preferences.
+				String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentView.getType();
+				if (parentWidth == -1) {
 					parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.WIDTH));
+				}
+				if (parentHeight == -1) {
 					parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.HEIGHT));
 				}
 				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentWidth, parentHeight);
