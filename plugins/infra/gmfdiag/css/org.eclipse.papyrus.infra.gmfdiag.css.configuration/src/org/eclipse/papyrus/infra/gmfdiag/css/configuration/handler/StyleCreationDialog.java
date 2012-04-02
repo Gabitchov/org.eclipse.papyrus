@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 import java.util.Map;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -43,6 +44,7 @@ import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
 import org.eclipse.papyrus.infra.widgets.editors.StringFileSelector;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.layout.GridData;
@@ -70,6 +72,8 @@ public class StyleCreationDialog extends TrayDialog {
 
 	private StyleSheet stylesheet;
 
+	private CLabel errorLabel;
+
 	/**
 	 * 
 	 * @param shell
@@ -93,7 +97,7 @@ public class StyleCreationDialog extends TrayDialog {
 		Composite parent = getDialogArea();
 
 		CTabFolder tabFolder = new CTabFolder(parent, SWT.BORDER);
-		tabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
+		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		CTabItem conditionsTab = new CTabItem(tabFolder, SWT.NONE);
 		CTabItem declarationsTab = new CTabItem(tabFolder, SWT.NONE);
@@ -128,8 +132,66 @@ public class StyleCreationDialog extends TrayDialog {
 		createDeclarations(declarationsContainer);
 		createStylesheet(stylesheetContainer);
 
+		updateButtons();
+
 		getShell().setText("New Style");
 		getShell().pack();
+	}
+
+	protected void updateButtons() {
+		//Resets the error message
+		setError(null);
+		getButton(IDialogConstants.OK_ID).setEnabled(isValid());
+		getDialogArea().layout();
+	}
+
+	protected boolean isValid() {
+		boolean result = true;
+
+		//There must be a stylesheet
+		if(getStylesheet() == null) {
+			setError("You must select a Stylesheet");
+			result = false;
+		}
+
+		//There must be at least one property declaration
+		boolean atLeastOneDeclaration = false;
+		for(Boolean value : declarations.values()) {
+			if(value) {
+				atLeastOneDeclaration = true;
+				break;
+			}
+		}
+
+		result = result && atLeastOneDeclaration;
+
+		if(!atLeastOneDeclaration) {
+			setError("There must be at least one property declaration");
+		}
+
+		return result;
+	}
+
+	protected void setError(String errorMessage) {
+		if(errorMessage == null && errorLabel != null) {
+			errorLabel.dispose();
+			errorLabel = null;
+			return;
+		}
+
+		if(errorMessage != null) {
+			if(errorLabel == null) {
+				errorLabel = new CLabel(getDialogArea(), SWT.WRAP);
+				errorLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+				errorLabel.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/error.gif"));
+			}
+
+			if(errorLabel.getText() != null && !errorLabel.getText().trim().equals("")) {
+				errorLabel.setText(errorLabel.getText() + "\n" + errorMessage);
+			} else {
+				errorLabel.setText(errorMessage);
+			}
+		}
 	}
 
 	protected void createConditions(Composite parent) {
@@ -206,7 +268,6 @@ public class StyleCreationDialog extends TrayDialog {
 			}
 
 			BooleanCheckbox checkbox = new BooleanCheckbox(parent, SWT.NONE, attributeLabel);
-			checkbox.setValue(conditions.get(currentCondition));
 
 			checkbox.addCommitListener(new ICommitListener() {
 
@@ -227,7 +288,6 @@ public class StyleCreationDialog extends TrayDialog {
 
 		StringEditor styleNameEditor = new StringEditor(parent, SWT.NONE, "Style name:");
 		styleNameEditor.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
-		//		styleNameEditor.setToolTipText(label);
 		styleNameEditor.addCommitListener(new ICommitListener() {
 
 			public void commit(AbstractEditor editor) {
@@ -239,7 +299,6 @@ public class StyleCreationDialog extends TrayDialog {
 
 	protected void createDeclarations(Composite parent) {
 		parent.setLayout(new GridLayout(3, false));
-		//		parent.setLayout(new FillLayout());
 
 		Label declarationsLabel = new Label(parent, SWT.WRAP);
 		declarationsLabel.setText("Select the properties you want to set. Unchecked properties will keep their default value (Which might be inherited from another style).");
@@ -248,15 +307,21 @@ public class StyleCreationDialog extends TrayDialog {
 		for(Declaration declaration : declarations.keySet()) {
 			String label = declaration.getProperty() + ": " + getLabel(declaration.getExpression());
 			BooleanCheckbox checkbox = new BooleanCheckbox(parent, SWT.NONE, label);
-			checkbox.setValue(declarations.get(declaration));
 
 			final Declaration currentDeclaration = declaration;
+
+			checkbox.setValue(declarations.get(currentDeclaration));
+
 			checkbox.addCommitListener(new ICommitListener() {
 
 				public void commit(AbstractEditor editor) {
-					declarations.put(currentDeclaration, ((BooleanCheckbox)editor).getValue());
+					boolean value = ((BooleanCheckbox)editor).getValue();
+					declarations.put(currentDeclaration, value);
+					updateButtons();
 				}
 			});
+
+			checkbox.setValue(declarations.get(declaration));
 		}
 	}
 
@@ -275,9 +340,12 @@ public class StyleCreationDialog extends TrayDialog {
 
 			public void commit(AbstractEditor editor) {
 				String path = (String)((StringEditor)editor).getValue();
-				StyleSheetReference stylesheetReference = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
-				stylesheetReference.setPath(path);
-				stylesheet = stylesheetReference;
+				if(path != null && !"".equals(path)) {
+					StyleSheetReference stylesheetReference = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
+					stylesheetReference.setPath(path);
+					stylesheet = stylesheetReference;
+					updateButtons();
+				}
 			}
 		});
 
@@ -297,6 +365,7 @@ public class StyleCreationDialog extends TrayDialog {
 				EmbeddedStyleSheet embeddedStylesheet = StylesheetsFactory.eINSTANCE.createEmbeddedStyleSheet();
 				embeddedStylesheet.setLabel(name);
 				stylesheet = embeddedStylesheet;
+				updateButtons();
 			}
 		});
 
@@ -315,6 +384,7 @@ public class StyleCreationDialog extends TrayDialog {
 			public void commit(AbstractEditor editor) {
 				StyleSheet value = (StyleSheet)((ReferenceDialog)editor).getValue();
 				stylesheet = value;
+				updateButtons();
 			}
 		});
 

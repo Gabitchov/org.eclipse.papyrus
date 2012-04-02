@@ -42,7 +42,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	/**
 	 * The text box for editing this editor's value
 	 */
-	protected Text text;
+	protected final Text text;
 
 	private int delay = 600;
 

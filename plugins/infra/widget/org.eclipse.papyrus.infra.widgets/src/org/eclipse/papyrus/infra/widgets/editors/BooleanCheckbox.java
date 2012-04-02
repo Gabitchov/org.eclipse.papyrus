@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class BooleanCheckbox extends AbstractValueEditor {
 
-	private Button checkbox;
+	private final Button checkbox;
 
 	private AggregatedObservable aggregated;
 
@@ -61,19 +61,25 @@ public class BooleanCheckbox extends AbstractValueEditor {
 		super(parent);
 		checkbox = factory.createButton(this, label, SWT.CHECK | style);
 
-		setCommitOnFocusLost(checkbox);
+		IObservableValue widgetObservable = WidgetProperties.selection().observe(checkbox);
+		setWidgetObservable(widgetObservable, true);
 	}
 
 	@Override
 	public void setModelObservable(IObservableValue modelProperty) {
-		IObservableValue widgetObservable;
+		IObservableValue newWidgetObservable;
+
+		if(this.widgetObservable != null) {
+			this.widgetObservable.dispose();
+		}
+
 		if(modelProperty instanceof AggregatedObservable) {
 			this.aggregated = (AggregatedObservable)modelProperty;
-			widgetObservable = new GrayedCheckboxObservableValue(checkbox, aggregated);
+			newWidgetObservable = new GrayedCheckboxObservableValue(checkbox, aggregated);
 		} else {
-			widgetObservable = WidgetProperties.selection().observe(checkbox);
+			newWidgetObservable = WidgetProperties.selection().observe(checkbox);
 		}
-		setWidgetObservable(widgetObservable, true);
+		setWidgetObservable(newWidgetObservable, true);
 		super.setModelObservable(modelProperty);
 	}
 
@@ -118,6 +124,6 @@ public class BooleanCheckbox extends AbstractValueEditor {
 		if(modelProperty != null) {
 			modelProperty.setValue(selected);
 		}
-		checkbox.setSelection(selected);
+		widgetObservable.setValue(selected);
 	}
 }

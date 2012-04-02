@@ -124,7 +124,15 @@ public class InputDialog extends SelectionDialog {
 			((StringCombo)editor).setValue(initialValue);
 			((StringCombo)editor).setContentProvider(contentProvider);
 		} else {
-			editor = new StringEditor(getDialogArea(), SWT.BORDER);
+			editor = new StringEditor(getDialogArea(), SWT.BORDER) {
+
+				//FIXME: The StringEditor (Or one of its superclasses) should be responsible for forwarding this call
+				@Override
+				public void addKeyListener(KeyListener keyListener) {
+					super.text.addKeyListener(keyListener);
+				}
+			};
+
 			((StringEditor)editor).setValue(initialValue);
 		}
 		//		input = new Text(getDialogArea(), SWT.BORDER);

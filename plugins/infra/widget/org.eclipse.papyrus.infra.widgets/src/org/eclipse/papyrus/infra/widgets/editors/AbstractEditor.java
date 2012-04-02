@@ -36,6 +36,10 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
  * 
  * @author Camille Letavernier
  */
+//FIXME: The composite widget hides access to the encapsulated widget(s). 
+//Thus, it is not possible to add custom listeners on the editors
+//We should forward the listeners to the encapsulated (this.addListener(int, Listener) -> getMainWidget().addListener(int, Listener))
+//Problem: some widgets have more than one "main widget" (e.g. EnumRadio).
 public abstract class AbstractEditor extends Composite {
 
 	/**
