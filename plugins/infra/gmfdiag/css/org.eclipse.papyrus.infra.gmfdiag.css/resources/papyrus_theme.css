@@ -12,7 +12,6 @@
  
 /* 
  *	Papyrus CSS v0.9
- *	Sample
  */
 
 * {
@@ -22,7 +21,7 @@
 	*/
 	
 	fontColor: black;
-	fillColor:#C3D1DC;
+	fillColor:#C3D1D5;
 	
 	/* 	fontHeight:9; */
 	
@@ -68,23 +67,8 @@ Class {
 	lineColor: black;
 }
 
-Interface{
-	fillColor:#FAFAFC;
-}
-
-Class[isAbstract=true], Class[isAbstract=true] *{
-	fillColor:#E4E4E7;
-	fontColor:gray;
-}
-
-Port {
-	fillColor: #C8D9F5;
-	lineColor: black;
-}
-
 Comment {
-	fillColor: #FFFFDD;
-	gradient: #FFFFFC vertical;
+	fillColor: #FFFFCC;
 }
 
 Constraint {
@@ -98,7 +82,7 @@ Package {
 /** This is the Diagram's root element. It doesn't support 
 gradient and should have the same color as the diagram */
 SequenceDiagram > Interaction {
-	fillColor:white; 
+	fillColor:white;
 }
 
 SequenceDiagram CombinedFragment, 
