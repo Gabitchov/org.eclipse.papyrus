@@ -7,7 +7,7 @@ Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.google.collect,
+ com.google.guava,
  org.eclipse.papyrus.views.modelexplorer,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.emf.facet.infra.browser.custom.core,
