@@ -11,8 +11,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xmi.ClassNotFoundException;
-import org.eclipse.emf.ecore.xmi.IllegalValueException;
 
 /**
  * An abstract implmeentation of model. This class should be subclassed to fit
@@ -192,7 +190,9 @@ public abstract class AbstractBaseModel implements IModel {
 	 * 
 	 */
 	public void saveModel() throws IOException {
-		resource.save(null);
+		if (!getModelManager().getTransactionalEditingDomain().isReadOnly(resource)) {
+			resource.save(null);
+		}
 	}
 
 	/**
