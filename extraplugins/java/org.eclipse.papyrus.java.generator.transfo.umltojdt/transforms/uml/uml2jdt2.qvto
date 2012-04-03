@@ -873,9 +873,34 @@ mapping uml::Property::propertyToField() : JDTField
 	// type
 	type := self.type.map transformTypeToType();
 	
-	if(not self.defaultValue.isNull() ) then
-		value := self.defaultValue.stringValue()
-	endif;		
+	// Specify the default value
+	if(not self.defaultValue.isNull() ) then {
+		value := self.defaultValue.valueSpecificationToString();
+	} endif;		
+}
+
+/**
+ * Compute the default value from the ValueSpecification.
+ * Check if this is a special case.
+ * 
+ */
+query uml::ValueSpecification::valueSpecificationToString() : String {
+	
+	switch {
+		case (self.oclIsTypeOf(uml::InstanceValue)) {
+			var iv := self.oclAsType(uml::InstanceValue );
+			
+			// Is it an EnumLiteral ?
+			if( iv.instance.oclIsTypeOf(uml::EnumerationLiteral)) then {
+				// This is an enum literal. Prefix it with its typeName
+				return iv.type.name + "." + iv.instance.name;
+			} endif;
+		}
+		else {
+			return self.stringValue()
+		}
+	};
+	return "";
 }
 
 /**
