@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.action;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
@@ -32,9 +34,10 @@ import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -116,16 +119,48 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 			return;
 		}
 
-		try {
-			boolean confirmDelete = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Delete controlled resources?", "Delete the original controlled files ?");
-			UncontrolCommand transactionalCommand = new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null, confirmDelete);
-			IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
-			if (!status.isOK()) {
-				NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to uncontrol").run();
+		final ArrayList<UncontrolCommand> uncontrolCommand = new ArrayList<UncontrolCommand>();
+		new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(false).setTemporary(false).setHTML(true)
+		.setMessage("<form><p>This uncontrol action will save your model.</p><p>Delete the original controlled files ?</p></form>")
+		.addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {
+				uncontrolCommand.add(new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null, true));
 			}
-		} catch (ExecutionException e) {
-			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
-			EMFEditUIPlugin.INSTANCE.log(e);
+
+			public String getLabel() {
+				return "Yes";
+			}
+		}).addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {
+				uncontrolCommand.add(new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null, false));
+			}
+
+			public String getLabel() {
+				return "No";
+			}
+		}).addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {}
+
+			public String getLabel() {
+				return "Cancel";
+			}
+		}).run();
+
+		if (!uncontrolCommand.isEmpty()) {
+			try {
+				IStatus status = CheckedOperationHistory.getInstance().execute(uncontrolCommand.get(0), new NullProgressMonitor(), null);
+				if (status.isOK()) {
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+				} else {
+					NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to uncontrol").run();
+				}
+			} catch (ExecutionException e) {
+				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
+				EMFEditUIPlugin.INSTANCE.log(e);
+			}
 		}
 	}
 

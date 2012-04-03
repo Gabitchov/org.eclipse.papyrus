@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -65,12 +64,6 @@ import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
-import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * The Class ControlCommand in charge of controlling all papyrus resources
@@ -300,31 +293,6 @@ public class ControlCommand extends AbstractTransactionalCommand {
 
 		// POST control operation
 		control(getEditingDomain(), eObject, diResource, controlledDI, compoundCommand, STATE_CONTROL.POST_DI);
-	}
-
-	/**
-	 * Display asynchronous popup to inform user about the control action
-	 */
-	protected void notifySave() {
-		new NotificationBuilder().setMessage("Your element has been controlled.\nYou need to save your model to see modifications in your workspace.\nDo you want to save ?").addAction(new NotificationRunnable() {
-
-			public void run(IContext context) {
-				try {
-					Display.getDefault().syncExec(new Runnable() {
-
-						public void run() {
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
-						}
-					});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			public String getLabel() {
-				return "Save";
-			}
-		}).setTemporary(true).setAsynchronous(true).setType(Type.INFO).setDelay(2000).run();
 	}
 
 	/**
