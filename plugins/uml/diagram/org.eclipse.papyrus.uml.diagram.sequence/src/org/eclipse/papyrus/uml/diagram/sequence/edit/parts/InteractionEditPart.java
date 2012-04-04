@@ -22,13 +22,16 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.XYAnchor;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
@@ -156,10 +159,37 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InteractionRectangleFigure();
+		return primaryShape = new InteractionRectangleFigure() {
+			@Override
+			public Dimension getMinimumSize(int wHint, int hHint) {
+				Rectangle bounds = new Rectangle();
+				
+				for (Object child : InteractionEditPart.this.getChildren()) {
+					if (child instanceof InteractionInteractionCompartmentEditPart) {
+						InteractionInteractionCompartmentEditPart childEditPart = (InteractionInteractionCompartmentEditPart) child;
+
+						for (Object grandChild : childEditPart.getChildren()) {
+							GraphicalEditPart editPart = (GraphicalEditPart) grandChild;
+							IFigure figure = editPart.getFigure();
+							bounds.union(figure.getBounds());
+						}
+						IFigure figure = childEditPart.getFigure();
+						Rectangle rectangle = figure.getBounds();
+						
+						IFigure parentfigure = InteractionEditPart.this.getFigure();
+						Rectangle parentRectangle = parentfigure.getBounds();
+						
+						bounds.width += parentRectangle.width - rectangle.width + 10; // border 2x5
+						bounds.height += parentRectangle.height - rectangle.height + 16; // border 2x5 + 2x3
+						break;
+					}
+				}
+				return bounds.getSize();
+			}
+		};
 	}
 
 	/**

@@ -80,11 +80,19 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
 		CompoundCommand compoundCmd = new CompoundCommand();
 		compoundCmd.setLabel("Move or Resize");
+		
+		IFigure figure = getHostFigure();
+		Rectangle hostBounds = figure.getBounds();
 
 		for(Object o : request.getEditParts()) {
 			GraphicalEditPart child = (GraphicalEditPart)o;
 			Object constraintFor = getConstraintFor(request, child);
-			if(constraintFor != null) {
+			if (constraintFor instanceof Rectangle) {
+				Rectangle childBounds = (Rectangle) constraintFor;
+				if (childBounds.x < 0 || childBounds.y < 0) {
+					return UnexecutableCommand.INSTANCE;
+				}
+				
 				if(child instanceof LifelineEditPart) {
 					addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
 				} else if(child instanceof CombinedFragmentEditPart) {
@@ -106,6 +114,27 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				
 				if(child instanceof CombinedFragmentEditPart) {
 					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd,request,(CombinedFragmentEditPart)child);
+				}
+				
+				int right = childBounds.right();
+				int bottom = childBounds.bottom();
+				int deltaX = 0;
+				int deltaY = 0;
+				if (right > hostBounds.width) {
+					deltaX = right - hostBounds.width;
+				}
+				if (bottom > hostBounds.height) {
+					deltaY = bottom - hostBounds.height;
+				}
+				if (deltaX != 0 || deltaY != 0) {
+					ChangeBoundsRequest boundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
+					boundsRequest.setSizeDelta(new Dimension(deltaX, deltaY));
+					EditPart hostParent = getHost().getParent();
+					boundsRequest.setEditParts(hostParent);
+					Command cmd = hostParent.getCommand(boundsRequest);
+					if (cmd != null && cmd.canExecute()) {
+						compoundCmd.add(cmd);
+					}
 				}
 			}
 		}

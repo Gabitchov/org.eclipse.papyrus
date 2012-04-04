@@ -243,7 +243,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		Point targetPoint = request.getLocation();
 
 		// prevent uphill message (leave margin for horizontal messages)
-		if(sourcePoint.y >= targetPoint.y + MARGIN) {
+		if(sourcePoint == null || sourcePoint.y >= targetPoint.y + MARGIN) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// prevent uphill message (for self recursive message)
