@@ -228,15 +228,20 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 					break;
 				}
 
-				if(gmfElement == gmfElement.eContainer()) {
+				EObject container = gmfElement.eContainer();
+
+				if(gmfElement == container || !(container instanceof View)) {
 					gmfElement = null;
 					break;
 				}
 
-				gmfElement = (View)gmfElement.eContainer();
+				gmfElement = (View)container;
 			}
 
 			parentNode = engine.getElement(gmfElement);
+			if(parentNode == this) {
+				return parentNode = null;
+			}
 		}
 
 		return parentNode;

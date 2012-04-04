@@ -16,6 +16,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.ui.IEditorPart;
@@ -31,12 +32,15 @@ import org.eclipse.ui.IEditorPart;
 public class RefreshHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IEditorPart activeEditor = EditorUtils.getMultiDiagramEditor().getActiveEditor();
-		if(activeEditor instanceof DiagramEditor) {
-			DiagramEditor diagramEditor = (DiagramEditor)activeEditor;
-			DiagramEditPart topEditPart = diagramEditor.getDiagramEditPart();
-			if(topEditPart != null) {
-				DiagramHelper.refresh(topEditPart, true);
+		IMultiDiagramEditor multiDiagramEditor = EditorUtils.getMultiDiagramEditor();
+		if(multiDiagramEditor != null) {
+			IEditorPart activeEditor = multiDiagramEditor.getActiveEditor();
+			if(activeEditor instanceof DiagramEditor) {
+				DiagramEditor diagramEditor = (DiagramEditor)activeEditor;
+				DiagramEditPart topEditPart = diagramEditor.getDiagramEditPart();
+				if(topEditPart != null) {
+					DiagramHelper.refresh(topEditPart, true);
+				}
 			}
 		}
 		return null;
