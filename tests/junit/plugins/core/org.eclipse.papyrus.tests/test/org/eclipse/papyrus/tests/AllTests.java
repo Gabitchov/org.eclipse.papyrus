@@ -45,13 +45,14 @@ public class AllTests {
 
 		/* infra */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.edit.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.services.edit.tests.suites.AllTests"));
-		
+
 		/* uml */
 		// {oep}.diagram.common.tests
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.service.types.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.service.types.tests.suites.AllTests"));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.tools.tests.tests.AllTests.class));
 		// {oep}.diagram.clazz.tests
-		//		new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class)
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
 		//		,
 		//		// {oep}.sysml.tests
 		//		new PluginTestSuiteClass(SysmlAllTests.class)
