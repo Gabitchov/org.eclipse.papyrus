@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Extra plugins Tests
+Bundle-SymbolicName: org.eclipse.papyrus.tests.extra
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.tests.extra.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit;bundle-version="4.8.2",
+ org.eclipse.papyrus.infra.gmfdiag.css.tests;bundle-version="0.9.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
