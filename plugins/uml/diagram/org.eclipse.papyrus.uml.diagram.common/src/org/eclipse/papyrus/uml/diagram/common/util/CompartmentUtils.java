@@ -80,7 +80,11 @@ public class CompartmentUtils {
 	public static List<View> getAllCompartments(EditPart editpart, boolean includeTitleCompartment) {
 		List<View> compartments = new ArrayList<View>();
 		View notationView = ((GraphicalEditPart)editpart).getNotationView();
-		List<?> graphicalChildren = notationView.getPersistedChildren();
+		//before it looks for persistedChildren
+		//because we want to see compartment of stereotypes that are volatile
+		//wee have replace it by getChildreen
+		//List<?> graphicalChildren = notationView.getPersistedChildren();
+		List<?> graphicalChildren = notationView.getChildren();
 		String type = notationView.getType();
 
 		for(Object child : graphicalChildren) {
