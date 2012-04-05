@@ -22,6 +22,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
@@ -38,9 +42,16 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		if( editPart instanceof IPrimaryEditPart){
-			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		if(!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)){
+			
+			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
+			if( editPart instanceof IPrimaryEditPart){
+				editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+			}
+			
+			if(editPart instanceof NamedElementEditPart ){
+				editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+			}
 		}
 	}
 
@@ -55,12 +66,11 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 		}
 		GraphicalEditPart gep = (GraphicalEditPart)epOperation.getEditPart();
 		String diagramType = gep.getNotationView().getDiagram().getType();
-		if(ModelEditPart.MODEL_ID.equals(diagramType)) {
-			return true;
+		if(!ModelEditPart.MODEL_ID.equals(diagramType)) {
+			return false;
 		}
 
-
-		return false;
+		return true;
 	}
 
 
