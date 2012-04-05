@@ -54,6 +54,11 @@
         <bc:propertyRef key="papyrus.update.site"/>
       </rm:uri>
     </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}">
+        <bc:propertyRef key="papyrus.extra.update.site"/>
+      </rm:uri>
+    </rm:provider>
   </rm:searchPath>
     
   <!-- Orbit bundles -->
