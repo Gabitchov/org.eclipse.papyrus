@@ -74,23 +74,15 @@ public class AppliedStereotypePropertyEditorUtil {
 		if(!(result.contains(EQUAL))) {
 			result = result + VALUE_NULL;
 		}
-		if((property.getType().getName().equals("Integer")) || (property.getType().getName().equals("String"))) {
-
+		
+		if( result.contains(VALUE_NULL)){
 			return result;
+		
 		}
+		  if(("Integer".equals(property.getType().getName()))){
+			  return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
+		  }
 
-		// transform into editable String ie  word to "word"
-		if(property.getType().eClass().getName().equals("DataType") || property.getType().eClass().getName().equals("PrimitiveType")) {
-			if(!result.endsWith(VALUE_NULL)) {
-				result = result.replace(BRACKET_BEGIN, HOOK_BEGIN + QUOTE);
-				result = result.replace(BRAKET_END, QUOTE + HOOK_END);
-				result = result.replace(COMA, QUOTE + COMA + QUOTE);
-				if(!result.endsWith(BRAKET_END)) {
-					result = result.replace(EQUAL, EQUAL + QUOTE);
-					result = result + QUOTE;
-				}
-			}
-		}
 		return result;
 	}
 

@@ -36,6 +36,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class StereotypeUtil {
 
+	protected static final String QUOTE = "\"";
+
 	protected static final String SPACE_SEPARATOR = "#";
 
 	protected static final String EQUAL_SEPARATOR = "=";
@@ -558,10 +560,16 @@ public class StereotypeUtil {
 		if((property.getLower() != 0) || umlElement.getValue(stereotype, property.getName()) != null) {
 			if(property.isSetDefault() || umlElement.getValue(stereotype, property.getName()) != null) {
 				if(withDelimitator){
-					out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;
-					out= out.replace("[", "[\"");
-					out= out.replace("]", "\"]");
-					out= out.replace(", ", "\",\"");
+					String value= ""+umlElement.getValue(stereotype, property.getName());
+					out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
+					if(value.contains("[")){
+					out= out.replace("[", "["+QUOTE);
+					out= out.replace("]", QUOTE+"]");
+					out= out.replace(", ", QUOTE+","+QUOTE);
+					}
+					else{
+						out = property.getName() + EQUAL_SEPARATOR +QUOTE +value+QUOTE + PROPERTY_VALUE_SEPARATOR;
+					}
 				}
 				else{
 					out = property.getName() + EQUAL_SEPARATOR + umlElement.getValue(stereotype, property.getName()) + PROPERTY_VALUE_SEPARATOR;}
