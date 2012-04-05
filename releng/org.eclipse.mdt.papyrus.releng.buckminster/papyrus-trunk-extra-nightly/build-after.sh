@@ -29,6 +29,7 @@ mkdir -p "tmp/extra"
 # create the update site zip
 (cd $p2UpdateSiteDir && zip -r $updateZipName *)
 mv $p2UpdateSiteDir/$updateZipName "tmp/extra"
+mv $p2UpdateSiteDir updateSite
 
 mv revision.txt "tmp/extra"
 
