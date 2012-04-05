@@ -5,7 +5,7 @@
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?tests?$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\..*?feature$" searchPathRef="papyrusTests"/>
-  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?feature$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?feature$" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="papyrusBinaries"/>
   
