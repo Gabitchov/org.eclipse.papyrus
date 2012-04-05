@@ -4,7 +4,8 @@
   <rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?tests?$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra" searchPathRef="papyrusTests"/>
-  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\..*?feature$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\..*?feature$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*?feature$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="papyrusBinaries"/>
   
@@ -58,8 +59,6 @@
       <rm:uri format="{0}">
         <bc:propertyRef key="papyrus.update.site"/>
       </rm:uri>
-    </rm:provider>
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <rm:uri format="{0}">
         <bc:propertyRef key="papyrus.extra.update.site"/>
       </rm:uri>
