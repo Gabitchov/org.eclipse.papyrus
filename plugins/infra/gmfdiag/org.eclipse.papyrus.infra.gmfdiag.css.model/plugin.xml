@@ -18,6 +18,6 @@
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization
             file="Model/StyleSheets.uiCustom"
-            loadByDefault="true"/>
+            loadByDefault="false"/>
    </extension>
 </plugin>
