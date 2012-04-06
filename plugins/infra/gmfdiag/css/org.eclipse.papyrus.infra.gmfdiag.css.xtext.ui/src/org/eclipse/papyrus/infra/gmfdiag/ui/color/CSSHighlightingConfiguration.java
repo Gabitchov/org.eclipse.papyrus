@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.ui.color;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcceptor;
@@ -26,7 +27,7 @@ public class CSSHighlightingConfiguration extends DefaultHighlightingConfigurati
 
 	public TextStyle colorTextStyle() {
 		TextStyle textStyle = new TextStyle();
-		textStyle.setColor(new RGB(0, 0, 0)); //TODO
+		textStyle.setColor(new RGB(255, 98, 176));
 		return textStyle;
 	}
 
@@ -68,7 +69,8 @@ public class CSSHighlightingConfiguration extends DefaultHighlightingConfigurati
 
 	public TextStyle fontTextStyle() {
 		TextStyle textStyle = new TextStyle();
-		textStyle.setColor(new RGB(0, 0, 0)); //TODO
+		textStyle.setColor(new RGB(1, 1, 1));
+		textStyle.setStyle(SWT.ITALIC);
 		return textStyle;
 	}
 

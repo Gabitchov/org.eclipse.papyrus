@@ -1,8 +1,13 @@
 package org.eclipse.papyrus.infra.gmfdiag.ui.color;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.e4.ui.css.core.css2.CSS2ColorHelper;
+import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
@@ -13,6 +18,8 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 public class CSSSemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
 
 	private final Map<String, String> ruleNameToID = new HashMap<String, String>();
+
+	private final Set<String> fontNames = new HashSet<String>();
 
 	public CSSSemanticHighlightingCalculator() {
 		ruleNameToID.put("CSSId", CSSHighlightingConfiguration.CSS_ID);
@@ -40,6 +47,13 @@ public class CSSSemanticHighlightingCalculator implements ISemanticHighlightingC
 		ruleNameToID.put("Angle", CSSHighlightingConfiguration.NUMBER_ID);
 		ruleNameToID.put("Time", CSSHighlightingConfiguration.NUMBER_ID);
 		ruleNameToID.put("Number", CSSHighlightingConfiguration.NUMBER_ID);
+
+		//Available fonts
+
+		FontData[] fontData = Display.getCurrent().getFontList(null, true);
+		for(FontData data : fontData) {
+			fontNames.add(data.getName().toLowerCase());
+		}
 	}
 
 	public void provideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
@@ -52,14 +66,14 @@ public class CSSSemanticHighlightingCalculator implements ISemanticHighlightingC
 			if(node.getGrammarElement() instanceof RuleCall) {
 				RuleCall ruleCall = (RuleCall)node.getGrammarElement();
 				String name = ruleCall.getRule().getName();
-				if("Name".equals(name)) {
+				if("Name".equals(name)) { //TODO: Strings should also be taken into account
 					//Check the known elements (fonts, colors, ...)
-					String value = ""; //TODO
+					String value = node.getText();
 					if(isFont(value)) {
-						acceptor.addPosition(node.getOffset(), node.getLength(), CSSHighlightingConfiguration.COLOR);
+						acceptor.addPosition(node.getOffset(), node.getLength(), CSSHighlightingConfiguration.FONT);
 						continue;
 					} else if(isColor(value)) {
-						acceptor.addPosition(node.getOffset(), node.getLength(), CSSHighlightingConfiguration.FONT);
+						acceptor.addPosition(node.getOffset(), node.getLength(), CSSHighlightingConfiguration.COLOR);
 						continue;
 					}
 				}
@@ -72,10 +86,10 @@ public class CSSSemanticHighlightingCalculator implements ISemanticHighlightingC
 	}
 
 	public boolean isFont(String value) {
-		return false; //TODO
+		return fontNames.contains(value.toLowerCase());
 	}
 
 	public boolean isColor(String value) {
-		return false; //TODO
+		return CSS2ColorHelper.isColorName(value.toLowerCase());
 	}
 }
