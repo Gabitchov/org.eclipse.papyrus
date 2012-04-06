@@ -274,7 +274,7 @@
 		<buckminster command="junit">
 			<cmdargs>
 				<arg value="-l" />
-				<arg value="org.eclipse.papyrus.tests.extra/ALLTests-extra.launch" />
+				<arg value="org.eclipse.papyrus.tests.extra/AllTests-extra.launch" />
 				<arg value="-o" />
 				<arg value="${result}/testresults/xml/testReport.xml" />
 				<arg value="--terseXML" />
