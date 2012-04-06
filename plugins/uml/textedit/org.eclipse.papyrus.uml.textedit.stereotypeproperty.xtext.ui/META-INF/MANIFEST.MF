@@ -25,8 +25,7 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;visibi
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.profile;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.alf;bundle-version="0.9.0",
- org.apache.log4j.source;bundle-version="1.2.15"
+ org.eclipse.papyrus.uml.alf;bundle-version="0.9.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist,
