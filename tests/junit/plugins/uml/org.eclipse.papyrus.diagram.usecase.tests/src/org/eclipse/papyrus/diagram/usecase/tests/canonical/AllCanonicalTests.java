@@ -24,6 +24,7 @@ import org.junit.runners.Suite.SuiteClasses;
 // top nodes
 TestUseCaseTopNode.class,
 // child nodes
+TestUseCaseChildNodeForPackage.class
 })
 public class AllCanonicalTests {
 
