@@ -12,6 +12,7 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.common.modelresource;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -29,8 +30,6 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 	/**
 	 * File extension used for notation.
 	 */
-	//	public static final String NOTATION_FILE_EXTENSION = "nattable"; //$NON-NLS-1$
-
 	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
 	/**
@@ -40,9 +39,9 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 
 
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public EMFCompareEditorModel() {
 
@@ -51,9 +50,9 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 
 	/**
 	 * Get the file extension used for this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -63,9 +62,9 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 
 	/**
 	 * Get the identifier used to register this model.
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -76,7 +75,7 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 
 	/**
 	 * Add a new initialized {@link PapyrusEMFCompareInstance} to the model.
-	 *
+	 * 
 	 * @param compareInstance
 	 *        The compareInstance to add.
 	 */
@@ -86,7 +85,7 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 
 	/**
 	 * Add a new initialized {@link PapyrusEMFCompareInstance} to the model.
-	 *
+	 * 
 	 * @param compareInstance
 	 *        The compareInstance to add.
 	 */
@@ -95,9 +94,9 @@ public class EMFCompareEditorModel extends AbstractModelWithSharedResource<Papyr
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */

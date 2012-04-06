@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.Activator;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
+import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
@@ -62,7 +63,7 @@ public abstract class AbstractEMFCompareEditorFactory extends AbstractEditorFact
 	 *        the type of editor
 	 */
 	public AbstractEMFCompareEditorFactory(final Class<?> editorClass, final String type) {
-		super(editorClass,type);
+		super(editorClass, type);
 	}
 
 	/**
@@ -97,7 +98,7 @@ public abstract class AbstractEMFCompareEditorFactory extends AbstractEditorFact
 	 * 
 	 * 
 	 */
-	class CompareEditorModel implements IEditorModel {
+	private class CompareEditorModel implements IEditorModel {
 
 
 		/**
@@ -203,7 +204,7 @@ public abstract class AbstractEMFCompareEditorFactory extends AbstractEditorFact
 		 */
 		public Image getTabIcon() {
 			ImageDescriptor imageDescriptor = getEditorDescriptor().getIcon();
-			if(imageDescriptor == null){
+			if(imageDescriptor == null) {
 				return null;
 			}
 			return imageDescriptor.createImage();
@@ -217,7 +218,7 @@ public abstract class AbstractEMFCompareEditorFactory extends AbstractEditorFact
 		 * 
 		 */
 		public String getTabTitle() {
-			return rawModel.getName();
+			return EMFCompareUtils.getCompareEditorTitle(editor, rawModel);
 		}
 	}
 }

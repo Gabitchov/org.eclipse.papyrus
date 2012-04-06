@@ -30,11 +30,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -67,6 +68,18 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	}
 
 	/**
+	 * Set the labelProvider for the viewer
+	 * 
+	 * @param labelProvider
+	 *        the labelProvider
+	 */
+	public void setLabelProvider(final ILabelProviderRefreshingViewer labelProvider) {
+		this.labelProvider = labelProvider;
+		this.labelProvider.registerViewer(diffTab);
+		diffTab.setLabelProvider((IBaseLabelProvider)labelProvider);
+	}
+
+	/**
 	 * 
 	 * @see org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder#createModelContentMergeDiffTab(org.eclipse.swt.widgets.Composite)
 	 * 
@@ -77,10 +90,6 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
 		diffTab = new ModelContentMergeDiffTab(parent, partSide, this);
 		diffTab.setContentProvider(createDiffTabContentProvider());
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(activeEditor);
-		labelProvider.registerViewer(diffTab);
-		diffTab.setLabelProvider((IBaseLabelProvider)labelProvider);
 		return diffTab;
 
 	}
@@ -92,9 +101,11 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	 */
 	@Override
 	public void dispose() {
-		labelProvider.unregisterViewer(diffTab);
-		diffTab = null;
-		labelProvider = null;
+		if(labelProvider != null) {
+			labelProvider.unregisterViewer(diffTab);
+			diffTab = null;
+			labelProvider = null;
+		}
 		super.dispose();
 	}
 

@@ -15,10 +15,12 @@ package org.eclipse.papyrus.infra.emf.compare.ui.content.viewer;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.IViewerCreator;
-import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
-import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
+import org.eclipse.compare.internal.CompareEditor;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorPart;
 
 /**
  * 
@@ -45,6 +47,8 @@ public class PapyrusCustomizableContentMergeViewerCreator implements IViewerCrea
 	 * @return
 	 */
 	public Viewer createViewer(Composite parent, CompareConfiguration config) {
-		return new PapyrusCustomizableModelContentMergeViewer(parent, config);
+		final IEditorPart editor = EditorHelper.getCurrentEditor();//the current CompareEditor
+		Assert.isTrue(editor instanceof CompareEditor);
+		return new PapyrusCustomizableModelContentMergeViewer(parent, config, editor);
 	}
 }

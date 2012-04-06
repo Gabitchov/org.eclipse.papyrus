@@ -58,8 +58,8 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 	 * @param parent
 	 * @param config
 	 */
-	public PapyrusTransactionalModelContentMergeViewer(final Composite parent, final CompareConfiguration config) {
-		super(parent, config);
+	public PapyrusTransactionalModelContentMergeViewer(final Composite parent, final CompareConfiguration config, final IEditorPart editor) {
+		super(parent, config, editor);
 	}
 
 	/**

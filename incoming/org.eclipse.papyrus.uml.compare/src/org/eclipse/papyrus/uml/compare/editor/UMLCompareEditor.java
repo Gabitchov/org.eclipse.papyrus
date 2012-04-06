@@ -19,8 +19,8 @@ import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.
 
 
 
-public class UMLCompareEditor extends EMFCompareEditor{
-	
+public class UMLCompareEditor extends EMFCompareEditor {
+
 	/** the type of the editor */
 	public static final String EDITOR_TYPE = "PapyrusUMLCompare"; //$NON-NLS-1$
 

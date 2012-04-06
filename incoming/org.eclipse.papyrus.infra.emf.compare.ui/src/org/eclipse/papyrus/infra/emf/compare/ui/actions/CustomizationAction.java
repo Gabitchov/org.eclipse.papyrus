@@ -16,13 +16,17 @@ package org.eclipse.papyrus.infra.emf.compare.ui.actions;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsDialog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
@@ -76,8 +80,11 @@ public class CustomizationAction extends Action {
 	//FIXME duplicate in the table ?
 	@Override
 	public void run() {
+		IEditorPart currentEditor = EditorHelper.getCurrentEditor();
+		if(currentEditor instanceof IMultiPageEditorPart) {
+			currentEditor = ((IMultiPageEditorPart)currentEditor).getActiveEditor();
+		}
 
-		final IEditorPart currentEditor = EditorHelper.getCurrentEditor();
 		final CustomizationManager customizationManager = LabelProviderUtil.INSTANCE.getCustomizationManager(currentEditor);
 		final List<MetamodelView> initiallySelectedCustomizations = customizationManager.getRegisteredCustomizations();
 		final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(Display.getCurrent().getActiveShell(), initiallySelectedCustomizations, this.registeredMetamodel);
@@ -96,7 +103,11 @@ public class CustomizationAction extends Action {
 			}
 			customizationManager.loadCustomizations();
 		}
-		//we refresh the viewers in the editor
-		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(EditorHelper.getCurrentEditor())).refreshViewer();
+		if(currentEditor instanceof IPropertyChangeListener) {//implemented by CompareEditor
+			//we refresh the name of the tab in Papyrus
+			((IPropertyChangeListener)currentEditor).propertyChange(new PropertyChangeEvent(IAction.class, CompareEditorInput.PROP_TITLE, "", ""));
+		}
+		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(currentEditor)).refreshViewer();
+
 	}
 }

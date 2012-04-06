@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.emf.compare.common.factory.AbstractEMFCompareEd
 import org.eclipse.papyrus.uml.compare.editor.UMLCompareEditor;
 
 
-public class UMLCompareEditorFactory extends AbstractEMFCompareEditorFactory{
+public class UMLCompareEditorFactory extends AbstractEMFCompareEditorFactory {
 
 	/**
 	 * Constructor.

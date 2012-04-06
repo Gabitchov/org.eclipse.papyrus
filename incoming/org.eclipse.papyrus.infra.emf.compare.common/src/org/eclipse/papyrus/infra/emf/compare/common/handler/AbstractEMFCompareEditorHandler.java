@@ -49,10 +49,11 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractEMFCompareEditorHandler extends AbstractHandler {
 
 	final private String type;
-	
-	public AbstractEMFCompareEditorHandler(final String type){
+
+	public AbstractEMFCompareEditorHandler(final String type) {
 		this.type = type;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
@@ -72,10 +73,10 @@ public abstract class AbstractEMFCompareEditorHandler extends AbstractHandler {
 		Iterator<?> iter = ((IStructuredSelection)selection).iterator();
 		while(iter.hasNext()) {
 			Object current = iter.next();
-			if(current instanceof IAdaptable){
+			if(current instanceof IAdaptable) {
 				EObject tmp = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-				if(tmp!=null){
-					currentSelection.add(tmp);	
+				if(tmp != null) {
+					currentSelection.add(tmp);
 				}
 			}
 		}

@@ -55,10 +55,10 @@ public class EMFCompareUIUtils {
 			res = ((ModelCompareInput)input).getRightResource();
 			metamodels.addAll(EMFHelper.getMetamodels(res));
 
-//			List<DiffElement> diffs = ((ModelCompareInput)input).getDiffAsList();
-//			for(DiffElement current : diffs) {
-//				metamodels.add(current.eClass().getEPackage());
-//			}
+			//			List<DiffElement> diffs = ((ModelCompareInput)input).getDiffAsList();
+			//			for(DiffElement current : diffs) {
+			//				metamodels.add(current.eClass().getEPackage());
+			//			}
 		}
 		return metamodels;
 	}

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.ui.utils;
 
+import java.io.NotSerializableException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.EMFCompareLabelProvider;
 import org.eclipse.ui.IEditorPart;
@@ -68,11 +71,44 @@ public class LabelProviderUtil {
 	 *         the ILabelProvider associated to this editor
 	 */
 	public IBaseLabelProvider getLabelProviderFor(final IEditorPart editor/* , final Set<EPackage> packages */) {
+		if(editor instanceof IMultiPageEditorPart) {
+			/*
+			 * I set this exception because I think that we never want a customizable label provider for CoreMultiDiagramEditor.
+			 * We want a label provider for embedded editor (or eclipse editor)
+			 * -> when you get this exce^ption, it an error of the developper
+			 */
+			throw new IllegalArgumentException(NLS.bind("I can't provide a label provider for {0}.", IMultiPageEditorPart.class));
+		}
 		IBaseLabelProvider provider = labelProviderMap.get(editor);
 		if(provider == null) {
 			CustomizationManager customizationManager = getCustomizationManager(editor);
 			provider = new EMFCompareLabelProvider(customizationManager);
 			labelProviderMap.put(editor, provider);
+		}
+		return provider;
+	}
+
+	/**
+	 * 
+	 * @param editor
+	 *        an editor
+	 * @return
+	 *         the LabelProvider associated to this editor
+	 * @throws NullPointerException
+	 *         when no LabelProvider is associated to the editor
+	 */
+	public IBaseLabelProvider getExistingLabelProviderFor(final IEditorPart editor) throws NullPointerException {
+		if(editor instanceof IMultiPageEditorPart) {
+			/*
+			 * I set this exception because I think that we never want a customizable label provider for CoreMultiDiagramEditor.
+			 * We want a label provider for embedded editor (or eclipse editor)
+			 * -> when you get this exce^ption, it an error of the developper
+			 */
+			throw new IllegalArgumentException(NLS.bind("I can't provide a label provider for {0}.", IMultiPageEditorPart.class));
+		}
+		final IBaseLabelProvider provider = labelProviderMap.get(editor);
+		if(provider == null) {
+			throw new NullPointerException();
 		}
 		return provider;
 	}

@@ -38,6 +38,7 @@ import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionExcep
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.EMFCompareLabelProvider;
@@ -68,8 +69,21 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 	public String evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		final AdapterFactory adapter = AdapterUtils.getAdapterFactory();
 		final DiffElementItemProvider itemProvider = new DiffElementItemProvider(adapter);
-		final IEditorPart editor = EditorHelper.getCurrentEditor();
-		final EMFCompareLabelProvider labelProvider = (EMFCompareLabelProvider)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
+		IEditorPart editor = EditorHelper.getCurrentEditor();
+
+		if(editor instanceof IMultiPageEditorPart) {
+			editor = ((IMultiPageEditorPart)editor).getActiveEditor();
+		}
+
+		if(editor == null) {
+			return null;
+		}
+		EMFCompareLabelProvider labelProvider;
+		try {
+			labelProvider = (EMFCompareLabelProvider)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(editor);
+		} catch (NullPointerException e) {
+			return null;
+		}
 		String diffLabel = null;
 
 		if(context instanceof UpdateAttribute) { //comes from UpdateAttributeItemProvider
@@ -245,7 +259,7 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 		}
 		if(diffLabel == null) {
 			final String message = NLS.bind("{0} doesn't manage {1}", new Object[]{ this.getClass().getSimpleName(), context.getClass().getSimpleName() });//$NON-NLS-1$
-			Activator.log.warn(message); 
+			Activator.log.warn(message);
 			NotificationBuilder.createAsyncPopup(message).run();
 			// in this case the default Label will be displayed
 		}

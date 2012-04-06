@@ -28,12 +28,11 @@ import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.EMFCompareUIUtils;
+import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * 
@@ -52,6 +51,9 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 */
 	private ILabelProviderRefreshingViewer labelProvider;
 
+	/** the current editor */
+	private IEditorPart editor;
+
 	/**
 	 * 
 	 * Constructor.
@@ -60,8 +62,9 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * @param parent
 	 * @param compareConfiguration
 	 */
-	public PapyrusCustomizableParameterizedStructureMergeViewer(final Composite parent, final CompareConfiguration compareConfiguration) {
+	public PapyrusCustomizableParameterizedStructureMergeViewer(final Composite parent, final CompareConfiguration compareConfiguration, final IEditorPart editor) {
 		super(parent, compareConfiguration);
+		this.editor = editor;
 		setLabelProvider(createLabelProvider());
 	}
 
@@ -119,8 +122,7 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * @return
 	 */
 	protected LabelProvider createLabelProvider() {
-		final IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(activeEditor);
+		labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
 		labelProvider.registerViewer(this);
 		return (LabelProvider)labelProvider;
 	}

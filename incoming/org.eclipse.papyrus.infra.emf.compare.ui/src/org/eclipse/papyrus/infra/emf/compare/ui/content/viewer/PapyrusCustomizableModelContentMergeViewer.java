@@ -25,9 +25,12 @@ import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
+import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.EMFCompareUIUtils;
+import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorPart;
 
 /**
  * 
@@ -46,8 +49,10 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 	 * @param parent
 	 * @param config
 	 */
-	public PapyrusCustomizableModelContentMergeViewer(final Composite parent, final CompareConfiguration config) {
+	public PapyrusCustomizableModelContentMergeViewer(final Composite parent, final CompareConfiguration config, final IEditorPart editor) {
 		super(parent, config);
+		ILabelProviderRefreshingViewer labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
+		((PapyrusModelContentMergeTabFolder)leftPart).setLabelProvider(labelProvider);
 	}
 
 

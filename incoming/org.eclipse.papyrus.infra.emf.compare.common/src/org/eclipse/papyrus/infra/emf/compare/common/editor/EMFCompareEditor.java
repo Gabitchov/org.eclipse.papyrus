@@ -13,92 +13,152 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.common.editor;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-
 import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.internal.CompareEditor;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.compare.EMFCompareException;
-import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
-import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.service.DiffService;
-import org.eclipse.emf.compare.match.MatchOptions;
-import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
-import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
-import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.papyrus.infra.core.editor.PageMngrServiceFactory;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.Activator;
+import org.eclipse.papyrus.infra.emf.compare.common.editor.listener.CloseEditorTriggerListener;
+import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
+import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.IReusableEditor;
 import org.eclipse.ui.ISaveablesLifecycleListener;
 import org.eclipse.ui.ISaveablesSource;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.Saveable;
-import org.eclipse.ui.SaveablesLifecycleEvent;
-import org.eclipse.ui.part.EditorPart;
 
-//TODO the CompareEditor should be extented or Encapsulated?
-public class EMFCompareEditor implements IReusableEditor, ISaveablesSource, IPropertyChangeListener, ISaveablesLifecycleListener {
-
-	/** the type of the editor */
-//	public static final String EDITOR_TYPE = "PapyrusGenericCompareEditor"; //$NON-NLS-1$
+/**
+ * 
+ * This class provides an EMF-Compare Editor for Papyrus. This Editor has been created to be embedded in the Papyrus SashEditor
+ * 
+ */
+public class EMFCompareEditor extends CompareEditor implements IReusableEditor, ISaveablesSource, IPropertyChangeListener, ISaveablesLifecycleListener {
 
 	/** the service registry */
 	protected ServicesRegistry servicesRegistry;
 
-	protected CompareEditor compareEditor;
+	private CloseEditorTriggerListener closeListener;
+
+	protected PapyrusEMFCompareInstance rawModel;
+
+
+	/**
+	 * The compare editor input
+	 */
+	private CompareEditorInput input;
+
+	private PartNameSynchronizer synchronizer;
+
+	/**
+	 * 
+	 * @see org.eclipse.compare.internal.CompareEditor#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
+	 * 
+	 * @param event
+	 */
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		if(event.getSource() == IAction.class && event.getProperty() == CompareEditorInput.PROP_TITLE) {
+			//the CustomizationAction of the viewer sent this refresh
+			setPartName(EMFCompareUtils.getCompareEditorTitle(EMFCompareEditor.this, rawModel));
+		} else {
+			super.propertyChange(event);
+		}
+	}
 
 	/**
 	 * @param servicesRegistry
+	 *        the service registry
 	 * @param rawModel
+	 *        the raw model
 	 * 
 	 */
 	public EMFCompareEditor(ServicesRegistry servicesRegistry, final PapyrusEMFCompareInstance rawModel) {
-		super();
 		this.servicesRegistry = servicesRegistry;
-		compareEditor = new CompareEditor();
+		this.rawModel = rawModel;
+		this.synchronizer = new PartNameSynchronizer(rawModel);
 		ComparisonSnapshot snapshot = doContentCompare(rawModel.getLeft(), rawModel.getRight());
-		//				CompareUI.openCompareEditor(new ModelCompareEditorInput(snapshot));
-		//				openCompareEditor(input, true);
-		//				openCompareEditorOnPage(input, null, activate);
-		//				page.openEditor(input, COMPARE_EDITOR, activate);
-		//				CompareUIPlugin plugin= CompareUIPlugin.getDefault();
-		//				if (plugin != null)
-		//					plugin.openCompareEditor(input, page, null, activate);
-		//				
-		//				IWorkbenchPage page2 = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-
-		this.input = new ModelCompareEditorInput(snapshot);
+		this.input = createModelCompareEditorInput(snapshot);
+		addListeners();
 	}
 
-
-	public void setCompareEditor(final CompareEditor compareEditor) {
-		this.compareEditor = compareEditor;
+	/**
+	 * 
+	 * @param left
+	 *        the left eobject
+	 * @param right
+	 *        the rihgt eobject
+	 * @return
+	 *         the ComparisinSnapshot
+	 */
+	protected ComparisonSnapshot doContentCompare(final EObject left, final EObject right) {
+		return EMFCompareUtils.doContentCompare(left, right);
 	}
 
-	private CompareEditorInput input;
+	protected void addListeners() {
+		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
+			TransactionalEditingDomain domain = null;
+			try {
+				domain = EMFCompareEditor.this.servicesRegistry.getService(TransactionalEditingDomain.class);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+
+			closeListener = new CloseEditorTriggerListener(this.rawModel, this.servicesRegistry);
+			domain.addResourceSetListener(closeListener);
+		}
+	}
+
+	protected void removeListeners() {
+		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
+			TransactionalEditingDomain domain = null;
+			try {
+				domain = EMFCompareEditor.this.servicesRegistry.getService(TransactionalEditingDomain.class);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+
+			domain.removeResourceSetListener(closeListener);
+		}
+	}
+
+	protected ISashWindowsContainer getISashWindowsContainer() {
+		ISashWindowsContainer container = null;
+		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
+			try {
+				container = ServiceUtils.getInstance().getISashWindowsContainer(this.servicesRegistry);
+			} catch (ServiceException e) {
+				Activator.log.error("I can't get the  ISashWindowsContainer to add a listener on it", e);
+			}
+		}
+		return container;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor#createModelCompareEditorInput(org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot)
+	 * 
+	 * @param snapshot
+	 * @return
+	 */
+	protected ModelCompareEditorInput createModelCompareEditorInput(ComparisonSnapshot snapshot) {
+		return EMFCompareUtils.createModelCompareEditorInput(snapshot, this);
+	}
+
 
 
 	/**
@@ -111,148 +171,117 @@ public class EMFCompareEditor implements IReusableEditor, ISaveablesSource, IPro
 	 */
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		if(input instanceof CompareEditorInput) {
-			this.compareEditor.init(site, input);
+			super.init(site, input);
 		} else {
-			this.compareEditor.init(site, this.input);
+			super.init(site, this.input);
 		}
-
-	}
-
-	public void handleLifecycleEvent(SaveablesLifecycleEvent event) {
-		this.compareEditor.handleLifecycleEvent(event);
-
-	}
-
-	public void propertyChange(PropertyChangeEvent event) {
-		this.compareEditor.propertyChange(event);
-
-	}
-
-	public Saveable[] getSaveables() {
-		return this.compareEditor.getSaveables();
-	}
-
-	public Saveable[] getActiveSaveables() {
-		return this.compareEditor.getActiveSaveables();
-	}
-
-	public void doSave(IProgressMonitor monitor) {
-		this.compareEditor.doSave(monitor);
-
-	}
-
-	public void doSaveAs() {
-		this.compareEditor.doSaveAs();
-
-	}
-
-	public boolean isDirty() {
-		return this.compareEditor.isDirty();
-	}
-
-	public boolean isSaveAsAllowed() {
-		return this.compareEditor.isDirty();
-	}
-
-	public void createPartControl(Composite parent) {
-		this.compareEditor.createPartControl(parent);
-
-	}
-
-	public void setFocus() {
-		this.compareEditor.setFocus();
-	}
-
-	public IEditorInput getEditorInput() {
-		return this.compareEditor.getEditorInput();
-	}
-
-	public IEditorSite getEditorSite() {
-		return this.compareEditor.getEditorSite();
-	}
-
-	public void addPropertyListener(IPropertyListener listener) {
-		this.compareEditor.addPropertyListener(listener);
 
 	}
 
 	public void dispose() {
-		this.compareEditor.dispose();
-		int i=0;
-		i++;
-		//TODO : remove the listener on the partService
+		removeListeners();
+		super.dispose();
 	}
 
-	public IWorkbenchPartSite getSite() {
-		return this.compareEditor.getSite();
+	@Override
+	public void setFocus() {
+		//I refresh the viewer here, because the EMF queries for name, ... are called during the creation of the editor, and
+		//it is not the correct Editor which is used by these queries to get the correct label provider
+		//
+		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(this)).refreshViewer();
+		super.setFocus();
 	}
 
-	public String getTitle() {
-		return this.compareEditor.getTitle();
-	}
+	/**
+	 * 
+	 * A class taking in charge the synchronization of the partName and the right/left elements.
+	 * When a name change, the other is automatically updated.
+	 * 
+	 * @author vincent lorenzo
+	 *         adapted class from UmlGmfDiagramEditor
+	 */
+	public class PartNameSynchronizer {
 
-	public Image getTitleImage() {
-		return this.compareEditor.getTitleImage();
-	}
+		/** the papyrus table */
+		private PapyrusEMFCompareInstance compareInstance;
 
-	public String getTitleToolTip() {
-		return this.compareEditor.getTitleToolTip();
-	}
+		/**
+		 * Listener on diagram name change.
+		 */
+		private final Adapter tableNameListener = new Adapter() {
 
-	public void removePropertyListener(IPropertyListener listener) {
-		this.compareEditor.removePropertyListener(listener);
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
+			 * 
+			 * @param notification
+			 */
+			public void notifyChanged(final Notification notification) {
+				setPartName(EMFCompareUtils.getCompareEditorTitle(EMFCompareEditor.this, rawModel));
+			}
 
-	}
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#getTarget()
+			 * 
+			 * @return
+			 */
+			public Notifier getTarget() {
+				return null;
+			}
 
-	public Object getAdapter(Class adapter) {
-		return this.compareEditor.getAdapter(adapter);
-	}
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#setTarget(org.eclipse.emf.common.notify.Notifier)
+			 * 
+			 * @param newTarget
+			 */
+			public void setTarget(final Notifier newTarget) {
+			}
 
-	public boolean isSaveOnCloseNeeded() {
-		return this.compareEditor.isSaveOnCloseNeeded();
-	}
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#isAdapterForType(java.lang.Object)
+			 * 
+			 * @param type
+			 * @return
+			 */
+			public boolean isAdapterForType(final Object type) {
+				return false;
+			}
 
+		};
 
-	public void setInput(IEditorInput input) {
-		this.compareEditor.setInput(input);
-	}
-
-	protected ComparisonResourceSnapshot doContentCompare(final EObject left, final EObject right) {
-		final ComparisonResourceSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSnapshot();
-
-		try {
-			PlatformUI.getWorkbench().getProgressService().busyCursorWhile(new IRunnableWithProgress() {
-
-				public void run(IProgressMonitor monitor) throws InterruptedException {
-					final Map<String, Object> options = new EMFCompareMap<String, Object>();
-					options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
-					options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left.eResource(), right.eResource()));
-					options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
-					options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
-
-					final MatchModel match = MatchService.doContentMatch(left, right, options);
-					DiffModel diff = DiffService.doDiff(match);
-					//						final MatchModel match = contentMatch(left, right, monitor);
-					//						final DiffModel diff = contentDiff(left, right, match);
-
-					snapshot.setDiff(diff);
-					snapshot.setMatch(match);
-
-				}
-
-			});
-		} catch (final InterruptedException e) {
-			Activator.log.error(e);
-		} catch (final EMFCompareException e) {
-			Activator.log.error(e);
-		} catch (final InvocationTargetException e) {
-			Activator.log.error(e);
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param diagram
+		 */
+		public PartNameSynchronizer(final PapyrusEMFCompareInstance compareInstance) {
+			setCompare(compareInstance);
 		}
 
-		return snapshot;
+		/**
+		 * Change the associated diagram.
+		 * 
+		 * @param papyrusTable
+		 */
+		public void setCompare(final PapyrusEMFCompareInstance compareInstance) {
+			// Remove from old diagram, if any
+			if(this.compareInstance != null) {
+				compareInstance.getLeft().eAdapters().remove(this.tableNameListener);
+				compareInstance.getRight().eAdapters().remove(this.tableNameListener);
+			}
+			// Set new table
+			this.compareInstance = compareInstance;
+
+			// Listen to name change
+			compareInstance.getLeft().eAdapters().add(this.tableNameListener);
+			compareInstance.getRight().eAdapters().add(this.tableNameListener);
+
+		}
 	}
 
-	
-	
 
 }

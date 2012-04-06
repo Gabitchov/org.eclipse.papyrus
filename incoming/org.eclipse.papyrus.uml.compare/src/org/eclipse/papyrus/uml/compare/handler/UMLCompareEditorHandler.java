@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.compare.handler;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -22,7 +21,9 @@ import org.eclipse.papyrus.infra.emf.compare.common.handler.AbstractEMFCompareEd
 import org.eclipse.papyrus.uml.compare.editor.UMLCompareEditor;
 import org.eclipse.uml2.uml.Element;
 
-
+/**
+ * The handler for the UML Compare Editor
+ */
 public class UMLCompareEditorHandler extends AbstractEMFCompareEditorHandler {
 
 	public UMLCompareEditorHandler() {
@@ -32,7 +33,7 @@ public class UMLCompareEditorHandler extends AbstractEMFCompareEditorHandler {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.emf.compare.common.handler.AbstractEMFCompareEditorHandler#getSelection()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -46,4 +47,14 @@ public class UMLCompareEditorHandler extends AbstractEMFCompareEditorHandler {
 		return umlSelection;
 	}
 
+	@Override
+	public boolean isEnabled() {
+		boolean enabled = super.isEnabled();
+		if(enabled) {
+			EObject left = getSelection().get(0);
+			EObject right = getSelection().get(1);
+			return left.getClass() == right.getClass();
+		}
+		return false;
+	}
 }
