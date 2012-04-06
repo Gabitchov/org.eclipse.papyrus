@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
+import org.eclipse.papyrus.diagram.tests.canonical.TestTopNode;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.junit.Test;
 
@@ -22,7 +25,10 @@ import org.junit.Test;
  * The Class TestClassDiagramTopNode.
  */
 public class TestClassDiagramTopNode extends TestTopNode {
-
+	@Override
+	protected ICreationCommand getDiagramCommandCreation() {
+		return  new CreateClassDiagramCommand();
+	}
 	
 	/**
 	 * Test to manage component.

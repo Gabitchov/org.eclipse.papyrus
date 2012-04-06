@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.test.canonical;
+package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -41,7 +40,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * The Class TestChildLabel.
  */
-public abstract class TestChildLabel extends AbstractPapyrusTestCase {
+public abstract class TestChildLabel extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
 
 
 	/** The Constant CREATION. */

@@ -13,6 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
+import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.junit.Test;
 
@@ -24,6 +29,10 @@ import org.junit.Test;
 public class TestClassDiagramChildNode extends TestChildNode {
 
 	
+	@Override
+	protected CreateViewRequest createViewRequestShapeContainer() {
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
+	}
 	/**
 	 * Test to manage component.
 	 */
@@ -110,6 +119,10 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	@Test
 	public void testToManageComment() {
 		testToManageChildNode(UMLElementTypes.Comment_3028, UMLElementTypes.Package_3009);
+	}
+	@Override
+	protected ICreationCommand getDiagramCommandCreation() {
+		return  new CreateClassDiagramCommand();
 	}
 	
 }

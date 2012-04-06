@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
+import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.junit.Test;
 
@@ -23,6 +26,10 @@ import org.junit.Test;
 public class TestClassDiagramLink extends TestLink {
 
 	
+	@Override
+	protected ICreationCommand getDiagramCommandCreation() {
+		return  new CreateClassDiagramCommand();
+	}
 	/**
 	 * Test to manage component.
 	 */

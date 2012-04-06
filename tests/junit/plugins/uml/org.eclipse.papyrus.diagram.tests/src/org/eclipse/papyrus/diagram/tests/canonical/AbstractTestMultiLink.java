@@ -11,12 +11,10 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.clazz.test.canonical;
+package org.eclipse.papyrus.diagram.tests.canonical;
 
 import java.util.ArrayList;
 
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
@@ -37,13 +35,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
-import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Relationship;
 
@@ -372,6 +367,8 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 		return connectionRequest;
 	}
 
+	
+	protected abstract CreateViewRequest createViewRequestShapeContainer(); 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.test.canonical.AbstractPapyrusTestCase#setUp()
 	 *
@@ -382,7 +379,7 @@ public abstract class AbstractTestMultiLink extends AbstractPapyrusTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 
-		CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_2008, getDiagramEditPart().getDiagramPreferencesHint());
+		CreateViewRequest requestcreation=createViewRequestShapeContainer();
 		//1st node
 		requestcreation.setLocation(new Point(10,10));
 		Command command=getDiagramEditPart().getCommand(requestcreation);

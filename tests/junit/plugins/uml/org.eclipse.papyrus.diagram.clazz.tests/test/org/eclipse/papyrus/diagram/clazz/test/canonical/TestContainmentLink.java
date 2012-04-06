@@ -32,12 +32,18 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.tests.canonical.TestLink;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.uml2.uml.Element;
 
 
 public class TestContainmentLink extends TestLink {
 
-
+	@Override
+	protected ICreationCommand getDiagramCommandCreation() {
+		return  new CreateClassDiagramCommand();
+	}
 	/**
 	 * Test view deletion.
 	 * 
