@@ -29,14 +29,14 @@
   <rm:searchPath name="papyrusTests">
   
     <rm:provider componentTypes="eclipse.feature" readerType="local">
-      <rm:uri format="{0}/features/papyrus-main-features/{1}">
+      <!-- rm:uri format="{0}/features/papyrus-main-features/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
       <rm:uri format="{0}/features/papyrus-extra-features/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
+      </rm:uri-->
       <rm:uri format="{0}/features/papyrus-tests-extra-features/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
@@ -61,6 +61,9 @@
       <rm:uri format="{0}">
         <bc:propertyRef key="papyrus.update.site"/>
       </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <rm:uri format="{0}">
         <bc:propertyRef key="papyrus.extra.update.site"/>
       </rm:uri>
