@@ -110,8 +110,11 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 	public void setActiveEditor(IEditorPart part) {
 		super.setActiveEditor(part);
 		for(EditorActionBarContributor contributor : contributors) {
-			contributor.setActiveEditor(part);
+			if(part != null) {
+				contributor.setActiveEditor(part);
+			}
 		}
+
 	}
 
 }
