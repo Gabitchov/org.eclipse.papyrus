@@ -34,6 +34,8 @@ intermediate property UMLmm::STEREOTYPE_JAVA_NAMED_ELEMENT : String;
 intermediate property UMLmm::STEREOTYPE_JAVA_GEN : String;
 /** Apply to any Types */
 intermediate property UMLmm::STEREOTYPE_JAVA_CLASS : String;
+intermediate property UMLmm::STEREOTYPE_JAVA_METHOD : String;
+intermediate property UMLmm::STEREOTYPE_JAVA_PROPERTY : String;
 intermediate property UMLmm::STEREOTYPE_JAVA_PROJECT : String;
 intermediate property UMLmm::STEREOTYPE_JAVA_SRC_FOLDER : String;
 intermediate property UMLmm::STEREOTYPE_JAVA_PACKAGE : String;
@@ -60,6 +62,8 @@ main() {
   uml.STEREOTYPE_JAVA_NAMED_ELEMENT := "java::JavaNamedElement";
   uml.STEREOTYPE_JAVA_GEN := "java::JavaGen";
   uml.STEREOTYPE_JAVA_CLASS := "java::JavaClass";
+  uml.STEREOTYPE_JAVA_METHOD := "java::JavaMethod";
+  uml.STEREOTYPE_JAVA_PROPERTY := "java::JavaProperty";
   uml.STEREOTYPE_JAVA_PROJECT := "java::JavaProject";
   uml.STEREOTYPE_JAVA_SRC_FOLDER := "java::JavaSrcFolder";
   uml.STEREOTYPE_JAVA_PACKAGE := "java::JavaPackage_";
@@ -131,19 +135,42 @@ query uml::Classifier::generalInterfaces() : Set(uml::Interface) {
 }
 
 /**
- * Get the ExplicitImports from a classifier.
- * Explicit imports are stored in a Stereotype.
+ * Get the class associated to a stereotype. This work for static profile.
  */
-query uml::Classifier::getJavaClassStereotype() : JavaProfile::JavaClass {
+query uml::NamedElement::getStereotype(stereotypeName:String) : OclAny {
 	
-	var stereotype := self.getAppliedStereotype(uml.STEREOTYPE_JAVA_CLASS);
+	var stereotype := self.getAppliedStereotype(stereotypeName);
 	if (stereotype.oclIsUndefined())
 	then
 	  return null
 	endif;
 	
-	var res:JavaProfile::JavaClass := self.getStereotypeApplication(stereotype).oclAsType(JavaProfile::JavaClass);
-	return res;
+	return self.getStereotypeApplication(stereotype);
+}
+
+
+/**
+ * Get the JavaClass stereotype from a classifier.
+ */
+query uml::Classifier::getJavaClassStereotype() : JavaProfile::JavaClass {
+	
+	return self.getStereotype(uml.STEREOTYPE_JAVA_CLASS).oclAsType(JavaProfile::JavaClass);
+}
+
+/**
+ * Get the JavaClass stereotype from a classifier.
+ */
+query uml::Operation::getJavaMethodStereotype() : JavaProfile::JavaMethod {
+	
+	return self.getStereotype(uml.STEREOTYPE_JAVA_METHOD).oclAsType(JavaProfile::JavaMethod);
+}
+
+/**
+ * Get the JavaClass stereotype from a classifier.
+ */
+query uml::Property::getJavaPropertyStereotype() : JavaProfile::JavaProperty {
+	
+	return self.getStereotype(uml.STEREOTYPE_JAVA_PROPERTY).oclAsType(JavaProfile::JavaProperty);
 }
 
 /**
@@ -874,8 +901,10 @@ abstract mapping uml::Classifier::mapTypeToType() : JDTmm::JDTType
 	explicitRequiredImports += self.elementImport.target[uml::Classifier] -> map transformTypeToType();
     // Explicit imports from stereotype
     var ext:JavaProfile::JavaClass := self.getJavaClassStereotype();
-    explicitRequiredImports += ext.explicitRequiredImports -> map transformTypeToType();
-    explicitPlainTextRequiredImports += ext.explicitPlainTextRequiredImports
+    if( ext <> null) then {
+      explicitRequiredImports += ext.explicitRequiredImports -> map transformTypeToType();
+      explicitPlainTextRequiredImports += ext.explicitPlainTextRequiredImports
+    } endif;
     
 }
 
@@ -917,7 +946,15 @@ mapping uml::Property::propertyToField() : JDTField
 	// Specify the default value
 	if(not self.defaultValue.isNull() ) then {
 		value := self.defaultValue.valueSpecificationToString();
-	} endif;		
+	} endif;	
+	
+		// Explicit imports from stereotype
+    var ext:JavaProfile::JavaProperty := self.getJavaPropertyStereotype();
+    if( ext <> null) then {
+      explicitRequiredImports += ext.explicitRequiredImports -> map transformTypeToType();
+      explicitPlainTextRequiredImports += ext.explicitPlainTextRequiredImports
+    } endif;
+		
 }
 
 /**
@@ -1008,6 +1045,14 @@ mapping uml::Operation::operationToMethod() : JDTMethod
     bodies := self.method -> map BehaviorToMethodBody();
 	// exception
 	exceptions := self.raisedException -> map transformTypeToType();
+	
+	// Explicit imports from stereotype
+    var ext:JavaProfile::JavaMethod := self.getJavaMethodStereotype();
+    if( ext <> null) then {
+      explicitRequiredImports += ext.explicitRequiredImports -> map transformTypeToType();
+      explicitPlainTextRequiredImports += ext.explicitPlainTextRequiredImports
+    } endif;
+	
 }
 
 mapping uml::Parameter::parameterToParameter() : jdtmm::JDTParameter 
