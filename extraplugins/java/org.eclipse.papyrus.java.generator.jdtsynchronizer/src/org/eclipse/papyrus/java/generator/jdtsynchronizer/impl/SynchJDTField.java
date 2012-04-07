@@ -29,6 +29,8 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.papyrus.java.generator.jdtsynchronizer.GeneratorPreference;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTField;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTJavaElement;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMethod;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor.JDTVisitorException;
 
 /**
@@ -111,6 +113,8 @@ public class SynchJDTField extends SynchJDTCommentable {
 			}
 
 
+			// Generate explicit imports
+			generateExplicitImports(field, itype);
 
 		} catch (JavaModelException e) {
 //			e.printStackTrace();
@@ -171,5 +175,35 @@ public class SynchJDTField extends SynchJDTCommentable {
 	protected List<String> getJavadocTags() {
 		// any javadoc tag
 		return null;
+	}
+
+	/**
+	 * Generate imports that are explicitly declared in the type
+	 * @param field2 The src type to be transformed
+	 * @param destType The jdt dest type to be generated
+	 * @throws JavaModelException 
+	 * @throws JDTVisitorException 
+	 */
+	private void generateExplicitImports(JDTField field2, IType destType) throws JDTVisitorException {
+		
+	
+		// Add explicit type 
+		for( JDTType anImport : field2.getExplicitRequiredImports()) {
+			try {
+				destType.getCompilationUnit().createImport(anImport.getQualifiedName(), null, null);
+			} catch (Exception e) {
+				propagateException(destType.getFullyQualifiedName() + "Can't add explicit import " + anImport.getQualifiedName(), e);
+			}
+		}
+		
+		// Add explicit plain text types
+		for( String anImport : field2.getExplicitPlainTextRequiredImports()) {
+			try {
+				destType.getCompilationUnit().createImport(anImport, null, null);
+			} catch (JavaModelException e) {
+				propagateException(destType.getFullyQualifiedName() + "Can't add explicit plain text import " + anImport, e);
+			}
+		}
+				
 	}
 }

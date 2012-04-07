@@ -66,6 +66,8 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference java.ecore#//JavaMethod/base_Operation"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute java.ecore#//JavaMethod/explicitPlainTextRequiredImports"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference java.ecore#//JavaMethod/explicitRequiredImports"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="java.ecore#//JavaParameter">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute java.ecore#//JavaParameter/isFinal"/>
@@ -82,6 +84,8 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute java.ecore#//JavaProperty/generateSetter"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute java.ecore#//JavaProperty/isStatic"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute java.ecore#//JavaProperty/explicitPlainTextRequiredImports"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference java.ecore#//JavaProperty/explicitRequiredImports"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="java.ecore#//PrimitiveType">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute java.ecore#//PrimitiveType/implementationClass"/>

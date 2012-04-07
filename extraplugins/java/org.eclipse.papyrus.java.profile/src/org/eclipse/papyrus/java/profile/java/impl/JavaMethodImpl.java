@@ -16,9 +16,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.java.profile.java.JavaMethod;
 import org.eclipse.papyrus.java.profile.java.JavaPackage;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
 
 /**
@@ -36,6 +38,7 @@ import org.eclipse.uml2.uml.Operation;
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#isConstructor <em>Is Constructor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#getBase_Operation <em>Base Operation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#getExplicitRequiredImports <em>Explicit Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -181,6 +184,16 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 	 * @ordered
 	 */
 	protected EList<String> explicitPlainTextRequiredImports;
+
+	/**
+	 * The cached value of the '{@link #getExplicitRequiredImports() <em>Explicit Required Imports</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExplicitRequiredImports()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Classifier> explicitRequiredImports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -382,6 +395,43 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Classifier> getExplicitRequiredImports() {
+		if (explicitRequiredImports == null) {
+			explicitRequiredImports = new EObjectResolvingEList<Classifier>(Classifier.class, this, JavaPackage.JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS);
+		}
+		return explicitRequiredImports;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Classifier getExplicitRequiredImports(String name) {
+		return getExplicitRequiredImports(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Classifier getExplicitRequiredImports(String name, boolean ignoreCase, EClass eClass) {
+		explicitRequiredImportsLoop: for (Classifier explicitRequiredImports : getExplicitRequiredImports()) {
+			if (eClass != null && !eClass.isInstance(explicitRequiredImports))
+				continue explicitRequiredImportsLoop;
+			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(explicitRequiredImports.getName()) : name.equals(explicitRequiredImports.getName())))
+				continue explicitRequiredImportsLoop;
+			return explicitRequiredImports;
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -402,6 +452,8 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 				return basicGetBase_Operation();
 			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
 				return getExplicitPlainTextRequiredImports();
+			case JavaPackage.JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS:
+				return getExplicitRequiredImports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -440,6 +492,10 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 				getExplicitPlainTextRequiredImports().clear();
 				getExplicitPlainTextRequiredImports().addAll((Collection<? extends String>)newValue);
 				return;
+			case JavaPackage.JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS:
+				getExplicitRequiredImports().clear();
+				getExplicitRequiredImports().addAll((Collection<? extends Classifier>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -476,6 +532,9 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
 				getExplicitPlainTextRequiredImports().clear();
 				return;
+			case JavaPackage.JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS:
+				getExplicitRequiredImports().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -504,6 +563,8 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 				return base_Operation != null;
 			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
 				return explicitPlainTextRequiredImports != null && !explicitPlainTextRequiredImports.isEmpty();
+			case JavaPackage.JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS:
+				return explicitRequiredImports != null && !explicitRequiredImports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

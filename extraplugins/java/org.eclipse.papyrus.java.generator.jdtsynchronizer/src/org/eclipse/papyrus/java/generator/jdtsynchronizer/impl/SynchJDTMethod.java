@@ -191,6 +191,8 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 
 			// add javadoc to method			
 			createJavaDocFor(imethod, imethod.getCompilationUnit(), method.getComment(), "");
+			// Add explicit imports
+			generateExplicitImports(method, itype);
 		} catch (JavaModelException e) {
 //			e.printStackTrace();
 //			throw new JDTVisitorException(e.getMessage(), e.getCause());
@@ -328,6 +330,38 @@ public class SynchJDTMethod extends SynchJDTCommentable {
 			System.err.println(msg);
 			e.printStackTrace();
 		}
+	}
+
+
+
+	/**
+	 * Generate imports that are explicitly declared in the type
+	 * @param srcType The src type to be transformed
+	 * @param destType The jdt dest type to be generated
+	 * @throws JavaModelException 
+	 * @throws JDTVisitorException 
+	 */
+	private void generateExplicitImports(JDTMethod srcType, IType destType) throws JDTVisitorException {
+		
+	
+		// Add explicit type 
+		for( JDTType anImport : srcType.getExplicitRequiredImports()) {
+			try {
+				destType.getCompilationUnit().createImport(anImport.getQualifiedName(), null, null);
+			} catch (Exception e) {
+				propagateException(destType.getFullyQualifiedName() + "Can't add explicit import " + anImport.getQualifiedName(), e);
+			}
+		}
+		
+		// Add explicit plain text types
+		for( String anImport : srcType.getExplicitPlainTextRequiredImports()) {
+			try {
+				destType.getCompilationUnit().createImport(anImport, null, null);
+			} catch (JavaModelException e) {
+				propagateException(destType.getFullyQualifiedName() + "Can't add explicit plain text import " + anImport, e);
+			}
+		}
+				
 	}
 
 }

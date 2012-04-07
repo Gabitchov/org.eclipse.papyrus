@@ -69,6 +69,7 @@ public class JavaMethodItemProvider
 			addIsConstructorPropertyDescriptor(object);
 			addBase_OperationPropertyDescriptor(object);
 			addExplicitPlainTextRequiredImportsPropertyDescriptor(object);
+			addExplicitRequiredImportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -245,6 +246,28 @@ public class JavaMethodItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Explicit Required Imports feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExplicitRequiredImportsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_JavaMethod_explicitRequiredImports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_JavaMethod_explicitRequiredImports_feature", "_UI_JavaMethod_type"),
+				 JavaPackage.Literals.JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

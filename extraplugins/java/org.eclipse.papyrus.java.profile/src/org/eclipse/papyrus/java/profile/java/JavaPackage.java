@@ -570,13 +570,22 @@ public interface JavaPackage extends EPackage {
 	int JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_METHOD_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int JAVA_METHOD_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaParameterImpl <em>Parameter</em>}' class.
@@ -788,13 +797,22 @@ public interface JavaPackage extends EPackage {
 	int JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_PROPERTY__EXPLICIT_REQUIRED_IMPORTS = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_PROPERTY_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int JAVA_PROPERTY_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -1402,6 +1420,17 @@ public interface JavaPackage extends EPackage {
 	EAttribute getJavaMethod_ExplicitPlainTextRequiredImports();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.profile.java.JavaMethod#getExplicitRequiredImports <em>Explicit Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Explicit Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaMethod#getExplicitRequiredImports()
+	 * @see #getJavaMethod()
+	 * @generated
+	 */
+	EReference getJavaMethod_ExplicitRequiredImports();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.profile.java.JavaParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1530,6 +1559,17 @@ public interface JavaPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJavaProperty_ExplicitPlainTextRequiredImports();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.profile.java.JavaProperty#getExplicitRequiredImports <em>Explicit Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Explicit Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaProperty#getExplicitRequiredImports()
+	 * @see #getJavaProperty()
+	 * @generated
+	 */
+	EReference getJavaProperty_ExplicitRequiredImports();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.profile.java.PrimitiveType <em>Primitive Type</em>}'.
@@ -1883,6 +1923,14 @@ public interface JavaPackage extends EPackage {
 		EAttribute JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = eINSTANCE.getJavaMethod_ExplicitPlainTextRequiredImports();
 
 		/**
+		 * The meta object literal for the '<em><b>Explicit Required Imports</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS = eINSTANCE.getJavaMethod_ExplicitRequiredImports();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1981,6 +2029,14 @@ public interface JavaPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = eINSTANCE.getJavaProperty_ExplicitPlainTextRequiredImports();
+
+		/**
+		 * The meta object literal for the '<em><b>Explicit Required Imports</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA_PROPERTY__EXPLICIT_REQUIRED_IMPORTS = eINSTANCE.getJavaProperty_ExplicitRequiredImports();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.

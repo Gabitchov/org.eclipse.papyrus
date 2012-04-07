@@ -435,6 +435,15 @@ public class JavaPackageImpl extends EPackageImpl implements JavaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getJavaMethod_ExplicitRequiredImports() {
+		return (EReference)javaMethodEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getJavaParameter() {
 		return javaParameterEClass;
 	}
@@ -536,6 +545,15 @@ public class JavaPackageImpl extends EPackageImpl implements JavaPackage {
 	 */
 	public EAttribute getJavaProperty_ExplicitPlainTextRequiredImports() {
 		return (EAttribute)javaPropertyEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getJavaProperty_ExplicitRequiredImports() {
+		return (EReference)javaPropertyEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -679,6 +697,7 @@ public class JavaPackageImpl extends EPackageImpl implements JavaPackage {
 		createEAttribute(javaMethodEClass, JAVA_METHOD__IS_CONSTRUCTOR);
 		createEReference(javaMethodEClass, JAVA_METHOD__BASE_OPERATION);
 		createEAttribute(javaMethodEClass, JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS);
+		createEReference(javaMethodEClass, JAVA_METHOD__EXPLICIT_REQUIRED_IMPORTS);
 
 		javaParameterEClass = createEClass(JAVA_PARAMETER);
 		createEAttribute(javaParameterEClass, JAVA_PARAMETER__IS_FINAL);
@@ -693,6 +712,7 @@ public class JavaPackageImpl extends EPackageImpl implements JavaPackage {
 		createEAttribute(javaPropertyEClass, JAVA_PROPERTY__GENERATE_SETTER);
 		createEAttribute(javaPropertyEClass, JAVA_PROPERTY__IS_STATIC);
 		createEAttribute(javaPropertyEClass, JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS);
+		createEReference(javaPropertyEClass, JAVA_PROPERTY__EXPLICIT_REQUIRED_IMPORTS);
 
 		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 		createEAttribute(primitiveTypeEClass, PRIMITIVE_TYPE__IMPLEMENTATION_CLASS);
@@ -783,6 +803,7 @@ public class JavaPackageImpl extends EPackageImpl implements JavaPackage {
 		initEAttribute(getJavaMethod_IsConstructor(), ecorePackage.getEBoolean(), "isConstructor", null, 1, 1, JavaMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getJavaMethod_Base_Operation(), theUMLPackage.getOperation(), null, "base_Operation", null, 1, 1, JavaMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJavaMethod_ExplicitPlainTextRequiredImports(), ecorePackage.getEString(), "explicitPlainTextRequiredImports", null, 0, -1, JavaMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJavaMethod_ExplicitRequiredImports(), theUMLPackage.getClassifier(), null, "explicitRequiredImports", null, 0, -1, JavaMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(javaParameterEClass, JavaParameter.class, "JavaParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJavaParameter_IsFinal(), ecorePackage.getEBoolean(), "isFinal", null, 1, 1, JavaParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -797,6 +818,7 @@ public class JavaPackageImpl extends EPackageImpl implements JavaPackage {
 		initEAttribute(getJavaProperty_GenerateSetter(), this.getTrueFalseDefault(), "generateSetter", "default", 1, 1, JavaProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJavaProperty_IsStatic(), ecorePackage.getEBoolean(), "isStatic", null, 1, 1, JavaProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getJavaProperty_ExplicitPlainTextRequiredImports(), ecorePackage.getEString(), "explicitPlainTextRequiredImports", null, 0, -1, JavaProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getJavaProperty_ExplicitRequiredImports(), theUMLPackage.getClassifier(), null, "explicitRequiredImports", null, 0, -1, JavaProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPrimitiveType_ImplementationClass(), ecorePackage.getEString(), "implementationClass", null, 1, 1, PrimitiveType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
