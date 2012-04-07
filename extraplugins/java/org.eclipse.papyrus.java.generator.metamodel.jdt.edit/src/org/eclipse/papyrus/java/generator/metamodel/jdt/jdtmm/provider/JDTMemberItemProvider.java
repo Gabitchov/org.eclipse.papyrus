@@ -81,6 +81,8 @@ public class JDTMemberItemProvider
 			super.getPropertyDescriptors(object);
 
 			addVisibilityPropertyDescriptor(object);
+			addExplicitRequiredImportsPropertyDescriptor(object);
+			addExplicitPlainTextRequiredImportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,6 +101,50 @@ public class JDTMemberItemProvider
 				 getString("_UI_JDTMember_visibility_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_JDTMember_visibility_feature", "_UI_JDTMember_type"),
 				 JdtmmPackage.Literals.JDT_MEMBER__VISIBILITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Explicit Required Imports feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExplicitRequiredImportsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_JDTMember_explicitRequiredImports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_JDTMember_explicitRequiredImports_feature", "_UI_JDTMember_type"),
+				 JdtmmPackage.Literals.JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Explicit Plain Text Required Imports feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExplicitPlainTextRequiredImportsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_JDTMember_explicitPlainTextRequiredImports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_JDTMember_explicitPlainTextRequiredImports_feature", "_UI_JDTMember_type"),
+				 JdtmmPackage.Literals.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS,
 				 true,
 				 false,
 				 false,
@@ -164,6 +210,7 @@ public class JDTMemberItemProvider
 
 		switch (notification.getFeatureID(JDTMember.class)) {
 			case JdtmmPackage.JDT_MEMBER__VISIBILITY:
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case JdtmmPackage.JDT_MEMBER__TYPE_PARAMETERS:

@@ -35,6 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getTypeParameters <em>Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getExplicitRequiredImports <em>Explicit Required Imports</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,4 +91,36 @@ public interface JDTMember extends JDTParentJavaElement {
 	 * @generated
 	 */
 	void setVisibility(VisibilityKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Explicit Required Imports</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Explicit Required Imports</em>' reference list.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#getJDTMember_ExplicitRequiredImports()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<JDTType> getExplicitRequiredImports();
+
+	/**
+	 * Returns the value of the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Explicit Plain Text Required Imports</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Explicit Plain Text Required Imports</em>' attribute list.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage#getJDTMember_ExplicitPlainTextRequiredImports()
+	 * @model dataType="org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.String" ordered="false"
+	 * @generated
+	 */
+	EList<String> getExplicitPlainTextRequiredImports();
 } // JDTMember

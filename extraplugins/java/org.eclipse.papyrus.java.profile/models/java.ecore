@@ -12,6 +12,10 @@
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="explicitPlainTextRequiredImports"
+        ordered="false" unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="explicitRequiredImports"
+        ordered="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaGen" abstract="true" eSuperTypes="#//JavaNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="srcName" ordered="false"
@@ -53,6 +57,8 @@
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Operation" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="explicitPlainTextRequiredImports"
+        ordered="false" unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaParameter" eSuperTypes="#//JavaNamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFinal" ordered="false"
@@ -75,6 +81,8 @@
         lowerBound="1" eType="#//TrueFalseDefault" defaultValueLiteral="default"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="explicitPlainTextRequiredImports"
+        ordered="false" unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TrueFalseDefault">
     <eLiterals name="true"/>

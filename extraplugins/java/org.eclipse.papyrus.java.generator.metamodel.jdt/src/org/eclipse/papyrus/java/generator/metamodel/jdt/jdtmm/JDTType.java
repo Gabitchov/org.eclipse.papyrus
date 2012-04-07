@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getMethods <em>Methods</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getFields <em>Fields</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getCompilationUnit <em>Compilation Unit</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#isClass <em>Class</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClass <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperInterfaceNames <em>Super Interface Names</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getSuperClassName <em>Super Class Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *

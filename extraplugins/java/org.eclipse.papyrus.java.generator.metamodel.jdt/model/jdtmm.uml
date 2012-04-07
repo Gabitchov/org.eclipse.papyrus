@@ -59,6 +59,14 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xm2a4Gd5EeCm5tXW4raF-A" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xm2a4md5EeCm5tXW4raF-A" value="public"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_ul0B4H_4EeGqdId9TXdXhQ" name="explicitRequiredImports" type="_Ko2hMGHYEeCX0Yi87Khu0A" association="_ul4TUH_4EeGqdId9TXdXhQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ul0B4X_4EeGqdId9TXdXhQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ul0B4n_4EeGqdId9TXdXhQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_7x3zgH_4EeGqdId9TXdXhQ" name="explicitPlainTextRequiredImports" type="_8e3HsGHXEeCX0Yi87Khu0A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BWhu4H_5EeGqdId9TXdXhQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BWf5sH_5EeGqdId9TXdXhQ"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_IPXhUGHYEeCX0Yi87Khu0A" name="JDTField">
       <generalization xmi:id="_Mi5MAGHYEeCX0Yi87Khu0A" general="_FVjbkGHYEeCX0Yi87Khu0A"/>
@@ -435,6 +443,12 @@ JDTParent and JDTJavaElement</body>
       <ownedAttribute xmi:id="_U2HYkHmtEeGZ7KofW4oPeQ" name="  body" type="_8e3HsGHXEeCX0Yi87Khu0A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_dvx58HpHEeGZ7KofW4oPeQ" name="jDTMethod_methodBody_0" memberEnd="_dvx58XpHEeGZ7KofW4oPeQ _dvu2oHpHEeGZ7KofW4oPeQ"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ul4TUH_4EeGqdId9TXdXhQ" name="jDTMember_jDTType_0" memberEnd="_ul4TUX_4EeGqdId9TXdXhQ _ul0B4H_4EeGqdId9TXdXhQ">
+      <ownedEnd xmi:id="_ul4TUX_4EeGqdId9TXdXhQ" name="jDTMember" type="_FVjbkGHYEeCX0Yi87Khu0A" association="_ul4TUH_4EeGqdId9TXdXhQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ul4TUn_4EeGqdId9TXdXhQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ul4TU3_4EeGqdId9TXdXhQ" value="1"/>
+      </ownedEnd>
+    </packagedElement>
     <profileApplication xmi:id="__8ly0GHXEeCX0Yi87Khu0A">
       <eAnnotations xmi:id="__-hsgGHXEeCX0Yi87Khu0A" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>

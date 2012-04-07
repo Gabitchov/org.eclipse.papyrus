@@ -40,6 +40,25 @@ query mmUML::NamedElement::getTaggedValue(stereotypeName : String, taggedValueNa
 	return taggedValue;
 }
 
+query mmUML::NamedElement::getTaggedValues(stereotypeName : String, taggedValueName : String, defaultValue : Set(OclAny)) : Set(OclAny) {
+	
+	var value : Set(OclAny) := defaultValue;
+	var stereotype := self.getAppliedStereotype(stereotypeName);
+	if (stereotype.oclIsUndefined())
+	then
+	  return value
+	endif;
+	
+	var taggedValue := self.getValue(stereotype, taggedValueName);
+	if taggedValue->size() <=0
+	then
+	   return defaultValue
+	endif;
+	
+	return taggedValue->asSet();
+}
+
+
 /*
  * Get a tagged value by its name and the sterotype name.
  * Return null if no stereotype of taggedValue is defined.

@@ -354,13 +354,31 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_MEMBER__VISIBILITY = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>JDT Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_MEMBER_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 2;
+	int JDT_MEMBER_FEATURE_COUNT = JDT_PARENT_JAVA_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeParameterImpl <em>JDT Type Parameter</em>}' class.
@@ -482,6 +500,24 @@ public interface JdtmmPackage extends EPackage {
 	 * @ordered
 	 */
 	int JDT_METHOD__VISIBILITY = JDT_MEMBER__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_METHOD__EXPLICIT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -754,130 +790,22 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_TYPE__VISIBILITY = JDT_MEMBER__VISIBILITY;
 
 	/**
-	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_TYPE__FIELDS = JDT_MEMBER_FEATURE_COUNT + 0;
+	int JDT_TYPE__EXPLICIT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_TYPE__COMPILATION_UNIT = JDT_MEMBER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__CLASS = JDT_MEMBER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__INTERFACE = JDT_MEMBER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Enum</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__ENUM = JDT_MEMBER_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Final</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__FINAL = JDT_MEMBER_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__STATIC = JDT_MEMBER_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__TYPES = JDT_MEMBER_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Owner</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__OWNER = JDT_MEMBER_FEATURE_COUNT + 9;
-
-	/**
-	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_INTERFACES = JDT_MEMBER_FEATURE_COUNT + 10;
-
-	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_CLASS = JDT_MEMBER_FEATURE_COUNT + 11;
-
-	/**
-	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_INTERFACE_NAMES = JDT_MEMBER_FEATURE_COUNT + 12;
-
-	/**
-	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_TYPE__SUPER_CLASS_NAME = JDT_MEMBER_FEATURE_COUNT + 13;
+	int JDT_TYPE__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
 
 	/**
 	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
@@ -886,7 +814,133 @@ public interface JdtmmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JDT_TYPE__METHODS = JDT_MEMBER_FEATURE_COUNT + 14;
+	int JDT_TYPE__METHODS = JDT_MEMBER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__FIELDS = JDT_MEMBER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Compilation Unit</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__COMPILATION_UNIT = JDT_MEMBER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__CLASS = JDT_MEMBER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__INTERFACE = JDT_MEMBER_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Enum</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__ENUM = JDT_MEMBER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__ABSTRACT = JDT_MEMBER_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Final</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__FINAL = JDT_MEMBER_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__STATIC = JDT_MEMBER_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__TYPES = JDT_MEMBER_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__OWNER = JDT_MEMBER_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Super Interfaces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_INTERFACES = JDT_MEMBER_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_CLASS = JDT_MEMBER_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Super Interface Names</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_INTERFACE_NAMES = JDT_MEMBER_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Super Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_TYPE__SUPER_CLASS_NAME = JDT_MEMBER_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>JDT Type</em>' class.
@@ -977,6 +1031,24 @@ public interface JdtmmPackage extends EPackage {
 	 * @ordered
 	 */
 	int JDT_FIELD__VISIBILITY = JDT_MEMBER__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__EXPLICIT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_FIELD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1783,6 +1855,24 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_PARAMETER__VISIBILITY = JDT_MEMBER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__EXPLICIT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_PARAMETER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
+
+	/**
 	 * The feature id for the '<em><b>Parameter Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1918,6 +2008,33 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_CLASS__VISIBILITY = JDT_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_CLASS__EXPLICIT_REQUIRED_IMPORTS = JDT_TYPE__EXPLICIT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_CLASS__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_TYPE__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_CLASS__METHODS = JDT_TYPE__METHODS;
+
+	/**
 	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2044,15 +2161,6 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_CLASS__SUPER_CLASS_NAME = JDT_TYPE__SUPER_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_CLASS__METHODS = JDT_TYPE__METHODS;
-
-	/**
 	 * The number of structural features of the '<em>JDT Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2141,6 +2249,33 @@ public interface JdtmmPackage extends EPackage {
 	 * @ordered
 	 */
 	int JDT_INTERFACE__VISIBILITY = JDT_TYPE__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_INTERFACE__EXPLICIT_REQUIRED_IMPORTS = JDT_TYPE__EXPLICIT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_INTERFACE__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_TYPE__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_INTERFACE__METHODS = JDT_TYPE__METHODS;
 
 	/**
 	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
@@ -2269,15 +2404,6 @@ public interface JdtmmPackage extends EPackage {
 	int JDT_INTERFACE__SUPER_CLASS_NAME = JDT_TYPE__SUPER_CLASS_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_INTERFACE__METHODS = JDT_TYPE__METHODS;
-
-	/**
 	 * The number of structural features of the '<em>JDT Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2366,6 +2492,33 @@ public interface JdtmmPackage extends EPackage {
 	 * @ordered
 	 */
 	int JDT_ENUM__VISIBILITY = JDT_TYPE__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_ENUM__EXPLICIT_REQUIRED_IMPORTS = JDT_TYPE__EXPLICIT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_ENUM__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JDT_TYPE__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JDT_ENUM__METHODS = JDT_TYPE__METHODS;
 
 	/**
 	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
@@ -2492,15 +2645,6 @@ public interface JdtmmPackage extends EPackage {
 	 * @ordered
 	 */
 	int JDT_ENUM__SUPER_CLASS_NAME = JDT_TYPE__SUPER_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Methods</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JDT_ENUM__METHODS = JDT_TYPE__METHODS;
 
 	/**
 	 * The number of structural features of the '<em>JDT Enum</em>' class.
@@ -2911,6 +3055,28 @@ public interface JdtmmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJDTMember_Visibility();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getExplicitRequiredImports <em>Explicit Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Explicit Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getExplicitRequiredImports()
+	 * @see #getJDTMember()
+	 * @generated
+	 */
+	EReference getJDTMember_ExplicitRequiredImports();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Explicit Plain Text Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember#getExplicitPlainTextRequiredImports()
+	 * @see #getJDTMember()
+	 * @generated
+	 */
+	EAttribute getJDTMember_ExplicitPlainTextRequiredImports();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTParentJavaElement <em>JDT Parent Java Element</em>}'.
@@ -3867,6 +4033,22 @@ public interface JdtmmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JDT_MEMBER__VISIBILITY = eINSTANCE.getJDTMember_Visibility();
+
+		/**
+		 * The meta object literal for the '<em><b>Explicit Required Imports</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS = eINSTANCE.getJDTMember_ExplicitRequiredImports();
+
+		/**
+		 * The meta object literal for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = eINSTANCE.getJDTMember_ExplicitPlainTextRequiredImports();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTParentJavaElementImpl <em>JDT Parent Java Element</em>}' class.

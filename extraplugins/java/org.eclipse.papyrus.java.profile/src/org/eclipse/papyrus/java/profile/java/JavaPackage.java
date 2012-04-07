@@ -316,13 +316,31 @@ public interface JavaPackage extends EPackage {
 	int JAVA_CLASS__IS_STATIC = JAVA_GEN_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JAVA_GEN_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_CLASS__EXPLICIT_REQUIRED_IMPORTS = JAVA_GEN_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_CLASS_FEATURE_COUNT = JAVA_GEN_FEATURE_COUNT + 4;
+	int JAVA_CLASS_FEATURE_COUNT = JAVA_GEN_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaPackage_Impl <em>Package </em>}' class.
@@ -543,13 +561,22 @@ public interface JavaPackage extends EPackage {
 	int JAVA_METHOD__BASE_OPERATION = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_METHOD_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int JAVA_METHOD_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaParameterImpl <em>Parameter</em>}' class.
@@ -752,13 +779,22 @@ public interface JavaPackage extends EPackage {
 	int JAVA_PROPERTY__IS_STATIC = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_PROPERTY_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int JAVA_PROPERTY_FEATURE_COUNT = JAVA_NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -1117,6 +1153,28 @@ public interface JavaPackage extends EPackage {
 	EAttribute getJavaClass_IsStatic();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.java.profile.java.JavaClass#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Explicit Plain Text Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaClass#getExplicitPlainTextRequiredImports()
+	 * @see #getJavaClass()
+	 * @generated
+	 */
+	EAttribute getJavaClass_ExplicitPlainTextRequiredImports();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.java.profile.java.JavaClass#getExplicitRequiredImports <em>Explicit Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Explicit Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaClass#getExplicitRequiredImports()
+	 * @see #getJavaClass()
+	 * @generated
+	 */
+	EReference getJavaClass_ExplicitRequiredImports();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.profile.java.JavaGen <em>Gen</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1333,6 +1391,17 @@ public interface JavaPackage extends EPackage {
 	EReference getJavaMethod_Base_Operation();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.java.profile.java.JavaMethod#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Explicit Plain Text Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaMethod#getExplicitPlainTextRequiredImports()
+	 * @see #getJavaMethod()
+	 * @generated
+	 */
+	EAttribute getJavaMethod_ExplicitPlainTextRequiredImports();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.profile.java.JavaParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1450,6 +1519,17 @@ public interface JavaPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJavaProperty_IsStatic();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.java.profile.java.JavaProperty#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Explicit Plain Text Required Imports</em>'.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaProperty#getExplicitPlainTextRequiredImports()
+	 * @see #getJavaProperty()
+	 * @generated
+	 */
+	EAttribute getJavaProperty_ExplicitPlainTextRequiredImports();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.java.profile.java.PrimitiveType <em>Primitive Type</em>}'.
@@ -1609,6 +1689,22 @@ public interface JavaPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JAVA_CLASS__IS_STATIC = eINSTANCE.getJavaClass_IsStatic();
+
+		/**
+		 * The meta object literal for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_CLASS__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = eINSTANCE.getJavaClass_ExplicitPlainTextRequiredImports();
+
+		/**
+		 * The meta object literal for the '<em><b>Explicit Required Imports</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA_CLASS__EXPLICIT_REQUIRED_IMPORTS = eINSTANCE.getJavaClass_ExplicitRequiredImports();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaGenImpl <em>Gen</em>}' class.
@@ -1779,6 +1875,14 @@ public interface JavaPackage extends EPackage {
 		EReference JAVA_METHOD__BASE_OPERATION = eINSTANCE.getJavaMethod_Base_Operation();
 
 		/**
+		 * The meta object literal for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = eINSTANCE.getJavaMethod_ExplicitPlainTextRequiredImports();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.profile.java.impl.JavaParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1869,6 +1973,14 @@ public interface JavaPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JAVA_PROPERTY__IS_STATIC = eINSTANCE.getJavaProperty_IsStatic();
+
+		/**
+		 * The meta object literal for the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS = eINSTANCE.getJavaProperty_ExplicitPlainTextRequiredImports();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.java.profile.java.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.

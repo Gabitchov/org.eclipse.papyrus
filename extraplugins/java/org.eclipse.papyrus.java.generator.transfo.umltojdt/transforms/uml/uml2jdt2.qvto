@@ -21,6 +21,7 @@ import Strings;
 */
 modeltype UMLmm uses "http://www.eclipse.org/uml2/3.0.0/UML";
 modeltype JDTmm uses 'http:///jdtmm.ecore';
+modeltype JavaProfile uses java('http://www.eclipse.org/papyrus/JAVA/1');
 
 /**
  *
@@ -43,6 +44,8 @@ intermediate property UMLmm::TAGVALUE_PROJECT : String;
 intermediate property UMLmm::TAGVALUE_NAME : String;
 intermediate property UMLmm::TAGVALUE_GENERATED : String;
 intermediate property UMLmm::TAGVALUE_IMPLEMENTATION_CLASS : String;
+intermediate property UMLmm::TAGVALUE_EXPLICIT_REQUIRED_IMPORTS : String;
+intermediate property UMLmm::TAGVALUE_EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS : String;
 intermediate property UMLmm::NO_PACKAGE : String;
 /** Default name values for generation */
 intermediate property UMLmm::GENERATION_DEFAULT_SRC_NAME : String;
@@ -67,6 +70,8 @@ main() {
   uml.TAGVALUE_GENERATED := "isGenerated";
   uml.TAGVALUE_PROJECT := "projectName";
   uml.TAGVALUE_IMPLEMENTATION_CLASS := "implementationClass";
+  uml.TAGVALUE_EXPLICIT_REQUIRED_IMPORTS := "explicitRequiredImports";
+  uml.TAGVALUE_EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS := "explicitPlainTextRequiredImports";
   uml.NO_PACKAGE := null;
   
   // Default names
@@ -123,6 +128,34 @@ query uml::Classifier::generalInterfaces() : Set(uml::Interface) {
     var res : Set(uml::Interface) := self.generalization.general[uml::Interface] -> asSet();
       	
   return res;
+}
+
+/**
+ * Get the ExplicitImports from a classifier.
+ * Explicit imports are stored in a Stereotype.
+ */
+query uml::Classifier::getJavaClassStereotype() : JavaProfile::JavaClass {
+	
+	var stereotype := self.getAppliedStereotype(uml.STEREOTYPE_JAVA_CLASS);
+	if (stereotype.oclIsUndefined())
+	then
+	  return null
+	endif;
+	
+	var res:JavaProfile::JavaClass := self.getStereotypeApplication(stereotype).oclAsType(JavaProfile::JavaClass);
+	return res;
+}
+
+/**
+ * Get the ExplicitImports from a classifier.
+ * Explicit imports are stored in a Stereotype.
+ */
+query uml::Classifier::getExplicitPlainTextRequiredImports() : Set(String) {
+	
+	var emptySet : Set(String) := Set{};
+	return self.getTaggedValue( uml.STEREOTYPE_JAVA_CLASS, 
+	    uml.TAGVALUE_EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS, 
+	    OclAny ) [String]->asSet();
 }
 
 /**
@@ -836,6 +869,14 @@ abstract mapping uml::Classifier::mapTypeToType() : JDTmm::JDTType
 	final := self.getBooleanTaggedValue("java::JavaClass", "isFinal",self.isLeaf);
 	_static := self.getBooleanTaggedValue("java::JavaClass", "isStatic", false);
 	generated := self.data.generated;
+	
+	// Explicit imports
+	explicitRequiredImports += self.elementImport.target[uml::Classifier] -> map transformTypeToType();
+    // Explicit imports from stereotype
+    var ext:JavaProfile::JavaClass := self.getJavaClassStereotype();
+    explicitRequiredImports += ext.explicitRequiredImports -> map transformTypeToType();
+    explicitPlainTextRequiredImports += ext.explicitPlainTextRequiredImports
+    
 }
 
 /**

@@ -6,6 +6,8 @@
  */
 package org.eclipse.papyrus.java.profile.java;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -20,6 +22,8 @@ import org.eclipse.uml2.uml.Classifier;
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaClass#isFinal <em>Is Final</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaClass#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaClass#isStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaClass#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaClass#getExplicitRequiredImports <em>Explicit Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,5 +135,61 @@ public interface JavaClass extends JavaGen {
 	 * @generated
 	 */
 	void setIsStatic(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Explicit Plain Text Required Imports</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Explicit Plain Text Required Imports</em>' attribute list.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaPackage#getJavaClass_ExplicitPlainTextRequiredImports()
+	 * @model unique="false" ordered="false"
+	 * @generated
+	 */
+	EList<String> getExplicitPlainTextRequiredImports();
+
+	/**
+	 * Returns the value of the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.uml2.uml.Classifier}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Explicit Required Imports</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Explicit Required Imports</em>' reference list.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaPackage#getJavaClass_ExplicitRequiredImports()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Classifier> getExplicitRequiredImports();
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.Classifier} with the specified '<em><b>Name</b></em>' from the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.Classifier} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.Classifier} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getExplicitRequiredImports()
+	 * @generated
+	 */
+	Classifier getExplicitRequiredImports(String name);
+
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.Classifier} with the specified '<em><b>Name</b></em>' from the '<em><b>Explicit Required Imports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.Classifier} to retrieve, or <code>null</code>.
+	 * @param ignoreCase Whether to ignore case in {@link java.lang.String} comparisons.
+	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.uml.Classifier} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.Classifier} with the specified '<em><b>Name</b></em>', or <code>null</code>.
+	 * @see #getExplicitRequiredImports()
+	 * @generated
+	 */
+	Classifier getExplicitRequiredImports(String name, boolean ignoreCase, EClass eClass);
 
 } // JavaClass

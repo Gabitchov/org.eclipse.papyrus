@@ -29,10 +29,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTMember;
+import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTType;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JDTTypeParameter;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.JdtmmPackage;
 import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind;
@@ -46,6 +49,8 @@ import org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.VisibilityKind;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl#getTypeParameters <em>Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl#getExplicitRequiredImports <em>Explicit Required Imports</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTMemberImpl#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +77,26 @@ public abstract class JDTMemberImpl extends JDTParentJavaElementImpl implements 
 	 * @ordered
 	 */
 	protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC;
+
+	/**
+	 * The cached value of the '{@link #getExplicitRequiredImports() <em>Explicit Required Imports</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExplicitRequiredImports()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<JDTType> explicitRequiredImports;
+
+	/**
+	 * The cached value of the '{@link #getExplicitPlainTextRequiredImports() <em>Explicit Plain Text Required Imports</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExplicitPlainTextRequiredImports()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> explicitPlainTextRequiredImports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,6 +180,30 @@ public abstract class JDTMemberImpl extends JDTParentJavaElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<JDTType> getExplicitRequiredImports() {
+		if (explicitRequiredImports == null) {
+			explicitRequiredImports = new EObjectResolvingEList<JDTType>(JDTType.class, this, JdtmmPackage.JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS);
+		}
+		return explicitRequiredImports;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getExplicitPlainTextRequiredImports() {
+		if (explicitPlainTextRequiredImports == null) {
+			explicitPlainTextRequiredImports = new EDataTypeUniqueEList<String>(String.class, this, JdtmmPackage.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS);
+		}
+		return explicitPlainTextRequiredImports;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -191,6 +240,10 @@ public abstract class JDTMemberImpl extends JDTParentJavaElementImpl implements 
 				return getTypeParameters();
 			case JdtmmPackage.JDT_MEMBER__VISIBILITY:
 				return getVisibility();
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS:
+				return getExplicitRequiredImports();
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				return getExplicitPlainTextRequiredImports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,6 +264,14 @@ public abstract class JDTMemberImpl extends JDTParentJavaElementImpl implements 
 			case JdtmmPackage.JDT_MEMBER__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
 				return;
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS:
+				getExplicitRequiredImports().clear();
+				getExplicitRequiredImports().addAll((Collection<? extends JDTType>)newValue);
+				return;
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				getExplicitPlainTextRequiredImports().clear();
+				getExplicitPlainTextRequiredImports().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -229,6 +290,12 @@ public abstract class JDTMemberImpl extends JDTParentJavaElementImpl implements 
 			case JdtmmPackage.JDT_MEMBER__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS:
+				getExplicitRequiredImports().clear();
+				return;
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				getExplicitPlainTextRequiredImports().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -245,8 +312,28 @@ public abstract class JDTMemberImpl extends JDTParentJavaElementImpl implements 
 				return typeParameters != null && !typeParameters.isEmpty();
 			case JdtmmPackage.JDT_MEMBER__VISIBILITY:
 				return getVisibility() != VISIBILITY_EDEFAULT;
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_REQUIRED_IMPORTS:
+				return explicitRequiredImports != null && !explicitRequiredImports.isEmpty();
+			case JdtmmPackage.JDT_MEMBER__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				return explicitPlainTextRequiredImports != null && !explicitPlainTextRequiredImports.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (explicitPlainTextRequiredImports: ");
+		result.append(explicitPlainTextRequiredImports);
+		result.append(')');
+		return result.toString();
 	}
 
 

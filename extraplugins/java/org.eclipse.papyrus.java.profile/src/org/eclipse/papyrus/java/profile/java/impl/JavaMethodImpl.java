@@ -6,13 +6,16 @@
  */
 package org.eclipse.papyrus.java.profile.java.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.papyrus.java.profile.java.JavaMethod;
 import org.eclipse.papyrus.java.profile.java.JavaPackage;
 
@@ -32,6 +35,7 @@ import org.eclipse.uml2.uml.Operation;
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#isSynchronized <em>Is Synchronized</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#isConstructor <em>Is Constructor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#getBase_Operation <em>Base Operation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.impl.JavaMethodImpl#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -167,6 +171,16 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 	 * @ordered
 	 */
 	protected Operation base_Operation;
+
+	/**
+	 * The cached value of the '{@link #getExplicitPlainTextRequiredImports() <em>Explicit Plain Text Required Imports</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExplicitPlainTextRequiredImports()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> explicitPlainTextRequiredImports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -356,6 +370,18 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getExplicitPlainTextRequiredImports() {
+		if (explicitPlainTextRequiredImports == null) {
+			explicitPlainTextRequiredImports = new EDataTypeEList<String>(String.class, this, JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS);
+		}
+		return explicitPlainTextRequiredImports;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -374,6 +400,8 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 			case JavaPackage.JAVA_METHOD__BASE_OPERATION:
 				if (resolve) return getBase_Operation();
 				return basicGetBase_Operation();
+			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				return getExplicitPlainTextRequiredImports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -383,6 +411,7 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -406,6 +435,10 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 				return;
 			case JavaPackage.JAVA_METHOD__BASE_OPERATION:
 				setBase_Operation((Operation)newValue);
+				return;
+			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				getExplicitPlainTextRequiredImports().clear();
+				getExplicitPlainTextRequiredImports().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -440,6 +473,9 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 			case JavaPackage.JAVA_METHOD__BASE_OPERATION:
 				setBase_Operation((Operation)null);
 				return;
+			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				getExplicitPlainTextRequiredImports().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -466,6 +502,8 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 				return isConstructor != IS_CONSTRUCTOR_EDEFAULT;
 			case JavaPackage.JAVA_METHOD__BASE_OPERATION:
 				return base_Operation != null;
+			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
+				return explicitPlainTextRequiredImports != null && !explicitPlainTextRequiredImports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -492,6 +530,8 @@ public class JavaMethodImpl extends JavaNamedElementImpl implements JavaMethod {
 		result.append(isSynchronized);
 		result.append(", isConstructor: ");
 		result.append(isConstructor);
+		result.append(", explicitPlainTextRequiredImports: ");
+		result.append(explicitPlainTextRequiredImports);
 		result.append(')');
 		return result.toString();
 	}

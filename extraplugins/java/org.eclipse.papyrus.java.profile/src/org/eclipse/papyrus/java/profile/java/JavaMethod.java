@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.java.profile.java;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Operation;
 
 /**
@@ -23,6 +24,7 @@ import org.eclipse.uml2.uml.Operation;
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaMethod#isSynchronized <em>Is Synchronized</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaMethod#isConstructor <em>Is Constructor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaMethod#getBase_Operation <em>Base Operation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaMethod#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -212,5 +214,21 @@ public interface JavaMethod extends JavaNamedElement {
 	 * @generated
 	 */
 	void setBase_Operation(Operation value);
+
+	/**
+	 * Returns the value of the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Explicit Plain Text Required Imports</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Explicit Plain Text Required Imports</em>' attribute list.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaPackage#getJavaMethod_ExplicitPlainTextRequiredImports()
+	 * @model unique="false" ordered="false"
+	 * @generated
+	 */
+	EList<String> getExplicitPlainTextRequiredImports();
 
 } // JavaMethod

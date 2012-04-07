@@ -241,6 +241,10 @@ public class SynchJDTType extends SynchJDTCommentable {
 			for(JDTType child : type.getTypes()) {
 				child.accept(vClass);
 			}
+			
+			// Generate explicit imports
+			generateExplicitImports(type, it);
+			
 		} catch (JavaModelException e) {
 			e.printStackTrace();
 			throw new JDTVisitorException(e.getMessage(), e.getCause());
@@ -250,6 +254,35 @@ public class SynchJDTType extends SynchJDTCommentable {
 		}
 
 
+	}
+
+	/**
+	 * Generate imports that are explicitly declared in the type
+	 * @param it The jdt type to be generated
+	 * @throws JavaModelException 
+	 * @throws JDTVisitorException 
+	 */
+	private void generateExplicitImports(JDTType containerType, IType it) throws JDTVisitorException {
+		
+
+		// Add explicit type 
+		for( JDTType anImport : containerType.getExplicitRequiredImports()) {
+			try {
+				it.getCompilationUnit().createImport(anImport.getQualifiedName(), null, null);
+			} catch (Exception e) {
+				propagateException(it.getFullyQualifiedName() + "Can't add explicit import " + anImport.getQualifiedName(), e);
+			}
+		}
+		
+		// Add explicit plain text types
+		for( String anImport : containerType.getExplicitPlainTextRequiredImports()) {
+			try {
+				it.getCompilationUnit().createImport(anImport, null, null);
+			} catch (JavaModelException e) {
+				propagateException(it.getFullyQualifiedName() + "Can't add explicit plain text import " + anImport, e);
+			}
+		}
+				
 	}
 
 	/**
@@ -344,6 +377,10 @@ public class SynchJDTType extends SynchJDTCommentable {
 
 		if(Flags.isAbstract(superClass.getFlags())) {
 			for(JDTMethod superClassAbstractMethod : superClass.getMethods()) {
+				// Skip if method is not abstract
+				if( ! superClassAbstractMethod.isAbstract() ) {
+					continue;
+				}
 				// Remove the abstract flag to not generate the method with the keyword "abstract"
 				superClassAbstractMethod.setAbstract(false);
 				superClassAbstractMethod.accept(vmethod);
@@ -354,6 +391,24 @@ public class SynchJDTType extends SynchJDTCommentable {
 			JDTType superClassSuperClass = superClass.getSuperClass();
 			if(superClassSuperClass != null)
 				implementSuperClassAbstractMethods(it, superClassSuperClass);
+		}
+	}
+
+	/**
+	 * Propagate a {@link JDTVisitorException} if the flag is not set 
+	 * @param msg
+	 * @param e
+	 * @throws JDTVisitorException
+	 */
+	private void propagateException(String msg, Throwable e) throws JDTVisitorException {
+		
+		if(preference.stopOnFirstError()) {
+			throw new JDTVisitorException(msg, e.getCause());
+		}
+		else {
+			// Show error
+			System.err.println(msg);
+			e.printStackTrace();
 		}
 	}
 }

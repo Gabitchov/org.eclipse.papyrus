@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.java.profile.java;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -23,6 +24,7 @@ import org.eclipse.uml2.uml.Property;
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaProperty#getGenerateGetter <em>Generate Getter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaProperty#getGenerateSetter <em>Generate Setter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaProperty#isStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.profile.java.JavaProperty#getExplicitPlainTextRequiredImports <em>Explicit Plain Text Required Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -220,5 +222,21 @@ public interface JavaProperty extends JavaNamedElement {
 	 * @generated
 	 */
 	void setIsStatic(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Explicit Plain Text Required Imports</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Explicit Plain Text Required Imports</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Explicit Plain Text Required Imports</em>' attribute list.
+	 * @see org.eclipse.papyrus.java.profile.java.JavaPackage#getJavaProperty_ExplicitPlainTextRequiredImports()
+	 * @model unique="false" ordered="false"
+	 * @generated
+	 */
+	EList<String> getExplicitPlainTextRequiredImports();
 
 } // JavaProperty

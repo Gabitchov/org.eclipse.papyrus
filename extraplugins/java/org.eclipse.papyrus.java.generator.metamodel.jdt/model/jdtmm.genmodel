@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
-    modelDirectory="/org.eclipse.papyrus.java.generator.metamodel.jdt/src"
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.papyrus.java.generator.metamodel.jdt/src"
     modelPluginID="org.eclipse.papyrus.java.generator.metamodel.jdt" modelName="Jdtmm"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
@@ -66,6 +66,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMember/typeParameters"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMember/visibility"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTMember/explicitRequiredImports"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTMember/explicitPlainTextRequiredImports"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTParentJavaElement"/>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTParent">
@@ -99,6 +102,8 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="jdtmm.ecore#//JDTType">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/methods"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/fields"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/compilationUnit"/>
@@ -120,8 +125,6 @@
           ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/superInterfaceNames"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
           ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTType/superClassName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference jdtmm.ecore#//JDTType/methods"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="jdtmm.ecore#//JDTField">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute jdtmm.ecore#//JDTField/abstract"/>

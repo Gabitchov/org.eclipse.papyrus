@@ -335,9 +335,9 @@ public class JDTTypeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(JdtmmPackage.Literals.JDT_TYPE__METHODS);
 			childrenFeatures.add(JdtmmPackage.Literals.JDT_TYPE__FIELDS);
 			childrenFeatures.add(JdtmmPackage.Literals.JDT_TYPE__TYPES);
-			childrenFeatures.add(JdtmmPackage.Literals.JDT_TYPE__METHODS);
 		}
 		return childrenFeatures;
 	}
@@ -391,9 +391,9 @@ public class JDTTypeItemProvider
 			case JdtmmPackage.JDT_TYPE__SUPER_CLASS_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case JdtmmPackage.JDT_TYPE__METHODS:
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 			case JdtmmPackage.JDT_TYPE__TYPES:
-			case JdtmmPackage.JDT_TYPE__METHODS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -410,6 +410,11 @@ public class JDTTypeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(JdtmmPackage.Literals.JDT_TYPE__METHODS,
+				 JdtmmFactory.eINSTANCE.createJDTMethod()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -430,11 +435,6 @@ public class JDTTypeItemProvider
 			(createChildParameter
 				(JdtmmPackage.Literals.JDT_TYPE__TYPES,
 				 JdtmmFactory.eINSTANCE.createJDTEnum()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(JdtmmPackage.Literals.JDT_TYPE__METHODS,
-				 JdtmmFactory.eINSTANCE.createJDTMethod()));
 	}
 
 	/**
@@ -445,13 +445,13 @@ public class JDTTypeItemProvider
 	 */
 	@Override
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+		if (feature == JdtmmPackage.Literals.JDT_TYPE__METHODS) {
+			return new SubsetAddCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, collection, index);
+		}
 		if (feature == JdtmmPackage.Literals.JDT_TYPE__FIELDS) {
 			return new SubsetAddCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, collection, index);
 		}
 		if (feature == JdtmmPackage.Literals.JDT_TYPE__TYPES) {
-			return new SubsetAddCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, collection, index);
-		}
-		if (feature == JdtmmPackage.Literals.JDT_TYPE__METHODS) {
 			return new SubsetAddCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, collection, index);
 		}
 		return super.createAddCommand(domain, owner, feature, collection, index);
@@ -466,7 +466,7 @@ public class JDTTypeItemProvider
 	@Override
 	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection) {
 		if (feature == JdtmmPackage.Literals.JDT_PARENT__CHILDREN) {
-			return new SupersetRemoveCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_TYPE__FIELDS, JdtmmPackage.Literals.JDT_TYPE__TYPES, JdtmmPackage.Literals.JDT_TYPE__METHODS}, collection);
+			return new SupersetRemoveCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_TYPE__METHODS, JdtmmPackage.Literals.JDT_TYPE__FIELDS, JdtmmPackage.Literals.JDT_TYPE__TYPES}, collection);
 		}
 		return super.createRemoveCommand(domain, owner, feature, collection);
 	}
@@ -479,17 +479,17 @@ public class JDTTypeItemProvider
 	 */
 	@Override
 	protected Command createReplaceCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, EObject value, Collection<?> collection) {
+		if (feature == JdtmmPackage.Literals.JDT_TYPE__METHODS) {
+			return new SubsetSupersetReplaceCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, null, value, collection);
+		}
 		if (feature == JdtmmPackage.Literals.JDT_TYPE__FIELDS) {
 			return new SubsetSupersetReplaceCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, null, value, collection);
 		}
 		if (feature == JdtmmPackage.Literals.JDT_TYPE__TYPES) {
 			return new SubsetSupersetReplaceCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, null, value, collection);
 		}
-		if (feature == JdtmmPackage.Literals.JDT_TYPE__METHODS) {
-			return new SubsetSupersetReplaceCommand(domain, owner, feature, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_PARENT__CHILDREN}, null, value, collection);
-		}
 		if (feature == JdtmmPackage.Literals.JDT_PARENT__CHILDREN) {
-			return new SubsetSupersetReplaceCommand(domain, owner, feature, null, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_TYPE__FIELDS, JdtmmPackage.Literals.JDT_TYPE__TYPES, JdtmmPackage.Literals.JDT_TYPE__METHODS}, value, collection);
+			return new SubsetSupersetReplaceCommand(domain, owner, feature, null, new EStructuralFeature[] {JdtmmPackage.Literals.JDT_TYPE__METHODS, JdtmmPackage.Literals.JDT_TYPE__FIELDS, JdtmmPackage.Literals.JDT_TYPE__TYPES}, value, collection);
 		}
 		return super.createReplaceCommand(domain, owner, feature, value, collection);
 	}

@@ -68,6 +68,7 @@ public class JavaMethodItemProvider
 			addIsSynchronizedPropertyDescriptor(object);
 			addIsConstructorPropertyDescriptor(object);
 			addBase_OperationPropertyDescriptor(object);
+			addExplicitPlainTextRequiredImportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -227,6 +228,28 @@ public class JavaMethodItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Explicit Plain Text Required Imports feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExplicitPlainTextRequiredImportsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_JavaMethod_explicitPlainTextRequiredImports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_JavaMethod_explicitPlainTextRequiredImports_feature", "_UI_JavaMethod_type"),
+				 JavaPackage.Literals.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns JavaMethod.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,6 +292,7 @@ public class JavaMethodItemProvider
 			case JavaPackage.JAVA_METHOD__IS_NATIVE:
 			case JavaPackage.JAVA_METHOD__IS_SYNCHRONIZED:
 			case JavaPackage.JAVA_METHOD__IS_CONSTRUCTOR:
+			case JavaPackage.JAVA_METHOD__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

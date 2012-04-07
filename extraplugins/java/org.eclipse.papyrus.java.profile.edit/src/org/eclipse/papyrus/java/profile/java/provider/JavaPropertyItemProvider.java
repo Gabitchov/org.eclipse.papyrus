@@ -68,6 +68,7 @@ public class JavaPropertyItemProvider
 			addGenerateGetterPropertyDescriptor(object);
 			addGenerateSetterPropertyDescriptor(object);
 			addIsStaticPropertyDescriptor(object);
+			addExplicitPlainTextRequiredImportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -227,6 +228,28 @@ public class JavaPropertyItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Explicit Plain Text Required Imports feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExplicitPlainTextRequiredImportsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_JavaProperty_explicitPlainTextRequiredImports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_JavaProperty_explicitPlainTextRequiredImports_feature", "_UI_JavaProperty_type"),
+				 JavaPackage.Literals.JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns JavaProperty.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,6 +292,7 @@ public class JavaPropertyItemProvider
 			case JavaPackage.JAVA_PROPERTY__GENERATE_GETTER:
 			case JavaPackage.JAVA_PROPERTY__GENERATE_SETTER:
 			case JavaPackage.JAVA_PROPERTY__IS_STATIC:
+			case JavaPackage.JAVA_PROPERTY__EXPLICIT_PLAIN_TEXT_REQUIRED_IMPORTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

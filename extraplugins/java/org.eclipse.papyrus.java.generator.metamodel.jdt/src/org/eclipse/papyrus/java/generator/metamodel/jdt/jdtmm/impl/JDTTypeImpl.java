@@ -56,6 +56,7 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseE
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getMethods <em>Methods</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getFields <em>Fields</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getCompilationUnit <em>Compilation Unit</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#isClass <em>Class</em>}</li>
@@ -70,13 +71,22 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseE
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getSuperClass <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getSuperInterfaceNames <em>Super Interface Names</em>}</li>
  *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getSuperClassName <em>Super Class Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl.JDTTypeImpl#getMethods <em>Methods</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
+
+	/**
+	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<JDTMethod> methods;
 
 	/**
 	 * The cached value of the '{@link #getFields() <em>Fields</em>}' containment reference list.
@@ -219,16 +229,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	protected static final String SUPER_CLASS_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMethods()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<JDTMethod> methods;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -265,7 +265,7 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] CHILDREN_ESUBSETS = new int[] {JdtmmPackage.JDT_TYPE__FIELDS, JdtmmPackage.JDT_TYPE__TYPES, JdtmmPackage.JDT_TYPE__METHODS};
+	protected static final int[] CHILDREN_ESUBSETS = new int[] {JdtmmPackage.JDT_TYPE__METHODS, JdtmmPackage.JDT_TYPE__FIELDS, JdtmmPackage.JDT_TYPE__TYPES};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -638,6 +638,16 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	}
 
 	/**
+	 * The array of superset feature identifiers for the '{@link #getMethods() <em>Methods</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] METHODS_ESUPERSETS = new int[] {JdtmmPackage.JDT_TYPE__CHILDREN};
+
+	/**
 	 * The array of superset feature identifiers for the '{@link #getFields() <em>Fields</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -658,16 +668,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	protected static final int[] TYPES_ESUPERSETS = new int[] {JdtmmPackage.JDT_TYPE__CHILDREN};
 
 	/**
-	 * The array of superset feature identifiers for the '{@link #getMethods() <em>Methods</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMethods()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] METHODS_ESUPERSETS = new int[] {JdtmmPackage.JDT_TYPE__CHILDREN};
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -676,6 +676,8 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case JdtmmPackage.JDT_TYPE__METHODS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMethods()).basicAdd(otherEnd, msgs);
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFields()).basicAdd(otherEnd, msgs);
 			case JdtmmPackage.JDT_TYPE__COMPILATION_UNIT:
@@ -688,8 +690,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwner((JDTType)otherEnd, msgs);
-			case JdtmmPackage.JDT_TYPE__METHODS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMethods()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -702,6 +702,8 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case JdtmmPackage.JDT_TYPE__METHODS:
+				return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 				return ((InternalEList<?>)getFields()).basicRemove(otherEnd, msgs);
 			case JdtmmPackage.JDT_TYPE__COMPILATION_UNIT:
@@ -710,8 +712,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 				return ((InternalEList<?>)getTypes()).basicRemove(otherEnd, msgs);
 			case JdtmmPackage.JDT_TYPE__OWNER:
 				return basicSetOwner(null, msgs);
-			case JdtmmPackage.JDT_TYPE__METHODS:
-				return ((InternalEList<?>)getMethods()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -740,6 +740,8 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case JdtmmPackage.JDT_TYPE__METHODS:
+				return getMethods();
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 				return getFields();
 			case JdtmmPackage.JDT_TYPE__COMPILATION_UNIT:
@@ -769,8 +771,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 				return getSuperInterfaceNames();
 			case JdtmmPackage.JDT_TYPE__SUPER_CLASS_NAME:
 				return getSuperClassName();
-			case JdtmmPackage.JDT_TYPE__METHODS:
-				return getMethods();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -784,6 +784,10 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case JdtmmPackage.JDT_TYPE__METHODS:
+				getMethods().clear();
+				getMethods().addAll((Collection<? extends JDTMethod>)newValue);
+				return;
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 				getFields().clear();
 				getFields().addAll((Collection<? extends JDTField>)newValue);
@@ -823,10 +827,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 			case JdtmmPackage.JDT_TYPE__SUPER_CLASS:
 				setSuperClass((JDTType)newValue);
 				return;
-			case JdtmmPackage.JDT_TYPE__METHODS:
-				getMethods().clear();
-				getMethods().addAll((Collection<? extends JDTMethod>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -839,6 +839,9 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case JdtmmPackage.JDT_TYPE__METHODS:
+				getMethods().clear();
+				return;
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 				getFields().clear();
 				return;
@@ -875,9 +878,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 			case JdtmmPackage.JDT_TYPE__SUPER_CLASS:
 				setSuperClass((JDTType)null);
 				return;
-			case JdtmmPackage.JDT_TYPE__METHODS:
-				getMethods().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -890,6 +890,8 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case JdtmmPackage.JDT_TYPE__METHODS:
+				return methods != null && !methods.isEmpty();
 			case JdtmmPackage.JDT_TYPE__FIELDS:
 				return fields != null && !fields.isEmpty();
 			case JdtmmPackage.JDT_TYPE__COMPILATION_UNIT:
@@ -918,8 +920,6 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 				return !getSuperInterfaceNames().isEmpty();
 			case JdtmmPackage.JDT_TYPE__SUPER_CLASS_NAME:
 				return SUPER_CLASS_NAME_EDEFAULT == null ? getSuperClassName() != null : !SUPER_CLASS_NAME_EDEFAULT.equals(getSuperClassName());
-			case JdtmmPackage.JDT_TYPE__METHODS:
-				return methods != null && !methods.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -952,9 +952,9 @@ public abstract class JDTTypeImpl extends JDTMemberImpl implements JDTType {
 	@Override
 	public boolean isSetChildren() {
 		return super.isSetChildren()
+			|| eIsSet(JdtmmPackage.JDT_TYPE__METHODS)
 			|| eIsSet(JdtmmPackage.JDT_TYPE__FIELDS)
-			|| eIsSet(JdtmmPackage.JDT_TYPE__TYPES)
-			|| eIsSet(JdtmmPackage.JDT_TYPE__METHODS);
+			|| eIsSet(JdtmmPackage.JDT_TYPE__TYPES);
 	}
 
 	/**
