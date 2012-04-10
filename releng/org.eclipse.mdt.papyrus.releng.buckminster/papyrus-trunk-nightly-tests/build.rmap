@@ -299,13 +299,6 @@
 		</rm:uri>
 	</rm:provider>
 
-    <!-- E4 (XWT) -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <rm:uri format="{0}/e4/updates/0.11/R-0.11-201106201631"> 
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider>
-
     <!-- FIXME !!!!! for EMF workspace which is not currently in Juno !!!!! -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <rm:uri format="{0}/modeling/emf/updates/">
