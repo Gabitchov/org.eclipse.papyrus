@@ -250,9 +250,20 @@ if [ $signalDateTrunkExtraNightly -gt $lastPromoteDateTrunkExtraNightly ]; then
 	rm -rf "$workingDir"
 	rm -rf "$tmpDrop"
 	
-	# TODO: re-enable when the job is implemented
-	# echo "[$DATE] triggering Hudson tests build"
-	# curl https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/buildWithParameters?token=token
+	# trigger the extras tests build by using the Hudson Rest API
+	# see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
+	
+	echo "[$DATE] triggering Hudson extras tests build"
+	json='{"parameter": [
+		{"name": "BUCKMINSTER_LOGLEVEL", "value": "DEBUG"},
+		{"name": "CLEAN_TP", "value": "true"},
+		{"name": "CLEAN_WORKSPACE", "value": "true"},
+		{"name": "CLEAN_OUTPUT", "value": "true"},
+		{"name": "CLEAN_TOOLS", "value": "false"},
+		{"name": "BUILD_TYPE", "value": "N"},
+		{"name": "BUILD_TARGET", "value": "test"}
+	], "": ""}'
+	curl -X POST https://hudson.eclipse.org/hudson/job/papyrus-trunk-extra-nightly-tests/build -d token=token --data-urlencode json="$json" | grep --ignore-case error && exit -1
 fi
 
 ########## maintenance main nightly ##########
