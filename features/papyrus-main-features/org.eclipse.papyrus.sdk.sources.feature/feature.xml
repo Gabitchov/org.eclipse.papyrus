@@ -125,4 +125,8 @@
          id="org.eclipse.papyrus.uml.alf.source.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.xwt.source.feature"
+         version="0.0.0"/>
+
 </feature>

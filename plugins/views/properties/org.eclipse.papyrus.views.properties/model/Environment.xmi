@@ -33,6 +33,9 @@
   <widgetTypes
       label="Text"
       widgetClass="Text"/>
+  <widgetTypes
+      label="Button"
+      widgetClass="Button"/>
   <propertyEditorTypes
       label="StringEditor"
       widgetClass="StringEditor"

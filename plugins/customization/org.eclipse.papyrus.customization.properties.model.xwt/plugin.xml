@@ -5,4 +5,11 @@
       <parser class="org.eclipse.papyrus.customization.properties.model.xwt.resource.XWTModelFactory" type="xwt">
       </parser>
    </extension>
+  <extension
+        point="org.eclipse.core.contenttype.contentTypes">
+     <file-association
+           content-type="org.eclipse.wst.xml.core.xmlsource"
+           file-extensions="xwt">
+     </file-association>
+  </extension>
 </plugin>

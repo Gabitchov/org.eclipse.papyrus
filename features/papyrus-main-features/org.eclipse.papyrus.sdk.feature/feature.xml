@@ -125,24 +125,8 @@
          id="org.eclipse.papyrus.uml.alf.feature"
          version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.e4.xwt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.e4.xwt.pde"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.e4.xwt.tools.ui"
-         download-size="0"
-         install-size="0"
+   <includes
+         id="org.eclipse.papyrus.xwt.feature"
          version="0.0.0"/>
 
 </feature>
