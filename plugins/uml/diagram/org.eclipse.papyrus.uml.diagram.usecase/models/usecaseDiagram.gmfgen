@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0"
+<xmi:XMI
+    xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
@@ -17,10 +18,10 @@
         notationViewFactoryClassName="PackageViewFactory"
         canonicalEditPolicyClassName="UseCaseDiagramCanonicalEditPolicy"
         iconProviderPriority="Low"
+        validationProviderPriority="Low"
         validationEnabled="true"
-        liveValidationUIFeedback="true"
         validationDecorators="true"
-        validationProviderPriority="Low">
+        liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
@@ -1204,18 +1205,18 @@
       </topLevelNodes>
       <topLevelNodes
           visualID="2015"
-          editPartClassName="ComponentEditPartTN"
-          itemSemanticEditPolicyClassName="ComponentItemSemanticEditPolicyTN"
+          editPartClassName="SubjectEditPartTN"
+          itemSemanticEditPolicyClassName="SubjectItemSemanticEditPolicyTN"
           notationViewFactoryClassName="ComponentViewFactory"
-          canonicalEditPolicyClassName="ComponentCanonicalEditPolicyTN"
+          canonicalEditPolicyClassName="SubjectCanonicalEditPolicyTN"
           compartments="/0/@diagram/@compartments.2"
-          graphicalNodeEditPolicyClassName="ComponentGraphicalNodeEditPolicyTN"
-          createCommandClassName="ComponentCreateCommandTN">
+          graphicalNodeEditPolicyClassName="SubjectGraphicalNodeEditPolicyTN"
+          createCommandClassName="SubjectCreateCommandTN">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="ComponentEditHelper"/>
+            editHelperClassName="SubjectEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="UseCaseSubjectFigure"
@@ -1242,7 +1243,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
@@ -1259,8 +1260,8 @@
         </modelFacet>
         <labels
             visualID="5019"
-            editPartClassName="ComponentNameEditPartTN"
-            itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicyTN"
+            editPartClassName="SubjectNameEditPartTN"
+            itemSemanticEditPolicyClassName="SubjectNameItemSemanticEditPolicyTN"
             notationViewFactoryClassName="ComponentNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
