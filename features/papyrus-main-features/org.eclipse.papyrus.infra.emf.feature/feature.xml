@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.infra.emf.feature"
-      label="Papyrus Infra EMF"
+      label="Papyrus Infra EMF (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
