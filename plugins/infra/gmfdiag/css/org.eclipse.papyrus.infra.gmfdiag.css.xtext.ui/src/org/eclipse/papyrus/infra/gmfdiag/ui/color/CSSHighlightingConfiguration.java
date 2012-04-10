@@ -25,6 +25,8 @@ public class CSSHighlightingConfiguration extends DefaultHighlightingConfigurati
 
 	public static final String FONT = "Font";
 
+	public static final String FUNCTION = "Function";
+
 	public TextStyle colorTextStyle() {
 		TextStyle textStyle = new TextStyle();
 		textStyle.setColor(new RGB(255, 98, 176));
@@ -56,6 +58,12 @@ public class CSSHighlightingConfiguration extends DefaultHighlightingConfigurati
 	}
 
 	public TextStyle propertyTextStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setColor(new RGB(63, 127, 127));
+		return textStyle;
+	}
+
+	public TextStyle functionTextStyle() {
 		TextStyle textStyle = new TextStyle();
 		textStyle.setColor(new RGB(63, 127, 127));
 		return textStyle;
@@ -99,6 +107,7 @@ public class CSSHighlightingConfiguration extends DefaultHighlightingConfigurati
 		acceptor.acceptDefaultHighlighting(PROPERTY, "Property", propertyTextStyle());
 		acceptor.acceptDefaultHighlighting(ATTRIBUTE, "Attribute", attributeTextStyle());
 		acceptor.acceptDefaultHighlighting(FONT, "Font", fontTextStyle());
+		acceptor.acceptDefaultHighlighting(FUNCTION, "Function", functionTextStyle());
 	}
 
 }

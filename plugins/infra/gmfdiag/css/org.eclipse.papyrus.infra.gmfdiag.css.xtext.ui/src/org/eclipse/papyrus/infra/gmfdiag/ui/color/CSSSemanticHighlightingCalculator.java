@@ -30,6 +30,7 @@ public class CSSSemanticHighlightingCalculator implements ISemanticHighlightingC
 		ruleNameToID.put("Combinator", CSSHighlightingConfiguration.SELECTOR);
 
 		ruleNameToID.put("Declaration", CSSHighlightingConfiguration.PROPERTY);
+		ruleNameToID.put("Function", CSSHighlightingConfiguration.FUNCTION);
 
 		//Values
 
@@ -66,13 +67,22 @@ public class CSSSemanticHighlightingCalculator implements ISemanticHighlightingC
 			if(node.getGrammarElement() instanceof RuleCall) {
 				RuleCall ruleCall = (RuleCall)node.getGrammarElement();
 				String name = ruleCall.getRule().getName();
+
+				String stringOrNameValue = null;
+
 				if("Name".equals(name)) { //TODO: Strings should also be taken into account
 					//Check the known elements (fonts, colors, ...)
-					String value = node.getText();
-					if(isFont(value)) {
+					stringOrNameValue = node.getText();
+				} else if("StringValue".equals(name)) {
+					stringOrNameValue = node.getText();
+					stringOrNameValue = stringOrNameValue.substring(1, stringOrNameValue.length() - 1);
+				}
+
+				if(stringOrNameValue != null) {
+					if(isFont(stringOrNameValue)) {
 						acceptor.addPosition(node.getOffset(), node.getLength(), CSSHighlightingConfiguration.FONT);
 						continue;
-					} else if(isColor(value)) {
+					} else if(isColor(stringOrNameValue)) {
 						acceptor.addPosition(node.getOffset(), node.getLength(), CSSHighlightingConfiguration.COLOR);
 						continue;
 					}
