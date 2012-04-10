@@ -32,4 +32,9 @@ public class UMLCompareEditor extends EMFCompareEditor {
 	public UMLCompareEditor(final ServicesRegistry servicesRegistry, final PapyrusEMFCompareInstance rawModel) {
 		super(servicesRegistry, rawModel);
 	}
+
+	protected UMLCompareEditor() {
+		super();
+		// TODO used by the compare file editor
+	}
 }

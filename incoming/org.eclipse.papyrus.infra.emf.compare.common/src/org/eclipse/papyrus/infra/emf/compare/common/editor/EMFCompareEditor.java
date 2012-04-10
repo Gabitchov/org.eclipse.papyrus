@@ -80,6 +80,7 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		}
 	}
 
+	 
 	/**
 	 * @param servicesRegistry
 	 *        the service registry
@@ -96,6 +97,13 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		addListeners();
 	}
 
+	
+	protected EMFCompareEditor(){
+		//FIXME, used by the compare UMl File Editor, try to merge code	
+		super();
+	}
+	
+	
 	/**
 	 * 
 	 * @param left
