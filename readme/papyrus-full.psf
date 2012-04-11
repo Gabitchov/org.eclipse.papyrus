@@ -157,6 +157,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/org.eclipse.papyrus.views.properties.model,org.eclipse.papyrus.views.properties.model"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/org.eclipse.papyrus.views.properties.model.edit,org.eclipse.papyrus.views.properties.model.edit"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/org.eclipse.papyrus.views.properties.model.editor,org.eclipse.papyrus.views.properties.model.editor"/>
+<project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/xwt/org.eclipse.papyrus.xwt,org.eclipse.papyrus.xwt"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/infra/gmfdiag/org.eclipse.xtext.gmf.glue,org.eclipse.xtext.gmf.glue"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612372883_37" label="editor" name="editor">
@@ -378,5 +379,8 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.uml.textedit.common.xtext.generator" type="4"/>
 <item elementID="=org.eclipse.papyrus.uml.textedit.state.xtext" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.textedit.message.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1319612545656_70" label="xwt" name="xwt">
+<item elementID="=org.eclipse.papyrus.xwt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 </psf>
