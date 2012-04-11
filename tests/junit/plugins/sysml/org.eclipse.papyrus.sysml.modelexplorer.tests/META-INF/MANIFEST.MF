@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer.tests
+Bundle-Version: 0.8.2.qualifier
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.sysml.modelexplorer;bundle-version="0.8.2"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
+Require-Bundle: org.junit;bundle-version="4.8.2",
+ org.eclipse.core.expressions;bundle-version="3.4.300"
