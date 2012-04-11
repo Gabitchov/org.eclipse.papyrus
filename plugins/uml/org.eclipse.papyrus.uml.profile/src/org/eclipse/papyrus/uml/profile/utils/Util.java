@@ -110,7 +110,7 @@ public class Util {
 				Comment cCom = (Comment)object;
 				suffix = " (Comment)";
 				String cComBody = cCom.getBody();
-				if(cComBody.length() >= 10) {
+				if(cComBody != null && cComBody.length() >= 10) {
 					cComLabel = cComBody.substring(0, 9) + "...";
 				} else {
 					cComLabel = cComBody;
