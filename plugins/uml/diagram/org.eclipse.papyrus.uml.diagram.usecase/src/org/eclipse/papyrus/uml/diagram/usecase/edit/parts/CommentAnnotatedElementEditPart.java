@@ -25,8 +25,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CommentAnnotatedEle
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart {
+public class CommentAnnotatedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,8 +44,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new CommentAnnotatedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentAnnotatedElementItemSemanticEditPolicy());
 	}
 
 	/**
@@ -65,7 +63,7 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor) getFigure();
+		return (CommentLinkDescriptor)getFigure();
 	}
 
 	/**
@@ -79,7 +77,6 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart
 		public CommentLinkDescriptor() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
 	}
 }

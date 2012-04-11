@@ -25,8 +25,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ConstraintConstrain
 /**
  * @generated
  */
-public class ConstraintConstrainedElementEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart {
+public class ConstraintConstrainedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,8 +44,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ConstraintConstrainedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
 
 	/**
@@ -65,7 +63,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart
 	 * @generated
 	 */
 	public DashedLineConnection getPrimaryShape() {
-		return (DashedLineConnection) getFigure();
+		return (DashedLineConnection)getFigure();
 	}
 
 	/**
@@ -79,7 +77,6 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart
 		public DashedLineConnection() {
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
 	}
 }

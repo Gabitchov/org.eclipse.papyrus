@@ -22,7 +22,6 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
@@ -32,8 +31,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ExtendItemSemanticE
 /**
  * @generated
  */
-public class ExtendEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -52,20 +50,16 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ExtendItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ExtendAppliedStereotypeEditPart) {
-			((ExtendAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ExtendAppliedStereotypeEditPart) {
+			((ExtendAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -75,7 +69,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -85,7 +79,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ExtendAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ExtendAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -95,7 +89,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -117,7 +111,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public UseCases_WithArrow_Polyline getPrimaryShape() {
-		return (UseCases_WithArrow_Polyline) getFigure();
+		return (UseCases_WithArrow_Polyline)getFigure();
 	}
 
 	/**
@@ -132,7 +126,6 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements
 			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
-
 			setTargetDecoration(createTargetDecoration());
 		}
 

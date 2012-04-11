@@ -26,8 +26,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 /**
  * @generated
  */
-public class AssociationPreferencePage extends
-		AbstractPapyrusLinkPreferencePage {
+public class AssociationPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	/**
 	 * @generated
@@ -49,28 +48,21 @@ public class AssociationPreferencePage extends
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String key = UseCaseDiagramEditPart.MODEL_ID + "_Association";
 		Map<String, Boolean> map = getStaticLabelVisibilityPreferences();
-		for (String role : map.keySet()) {
-			String preferenceName = PreferenceConstantHelper
-					.getLabelElementConstant(key, role,
-							PreferenceConstantHelper.LABEL_VISIBILITY);
+		for(String role : map.keySet()) {
+			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, role, PreferenceConstantHelper.LABEL_VISIBILITY);
 			store.setDefault(preferenceName, map.get(role));
 		}
-
 	}
 
 	/**
 	 * @generated
 	 */
 	private static TreeMap<String, String> getStaticLabelRole() {
-		TreeMap<String, String> map = new TreeMap<String, String>(
-				new StringComparator());
-		map.put("Name",
-				"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png");//$NON-NLS-1$ //$NON-NLS-2$
-		map.put("Stereotype",
-				"platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/stereotype.gif");//$NON-NLS-1$ //$NON-NLS-2$
+		TreeMap<String, String> map = new TreeMap<String, String>(new StringComparator());
+		map.put("Name", "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png");//$NON-NLS-1$ //$NON-NLS-2$
+		map.put("Stereotype", "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/stereotype.gif");//$NON-NLS-1$ //$NON-NLS-2$
 		return map;
 	}
 
@@ -79,11 +71,8 @@ public class AssociationPreferencePage extends
 	 */
 	private static TreeMap<String, Boolean> getStaticLabelVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-
 		map.put("Name", Boolean.FALSE);//$NON-NLS-1$
-
 		map.put("Stereotype", Boolean.TRUE);
-
 		return map;
 	}
 

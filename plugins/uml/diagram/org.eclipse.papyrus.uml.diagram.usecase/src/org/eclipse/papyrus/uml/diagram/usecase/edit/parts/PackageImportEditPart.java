@@ -27,8 +27,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.PackageImportItemSe
 /**
  * @generated
  */
-public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class PackageImportEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,11 +46,8 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PackageImportItemSemanticEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypePackageImportLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageImportItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypePackageImportLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -62,9 +58,8 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 		//			((PackageImportVisibilityEditPart)childEditPart).setLabel(getPrimaryShape().getPackageImportVisibility());
 		//			return true;
 		//		}
-		if (childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
-			((PackageImportAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
+			((PackageImportAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -74,7 +69,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -84,7 +79,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
+		if(childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +89,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -116,6 +111,6 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

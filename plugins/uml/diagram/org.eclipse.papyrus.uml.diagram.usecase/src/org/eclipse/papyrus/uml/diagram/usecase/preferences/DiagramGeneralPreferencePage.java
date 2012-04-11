@@ -26,9 +26,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 * @generated
 	 */
 	public DiagramGeneralPreferencePage() {
-		setPreferenceStore(UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setPreferenceKey(UseCaseDiagramEditPart.MODEL_ID);
-
 	}
 }

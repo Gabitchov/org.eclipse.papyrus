@@ -26,8 +26,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ShortCutDiagramItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -41,13 +40,11 @@ public class ShortCutDiagramItemSemanticEditPolicy extends
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
-		IElementEditService provider = ElementEditServiceUtils
-				.getCommandProvider(selectedEObject);
-		if (provider != null) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-
-			if (deleteCommand != null) {
+			if(deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
