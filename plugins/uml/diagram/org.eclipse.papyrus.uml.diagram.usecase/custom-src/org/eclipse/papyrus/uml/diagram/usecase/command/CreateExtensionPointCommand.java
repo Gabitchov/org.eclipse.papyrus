@@ -234,7 +234,5 @@ public class CreateExtensionPointCommand extends Command {
 			extend.getExtensionLocations().add(extPoint);
 			return CommandResult.newOKCommandResult();
 		}
-
 	}
-
 }

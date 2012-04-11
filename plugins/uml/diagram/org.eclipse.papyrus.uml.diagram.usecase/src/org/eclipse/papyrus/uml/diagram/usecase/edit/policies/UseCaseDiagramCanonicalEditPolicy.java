@@ -60,7 +60,6 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintEditPartTN;
@@ -76,6 +75,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
@@ -141,7 +143,9 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 		case UseCaseEditPartTN.VISUAL_ID:
 		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
-		case ComponentEditPartTN.VISUAL_ID:
+		case SubjectComponentEditPartTN.VISUAL_ID:
+		case SubjectClassEditPartTN.VISUAL_ID:
+		case SubjectInterfaceEditPartTN.VISUAL_ID:
 		case PackageEditPartTN.VISUAL_ID:
 		case ConstraintEditPartTN.VISUAL_ID:
 		case CommentEditPartTN.VISUAL_ID:
@@ -371,10 +375,30 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ComponentEditPartTN.VISUAL_ID:
+		case SubjectComponentEditPartTN.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getComponent_2015ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case SubjectClassEditPartTN.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getClass_2020ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case SubjectInterfaceEditPartTN.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getInterface_2021ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

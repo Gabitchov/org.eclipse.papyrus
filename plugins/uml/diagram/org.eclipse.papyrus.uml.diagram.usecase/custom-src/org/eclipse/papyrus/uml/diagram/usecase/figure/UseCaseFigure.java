@@ -51,7 +51,6 @@ public class UseCaseFigure extends Ellipse implements IPapyrusNodeUMLElementFigu
 	 * Instantiates a new use case figure.
 	 */
 	public UseCaseFigure() {
-
 		SplitEllipseLayout layoutThis = new SplitEllipseLayout();
 		this.setLayoutManager(layoutThis);
 		this.setLineWidth(1);
@@ -75,11 +74,9 @@ public class UseCaseFigure extends Ellipse implements IPapyrusNodeUMLElementFigu
 	 * Creates the contents.
 	 */
 	private void createContents() {
-
 		fUseCaseFigure_name = new CenteredWrappedLabel();
 		fUseCaseFigure_name.setText("");
 		this.add(fUseCaseFigure_name, GravityConstrainedFlowLayout.ALIGN_CENTER);
-
 		fUseCaseFigure_contents = new RectangleFigure();
 		fUseCaseFigure_contents.setFill(false);
 		fUseCaseFigure_contents.setOutline(false);
@@ -203,5 +200,4 @@ public class UseCaseFigure extends Ellipse implements IPapyrusNodeUMLElementFigu
 	public Label getStereotypesLabel() {
 		return null;//fActionStereotypeLabel;
 	}
-
 }

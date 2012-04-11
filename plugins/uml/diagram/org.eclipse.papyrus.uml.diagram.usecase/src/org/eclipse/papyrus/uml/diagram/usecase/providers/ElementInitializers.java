@@ -21,11 +21,13 @@ import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.ExtensionPoint;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Realization;
@@ -96,7 +98,31 @@ public class ElementInitializers {
 	 */
 	public void init_Component_2015(Component instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getComponent(), null).evaluate(instance);
+			Object value_0 = name_Component_2015(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Class_2020(Class instance) {
+		try {
+			Object value_0 = name_Class_2020(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Interface_2021(Interface instance) {
+		try {
+			Object value_0 = name_Interface_2021(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -362,6 +388,27 @@ public class ElementInitializers {
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Component_2015(Component self) {
+		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Class_2020(Class self) {
+		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Interface_2021(Interface self) {
+		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**

@@ -23,10 +23,12 @@ import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementComm
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ActorAsRectangleCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ActorCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.CommentCreateCommandTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ComponentCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ConstraintCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ShortCutDiagramCreateCommand;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.SubjectClassCreateCommandTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.SubjectComponentCreateCommandTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.SubjectInterfaceCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.UseCaseAsRectangleCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.UseCaseCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -60,7 +62,13 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 			return getGEFWrapper(new UseCaseAsRectangleCreateCommandTN(req));
 		}
 		if(UMLElementTypes.Component_2015 == req.getElementType()) {
-			return getGEFWrapper(new ComponentCreateCommandTN(req));
+			return getGEFWrapper(new SubjectComponentCreateCommandTN(req));
+		}
+		if(UMLElementTypes.Class_2020 == req.getElementType()) {
+			return getGEFWrapper(new SubjectClassCreateCommandTN(req));
+		}
+		if(UMLElementTypes.Interface_2021 == req.getElementType()) {
+			return getGEFWrapper(new SubjectInterfaceCreateCommandTN(req));
 		}
 		if(UMLElementTypes.Package_2016 == req.getElementType()) {
 			return getGEFWrapper(new PackageCreateCommandTN(req));

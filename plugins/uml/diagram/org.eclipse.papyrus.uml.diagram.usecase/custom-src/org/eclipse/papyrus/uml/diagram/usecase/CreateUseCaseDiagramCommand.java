@@ -37,5 +37,4 @@ public class CreateUseCaseDiagramCommand extends AbstractPapyrusGmfCreateDiagram
 	protected String getDefaultDiagramName() {
 		return "UseCaseDiagram";
 	}
-
 }

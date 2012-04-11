@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.edit.policies;
 
 import java.util.ArrayList;
@@ -35,9 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramUpdater;
@@ -48,7 +33,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ComponentUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
+public class SubjectInterfaceUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -70,11 +55,24 @@ public class ComponentUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClassifier_OwnedUseCase());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
+		}
+		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * @generated
+	 */
 	@SuppressWarnings("rawtypes")
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getComponentUsecases_7011SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceUsecases_7019SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -93,15 +91,7 @@ public class ComponentUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch(visualID) {
-		case UseCaseInComponentEditPart.VISUAL_ID:
-		case ComponentInComponentEditPart.VISUAL_ID:
-		case CommentEditPartCN.VISUAL_ID:
-		case ConstraintInComponentEditPart.VISUAL_ID:
-		case ActorInComponentEditPart.VISUAL_ID:
-			return true;
-		}
-		return false;
+		return visualID == UseCaseInComponentEditPart.VISUAL_ID || visualID == CommentEditPartCN.VISUAL_ID || visualID == ConstraintInComponentEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -112,7 +102,7 @@ public class ComponentUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getComponentUsecases_7011SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getInterfaceUsecases_7019SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -178,20 +168,5 @@ public class ComponentUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 		makeViewsImmutable(createdViews);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClassifier_OwnedUseCase());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getComponent_PackagedElement());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_NestedClassifier());
-		}
-		return myFeaturesToSynchronize;
 	}
 }

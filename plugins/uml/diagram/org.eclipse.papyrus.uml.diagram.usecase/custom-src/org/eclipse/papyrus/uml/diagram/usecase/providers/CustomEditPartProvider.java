@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeConpart
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AppliedStereotypePropertyEditPart;
 
-
 public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 
 	/** Map containing node view types supported by this provider */
@@ -38,10 +37,7 @@ public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 	/** Default constructor */
 	public CustomEditPartProvider() {
 		super();
-
 		diagramType = "UseCase";
-
-		
 		nodeMap.put(AppliedStereotypeConpartmentEditPart.ID, AppliedStereotypeConpartmentEditPart.class);
 		nodeMap.put(AppliedStereotypePropertyEditPart.ID, AppliedStereotypeMultilinePropertyEditPart.class);
 	}
@@ -56,18 +52,14 @@ public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 			if(newView == null) {
 				return false;
 			}
-
 			String graphicalType = newView.getType();
-
 			if((newView instanceof Node) && (!nodeMap.containsKey(graphicalType))) {
 				return false;
 			}
-
 			if((newView instanceof Edge) && (!edgeMap.containsKey(graphicalType))) {
 				return false;
 			}
 		}
-
 		return super.provides(operation);
 	}
 

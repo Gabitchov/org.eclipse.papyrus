@@ -308,7 +308,13 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if(targetEditPart instanceof ComponentEditPartTN) {
+		if(targetEditPart instanceof SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -364,6 +370,8 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.Comment_2018);

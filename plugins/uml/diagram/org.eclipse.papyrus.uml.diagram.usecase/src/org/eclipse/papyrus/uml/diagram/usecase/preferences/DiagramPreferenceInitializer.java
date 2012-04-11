@@ -31,7 +31,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ShortCutDiagramPreferencePage.initDefaults(store);
 		CommentPreferencePage.initDefaults(store);
 		ConstraintPreferencePage.initDefaults(store);
+		InterfacePreferencePage.initDefaults(store);
 		ActorPreferencePage.initDefaults(store);
+		ClassPreferencePage.initDefaults(store);
 		ExtensionPointPreferencePage.initDefaults(store);
 		PackagePreferencePage.initDefaults(store);
 		ComponentPreferencePage.initDefaults(store);

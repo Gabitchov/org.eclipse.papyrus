@@ -38,7 +38,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void addProviderChangeListener(IProviderChangeListener listener) {
-
 	}
 
 	/**
@@ -67,7 +66,6 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		if(UseCaseDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -76,7 +74,5 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void removeProviderChangeListener(IProviderChangeListener listener) {
-
 	}
-
 }

@@ -83,5 +83,4 @@ public class UseCaseLinkMappingHelper implements ILinkMappingHelper {
 			};
 		});
 	}
-
 }

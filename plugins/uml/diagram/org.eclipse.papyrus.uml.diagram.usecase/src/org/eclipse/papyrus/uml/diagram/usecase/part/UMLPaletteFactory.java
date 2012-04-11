@@ -214,10 +214,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createSubject2CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(3);
+		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.Component_2015);
-		types.add(UMLElementTypes.Component_3016);
 		types.add(UMLElementTypes.Component_3013);
+		types.add(UMLElementTypes.Class_2020);
+		types.add(UMLElementTypes.Interface_2021);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

@@ -96,5 +96,4 @@ public class CreateExtensionPointEditPolicy extends GraphicalNodeEditPolicy {
 		IHintedType extend = (IHintedType)UMLElementTypes.Extend_4009;
 		return extend.getSemanticHint();
 	}
-
 }

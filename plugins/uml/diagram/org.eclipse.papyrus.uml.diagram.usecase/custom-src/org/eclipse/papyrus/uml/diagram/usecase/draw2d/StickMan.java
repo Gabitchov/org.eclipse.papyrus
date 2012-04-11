@@ -79,7 +79,6 @@ public class StickMan extends ShadowShape {
 	protected PointList setupPoints(Rectangle rectangle) {
 		int[] xPoints = new int[P_NUM];
 		int[] yPoints = new int[P_NUM];
-
 		PointList pl = new PointList(10);
 		int W = (rectangle.width / 2) * 2;
 		int H = rectangle.height;
@@ -91,7 +90,6 @@ public class StickMan extends ShadowShape {
 		if(STEP < 1) {
 			STEP = 1;
 		}
-
 		// set positive points. (0...9)
 		xPoints[0] = STEP;
 		yPoints[0] = Y1;
@@ -113,35 +111,27 @@ public class StickMan extends ShadowShape {
 		yPoints[8] = H;
 		xPoints[9] = 0;
 		yPoints[9] = Y3 + STEP;
-
 		// reflect points 0..8
 		for(int i = 0; i <= 8; i++) {
 			xPoints[18 - i] = -xPoints[i];
 			yPoints[18 - i] = yPoints[i];
 		}
-
 		// close polyline.
 		xPoints[19] = xPoints[0];
 		yPoints[19] = yPoints[0];
-
 		// shift all points and copy to integer.
 		for(int i = 0; i < P_NUM; i++) {
 			xPoints[i] += X1;
-
 			xPoints[i] += rectangle.x;
 			yPoints[i] += rectangle.y;
 		}
-
 		for(int i = 0; i < xPoints.length; i++) {
 			pl.addPoint(xPoints[i], yPoints[i]);
 		}
-
 		// head-oval
 		ovalD = Y1;
 		ovalX = X1 - ovalD / 2 + rectangle.x;
 		ovalY = rectangle.y;
-
 		return pl;
 	}
-
 }

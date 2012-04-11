@@ -1,23 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
@@ -37,7 +23,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -45,19 +30,16 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.StereotypeFigureHelper;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ComponentItemSemanticEditPolicyTN;
-import org.eclipse.papyrus.uml.diagram.usecase.figure.AbstractSubjectFigure;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.SubjectComponentItemSemanticEditPolicyTN;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -67,9 +49,9 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @generated NOT implements IPapyrusEditPart
+ * @generated
  */
-public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEditPart {
+public class SubjectComponentEditPartTN extends ShapeNodeEditPart {
 
 	/**
 	 * @generated
@@ -89,7 +71,7 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	/**
 	 * @generated
 	 */
-	public ComponentEditPartTN(View view) {
+	public SubjectComponentEditPartTN(View view) {
 		super(view);
 	}
 
@@ -98,7 +80,7 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentItemSemanticEditPolicyTN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubjectComponentItemSemanticEditPolicyTN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -150,14 +132,14 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ComponentNameEditPartTN) {
-			((ComponentNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getUseCaseSubjectFigure_name());
+		if(childEditPart instanceof SubjectComponentNameEditPartTN) {
+			((SubjectComponentNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getUseCaseSubjectFigure_name());
 			return true;
 		}
-		if(childEditPart instanceof ComponentUsecasesEditPart) {
+		if(childEditPart instanceof SubjectComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ComponentUsecasesEditPart)childEditPart).getFigure());
+			pane.add(((SubjectComponentUsecasesEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -167,13 +149,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ComponentNameEditPartTN) {
+		if(childEditPart instanceof SubjectComponentNameEditPartTN) {
 			return true;
 		}
-		if(childEditPart instanceof ComponentUsecasesEditPart) {
+		if(childEditPart instanceof SubjectComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((ComponentUsecasesEditPart)childEditPart).getFigure());
+			pane.remove(((SubjectComponentUsecasesEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -203,7 +185,7 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ComponentUsecasesEditPart) {
+		if(editPart instanceof SubjectComponentUsecasesEditPart) {
 			return getPrimaryShape().getUseCaseSubjectFigure_contents();
 		}
 		return getContentPane();
@@ -296,7 +278,7 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNameEditPartTN.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(SubjectComponentNameEditPartTN.VISUAL_ID));
 	}
 
 	/**
@@ -331,7 +313,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.Generalization_4010);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.Generalization_4010);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
@@ -364,7 +352,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.Association_4011);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.Association_4011);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
@@ -397,7 +391,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -445,7 +445,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.Abstraction_4015);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.Abstraction_4015);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -493,7 +499,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.Usage_4016);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.Usage_4016);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -541,7 +553,13 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN) {
+			types.add(UMLElementTypes.Realization_4017);
+		}
+		if(targetEditPart instanceof SubjectClassEditPartTN) {
+			types.add(UMLElementTypes.Realization_4017);
+		}
+		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -597,6 +615,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -609,6 +629,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -621,6 +643,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -638,6 +662,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -655,6 +681,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -672,6 +700,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -717,6 +747,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -729,6 +761,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -745,6 +779,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -765,6 +801,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -782,6 +820,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -799,6 +839,8 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
+			types.add(UMLElementTypes.Class_2020);
+			types.add(UMLElementTypes.Interface_2021);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.UseCase_3009);
@@ -815,9 +857,9 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 	}
 
 	/**
-	 * @generated NOT extends AbstractSubjectFigure to manage stereotype display
+	 * @generated
 	 */
-	public class UseCaseSubjectFigure extends AbstractSubjectFigure {
+	public class UseCaseSubjectFigure extends RectangleFigure {
 
 		/**
 		 * @generated
@@ -830,51 +872,29 @@ public class ComponentEditPartTN extends ShapeNodeEditPart implements IPapyrusEd
 		private WrappingLabel fUseCaseSubjectFigure_name;
 
 		/**
-		 * @generated NOT
-		 */
-		private RectangleFigure useCaseSubjectFigure_header0;
-
-		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		public UseCaseSubjectFigure() {
-			super();
+			PileLayout layoutThis = new PileLayout();
+			layoutThis.setStretchBottom(true);
+			this.setLayoutManager(layoutThis);
+			this.setLineWidth(1);
+			this.setBackgroundColor(THIS_BACK);
 			createContents();
-			// use StereotypeFigureHelper
-			stereotypeHelper = new StereotypeFigureHelper(useCaseSubjectFigure_header0) {
-
-				@Override
-				public IMapMode getMapMode() {
-					return ComponentEditPartTN.this.getMapMode();
-				}
-
-				@Override
-				public Object getStereotypeRectangleConstraint() {
-					GridData constraintStereotypeRect0 = new GridData();
-					constraintStereotypeRect0.verticalAlignment = GridData.BEGINNING;
-					constraintStereotypeRect0.horizontalAlignment = GridData.FILL;
-					constraintStereotypeRect0.horizontalIndent = 0;
-					constraintStereotypeRect0.horizontalSpan = 1;
-					constraintStereotypeRect0.verticalSpan = 1;
-					constraintStereotypeRect0.grabExcessHorizontalSpace = false;
-					constraintStereotypeRect0.grabExcessVerticalSpace = false;
-					return constraintStereotypeRect0;
-				}
-			};
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
-			useCaseSubjectFigure_header0 = new RectangleFigure();
+			RectangleFigure useCaseSubjectFigure_header0 = new RectangleFigure();
 			useCaseSubjectFigure_header0.setLineWidth(1);
 			this.add(useCaseSubjectFigure_header0);
-			PileLayout layoutUseCaseSubjectFigure_header0 = new PileLayout();
-			layoutUseCaseSubjectFigure_header0.setNegativeGap(-10);
+			CenterLayout layoutUseCaseSubjectFigure_header0 = new CenterLayout();
 			useCaseSubjectFigure_header0.setLayoutManager(layoutUseCaseSubjectFigure_header0);
-			fUseCaseSubjectFigure_name = new CenteredWrappedLabel();
+			fUseCaseSubjectFigure_name = new WrappingLabel();
 			fUseCaseSubjectFigure_name.setText("");
+			fUseCaseSubjectFigure_name.setFont(FUSECASESUBJECTFIGURE_NAME_FONT);
 			fUseCaseSubjectFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 			useCaseSubjectFigure_header0.add(fUseCaseSubjectFigure_name);
 			fUseCaseSubjectFigure_contents = new RectangleFigure();

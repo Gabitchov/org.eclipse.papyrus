@@ -20,5 +20,4 @@ public class CreateUseCaseDiagramWithNavigationHandler extends CreateDiagramWith
 	public CreateUseCaseDiagramWithNavigationHandler() {
 		super(new CreateUseCaseDiagramCommand(), new UseCaseDiagramCreationCondition());
 	}
-
 }

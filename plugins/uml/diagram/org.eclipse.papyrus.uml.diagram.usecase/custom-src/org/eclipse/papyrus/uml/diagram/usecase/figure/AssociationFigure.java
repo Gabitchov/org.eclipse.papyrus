@@ -72,23 +72,18 @@ public class AssociationFigure extends UMLEdgeFigure {
 	 */
 	protected void createContents() {
 		super.createContents();
-
 		fAssociationNameLabel = new WrappingLabel();
 		fAssociationNameLabel.setText("");
 		this.add(fAssociationNameLabel);
-
 		fMultiplicitySourceLabel = new WrappingLabel();
 		fMultiplicitySourceLabel.setText("");
 		this.add(fMultiplicitySourceLabel);
-
 		fMultiplicityTargetLabel = new WrappingLabel();
 		fMultiplicityTargetLabel.setText("");
 		this.add(fMultiplicityTargetLabel);
-
 		fRoleSourceLabel = new WrappingLabel();
 		fRoleSourceLabel.setText("");
 		this.add(fRoleSourceLabel);
-
 		fRoleTargetLabel = new WrappingLabel();
 		fRoleTargetLabel.setText("");
 		this.add(fRoleTargetLabel);
@@ -105,12 +100,10 @@ public class AssociationFigure extends UMLEdgeFigure {
 	public RotatableDecoration getDecoration(int typeDecoration) {
 		int remain = typeDecoration % owned;
 		int navigationValue = remain / navigable;
-
 		if(navigationValue == 1) {
 			return getNavigationDecoration();
 		}
 		return null;
-
 	}
 
 	/**

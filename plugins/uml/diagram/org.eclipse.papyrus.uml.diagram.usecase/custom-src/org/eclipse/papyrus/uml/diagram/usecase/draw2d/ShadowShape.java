@@ -182,6 +182,5 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 			// rec.height));
 			// fillShape(graphics, rec);
 		}
-
 	}
 }

@@ -34,16 +34,10 @@ public abstract class CustomAbstractEditPartProvider extends AbstractEditPartPro
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreateGraphicEditPartOperation) {
 			String currentDiagramType = ((IEditPartOperation)operation).getView().getDiagram().getType();
-
 			if((diagramType == null) || (!diagramType.equals(currentDiagramType))) {
 				return false;
 			}
 		}
-
 		return super.provides(operation);
 	}
-
-
-
-
 }

@@ -72,5 +72,4 @@ public class UseCaseNodeFigure extends DefaultSizeNodeFigure implements IOvalAnc
 	public Rectangle getOvalBounds() {
 		return getBounds();
 	}
-
 }

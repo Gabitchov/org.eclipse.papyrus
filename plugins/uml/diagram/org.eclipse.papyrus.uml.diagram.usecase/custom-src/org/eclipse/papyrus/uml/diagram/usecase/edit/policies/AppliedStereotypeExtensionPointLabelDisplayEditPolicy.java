@@ -47,7 +47,5 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 	@Override
 	protected void refreshStereotypeDisplay() {
 		// TODO Auto-generated method stub
-
 	}
-
 }

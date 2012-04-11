@@ -46,10 +46,8 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart) {
 		IFigure figure = editPart.getFigure();
-
 		// computes the icon to be displayed
 		final Collection<Image> imageToDisplay = stereotypeIconsToDisplay(editPart);
-
 		// for each element in the list of stereotype icon, adds it to the icons list of the
 		// wrapping label
 		// TODO (RS - CEA LIST): more icons were displayed before refresh: has to clean
@@ -75,5 +73,4 @@ public class ExtensionPointLabelHelper extends StereotypedElementLabelHelper {
 	protected String elementLabel(GraphicalEditPart editPart) {
 		return ((NamedElement)getUMLElement(editPart)).getName();
 	}
-
 }

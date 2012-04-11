@@ -46,7 +46,6 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentBodyEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintNameEditPartTN;
@@ -63,6 +62,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationNameEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentNameEditPart;
@@ -175,6 +177,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			componentName_5019Parser = parser;
 		}
 		return componentName_5019Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser className_6037Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getClassName_6037Parser() {
+		if(className_6037Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			className_6037Parser = parser;
+		}
+		return className_6037Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser interfaceName_6038Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInterfaceName_6038Parser() {
+		if(interfaceName_6038Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			interfaceName_6038Parser = parser;
+		}
+		return interfaceName_6038Parser;
 	}
 
 	/**
@@ -725,8 +761,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getUseCaseName_5016Parser();
 		case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
 			return getUseCaseName_5017Parser();
-		case ComponentNameEditPartTN.VISUAL_ID:
+		case SubjectComponentNameEditPartTN.VISUAL_ID:
 			return getComponentName_5019Parser();
+		case SubjectClassNameEditPartTN.VISUAL_ID:
+			return getClassName_6037Parser();
+		case SubjectInterfaceNameEditPartTN.VISUAL_ID:
+			return getInterfaceName_6038Parser();
 		case PackageNameEditPartTN.VISUAL_ID:
 			return getPackageName_5025Parser();
 		case ConstraintNameEditPartTN.VISUAL_ID:

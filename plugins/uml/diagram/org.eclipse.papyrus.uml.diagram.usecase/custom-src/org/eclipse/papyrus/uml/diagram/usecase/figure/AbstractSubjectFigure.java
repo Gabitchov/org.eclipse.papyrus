@@ -126,5 +126,4 @@ public abstract class AbstractSubjectFigure extends RectangleFigure implements I
 	public Label getStereotypesLabel() {
 		return null;//fActionStereotypeLabel;
 	}
-
 }

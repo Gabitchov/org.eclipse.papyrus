@@ -16,12 +16,10 @@ package org.eclipse.papyrus.uml.diagram.usecase.part;
 import java.util.EventObject;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.Tool;
@@ -51,7 +49,6 @@ import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProv
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
-import org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLNavigatorItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.KeyEvent;
@@ -163,7 +160,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	/**
 	 * @generated
 	 */
-	@Override
 	public Object getAdapter(Class type) {
 		if(type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
@@ -244,18 +240,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	private ISelection getNavigatorSelection() {
 		IDiagramDocument document = getDiagramDocument();
-		if(document == null) {
-			return StructuredSelection.EMPTY;
-		}
-		Diagram diagram = document.getDiagram();
-		if(diagram == null || diagram.eResource() == null) {
-			return StructuredSelection.EMPTY;
-		}
-		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
-		if(file != null) {
-			UMLNavigatorItem item = new UMLNavigatorItem(diagram, file, false);
-			return new StructuredSelection(item);
-		}
 		return StructuredSelection.EMPTY;
 	}
 

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -28,14 +15,14 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ComponentUsecasesItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.SubjectComponentUsecasesItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.Messages;
 
 /**
  * @generated
  */
-public class ComponentUsecasesEditPart extends ShapeCompartmentEditPart {
+public class SubjectComponentUsecasesEditPart extends ShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -45,7 +32,7 @@ public class ComponentUsecasesEditPart extends ShapeCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public ComponentUsecasesEditPart(View view) {
+	public SubjectComponentUsecasesEditPart(View view) {
 		super(view);
 	}
 
@@ -53,7 +40,7 @@ public class ComponentUsecasesEditPart extends ShapeCompartmentEditPart {
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.ComponentUsecasesEditPart_title;
+		return Messages.SubjectComponentUsecasesEditPart_title;
 	}
 
 	/**
@@ -70,12 +57,12 @@ public class ComponentUsecasesEditPart extends ShapeCompartmentEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentUsecasesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubjectComponentUsecasesItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ComponentUsecasesCanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.usecase.edit.policies.SubjectComponentUsecasesCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 

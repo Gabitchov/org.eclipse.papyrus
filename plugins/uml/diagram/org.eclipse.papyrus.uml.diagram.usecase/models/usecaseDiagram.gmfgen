@@ -45,7 +45,7 @@
           canonicalEditPolicyClassName="ExtensionPointCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ExtensionPointGraphicalNodeEditPolicy"
           createCommandClassName="ExtensionPointCreateCommand"
-          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.3 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.5 /0/@diagram/@compartments.7">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -136,10 +136,10 @@
           itemSemanticEditPolicyClassName="UseCaseInComponentItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCase3ViewFactory"
           canonicalEditPolicyClassName="UseCaseInComponentCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.3"
+          compartments="/0/@diagram/@compartments.5"
           graphicalNodeEditPolicyClassName="UseCaseInComponentGraphicalNodeEditPolicy"
           createCommandClassName="UseCaseInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6 /0/@diagram/@compartments.8 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -213,10 +213,10 @@
           itemSemanticEditPolicyClassName="ComponentInComponentItemSemanticEditPolicy"
           notationViewFactoryClassName="Component2ViewFactory"
           canonicalEditPolicyClassName="ComponentInComponentCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.4"
+          compartments="/0/@diagram/@compartments.6"
           graphicalNodeEditPolicyClassName="ComponentInComponentGraphicalNodeEditPolicy"
           createCommandClassName="ComponentInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.2">
+          containers="/0/@diagram/@compartments.8 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -295,7 +295,7 @@
           canonicalEditPolicyClassName="CommentCanonicalEditPolicyCN"
           graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicyCN"
           createCommandClassName="CommentCreateCommandCN"
-          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.2 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.2 /0/@diagram/@compartments.10 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -361,7 +361,7 @@
           canonicalEditPolicyClassName="ConstraintInComponentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintInComponentGraphicalNodeEditPolicy"
           createCommandClassName="ConstraintInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.2">
+          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.8 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -438,7 +438,7 @@
           canonicalEditPolicyClassName="ActorInComponentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ActorInComponentGraphicalNodeEditPolicy"
           createCommandClassName="ActorInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.2">
+          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -520,7 +520,7 @@
           canonicalEditPolicyClassName="ConstraintInPackageCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintInPackageGraphicalNodeEditPolicy"
           createCommandClassName="ConstraintInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -597,7 +597,7 @@
           canonicalEditPolicyClassName="ActorInPackageCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ActorInPackageGraphicalNodeEditPolicy"
           createCommandClassName="ActorInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -677,10 +677,10 @@
           itemSemanticEditPolicyClassName="UseCaseInPackageItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCase4ViewFactory"
           canonicalEditPolicyClassName="UseCaseInPackageCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.5"
+          compartments="/0/@diagram/@compartments.7"
           graphicalNodeEditPolicyClassName="UseCaseInPackageGraphicalNodeEditPolicy"
           createCommandClassName="UseCaseInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -754,10 +754,10 @@
           itemSemanticEditPolicyClassName="ComponentInPackageItemSemanticEditPolicy"
           notationViewFactoryClassName="Component3ViewFactory"
           canonicalEditPolicyClassName="ComponentInPackageCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.6"
+          compartments="/0/@diagram/@compartments.8"
           graphicalNodeEditPolicyClassName="ComponentInPackageGraphicalNodeEditPolicy"
           createCommandClassName="ComponentInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -834,10 +834,10 @@
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicyCN"
           notationViewFactoryClassName="Package3ViewFactory"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicyCN"
-          compartments="/0/@diagram/@compartments.7"
+          compartments="/0/@diagram/@compartments.9"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicyCN"
           createCommandClassName="PackageCreateCommandCN"
-          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1205,13 +1205,13 @@
       </topLevelNodes>
       <topLevelNodes
           visualID="2015"
-          editPartClassName="SubjectEditPartTN"
-          itemSemanticEditPolicyClassName="SubjectItemSemanticEditPolicyTN"
+          editPartClassName="SubjectComponentEditPartTN"
+          itemSemanticEditPolicyClassName="SubjectComponentItemSemanticEditPolicyTN"
           notationViewFactoryClassName="ComponentViewFactory"
-          canonicalEditPolicyClassName="SubjectCanonicalEditPolicyTN"
+          canonicalEditPolicyClassName="SubjectComponentCanonicalEditPolicyTN"
           compartments="/0/@diagram/@compartments.2"
-          graphicalNodeEditPolicyClassName="SubjectGraphicalNodeEditPolicyTN"
-          createCommandClassName="SubjectCreateCommandTN">
+          graphicalNodeEditPolicyClassName="SubjectComponentGraphicalNodeEditPolicyTN"
+          createCommandClassName="SubjectComponentCreateCommandTN">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1243,7 +1243,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
@@ -1252,7 +1252,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.6">
+                value="/0/@expressionProviders/@providers.1/@expressions.4">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -1260,8 +1260,166 @@
         </modelFacet>
         <labels
             visualID="5019"
-            editPartClassName="SubjectNameEditPartTN"
-            itemSemanticEditPolicyClassName="SubjectNameItemSemanticEditPolicyTN"
+            editPartClassName="SubjectComponentNameEditPartTN"
+            itemSemanticEditPolicyClassName="SubjectComponentNameItemSemanticEditPolicyTN"
+            notationViewFactoryClassName="ComponentNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getUseCaseSubjectFigure_name"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </topLevelNodes>
+      <topLevelNodes
+          visualID="2020"
+          editPartClassName="SubjectClassEditPartTN"
+          itemSemanticEditPolicyClassName="SubjectClassItemSemanticEditPolicyTN"
+          notationViewFactoryClassName="ComponentViewFactory"
+          canonicalEditPolicyClassName="SubjectClassCanonicalEditPolicyTN"
+          compartments="/0/@diagram/@compartments.3"
+          graphicalNodeEditPolicyClassName="SubjectClassGraphicalNodeEditPolicyTN"
+          createCommandClassName="SubjectClassCreateCommandTN">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="SubjectEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="UseCaseSubjectFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseSubjectFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fUseCaseSubjectFigure_contents; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fUseCaseSubjectFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseSubjectFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout();&#xA;&#xA;&#xA;&#xA;&#xA;layoutThis.setStretchBottom(&#xA;true);&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure useCaseSubjectFigure_header0 = new org.eclipse.draw2d.RectangleFigure();&#xA;useCaseSubjectFigure_header0.setLineWidth(1);&#xA;&#xA;this.add(useCaseSubjectFigure_header0);&#xA;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutUseCaseSubjectFigure_header0 = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;useCaseSubjectFigure_header0.setLayoutManager(layoutUseCaseSubjectFigure_header0);&#xA;&#xA;&#xA;&#xA;fUseCaseSubjectFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fUseCaseSubjectFigure_name.setText(&quot;&quot;);&#xA;&#xA;fUseCaseSubjectFigure_name.setFont(FUSECASESUBJECTFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;fUseCaseSubjectFigure_name.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;useCaseSubjectFigure_header0.add(fUseCaseSubjectFigure_name);&#xA;&#xA;&#xA;&#xA;&#xA;fUseCaseSubjectFigure_contents = new org.eclipse.draw2d.RectangleFigure();&#xA;fUseCaseSubjectFigure_contents.setLineWidth(1);&#xA;&#xA;this.add(fUseCaseSubjectFigure_contents);&#xA;fUseCaseSubjectFigure_contents.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getUseCaseSubjectFigure_contents() {&#xA;&#x9;&#x9;return fUseCaseSubjectFigure_contents;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getUseCaseSubjectFigure_name() {&#xA;&#x9;&#x9;return fUseCaseSubjectFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 245, 245, 245);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASESUBJECTFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="400"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/ownedType"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.4">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="6037"
+            editPartClassName="SubjectClassNameEditPartTN"
+            itemSemanticEditPolicyClassName="SubjectClassNameItemSemanticEditPolicyTN"
+            notationViewFactoryClassName="ComponentNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getUseCaseSubjectFigure_name"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </topLevelNodes>
+      <topLevelNodes
+          visualID="2021"
+          editPartClassName="SubjectInterfaceEditPartTN"
+          itemSemanticEditPolicyClassName="SubjectInterfaceItemSemanticEditPolicyTN"
+          notationViewFactoryClassName="ComponentViewFactory"
+          canonicalEditPolicyClassName="SubjectInterfaceCanonicalEditPolicyTN"
+          compartments="/0/@diagram/@compartments.4"
+          graphicalNodeEditPolicyClassName="SubjectInterfaceGraphicalNodeEditPolicyTN"
+          createCommandClassName="SubjectInterfaceCreateCommandTN">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="SubjectEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="UseCaseSubjectFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseSubjectFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fUseCaseSubjectFigure_contents; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fUseCaseSubjectFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseSubjectFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout();&#xA;&#xA;&#xA;&#xA;&#xA;layoutThis.setStretchBottom(&#xA;true);&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure useCaseSubjectFigure_header0 = new org.eclipse.draw2d.RectangleFigure();&#xA;useCaseSubjectFigure_header0.setLineWidth(1);&#xA;&#xA;this.add(useCaseSubjectFigure_header0);&#xA;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutUseCaseSubjectFigure_header0 = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;useCaseSubjectFigure_header0.setLayoutManager(layoutUseCaseSubjectFigure_header0);&#xA;&#xA;&#xA;&#xA;fUseCaseSubjectFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fUseCaseSubjectFigure_name.setText(&quot;&quot;);&#xA;&#xA;fUseCaseSubjectFigure_name.setFont(FUSECASESUBJECTFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;fUseCaseSubjectFigure_name.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;useCaseSubjectFigure_header0.add(fUseCaseSubjectFigure_name);&#xA;&#xA;&#xA;&#xA;&#xA;fUseCaseSubjectFigure_contents = new org.eclipse.draw2d.RectangleFigure();&#xA;fUseCaseSubjectFigure_contents.setLineWidth(1);&#xA;&#xA;this.add(fUseCaseSubjectFigure_contents);&#xA;fUseCaseSubjectFigure_contents.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getUseCaseSubjectFigure_contents() {&#xA;&#x9;&#x9;return fUseCaseSubjectFigure_contents;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getUseCaseSubjectFigure_name() {&#xA;&#x9;&#x9;return fUseCaseSubjectFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 245, 245, 245);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASESUBJECTFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedBackground="true"/>
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="400"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/ownedType"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.4">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="6038"
+            editPartClassName="SubjectInterfaceNameEditPartTN"
+            itemSemanticEditPolicyClassName="SubjectInterfaceNameItemSemanticEditPolicyTN"
             notationViewFactoryClassName="ComponentNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1288,7 +1446,7 @@
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicyTN"
           notationViewFactoryClassName="Package2ViewFactory"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicyTN"
-          compartments="/0/@diagram/@compartments.8"
+          compartments="/0/@diagram/@compartments.10"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicyTN"
           createCommandClassName="PackageCreateCommandTN">
         <diagramRunTimeClass
@@ -2362,15 +2520,61 @@
       </compartments>
       <compartments
           visualID="7011"
-          editPartClassName="ComponentUsecasesEditPart"
-          itemSemanticEditPolicyClassName="ComponentUsecasesItemSemanticEditPolicy"
+          editPartClassName="SubjectComponentUsecasesEditPart"
+          itemSemanticEditPolicyClassName="SubjectComponentUsecasesItemSemanticEditPolicy"
           notationViewFactoryClassName="ComponentUsecasesViewFactory"
-          canonicalEditPolicyClassName="ComponentUsecasesCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6"
+          canonicalEditPolicyClassName="SubjectComponentUsecasesCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
           title="use cases"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.4"
+          listLayout="false">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getUseCaseSubjectFigure_contents"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7018"
+          editPartClassName="SubjectClassUsecasesEditPart"
+          itemSemanticEditPolicyClassName="SubjectClassUsecasesItemSemanticEditPolicy"
+          notationViewFactoryClassName="ComponentUsecasesViewFactory"
+          canonicalEditPolicyClassName="SubjectClassUsecasesCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
+          title="use cases"
+          canCollapse="false"
+          needsTitle="false"
+          node="/0/@diagram/@topLevelNodes.5"
+          listLayout="false">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getUseCaseSubjectFigure_contents"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7019"
+          editPartClassName="SubjectInterfaceUsecasesEditPart"
+          itemSemanticEditPolicyClassName="SubjectInterfaceUsecasesItemSemanticEditPolicy"
+          notationViewFactoryClassName="ComponentUsecasesViewFactory"
+          canonicalEditPolicyClassName="SubjectInterfaceUsecasesCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
+          title="use cases"
+          canCollapse="false"
+          needsTitle="false"
+          node="/0/@diagram/@topLevelNodes.6"
           listLayout="false">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2510,7 +2714,7 @@
           title="PackageableElementCompartment"
           canCollapse="false"
           needsTitle="false"
-          node="/0/@diagram/@topLevelNodes.5"
+          node="/0/@diagram/@topLevelNodes.7"
           listLayout="false">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2543,7 +2747,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
               id="&quot;usecase.tool.package&quot;"
-              genNodes="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.5"/>
+              genNodes="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.7"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Subject"
@@ -2551,7 +2755,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
               id="&quot;usecase.tool.subject&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.10"/>
+              genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Actor"
@@ -2575,7 +2779,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               id="&quot;usecase.tool.constraint&quot;"
-              genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.6"/>
+              genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.8"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
@@ -2583,7 +2787,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               id="&quot;usecase.tool.comment&quot;"
-              genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.7"/>
+              genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.9"/>
         </groups>
         <groups
             title="Children"
@@ -2743,3485 +2947,7 @@
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
     <editor/>
-    <navigator>
-      <childReferences
-          child="/0/@diagram"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.0"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.1"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@childNodes.0"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.2"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@childNodes.1"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.3"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@childNodes.0"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@childNodes.2"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@childNodes.2"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@childNodes.3"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@childNodes.5"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@childNodes.6"/>
-      <childReferences
-          child="/0/@diagram/@childNodes.7"/>
-      <childReferences
-          child="/0/@diagram/@childNodes.8"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@childNodes.0"/>
-      <childReferences
-          child="/0/@diagram/@childNodes.9"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@childNodes.2"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@childNodes.3"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@childNodes.5"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@childNodes.6"/>
-      <childReferences
-          child="/0/@diagram/@childNodes.10"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@childNodes.7"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@childNodes.8"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@childNodes.9"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@childNodes.10"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@childNodes.11"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          child="/0/@diagram/@childNodes.11"/>
-      <childReferences
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@childNodes.3"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@childNodes.5"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@childNodes.6"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.4"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@childNodes.7"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@childNodes.8"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@childNodes.9"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@childNodes.10"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@childNodes.11"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.5"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.6"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@topLevelNodes.7"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.0"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.0"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.0"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.0"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.0"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.0"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.0"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.0"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.0"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.0"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.1"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.1"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.1"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.1"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.1"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.1"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.1"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.1"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.1"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.1"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.2"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.2"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.2"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.2"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.3"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.3"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.3"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.3"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.4"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.7"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.4"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.4"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.4"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.4"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.4"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.4"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.5"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.5"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.5"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.5"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.6"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.7"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.4"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.6"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@topLevelNodes.7"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.7"
-          child="/0/@diagram/@links.6"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.6"
-          child="/0/@diagram/@childNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.4"
-          child="/0/@diagram/@links.6"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.7"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.7"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.7"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.8"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.8"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.8"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.9"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.9"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@topLevelNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.6"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.0"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.1"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.5"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.7"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.7"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.9"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.9"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.10"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.10"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.10"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.10"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.10"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.10"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.10"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.10"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.10"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.10"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.10"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram"
-          child="/0/@diagram/@links.11"
-          groupName="links"
-          groupIcon="icons/linksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.11"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.11"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="out_target"
-          groupName="target"
-          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.11"
-          referenceType="in_source"
-          groupName="incoming links"
-          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.0"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.1"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.1"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.2"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.3"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.4"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.4"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@topLevelNodes.5"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.5"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.2"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.2"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.3"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.3"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.6"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.8"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.8"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.9"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.9"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.10"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.10"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@links.11"
-          child="/0/@diagram/@childNodes.11"
-          referenceType="in_source"
-          groupName="source"
-          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.11"
-          child="/0/@diagram/@links.11"
-          referenceType="out_target"
-          groupName="outgoing links"
-          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    </navigator>
+    <navigator/>
     <diagramUpdater/>
     <propertySheet>
       <tabs
@@ -6260,7 +2986,7 @@
         <expressions
             body=" let base : String = 'point' in  let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in  let space : Namespace = self.namespace in  let allMissed : Sequence(String) = suffixes-> &#x9;select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s)) ) in  let firstMissed : String = allMissed->first() in  let noMisses : Boolean = firstMissed.oclIsUndefined() in  let allNames : Set(String) =  &#x9;if noMisses &#x9;&#x9;then &#x9;&#x9;space.member->collect(e : NamedElement | &#x9;&#x9;&#x9;if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base &#x9;&#x9;&#x9;then '' else e.name &#x9;&#x9;&#x9;endif &#x9;&#x9;)->asSet()->excluding('') &#x9;&#x9;else Set{'not in use'} &#x9;&#x9;endif in  let longestName : String = &#x9;&#x9;if noMisses &#x9;&#x9;then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first()&#x9;&#x9;else 'not in use' &#x9;&#x9;endif &#x9;in  if noMisses then &#x9;&#x9;if longestName.oclIsUndefined() &#x9;&#x9;then base &#x9;&#x9;else longestName.concat('1') &#x9;&#x9;endif  else base.concat(firstMissed)  endif "/>
         <expressions
-            body="let base : String = 'Subsystem' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
+            body="let base : String = 'Subject' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
         <expressions
             body="' '"/>
         <expressions
@@ -6301,7 +3027,9 @@
             body="self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
       </providers>
       <providers
-          xsi:type="gmfgen:GenJavaExpressionProvider">
+          xsi:type="gmfgen:GenJavaExpressionProvider"
+          throwException="false"
+          injectExpressionBody="true">
         <expressions
             body="return getName(self);"/>
         <expressions
@@ -6310,13 +3038,15 @@
             body="return getName(self);"/>
         <expressions
             body="return getName(self);"/>
+        <expressions
+            body="return &quot;Subject&quot; +org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());"/>
       </providers>
     </expressionProviders>
     <labelParsers
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:ExternalParser"
           uses="/0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet"/>
@@ -6326,7 +3056,7 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet"
+          uses="/0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.CommentParser"/>
     </labelParsers>
     <contextMenus
@@ -6341,7 +3071,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="manage edit part that extends NamedElementEditPart in common"
-        genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.5"
+        genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.7"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -6353,25 +3083,25 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for short cut"
-        genView="/0/@diagram/@topLevelNodes.8"
+        genView="/0/@diagram/@topLevelNodes.10"
         name="AbstractShortCutDiagramEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShortCutDiagramEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Name of the shorcut diagram"
-        genView="/0/@diagram/@topLevelNodes.8/@labels.0"
+        genView="/0/@diagram/@topLevelNodes.10/@labels.0"
         name="AbstractShortcutDiagramNameEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShortcutDiagramNameEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for compartment"
-        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.3 /0/@diagram/@compartments.5"
+        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.5 /0/@diagram/@compartments.7"
         name="ResizeableListCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="this is an extension to manage the comment"
-        genView="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.7"
+        genView="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.9"
         name="comment extended node"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"/>
     <extensionNodes
@@ -6387,7 +3117,7 @@
         role="Name"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
         linkLabels="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0"
-        externalNodeLabels="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0"/>
+        externalNodeLabels="/0/@diagram/@topLevelNodes.10/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Stereotype"
@@ -6415,6 +3145,6 @@
         xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService"
         comment="List of editpart using the delete service"
         name="DeleteService editpart List"
-        genView="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"/>
+        genView="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.10 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
