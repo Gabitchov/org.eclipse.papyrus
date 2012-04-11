@@ -26,53 +26,28 @@ import org.junit.Test;
 /**
  * The Class TestUseCaseChildNodeForPackage.
  */
-public class TestUseCaseChildNodeForPackage extends TestChildNode {
+public class TestUseCaseChildNodeForInterfaceSubject extends TestChildNode {
 
 	
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2016, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Interface_2021, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 	
-	/**
-	 * Test to manage component.
-	 */
+	
 	@Test
-	public void testToManagePackage() {
-		testToManageChildNode(UMLElementTypes.Package_3014, UMLElementTypes.Package_3014, true);
+	public void testToManageUseCaseForClassSubject() {
+		testToManageChildNode(UMLElementTypes.UseCase_3009, UMLElementTypes.Class_2020, false);
 	}
 	
-	/**
-	 * Test to manage component.
-	 */
 	@Test
-	public void testToManageActor() {
-		testToManageChildNode(UMLElementTypes.Actor_3011, UMLElementTypes.Package_3014, true);
-	}
-	
-	/**
-	 * Test to manage component.
-	 */
-	@Test
-	public void testToManageComment() {
-		testToManageChildNode(UMLElementTypes.Comment_3015, UMLElementTypes.Package_3014, true);
-	}
-	/**
-	 * Test to manage component.
-	 */
-	@Test
-	public void testToManageConstraint() {
-		testToManageChildNode(UMLElementTypes.Constraint_3010, UMLElementTypes.Package_3014, true);
+	public void testToManageUseCaseForComponentSubject() {
+		testToManageChildNode(UMLElementTypes.UseCase_3009, UMLElementTypes.Component_2015, false);
 	}
 	@Test
-	public void testToManageComponent() {
-		testToManageChildNode(UMLElementTypes.Component_3013, UMLElementTypes.Package_3014, true);
+	public void testToManageUseCaseForInterfaceSubject() {
+		testToManageChildNode(UMLElementTypes.UseCase_3009, UMLElementTypes.Interface_2021, false);
 	}
-	@Test
-	public void testToManageUseCase() {
-		testToManageChildNode(UMLElementTypes.UseCase_3012, UMLElementTypes.Package_3014, true);
-	}
-	
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateUseCaseDiagramCommand();

@@ -272,7 +272,7 @@ public abstract class TestChildNode extends org.eclipse.papyrus.diagram.tests.ca
 	 * @param type the type
 	 * @param containerType the container type
 	 */
-	public void testToManageChildNode(IElementType type, IElementType containerType) {
+	public void testToManageChildNode(IElementType type, IElementType containerType, boolean containerMove) {
 		testToCreateANode(type);
 		// the node is still present
 		testDestroy(type);
@@ -283,8 +283,9 @@ public abstract class TestChildNode extends org.eclipse.papyrus.diagram.tests.ca
 		// The node has been deleted, the uml element is still present
 		testDrop(type);
 		// the node and element are present
-		testChangeContainer(type, containerType);
+		if(containerMove){
+			testChangeContainer(type, containerType);
+		}
 	}
-
 
 }

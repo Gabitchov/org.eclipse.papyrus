@@ -38,7 +38,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComponent() {
-		testToManageChildNode(UMLElementTypes.Component_3021, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Component_3021, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInstanceSpecification() {
-		testToManageChildNode(UMLElementTypes.InstanceSpecification_3020, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.InstanceSpecification_3020, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageSignal() {
-		testToManageChildNode(UMLElementTypes.Signal_3022, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Signal_3022, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageModel() {
-		testToManageChildNode(UMLElementTypes.Model_3024, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Model_3024, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageEnumeration() {
-		testToManageChildNode(UMLElementTypes.Enumeration_3025, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Enumeration_3025, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageIPackage() {
-		testToManageChildNode(UMLElementTypes.Package_3009, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Package_3009, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageClass() {
-		testToManageChildNode(UMLElementTypes.Class_3010, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Class_3010, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -94,7 +94,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePrimitiveType() {
-		testToManageChildNode(UMLElementTypes.PrimitiveType_3026, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.PrimitiveType_3026, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageDataType() {
-		testToManageChildNode(UMLElementTypes.DataType_3027, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.DataType_3027, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageChildNode(UMLElementTypes.Constraint_3029, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Constraint_3029, UMLElementTypes.Package_3009, true);
 	}
 	
 	/**
@@ -118,7 +118,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageChildNode(UMLElementTypes.Comment_3028, UMLElementTypes.Package_3009);
+		testToManageChildNode(UMLElementTypes.Comment_3028, UMLElementTypes.Package_3009, true);
 	}
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
