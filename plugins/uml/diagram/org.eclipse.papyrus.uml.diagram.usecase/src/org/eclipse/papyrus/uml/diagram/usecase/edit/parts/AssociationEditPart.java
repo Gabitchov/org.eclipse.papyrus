@@ -32,7 +32,8 @@ import org.eclipse.uml2.uml.Property;
 /**
  * @generated
  */
-public class AssociationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends UMLConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -66,8 +67,10 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated NOT
 	 */
 	protected void addAssociationEndListeners() {
-		addListenerFilter("AssociationEndListenersSource", this, getSourceProperty());
-		addListenerFilter("AssociationEndListenersTarget", this, getTargetProperty());
+		addListenerFilter("AssociationEndListenersSource", this,
+				getSourceProperty());
+		addListenerFilter("AssociationEndListenersTarget", this,
+				getTargetProperty());
 	}
 
 	/**
@@ -85,7 +88,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 		// set the good ends for the association figure
-		if(resolveSemanticElement() != null) {
+		if (resolveSemanticElement() != null) {
 			refreshVisuals();
 		}
 	}
@@ -95,20 +98,25 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new AssociationItemSemanticEditPolicy());
+		installEditPolicy(
+				AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationNameEditPart) {
-			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if (childEditPart instanceof AssociationNameEditPart) {
+			((AssociationNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
-			((AssociationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
+			((AssociationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -118,7 +126,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -128,10 +136,10 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationNameEditPart) {
+		if (childEditPart instanceof AssociationNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
+		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -141,7 +149,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -163,7 +171,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 
 	/**
@@ -175,10 +183,10 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 		int sourceType = 0;
 		int targetType = 0;
 		// navigable?
-		if(source != null && source.isNavigable()) {
+		if (source != null && source.isNavigable()) {
 			sourceType += AssociationFigure.navigable;
 		}
-		if(target != null && target.isNavigable()) {
+		if (target != null && target.isNavigable()) {
 			targetType += AssociationFigure.navigable;
 		}
 		getPrimaryShape().setEnd(sourceType, targetType);
@@ -189,8 +197,8 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated NOT
 	 */
 	protected Property getSourceProperty() {
-		IGraphicalEditPart graphicalSource = (IGraphicalEditPart)getSource();
-		if(graphicalSource != null) {
+		IGraphicalEditPart graphicalSource = (IGraphicalEditPart) getSource();
+		if (graphicalSource != null) {
 			return getRelatedProperty(graphicalSource.resolveSemanticElement());
 		}
 		return null;
@@ -200,8 +208,8 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated NOT
 	 */
 	protected Property getTargetProperty() {
-		IGraphicalEditPart graphicalTarget = (IGraphicalEditPart)getTarget();
-		if(graphicalTarget != null) {
+		IGraphicalEditPart graphicalTarget = (IGraphicalEditPart) getTarget();
+		if (graphicalTarget != null) {
 			return getRelatedProperty(graphicalTarget.resolveSemanticElement());
 		}
 		return null;
@@ -211,10 +219,11 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated NOT
 	 */
 	protected Property getRelatedProperty(EObject obj) {
-		if(obj != null && resolveSemanticElement() instanceof Association) {
-			EList<Property> ends = ((Association)resolveSemanticElement()).getMemberEnds();
-			for(Property end : ends) {
-				if(obj.equals(end.getType())) {
+		if (obj != null && resolveSemanticElement() instanceof Association) {
+			EList<Property> ends = ((Association) resolveSemanticElement())
+					.getMemberEnds();
+			for (Property end : ends) {
+				if (obj.equals(end.getType())) {
 					return end;
 				}
 			}

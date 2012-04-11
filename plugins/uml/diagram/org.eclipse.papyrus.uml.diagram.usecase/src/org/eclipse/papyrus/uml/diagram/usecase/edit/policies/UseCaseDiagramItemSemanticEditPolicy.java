@@ -36,7 +36,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCaseDiagramItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -49,37 +50,37 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Actor_2011 == req.getElementType()) {
+		if (UMLElementTypes.Actor_2011 == req.getElementType()) {
 			return getGEFWrapper(new ActorCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Actor_2012 == req.getElementType()) {
+		if (UMLElementTypes.Actor_2012 == req.getElementType()) {
 			return getGEFWrapper(new ActorAsRectangleCreateCommandTN(req));
 		}
-		if(UMLElementTypes.UseCase_2013 == req.getElementType()) {
+		if (UMLElementTypes.UseCase_2013 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseCreateCommandTN(req));
 		}
-		if(UMLElementTypes.UseCase_2014 == req.getElementType()) {
+		if (UMLElementTypes.UseCase_2014 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseAsRectangleCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Component_2015 == req.getElementType()) {
+		if (UMLElementTypes.Component_2015 == req.getElementType()) {
 			return getGEFWrapper(new SubjectComponentCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Class_2020 == req.getElementType()) {
+		if (UMLElementTypes.Class_2020 == req.getElementType()) {
 			return getGEFWrapper(new SubjectClassCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Interface_2021 == req.getElementType()) {
+		if (UMLElementTypes.Interface_2021 == req.getElementType()) {
 			return getGEFWrapper(new SubjectInterfaceCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Package_2016 == req.getElementType()) {
+		if (UMLElementTypes.Package_2016 == req.getElementType()) {
 			return getGEFWrapper(new PackageCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Constraint_2017 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_2017 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Comment_2018 == req.getElementType()) {
+		if (UMLElementTypes.Comment_2018 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandTN(req));
 		}
-		if(UMLElementTypes.Diagram_2019 == req.getElementType()) {
+		if (UMLElementTypes.Diagram_2019 == req.getElementType()) {
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -89,26 +90,34 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
 		Diagram currentDiagram = null;
-		if(getHost() instanceof IGraphicalEditPart) {
-			currentDiagram = ((IGraphicalEditPart)getHost()).getNotationView().getDiagram();
+		if (getHost() instanceof IGraphicalEditPart) {
+			currentDiagram = ((IGraphicalEditPart) getHost()).getNotationView()
+					.getDiagram();
 		}
-		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req, currentDiagram));
+		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req,
+				currentDiagram));
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class DuplicateAnythingCommand extends DuplicateNamedElementCommand {
+	private static class DuplicateAnythingCommand extends
+			DuplicateNamedElementCommand {
 
 		private Diagram diagram;
 
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
-			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap(), currentDiagram);
+		public DuplicateAnythingCommand(
+				TransactionalEditingDomain editingDomain,
+				DuplicateElementsRequest req, Diagram currentDiagram) {
+			super(editingDomain, req.getLabel(), req
+					.getElementsToBeDuplicated(), req
+					.getAllDuplicatedElementsMap(), currentDiagram);
 			this.diagram = currentDiagram;
 		}
 	}

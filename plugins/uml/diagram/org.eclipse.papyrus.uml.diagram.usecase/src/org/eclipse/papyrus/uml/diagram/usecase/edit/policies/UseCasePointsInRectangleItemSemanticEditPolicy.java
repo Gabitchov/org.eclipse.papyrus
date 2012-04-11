@@ -21,7 +21,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class UseCasePointsInRectangleItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCasePointsInRectangleItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -34,7 +35,7 @@ public class UseCasePointsInRectangleItemSemanticEditPolicy extends UMLBaseItemS
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.ExtensionPoint_3008 == req.getElementType()) {
+		if (UMLElementTypes.ExtensionPoint_3008 == req.getElementType()) {
 			return getGEFWrapper(new ExtensionPointInRectangleCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

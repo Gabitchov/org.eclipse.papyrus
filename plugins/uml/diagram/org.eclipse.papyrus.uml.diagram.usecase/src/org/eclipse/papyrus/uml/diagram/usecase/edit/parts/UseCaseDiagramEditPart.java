@@ -61,25 +61,32 @@ public class UseCaseDiagramEditPart extends PapyrusDiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCaseDiagramItemSemanticEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE,
+				new DuplicatePasteEditPolicy());
+
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new UseCaseDiagramItemSemanticEditPolicy());
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseDiagramCanonicalEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
+
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
 	/**
 	 * @generated
 	 */
-	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends
+			NonResizableEditPolicy {
 
 		/**
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			MoveHandle h = new MoveHandle((GraphicalEditPart)getHost());
+			MoveHandle h = new MoveHandle((GraphicalEditPart) getHost());
 			h.setBorder(null);
 			return Collections.singletonList(h);
 		}
@@ -102,14 +109,15 @@ public class UseCaseDiagramEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends
+			NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+			MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 			mh.setBorder(null);
 			return Collections.singletonList(mh);
 		}
@@ -119,10 +127,13 @@ public class UseCaseDiagramEditPart extends PapyrusDiagramEditPart {
 	 * @generated
 	 */
 	protected void handleNotificationEvent(Notification event) {
+
 		super.handleNotificationEvent(event);
-		if(event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
-			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
+		if (event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
+			if (eAnnotation.getSource() != null
+					&& eAnnotation.getSource().equals(
+							MDTUtil.FilterViewAndLabelsSource)) {
 				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
@@ -133,7 +144,8 @@ public class UseCaseDiagramEditPart extends PapyrusDiagramEditPart {
 	 * @generated
 	 */
 	public Object getAdapter(Class adapter) {
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
+
+		if (adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);

@@ -48,8 +48,11 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassUsecasesEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentUsecasesEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceUsecasesEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseEditPartTN;
@@ -70,28 +73,29 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated NOT tmp: remove duplicate entries for use case and actor
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart instanceof UseCaseEditPartTN) {
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
+		if (editPart instanceof UseCaseEditPartTN) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3007);
 			return types;
 		}
-		if(editPart instanceof UseCaseAsRectangleEditPartTN) {
+		if (editPart instanceof UseCaseAsRectangleEditPartTN) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3008);
 			return types;
 		}
-		if(editPart instanceof UseCaseInComponentEditPart) {
+		if (editPart instanceof UseCaseInComponentEditPart) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3007);
 			return types;
 		}
-		if(editPart instanceof UseCaseInPackageEditPart) {
+		if (editPart instanceof UseCaseInPackageEditPart) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3007);
 			return types;
 		}
-		if(editPart instanceof ComponentUsecases2EditPart) {
+		if (editPart instanceof ComponentUsecases2EditPart) {
 			ArrayList types = new ArrayList(5);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
@@ -100,7 +104,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Actor_3018);
 			return types;
 		}
-		if(editPart instanceof ComponentUsecases3EditPart) {
+		if (editPart instanceof ComponentUsecases3EditPart) {
 			ArrayList types = new ArrayList(5);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
@@ -109,7 +113,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Actor_3018);
 			return types;
 		}
-		if(editPart instanceof PackagePackageableElementCompartment2EditPart) {
+		if (editPart instanceof PackagePackageableElementCompartment2EditPart) {
 			ArrayList types = new ArrayList(6);
 			types.add(UMLElementTypes.Constraint_3010);
 			types.add(UMLElementTypes.Actor_3011);
@@ -119,7 +123,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Comment_3015);
 			return types;
 		}
-		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
+		if (editPart instanceof PackagePackageableElementCompartmentEditPart) {
 			ArrayList types = new ArrayList(6);
 			types.add(UMLElementTypes.Constraint_3010);
 			types.add(UMLElementTypes.Actor_3011);
@@ -129,7 +133,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Comment_3015);
 			return types;
 		}
-		if(editPart instanceof UseCaseDiagramEditPart) {
+		if (editPart instanceof UseCaseDiagramEditPart) {
 			ArrayList types = new ArrayList(9);
 			types.add(UMLElementTypes.Actor_2011);
 			//types.add(UMLElementTypes.Actor_2012);
@@ -148,66 +152,81 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
-		if(sourceEditPart instanceof ActorEditPartTN) {
-			return ((ActorEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ActorEditPartTN) {
+			return ((ActorEditPartTN) sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ActorAsRectangleEditPartTN) {
-			return ((ActorAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ActorAsRectangleEditPartTN) {
+			return ((ActorAsRectangleEditPartTN) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCaseEditPartTN) {
-			return ((UseCaseEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN) sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
-			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof SubjectComponentEditPartTN) {
+			return ((SubjectComponentEditPartTN) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof SubjectClassEditPartTN) {
+			return ((SubjectClassEditPartTN) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof SubjectInterfaceEditPartTN) {
+			return ((SubjectInterfaceEditPartTN) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof PackageEditPartTN) {
-			return ((PackageEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof PackageEditPartTN) {
+			return ((PackageEditPartTN) sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ConstraintEditPartTN) {
-			return ((ConstraintEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ConstraintEditPartTN) {
+			return ((ConstraintEditPartTN) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof CommentEditPartTN) {
-			return ((CommentEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof CommentEditPartTN) {
+			return ((CommentEditPartTN) sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
-			return ((UseCaseInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ComponentInComponentEditPart) {
-			return ((ComponentInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ComponentInComponentEditPart) {
+			return ((ComponentInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof CommentEditPartCN) {
-			return ((CommentEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof CommentEditPartCN) {
+			return ((CommentEditPartCN) sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ConstraintInComponentEditPart) {
-			return ((ConstraintInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ConstraintInComponentEditPart) {
+			return ((ConstraintInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ActorInComponentEditPart) {
-			return ((ActorInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ActorInComponentEditPart) {
+			return ((ActorInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ConstraintInPackageEditPart) {
-			return ((ConstraintInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ConstraintInPackageEditPart) {
+			return ((ConstraintInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ActorInPackageEditPart) {
-			return ((ActorInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ActorInPackageEditPart) {
+			return ((ActorInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCaseInPackageEditPart) {
-			return ((UseCaseInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ComponentInPackageEditPart) {
-			return ((ComponentInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof ComponentInPackageEditPart) {
+			return ((ComponentInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof PackageEditPartCN) {
-			return ((PackageEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		if (sourceEditPart instanceof PackageEditPartCN) {
+			return ((PackageEditPartCN) sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -216,135 +235,81 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 * @generated
 	 */
 	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
-		if(targetEditPart instanceof ActorEditPartTN) {
-			return ((ActorEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof ActorEditPartTN) {
+			return ((ActorEditPartTN) targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
-			return ((ActorAsRectangleEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ActorAsRectangleEditPartTN) {
+			return ((ActorAsRectangleEditPartTN) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCaseEditPartTN) {
-			return ((UseCaseEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN) targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
-			return ((UseCaseAsRectangleEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof SubjectComponentEditPartTN) {
+			return ((SubjectComponentEditPartTN) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof SubjectClassEditPartTN) {
+			return ((SubjectClassEditPartTN) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof SubjectInterfaceEditPartTN) {
+			return ((SubjectInterfaceEditPartTN) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof PackageEditPartTN) {
-			return ((PackageEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof PackageEditPartTN) {
+			return ((PackageEditPartTN) targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ConstraintEditPartTN) {
-			return ((ConstraintEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ConstraintEditPartTN) {
+			return ((ConstraintEditPartTN) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof CommentEditPartTN) {
-			return ((CommentEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof CommentEditPartTN) {
+			return ((CommentEditPartTN) targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCaseInComponentEditPart) {
-			return ((UseCaseInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ComponentInComponentEditPart) {
-			return ((ComponentInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ComponentInComponentEditPart) {
+			return ((ComponentInComponentEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof CommentEditPartCN) {
-			return ((CommentEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof CommentEditPartCN) {
+			return ((CommentEditPartCN) targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ConstraintInComponentEditPart) {
-			return ((ConstraintInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ConstraintInComponentEditPart) {
+			return ((ConstraintInComponentEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ActorInComponentEditPart) {
-			return ((ActorInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ActorInComponentEditPart) {
+			return ((ActorInComponentEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ConstraintInPackageEditPart) {
-			return ((ConstraintInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ConstraintInPackageEditPart) {
+			return ((ConstraintInPackageEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ActorInPackageEditPart) {
-			return ((ActorInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ActorInPackageEditPart) {
+			return ((ActorInPackageEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCaseInPackageEditPart) {
-			return ((UseCaseInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ComponentInPackageEditPart) {
-			return ((ComponentInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
+		if (targetEditPart instanceof ComponentInPackageEditPart) {
+			return ((ComponentInPackageEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof PackageEditPartCN) {
-			return ((PackageEditPartCN)targetEditPart).getMARelTypesOnTarget();
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
-		if(sourceEditPart instanceof ActorEditPartTN) {
-			return ((ActorEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ActorAsRectangleEditPartTN) {
-			return ((ActorAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof UseCaseEditPartTN) {
-			return ((UseCaseEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
-			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof PackageEditPartTN) {
-			return ((PackageEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ConstraintEditPartTN) {
-			return ((ConstraintEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof CommentEditPartTN) {
-			return ((CommentEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
-			return ((UseCaseInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ComponentInComponentEditPart) {
-			return ((ComponentInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof CommentEditPartCN) {
-			return ((CommentEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ConstraintInComponentEditPart) {
-			return ((ConstraintInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ActorInComponentEditPart) {
-			return ((ActorInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ConstraintInPackageEditPart) {
-			return ((ConstraintInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ActorInPackageEditPart) {
-			return ((ActorInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof UseCaseInPackageEditPart) {
-			return ((UseCaseInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ComponentInPackageEditPart) {
-			return ((ComponentInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof PackageEditPartCN) {
-			return ((PackageEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if (targetEditPart instanceof PackageEditPartCN) {
+			return ((PackageEditPartCN) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -352,135 +317,91 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)target.getAdapter(IGraphicalEditPart.class);
-		if(targetEditPart instanceof ActorEditPartTN) {
-			return ((ActorEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+	public List getRelTypesOnSourceAndTarget(IAdaptable source,
+			IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ActorEditPartTN) {
+			return ((ActorEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
-			return ((ActorAsRectangleEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ActorAsRectangleEditPartTN) {
+			return ((ActorAsRectangleEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof UseCaseEditPartTN) {
-			return ((UseCaseEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
-			return ((UseCaseAsRectangleEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof SubjectComponentEditPartTN) {
+			return ((SubjectComponentEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof SubjectClassEditPartTN) {
+			return ((SubjectClassEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof SubjectInterfaceEditPartTN) {
+			return ((SubjectInterfaceEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof PackageEditPartTN) {
-			return ((PackageEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof PackageEditPartTN) {
+			return ((PackageEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ConstraintEditPartTN) {
-			return ((ConstraintEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ConstraintEditPartTN) {
+			return ((ConstraintEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof CommentEditPartTN) {
-			return ((CommentEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof CommentEditPartTN) {
+			return ((CommentEditPartTN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof UseCaseInComponentEditPart) {
-			return ((UseCaseInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ComponentInComponentEditPart) {
-			return ((ComponentInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ComponentInComponentEditPart) {
+			return ((ComponentInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof CommentEditPartCN) {
-			return ((CommentEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof CommentEditPartCN) {
+			return ((CommentEditPartCN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ConstraintInComponentEditPart) {
-			return ((ConstraintInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ConstraintInComponentEditPart) {
+			return ((ConstraintInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ActorInComponentEditPart) {
-			return ((ActorInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ActorInComponentEditPart) {
+			return ((ActorInComponentEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ConstraintInPackageEditPart) {
-			return ((ConstraintInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ConstraintInPackageEditPart) {
+			return ((ConstraintInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ActorInPackageEditPart) {
-			return ((ActorInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ActorInPackageEditPart) {
+			return ((ActorInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof UseCaseInPackageEditPart) {
-			return ((UseCaseInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof ComponentInPackageEditPart) {
-			return ((ComponentInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if (sourceEditPart instanceof ComponentInPackageEditPart) {
+			return ((ComponentInPackageEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(targetEditPart instanceof PackageEditPartCN) {
-			return ((PackageEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
-		if(sourceEditPart instanceof ActorEditPartTN) {
-			return ((ActorEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ActorAsRectangleEditPartTN) {
-			return ((ActorAsRectangleEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof UseCaseEditPartTN) {
-			return ((UseCaseEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
-			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof PackageEditPartTN) {
-			return ((PackageEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ConstraintEditPartTN) {
-			return ((ConstraintEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof CommentEditPartTN) {
-			return ((CommentEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
-			return ((UseCaseInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ComponentInComponentEditPart) {
-			return ((ComponentInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof CommentEditPartCN) {
-			return ((CommentEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ConstraintInComponentEditPart) {
-			return ((ConstraintInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ActorInComponentEditPart) {
-			return ((ActorInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ConstraintInPackageEditPart) {
-			return ((ConstraintInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ActorInPackageEditPart) {
-			return ((ActorInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof UseCaseInPackageEditPart) {
-			return ((UseCaseInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ComponentInPackageEditPart) {
-			return ((ComponentInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof PackageEditPartCN) {
-			return ((PackageEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		if (sourceEditPart instanceof PackageEditPartCN) {
+			return ((PackageEditPartCN) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -488,47 +409,235 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target, relationshipType));
+	public List getTypesForSource(IAdaptable target,
+			IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof ActorEditPartTN) {
+			return ((ActorEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ActorAsRectangleEditPartTN) {
+			return ((ActorAsRectangleEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof SubjectComponentEditPartTN) {
+			return ((SubjectComponentEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof SubjectClassEditPartTN) {
+			return ((SubjectClassEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof SubjectInterfaceEditPartTN) {
+			return ((SubjectInterfaceEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof PackageEditPartTN) {
+			return ((PackageEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ConstraintEditPartTN) {
+			return ((ConstraintEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof CommentEditPartTN) {
+			return ((CommentEditPartTN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ComponentInComponentEditPart) {
+			return ((ComponentInComponentEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof CommentEditPartCN) {
+			return ((CommentEditPartCN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ConstraintInComponentEditPart) {
+			return ((ConstraintInComponentEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ActorInComponentEditPart) {
+			return ((ActorInComponentEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ConstraintInPackageEditPart) {
+			return ((ConstraintInPackageEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ActorInPackageEditPart) {
+			return ((ActorInPackageEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ComponentInPackageEditPart) {
+			return ((ComponentInPackageEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof PackageEditPartCN) {
+			return ((PackageEditPartCN) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
+	public List getTypesForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof ActorEditPartTN) {
+			return ((ActorEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ActorAsRectangleEditPartTN) {
+			return ((ActorAsRectangleEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof SubjectComponentEditPartTN) {
+			return ((SubjectComponentEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof SubjectClassEditPartTN) {
+			return ((SubjectClassEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof SubjectInterfaceEditPartTN) {
+			return ((SubjectInterfaceEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof PackageEditPartTN) {
+			return ((PackageEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ConstraintEditPartTN) {
+			return ((ConstraintEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof CommentEditPartTN) {
+			return ((CommentEditPartTN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ComponentInComponentEditPart) {
+			return ((ComponentInComponentEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof CommentEditPartCN) {
+			return ((CommentEditPartCN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ConstraintInComponentEditPart) {
+			return ((ConstraintInComponentEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ActorInComponentEditPart) {
+			return ((ActorInComponentEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ConstraintInPackageEditPart) {
+			return ((ConstraintInPackageEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ActorInPackageEditPart) {
+			return ((ActorInPackageEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ComponentInPackageEditPart) {
+			return ((ComponentInPackageEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof PackageEditPartCN) {
+			return ((PackageEditPartCN) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public EObject selectExistingElementForSource(IAdaptable target,
+			IElementType relationshipType) {
+		return selectExistingElement(target,
+				getTypesForSource(target, relationshipType));
+	}
+
+	/**
+	 * @generated
+	 */
+	public EObject selectExistingElementForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		return selectExistingElement(source,
+				getTypesForTarget(source, relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
 	protected EObject selectExistingElement(IAdaptable host, Collection types) {
-		if(types.isEmpty()) {
+		if (types.isEmpty()) {
 			return null;
 		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart == null) {
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
+		if (editPart == null) {
 			return null;
 		}
-		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
+		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
 		HashSet<EObject> elements = new HashSet<EObject>();
-		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
+				.hasNext();) {
 			EObject element = it.next();
-			if(isApplicableElement(element, types)) {
+			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}
 		}
-		if(elements.isEmpty()) {
+		if (elements.isEmpty()) {
 			return null;
 		}
-		return selectElement((EObject[])elements.toArray(new EObject[elements.size()]));
+		return selectElement((EObject[]) elements.toArray(new EObject[elements
+				.size()]));
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(
+				element);
 		return types.contains(type);
 	}
 
@@ -537,15 +646,18 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+				shell, labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;
-		if(dialog.open() == Window.OK) {
-			selected = (EObject)dialog.getFirstResult();
+		if (dialog.open() == Window.OK) {
+			selected = (EObject) dialog.getFirstResult();
 		}
 		return selected;
 	}

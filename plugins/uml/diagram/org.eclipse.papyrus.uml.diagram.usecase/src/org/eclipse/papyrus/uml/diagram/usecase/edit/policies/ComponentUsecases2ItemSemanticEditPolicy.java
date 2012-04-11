@@ -25,7 +25,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ComponentUsecases2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ComponentUsecases2ItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -38,19 +39,19 @@ public class ComponentUsecases2ItemSemanticEditPolicy extends UMLBaseItemSemanti
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.UseCase_3009 == req.getElementType()) {
+		if (UMLElementTypes.UseCase_3009 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseInComponentCreateCommand(req));
 		}
-		if(UMLElementTypes.Component_3016 == req.getElementType()) {
+		if (UMLElementTypes.Component_3016 == req.getElementType()) {
 			return getGEFWrapper(new ComponentInComponentCreateCommand(req));
 		}
-		if(UMLElementTypes.Comment_3015 == req.getElementType()) {
+		if (UMLElementTypes.Comment_3015 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Constraint_3017 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_3017 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintInComponentCreateCommand(req));
 		}
-		if(UMLElementTypes.Actor_3018 == req.getElementType()) {
+		if (UMLElementTypes.Actor_3018 == req.getElementType()) {
 			return getGEFWrapper(new ActorInComponentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

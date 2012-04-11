@@ -53,6 +53,8 @@ public class TestUseCaseTopNode extends TestTopNode {
 	public void testToManageComment() {
 		testToManageTopNode(UMLElementTypes.Comment_2018, UMLElementTypes.Package_2016);
 	}
+	
+	
 	/**
 	 * Test to manage component.
 	 */
@@ -61,8 +63,17 @@ public class TestUseCaseTopNode extends TestTopNode {
 		testToManageTopNode(UMLElementTypes.Constraint_2017, UMLElementTypes.Package_2016);
 	}
 	@Test
-	public void testToManageComponent() {
+	public void testToManageSubjectComponent() {
 		testToManageTopNode(UMLElementTypes.Component_2015, UMLElementTypes.Package_2016);
+	}
+	
+	@Test
+	public void testToManageSubjectClass() {
+		testToManageTopNode(UMLElementTypes.Class_2020, UMLElementTypes.Package_2016);
+	}
+	@Test
+	public void testToManageSubjectInterface() {
+		testToManageTopNode(UMLElementTypes.Interface_2021, UMLElementTypes.Package_2016);
 	}
 	@Test
 	public void testToManageUseCase() {

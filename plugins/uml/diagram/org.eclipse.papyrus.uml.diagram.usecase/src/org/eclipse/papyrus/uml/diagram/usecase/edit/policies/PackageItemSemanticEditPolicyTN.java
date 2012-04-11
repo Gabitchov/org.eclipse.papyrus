@@ -47,7 +47,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy {
+public class PackageItemSemanticEditPolicyTN extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -61,11 +62,13 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
-		if(provider != null) {
+		IElementEditService provider = ElementEditServiceUtils
+				.getCommandProvider(selectedEObject);
+		if (provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
-			if(deleteCommand != null) {
+
+			if (deleteCommand != null) {
 				return new ICommandProxy(deleteCommand);
 			}
 		}
@@ -76,37 +79,48 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req
+				.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.Dependency_4013 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
+		if (UMLElementTypes.CommentAnnotatedElement_4014 == req
+				.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.Abstraction_4015 == req.getElementType()) {
-			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Abstraction_4015 == req.getElementType()) {
+			return getGEFWrapper(new AbstractionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Usage_4016 == req.getElementType()) {
-			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Usage_4016 == req.getElementType()) {
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
-		if(UMLElementTypes.Realization_4017 == req.getElementType()) {
-			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Realization_4017 == req.getElementType()) {
+			return getGEFWrapper(new RealizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.PackageMerge_4018 == req.getElementType()) {
-			return getGEFWrapper(new PackageMergeCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.PackageMerge_4018 == req.getElementType()) {
+			return getGEFWrapper(new PackageMergeCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.PackageImport_4019 == req.getElementType()) {
-			return getGEFWrapper(new PackageImportCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.PackageImport_4019 == req.getElementType()) {
+			return getGEFWrapper(new PackageImportCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -114,30 +128,41 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.ConstraintConstrainedElement_4012 == req.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.ConstraintConstrainedElement_4012 == req
+				.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Dependency_4013 == req.getElementType()) {
-			return getGEFWrapper(new DependencyCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Dependency_4013 == req.getElementType()) {
+			return getGEFWrapper(new DependencyCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4014 == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.CommentAnnotatedElement_4014 == req
+				.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Abstraction_4015 == req.getElementType()) {
-			return getGEFWrapper(new AbstractionCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Abstraction_4015 == req.getElementType()) {
+			return getGEFWrapper(new AbstractionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.Usage_4016 == req.getElementType()) {
-			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Usage_4016 == req.getElementType()) {
+			return getGEFWrapper(new UsageCreateCommand(req, req.getSource(),
+					req.getTarget()));
 		}
-		if(UMLElementTypes.Realization_4017 == req.getElementType()) {
-			return getGEFWrapper(new RealizationCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.Realization_4017 == req.getElementType()) {
+			return getGEFWrapper(new RealizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.PackageMerge_4018 == req.getElementType()) {
-			return getGEFWrapper(new PackageMergeCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.PackageMerge_4018 == req.getElementType()) {
+			return getGEFWrapper(new PackageMergeCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.PackageImport_4019 == req.getElementType()) {
-			return getGEFWrapper(new PackageImportCreateCommand(req, req.getSource(), req.getTarget()));
+		if (UMLElementTypes.PackageImport_4019 == req.getElementType()) {
+			return getGEFWrapper(new PackageImportCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -148,21 +173,23 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
 		case DependencyEditPart.VISUAL_ID:
 		case AbstractionEditPart.VISUAL_ID:
 		case UsageEditPart.VISUAL_ID:
 		case RealizationEditPart.VISUAL_ID:
 		case PackageMergeEditPart.VISUAL_ID:
 		case PackageImportEditPart.VISUAL_ID:
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
-			if(provider == null) {
+			IElementEditService provider = ElementEditServiceUtils
+					.getCommandProvider(req.getRelationship());
+			if (provider == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			// Retrieve re-orient command from the Element Edit service
 			ICommand reorientCommand = provider.getEditCommand(req);
-			if(reorientCommand == null) {
+			if (reorientCommand == null) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
@@ -176,10 +203,12 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		switch(getVisualID(req)) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		switch (getVisualID(req)) {
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
+					req));
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		}

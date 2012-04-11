@@ -26,7 +26,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class PackagePackageableElementCompartment2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class PackagePackageableElementCompartment2ItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -39,22 +40,22 @@ public class PackagePackageableElementCompartment2ItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Constraint_3010 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_3010 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintInPackageCreateCommand(req));
 		}
-		if(UMLElementTypes.Actor_3011 == req.getElementType()) {
+		if (UMLElementTypes.Actor_3011 == req.getElementType()) {
 			return getGEFWrapper(new ActorInPackageCreateCommand(req));
 		}
-		if(UMLElementTypes.UseCase_3012 == req.getElementType()) {
+		if (UMLElementTypes.UseCase_3012 == req.getElementType()) {
 			return getGEFWrapper(new UseCaseInPackageCreateCommand(req));
 		}
-		if(UMLElementTypes.Component_3013 == req.getElementType()) {
+		if (UMLElementTypes.Component_3013 == req.getElementType()) {
 			return getGEFWrapper(new ComponentInPackageCreateCommand(req));
 		}
-		if(UMLElementTypes.Package_3014 == req.getElementType()) {
+		if (UMLElementTypes.Package_3014 == req.getElementType()) {
 			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Comment_3015 == req.getElementType()) {
+		if (UMLElementTypes.Comment_3015 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);
