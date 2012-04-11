@@ -30,12 +30,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.swt.widgets.Control;
 
 
 /**
@@ -92,6 +91,20 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 		diffTab.setContentProvider(createDiffTabContentProvider());
 		return diffTab;
 
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder#createContents(org.eclipse.swt.widgets.Composite)
+	 *
+	 * @param composite
+	 */
+	@Override
+	protected void createContents(Composite composite) {
+		super.createContents(composite);
+		//we set the layout here, because, it we don't set, we have a little treeviwer...
+		Control ctrl = tree.getControl();
+		ctrl.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	}
 
 	/**
