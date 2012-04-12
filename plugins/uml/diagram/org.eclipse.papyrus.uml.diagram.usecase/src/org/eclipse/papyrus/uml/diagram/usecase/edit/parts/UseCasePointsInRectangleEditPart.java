@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
@@ -81,8 +82,9 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 	 * @generated
 	 */
 	protected void setRatio(Double ratio) {
-		// nothing to do -- parent layout does not accept Double constraints as ratio
-		// super.setRatio(ratio); 
+		if(getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+			super.setRatio(ratio);
+		}
 	}
 
 	/**

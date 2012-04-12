@@ -1156,15 +1156,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            layoutType="TOOLBAR_LAYOUT"
-            className="UseCaseAsClassFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseAsClassFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fUseCaseAsClassFigure_name; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fUseCaseAsClass_points; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseAsClassFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.ToolbarLayout layoutThis = new org.eclipse.draw2d.ToolbarLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(true);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.ToolbarLayout.ALIGN_CENTER&#xA;);&#xA;&#xA;&#x9;layoutThis.setSpacing(0);&#xA;&#x9;layoutThis.setVertical(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure useCaseAsClassFigure_Header0 = new org.eclipse.draw2d.RectangleFigure();&#xA;useCaseAsClassFigure_Header0.setLineWidth(1);&#xA;useCaseAsClassFigure_Header0.setBorder(new org.eclipse.draw2d.LineBorder(null, getMapMode().DPtoLP(1)&#xA;));&#xA;&#xA;this.add(useCaseAsClassFigure_Header0);&#xA;&#xA;&#x9;org.eclipse.draw2d.ToolbarLayout layoutUseCaseAsClassFigure_Header0 = new org.eclipse.draw2d.ToolbarLayout();&#xA;&#x9;layoutUseCaseAsClassFigure_Header0.setStretchMinorAxis(true);&#xA;&#x9;layoutUseCaseAsClassFigure_Header0.setMinorAlignment(org.eclipse.draw2d.ToolbarLayout.ALIGN_TOPLEFT&#xA;);&#xA;&#xA;&#x9;layoutUseCaseAsClassFigure_Header0.setSpacing(0);&#xA;&#x9;layoutUseCaseAsClassFigure_Header0.setVertical(true);&#xA;&#xA;&#x9;useCaseAsClassFigure_Header0.setLayoutManager(layoutUseCaseAsClassFigure_Header0);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure useCaseAsClassFigure_NameContainer1 = new org.eclipse.draw2d.RectangleFigure();&#xA;useCaseAsClassFigure_NameContainer1.setOutline(false);&#xA;useCaseAsClassFigure_NameContainer1.setLineWidth(1);&#xA;&#xA;useCaseAsClassFigure_Header0.add(useCaseAsClassFigure_NameContainer1);&#xA;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutUseCaseAsClassFigure_NameContainer1 = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;useCaseAsClassFigure_NameContainer1.setLayoutManager(layoutUseCaseAsClassFigure_NameContainer1);&#xA;&#xA;&#xA;&#xA;fUseCaseAsClassFigure_name = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fUseCaseAsClassFigure_name.setText(&quot;&quot;);&#xA;&#xA;fUseCaseAsClassFigure_name.setFont(FUSECASEASCLASSFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;fUseCaseAsClassFigure_name.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;useCaseAsClassFigure_NameContainer1.add(fUseCaseAsClassFigure_name);&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;fUseCaseAsClass_points = new org.eclipse.draw2d.RectangleFigure();&#xA;fUseCaseAsClass_points.setLineWidth(1);&#xA;&#xA;this.add(fUseCaseAsClass_points);&#xA;fUseCaseAsClass_points.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getUseCaseAsClassFigure_name() {&#xA;&#x9;&#x9;return fUseCaseAsClassFigure_name;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getUseCaseAsClass_points() {&#xA;&#x9;&#x9;return fUseCaseAsClass_points;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASEASCLASSFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="100"
-              height="60"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.figure.UseCaseClassifierFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
@@ -1204,7 +1197,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getUseCaseAsClassFigure_name"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -2584,7 +2577,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getUseCaseAsClass_points"
+            getterName="getExtensionPointContainerFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"

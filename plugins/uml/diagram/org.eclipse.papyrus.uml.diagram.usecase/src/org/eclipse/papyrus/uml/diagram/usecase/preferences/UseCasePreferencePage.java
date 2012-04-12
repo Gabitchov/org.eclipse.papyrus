@@ -53,8 +53,8 @@ public class UseCasePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		String key = UseCaseDiagramEditPart.MODEL_ID + "_UseCase";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 60);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 		Map<String, Boolean> map = getStaticCompartmentVisibilityPreferences();
 		for(String name : map.keySet()) {
 			String preferenceName = PreferenceConstantHelper.getLabelElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);

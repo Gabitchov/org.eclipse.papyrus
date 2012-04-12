@@ -18,29 +18,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LineBorder;
-import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -48,28 +43,24 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseAsRectangleItemSemanticEditPolicyTN;
+import org.eclipse.papyrus.uml.diagram.usecase.figure.UseCaseClassifierFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
+public class UseCaseAsRectangleEditPartTN extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -121,15 +112,22 @@ public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if(child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if(child instanceof ITextAwareEditPart) {
-						return new UMLTextSelectionEditPolicy();
-					}
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
+					result = new NonResizableEditPolicy();
 				}
-				return super.createChildEditPolicy(child);
+				return result;
+			}
+
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
 			}
 		};
 		return lep;
@@ -139,14 +137,14 @@ public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new UseCaseAsClassFigure();
+		return primaryShape = new UseCaseClassifierFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public UseCaseAsClassFigure getPrimaryShape() {
-		return (UseCaseAsClassFigure)primaryShape;
+	public UseCaseClassifierFigure getPrimaryShape() {
+		return (UseCaseClassifierFigure)primaryShape;
 	}
 
 	/**
@@ -154,11 +152,11 @@ public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof UseCaseAsRectangleNameEditPartTN) {
-			((UseCaseAsRectangleNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getUseCaseAsClassFigure_name());
+			((UseCaseAsRectangleNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if(childEditPart instanceof UseCasePointsInRectangleEditPart) {
-			IFigure pane = getPrimaryShape().getUseCaseAsClass_points();
+			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsInRectangleEditPart)childEditPart).getFigure());
 			return true;
@@ -174,7 +172,7 @@ public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 			return true;
 		}
 		if(childEditPart instanceof UseCasePointsInRectangleEditPart) {
-			IFigure pane = getPrimaryShape().getUseCaseAsClass_points();
+			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((UseCasePointsInRectangleEditPart)childEditPart).getFigure());
 			return true;
@@ -207,7 +205,7 @@ public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof UseCasePointsInRectangleEditPart) {
-			return getPrimaryShape().getUseCaseAsClass_points();
+			return getPrimaryShape().getExtensionPointContainerFigure();
 		}
 		return getContentPane();
 	}
@@ -958,105 +956,6 @@ public class UseCaseAsRectangleEditPartTN extends ShapeNodeEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-	/**
-	 * @generated
-	 */
-	public class UseCaseAsClassFigure extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fUseCaseAsClassFigure_name;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fUseCaseAsClass_points;
-
-		/**
-		 * @generated
-		 */
-		public UseCaseAsClassFigure() {
-			ToolbarLayout layoutThis = new ToolbarLayout();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
-			layoutThis.setSpacing(0);
-			layoutThis.setVertical(true);
-			this.setLayoutManager(layoutThis);
-			this.setLineWidth(1);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-			RectangleFigure useCaseAsClassFigure_Header0 = new RectangleFigure();
-			useCaseAsClassFigure_Header0.setLineWidth(1);
-			useCaseAsClassFigure_Header0.setBorder(new LineBorder(null, getMapMode().DPtoLP(1)));
-			this.add(useCaseAsClassFigure_Header0);
-			ToolbarLayout layoutUseCaseAsClassFigure_Header0 = new ToolbarLayout();
-			layoutUseCaseAsClassFigure_Header0.setStretchMinorAxis(true);
-			layoutUseCaseAsClassFigure_Header0.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-			layoutUseCaseAsClassFigure_Header0.setSpacing(0);
-			layoutUseCaseAsClassFigure_Header0.setVertical(true);
-			useCaseAsClassFigure_Header0.setLayoutManager(layoutUseCaseAsClassFigure_Header0);
-			RectangleFigure useCaseAsClassFigure_NameContainer1 = new RectangleFigure();
-			useCaseAsClassFigure_NameContainer1.setOutline(false);
-			useCaseAsClassFigure_NameContainer1.setLineWidth(1);
-			useCaseAsClassFigure_Header0.add(useCaseAsClassFigure_NameContainer1);
-			CenterLayout layoutUseCaseAsClassFigure_NameContainer1 = new CenterLayout();
-			useCaseAsClassFigure_NameContainer1.setLayoutManager(layoutUseCaseAsClassFigure_NameContainer1);
-			fUseCaseAsClassFigure_name = new WrappingLabel();
-			fUseCaseAsClassFigure_name.setText("");
-			fUseCaseAsClassFigure_name.setFont(FUSECASEASCLASSFIGURE_NAME_FONT);
-			fUseCaseAsClassFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-			useCaseAsClassFigure_NameContainer1.add(fUseCaseAsClassFigure_name);
-			fUseCaseAsClass_points = new RectangleFigure();
-			fUseCaseAsClass_points.setLineWidth(1);
-			this.add(fUseCaseAsClass_points);
-			fUseCaseAsClass_points.setLayoutManager(new StackLayout());
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getUseCaseAsClassFigure_name() {
-			return fUseCaseAsClassFigure_name;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getUseCaseAsClass_points() {
-			return fUseCaseAsClass_points;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FUSECASEASCLASSFIGURE_NAME_FONT = new Font(Display.getCurrent(), Display.getDefault().getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
 
 	/**
 	 * @generated
