@@ -17,7 +17,6 @@ package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,13 +31,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.papyrus.core.utils.FilteredCollectionView;
-import org.eclipse.papyrus.core.utils.IFilter;
-import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
-import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
-import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
 import org.eclipse.papyrus.sysml.modelexplorer.tests.utils.EditorUtils;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchCommandConstants;
@@ -47,10 +44,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Property;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
@@ -120,8 +114,8 @@ public abstract class AbstractCopyPasteTest {
 		/** generated selectable objects */
 		 		model_EObject = (org.eclipse.uml2.uml.Model)root;
 				b1_EObject = (org.eclipse.uml2.uml.Class)	model_EObject.getPackagedElement("B1"); 
-				pB2_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("pB2", null); 
-				pB1P1_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("pB1P1", null); 
+				pB2_B1_EObject = b1_EObject.getAttribute("pB2", null); 
+				pB1P1_B1_EObject = b1_EObject.getAttribute("pB1P1", null); 
 			
 				b2_EObject = (org.eclipse.uml2.uml.Class)	model_EObject.getPackagedElement("B2"); 
 			
@@ -129,8 +123,8 @@ public abstract class AbstractCopyPasteTest {
 				b2P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B2P1"); 
 			
 				b1P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B1P1"); 
-				pB2P1_B1P1_P1_EObject = (org.eclipse.uml2.uml.Property)	b1P1_P1_EObject.getAttribute("pB2P1", null); 
-				pB1_B1P1_P1_EObject = (org.eclipse.uml2.uml.Property)	b1P1_P1_EObject.getAttribute("pB1", null); 
+				pB2P1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB2P1", null); 
+				pB1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB1", null); 
 			
 			
 			
@@ -233,7 +227,7 @@ public abstract class AbstractCopyPasteTest {
 
 		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); //$NON-NLS-0$
 		if(bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
+			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
 		}
 
 		// Set selection on new element in the model explorer
@@ -374,7 +368,7 @@ public abstract class AbstractCopyPasteTest {
 	 *         the current editing domain
 	 */
 	protected TransactionalEditingDomain getEditingDomain() throws Exception {
-		return org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+		return org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 	}
 
 	/**

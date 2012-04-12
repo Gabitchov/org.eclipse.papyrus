@@ -14,24 +14,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.papyrus.core.utils.FilteredCollectionView;
-import org.eclipse.papyrus.core.utils.IFilter;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.IWorkbenchCommandConstants;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 
 /**
