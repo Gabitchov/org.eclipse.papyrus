@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks">
   <uml:Model xmi:id="_UV0P8EAREeCMpNWxgNcrog" name="model">
     <packagedElement xmi:type="uml:Class" xmi:id="__OVZQHRFEeGbA9TcuN7qCA" name="B1">
       <ownedAttribute xmi:id="_OsGu0HRGEeGbA9TcuN7qCA" name="pB2" type="_CqW0MHRGEeGbA9TcuN7qCA" aggregation="composite" association="_QqfHEHRGEeGbA9TcuN7qCA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Qqcq0HRGEeGbA9TcuN7qCA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QqcDwHRGEeGbA9TcuN7qCA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Qqcq0HRGEeGbA9TcuN7qCA" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_UirgoHRGEeGbA9TcuN7qCA" name="pB1P1" type="_Idw9QHRGEeGbA9TcuN7qCA" aggregation="composite" association="_VwHkIXRGEeGbA9TcuN7qCA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VwHkIHRGEeGbA9TcuN7qCA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VwG9EHRGEeGbA9TcuN7qCA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VwHkIHRGEeGbA9TcuN7qCA" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_CqW0MHRGEeGbA9TcuN7qCA" name="B2"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_E8hEEHRGEeGbA9TcuN7qCA" name="P1">
       <packagedElement xmi:type="uml:Class" xmi:id="_Idw9QHRGEeGbA9TcuN7qCA" name="B1P1">
         <ownedAttribute xmi:id="_aSF6gHRGEeGbA9TcuN7qCA" name="pB1" type="__OVZQHRFEeGbA9TcuN7qCA" aggregation="composite" association="_bSZg8HRGEeGbA9TcuN7qCA">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bSY54HRGEeGbA9TcuN7qCA" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bSYS0HRGEeGbA9TcuN7qCA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bSY54HRGEeGbA9TcuN7qCA" value="1"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_b7tjsHRGEeGbA9TcuN7qCA" name="pB2P1" type="_K5RWYHRGEeGbA9TcuN7qCA" aggregation="composite" association="_dclgkHRGEeGbA9TcuN7qCA">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dck5gHRGEeGbA9TcuN7qCA" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dckScHRGEeGbA9TcuN7qCA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dck5gHRGEeGbA9TcuN7qCA" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_K5RWYHRGEeGbA9TcuN7qCA" name="B2P1"/>

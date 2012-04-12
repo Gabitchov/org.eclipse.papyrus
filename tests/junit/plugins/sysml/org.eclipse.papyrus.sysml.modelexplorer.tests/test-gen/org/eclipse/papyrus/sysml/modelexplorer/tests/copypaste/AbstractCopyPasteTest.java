@@ -61,7 +61,7 @@ public abstract class AbstractCopyPasteTest {
 	public static IEditorPart editor = null;
 
 	/** id of the papyrus editor */
-	public static String editorID = "org.eclipse.papyrus.core.papyrusEditor";
+	public static String editorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 
 	/** view part: the model explorer */
 	protected static IViewPart modelExplorerPart;
