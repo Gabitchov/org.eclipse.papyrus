@@ -1414,5 +1414,47 @@
          </selectionEnablement>
       </linkHelper>
    </extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+      <command
+            commandId="org.eclipse.papyrus.diagram.usecase.displayasdefaultnamedelement.popup"
+            id="displayasdefaultnamedelement.popup"
+            label="Display as default NameElement"
+            style="push"
+            tooltip="Display as default NameElement">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.usecase.displayassubject.popup"
+            id="displayassubject.popup"
+            label="Display as a subject"
+            style="push"
+            tooltip="Display as a subject">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.handler.DefaultNamedElementHandler"
+         id="org.eclipse.papyrus.diagram.usecase.displayasdefaultnamedelement.popup"
+         name="Display as default NamedElement">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.handler.SubjectHandler"
+         id="org.eclipse.papyrus.diagram.usecase.displayassubject.popup"
+         name="Display as subject">
+   </command>
+</extension>
 
 </plugin>
