@@ -13,18 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolygonDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.GeneralizationFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.GeneralizationItemSemanticEditPolicy;
 
 /**
@@ -103,45 +99,13 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new SolidLineWDstClosedArrow();
+		return new GeneralizationFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public SolidLineWDstClosedArrow getPrimaryShape() {
-		return (SolidLineWDstClosedArrow)getFigure();
-	}
-
-	/**
-	 * @generated NOT extends UMLEdgeFifure
-	 */
-	public class SolidLineWDstClosedArrow extends UMLEdgeFigure {
-
-		/**
-		 * @generated
-		 */
-		public SolidLineWDstClosedArrow() {
-			this.setLineWidth(1);
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolygonDecoration df = new PolygonDecoration();
-			df.setFill(true);
-			df.setLineWidth(1);
-			df.setBackgroundColor(ColorConstants.white);
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-			return df;
-		}
+	public GeneralizationFigure getPrimaryShape() {
+		return (GeneralizationFigure)getFigure();
 	}
 }
