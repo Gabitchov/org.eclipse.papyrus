@@ -22,12 +22,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -69,19 +66,17 @@ public class ChangetoDefaultShapeCommand extends AbstractTransactionalCommand {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
-	
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		//creation of the node
-		Element semanticElement=(Element)elementEditPart.resolveSemanticElement();
-		View containerView=(View)elementEditPart.getNotationView().eContainer();
-		int visualID=UMLVisualIDRegistry.getNodeVisualID(containerView, semanticElement);
+		Element semanticElement = (Element)elementEditPart.resolveSemanticElement();
+		View containerView = (View)elementEditPart.getNotationView().eContainer();
+		int visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, semanticElement);
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
 		IAdaptable elementAdapter = new EObjectAdapter(semanticElement);
-		String semanticHint=((IHintedType)getUMLElementType(visualID)).getSemanticHint();
-		Node node= umlViewProvider.createNode(elementAdapter, containerView, semanticHint, -1, true, elementEditPart.getDiagramPreferencesHint());
+		String semanticHint = ((IHintedType)getUMLElementType(visualID)).getSemanticHint();
+		Node node = umlViewProvider.createNode(elementAdapter, containerView, semanticHint, -1, true, elementEditPart.getDiagramPreferencesHint());
 		node.setLayoutConstraint(((Node)elementEditPart.getNotationView()).getLayoutConstraint());
-
 		//copy of all eannotations
 		Iterator<EAnnotation> iter = elementEditPart.getNotationView().getEAnnotations().iterator();
 		while(iter.hasNext()) {
@@ -90,5 +85,4 @@ public class ChangetoDefaultShapeCommand extends AbstractTransactionalCommand {
 		}
 		return null;
 	}
-
 }

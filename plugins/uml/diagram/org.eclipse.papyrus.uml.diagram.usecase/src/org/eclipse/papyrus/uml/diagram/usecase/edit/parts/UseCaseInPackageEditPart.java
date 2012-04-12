@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -30,7 +31,6 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -42,12 +42,13 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CreateExtensionPointEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseInPackageItemSemanticEditPolicy;
@@ -58,9 +59,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * @generated NOT implements IPapyrusEditPart
+ * @generated
  */
-public class UseCaseInPackageEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
+public class UseCaseInPackageEditPart extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -96,8 +97,18 @@ public class UseCaseInPackageEditPart extends ShapeNodeEditPart implements IPapy
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CreateExtensionPointEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
 	}
 
 	/**
@@ -144,11 +155,11 @@ public class UseCaseInPackageEditPart extends ShapeNodeEditPart implements IPapy
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof UseCaseInPackageNameEditPart) {
-			((UseCaseInPackageNameEditPart)childEditPart).setLabel(getPrimaryShape().getUseCaseFigure_name());
+			((UseCaseInPackageNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
-			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
+			IFigure pane = getPrimaryShape().getNameLabel();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsInPackageEditPart)childEditPart).getFigure());
 			return true;
@@ -164,7 +175,7 @@ public class UseCaseInPackageEditPart extends ShapeNodeEditPart implements IPapy
 			return true;
 		}
 		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
-			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
+			IFigure pane = getPrimaryShape().getNameLabel();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((UseCasePointsInPackageEditPart)childEditPart).getFigure());
 			return true;
@@ -197,7 +208,7 @@ public class UseCaseInPackageEditPart extends ShapeNodeEditPart implements IPapy
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof UseCasePointsInPackageEditPart) {
-			return getPrimaryShape().getUseCaseFigure_contents();
+			return getPrimaryShape().getNameLabel();
 		}
 		return getContentPane();
 	}

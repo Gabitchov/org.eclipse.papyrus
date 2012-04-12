@@ -24,31 +24,30 @@ import org.eclipse.uml2.uml.Interface;
 /**
  * the goal of this class is to transform a default named element as a subject
  * 
- *
+ * 
  */
 public class SubjectHandler extends ChangeShapeHandler implements IHandler {
 
 	@Override
 	public boolean isEnabled() {
-		GraphicalEditPart editPart= getSelectedGraphicalEditpart();
-		if((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Class)||(editPart.resolveSemanticElement() instanceof Interface)){
-			if((editPart instanceof SubjectClassEditPartTN)|| (editPart instanceof SubjectComponentEditPartTN)||(editPart instanceof SubjectInterfaceEditPartTN)){
+		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
+		if((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Class) || (editPart.resolveSemanticElement() instanceof Interface)) {
+			if((editPart instanceof SubjectClassEditPartTN) || (editPart instanceof SubjectComponentEditPartTN) || (editPart instanceof SubjectInterfaceEditPartTN)) {
 				return false;
-			}
-			else{
+			} else {
 				return true;
 			}
 		}
 		return false;
 	}
 
-/**
- * 
- * @see org.eclipse.papyrus.uml.diagram.usecase.handler.ChangeShapeHandler#getChangeShapeCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)
- *
- * @param editPart
- * @return
- */
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.usecase.handler.ChangeShapeHandler#getChangeShapeCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)
+	 * 
+	 * @param editPart
+	 * @return
+	 */
 	protected ChangetoDefaultShapeCommand getChangeShapeCommand(final GraphicalEditPart editPart) {
 		ChangetoDefaultShapeCommand command = new ChangetoDefaultShapeCommand(editPart.getEditingDomain(), editPart);
 		return command;

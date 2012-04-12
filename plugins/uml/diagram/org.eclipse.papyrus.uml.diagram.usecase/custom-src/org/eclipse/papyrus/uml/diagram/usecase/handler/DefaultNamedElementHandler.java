@@ -24,28 +24,26 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPa
 
 /**
  * the goal of this class is to transform a change a Subject as a default named Element
- *
+ * 
  */
 public class DefaultNamedElementHandler extends ChangeShapeHandler implements IHandler {
-	protected TransactionalEditingDomain transactionalEditingDomain=null;
-	protected org.eclipse.uml2.uml.Element selectedElement=null;
 
-	
+	protected TransactionalEditingDomain transactionalEditingDomain = null;
+
+	protected org.eclipse.uml2.uml.Element selectedElement = null;
+
 	@Override
 	public boolean isEnabled() {
-		GraphicalEditPart editPart= getSelectedGraphicalEditpart();
-		if((editPart instanceof SubjectClassEditPartTN)|| (editPart instanceof SubjectComponentEditPartTN)||(editPart instanceof SubjectInterfaceEditPartTN)){
+		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
+		if((editPart instanceof SubjectClassEditPartTN) || (editPart instanceof SubjectComponentEditPartTN) || (editPart instanceof SubjectInterfaceEditPartTN)) {
 			return true;
 		}
 		return false;
 	}
-
 
 	@Override
 	protected AbstractTransactionalCommand getChangeShapeCommand(GraphicalEditPart editPart) {
 		ElementToDefaultNamedElementShape command = new ElementToDefaultNamedElementShape(editPart.getEditingDomain(), editPart);
 		return command;
 	}
-	
-	
 }

@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -52,23 +51,19 @@ public class ElementToDefaultNamedElementShape extends AbstractTransactionalComm
 		this.elementEditPart = classView;
 	}
 
-
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		//creation of the node
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
-		View container=(View)elementEditPart.getNotationView().eContainer();
+		View container = (View)elementEditPart.getNotationView().eContainer();
 		Node packageview = umlViewProvider.createNamedElement_2022(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
 		packageview.setLayoutConstraint(((Node)elementEditPart.getNotationView()).getLayoutConstraint());
-
 		//copy of all eannotations
 		Iterator<EAnnotation> iter = elementEditPart.getNotationView().getEAnnotations().iterator();
 		while(iter.hasNext()) {
 			EAnnotation annotation = EcoreUtil.copy(iter.next());
 			packageview.getEAnnotations().add(annotation);
-
 		}
 		return null;
 	}
-
 }

@@ -34,17 +34,18 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * This class is an abstract class in charge to transform a editpart into another editpart
- *
+ * 
  */
 public abstract class ChangeShapeHandler extends AbstractHandler {
-	protected TransactionalEditingDomain transactionalEditingDomain=null;
-	protected org.eclipse.uml2.uml.Element selectedElement=null;
+
+	protected TransactionalEditingDomain transactionalEditingDomain = null;
+
+	protected org.eclipse.uml2.uml.Element selectedElement = null;
 
 	public ChangeShapeHandler() {
 		super();
 	}
 
-	
 	protected abstract AbstractTransactionalCommand getChangeShapeCommand(final GraphicalEditPart editPart);
 
 	/**
@@ -54,43 +55,38 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 	protected GraphicalEditPart getSelectedGraphicalEditpart() {
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		ISelection selection = selectionService.getSelection();
-
 		if(selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
 			if(selectedobject instanceof GraphicalEditPart) {
 				return (GraphicalEditPart)selectedobject;
 			}
 		}
-		return  null;
+		return null;
 	}
-
-
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final GraphicalEditPart editPart= getSelectedGraphicalEditpart();
+		final GraphicalEditPart editPart = getSelectedGraphicalEditpart();
 		ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
 		try {
-			transactionalEditingDomain =util.getTransactionalEditingDomain();
+			transactionalEditingDomain = util.getTransactionalEditingDomain();
 		} catch (Exception e) {
-			System.err.println("impossible to get the Transactional Editing Domain "+e);
+			System.err.println("impossible to get the Transactional Editing Domain " + e);
 		}
 		try {
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							AbstractTransactionalCommand command = getChangeShapeCommand(editPart);
 							Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 							Command deleteCommand = editPart.getCommand(deleteViewRequest);
-							org.eclipse.emf.common.command.CompoundCommand compoundCommand= new  org.eclipse.emf.common.command.CompoundCommand("change Shape");
+							org.eclipse.emf.common.command.CompoundCommand compoundCommand = new org.eclipse.emf.common.command.CompoundCommand("change Shape");
 							compoundCommand.append(new GMFtoEMFCommandWrapper(command));
 							compoundCommand.append(new GEFtoEMFCommandWrapper(deleteCommand));
 							editPart.getEditingDomain().getCommandStack().execute(compoundCommand);
-
 						}
 					});
 				}
@@ -98,7 +94,6 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 }

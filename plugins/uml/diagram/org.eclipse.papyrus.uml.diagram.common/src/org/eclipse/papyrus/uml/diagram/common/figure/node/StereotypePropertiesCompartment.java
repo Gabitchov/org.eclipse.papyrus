@@ -25,7 +25,7 @@ import org.eclipse.draw2d.geometry.Point;
 public class StereotypePropertiesCompartment extends RectangleFigure {
 
 	protected boolean upperLine = true;
-	
+
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		//the calculus of the prefered size is contextual
 		prefSize=null;
@@ -54,7 +54,9 @@ public class StereotypePropertiesCompartment extends RectangleFigure {
 				}
 				// graphics.setForegroundColor(ColorConstants.black);
 				graphics.setLineWidth(1);
-				graphics.drawLine(source, target);
+				if(!( parentFigure instanceof IEllipseFigure)){
+					graphics.drawLine(source, target);
+				}
 			}
 		}
 	}
