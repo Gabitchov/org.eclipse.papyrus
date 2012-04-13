@@ -35,7 +35,7 @@ public class PapyrusUMLMergeProvider implements IMergerProvider{
 	public Map<Class<? extends DiffElement>, Class<? extends IMerger>> getMergers() {
 		if (mergerTypes == null) {
 			mergerTypes = new PapyrusMap<Class<? extends DiffElement>, Class<? extends IMerger>>();
-			mergerTypes.put(DiffGroup.class, CDiffGroupMerger.class);
+//			mergerTypes.put(DiffGroup.class, CDiffGroupMerger.class);//we needn't of the specific DiffGroup
 			mergerTypes.put(ModelElementChangeRightTarget.class, CModelElementChangeRightTargetMerger.class);
 			mergerTypes.put(ModelElementChangeLeftTarget.class, CModelElementChangeLeftTargetMerger.class);
 			mergerTypes.put(MoveModelElement.class, CMoveModelElementMerger.class);
