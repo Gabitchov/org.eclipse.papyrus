@@ -32,7 +32,6 @@ import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.facet.common.ui.internal.views.AbstractTreeView;
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -55,30 +54,22 @@ public class CommandStackView extends AbstractTreeView {
 
 	public CommandStackView() {
 		this.history = OperationHistoryFactory.getOperationHistory();
-		this.history
-				.addOperationHistoryListener(new IOperationHistoryListener() {
+		this.history.addOperationHistoryListener(new IOperationHistoryListener() {
 
-					public void historyNotification(
-							final OperationHistoryEvent event) {
-						if (!CommandStackView.this.commandList.contains(event
-								.getOperation())) {
-							if (CommandStackView.this.commandList.size() == CommandStackView.this.maxSize) {
-								CommandStackView.this.commandList
-										.remove(CommandStackView.this.maxSize - 1);
-							}
-							CommandStackView.this.commandList.add(0,
-									event.getOperation());
-							final DateFormat dateFormat = new SimpleDateFormat(
-									"HH:mm:ss");
-							final Calendar cal = Calendar.getInstance();
-							CommandStackView.this.dates.put(
-									event.getOperation(),
-									dateFormat.format(cal.getTime()));
-							refresh(true);
-						}
-
+			public void historyNotification(final OperationHistoryEvent event) {
+				if(!CommandStackView.this.commandList.contains(event.getOperation())) {
+					if(CommandStackView.this.commandList.size() == CommandStackView.this.maxSize) {
+						CommandStackView.this.commandList.remove(CommandStackView.this.maxSize - 1);
 					}
-				});
+					CommandStackView.this.commandList.add(0, event.getOperation());
+					final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+					final Calendar cal = Calendar.getInstance();
+					CommandStackView.this.dates.put(event.getOperation(), dateFormat.format(cal.getTime()));
+					refresh(true);
+				}
+
+			}
+		});
 	};
 
 	@Override
@@ -87,14 +78,13 @@ public class CommandStackView extends AbstractTreeView {
 		createDescriptionColumn();
 		createCommandTypeColumn();
 		createTimeColumn();
-		
+
 	}
 
 	@Override
 	public void createPartControl(final org.eclipse.swt.widgets.Composite parent) {
 		super.createPartControl(parent);
-		final IToolBarManager tbm = getViewSite().getActionBars()
-				.getToolBarManager();
+		final IToolBarManager tbm = getViewSite().getActionBars().getToolBarManager();
 		tbm.add(new Action() {
 
 			@Override
@@ -137,10 +127,10 @@ public class CommandStackView extends AbstractTreeView {
 
 			@Override
 			public String getText(final Object element) {
-				if (element instanceof AbstractOperation) {
-					return ((AbstractOperation) element).getLabel();
-				} else if (element instanceof AbstractCommand) {
-					return ((AbstractCommand) element).getLabel();
+				if(element instanceof AbstractOperation) {
+					return ((AbstractOperation)element).getLabel();
+				} else if(element instanceof AbstractCommand) {
+					return ((AbstractCommand)element).getLabel();
 				}
 				return "no managed";
 			}
@@ -148,27 +138,27 @@ public class CommandStackView extends AbstractTreeView {
 		createColumn("Name", "NAME_COLUMN_ID", 200, columnLabelProvider);
 	}
 
-	
+
 	protected void createDescriptionColumn() {
 		final ColumnLabelProvider columnLabelProvider = new ColumnLabelProvider() {
 
 			@Override
 			public String getText(final Object element) {
-				if (element instanceof AbstractCommand) {
-					return ((AbstractCommand) element).getDescription();
+				if(element instanceof AbstractCommand) {
+					return ((AbstractCommand)element).getDescription();
 				}
 				return "no description";
 			}
 		};
 		createColumn("Description", "DESCRIPTION_COLUMN_ID", 200, columnLabelProvider);
 	}
-	
+
 	protected void createTimeColumn() {
 		final ColumnLabelProvider columnLabelProvider = new ColumnLabelProvider() {
 
 			@Override
 			public String getText(final Object element) {
-				if (CommandStackView.this.dates.containsKey(element)) {
+				if(CommandStackView.this.dates.containsKey(element)) {
 					return CommandStackView.this.dates.get(element);
 				}
 				return "";
@@ -182,17 +172,16 @@ public class CommandStackView extends AbstractTreeView {
 		return new ITreeContentProvider() {
 
 			public Object[] getElements(final Object inputElement) {
-				if (inputElement instanceof Command) {
-					return new Object[] { inputElement };
-				} else if (inputElement instanceof Collection<?>) {
-					return ((Collection<?>) inputElement).toArray();
+				if(inputElement instanceof Command) {
+					return new Object[]{ inputElement };
+				} else if(inputElement instanceof Collection<?>) {
+					return ((Collection<?>)inputElement).toArray();
 				}
 				return new Object[0];
 
 			}
 
-			public void inputChanged(final Viewer viewer,
-					final Object oldInput, final Object newInput) {
+			public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 				// nothing
 			}
 
@@ -209,21 +198,18 @@ public class CommandStackView extends AbstractTreeView {
 			}
 
 			public Object[] getChildren(final Object parentElement) {
-				if (parentElement instanceof CompoundCommand) {
-					return ((CompoundCommand) parentElement).getCommandList()
-							.toArray();
-				} else if (parentElement instanceof CompositeCommand) {
+				if(parentElement instanceof CompoundCommand) {
+					return ((CompoundCommand)parentElement).getCommandList().toArray();
+				} else if(parentElement instanceof CompositeCommand) {
 					final List<Object> children = new ArrayList<Object>();
-					final ListIterator<Object> iter = ((CompositeCommand) parentElement)
-							.listIterator();
-					while (iter.hasNext()) {
+					final ListIterator<Object> iter = ((CompositeCommand)parentElement).listIterator();
+					while(iter.hasNext()) {
 						children.add(iter.next());
 					}
 					return children.toArray();
-				} else if (parentElement instanceof EMFCommandOperation) {
+				} else if(parentElement instanceof EMFCommandOperation) {
 					final List<Object> children = new ArrayList<Object>();
-					children.add(((EMFCommandOperation) parentElement)
-							.getCommand());
+					children.add(((EMFCommandOperation)parentElement).getCommand());
 					return children.toArray();
 				}
 				return new Object[0];

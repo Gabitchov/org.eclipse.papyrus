@@ -9,10 +9,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.facet.common.ui,
  org.eclipse.emf.edit;bundle-version="2.7.1",
- org.eclipse.papyrus.sasheditor;bundle-version="0.8.2",
- org.eclipse.papyrus.core;bundle-version="0.8.2"
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
+ org.eclipse.emf.workspace;bundle-version="1.4.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.papyrus.core,
- org.eclipse.papyrus.core.editor
 Bundle-Localization: plugin
