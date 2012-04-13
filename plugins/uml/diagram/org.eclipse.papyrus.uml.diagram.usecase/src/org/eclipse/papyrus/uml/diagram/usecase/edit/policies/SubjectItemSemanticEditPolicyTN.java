@@ -37,13 +37,13 @@ import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class SubjectComponentItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy {
+public class SubjectItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public SubjectComponentItemSemanticEditPolicyTN() {
-		super(UMLElementTypes.Component_2015);
+	public SubjectItemSemanticEditPolicyTN() {
+		super(UMLElementTypes.Classifier_2015);
 	}
 
 	/**

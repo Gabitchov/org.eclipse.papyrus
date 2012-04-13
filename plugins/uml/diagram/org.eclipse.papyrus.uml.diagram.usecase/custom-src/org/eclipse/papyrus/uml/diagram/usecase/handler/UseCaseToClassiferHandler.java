@@ -17,14 +17,16 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.uml.diagram.usecase.command.ElementToDefaultNamedElementShape;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.command.ChangeUseCasetoClassifierShapeCommand;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
 
 /**
  * the goal of this class is to transform a change a Subject as a default named Element
  * 
  */
-public class DefaultNamedElementHandler extends ChangeShapeHandler implements IHandler {
+public class UseCaseToClassiferHandler extends ChangeShapeHandler implements IHandler {
 
 	protected TransactionalEditingDomain transactionalEditingDomain = null;
 
@@ -33,7 +35,7 @@ public class DefaultNamedElementHandler extends ChangeShapeHandler implements IH
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		if((editPart instanceof SubjectClassifierEditPartTN)) {
+		if((editPart instanceof UseCaseEditPartTN) || (editPart instanceof UseCaseInComponentEditPart) || (editPart instanceof UseCaseInPackageEditPart)) {
 			return true;
 		}
 		return false;
@@ -41,7 +43,7 @@ public class DefaultNamedElementHandler extends ChangeShapeHandler implements IH
 
 	@Override
 	protected AbstractTransactionalCommand getChangeShapeCommand(GraphicalEditPart editPart) {
-		ElementToDefaultNamedElementShape command = new ElementToDefaultNamedElementShape(editPart.getEditingDomain(), editPart);
+		ChangeUseCasetoClassifierShapeCommand command = new ChangeUseCasetoClassifierShapeCommand(editPart.getEditingDomain(), editPart);
 		return command;
 	}
 }

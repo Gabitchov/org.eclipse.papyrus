@@ -491,16 +491,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String SubjectClassUsecasesEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String SubjectInterfaceUsecasesEditPart_title;
-
-	/**
-	 * @generated
-	 */
 	public static String UseCasePointsInComponentEditPart_title;
 
 	/**

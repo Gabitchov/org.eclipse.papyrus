@@ -12,15 +12,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.usecase.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Component;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * @generated
  */
-public class SubjectComponentCreateCommandTN extends EditElementCommand {
+public class SubjectClassifierCreateCommandTN extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -35,7 +32,7 @@ public class SubjectComponentCreateCommandTN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public SubjectComponentCreateCommandTN(CreateElementRequest req, EObject eObject) {
+	public SubjectClassifierCreateCommandTN(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -44,14 +41,14 @@ public class SubjectComponentCreateCommandTN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static SubjectComponentCreateCommandTN create(CreateElementRequest req, EObject eObject) {
-		return new SubjectComponentCreateCommandTN(req, eObject);
+	public static SubjectClassifierCreateCommandTN create(CreateElementRequest req, EObject eObject) {
+		return new SubjectClassifierCreateCommandTN(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public SubjectComponentCreateCommandTN(CreateElementRequest req) {
+	public SubjectClassifierCreateCommandTN(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -82,19 +79,13 @@ public class SubjectComponentCreateCommandTN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Component newElement = UMLFactory.eINSTANCE.createComponent();
-		Package owner = (Package)getElementToEdit();
-		owner.getPackagedElements().add(newElement);
-		ElementInitializers.getInstance().init_Component_2015(newElement);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Component newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Classifier newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

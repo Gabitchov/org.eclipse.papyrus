@@ -48,9 +48,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseEditPartTN;
@@ -162,14 +160,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof SubjectClassifierEditPartTN) {
+			return ((SubjectClassifierEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof PackageEditPartTN) {
 			return ((PackageEditPartTN)sourceEditPart).getMARelTypesOnSource();
@@ -233,14 +225,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			return ((UseCaseAsRectangleEditPartTN)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof SubjectClassifierEditPartTN) {
+			return ((SubjectClassifierEditPartTN)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
 			return ((PackageEditPartTN)targetEditPart).getMARelTypesOnTarget();
@@ -305,14 +291,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof SubjectClassifierEditPartTN) {
+			return ((SubjectClassifierEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof PackageEditPartTN) {
 			return ((PackageEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -376,14 +356,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			return ((UseCaseAsRectangleEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof SubjectClassifierEditPartTN) {
+			return ((SubjectClassifierEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
 			return ((PackageEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
@@ -447,14 +421,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof SubjectComponentEditPartTN) {
-			return ((SubjectComponentEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SubjectClassEditPartTN) {
-			return ((SubjectClassEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SubjectInterfaceEditPartTN) {
-			return ((SubjectInterfaceEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof SubjectClassifierEditPartTN) {
+			return ((SubjectClassifierEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof PackageEditPartTN) {
 			return ((PackageEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);

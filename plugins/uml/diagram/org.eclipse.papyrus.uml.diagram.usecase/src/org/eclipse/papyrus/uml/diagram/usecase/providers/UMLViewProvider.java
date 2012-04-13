@@ -121,15 +121,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationAppliedSter
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassNameEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassUsecasesEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentUsecasesEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceNameEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceUsecasesEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
@@ -251,9 +245,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				switch(visualID) {
 				case ActorEditPartTN.VISUAL_ID:
 				case UseCaseEditPartTN.VISUAL_ID:
-				case SubjectComponentEditPartTN.VISUAL_ID:
-				case SubjectClassEditPartTN.VISUAL_ID:
-				case SubjectInterfaceEditPartTN.VISUAL_ID:
+				case SubjectClassifierEditPartTN.VISUAL_ID:
 				case DefaultNamedElementEditPartTN.VISUAL_ID:
 				case ShortCutDiagramEditPart.VISUAL_ID:
 				case ExtensionPointEditPart.VISUAL_ID:
@@ -282,7 +274,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActorEditPartTN.VISUAL_ID == visualID || ActorAsRectangleEditPartTN.VISUAL_ID == visualID || UseCaseEditPartTN.VISUAL_ID == visualID || UseCaseAsRectangleEditPartTN.VISUAL_ID == visualID || SubjectComponentEditPartTN.VISUAL_ID == visualID || SubjectClassEditPartTN.VISUAL_ID == visualID || SubjectInterfaceEditPartTN.VISUAL_ID == visualID || PackageEditPartTN.VISUAL_ID == visualID || ConstraintEditPartTN.VISUAL_ID == visualID || CommentEditPartTN.VISUAL_ID == visualID || DefaultNamedElementEditPartTN.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || ExtensionPointEditPart.VISUAL_ID == visualID || ExtensionPointInRectangleEditPart.VISUAL_ID == visualID || UseCaseInComponentEditPart.VISUAL_ID == visualID || ComponentInComponentEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintInComponentEditPart.VISUAL_ID == visualID || ActorInComponentEditPart.VISUAL_ID == visualID || ConstraintInPackageEditPart.VISUAL_ID == visualID || ActorInPackageEditPart.VISUAL_ID == visualID || UseCaseInPackageEditPart.VISUAL_ID == visualID || ComponentInPackageEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID;
+		return ActorEditPartTN.VISUAL_ID == visualID || ActorAsRectangleEditPartTN.VISUAL_ID == visualID || UseCaseEditPartTN.VISUAL_ID == visualID || UseCaseAsRectangleEditPartTN.VISUAL_ID == visualID || SubjectClassifierEditPartTN.VISUAL_ID == visualID || PackageEditPartTN.VISUAL_ID == visualID || ConstraintEditPartTN.VISUAL_ID == visualID || CommentEditPartTN.VISUAL_ID == visualID || DefaultNamedElementEditPartTN.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || ExtensionPointEditPart.VISUAL_ID == visualID || ExtensionPointInRectangleEditPart.VISUAL_ID == visualID || UseCaseInComponentEditPart.VISUAL_ID == visualID || ComponentInComponentEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintInComponentEditPart.VISUAL_ID == visualID || ActorInComponentEditPart.VISUAL_ID == visualID || ConstraintInPackageEditPart.VISUAL_ID == visualID || ActorInPackageEditPart.VISUAL_ID == visualID || UseCaseInPackageEditPart.VISUAL_ID == visualID || ComponentInPackageEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -337,12 +329,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createUseCase_2013(domainElement, containerView, index, persisted, preferencesHint);
 		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return createUseCase_2014(domainElement, containerView, index, persisted, preferencesHint);
-		case SubjectComponentEditPartTN.VISUAL_ID:
-			return createComponent_2015(domainElement, containerView, index, persisted, preferencesHint);
-		case SubjectClassEditPartTN.VISUAL_ID:
-			return createClass_2020(domainElement, containerView, index, persisted, preferencesHint);
-		case SubjectInterfaceEditPartTN.VISUAL_ID:
-			return createInterface_2021(domainElement, containerView, index, persisted, preferencesHint);
+		case SubjectClassifierEditPartTN.VISUAL_ID:
+			return createClassifier_2015(domainElement, containerView, index, persisted, preferencesHint);
 		case PackageEditPartTN.VISUAL_ID:
 			return createPackage_2016(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPartTN.VISUAL_ID:
@@ -510,63 +498,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createComponent_2015(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClassifier_2015(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(SubjectComponentEditPartTN.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(SubjectClassifierEditPartTN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Component");
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Component");
-		Node label5019 = createLabel(node, UMLVisualIDRegistry.getType(SubjectComponentNameEditPartTN.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Classifier");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Classifier");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Classifier");
+		Node label5019 = createLabel(node, UMLVisualIDRegistry.getType(SubjectClassifierNameEditPartTN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(SubjectComponentUsecasesEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createClass_2020(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(SubjectClassEditPartTN.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Class");
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Class");
-		Node label6037 = createLabel(node, UMLVisualIDRegistry.getType(SubjectClassNameEditPartTN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(SubjectClassUsecasesEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createInterface_2021(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(SubjectInterfaceEditPartTN.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Interface");
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interface");
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Interface");
-		Node label6038 = createLabel(node, UMLVisualIDRegistry.getType(SubjectInterfaceNameEditPartTN.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(SubjectInterfaceUsecasesEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interface");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Classifier");
 		return node;
 	}
 

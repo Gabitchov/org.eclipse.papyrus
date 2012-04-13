@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI
-    xmi:version="2.0"
+<xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
@@ -45,7 +44,7 @@
           canonicalEditPolicyClassName="ExtensionPointCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ExtensionPointGraphicalNodeEditPolicy"
           createCommandClassName="ExtensionPointCreateCommand"
-          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.5 /0/@diagram/@compartments.7">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.3 /0/@diagram/@compartments.5">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -136,10 +135,10 @@
           itemSemanticEditPolicyClassName="UseCaseInComponentItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCase3ViewFactory"
           canonicalEditPolicyClassName="UseCaseInComponentCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.5"
+          compartments="/0/@diagram/@compartments.3"
           graphicalNodeEditPolicyClassName="UseCaseInComponentGraphicalNodeEditPolicy"
           createCommandClassName="UseCaseInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.6 /0/@diagram/@compartments.8 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -217,10 +216,10 @@
           itemSemanticEditPolicyClassName="ComponentInComponentItemSemanticEditPolicy"
           notationViewFactoryClassName="Component2ViewFactory"
           canonicalEditPolicyClassName="ComponentInComponentCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.6"
+          compartments="/0/@diagram/@compartments.4"
           graphicalNodeEditPolicyClassName="ComponentInComponentGraphicalNodeEditPolicy"
           createCommandClassName="ComponentInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.8 /0/@diagram/@compartments.6">
+          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -299,7 +298,7 @@
           canonicalEditPolicyClassName="CommentCanonicalEditPolicyCN"
           graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicyCN"
           createCommandClassName="CommentCreateCommandCN"
-          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.2 /0/@diagram/@compartments.10 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
+          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.2 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -365,7 +364,7 @@
           canonicalEditPolicyClassName="ConstraintInComponentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintInComponentGraphicalNodeEditPolicy"
           createCommandClassName="ConstraintInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.8 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
+          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -442,7 +441,7 @@
           canonicalEditPolicyClassName="ActorInComponentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ActorInComponentGraphicalNodeEditPolicy"
           createCommandClassName="ActorInComponentCreateCommand"
-          containers="/0/@diagram/@compartments.6 /0/@diagram/@compartments.8">
+          containers="/0/@diagram/@compartments.4 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -524,7 +523,7 @@
           canonicalEditPolicyClassName="ConstraintInPackageCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintInPackageGraphicalNodeEditPolicy"
           createCommandClassName="ConstraintInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -601,7 +600,7 @@
           canonicalEditPolicyClassName="ActorInPackageCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ActorInPackageGraphicalNodeEditPolicy"
           createCommandClassName="ActorInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -681,10 +680,10 @@
           itemSemanticEditPolicyClassName="UseCaseInPackageItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCase4ViewFactory"
           canonicalEditPolicyClassName="UseCaseInPackageCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.7"
+          compartments="/0/@diagram/@compartments.5"
           graphicalNodeEditPolicyClassName="UseCaseInPackageGraphicalNodeEditPolicy"
           createCommandClassName="UseCaseInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -762,10 +761,10 @@
           itemSemanticEditPolicyClassName="ComponentInPackageItemSemanticEditPolicy"
           notationViewFactoryClassName="Component3ViewFactory"
           canonicalEditPolicyClassName="ComponentInPackageCanonicalEditPolicy"
-          compartments="/0/@diagram/@compartments.8"
+          compartments="/0/@diagram/@compartments.6"
           graphicalNodeEditPolicyClassName="ComponentInPackageGraphicalNodeEditPolicy"
           createCommandClassName="ComponentInPackageCreateCommand"
-          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -842,10 +841,10 @@
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicyCN"
           notationViewFactoryClassName="Package3ViewFactory"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicyCN"
-          compartments="/0/@diagram/@compartments.9"
+          compartments="/0/@diagram/@compartments.7"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicyCN"
           createCommandClassName="PackageCreateCommandCN"
-          containers="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+          containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1214,13 +1213,13 @@
       </topLevelNodes>
       <topLevelNodes
           visualID="2015"
-          editPartClassName="SubjectComponentEditPartTN"
-          itemSemanticEditPolicyClassName="SubjectComponentItemSemanticEditPolicyTN"
+          editPartClassName="SubjectClassifierEditPartTN"
+          itemSemanticEditPolicyClassName="SubjectClassifierItemSemanticEditPolicyTN"
           notationViewFactoryClassName="ComponentViewFactory"
-          canonicalEditPolicyClassName="SubjectComponentCanonicalEditPolicyTN"
+          canonicalEditPolicyClassName="SubjectClassifierCanonicalEditPolicyTN"
           compartments="/0/@diagram/@compartments.2"
-          graphicalNodeEditPolicyClassName="SubjectComponentGraphicalNodeEditPolicyTN"
-          createCommandClassName="SubjectComponentCreateCommandTN">
+          graphicalNodeEditPolicyClassName="SubjectClassifiertGraphicalNodeEditPolicyTN"
+          createCommandClassName="SubjectClassifierCreateCommandTN">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1248,7 +1247,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Classifier"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
@@ -1265,160 +1264,8 @@
         </modelFacet>
         <labels
             visualID="5019"
-            editPartClassName="SubjectComponentNameEditPartTN"
-            itemSemanticEditPolicyClassName="SubjectComponentNameItemSemanticEditPolicyTN"
-            notationViewFactoryClassName="ComponentNameViewFactory"
-            elementIcon="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
-              editPattern="">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-      </topLevelNodes>
-      <topLevelNodes
-          visualID="2020"
-          editPartClassName="SubjectClassEditPartTN"
-          itemSemanticEditPolicyClassName="SubjectClassItemSemanticEditPolicyTN"
-          notationViewFactoryClassName="ComponentViewFactory"
-          canonicalEditPolicyClassName="SubjectClassCanonicalEditPolicyTN"
-          compartments="/0/@diagram/@compartments.3"
-          graphicalNodeEditPolicyClassName="SubjectClassGraphicalNodeEditPolicyTN"
-          createCommandClassName="SubjectClassCreateCommandTN">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="SubjectEditHelper"/>
-        <viewmap
-            xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.figure.SubjectFigure">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="200"
-              height="400"/>
-        </viewmap>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
-        <modelFacet>
-          <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
-          <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
-          <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/ownedType"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.1/@expressions.4">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
-        </modelFacet>
-        <labels
-            visualID="6037"
-            editPartClassName="SubjectClassNameEditPartTN"
-            itemSemanticEditPolicyClassName="SubjectClassNameItemSemanticEditPolicyTN"
-            notationViewFactoryClassName="ComponentNameViewFactory"
-            elementIcon="true">
-          <diagramRunTimeClass
-              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          <viewmap
-              xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            <attributes
-                xsi:type="gmfgen:StyleAttributes"
-                fixedFont="true"/>
-          </viewmap>
-          <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
-              editPattern="">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
-        </labels>
-      </topLevelNodes>
-      <topLevelNodes
-          visualID="2021"
-          editPartClassName="SubjectInterfaceEditPartTN"
-          itemSemanticEditPolicyClassName="SubjectInterfaceItemSemanticEditPolicyTN"
-          notationViewFactoryClassName="ComponentViewFactory"
-          canonicalEditPolicyClassName="SubjectInterfaceCanonicalEditPolicyTN"
-          compartments="/0/@diagram/@compartments.4"
-          graphicalNodeEditPolicyClassName="SubjectInterfaceGraphicalNodeEditPolicyTN"
-          createCommandClassName="SubjectInterfaceCreateCommandTN">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <elementType
-            xsi:type="gmfgen:MetamodelType"
-            editHelperClassName="SubjectEditHelper"/>
-        <viewmap
-            xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.figure.SubjectFigure">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="200"
-              height="400"/>
-        </viewmap>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
-        <modelFacet>
-          <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interface"/>
-          <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
-          <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/ownedType"/>
-          <modelElementInitializer
-              xsi:type="gmfgen:GenFeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.1/@expressions.4">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-            </initializers>
-          </modelElementInitializer>
-        </modelFacet>
-        <labels
-            visualID="6038"
-            editPartClassName="SubjectInterfaceNameEditPartTN"
-            itemSemanticEditPolicyClassName="SubjectInterfaceNameItemSemanticEditPolicyTN"
+            editPartClassName="SubjectClassifierNameEditPartTN"
+            itemSemanticEditPolicyClassName="SubjectClassifierNameItemSemanticEditPolicyTN"
             notationViewFactoryClassName="ComponentNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
@@ -1446,7 +1293,7 @@
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicyTN"
           notationViewFactoryClassName="Package2ViewFactory"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicyTN"
-          compartments="/0/@diagram/@compartments.10"
+          compartments="/0/@diagram/@compartments.8"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicyTN"
           createCommandClassName="PackageCreateCommandTN">
         <diagramRunTimeClass
@@ -2608,52 +2455,6 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
       </compartments>
       <compartments
-          visualID="7018"
-          editPartClassName="SubjectClassUsecasesEditPart"
-          itemSemanticEditPolicyClassName="SubjectClassUsecasesItemSemanticEditPolicy"
-          notationViewFactoryClassName="ComponentUsecasesViewFactory"
-          canonicalEditPolicyClassName="SubjectClassUsecasesCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
-          title="use cases"
-          canCollapse="false"
-          needsTitle="false"
-          node="/0/@diagram/@topLevelNodes.5"
-          listLayout="false">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getUseCasesContainerFigure"
-            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.DRAG_DROP_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
-      </compartments>
-      <compartments
-          visualID="7019"
-          editPartClassName="SubjectInterfaceUsecasesEditPart"
-          itemSemanticEditPolicyClassName="SubjectInterfaceUsecasesItemSemanticEditPolicy"
-          notationViewFactoryClassName="ComponentUsecasesViewFactory"
-          canonicalEditPolicyClassName="SubjectInterfaceUsecasesCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
-          title="use cases"
-          canCollapse="false"
-          needsTitle="false"
-          node="/0/@diagram/@topLevelNodes.6"
-          listLayout="false">
-        <diagramRunTimeClass
-            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap
-            xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getUseCasesContainerFigure"
-            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.DRAG_DROP_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy"/>
-      </compartments>
-      <compartments
           visualID="7012"
           editPartClassName="UseCasePointsInComponentEditPart"
           itemSemanticEditPolicyClassName="UseCasePointsInComponentItemSemanticEditPolicy"
@@ -2780,7 +2581,7 @@
           title="PackageableElementCompartment"
           canCollapse="false"
           needsTitle="false"
-          node="/0/@diagram/@topLevelNodes.7"
+          node="/0/@diagram/@topLevelNodes.5"
           listLayout="false">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2813,7 +2614,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
               id="&quot;usecase.tool.package&quot;"
-              genNodes="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.7"/>
+              genNodes="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Subject"
@@ -2821,7 +2622,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
               id="&quot;usecase.tool.subject&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6"/>
+              genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.10"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Actor"
@@ -2845,7 +2646,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               id="&quot;usecase.tool.constraint&quot;"
-              genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.8"/>
+              genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.6"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
@@ -2853,7 +2654,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               id="&quot;usecase.tool.comment&quot;"
-              genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.9"/>
+              genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.7"/>
         </groups>
         <groups
             title="Children"
@@ -3112,7 +2913,7 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:ExternalParser"
           uses="/0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet"/>
@@ -3122,7 +2923,7 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet"
+          uses="/0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.CommentParser"/>
     </labelParsers>
     <contextMenus
@@ -3137,7 +2938,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="manage edit part that extends NamedElementEditPart in common"
-        genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3"
+        genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -3149,25 +2950,25 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for short cut"
-        genView="/0/@diagram/@topLevelNodes.11"
+        genView="/0/@diagram/@topLevelNodes.9"
         name="AbstractShortCutDiagramEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShortCutDiagramEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Name of the shorcut diagram"
-        genView="/0/@diagram/@topLevelNodes.11/@labels.0"
+        genView="/0/@diagram/@topLevelNodes.9/@labels.0"
         name="AbstractShortcutDiagramNameEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShortcutDiagramNameEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for compartment"
-        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.5 /0/@diagram/@compartments.7"
+        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.3 /0/@diagram/@compartments.5"
         name="ResizeableListCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="this is an extension to manage the comment"
-        genView="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.9"
+        genView="/0/@diagram/@childNodes.4 /0/@diagram/@topLevelNodes.7"
         name="comment extended node"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"/>
     <extensionNodes
@@ -3183,7 +2984,7 @@
         role="Name"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
         linkLabels="/0/@diagram/@links.5/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0"
-        externalNodeLabels="/0/@diagram/@topLevelNodes.11/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0"/>
+        externalNodeLabels="/0/@diagram/@topLevelNodes.9/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Stereotype"
@@ -3211,11 +3012,11 @@
         xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService"
         comment="List of editpart using the delete service"
         name="DeleteService editpart List"
-        genView="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.11 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"/>
+        genView="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7 /0/@diagram/@topLevelNodes.9 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="to manage SubjectNodes"
-        genView="/0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6"
+        genView="/0/@diagram/@topLevelNodes.4"
         name="SubjectNodes"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

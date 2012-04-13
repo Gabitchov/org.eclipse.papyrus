@@ -56,9 +56,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
@@ -123,17 +121,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Component_2015 = getElementType("org.eclipse.papyrus.uml.diagram.usecase.Component_2015"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Class_2020 = getElementType("org.eclipse.papyrus.uml.diagram.usecase.Class_2020"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Interface_2021 = getElementType("org.eclipse.papyrus.uml.diagram.usecase.Interface_2021"); //$NON-NLS-1$
+	public static final IElementType Classifier_2015 = getElementType("org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -390,9 +378,7 @@ public class UMLElementTypes {
 			elements.put(Actor_2012, UMLPackage.eINSTANCE.getActor());
 			elements.put(UseCase_2013, UMLPackage.eINSTANCE.getUseCase());
 			elements.put(UseCase_2014, UMLPackage.eINSTANCE.getUseCase());
-			elements.put(Component_2015, UMLPackage.eINSTANCE.getComponent());
-			elements.put(Class_2020, UMLPackage.eINSTANCE.getClass_());
-			elements.put(Interface_2021, UMLPackage.eINSTANCE.getInterface());
+			elements.put(Classifier_2015, UMLPackage.eINSTANCE.getClassifier());
 			elements.put(Package_2016, UMLPackage.eINSTANCE.getPackage());
 			elements.put(Constraint_2017, UMLPackage.eINSTANCE.getConstraint());
 			elements.put(Comment_2018, UMLPackage.eINSTANCE.getComment());
@@ -444,9 +430,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Actor_2012);
 			KNOWN_ELEMENT_TYPES.add(UseCase_2013);
 			KNOWN_ELEMENT_TYPES.add(UseCase_2014);
-			KNOWN_ELEMENT_TYPES.add(Component_2015);
-			KNOWN_ELEMENT_TYPES.add(Class_2020);
-			KNOWN_ELEMENT_TYPES.add(Interface_2021);
+			KNOWN_ELEMENT_TYPES.add(Classifier_2015);
 			KNOWN_ELEMENT_TYPES.add(Package_2016);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2017);
 			KNOWN_ELEMENT_TYPES.add(Comment_2018);
@@ -495,12 +479,8 @@ public class UMLElementTypes {
 			return UseCase_2013;
 		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return UseCase_2014;
-		case SubjectComponentEditPartTN.VISUAL_ID:
-			return Component_2015;
-		case SubjectClassEditPartTN.VISUAL_ID:
-			return Class_2020;
-		case SubjectInterfaceEditPartTN.VISUAL_ID:
-			return Interface_2021;
+		case SubjectClassifierEditPartTN.VISUAL_ID:
+			return Classifier_2015;
 		case PackageEditPartTN.VISUAL_ID:
 			return Package_2016;
 		case ConstraintEditPartTN.VISUAL_ID:

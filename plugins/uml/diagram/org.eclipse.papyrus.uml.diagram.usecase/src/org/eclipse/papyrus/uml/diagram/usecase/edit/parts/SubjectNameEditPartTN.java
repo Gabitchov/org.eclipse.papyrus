@@ -7,6 +7,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -45,11 +46,14 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -69,7 +73,7 @@ public class SubjectNameEditPartTN extends PapyrusCompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6038;
+	public static final int VISUAL_ID = 5019;
 
 	/**
 	 * @generated
@@ -210,6 +214,16 @@ public class SubjectNameEditPartTN extends PapyrusCompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
+		EObject parserElement = getParserElement();
+		if(parserElement == null) {
+			return null;
+		}
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for(View view : views) {
+			if(NameLabelIconHelper.showLabelIcon(view)) {
+				return UMLElementTypes.getImage(parserElement.eClass());
+			}
+		}
 		return null;
 	}
 
@@ -310,7 +324,7 @@ public class SubjectNameEditPartTN extends PapyrusCompartmentEditPart implements
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Interface_2021, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectNameEditPartTN.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Classifier_2015, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectNameEditPartTN.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -697,6 +711,9 @@ public class SubjectNameEditPartTN extends PapyrusCompartmentEditPart implements
 					refreshLabel();
 				}
 			}
+		}
+		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
+			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
 	}

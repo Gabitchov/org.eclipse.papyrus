@@ -64,7 +64,6 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 		return null;
 	}
 
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final GraphicalEditPart editPart = getSelectedGraphicalEditpart();
 		ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();

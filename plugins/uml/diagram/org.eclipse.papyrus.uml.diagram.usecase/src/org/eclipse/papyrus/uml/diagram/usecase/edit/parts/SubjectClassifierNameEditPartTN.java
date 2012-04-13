@@ -68,7 +68,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class SubjectComponentNameEditPartTN extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
+public class SubjectClassifierNameEditPartTN extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -112,7 +112,7 @@ public class SubjectComponentNameEditPartTN extends PapyrusCompartmentEditPart i
 	/**
 	 * @generated
 	 */
-	public SubjectComponentNameEditPartTN(View view) {
+	public SubjectClassifierNameEditPartTN(View view) {
 		super(view);
 	}
 
@@ -324,7 +324,7 @@ public class SubjectComponentNameEditPartTN extends PapyrusCompartmentEditPart i
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Component_2015, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentNameEditPartTN.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Classifier_2015, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierNameEditPartTN.VISUAL_ID));
 		}
 		return parser;
 	}

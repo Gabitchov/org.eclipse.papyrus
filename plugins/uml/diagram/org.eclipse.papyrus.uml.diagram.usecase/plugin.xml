@@ -183,7 +183,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2020,2021,2016,2017,2018,2022,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,2022,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
       </viewProvider>
    </extension>
@@ -196,16 +196,16 @@
             <method name="getType()" value="UseCase"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2011,2012,2013,2014,2015,2020,2021,2016,2017,2018,2022,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
+            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,2022,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5014,6029,5015,5016,5017,5019,6037,6038,5025,5026,5027,6039,5032,5018,5030,5028,5029,5031,6027,5020,5021,6028,5022,5023,5024"/>
+            <method name="getType()" value="5014,6029,5015,5016,5017,5019,5025,5026,5027,6039,5032,5018,5030,5028,5029,5031,6027,5020,5021,6028,5022,5023,5024"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7009,7010,7011,7018,7019,7012,7017,7014,7015,7016,7013"/>
+            <method name="getType()" value="7009,7010,7011,7012,7017,7014,7015,7016,7013"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -220,15 +220,13 @@
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN" id="Actor_2012"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseEditPartTN" id="UseCase_2013"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN" id="UseCase_2014"/>
-         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentEditPartTN" id="Component_2015"/>
-         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN" id="Class_2020"/>
-         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceEditPartTN" id="Interface_2021"/>
+         <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN" id="Classifier_2015"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartTN" id="Package_2016"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintEditPartTN" id="Constraint_2017"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentEditPartTN" id="Comment_2018"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.DefaultNamedElementEditPartTN" id="NamedElement_2022"/>
          <object class="org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart" id="Diagram_2019"/>
-         <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Component_2015,Class_2020,Interface_2021,Package_2016,Constraint_2017,Comment_2018,NamedElement_2022,Diagram_2019"/>
+         <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Classifier_2015,Package_2016,Constraint_2017,Comment_2018,NamedElement_2022,Diagram_2019"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -298,32 +296,12 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.usecase.Component_2015"
-               name="%metatype.name.Component_2015"
+               id="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"
+               name="%metatype.name.Classifier_2015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Component"
+               eclass="Classifier"
                edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.SubjectEditHelper">
             <param name="semanticHint" value="2015"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.usecase.Class_2020"
-               name="%metatype.name.Class_2020"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Class"
-               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.SubjectEditHelper">
-            <param name="semanticHint" value="2020"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.usecase.Interface_2021"
-               name="%metatype.name.Interface_2021"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Interface"
-               edithelper="org.eclipse.papyrus.uml.diagram.usecase.edit.helpers.SubjectEditHelper">
-            <param name="semanticHint" value="2021"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
@@ -406,7 +384,7 @@
                id="org.eclipse.papyrus.uml.diagram.usecase.Component_3016"
                name="%metatype.name.Component_3016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.usecase.Component_2015"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"/>
             <param name="semanticHint" value="3016"/>
          </specializationType>
       </metamodel>
@@ -471,7 +449,7 @@
                id="org.eclipse.papyrus.uml.diagram.usecase.Component_3013"
                name="%metatype.name.Component_3013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.usecase.Component_2015"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"/>
             <param name="semanticHint" value="3013"/>
          </specializationType>
       </metamodel>
@@ -619,9 +597,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_2012"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Component_2015"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Class_2020"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Interface_2021"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Package_2016"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Constraint_2017"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Comment_2018"/>
@@ -761,6 +737,20 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassifierPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassifierPreferencePage"
+            name="Classifier Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.usecase.preferences.CommentPreferencePage"
+            name="Comment Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.usecase.preferences.ConstraintPreferencePage"
             name="Constraint Node" />
@@ -792,27 +782,6 @@
 			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ComponentPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.usecase.preferences.ComponentPreferencePage"
             name="Component Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.usecase.preferences.CommentPreferencePage"
-            name="Comment Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.InterfacePreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.usecase.preferences.InterfacePreferencePage"
-            name="Interface Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassPreferencePage"
-            name="Class Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -1439,6 +1408,16 @@
                checkEnabled="true">
          </visibleWhen>
       </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.usecase.displayusecaseasclassifier.popup"
+            id="displayusecaseasclassifier.popup"
+            label="Display use case as classifier"
+            style="push"
+            tooltip="Display use case as classifier">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
    </menuContribution>
 </extension>
 <extension
@@ -1454,6 +1433,12 @@
          defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.handler.SubjectHandler"
          id="org.eclipse.papyrus.diagram.usecase.displayassubject.popup"
          name="Display as subject">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.handler.UseCaseToClassiferHandler"
+         id="org.eclipse.papyrus.diagram.usecase.displayusecaseasclassifier.popup"
+         name="Display use case as classifier">
    </command>
 </extension>
 

@@ -16,7 +16,7 @@ public class SubjectComponentUsecasesItemSemanticEditPolicy extends UMLBaseItemS
 	 * @generated
 	 */
 	public SubjectComponentUsecasesItemSemanticEditPolicy() {
-		super(UMLElementTypes.Component_2015);
+		super(UMLElementTypes.Classifier_2015);
 	}
 
 	/**

@@ -63,9 +63,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationNameEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassNameEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentNameEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectInterfaceNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentNameEditPart;
@@ -166,52 +164,18 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser componentName_5019Parser;
+	private IParser classifierName_5019Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getComponentName_5019Parser() {
-		if(componentName_5019Parser == null) {
+	private IParser getClassifierName_5019Parser() {
+		if(classifierName_5019Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			componentName_5019Parser = parser;
+			classifierName_5019Parser = parser;
 		}
-		return componentName_5019Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser className_6037Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getClassName_6037Parser() {
-		if(className_6037Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			className_6037Parser = parser;
-		}
-		return className_6037Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser interfaceName_6038Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInterfaceName_6038Parser() {
-		if(interfaceName_6038Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			interfaceName_6038Parser = parser;
-		}
-		return interfaceName_6038Parser;
+		return classifierName_5019Parser;
 	}
 
 	/**
@@ -779,12 +743,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getUseCaseName_5016Parser();
 		case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
 			return getUseCaseName_5017Parser();
-		case SubjectComponentNameEditPartTN.VISUAL_ID:
-			return getComponentName_5019Parser();
-		case SubjectClassNameEditPartTN.VISUAL_ID:
-			return getClassName_6037Parser();
-		case SubjectInterfaceNameEditPartTN.VISUAL_ID:
-			return getInterfaceName_6038Parser();
+		case SubjectClassifierNameEditPartTN.VISUAL_ID:
+			return getClassifierName_5019Parser();
 		case PackageNameEditPartTN.VISUAL_ID:
 			return getPackageName_5025Parser();
 		case ConstraintNameEditPartTN.VISUAL_ID:

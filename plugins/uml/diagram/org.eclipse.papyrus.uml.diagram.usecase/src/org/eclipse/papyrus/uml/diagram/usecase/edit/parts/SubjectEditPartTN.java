@@ -35,7 +35,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNode
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.SubjectClassItemSemanticEditPolicyTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.SubjectItemSemanticEditPolicyTN;
 import org.eclipse.papyrus.uml.diagram.usecase.figure.SubjectFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
@@ -45,12 +45,12 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class SubjectClassEditPartTN extends NamedElementEditPart {
+public class SubjectEditPartTN extends NamedElementEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2020;
+	public static final int VISUAL_ID = 2015;
 
 	/**
 	 * @generated
@@ -65,7 +65,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public SubjectClassEditPartTN(View view) {
+	public SubjectEditPartTN(View view) {
 		super(view);
 	}
 
@@ -74,7 +74,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubjectClassItemSemanticEditPolicyTN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubjectItemSemanticEditPolicyTN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -135,14 +135,14 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof SubjectClassNameEditPartTN) {
-			((SubjectClassNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof SubjectNameEditPartTN) {
+			((SubjectNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof SubjectClassUsecasesEditPart) {
+		if(childEditPart instanceof SubjectComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCasesContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((SubjectClassUsecasesEditPart)childEditPart).getFigure());
+			pane.add(((SubjectComponentUsecasesEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -152,13 +152,13 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof SubjectClassNameEditPartTN) {
+		if(childEditPart instanceof SubjectNameEditPartTN) {
 			return true;
 		}
-		if(childEditPart instanceof SubjectClassUsecasesEditPart) {
+		if(childEditPart instanceof SubjectComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCasesContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((SubjectClassUsecasesEditPart)childEditPart).getFigure());
+			pane.remove(((SubjectComponentUsecasesEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -188,7 +188,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof SubjectClassUsecasesEditPart) {
+		if(editPart instanceof SubjectComponentUsecasesEditPart) {
 			return getPrimaryShape().getUseCasesContainerFigure();
 		}
 		return getContentPane();
@@ -198,7 +198,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Class";
+		String prefElementId = "Classifier";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
@@ -281,7 +281,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(SubjectClassNameEditPartTN.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(SubjectNameEditPartTN.VISUAL_ID));
 	}
 
 	/**
@@ -316,13 +316,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			types.add(UMLElementTypes.Generalization_4010);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN) {
-			types.add(UMLElementTypes.Generalization_4010);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
@@ -355,13 +349,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			types.add(UMLElementTypes.Association_4011);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN) {
-			types.add(UMLElementTypes.Association_4011);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
@@ -394,13 +382,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			types.add(UMLElementTypes.Dependency_4013);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN) {
-			types.add(UMLElementTypes.Dependency_4013);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -451,13 +433,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			types.add(UMLElementTypes.Abstraction_4015);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN) {
-			types.add(UMLElementTypes.Abstraction_4015);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -508,13 +484,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			types.add(UMLElementTypes.Usage_4016);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN) {
-			types.add(UMLElementTypes.Usage_4016);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -565,13 +535,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if(targetEditPart instanceof SubjectComponentEditPartTN) {
-			types.add(UMLElementTypes.Realization_4017);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassEditPartTN) {
-			types.add(UMLElementTypes.Realization_4017);
-		}
-		if(targetEditPart instanceof SubjectInterfaceEditPartTN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof PackageEditPartTN) {
@@ -629,9 +593,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -643,9 +605,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -657,9 +617,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -677,9 +635,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -697,9 +653,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -717,9 +671,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -765,9 +717,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -779,9 +729,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Actor_3018);
@@ -797,9 +745,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -820,9 +766,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -840,9 +784,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -860,9 +802,7 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
 			types.add(UMLElementTypes.UseCase_2014);
-			types.add(UMLElementTypes.Component_2015);
-			types.add(UMLElementTypes.Class_2020);
-			types.add(UMLElementTypes.Interface_2021);
+			types.add(UMLElementTypes.Classifier_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
@@ -889,15 +829,15 @@ public class SubjectClassEditPartTN extends NamedElementEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Class", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Classifier", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Class", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Classifier", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Class", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Classifier", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Class", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Classifier", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());

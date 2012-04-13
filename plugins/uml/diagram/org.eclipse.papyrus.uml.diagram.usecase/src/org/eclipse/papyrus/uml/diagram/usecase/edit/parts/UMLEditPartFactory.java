@@ -61,18 +61,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new UseCaseAsRectangleEditPartTN(view);
 			case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
 				return new UseCaseAsRectangleNameEditPartTN(view);
-			case SubjectComponentEditPartTN.VISUAL_ID:
-				return new SubjectComponentEditPartTN(view);
-			case SubjectComponentNameEditPartTN.VISUAL_ID:
-				return new SubjectComponentNameEditPartTN(view);
-			case SubjectClassEditPartTN.VISUAL_ID:
-				return new SubjectClassEditPartTN(view);
-			case SubjectClassNameEditPartTN.VISUAL_ID:
-				return new SubjectClassNameEditPartTN(view);
-			case SubjectInterfaceEditPartTN.VISUAL_ID:
-				return new SubjectInterfaceEditPartTN(view);
-			case SubjectInterfaceNameEditPartTN.VISUAL_ID:
-				return new SubjectInterfaceNameEditPartTN(view);
+			case SubjectClassifierEditPartTN.VISUAL_ID:
+				return new SubjectClassifierEditPartTN(view);
+			case SubjectClassifierNameEditPartTN.VISUAL_ID:
+				return new SubjectClassifierNameEditPartTN(view);
 			case PackageEditPartTN.VISUAL_ID:
 				return new PackageEditPartTN(view);
 			case PackageNameEditPartTN.VISUAL_ID:
@@ -147,10 +139,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new UseCasePointsInRectangleEditPart(view);
 			case SubjectComponentUsecasesEditPart.VISUAL_ID:
 				return new SubjectComponentUsecasesEditPart(view);
-			case SubjectClassUsecasesEditPart.VISUAL_ID:
-				return new SubjectClassUsecasesEditPart(view);
-			case SubjectInterfaceUsecasesEditPart.VISUAL_ID:
-				return new SubjectInterfaceUsecasesEditPart(view);
 			case UseCasePointsInComponentEditPart.VISUAL_ID:
 				return new UseCasePointsInComponentEditPart(view);
 			case ComponentUsecases2EditPart.VISUAL_ID:
