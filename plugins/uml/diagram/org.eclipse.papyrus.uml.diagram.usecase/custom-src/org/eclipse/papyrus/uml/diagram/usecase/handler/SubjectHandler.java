@@ -29,7 +29,7 @@ public class SubjectHandler extends ChangeShapeHandler implements IHandler {
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		if((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Class) || (editPart.resolveSemanticElement() instanceof Interface)) {
+		if((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Classifier)) {
 			if((editPart instanceof SubjectClassifierEditPartTN) ) {
 				return false;
 			} else {

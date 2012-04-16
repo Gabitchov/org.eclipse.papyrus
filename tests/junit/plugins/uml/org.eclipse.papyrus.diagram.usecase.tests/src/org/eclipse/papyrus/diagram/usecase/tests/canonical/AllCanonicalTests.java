@@ -25,8 +25,6 @@ import org.junit.runners.Suite.SuiteClasses;
 TestUseCaseTopNode.class,
 // child nodes
 TestUseCaseChildNodeForPackage.class,
-TestUseCaseChildNodeForComponentSubject.class,
-TestUseCaseChildNodeForInterfaceSubject.class,
 TestUseCaseChildNodeForClassSubject.class
 
 })

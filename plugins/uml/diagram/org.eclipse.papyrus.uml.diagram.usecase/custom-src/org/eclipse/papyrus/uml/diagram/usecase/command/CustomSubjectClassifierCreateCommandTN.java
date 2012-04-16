@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2012 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,33 +8,42 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.usecase.edit.commands;
+package org.eclipse.papyrus.uml.diagram.usecase.command;
+
+import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.usecase.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Component;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.usecase.ui.SubjectSelectionDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
- * @generated
+ *specific command to create a subject 
+ *
  */
-public class ComponentCreateCommandTN extends EditElementCommand {
+public class CustomSubjectClassifierCreateCommandTN extends EditElementCommand {
 
+	
+	ArrayList<IHintedType> possibleSubject= new ArrayList<IHintedType>();
 	/**
 	 * @generated
 	 */
@@ -48,23 +57,24 @@ public class ComponentCreateCommandTN extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ComponentCreateCommandTN(CreateElementRequest req, EObject eObject) {
+	public CustomSubjectClassifierCreateCommandTN(CreateElementRequest req, EObject eObject, ArrayList<IHintedType> possibleSubject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
+		this.possibleSubject=possibleSubject;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static ComponentCreateCommandTN create(CreateElementRequest req, EObject eObject) {
-		return new ComponentCreateCommandTN(req, eObject);
+	public static CustomSubjectClassifierCreateCommandTN create(CreateElementRequest req, EObject eObject, ArrayList<IHintedType> possibleSubject) {
+		return new CustomSubjectClassifierCreateCommandTN(req, eObject,possibleSubject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ComponentCreateCommandTN(CreateElementRequest req) {
+	public CustomSubjectClassifierCreateCommandTN(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -95,19 +105,28 @@ public class ComponentCreateCommandTN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Component newElement = UMLFactory.eINSTANCE.createComponent();
-		Package owner = (Package)getElementToEdit();
-		owner.getPackagedElements().add(newElement);
-		ElementInitializers.getInstance().init_Component_2015(newElement);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+		SubjectSelectionDialog dialog= new SubjectSelectionDialog(new Shell(), possibleSubject, SWT.NATIVE);
+		dialog.open();
+		Classifier newElement=null;
+		IHintedType htype=dialog.getSelectedMetaclass();
+		EObject element=((CreateElementRequest)getRequest()).getContainer();
+		CreateElementRequest createElementRequest= new CreateElementRequest(element, htype);
+		
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand createCommand = provider.getEditCommand(createElementRequest);
+			createCommand.execute(new NullProgressMonitor(), null);
+			createCommand.getCommandResult().getReturnValue();
+			newElement=(Classifier)createCommand.getCommandResult().getReturnValue();
+		}
+		return  CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Component newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Classifier newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

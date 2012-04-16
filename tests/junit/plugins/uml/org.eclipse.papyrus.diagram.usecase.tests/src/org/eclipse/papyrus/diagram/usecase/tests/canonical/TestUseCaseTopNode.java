@@ -24,7 +24,7 @@ import org.junit.Test;
 /**
  * The Class TestUseCaseTopNode.
  */
-public class TestUseCaseTopNode extends TestTopNode {
+public class TestUseCaseTopNode extends TestSpecificTopNode {
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateUseCaseDiagramCommand();
@@ -35,6 +35,7 @@ public class TestUseCaseTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManagePackage() {
+		
 		testToManageTopNode(UMLElementTypes.Package_2016, UMLElementTypes.Package_2016);
 	}
 	
@@ -63,18 +64,27 @@ public class TestUseCaseTopNode extends TestTopNode {
 		testToManageTopNode(UMLElementTypes.Constraint_2017, UMLElementTypes.Package_2016);
 	}
 	@Test
-	public void testToManageSubjectComponent() {
-		testToManageTopNode(UMLElementTypes.Component_2015, UMLElementTypes.Package_2016);
+	public void testToManageSubjectClass() {
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.CLASS);
 	}
 	
 	@Test
-	public void testToManageSubjectClass() {
-		testToManageTopNode(UMLElementTypes.Class_2020, UMLElementTypes.Package_2016);
+	public void testToManageSubjectComponent() {
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.COMPONENT);
 	}
 	@Test
 	public void testToManageSubjectInterface() {
-		testToManageTopNode(UMLElementTypes.Interface_2021, UMLElementTypes.Package_2016);
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.INTERFACE);
 	}
+	@Test
+	public void testToManageSubjectDatatype() {
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.DATA_TYPE);
+	}
+	@Test
+	public void testToManageSubjectStateMachine() {
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.STATE_MACHINE);
+	}
+	
 	@Test
 	public void testToManageUseCase() {
 		testToManageTopNode(UMLElementTypes.UseCase_2013, UMLElementTypes.Package_2016);
