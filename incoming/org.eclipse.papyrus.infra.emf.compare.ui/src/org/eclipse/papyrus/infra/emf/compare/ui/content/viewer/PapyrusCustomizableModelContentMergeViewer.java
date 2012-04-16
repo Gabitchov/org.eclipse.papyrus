@@ -53,6 +53,7 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 		super(parent, config);
 		ILabelProviderRefreshingViewer labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
 		((PapyrusModelContentMergeTabFolder)leftPart).setLabelProvider(labelProvider);
+		((PapyrusModelContentMergeTabFolder)rightPart).setLabelProvider(labelProvider);
 	}
 
 
