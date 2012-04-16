@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
+import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.EMFCompareLabelProvider;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
@@ -77,7 +78,7 @@ public class LabelProviderUtil {
 			 * We want a label provider for embedded editor (or eclipse editor)
 			 * -> when you get this exce^ption, it an error of the developper
 			 */
-			throw new IllegalArgumentException(NLS.bind("I can't provide a label provider for {0}.", IMultiPageEditorPart.class));
+			throw new IllegalArgumentException(NLS.bind(Messages.LabelProviderUtil_CantProvideLabelProviderMessage, IMultiPageEditorPart.class));
 		}
 		IBaseLabelProvider provider = labelProviderMap.get(editor);
 		if(provider == null) {
@@ -104,7 +105,7 @@ public class LabelProviderUtil {
 			 * We want a label provider for embedded editor (or eclipse editor)
 			 * -> when you get this exce^ption, it an error of the developper
 			 */
-			throw new IllegalArgumentException(NLS.bind("I can't provide a label provider for {0}.", IMultiPageEditorPart.class));
+			throw new IllegalArgumentException(NLS.bind(Messages.LabelProviderUtil_CantProvideLabelProviderMessage, IMultiPageEditorPart.class));
 		}
 		final IBaseLabelProvider provider = labelProviderMap.get(editor);
 		if(provider == null) {

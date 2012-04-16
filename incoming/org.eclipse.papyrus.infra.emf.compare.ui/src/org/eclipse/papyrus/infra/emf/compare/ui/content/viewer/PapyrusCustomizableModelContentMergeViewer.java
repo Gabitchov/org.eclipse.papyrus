@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.ui.content.viewer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,11 +21,16 @@ import java.util.HashSet;
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
+import org.eclipse.emf.compare.ui.viewer.content.part.diff.ModelContentMergeDiffTab;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.emf.compare.ui.actions.CollapseAllAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
+import org.eclipse.papyrus.infra.emf.compare.ui.actions.ExpandAllAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.EMFCompareUIUtils;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
@@ -98,9 +104,26 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 		if(metamodels == null) {
 			metamodels = new HashSet<EPackage>();
 		}
+		
+		Collection<TreeViewer> viewers = new ArrayList<TreeViewer>();
+		viewers.add((TreeViewer)this.rightPart.getTreePart());
+		viewers.add((TreeViewer)this.leftPart.getTreePart());
+		//we add the expand all action
+		final IAction expandAllAction = new ExpandAllAction(viewers);
+		final ActionContributionItem expandAllContributionItem = new ActionContributionItem(expandAllAction);
+		tbm.insert(0, expandAllContributionItem);
+
+		//we add the collapse all action
+		final IAction collapseAllAction = new CollapseAllAction(viewers);
+		final ActionContributionItem collapseAllActionContributionItem = new ActionContributionItem(collapseAllAction);
+		tbm.insert(1, collapseAllActionContributionItem);
+
+		tbm.insert(2, new Separator("treeAction")); //$NON-NLS-1$
+		
+		
 		final IAction customizationAction = new CustomizationAction(Collections.unmodifiableCollection(metamodels));
 		final ActionContributionItem customizationContributionItem = new ActionContributionItem(customizationAction);
-		tbm.insert(1, customizationContributionItem);
+		tbm.insert(3, customizationContributionItem);
 		super.createToolItems(tbm);
 	}
 

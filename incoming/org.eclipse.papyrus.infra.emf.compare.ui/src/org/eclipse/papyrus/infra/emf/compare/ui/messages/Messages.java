@@ -19,7 +19,13 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.emf.compare.ui.messages.messages"; //$NON-NLS-1$
 
+	public static String CollapseAllAction_CollapseAll;
+
 	public static String CustomizationAction_ManageAppliedCustomization;
+
+	public static String ExpandAllAction_ExpandAll;
+
+	public static String LabelProviderUtil_CantProvideLabelProviderMessage;
 
 	public static String PapyrusTransactionalModelContentMergeViewer_MergeCommandLabel;
 

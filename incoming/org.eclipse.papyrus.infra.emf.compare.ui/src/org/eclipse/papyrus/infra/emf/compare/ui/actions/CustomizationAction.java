@@ -105,7 +105,7 @@ public class CustomizationAction extends Action {
 		}
 		if(currentEditor instanceof IPropertyChangeListener) {//implemented by CompareEditor
 			//we refresh the name of the tab in Papyrus
-			((IPropertyChangeListener)currentEditor).propertyChange(new PropertyChangeEvent(IAction.class, CompareEditorInput.PROP_TITLE, "", ""));
+			((IPropertyChangeListener)currentEditor).propertyChange(new PropertyChangeEvent(IAction.class, CompareEditorInput.PROP_TITLE, "", "")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(currentEditor)).refreshViewer();
 

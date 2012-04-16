@@ -29,6 +29,7 @@ import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.action.ActionContributionItem;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -147,7 +148,7 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 		tbm.insert(0, new ActionContributionItem(undoAction));
 		tbm.insert(1, new ActionContributionItem(redoAction));
 
-
+		tbm.insert(2, new Separator("undo_redo_group")); //$NON-NLS-1$
 
 	}
 }

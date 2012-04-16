@@ -24,9 +24,12 @@ import org.eclipse.emf.compare.ui.viewer.structure.ParameterizedStructureMergeVi
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.emf.compare.ui.actions.CollapseAllAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
+import org.eclipse.papyrus.infra.emf.compare.ui.actions.ExpandAllAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.EMFCompareUIUtils;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
@@ -95,10 +98,25 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 		if(metamodels == null) {
 			metamodels = new HashSet<EPackage>();
 		}
+
+		//we add the expand all action
+		final IAction expandAllAction = new ExpandAllAction(this);
+		final ActionContributionItem expandAllContributionItem = new ActionContributionItem(expandAllAction);
+		tbm.insert(0, expandAllContributionItem);
+
+		//we add the collapse all action
+		final IAction collapseAllAction = new CollapseAllAction(this);
+		final ActionContributionItem collapseAllActionContributionItem = new ActionContributionItem(collapseAllAction);
+		tbm.insert(1, collapseAllActionContributionItem);
+
+		tbm.insert(2, new Separator("treeAction")); //$NON-NLS-1$
+		
 		//we add an action to change the applied cuztomization
 		final IAction customizationAction = new CustomizationAction(Collections.unmodifiableCollection(metamodels));
 		final ActionContributionItem customizationContributionItem = new ActionContributionItem(customizationAction);
-		tbm.insert(1, customizationContributionItem);
+		tbm.insert(3, customizationContributionItem);
+
+
 		tbm.update(true);
 	}
 
