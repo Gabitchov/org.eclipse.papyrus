@@ -25,6 +25,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -32,9 +33,11 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.Activator;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.listener.CloseEditorTriggerListener;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
+import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IReusableEditor;
@@ -102,8 +105,8 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		//FIXME, used by the compare UMl File Editor, try to merge code	
 		super();
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param left
@@ -150,7 +153,7 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 			try {
 				container = ServiceUtils.getInstance().getISashWindowsContainer(this.servicesRegistry);
 			} catch (ServiceException e) {
-				Activator.log.error("I can't get the  ISashWindowsContainer to add a listener on it", e);
+				Activator.log.error("I can't get the  ISashWindowsContainer to add a listener on it", e); //$NON-NLS-1$
 			}
 		}
 		return container;
@@ -164,7 +167,16 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 	 * @return
 	 */
 	protected ModelCompareEditorInput createModelCompareEditorInput(ComparisonSnapshot snapshot) {
-		return EMFCompareUtils.createModelCompareEditorInput(snapshot, this);
+		PapyrusModelCompareEditorInput input = new PapyrusModelCompareEditorInput(snapshot, this);
+		//we set the label to display
+
+		LabelProvider prov = (LabelProvider)LabelProviderUtil.INSTANCE.getLabelProviderFor(this);
+		String leftLabel = prov.getText(rawModel.getLeft());
+		Image leftImage = prov.getImage(rawModel.getLeft());
+		String rightLabel = prov.getText(rawModel.getRight());
+		Image rightImage = prov.getImage(rawModel.getRight());
+		input.initLabels(leftLabel, leftImage, rightLabel, rightImage);
+		return input;
 	}
 
 

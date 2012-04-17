@@ -41,15 +41,18 @@ import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
+import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.compare.editor.UMLCompareEditor;
 import org.eclipse.papyrus.uml.compare.file.Activator;
 import org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileInput;
 import org.eclipse.papyrus.uml.compare.file.messages.Messages;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 public class CompareUMLFileEditor extends UMLCompareEditor implements IEditingDomainProvider {//extends CompareEditor{
 
@@ -192,37 +195,21 @@ public class CompareUMLFileEditor extends UMLCompareEditor implements IEditingDo
 
 			}
 			ComparisonSnapshot snapshot = EMFCompareUtils.doContentCompare(roots[0], roots[1]);
-			IEditorInput newInput = EMFCompareUtils.createModelCompareEditorInput(snapshot, this);
+			PapyrusModelCompareEditorInput newInput = new PapyrusModelCompareEditorInput(snapshot, this);//, null, roots[0].eResource(), roots[1].eResource());
+			//set the image + test sur UML resource?
+
+
+
+			String leftLabel = ((CompareUMLFileInput)input).getComparedFiles().get(0).getFullPath().makeRelative().toString();;
+			String rightLabel = ((CompareUMLFileInput)input).getComparedFiles().get(1).getFullPath().makeRelative().toString();;
+			Image im = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/UMLModelFile.gif").createImage();
+			newInput.initLabels(leftLabel, im, rightLabel, im);
 			super.init(site, newInput);
 		} else {
 			super.init(site, input);
 		}
 	}
 
-	@Override
-	public void setInput(IEditorInput input) {
-		//we create the real input for this editor
-		if(input instanceof CompareUMLFileInput) {
-			EObject roots[] = new EObject[2];
-			//			ResourceSet set = new ResourceSetImpl();
-
-			for(int i = 0; i < 2; i++) {
-				URI uri = URI.createFileURI(((CompareUMLFileInput)input).getComparedFiles().get(i).getFullPath().toString()); //$NON-NLS-1$ //$NON-NLS-2$
-				try {
-					roots[i] = EMFHelper.loadEMFModel(set, uri);
-					Assert.isNotNull(roots[i]);
-				} catch (IOException e) {
-					Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-					return;
-				};
-			}
-			ComparisonSnapshot snapshot = EMFCompareUtils.doContentCompare(roots[0], roots[1]);
-			IEditorInput newInput = EMFCompareUtils.createModelCompareEditorInput(snapshot, this);
-			super.setInput(newInput);
-		} else {
-			super.setInput(input);
-		}
-	}
 
 	public Object getAdapter(Class key) {
 		if(key.equals(IUndoContext.class)) {
