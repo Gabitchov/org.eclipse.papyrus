@@ -80,18 +80,13 @@ public class SelectAndExecuteCommand extends PopupMenuCommand {
 
 		CommandResult cmdResult = super.doExecuteWithResult(progressMonitor, info);
 		if(!cmdResult.getStatus().isOK()) {
-			System.out.println(cmdResult.getStatus());
 			Activator.log.error(cmdResult.getStatus().getException());
 			return cmdResult;
 		}
-		System.out.println("Ok");
 
 		_selectedCmd = (Command)cmdResult.getReturnValue();
 		Assert.isTrue(_selectedCmd != null && _selectedCmd.canExecute());
-
-		System.out.println("Execute");
 		_selectedCmd.execute();
-		System.out.println("Executed");
 
 		return CommandResult.newOKCommandResult();
 	}
