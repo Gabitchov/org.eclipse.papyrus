@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
+ org.eclipse.papyrus.infra.gmfdiag.common.commands,
  org.eclipse.papyrus.infra.gmfdiag.common.editpart,
  org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,
  org.eclipse.papyrus.infra.gmfdiag.common.figure.node,
