@@ -15,7 +15,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
@@ -27,7 +26,9 @@ public class CustomizableDropEditPolicyProvider extends AbstractProvider impleme
 		//		return false;
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
 
-		return !(epOperation.getEditPart() instanceof DiagramEditPart); //TODO: Detect Papyrus diagrams
+		return true;
+
+		//		return !(epOperation.getEditPart() instanceof DiagramEditPart); //TODO: Detect Papyrus diagrams
 	}
 
 	public void createEditPolicies(EditPart editPart) {
@@ -36,7 +37,7 @@ public class CustomizableDropEditPolicyProvider extends AbstractProvider impleme
 
 		CustomizableDropEditPolicy dropEditPolicy = new CustomizableDropEditPolicy(defaultDropEditPolicy, defaultCreationEditPolicy);
 
-		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, dropEditPolicy);
+		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, null);
 		editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, dropEditPolicy);
 	}
 

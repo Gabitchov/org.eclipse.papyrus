@@ -21,6 +21,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
@@ -58,6 +59,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 */
 	public CustomizableDropEditPolicy(EditPolicy defaultDropEditPolicy, EditPolicy defaultCreationEditPolicy) {
 		this.defaultDropEditPolicy = defaultDropEditPolicy;
+		this.defaultCreationEditPolicy = defaultCreationEditPolicy;
 		dropStrategies = new TreeMap<Integer, List<DropStrategy>>();
 		addStrategy(new DefaultDropStrategy(defaultDropEditPolicy, defaultCreationEditPolicy));
 	}
@@ -77,19 +79,16 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	public Command getCommand(final Request request) {
 		final Command command;
 
-		//Drag & Drop request
 		if(super.understandsRequest(request)) {
+			//Drag & Drop request
 			command = super.getCommand(request); //Will call this.getDropObjectsCommand() eventually
-		} else
-
-		//Add request
-		if(this.understands(request)) {
+		} else if(this.understands(request)) {
+			//Add request
 			command = getCreationCommand(request);
 		} else if(defaultCreationEditPolicy != null) {
+			//Creation request
 			command = defaultCreationEditPolicy.getCommand(request);
-		}
-
-		else {
+		} else {
 			command = null;
 		}
 
@@ -102,7 +101,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 	@Override
 	public boolean understandsRequest(Request request) {
-		return super.understandsRequest(request) || (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request)) || this.understands(request);
+		return this.understands(request) || (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request)) || (defaultDropEditPolicy != null && defaultDropEditPolicy.understandsRequest(request));
 	}
 
 	protected boolean understands(Request request) {
@@ -168,5 +167,15 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		}
 
 		return matchingStrategies;
+	}
+
+	/**
+	 * @see org.eclipse.gef.EditPolicy#showTargetFeedback(org.eclipse.gef.Request)
+	 */
+	@Override
+	public void showTargetFeedback(Request request) {
+		if(!(getHost() instanceof DiagramEditPart)) {
+			super.showTargetFeedback(request);
+		}
 	}
 }
