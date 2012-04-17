@@ -64,11 +64,9 @@ public class AbstractSubjectMetaclassesSelectionDialog extends Dialog {
 		shlmetaclassSelection.setSize(501, 250);
 		shlmetaclassSelection.setText("Subject Metaclasses Selection");
 		shlmetaclassSelection.setLayout(new FillLayout(SWT.HORIZONTAL));
-
 		Composite composite = new Composite(shlmetaclassSelection, SWT.NONE);
 		composite.setLayout(null);
 		composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-
 		Label lblSelectTheAssociation = new Label(composite, SWT.NONE);
 		lblSelectTheAssociation.setLocation(24, 10);
 		lblSelectTheAssociation.setSize(441, 30);
@@ -78,14 +76,11 @@ public class AbstractSubjectMetaclassesSelectionDialog extends Dialog {
 		lblSelectTheAssociation.setFont(Activator.getFontManager().get(fontdatas));
 		table = new Table(composite, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setBounds(25, 48, 440, 130);
-
 		btnOk = new Button(composite, SWT.NONE);
 		btnOk.setBounds(396, 180, 68, 23);
 		btnOk.setText("Ok");
-
 		btnCancel = new Button(composite, SWT.NONE);
 		btnCancel.setBounds(291, 180, 68, 23);
 		btnCancel.setText("Cancel");
-
 	}
 }

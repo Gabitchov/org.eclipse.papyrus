@@ -1545,6 +1545,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.CustomDefaultNamedElementItemSemanticEditPolicyTN"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement"/>
@@ -1915,8 +1919,8 @@
               parser="/0/@labelParsers/@implementations.2"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.14"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.15"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.5"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.5"/>
       </links>
       <links
           visualID="4012"
@@ -2878,10 +2882,10 @@
             body="let sourceName : String = self.memberEnd->first().name in&#xD;&#xA;let targetName : String = self.memberEnd->at(2).name in&#xD;&#xA;'A_'.concat(sourceName).concat('_').concat(targetName)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) "/>
+            body="self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) "/>
+            body="self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))"/>
@@ -2912,6 +2916,9 @@
             body="return getName(self);"/>
         <expressions
             body="return &quot;Subject&quot; +org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="if( (source instanceof org.eclipse.uml2.uml.Class)||(source instanceof org.eclipse.uml2.uml.Component)||(source instanceof org.eclipse.uml2.uml.Actor)||(source instanceof org.eclipse.uml2.uml.UseCase)){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if((target instanceof org.eclipse.uml2.uml.Class)||(target instanceof org.eclipse.uml2.uml.Component)||(target instanceof org.eclipse.uml2.uml.Actor)||(target instanceof org.eclipse.uml2.uml.UseCase)){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if( (source instanceof org.eclipse.uml2.uml.UseCase)&amp;&amp;(target instanceof org.eclipse.uml2.uml.UseCase)){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return (Collections.disjoint(((org.eclipse.uml2.uml.UseCase) source).getSubjects(),((org.eclipse.uml2.uml.UseCase) target).getSubjects()));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;else{return false;}"/>
       </providers>
     </expressionProviders>
     <labelParsers

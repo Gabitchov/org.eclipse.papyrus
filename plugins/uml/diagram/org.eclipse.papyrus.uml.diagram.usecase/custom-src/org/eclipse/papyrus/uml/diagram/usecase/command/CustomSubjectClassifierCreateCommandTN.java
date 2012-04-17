@@ -37,13 +37,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
- *specific command to create a subject 
- *
+ * specific command to create a subject
+ * 
  */
 public class CustomSubjectClassifierCreateCommandTN extends EditElementCommand {
 
-	
-	ArrayList<IHintedType> possibleSubject= new ArrayList<IHintedType>();
+	ArrayList<IHintedType> possibleSubject = new ArrayList<IHintedType>();
+
 	/**
 	 * @generated
 	 */
@@ -61,14 +61,14 @@ public class CustomSubjectClassifierCreateCommandTN extends EditElementCommand {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
-		this.possibleSubject=possibleSubject;
+		this.possibleSubject = possibleSubject;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static CustomSubjectClassifierCreateCommandTN create(CreateElementRequest req, EObject eObject, ArrayList<IHintedType> possibleSubject) {
-		return new CustomSubjectClassifierCreateCommandTN(req, eObject,possibleSubject);
+		return new CustomSubjectClassifierCreateCommandTN(req, eObject, possibleSubject);
 	}
 
 	/**
@@ -105,22 +105,21 @@ public class CustomSubjectClassifierCreateCommandTN extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		SubjectSelectionDialog dialog= new SubjectSelectionDialog(new Shell(), possibleSubject, SWT.NATIVE);
+		SubjectSelectionDialog dialog = new SubjectSelectionDialog(new Shell(), possibleSubject, SWT.NATIVE);
 		dialog.open();
-		Classifier newElement=null;
-		IHintedType htype=dialog.getSelectedMetaclass();
-		EObject element=((CreateElementRequest)getRequest()).getContainer();
-		CreateElementRequest createElementRequest= new CreateElementRequest(element, htype);
-		
+		Classifier newElement = null;
+		IHintedType htype = dialog.getSelectedMetaclass();
+		EObject element = ((CreateElementRequest)getRequest()).getContainer();
+		CreateElementRequest createElementRequest = new CreateElementRequest(element, htype);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
 		if(provider != null) {
 			// Retrieve delete command from the Element Edit service
 			ICommand createCommand = provider.getEditCommand(createElementRequest);
 			createCommand.execute(new NullProgressMonitor(), null);
 			createCommand.getCommandResult().getReturnValue();
-			newElement=(Classifier)createCommand.getCommandResult().getReturnValue();
+			newElement = (Classifier)createCommand.getCommandResult().getReturnValue();
 		}
-		return  CommandResult.newOKCommandResult(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**

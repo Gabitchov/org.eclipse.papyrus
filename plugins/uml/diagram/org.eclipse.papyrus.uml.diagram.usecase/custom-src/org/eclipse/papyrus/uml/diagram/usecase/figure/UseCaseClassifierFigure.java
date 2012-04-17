@@ -20,9 +20,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IEllipseFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 
 /**
@@ -79,8 +76,8 @@ public class UseCaseClassifierFigure extends NodeNamedElementFigure {
 				fig.invalidate();
 				Dimension pref = ((IFigure)childrenList.get(i)).getPreferredSize();
 				fig.invalidate();
-				Dimension prefConstraint = ((IFigure)childrenList.get(i)).getPreferredSize(container.getBounds().width , -1);
-					bound.setSize(prefConstraint);
+				Dimension prefConstraint = ((IFigure)childrenList.get(i)).getPreferredSize(container.getBounds().width, -1);
+				bound.setSize(prefConstraint);
 				if(i > 0) {
 					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
 					bound.x = getBounds().x + GAP_X;

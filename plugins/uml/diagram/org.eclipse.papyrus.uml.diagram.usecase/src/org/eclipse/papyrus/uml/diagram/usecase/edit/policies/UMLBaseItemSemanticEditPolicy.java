@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.edit.policies;
 
 import java.util.Collections;
@@ -56,9 +43,12 @@ import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
@@ -108,10 +98,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to
-	 * extended data of the request so command switch can decide what kind of diagram element is
-	 * being edited. It is done in those cases when it's not possible to deduce diagram element kind
-	 * from domain element.
+	 * Extended request data key to hold editpart visual id.
+	 * Add visual id of edited editpart to extended data of the request
+	 * so command switch can decide what kind of diagram element is being edited.
+	 * It is done in those cases when it's not possible to deduce diagram
+	 * element kind from domain element.
+	 * Add the reoriented view to the request extended data so that the view
+	 * currently edited can be distinguished from other views of the same element
+	 * and these latter possibly removed if they become inconsistent after reconnect
 	 * 
 	 * @generated
 	 */
@@ -506,23 +500,25 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistAssociation_4011(Package container, Association linkInstance, Type source, Type target) {
 			try {
-				if(source == null) {
-					return true;
+				if((source instanceof Class) || (source instanceof Component) || (source instanceof Actor) || (source instanceof UseCase)) {
+					if((target instanceof Class) || (target instanceof Component) || (target instanceof Actor) || (target instanceof UseCase)) {
+						if((source instanceof UseCase) && (target instanceof UseCase)) {
+							return (Collections.disjoint(((UseCase)source).getSubjects(), ((UseCase)target).getSubjects()));
+						}
+						return true;
+					}
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getType()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getType(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
-					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
-						return false;
-					} // else fall-through
+					return false;
 				}
-				if(target == null) {
-					return true;
+				if((source instanceof Class) || (source instanceof Component) || (source instanceof Actor) || (source instanceof UseCase)) {
+					if((target instanceof Class) || (target instanceof Component) || (target instanceof Actor) || (target instanceof UseCase)) {
+						if((source instanceof UseCase) && (target instanceof UseCase)) {
+							return (Collections.disjoint(((UseCase)source).getSubjects(), ((UseCase)target).getSubjects()));
+						}
+						return true;
+					}
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getType()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getType(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
-					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
-						return false;
-					} // else fall-through
+					return false;
 				}
 				return true;
 			} catch (Exception e) {

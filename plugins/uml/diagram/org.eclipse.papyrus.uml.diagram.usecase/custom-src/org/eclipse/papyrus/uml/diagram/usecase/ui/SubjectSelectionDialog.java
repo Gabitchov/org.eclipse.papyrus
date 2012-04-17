@@ -11,39 +11,25 @@
  *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.usecase.ui;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
 
 /**
  * This class can be launch is order to open a dialog used to choose an association
@@ -64,34 +50,31 @@ public class SubjectSelectionDialog extends AbstractSubjectMetaclassesSelectionD
 	 * @param style
 	 *        the style
 	 */
-	public SubjectSelectionDialog(Shell parent,ArrayList<IHintedType> executableHTypeCreation, int style) {
+	public SubjectSelectionDialog(Shell parent, ArrayList<IHintedType> executableHTypeCreation, int style) {
 		super(parent, style);
-
 		this.subClassifierList = executableHTypeCreation;
 		this.selectedMetaclass = (IHintedType)subClassifierList.toArray()[0];
 	}
 
-
-	
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.clazz.custom.ui.AbstractAssociationSelectionDialog#createContents()
 	 * 
 	 */
-
 	protected void createContents() {
-
 		// TODO Auto-generated method stub
 		super.createContents();
-		final ILabelProvider labelProvider = new  EMFLabelProvider(){
+		final ILabelProvider labelProvider = new EMFLabelProvider() {
+
 			@Override
 			public String getText(Object element) {
 				// TODO Auto-generated method stub
-				if(element instanceof IHintedType){
-				String out= ((IHintedType)element).getDisplayName();
-				return out;
+				if(element instanceof IHintedType) {
+					String out = ((IHintedType)element).getDisplayName();
+					return out;
 				}
 				return super.getText(element);
 			}
+
 			@Override
 			public Image getImage(Object element) {
 				// TODO Auto-generated method stub
@@ -142,5 +125,4 @@ public class SubjectSelectionDialog extends AbstractSubjectMetaclassesSelectionD
 	public IHintedType getSelectedMetaclass() {
 		return selectedMetaclass;
 	}
-
 }

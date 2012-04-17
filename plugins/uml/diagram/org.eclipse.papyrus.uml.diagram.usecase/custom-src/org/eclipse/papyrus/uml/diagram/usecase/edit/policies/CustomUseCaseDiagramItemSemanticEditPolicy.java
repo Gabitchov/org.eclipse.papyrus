@@ -27,17 +27,18 @@ import org.eclipse.papyrus.uml.diagram.usecase.command.CustomSubjectClassifierCr
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.SubjectClassifierCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 
-
 /**
  * this class is used to specialize the creation of a subject here a classifier
  * before to propose element it test if can create it.
  * 
  * there also the possibility to add parameter to the request in order to precise the semantic to avoid the selecion dialog.
- *
+ * 
  */
 public class CustomUseCaseDiagramItemSemanticEditPolicy extends UseCaseDiagramItemSemanticEditPolicy {
+
 	public static final String SUBJECT_SEMANTIC_HINT = "Subject_SemanticHint";
-	ArrayList<IHintedType> possibleSubject= new ArrayList<IHintedType>();
+
+	ArrayList<IHintedType> possibleSubject = new ArrayList<IHintedType>();
 
 	public CustomUseCaseDiagramItemSemanticEditPolicy() {
 		possibleSubject.add(org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.CLASS);
@@ -47,56 +48,48 @@ public class CustomUseCaseDiagramItemSemanticEditPolicy extends UseCaseDiagramIt
 		possibleSubject.add(org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.STATE_MACHINE);
 		possibleSubject.add(org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.SIGNAL);
 	}
+
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		//the case of the subject the semantic element can be various
-		EObject containerElement=req.getContainer();
-
+		EObject containerElement = req.getContainer();
 		if(UMLElementTypes.Classifier_2015 == req.getElementType()) {
-			ArrayList<ICommand> executableCommandCreation=new ArrayList<ICommand>();
-			ArrayList<IHintedType> executableHTypeCreation=new ArrayList<IHintedType>();
-
+			ArrayList<ICommand> executableCommandCreation = new ArrayList<ICommand>();
+			ArrayList<IHintedType> executableHTypeCreation = new ArrayList<IHintedType>();
 			// test if the semantic is preciced
-			if(req.getParameter(SUBJECT_SEMANTIC_HINT)!=null){
-				IHintedType semanticHint=(IHintedType)req.getParameter(SUBJECT_SEMANTIC_HINT);
-				CreateElementRequest createElementRequest= new CreateElementRequest(containerElement, semanticHint);
+			if(req.getParameter(SUBJECT_SEMANTIC_HINT) != null) {
+				IHintedType semanticHint = (IHintedType)req.getParameter(SUBJECT_SEMANTIC_HINT);
+				CreateElementRequest createElementRequest = new CreateElementRequest(containerElement, semanticHint);
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(containerElement);
 				ICommand createCommand = provider.getEditCommand(createElementRequest);
-				if (createCommand.canExecute()){
+				if(createCommand.canExecute()) {
 					executableCommandCreation.add(createCommand);
 					executableHTypeCreation.add(semanticHint);
 				}
-			}
-			else{
+			} else {
 				// no precision, so try to find all possibles commands
-				for( int i=0; i<possibleSubject.size();i++){
-					IHintedType currentHType=possibleSubject.get(i);
-
-					CreateElementRequest createElementRequest= new CreateElementRequest(containerElement, currentHType);
+				for(int i = 0; i < possibleSubject.size(); i++) {
+					IHintedType currentHType = possibleSubject.get(i);
+					CreateElementRequest createElementRequest = new CreateElementRequest(containerElement, currentHType);
 					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(containerElement);
 					ICommand createCommand = provider.getEditCommand(createElementRequest);
-					if (createCommand.canExecute()){
+					if(createCommand.canExecute()) {
 						executableCommandCreation.add(createCommand);
 						executableHTypeCreation.add(currentHType);
 					}
-
 				}
 			}
-
 			//only one command so no dialog
-			if(executableCommandCreation.size()==1){
+			if(executableCommandCreation.size() == 1) {
 				return new ICommandProxy(executableCommandCreation.get(0));
 			}
 			// several possible command--> dialog is set.
-			else if(executableCommandCreation.size()>1){
-				return new ICommandProxy(new  CustomSubjectClassifierCreateCommandTN(req, containerElement, executableHTypeCreation));
+			else if(executableCommandCreation.size() > 1) {
+				return new ICommandProxy(new CustomSubjectClassifierCreateCommandTN(req, containerElement, executableHTypeCreation));
 			}
 			return getGEFWrapper(new SubjectClassifierCreateCommandTN(req));
 		}
-
 		return super.getCreateCommand(req);
-
-
 	}
 }
 //SubjectSelectionDialog dialog= new SubjectSelectionDialog(new Shell(), SWT.NATIVE);

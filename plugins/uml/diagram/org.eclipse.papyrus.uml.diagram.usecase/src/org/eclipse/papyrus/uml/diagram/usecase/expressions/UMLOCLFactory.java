@@ -73,8 +73,8 @@ public class UMLOCLFactory {
 			"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
 			"not self.oclIsTypeOf(uml::AssociationClass)", //$NON-NLS-1$
 			"let sourceName : String = self.memberEnd->first().name in\r\nlet targetName : String = self.memberEnd->at(2).name in\r\n\'A_\'.concat(sourceName).concat(\'_\').concat(targetName)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)", //$NON-NLS-1$
 			"self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
 			"not self.oclIsKindOf(uml::Interface)\r\n", //$NON-NLS-1$
 			"self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$

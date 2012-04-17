@@ -1387,7 +1387,7 @@
       point="org.eclipse.ui.menus">
    <menuContribution
          allPopups="false"
-         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+         locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters">
       <command
             commandId="org.eclipse.papyrus.diagram.usecase.displayasdefaultnamedelement.popup"
             id="displayasdefaultnamedelement.popup"
@@ -1418,6 +1418,16 @@
                checkEnabled="true">
          </visibleWhen>
       </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.usecase.displayactorasstickman.popup"
+            id="displayactorasstickman.popup"
+            label="Display actor as stickman"
+            style="push"
+            tooltip="Display actor as stickman">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
    </menuContribution>
 </extension>
 <extension
@@ -1439,6 +1449,12 @@
          defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.handler.UseCaseToClassiferHandler"
          id="org.eclipse.papyrus.diagram.usecase.displayusecaseasclassifier.popup"
          name="Display use case as classifier">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.uml.diagram.usecase.handler.ChangetoActorShapeHandler"
+         id="org.eclipse.papyrus.diagram.usecase.displayactorasstickman.popup"
+         name="Display actor as stickman">
    </command>
 </extension>
 
