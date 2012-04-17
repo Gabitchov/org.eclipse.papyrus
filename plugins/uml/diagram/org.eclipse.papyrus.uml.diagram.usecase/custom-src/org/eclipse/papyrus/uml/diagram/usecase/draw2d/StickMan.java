@@ -12,15 +12,19 @@ package org.eclipse.papyrus.uml.diagram.usecase.draw2d;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * The Class StickMan. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by
  * Eclipse.org
  */
-public class StickMan extends ShadowShape {
+public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFigure{
 
 	private static final float BASE_W = 31 - 1;
 
@@ -133,5 +137,55 @@ public class StickMan extends ShadowShape {
 		ovalX = X1 - ovalD / 2 + rectangle.x;
 		ovalY = rectangle.y;
 		return pl;
+	}
+
+	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Label getStereotypesLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setStereotypeDisplay(String stereotypes, Image image) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setQualifiedName(String qualifiedName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Label getQualifiedNameLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Label getTaggedLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setDepth(int depth) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public WrappingLabel getNameLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setNameLabelIcon(boolean displayNameLabelIcon) {
+		// TODO Auto-generated method stub
+		
 	}
 }
