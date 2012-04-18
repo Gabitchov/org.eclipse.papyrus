@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.ui.utils;
 
-import java.io.NotSerializableException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +59,14 @@ public class LabelProviderUtil {
 	 */
 	private LabelProviderUtil() {
 		labelProviderMap = new HashMap<IEditorPart, IBaseLabelProvider>();
-		customizationMap = new HashMap<IEditorPart, CustomizationManager>();
+		customizationMap = new HashMap<IEditorPart, CustomizationManager>(){
+			@Override
+			public String toString() {
+				String str = super.toString();
+				return str.replaceAll(", ", "\n");
+				
+			}
+		};
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().addPartListener(new CloseCompareEditorListener());
 	}
 

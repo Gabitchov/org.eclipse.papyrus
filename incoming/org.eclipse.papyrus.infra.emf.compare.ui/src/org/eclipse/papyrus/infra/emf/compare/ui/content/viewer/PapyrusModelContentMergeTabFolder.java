@@ -49,7 +49,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	private ILabelProviderRefreshingViewer labelProvider;
 
 	/** the diff tab */
-	private ModelContentMergeDiffTab diffTab;
+	protected ModelContentMergeDiffTab diffTab;
 
 	/**
 	 * Instantiates a new uML model content merge tab folder.

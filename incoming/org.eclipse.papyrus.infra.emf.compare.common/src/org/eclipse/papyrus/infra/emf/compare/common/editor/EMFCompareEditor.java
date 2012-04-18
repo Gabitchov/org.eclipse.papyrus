@@ -208,7 +208,7 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		//I refresh the viewer here, because the EMF queries for name, ... are called during the creation of the editor, and
 		//it is not the correct Editor which is used by these queries to get the correct label provider
 		//
-		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(this)).refreshViewer();
+		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(this)).refreshViewer();
 		super.setFocus();
 	}
 

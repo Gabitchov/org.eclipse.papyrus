@@ -40,10 +40,10 @@ import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
+import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.compare.editor.UMLCompareEditor;
 import org.eclipse.papyrus.uml.compare.file.Activator;
 import org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileInput;
 import org.eclipse.papyrus.uml.compare.file.messages.Messages;
@@ -54,7 +54,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-public class CompareUMLFileEditor extends UMLCompareEditor implements IEditingDomainProvider {//extends CompareEditor{
+public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDomainProvider {//extends CompareEditor{
 
 	/** the id of this editor (declared in the plugin.xml */
 	public static final String COMPARE_UML_FILE_EDITOR_ID = "org.eclipse.papyrus.uml.compare.file.editor"; //$NON-NLS-1$

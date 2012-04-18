@@ -62,6 +62,7 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider impl
 	public EMFCompareLabelProvider(final CustomizationManager customizationManager) {
 		super(customizationManager);
 		this.configuration = getAppearanceConfiguration(customizationManager);
+		this.viewers = new HashSet<TreeViewer>();
 	}
 
 
@@ -169,9 +170,6 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider impl
 	 * @param viewer
 	 */
 	public void registerViewer(final TreeViewer viewer) {
-		if(viewers == null) {
-			viewers = new HashSet<TreeViewer>();
-		}
 		final DisposeListener listener = new DisposeListener() {
 
 			public void widgetDisposed(DisposeEvent e) {
