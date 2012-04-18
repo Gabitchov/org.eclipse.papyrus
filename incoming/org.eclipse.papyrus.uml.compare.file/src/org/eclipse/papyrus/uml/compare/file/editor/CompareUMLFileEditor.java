@@ -195,9 +195,11 @@ public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDo
 
 			}
 			ComparisonSnapshot snapshot = EMFCompareUtils.doContentCompare(roots[0], roots[1]);
-			PapyrusModelCompareEditorInput newInput = new PapyrusModelCompareEditorInput(snapshot, this);//, null, roots[0].eResource(), roots[1].eResource());
-			//set the image + test sur UML resource?
-
+			PapyrusModelCompareEditorInput newInput = new PapyrusModelCompareEditorInput(snapshot, this){
+					public Image getTitleImage() {
+						return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/papyrus_compare_editor.gif").createImage();
+					}	
+			};
 
 
 			String leftLabel = ((CompareUMLFileInput)input).getComparedFiles().get(0).getFullPath().makeRelative().toString();;
