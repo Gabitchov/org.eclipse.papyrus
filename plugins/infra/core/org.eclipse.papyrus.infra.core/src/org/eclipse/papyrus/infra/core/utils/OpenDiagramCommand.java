@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 /**
  * The Class OpenDiagramCommand.
@@ -71,10 +70,17 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 			
 			if(diagramToOpen != null) {
 				IPageMngr pageMngr;
-				final ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
+				
+				// bug 358799
+				// The command is also called during the initialiation phase. In this case, the
+				// EditorsUtils.getServiceRegistry() method return the wrong ServiceREgistry.
+				// Disable this call, and use the more costly way to get the IPageMngr
+				// TODO : provide a better way of getting the IPageMngr.
+				/*final ServicesRegistry serviceRegistry = EditorUtils.getServiceRegistry();
 				if(serviceRegistry != null) {
 					pageMngr =serviceRegistry.getService(IPageMngr.class);
-				} else if(getEditingDomain().getResourceSet() instanceof DiResourceSet){
+				} else */
+				if(getEditingDomain().getResourceSet() instanceof DiResourceSet){
 					DiResourceSet diResourceSet = (DiResourceSet)getEditingDomain().getResourceSet();
 					pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
 				} else {
