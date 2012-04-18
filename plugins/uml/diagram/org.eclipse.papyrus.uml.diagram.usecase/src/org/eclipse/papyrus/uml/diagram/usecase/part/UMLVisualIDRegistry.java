@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageAppliedS
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
@@ -407,6 +408,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ActorAppliedStereotypeEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActorQualifiedNameEditPartTN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

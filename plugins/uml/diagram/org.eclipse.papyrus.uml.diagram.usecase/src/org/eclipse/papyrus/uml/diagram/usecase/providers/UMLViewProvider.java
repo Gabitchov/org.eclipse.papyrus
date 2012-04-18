@@ -68,6 +68,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageAppliedS
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
@@ -431,6 +432,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6029 = (Location)label6029.getLayoutConstraint();
 		location6029.setX(0);
 		location6029.setY(5);
+		Node label6037 = createLabel(node, UMLVisualIDRegistry.getType(ActorQualifiedNameEditPartTN.VISUAL_ID));
+		label6037.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6037 = (Location)label6037.getLayoutConstraint();
+		location6037.setX(0);
+		location6037.setY(5);
 		return node;
 	}
 

@@ -108,6 +108,7 @@ public class ActorEditPartTN extends AbstractBorderedShapeEditPart {
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case ActorNameEditPartTN.VISUAL_ID:
 				case ActorAppliedStereotypeEditPartTN.VISUAL_ID:
+				case ActorQualifiedNameEditPartTN.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						protected List createSelectionHandles() {
@@ -153,7 +154,7 @@ public class ActorEditPartTN extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof ActorNameEditPartTN || borderItemEditPart instanceof ActorAppliedStereotypeEditPartTN) {
+		if(borderItemEditPart instanceof ActorNameEditPartTN || borderItemEditPart instanceof ActorAppliedStereotypeEditPartTN || borderItemEditPart instanceof ActorQualifiedNameEditPartTN) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);

@@ -49,6 +49,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActorNameEditPartTN(view);
 			case ActorAppliedStereotypeEditPartTN.VISUAL_ID:
 				return new ActorAppliedStereotypeEditPartTN(view);
+			case ActorQualifiedNameEditPartTN.VISUAL_ID:
+				return new ActorQualifiedNameEditPartTN(view);
 			case ActorAsRectangleEditPartTN.VISUAL_ID:
 				return new ActorAsRectangleEditPartTN(view);
 			case ActorAsRectangleNameEditPartTN.VISUAL_ID:
