@@ -27,6 +27,7 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfiguration;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.jface.viewers.OwnerDrawLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.swt.events.DisposeEvent;
@@ -39,6 +40,10 @@ import org.eclipse.ui.PlatformUI;
  * This LabelProvider provides the same labels and icons as one can find in
  * the Model Explorer.
  * FIXME : is should have a part of duplicated code?
+ * 
+ * 
+ * TODO : this label provider should be able to support StyledString (as done by Tatiana). In order to do that, this label provider should be
+ * a CellLabelProvider (or (better ?) an {@link OwnerDrawLabelProvider}) Il will be easiest when we will use the last version of EMF-Facet
  */
 public class EMFCompareLabelProvider extends CustomizableModelLabelProvider implements ILabelProviderRefreshingViewer {
 
