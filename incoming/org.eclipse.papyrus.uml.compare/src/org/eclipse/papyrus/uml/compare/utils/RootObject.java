@@ -28,8 +28,9 @@ public class RootObject {
 
 	/**
 	 * Instantiates a new root object.
-	 *
-	 * @param object the object
+	 * 
+	 * @param object
+	 *        the object
 	 */
 	public RootObject(final Object object) {
 		this.representedObject = object;
@@ -37,7 +38,7 @@ public class RootObject {
 
 	/**
 	 * Gets the represented object.
-	 *
+	 * 
 	 * @return the represented object
 	 */
 	public Object getRepresentedObject() {

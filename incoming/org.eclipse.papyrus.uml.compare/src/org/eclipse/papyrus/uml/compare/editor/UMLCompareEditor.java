@@ -13,24 +13,36 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.editor;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.compare.EMFCompareException;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
+import org.eclipse.emf.compare.match.MatchOptions;
+import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
+import org.eclipse.emf.compare.match.engine.IMatchEngine;
+import org.eclipse.emf.compare.match.engine.IMatchScopeProvider;
+import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeContentProvider;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
+import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
@@ -38,9 +50,13 @@ import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEdi
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer.PapyrusTransactionalModelContentMergeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.papyrus.uml.compare.Activator;
 import org.eclipse.papyrus.uml.compare.content.viewer.UMLModelContentMergeTabFolder;
 import org.eclipse.papyrus.uml.compare.utils.RootObject;
+import org.eclipse.papyrus.uml.compare.utils.UMLDiffService;
+import org.eclipse.papyrus.uml.compare.utils.UMLMatchEngine;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.NamedElement;
 
 
@@ -63,11 +79,66 @@ public class UMLCompareEditor extends EMFCompareEditor {
 		super(servicesRegistry, rawModel);
 	}
 
+	//TODO : should be set in the super class too!
+	protected Map<String,Object> getComparisonOptions(final IProgressMonitor monitor){
+		final Map<String, Object> options = new EMFCompareMap<String, Object>();
+		options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor); //TODO remove it?
+		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, getMatchScopeProvider(rawModel.getLeft(), rawModel.getRight()));
+		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
+		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+		return options;
+	}
+	
+	//TODO : should be set in the super class too!
+	protected IMatchScopeProvider getMatchScopeProvider(final EObject left, final EObject right){
+		return 	new GenericMatchScopeProvider(left, right);
+	}
+	//TODO : should be set in the super class too!
+	protected IMatchEngine getMatchEngine(){
+		return new UMLMatchEngine();
+	}
+	
 	@Override
-	protected ComparisonSnapshot doContentCompare(EObject left, EObject right) {
-		ComparisonSnapshot snapshot = super.doContentCompare(left, right);
+	protected ComparisonSnapshot doContentCompare(final EObject left, final EObject right) {
+		final ComparisonResourceSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSnapshot();
+
+		try {
+			PlatformUI.getWorkbench().getProgressService().busyCursorWhile(new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor) throws InterruptedException {
+					final Map<String, Object> options = getComparisonOptions(monitor);
+					final IMatchEngine engine = getMatchEngine();
+					MatchModel match = engine.contentMatch(left, right, options);
+					final DiffModel diff = doDiff(left, right, match);
+
+					snapshot.setDiff(diff);
+					snapshot.setMatch(match);
+
+				}
+
+			});
+		} catch (final InterruptedException e) {
+			Activator.log.error(e);
+		} catch (final EMFCompareException e) {
+			Activator.log.error(e);
+		} catch (final InvocationTargetException e) {
+			Activator.log.error(e);
+		}
 		cleanSnapshot(snapshot);
 		return snapshot;
+	}
+	
+	//TODO should be in the super class
+	//TODO remove unecessary paramter
+	/**
+	 * A part of this method is duplicated from DiffService#doDiff
+	 * @param left
+	 * @param right
+	 * @param match
+	 * @return
+	 */
+	protected DiffModel doDiff(EObject left, EObject right,MatchModel match) {
+		return UMLDiffService.doDiff(match, false);
 	}
 
 	/**
