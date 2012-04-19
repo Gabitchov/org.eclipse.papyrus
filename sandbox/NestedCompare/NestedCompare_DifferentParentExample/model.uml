@@ -2,7 +2,7 @@
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_XSnVcInuEeGxdcQdAms8Gw" name="model">
   <packagedElement xmi:type="uml:Class" xmi:id="_eYsnUInuEeGxdcQdAms8Gw" name="Class1"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_fsfxgInuEeGxdcQdAms8Gw" name="Package1">
-    <packagedElement xmi:type="uml:Class" xmi:id="_gc1CQInuEeGxdcQdAms8Gw" name="Class1">
+    <packagedElement xmi:type="uml:Class" xmi:id="_gc1CQInuEeGxdcQdAms8Gw" name="Class2">
       <ownedAttribute xmi:id="_hqcr8InuEeGxdcQdAms8Gw" name="property1"/>
     </packagedElement>
   </packagedElement>
