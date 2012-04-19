@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
+import java.util.Map;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -71,5 +73,9 @@ public class DefaultDropStrategy implements DropStrategy {
 
 	public int getPriority() {
 		return 100; //Low priority
+	}
+
+	public void setOptions(Map<String, Object> options) {
+		//Nothing
 	}
 }

@@ -26,14 +26,18 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 
-public abstract class TransactionalDropStrategy implements DropStrategy {
+public abstract class TransactionalDropStrategy extends AbstractDropStrategy {
 
 	public final Command getCommand(Request request, EditPart targetEditPart) {
 
 		final Command command = doGetCommand(request, targetEditPart);
 
+		if(command == null) {
+			return null;
+		}
+
 		String label = command.getLabel();
-		if(label == null) {
+		if(label == null || "".equals(label)) {
 			label = getLabel();
 		}
 
@@ -42,7 +46,6 @@ public abstract class TransactionalDropStrategy implements DropStrategy {
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				try {
-					System.out.println("Execute command in transaction (" + this.hashCode() + ", " + this + ")");
 					command.execute();
 					return CommandResult.newOKCommandResult();
 				} catch (Exception ex) {

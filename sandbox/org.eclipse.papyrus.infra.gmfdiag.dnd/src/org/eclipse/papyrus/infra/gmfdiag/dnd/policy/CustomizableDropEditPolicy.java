@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -26,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
+import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DefaultDropStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
 import org.eclipse.swt.widgets.Shell;
@@ -40,6 +43,8 @@ import org.eclipse.ui.PlatformUI;
  * 
  */
 public class CustomizableDropEditPolicy extends DragDropEditPolicy {
+
+	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".dropStrategy";
 
 	protected EditPolicy defaultDropEditPolicy;
 
@@ -61,7 +66,22 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		this.defaultDropEditPolicy = defaultDropEditPolicy;
 		this.defaultCreationEditPolicy = defaultCreationEditPolicy;
 		dropStrategies = new TreeMap<Integer, List<DropStrategy>>();
+		loadStrategies();
+	}
+
+	protected void loadStrategies() {
 		addStrategy(new DefaultDropStrategy(defaultDropEditPolicy, defaultCreationEditPolicy));
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+		for(IConfigurationElement e : config) {
+			try {
+				final DropStrategy strategy = (DropStrategy)e.createExecutableExtension("strategy"); //$NON-NLS-1$
+				getDropStrategies(strategy.getPriority()).add(strategy);
+			} catch (Exception ex) {
+				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
 	}
 
 	protected void addStrategy(DropStrategy strategy) {
@@ -81,7 +101,11 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 		if(super.understandsRequest(request)) {
 			//Drag & Drop request
-			command = super.getCommand(request); //Will call this.getDropObjectsCommand() eventually
+			try {
+				command = super.getCommand(request); //Will call this.getDropObjectsCommand() eventually
+			} catch (Exception ex) {
+				return getCustomCommand(request);
+			}
 		} else if(this.understands(request)) {
 			//Add request
 			command = getCreationCommand(request);
@@ -149,9 +173,6 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 */
 	protected Map<DropStrategy, Command> findStrategies(Request request) {
 		Map<DropStrategy, Command> matchingStrategies = new LinkedHashMap<DropStrategy, Command>();
-
-		//		DropStrategy sample = new SampleDropStrategy();
-		//		matchingStrategies.put(sample, sample.getCommand(request, getHost()));
 
 		for(List<DropStrategy> strategies : dropStrategies.values()) {
 			for(DropStrategy strategy : strategies) {

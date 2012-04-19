@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
+import java.util.Map;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -30,4 +32,6 @@ public interface DropStrategy {
 	public Image getImage();
 
 	public int getPriority();
+
+	public void setOptions(Map<String, Object> options);
 }
