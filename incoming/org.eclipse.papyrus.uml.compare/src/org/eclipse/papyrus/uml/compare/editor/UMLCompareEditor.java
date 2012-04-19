@@ -13,15 +13,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.editor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
+import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeContentProvider;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
@@ -42,8 +51,9 @@ public class UMLCompareEditor extends EMFCompareEditor {
 	public static final String EDITOR_TYPE = "PapyrusUMLCompare"; //$NON-NLS-1$
 
 	private static final String LEFT_OBJECT_KEY = "leftObject"; //TODO useful ?
-	
+
 	private static final String RIGHT_OBJECT_KEY = "rightObject"; //TODO useful ?
+
 	/**
 	 * @param servicesRegistry
 	 * @param rawModel
@@ -54,9 +64,43 @@ public class UMLCompareEditor extends EMFCompareEditor {
 	}
 
 	@Override
+	protected ComparisonSnapshot doContentCompare(EObject left, EObject right) {
+		ComparisonSnapshot snapshot = super.doContentCompare(left, right);
+		cleanSnapshot(snapshot);
+		return snapshot;
+	}
+
+	/**
+	 * This method allows to remove unnecessary differences : 
+	 * 	we don't show element move from the root element (see bug 377143)
+	 * 
+	 * @param snapshot
+	 *        the snapshot
+	 */
+	private void cleanSnapshot(final ComparisonSnapshot snapshot) {
+		final EList<EObject> contents = snapshot.eContents();
+		final DiffModel root = (DiffModel)contents.get(0);
+		final EList<DiffElement> differences = root.getDifferences();
+		final List<DiffElement> toRemove = new ArrayList<DiffElement>();
+		for(DiffElement current : differences){
+			if(current instanceof MoveModelElement){
+				EObject leftTarget = ((MoveModelElement)current).getLeftTarget();
+				EObject rightTarget = ((MoveModelElement)current).getRightTarget();
+				if(leftTarget==null && rightTarget==null){
+					toRemove.add(current);
+				}
+			}
+		}
+		for(DiffElement current : toRemove){
+			EcoreUtil.remove(current);
+		}
+	}
+
+	@Override
 	protected ModelCompareEditorInput createModelCompareEditorInput(ComparisonSnapshot snapshot) {
-		
-		PapyrusModelCompareEditorInput input = new PapyrusModelCompareEditorInput(snapshot, this){
+
+		PapyrusModelCompareEditorInput input = new PapyrusModelCompareEditorInput(snapshot, this) {
+
 			@Override
 			protected ModelContentMergeViewer createMergeViewer(CompareViewerPane pane, CompareConfiguration config) {
 				return new PapyrusTransactionalModelContentMergeViewer(pane, config, editor) {
@@ -80,9 +124,9 @@ public class UMLCompareEditor extends EMFCompareEditor {
 								return null;
 							}
 						};
-						
+
 					}
-					
+
 					/**
 					 * 
 					 * {@inheritDoc}
