@@ -83,6 +83,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DefaultNamedElementEditPartTN(view);
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return new DefaultNamedElementNameEditPart(view);
+			case ShapeNamedElementEditPart.VISUAL_ID:
+				return new ShapeNamedElementEditPart(view);
+			case ShapeNamedElementNameEditPart.VISUAL_ID:
+				return new ShapeNamedElementNameEditPart(view);
 			case ShortCutDiagramEditPart.VISUAL_ID:
 				return new ShortCutDiagramEditPart(view);
 			case DiagramNameEditPart.VISUAL_ID:

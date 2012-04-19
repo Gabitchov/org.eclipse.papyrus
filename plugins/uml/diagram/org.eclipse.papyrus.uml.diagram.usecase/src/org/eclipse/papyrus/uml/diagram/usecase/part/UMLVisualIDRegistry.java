@@ -85,6 +85,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElem
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationNameEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShapeNamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShapeNamedElementNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierNameEditPartTN;
@@ -238,6 +240,9 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())) {
 				return DefaultNamedElementEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())) {
+				return ShapeNamedElementEditPart.VISUAL_ID;
 			}
 			if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())) {
 				return ShortCutDiagramEditPart.VISUAL_ID;
@@ -399,6 +404,9 @@ public class UMLVisualIDRegistry {
 			if(DefaultNamedElementEditPartTN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ShapeNamedElementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -463,6 +471,11 @@ public class UMLVisualIDRegistry {
 			break;
 		case DefaultNamedElementEditPartTN.VISUAL_ID:
 			if(DefaultNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			if(ShapeNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -852,6 +865,8 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2018, ViewInfo.Node, "Comment");
 		root.addNode(1000, viewInfo);
 		viewInfo = new BaseViewInfo(2022, ViewInfo.Node, "NamedElement");
+		root.addNode(1000, viewInfo);
+		viewInfo = new BaseViewInfo(2023, ViewInfo.Node, "NamedElement");
 		root.addNode(1000, viewInfo);
 		viewInfo = new BaseViewInfo(2019, ViewInfo.Node, "Diagram");
 		root.addNode(1000, viewInfo);

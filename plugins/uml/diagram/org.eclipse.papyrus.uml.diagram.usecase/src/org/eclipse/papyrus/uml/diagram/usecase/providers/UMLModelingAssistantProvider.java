@@ -48,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
@@ -175,6 +176,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof DefaultNamedElementEditPartTN) {
 			return ((DefaultNamedElementEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
 			return ((UseCaseInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -239,6 +243,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof DefaultNamedElementEditPartTN) {
 			return ((DefaultNamedElementEditPartTN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
 			return ((UseCaseInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -306,6 +313,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof DefaultNamedElementEditPartTN) {
 			return ((DefaultNamedElementEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
 			return ((UseCaseInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -371,6 +381,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof DefaultNamedElementEditPartTN) {
 			return ((DefaultNamedElementEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
 			return ((UseCaseInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -435,6 +448,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof DefaultNamedElementEditPartTN) {
 			return ((DefaultNamedElementEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
 			return ((UseCaseInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

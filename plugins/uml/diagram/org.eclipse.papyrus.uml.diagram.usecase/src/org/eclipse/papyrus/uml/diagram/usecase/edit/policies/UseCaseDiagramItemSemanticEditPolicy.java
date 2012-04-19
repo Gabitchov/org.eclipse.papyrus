@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.CommentCreateComman
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ConstraintCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.DefaultNamedElementCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageCreateCommandTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ShapeNamedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ShortCutDiagramCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.SubjectClassifierCreateCommandTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.UseCaseAsRectangleCreateCommandTN;
@@ -74,6 +75,9 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		if(UMLElementTypes.NamedElement_2022 == req.getElementType()) {
 			return getGEFWrapper(new DefaultNamedElementCreateCommandTN(req));
+		}
+		if(UMLElementTypes.NamedElement_2023 == req.getElementType()) {
+			return getGEFWrapper(new ShapeNamedElementCreateCommand(req));
 		}
 		if(UMLElementTypes.Diagram_2019 == req.getElementType()) {
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));

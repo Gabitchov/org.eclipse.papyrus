@@ -56,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentUsecasesEditPart;
@@ -537,6 +538,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == ShapeNamedElementEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 		}
 		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment)it.next();
@@ -592,6 +597,8 @@ public class UMLDiagramUpdater {
 			return getComment_2018ContainedLinks(view);
 		case DefaultNamedElementEditPartTN.VISUAL_ID:
 			return getNamedElement_2022ContainedLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_2023ContainedLinks(view);
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return getDiagram_2019ContainedLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
@@ -665,6 +672,8 @@ public class UMLDiagramUpdater {
 			return getComment_2018IncomingLinks(view);
 		case DefaultNamedElementEditPartTN.VISUAL_ID:
 			return getNamedElement_2022IncomingLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_2023IncomingLinks(view);
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return getDiagram_2019IncomingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
@@ -738,6 +747,8 @@ public class UMLDiagramUpdater {
 			return getComment_2018OutgoingLinks(view);
 		case DefaultNamedElementEditPartTN.VISUAL_ID:
 			return getNamedElement_2022OutgoingLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_2023OutgoingLinks(view);
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return getDiagram_2019OutgoingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
@@ -910,6 +921,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getNamedElement_2022ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getNamedElement_2023ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -1268,6 +1286,22 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getNamedElement_2022IncomingLinks(View view) {
+		NamedElement modelElement = (NamedElement)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4015(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4016(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4017(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getNamedElement_2023IncomingLinks(View view) {
 		NamedElement modelElement = (NamedElement)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1752,6 +1786,19 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getNamedElement_2022OutgoingLinks(View view) {
+		NamedElement modelElement = (NamedElement)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4015(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4016(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4017(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getNamedElement_2023OutgoingLinks(View view) {
 		NamedElement modelElement = (NamedElement)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4013(modelElement));

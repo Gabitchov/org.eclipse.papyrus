@@ -45,6 +45,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHel
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
@@ -52,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageNodePlateFigure
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.PackageItemSemanticEditPolicyTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -96,6 +98,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new UseCaseChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -344,6 +347,9 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof DefaultNamedElementEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4013);
+		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
@@ -395,6 +401,9 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof DefaultNamedElementEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4015);
+		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
@@ -446,6 +455,9 @@ public class PackageEditPartTN extends NamedElementEditPart {
 		if(targetEditPart instanceof DefaultNamedElementEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4016);
+		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
@@ -495,6 +507,9 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof DefaultNamedElementEditPartTN) {
+			types.add(UMLElementTypes.Realization_4017);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof UseCaseInComponentEditPart) {
@@ -553,6 +568,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -571,6 +587,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -589,6 +606,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -607,6 +625,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -660,6 +679,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -681,6 +701,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -699,6 +720,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);
@@ -717,6 +739,7 @@ public class PackageEditPartTN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
 			types.add(UMLElementTypes.NamedElement_2022);
+			types.add(UMLElementTypes.NamedElement_2023);
 			types.add(UMLElementTypes.UseCase_3009);
 			types.add(UMLElementTypes.Component_3016);
 			types.add(UMLElementTypes.Constraint_3017);

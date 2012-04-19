@@ -55,6 +55,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageEditPart;
@@ -147,6 +148,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType NamedElement_2022 = getElementType("org.eclipse.papyrus.uml.diagram.usecase.DefaultNamedElement_2022"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NamedElement_2023 = getElementType("org.eclipse.papyrus.uml.diagram.usecase.NamedElement_2023"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -383,6 +389,7 @@ public class UMLElementTypes {
 			elements.put(Constraint_2017, UMLPackage.eINSTANCE.getConstraint());
 			elements.put(Comment_2018, UMLPackage.eINSTANCE.getComment());
 			elements.put(NamedElement_2022, UMLPackage.eINSTANCE.getNamedElement());
+			elements.put(NamedElement_2023, UMLPackage.eINSTANCE.getNamedElement());
 			elements.put(Diagram_2019, NotationPackage.eINSTANCE.getDiagram());
 			elements.put(ExtensionPoint_3007, UMLPackage.eINSTANCE.getExtensionPoint());
 			elements.put(ExtensionPoint_3008, UMLPackage.eINSTANCE.getExtensionPoint());
@@ -435,6 +442,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Constraint_2017);
 			KNOWN_ELEMENT_TYPES.add(Comment_2018);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_2022);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_2023);
 			KNOWN_ELEMENT_TYPES.add(Diagram_2019);
 			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3007);
 			KNOWN_ELEMENT_TYPES.add(ExtensionPoint_3008);
@@ -489,6 +497,8 @@ public class UMLElementTypes {
 			return Comment_2018;
 		case DefaultNamedElementEditPartTN.VISUAL_ID:
 			return NamedElement_2022;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return NamedElement_2023;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return Diagram_2019;
 		case ExtensionPointEditPart.VISUAL_ID:
