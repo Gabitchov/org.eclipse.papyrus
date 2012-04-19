@@ -88,6 +88,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageEdit
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases3EditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInCEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInPEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentEditPart;
@@ -555,9 +558,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	public Node createConstraint_2017(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createShape();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintEditPartTN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
@@ -565,8 +566,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Constraint");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Constraint");
 		Node label5026 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartTN.VISUAL_ID));
+		Node label6042 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -750,17 +754,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	public Node createConstraint_3017(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createShape();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintInComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Constraint");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Constraint");
 		Node label5029 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintInComponentNameEditPart.VISUAL_ID));
+		Node label6043 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyInCEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -800,17 +805,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	public Node createConstraint_3010(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createShape();
-		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
-		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintInPackageEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Constraint");
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Constraint");
 		Node label5020 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintInPackageNameEditPart.VISUAL_ID));
+		Node label6044 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyInPEditPart.VISUAL_ID));
 		return node;
 	}
 

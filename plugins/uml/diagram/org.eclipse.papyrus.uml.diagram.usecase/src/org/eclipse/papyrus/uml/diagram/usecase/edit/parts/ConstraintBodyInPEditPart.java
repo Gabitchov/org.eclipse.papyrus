@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -34,11 +33,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -61,14 +58,12 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
-import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayExternalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.QualifiedNameWrappingLabelFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -83,12 +78,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
+public class ConstraintBodyInPEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6037;
+	public static final int VISUAL_ID = 6044;
 
 	/**
 	 * @generated
@@ -123,17 +118,11 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-	/**
-	 * @generated
-	 */
-	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN.VISUAL_ID), new Point(0, 0));
-	}
 
 	/**
 	 * @generated
 	 */
-	public ActorQualifiedNameEditPartTN(View view) {
+	public ConstraintBodyInPEditPart(View view) {
 		super(view);
 	}
 
@@ -142,32 +131,9 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayExternalNodeEditPolicy());
-	}
-
-	/**
-	 * @generated
-	 */
-	public IBorderItemLocator getBorderItemLocator() {
-		IFigure parentFigure = getFigure().getParent();
-		if(parentFigure != null && parentFigure.getLayoutManager() != null) {
-			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
-			return (IBorderItemLocator)constraint;
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void refreshBounds() {
-		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UseCaseDiagramEditPart.NodeLabelDragPolicy());
 	}
 
 	/**
@@ -225,7 +191,7 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(ConstraintFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -358,7 +324,7 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2011, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3010, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInPEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -595,7 +561,7 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View)getModel();
 	}
 
 	/**
@@ -703,7 +669,24 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	/**
 	 * @generated
 	 */
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void handleNotificationEvent(Notification event) {
+		refreshLabel();
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer)event.getNewValue();
@@ -736,15 +719,42 @@ public class ActorQualifiedNameEditPartTN extends AbstractLabelEditPart implemen
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
+		// Parent should assign one using setLabel() method
+		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IFigure createFigurePrim() {
-		return new QualifiedNameWrappingLabelFigure();
+	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
+	/**
+	 * @generated
+	 */
+	public void activate() {
+		super.activate();
+		addOwnerElementListeners();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addOwnerElementListeners() {
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public void deactivate() {
+		removeOwnerElementListeners();
+		super.deactivate();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeOwnerElementListeners() {
+		removeListenerFilter(ADD_PARENT_MODEL);
 	}
 }

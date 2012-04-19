@@ -74,7 +74,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			else{
 				return "0..0";}
 		}
-		
+
 		if(constraint.getSpecification() instanceof TimeInterval) {
 			if((((TimeInterval)constraint.getSpecification()).getMin())!=null && (((TimeInterval)constraint.getSpecification()).getMax()!=null)){
 				return ((TimeInterval)constraint.getSpecification()).getMin().stringValue()+".."+((TimeInterval)constraint.getSpecification()).getMax().stringValue();
@@ -90,9 +90,9 @@ public class ConstraintParser implements IParser, ISemanticParser {
 				return "0..0";}
 		}
 		if(constraint.getSpecification() instanceof OpaqueExpression) {
-			if(((OpaqueExpression)constraint.getSpecification()).getBodies().size()>0){
-				return OPAQUE_EXPRESSION_BEGIN_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getLanguages().get(0) +OPAQUE_EXPRESSION_END_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getBodies().get(0);
-			}
+				if(((OpaqueExpression)constraint.getSpecification()).getBodies().size()>0 &&((OpaqueExpression)constraint.getSpecification()).getLanguages().size()>0){
+					return OPAQUE_EXPRESSION_BEGIN_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getLanguages().get(0) +OPAQUE_EXPRESSION_END_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getBodies().get(0);
+				}
 			else{return OPAQUE_EXPRESSION_BEGIN_LANGUAGE+"NATURAL"+OPAQUE_EXPRESSION_END_LANGUAGE;}
 		}
 		return "";
@@ -134,14 +134,14 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			ArrayList<String> stringBodyList=new ArrayList<String>();
 			ArrayList<String> stringLanguageList=new ArrayList<String>();
 			stringLanguageList.add(newString.substring(1, newString.indexOf(OPAQUE_EXPRESSION_END_LANGUAGE)).toUpperCase());
-			 stringBodyList.add( newString.substring(newString.indexOf(OPAQUE_EXPRESSION_END_LANGUAGE)+2,newString.length()));
+			stringBodyList.add( newString.substring(newString.indexOf(OPAQUE_EXPRESSION_END_LANGUAGE)+2,newString.length()));
 			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getOpaqueExpression_Body(), stringBodyList);
 			command.compose(new SetValueCommand(request));
 			request = new SetRequest(specif, UMLPackage.eINSTANCE.getOpaqueExpression_Language(), stringLanguageList);
 			command.compose(new SetValueCommand(request));
 			return  command;
 		}
-		
+
 		if(constraint.getSpecification() instanceof DurationInterval) {
 			Interval specif = (Interval)constraint.getSpecification();
 			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
@@ -149,7 +149,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			durationMin.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(constraint, durationMin.eClass()));
 			Duration durationMax= UMLFactory.eINSTANCE.createDuration();
 			durationMax.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(constraint, durationMax.eClass()));
-			
+
 			LiteralString exp1 =UMLFactory.eINSTANCE.createLiteralString();
 			LiteralString exp2 =UMLFactory.eINSTANCE.createLiteralString();
 			exp1.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(durationMin, exp1.eClass()));
@@ -160,11 +160,11 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			durationMax.setExpr(exp2);
 			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Min(),durationMin);
 			command.compose(new SetValueCommand(request));
-			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), durationMax);
+			request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), durationMax);
 			command.compose(new SetValueCommand(request));
 			return  command;
 		}
-		
+
 		if(constraint.getSpecification() instanceof TimeInterval) {
 			TimeInterval specif = (TimeInterval)constraint.getSpecification();
 			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
@@ -172,7 +172,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			timeMin.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(constraint, timeMin.eClass()));
 			TimeExpression timeMax= UMLFactory.eINSTANCE.createTimeExpression();
 			timeMax.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(constraint, timeMax.eClass()));
-			
+
 			LiteralString exp1 =UMLFactory.eINSTANCE.createLiteralString();
 			LiteralString exp2 =UMLFactory.eINSTANCE.createLiteralString();
 			exp1.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(timeMin, exp1.eClass()));
@@ -183,13 +183,13 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			timeMax.setExpr(exp2);
 			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Min(),timeMin);
 			command.compose(new SetValueCommand(request));
-			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), timeMax);
+			request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), timeMax);
 			command.compose(new SetValueCommand(request));
 			return  command;
 		}
-		
+
 		if(constraint.getSpecification() instanceof Interval) {
-			
+
 			Interval specif = (Interval)constraint.getSpecification();
 			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
 			LiteralInteger min = UMLFactory.eINSTANCE.createLiteralInteger();
@@ -200,10 +200,10 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			Integer maxInt= new Integer( newString.substring(newString.indexOf("..")+2,newString.length()));
 			min.setValue(minInt.intValue());
 			max.setValue( maxInt.intValue());
-			
+
 			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Min(),min);
 			command.compose(new SetValueCommand(request));
-			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), max);
+			request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), max);
 			command.compose(new SetValueCommand(request));
 			return  command;
 		}

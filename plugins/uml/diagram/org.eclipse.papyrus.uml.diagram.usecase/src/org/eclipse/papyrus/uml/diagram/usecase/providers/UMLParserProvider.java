@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAppliedStereotypeEditPartTN;
@@ -46,6 +47,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentBodyEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInCEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInPEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintNameEditPartTN;
@@ -382,6 +386,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ConstraintParser constraintSpecification_6043Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6043Parser() {
+		if(constraintSpecification_6043Parser == null) {
+			constraintSpecification_6043Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6043Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_6042Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6042Parser() {
+		if(constraintSpecification_6042Parser == null) {
+			constraintSpecification_6042Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6042Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser actorName_5031Parser;
 
 	/**
@@ -426,6 +460,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintName_5020Parser = parser;
 		}
 		return constraintName_5020Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_6044Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6044Parser() {
+		if(constraintSpecification_6044Parser == null) {
+			constraintSpecification_6044Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6044Parser;
 	}
 
 	/**
@@ -767,6 +816,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPackageName_5025Parser();
 		case ConstraintNameEditPartTN.VISUAL_ID:
 			return getConstraintName_5026Parser();
+		case ConstraintBodyEditPart.VISUAL_ID:
+			return getConstraintSpecification_6042Parser();
 		case CommentBodyEditPartTN.VISUAL_ID:
 			return getCommentBody_5027Parser();
 		case DefaultNamedElementNameEditPart.VISUAL_ID:
@@ -787,12 +838,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCommentBody_5028Parser();
 		case ConstraintInComponentNameEditPart.VISUAL_ID:
 			return getConstraintName_5029Parser();
+		case ConstraintBodyInCEditPart.VISUAL_ID:
+			return getConstraintSpecification_6043Parser();
 		case ActorInComponentNameEditPart.VISUAL_ID:
 			return getActorName_5031Parser();
 		case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
 			return getActorLabel_6027Parser();
 		case ConstraintInPackageNameEditPart.VISUAL_ID:
 			return getConstraintName_5020Parser();
+		case ConstraintBodyInPEditPart.VISUAL_ID:
+			return getConstraintSpecification_6044Parser();
 		case ActorInPackageNameEditPart.VISUAL_ID:
 			return getActorName_5021Parser();
 		case ActorInPackageAppliedStereotypeEditPart.VISUAL_ID:

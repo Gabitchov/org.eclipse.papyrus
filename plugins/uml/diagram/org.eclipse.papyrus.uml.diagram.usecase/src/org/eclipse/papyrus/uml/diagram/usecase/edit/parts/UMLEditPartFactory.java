@@ -75,6 +75,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintEditPartTN(view);
 			case ConstraintNameEditPartTN.VISUAL_ID:
 				return new ConstraintNameEditPartTN(view);
+			case ConstraintBodyEditPart.VISUAL_ID:
+				return new ConstraintBodyEditPart(view);
 			case CommentEditPartTN.VISUAL_ID:
 				return new CommentEditPartTN(view);
 			case CommentBodyEditPartTN.VISUAL_ID:
@@ -111,6 +113,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintInComponentEditPart(view);
 			case ConstraintInComponentNameEditPart.VISUAL_ID:
 				return new ConstraintInComponentNameEditPart(view);
+			case ConstraintBodyInCEditPart.VISUAL_ID:
+				return new ConstraintBodyInCEditPart(view);
 			case ActorInComponentEditPart.VISUAL_ID:
 				return new ActorInComponentEditPart(view);
 			case ActorInComponentNameEditPart.VISUAL_ID:
@@ -123,6 +127,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintInPackageEditPart(view);
 			case ConstraintInPackageNameEditPart.VISUAL_ID:
 				return new ConstraintInPackageNameEditPart(view);
+			case ConstraintBodyInPEditPart.VISUAL_ID:
+				return new ConstraintBodyInPEditPart(view);
 			case ActorInPackageEditPart.VISUAL_ID:
 				return new ActorInPackageEditPart(view);
 			case ActorInPackageNameEditPart.VISUAL_ID:

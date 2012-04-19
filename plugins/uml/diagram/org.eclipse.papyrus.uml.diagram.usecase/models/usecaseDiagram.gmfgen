@@ -388,14 +388,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CornerBentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
@@ -404,6 +398,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -414,19 +412,16 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
-                xsi:type="gmfgen:GenReferenceNewElementSpec">
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.4">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.6">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
-              <newElementInitializers>
-                <initializers
-                    xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.0/@expressions.8">
-                  <feature
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression/body"/>
-                </initializers>
-                <elementClass
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression"/>
-              </newElementInitializers>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -439,7 +434,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCornerBentContentLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -451,6 +446,27 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6043"
+            editPartClassName="ConstraintBodyInCEditPart"
+            itemSemanticEditPolicyClassName="ConstraintBodyInCItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConstraintFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.4">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -589,14 +605,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.5/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CornerBentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
@@ -605,6 +615,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -615,19 +629,16 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
-                xsi:type="gmfgen:GenReferenceNewElementSpec">
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.4">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.6">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
-              <newElementInitializers>
-                <initializers
-                    xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.0/@expressions.8">
-                  <feature
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression/body"/>
-                </initializers>
-                <elementClass
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression"/>
-              </newElementInitializers>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -640,7 +651,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCornerBentContentLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -652,6 +663,27 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6044"
+            editPartClassName="ConstraintBodyInPEditPart"
+            itemSemanticEditPolicyClassName="ConstraintBodyInPItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConstraintFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.4">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1550,14 +1582,8 @@
             xsi:type="gmfgen:SpecializationType"
             metamodelType="/0/@diagram/@childNodes.5/@elementType"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CornerBentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
@@ -1566,6 +1592,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -1576,19 +1606,16 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
-                xsi:type="gmfgen:GenReferenceNewElementSpec">
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.4">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.6">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
-              <newElementInitializers>
-                <initializers
-                    xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.0/@expressions.8">
-                  <feature
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression/body"/>
-                </initializers>
-                <elementClass
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression"/>
-              </newElementInitializers>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1601,7 +1628,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCornerBentContentLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -1613,6 +1640,27 @@
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6042"
+            editPartClassName="ConstraintBodyEditPart"
+            itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConstraintFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.4">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -3158,6 +3206,8 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="if( (source instanceof org.eclipse.uml2.uml.Class)||(source instanceof org.eclipse.uml2.uml.Component)||(source instanceof org.eclipse.uml2.uml.Actor)||(source instanceof org.eclipse.uml2.uml.UseCase)){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if((target instanceof org.eclipse.uml2.uml.Class)||(target instanceof org.eclipse.uml2.uml.Component)||(target instanceof org.eclipse.uml2.uml.Actor)||(target instanceof org.eclipse.uml2.uml.UseCase)){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if( (source instanceof org.eclipse.uml2.uml.UseCase)&amp;&amp;(target instanceof org.eclipse.uml2.uml.UseCase)){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return (Collections.disjoint(((org.eclipse.uml2.uml.UseCase) source).getSubjects(),((org.eclipse.uml2.uml.UseCase) target).getSubjects()));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;else{return false;}"/>
+        <expressions
+            body="org.eclipse.uml2.uml.LiteralString literalString=org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createLiteralString();&#xD;&#xA;literalString.setValue(&quot;&quot;);&#xD;&#xA;return literalString;"/>
       </providers>
     </expressionProviders>
     <labelParsers
@@ -3176,6 +3226,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.CommentParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@topLevelNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser"/>
     </labelParsers>
     <contextMenus
         iD="org.eclipse.papyrus.uml.diagram.usecase.part.LoadResourceAction"
@@ -3287,5 +3341,11 @@
         comment="External node label locator"
         classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
         genExternalNodeLabel="/0/@diagram/@topLevelNodes.0/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.2 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.6/@labels.2 /0/@diagram/@childNodes.8/@labels.2"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an extension for constraint "
+        genView="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.7"
+        name="ConstraintEditPart extension"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.providers;
 
-import java.util.Collection;
-
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
@@ -27,13 +25,14 @@ import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.ExtensionPoint;
-import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @generated
@@ -121,15 +120,10 @@ public class ElementInitializers {
 	 */
 	public void init_Constraint_2017(Constraint instance) {
 		try {
-			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getOpaqueExpression(), null).evaluate(newInstance_0_0);
-			if(value_0_0_0 instanceof Collection) {
-				newInstance_0_0.getBodies().clear();
-				newInstance_0_0.getBodies().addAll(((Collection)value_0_0_0));
-			} else {
-				newInstance_0_0.getBodies().add((String)value_0_0_0);
-			}
+			Object value_0 = name_Constraint_2017(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_2017(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -212,15 +206,10 @@ public class ElementInitializers {
 	 */
 	public void init_Constraint_3017(Constraint instance) {
 		try {
-			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getOpaqueExpression(), null).evaluate(newInstance_0_0);
-			if(value_0_0_0 instanceof Collection) {
-				newInstance_0_0.getBodies().clear();
-				newInstance_0_0.getBodies().addAll(((Collection)value_0_0_0));
-			} else {
-				newInstance_0_0.getBodies().add((String)value_0_0_0);
-			}
+			Object value_0 = name_Constraint_3017(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_3017(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -243,15 +232,10 @@ public class ElementInitializers {
 	 */
 	public void init_Constraint_3010(Constraint instance) {
 		try {
-			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getOpaqueExpression(), null).evaluate(newInstance_0_0);
-			if(value_0_0_0 instanceof Collection) {
-				newInstance_0_0.getBodies().clear();
-				newInstance_0_0.getBodies().addAll(((Collection)value_0_0_0));
-			} else {
-				newInstance_0_0.getBodies().add((String)value_0_0_0);
-			}
+			Object value_0 = name_Constraint_3010(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_3010(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -370,6 +354,54 @@ public class ElementInitializers {
 	 */
 	private String name_Classifier_2015(Classifier self) {
 		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_2017(Constraint self) {
+		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_2017(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_3017(Constraint self) {
+		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_3017(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_3010(Constraint self) {
+		return "Subject" + NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_3010(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
 	}
 
 	/**

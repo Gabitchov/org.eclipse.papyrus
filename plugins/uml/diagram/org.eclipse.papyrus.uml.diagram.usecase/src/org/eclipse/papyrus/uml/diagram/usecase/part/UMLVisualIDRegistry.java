@@ -53,6 +53,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageEdit
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases3EditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInCEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintBodyInPEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ConstraintInComponentNameEditPart;
@@ -465,6 +468,9 @@ public class UMLVisualIDRegistry {
 			if(ConstraintNameEditPartTN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ConstraintBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case CommentEditPartTN.VISUAL_ID:
 			if(CommentBodyEditPartTN.VISUAL_ID == nodeVisualID) {
@@ -511,6 +517,9 @@ public class UMLVisualIDRegistry {
 			if(ConstraintInComponentNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ConstraintBodyInCEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ActorInComponentEditPart.VISUAL_ID:
 			if(ActorInComponentNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -525,6 +534,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case ConstraintInPackageEditPart.VISUAL_ID:
 			if(ConstraintInPackageNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintBodyInPEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
