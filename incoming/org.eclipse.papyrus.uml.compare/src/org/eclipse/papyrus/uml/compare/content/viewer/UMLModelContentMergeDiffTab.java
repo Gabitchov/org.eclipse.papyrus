@@ -8,12 +8,12 @@ import org.eclipse.swt.widgets.Composite;
 
 public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 
-	public UMLModelContentMergeDiffTab(Composite parentComposite, int side, ModelContentMergeTabFolder parentFolder) {
+	public UMLModelContentMergeDiffTab(final Composite parentComposite, final int side, final ModelContentMergeTabFolder parentFolder) {
 		super(parentComposite, side, parentFolder);
 	}
 
 	@Override
-	public void setReflectiveInput(Object object) {
+	public void setReflectiveInput(final Object object) {
 		if(object instanceof RootObject) {
 			clearCaches();
 			setInput(object);

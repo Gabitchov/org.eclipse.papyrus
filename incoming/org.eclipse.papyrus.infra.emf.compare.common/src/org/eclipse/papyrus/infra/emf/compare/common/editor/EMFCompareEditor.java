@@ -14,18 +14,13 @@
 package org.eclipse.papyrus.infra.emf.compare.common.editor;
 
 import org.eclipse.compare.CompareEditorInput;
-import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
-import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -35,9 +30,6 @@ import org.eclipse.papyrus.infra.emf.compare.common.editor.listener.CloseEditorT
 import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IReusableEditor;
@@ -50,7 +42,7 @@ import org.eclipse.ui.PartInitException;
  * This class provides an EMF-Compare Editor for Papyrus. This Editor has been created to be embedded in the Papyrus SashEditor
  * 
  */
-public class EMFCompareEditor extends CompareEditor implements IReusableEditor, ISaveablesSource, IPropertyChangeListener, ISaveablesLifecycleListener {
+public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IReusableEditor, ISaveablesSource, IPropertyChangeListener, ISaveablesLifecycleListener {
 
 	/** the service registry */
 	protected ServicesRegistry servicesRegistry;
@@ -63,7 +55,7 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 	/**
 	 * The compare editor input
 	 */
-	private CompareEditorInput input;
+	private CompareEditorInput input;//TODO move it in the supper class?
 
 	private PartNameSynchronizer synchronizer;
 
@@ -74,7 +66,7 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 	 * @param event
 	 */
 	@Override
-	public void propertyChange(PropertyChangeEvent event) {
+	public void propertyChange(final PropertyChangeEvent event) {
 		if(event.getSource() == IAction.class && event.getProperty() == CompareEditorInput.PROP_TITLE) {
 			//the CustomizationAction of the viewer sent this refresh
 			setPartName(EMFCompareUtils.getCompareEditorTitle(EMFCompareEditor.this, rawModel));
@@ -91,12 +83,11 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 	 *        the raw model
 	 * 
 	 */
-	public EMFCompareEditor(ServicesRegistry servicesRegistry, final PapyrusEMFCompareInstance rawModel) {
+	public EMFCompareEditor(final ServicesRegistry servicesRegistry, final PapyrusEMFCompareInstance rawModel) {
 		this.servicesRegistry = servicesRegistry;
 		this.rawModel = rawModel;
 		this.synchronizer = new PartNameSynchronizer(rawModel);
-		ComparisonSnapshot snapshot = doContentCompare(rawModel.getLeft(), rawModel.getRight());
-		this.input = createModelCompareEditorInput(snapshot);
+		this.input = getCompareInput(rawModel.getLeft(), rawModel.getRight());
 		addListeners();
 	}
 
@@ -107,18 +98,6 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 	}
 
 
-	/**
-	 * 
-	 * @param left
-	 *        the left eobject
-	 * @param right
-	 *        the rihgt eobject
-	 * @return
-	 *         the ComparisinSnapshot
-	 */
-	protected ComparisonSnapshot doContentCompare(final EObject left, final EObject right) {
-		return EMFCompareUtils.doContentCompare(left, right);
-	}
 
 	protected void addListeners() {
 		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
@@ -163,26 +142,6 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		return container;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor#createModelCompareEditorInput(org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot)
-	 * 
-	 * @param snapshot
-	 * @return
-	 */
-	protected ModelCompareEditorInput createModelCompareEditorInput(ComparisonSnapshot snapshot) {
-		PapyrusModelCompareEditorInput input = new PapyrusModelCompareEditorInput(snapshot, this);
-		//we set the label to display
-
-		LabelProvider prov = (LabelProvider)LabelProviderUtil.INSTANCE.getLabelProviderFor(this);
-		String leftLabel = prov.getText(rawModel.getLeft());
-		Image leftImage = prov.getImage(rawModel.getLeft());
-		String rightLabel = prov.getText(rawModel.getRight());
-		Image rightImage = prov.getImage(rawModel.getRight());
-		input.initLabels(leftLabel, leftImage, rightLabel, rightImage);
-		return input;
-	}
-
 
 
 	/**
@@ -193,7 +152,8 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 	 * @param input
 	 * @throws PartInitException
 	 */
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+	@Override
+	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
 		if(input instanceof CompareEditorInput) {
 			super.init(site, input);
 		} else {
@@ -202,18 +162,10 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 
 	}
 
+	@Override
 	public void dispose() {
 		removeListeners();
 		super.dispose();
-	}
-
-	@Override
-	public void setFocus() {
-		//I refresh the viewer here, because the EMF queries for name, ... are called during the creation of the editor, and
-		//it is not the correct Editor which is used by these queries to get the correct label provider
-		//
-		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(this)).refreshViewer();
-		super.setFocus();
 	}
 
 	/**
@@ -305,6 +257,11 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 			compareInstance.getRight().eAdapters().add(this.tableNameListener);
 
 		}
+	}
+
+	@Override
+	protected void configureInput(final PapyrusModelCompareEditorInput input) {
+		//not useful for the moment
 	}
 
 

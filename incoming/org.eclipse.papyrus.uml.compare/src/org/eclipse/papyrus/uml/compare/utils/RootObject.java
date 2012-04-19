@@ -23,6 +23,16 @@ package org.eclipse.papyrus.uml.compare.utils;
  */
 public class RootObject {
 
+	/**
+	 * the key for the left root object
+	 */
+	public static final String LEFT_OBJECT_KEY = "leftObject";
+
+	/**
+	 * the key for the right root object
+	 */
+	public static final String RIGHT_OBJECT_KEY = "rightObject"; //TODO useful 
+
 	/** The represented object. */
 	private Object representedObject = null;
 

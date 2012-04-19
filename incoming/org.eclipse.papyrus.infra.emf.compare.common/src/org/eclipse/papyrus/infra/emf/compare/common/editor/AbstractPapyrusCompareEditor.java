@@ -1,0 +1,203 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.infra.emf.compare.common.editor;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+
+import org.eclipse.compare.internal.CompareEditor;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.compare.EMFCompareException;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.service.DiffService;
+import org.eclipse.emf.compare.match.MatchOptions;
+import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
+import org.eclipse.emf.compare.match.engine.IMatchScopeProvider;
+import org.eclipse.emf.compare.match.metamodel.MatchModel;
+import org.eclipse.emf.compare.match.service.MatchService;
+import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
+import org.eclipse.emf.compare.util.EMFCompareMap;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.emf.compare.common.Activator;
+import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
+import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
+import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.ui.PlatformUI;
+
+/**
+ * 
+ * This abstract allows to regroup the configuration for the Papyrus nested compare editor
+ * and the standalone Papyrus Compare Editor
+ * 
+ */
+public abstract class AbstractPapyrusCompareEditor extends CompareEditor {
+
+	/**
+	 * The label provider for this editor
+	 */
+	private ILabelProvider labelProvider;
+
+	@SuppressWarnings("restriction")
+	public AbstractPapyrusCompareEditor() {
+		super();
+	}
+
+	public ILabelProvider getLabelProvider() {
+		if(labelProvider == null) {
+			labelProvider = (LabelProvider)LabelProviderUtil.INSTANCE.getLabelProviderFor(this);
+		}
+		return labelProvider;
+	}
+
+	/**
+	 * 
+	 * @param monitor
+	 *        the monitor
+	 * @param left
+	 *        the left object
+	 * @param right
+	 *        the right object
+	 * @return
+	 *         the options for the comparison
+	 */
+	//TODO verify the options to use for UML
+	protected Map<String, Object> getCompareOptions(final IProgressMonitor monitor, final EObject left, final EObject right) {
+		final Map<String, Object> options = new EMFCompareMap<String, Object>();
+		options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
+		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, getMatchScopeProvider(left, right));
+		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE); //TODO verify this parameter
+		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE); //TODO verify this parameter
+		return options;
+	}
+
+	/**
+	 * 
+	 * @param left
+	 *        the left object
+	 * @param right
+	 *        the right object
+	 * @return
+	 *         the match scope provider
+	 */
+	//TODO verify the option to use for UML
+	protected IMatchScopeProvider getMatchScopeProvider(final EObject left, final EObject right) {
+		return new GenericMatchScopeProvider(left.eResource(), right.eResource());
+	}
+
+
+	@Override
+	public void setFocus() {
+		//I refresh the viewer here, because the EMF queries for name, ... are called during the creation of the editor, and
+		//it is not the correct Editor which is used by these queries to get the correct label provider
+		//
+		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(this)).refreshViewer();
+		super.setFocus();
+	}
+
+	/**
+	 * 
+	 * @param left
+	 *        the left eobject
+	 * @param right
+	 *        the rihgt eobject
+	 * @return
+	 *         the ComparisinSnapshot
+	 */
+	protected ComparisonSnapshot doContentCompare(final EObject left, final EObject right) {
+		final ComparisonResourceSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSnapshot();
+
+		try {
+			PlatformUI.getWorkbench().getProgressService().busyCursorWhile(new IRunnableWithProgress() {
+
+				public void run(final IProgressMonitor monitor) throws InterruptedException {
+					final Map<String, Object> options = getCompareOptions(monitor, left, right);
+					final MatchModel match = doContentMatch(left, right, options);
+					DiffModel diff = doDiff(match);
+					snapshot.setDiff(diff);
+					snapshot.setMatch(match);
+				}
+
+			});
+
+		} catch (final InterruptedException e) {
+			Activator.log.error(e);
+		} catch (final EMFCompareException e) {
+			Activator.log.error(e);
+		} catch (final InvocationTargetException e) {
+			Activator.log.error(e);
+		}
+
+		return snapshot;
+	}
+
+
+	/**
+	 * 
+	 * @param left
+	 * @param right
+	 * @param options
+	 * @return
+	 *         the MatchModel for the comparison
+	 * @throws InterruptedException
+	 */
+	protected MatchModel doContentMatch(final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
+		return MatchService.doContentMatch(left, right, options);
+	}
+
+	/**
+	 * 
+	 * @param match
+	 * @return
+	 *         the DiffModel for the comparison
+	 */
+	protected DiffModel doDiff(final MatchModel match) {
+		return DiffService.doDiff(match);
+	}
+
+	protected final ModelCompareEditorInput getCompareInput(final EObject left, final EObject right) {
+		ComparisonSnapshot snapshot = doContentCompare(left, right);
+		return getConfiguredModelCompareEditorInput(snapshot);
+	}
+	/**
+	 * 
+	 * @param snapshot
+	 *        the ComparisonSnapshot
+	 * @return
+	 *         the ModelCompareEditorInput for this snapshot
+	 */
+	//TODO try to set this method in private
+	private final ModelCompareEditorInput getConfiguredModelCompareEditorInput(final ComparisonSnapshot snapshot) {
+		final ModelCompareEditorInput input = createModelCompareEditorInput(snapshot);
+		configureInput((PapyrusModelCompareEditorInput)input);
+		return input;
+	}
+
+	protected ModelCompareEditorInput createModelCompareEditorInput(final ComparisonSnapshot snapshot) {
+		return new PapyrusModelCompareEditorInput(snapshot, this);
+	}
+
+	/**
+	 * This method allows to set label and image to use for this input
+	 * 
+	 * @param input
+	 *        the input
+	 */
+	protected abstract void configureInput(final PapyrusModelCompareEditorInput input);
+}

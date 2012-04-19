@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -40,8 +41,7 @@ import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
-import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
-import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
+import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.compare.file.Activator;
@@ -54,7 +54,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDomainProvider {//extends CompareEditor{
+public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusCompareEditor implements IEditingDomainProvider {//extends CompareEditor{
 
 	/** the id of this editor (declared in the plugin.xml */
 	public static final String COMPARE_UML_FILE_EDITOR_ID = "org.eclipse.papyrus.uml.compare.file.editor"; //$NON-NLS-1$
@@ -63,9 +63,9 @@ public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDo
 
 	private final ResourceSet set;
 
-	private ObjectUndoContext undoContext;
+	private final ObjectUndoContext undoContext;
 
-	private IOperationHistoryListener historyListener;
+	private final IOperationHistoryListener historyListener;
 
 	/**
 	 * 
@@ -80,7 +80,7 @@ public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDo
 		undoContext = new ObjectUndoContext(this, "PayrusUMLFileCompareUndoContext"); //$NON-NLS-1$
 		historyListener = new IOperationHistoryListener() {
 
-			public void historyNotification(OperationHistoryEvent event) {
+			public void historyNotification(final OperationHistoryEvent event) {
 				if(event.getEventType() == OperationHistoryEvent.DONE) {
 					Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());
 					if(isConcerned(Collections.unmodifiableSet(affectedResources))) {
@@ -125,7 +125,7 @@ public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDo
 
 
 	@Override
-	public void doSave(IProgressMonitor progressMonitor) {
+	public void doSave(final IProgressMonitor progressMonitor) {
 		// TODO save di and notation file
 		super.doSave(progressMonitor);
 	}
@@ -150,70 +150,90 @@ public class CompareUMLFileEditor extends EMFCompareEditor implements IEditingDo
 		return null;
 	}
 
+	//always null, maybe, excepted when we are in the init method
+	private CompareUMLFileInput tmpInput;
+
 	@Override
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
 		if(input instanceof CompareUMLFileInput) {
-			EObject roots[] = new EObject[2];
+			this.tmpInput = (CompareUMLFileInput)input;
 
-			for(int i = 0; i < 2; i++) {
-				String filePath = ((CompareUMLFileInput)input).getComparedFiles().get(i).getFullPath().toString();
-				URI uri = URI.createFileURI(filePath); //$NON-NLS-1$ //$NON-NLS-2$
-				try {
-					roots[i] = EMFHelper.loadEMFModel(set, uri);
-					Assert.isNotNull(roots[i]);
-				} catch (IOException e) {
-					Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-					return;
-				};
+			EObject roots[] = loadPapyrusFiles((CompareUMLFileInput)input);
 
-				//we load the notation file
-				int index = filePath.lastIndexOf("."); //$NON-NLS-1$
-				String subString = filePath.substring(0, index);
-
-				//we load the .di
-				uri = URI.createFileURI(subString + ".di"); //$NON-NLS-1$
-				Map<?, ?> options = null;
-				if(set.getURIConverter().exists(uri, options)) {
-					try {
-						set.getResource(uri, true).load(options);
-					} catch (IOException e) {
-						Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-					}
-				}
-
-				//we load the .notation
-				uri = URI.createFileURI(subString + ".notation"); //$NON-NLS-1$
-				if(set.getURIConverter().exists(uri, options)) {
-					try {
-						set.getResource(uri, true).load(options);
-					} catch (IOException e) {
-						Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-					}
-				}
-
-				//TODO : and if there is other referenced files?
-
-			}
-			ComparisonSnapshot snapshot = EMFCompareUtils.doContentCompare(roots[0], roots[1]);
-			PapyrusModelCompareEditorInput newInput = new PapyrusModelCompareEditorInput(snapshot, this){
-					public Image getTitleImage() {
-						return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/papyrus_compare_editor.gif").createImage();
-					}	
-			};
-
-
-			String leftLabel = ((CompareUMLFileInput)input).getComparedFiles().get(0).getFullPath().makeRelative().toString();;
-			String rightLabel = ((CompareUMLFileInput)input).getComparedFiles().get(1).getFullPath().makeRelative().toString();;
-			Image im = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/UMLModelFile.gif").createImage();
-			newInput.initLabels(leftLabel, im, rightLabel, im);
+			ModelCompareEditorInput newInput = getCompareInput(roots[0], roots[1]);
+			this.tmpInput = null;
 			super.init(site, newInput);
 		} else {
 			super.init(site, input);
 		}
 	}
 
+	private EObject[] loadPapyrusFiles(final CompareUMLFileInput input) {
+		EObject roots[] = new EObject[2];
 
-	public Object getAdapter(Class key) {
+		for(int i = 0; i < 2; i++) {
+			String filePath = input.getComparedFiles().get(i).getFullPath().toString();
+			URI uri = URI.createFileURI(filePath); //$NON-NLS-1$ //$NON-NLS-2$
+			try {
+				roots[i] = EMFHelper.loadEMFModel(set, uri);
+				Assert.isNotNull(roots[i]);
+			} catch (IOException e) {
+				Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
+			};
+
+			//we load the notation file
+			int index = filePath.lastIndexOf("."); //$NON-NLS-1$
+			String subString = filePath.substring(0, index);
+
+			//we load the .di
+			uri = URI.createFileURI(subString + ".di"); //$NON-NLS-1$
+			Map<?, ?> options = null;
+			if(set.getURIConverter().exists(uri, options)) {
+				try {
+					set.getResource(uri, true).load(options);
+				} catch (IOException e) {
+					Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
+				}
+			}
+
+			//we load the .notation
+			uri = URI.createFileURI(subString + ".notation"); //$NON-NLS-1$
+			if(set.getURIConverter().exists(uri, options)) {
+				try {
+					set.getResource(uri, true).load(options);
+				} catch (IOException e) {
+					Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
+				}
+			}
+
+			//TODO : and if there is other referenced files?
+
+		}
+		return roots;
+	}
+
+	@Override
+	protected ModelCompareEditorInput createModelCompareEditorInput(final ComparisonSnapshot snapshot) {
+		return new PapyrusModelCompareEditorInput(snapshot, this) {
+
+			@Override
+			public Image getTitleImage() {
+				return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/papyrus_compare_editor.gif").createImage();
+			}
+		};
+	}
+
+	@Override
+	protected void configureInput(final PapyrusModelCompareEditorInput input) {
+		String leftLabel = this.tmpInput.getComparedFiles().get(0).getFullPath().makeRelative().toString();;
+		String rightLabel = this.tmpInput.getComparedFiles().get(1).getFullPath().makeRelative().toString();;
+		Image im = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/UMLModelFile.gif").createImage();
+		input.initLabels(leftLabel, im, rightLabel, im);
+
+	}
+
+	@Override
+	public Object getAdapter(final Class key) {
 		if(key.equals(IUndoContext.class)) {
 			// used by undo/redo actions to get their undo context
 			return undoContext;
