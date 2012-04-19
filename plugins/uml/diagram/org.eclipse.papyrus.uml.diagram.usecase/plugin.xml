@@ -1406,7 +1406,7 @@
       point="org.eclipse.ui.menus">
    <menuContribution
          allPopups="false"
-         locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters">
+         locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format">
       <command
             commandId="org.eclipse.papyrus.diagram.usecase.displayasdefaultnamedelement.popup"
             id="displayasdefaultnamedelement.popup"
