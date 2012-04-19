@@ -18,6 +18,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.AssociationCreateCommand;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Class;
@@ -37,6 +38,11 @@ public class CustomDefaultNamedElementItemSemanticEditPolicyTN extends DefaultNa
 				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 			}
 		}
+		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
+			if(UMLElementTypes.Generalization_4010 == req.getElementType()) {
+				return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
+			}
+		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
@@ -46,6 +52,11 @@ public class CustomDefaultNamedElementItemSemanticEditPolicyTN extends DefaultNa
 		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
 			if(UMLElementTypes.Association_4011 == req.getElementType()) {
 				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
+			}
+		}
+		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
+			if(UMLElementTypes.Generalization_4010 == req.getElementType()) {
+				return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 			}
 		}
 		return super.getStartCreateRelationshipCommand(req);
