@@ -21,9 +21,17 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAppliedStereotypeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAppliedStereotypeEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentNameEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameInCEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameInPEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 
 /**
@@ -41,6 +49,14 @@ public class ExternalNodeActorLayoutEditPolicy extends LayoutEditPolicy {
 		case ActorNameEditPartTN.VISUAL_ID:
 		case ActorAppliedStereotypeEditPartTN.VISUAL_ID:
 		case ActorQualifiedNameEditPartTN.VISUAL_ID:
+		//actor in package	
+		case ActorInPackageNameEditPart.VISUAL_ID:
+		case ActorQualifiedNameInPEditPart.VISUAL_ID:
+		case ActorInPackageAppliedStereotypeEditPart.VISUAL_ID:
+		//actor in component
+		case ActorInComponentNameEditPart.VISUAL_ID:
+		case ActorQualifiedNameInCEditPart.VISUAL_ID:
+		case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
 			return new ExternalLabelPrimaryDragRoleEditPolicy();
 		}
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
