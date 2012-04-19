@@ -484,6 +484,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ExternalNodeActorLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Actor"/>
@@ -512,7 +516,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="60"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
@@ -531,13 +540,38 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="100"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.2"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="6041"
+            editPartClassName="ActorQualifiedNameInCEditPart"
+            itemSemanticEditPolicyClassName="ActorQualifiedNameInCItemSemanticEditPolicy">
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.QualifiedNameWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="80"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
         </labels>
       </childNodes>
       <childNodes
@@ -651,6 +685,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ExternalNodeActorLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Actor"/>
@@ -679,7 +717,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="60"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
@@ -698,13 +741,38 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="100"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.2"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="6040"
+            editPartClassName="ActorQualifiedNameInPEditPart"
+            itemSemanticEditPolicyClassName="ActorQualifiedNameInPItemSemanticEditPolicy">
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.QualifiedNameWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="80"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
         </labels>
       </childNodes>
       <childNodes
@@ -988,6 +1056,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCaseChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ExternalNodeActorLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Actor"/>
@@ -1016,7 +1088,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="60"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
@@ -1035,7 +1112,12 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="100"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -1050,7 +1132,12 @@
             itemSemanticEditPolicyClassName="ActorQualifiedNameLabelItemSemanticEditPolicyTN">
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.QualifiedNameWrappingLabelFigure"/>
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.QualifiedNameWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="20"
+                y="80"/>
+          </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
@@ -3080,7 +3167,7 @@
           uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:ExternalParser"
-          uses="/0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.2/@modelFacet"/>
+          uses="/0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.2/@modelFacet /0/@diagram/@childNodes.6/@labels.2/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet"
@@ -3195,5 +3282,10 @@
         genView="/0/@diagram/@topLevelNodes.9"
         name="AbstractShapeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
+        comment="External node label locator"
+        classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
+        genExternalNodeLabel="/0/@diagram/@topLevelNodes.0/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.2 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.6/@labels.2 /0/@diagram/@childNodes.8/@labels.2"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

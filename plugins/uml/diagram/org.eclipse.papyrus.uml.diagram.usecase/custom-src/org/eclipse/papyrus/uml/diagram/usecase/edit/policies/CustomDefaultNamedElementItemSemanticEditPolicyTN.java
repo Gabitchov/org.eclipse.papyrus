@@ -25,14 +25,14 @@ import org.eclipse.uml2.uml.UseCase;
 
 /**
  * this class allow creation of association on default named element if this element is a class
- *
+ * 
  */
 public class CustomDefaultNamedElementItemSemanticEditPolicyTN extends DefaultNamedElementItemSemanticEditPolicyTN {
 
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		EObject eobject=((GraphicalEditPart)getHost()).resolveSemanticElement();
-		if((eobject instanceof Class)||(eobject instanceof Actor)||(eobject instanceof UseCase)) {
+		EObject eobject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
 			if(UMLElementTypes.Association_4011 == req.getElementType()) {
 				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 			}
@@ -42,8 +42,8 @@ public class CustomDefaultNamedElementItemSemanticEditPolicyTN extends DefaultNa
 
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		EObject eobject=((GraphicalEditPart)getHost()).resolveSemanticElement();
-		if((eobject instanceof Class)||(eobject instanceof Actor)||(eobject instanceof UseCase)) {
+		EObject eobject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		if((eobject instanceof Class) || (eobject instanceof Actor) || (eobject instanceof UseCase)) {
 			if(UMLElementTypes.Association_4011 == req.getElementType()) {
 				return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 			}

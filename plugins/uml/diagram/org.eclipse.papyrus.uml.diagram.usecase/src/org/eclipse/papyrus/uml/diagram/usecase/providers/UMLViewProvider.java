@@ -69,6 +69,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameInCEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameInPEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
@@ -430,18 +432,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(ActorNameEditPartTN.VISUAL_ID));
 		label5014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5014 = (Location)label5014.getLayoutConstraint();
-		location5014.setX(0);
-		location5014.setY(5);
+		location5014.setX(20);
+		location5014.setY(60);
 		Node label6029 = createLabel(node, UMLVisualIDRegistry.getType(ActorAppliedStereotypeEditPartTN.VISUAL_ID));
 		label6029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6029 = (Location)label6029.getLayoutConstraint();
-		location6029.setX(0);
-		location6029.setY(5);
+		location6029.setX(20);
+		location6029.setY(100);
 		Node label6037 = createLabel(node, UMLVisualIDRegistry.getType(ActorQualifiedNameEditPartTN.VISUAL_ID));
 		label6037.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6037 = (Location)label6037.getLayoutConstraint();
-		location6037.setX(0);
-		location6037.setY(5);
+		location6037.setX(20);
+		location6037.setY(80);
 		return node;
 	}
 
@@ -779,13 +781,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5031 = createLabel(node, UMLVisualIDRegistry.getType(ActorInComponentNameEditPart.VISUAL_ID));
 		label5031.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5031 = (Location)label5031.getLayoutConstraint();
-		location5031.setX(0);
-		location5031.setY(5);
+		location5031.setX(20);
+		location5031.setY(60);
 		Node label6027 = createLabel(node, UMLVisualIDRegistry.getType(ActorInComponentAppliedStereotypeEditPart.VISUAL_ID));
 		label6027.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6027 = (Location)label6027.getLayoutConstraint();
-		location6027.setX(0);
-		location6027.setY(5);
+		location6027.setX(20);
+		location6027.setY(100);
+		Node label6041 = createLabel(node, UMLVisualIDRegistry.getType(ActorQualifiedNameInCEditPart.VISUAL_ID));
+		label6041.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6041 = (Location)label6041.getLayoutConstraint();
+		location6041.setX(20);
+		location6041.setY(80);
 		return node;
 	}
 
@@ -824,13 +831,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5021 = createLabel(node, UMLVisualIDRegistry.getType(ActorInPackageNameEditPart.VISUAL_ID));
 		label5021.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5021 = (Location)label5021.getLayoutConstraint();
-		location5021.setX(0);
-		location5021.setY(5);
+		location5021.setX(20);
+		location5021.setY(60);
 		Node label6028 = createLabel(node, UMLVisualIDRegistry.getType(ActorInPackageAppliedStereotypeEditPart.VISUAL_ID));
 		label6028.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6028 = (Location)label6028.getLayoutConstraint();
-		location6028.setX(0);
-		location6028.setY(5);
+		location6028.setX(20);
+		location6028.setY(100);
+		Node label6040 = createLabel(node, UMLVisualIDRegistry.getType(ActorQualifiedNameInPEditPart.VISUAL_ID));
+		label6040.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6040 = (Location)label6040.getLayoutConstraint();
+		location6040.setX(20);
+		location6040.setY(80);
 		return node;
 	}
 

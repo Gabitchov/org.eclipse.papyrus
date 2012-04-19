@@ -35,6 +35,8 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameInCEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameInPEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
@@ -517,6 +519,9 @@ public class UMLVisualIDRegistry {
 			if(ActorInComponentAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ActorQualifiedNameInCEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ConstraintInPackageEditPart.VISUAL_ID:
 			if(ConstraintInPackageNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -528,6 +533,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ActorInPackageAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActorQualifiedNameInPEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

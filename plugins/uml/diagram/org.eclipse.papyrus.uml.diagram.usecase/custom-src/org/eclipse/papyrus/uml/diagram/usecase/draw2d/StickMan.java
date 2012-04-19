@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
  * The Class StickMan. This class comes from org.eclipse.uml2.diagram.usecase.draw2d provided by
  * Eclipse.org
  */
-public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFigure{
+public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFigure {
 
 	private static final float BASE_W = 31 - 1;
 
@@ -141,12 +141,10 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Label getStereotypesLabel() {
@@ -156,12 +154,10 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void setQualifiedName(String qualifiedName) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Label getQualifiedNameLabel() {
@@ -176,7 +172,6 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 
 	public void setDepth(int depth) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public WrappingLabel getNameLabel() {
@@ -186,6 +181,5 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
 		// TODO Auto-generated method stub
-		
 	}
 }
