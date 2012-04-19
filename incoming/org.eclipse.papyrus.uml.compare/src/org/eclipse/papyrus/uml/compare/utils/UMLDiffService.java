@@ -78,7 +78,7 @@ public class UMLDiffService {
 	private static void fillRequiredDifferences(final DiffModel diff) {
 		if(fillRequiredDifferencesMethod == null) {
 			try {
-				ReflectHelper.getMethod(DiffService.class, "fillRequiredDifferences", new Class<?>[]{ EObject.class });
+				fillRequiredDifferencesMethod = ReflectHelper.getMethod(DiffService.class, "fillRequiredDifferences", new Class<?>[]{ EObject.class });
 			} catch (SecurityException e) {
 				Activator.log.error(e);
 			} catch (NoSuchMethodException e) {
