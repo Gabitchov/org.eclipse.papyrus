@@ -34,39 +34,68 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.compare.common.Activator;
+import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
+import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 
-
+/**
+ * 
+ * This class listen the close of the nested Compare Editor.
+ * When it is closed,
+ * - it removed it from the model (notation and di files are concerned)
+ * - it remove itself from the list of listener on the editing domain
+ * 
+ */
 public class CloseEditorTriggerListener extends TriggerListener {
 
+	/**
+	 * The listened model of the editor
+	 */
 	private EObject rawModel;
 
+	/** the service registry */
 	private ServicesRegistry registry;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param rawModel
+	 *        the model for the editor to listen
+	 * @param registry
+	 *        the service registry
+	 */
 	public CloseEditorTriggerListener(final EObject rawModel, final ServicesRegistry registry) {
 		this.rawModel = rawModel;
 		this.registry = registry;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.emf.transaction.TriggerListener#trigger(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      org.eclipse.emf.common.notify.Notification)
+	 * 
+	 * @param domain
+	 * @param notification
+	 * @return
+	 */
 	@Override
-	protected Command trigger(TransactionalEditingDomain domain, Notification notification) {
-		int type = notification.getEventType();
-		Object feature = notification.getFeature();
+	protected Command trigger(final TransactionalEditingDomain domain, final Notification notification) {
 		final Object notifier = notification.getNotifier();
 		IPageMngr mngr = null;
 		try {
 			mngr = ServiceUtils.getInstance().getIPageMngr(registry);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.log.error(Messages.CloseEditorTriggerListener_ICantFoundTheIPageManager, e);
 		}
 
 		final IPageMngr mngr2 = mngr;
 		if(notifier instanceof PageRef) {
-			PageRef ref = (PageRef)notifier;
-			EObject pageId = ref.getEmfPageIdentifier();
+			final PageRef ref = (PageRef)notifier;
+			final EObject pageId = ref.getEmfPageIdentifier();
 			if(pageId == rawModel) {
-				CompoundCommand command = new CompoundCommand();
-				Command sashRemoveComd = new RecordingCommand(domain) {
+				final CompoundCommand command = new CompoundCommand();
+				final Command sashRemoveComd = new RecordingCommand(domain) {
 
 					@Override
 					protected void doExecute() {
@@ -76,26 +105,19 @@ public class CloseEditorTriggerListener extends TriggerListener {
 				EList<EObject> tabls = rawModel.eResource().getContents();
 				command.append(sashRemoveComd);
 				command.append(new RemoveCommand(domain, tabls, rawModel));
+				final Command removeListener = new RecordingCommand(domain) {
 
-				//			
-				//			return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Delete Compare Editor", null) {
-				//
-				//				@Override
-				//				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				//
-				////					mngr2.removePage(rawModel);
-				////					int index = ((PageRef)notifier).getParent().getChildren().indexOf(notifier);
-				////					((PageRef)notifier).getParent().removePage(index);
-				//					
-				//					//we remove the rawModel of its resource
-				//					rawModel.eResource().getContents().remove(rawModel);
-				//					return null;
-				//				}
-				//			});
+					@Override
+					protected void doExecute() {
+						//we remove this listener from the editingdomain
+						//it can't be done in the class which set it, because it would be removed too early
+						domain.removeResourceSetListener(CloseEditorTriggerListener.this);
+					}
+				};
+				command.append(removeListener);
 				return command;
 			}
 		}
 		return null;
 	}
-
 }

@@ -83,7 +83,7 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		}
 	}
 
-	 
+
 	/**
 	 * @param servicesRegistry
 	 *        the service registry
@@ -100,8 +100,8 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		addListeners();
 	}
 
-	
-	protected EMFCompareEditor(){
+
+	protected EMFCompareEditor() {
 		//FIXME, used by the compare UMl File Editor, try to merge code	
 		super();
 	}
@@ -134,17 +134,21 @@ public class EMFCompareEditor extends CompareEditor implements IReusableEditor, 
 		}
 	}
 
+	/**
+	 * Remove the listener
+	 */
 	protected void removeListeners() {
-		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
-			TransactionalEditingDomain domain = null;
-			try {
-				domain = EMFCompareEditor.this.servicesRegistry.getService(TransactionalEditingDomain.class);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
-			}
-
-			domain.removeResourceSetListener(closeListener);
-		}
+		//done by the CloseTriggerlistener. Here, it is too early to remove it
+		//		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
+		//			TransactionalEditingDomain domain = null;
+		//			try {
+		//				domain = EMFCompareEditor.this.servicesRegistry.getService(TransactionalEditingDomain.class);
+		//			} catch (ServiceException e) {
+		//				Activator.log.error(e);
+		//			}
+		//
+		//			domain.removeResourceSetListener(closeListener);
+		//		}
 	}
 
 	protected ISashWindowsContainer getISashWindowsContainer() {
