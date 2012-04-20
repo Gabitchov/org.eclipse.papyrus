@@ -44,7 +44,7 @@ public class TestUseCaseLinkOwnedBySource extends TestLinkOwnedBySource {
 	}
 	@Test
 	public void testToManagePackageImport() {
-		testToManageLink(UMLElementTypes.Package_2016,UMLElementTypes.UseCase_2013,UMLElementTypes.PackageImport_4019,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.Package_2016,UMLElementTypes.Package_2016,UMLElementTypes.PackageImport_4019,UMLElementTypes.Package_2016,true);
 	}
 	public void testToManageExtend() {
 		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Extend_4009,UMLElementTypes.Package_2016,true);

@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ConstraintConstrain
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageImportCreateCommand;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageImportReorientCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AbstractionEditPart;
@@ -164,7 +165,6 @@ public class ActorAsRectangleItemSemanticEditPolicyTN extends UMLBaseItemSemanti
 		case AbstractionEditPart.VISUAL_ID:
 		case UsageEditPart.VISUAL_ID:
 		case RealizationEditPart.VISUAL_ID:
-		case PackageImportEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -177,6 +177,8 @@ public class ActorAsRectangleItemSemanticEditPolicyTN extends UMLBaseItemSemanti
 			return getGEFWrapper(reorientCommand.reduce());
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new AssociationReorientCommand(req));
+		case PackageImportEditPart.VISUAL_ID:
+			return getGEFWrapper(new PackageImportReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

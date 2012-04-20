@@ -3312,7 +3312,7 @@
         xsi:type="papyrusgmfgenextension:EditPartUsingReorientService"
         comment="Use the edit service for reorient command (All DirectedRelationship)"
         name="DirectedRelationship"
-        genView="/0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.5 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11"/>
+        genView="/0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.5 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService"
         comment="List of editpart using the delete service"

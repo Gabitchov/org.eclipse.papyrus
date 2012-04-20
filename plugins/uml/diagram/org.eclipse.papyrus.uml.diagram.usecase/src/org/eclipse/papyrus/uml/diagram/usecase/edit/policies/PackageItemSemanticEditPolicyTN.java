@@ -31,7 +31,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ConstraintConstrain
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageImportCreateCommand;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageImportReorientCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageMergeCreateCommand;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.PackageMergeReorientCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AbstractionEditPart;
@@ -154,8 +156,6 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 		case AbstractionEditPart.VISUAL_ID:
 		case UsageEditPart.VISUAL_ID:
 		case RealizationEditPart.VISUAL_ID:
-		case PackageMergeEditPart.VISUAL_ID:
-		case PackageImportEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -166,6 +166,10 @@ public class PackageItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
+		case PackageMergeEditPart.VISUAL_ID:
+			return getGEFWrapper(new PackageMergeReorientCommand(req));
+		case PackageImportEditPart.VISUAL_ID:
+			return getGEFWrapper(new PackageImportReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
