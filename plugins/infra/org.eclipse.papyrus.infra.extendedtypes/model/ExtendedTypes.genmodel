@@ -4,7 +4,7 @@
     editDirectory="/org.eclipse.papyrus.infra.extendedtypes.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.extendedtypes.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.extendedtypes" modelName="ExtendedTypes"
     testsDirectory="/org.eclipse.papyrus.infra.extendedtypes.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//types">
   <foreignModel>ExtendedTypes.ecore</foreignModel>
   <genPackages prefix="Extendedtypes" basePackage="org.eclipse.papyrus.infra" resource="XML"
       disposableProviderFactory="true" ecorePackage="ExtendedTypes.ecore#/">
@@ -22,6 +22,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/preValidation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/preAction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/postAction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/specializedDiagramTypeID"/>
     </genClasses>
     <genClasses ecoreClass="ExtendedTypes.ecore#//IconEntry">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//IconEntry/iconPath"/>
@@ -33,12 +34,5 @@
     </genClasses>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//PreActionConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//PostActionConfiguration"/>
-  </genPackages>
-  <genPackages prefix="Types" ecorePackage="http://www.eclipse.org/uml2/4.0.0/Types#/">
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Integer"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//Real"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/uml2/4.0.0/Types#//UnlimitedNatural"/>
   </genPackages>
 </genmodel:GenModel>

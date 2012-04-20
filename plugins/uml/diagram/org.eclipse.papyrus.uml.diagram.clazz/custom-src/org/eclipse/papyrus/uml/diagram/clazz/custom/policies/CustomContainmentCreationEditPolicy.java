@@ -39,12 +39,13 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditP
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 
 /**
  * The Class CustomContainmentCreationEditPolicy.
  */
-public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
+public class CustomContainmentCreationEditPolicy extends PapyrusCreationEditPolicy {
 
 	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[]{ NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID, ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });
 

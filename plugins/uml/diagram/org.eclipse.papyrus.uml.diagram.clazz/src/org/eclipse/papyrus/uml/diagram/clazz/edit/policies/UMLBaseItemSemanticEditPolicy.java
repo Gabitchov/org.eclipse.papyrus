@@ -126,6 +126,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
@@ -152,6 +153,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -245,19 +247,51 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// check if the type is an extended type, and then create directly the element...
-		IElementType type = req.getElementType();
-		if(type instanceof IExtendedHintedElementType) {
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
-			if(provider == null) {
-				return UnexecutableCommand.INSTANCE;
-			}
-			// Retrieve create command from the Element Edit service
-			ICommand createGMFCommand = provider.getEditCommand(req);
-			return getGEFWrapper(createGMFCommand);
-		}
+		// no more usage of the extended types here. 
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
+		if(provider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
+		if(provider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
+		if(provider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
 	}
 
 	/**

@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPol
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
 
@@ -61,6 +62,7 @@ public class ModelEditPart extends PapyrusDiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised

@@ -13,7 +13,10 @@
 package org.eclipse.papyrus.uml.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ClassCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ComponentCreateCommandCN;
@@ -44,40 +47,92 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicyCN extend
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.InstanceSpecification_3020 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.InstanceSpecification_3020 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InstanceSpecificationCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Component_3021 == req.getElementType()) {
+		if(UMLElementTypes.Component_3021 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ComponentCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Signal_3022 == req.getElementType()) {
+		if(UMLElementTypes.Signal_3022 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new SignalCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Interface_3023 == req.getElementType()) {
+		if(UMLElementTypes.Interface_3023 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InterfaceCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Model_3024 == req.getElementType()) {
+		if(UMLElementTypes.Model_3024 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ModelCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Enumeration_3025 == req.getElementType()) {
+		if(UMLElementTypes.Enumeration_3025 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new EnumerationCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Package_3009 == req.getElementType()) {
+		if(UMLElementTypes.Package_3009 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PackageCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Class_3010 == req.getElementType()) {
+		if(UMLElementTypes.Class_3010 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ClassCreateCommandCN(req));
 		}
-		if(UMLElementTypes.PrimitiveType_3026 == req.getElementType()) {
+		if(UMLElementTypes.PrimitiveType_3026 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new PrimitiveTypeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.DataType_3027 == req.getElementType()) {
+		if(UMLElementTypes.DataType_3027 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new DataTypeCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Comment_3028 == req.getElementType()) {
+		if(UMLElementTypes.Comment_3028 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Constraint_3029 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_3029 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ConstraintCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);

@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.extendedtypes.provider;
+package org.eclipse.papyrus.infra.extendedtypes.provider;
 
 
 import java.util.Collection;
@@ -12,8 +8,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,12 +23,13 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesFactory;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -69,6 +69,7 @@ public class ExtendedElementTypeConfigurationItemProvider
 			addKindNamePropertyDescriptor(object);
 			addSpecializedTypesIDPropertyDescriptor(object);
 			addPreValidationPropertyDescriptor(object);
+			addSpecializedDiagramTypeIDPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -206,6 +207,28 @@ public class ExtendedElementTypeConfigurationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Specialized Diagram Type ID feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSpecializedDiagramTypeIDPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtendedElementTypeConfiguration_specializedDiagramTypeID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendedElementTypeConfiguration_specializedDiagramTypeID_feature", "_UI_ExtendedElementTypeConfiguration_type"),
+				 ExtendedtypesPackage.Literals.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -279,6 +302,7 @@ public class ExtendedElementTypeConfigurationItemProvider
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__HINT:
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__KIND_NAME:
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID:
+			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:

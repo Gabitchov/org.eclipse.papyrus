@@ -38,9 +38,10 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.uml2.uml.Element;
 
-public class CustomPackageReparentCreationEditPolicy extends CreationEditPolicy {
+public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEditPolicy {
 
 	/**
 	 * return a command to reparent both the semantic and view elements.

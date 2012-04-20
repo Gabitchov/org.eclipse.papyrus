@@ -188,13 +188,22 @@ public interface ExtendedtypesPackage extends EPackage {
 	int EXTENDED_ELEMENT_TYPE_CONFIGURATION__POST_ACTION = 8;
 
 	/**
+	 * The feature id for the '<em><b>Specialized Diagram Type ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID = 9;
+
+	/**
 	 * The number of structural features of the '<em>Extended Element Type Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT = 9;
+	int EXTENDED_ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl <em>Icon Entry</em>}' class.
@@ -487,6 +496,17 @@ public interface ExtendedtypesPackage extends EPackage {
 	EReference getExtendedElementTypeConfiguration_PostAction();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getSpecializedDiagramTypeID <em>Specialized Diagram Type ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specialized Diagram Type ID</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getSpecializedDiagramTypeID()
+	 * @see #getExtendedElementTypeConfiguration()
+	 * @generated
+	 */
+	EAttribute getExtendedElementTypeConfiguration_SpecializedDiagramTypeID();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.IconEntry <em>Icon Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -699,6 +719,14 @@ public interface ExtendedtypesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDED_ELEMENT_TYPE_CONFIGURATION__POST_ACTION = eINSTANCE.getExtendedElementTypeConfiguration_PostAction();
+
+		/**
+		 * The meta object literal for the '<em><b>Specialized Diagram Type ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID = eINSTANCE.getExtendedElementTypeConfiguration_SpecializedDiagramTypeID();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl <em>Icon Entry</em>}' class.

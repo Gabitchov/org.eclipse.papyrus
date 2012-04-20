@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
 import org.eclipse.papyrus.infra.extendedtypes.preferences.ExtendedTypesPreferences;
 import org.eclipse.papyrus.infra.extendedtypes.types.ExtendedHintedTypeFactory;
 import org.osgi.framework.Bundle;
@@ -259,9 +259,13 @@ public class ExtendedTypesRegistry {
 					// create and add in the standard registry the required element type from its configuration
 					@SuppressWarnings("restriction")
 					ISpecializationType createSpecializationType = ExtendedHintedTypeFactory.getInstance().createSpecializationType(new ExtendedSemanticTypeDescriptor(elementTypeConfiguration));
-
 					// register it, so it should be accessible next time
 					ElementTypeRegistry.getInstance().register(createSpecializationType);
+					// retrieve papyrus client context and add the registered type to this context
+					IClientContext papyrusContext = ClientContextManager.getInstance().getClientContext("org.eclipse.papyrus.infra.services.edit.TypeContext");
+					if(papyrusContext != null) {
+						papyrusContext.bindId(id);
+					}
 					return createSpecializationType;
 				}
 			}

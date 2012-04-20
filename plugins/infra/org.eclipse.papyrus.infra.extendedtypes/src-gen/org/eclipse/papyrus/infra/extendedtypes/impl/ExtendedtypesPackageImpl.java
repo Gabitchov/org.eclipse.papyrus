@@ -20,8 +20,6 @@ import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration;
 import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
-import org.eclipse.uml2.types.TypesPackage;
-import org.eclipse.uml2.types.internal.impl.TypesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,16 +119,11 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		// Initialize simple dependencies
 		ConfigurationPackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theExtendedtypesPackage.createPackageContents();
-		theTypesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theExtendedtypesPackage.initializePackageContents();
-		theTypesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theExtendedtypesPackage.freeze();
@@ -263,6 +256,15 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExtendedElementTypeConfiguration_SpecializedDiagramTypeID() {
+		return (EAttribute)extendedElementTypeConfigurationEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIconEntry() {
 		return iconEntryEClass;
 	}
@@ -372,6 +374,7 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		createEReference(extendedElementTypeConfigurationEClass, EXTENDED_ELEMENT_TYPE_CONFIGURATION__PRE_VALIDATION);
 		createEReference(extendedElementTypeConfigurationEClass, EXTENDED_ELEMENT_TYPE_CONFIGURATION__PRE_ACTION);
 		createEReference(extendedElementTypeConfigurationEClass, EXTENDED_ELEMENT_TYPE_CONFIGURATION__POST_ACTION);
+		createEAttribute(extendedElementTypeConfigurationEClass, EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID);
 
 		iconEntryEClass = createEClass(ICON_ENTRY);
 		createEAttribute(iconEntryEClass, ICON_ENTRY__ICON_PATH);
@@ -435,6 +438,7 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		initEReference(getExtendedElementTypeConfiguration_PreValidation(), theConfigurationPackage.getQueryConfiguration(), null, "preValidation", null, 0, -1, ExtendedElementTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendedElementTypeConfiguration_PreAction(), this.getPreActionConfiguration(), null, "preAction", null, 0, -1, ExtendedElementTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendedElementTypeConfiguration_PostAction(), this.getPostActionConfiguration(), null, "postAction", null, 0, -1, ExtendedElementTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExtendedElementTypeConfiguration_SpecializedDiagramTypeID(), ecorePackage.getEString(), "specializedDiagramTypeID", null, 0, 1, ExtendedElementTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iconEntryEClass, IconEntry.class, "IconEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIconEntry_IconPath(), ecorePackage.getEString(), "iconPath", null, 0, 1, IconEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -92,7 +92,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.provider.ModifySemanticValuesActionConfigurationItemProviderAdapterFactory;
-import org.eclipse.papyrus.extendedtypes.provider.ExtendedtypesItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedtypesItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationItemProviderAdapterFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;

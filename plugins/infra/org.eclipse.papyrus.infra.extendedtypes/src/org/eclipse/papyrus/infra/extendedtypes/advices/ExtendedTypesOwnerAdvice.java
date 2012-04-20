@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.Activator;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
@@ -98,5 +99,42 @@ public class ExtendedTypesOwnerAdvice extends AbstractEditHelperAdvice {
 			return super.getBeforeCreateCommand(request);
 		}
 		return super.getBeforeCreateCommand(request);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getBeforeConfigureCommand(ConfigureRequest request) {
+		return super.getBeforeConfigureCommand(request);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
+		//		IElementType type = request.getTypeToConfigure();
+		//		if(type instanceof IExtendedHintedElementType) {
+		//			CompositeCommand compositeCommand = new CompositeCommand("AfterConfigureCommand");
+		//			IExtendedHintedElementType extendedHintedElementType = (IExtendedHintedElementType)type;
+		//			ExtendedElementTypeConfiguration configuration = extendedHintedElementType.getConfiguration();
+		//			for(PostActionConfiguration postActionConfiguration : configuration.getPostAction()) {
+		//				ICommand command = null;
+		//				try {
+		//					command = ExtendedElementTypeActionService.getInstance().getICommand(request.getElementsToEdit(), postActionConfiguration);
+		//				} catch (ProviderNotFoundException e) {
+		//					Activator.log.error(e);
+		//				}
+		//				if(command != null) {
+		//					compositeCommand.add(command);
+		//				}
+		//			}
+		//			// return the composite command only if it is not empty
+		//			if(!compositeCommand.isEmpty()) {
+		//				return compositeCommand;
+		//			}
+		//		}
+		return super.getAfterConfigureCommand(request);
 	}
 }

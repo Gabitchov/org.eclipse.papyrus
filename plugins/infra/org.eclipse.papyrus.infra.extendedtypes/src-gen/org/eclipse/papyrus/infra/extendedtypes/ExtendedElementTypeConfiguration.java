@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getPreValidation <em>Pre Validation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getPreAction <em>Pre Action</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getPostAction <em>Post Action</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getSpecializedDiagramTypeID <em>Specialized Diagram Type ID</em>}</li>
  * </ul>
  * </p>
  *
@@ -230,5 +231,31 @@ public interface ExtendedElementTypeConfiguration extends EObject {
 	 * @generated
 	 */
 	EList<PostActionConfiguration> getPostAction();
+
+	/**
+	 * Returns the value of the '<em><b>Specialized Diagram Type ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Specialized Diagram Type ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Specialized Diagram Type ID</em>' attribute.
+	 * @see #setSpecializedDiagramTypeID(String)
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getExtendedElementTypeConfiguration_SpecializedDiagramTypeID()
+	 * @model
+	 * @generated
+	 */
+	String getSpecializedDiagramTypeID();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration#getSpecializedDiagramTypeID <em>Specialized Diagram Type ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Specialized Diagram Type ID</em>' attribute.
+	 * @see #getSpecializedDiagramTypeID()
+	 * @generated
+	 */
+	void setSpecializedDiagramTypeID(String value);
 
 } // ExtendedElementTypeConfiguration

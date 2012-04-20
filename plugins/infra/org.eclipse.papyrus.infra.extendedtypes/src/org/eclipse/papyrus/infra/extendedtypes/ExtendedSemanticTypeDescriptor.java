@@ -11,8 +11,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationTypeDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 import org.eclipse.papyrus.infra.extendedtypes.types.ExtendedHintedTypeFactory;
 import org.osgi.framework.Bundle;
 

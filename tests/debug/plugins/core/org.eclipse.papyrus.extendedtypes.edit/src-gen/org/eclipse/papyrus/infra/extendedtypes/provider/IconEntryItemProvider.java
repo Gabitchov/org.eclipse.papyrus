@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.extendedtypes.provider;
+package org.eclipse.papyrus.infra.extendedtypes.provider;
 
 
 import java.util.Collection;
@@ -12,7 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,11 +21,12 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.extendedtypes.IconEntry} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.IconEntry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

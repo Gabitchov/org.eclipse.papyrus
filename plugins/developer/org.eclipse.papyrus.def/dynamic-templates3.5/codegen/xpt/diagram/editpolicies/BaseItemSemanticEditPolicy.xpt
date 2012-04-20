@@ -113,6 +113,11 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 	«EXPAND getConfigureCommand-»
 	«EXPAND getCreateRelationshipCommand-»
 	«EXPAND getCreateCommand-»
+	// RS: add code for extended types
+	«EXPAND getCreateExtendedTypeCommand-»
+	«EXPAND getExtendedStartCreateRelationshipCommand-»
+	«EXPAND getExtendedCompleteCreateRelationshipCommand-»
+	// RS: End of add code for extended types
 	«EXPAND getSetCommand-»
 	«EXPAND getEditContextCommand-»
 	«EXPAND getDestroyElementCommand-»
@@ -123,6 +128,7 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 	«EXPAND getReorientRelationshipCommand-»
 	
 	«EXPAND getGEFWrapper-»
+	
 «ENDDEFINE»
 «DEFINE getEditHelperCommand FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
@@ -216,22 +222,45 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 «DEFINE getCreateCommand FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::generatedMemberComment»
  protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
-        // check if the type is an extended type, and then create directly the element...
-        org.eclipse.gmf.runtime.emf.type.core.IElementType type = req.getElementType();
-        if(type instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-             org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
-              if(provider == null) {
-                    return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
-              }
-
-              // Retrieve create command from the Element Edit service
-              org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(req);
-
-              return getGEFWrapper(createGMFCommand);
-        }
-
+ 		// no more usage of the extended types here. 
         return null;
   }
+«ENDDEFINE»
+«DEFINE getCreateExtendedTypeCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getExtendedTypeCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(request.getContainer());
+		if(provider == null) {
+			return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+		}
+		// Retrieve create command from the Element Edit service
+		org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(request);
+		return getGEFWrapper(createGMFCommand);
+	}
+«ENDDEFINE»
+«DEFINE getExtendedStartCreateRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getExtendedStartCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+	org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(requestElementType);
+	if(provider == null) {
+		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	}
+	// Retrieve create command from the Element Edit service
+	org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(request);
+	return getGEFWrapper(createGMFCommand);
+}
+«ENDDEFINE»
+«DEFINE getExtendedCompleteCreateRelationshipCommand FOR gmfgen::GenDiagram-»
+«EXPAND xpt::Common::generatedMemberComment»
+ protected org.eclipse.gef.commands.Command getExtendedCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+	org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(requestElementType);
+	if(provider == null) {
+		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	}
+	// Retrieve create command from the Element Edit service
+	org.eclipse.gmf.runtime.common.core.command.ICommand createGMFCommand = provider.getEditCommand(request);
+	return getGEFWrapper(createGMFCommand);
+}
 «ENDDEFINE»
 «DEFINE getSetCommand FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::generatedMemberComment»

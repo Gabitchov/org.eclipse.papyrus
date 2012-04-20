@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.extendedtypes.provider;
+package org.eclipse.papyrus.infra.extendedtypes.provider;
 
 
 import java.util.Collection;
@@ -12,21 +8,23 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
+
+import org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.extendedtypes.PostActionConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PostActionConfigurationItemProvider
+public class PreActionConfigurationItemProvider
 	extends ActionConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -40,7 +38,7 @@ public class PostActionConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PostActionConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public PreActionConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,10 +65,10 @@ public class PostActionConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PostActionConfiguration)object).getId();
+		String label = ((PreActionConfiguration)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_PostActionConfiguration_type") :
-			getString("_UI_PostActionConfiguration_type") + " " + label;
+			getString("_UI_PreActionConfiguration_type") :
+			getString("_UI_PreActionConfiguration_type") + " " + label;
 	}
 
 	/**

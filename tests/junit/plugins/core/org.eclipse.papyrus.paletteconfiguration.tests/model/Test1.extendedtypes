@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7" xmlns:modifysemanticvaluesactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:extendedtypes="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" id="test1.palette">
+<extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:extendedtypes="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7" xmlns:modifysemanticvaluesactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" id="test1.palette">
   <elementType name="Metaclass " id="org.eclipse.papyrus.uml.extended.tests.Class_2008_Metaclass" hint="2008" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
       <featuresToSet featureName="isAbstract">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
-      <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
-    </value>
-  </featuresToSet>
-  <featuresToSet featureName="visibility">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
-  </featuresToSet>
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+      <featuresToSet featureName="visibility">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
+      </featuresToSet>
     </postAction>
     <postAction xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration">
       <stereotypesToApply stereotypeQualifiedName="Standard::Metaclass" updateName="true">
@@ -21,16 +21,16 @@
   </elementType>
   <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3004_Metaclass" hint="3004" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
       <featuresToSet featureName="isAbstract">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
-      <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
-    </value>
-  </featuresToSet>
-  <featuresToSet featureName="visibility">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
-  </featuresToSet>
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+      <featuresToSet featureName="visibility">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
+      </featuresToSet>
     </postAction>
     <postAction xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration">
       <stereotypesToApply stereotypeQualifiedName="Standard::Metaclass" updateName="true">
@@ -40,16 +40,16 @@
   </elementType>
   <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3008_Metaclass" hint="3008" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
       <featuresToSet featureName="isAbstract">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
-      <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
-    </value>
-  </featuresToSet>
-  <featuresToSet featureName="visibility">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
-  </featuresToSet>
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+      <featuresToSet featureName="visibility">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
+      </featuresToSet>
     </postAction>
     <postAction xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration">
       <stereotypesToApply stereotypeQualifiedName="Standard::Metaclass" updateName="true">
@@ -59,16 +59,16 @@
   </elementType>
   <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3010_Metaclass" hint="3010" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
       <featuresToSet featureName="isAbstract">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
-      <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
-    </value>
-  </featuresToSet>
-  <featuresToSet featureName="visibility">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
-  </featuresToSet>
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+      <featuresToSet featureName="visibility">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
+      </featuresToSet>
     </postAction>
     <postAction xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration">
       <stereotypesToApply stereotypeQualifiedName="Standard::Metaclass" updateName="true">
@@ -78,16 +78,16 @@
   </elementType>
   <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3014_Metaclass" hint="3014" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
       <featuresToSet featureName="isAbstract">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
-      <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
-    </value>
-  </featuresToSet>
-  <featuresToSet featureName="visibility">
-    <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
-  </featuresToSet>
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+      <featuresToSet featureName="visibility">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:DynamicValue"/>
+      </featuresToSet>
     </postAction>
     <postAction xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration">
       <stereotypesToApply stereotypeQualifiedName="Standard::Metaclass" updateName="true">
@@ -95,4 +95,100 @@
       </stereotypesToApply>
     </postAction>
   </elementType>
+  <elementType name="TestAbstractClassExtendedElementType2008" id="org.eclipse.papyrus.uml.extended.tests.Class_2008_Abstract" hint="2008" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Class_2008">
+    <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+  </elementType>
+  <elementType name="TestAbstractClassExtendedElementType3004" id="org.eclipse.papyrus.uml.extended.tests.Class_3004_Abstract" hint="3004" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Class_3004">
+    <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+  </elementType>
+  <elementType name="TestAbstractClassExtendedElementType3008" id="org.eclipse.papyrus.uml.extended.tests.Class_3008_Abstract" hint="3008" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Class_3008">
+    <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+  </elementType>
+  <elementType name="TestAbstractClassExtendedElementType3010" id="org.eclipse.papyrus.uml.extended.tests.Class_3010_Abstract" hint="3010" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Class_3010">
+    <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+  </elementType>
+  <elementType name="TestAbstractClassExtendedElementType3014" id="org.eclipse.papyrus.uml.extended.tests.Class_3014_Abstract" hint="3014" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Class_3014">
+    <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+  </elementType>
+  <elementType name="TestDependencyExtendedElementType2014" id="org.eclipse.papyrus.uml.extended.tests.Dependency_2014_Abstract" hint="2014" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014">
+    <iconEntry iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
+    <!--
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+    -->
+  </elementType>
+   <elementType name="TestDependencyExtendedElementType4008" id="org.eclipse.papyrus.uml.extended.tests.Dependency_4008_Abstract" hint="4008" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008">
+    <iconEntry iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
+    <!--
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+    -->
+  </elementType> 
+  <!-- 
+  <elementType name="TestDependencyExtendedElementType4018" id="org.eclipse.papyrus.uml.extended.tests.Dependency_4018_Abstract" hint="4018" specializedDiagramTypeID="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018">
+    <iconEntry iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
+    
+    <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="modifysemanticvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </postAction>
+   
+  </elementType>
+   -->
 </extendedtypes:ExtendedElementTypeSet>

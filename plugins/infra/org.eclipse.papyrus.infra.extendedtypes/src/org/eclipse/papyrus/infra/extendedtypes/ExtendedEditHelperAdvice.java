@@ -19,8 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.providers.ExtendedElementTypeActionService;
 import org.eclipse.papyrus.infra.extendedtypes.providers.ProviderNotFoundException;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
@@ -104,5 +102,6 @@ public class ExtendedEditHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getAfterCreateCommand(CreateElementRequest request) {
 		return super.getAfterCreateCommand(request);
 	}
+
 
 }

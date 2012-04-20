@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.ExtendedPluginPaletteProvider;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -90,19 +91,24 @@ public class EXtendedPluginPaletteProviderTests_PapyrusService implements ITestC
 		//check root now
 		List rootChildren = root.getChildren();
 		assertNotNull("Root children should not be null", rootChildren);
-		assertTrue("Root children should be size 1", rootChildren.size() == 1); // one drawer is contributed
+		Assert.assertEquals("Root children should be size 1", 1, rootChildren.size()); // one drawer is contributed
 
 		for(Object drawer : rootChildren) {
 			assertTrue("Child of the root is not a drawer: " + drawer, drawer instanceof org.eclipse.gef.palette.PaletteDrawer);
 			List toolsAndStack = ((org.eclipse.gef.palette.PaletteDrawer)drawer).getChildren();
-			assertTrue("Drawer should have 3 children: 1 stack and 2 tools.", toolsAndStack.size() == 3);
+			Assert.assertEquals("Drawer should have 4 children: 1 stack and 3 tools.", 4, toolsAndStack.size());
 
 			Object tool0 = toolsAndStack.get(0);
 			assertTrue("first element should be a Tool", tool0 instanceof PaletteToolEntry);
 			assertTrue("first element should have id palettetest1.tool0", ((PaletteToolEntry)tool0).getId().equals("palettetest1.tool0"));
 			assertTrue("first element should have label MetaClass", ((PaletteToolEntry)tool0).getLabel().equals("MetaClass"));
 
-			Object stack1 = toolsAndStack.get(1);
+			Object tool1 = toolsAndStack.get(1);
+			assertTrue("first element should be a Tool", tool1 instanceof PaletteToolEntry);
+			Assert.assertEquals("first element should have id palettetest2.class", "palettetest2.class", ((PaletteToolEntry)tool1).getId());
+			Assert.assertEquals("first element should have label Abstract Class", "Abstract Class", ((PaletteToolEntry)tool1).getLabel());
+
+			Object stack1 = toolsAndStack.get(2);
 			assertTrue("2nd element should be a Stack", stack1 instanceof PaletteStack);
 			assertTrue("2nd element should have id palettetest1.stack1", ((PaletteStack)stack1).getId().equals("palettetest1.stack1"));
 			assertTrue("2nd element should have label Stack 1", ((PaletteStack)stack1).getLabel().equals("Stack 1"));
@@ -120,7 +126,7 @@ public class EXtendedPluginPaletteProviderTests_PapyrusService implements ITestC
 			assertTrue("first element should have label \"Property\" but is " + ((PaletteToolEntry)stackChild).getLabel(), ((PaletteToolEntry)stackChild).getLabel().equals("Property"));
 
 
-			Object tool3 = toolsAndStack.get(2);
+			Object tool3 = toolsAndStack.get(3);
 			assertTrue("3rd element should be a Tool", tool3 instanceof PaletteToolEntry);
 			assertTrue("3rd element should have id palettetest1.tool3", ((PaletteToolEntry)tool3).getId().equals("palettetest1.tool3"));
 			assertTrue("3rd element should have label \"Dependency\", but is " + ((PaletteToolEntry)tool3).getLabel(), ((PaletteToolEntry)tool3).getLabel().equals("Dependency"));

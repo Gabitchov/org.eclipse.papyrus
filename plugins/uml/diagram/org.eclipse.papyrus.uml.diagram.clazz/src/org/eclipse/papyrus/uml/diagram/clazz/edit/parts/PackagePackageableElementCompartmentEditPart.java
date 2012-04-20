@@ -32,6 +32,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PackagePackageableEle
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * @generated
@@ -63,7 +64,7 @@ public class PackagePackageableElementCompartmentEditPart extends AbstractPackag
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackagePackageableElementCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised

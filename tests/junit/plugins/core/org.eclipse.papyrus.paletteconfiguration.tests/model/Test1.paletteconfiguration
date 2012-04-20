@@ -11,19 +11,37 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3010_Metaclass"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3014_Metaclass"/>
     </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest2.class" label="Abstract Class" description="test - UML Abstract Class">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Class.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_2008_Abstract"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3004_Abstract"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3008_Abstract"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3010_Abstract"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3014_Abstract"/>
+    </ownedConfigurations>
     <ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id="palettetest1.stack1" label="Stack 1" description="test Stack">
-    	<ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.operation" label="Operation" description="Test - UML Operation">
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.operation" label="Operation" description="Test - UML Operation">
         <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Operation.gif"/>
         <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
         <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3007"/>
         <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3013"/>
         <elementDescriptors elementTypeId="org.eclipse.papyrus.diagram.clazz.Operation_3019"/>
       </ownedConfigurations>
-      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"  id="palettetest1.property" label="Property" description="test - UML Property"/>
-      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.class" label="Class" description="test - UML Class"/>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.property" label="Property" description="test - UML Property"/>
+      <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.class" label="Class" description="test - UML Class">
+        <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Class.gif"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_2008_Abstract"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3004_Abstract"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3008_Abstract"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3010_Abstract"/>
+        <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Class_3014_Abstract"/>
+      </ownedConfigurations>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.tool3" label="Dependency" description="Test - Simple Dependency">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettetest1.tool3" label="Dependency" description="Test - Extended Dependency" kind="ConnectionTool">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Dependency.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Dependency_2014_Abstract"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Dependency_4008_Abstract"/>
+      <!--<elementDescriptors elementTypeId="org.eclipse.papyrus.uml.extended.tests.Dependency_4018_Abstract"/>-->
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

@@ -21,7 +21,7 @@ public interface ITestConstants {
 	public final static String FRAGMENT_ID = "org.eclipse.papyrus.paletteconfiguration.tests";
 
 	/** bundle id */
-	public final static String BUNDLE_ID = "org.eclipse.papyrus.paletteconfiguration";
+	public final static String BUNDLE_ID = "org.eclipse.papyrus.uml.diagram.paletteconfiguration";
 
 	/** id of the test 1 configuration */
 	public static final String PALETTE_TEST1_ID = "org.eclipse.papyrus.paletteconfiguration.tests.palettetest1";

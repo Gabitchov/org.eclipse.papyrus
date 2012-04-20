@@ -43,6 +43,10 @@
         <element xmi:type="ecore:EAttribute" href="ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/specializedTypesID"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_4DzTceA3Ed-0CYOJPs0ewQ"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_u04IYIiaEeGlC_7TvaBunA" type="2001">
+        <element xmi:type="ecore:EAttribute" href="ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/specializedDiagramTypeID"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_u04IYYiaEeGlC_7TvaBunA"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_D22yJeA1Ed-0CYOJPs0ewQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_D22yJuA1Ed-0CYOJPs0ewQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_D22yJ-A1Ed-0CYOJPs0ewQ"/>

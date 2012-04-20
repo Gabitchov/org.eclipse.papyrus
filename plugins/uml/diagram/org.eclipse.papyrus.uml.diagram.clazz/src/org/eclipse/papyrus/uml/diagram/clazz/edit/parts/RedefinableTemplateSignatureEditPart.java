@@ -52,6 +52,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.RedefinableTemplateSi
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.swt.graphics.Color;
 
@@ -86,7 +87,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new RedefinableTemplateSignatureItemSemanticEditPolicy());

@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.extendedtypes.provider;
+package org.eclipse.papyrus.infra.extendedtypes.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +8,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -23,6 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.eclipse.papyrus.infra.extendedtypes.util.ExtendedtypesAdapterFactory;
 
 /**
@@ -74,7 +72,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.extendedtypes.ExtendedElementTypeSet} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,7 +80,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	protected ExtendedElementTypeSetItemProvider extendedElementTypeSetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.extendedtypes.ExtendedElementTypeSet}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,7 +95,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -105,7 +103,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	protected ExtendedElementTypeConfigurationItemProvider extendedElementTypeConfigurationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.extendedtypes.ExtendedElementTypeConfiguration}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +118,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.extendedtypes.IconEntry} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.extendedtypes.IconEntry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,7 +126,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	protected IconEntryItemProvider iconEntryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.extendedtypes.IconEntry}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.IconEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

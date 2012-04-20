@@ -42,6 +42,7 @@ import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedElementTypeConfigurationImpl#getPreValidation <em>Pre Validation</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedElementTypeConfigurationImpl#getPreAction <em>Pre Action</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedElementTypeConfigurationImpl#getPostAction <em>Post Action</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedElementTypeConfigurationImpl#getSpecializedDiagramTypeID <em>Specialized Diagram Type ID</em>}</li>
  * </ul>
  * </p>
  *
@@ -177,6 +178,26 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected EList<PostActionConfiguration> postAction;
+
+	/**
+	 * The default value of the '{@link #getSpecializedDiagramTypeID() <em>Specialized Diagram Type ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializedDiagramTypeID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SPECIALIZED_DIAGRAM_TYPE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSpecializedDiagramTypeID() <em>Specialized Diagram Type ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializedDiagramTypeID()
+	 * @generated
+	 * @ordered
+	 */
+	protected String specializedDiagramTypeID = SPECIALIZED_DIAGRAM_TYPE_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -377,6 +398,27 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getSpecializedDiagramTypeID() {
+		return specializedDiagramTypeID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSpecializedDiagramTypeID(String newSpecializedDiagramTypeID) {
+		String oldSpecializedDiagramTypeID = specializedDiagramTypeID;
+		specializedDiagramTypeID = newSpecializedDiagramTypeID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID, oldSpecializedDiagramTypeID, specializedDiagramTypeID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -416,6 +458,8 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 				return getPreAction();
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__POST_ACTION:
 				return getPostAction();
+			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID:
+				return getSpecializedDiagramTypeID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -460,6 +504,9 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 				getPostAction().clear();
 				getPostAction().addAll((Collection<? extends PostActionConfiguration>)newValue);
 				return;
+			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID:
+				setSpecializedDiagramTypeID((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -499,6 +546,9 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__POST_ACTION:
 				getPostAction().clear();
 				return;
+			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID:
+				setSpecializedDiagramTypeID(SPECIALIZED_DIAGRAM_TYPE_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -529,6 +579,8 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 				return preAction != null && !preAction.isEmpty();
 			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__POST_ACTION:
 				return postAction != null && !postAction.isEmpty();
+			case ExtendedtypesPackage.EXTENDED_ELEMENT_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID:
+				return SPECIALIZED_DIAGRAM_TYPE_ID_EDEFAULT == null ? specializedDiagramTypeID != null : !SPECIALIZED_DIAGRAM_TYPE_ID_EDEFAULT.equals(specializedDiagramTypeID);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -553,6 +605,8 @@ public class ExtendedElementTypeConfigurationImpl extends EObjectImpl implements
 		result.append(kindName);
 		result.append(", specializedTypesID: ");
 		result.append(specializedTypesID);
+		result.append(", specializedDiagramTypeID: ");
+		result.append(specializedDiagramTypeID);
 		result.append(')');
 		return result.toString();
 	}

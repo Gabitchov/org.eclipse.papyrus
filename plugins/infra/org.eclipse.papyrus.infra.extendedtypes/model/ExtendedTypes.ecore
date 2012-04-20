@@ -24,6 +24,8 @@
         eType="#//PreActionConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="postAction" upperBound="-1"
         eType="#//PostActionConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specializedDiagramTypeID"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IconEntry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

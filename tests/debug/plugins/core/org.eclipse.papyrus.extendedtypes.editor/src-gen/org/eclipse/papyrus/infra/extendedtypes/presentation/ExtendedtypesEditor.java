@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.extendedtypes.presentation;
+package org.eclipse.papyrus.infra.extendedtypes.presentation;
 
 
 import java.io.IOException;
@@ -91,7 +87,7 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.extendedtypes.provider.ExtendedtypesItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedtypesItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationItemProviderAdapterFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -577,7 +573,7 @@ public class ExtendedtypesEditor
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
 					(Diagnostic.OK,
-					 "org.eclipse.papyrus.extendedtypes.editor",
+					 "org.eclipse.papyrus.infra.extendedtypes.editor",
 					 0,
 					 null,
 					 new Object [] { editingDomain.getResourceSet() });
@@ -938,7 +934,7 @@ public class ExtendedtypesEditor
 			BasicDiagnostic basicDiagnostic =
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "org.eclipse.papyrus.extendedtypes.editor",
+					 "org.eclipse.papyrus.infra.extendedtypes.editor",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
 					 new Object [] { exception == null ? (Object)resource : exception });
@@ -949,7 +945,7 @@ public class ExtendedtypesEditor
 			return
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "org.eclipse.papyrus.extendedtypes.editor",
+					 "org.eclipse.papyrus.infra.extendedtypes.editor",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
 					 new Object[] { exception });

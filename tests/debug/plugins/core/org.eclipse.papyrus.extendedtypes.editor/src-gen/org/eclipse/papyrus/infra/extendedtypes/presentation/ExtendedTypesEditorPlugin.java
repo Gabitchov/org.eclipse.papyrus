@@ -1,22 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.extendedtypes.presentation;
+package org.eclipse.papyrus.infra.extendedtypes.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+
 import org.eclipse.emf.facet.infra.query.edit.provider.QueryEditPlugin;
-import org.eclipse.papyrus.extendedtypes.provider.ExtendedTypesEditPlugin;
+
 import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationEditPlugin;
+
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
- * This is the central singleton for the ModifySemanticValuesActionConfiguration editor plugin.
+ * This is the central singleton for the ExtendedTypes editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -49,7 +50,6 @@ public final class ExtendedTypesEditorPlugin extends EMFPlugin {
 			(new ResourceLocator [] {
 				ConfigurationEditPlugin.INSTANCE,
 				EcoreEditPlugin.INSTANCE,
-				ExtendedTypesEditPlugin.INSTANCE,
 				QueryEditPlugin.INSTANCE,
 				UMLEditPlugin.INSTANCE,
 			});

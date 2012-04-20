@@ -11,7 +11,7 @@ import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.facet.infra.query.edit.provider.QueryEditPlugin;
-import org.eclipse.papyrus.extendedtypes.provider.ExtendedTypesEditPlugin;
+import org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedTypesEditPlugin;
 import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationEditPlugin;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 

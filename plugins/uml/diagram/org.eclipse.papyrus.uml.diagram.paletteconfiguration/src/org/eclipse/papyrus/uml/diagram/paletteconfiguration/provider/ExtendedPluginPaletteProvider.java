@@ -198,6 +198,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 				/**
 				 * {@inheritDoc}
 				 */
+				@Override
 				public ImageDescriptor caseDrawerConfiguration(DrawerConfiguration object) {
 					return ExtendedPluginPaletteProvider.DEFAULT_DRAWER_IMAGE_DESCRIPTOR;
 				};
@@ -205,6 +206,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 				/**
 				 * {@inheritDoc}
 				 */
+				@Override
 				public ImageDescriptor caseToolConfiguration(ToolConfiguration object) {
 					return ExtendedPluginPaletteProvider.DEFAULT_TOOL_IMAGE_DESCRIPTOR;
 				};
@@ -212,6 +214,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 				/**
 				 * {@inheritDoc}
 				 */
+				@Override
 				public ImageDescriptor caseStackConfiguration(StackConfiguration object) {
 					return ExtendedPluginPaletteProvider.DEFAULT_STACK_IMAGE_DESCRIPTOR;
 				};
@@ -219,6 +222,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 				/**
 				 * {@inheritDoc}
 				 */
+				@Override
 				public ImageDescriptor defaultCase(org.eclipse.emf.ecore.EObject object) {
 					return null;
 				};
@@ -590,7 +594,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 			if(toolEntry instanceof ExtendedCreationToolEntry) {
 				return new AspectUnspecifiedTypeCreationTool(((ExtendedCreationToolEntry)toolEntry).getElementTypes());
 			} else if(toolEntry instanceof ExtendedConnectionToolEntry) {
-				return new AspectUnspecifiedTypeConnectionTool(((ExtendedCreationToolEntry)toolEntry).getElementTypes());
+				return new AspectUnspecifiedTypeConnectionTool(((ExtendedConnectionToolEntry)toolEntry).getElementTypes());
 			}
 			Activator.log.warn("Impossible to create a tool for the given tool id: " + toolId + ". Tool Entry found was :" + toolEntry);
 			return null;
