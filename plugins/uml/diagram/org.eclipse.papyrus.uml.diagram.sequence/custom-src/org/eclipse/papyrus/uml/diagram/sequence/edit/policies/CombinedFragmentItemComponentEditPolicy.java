@@ -13,50 +13,49 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentDeleteHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.Element;
 
 public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy {
-
-
 
 	/**
 	 * Delete Combined fragment and child from the view. Also delete message if user wants. {@inheritDoc}
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-
+ 
 		if(getEditingDomain() != null) {
 			CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-			cmd.setTransactionNestingEnabled(false);
-			cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
-
+			cmd.setTransactionNestingEnabled(true);  
+			
+			CommandProxy deleteView = new CommandProxy(super.createDeleteViewCommand(deleteRequest));
 			if(getEObject() instanceof CombinedFragment) {
-				// Get the elements associated with the CF
-				List<Element> elements = SequenceUtil.getCombinedFragmentAssociatedElement((CombinedFragment)getEObject());
-				// Create the delete view commands
-				SequenceDeleteHelper.deleteView(cmd, elements, getEditingDomain());
+				CombinedFragment cf = (CombinedFragment)getEObject();
+				CombinedFragmentEditPart host = (CombinedFragmentEditPart)getHost();
+				
+				ICommand prompt = CombinedFragmentDeleteHelper.createDeleteViewCommand(cf, getEditingDomain(), host);
+				cmd.add(prompt);
 			}
+			cmd.add(deleteView);
 			return new ICommandProxy(cmd.reduce());
 		}
 
 		return null;
 	}
+
 
 	/**
 	 * Copy from superclass as visibility is private

@@ -825,7 +825,31 @@ public class CommandHelper {
 		if(element instanceof Interaction) {
 			gate = ((Interaction)element).createFormalGate(null);
 		} else if(element instanceof CombinedFragment) {
-			gate = ((CombinedFragment)element).createCfragmentGate(null);
+			CombinedFragment combinedFragment = (CombinedFragment) element;
+			EList<Gate> cfragmentGates = combinedFragment.getCfragmentGates();
+			if (cfragmentGates.isEmpty()) {
+				gate = ((CombinedFragment) element).createCfragmentGate(null);
+			} else {
+				Shell shell = Display.getCurrent().getActiveShell();
+				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+						UMLDiagramEditorPlugin.getInstance()
+								.getItemProvidersAdapterFactory());
+				ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+						shell, labelProvider);
+				dialog.setTitle("Gates of the CombinedFragment has");
+				dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
+				dialog.setMultipleSelection(false);
+				
+				List<Gate> gates = new ArrayList<Gate>();
+				for (Gate actualGate : cfragmentGates) {
+					gates.add(actualGate);
+				}
+				
+				dialog.setElements(gates.toArray());
+				if (dialog.open() == Window.OK) {
+					gate = (Gate) dialog.getFirstResult();
+				}
+			}
 		} else if(element instanceof InteractionUse) {
 			Shell shell = Display.getCurrent().getActiveShell();
 			InteractionUse interactionUse = (InteractionUse)element;

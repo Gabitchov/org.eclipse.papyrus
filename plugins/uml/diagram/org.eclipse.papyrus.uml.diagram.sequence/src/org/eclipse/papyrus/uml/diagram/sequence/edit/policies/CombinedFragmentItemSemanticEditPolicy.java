@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -42,6 +44,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message7CreateComm
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message7ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
@@ -52,6 +55,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentDeleteHelper;
+import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
  * @generated
@@ -64,9 +70,10 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	public CombinedFragmentItemSemanticEditPolicy() {
 		super(UMLElementTypes.CombinedFragment_3004);
 	}
-
+ 
+	
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
@@ -76,11 +83,18 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			ICommand deleteCommand = provider.getEditCommand(req);
 
 			if(deleteCommand != null) {
-				return new ICommandProxy(deleteCommand);
+				if(selectedEObject instanceof CombinedFragment){
+					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment) selectedEObject , getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
+					return new ICommandProxy(selectCmd);
+				}else
+					return new ICommandProxy(deleteCommand);
 			}
+			return null;
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+	
+ 
 
 	/**
 	 * @generated

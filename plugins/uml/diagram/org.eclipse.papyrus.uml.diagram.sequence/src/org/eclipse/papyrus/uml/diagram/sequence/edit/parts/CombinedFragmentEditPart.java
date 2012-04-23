@@ -14,23 +14,18 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -67,12 +62,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperatorKindCompatibleMapping;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
@@ -1219,11 +1213,19 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 					}
 				}
 			}
-		} else if(notification.getNotifier() instanceof Bounds) {
-			updateCoveredLifelines((Bounds)notification.getNotifier());
 		}
-
 		super.handleNotificationEvent(notification);
+		//fixed bug (id=364711) when bounds changed update coveredBys with the figure's bounds.
+		if (notification.getNotifier() instanceof Bounds) {
+			if (notification.getNotifier() instanceof Bounds) {
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater(); 
+						updater.update(CombinedFragmentEditPart.this);
+					}
+				});
+			}
+		}
 	}
 
 	/**

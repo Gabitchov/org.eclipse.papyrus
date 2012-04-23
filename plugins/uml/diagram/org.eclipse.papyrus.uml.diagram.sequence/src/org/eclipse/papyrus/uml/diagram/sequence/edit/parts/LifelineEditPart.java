@@ -50,6 +50,9 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -58,6 +61,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -93,8 +97,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.locator.TimeMarkElementPositionL
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
@@ -167,7 +174,22 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy() {
+			
+			@Override
+			protected Command getCreateElementAndViewCommand(
+					CreateViewAndElementRequest request) {
+				Command command = super.getCreateElementAndViewCommand(request);
+				CompositeCommand compositeCommand = new CompositeCommand("");
+				if (command instanceof ICommandProxy) {
+					ICommandProxy proxy = (ICommandProxy) command;
+					ICommand realCmd = proxy.getICommand();
+					compositeCommand.add(realCmd);
+				}
+				
+				return command;
+			}
+		});
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
@@ -1556,51 +1578,21 @@ public class LifelineEditPart extends NamedElementEditPart {
 			//				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
 			//				getPrimaryShape().repaint();
 			//			}
-		} else if(notification.getNotifier() instanceof Bounds) {
-			updateCoveredByLifelines((Bounds)notification.getNotifier());
-		}
-
+		} 
+		
 		super.handleNotificationEvent(notification);
-	}
-
-	/**
-	 * Update covered lifelines of a Interaction fragment
-	 * 
-	 * @param newBounds
-	 *        The new bounds of the lifeline
-	 */
-	public void updateCoveredByLifelines(Bounds newBounds) {
-		Rectangle rect = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
-
-		// Get the valid rectangle bounds representing the lifeline
-		updateRectangleBounds(rect);
-
-		Lifeline lifeline = (Lifeline)resolveSemanticElement();
-		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
-
-		List<InteractionFragment> coveredByLifelinesToAdd = new ArrayList<InteractionFragment>();
-		List<InteractionFragment> coveredByLifelinesToRemove = new ArrayList<InteractionFragment>();
-		for(Object child : getParent().getChildren()) {
-			if(child instanceof InteractionFragmentEditPart) {
-				InteractionFragmentEditPart interactionFragmentEditPart = (InteractionFragmentEditPart)child;
-				InteractionFragment interactionFragment = (InteractionFragment)interactionFragmentEditPart.resolveSemanticElement();
-				if(rect.intersects(interactionFragmentEditPart.getFigure().getBounds())) {
-					if(!coveredByLifelines.contains(interactionFragment)) {
-						coveredByLifelinesToAdd.add(interactionFragment);
-					}
-				} else if(coveredByLifelines.contains(interactionFragment)) {
-					coveredByLifelinesToRemove.add(interactionFragment);
+		// fixed bug (id=364711) when bounds changed update coveredBys with the
+		// figure's bounds.
+		if (notification.getNotifier() instanceof Bounds) {
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater(); 
+					updater.update(LifelineEditPart.this);
 				}
-			}
-		}
-
-		if(!coveredByLifelinesToAdd.isEmpty()) {
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd),true);
-		}
-		if(!coveredByLifelinesToRemove.isEmpty()) {
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToRemove),true);
+			});
 		}
 	}
+
 
 	/**
 	 * Update the rectangle bounds.

@@ -28,6 +28,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
@@ -53,6 +54,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
@@ -69,6 +71,7 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * The customn XYLayoutEditPolicy for InteractionCompartmentEditPart.
@@ -223,6 +226,43 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
 		for(LifelineEditPart lifelineEP : innerConnectableElementList) {
 			addLifelineResizeChildrenCommand(compoundCmd, request, lifelineEP, number * innerConnectableElementList.size());
+		}
+		// fixed bug (id=364711) when lifeline bounds changed update coveredBys'
+		// bounds.
+		addUpdateInteractionFragmentsLocationCommand(compoundCmd, request,
+				lifelineEditPart);
+
+	}
+
+	/**
+	 * Resize InteractionFragments if the Lifeline has CoveredBys, while
+	 * Lifeline moving.
+	 * 
+	 * @param compoundCmd
+	 * @param request
+	 * @param lifelineEditPart
+	 */
+	private static void addUpdateInteractionFragmentsLocationCommand(
+			CompoundCommand compoundCmd, ChangeBoundsRequest request,
+			LifelineEditPart lifelineEditPart) {
+		Shape shape = (Shape) lifelineEditPart.getModel();
+		Lifeline element = (Lifeline) shape.getElement();
+		EList<InteractionFragment> covereds = element.getCoveredBys();
+		EditPart parent = lifelineEditPart.getParent();
+		List<?> children = parent.getChildren();
+		for (Object obj : children) {
+			EditPart et = (EditPart) obj;
+			Shape sp = (Shape) et.getModel();
+			if (!covereds.contains(sp.getElement())) {
+				continue;
+			}
+			ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_MOVE);
+			req.setEditParts(et);
+			req.setMoveDelta(request.getMoveDelta());
+			Command command = et.getCommand(req);
+			if (command != null && command.canExecute()) {
+				compoundCmd.add(command);
+			}
 		}
 	}
 
