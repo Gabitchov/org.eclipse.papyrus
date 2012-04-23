@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,9 +24,6 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.RunnableWithResult;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -50,12 +46,10 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableOvalAnchor;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
@@ -68,11 +62,11 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
-import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.MessageEnd;
 
@@ -88,25 +82,19 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 	private ConnectionLocator locator;
 	private MessageEnd messageEnd;
 
-	public MessageEndEditPart(MessageEnd end, ConnectionNodeEditPart parent,
+	public MessageEndEditPart(MessageEnd end, AbstractMessageEditPart parent,
 			ConnectionLocator locator) {
 		super(createDummyView(parent, end));
 		this.locator = locator;
 		this.setParent(parent);
-		this.messageEnd = end;
+		this.messageEnd = end;	
+		addToResource(parent.getNotationView(), this.getNotationView());
 	}
 
 	@Override
 	protected void addNotationalListeners() {
 		if (hasNotationView()) {
-			EObject o = (EObject) getModel();
-			o.eAdapters().add(
-					new org.eclipse.emf.common.notify.impl.AdapterImpl() {
-						public void notifyChanged(Notification notification) {
-							Object obj = notification.getNotifier();
-							handleNotificationEvent(notification);
-						}
-					});
+			addListenerFilter("View", this,(View)getModel()); //$NON-NLS-1$
 		}
 	}
 
@@ -132,8 +120,12 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			super.handleNotificationEvent(notification);
 	}
 
-	private static EObject createDummyView(ConnectionNodeEditPart parent,
+	private static View createDummyView(AbstractMessageEditPart parent,
 			EObject model) {
+		View view = parent.findChildByModel(model);
+		if(view != null)
+			return view;
+		
 		final Shape node = new ShapeImpl() {
 			public boolean eNotificationRequired() {
 				return true;
@@ -149,7 +141,29 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 		return node;
 	}
 
- 
+	static class DummyCommand extends org.eclipse.emf.common.command.AbstractCommand  {
+		public void execute() {
+		}
+
+		public void redo() {
+		}
+
+		public void undo() {
+		}
+
+		protected boolean prepare() {
+			return true;
+		}
+	}
+
+	private void addToResource(final View container, final View view) {
+		CommandHelper.executeCommandWithoutHistory(getEditingDomain(), new DummyCommand() {
+			public void execute() {
+				ViewUtil.insertChildView(container, view,-1, false);
+			}
+		});
+	}
+
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageEndSemanticEditPolicy());
@@ -318,11 +332,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			this.request = request;
 		}
 
-		public boolean canExecute() {
-//			if(!(getElementToEdit() instanceof MessageEnd)) {
-//				return false;
-//			}
-			 
+		public boolean canExecute() {		 
 			return true;
 		}
 		
@@ -334,6 +344,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 				MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd) request.getNewRelationshipEnd(), request.getReferenceOwner());
 				if(request.getReferenceOwner() instanceof Constraint) {
 					((Constraint)request.getReferenceOwner()).getConstrainedElements().add((MessageEnd) request.getNewRelationshipEnd());
+				}else if(request.getReferenceOwner() instanceof Comment) {
+					((Comment) request.getReferenceOwner()).getAnnotatedElements().add( (MessageEnd)  request.getNewRelationshipEnd());
 				}
 			}
 			// removing old end
@@ -341,6 +353,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 				MessageEndHelper.removeConnectionSourceFromMessageEnd((MessageEnd) request.getOldRelationshipEnd(), request.getReferenceOwner());
 				if(request.getReferenceOwner() instanceof Constraint) {
 					((Constraint)request.getReferenceOwner()).getConstrainedElements().remove((MessageEnd) request.getOldRelationshipEnd());
+				}else if(request.getReferenceOwner() instanceof Comment) {
+					((Comment) request.getReferenceOwner()).getAnnotatedElements().remove( (MessageEnd)  request.getOldRelationshipEnd());
 				}
 			}
 			return CommandResult.newOKCommandResult();
@@ -376,6 +390,9 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 					.getElementType()) {
 				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(
 						req, req.getSource(), req.getTarget()));
+			}else if(UMLElementTypes.CommentAnnotatedElement_4010 == req
+					.getElementType()) {
+				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
 			}
 			return null;
 		}
@@ -393,6 +410,23 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 
 	}
 
+	static class CommentAnnotatedElementCreateCommandEx extends CommentAnnotatedElementCreateCommand{
+
+		public CommentAnnotatedElementCreateCommandEx(
+				CreateRelationshipRequest request, EObject source,
+				EObject target) {
+			super(request, source, target);
+		}
+		
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			CommandResult res = super.doExecuteWithResult(monitor, info);
+			if (getTarget() instanceof MessageEnd) {
+				MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd) getTarget(), getSource());
+			}
+			return res;	 
+		}	
+	}
+	
 	static class ConstraintConstrainedElementCreateCommandEx extends
 			ConstraintConstrainedElementCreateCommand {
 
@@ -425,7 +459,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 		}
 
 		public Point getLocation(Point reference) {
-			return getBox().getCenter();   // 
+			return getBox().getCenter(); 
 		}
 	}
 

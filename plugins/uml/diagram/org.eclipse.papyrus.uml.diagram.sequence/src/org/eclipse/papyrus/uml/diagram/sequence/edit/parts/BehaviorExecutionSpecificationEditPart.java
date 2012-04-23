@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
@@ -52,6 +53,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.FixedAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.FillParentLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.BehaviorExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy;
@@ -61,7 +63,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
+public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpecificationEditPart {
 
 	/**
 	 * @generated
@@ -178,14 +180,15 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	 * Body of this method does not depend on settings in generation model so you may safely remove
 	 * <i>generated</i> tag and modify it.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
+		//figure.setLayoutManager(new StackLayout());
+		figure.setLayoutManager(new DelegatingLayout());
 		IFigure shape = createNodeShape();
-		figure.add(shape);
+		figure.add(shape, new FillParentLocator());
 		contentPane = setupContentPane(shape);
 		return figure;
 	}

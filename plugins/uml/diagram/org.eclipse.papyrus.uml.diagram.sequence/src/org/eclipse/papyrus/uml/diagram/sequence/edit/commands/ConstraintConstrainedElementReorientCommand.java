@@ -125,7 +125,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().getConstrainedElements().remove(getOldTarget());

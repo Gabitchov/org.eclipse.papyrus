@@ -17,14 +17,21 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.DelegatingLayout;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IClippingStrategy;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -37,7 +44,6 @@ import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
@@ -63,7 +69,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ActionExecutionSpecificationEditPart extends
 
-ShapeNodeEditPart {
+AbstractExecutionSpecificationEditPart {
 
 	/**
 	 * @generated
@@ -157,7 +163,15 @@ ShapeNodeEditPart {
 				return false;
 			}
 
+			protected void paintChildren(Graphics graphics) {
+				super.paintChildren(graphics);
+			}
+			
+			public void add(IFigure figure, Object constraint, int index) {
+				super.add(figure,constraint, index);
+			}
 		};
+		 
 		return result;
 	}
 
@@ -180,14 +194,16 @@ ShapeNodeEditPart {
 	 * Body of this method does not depend on settings in generation model so you may safely remove
 	 * <i>generated</i> tag and modify it.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
+		final NodeFigure figure = createNodePlate();
+		figure.setLayoutManager(new DelegatingLayout());
+		//figure.setLayoutManager(new StackLayout());
+	 
 		IFigure shape = createNodeShape();
-		figure.add(shape);
+		figure.add(shape, new FillParentLocator());
 		contentPane = setupContentPane(shape);
 		return figure;
 	}
@@ -1041,7 +1057,7 @@ ShapeNodeEditPart {
 	/**
 	 * Add connection on top off the figure during the feedback.
 	 */
-	@Override
+ 
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
 		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;

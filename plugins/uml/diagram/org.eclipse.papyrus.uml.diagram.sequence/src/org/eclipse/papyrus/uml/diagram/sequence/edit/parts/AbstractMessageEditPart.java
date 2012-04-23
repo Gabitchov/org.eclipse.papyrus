@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -17,6 +18,29 @@ public abstract class AbstractMessageEditPart extends ConnectionNodeEditPart {
 	
 	public AbstractMessageEditPart(View view) {
 		super(view);
+	}
+	
+	@Override
+	protected void reorderChild(EditPart child, int index) {
+		if(!(child instanceof MessageEndEditPart))
+			super.reorderChild(child, index);		
+	}
+	
+ 
+	public View findChildByModel(EObject model) {
+		List list = getModelChildren();
+		if(list != null && list.size() > 0) {
+			for(Object o : list) {
+				if(!(o instanceof View) )
+					continue;
+				
+				View view = (View) o;
+				if(view.getElement() == model){
+					return view;
+				}
+			}
+		}
+		return null;
 	}
 	
 	@Override
