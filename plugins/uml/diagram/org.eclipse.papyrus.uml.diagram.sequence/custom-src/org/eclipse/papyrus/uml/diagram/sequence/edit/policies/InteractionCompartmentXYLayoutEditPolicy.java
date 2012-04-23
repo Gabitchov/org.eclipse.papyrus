@@ -22,6 +22,7 @@ import java.util.Set;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -34,6 +35,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.AlignmentRequest;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -81,6 +83,8 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		CompoundCommand compoundCmd = new CompoundCommand();
 		compoundCmd.setLabel("Move or Resize");
 		
+		Point point = request.getMoveDelta();
+		
 		IFigure figure = getHostFigure();
 		Rectangle hostBounds = figure.getBounds();
 
@@ -94,7 +98,9 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				}
 				
 				if(child instanceof LifelineEditPart) {
-					addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
+					if (isVerticalMove(request)) {
+						addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
+					}
 				} else if(child instanceof CombinedFragmentEditPart) {
 					// Add restrictions to change the size
 					if(!OperandBoundsComputeHelper.checkRedistrictOnCFResize(request,child)){
@@ -109,8 +115,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 //					}
 				}
 
-				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
-				compoundCmd.add(changeConstraintCommand);
+				if(!(child instanceof LifelineEditPart) || isVerticalMove(request)) {
+					Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
+					compoundCmd.add(changeConstraintCommand);
+				}
 				
 				if(child instanceof CombinedFragmentEditPart) {
 					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd,request,(CombinedFragmentEditPart)child);
@@ -142,6 +150,26 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 
 	}
 
+	protected boolean isVerticalMove(ChangeBoundsRequest request) {
+		if (request instanceof AlignmentRequest) {
+			AlignmentRequest alignmentRequest = (AlignmentRequest) request;
+			switch(alignmentRequest.getAlignment()) {
+			case PositionConstants.BOTTOM:
+			case PositionConstants.TOP:
+			case PositionConstants.MIDDLE:
+			case PositionConstants.VERTICAL:
+			case PositionConstants.NORTH_EAST:
+			case PositionConstants.NORTH_WEST:
+			case PositionConstants.SOUTH_EAST:
+			case PositionConstants.SOUTH_WEST:
+				return false;
+			}
+		}
+		
+		Point point = request.getMoveDelta();
+		return point.y == 0;
+	}
+	
 	/**
 	 * Resize children of LifelineEditPart (Execution specification and lifeline)
 	 * 
@@ -544,7 +572,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			CompoundCommand compoundCmd = new CompoundCommand("Resize of Interaction Compartment Elements");
 
 			for(EditPart ep : (List<EditPart>)cbr.getEditParts()) {
-				if(ep instanceof LifelineEditPart) {
+				if(ep instanceof LifelineEditPart && isVerticalMove(cbr)) {
 					// Lifeline EditPart
 					LifelineEditPart lifelineEP = (LifelineEditPart)ep;
 
