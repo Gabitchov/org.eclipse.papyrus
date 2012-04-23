@@ -72,6 +72,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
+			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(containerType)){
+							return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
+			}
 			
 			return UNDEFINED_TYPE;
 		}
@@ -89,6 +92,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
 			if(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
+				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
+			}
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)){				
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
 			return UNDEFINED_TYPE;

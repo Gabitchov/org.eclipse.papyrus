@@ -753,6 +753,27 @@
 	</decoratorProvider>
 </extension>
 
+  <extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockContributionItemProvider">
+      <Priority name="Low"/>
+         <popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart" policyClass="org.eclipse.papyrus.sysml.diagram.internalblock.edit.actions.RestoreRelatedElementInInternalBolckDiagramContributionPolicyClass"/>
+            <popupAction id="papyrus.restoreRelatedLinksAction" path="/navigateMenu/additions"/>
+         </popupContribution>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupStructuredContributionCriteria
+                  objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"
+                  policyClass="org.eclipse.papyrus.sysml.diagram.internalblock.edit.actions.ArrangePortInInternalBlockDiagramContributionPolicyClass">
+            </popupStructuredContributionCriteria>
+            <popupAction
+                  id="papyrus.arrangePortAction"
+                  path="/navigateMenu/additions">
+            </popupAction>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
+
 <!-- // End of user code 
   -->
 

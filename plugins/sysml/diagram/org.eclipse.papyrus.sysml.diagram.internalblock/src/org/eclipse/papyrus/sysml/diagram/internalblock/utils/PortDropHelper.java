@@ -28,12 +28,15 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 
 /**
- * This class provides convenience methods to create Type specific drop action (Show Port on BlockPropertyComposite).
+ * This class provides convenience methods to create Type specific drop action
+ * (Show Port on BlockPropertyComposite).
  */
 public class PortDropHelper extends ElementHelper {
 
@@ -41,55 +44,85 @@ public class PortDropHelper extends ElementHelper {
 		this.editDomain = editDomain;
 	}
 
-	public Command getDropPortOnPart(DropObjectsRequest request, GraphicalEditPart host) {
-		
-		Object droppedEObject = request.getObjects().get(0);
-		if (! isValidPort(droppedEObject, getHostEObject(host))) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		
-		return getDropPortOnPart((Port)droppedEObject, request.getLocation().getCopy(), host);
-	}
-	
+	public Command getDropPortOnPart(DropObjectsRequest request,
+			GraphicalEditPart host) {
 
-	public Command getDropPortOnPart(Port droppedPort, Point location, GraphicalEditPart host) {
-		
-		if (! isValidPort(droppedPort, getHostEObject(host))) {
+		Object droppedEObject = request.getObjects().get(0);
+		if (!isValidPort(droppedEObject, getHostEObject(host))) {
 			return UnexecutableCommand.INSTANCE;
 		}
-					
+
+		return getDropPortOnPart((Port) droppedEObject, request.getLocation()
+				.getCopy(), host);
+	}
+
+	public Command getDropPortOnPart(Port droppedPort, Point location,
+			GraphicalEditPart host) {
+
+		if (!isValidPort(droppedPort, getHostEObject(host))) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter(
+				(EObject) droppedPort, null), Node.class,
+				ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-		createViewRequest.setLocation(location);		
+		createViewRequest.setLocation(location);
 		Command viewCreateCommand = host.getCommand(createViewRequest);
-		
+
 		return viewCreateCommand;
 	}
-	
+
 	private boolean isValidPort(Object object, EObject dropTarget) {
 		boolean isValid = false;
-		
+
 		// The drop object is supposed to be a Port (or FlowPort)
 		if ((object != null) && (object instanceof Port)) {
-			
+
 			// The dropTarget has to be a TypedElement with a non-null Type
-			if ((dropTarget != null) && (dropTarget instanceof TypedElement) && (((TypedElement)dropTarget).getType() != null)) {
-			
-				Type targetType = ((TypedElement)dropTarget).getType();
-				// The dropped object is owned by the target type 
+			if ((dropTarget != null) && (dropTarget instanceof TypedElement)
+					&& (((TypedElement) dropTarget).getType() != null)) {
+
+				Type targetType = ((TypedElement) dropTarget).getType();
+				// The dropped object is owned by the target type
 				if (((Port) object).eContainer() == targetType) {
+					isValid = true;
+				} else if (isInheritedMember(dropTarget, (Port) object)) {
+					// Return true if the port in a inherited member of the
+					// container
 					isValid = true;
 				}
 			}
 		}
-		
-		return isValid; 
+
+		return isValid;
 	}
-	
+
 	/**
-	 * return the host Edit Part's semantic element, if the semantic element
-	 * is <code>null</code> or unresolvable it will return <code>null</code>
+	 * Return true if the target container is a classifier as this port as
+	 * inherited member
+	 * 
+	 * @param targetContainer
+	 * @param port
+	 * @return
+	 */
+	protected boolean isInheritedMember(EObject targetContainer, Port port) {
+		boolean result = false;
+		if (targetContainer instanceof Property) {
+			Property p = (Property) targetContainer;
+			Type type = p.getType();
+			if (type instanceof Classifier) {
+				return ((Classifier) type).getInheritedMembers().contains(port);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * return the host Edit Part's semantic element, if the semantic element is
+	 * <code>null</code> or unresolvable it will return <code>null</code>
+	 * 
 	 * @return EObject
 	 */
 	protected EObject getHostEObject(GraphicalEditPart host) {

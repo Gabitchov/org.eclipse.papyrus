@@ -186,15 +186,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		// The dropped element is a node
 		if(!UNDEFINED_TYPE.equals(droppedNodeType)) {
-
-			// Drop restriction:
-			// - no restriction when dropped on diagram
-			// - require containment when dropped on any other EObject
-			if((dropTargetView instanceof Diagram) || (dropTargetElement.eContents().contains(droppedObject))) {
-				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
-			}
-
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+			return getCompleteDropNodeCommand(droppedObject, location, dropTargetView, dropTargetElement, droppedNodeType,dropRequest);
 		}
 
 		// The dropped element is a edge
@@ -216,6 +208,43 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Get the complete drop object command
+	 * @param droppedObject
+	 * @param location
+	 * @param dropTargetView
+	 * @param dropTargetElement
+	 * @param droppedNodeType
+	 * @param dropRequest
+	 * @return
+	 */
+	protected ICommand getCompleteDropNodeCommand(EObject droppedObject, Point location, View dropTargetView, EObject dropTargetElement, String droppedNodeType, DropObjectsRequest dropRequest) {
+		// Drop restriction:
+		// - no restriction when dropped on diagram
+		// - require containment when dropped on any other EObject
+		/*
+		 * Inheriting edit policy can override isVisualDropAllowed in order to allow drop of visual elements which are not semantically contained
+		 */
+		if (isVisualDropAllowed(dropRequest, droppedObject, dropTargetView, dropTargetElement, droppedNodeType)){
+			return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
+		}else if((dropTargetView instanceof Diagram) || (dropTargetElement.eContents().contains(droppedObject))) {
+			return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
+		}
+
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+
+	
+	
+	/**
+	 * Inherited class must override this method to allow DND with an element which is not semantically contained by the host
+	 * @param input
+	 * @return
+	 */
+	protected boolean isVisualDropAllowed(DropObjectsRequest dropRequest, EObject droppedObject, View dropTargetView, EObject dropTargetElement, String droppedNodeType){
+		return false;
+	}
+	
 	protected ICommand getDefaultDropNodeCommand(String droppedObjectGraphicalType, Point absoluteLocation, EObject droppedObject) {
 
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
