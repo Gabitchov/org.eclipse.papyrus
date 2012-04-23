@@ -29,6 +29,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -156,13 +158,20 @@ public class LifelineCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void doConfigure(Lifeline newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
+		
+		// fix bug 364696(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364696) 
+		Object object = getRequest().getParameters().get(SequenceRequestConstant.CONNECTABLE_ELEMENT);
+		if(object instanceof ConnectableElement){
+			newElement.setRepresents((ConnectableElement) object);
+		}
+		
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);

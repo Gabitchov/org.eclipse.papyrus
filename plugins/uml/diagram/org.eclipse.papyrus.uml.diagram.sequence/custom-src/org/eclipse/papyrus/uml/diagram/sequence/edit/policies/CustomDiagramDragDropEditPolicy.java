@@ -19,29 +19,36 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
@@ -70,10 +77,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -133,6 +143,51 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return elementsVisualId;
 	}
 
+	@Override
+	protected IUndoableOperation getDropObjectCommand(
+			DropObjectsRequest dropRequest, final EObject
+
+			droppedObject) {
+		IUndoableOperation dropObjectCommand = super.getDropObjectCommand(
+				dropRequest, droppedObject);
+		if (dropObjectCommand != null && dropObjectCommand.canExecute()) {
+			return dropObjectCommand;
+		}
+		// fix bug 364696(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364696)
+		if (droppedObject instanceof ConnectableElement) {
+			return doDropConnectableElement(dropRequest,
+					(ConnectableElement) droppedObject);
+		}
+
+		return dropObjectCommand;
+	}
+
+	private IUndoableOperation doDropConnectableElement(
+			DropObjectsRequest dropRequest,
+			final ConnectableElement droppedObject) {
+		Point location = dropRequest.getLocation();
+		CreateViewRequest createShapeRequest = CreateViewRequestFactory
+				.getCreateShapeRequest(UMLElementTypes.Lifeline_3001,
+				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		createShapeRequest.setLocation(location);
+		
+		ViewDescriptor viewDescriptor =createShapeRequest.getViewDescriptors().get(0);
+		CreateElementRequestAdapter elementAdapter =(CreateElementRequestAdapter) viewDescriptor.getElementAdapter();
+		CreateElementRequest createElementRequest = (CreateElementRequest)elementAdapter.getAdapter(CreateElementRequest.class);
+
+		// parameter "ConnectableElement" used in LifelineCreateCommand#doConfigure()
+		createElementRequest.setParameter(SequenceRequestConstant.CONNECTABLE_ELEMENT,droppedObject);
+		EditPart host = getHost();
+		Command theRealCmd = ((IGraphicalEditPart) host)
+				.getCommand(createShapeRequest);
+
+		if (theRealCmd != null && theRealCmd.canExecute()) {
+			return new CommandProxy(theRealCmd);
+		}
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
