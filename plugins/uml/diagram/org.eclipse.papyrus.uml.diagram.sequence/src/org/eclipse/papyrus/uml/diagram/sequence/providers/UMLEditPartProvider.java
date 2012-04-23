@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.UMLEditPartFactory;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy.ObservationLink;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
@@ -129,11 +130,14 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public synchronized boolean provides(IOperation operation) {
 		if(operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation)operation).getView();
+			if(view instanceof ObservationLink){
+				return true;
+			}
 			if(!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
 				return false;
 			}

@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.uml.diagram.sequence.ObservationLinkMetamodelType;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -51,6 +52,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -117,7 +119,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
@@ -176,7 +178,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DurationConstraintInMessageEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof DurationObservationEditPart) {
-			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSource();
+			//return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSource();
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(ObservationLinkMetamodelType.getInstance());
+			return types;
+		}
+		if(sourceEditPart instanceof TimeObservationLabelEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(ObservationLinkMetamodelType.getInstance());
+			return types;
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -247,7 +257,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)source.getAdapter(IGraphicalEditPart.class);
@@ -307,7 +317,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((DurationConstraintInMessageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof DurationObservationEditPart) {
-			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+			//return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(ObservationLinkMetamodelType.getInstance());
+			return types;
+		}
+		if(sourceEditPart instanceof TimeObservationLabelEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(ObservationLinkMetamodelType.getInstance());
+			return types;
 		}
 		return Collections.EMPTY_LIST;
 	}

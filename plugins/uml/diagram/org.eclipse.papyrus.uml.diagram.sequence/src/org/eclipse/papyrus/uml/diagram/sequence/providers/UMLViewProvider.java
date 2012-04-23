@@ -531,7 +531,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public Node createTimeObservation_3020(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -548,18 +548,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeObservation");
 
-		Node label5010 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
+		Node label5010 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID),true);
 		label5010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5010 = (Location)label5010.getLayoutConstraint();
-		location5010.setX(22);
-		location5010.setY(-7);
-		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
+		location5010.setX(0);
+		location5010.setY(0);
+		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID),true);
 		label5014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5014 = (Location)label5014.getLayoutConstraint();
 		location5014.setX(0);
-		location5014.setY(-22);
+		location5014.setY(0);
 
 		return node;
 	}
@@ -829,7 +829,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// custom layout for location
 		Location location3024 = (Location)node.getLayoutConstraint();
 		location3024.setX(0);
-		location3024.setY(20);
+		location3024.setY(0);
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
@@ -841,7 +841,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Location location5017 = (Location)label5017.getLayoutConstraint();
 		location5017.setX(0);
-		location5017.setY(-22);
+		location5017.setY(0);
 		return node;
 	}
 
@@ -1288,6 +1288,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;
+	}
+	
+	protected Node createLabel(View owner, String hint, boolean isTimeObservationLable) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(hint);
+		ViewUtil.insertChildView(owner, node, ViewUtil.APPEND, true);
+		return node;
 	}
 
 	/**

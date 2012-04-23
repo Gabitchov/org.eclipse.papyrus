@@ -89,7 +89,7 @@ public class Message4ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand destroyElementCommand = new CompoundCommand();
-		Command deleteCommand = SequenceDeleteHelper.completeDeleteMessageCommand(req);
+		Command deleteCommand = SequenceDeleteHelper.completeDeleteMessageCommand(req,getHost());
 		destroyElementCommand.add(deleteCommand);
 		 
 		SequenceUtil.addRestoreConstraintOfLifelineCommand(destroyElementCommand, getHost());

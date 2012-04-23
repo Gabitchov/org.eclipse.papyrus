@@ -22,10 +22,13 @@ import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 
@@ -246,21 +249,32 @@ public class UMLEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
+		if(model instanceof Connector){
+			if(((Connector) model).getType().equals(SequenceUtil.OBSERVATION_LINK_TYPE))
+				return new ObservationLinkEditPart((View)model);
+		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if(source.getFigure() instanceof IMultilineEditableFigure)
 			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
 		else if(source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
+		else if(source.getFigure() instanceof NodeFigure) {
+			WrappingLabel wrappingLabel = (WrappingLabel)source.getFigure().getChildren().get(0);
+			if(wrappingLabel!=null){
+				return new TextCellEditorLocator(wrappingLabel);
+			}
+			return new LabelCellEditorLocator((Label)source.getFigure());
+		}
 		else {
 			return new LabelCellEditorLocator((Label)source.getFigure());
 		}

@@ -89,7 +89,7 @@ public class Message2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return SequenceDeleteHelper.completeDeleteMessageCommand(req);
+		return SequenceDeleteHelper.completeDeleteMessageCommand(req,getHost());
 	}
 
 	/**

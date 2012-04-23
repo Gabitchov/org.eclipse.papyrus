@@ -16,13 +16,22 @@ package org.eclipse.papyrus.uml.diagram.sequence.part;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
+import org.eclipse.gef.requests.SimpleFactory;
+import org.eclipse.gef.tools.ConnectionCreationTool;
+import org.eclipse.gmf.runtime.diagram.ui.internal.l10n.DiagramUIPluginImages;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy.ObservationLink;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.service.DurationCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
@@ -159,6 +168,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private final static String CREATECONSTRAINTLINK10CREATIONTOOL = "createConstraintlink10CreationTool"; //$NON-NLS-1$
 
+	private final static String CREATEOBSERVATIONLINKCREATIONTOOL = "createObservationLinkCreationTool"; //$NON-NLS-1$
+	
 	/**
 	 * @generated
 	 */
@@ -167,7 +178,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public Tool createTool(String toolId) {
 		if(toolId.equals(CREATELIFELINE1CREATIONTOOL)) {
@@ -248,6 +259,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATECONSTRAINTLINK10CREATIONTOOL)) {
 			return createConstraintlink10CreationTool();
 		}
+		if(toolId.equals(CREATEOBSERVATIONLINKCREATIONTOOL)) {
+			return createObservationLinkCreationTool();
+		}
+		
 
 		// default return: null
 		return null;
@@ -389,7 +404,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.DurationObservation_3024);
 
 		// use DurationCreationTool
-		Tool tool = new DurationCreationTool(types);
+		//Tool tool = new DurationCreationTool(types);
+		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
+		tool.setDefaultCursor(SharedCursors.HAND);
+		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;
 	}
 
@@ -405,13 +423,15 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createTimeObservation14CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TimeObservation_3020);
 
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
+		tool.setDefaultCursor(SharedCursors.HAND);
+		tool.setDisabledCursor(SharedCursors.NO);
 		return tool;
 	}
 
@@ -548,4 +568,49 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
+	
+	private Tool createObservationLinkCreationTool() {
+		ConnectionCreationTool tool = new ConnectionCreationTool(new SimpleFactory(ObservationLink.class)){
+			protected String getCommandName() {
+				if (isInState(STATE_CONNECTION_STARTED
+						| STATE_ACCESSIBLE_DRAG_IN_PROGRESS))
+					return SequenceUtil.OBSERVATION_LINK_REQUEST_END;
+				else
+					return SequenceUtil.OBSERVATION_LINK_REQUEST_START;
+			}
+			
+			@Override
+			protected boolean handleButtonUp(int button) {
+				setUnloadWhenFinished(true);
+				return super.handleButtonUp(button);
+			}
+			
+			protected boolean updateTargetUnderMouse() {
+				if (!isTargetLocked()) {
+					EditPart editPart = getCurrentViewer()
+							.findObjectAtExcluding(getLocation(), getExclusionSet(),
+									getTargetingConditional());
+					if (editPart != null)
+						editPart = editPart.getTargetEditPart(getTargetRequest());
+					boolean changed = getTargetEditPart() != editPart;
+					setTargetEditPart(editPart);
+					return changed;
+				} else
+					return false;
+			}
+
+
+		};
+		
+		tool.setDefaultCursor(new Cursor(Display.getDefault(),
+				DiagramUIPluginImages.DESC_CONNECTION_CURSOR_SOURCE.getImageData(),
+				DiagramUIPluginImages.DESC_CONNECTION_CURSOR_MASK.getImageData(), 0, 0));
+		tool.setDisabledCursor(new Cursor(Display
+				.getDefault(), DiagramUIPluginImages.DESC_NO_CONNECTION_CURSOR_SOURCE
+				.getImageData(), DiagramUIPluginImages.DESC_NO_CONNECTION_CURSOR_MASK
+				.getImageData(), 0, 0));
+		
+		return tool;
+	}
+	
 }

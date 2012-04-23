@@ -103,9 +103,10 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.TimeConstraint_3019 == req.getElementType()) {
 			return getGEFWrapper(new TimeConstraintCreateCommand(req));
 		}
-		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
-			return getGEFWrapper(new TimeObservationCreateCommand(req));
-		}
+//Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826		
+//		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
+//			return getGEFWrapper(new TimeObservationCreateCommand(req));
+//		}
 		if(UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
@@ -125,9 +126,10 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
 			return getGEFWrapper(new DurationConstraintCreateCommand(req));
 		}
-		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
-			return getGEFWrapper(new DurationObservationCreateCommand(req));
-		}
+//		Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826			
+//		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+//			return getGEFWrapper(new DurationObservationCreateCommand(req));
+//		}
 		return super.getCreateCommand(req);
 	}
 

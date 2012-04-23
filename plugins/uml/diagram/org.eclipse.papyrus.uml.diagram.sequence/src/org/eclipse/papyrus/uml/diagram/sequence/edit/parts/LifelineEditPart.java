@@ -1739,7 +1739,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getNodeFigure()
 	 */
 	@Override
-	protected NodeFigure getNodeFigure() {
+	public NodeFigure getNodeFigure() {
 		return getDashLineFigure();
 	}
 

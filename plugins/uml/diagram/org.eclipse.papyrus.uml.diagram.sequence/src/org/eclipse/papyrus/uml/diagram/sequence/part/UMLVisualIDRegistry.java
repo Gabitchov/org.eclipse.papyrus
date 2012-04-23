@@ -337,6 +337,16 @@ public class UMLVisualIDRegistry {
 			) {
 				return CommentEditPart.VISUAL_ID;
 			}
+			if (UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeObservationEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationObservationEditPart.VISUAL_ID;
+			}
 			break;
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())
@@ -541,6 +551,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeObservationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationObservationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

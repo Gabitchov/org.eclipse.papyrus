@@ -15,10 +15,12 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CustomTimeObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CombinedFragmentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConsiderIgnoreFragmentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.InteractionUseCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -36,7 +38,7 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
@@ -56,6 +58,12 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 		}
 		if(UMLElementTypes.Comment_3009 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req));
+		}
+		if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
+			return getGEFWrapper(new CustomTimeObservationCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+			return getGEFWrapper(new DurationObservationCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

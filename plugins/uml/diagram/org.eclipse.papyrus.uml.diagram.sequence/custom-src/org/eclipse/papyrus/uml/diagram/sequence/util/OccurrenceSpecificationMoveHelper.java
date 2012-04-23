@@ -19,6 +19,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
@@ -33,21 +37,29 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -300,6 +312,17 @@ public class OccurrenceSpecificationMoveHelper {
 				}
 			}
 		}
+		
+		// relocate each observation linked time element
+		for(Object targetConnection : lifelinePart.getTargetConnections()){
+			if(targetConnection instanceof ObservationLinkEditPart){
+				Command cmd = getMoveSingleTimeRelatedElementCommand((ObservationLinkEditPart)targetConnection, movedOccurrenceSpecification1, movedOccurrenceSpecification2, yLocation1, yLocation2, lifelinePart);
+				if(cmd != null) {
+					globalCmd.add(cmd);
+				}
+			}
+		}
+		
 		// refresh layout commands :
 		// one before the commands for the undo and one after for classic execution
 		if(!globalCmd.isEmpty() && lifelineFigure instanceof BorderedNodeFigure) {
@@ -318,6 +341,68 @@ public class OccurrenceSpecificationMoveHelper {
 			return null;
 		}
 		return globalCmd;
+	}
+
+	private static Command getMoveSingleTimeRelatedElementCommand(
+			final ObservationLinkEditPart targetConnection,
+			final OccurrenceSpecification movedOccurrenceSpecification1,
+			final OccurrenceSpecification movedOccurrenceSpecification2,
+			final int yLocation1, final int yLocation2,final LifelineEditPart lifelinePart) {
+		
+		AbstractTransactionalCommand updateTargetAnchorCommand = new AbstractTransactionalCommand(((IGraphicalEditPart) targetConnection).getEditingDomain(),"update target anchor",null) {
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+					IAdaptable info) throws ExecutionException {
+				
+				// both bounds may have changed
+				Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
+				Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
+
+				int position1 = PositionConstants.NONE;
+				int position2 = PositionConstants.NONE;
+				TimeObservationLabelEditPart tolEP = (TimeObservationLabelEditPart)targetConnection.getSource();
+				if(tolEP == null){
+					return CommandResult.newCancelledCommandResult();
+				}
+				
+				if(movedOccurrenceSpecification1 != null) {
+					position1 = SequenceUtil.positionWhereEventIsLinkedToPart(movedOccurrenceSpecification1, tolEP);
+				}
+				if(movedOccurrenceSpecification2 != null) {
+					position2 = SequenceUtil.positionWhereEventIsLinkedToPart(movedOccurrenceSpecification2, tolEP);
+				}
+				ConnectionAnchor targetAnchor = null;
+				if(position1 == PositionConstants.CENTER){
+					targetAnchor = lifelinePart.getNodeFigure().getSourceConnectionAnchorAt(referencePoint1);
+				}else if(position2 == PositionConstants.CENTER){
+					targetAnchor = lifelinePart.getNodeFigure().getSourceConnectionAnchorAt(referencePoint2);
+				}
+				
+				if(targetAnchor!= null){
+					String newTargetTerminal = lifelinePart.mapConnectionAnchorToTerminal(targetAnchor);
+					ConnectorImpl c = (ConnectorImpl)targetConnection.getModel();
+					if (newTargetTerminal != null) {
+						if (newTargetTerminal.length() == 0)
+							c.setTargetAnchor(null);
+						else {
+							IdentityAnchor a = (IdentityAnchor) c.getTargetAnchor();
+							if (a == null)
+								a = NotationFactory.eINSTANCE.createIdentityAnchor();
+							a.setId(newTargetTerminal);
+							c.setTargetAnchor(a);
+						}
+					}
+
+				}
+				
+				return CommandResult.newOKCommandResult(); 
+			}
+		};
+		
+		
+		// return the resize command
+		ICommandProxy resize = new ICommandProxy(updateTargetAnchorCommand);
+		return resize;
 	}
 
 	/**

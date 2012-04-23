@@ -1207,6 +1207,17 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
  	</entry>
+ 	<?gmfgen generated="false"?>
+ 	<entry
+ 	   defineOnly="true"
+       description="Create an Observation Link"
+       id="createObservationLinkCreationTool"
+       kind="tool"
+       label="Observation Link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
+ 	</entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -1347,6 +1358,11 @@
     </predefinedEntry>
  	<predefinedEntry
           id="createGeneralOrdering8CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
+    <?gmfgen generated="false"?>
+ 	<predefinedEntry
+          id="createObservationLinkCreationTool"
           path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry

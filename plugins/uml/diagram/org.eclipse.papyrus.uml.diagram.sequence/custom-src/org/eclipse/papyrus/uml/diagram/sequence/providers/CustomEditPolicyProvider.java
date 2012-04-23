@@ -24,13 +24,15 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * this is an editpolicy provider in charge to install a policy to navigate between diagrams and elements
  * 
  */
 public class CustomEditPolicyProvider implements IEditPolicyProvider {
-
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -43,9 +45,20 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * 
 	 * {@inheritDoc}
 	 */
-	public void createEditPolicies(EditPart editPart) {
+	public void createEditPolicies(final EditPart editPart) {
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-		if(editPart instanceof IPrimaryEditPart) {
+		
+		installPopupbarPolicy(editPart);
+
+		SequenceUtil.installObservationLinkPolicy(editPart);
+	}
+
+	private void installPopupbarPolicy(final EditPart editPart) {
+		if(editPart instanceof IPrimaryEditPart && !(editPart instanceof TimeObservationEditPart)) {
+			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		}
+
+		if(editPart instanceof TimeObservationLabelEditPart ) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		}
 	}

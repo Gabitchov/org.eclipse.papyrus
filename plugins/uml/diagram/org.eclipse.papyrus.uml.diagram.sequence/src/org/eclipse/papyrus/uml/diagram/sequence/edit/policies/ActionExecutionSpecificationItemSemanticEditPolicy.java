@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -51,6 +54,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCom
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -60,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -75,9 +80,11 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		CompoundCommand deleteElementsCommand = new CompoundCommand();
+		
 		EObject selectedEObject = req.getElementToDestroy();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
 		if(provider != null) {
@@ -85,9 +92,26 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 			ICommand deleteCommand = provider.getEditCommand(req);
 
 			if(deleteCommand != null) {
-				return new ICommandProxy(deleteCommand);
+				deleteElementsCommand.add(new ICommandProxy(deleteCommand));
 			}
 		}
+		
+		if (getHost().getParent() instanceof LifelineEditPart) {
+			if (selectedEObject instanceof ExecutionSpecification) {
+				List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
+				oss.add(((ExecutionSpecification) selectedEObject).getStart());
+				oss.add(((ExecutionSpecification) selectedEObject).getFinish());
+				SequenceDeleteHelper
+						.addDeleteRelatedTimeObservationLinkCommand(
+								deleteElementsCommand, req.getEditingDomain(),
+								(LifelineEditPart) getHost().getParent(), oss,true);
+			}
+		}
+		
+		if(deleteElementsCommand.size()>0){
+			return deleteElementsCommand;
+		}
+		
 		return UnexecutableCommand.INSTANCE;
 	}
 
