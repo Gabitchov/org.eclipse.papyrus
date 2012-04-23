@@ -325,7 +325,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	static private class TextCellEditorLocator implements CellEditorLocator {
+	static class TextCellEditorLocator implements CellEditorLocator {
 
 		/**
 		 * @generated
