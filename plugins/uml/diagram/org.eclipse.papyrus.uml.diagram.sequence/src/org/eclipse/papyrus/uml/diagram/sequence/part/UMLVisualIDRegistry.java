@@ -365,7 +365,7 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
@@ -435,6 +435,9 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case LifelineEditPart.VISUAL_ID:
+			if(LifelineEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(LifelineNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
