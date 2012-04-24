@@ -60,12 +60,24 @@ import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
@@ -74,6 +86,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
@@ -83,6 +96,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -91,6 +105,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -118,8 +133,38 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
 		Set<Integer> elementsVisualId = new HashSet<Integer>();
+		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
+ 		elementsVisualId.add(ActionExecutionSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(BehaviorExecutionSpecificationEditPart.VISUAL_ID);
-		elementsVisualId.add(ActionExecutionSpecificationEditPart.VISUAL_ID);
+		
+		elementsVisualId.add(InteractionUseEditPart.VISUAL_ID);
+		elementsVisualId.add(InteractionEditPart.VISUAL_ID);
+		elementsVisualId.add(InteractionOperandEditPart.VISUAL_ID);
+		
+		elementsVisualId.add(CombinedFragmentEditPart.VISUAL_ID);
+		
+		// CoRegion
+		elementsVisualId.add(CombinedFragment2EditPart.VISUAL_ID);
+		
+		elementsVisualId.add(CommentAnnotatedElementEditPart.VISUAL_ID);
+		elementsVisualId.add(ConsiderIgnoreFragmentEditPart.VISUAL_ID);
+		
+		elementsVisualId.add(ContinuationEditPart.VISUAL_ID);
+		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
+		elementsVisualId.add(CommentEditPart.VISUAL_ID);
+		elementsVisualId.add(CommentBodyEditPart.VISUAL_ID);
+
+		elementsVisualId.add(ConstraintEditPart.VISUAL_ID);
+		elementsVisualId.add(Constraint2EditPart.VISUAL_ID);
+		elementsVisualId.add(ConstraintConstrainedElementEditPart.VISUAL_ID);
+
+		elementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
+		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
+		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
+		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
+		
+		elementsVisualId.add(PackageEditPart.VISUAL_ID);
+
 		elementsVisualId.add(MessageEditPart.VISUAL_ID);
 		elementsVisualId.add(Message2EditPart.VISUAL_ID);
 		elementsVisualId.add(Message3EditPart.VISUAL_ID);
@@ -143,10 +188,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return elementsVisualId;
 	}
 
+	
 	@Override
 	protected IUndoableOperation getDropObjectCommand(
 			DropObjectsRequest dropRequest, final EObject
-
 			droppedObject) {
 		IUndoableOperation dropObjectCommand = super.getDropObjectCommand(
 				dropRequest, droppedObject);
@@ -158,7 +203,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			return doDropConnectableElement(dropRequest,
 					(ConnectableElement) droppedObject);
 		}
-
+	 
 		return dropObjectCommand;
 	}
 
@@ -186,8 +231,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		}
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
-	
-	
+		
 	/**
 	 * {@inheritDoc}
 	 */
@@ -213,11 +257,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 		Point location = dropRequest.getLocation().getCopy();
 
 		// handle specifically the case when node is on a message
-		Command cmd = handleNodeOnMessage(semanticLink, nodeVISUALID, linkVISUALID);
+		Command cmd = handleNodeOnMessage(semanticElement, nodeVISUALID, linkVISUALID);
 		if(cmd != null) {
 			return cmd;
 		}
@@ -226,18 +270,28 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch(nodeVISUALID) {
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID, location);
+				return dropExecutionSpecification((ExecutionSpecification)semanticElement, nodeVISUALID, location);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-				return dropDestructionOccurrence((DestructionOccurrenceSpecification)semanticLink, nodeVISUALID, location);
+				return dropDestructionOccurrence((DestructionOccurrenceSpecification)semanticElement, nodeVISUALID, location);
 			case StateInvariantEditPart.VISUAL_ID:
-				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID, location);
+				return dropStateInvariant((StateInvariant)semanticElement, nodeVISUALID, location);
 			case TimeConstraintEditPart.VISUAL_ID:
 			case DurationConstraintEditPart.VISUAL_ID:
-				return dropIntervalConstraintInLifeline((IntervalConstraint)semanticLink, nodeVISUALID);
+				return dropIntervalConstraintInLifeline((IntervalConstraint)semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
-				return dropTimeObservationInLifeline((TimeObservation)semanticLink, nodeVISUALID);
-			case LifelineEditPart.VISUAL_ID:
-				return dropLifeline((Lifeline)semanticLink, nodeVISUALID, location);
+				return dropTimeObservationInLifeline((TimeObservation)semanticElement, nodeVISUALID);
+			case CombinedFragment2EditPart.VISUAL_ID:
+				return dropCoRegion((CombinedFragment)semanticElement, nodeVISUALID, location);
+			case CommentEditPart.VISUAL_ID:
+			case ConstraintEditPart.VISUAL_ID:
+			case Constraint2EditPart.VISUAL_ID:
+			case InteractionUseEditPart.VISUAL_ID:
+				return dropNodeElement(semanticElement, nodeVISUALID, location);
+			case CombinedFragmentEditPart.VISUAL_ID:
+				return dropCombinedFragment((CombinedFragment)semanticElement, nodeVISUALID, location);
+			case ContinuationEditPart.VISUAL_ID:
+			case InteractionOperandEditPart.VISUAL_ID:
+				return dropCompartmentNodeElement(semanticElement, nodeVISUALID, location);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -252,9 +306,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case Message5EditPart.VISUAL_ID:
 			case Message6EditPart.VISUAL_ID:
 			case Message7EditPart.VISUAL_ID:
-				return dropMessage(dropRequest, semanticLink, linkVISUALID);
+				return dropMessage(dropRequest, semanticElement, linkVISUALID);
 			case GeneralOrderingEditPart.VISUAL_ID:
-				return dropGeneralOrdering(dropRequest, semanticLink, linkVISUALID);
+				return dropGeneralOrdering(dropRequest, semanticElement, linkVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -263,21 +317,81 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * Get the drop command for the lifeline
+	 * Get the drop command for the Element
 	 * 
-	 * @param lifeline
-	 *        the lifeline
+	 * @param element
+	 *        the Element
 	 * @param nodeVISUALID
 	 *        the node visual id
-	 * @return the drop command if the lifeline can be dropped
+	 * @return the drop command if the Element can be dropped
 	 */
-	private Command dropLifeline(Lifeline lifeline, int nodeVISUALID, Point location) {
-		if(getHostObject().equals(lifeline.getOwner())) {
-			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, lifeline));
-		}
+	private Command dropNodeElement(Element element, int nodeVISUALID, Point location) {
+		Element parent = element.getOwner();
+		if (getHostObject().equals(parent)) {
+			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
+			if (!existingViews.isEmpty()) {
+				EditPart parentEditPart = lookForEditPart(parent);
+				if (parentEditPart != null) {
+					return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, element));
+				}
+			}
+ 		}
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Get the drop command for the Element
+	 * 
+	 * @param element
+	 *        the Element
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * @return the drop command if the element can be dropped
+	 */
+	private Command dropCombinedFragment(CombinedFragment combinedFragment, int nodeVISUALID, Point location) {
+		Element parent = combinedFragment.getOwner();
+		Element parentContainer = parent.getOwner();
+		if (!(parentContainer instanceof CombinedFragment)) {
+			parentContainer = parent;
+		}
+		if (getHostObject().equals(parentContainer)) {
+			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
+			if (!existingViews.isEmpty()) {
+				EditPart parentEditPart = lookForEditPart(parent);
+				if (parentEditPart != null) {
+					return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, combinedFragment));
+				}
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+	
+	/**
+	 * Get the drop command in case the element can be handled as an element in a CombinedFragment
+	 * 
+	 * @param element
+	 * @param nodeVISUALID
+	 * @param location
+	 * @return
+	 */
+	private Command dropCompartmentNodeElement(Element element, int nodeVISUALID, Point location) {
+		Element parent = element.getOwner();
+		Element directParent = parent;
+		if (parent instanceof InteractionOperand) {
+			parent = parent.getOwner();
+		}
+		if (getHostObject().equals(parent)) {
+			List<View> existingViews = DiagramEditPartsUtil.findViews(directParent, getViewer());
+			if (!existingViews.isEmpty()) {
+				EditPart parentEditPart = lookForEditPart(directParent);
+				if (parentEditPart != null) {
+					return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, element));
+				}
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+	
 	/**
 	 * Get the drop command in case the element can be handled as a node on a message
 	 * 
@@ -509,7 +623,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	private int getDefaultDropHeight(int nodeVISUALID) {
 		if(TimeConstraintEditPart.VISUAL_ID == nodeVISUALID || TimeObservationEditPart.VISUAL_ID == nodeVISUALID) {
-			return 40;
+			return 2;
 		}
 		return -1;
 	}
@@ -630,6 +744,45 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Get the command to drop an code region node
+	 * 
+	 * @param combinedFragment
+	 * @param nodeVISUALID
+	 * @param location
+	 * @return
+	 */
+	private Command dropCoRegion(CombinedFragment combinedFragment, int nodeVISUALID, Point location) {
+		List<View> existingViews = DiagramEditPartsUtil.findViews(combinedFragment, getViewer());
+		// only allow one view instance of a single element by diagram
+		if(existingViews.isEmpty()) {
+			IGraphicalEditPart hostEditpart = (IGraphicalEditPart) getHost();
+			EObject element = hostEditpart.getNotationView().getElement();
+			if (element instanceof Lifeline) {
+				IHintedType type = ((IHintedType)getUMLElementType(nodeVISUALID));
+
+				String semanticHint = null;
+				if (type != null) {
+					semanticHint = type.getSemanticHint();
+				}
+
+				IAdaptable elementAdapter = new EObjectAdapter(combinedFragment);
+
+				ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, false, getDiagramPreferencesHint());
+				CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+				createViewRequest.setLocation(location);
+
+				// "ask" the host for a command associated with the CreateViewRequest
+				Command command = getHost().getCommand(createViewRequest);
+				// set the viewdescriptor as result
+				// it then can be used as an adaptable to retrieve the View
+				return new ICommandProxy(new CommandProxyWithResult(command, descriptor));
+			}
+		}
+
+		return UnexecutableCommand.INSTANCE;
+	}	
+	
 	/**
 	 * Get the advised bounds to drop an execution specification
 	 * 

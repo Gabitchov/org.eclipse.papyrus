@@ -23,7 +23,8 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -186,7 +187,7 @@ public class OperandBoundsComputeHelper {
 	 * @param request
 	 * @return ICommand
 	 */
-	public static ICommand createUpdateCFAndIOBoundsForCFCreationCommand(final EditPart editPart, final CreateViewAndElementRequest request) {
+	public static ICommand createUpdateCFAndIOBoundsForCFCreationCommand(final EditPart editPart, final CreateViewRequest request) {
 		if (!(editPart instanceof GraphicalEditPart)) {
 			return null;
 		}
@@ -202,14 +203,14 @@ public class OperandBoundsComputeHelper {
 		};
 		return cmd;
 	}
-
+	
 	/**
 	 * Update Interaction Operand EditpPart bounds after the CombinedFragment to be created. 
 	 * @param parent
 	 * @param request
 	 * @param selectionRect
 	 */
-	private static void updateCFAndIOBoundsForCFCreation(GraphicalEditPart parent,CreateViewAndElementRequest request) {
+	private static void updateCFAndIOBoundsForCFCreation(GraphicalEditPart parent, CreateViewRequest request) {
 		Object subEditPart = null;
 		if (parent instanceof InteractionInteractionCompartmentEditPart) {
 			InteractionInteractionCompartmentEditPart interactionInteractionCompartmentEditPart = (InteractionInteractionCompartmentEditPart) parent;
@@ -718,7 +719,7 @@ public class OperandBoundsComputeHelper {
 	 * @param command
 	 */
 	public static void addUpdateBoundsForIOCreationCommand(
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartment,CreateViewAndElementRequest request,
+			CombinedFragmentCombinedFragmentCompartmentEditPart compartment, ViewDescriptor viewDescriptor,
 			CompositeCommand command) {
 		List children = compartment.getChildren();
 		if (children != null && children.size() > 0) {
@@ -750,7 +751,7 @@ public class OperandBoundsComputeHelper {
 							}
 						}
 					}
-					command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, request.getViewAndElementDescriptor(), rect));
+					command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
 				}
 			}
 		}else{ // first add operand
@@ -765,7 +766,7 @@ public class OperandBoundsComputeHelper {
 						int width = containerBounds.getWidth()!=-1? containerBounds.getWidth() :  preferredSize.width();
 						int height = containerBounds.getHeight()!=-1? containerBounds.getHeight() :  preferredSize.height();
 						height = height - computeCombinedFragementHeaderHeight(parent);
-						command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, request.getViewAndElementDescriptor(), new Rectangle(0,0,width-COMBINED_FRAGMENT_FIGURE_BORDER*2,height-COMBINED_FRAGMENT_FIGURE_BORDER*2)));
+						command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, new Rectangle(0,0,width-COMBINED_FRAGMENT_FIGURE_BORDER*2,height-COMBINED_FRAGMENT_FIGURE_BORDER*2)));
 					}
 				}
 			}

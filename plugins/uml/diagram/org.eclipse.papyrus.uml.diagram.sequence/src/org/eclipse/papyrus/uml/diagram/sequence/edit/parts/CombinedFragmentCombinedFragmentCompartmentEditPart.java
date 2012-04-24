@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *
+ *   Soyatec - add the DnD support
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -28,6 +28,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -35,12 +36,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -122,7 +126,8 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
-
+		
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
 	private EditPolicy createCreationEditPolicy() {
@@ -135,9 +140,31 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 				if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
 					//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
 					//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
-					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this,request, command);
+					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this, request.getViewAndElementDescriptor(), command);
 				}
 				return commandProxy;
+			}
+			
+			protected Command getCreateCommand(CreateViewRequest request) {
+				ICommandProxy commandProxy = (ICommandProxy)super.getCreateCommand(request);
+				ICommand command = commandProxy.getICommand();
+				CompositeCommand compositeCommand = null; 
+				if (command instanceof CompositeCommand) {
+					compositeCommand = (CompositeCommand) command;
+				} else {
+					compositeCommand = new CompositeCommand(commandProxy.getLabel());
+					compositeCommand.add(command);
+				}
+				
+				for (ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
+					IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
+					if(type.getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
+						//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
+						//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
+						OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this, viewDescriptor, compositeCommand);
+					}
+				}
+				return new ICommandProxy(compositeCommand.reduce());
 			}
 		};
 	}

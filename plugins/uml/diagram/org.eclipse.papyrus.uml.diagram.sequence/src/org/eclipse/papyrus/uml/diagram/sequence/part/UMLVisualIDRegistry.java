@@ -322,6 +322,12 @@ public class UMLVisualIDRegistry {
 			) {
 				return LifelineEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getInteractionOperand().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionOperandEditPart.VISUAL_ID;
+			}
+
 			if(UMLPackage.eINSTANCE.getInteractionUse().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -353,6 +359,16 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return InteractionOperandEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getContinuation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ContinuationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CombinedFragmentEditPart.VISUAL_ID;
 			}
 			break;
 		// handle duration constraint/observation on message

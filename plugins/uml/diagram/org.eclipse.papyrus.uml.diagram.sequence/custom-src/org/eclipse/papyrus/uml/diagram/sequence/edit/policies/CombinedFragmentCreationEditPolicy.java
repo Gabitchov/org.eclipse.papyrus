@@ -24,6 +24,8 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
@@ -70,6 +72,38 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			}
 		}
 		return createElementAndViewCmd;
+	}
+	
+	@Override
+	protected Command getCreateCommand(CreateViewRequest request) {
+		Command createViewCmd = super.getCreateCommand(request);
+		if (createViewCmd instanceof ICommandProxy) {
+			ICommandProxy commandProxy = (ICommandProxy) createViewCmd;
+			CompositeCommand compositeCommand = null;
+			ICommand realCmd = commandProxy.getICommand();
+			if (realCmd instanceof CompositeCommand) {
+				compositeCommand = (CompositeCommand) realCmd;
+			} else {
+				compositeCommand = new CompositeCommand(commandProxy.getLabel());
+				compositeCommand.add(realCmd);
+				realCmd = compositeCommand;
+			}
+			for (ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
+				String hint = viewDescriptor.getSemanticHint();
+				if(isDerivedCombinedFragment(hint)) {
+					// Add updating bounds command for Combined fragment createment
+					if(OperandBoundsComputeHelper.isDerivedCombinedFragment(hint)){
+						ICommand createUpdateBoundsCmd = OperandBoundsComputeHelper.createUpdateCFAndIOBoundsForCFCreationCommand(this.getHost(), request);
+						if (createUpdateBoundsCmd != null)
+							((CompositeCommand) realCmd)
+									.add(createUpdateBoundsCmd);
+					}
+				}
+			}
+			
+			createViewCmd = new ICommandProxy(compositeCommand.reduce());
+		} 
+		return createViewCmd;
 	}
 
 	/**
