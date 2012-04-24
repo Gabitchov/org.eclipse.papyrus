@@ -51,7 +51,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
+import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
@@ -96,6 +99,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
@@ -122,6 +127,9 @@ import org.eclipse.uml2.uml.TimeObservation;
  * 
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+	public static final String LIFELINE_MISSING = "There is no representation of lifeline {0}";
+	
+	public static final String DIALOG_TITLE = "Element missing";
 
 	public CustomDiagramDragDropEditPolicy() {
 		super(SequenceLinkMappingHelper.getInstance());
@@ -286,6 +294,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ConstraintEditPart.VISUAL_ID:
 			case Constraint2EditPart.VISUAL_ID:
 			case InteractionUseEditPart.VISUAL_ID:
+			case LifelineEditPart.VISUAL_ID:
 				return dropNodeElement(semanticElement, nodeVISUALID, location);
 			case CombinedFragmentEditPart.VISUAL_ID:
 				return dropCombinedFragment((CombinedFragment)semanticElement, nodeVISUALID, location);
@@ -358,12 +367,88 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
 			if (!existingViews.isEmpty()) {
 				EditPart parentEditPart = lookForEditPart(parent);
-				if (parentEditPart != null) {
-					return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, combinedFragment));
+				if (parentEditPart instanceof GraphicalEditPart) {
+					// check if all lifelines coversby exist in diagram.
+					Rectangle bounds = null; 
+					List<Lifeline> lifelines = combinedFragment.getCovereds();
+					for (Lifeline lifeline : combinedFragment.getCovereds()) {
+						EditPart lifelineEditPart = lookForEditPart(lifeline);
+						if (lifelineEditPart == null) {
+							Shell shell = Display.getCurrent().getActiveShell();
+							MessageDialog.openError(shell, DIALOG_TITLE, NLS.bind(LIFELINE_MISSING, lifeline.getName()));
+							return UnexecutableCommand.INSTANCE;							
+						}
+						if (lifelineEditPart instanceof GraphicalEditPart) {
+							GraphicalEditPart graphicalEditPart = (GraphicalEditPart) lifelineEditPart;
+							Rectangle rectangle = graphicalEditPart.getFigure().getBounds().getCopy();
+							graphicalEditPart.getFigure().translateToAbsolute(rectangle);
+							if (bounds == null) {
+								bounds = rectangle;
+							} else {
+								bounds = bounds.union(rectangle);
+							}
+						}
+					}
+					if (bounds == null) {
+						return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, combinedFragment));
+					}
+					location.x = bounds.x;
+					
+					return new ICommandProxy(dropCombinedFragment(getHost(), nodeVISUALID, location, new Dimension(bounds.width, 100), combinedFragment));
 				}
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+	
+	
+	/*
+	 * To extend the method in superclass with an option Dimension size,
+	 * 
+	 * 
+	 * @param hostEP
+	 * @param nodeVISUALID
+	 * @param absoluteLocation
+	 * @param size
+	 * @param droppedObject
+	 * @return
+	 */
+	protected ICommand dropCombinedFragment(EditPart hostEP,  int nodeVISUALID, Point absoluteLocation, Dimension size, EObject droppedObject) {
+		IHintedType type = ((IHintedType)getUMLElementType(nodeVISUALID));
+
+		String semanticHint = null;
+		if (type != null) {
+			semanticHint = type.getSemanticHint();
+		}
+
+		List<View> existingViews = DiagramEditPartsUtil.findViews(droppedObject, getViewer());
+
+		// only allow one view instance of a single element by diagram
+		if(existingViews.isEmpty()) {
+			IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
+
+			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, false, getDiagramPreferencesHint());
+			CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+			createViewRequest.setLocation(absoluteLocation);
+			createViewRequest.setSize(size);
+
+			// "ask" the host for a command associated with the
+			// CreateViewRequest
+			Command command = hostEP.getCommand(createViewRequest);
+			if(createViewRequest.getNewObject() instanceof List) {
+				for(Object object : (List<?>)createViewRequest.getNewObject()) {
+					if(object instanceof IAdaptable) {
+						DeferredCreateCommand createCommand2 = new DeferredCreateCommand(getEditingDomain(), droppedObject, (IAdaptable)object, getHost().getViewer());
+						command.chain(new ICommandProxy(createCommand2));
+					}
+				}
+			}
+			// set the viewdescriptor as result
+			// it then can be used as an adaptable to retrieve the View
+			return new CommandProxyWithResult(command, descriptor);
+		}
+
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 	
 	/**
