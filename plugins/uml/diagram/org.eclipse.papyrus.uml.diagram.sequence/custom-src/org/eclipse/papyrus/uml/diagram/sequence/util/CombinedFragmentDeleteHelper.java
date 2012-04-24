@@ -7,7 +7,6 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -108,46 +107,44 @@ public class CombinedFragmentDeleteHelper {
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			if(parent != null) {
+			if(parent != null && !fragmentsToMove.isEmpty()) {
 				List<CombinedFragmentEditPart> parts = collectCombinedFragmentParts();
-
 				if(parent instanceof InteractionOperand) {
 					((InteractionOperand)parent).getFragments().addAll(fragmentsToMove);
-					moveToOperandPart((InteractionOperandEditPart)host.getParent(), parts);
+					moveToOperandPart((InteractionOperandEditPart)host.getParent(), parts);  
 				} else if(parent instanceof Interaction) {
 					((Interaction)parent).getFragments().addAll(fragmentsToMove);
-					moveToInteractionPart((InteractionInteractionCompartmentEditPart)host.getParent(), parts);
+					moveToInteractionPart((InteractionInteractionCompartmentEditPart)host.getParent(), parts);  
 				}
 			}
 			sourceOperand.getFragments().clear();
 			return CommandResult.newOKCommandResult();
 		}
-
+		
 		private void moveToOperandPart(GraphicalEditPart op, List<CombinedFragmentEditPart> keepParts) {
 			if(!keepParts.isEmpty()) {
+				Rectangle parentBounds = getAbsoluteBounds((AbstractGraphicalEditPart)op.getParent());
 				for(CombinedFragmentEditPart cef : keepParts) {
 					View view = cef.getNotationView();
 					op.getNotationView().getPersistedChildren().add(view);
 
 					Bounds bounds = (Bounds)((Shape)cef.getNotationView()).getLayoutConstraint();
 					Rectangle absolute = getAbsoluteBounds(cef);
-					Rectangle parentBounds = getAbsoluteBounds((AbstractGraphicalEditPart)op.getParent());
 					bounds.setX(absolute.x() - parentBounds.x());
 					bounds.setY(absolute.y() - parentBounds.y());
-
 				}
 			}
 		}
 
 		private void moveToInteractionPart(GraphicalEditPart op, List<CombinedFragmentEditPart> keepParts) {
 			if(!keepParts.isEmpty()) {
+				Rectangle b = getAbsoluteBounds(op);
 				for(CombinedFragmentEditPart cef : keepParts) {
 					View view = cef.getNotationView();
 					op.getNotationView().getPersistedChildren().add(view);
 					Bounds bounds = (Bounds)((Shape)cef.getNotationView()).getLayoutConstraint();
 
 					Rectangle absolute = getAbsoluteBounds(cef);
-					Rectangle b = op.getFigure().getBounds();
 					absolute.performTranslate(-b.x, -b.y);
 
 					bounds.setX(absolute.x() - 5);
@@ -205,7 +202,13 @@ public class CombinedFragmentDeleteHelper {
 				return cmdResult;
 			}
 			this.choice = cmdResult.getReturnValue().toString();
-			return doRedoWithResult(progressMonitor, info);
+			if(choice.contains(labels[0])) {
+				deletaAllCommand.execute(progressMonitor, info);
+				return deletaAllCommand.getCommandResult();
+			} else {
+				keepCommand.execute(progressMonitor, info);
+				return keepCommand.getCommandResult();
+			}
 		}
 
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
@@ -220,10 +223,10 @@ public class CombinedFragmentDeleteHelper {
 
 		protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 			if(choice.contains(labels[0])) {
-				deletaAllCommand.execute(progressMonitor, info);
+				deletaAllCommand.redo(progressMonitor, info);
 				return deletaAllCommand.getCommandResult();
 			} else {
-				keepCommand.execute(progressMonitor, info);
+				keepCommand.redo(progressMonitor, info);
 				return keepCommand.getCommandResult();
 			}
 		}
