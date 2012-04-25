@@ -51,7 +51,7 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.uml.appearance;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence; singleton:=true

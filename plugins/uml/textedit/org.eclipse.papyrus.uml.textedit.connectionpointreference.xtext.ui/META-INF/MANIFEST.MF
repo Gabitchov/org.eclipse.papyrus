@@ -24,4 +24,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin

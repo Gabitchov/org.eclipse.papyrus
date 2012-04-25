@@ -37,4 +37,4 @@ Export-Package: org.eclipse.papyrus.uml.alf,
  org.eclipse.papyrus.uml.alf.validation,
  org.eclipse.papyrus.uml.alf.validation.typing,
  org.eclipse.papyrus.uml.alf.generator
-
+Bundle-Localization: plugin

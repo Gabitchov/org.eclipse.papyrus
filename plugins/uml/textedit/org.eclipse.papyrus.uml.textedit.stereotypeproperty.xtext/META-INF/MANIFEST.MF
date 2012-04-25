@@ -40,4 +40,4 @@ Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr.internal
-
+Bundle-Localization: plugin

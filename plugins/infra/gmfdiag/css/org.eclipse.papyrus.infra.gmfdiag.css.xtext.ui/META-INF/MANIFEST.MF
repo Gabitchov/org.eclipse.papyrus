@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0
+Bundle-Name: CSS Editor UI (Incubation)
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-Version: 0.9.0
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext,

@@ -20,3 +20,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator
 Export-Package: org.eclipse.papyrus.uml.alf.ui.contentassist,
  org.eclipse.papyrus.uml.alf.ui.contentassist.antlr
+Bundle-Localization: plugin

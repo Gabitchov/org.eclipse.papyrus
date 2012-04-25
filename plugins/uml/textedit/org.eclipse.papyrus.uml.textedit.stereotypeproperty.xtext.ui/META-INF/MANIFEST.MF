@@ -37,3 +37,4 @@ Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.outline,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.quickfix
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator
+Bundle-Localization: plugin

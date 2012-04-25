@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: UML Tools
+Bundle-Name: UML Tools (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.uml.tools;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.tools.Activator
