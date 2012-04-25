@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.sysml.diagram.common.edit.policy.ArrangePortEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.BlockCompositeFigure;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
@@ -47,7 +46,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
-import org.eclipse.papyrus.uml.diagram.common.requests.ArrangeAffixedNodeRequest;
 
 public class BlockCompositeEditPart extends AbstractElementEditPart {
 
@@ -69,7 +67,6 @@ public class BlockCompositeEditPart extends AbstractElementEditPart {
 		// Start of user code custom policies
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new EncapsulatedClassifierResizableShapeEditPolicy());
-		installEditPolicy(ArrangeAffixedNodeRequest.ARRANGE_AFFIXED_NODE_ROLE, new ArrangePortEditPolicy());
 		// End of user code
 	}
 

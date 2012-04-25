@@ -33,7 +33,6 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.sysml.diagram.common.edit.policy.ArrangePortEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.figure.BlockPropertyCompositeFigure;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
@@ -52,7 +51,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
-import org.eclipse.papyrus.uml.diagram.common.requests.ArrangeAffixedNodeRequest;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -76,7 +74,6 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new EncapsulatedClassifierResizableShapeEditPolicy());
-		installEditPolicy(ArrangeAffixedNodeRequest.ARRANGE_AFFIXED_NODE_ROLE, new ArrangePortEditPolicy());
 	}
 
 	protected LayoutEditPolicy createLayoutEditPolicy() {
