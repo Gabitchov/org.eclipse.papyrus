@@ -78,4 +78,10 @@
        </stylesheet>
     </themeContribution>
  </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.gmfdiag.common.initializeView">
+    <initializeView
+          initializeView="org.eclipse.papyrus.infra.gmfdiag.css.provider.CSSThemeInitializer">
+    </initializeView>
+ </extension>
 </plugin>

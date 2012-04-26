@@ -17,7 +17,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
@@ -38,39 +37,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 	 * 
 	 */
 	public ThemePreferencesPage() {
-	}
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param style
-	 */
-	public ThemePreferencesPage(int style) {
-		super(style);
-	}
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param title
-	 * @param style
-	 */
-	public ThemePreferencesPage(String title, int style) {
-		super(title, style);
-	}
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 * @param title
-	 * @param image
-	 * @param style
-	 */
-	public ThemePreferencesPage(String title, ImageDescriptor image, int style) {
-		super(title, image, style);
+		super("CSS Theme", org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageDescriptor("/icons/papyrus.png"), FLAT);
 	}
 
 	public void init(IWorkbench workbench) {
