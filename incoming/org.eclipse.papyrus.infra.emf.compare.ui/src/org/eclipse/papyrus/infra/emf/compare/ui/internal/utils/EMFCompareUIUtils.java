@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.compare.ui.utils;
+package org.eclipse.papyrus.infra.emf.compare.ui.internal.utils;
 
 import java.util.Collection;
 import java.util.HashSet;

@@ -23,7 +23,7 @@ public class UMLTransactionalModelContentMergeViewer extends PapyrusTransactiona
 		return new ModelContentMergeContentProvider(configuration) {
 
 			@Override
-			public Object getLeftContent(Object element) {
+			public Object getLeftContent(final Object element) {
 				if(element != null) {
 					return new RootObject(configuration.getProperty(RootObject.LEFT_OBJECT_KEY));
 				}
@@ -31,7 +31,7 @@ public class UMLTransactionalModelContentMergeViewer extends PapyrusTransactiona
 			}
 
 			@Override
-			public Object getRightContent(Object element) {
+			public Object getRightContent(final Object element) {
 				if(element != null) {
 					return new RootObject(configuration.getProperty(RootObject.RIGHT_OBJECT_KEY));
 				}

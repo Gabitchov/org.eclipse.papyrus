@@ -9,14 +9,12 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA-LIST)
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.ui.provider;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.HashSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
@@ -28,10 +26,7 @@ import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfigurati
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.viewers.OwnerDrawLabelProvider;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -45,13 +40,14 @@ import org.eclipse.ui.PlatformUI;
  * TODO : this label provider should be able to support StyledString (as done by Tatiana). In order to do that, this label provider should be
  * a CellLabelProvider (or (better ?) an {@link OwnerDrawLabelProvider}) Il will be easiest when we will use the last version of EMF-Facet
  */
-public class EMFCompareLabelProvider extends CustomizableModelLabelProvider implements ILabelProviderRefreshingViewer {
+public class EMFCompareLabelProvider extends CustomizableModelLabelProvider {
 
 	/** The configuration. */
 	private final AppearanceConfiguration configuration;
 
-	/** the list of the registered viewer */
-	private Collection<TreeViewer> viewers = null;
+
+	/** the customization manager for this label provider*/
+	private final CustomizationManager manager;
 
 	/**
 	 * Constructor.
@@ -61,8 +57,8 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider impl
 	 */
 	public EMFCompareLabelProvider(final CustomizationManager customizationManager) {
 		super(customizationManager);
+		this.manager = customizationManager;
 		this.configuration = getAppearanceConfiguration(customizationManager);
-		this.viewers = new HashSet<TreeViewer>();
 	}
 
 
@@ -159,49 +155,8 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider impl
 		return new ModelElementItem(eObject, getTreeElement(eObject.eContainer()), this.configuration);
 	}
 
-
-
-
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer#registerViewer(org.eclipse.jface.viewers.TreeViewer)
-	 * 
-	 * @param viewer
-	 */
-	public void registerViewer(final TreeViewer viewer) {
-		final DisposeListener listener = new DisposeListener() {
-
-			public void widgetDisposed(DisposeEvent e) {
-				viewer.getTree().removeDisposeListener(this);
-				unregisterViewer(viewer);
-			}
-		};
-		viewer.getTree().addDisposeListener(listener);
-		viewers.add(viewer);
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer#refreshViewer()
-	 * 
-	 */
-	public void refreshViewer() {
-		for(TreeViewer current : viewers) {
-			if(!current.getTree().isDisposed()) {
-				current.refresh();
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer#unregisterViewer(org.eclipse.jface.viewers.TreeViewer)
-	 * 
-	 * @param viewer
-	 */
-	public void unregisterViewer(TreeViewer viewer) {
-		viewers.remove(viewer);
+	public CustomizationManager getCustomizationManager(){
+		return this.manager;
 	}
 
 }

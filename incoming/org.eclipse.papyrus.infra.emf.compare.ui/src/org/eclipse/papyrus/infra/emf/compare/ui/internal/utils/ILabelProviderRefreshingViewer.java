@@ -11,9 +11,9 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.emf.compare.ui.provider;
+package org.eclipse.papyrus.infra.emf.compare.ui.internal.utils;
 
-import org.eclipse.jface.viewers.IBaseLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 
 /**
@@ -21,7 +21,8 @@ import org.eclipse.jface.viewers.TreeViewer;
  * The classes implements this interface when they are in charge of resfreshing Viewer
  * 
  */
-public interface ILabelProviderRefreshingViewer extends IBaseLabelProvider {
+//this interface must have a package visibility
+interface ILabelProviderRefreshingViewer extends ILabelProvider {
 
 	/**
 	 * Register a viewer to refresh it

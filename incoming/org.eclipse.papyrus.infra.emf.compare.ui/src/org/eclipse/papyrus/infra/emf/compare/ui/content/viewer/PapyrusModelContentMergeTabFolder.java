@@ -28,9 +28,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.CustomizationAndViewerActionDispatcher;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -46,7 +46,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	protected final PapyrusCustomizableModelContentMergeViewer myUMLViewer;
 
 	/** the label provider */
-	private ILabelProviderRefreshingViewer labelProvider;
+	private LabelProvider labelProvider;
 
 	/** the diff tab */
 	protected ModelContentMergeDiffTab diffTab;
@@ -61,7 +61,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	 * @param side
 	 *        the side
 	 */
-	public PapyrusModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
+	public PapyrusModelContentMergeTabFolder(final ModelContentMergeViewer viewer, final Composite composite, final int side) {
 		super(viewer, composite, side);
 		myUMLViewer = (PapyrusCustomizableModelContentMergeViewer)viewer;
 	}
@@ -72,10 +72,10 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	 * @param labelProvider
 	 *        the labelProvider
 	 */
-	public void setLabelProvider(final ILabelProviderRefreshingViewer labelProvider) {
+	public void setLabelProvider(final LabelProvider labelProvider) {
 		this.labelProvider = labelProvider;
-		this.labelProvider.registerViewer(diffTab);
-		diffTab.setLabelProvider((IBaseLabelProvider)labelProvider);
+		CustomizationAndViewerActionDispatcher.associateViewerAndLabelProvider(diffTab, this.labelProvider);
+		diffTab.setLabelProvider(labelProvider);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	 * @return
 	 */
 	@Override
-	protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
+	protected IModelContentMergeViewerTab createModelContentMergeDiffTab(final Composite parent) {
 		diffTab = new ModelContentMergeDiffTab(parent, partSide, this);
 		diffTab.setContentProvider(createDiffTabContentProvider());
 		return diffTab;
@@ -96,11 +96,11 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	/**
 	 * 
 	 * @see org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder#createContents(org.eclipse.swt.widgets.Composite)
-	 *
+	 * 
 	 * @param composite
 	 */
 	@Override
-	protected void createContents(Composite composite) {
+	protected void createContents(final Composite composite) {
 		super.createContents(composite);
 		//we set the layout here, because, it we don't set, we have a little treeviwer...
 		Control ctrl = tree.getControl();
@@ -115,7 +115,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	@Override
 	public void dispose() {
 		if(labelProvider != null) {
-			labelProvider.unregisterViewer(diffTab);
+			CustomizationAndViewerActionDispatcher.dissociateTreeViewerAndLabelProvider(diffTab, labelProvider);
 			diffTab = null;
 			labelProvider = null;
 		}
@@ -146,7 +146,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 		 * @param factory
 		 *        Factory to get labels and icons from.
 		 */
-		public ModelContentMergeDiffTabContentProvider(AdapterFactory factory) {
+		public ModelContentMergeDiffTabContentProvider(final AdapterFactory factory) {
 			super(factory);
 		}
 
@@ -157,7 +157,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 		 */
 		@SuppressWarnings("unchecked")
 		@Override
-		public Object[] getElements(Object object) {
+		public Object[] getElements(final Object object) {
 			// overwritten to ensure contents of ResourceSets, List<Resource>, and Resource are correclty
 			// returned.
 			Object[] result = null;
@@ -190,7 +190,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getChildren(java.lang.Object)
 		 */
 		@Override
-		public Object[] getChildren(Object object) {
+		public Object[] getChildren(final Object object) {
 			if(object instanceof Resource) {
 				return ((Resource)object).getContents().toArray();
 			}
@@ -203,7 +203,7 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#hasChildren(java.lang.Object)
 		 */
 		@Override
-		public boolean hasChildren(Object object) {
+		public boolean hasChildren(final Object object) {
 			if(object instanceof Resource) {
 				return ((Resource)object).getContents().size() > 0;
 			}

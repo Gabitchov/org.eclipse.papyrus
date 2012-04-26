@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,6 +40,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
@@ -66,6 +68,9 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	private final ObjectUndoContext undoContext;
 
 	private final IOperationHistoryListener historyListener;
+
+	/** the compared root object */
+	private EObject roots[];
 
 	/**
 	 * 
@@ -120,6 +125,7 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 			}
 		};
 		getOperationHistory().addOperationHistoryListener(historyListener);
+		addUndoRedoListeners();
 	}
 
 
@@ -168,8 +174,10 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 		}
 	}
 
+	
+
 	private EObject[] loadPapyrusFiles(final CompareUMLFileInput input) {
-		EObject roots[] = new EObject[2];
+		roots = new EObject[2];
 
 		for(int i = 0; i < 2; i++) {
 			String filePath = input.getComparedFiles().get(i).getFullPath().toString();
@@ -225,10 +233,12 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 
 	@Override
 	protected void configureInput(final PapyrusModelCompareEditorInput input) {
-		String leftLabel = this.tmpInput.getComparedFiles().get(0).getFullPath().makeRelative().toString();;
-		String rightLabel = this.tmpInput.getComparedFiles().get(1).getFullPath().makeRelative().toString();;
-		Image im = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/UMLModelFile.gif").createImage();
-		input.initLabels(leftLabel, im, rightLabel, im);
+		if(this.tmpInput != null) {//null, when are in the Undo/Redo
+			String leftLabel = this.tmpInput.getComparedFiles().get(0).getFullPath().makeRelative().toString();;
+			String rightLabel = this.tmpInput.getComparedFiles().get(1).getFullPath().makeRelative().toString();;
+			Image im = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/UMLModelFile.gif").createImage();
+			input.initLabels(leftLabel, im, rightLabel, im);
+		}
 
 	}
 
@@ -255,8 +265,37 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	@Override
 	public void dispose() {
 		getOperationHistory().removeOperationHistoryListener(historyListener);
+		removeUndoRedoListener();
 		super.dispose();
 
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor#getIOperationHistory()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected IOperationHistory getIOperationHistory() {
+		return getOperationHistory();
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor#resetInput()
+	 * 
+	 */
+	@Override
+	protected void resetInput() {
+		IEditorInput input = getEditorInput();
+		assert (input instanceof PapyrusModelCompareEditorInput);
+		final TreeViewer viewer = ((PapyrusModelCompareEditorInput)input).getStructureMergeViewer();
+		final PapyrusModelCompareEditorInput newInput = (PapyrusModelCompareEditorInput)getCompareInput(roots[0], roots[1]);
+		final ModelCompareInput input2 = newInput.getpreparedModelCompareInput();
+		viewer.setInput(input2);
 	}
 
 

@@ -30,9 +30,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CollapseAllAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.ExpandAllAction;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.EMFCompareUIUtils;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.CustomizationAndViewerActionDispatcher;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.EMFCompareUIUtils;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
@@ -48,14 +47,13 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * the list of the metamodels referenced by the input
 	 */
 	private Collection<EPackage> metamodels;
-
 	/**
 	 * The label provider
 	 */
-	private ILabelProviderRefreshingViewer labelProvider;
+	private LabelProvider labelProvider;
 
 	/** the current editor */
-	private IEditorPart editor;
+	private final IEditorPart editor;
 
 	/**
 	 * 
@@ -78,7 +76,8 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * @param input
 	 * @param oldInput
 	 */
-	protected void inputChanged(Object input, Object oldInput) {
+	@Override
+	protected void inputChanged(final Object input, final Object oldInput) {
 		if(input instanceof ModelCompareInput) {
 			metamodels = EMFCompareUIUtils.getMetamodelForDiffCustomization(input, metamodels);
 		}
@@ -110,7 +109,7 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 		tbm.insert(1, collapseAllActionContributionItem);
 
 		tbm.insert(2, new Separator("treeAction")); //$NON-NLS-1$
-		
+
 		//we add an action to change the applied cuztomization
 		final IAction customizationAction = new CustomizationAction(Collections.unmodifiableCollection(metamodels));
 		final ActionContributionItem customizationContributionItem = new ActionContributionItem(customizationAction);
@@ -128,9 +127,9 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * @param event
 	 */
 	@Override
-	protected void handleDispose(DisposeEvent event) {
+	protected void handleDispose(final DisposeEvent event) {
 		metamodels.clear();
-		labelProvider.unregisterViewer(this);
+		CustomizationAndViewerActionDispatcher.dissociateTreeViewerAndLabelProvider(this, this.labelProvider);
 		super.handleDispose(event);
 	}
 
@@ -140,8 +139,7 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * @return
 	 */
 	protected LabelProvider createLabelProvider() {
-		labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
-		labelProvider.registerViewer(this);
-		return (LabelProvider)labelProvider;
+		this.labelProvider = CustomizationAndViewerActionDispatcher.getLabelProvider(this.editor);
+		return this.labelProvider;
 	}
 }

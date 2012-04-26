@@ -13,29 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.common.editor.listener;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.Activator;
-import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 
 /**
@@ -51,10 +43,10 @@ public class CloseEditorTriggerListener extends TriggerListener {
 	/**
 	 * The listened model of the editor
 	 */
-	private EObject rawModel;
+	private final EObject rawModel;
 
 	/** the service registry */
-	private ServicesRegistry registry;
+	private final ServicesRegistry registry;
 
 	/**
 	 * 

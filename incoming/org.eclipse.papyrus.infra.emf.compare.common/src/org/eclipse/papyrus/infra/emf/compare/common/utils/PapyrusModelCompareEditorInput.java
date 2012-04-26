@@ -17,10 +17,14 @@ import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.compare.Splitter;
+import org.eclipse.compare.contentmergeviewer.ContentMergeViewer;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
+import org.eclipse.emf.compare.ui.viewer.structure.ModelStructureMergeViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer.PapyrusTransactionalModelContentMergeViewer;
@@ -36,7 +40,7 @@ import org.eclipse.ui.IEditorPart;
  * the ModelInput for Papyrus Compare
  * 
  */
-public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput {
+public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput implements ICompareViewerProvider {
 
 	/** the editor */
 	protected IEditorPart editor;
@@ -93,7 +97,7 @@ public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput {
 	 * @return
 	 */
 	@Override
-	protected ModelContentMergeViewer createMergeViewer(CompareViewerPane pane, CompareConfiguration config) {
+	protected ModelContentMergeViewer createMergeViewer(final CompareViewerPane pane, final CompareConfiguration config) {
 		return new PapyrusTransactionalModelContentMergeViewer(pane, config, editor);
 	}
 
@@ -103,7 +107,7 @@ public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput {
 	 * @see CompareEditorInput#createOutlineContents(Composite, int)
 	 */
 	@Override
-	public Control createOutlineContents(Composite parent, int direction) {
+	public Control createOutlineContents(final Composite parent, final int direction) {
 		final Splitter splitter = new Splitter(parent, direction);
 
 		final CompareViewerPane pane = new CompareViewerPane(splitter, SWT.NONE);
@@ -126,9 +130,37 @@ public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput {
 	 * @param monitor
 	 */
 	@Override
-	public void saveChanges(IProgressMonitor monitor) {
+	public void saveChanges(final IProgressMonitor monitor) {
 		//normally it ok, there is nothing to do to save notation and di files
 		super.saveChanges(monitor);
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the content merge viewer for this input. The returned value can be <code>null</code> if the viewer has not been yet created
+	 */
+	public ContentMergeViewer getContentMergeViewer() {
+		return this.contentMergeViewer;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the structure merge viewer for this input. The retruned value can be <code>null</code> if the viewer has not been yet created
+	 */
+	public ModelStructureMergeViewer getStructureMergeViewer() {
+		return this.structureMergeViewer;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the prepared input
+	 */
+	public ModelCompareInput getpreparedModelCompareInput() {
+		prepareInput(new NullProgressMonitor());
+		return this.preparedInput;
 	}
 
 }

@@ -28,9 +28,8 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.CustomizationAndViewerActionDispatcher;
 import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -85,7 +84,9 @@ public class CustomizationAction extends Action {
 			currentEditor = ((IMultiPageEditorPart)currentEditor).getActiveEditor();
 		}
 
-		final CustomizationManager customizationManager = LabelProviderUtil.INSTANCE.getCustomizationManager(currentEditor);
+		final CustomizationManager customizationManager = CustomizationAndViewerActionDispatcher.getCustomizationManager(currentEditor);
+		assert customizationManager != null;
+
 		final List<MetamodelView> initiallySelectedCustomizations = customizationManager.getRegisteredCustomizations();
 		final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(Display.getCurrent().getActiveShell(), initiallySelectedCustomizations, this.registeredMetamodel);
 		//TODO : override the dialog to hide the checkbox for the facet
@@ -103,11 +104,13 @@ public class CustomizationAction extends Action {
 			}
 			customizationManager.loadCustomizations();
 		}
+
+
 		if(currentEditor instanceof IPropertyChangeListener) {//implemented by CompareEditor
 			//we refresh the name of the tab in Papyrus
 			((IPropertyChangeListener)currentEditor).propertyChange(new PropertyChangeEvent(IAction.class, CompareEditorInput.PROP_TITLE, "", "")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		((ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(currentEditor)).refreshViewer();
 
+		CustomizationAndViewerActionDispatcher.refreshViewers(currentEditor);
 	}
 }

@@ -5,12 +5,6 @@
    <extension point="org.eclipse.compare.contentMergeViewers">
       <viewer class="org.eclipse.papyrus.infra.emf.compare.ui.content.viewer.PapyrusCustomizableContentMergeViewerCreator" extensions="ecore, uml" id="org.eclipse.papyrus.infra.emf.compare.ui.papyrus.viewer" label="Papyrus Customizable Content Merge Viewer">
       </viewer>
-      <viewer
-            class="org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer.PapyrusTransactionalContentMergeViewerCreator"
-            extensions="ecore, uml"
-            id="org.eclipse.papyrus.infra.emf.compare.ui.content.transactionalviewer"
-            label="Papyrus Transactional Content Merge Viewer">
-      </viewer>
    </extension>
    <extension point="org.eclipse.compare.structureMergeViewers">
       <!--I add uml here, but it is not really a dependency-->

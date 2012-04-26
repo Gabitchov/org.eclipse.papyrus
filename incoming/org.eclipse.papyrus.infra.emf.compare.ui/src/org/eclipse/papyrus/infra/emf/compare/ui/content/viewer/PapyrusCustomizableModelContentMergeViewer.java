@@ -21,19 +21,18 @@ import java.util.HashSet;
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
-import org.eclipse.emf.compare.ui.viewer.content.part.diff.ModelContentMergeDiffTab;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CollapseAllAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.CustomizationAction;
 import org.eclipse.papyrus.infra.emf.compare.ui.actions.ExpandAllAction;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.ILabelProviderRefreshingViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.EMFCompareUIUtils;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.CustomizationAndViewerActionDispatcher;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.EMFCompareUIUtils;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
@@ -57,7 +56,7 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 	 */
 	public PapyrusCustomizableModelContentMergeViewer(final Composite parent, final CompareConfiguration config, final IEditorPart editor) {
 		super(parent, config);
-		ILabelProviderRefreshingViewer labelProvider = (ILabelProviderRefreshingViewer)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
+		final LabelProvider labelProvider = CustomizationAndViewerActionDispatcher.getLabelProvider(editor);
 		((PapyrusModelContentMergeTabFolder)leftPart).setLabelProvider(labelProvider);
 		((PapyrusModelContentMergeTabFolder)rightPart).setLabelProvider(labelProvider);
 	}
@@ -134,7 +133,7 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 	 * @param event
 	 */
 	@Override
-	protected void handleDispose(DisposeEvent event) {
+	protected void handleDispose(final DisposeEvent event) {
 		metamodels.clear();
 		super.handleDispose(event);
 	}

@@ -27,6 +27,7 @@ import org.eclipse.ui.IEditorPart;
  * This class allows to create the MergeViewer when we change the viewer used in CompareEditor
  * 
  */
+//unused for the moment
 public class PapyrusTransactionalContentMergeViewerCreator implements IViewerCreator {
 
 	/**
@@ -46,7 +47,7 @@ public class PapyrusTransactionalContentMergeViewerCreator implements IViewerCre
 	 * @param config
 	 * @return
 	 */
-	public Viewer createViewer(Composite parent, CompareConfiguration config) {
+	public Viewer createViewer(final Composite parent, final CompareConfiguration config) {
 		final IEditorPart editor = EditorHelper.getCurrentEditor();//the current CompareEditor
 		Assert.isTrue(editor instanceof CompareEditor);
 		return new PapyrusTransactionalModelContentMergeViewer(parent, config, editor);

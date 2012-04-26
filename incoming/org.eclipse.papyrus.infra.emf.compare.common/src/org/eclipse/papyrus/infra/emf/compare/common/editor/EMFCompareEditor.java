@@ -14,13 +14,17 @@
 package org.eclipse.papyrus.infra.emf.compare.common.editor;
 
 import org.eclipse.compare.CompareEditorInput;
+import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -99,7 +103,9 @@ public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IR
 
 
 
+	@Override
 	protected void addListeners() {
+		addUndoRedoListeners();
 		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
 			TransactionalEditingDomain domain = null;
 			try {
@@ -117,6 +123,7 @@ public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IR
 	 * Remove the listener
 	 */
 	protected void removeListeners() {
+		removeUndoRedoListener();
 		//done by the CloseTriggerlistener. Here, it is too early to remove it
 		//		if(EMFCompareEditor.this.servicesRegistry != null) {//we are in papyrus
 		//			TransactionalEditingDomain domain = null;
@@ -262,6 +269,28 @@ public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IR
 	@Override
 	protected void configureInput(final PapyrusModelCompareEditorInput input) {
 		//not useful for the moment
+	}
+
+
+	@Override
+	protected IOperationHistory getIOperationHistory() {
+		TransactionalEditingDomain domain = null;
+		try {
+			domain = servicesRegistry.getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			Activator.log.error("I can't find the TransactionalEditingDomain", e);
+		}
+
+		return ((NotifyingWorkspaceCommandStack)domain.getCommandStack()).getOperationHistory();
+	}
+
+
+	@Override
+	protected void resetInput() {
+		final TreeViewer viewer = ((PapyrusModelCompareEditorInput)this.input).getStructureMergeViewer();
+		final PapyrusModelCompareEditorInput input = (PapyrusModelCompareEditorInput)getCompareInput(rawModel.getLeft(), rawModel.getRight());
+		final ModelCompareInput input2 = input.getpreparedModelCompareInput();
+		viewer.setInput(input2);
 	}
 
 

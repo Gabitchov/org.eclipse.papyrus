@@ -37,12 +37,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.emf.Activator;
-import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
-import org.eclipse.papyrus.infra.emf.compare.ui.provider.EMFCompareLabelProvider;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.papyrus.infra.emf.compare.ui.internal.utils.CustomizationAndViewerActionDispatcher;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.ui.IEditorPart;
@@ -78,9 +77,9 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 		if(editor == null) {
 			return null;
 		}
-		EMFCompareLabelProvider labelProvider;
+		LabelProvider labelProvider;
 		try {
-			labelProvider = (EMFCompareLabelProvider)LabelProviderUtil.INSTANCE.getExistingLabelProviderFor(editor);
+			labelProvider = CustomizationAndViewerActionDispatcher.getExistingLabelProvider(editor);
 		} catch (NullPointerException e) {
 			return null;
 		}
@@ -140,7 +139,7 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 			final DiffGroup group = (DiffGroup)context;
 			final EObject parent = group.getRightParent();
 			if(parent != null) {
-				final String parentLabel = ((EMFCompareLabelProvider)labelProvider).getText(parent);
+				final String parentLabel = labelProvider.getText(parent);
 				diffLabel = itemProvider.getString("_UI_DiffGroup_type", new Object[]{ group.getSubchanges(), parentLabel }); //$NON-NLS-1$
 			} else {
 				diffLabel = itemProvider.getString("_UI_DiffGroup_type", new Object[]{ group.getSubchanges(), "model" }); //$NON-NLS-1$ //$NON-NLS-2$
@@ -195,7 +194,7 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 
 		} else if(context instanceof ModelElementChangeRightTarget) { //comes from ModelElementChangeRightTargetItemProvider
 			final ModelElementChangeRightTarget operation = (ModelElementChangeRightTarget)context;
-			final String targetName = ((EMFCompareLabelProvider)labelProvider).getText(operation.getRightElement());
+			final String targetName = labelProvider.getText(operation.getRightElement());
 			if(operation.isRemote()) {
 				diffLabel = itemProvider.getString("_UI_RemoteAddModelElement_type", new Object[]{ targetName }); //$NON-NLS-1$
 			} else {
@@ -274,7 +273,7 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 	 *        The update reference operation for which we need target information.
 	 * @return The value of the given operation's target reference for the left element.
 	 */
-	private EObject getLeftValue(UpdateReference operation) {
+	private EObject getLeftValue(final UpdateReference operation) {
 		final EReference reference = operation.getReference();
 		return (EObject)operation.getLeftElement().eGet(reference);
 	}
@@ -286,7 +285,7 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 	 *        The update reference operation for which we need target information.
 	 * @return The value of the given operation's target reference for the right element.
 	 */
-	private EObject getRightValue(UpdateReference operation) {
+	private EObject getRightValue(final UpdateReference operation) {
 		final EReference reference = operation.getReference();
 		return (EObject)operation.getRightElement().eGet(reference);
 	}

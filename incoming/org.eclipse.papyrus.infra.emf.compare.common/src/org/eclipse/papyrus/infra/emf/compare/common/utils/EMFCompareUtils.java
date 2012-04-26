@@ -17,7 +17,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
 import org.eclipse.papyrus.infra.emf.compare.ui.provider.EMFCompareLabelProvider;
-import org.eclipse.papyrus.infra.emf.compare.ui.utils.LabelProviderUtil;
+import org.eclipse.papyrus.infra.emf.compare.ui.utils.ICustomizableEditor;
 import org.eclipse.ui.IEditorPart;
 
 
@@ -39,11 +39,15 @@ public class EMFCompareUtils {
 	 *         the name for the editor
 	 */
 	public static String getCompareEditorTitle(final IEditorPart editor, final PapyrusEMFCompareInstance rawModel) {
-		EMFCompareLabelProvider labelProvider = (EMFCompareLabelProvider)LabelProviderUtil.INSTANCE.getLabelProviderFor(editor);
-		String leftLabel = labelProvider.getText(rawModel.getLeft());
-		String rightLabel = labelProvider.getText(rawModel.getRight());
-		String title = NLS.bind(Messages.EMFCompareUtils_CompareTitle, leftLabel, rightLabel);
-		return title;
+		if(editor instanceof ICustomizableEditor) {
+			EMFCompareLabelProvider labelProvider = (EMFCompareLabelProvider)((ICustomizableEditor)editor).getLabelProvider();
+			String leftLabel = labelProvider.getText(rawModel.getLeft());
+			String rightLabel = labelProvider.getText(rawModel.getRight());
+			String title = NLS.bind(Messages.EMFCompareUtils_CompareTitle, leftLabel, rightLabel);
+			return title;
+		}
+		return "";
+
 	}
 
 }
