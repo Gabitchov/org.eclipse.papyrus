@@ -41,6 +41,7 @@ public class ReverseCodeDialog extends InputDialog {
 	private String MODEL_UID = "nomodeluid";
 
 	private static String textMsg = "Default creation package.";
+	@SuppressWarnings("unused")
 	private static String creationPackageTooltips = "The default creation package is used when no matching creation package are found.";
 	
 
