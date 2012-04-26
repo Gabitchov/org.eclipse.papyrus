@@ -18,7 +18,9 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -39,10 +41,9 @@ import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.ThemeInitializerManager;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
@@ -55,6 +56,10 @@ import org.eclipse.swt.graphics.FontData;
  * 
  */
 public class PreferenceInitializerForElementHelper {
+
+	public static boolean usePreferenceInitializer(View view) {
+		return ThemeInitializerManager.instance.usePreferenceInitializer(view);
+	}
 
 	public static String getpreferenceKey(View view, String elementName, int pref) {
 		return PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + elementName, pref); //$NON-NLS-1$
@@ -71,6 +76,10 @@ public class PreferenceInitializerForElementHelper {
 	 *        the name to the element
 	 */
 	public static void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!usePreferenceInitializer(view)) {
+			return;
+		}
+
 		String fillColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_FILL);
 		String gradientColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.GRADIENT_POLICY);
@@ -90,20 +99,22 @@ public class PreferenceInitializerForElementHelper {
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 
-		if(EditorUtils.getTransactionalEditingDomain() != null) {
+		EditingDomain domain = EMFHelper.resolveEditingDomain(view);
+		if(domain instanceof TransactionalEditingDomain) {
+			TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)domain;
 			// shadow
-			RecordingCommand shadowcommand = ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
+			RecordingCommand shadowcommand = AnnotationStyleProvider.getSetShadowCommand(editingDomain, view, store.getBoolean(shadowConstant));
 			if(shadowcommand.canExecute()) {
 				shadowcommand.execute();
 			}
 			// icon label
-			RecordingCommand namelabelIconCommand = NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
+			RecordingCommand namelabelIconCommand = AnnotationStyleProvider.getSetElementIconCommand(editingDomain, view, store.getBoolean(elementIcon));
 			if(namelabelIconCommand.canExecute()) {
 				namelabelIconCommand.execute();
 			}
 			// qualified name
 			if(!store.getBoolean(qualifiedName)) {
-				RecordingCommand qualifiedNameCommand = QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
+				RecordingCommand qualifiedNameCommand = AnnotationStyleProvider.getSetQualifiedNameDepthCommand(editingDomain, view, 1000);
 				if(qualifiedNameCommand.canExecute()) {
 					qualifiedNameCommand.execute();
 				}
@@ -122,6 +133,10 @@ public class PreferenceInitializerForElementHelper {
 	 *        the name to the element
 	 */
 	public static void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!usePreferenceInitializer(view)) {
+			return;
+		}
+
 		String fontConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.FONT);
 		String fontColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_FONT);
 
@@ -149,6 +164,10 @@ public class PreferenceInitializerForElementHelper {
 	 *        the name to the element
 	 */
 	public static void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!usePreferenceInitializer(view)) {
+			return;
+		}
+
 		String lineColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities.RGBToInteger(lineRGB));
@@ -163,10 +182,14 @@ public class PreferenceInitializerForElementHelper {
 	 *        the preference store
 	 * @param elementName
 	 *        the name to the element
-	 *        
+	 * 
 	 * @deprecated call {@link PreferenceInitializerForElementHelper#initRoutingFromPrefs(View, IPreferenceStore, String)} instead.
 	 */
+	@Deprecated
 	public static void initRountingFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!usePreferenceInitializer(view)) {
+			return;
+		}
 		initRoutingFromPrefs(view, store, elementName);
 	}
 
@@ -181,6 +204,10 @@ public class PreferenceInitializerForElementHelper {
 	 *        the name to the element
 	 */
 	public static void initRoutingFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!usePreferenceInitializer(view)) {
+			return;
+		}
+
 		Routing routing = Routing.get(store.getInt(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_STYLE)));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
@@ -207,7 +234,7 @@ public class PreferenceInitializerForElementHelper {
 		boolean routingDistance = store.getBoolean(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_POLICY_DISTANCE));
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), routingDistance);
 	}
-	
+
 	/**
 	 * initialize the status of the compartment for the node (Showed or hidden)
 	 * 
@@ -243,8 +270,8 @@ public class PreferenceInitializerForElementHelper {
 
 						String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY); //$NON-NLS-1$
 						boolean showCompartmentName = store.getBoolean(compartmentNameVisibilityPreference);
-							View childView = (View)object;
-							TitleStyle style = (TitleStyle)childView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+						View childView = (View)object;
+						TitleStyle style = (TitleStyle)childView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
 						if(style != null) {
 							style.setShowTitle(showCompartmentName);
 						}
@@ -301,7 +328,7 @@ public class PreferenceInitializerForElementHelper {
 		dim = new Dimension(store.getInt(width), store.getInt(height));
 		return dim;
 	}
-	
+
 	/**
 	 * initialize label location.
 	 * 
@@ -314,16 +341,16 @@ public class PreferenceInitializerForElementHelper {
 	 */
 	public static void initLabelLocationFromPrefs(View view, final IPreferenceStore store, String elementName) {
 		assert (view instanceof Node);
-		
-		Node label = (Node) view;
-		Location location = (Location) label.getLayoutConstraint();
-		
+
+		Node label = (Node)view;
+		Location location = (Location)label.getLayoutConstraint();
+
 		String xKey = getpreferenceKey(view, elementName, PreferenceConstantHelper.LOCATION_X);
 		String yKey = getpreferenceKey(view, elementName, PreferenceConstantHelper.LOCATION_Y);
-		
+
 		location.setX(store.getInt(xKey));
 		location.setY(store.getInt(yKey));
-		
+
 		label.setLayoutConstraint(location);
 	}
 }
