@@ -178,6 +178,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		updateControls();
 	}
 
+	@Override
+	protected GridData getLabelLayoutData() {
+		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		return data;
+	}
+
 	public void setSelector(IElementSelector selector) {
 		this.selector = selector;
 		this.dialog.setSelector(selector);

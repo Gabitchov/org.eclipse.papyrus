@@ -32,6 +32,6 @@ public class BooleanCombo extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public BooleanCombo(Composite parent, int style) {
-		super(new org.eclipse.papyrus.infra.widgets.editors.BooleanRadio(parent, style));
+		super(new org.eclipse.papyrus.infra.widgets.editors.BooleanCombo(parent, style));
 	}
 }
