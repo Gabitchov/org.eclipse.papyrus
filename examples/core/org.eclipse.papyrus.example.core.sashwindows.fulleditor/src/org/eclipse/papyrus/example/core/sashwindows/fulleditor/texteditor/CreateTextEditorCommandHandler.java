@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * Command to create a new TextEditor.
@@ -41,7 +42,7 @@ public class CreateTextEditorCommandHandler extends AbstractHandler implements I
 		// Create the Editor Model
 		IEditorModel model = new TextEditorPartModel();
 		// Get the Sashwindow model
-		ISashWindowsContentProvider contentProvider = getSashWindowsContentProvider();
+		ISashWindowsContentProvider contentProvider = getSashWindowsContentProvider(event);
 		if(contentProvider == null) {
 			showErrorDialog("Can't create Editor. Reason: Can't get current editor ContentProvider.");
 		}
@@ -77,11 +78,14 @@ public class CreateTextEditorCommandHandler extends AbstractHandler implements I
 
 	/**
 	 * Get the shared object.
+	 * @param event 
 	 * 
 	 * @return
+	 * @throws ExecutionException 
 	 */
-	protected ISashWindowsContentProvider getSashWindowsContentProvider() {
-		IEditorPart editor = getMultiDiagramEditor();
+	protected ISashWindowsContentProvider getSashWindowsContentProvider(ExecutionEvent event) throws ExecutionException {
+		IEditorPart editor = HandlerUtil.getActiveEditorChecked(event);
+//		IEditorPart editor = getMultiDiagramEditor();
 
 		ISashWindowsContentProvider contentProvider = (ISashWindowsContentProvider)editor.getAdapter(ISashWindowsContentProvider.class);
 		return contentProvider;
