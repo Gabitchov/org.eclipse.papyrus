@@ -24,8 +24,12 @@ import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
@@ -67,7 +71,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 
 		int res = dialog.open();
 		//    	System.out.println("dialog result =" + res);
-		if(res == dialog.CANCEL) {
+		if(res == Window.CANCEL) {
 			System.out.println("Canceled by user.");
 			return null;
 		}
@@ -90,8 +94,16 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 		// Create revers object
 
 
-		// Execute the reverse with provided paramters
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+		// Execute the reverse with provided parameters
+		TransactionalEditingDomain editingDomain;
+		try {
+			editingDomain = getEditingDomain();
+		} catch (ServiceException e) {
+			// Can't get editing domain
+			e.printStackTrace();
+			throw new ExecutionException(e.getMessage());
+		}
+		
 		final String pname = generationPackageName;
 		RecordingCommand command = new RecordingCommand(editingDomain, "Reverse Java Code") {
 
@@ -123,6 +135,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 
 		TreeSelection treeSelection = (TreeSelection)selection;
 		//        String filename = treeSelection.
+		@SuppressWarnings("rawtypes")
 		Iterator iter = treeSelection.iterator();
 		while(iter.hasNext()) {
 			Object obj = iter.next();
@@ -186,7 +199,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	 * @return
 	 */
 	private Resource getUmlResource() {
-		Resource umlResource = EditorUtils.getDiResourceSet().getModelResource();
+		Resource umlResource = UmlUtils.getUmlModel().getResource();
 		return umlResource;
 	}
 
@@ -213,9 +226,10 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	 * Get the main editing doamin.
 	 * 
 	 * @return
+	 * @throws ServiceException 
 	 */
-	protected TransactionalEditingDomain getEditingDomain() {
-		return EditorUtils.getTransactionalEditingDomain();
+	protected TransactionalEditingDomain getEditingDomain() throws ServiceException {
+		return ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 	}
 
 }
