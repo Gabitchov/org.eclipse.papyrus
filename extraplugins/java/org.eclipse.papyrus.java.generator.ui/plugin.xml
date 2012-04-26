@@ -57,9 +57,9 @@
          </menu>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
-               id="org.eclipse.papyrus.modelexplorer.popupmenu.java"
+               id="org.eclipse.papyrus.views.modelexplorer.popup.java"
                label="Java ...">
             <command
                   commandId="org.eclipse.papyrus.java.generator.ui.generateCodeCommand"
