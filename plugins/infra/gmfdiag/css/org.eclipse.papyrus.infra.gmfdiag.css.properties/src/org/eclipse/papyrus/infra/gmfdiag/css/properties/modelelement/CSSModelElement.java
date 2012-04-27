@@ -17,8 +17,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.creation.StyleSheetFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding.DiagramStyleSheetObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetContentProvider;
@@ -43,10 +43,10 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 	@Override
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
-		if(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
+		if(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
 			return new StyleSheetFactory((View)this.source);
 		}
-		if(CSSAnnotations.CSS_GMF_CLASS_KEY.equals(propertyPath)) {
+		if(CSSStyles.CSS_GMF_CLASS_KEY.equals(propertyPath)) {
 			StringEditionFactory factory = new StringEditionFactory();
 			factory.setContentProvider(getContentProvider(propertyPath));
 			return factory;
@@ -57,7 +57,7 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 	@Override
 	public IObservable doGetObservable(String propertyPath) {
-		if(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
+		if(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
 			return new DiagramStyleSheetObservableList((View)source, domain, propertyPath);
 		}
 		return super.doGetObservable(propertyPath);
@@ -65,7 +65,7 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		if(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
+		if(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY.equals(propertyPath)) {
 			return new CSSStyleSheetLabelProvider();
 		}
 		return super.getLabelProvider(propertyPath);
@@ -73,11 +73,11 @@ public class CSSModelElement extends CustomStyleModelElement {
 
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
-		if(propertyPath.equals(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY)) {
+		if(propertyPath.equals(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY)) {
 			return new CSSStyleSheetContentProvider(source);
 		}
 
-		if(propertyPath.equals(CSSAnnotations.CSS_GMF_CLASS_KEY)) {
+		if(propertyPath.equals(CSSStyles.CSS_GMF_CLASS_KEY)) {
 			Diagram diagram = ((View)source).getDiagram();
 			if(diagram instanceof CSSDiagram) {
 
