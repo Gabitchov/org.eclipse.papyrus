@@ -17,7 +17,11 @@ import java.util.List;
 
 import org.eclipse.swt.graphics.Image;
 
-
+/**
+ * A CSS Theme descriptor
+ * 
+ * @author Camille Letavernier
+ */
 public class Theme {
 
 	private String label;

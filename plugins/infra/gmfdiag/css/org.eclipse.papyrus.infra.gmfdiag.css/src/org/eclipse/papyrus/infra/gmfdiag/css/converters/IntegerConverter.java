@@ -18,7 +18,7 @@ import org.eclipse.e4.ui.css.core.impl.dom.Measure;
 import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 
-
+@SuppressWarnings("restriction")
 public class IntegerConverter extends AbstractCSSValueConverter {
 
 	public IntegerConverter() {

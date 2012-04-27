@@ -24,11 +24,26 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.w3c.dom.Element;
 
+/**
+ * An extended CSS Engine for an EMF Resource (A Model). This engine
+ * is a child of the WorkspaceCSSEngine.
+ * 
+ * It should not be used directly.
+ * 
+ * @author Camille Letavernier
+ * 
+ * @see DiagramCSSEngine
+ */
 @SuppressWarnings("restriction")
 public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 
 	private final Resource model;
 
+	/**
+	 * Creates a ModelCSSEngine for the requested resource.
+	 * 
+	 * @param model
+	 */
 	public ModelCSSEngine(Resource model) {
 		super(WorkspaceCSSEngine.instance);
 		this.model = model;

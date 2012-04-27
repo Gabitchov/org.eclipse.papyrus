@@ -18,6 +18,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.w3c.dom.css.CSSValue;
 import org.w3c.dom.css.CSSValueList;
 
+/**
+ * A Helper for parsing CSS property values.
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class ParserHelper {
 

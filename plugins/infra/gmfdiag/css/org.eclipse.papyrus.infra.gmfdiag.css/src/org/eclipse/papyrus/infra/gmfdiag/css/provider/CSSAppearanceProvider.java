@@ -14,7 +14,15 @@ package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 
-
+/**
+ * An appearance provider based on CSS. It reuses the AnnotationStyleProvider:
+ * if a property is changed manually, a standard annotation will be used.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
+//FIXME: Currently, manual changes on the appearance properties are not 
+//correctly taken into account
 public class CSSAppearanceProvider extends AnnotationStyleProvider {
 
 	@Override

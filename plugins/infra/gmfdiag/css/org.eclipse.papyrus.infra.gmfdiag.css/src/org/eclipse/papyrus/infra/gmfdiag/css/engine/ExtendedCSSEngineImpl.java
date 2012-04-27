@@ -167,6 +167,11 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		fireStyleSheetChanged();
 	}
 
+	/**
+	 * Reloads the CSS Stylesheets for this engine.
+	 * The default implementation does nothing, because stylesheets are
+	 * not added dynamically.
+	 */
 	protected void reloadStyleSheets() {
 		//Do nothing
 	}
@@ -182,6 +187,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		availableClasses.clear();
 	}
 
+	/**
+	 * Reloads and parses this engine's stylesheets
+	 */
 	protected void parseStyleSheets() {
 		reloadStyleSheets();
 		for(URL styleSheet : styleSheetURLs) {
@@ -204,17 +212,11 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		}
 	}
 
-	/**
-	 * @see #addStyleSheet(StyleSheet)
-	 */
 	private void parseStyleSheet(EmbeddedStyleSheet styleSheet) throws IOException {
 		Reader reader = new StringReader(styleSheet.getContent());
 		parseStyleSheet(reader);
 	}
 
-	/**
-	 * @see #addStyleSheet(StyleSheet)
-	 */
 	protected void parseStyleSheet(StyleSheetReference styleSheet) throws IOException {
 		String path = styleSheet.getPath();
 		if(path.startsWith("/")) {
@@ -250,6 +252,11 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		return viewCSS;
 	}
 
+	/**
+	 * Handles a notification from a parent CSS Engine: a parent stylesheet has
+	 * changed. Resets this engine and forwards the event to children
+	 * stylesheets
+	 */
 	public void styleSheetChanged(ExtendedCSSEngine owner) {
 		reset();
 	}
@@ -270,10 +277,16 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		styleSheetListeners.add(listener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeStyleSheetChangedListener(StyleSheetChangeListener listener) {
 		styleSheetListeners.remove(listener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ExtendedStyleSheetList getAllStylesheets() {
 		if(styleSheetsList == null) {
 			parseStyleSheets();
@@ -287,6 +300,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		return styleSheetsList;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object convert(CSSValue value, Object toType, Object context) {
 		try {
@@ -311,6 +327,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		return value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void dispose() {
 		styleSheetListeners.clear();
@@ -322,6 +341,13 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 		super.dispose();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Handles a notification that an Element has changed.
+	 * 
+	 * Source: GMFElementAdapter
+	 */
 	public void notifyChange(Element elementAdapter) {
 		resetCache(); //TODO: We should only refresh a subset of the cache
 		Display.getCurrent().asyncExec(new Runnable() {
@@ -337,6 +363,13 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Handles a notification that a graphical widget has been disposed.
+	 * 
+	 * Source: GMFElementAdapter
+	 */
 	public void handleDispose(Object nativeWidget) {
 		super.handleWidgetDisposed(nativeWidget);
 	}

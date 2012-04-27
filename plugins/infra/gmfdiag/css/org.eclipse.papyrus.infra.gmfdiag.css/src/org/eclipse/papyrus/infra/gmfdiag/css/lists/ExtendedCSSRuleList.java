@@ -17,7 +17,11 @@ import java.util.LinkedList;
 import org.w3c.dom.css.CSSRule;
 import org.w3c.dom.css.CSSRuleList;
 
-
+/**
+ * More usable implementation for CSSRuleList
+ * 
+ * @author Camille Letavernier
+ */
 public class ExtendedCSSRuleList extends LinkedList<CSSRule> implements CSSRuleList {
 
 	private static final long serialVersionUID = 1L;

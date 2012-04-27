@@ -13,8 +13,18 @@ package org.eclipse.papyrus.infra.gmfdiag.css.listener;
 
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 
-
+/**
+ * An interface for listening changes on a CSSEngine's stylesheets.
+ * 
+ * @author Camille Letavernier
+ */
 public interface StyleSheetChangeListener {
 
+	/**
+	 * Notifies this listener that a stylesheet has changed on the CSSEngine
+	 * 
+	 * @param owner
+	 *        The CSSEngine on which a stylesheet change has occured
+	 */
 	public void styleSheetChanged(ExtendedCSSEngine owner);
 }

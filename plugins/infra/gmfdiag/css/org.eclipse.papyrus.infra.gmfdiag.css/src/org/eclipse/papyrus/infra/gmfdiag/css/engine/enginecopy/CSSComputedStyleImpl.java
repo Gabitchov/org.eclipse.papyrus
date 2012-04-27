@@ -27,6 +27,7 @@ import org.w3c.dom.css.CSSStyleDeclaration;
  * styles coming from Condition Selector (ex : Label#MyId) and other selectors
  * (ex : Label).
  */
+//Copied from org.eclipse.e4.ui.css.core.impl.dom.CSSComputedStyleImpl
 @SuppressWarnings({ "serial", "restriction" })
 public class CSSComputedStyleImpl extends CSSStyleDeclarationImpl implements CSSStyleDeclaration {
 

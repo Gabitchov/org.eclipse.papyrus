@@ -18,6 +18,7 @@ import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 
 
+@SuppressWarnings("restriction")
 public class BooleanConverter extends AbstractCSSValueConverter {
 
 	public BooleanConverter() {

@@ -11,36 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 
+/**
+ * Contains constants for the CSS-specific annotations
+ * 
+ * @author Camille Letavernier
+ */
 public interface CSSAnnotations {
-
-	/**
-	 * The css id property
-	 */
-	public static final String CSS_GMF_ID_KEY = "cssId"; //$NON-NLS-1$
-
-	/**
-	 * The css class property
-	 */
-	public static final String CSS_GMF_CLASS_KEY = "cssClass"; //$NON-NLS-1$
-
-	/**
-	 * The css style property
-	 */
-	public static final String CSS_GMF_STYLE_KEY = "cssStyle"; //$NON-NLS-1$
-
-	/**
-	 * The Diagram Stylesheets key
-	 */
-	public static final String CSS_DIAGRAM_STYLESHEETS_KEY = "css_stylesheets"; //$NON-NLS-1$
-
-	/**
-	 * The name of the EAnnotation containing css informations
-	 * 
-	 * @see CSS_GMF_ID_KEY
-	 * @see CSS_GMF_CLASS_KEY
-	 * @see CSS_GMF_STYLE_KEY
-	 */
-	public static final String CSS_ANNOTATION = "PapyrusCSS"; //$NON-NLS-1$
 
 	/**
 	 * The name of the EAnnotation containing the list of feature names

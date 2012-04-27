@@ -15,6 +15,11 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 
+/**
+ * A Papyrus Model for the Notation resource, with CSS Support
+ * 
+ * @author Camille Letavernier
+ */
 public class CSSNotationModel extends NotationModel {
 
 	@Override

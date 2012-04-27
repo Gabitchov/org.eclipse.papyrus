@@ -11,7 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
-
+/**
+ * An element which supports Papyrus custom styles (elementIcon,
+ * qualifiedNameDepth, shadow).
+ * 
+ * @author Camille Letavernier
+ */
 public interface CustomStyle {
 
 	public boolean showElementIcon();

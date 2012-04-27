@@ -17,7 +17,14 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.gmf.runtime.emf.core.internal.util.EMFCoreConstants;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 
-
+/**
+ * A GMFResourceFactory which installs CSS Support on the produced
+ * NotationResources.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
+@SuppressWarnings("restriction")
 public class CSSNotationResourceFactory extends GMFResourceFactory {
 
 	@Override

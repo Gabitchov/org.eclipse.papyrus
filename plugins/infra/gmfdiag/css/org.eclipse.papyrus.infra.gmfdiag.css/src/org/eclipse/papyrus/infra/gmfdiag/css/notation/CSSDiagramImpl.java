@@ -65,7 +65,7 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 
 				NamedStyle style = (NamedStyle)styleObject;
 
-				if(CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY.equals(style.getName())) {
+				if(CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY.equals(style.getName())) {
 					if(style instanceof EObjectListValueStyle) {
 
 						EObjectListValueStyle stylesheetsStyle = (EObjectListValueStyle)style;

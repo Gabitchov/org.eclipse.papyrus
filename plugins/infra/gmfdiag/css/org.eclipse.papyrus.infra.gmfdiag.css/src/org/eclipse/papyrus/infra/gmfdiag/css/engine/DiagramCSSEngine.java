@@ -28,6 +28,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.w3c.dom.Element;
 
+/**
+ * A CSS Engine associated to a Diagram.
+ * 
+ * This Engine is a child of a ModelCSSEngine.
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeListener {
 

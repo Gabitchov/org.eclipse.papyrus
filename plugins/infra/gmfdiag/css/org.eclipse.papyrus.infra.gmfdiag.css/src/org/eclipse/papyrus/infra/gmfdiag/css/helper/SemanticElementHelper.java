@@ -16,6 +16,12 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.Activator;
 
+/**
+ * A Helper for retrieving Views and Semantic elements from a
+ * compatible object.
+ * 
+ * @author Camille Letavernier
+ */
 public class SemanticElementHelper {
 
 	/**
@@ -24,7 +30,7 @@ public class SemanticElementHelper {
 	 * The result element can also be a Diagram
 	 */
 	public static EObject findSemanticElement(EObject notationElement) {
-		if (notationElement == null){
+		if(notationElement == null) {
 			return null;
 		}
 		if(notationElement instanceof Diagram) {

@@ -15,7 +15,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 
-
+/**
+ * A Listener for notation and semantic properties changes
+ * 
+ * @author Camille Letavernier
+ */
 public class StyleListener extends AdapterImpl {
 
 	private final GMFElementAdapter elementAdapter;

@@ -33,7 +33,7 @@ import org.w3c.dom.css.ViewCSS;
 import org.w3c.dom.stylesheets.StyleSheet;
 import org.w3c.dom.views.DocumentView;
 
-
+//Implementation based on org.eclipse.e4.ui.css.core.impl.dom.ViewCSSImpl
 @SuppressWarnings("restriction")
 public class ExtendedViewCSSImpl implements ViewCSS {
 

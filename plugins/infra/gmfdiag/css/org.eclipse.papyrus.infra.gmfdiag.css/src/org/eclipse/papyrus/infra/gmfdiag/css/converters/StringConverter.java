@@ -17,7 +17,7 @@ import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 
-
+@SuppressWarnings("restriction")
 public class StringConverter extends AbstractCSSValueConverter {
 
 	public StringConverter() {

@@ -17,6 +17,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
+/**
+ * An extended, lazy version of a CSSEngine
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public interface ExtendedCSSEngine extends LazyCSSEngine, CSSEngine {
 

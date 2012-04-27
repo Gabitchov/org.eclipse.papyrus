@@ -29,7 +29,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
 import org.eclipse.swt.graphics.Image;
 
-
+/**
+ * A Singleton to manage CSS Themes. Reads Themes from an extension point,
+ * and provides an access to them.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class ThemeManager {
 
 	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".theme";
@@ -38,12 +44,22 @@ public class ThemeManager {
 
 	private Map<String, Theme> allThemes;
 
+	/**
+	 * Returns all the Themes, sorted alphabetically
+	 * 
+	 * @return
+	 */
 	public List<Theme> getThemes() {
 		List<Theme> sortedThemes = new LinkedList<Theme>(getAllThemes().values());
 		Collections.sort(sortedThemes, ThemeComparator.instance);
 		return sortedThemes;
 	}
 
+	/**
+	 * Returns the list of the workspace stylesheet's URLs.
+	 * 
+	 * @return
+	 */
 	public List<URL> getWorkspaceStyleSheets() {
 		Theme current = findCurrentTheme();
 		if(current == null) {
@@ -52,6 +68,13 @@ public class ThemeManager {
 		return current.getStyleSheets();
 	}
 
+	/**
+	 * Returns the theme associated to the given id, or null if it doesn't
+	 * exist
+	 * 
+	 * @param themeId
+	 * @return
+	 */
 	public Theme getTheme(String themeId) {
 		return getAllThemes().get(themeId);
 	}
@@ -163,6 +186,12 @@ public class ThemeManager {
 		}
 	}
 
+	/**
+	 * Sorts the Themes alphabetically (Based on their label). The Empty theme
+	 * is always the first element.
+	 * 
+	 * @author Camille Letavernier
+	 */
 	private static class ThemeComparator implements Comparator<Theme> {
 
 		private ThemeComparator() {

@@ -23,7 +23,11 @@ import org.w3c.dom.Element;
  * The base CSS Engine. It contains the default stylesheet, which will be applied
  * in all cases (With the lowest priority).
  * 
+ * It should not be used directly.
+ * 
  * @author Camille Letavernier
+ * 
+ * @see DiagramCSSEngine
  */
 @SuppressWarnings("restriction")
 public class BaseCSSEngine extends ExtendedCSSEngineImpl {

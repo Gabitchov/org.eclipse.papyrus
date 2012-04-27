@@ -22,6 +22,12 @@ import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
 
+/**
+ * A GMF Resource with CSS support
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 @SuppressWarnings("restriction")
 public class CSSNotationResource extends GMFResource {
 

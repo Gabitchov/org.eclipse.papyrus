@@ -9,28 +9,33 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.engine;
-
-import org.w3c.dom.css.CSSValue;
-
+package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 
 /**
- * An interface for Lazy CSS Engine
- * 
- * The Engine doesn't modify an Element. Instead, for an element, it returns the
- * value of the required property.
+ * Constants for the CSS-specific properties
  * 
  * @author Camille Letavernier
  */
-public interface LazyCSSEngine {
+public interface CSSStyles {
 
 	/**
-	 * Lazily retrieves a property's value on the selected node
-	 * 
-	 * @param node
-	 * @param property
-	 * @return
+	 * The css id property
 	 */
-	public CSSValue retrievePropertyValue(Object node, String property);
+	public static final String CSS_GMF_ID_KEY = "cssId"; //$NON-NLS-1$
+
+	/**
+	 * The css class property
+	 */
+	public static final String CSS_GMF_CLASS_KEY = "cssClass"; //$NON-NLS-1$
+
+	/**
+	 * The css style property
+	 */
+	public static final String CSS_GMF_STYLE_KEY = "cssStyle"; //$NON-NLS-1$
+
+	/**
+	 * The Diagram Stylesheets key
+	 */
+	public static final String CSS_DIAGRAM_STYLESHEETS_KEY = "css_stylesheets"; //$NON-NLS-1$
 
 }

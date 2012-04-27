@@ -20,10 +20,15 @@ import org.w3c.dom.Element;
 
 /**
  * A Singleton CSSEngine, handling the CSS stylesheets applied to the whole
- * workspace
+ * workspace.
+ * 
+ * This Engine is a child of the BaseCSSEngine.
+ * 
+ * It should not be used directly.
  * 
  * @author Camille Letavernier
  * 
+ * @see DiagramCSSEngine
  */
 @SuppressWarnings("restriction")
 public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {

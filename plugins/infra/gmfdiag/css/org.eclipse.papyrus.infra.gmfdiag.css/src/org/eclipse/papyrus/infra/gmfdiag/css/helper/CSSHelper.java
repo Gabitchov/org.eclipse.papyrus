@@ -14,9 +14,20 @@ package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResourceFactory;
 
-
+/**
+ * A Helper for CSS features
+ * 
+ * @author Camille Letavernier
+ */
 public class CSSHelper {
 
+	/**
+	 * Makes the given resourceSet compatible with the ExtendedCSSEngines.
+	 * 
+	 * This method should be called before loading resources from this resource set.
+	 * 
+	 * @param resourceSet
+	 */
 	public static void installCSSSupport(ResourceSet resourceSet) {
 		CSSNotationResourceFactory factory = new CSSNotationResourceFactory();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("notation", factory); //$NON-NLS-1$

@@ -33,6 +33,16 @@ import org.w3c.css.sac.SiblingSelector;
 import org.w3c.dom.css.CSSRule;
 import org.w3c.dom.css.CSSStyleSheet;
 
+/**
+ * A ContentProvider which retrieves the available CSS Classes to be applied
+ * on the selected element. The classes are retrieved from the current css
+ * engine's stylesheets.
+ * 
+ * The resulting classes are sorted alphabetically.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 @SuppressWarnings("restriction")
 public class CSSClassContentProvider extends AbstractStaticContentProvider {
 
@@ -40,6 +50,13 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 
 	private ExtendedCSSEngine engine;
 
+	/**
+	 * 
+	 * @param elementName
+	 *        The localName of the element (Typically, the semantic metaclass name or diagram type)
+	 * @param engine
+	 *        The stylesheets of this CSS Engine will be used to retrieve compatible CSS Classes
+	 */
 	public CSSClassContentProvider(String elementName, ExtendedCSSEngine engine) {
 		this.elementName = elementName;
 		this.engine = engine;
@@ -49,6 +66,11 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return getAvailableClasses().toArray();
 	}
 
+	/**
+	 * Returns a sorted collection of CSS Classes compatible with the element
+	 * 
+	 * @return
+	 */
 	public Collection<String> getAvailableClasses() {
 		Set<String> result = new TreeSet<String>(Collator.getInstance());
 

@@ -25,6 +25,14 @@ import org.w3c.dom.Element;
 @SuppressWarnings("restriction")
 public class GMFElementProvider implements IElementProvider {
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param element
+	 *        A GMF View
+	 * @param engine
+	 *        An ExtendedCSSEngine
+	 */
 	public Element getElement(Object element, CSSEngine engine) {
 
 		if(!(element instanceof View)) {

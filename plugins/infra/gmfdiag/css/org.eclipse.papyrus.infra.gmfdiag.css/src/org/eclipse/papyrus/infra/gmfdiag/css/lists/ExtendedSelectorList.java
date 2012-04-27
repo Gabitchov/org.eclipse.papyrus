@@ -17,7 +17,11 @@ import java.util.LinkedList;
 import org.w3c.css.sac.Selector;
 import org.w3c.css.sac.SelectorList;
 
-
+/**
+ * More usable implementation for SelectorList
+ * 
+ * @author Camille Letavernier
+ */
 public class ExtendedSelectorList extends LinkedList<Selector> implements SelectorList {
 
 	private static final long serialVersionUID = 0;

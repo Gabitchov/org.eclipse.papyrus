@@ -20,7 +20,22 @@ import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.w3c.dom.css.CSSValue;
 
-
+/**
+ * A Helper class for manipulating CSS Gradient properties.
+ * 
+ * Gradient properties:
+ * 
+ * - fillColor
+ * - gradientColor
+ * - gradientStyle
+ * - gradient (Composite property)
+ * 
+ * The support is currently incomplete, especially when using both the
+ * composite property and the single ones in CSS files.
+ * 
+ * @author Camille Letavernier
+ */
+@SuppressWarnings("restriction")
 public class GradientHelper {
 
 	public static final String GRADIENT_VERTICAL = "vertical";

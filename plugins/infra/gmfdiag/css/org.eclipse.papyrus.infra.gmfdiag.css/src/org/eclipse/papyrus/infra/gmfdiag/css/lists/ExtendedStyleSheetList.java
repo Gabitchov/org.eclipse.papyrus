@@ -17,7 +17,11 @@ import java.util.LinkedList;
 import org.w3c.dom.stylesheets.StyleSheet;
 import org.w3c.dom.stylesheets.StyleSheetList;
 
-
+/**
+ * More usable implementation for StyleSheetList
+ * 
+ * @author Camille Letavernier
+ */
 public class ExtendedStyleSheetList extends LinkedList<StyleSheet> implements StyleSheetList {
 
 	private static final long serialVersionUID = 1L;

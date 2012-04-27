@@ -18,6 +18,7 @@ import org.w3c.dom.css.CSSStyleDeclaration;
  * together with all the information needed to calculate a matching selector's
  * precedence.
  */
+//Copied from org.eclipse.e4.ui.css.core.impl.dom.StyleWrapper
 final class StyleWrapper {
 
 	private static class StyleWrapperComparator implements Comparator<StyleWrapper> {

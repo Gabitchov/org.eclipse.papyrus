@@ -26,7 +26,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.theme.ThemeManager;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-
+/**
+ * A Preference page for selecting the Workspace CSS Theme
+ * 
+ * @author Camille Letavernier
+ */
 public class ThemePreferencesPage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	public boolean needsRefresh = false;

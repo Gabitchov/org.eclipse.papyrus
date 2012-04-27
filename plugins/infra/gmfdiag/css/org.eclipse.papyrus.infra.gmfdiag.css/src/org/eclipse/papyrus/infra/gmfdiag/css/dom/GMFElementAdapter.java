@@ -11,11 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
 
-import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_ANNOTATION;
-import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_DIAGRAM_STYLESHEETS_KEY;
-import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_CLASS_KEY;
-import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_ID_KEY;
-import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations.CSS_GMF_STYLE_KEY;
+import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY;
+import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_GMF_CLASS_KEY;
+import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_GMF_ID_KEY;
+import static org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles.CSS_GMF_STYLE_KEY;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,9 +29,7 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -50,6 +47,11 @@ import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * An Adapter for providing a CSS support to GMF Objects
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener {
 
@@ -108,29 +110,52 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 */
 	private Node parentNode;
 
+	/**
+	 * A Listener for standard Style properties
+	 */
 	private Adapter styleListener;
 
+	/**
+	 * A Listener for custom Style properties
+	 */
 	private CustomStyleListener cssStyleListener;
 
+	/**
+	 * Returns the CSS ID of the selected element.
+	 * 
+	 * @param sourceElement
+	 *        The source element must be a GMF notation object (View, Style, ...)
+	 * @return
+	 *         The CSS ID associated to the source element, or null if it cannot be found
+	 */
 	public static String getCSSID(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_ID_KEY);
 	}
 
+	/**
+	 * Returns the CSS Class of the selected element. If more than one CSS
+	 * class is associated to the source elements, returns a String containing
+	 * all classes, separated with spaces.
+	 * 
+	 * @param sourceElement
+	 *        The source element must be a GMF notation object (View, Style, ...)
+	 * @return
+	 *         The CSS Class associated to the source element, or null if it cannot be found
+	 */
 	public static String getCSSClass(EObject sourceElement) {
 		List<String> allClasses = getCSSValues(sourceElement, CSS_GMF_CLASS_KEY);
 		return ListHelper.deepToString(allClasses, " "); //$NON-NLS-1$
 	}
 
+	/**
+	 * Returns the source element's local CSS style.
+	 * 
+	 * @param sourceElement
+	 *        The source element must be a GMF notation object (View, Style, ...)
+	 * @return
+	 */
 	public static String getCSSStyle(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_STYLE_KEY);
-	}
-
-	public static EAnnotation getStyleAnnotation(EModelElement modelElement) {
-		if(modelElement == null) {
-			return null;
-		}
-
-		return modelElement.getEAnnotation(CSS_ANNOTATION);
 	}
 
 	private static String getCSSValue(EObject sourceElement, String key) {
@@ -142,11 +167,13 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return style.getStringValue();
 	}
 
+	@SuppressWarnings("unchecked")
 	private static List<String> getCSSValues(EObject sourceElement, String key) {
 		StringListValueStyle style = (StringListValueStyle)findStyle(sourceElement, key, NotationPackage.eINSTANCE.getStringListValueStyle());
 		if(style == null) {
 			return Collections.emptyList();
 		}
+
 
 		return style.getStringListValue();
 	}
@@ -172,12 +199,27 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return findView(sourceElement.eContainer());
 	}
 
+	/**
+	 * Creates a new GMF Element Adapter for the requested view.
+	 * 
+	 * @param view
+	 *        The view to be adapted
+	 * @param engine
+	 *        The associated CSS Engine
+	 */
 	public GMFElementAdapter(View view, ExtendedCSSEngine engine) {
 		super(view, engine);
 		notationElement = view;
 		listenNotationElement();
 	}
 
+	/**
+	 * Returns the semantic element associated to this adapter. In case of a diagram,
+	 * the diagram is itself the semantic element.
+	 * 
+	 * @return
+	 *         The semantic element associated to this adapter
+	 */
 	public EObject getSemanticElement() {
 		if(semanticElement == null) {
 			semanticElement = SemanticElementHelper.findSemanticElement(notationElement);
@@ -247,10 +289,16 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return parentNode;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public NodeList getChildNodes() {
 		return this;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getNamespaceURI() {
 		if(namespaceURI == null) {
 			namespaceURI = EMFHelper.getQualifiedName(getSemanticElement().eClass().getEPackage(), ".");
@@ -258,18 +306,33 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return namespaceURI;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getCSSId() {
 		return getCSSID(notationElement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getCSSClass() {
 		return getCSSClass(notationElement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getCSSStyle() {
 		return getCSSStyle(notationElement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * The local name is either the diagram type (For a Diagram) or the name of the semantic
+	 * element's metaclass
+	 */
 	@Override
 	public String getLocalName() {
 		if(localName == null) {
@@ -289,6 +352,11 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		return localName;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * The attributes are the semantic's element features
+	 */
 	@Override
 	public String getAttribute(String attr) {
 		EStructuralFeature feature = getSemanticElement().eClass().getEStructuralFeature(attr);
@@ -320,10 +388,16 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Node item(int index) {
 		return getChildren()[index];
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getLength() {
 		return getChildren().length;
 	}
@@ -364,10 +438,18 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	//	Handle events	//
 	//////////////////////
 
-	public EObject getNotationElement() {
+
+	/**
+	 * The GMF View element associated to this adapter
+	 */
+	public View getNotationElement() {
 		return notationElement;
 	}
 
+	/**
+	 * Handles a notification for semantic element change.
+	 * Source: styleListener
+	 */
 	public void semanticElementChanged() {
 		if(semanticElement != null && semanticElement != notationElement) {
 			semanticElement.eAdapters().remove(styleListener);
@@ -381,6 +463,10 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		getEngine().notifyChange(this);
 	}
 
+	/**
+	 * Handles a notification for Custom style change.
+	 * Source: cssStyleListener
+	 */
 	//Change incoming from one of the cssCustomStyles (class, id, local style or diagram stylesheets)
 	public void handleChange(ChangeEvent event) {
 		if(notationElement instanceof CSSDiagram) {
@@ -393,6 +479,9 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		getEngine().notifyChange(this);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -406,16 +495,28 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		}
 	}
 
+	/**
+	 * Handles a notification for notation property change
+	 * Source : styleListener
+	 */
 	public void notationPropertyChanged() {
 		//Notify the CSSEngine
 		getEngine().notifyChange(this);
 	}
 
+	/**
+	 * Handles a notification for semantic property change
+	 * Source : styleListener
+	 */
 	public void semanticPropertyChanged() {
 		//Notify the CSSEngine
 		getEngine().notifyChange(this);
 	}
 
+	/**
+	 * Handles a notification for notation element disposed
+	 * Source : styleListener
+	 */
 	public void notationElementDisposed() {
 		dispose();
 		//Notify the CSSEngine
