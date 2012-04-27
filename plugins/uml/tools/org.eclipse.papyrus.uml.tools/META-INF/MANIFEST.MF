@@ -31,4 +31,5 @@ Export-Package: org.eclipse.papyrus.uml.tools,
  org.eclipse.papyrus.uml.tools.databinding,
  org.eclipse.papyrus.uml.tools.helper,
  org.eclipse.papyrus.uml.tools.listeners,
- org.eclipse.papyrus.uml.tools.providers
+ org.eclipse.papyrus.uml.tools.providers,
+ org.eclipse.papyrus.uml.tools.util
