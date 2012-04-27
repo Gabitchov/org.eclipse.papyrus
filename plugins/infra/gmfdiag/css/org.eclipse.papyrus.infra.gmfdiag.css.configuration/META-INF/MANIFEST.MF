@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CSS Configuration
+Bundle-Name: CSS Configuration (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.configuration;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.configuration.Activator

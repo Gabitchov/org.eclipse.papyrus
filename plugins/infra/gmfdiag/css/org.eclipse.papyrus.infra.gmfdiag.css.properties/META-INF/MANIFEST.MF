@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CSS Properties
+Bundle-Name: CSS Properties (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.properties;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.properties.Activator

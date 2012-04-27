@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Tools
+Bundle-Name: Papyrus Tools (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.tools
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.tools.Activator
