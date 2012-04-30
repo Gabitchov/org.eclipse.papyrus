@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -66,6 +67,11 @@ public class PapyrusMergeCommandProvider {
 		return null;
 	}
 
+	public Command getDestroyReferenceCommand(final TransactionalEditingDomain editingDomain, final EObject container, final EReference containingFeature, final EObject referencedObject, final boolean confirmationRequired) {
+		final IEditCommandRequest request = new DestroyReferenceRequest(editingDomain, container, containingFeature, referencedObject, confirmationRequired);
+		return getCommand(container, request);
+	}
+
 	public Command getSetCommand(final TransactionalEditingDomain domain, final EObject element, final EStructuralFeature feature, final Object value) {
 		final IEditCommandRequest request = new SetRequest(domain, element, feature, value);
 		return getCommand(element, request);
@@ -76,7 +82,7 @@ public class PapyrusMergeCommandProvider {
 		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Set XMI Command", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				if(element != null && element.eResource() instanceof XMIResource) {
 					((XMIResource)element.eResource()).setID(element, id);
 				}
@@ -91,7 +97,7 @@ public class PapyrusMergeCommandProvider {
 		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Add EObject to Resource Command", null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				res.getContents().add(eobjectToAdd);
 				return CommandResult.newOKCommandResult();
 			}
@@ -103,4 +109,5 @@ public class PapyrusMergeCommandProvider {
 		final IEditCommandRequest request = new MoveWithIndexRequest(domain, targetContainer, targetFeature, elementToMove, index);
 		return getCommand(elementToEdit, request);
 	}
+
 }
