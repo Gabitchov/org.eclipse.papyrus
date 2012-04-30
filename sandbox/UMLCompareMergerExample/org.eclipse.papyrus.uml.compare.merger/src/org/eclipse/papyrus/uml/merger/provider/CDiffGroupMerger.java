@@ -13,29 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.merger.provider;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.compare.EMFComparePlugin;
-import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.compare.diff.internal.merge.impl.DiffGroupMerger;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
-import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusEFactory;
 
 
-public class CAttributeChangeLeftTargetMerger extends AttributeChangeLeftTargetMerger implements ICommandMerger {
+public class CDiffGroupMerger extends DiffGroupMerger implements ICommandMerger {
 
 	/**
 	 * {@inheritDoc}
@@ -55,6 +47,11 @@ public class CAttributeChangeLeftTargetMerger extends AttributeChangeLeftTargetM
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
+	 * 
+	 */
 	@Override
 	public void undoInTarget() {
 		if(MergerUtils.usePapyrusMerger()) {
@@ -68,12 +65,11 @@ public class CAttributeChangeLeftTargetMerger extends AttributeChangeLeftTargetM
 		}
 	}
 
-
 	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeChangeLeftTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CDiffGroupMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -85,50 +81,22 @@ public class CAttributeChangeLeftTargetMerger extends AttributeChangeLeftTargetM
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeChangeLeftTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CDiffGroupMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
 		return cmd;
 	}
 
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
-		Command cmd = null;
-		final AttributeChangeLeftTarget theDiff = (AttributeChangeLeftTarget)this.diff;
-		final EObject origin = theDiff.getLeftElement();
-		final Object value = theDiff.getLeftTarget();
-		final EAttribute attr = theDiff.getAttribute();
-		try {
-			cmd = PapyrusEFactory.getERemoveCommand(domain, origin, attr.getName(), value);
-		} catch (FactoryException e) {
-			EMFComparePlugin.log(e, true);
-		}
-		return cmd;
+		//TODO
+		return UnexecutableCommand.INSTANCE;
 	}
 
-
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		Command cmd = null;
-		final AttributeChangeLeftTarget theDiff = (AttributeChangeLeftTarget)this.diff;
-		final EObject target = theDiff.getRightElement();
-		final Object value = theDiff.getLeftTarget();
-		final EAttribute attr = theDiff.getAttribute();
-		try {
-			int valueIndex = -1;
-			if(attr.isMany()) {
-				final EObject leftElement = theDiff.getLeftElement();
-				final Object leftValues = leftElement.eGet(attr);
-				if(leftValues instanceof List) {
-					final List<?> leftValuesList = (List<?>)leftValues;
-					valueIndex = leftValuesList.indexOf(value);
-			}
-			}
-			cmd = PapyrusEFactory.getEAddCommand(domain, target, attr.getName(), value, valueIndex);
-		} catch (FactoryException e) {
-			Activator.log.error(e);
-		}
-		return cmd;
-
+		//TODO
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
@@ -137,7 +105,7 @@ public class CAttributeChangeLeftTargetMerger extends AttributeChangeLeftTargetM
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CAttributeChangeLeftTargetMerger.this.mergeRequiredDifferences(applyInOrigin);
+				CDiffGroupMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -148,7 +116,7 @@ public class CAttributeChangeLeftTargetMerger extends AttributeChangeLeftTargetM
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CAttributeChangeLeftTargetMerger.this.postProcess();
+				CDiffGroupMerger.this.postProcess();
 				return null;
 			}
 		});
