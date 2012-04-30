@@ -49,12 +49,12 @@ public class PapyrusEFactory {
 	public static final <T> Command getEAddCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final T arg) throws FactoryException {
 		return getEAddCommand(domain, object, name, arg, -1);
 	}
-	
-	public static final <T>  Command getEAddCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final T arg, final int elementIndex) throws FactoryException {
-		return getEAddCommand(domain,object, name, arg, elementIndex, false);
+
+	public static final <T> Command getEAddCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final T arg, final int elementIndex) throws FactoryException {
+		return getEAddCommand(domain, object, name, arg, elementIndex, false);
 	}
-	
-	public static final <T> Command getEAddCommand(final TransactionalEditingDomain domain,final EObject object, final String name, final T arg, final int elementIndex, final boolean reorder) throws FactoryException {
+
+	public static final <T> Command getEAddCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final T arg, final int elementIndex, final boolean reorder) throws FactoryException {
 		Command returnedCommand = null;
 		final EStructuralFeature feature = eStructuralFeature(object, name);
 		if(feature.isMany() && arg != null) {
@@ -86,7 +86,7 @@ public class PapyrusEFactory {
 			//			} else if (manyValue instanceof Collection<?>) {
 			//				((Collection<? super T>)manyValue).add(arg);
 			//			}
-			
+
 			if(manyValue instanceof Collection<?>) {
 				List<Object> newValue = new ArrayList<Object>((Collection<?>)manyValue);
 				final int listSize = newValue.size();
@@ -100,7 +100,7 @@ public class PapyrusEFactory {
 						attachRealPositionEAdapter(arg, elementIndex);
 						reorderList((List<?>)newValue);
 					}
-				} if(manyValue instanceof Collection<?>) {
+				} else if(manyValue instanceof Collection<?>) {
 					newValue.add(arg);
 				}
 				returnedCommand = PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, object, feature, newValue);
@@ -114,26 +114,27 @@ public class PapyrusEFactory {
 
 	//TODO not tested
 	public static final Command getERemoveCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final Object arg) throws FactoryException {
-//		final Object list = object.eGet(eStructuralFeature(object, name));
-//		if (list instanceof List) {
-//			if (arg != null) {
-//				((List<?>)list).remove(arg);
-//			}
-//		} else {
-//			eSet(object, name, null);
-//		}
+		//		final Object list = object.eGet(eStructuralFeature(object, name));
+		//		if (list instanceof List) {
+		//			if (arg != null) {
+		//				((List<?>)list).remove(arg);
+		//			}
+		//		} else {
+		//			eSet(object, name, null);
+		//		}
 		final Object list = object.eGet(eStructuralFeature(object, name));
-		if (list instanceof List) {
-			if (arg != null) {
+		if(list instanceof List) {
+			if(arg != null) {
 				List<?> newValue = new ArrayList((List<?>)list);
 				((List<?>)newValue).remove(arg);
-				return getEAddCommand(domain, object, name, newValue);
+				return getESetCommand(domain, object, name, newValue);
 			}
 		} else {
 			return getESetCommand(domain, object, name, null);
 		}
 		return null;
 	}
+
 	/**
 	 * 
 	 * @param object
