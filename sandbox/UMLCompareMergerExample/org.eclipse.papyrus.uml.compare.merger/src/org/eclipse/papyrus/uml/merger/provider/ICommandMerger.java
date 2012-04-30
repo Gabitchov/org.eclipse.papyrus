@@ -14,28 +14,69 @@
 package org.eclipse.papyrus.uml.merger.provider;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.compare.diff.merge.DefaultMerger;
 import org.eclipse.emf.compare.diff.merge.IMerger;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-
+/**
+ * 
+ * The mergers which implement this interface are able to provide commands for the merge actions
+ * 
+ */
 public interface ICommandMerger extends IMerger {
 
 	/**
+	 * This command should have the same behavior as {@link DefaultMerger#applyInOrigin()}
 	 * 
 	 * @return
-	 *         the command to do the action ApplyInOrigin
+	 *         the command to do the action
 	 */
 	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain);
 
-
+	/**
+	 * This command should have the same behavior as {@link DefaultMerger#undoInTarget()}
+	 * 
+	 * @param domain
+	 * @return
+	 *         the command to do the action
+	 */
 	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain);
 
+	/**
+	 * This command should have the same behavior as {@link DefaultMerger#doApplyInOrigin}
+	 * 
+	 * @param domain
+	 * @return
+	 *         the command to do the action
+	 */
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain);
 
+	/**
+	 * This command should have the same behavior as {@link DefaultMerger#doUndoInTarget}
+	 * 
+	 * @param domain
+	 * @return
+	 *         the command to do the action
+	 */
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain);
 
+	/**
+	 * This command should have the same behavior as {@link DefaultMerger#mergeRequiredDifferences}
+	 * 
+	 * @param domain
+	 * @param applyInOrigin
+	 * @return
+	 *         the command to do the action
+	 */
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin);
 
+	/**
+	 * This command should have the same behavior as {@link DefaultMerger#postProcess}
+	 * 
+	 * @param domain
+	 * @return
+	 *         the command to do the action
+	 */
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain);
 
 }
