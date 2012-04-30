@@ -26,17 +26,24 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
  */
 public class MoveWithIndexRequest extends MoveRequest {
 
-	private int index;
+	private final int index;
+
+	private final boolean reorder;
 
 	//TODO : and the other constructor?
-	public MoveWithIndexRequest(TransactionalEditingDomain editingDomain, EObject targetContainer, EReference targetFeature, EObject elementToMove, final int index) {
+	public MoveWithIndexRequest(final TransactionalEditingDomain editingDomain, final EObject targetContainer, final EReference targetFeature, final EObject elementToMove, final int index, final boolean reorder) {
 		super(editingDomain, targetContainer, targetFeature, elementToMove);
 		this.index = index;
+		this.reorder = reorder;
 	}
 
 
 	public int getIndex() {
-		return index;
+		return this.index;
+	}
+
+	public boolean shouldReoder() {
+		return this.reorder;
 	}
 
 }

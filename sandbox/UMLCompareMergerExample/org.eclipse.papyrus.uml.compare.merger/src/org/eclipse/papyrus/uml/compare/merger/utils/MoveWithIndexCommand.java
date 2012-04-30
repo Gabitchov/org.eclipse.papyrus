@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
-import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.internal.l10n.EMFTypeCoreMessages;
@@ -33,17 +32,20 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 //TODO move this class and create it in the service edit
 public class MoveWithIndexCommand extends MoveElementsCommand {
 
-	public MoveWithIndexCommand(MoveRequest request) {
+	public MoveWithIndexCommand(final MoveRequest request) {
 		super(request);
 	}
 
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	//TODO : use the method reorder and attachrealposition
+	@Override
+	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 		int index = getIndex();
 		if(index != -1) {
 			for(Iterator<?> i = getElementsToMove().keySet().iterator(); i.hasNext();) {
 				EObject element = (EObject)i.next();
 				EReference feature = getTargetFeature(element);
-
+				//we attach the real position to the object
+				PapyrusEFactory.attachRealPositionEAdapter(element, index);
 				if(feature != null) {
 					if(FeatureMapUtil.isMany(getTargetContainer(), feature)) {
 						Object value = getTargetContainer().eGet(feature);
@@ -52,13 +54,23 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 							int indexMax = listValue.size() - 1;
 							if(indexMax < index) {
 								//we add the element at the end of the list
-								((Collection)getTargetContainer().eGet(feature)).add(element);
+								List values = ((List)getTargetContainer().eGet(feature));
+								values.add(element);
+								if(shouldReorder()) {
+									PapyrusEFactory.reorderList(values);
+								}
 							} else {
 								((List)value).add(index, element);
+								if(shouldReorder()) {
+									PapyrusEFactory.reorderList((List)value);
+								}
 							}
 
 						} else {
 							((Collection)getTargetContainer().eGet(feature)).add(element);
+							if(shouldReorder()) {
+								PapyrusEFactory.reorderList((List)((Collection)getTargetContainer().eGet(feature)));
+							}
 						}
 					} else {
 						getTargetContainer().eSet(feature, element);
@@ -83,5 +95,13 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 			return ((MoveWithIndexRequest)req).getIndex();
 		}
 		return -1;
+	}
+
+	protected boolean shouldReorder() {
+		IEditCommandRequest req = getRequest();
+		if(req instanceof MoveWithIndexRequest) {
+			return ((MoveWithIndexRequest)req).shouldReoder();
+		}
+		return false;
 	}
 }

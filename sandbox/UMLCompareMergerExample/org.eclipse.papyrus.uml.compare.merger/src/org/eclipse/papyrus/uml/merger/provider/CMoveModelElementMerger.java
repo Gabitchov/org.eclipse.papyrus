@@ -118,15 +118,10 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 			final String elementID = getXMIID(leftElement);
 
 			if(rightRefValue instanceof List<?>) {
-				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveWithIndexCommand(domain, leftTarget, leftTarget, ref, leftElement, index));
+				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveWithIndexCommand(domain, leftTarget, leftTarget, ref, leftElement, index, true));
 			} else {
 				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveCommand(domain, leftTarget, leftTarget, ref, leftElement));
 			}
-			//TODO : verify this merge action : I replace remove and eAdd by a move : it seems coorect, but it should be more tested
-			//			EcoreUtil.remove(leftElement);
-			//			EFactory.eAdd(leftTarget, ref.getName(), leftElement, index, true);
-			//			// Sets anew the element's ID
-			//			setXMIID(leftElement, elementID);
 			cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, leftElement, elementID));
 
 		} else {
@@ -152,16 +147,11 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 				index = refLeftValueList.indexOf(theDiff.getLeftElement());
 			}
 			if(leftRefValue instanceof List<?>) {
-				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveWithIndexCommand(domain, rightTarget, rightTarget, ref, rightElement, index));
+				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveWithIndexCommand(domain, rightTarget, rightTarget, ref, rightElement, index, true));
 			} else {
 				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveCommand(domain, rightTarget, rightTarget, ref, rightElement));
 			}
 			final String elementID = getXMIID(rightElement);
-			//TODO : verify this merge action : I replace remove and eAdd by a move : it seems coorect, but it should be more tested
-			//				EcoreUtil.remove(rightElement);
-			//				EFactory.eAdd(rightTarget, ref.getName(), rightElement, index, true);
-			//				setXMIID(rightElement, elementID);
-
 			cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, rightElement, elementID));
 		} else {
 			// shouldn't be here

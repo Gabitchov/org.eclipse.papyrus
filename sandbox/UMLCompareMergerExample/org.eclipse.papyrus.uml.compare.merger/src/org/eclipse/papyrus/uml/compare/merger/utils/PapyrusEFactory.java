@@ -32,7 +32,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.merger.provider.PapyrusMergeCommandProvider;
-
 //TODO : merge with thepapyrus table command factory?
 /**
  * 
@@ -175,7 +174,57 @@ public class PapyrusEFactory {
 
 
 
+	//	/**
+	//	 * If we could not merge a given object at its expected position in a list, we'll attach an Adapter to it
+	//	 * in order to "remember" that "expected" position. That will allow us to reorder the list later on if
+	//	 * need be.
+	//	 * 
+	//	 * @param object
+	//	 *        The object on which to attach an Adapter.
+	//	 * @param expectedPosition
+	//	 *        The expected position of <code>object</code> in its list.
+	//	 */
+	//	public static void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
+	//		Class<?> myClass = null;
+	//		try {
+	//			myClass = Class.forName("org.eclipse.emf.compare.util.EFactory");
+	//		} catch (ClassNotFoundException e2) {
+	//			// TODO Auto-generated catch block
+	//			e2.printStackTrace();
+	//		}
+	//		Class[] parameterTypes = new Class[2];
+	//		parameterTypes[0] = java.lang.Object.class;
+	//		parameterTypes[1] = Integer.TYPE;
+	//		Method m = null;
+	//
+	//		try {
+	//			m = myClass.getDeclaredMethod("attachRealPositionEAdapter", parameterTypes);
+	//		} catch (SecurityException e1) {
+	//			// TODO Auto-generated catch block
+	//			e1.printStackTrace();
+	//		} catch (NoSuchMethodException e1) {
+	//			// TODO Auto-generated catch block
+	//			e1.printStackTrace();
+	//		}
+	//		m.setAccessible(true);
+	//		Object[] parameters = new Object[2];
+	//		parameters[0] = object;
+	//		parameters[1] = expectedPosition;
+	//
+	//		Object result = null;
+	//		try {
+	//			result = m.invoke(myClass, parameters);
+	//		} catch (IllegalArgumentException e) {
+	//			Activator.log.error(e);
+	//		} catch (IllegalAccessException e) {
+	//			Activator.log.error(e);
+	//		} catch (InvocationTargetException e) {
+	//			Activator.log.error(e);
+	//		}
+	//	}
+
 	/**
+	 * Duplicate code from EFactory
 	 * If we could not merge a given object at its expected position in a list, we'll attach an Adapter to it
 	 * in order to "remember" that "expected" position. That will allow us to reorder the list later on if
 	 * need be.
@@ -186,44 +235,10 @@ public class PapyrusEFactory {
 	 *        The expected position of <code>object</code> in its list.
 	 */
 	public static void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
-		Class<?> myClass = null;
-		try {
-			myClass = Class.forName("org.eclipse.emf.compare.util.EFactory");
-		} catch (ClassNotFoundException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		Class[] parameterTypes = new Class[2];
-		parameterTypes[0] = java.lang.Object.class;
-		parameterTypes[1] = Integer.TYPE;
-		Method m = null;
-
-		try {
-			m = myClass.getDeclaredMethod("attachRealPositionEAdapter", parameterTypes);
-		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (NoSuchMethodException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		m.setAccessible(true);
-		Object[] parameters = new Object[2];
-		parameters[0] = object;
-		parameters[1] = expectedPosition;
-
-		Object result = null;
-		try {
-			result = m.invoke(myClass, parameters);
-		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
-		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
-		} catch (InvocationTargetException e) {
-			Activator.log.error(e);
+		if(object instanceof EObject) {
+			((EObject)object).eAdapters().add(new PositionAdapter(expectedPosition));
 		}
 	}
-
 
 	/**
 	 * Reorders the given list if it contains EObjects associated with a PositionAdapter which are not located
@@ -235,44 +250,15 @@ public class PapyrusEFactory {
 	 *        type of the list's elements.
 	 */
 	public static <T> void reorderList(final List<T> list) {
-		Class<?> myClass = null;
-		try {
-			myClass = Class.forName("org.eclipse.emf.compare.util.EFactory");
-		} catch (ClassNotFoundException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
+		List<T> newList = new ArrayList<T>(list);
+		Collections.sort(newList, new EObjectComparator());
+		for(int i=0;i<list.size();i++){
+			int oldIndex = list.indexOf(newList.get(i));
+			list.add(i, list.remove(oldIndex));
 		}
-		Class[] parameterTypes = new Class[1];
-		parameterTypes[0] = java.util.List.class;
-		Method m = null;
-
-		try {
-			m = myClass.getDeclaredMethod("reorderList", parameterTypes);
-		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (NoSuchMethodException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		m.setAccessible(true);
-		Object[] parameters = new Object[1];
-		parameters[0] = list;
-
-
-		Object result = null;
-		try {
-			result = m.invoke(myClass, parameters);
-		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
-		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
-		} catch (InvocationTargetException e) {
-			Activator.log.error(e);
-		}
-
-
+		return;
 	}
+
 
 	/**
 	 * This method should never been called, except by copyCollection;

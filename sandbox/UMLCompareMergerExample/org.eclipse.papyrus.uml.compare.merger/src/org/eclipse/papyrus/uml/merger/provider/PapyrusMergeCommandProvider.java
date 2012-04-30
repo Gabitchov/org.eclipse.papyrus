@@ -105,8 +105,8 @@ public class PapyrusMergeCommandProvider {
 	}
 
 	//TODO elementToEdit and targetContainer are the same
-	public Command getMoveWithIndexCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EObject targetContainer, final EReference targetFeature, final EObject elementToMove, final int index) {
-		final IEditCommandRequest request = new MoveWithIndexRequest(domain, targetContainer, targetFeature, elementToMove, index);
+	public Command getMoveWithIndexCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EObject targetContainer, final EReference targetFeature, final EObject elementToMove, final int index, final boolean reorder) {
+		final IEditCommandRequest request = new MoveWithIndexRequest(domain, targetContainer, targetFeature, elementToMove, index, reorder);
 		return getCommand(elementToEdit, request);
 	}
 
