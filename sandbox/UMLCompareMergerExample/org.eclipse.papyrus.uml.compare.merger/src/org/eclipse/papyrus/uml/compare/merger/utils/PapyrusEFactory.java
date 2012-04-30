@@ -1,15 +1,25 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.utils;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.EMFCompareMessages;
 import org.eclipse.emf.compare.FactoryException;
@@ -18,8 +28,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
@@ -38,16 +46,15 @@ public class PapyrusEFactory {
 		//nothing to do
 	}
 
-	public static final <T> Command getEAddCommand(EObject object, String name, T arg) throws FactoryException {
-		return getEAddCommand(object, name, arg, -1);
+	public static final <T> Command getEAddCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final T arg) throws FactoryException {
+		return getEAddCommand(domain, object, name, arg, -1);
 	}
 	
-	public static final <T>  Command getEAddCommand(EObject object, String name, T arg, int elementIndex) throws FactoryException {
-		return getEAddCommand(object, name, arg, elementIndex, false);
+	public static final <T>  Command getEAddCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final T arg, final int elementIndex) throws FactoryException {
+		return getEAddCommand(domain,object, name, arg, elementIndex, false);
 	}
 	
-	public static final <T> Command getEAddCommand(EObject object, String name, T arg, int elementIndex, boolean reorder) throws FactoryException {
-		final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+	public static final <T> Command getEAddCommand(final TransactionalEditingDomain domain,final EObject object, final String name, final T arg, final int elementIndex, final boolean reorder) throws FactoryException {
 		Command returnedCommand = null;
 		final EStructuralFeature feature = eStructuralFeature(object, name);
 		if(feature.isMany() && arg != null) {
@@ -105,8 +112,8 @@ public class PapyrusEFactory {
 		return returnedCommand;
 	}
 
-	//TODO a tester
-	public static final Command getERemove(EObject object, String name, Object arg) throws FactoryException {
+	//TODO not tested
+	public static final Command getERemoveCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final Object arg) throws FactoryException {
 //		final Object list = object.eGet(eStructuralFeature(object, name));
 //		if (list instanceof List) {
 //			if (arg != null) {
@@ -120,10 +127,10 @@ public class PapyrusEFactory {
 			if (arg != null) {
 				List<?> newValue = new ArrayList((List<?>)list);
 				((List<?>)newValue).remove(arg);
-				return getEAddCommand(object, name, newValue);
+				return getEAddCommand(domain, object, name, newValue);
 			}
 		} else {
-			return getESetCommand(object, name, null);
+			return getESetCommand(domain, object, name, null);
 		}
 		return null;
 	}
@@ -135,12 +142,10 @@ public class PapyrusEFactory {
 	 * @return
 	 * @throws FactoryException
 	 */
-	public static final Command getESetCommand(final EObject object, final String name, final Object arg) throws FactoryException {
-		final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+	public static final Command getESetCommand(final TransactionalEditingDomain domain, final EObject object, final String name, final Object arg) throws FactoryException {
 		Command returnedCommand;
 		final EStructuralFeature feature = eStructuralFeature(object, name);
 		if(!feature.isChangeable())
-			//TODO : change for papyrus factory?
 			throw new FactoryException(EMFCompareMessages.getString("EFactory.UnSettableFeature", name)); //$NON-NLS-1$
 
 		if(feature.getEType() instanceof EEnum && arg instanceof String) {
@@ -163,7 +168,7 @@ public class PapyrusEFactory {
 	}
 
 
-	public static EStructuralFeature eStructuralFeature(EObject object, String name) throws FactoryException {
+	public static EStructuralFeature eStructuralFeature(final EObject object, final String name) throws FactoryException {
 		return EFactory.eStructuralFeature(object, name);
 	}
 
@@ -179,7 +184,7 @@ public class PapyrusEFactory {
 	 * @param expectedPosition
 	 *        The expected position of <code>object</code> in its list.
 	 */
-	public static void attachRealPositionEAdapter(Object object, int expectedPosition) {
+	public static void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
 		Class<?> myClass = null;
 		try {
 			myClass = Class.forName("org.eclipse.emf.compare.util.EFactory");
@@ -208,7 +213,7 @@ public class PapyrusEFactory {
 
 		Object result = null;
 		try {
-			result = (Object)m.invoke(myClass, parameters);
+			result = m.invoke(myClass, parameters);
 		} catch (IllegalArgumentException e) {
 			Activator.log.error(e);
 		} catch (IllegalAccessException e) {
@@ -256,7 +261,7 @@ public class PapyrusEFactory {
 
 		Object result = null;
 		try {
-			result = (Object)m.invoke(myClass, parameters);
+			result = m.invoke(myClass, parameters);
 		} catch (IllegalArgumentException e) {
 			Activator.log.error(e);
 		} catch (IllegalAccessException e) {
@@ -290,7 +295,7 @@ public class PapyrusEFactory {
 		} catch (NoSuchMethodException e) {
 			Activator.log.error(e);
 		}
-		cloneMethod.setAccessible(true);//useful?
+		cloneMethod.setAccessible(true);
 		try {
 			newValue = cloneMethod.invoke(cloneable, new Object[0]);
 		} catch (IllegalArgumentException e) {
@@ -306,26 +311,4 @@ public class PapyrusEFactory {
 		return newValue;
 	}
 
-	/**
-	 * 
-	 * @param coll
-	 *        a collection
-	 * @return
-	 *         a copy of the collection
-	 */
-	private static <T> Collection<?> copyCollection(final Collection<T> coll) {
-		if(coll instanceof Cloneable) {
-			try {
-				return (Collection<?>)clone((Cloneable)coll);
-			} catch (UnsupportedOperationException e) {
-				Activator.log.warn(NLS.bind("I can't clone this object : {0}", coll.getClass()));
-			}
-		}
-		if(coll instanceof InternalEList) {
-			return new BasicInternalEList(Object.class, coll);//TODO : not sure for Object.class
-		} else if(coll instanceof List) {
-			return new ArrayList<T>(coll);
-		}
-		return new ArrayList<T>(coll);//
-	}
 }
