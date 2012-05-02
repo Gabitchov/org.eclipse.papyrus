@@ -25,6 +25,7 @@ import org.eclipse.emf.compare.diff.internal.merge.impl.MoveModelElementMerger;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -122,7 +123,7 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 			} else {
 				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveCommand(domain, leftTarget, leftTarget, ref, leftElement));
 			}
-			cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, leftElement, elementID));
+			cmd.append(getPreserveXMIIDCommand(domain, leftElement, elementID));
 
 		} else {
 			// shouldn't be here
@@ -152,7 +153,7 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getMoveCommand(domain, rightTarget, rightTarget, ref, rightElement));
 			}
 			final String elementID = getXMIID(rightElement);
-			cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, rightElement, elementID));
+			cmd.append(getPreserveXMIIDCommand(domain, rightElement, elementID));
 		} else {
 			// shouldn't be here
 			cmd.append(UnexecutableCommand.INSTANCE);
@@ -182,5 +183,30 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 				return null;
 			}
 		});
+	}
+
+	/**
+	 * This command is not the the class PapyrusUMLMergeProvider because it only should be used to preserve the xmi_id after a move,
+	 * but not to change the id
+	 * 
+	 * @param domain
+	 * @param element
+	 * @param id
+	 * @return
+	 *         the command to set the ID
+	 */
+	private Command getPreserveXMIIDCommand(final TransactionalEditingDomain domain, final EObject element, final String id) {
+		//TODO change for an EMFCommand
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Set XMI Command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				if(element != null && element.eResource() instanceof XMIResource) {
+					((XMIResource)element.eResource()).setID(element, id);
+				}
+				return CommandResult.newOKCommandResult();
+			}
+		});
+
 	}
 }

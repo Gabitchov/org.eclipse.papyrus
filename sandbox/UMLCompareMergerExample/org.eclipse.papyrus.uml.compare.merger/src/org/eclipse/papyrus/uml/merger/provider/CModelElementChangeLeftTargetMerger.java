@@ -129,7 +129,7 @@ public class CModelElementChangeLeftTargetMerger extends ModelElementChangeLeftT
 				//				EFactory.eAdd(origin, ref.getName(), newOne, elementIndex, true);
 				//				setXMIID(newOne, getXMIID(element));
 				cmd.append(PapyrusEFactory.getEAddCommand(domain, origin, ref.getName(), newOne, elementIndex, true));
-				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, newOne, getXMIID(element)));
+				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, element, newOne));
 			} catch (final FactoryException e) {
 				Activator.log.error(e);
 			}

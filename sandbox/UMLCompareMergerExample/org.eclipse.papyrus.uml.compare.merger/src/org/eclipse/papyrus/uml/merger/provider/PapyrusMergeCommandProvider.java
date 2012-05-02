@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.compare.merger.utils.MoveWithIndexCommand;
@@ -77,14 +78,31 @@ public class PapyrusMergeCommandProvider {
 		return getCommand(element, request);
 	}
 
-	public Command getSetXMIIDCommand(final TransactionalEditingDomain domain, final EObject element, final String id) {
+
+	/**
+	 * Returns the command to set the id of the source object to the new object. This command do something, only if the source and the target aren't
+	 * owned by the same resource
+	 * 
+	 * @param domain
+	 * @param sourceElement
+	 * @param targetElement
+	 * @return
+	 *         the command to set the id of the source object to the new object
+	 */
+	public Command getSetXMIIDCommand(final TransactionalEditingDomain domain, final EObject sourceElement, final EObject targetElement) {
 		//TODO change for an EMFCommand
 		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Set XMI Command", null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				if(element != null && element.eResource() instanceof XMIResource) {
-					((XMIResource)element.eResource()).setID(element, id);
+				final Resource sourceResource = sourceElement.eResource();
+				final Resource targetResource = targetElement.eResource();
+				if(sourceElement != null && targetElement != null && sourceResource instanceof XMIResource && targetResource instanceof XMIResource) {
+					//TODO : this test is commented because the result of this command is worse with the test than without...
+					//					if(sourceResource != targetResource) {
+						final String xmi_id = EMFHelper.getXMIID(sourceElement);
+						((XMIResource)targetElement.eResource()).setID(sourceElement, xmi_id);
+					//					}
 				}
 				return CommandResult.newOKCommandResult();
 			}
