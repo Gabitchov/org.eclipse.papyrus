@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -55,7 +56,7 @@ public class EMFHelper {
 	 * @return
 	 *         The EClass instance, or null if the EClass couldn't be found
 	 */
-	public static EClass getEClass(String nsUri, String className) {
+	public static EClass getEClass(final String nsUri, final String className) {
 		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsUri);
 		if(ePackage == null) {
 			Activator.log.warn("Cannot find an EPackage matching the nsURI " + nsUri); //$NON-NLS-1$
@@ -74,7 +75,7 @@ public class EMFHelper {
 	 * @return
 	 *         The EClass instance, or null if the EClass couldn't be found
 	 */
-	public static EClass getEClass(EPackage metamodel, String className) {
+	public static EClass getEClass(final EPackage metamodel, final String className) {
 		EClassifier classifier = metamodel.getEClassifier(className);
 		if(classifier == null) {
 			Activator.log.warn("Classifier " + className + " not found in metamodel " + metamodel.getName() + " (" + metamodel.getNsURI() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -100,7 +101,7 @@ public class EMFHelper {
 	 * @return
 	 *         True if the EObject is an instance of the EClass, or of one of the EClass' subtypes
 	 */
-	public static boolean isInstance(EObject element, String className, EPackage metamodel) {
+	public static boolean isInstance(final EObject element, final String className, final EPackage metamodel) {
 
 		EClassifier theClass = metamodel.getEClassifier(className);
 
@@ -120,7 +121,7 @@ public class EMFHelper {
 	 * @return
 	 *         true if eClass is a subclass of fromClass
 	 */
-	public static boolean isSubclass(EClass eClass, EClass fromClass) {
+	public static boolean isSubclass(final EClass eClass, final EClass fromClass) {
 		//Everything is an EObject
 		if(eClass != null && fromClass == EcorePackage.eINSTANCE.getEObject()) {
 			return true;
@@ -147,7 +148,7 @@ public class EMFHelper {
 	 * @return An EObject corresponding to the input source, or null
 	 *         if the EObject could not be resolved
 	 */
-	public static EObject getEObject(Object source) {
+	public static EObject getEObject(final Object source) {
 		if(source instanceof EObject) {
 			return (EObject)source;
 		} else if(source instanceof IAdaptable) {
@@ -169,7 +170,7 @@ public class EMFHelper {
 	 * @return
 	 *         The source object's editing domain, or null if it couldn't be found
 	 */
-	public static EditingDomain resolveEditingDomain(Object source) {
+	public static EditingDomain resolveEditingDomain(final Object source) {
 		return resolveEditingDomain(getEObject(source));
 	}
 
@@ -180,7 +181,7 @@ public class EMFHelper {
 	 * @return
 	 *         The source eObject's editing domain, or null if it couldn't be found
 	 */
-	public static EditingDomain resolveEditingDomain(EObject source) {
+	public static EditingDomain resolveEditingDomain(final EObject source) {
 		return AdapterFactoryEditingDomain.getEditingDomainFor(source);
 	}
 
@@ -194,7 +195,7 @@ public class EMFHelper {
 	 * @return
 	 *         The EClassifier' qualified name
 	 */
-	public static String getQualifiedName(EClassifier eClassifier, String separator) {
+	public static String getQualifiedName(final EClassifier eClassifier, final String separator) {
 		return getQualifiedName(eClassifier.getEPackage(), separator) + separator + eClassifier.getName();
 	}
 
@@ -208,7 +209,7 @@ public class EMFHelper {
 	 * @return
 	 *         The EPackage's qualified name
 	 */
-	public static String getQualifiedName(EPackage ePackage, String separator) {
+	public static String getQualifiedName(final EPackage ePackage, final String separator) {
 		if(ePackage.getESuperPackage() == null) {
 			return ePackage.getName();
 		}
@@ -229,7 +230,7 @@ public class EMFHelper {
 	 * @throws IOException
 	 * 
 	 */
-	public static EObject loadEMFModel(ResourceSet resourceSet, URI uri) throws IOException {
+	public static EObject loadEMFModel(ResourceSet resourceSet, final URI uri) throws IOException {
 		if(resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
 		}
@@ -257,7 +258,7 @@ public class EMFHelper {
 	 * @return
 	 *         The Root package
 	 */
-	public static EPackage getRootPackage(EPackage ePackage) {
+	public static EPackage getRootPackage(final EPackage ePackage) {
 		if(ePackage == null) {
 			return null;
 		}
@@ -279,7 +280,7 @@ public class EMFHelper {
 	 * @return
 	 *         The list of EClasses implementing or extending the given EClass
 	 */
-	public static List<EClass> getSubclassesOf(EClass type, boolean concreteClassesOnly) {
+	public static List<EClass> getSubclassesOf(final EClass type, final boolean concreteClassesOnly) {
 		List<EClass> result = new LinkedList<EClass>();
 		if(!concreteClassesOnly || (!type.isAbstract() && !type.isInterface())) {
 			result.add(type);
@@ -290,7 +291,7 @@ public class EMFHelper {
 		return result;
 	}
 
-	private static void getSubclassesOf(EClass type, EPackage fromPackage, List<EClass> result, boolean concreteClassesOnly) {
+	private static void getSubclassesOf(final EClass type, final EPackage fromPackage, final List<EClass> result, final boolean concreteClassesOnly) {
 		for(EClassifier classifier : fromPackage.getEClassifiers()) {
 			if(classifier instanceof EClass) {
 				EClass eClass = (EClass)classifier;
@@ -315,7 +316,7 @@ public class EMFHelper {
 	 * @return
 	 *         True if the EObject is read only
 	 */
-	public static boolean isReadOnly(EObject eObject) {
+	public static boolean isReadOnly(final EObject eObject) {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
 		return isReadOnly(eObject, domain);
 	}
@@ -329,7 +330,7 @@ public class EMFHelper {
 	 * @return
 	 *         True if the EObject is read only
 	 */
-	public static boolean isReadOnly(EObject eObject, EditingDomain domain) {
+	public static boolean isReadOnly(final EObject eObject, final EditingDomain domain) {
 		return isReadOnly(eObject.eResource(), domain);
 	}
 
@@ -342,7 +343,7 @@ public class EMFHelper {
 	 * @return
 	 *         True if the Resource is read only
 	 */
-	public static boolean isReadOnly(Resource resource, EditingDomain domain) {
+	public static boolean isReadOnly(final Resource resource, final EditingDomain domain) {
 		if(domain instanceof AdapterFactoryEditingDomain) {
 			return ((AdapterFactoryEditingDomain)domain).isReadOnly(resource);
 		}
@@ -380,7 +381,7 @@ public class EMFHelper {
 	 * @return
 	 *         true if the feature is required, false otherwise
 	 */
-	public static boolean isRequired(EStructuralFeature feature) {
+	public static boolean isRequired(final EStructuralFeature feature) {
 		//EEnums are always required, as an EEnum always has a default value
 		if(feature.getEType() instanceof EEnum) {
 			return true;
@@ -424,5 +425,19 @@ public class EMFHelper {
 		return metamodels;
 	}
 
-
+	/**
+	 * 
+	 * Returns the XMI ID of the given {@link EObject} or <code>null</code> if it cannot be resolved.
+	 * 
+	 * @param object
+	 *        Object which we seek the XMI ID of.
+	 * @return <code>object</code>'s XMI ID, <code>null</code> if not applicable.
+	 */
+	public static final String getXMIID(final EObject object) {
+		String objectID = null;
+		if(object != null && object.eResource() instanceof XMIResource) {
+			objectID = ((XMIResource)object.eResource()).getID(object);
+		}
+		return objectID;
+	}
 }

@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * 
- * Thios class provides methods for EMF Resource
- *
+ * This class provides methods for EMF Resource
+ * 
  */
 public class ResourceUtils {
 
