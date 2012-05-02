@@ -14,19 +14,23 @@
 package org.eclipse.papyrus.uml.merger.provider;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
 import org.eclipse.emf.compare.diff.metamodel.ResourceDependencyChange;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -35,6 +39,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
+import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusCompareEObjectCopier;
 import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusEFactory;
 
 
@@ -141,13 +146,61 @@ public class CReferenceChangeLeftTargetMerger extends ReferenceChangeLeftTargetM
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
 		final CompoundCommand cmd = new CompoundCommand();
-		//		return cmd;
-		//TODO
-		return UnexecutableCommand.INSTANCE;
+		final ReferenceChangeLeftTarget theDiff = (ReferenceChangeLeftTarget)this.diff;
+		final EReference reference = theDiff.getReference();
+		final EObject element = theDiff.getRightElement();
+		final EObject leftTarget = theDiff.getLeftTarget();
+		final EObject rightTarget = theDiff.getRightTarget();
+
+		int index = -1;
+		if(reference.isMany()) {
+			final EObject leftElement = theDiff.getLeftElement();
+			final Object leftRefValue = leftElement.eGet(reference);
+			if(leftRefValue instanceof List) {
+				final List<?> refLeftValueList = (List<?>)leftRefValue;
+				index = refLeftValueList.indexOf(leftTarget);
+			}
+		}
+		final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+		Command copierCommand = copier.getCopyReferenceValueCommand(domain, reference, element, leftTarget, rightTarget, index);
+		cmd.append(copierCommand);
+		final AbstractTransactionalCommand updateDiffModelCommand = new AbstractTransactionalCommand(domain, "Update Diff Model", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final EObject copiedValue = copier.getCopiedValue(leftTarget);
+				final Iterator<EObject> siblings = getDiffModel().eAllContents();
+				while(siblings.hasNext()) {
+					final DiffElement op = (DiffElement)siblings.next();
+					if(op instanceof ReferenceChangeLeftTarget) {
+						final ReferenceChangeLeftTarget link = (ReferenceChangeLeftTarget)op;
+						// now if I'm in the target References I should put my copy in the origin
+						if(link.getReference().equals(reference.getEOpposite()) && link.getLeftTarget().equals(element)) {
+							removeFromContainer(link);
+						}
+					} else if(op instanceof ReferenceOrderChange) {
+						final ReferenceOrderChange link = (ReferenceOrderChange)op;
+						if(link.getLeftElement() == element && link.getReference() == reference) {
+							final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
+							boolean replaced = false;
+							while(!replaced && targetIterator.hasNext()) {
+								final EObject target = targetIterator.next();
+								if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(leftTarget))) {
+									targetIterator.set(copiedValue);
+									replaced = true;
+								}
+							}
+						}
+					}
+				}
+				return CommandResult.newOKCommandResult();
+			}
+		};
+		cmd.append(new GMFtoEMFCommandWrapper(updateDiffModelCommand));
+		return cmd;
 	}
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
-		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
 		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
 
 			@Override

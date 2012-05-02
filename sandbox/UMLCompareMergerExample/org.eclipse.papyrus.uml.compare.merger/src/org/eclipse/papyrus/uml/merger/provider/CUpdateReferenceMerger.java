@@ -18,16 +18,18 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateReferenceMerger;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
+import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusCompareEObjectCopier;
 
 
 public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ICommandMerger {
@@ -97,22 +99,56 @@ public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ICo
 		final EObject matchedLeftTarget = theDiff.getLeftTarget();
 
 		if(leftTarget == null) {
-			// We're unsetting the value, no need to copy
-			//TODO
-			cmd = UnexecutableCommand.INSTANCE;
-			//			element.eUnset(reference);
+			if(FeatureMapUtil.isMany(element, reference)) {
+				//TODO : I didn't find an example to test this case.
+				throw new UnsupportedOperationException("Not Yet Supported");
+			} else {
+				final Object value = theDiff.getLeftElement().eGet(reference);
+				if(value instanceof EObject) {
+					cmd = PapyrusMergeCommandProvider.INSTANCE.getDestroyReferenceCommand(domain, element, reference, (EObject)value, false);
+				} else {
+					//TODO : we don't use the ServiceEdit
+					//TODO : not tested
+					//			element.eUnset(reference);
+					cmd = new SetCommand(domain, element, reference, null);
+				}
+			}
 		} else {
-			//TODO
-			cmd = UnexecutableCommand.INSTANCE;
-			//			MergeService.getCopier(diff).copyReferenceValue(reference, element, leftTarget,
-			//					matchedLeftTarget, -1);
+			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, leftTarget, matchedLeftTarget, -1);
 		}
 		return cmd;
 	}
 
+
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		// TODO
-		return UnexecutableCommand.INSTANCE;
+		Command cmd = null;
+		final UpdateReference theDiff = (UpdateReference)this.diff;
+		final EReference reference = theDiff.getReference();
+		final EObject element = theDiff.getRightElement();
+		final EObject rightTarget = (EObject)theDiff.getLeftElement().eGet(reference);
+		final EObject matchedRightTarget = theDiff.getRightTarget();
+
+		if(rightTarget == null) {
+			if(FeatureMapUtil.isMany(element, reference)) {
+				//TODO : I didn't find an example to test this case.
+				throw new UnsupportedOperationException("Not Yet Supported");
+			} else {
+				final Object value = theDiff.getRightElement().eGet(reference);
+				if(value instanceof EObject) {
+					cmd = PapyrusMergeCommandProvider.INSTANCE.getDestroyReferenceCommand(domain, element, reference, (EObject)value, false);
+				} else {
+					//TODO : we don't use the ServiceEdit
+					//TODO : not tested
+					//			element.eUnset(reference);
+					cmd = new SetCommand(domain, element, reference, null);
+				}
+			}
+		} else {
+			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, rightTarget, matchedRightTarget, -1);
+		}
+		return cmd;
 	}
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {

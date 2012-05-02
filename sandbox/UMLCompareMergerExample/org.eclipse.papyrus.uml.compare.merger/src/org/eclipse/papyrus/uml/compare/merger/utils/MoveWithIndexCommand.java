@@ -30,31 +30,49 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 
 //TODO move this class and create it in the service edit
+//TODO : breaks this class into 2 classes : 1 for the move and another one for the reorder?
 public class MoveWithIndexCommand extends MoveElementsCommand {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param request
+	 */
 	public MoveWithIndexCommand(final MoveRequest request) {
 		super(request);
 	}
 
-	//TODO : use the method reorder and attachrealposition
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 *      org.eclipse.core.runtime.IAdaptable)
+	 * 
+	 * @param monitor
+	 * @param info
+	 * @return
+	 * @throws ExecutionException
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-		int index = getIndex();
+		final int index = getIndex();
 		if(index != -1) {
 			for(Iterator<?> i = getElementsToMove().keySet().iterator(); i.hasNext();) {
-				EObject element = (EObject)i.next();
-				EReference feature = getTargetFeature(element);
-				//we attach the real position to the object
-				PapyrusEFactory.attachRealPositionEAdapter(element, index);
+				final EObject element = (EObject)i.next();
+				final EReference feature = getTargetFeature(element);
 				if(feature != null) {
 					if(FeatureMapUtil.isMany(getTargetContainer(), feature)) {
-						Object value = getTargetContainer().eGet(feature);
+						if(shouldReorder()) {
+							//we attach the real position to the object
+							PapyrusEFactory.attachRealPositionEAdapter(element, index);
+						}
+						final Object value = getTargetContainer().eGet(feature);
 						if(value instanceof List<?>) {
-							List<?> listValue = (List<?>)value;
-							int indexMax = listValue.size() - 1;
+							final List<?> listValue = (List<?>)value;
+							final int indexMax = listValue.size() - 1;
 							if(indexMax < index) {
 								//we add the element at the end of the list
-								List values = ((List)getTargetContainer().eGet(feature));
+								final List values = ((List<?>)getTargetContainer().eGet(feature));
 								values.add(element);
 								if(shouldReorder()) {
 									PapyrusEFactory.reorderList(values);
@@ -84,6 +102,11 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 		return super.doExecuteWithResult(monitor, info);
 	}
 
+	@Override
+	public boolean canExecute() {
+		super.canExecute();
+		return true;
+	}
 	/**
 	 * 
 	 * @return
@@ -97,11 +120,17 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 		return -1;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> when the list should be reorderded
+	 */
 	protected boolean shouldReorder() {
-		IEditCommandRequest req = getRequest();
+		final IEditCommandRequest req = getRequest();
+		boolean shouldReoder = false;
 		if(req instanceof MoveWithIndexRequest) {
-			return ((MoveWithIndexRequest)req).shouldReoder();
+			shouldReoder = ((MoveWithIndexRequest)req).shouldReoder();
 		}
-		return false;
+		return shouldReoder;
 	}
 }

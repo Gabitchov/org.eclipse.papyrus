@@ -39,7 +39,9 @@ public class EObjectComparator<T> implements Comparator<T> {
 		if(o1 instanceof EObject && o2 instanceof EObject) {
 			final int position1 = getWantedPosition((EObject)o1);
 			final int position2 = getWantedPosition((EObject)o2);
-			return position1 - position2;
+			if(position1 != -1 && position2 != -1) {
+				return position1 - position2;
+			}
 		}
 		return 0;
 	}

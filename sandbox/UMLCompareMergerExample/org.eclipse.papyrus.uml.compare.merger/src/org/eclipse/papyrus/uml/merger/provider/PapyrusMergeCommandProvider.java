@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.compare.merger.utils.MoveWithIndexCommand;
 import org.eclipse.papyrus.uml.compare.merger.utils.MoveWithIndexRequest;
 
-
+//TODO : try to merge with the PapyrusTableCommandFactory?
 public class PapyrusMergeCommandProvider {
 
 	public static PapyrusMergeCommandProvider INSTANCE = new PapyrusMergeCommandProvider();

@@ -45,7 +45,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 *         if the initial capacity is negative
 	 *         or the load factor is nonpositive.
 	 */
-	public PapyrusMap(int initialCapacity, float loadFactor) {
+	public PapyrusMap(final int initialCapacity, final float loadFactor) {
 		super(initialCapacity, loadFactor);
 	}
 
@@ -58,7 +58,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 * @throws IllegalArgumentException
 	 *         if the initial capacity is negative.
 	 */
-	public PapyrusMap(int initialCapacity) {
+	public PapyrusMap(final int initialCapacity) {
 		super(initialCapacity);
 	}
 
@@ -81,12 +81,20 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 * @throws NullPointerException
 	 *         if the specified map is null.
 	 */
-	public PapyrusMap(Map<? extends K, ? extends V> m) {
+	public PapyrusMap(final Map<? extends K, ? extends V> m) {
 		super(m);
 	}
 
+	/**
+	 * We display an error when a wanted element is not included in the Map
+	 * 
+	 * @see java.util.HashMap#get(java.lang.Object)
+	 * 
+	 * @param key
+	 * @return
+	 */
 	@Override
-	public V get(Object key) {
+	public V get(final Object key) {
 		V obj = super.get(key);
 		if(obj == null) {
 			Activator.log.error("The following element is unknown in the map : " + key, new NullPointerException());

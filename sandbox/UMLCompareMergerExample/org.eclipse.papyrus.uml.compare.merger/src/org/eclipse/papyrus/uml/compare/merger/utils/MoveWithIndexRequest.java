@@ -23,11 +23,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
  * 
  * Created for EMF-Compare, for MoveModelElementMerger
  * 
+ * 
  */
 public class MoveWithIndexRequest extends MoveRequest {
 
+	/**
+	 * the wanted index for the moved element
+	 */
 	private final int index;
 
+	/**
+	 * indicates if the list should be reordered after the move
+	 */
 	private final boolean reorder;
 
 	//TODO : and the other constructor?

@@ -13,22 +13,41 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.merger.provider.PapyrusMergeCommandProvider;
 
-
+/**
+ * 
+ * This class copies the code of {@link EMFCompareEObjectCopier}, to do the actions with EMFCommands
+ * 
+ */
 public class PapyrusCompareEObjectCopier {
 
+	/**
+	 * we encapsulate the "standard" implementation of {@link EMFCompareEObjectCopier}
+	 */
 	private EMFCompareEObjectCopier copier = null;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param diff
+	 *        a diff element
+	 */
 	public PapyrusCompareEObjectCopier(final DiffElement diff) {
 		copier = MergeService.getCopier(diff);
 	}
@@ -44,8 +63,7 @@ public class PapyrusCompareEObjectCopier {
 	 * @param index
 	 * @return
 	 */
-	public Command getCopyReferenceValueCommand(final EReference targetReference, final EObject target, final EObject value, final EObject matchedValue, final int index) {
-		final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+	public Command getCopyReferenceValueCommand(final TransactionalEditingDomain domain, final EReference targetReference, final EObject target, final EObject value, final EObject matchedValue, final int index) {
 		EObject actualValue = value;
 		if(value == null && matchedValue != null) {
 			//			handleLinkedResourceDependencyChange(matchedValue);
@@ -58,11 +76,12 @@ public class PapyrusCompareEObjectCopier {
 
 			final Object referenceValue = target.eGet(targetReference);
 			if(referenceValue instanceof Collection<?>) {
-				//TODO
-				//				addAtIndex((Collection<EObject>)referenceValue, matchedValue, index);
-				throw new UnsupportedOperationException("Not yet supported");
+				//tested with ReferenceChangeLefttargetExample
+				return getAddAtIndexCommand(domain, target, targetReference, (Collection<EObject>)referenceValue, matchedValue, index);
+
 			} else {
-				//				target.eSet(targetReference, matchedValue);
+				//target.eSet(targetReference, matchedValue);
+				//tested with the project UpdateReferenceExample2
 				return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, targetReference);
 			}
 			//			return matchedValue;
@@ -72,5 +91,109 @@ public class PapyrusCompareEObjectCopier {
 		throw new UnsupportedOperationException("Not yet supported");
 	}
 
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 *         the copied object
+	 */
+	public EObject getCopiedValue(final EObject key) {
+		return this.copier.get(key);
+	}
+
+	/**
+	 * Returns the command to set the wanted object at the wanted index
+	 * 
+	 * @param domain
+	 * @param editedElement
+	 * @param feature
+	 * @param collection
+	 * @param newValue
+	 * @param index
+	 * @return
+	 */
+	private Command getAddAtIndexCommand(final TransactionalEditingDomain domain, final EObject editedElement, final EStructuralFeature feature, final Collection<EObject> collection, final EObject newValue, final int index) {
+		final List<EObject> newColl = new ArrayList<EObject>(collection);
+		final int listSize = collection.size();
+		if(index > -1 && index < listSize) {
+			newColl.add(index, newValue);
+		} else {
+			newColl.add(newValue);
+		}
+		attachRealPositionEAdapter(newValue, index);
+		reorderList(newColl);
+		return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, editedElement, feature, newColl);
+	}
+
+	/**
+	 * Duplicate code from EFactory
+	 * If we could not merge a given object at its expected position in a list, we'll attach an Adapter to it
+	 * in order to "remember" that "expected" position. That will allow us to reorder the list later on if
+	 * need be.
+	 * 
+	 * @param object
+	 *        The object on which to attach an Adapter.
+	 * @param expectedPosition
+	 *        The expected position of <code>object</code> in its list.
+	 */
+	private void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
+		if(object instanceof EObject) {
+			((EObject)object).eAdapters().add(new PositionAdapter(expectedPosition));
+		}
+	}
+
+	/**
+	 * Duplicate code from EFactory
+	 * Reorders the given list if it contains EObjects associated with a PositionAdapter which are not located
+	 * at their expected positions.
+	 * 
+	 * @param list
+	 *        The list that is to be reordered.
+	 * @param <T>
+	 *        type of the list's elements.
+	 */
+	private <T> void reorderList(final List<T> list) {
+		final List<T> newList = new ArrayList<T>(list);
+		Collections.sort(newList, new EObjectComparator());
+		for(int i = 0; i < list.size(); i++) {
+			int oldIndex = list.indexOf(newList.get(i));
+			list.add(i, list.remove(oldIndex));
+		}
+		return;
+	}
+
+
+	/**
+	 * This class exists in several classes of this plugin. It is not an error : the same obejct can be referenced by different
+	 * feature and different position at the same time. So we need to have a class PositionAdapter for each context!
+	 * duplicate code from Efactory
+	 * This adapter will be used to remember the accurate position of an EObject in its target list.
+	 * 
+	 * @author <a href="mailto:laurent.goubet@obeo.fr">Laurent Goubet</a>
+	 */
+	private class PositionAdapter extends AdapterImpl {
+
+		/** The index at which we expect to find this object. */
+		private final int expectedIndex;
+
+		/**
+		 * Creates our adapter.
+		 * 
+		 * @param index
+		 *        The index at which we expect to find this object.
+		 */
+		public PositionAdapter(final int index) {
+			this.expectedIndex = index;
+		}
+
+		/**
+		 * Returns the index at which we expect to find this object.
+		 * 
+		 * @return The index at which we expect to find this object.
+		 */
+		public int getExpectedIndex() {
+			return expectedIndex;
+		}
+	}
 
 }
