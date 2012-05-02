@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -274,14 +275,7 @@ public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IR
 
 	@Override
 	protected IOperationHistory getIOperationHistory() {
-		TransactionalEditingDomain domain = null;
-		try {
-			domain = servicesRegistry.getService(TransactionalEditingDomain.class);
-		} catch (ServiceException e) {
-			Activator.log.error("I can't find the TransactionalEditingDomain", e);
-		}
-
-		return ((NotifyingWorkspaceCommandStack)domain.getCommandStack()).getOperationHistory();
+		return ((NotifyingWorkspaceCommandStack)getEditingDomain().getCommandStack()).getOperationHistory();
 	}
 
 
@@ -291,6 +285,18 @@ public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IR
 		final PapyrusModelCompareEditorInput input = (PapyrusModelCompareEditorInput)getCompareInput(rawModel.getLeft(), rawModel.getRight());
 		final ModelCompareInput input2 = input.getpreparedModelCompareInput();
 		viewer.setInput(input2);
+	}
+
+
+	public EditingDomain getEditingDomain() {
+		TransactionalEditingDomain domain = null;
+		try {
+			domain = servicesRegistry.getService(TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
+			Activator.log.error("I can't find the TransactionalEditingDomain", e);
+		}
+
+		return domain;
 	}
 
 

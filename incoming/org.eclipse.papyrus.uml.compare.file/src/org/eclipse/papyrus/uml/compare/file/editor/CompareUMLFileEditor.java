@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
@@ -56,7 +55,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusCompareEditor implements IEditingDomainProvider {//extends CompareEditor{
+public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusCompareEditor {//extends CompareEditor{
 
 	/** the id of this editor (declared in the plugin.xml */
 	public static final String COMPARE_UML_FILE_EDITOR_ID = "org.eclipse.papyrus.uml.compare.file.editor"; //$NON-NLS-1$
@@ -80,7 +79,6 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	public CompareUMLFileEditor() {
 		super();
 		set = new ResourceSetImpl();
-		System.out.println(set);
 		editingDomain = TransactionalEditingDomainManager.createDefaultTransactionalEditingDomain(set);
 		undoContext = new ObjectUndoContext(this, "PayrusUMLFileCompareUndoContext"); //$NON-NLS-1$
 		historyListener = new IOperationHistoryListener() {
