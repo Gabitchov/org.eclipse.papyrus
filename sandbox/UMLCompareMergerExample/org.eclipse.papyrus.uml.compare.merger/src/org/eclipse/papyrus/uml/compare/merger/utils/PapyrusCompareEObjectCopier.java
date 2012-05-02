@@ -16,17 +16,26 @@ package org.eclipse.papyrus.uml.compare.merger.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.merger.provider.PapyrusMergeCommandProvider;
 
 /**
@@ -84,11 +93,88 @@ public class PapyrusCompareEObjectCopier {
 				//tested with the project UpdateReferenceExample2
 				return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, targetReference);
 			}
-			//			return matchedValue;
 		}
-		//		return copyReferenceValue(targetReference, target, actualValue, index);
-		//TODO
-		throw new UnsupportedOperationException("Not yet supported");
+		//tested with ReferenceChangeLefttargetExample2
+		return getCopyValueReferenceCommand(domain, targetReference, target, actualValue, index);
+	}
+
+	private Command getCopyValueReferenceCommand(final TransactionalEditingDomain domain, final EReference targetReference, final EObject target, final EObject value, final int index) {
+		final Command copyValueCommand = new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final EObject copy;
+				final EObject targetValue = PapyrusCompareEObjectCopier.this.copier.get(value);
+				if(targetValue != null) {
+					copy = targetValue;
+				} else {
+					if(value.eResource() == null || value.eResource().getURI().isPlatformPlugin()) {
+						// We can't copy that object
+						copy = value;
+					} else {
+						copy = PapyrusCompareEObjectCopier.this.copier.copy(value);
+					}
+				}
+				Command cmd = null;
+				final Object referenceValue = target.eGet(targetReference);
+				if(referenceValue instanceof List && targetReference.isMany()) {
+					if(copy.eIsProxy() && copy instanceof InternalEObject) {
+						// only add if the element is not already there.
+						final URI proxURI = ((InternalEObject)copy).eProxyURI();
+						boolean found = false;
+						final Iterator<EObject> it = ((List<EObject>)referenceValue).iterator();
+						while(!found && it.hasNext()) {
+							final EObject obj = it.next();
+							if(obj instanceof InternalEObject) {
+								found = proxURI.equals(((InternalEObject)obj).eProxyURI());
+							}
+						}
+						if(!found) {
+							final List<EObject> targetList = (List<EObject>)referenceValue;
+							//addAtIndex(targetList, copy, index);
+							//not tested
+							cmd = getAddAtIndexCommand(domain, target, targetReference, targetList, copy, index);
+						}
+					} else {
+						final List<EObject> targetList = (List<EObject>)referenceValue;
+						final int currentIndex = targetList.indexOf(copy);
+						if(currentIndex == -1) {
+							//addAtIndex(targetList, copy, index);
+							//not tested
+							cmd = getAddAtIndexCommand(domain, target, targetReference, targetList, copy, index);
+						} else {
+							// The order could be wrong in case of eOpposites
+							//							movetoIndex(targetList, currentIndex, index);
+							cmd = getMoveAtIndexCommand(domain, target, targetList, targetReference, copy, currentIndex, index);
+							//							throw new UnsupportedOperationException("Not yet supported");
+						}
+					}
+				} else {
+					if(copy.eIsProxy() && copy instanceof InternalEObject) {
+						// only change value if the URI changes
+						final URI proxURI = ((InternalEObject)copy).eProxyURI();
+						if(referenceValue instanceof InternalEObject) {
+							if(!proxURI.equals(((InternalEObject)referenceValue).eProxyURI())) {
+								//not tested
+								//target.eSet(targetReference, copy);
+								cmd = PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, copy);
+							}
+						}
+					} else {
+						//not tested
+						//target.eSet(targetReference, copy);
+						cmd = PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, copy);
+					}
+				}
+
+				if(cmd != null) {
+					cmd.execute();
+				}
+				return CommandResult.newOKCommandResult();
+			}
+
+		});
+		return copyValueCommand;
 	}
 
 	/**
@@ -99,6 +185,20 @@ public class PapyrusCompareEObjectCopier {
 	 */
 	public EObject getCopiedValue(final EObject key) {
 		return this.copier.get(key);
+	}
+
+
+	private Command getMoveAtIndexCommand(final TransactionalEditingDomain domain, final EObject target, final List<EObject> targetList, final EReference targetReference, final EObject copy, final int currentIndex, final int expectedIndex) {
+		final List<EObject> newColl = new ArrayList<EObject>(targetList);
+		final int size = targetList.size();
+		if(size <= 1 || currentIndex < 0 || currentIndex >= size) {
+			//					return;
+			//do nothing
+		} else if(expectedIndex != -1 && expectedIndex != currentIndex && expectedIndex <= size - 1) {
+			newColl.add(expectedIndex, newColl.remove(currentIndex));
+		}
+
+		return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, newColl);
 	}
 
 	/**

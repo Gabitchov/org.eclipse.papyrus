@@ -19,16 +19,36 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
 
-public class MergerUtils {
+/**
+ * 
+ * This class provides useful method for the mergers
+ * 
+ */
+public final class MergerUtils {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	private MergerUtils() {
 		//nothing to do
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if we can use the Papyrus Mergers
+	 */
 	public static boolean usePapyrusMerger() {
-		return getEditingDomain()!=null;
+		return getEditingDomain() != null;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the {@link TransactionalEditingDomain} to use for the merge action, or <code>null</code> if not found
+	 */
 	public static TransactionalEditingDomain getEditingDomain() {
 		IEditorPart editor = EditorHelper.getCurrentEditor();
 		if(editor instanceof IMultiPageEditorPart) {
