@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.compare.diff.internal.merge.impl.DiffGroupMerger;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -90,13 +89,11 @@ public class CDiffGroupMerger extends DiffGroupMerger implements ICommandMerger 
 
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
-		//TODO
-		return UnexecutableCommand.INSTANCE;
+		throw new UnsupportedOperationException("Not yet supported");
 	}
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		//TODO
-		return UnexecutableCommand.INSTANCE;
+		throw new UnsupportedOperationException("Not yet supported");
 	}
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
