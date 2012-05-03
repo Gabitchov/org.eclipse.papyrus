@@ -13,14 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.utils;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.compare.EMFCompareMessages;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.util.EFactory;
@@ -29,10 +31,13 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
 //TODO : merge with thepapyrus table command factory?
+/**
+ * 
+ * This class is adapted from {@link EFactory}
+ * 
+ */
 /**
  * 
  * This class is adapted from {@link EFactory}
@@ -172,57 +177,6 @@ public class PapyrusEFactory {
 		return EFactory.eStructuralFeature(object, name);
 	}
 
-
-
-	//	/**
-	//	 * If we could not merge a given object at its expected position in a list, we'll attach an Adapter to it
-	//	 * in order to "remember" that "expected" position. That will allow us to reorder the list later on if
-	//	 * need be.
-	//	 * 
-	//	 * @param object
-	//	 *        The object on which to attach an Adapter.
-	//	 * @param expectedPosition
-	//	 *        The expected position of <code>object</code> in its list.
-	//	 */
-	//	public static void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
-	//		Class<?> myClass = null;
-	//		try {
-	//			myClass = Class.forName("org.eclipse.emf.compare.util.EFactory");
-	//		} catch (ClassNotFoundException e2) {
-	//			// TODO Auto-generated catch block
-	//			e2.printStackTrace();
-	//		}
-	//		Class[] parameterTypes = new Class[2];
-	//		parameterTypes[0] = java.lang.Object.class;
-	//		parameterTypes[1] = Integer.TYPE;
-	//		Method m = null;
-	//
-	//		try {
-	//			m = myClass.getDeclaredMethod("attachRealPositionEAdapter", parameterTypes);
-	//		} catch (SecurityException e1) {
-	//			// TODO Auto-generated catch block
-	//			e1.printStackTrace();
-	//		} catch (NoSuchMethodException e1) {
-	//			// TODO Auto-generated catch block
-	//			e1.printStackTrace();
-	//		}
-	//		m.setAccessible(true);
-	//		Object[] parameters = new Object[2];
-	//		parameters[0] = object;
-	//		parameters[1] = expectedPosition;
-	//
-	//		Object result = null;
-	//		try {
-	//			result = m.invoke(myClass, parameters);
-	//		} catch (IllegalArgumentException e) {
-	//			Activator.log.error(e);
-	//		} catch (IllegalAccessException e) {
-	//			Activator.log.error(e);
-	//		} catch (InvocationTargetException e) {
-	//			Activator.log.error(e);
-	//		}
-	//	}
-
 	/**
 	 * Duplicate code from EFactory
 	 * If we could not merge a given object at its expected position in a list, we'll attach an Adapter to it
@@ -234,7 +188,7 @@ public class PapyrusEFactory {
 	 * @param expectedPosition
 	 *        The expected position of <code>object</code> in its list.
 	 */
-	public static void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
+	private static void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
 		if(object instanceof EObject) {
 			((EObject)object).eAdapters().add(new PositionAdapter(expectedPosition));
 		}
@@ -249,7 +203,7 @@ public class PapyrusEFactory {
 	 * @param <T>
 	 *        type of the list's elements.
 	 */
-	public static <T> void reorderList(final List<T> list) {
+	private static <T> void reorderList(final List<T> list) {
 		List<T> newList = new ArrayList<T>(list);
 		Collections.sort(newList, new EObjectComparator());
 		for(int i=0;i<list.size();i++){
@@ -261,41 +215,82 @@ public class PapyrusEFactory {
 
 
 	/**
-	 * This method should never been called, except by copyCollection;
-	 * This method allows to invoke the clone method on Cloneable object.
+	 * duplicate code from Efactory
+	 * This adapter will be used to remember the accurate position of an EObject in its target list.
 	 * 
-	 * @param cloneable
-	 *        a cloneable object
-	 * @return
-	 *         a copy of the cloned object
-	 * @throws UnsupportedOperationException
-	 *         used when the object is {@link Cloneable}, but not implemented (like LinkedList...)
+	 * @author <a href="mailto:laurent.goubet@obeo.fr">Laurent Goubet</a>
 	 */
-	private static Object clone(final Cloneable cloneable) throws UnsupportedOperationException {
-		Class<?> cloneableClass = cloneable.getClass();
-		Method cloneMethod = null;
-		Object newValue = null;
-		try {
-			cloneMethod = cloneableClass.getMethod("clone", new Class[0]);
-		} catch (SecurityException e) {
-			Activator.log.error(e);
-		} catch (NoSuchMethodException e) {
-			Activator.log.error(e);
+	private static class PositionAdapter extends AdapterImpl {
+
+		/** The index at which we expect to find this object. */
+		private final int expectedIndex;
+
+		/**
+		 * Creates our adapter.
+		 * 
+		 * @param index
+		 *        The index at which we expect to find this object.
+		 */
+		public PositionAdapter(final int index) {
+			this.expectedIndex = index;
 		}
-		cloneMethod.setAccessible(true);
-		try {
-			newValue = cloneMethod.invoke(cloneable, new Object[0]);
-		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
-		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
-		} catch (InvocationTargetException e) {
-			Activator.log.error(e);
-		} catch (UnsupportedOperationException e) {
-			Activator.log.error(NLS.bind("I can't clone this object : {0}", cloneableClass), e);
-			throw e;
+
+		/**
+		 * Returns the index at which we expect to find this object.
+		 * 
+		 * @return The index at which we expect to find this object.
+		 */
+		public int getExpectedIndex() {
+			return expectedIndex;
 		}
-		return newValue;
+	}
+
+	/**
+	 * 
+	 * This class allows to compare EObject using the PositionAdapter.
+	 * 
+	 * 
+	 */
+	private static class EObjectComparator<T> implements Comparator<T> {
+
+		/**
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 * 
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		public int compare(final T o1, final T o2) {
+			if(o1 instanceof EObject && o2 instanceof EObject) {
+				final int position1 = getWantedPosition((EObject)o1);
+				final int position2 = getWantedPosition((EObject)o2);
+				if(position1 != -1 && position2 != -1) {
+					return position1 - position2;
+				}
+			}
+			return 0;
+		}
+
+		/**
+		 * 
+		 * @param obj1
+		 *        an EObject
+		 * @return
+		 *         the wanted position for this object
+		 */
+		private int getWantedPosition(final EObject obj1) {
+			final Iterator<Adapter> adapters = obj1.eAdapters().iterator();
+			int expectedIndex = -1;
+			while(expectedIndex == -1 && adapters.hasNext()) {
+				final Adapter adapter = adapters.next();
+				if(adapter instanceof PositionAdapter) {
+					expectedIndex = ((PositionAdapter)adapter).getExpectedIndex();
+				}
+			}
+			return expectedIndex;
+		}
+
 	}
 
 }

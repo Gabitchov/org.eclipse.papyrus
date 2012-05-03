@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.compare.merger.internal.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
@@ -78,7 +80,7 @@ public class PapyrusCompareEObjectCopier {
 			//			handleLinkedResourceDependencyChange(matchedValue);
 			//			actualValue = get(matchedValue);
 			//TODO
-			throw new UnsupportedOperationException("Not yet supported");
+			throw new UnsupportedOperationException("Not yet supported"); //$NON-NLS-1$
 		}
 		if(matchedValue != null) {
 			this.copier.put(actualValue, matchedValue);
@@ -99,7 +101,7 @@ public class PapyrusCompareEObjectCopier {
 	}
 
 	private Command getCopyValueReferenceCommand(final TransactionalEditingDomain domain, final EReference targetReference, final EObject target, final EObject value, final int index) {
-		final Command copyValueCommand = new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) {
+		final Command copyValueCommand = new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -295,5 +297,54 @@ public class PapyrusCompareEObjectCopier {
 			return expectedIndex;
 		}
 	}
+
+	/**
+	 * 
+	 * This class allows to compare EObject using the PositionAdapter.
+	 * 
+	 * 
+	 */
+	private class EObjectComparator<T> implements Comparator<T> {
+
+		/**
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 * 
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		public int compare(final T o1, final T o2) {
+			if(o1 instanceof EObject && o2 instanceof EObject) {
+				final int position1 = getWantedPosition((EObject)o1);
+				final int position2 = getWantedPosition((EObject)o2);
+				if(position1 != -1 && position2 != -1) {
+					return position1 - position2;
+				}
+			}
+			return 0;
+		}
+
+		/**
+		 * 
+		 * @param obj1
+		 *        an EObject
+		 * @return
+		 *         the wanted position for this object
+		 */
+		private int getWantedPosition(final EObject obj1) {
+			final Iterator<Adapter> adapters = obj1.eAdapters().iterator();
+			int expectedIndex = -1;
+			while(expectedIndex == -1 && adapters.hasNext()) {
+				final Adapter adapter = adapters.next();
+				if(adapter instanceof PositionAdapter) {
+					expectedIndex = ((PositionAdapter)adapter).getExpectedIndex();
+				}
+			}
+			return expectedIndex;
+		}
+
+	}
+
 
 }

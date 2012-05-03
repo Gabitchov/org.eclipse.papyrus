@@ -35,7 +35,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
+import org.eclipse.papyrus.uml.compare.merger.internal.commands.CopyXMIIDCommand;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
@@ -83,7 +85,7 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElemen
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CModelElementChangeLeftTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CModelElementChangeLeftTargetMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -95,7 +97,7 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElemen
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CModelElementChangeLeftTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CModelElementChangeLeftTargetMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -110,7 +112,7 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElemen
 	}
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand("Command CModelElementChangeLeftTargetMerger#getDoUndoInTargetCommand");
+		CompoundCommand cmd = new CompoundCommand("Command CModelElementChangeLeftTargetMerger#getDoUndoInTargetCommand"); //$NON-NLS-1$
 		final ModelElementChangeLeftTarget theDiff = (ModelElementChangeLeftTarget)this.diff;
 		// we should copy the element to the Origin one.
 		final EObject origin = theDiff.getRightParent();
@@ -131,20 +133,20 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElemen
 				//				EFactory.eAdd(origin, ref.getName(), newOne, elementIndex, true);
 				//				setXMIID(newOne, getXMIID(element));
 				cmd.append(PapyrusEFactory.getEAddCommand(domain, origin, ref.getName(), newOne, elementIndex, true));
-				cmd.append(PapyrusMergeCommandProvider.INSTANCE.getSetXMIIDCommand(domain, element, newOne));
+				cmd.append(new CopyXMIIDCommand(element, newOne));
 			} catch (final FactoryException e) {
 				Activator.log.error(e);
 			}
 		} else if(origin == null && getDiffModel().getRightRoots().size() > 0) {
 			//			getDiffModel().getRightRoots().get(0).eResource().getContents().add(newOne);
-			cmd.append(PapyrusMergeCommandProvider.INSTANCE.getAddToResourceCommand(domain, getDiffModel().getRightRoots().get(0).eResource(), newOne));
+			cmd.append(new AddToResourceCommand(getDiffModel().getRightRoots().get(0).eResource(), newOne));
 		} else if(origin != null) {
 			//			origin.eResource().getContents().add(newOne);
-			cmd.append(PapyrusMergeCommandProvider.INSTANCE.getAddToResourceCommand(domain, origin.eResource(), newOne));
+			cmd.append(new AddToResourceCommand(origin.eResource(), newOne));
 		} else {
 			// FIXME throw exception : couldn't merge this
 		}
-		cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) {
+		cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -183,7 +185,7 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElemen
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
 		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -194,7 +196,7 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElemen
 	}
 
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {

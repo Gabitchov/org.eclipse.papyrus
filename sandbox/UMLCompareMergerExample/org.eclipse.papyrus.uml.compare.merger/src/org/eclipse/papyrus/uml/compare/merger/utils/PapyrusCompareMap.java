@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.compare.merger.Activator;
  * @param <K>
  * @param <V>
  */
-public class PapyrusMap<K, V> extends HashMap<K, V> {
+public class PapyrusCompareMap<K, V> extends HashMap<K, V> {
 
 	/**
 	 * 
@@ -45,7 +45,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 *         if the initial capacity is negative
 	 *         or the load factor is nonpositive.
 	 */
-	public PapyrusMap(final int initialCapacity, final float loadFactor) {
+	public PapyrusCompareMap(final int initialCapacity, final float loadFactor) {
 		super(initialCapacity, loadFactor);
 	}
 
@@ -58,7 +58,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 * @throws IllegalArgumentException
 	 *         if the initial capacity is negative.
 	 */
-	public PapyrusMap(final int initialCapacity) {
+	public PapyrusCompareMap(final int initialCapacity) {
 		super(initialCapacity);
 	}
 
@@ -66,7 +66,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 * Constructs an empty <tt>HashMap</tt> with the default initial capacity
 	 * (16) and the default load factor (0.75).
 	 */
-	public PapyrusMap() {
+	public PapyrusCompareMap() {
 		super();
 	}
 
@@ -81,7 +81,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	 * @throws NullPointerException
 	 *         if the specified map is null.
 	 */
-	public PapyrusMap(final Map<? extends K, ? extends V> m) {
+	public PapyrusCompareMap(final Map<? extends K, ? extends V> m) {
 		super(m);
 	}
 
@@ -97,7 +97,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	public V get(final Object key) {
 		V obj = super.get(key);
 		if(obj == null) {
-			Activator.log.error("The following element is unknown in the map : " + key, new NullPointerException());
+			Activator.log.error("The following element is unknown in the map : " + key, new NullPointerException()); //$NON-NLS-1$
 		}
 		return obj;
 	}

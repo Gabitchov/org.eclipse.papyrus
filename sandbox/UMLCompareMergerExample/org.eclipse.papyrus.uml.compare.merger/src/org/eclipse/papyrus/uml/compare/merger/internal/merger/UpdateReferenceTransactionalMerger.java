@@ -72,7 +72,7 @@ public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger im
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CUpdateReferenceMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CUpdateReferenceMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -84,7 +84,7 @@ public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger im
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CUpdateReferenceMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CUpdateReferenceMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -103,7 +103,7 @@ public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger im
 		if(leftTarget == null) {
 			if(FeatureMapUtil.isMany(element, reference)) {
 				//TODO : I didn't find an example to test this case.
-				throw new UnsupportedOperationException("Not Yet Supported");
+				throw new UnsupportedOperationException("Not Yet Supported"); //$NON-NLS-1$
 			} else {
 				final Object value = theDiff.getLeftElement().eGet(reference);
 				if(value instanceof EObject) {
@@ -134,7 +134,7 @@ public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger im
 		if(rightTarget == null) {
 			if(FeatureMapUtil.isMany(element, reference)) {
 				//TODO : I didn't find an example to test this case.
-				throw new UnsupportedOperationException("Not Yet Supported");
+				throw new UnsupportedOperationException("Not Yet Supported"); //$NON-NLS-1$
 			} else {
 				final Object value = theDiff.getRightElement().eGet(reference);
 				if(value instanceof EObject) {
@@ -155,7 +155,7 @@ public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger im
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
 		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -166,7 +166,7 @@ public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger im
 	}
 
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {

@@ -81,7 +81,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CMoveModelElementMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CMoveModelElementMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -93,7 +93,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CMoveModelElementMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CMoveModelElementMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -101,7 +101,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 	}
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
-		final CompoundCommand cmd = new CompoundCommand("CMoveModelElementMerger#getDoApplyInOriginCommand");
+		final CompoundCommand cmd = new CompoundCommand("CMoveModelElementMerger#getDoApplyInOriginCommand"); //$NON-NLS-1$
 		final MoveModelElement theDiff = (MoveModelElement)this.diff;
 		final EObject leftTarget = theDiff.getLeftTarget();
 		final EObject leftElement = theDiff.getLeftElement();
@@ -135,7 +135,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 	}
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		final CompoundCommand cmd = new CompoundCommand("CMoveModelElementMerger#getDoUndoInTargetCommand");
+		final CompoundCommand cmd = new CompoundCommand("CMoveModelElementMerger#getDoUndoInTargetCommand"); //$NON-NLS-1$
 		final MoveModelElement theDiff = (MoveModelElement)this.diff;
 		final EObject rightTarget = theDiff.getRightTarget();
 		final EObject rightElement = theDiff.getRightElement();
@@ -166,7 +166,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
 		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -177,7 +177,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 	}
 
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -199,7 +199,7 @@ public class MoveModelElementTransactionalMerger extends MoveModelElementMerger 
 	 */
 	private Command getPreserveXMIIDCommand(final TransactionalEditingDomain domain, final EObject element, final String id) {
 		//TODO change for an EMFCommand
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Set XMI Command", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Set XMI Command", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {

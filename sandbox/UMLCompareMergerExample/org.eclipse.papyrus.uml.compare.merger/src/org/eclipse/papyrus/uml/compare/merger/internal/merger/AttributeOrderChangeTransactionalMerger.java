@@ -80,7 +80,7 @@ public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChang
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeOrderChangeMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeOrderChangeMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -92,7 +92,7 @@ public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChang
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeOrderChangeMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeOrderChangeMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -205,7 +205,7 @@ public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChang
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
 		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -216,7 +216,7 @@ public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChang
 	}
 
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -244,7 +244,7 @@ public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChang
 		parameterTypes[1] = java.lang.Object.class;
 		Method m = null;
 		try {
-			m = ReflectHelper.getMethod(AttributeOrderChangeMerger.class, "areDistinctValues", parameterTypes);
+			m = ReflectHelper.getMethod(AttributeOrderChangeMerger.class, "areDistinctValues", parameterTypes); //$NON-NLS-1$
 		} catch (SecurityException e) {
 			Activator.log.error(e);
 		} catch (NoSuchMethodException e) {

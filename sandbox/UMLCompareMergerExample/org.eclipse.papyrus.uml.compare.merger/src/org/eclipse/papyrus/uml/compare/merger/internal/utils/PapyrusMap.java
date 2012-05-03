@@ -97,7 +97,7 @@ public class PapyrusMap<K, V> extends HashMap<K, V> {
 	public V get(final Object key) {
 		V obj = super.get(key);
 		if(obj == null) {
-			Activator.log.error("The following element is unknown in the map : " + key, new NullPointerException());
+			Activator.log.error("The following element is unknown in the map : " + key, new NullPointerException()); //$NON-NLS-1$
 		}
 		return obj;
 	}

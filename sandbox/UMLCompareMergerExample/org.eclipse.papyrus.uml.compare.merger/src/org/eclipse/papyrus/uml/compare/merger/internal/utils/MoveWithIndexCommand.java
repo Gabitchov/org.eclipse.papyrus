@@ -13,13 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
@@ -64,7 +69,7 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 					if(FeatureMapUtil.isMany(getTargetContainer(), feature)) {
 						if(shouldReorder()) {
 							//we attach the real position to the object
-							PapyrusEFactory.attachRealPositionEAdapter(element, index);
+							attachRealPositionEAdapter(element, index);
 						}
 						final Object value = getTargetContainer().eGet(feature);
 						if(value instanceof List<?>) {
@@ -75,19 +80,19 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 								final List values = ((List<?>)getTargetContainer().eGet(feature));
 								values.add(element);
 								if(shouldReorder()) {
-									PapyrusEFactory.reorderList(values);
+									reorderList(values);
 								}
 							} else {
 								((List)value).add(index, element);
 								if(shouldReorder()) {
-									PapyrusEFactory.reorderList((List)value);
+									reorderList((List)value);
 								}
 							}
 
 						} else {
 							((Collection)getTargetContainer().eGet(feature)).add(element);
 							if(shouldReorder()) {
-								PapyrusEFactory.reorderList((List)((Collection)getTargetContainer().eGet(feature)));
+								reorderList((List)((Collection)getTargetContainer().eGet(feature)));
 							}
 						}
 					} else {
@@ -132,5 +137,120 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 			shouldReoder = ((MoveWithIndexRequest)req).shouldReoder();
 		}
 		return shouldReoder;
+	}
+
+	/**
+	 * Duplicate code from EFactory
+	 * If we could not merge a given object at its expected position in a list, we'll attach an Adapter to it
+	 * in order to "remember" that "expected" position. That will allow us to reorder the list later on if
+	 * need be.
+	 * 
+	 * @param object
+	 *        The object on which to attach an Adapter.
+	 * @param expectedPosition
+	 *        The expected position of <code>object</code> in its list.
+	 */
+	private void attachRealPositionEAdapter(final Object object, final int expectedPosition) {
+		if(object instanceof EObject) {
+			((EObject)object).eAdapters().add(new PositionAdapter(expectedPosition));
+		}
+	}
+
+	/**
+	 * Reorders the given list if it contains EObjects associated with a PositionAdapter which are not located
+	 * at their expected positions.
+	 * 
+	 * @param list
+	 *        The list that is to be reordered.
+	 * @param <T>
+	 *        type of the list's elements.
+	 */
+	private <T> void reorderList(final List<T> list) {
+		List<T> newList = new ArrayList<T>(list);
+		Collections.sort(newList, new EObjectComparator());
+		for(int i = 0; i < list.size(); i++) {
+			int oldIndex = list.indexOf(newList.get(i));
+			list.add(i, list.remove(oldIndex));
+		}
+		return;
+	}
+
+	/**
+	 * duplicate code from Efactory
+	 * This adapter will be used to remember the accurate position of an EObject in its target list.
+	 * 
+	 * @author <a href="mailto:laurent.goubet@obeo.fr">Laurent Goubet</a>
+	 */
+	private static class PositionAdapter extends AdapterImpl {
+
+		/** The index at which we expect to find this object. */
+		private final int expectedIndex;
+
+		/**
+		 * Creates our adapter.
+		 * 
+		 * @param index
+		 *        The index at which we expect to find this object.
+		 */
+		public PositionAdapter(final int index) {
+			this.expectedIndex = index;
+		}
+
+		/**
+		 * Returns the index at which we expect to find this object.
+		 * 
+		 * @return The index at which we expect to find this object.
+		 */
+		public int getExpectedIndex() {
+			return expectedIndex;
+		}
+	}
+
+	/**
+	 * 
+	 * This class allows to compare EObject using the PositionAdapter.
+	 * 
+	 * 
+	 */
+	private static class EObjectComparator<T> implements Comparator<T> {
+
+		/**
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 * 
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		public int compare(final T o1, final T o2) {
+			if(o1 instanceof EObject && o2 instanceof EObject) {
+				final int position1 = getWantedPosition((EObject)o1);
+				final int position2 = getWantedPosition((EObject)o2);
+				if(position1 != -1 && position2 != -1) {
+					return position1 - position2;
+				}
+			}
+			return 0;
+		}
+
+		/**
+		 * 
+		 * @param obj1
+		 *        an EObject
+		 * @return
+		 *         the wanted position for this object
+		 */
+		private int getWantedPosition(final EObject obj1) {
+			final Iterator<Adapter> adapters = obj1.eAdapters().iterator();
+			int expectedIndex = -1;
+			while(expectedIndex == -1 && adapters.hasNext()) {
+				final Adapter adapter = adapters.next();
+				if(adapter instanceof PositionAdapter) {
+					expectedIndex = ((PositionAdapter)adapter).getExpectedIndex();
+				}
+			}
+			return expectedIndex;
+		}
+
 	}
 }

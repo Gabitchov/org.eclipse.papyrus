@@ -42,7 +42,7 @@ import org.eclipse.papyrus.uml.compare.merger.internal.merger.ReferenceChangeRig
 import org.eclipse.papyrus.uml.compare.merger.internal.merger.ReferenceOrderChangeTransactionalMerger;
 import org.eclipse.papyrus.uml.compare.merger.internal.merger.UpdateAttributeTransactionalMerger;
 import org.eclipse.papyrus.uml.compare.merger.internal.merger.UpdateReferenceTransactionalMerger;
-import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusMap;
+import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusCompareMap;
 
 
 public class PapyrusUMLMergeProvider implements IMergerProvider {
@@ -60,7 +60,7 @@ public class PapyrusUMLMergeProvider implements IMergerProvider {
 	 */
 	public Map<Class<? extends DiffElement>, Class<? extends IMerger>> getMergers() {
 		if(mergerTypes == null) {
-			mergerTypes = new PapyrusMap<Class<? extends DiffElement>, Class<? extends IMerger>>();
+			mergerTypes = new PapyrusCompareMap<Class<? extends DiffElement>, Class<? extends IMerger>>();
 			mergerTypes.put(DiffGroup.class, DiffGroupTransactionalMerger.class);
 			mergerTypes.put(ModelElementChangeRightTarget.class, ModelElementChangeRightTargetTransactionalMerger.class);
 			mergerTypes.put(ModelElementChangeLeftTarget.class, ModelElementChangeLeftTargetTransactionalMerger.class);

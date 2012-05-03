@@ -72,7 +72,7 @@ public class TransactionalMergeService {
 			Class<?>[] parameterTypes = new Class[1];
 			parameterTypes[0] = IMergeListener.class;
 			try {
-				addMergeListenerMethod = ReflectHelper.getMethod(MergeService.class, "addMergeListener", parameterTypes);
+				addMergeListenerMethod = ReflectHelper.getMethod(MergeService.class, "addMergeListener", parameterTypes); //$NON-NLS-1$
 			} catch (SecurityException e) {
 				Activator.log.error(e);
 			} catch (NoSuchMethodException e) {
@@ -158,7 +158,7 @@ public class TransactionalMergeService {
 	//	}
 
 	public static Command getMergeCommand(final TransactionalEditingDomain domain, final DiffElement element, final boolean leftToRight) {
-		CompoundCommand cmd = new CompoundCommand("MergeCommand");
+		CompoundCommand cmd = new CompoundCommand("MergeCommand"); //$NON-NLS-1$
 		cmd.append(new FireMergeOperationStartCommand(element, getMergeListeners()));
 		cmd.append(getDoMergeCommand(domain, element, leftToRight));
 		cmd.append(new FireMergeOperationEndCommand(element, getMergeListeners()));
@@ -193,7 +193,7 @@ public class TransactionalMergeService {
 	//	}
 
 	private static Command getDoMergeCommand(final TransactionalEditingDomain domain, final DiffElement element, final boolean leftToRight) {
-		final CompoundCommand cmd = new CompoundCommand("DoMergeCommand");
+		final CompoundCommand cmd = new CompoundCommand("DoMergeCommand"); //$NON-NLS-1$
 		cmd.append(new FireMergeDiffStartCommand(element, getMergeListeners()));
 		final IMerger merger;
 		if(element instanceof ConflictingDiffElement) {
@@ -208,7 +208,7 @@ public class TransactionalMergeService {
 				cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));
 			}
 		} else {
-			throw new UnsupportedOperationException(NLS.bind("I can't found the Papyrus Merger for {0}.", element));
+			throw new UnsupportedOperationException(NLS.bind("I can't found the Papyrus Merger for {0}.", element)); //$NON-NLS-1$
 		}
 
 		cmd.append(new FireMergeDiffEndCommand(element, getMergeListeners()));
@@ -239,7 +239,7 @@ public class TransactionalMergeService {
 	//	}
 
 	public static Command getMergeCommand(final TransactionalEditingDomain domain, final List<DiffElement> elements, final boolean leftToRight) {
-		final CompoundCommand cmd = new CompoundCommand("MergeCommand");
+		final CompoundCommand cmd = new CompoundCommand("MergeCommand"); //$NON-NLS-1$
 		cmd.append(new FireMergeOperationStartCommand(elements, getMergeListeners()));
 		for(DiffElement element : new ArrayList<DiffElement>(elements)) {
 			// we might remove the diff from the list before merging it
@@ -264,7 +264,7 @@ public class TransactionalMergeService {
 			Class<?>[] parameterTypes = new Class[1];
 			parameterTypes[0] = IMergeListener.class;
 			try {
-				removeMergeListenerMethod = ReflectHelper.getMethod(MergeService.class, "removeMergeListener", parameterTypes);
+				removeMergeListenerMethod = ReflectHelper.getMethod(MergeService.class, "removeMergeListener", parameterTypes); //$NON-NLS-1$
 			} catch (SecurityException e) {
 				Activator.log.error(e);
 			} catch (NoSuchMethodException e) {
@@ -291,7 +291,7 @@ public class TransactionalMergeService {
 		List<IMergeListener> listeners = null;
 		Field myField = null;
 		try {
-			myField = MergeService.class.getDeclaredField("MERGE_LISTENERS");
+			myField = MergeService.class.getDeclaredField("MERGE_LISTENERS"); //$NON-NLS-1$
 		} catch (SecurityException e) {
 			Activator.log.error(e);
 		} catch (NoSuchFieldException e) {

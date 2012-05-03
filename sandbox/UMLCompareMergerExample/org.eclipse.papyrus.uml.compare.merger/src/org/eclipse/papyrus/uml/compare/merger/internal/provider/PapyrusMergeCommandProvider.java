@@ -13,25 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.provider;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.MoveWithIndexCommand;
@@ -78,49 +70,6 @@ public class PapyrusMergeCommandProvider {
 		return getCommand(element, request);
 	}
 
-
-	/**
-	 * Returns the command to set the id of the source object to the new object. This command do something, only if the source and the target aren't
-	 * owned by the same resource
-	 * 
-	 * @param domain
-	 * @param sourceElement
-	 * @param targetElement
-	 * @return
-	 *         the command to set the id of the source object to the new object
-	 */
-	public Command getSetXMIIDCommand(final TransactionalEditingDomain domain, final EObject sourceElement, final EObject targetElement) {
-		//TODO change for an EMFCommand
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Set XMI Command", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				final Resource sourceResource = sourceElement.eResource();
-				final Resource targetResource = targetElement.eResource();
-				if(sourceElement != null && targetElement != null && sourceResource instanceof XMIResource && targetResource instanceof XMIResource) {
-					//TODO : this test is commented because the result of this command is worse with the test than without...
-					//					if(sourceResource != targetResource) {
-						final String xmi_id = EMFHelper.getXMIID(sourceElement);
-						((XMIResource)targetElement.eResource()).setID(sourceElement, xmi_id);
-					//					}
-				}
-				return CommandResult.newOKCommandResult();
-			}
-		});
-
-	}
-
-	public Command getAddToResourceCommand(final TransactionalEditingDomain domain, final Resource res, final EObject eobjectToAdd) {
-		//TODO change for an EMFCommand
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Add EObject to Resource Command", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				res.getContents().add(eobjectToAdd);
-				return CommandResult.newOKCommandResult();
-			}
-		});
-	}
 
 	//TODO elementToEdit and targetContainer are the same
 	public Command getMoveWithIndexCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EObject targetContainer, final EReference targetFeature, final EObject elementToMove, final int index, final boolean reorder) {

@@ -69,7 +69,7 @@ public class DiffGroupTransactionalMerger extends DiffGroupMerger implements ITr
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CDiffGroupMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CDiffGroupMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -81,7 +81,7 @@ public class DiffGroupTransactionalMerger extends DiffGroupMerger implements ITr
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CDiffGroupMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CDiffGroupMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -90,16 +90,16 @@ public class DiffGroupTransactionalMerger extends DiffGroupMerger implements ITr
 
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
-		throw new UnsupportedOperationException("Not yet supported");
+		throw new UnsupportedOperationException("Not yet supported"); //$NON-NLS-1$
 	}
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		throw new UnsupportedOperationException("Not yet supported");
+		throw new UnsupportedOperationException("Not yet supported"); //$NON-NLS-1$
 	}
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
 		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -110,7 +110,7 @@ public class DiffGroupTransactionalMerger extends DiffGroupMerger implements ITr
 	}
 
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {

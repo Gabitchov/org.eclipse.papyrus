@@ -82,7 +82,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CReferenceChangeRightTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CReferenceChangeRightTargetMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -94,7 +94,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceChangeRightTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceChangeRightTargetMerger"); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -102,7 +102,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 	}
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceChangeRightTargetMerger#getDoApplyInOriginCommand");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceChangeRightTargetMerger#getDoApplyInOriginCommand"); //$NON-NLS-1$
 		final ReferenceChangeRightTarget theDiff = (ReferenceChangeRightTarget)this.diff;
 		final EReference reference = theDiff.getReference();
 		final EObject element = theDiff.getLeftElement();
@@ -122,7 +122,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 		final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
 		cmd.append(copier.getCopyReferenceValueCommand(domain, reference, element, rightTarget, leftTarget, index));
 
-		cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) {
+		cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -160,7 +160,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 	}
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceChangeRightTargetMerger#getDoUndoInTargetCommand");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceChangeRightTargetMerger#getDoUndoInTargetCommand"); //$NON-NLS-1$
 		final ReferenceChangeRightTarget theDiff = (ReferenceChangeRightTarget)this.diff;
 		final EObject element = theDiff.getRightElement();
 		final EObject rightTarget = theDiff.getRightTarget();
@@ -201,7 +201,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
 		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -212,7 +212,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends ReferenceChan
 	}
 
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
