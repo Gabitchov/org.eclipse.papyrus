@@ -21,9 +21,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 /**
  * 
  * The mergers which implement this interface are able to provide commands for the merge actions
- * 
+ * TODO : rename into ITransactionalMerger
  */
-public interface ICommandMerger extends IMerger {
+public interface ITransactionalMerger extends IMerger {
 
 	/**
 	 * This command should have the same behavior as {@link DefaultMerger#applyInOrigin()}

@@ -35,7 +35,7 @@ import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusEFactory;
 
 
-public class CUpdateAttributeMerger extends UpdateAttributeMerger implements ICommandMerger {
+public class CUpdateAttributeMerger extends UpdateAttributeMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}

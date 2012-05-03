@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusEFactory;
 
-public class CModelElementChangeLeftTargetMerger extends ModelElementChangeLeftTargetMerger implements ICommandMerger {
+public class CModelElementChangeLeftTargetMerger extends ModelElementChangeLeftTargetMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}

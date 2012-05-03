@@ -26,7 +26,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
 
 
-public class CDiffGroupMerger extends DiffGroupMerger implements ICommandMerger {
+public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}

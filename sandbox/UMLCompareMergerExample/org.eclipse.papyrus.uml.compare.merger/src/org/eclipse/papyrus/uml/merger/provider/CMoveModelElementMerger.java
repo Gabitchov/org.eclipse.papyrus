@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
  * Created for EMF-Compare, for MoveModelElementMerger
  * 
  */
-public class CMoveModelElementMerger extends MoveModelElementMerger implements ICommandMerger {
+public class CMoveModelElementMerger extends MoveModelElementMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}

@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.utils.MergerUtils;
 
 
-public class CAttributeOrderChangeMerger extends AttributeOrderChangeMerger implements ICommandMerger {
+public class CAttributeOrderChangeMerger extends AttributeOrderChangeMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}

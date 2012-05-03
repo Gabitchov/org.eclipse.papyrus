@@ -38,7 +38,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
-public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger implements ICommandMerger {
+public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger implements ITransactionalMerger {
 	
 	/**
 	 * {@inheritDoc}

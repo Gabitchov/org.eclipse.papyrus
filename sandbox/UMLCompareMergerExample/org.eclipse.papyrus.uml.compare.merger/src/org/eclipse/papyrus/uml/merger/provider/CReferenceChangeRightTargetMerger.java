@@ -43,7 +43,7 @@ import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusCompareEObjectCopier;
 import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusEFactory;
 
 
-public class CReferenceChangeRightTargetMerger extends ReferenceChangeRightTargetMerger implements ICommandMerger {
+public class CReferenceChangeRightTargetMerger extends ReferenceChangeRightTargetMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}
