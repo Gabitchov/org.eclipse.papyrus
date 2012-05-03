@@ -5,7 +5,7 @@
          point="org.eclipse.emf.compare.diff.mergerprovider">
       <mergerprovider
             fileExtension="uml"
-            mergerProviderClass="org.eclipse.papyrus.uml.merger.provider.PapyrusUMLMergeProvider"
+            mergerProviderClass="org.eclipse.papyrus.uml.merger.internal.provider.PapyrusUMLMergeProvider"
             priority="low">
       </mergerprovider>
    </extension>

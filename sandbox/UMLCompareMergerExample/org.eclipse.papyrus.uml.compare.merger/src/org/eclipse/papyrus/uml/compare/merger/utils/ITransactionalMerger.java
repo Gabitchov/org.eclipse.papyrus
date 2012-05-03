@@ -11,12 +11,11 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.merger.provider;
-
-import org.eclipse.emf.common.command.Command;
+package org.eclipse.papyrus.uml.compare.merger.utils;import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.diff.merge.DefaultMerger;
 import org.eclipse.emf.compare.diff.merge.IMerger;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+;
 
 /**
  * 

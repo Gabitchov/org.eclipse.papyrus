@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.merger.provider;
+package org.eclipse.papyrus.uml.merger.internal.provider;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -34,8 +34,8 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.compare.merger.utils.MoveWithIndexCommand;
-import org.eclipse.papyrus.uml.compare.merger.utils.MoveWithIndexRequest;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.MoveWithIndexCommand;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.MoveWithIndexRequest;
 
 //TODO : try to merge with the PapyrusTableCommandFactory?
 public class PapyrusMergeCommandProvider {

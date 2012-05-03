@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.merger.provider;
+package org.eclipse.papyrus.uml.merger.internal.provider;
 
 import java.util.Map;
 
@@ -30,6 +30,18 @@ import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CAttributeChangeLeftTargetMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CAttributeChangeRightTargetMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CAttributeOrderChangeMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CDiffGroupMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CModelElementChangeLeftTargetMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CModelElementChangeRightTargetMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CMoveModelElementMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CReferenceChangeLeftTargetMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CReferenceChangeRightTargetMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CReferenceOrderChangeMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CUpdateAttributeMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.CUpdateReferenceMerger;
 import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusMap;
 
 
