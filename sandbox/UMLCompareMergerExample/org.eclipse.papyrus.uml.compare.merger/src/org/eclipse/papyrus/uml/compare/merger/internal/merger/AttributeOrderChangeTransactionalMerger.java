@@ -33,9 +33,9 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.tools.util.ReflectHelper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
+import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
-import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
 
 
 public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChangeMerger implements ITransactionalMerger {

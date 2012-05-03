@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.merger.internal.provider;
+package org.eclipse.papyrus.uml.compare.merger.internal.provider;
 
 import java.util.Map;
 

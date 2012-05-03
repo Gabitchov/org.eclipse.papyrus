@@ -36,7 +36,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
+import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
 
 /**
  * 

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
-import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
+import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
 //TODO : merge with thepapyrus table command factory?
 /**
  * 
