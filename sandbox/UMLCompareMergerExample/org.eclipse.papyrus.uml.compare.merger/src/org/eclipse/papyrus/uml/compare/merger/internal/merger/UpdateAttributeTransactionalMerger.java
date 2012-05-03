@@ -13,21 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
+
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.compare.diff.internal.merge.impl.DiffGroupMerger;
+import org.eclipse.emf.compare.FactoryException;
+import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateAttributeMerger;
+import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
+import org.eclipse.emf.compare.util.EFactory;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
 
-public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalMerger {
+public class UpdateAttributeTransactionalMerger extends UpdateAttributeMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}
@@ -47,11 +56,6 @@ public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalM
 		}
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
-	 * 
-	 */
 	@Override
 	public void undoInTarget() {
 		if(MergerUtils.usePapyrusMerger()) {
@@ -65,11 +69,12 @@ public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalM
 		}
 	}
 
+
 	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CDiffGroupMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CUpdateAttributeMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -81,20 +86,39 @@ public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalM
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CDiffGroupMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CUpdateAttributeMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
 		return cmd;
 	}
 
-
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
-		throw new UnsupportedOperationException("Not yet supported");
+		Command cmd = null;
+		final UpdateAttribute theDiff = (UpdateAttribute)this.diff;
+		final EObject element = theDiff.getRightElement();
+		final EObject origin = theDiff.getLeftElement();
+		final EAttribute attr = theDiff.getAttribute();
+		try {
+			cmd = PapyrusEFactory.getESetCommand(domain, origin, attr.getName(), EFactory.eGet(element, attr.getName()));
+		} catch (FactoryException e) {
+			Activator.log.error(e);
+		}
+		return cmd;
 	}
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
-		throw new UnsupportedOperationException("Not yet supported");
+		Command cmd = null;
+		final UpdateAttribute theDiff = (UpdateAttribute)this.diff;
+		final EObject element = theDiff.getRightElement();
+		final EObject origin = theDiff.getLeftElement();
+		final EAttribute attr = theDiff.getAttribute();
+		try {
+			cmd = PapyrusEFactory.getESetCommand(domain, element, attr.getName(), EFactory.eGet(origin, attr.getName()));
+		} catch (FactoryException e) {
+			Activator.log.error(e);
+		}
+		return cmd;
 	}
 
 	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
@@ -103,7 +127,7 @@ public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalM
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CDiffGroupMerger.this.mergeRequiredDifferences(applyInOrigin);
+				UpdateAttributeTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -114,7 +138,7 @@ public class CDiffGroupMerger extends DiffGroupMerger implements ITransactionalM
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CDiffGroupMerger.this.postProcess();
+				UpdateAttributeTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});

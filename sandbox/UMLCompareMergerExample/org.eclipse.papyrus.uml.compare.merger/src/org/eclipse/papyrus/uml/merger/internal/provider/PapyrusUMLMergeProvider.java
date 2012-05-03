@@ -30,18 +30,18 @@ import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CAttributeChangeLeftTargetMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CAttributeChangeRightTargetMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CAttributeOrderChangeMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CDiffGroupMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CModelElementChangeLeftTargetMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CModelElementChangeRightTargetMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CMoveModelElementMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CReferenceChangeLeftTargetMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CReferenceChangeRightTargetMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CReferenceOrderChangeMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CUpdateAttributeMerger;
-import org.eclipse.papyrus.uml.compare.merger.internal.merger.CUpdateReferenceMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.AttributeChangeLeftTargetTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.AttributeChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.AttributeOrderChangeTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.DiffGroupTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.ModelElementChangeLeftTargetTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.ModelElementChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.MoveModelElementTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.ReferenceChangeLeftTargetTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.ReferenceChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.ReferenceOrderChangeTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.UpdateAttributeTransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.internal.merger.UpdateReferenceTransactionalMerger;
 import org.eclipse.papyrus.uml.compare.merger.utils.PapyrusMap;
 
 
@@ -61,18 +61,18 @@ public class PapyrusUMLMergeProvider implements IMergerProvider {
 	public Map<Class<? extends DiffElement>, Class<? extends IMerger>> getMergers() {
 		if(mergerTypes == null) {
 			mergerTypes = new PapyrusMap<Class<? extends DiffElement>, Class<? extends IMerger>>();
-			mergerTypes.put(DiffGroup.class, CDiffGroupMerger.class);
-			mergerTypes.put(ModelElementChangeRightTarget.class, CModelElementChangeRightTargetMerger.class);
-			mergerTypes.put(ModelElementChangeLeftTarget.class, CModelElementChangeLeftTargetMerger.class);
-			mergerTypes.put(MoveModelElement.class, CMoveModelElementMerger.class);
-			mergerTypes.put(ReferenceChangeRightTarget.class, CReferenceChangeRightTargetMerger.class);
-			mergerTypes.put(ReferenceChangeLeftTarget.class, CReferenceChangeLeftTargetMerger.class);
-			mergerTypes.put(UpdateReference.class, CUpdateReferenceMerger.class);
-			mergerTypes.put(AttributeChangeRightTarget.class, CAttributeChangeRightTargetMerger.class);
-			mergerTypes.put(AttributeChangeLeftTarget.class, CAttributeChangeLeftTargetMerger.class);
-			mergerTypes.put(UpdateAttribute.class, CUpdateAttributeMerger.class);
-			mergerTypes.put(ReferenceOrderChange.class, CReferenceOrderChangeMerger.class);
-			mergerTypes.put(AttributeOrderChange.class, CAttributeOrderChangeMerger.class);
+			mergerTypes.put(DiffGroup.class, DiffGroupTransactionalMerger.class);
+			mergerTypes.put(ModelElementChangeRightTarget.class, ModelElementChangeRightTargetTransactionalMerger.class);
+			mergerTypes.put(ModelElementChangeLeftTarget.class, ModelElementChangeLeftTargetTransactionalMerger.class);
+			mergerTypes.put(MoveModelElement.class, MoveModelElementTransactionalMerger.class);
+			mergerTypes.put(ReferenceChangeRightTarget.class, ReferenceChangeRightTargetTransactionalMerger.class);
+			mergerTypes.put(ReferenceChangeLeftTarget.class, ReferenceChangeLeftTargetTransactionalMerger.class);
+			mergerTypes.put(UpdateReference.class, UpdateReferenceTransactionalMerger.class);
+			mergerTypes.put(AttributeChangeRightTarget.class, AttributeChangeRightTargetTransactionalMerger.class);
+			mergerTypes.put(AttributeChangeLeftTarget.class, AttributeChangeLeftTargetTransactionalMerger.class);
+			mergerTypes.put(UpdateAttribute.class, UpdateAttributeTransactionalMerger.class);
+			mergerTypes.put(ReferenceOrderChange.class, ReferenceOrderChangeTransactionalMerger.class);
+			mergerTypes.put(AttributeOrderChange.class, AttributeOrderChangeTransactionalMerger.class);
 			//DiffExtensionMerger : not used for the moment
 			//DefaultExtensionMerger : not used for the moment
 		}

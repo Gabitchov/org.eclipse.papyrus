@@ -13,34 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
-import java.util.Collection;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceOrderChangeMerger;
-import org.eclipse.emf.compare.diff.merge.DefaultMerger;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
+import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateReferenceMerger;
+import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
+import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
 
-public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger implements ITransactionalMerger {
-	
+public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger implements ITransactionalMerger {
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -77,7 +72,7 @@ public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger impl
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CReferenceOrderChangeMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CUpdateReferenceMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -89,49 +84,71 @@ public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger impl
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceOrderChangeMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CUpdateReferenceMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
 		return cmd;
 	}
 
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
-		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;
-		final EObject leftElement = theDiff.getLeftElement();
+		final UpdateReference theDiff = (UpdateReference)this.diff;
+		final EReference reference = theDiff.getReference();
+		final EObject element = theDiff.getLeftElement();
+		final EObject leftTarget = (EObject)theDiff.getRightElement().eGet(reference);
+		final EObject matchedLeftTarget = theDiff.getLeftTarget();
 
-		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getLeftTarget(), new Predicate<EObject>() {
-
-			public boolean apply(final EObject input) {
-				return !input.eIsProxy() || !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
+		if(leftTarget == null) {
+			if(FeatureMapUtil.isMany(element, reference)) {
+				//TODO : I didn't find an example to test this case.
+				throw new UnsupportedOperationException("Not Yet Supported");
+			} else {
+				final Object value = theDiff.getLeftElement().eGet(reference);
+				if(value instanceof EObject) {
+					cmd = PapyrusMergeCommandProvider.INSTANCE.getDestroyReferenceCommand(domain, element, reference, (EObject)value, false);
+				} else {
+					//TODO : we don't use the ServiceEdit
+					//TODO : not tested
+					//			element.eUnset(reference);
+					cmd = new SetCommand(domain, element, reference, null);
+				}
 			}
-		}));
-
-		try {
-			cmd = PapyrusEFactory.getESetCommand(domain, leftElement, theDiff.getReference().getName(), target);
-		} catch (final FactoryException e) {
-			Activator.log.error(e);
+		} else {
+			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, leftTarget, matchedLeftTarget, -1);
 		}
 		return cmd;
 	}
 
+
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
-		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;
-		final EObject rightElement = theDiff.getRightElement();
+		final UpdateReference theDiff = (UpdateReference)this.diff;
+		final EReference reference = theDiff.getReference();
+		final EObject element = theDiff.getRightElement();
+		final EObject rightTarget = (EObject)theDiff.getLeftElement().eGet(reference);
+		final EObject matchedRightTarget = theDiff.getRightTarget();
 
-		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getRightTarget(), new Predicate<EObject>() {
-
-			public boolean apply(final EObject input) {
-				return !input.eIsProxy() || !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
+		if(rightTarget == null) {
+			if(FeatureMapUtil.isMany(element, reference)) {
+				//TODO : I didn't find an example to test this case.
+				throw new UnsupportedOperationException("Not Yet Supported");
+			} else {
+				final Object value = theDiff.getRightElement().eGet(reference);
+				if(value instanceof EObject) {
+					cmd = PapyrusMergeCommandProvider.INSTANCE.getDestroyReferenceCommand(domain, element, reference, (EObject)value, false);
+				} else {
+					//TODO : we don't use the ServiceEdit
+					//TODO : not tested
+					//			element.eUnset(reference);
+					cmd = new SetCommand(domain, element, reference, null);
+				}
 			}
-		}));
-
-		try {
-			cmd = PapyrusEFactory.getESetCommand(domain, rightElement, theDiff.getReference().getName(), target);
-		} catch (final FactoryException e) {
-			Activator.log.error(e);
+		} else {
+			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, rightTarget, matchedRightTarget, -1);
 		}
 		return cmd;
 	}
@@ -142,7 +159,7 @@ public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger impl
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CReferenceOrderChangeMerger.this.mergeRequiredDifferences(applyInOrigin);
+				UpdateReferenceTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -153,7 +170,7 @@ public class CReferenceOrderChangeMerger extends ReferenceOrderChangeMerger impl
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CReferenceOrderChangeMerger.this.postProcess();
+				UpdateReferenceTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});

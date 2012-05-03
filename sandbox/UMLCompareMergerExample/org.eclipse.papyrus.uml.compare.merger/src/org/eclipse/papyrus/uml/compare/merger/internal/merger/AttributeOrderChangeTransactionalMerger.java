@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
 
 
-public class CAttributeOrderChangeMerger extends AttributeOrderChangeMerger implements ITransactionalMerger {
+public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChangeMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}
@@ -209,7 +209,7 @@ public class CAttributeOrderChangeMerger extends AttributeOrderChangeMerger impl
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CAttributeOrderChangeMerger.this.mergeRequiredDifferences(applyInOrigin);
+				AttributeOrderChangeTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -220,7 +220,7 @@ public class CAttributeOrderChangeMerger extends AttributeOrderChangeMerger impl
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CAttributeOrderChangeMerger.this.postProcess();
+				AttributeOrderChangeTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});

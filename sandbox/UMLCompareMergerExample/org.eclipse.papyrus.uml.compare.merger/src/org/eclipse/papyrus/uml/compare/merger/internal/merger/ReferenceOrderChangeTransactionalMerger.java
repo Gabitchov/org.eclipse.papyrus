@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -21,10 +21,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeRightTargetMerger;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceOrderChangeMerger;
+import org.eclipse.emf.compare.diff.merge.DefaultMerger;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -34,9 +35,12 @@ import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 
-public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTargetMerger implements ITransactionalMerger {
-
+public class ReferenceOrderChangeTransactionalMerger extends ReferenceOrderChangeMerger implements ITransactionalMerger {
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -55,11 +59,6 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 		}
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
-	 * 
-	 */
 	@Override
 	public void undoInTarget() {
 		if(MergerUtils.usePapyrusMerger()) {
@@ -73,11 +72,12 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 		}
 	}
 
+
 	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeChangeRightTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CReferenceOrderChangeMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -89,7 +89,7 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeChangeRightTargetMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CReferenceOrderChangeMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -98,22 +98,19 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
-		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
-		final EObject origin = theDiff.getLeftElement();
-		final Object value = theDiff.getRightTarget();
-		final EAttribute attr = theDiff.getAttribute();
-		try {
-			int valueIndex = -1;
-			if (attr.isMany()) {
-				final EObject rightElement = theDiff.getRightElement();
-				final Object rightValues = rightElement.eGet(attr);
-				if (rightValues instanceof List) {
-					final List<?> rightValuesList = (List<?>)rightValues;
-					valueIndex = rightValuesList.indexOf(value);
-				}
+		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;
+		final EObject leftElement = theDiff.getLeftElement();
+
+		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getLeftTarget(), new Predicate<EObject>() {
+
+			public boolean apply(final EObject input) {
+				return !input.eIsProxy() || !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
 			}
-			cmd = PapyrusEFactory.getEAddCommand(domain, origin, attr.getName(), value, valueIndex);
-		} catch (FactoryException e) {
+		}));
+
+		try {
+			cmd = PapyrusEFactory.getESetCommand(domain, leftElement, theDiff.getReference().getName(), target);
+		} catch (final FactoryException e) {
 			Activator.log.error(e);
 		}
 		return cmd;
@@ -121,13 +118,19 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
-		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
-		final EObject target = theDiff.getRightElement();
-		final Object value = theDiff.getRightTarget();
-		final EAttribute attr = theDiff.getAttribute();
+		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;
+		final EObject rightElement = theDiff.getRightElement();
+
+		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getRightTarget(), new Predicate<EObject>() {
+
+			public boolean apply(final EObject input) {
+				return !input.eIsProxy() || !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
+			}
+		}));
+
 		try {
-			cmd = PapyrusEFactory.getERemoveCommand(domain, target, attr.getName(), value);
-		} catch (FactoryException e) {
+			cmd = PapyrusEFactory.getESetCommand(domain, rightElement, theDiff.getReference().getName(), target);
+		} catch (final FactoryException e) {
 			Activator.log.error(e);
 		}
 		return cmd;
@@ -139,7 +142,7 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CAttributeChangeRightTargetMerger.this.mergeRequiredDifferences(applyInOrigin);
+				ReferenceOrderChangeTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -150,7 +153,7 @@ public class CAttributeChangeRightTargetMerger extends AttributeChangeRightTarge
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CAttributeChangeRightTargetMerger.this.postProcess();
+				ReferenceOrderChangeTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});

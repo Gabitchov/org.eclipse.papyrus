@@ -41,7 +41,7 @@ import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
 
-public class CModelElementChangeLeftTargetMerger extends ModelElementChangeLeftTargetMerger implements ITransactionalMerger {
+public class ModelElementChangeLeftTargetTransactionalMerger extends ModelElementChangeLeftTargetMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}
@@ -187,7 +187,7 @@ public class CModelElementChangeLeftTargetMerger extends ModelElementChangeLeftT
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CModelElementChangeLeftTargetMerger.this.mergeRequiredDifferences(applyInOrigin);
+				ModelElementChangeLeftTargetTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -198,7 +198,7 @@ public class CModelElementChangeLeftTargetMerger extends ModelElementChangeLeftT
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CModelElementChangeLeftTargetMerger.this.postProcess();
+				ModelElementChangeLeftTargetTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});

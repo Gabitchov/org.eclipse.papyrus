@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
-import org.eclipse.emf.compare.diff.merge.DefaultExtensionMerger;
+import org.eclipse.emf.compare.diff.internal.merge.impl.DiffExtensionMerger;
 
 
-public class CDefaultExtensionMerger extends DefaultExtensionMerger {
-	//TODO
+public class DiffExtensionTransactionalMerger extends DiffExtensionMerger {
+	//TODO ?
 }

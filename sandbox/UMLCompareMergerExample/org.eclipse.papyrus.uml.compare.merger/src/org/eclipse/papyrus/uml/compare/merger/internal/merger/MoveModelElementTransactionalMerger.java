@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvi
  * Created for EMF-Compare, for MoveModelElementMerger
  * 
  */
-public class CMoveModelElementMerger extends MoveModelElementMerger implements ITransactionalMerger {
+public class MoveModelElementTransactionalMerger extends MoveModelElementMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}
@@ -170,7 +170,7 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CMoveModelElementMerger.this.mergeRequiredDifferences(applyInOrigin);
+				MoveModelElementTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -181,7 +181,7 @@ public class CMoveModelElementMerger extends MoveModelElementMerger implements I
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CMoveModelElementMerger.this.postProcess();
+				MoveModelElementTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});

@@ -13,28 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateReferenceMerger;
-import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
+import org.eclipse.emf.compare.FactoryException;
+import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeRightTargetMerger;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
-import org.eclipse.papyrus.uml.merger.internal.provider.PapyrusMergeCommandProvider;
 
 
-public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ITransactionalMerger {
+public class AttributeChangeRightTargetTransactionalMerger extends AttributeChangeRightTargetMerger implements ITransactionalMerger {
 
 	/**
 	 * {@inheritDoc}
@@ -54,6 +55,11 @@ public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ITr
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
+	 * 
+	 */
 	@Override
 	public void undoInTarget() {
 		if(MergerUtils.usePapyrusMerger()) {
@@ -67,12 +73,11 @@ public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ITr
 		}
 	}
 
-
 	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		//		mergeRequiredDifferences(true);
 		//		doApplyInOrigin();
 		//		postProcess();
-		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CUpdateReferenceMerger");
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeChangeRightTargetMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -84,71 +89,46 @@ public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ITr
 		//		doUndoInTarget();
 		//		postProcess();
 
-		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CUpdateReferenceMerger");
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeChangeRightTargetMerger");
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
 		return cmd;
 	}
 
-
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
-		final UpdateReference theDiff = (UpdateReference)this.diff;
-		final EReference reference = theDiff.getReference();
-		final EObject element = theDiff.getLeftElement();
-		final EObject leftTarget = (EObject)theDiff.getRightElement().eGet(reference);
-		final EObject matchedLeftTarget = theDiff.getLeftTarget();
-
-		if(leftTarget == null) {
-			if(FeatureMapUtil.isMany(element, reference)) {
-				//TODO : I didn't find an example to test this case.
-				throw new UnsupportedOperationException("Not Yet Supported");
-			} else {
-				final Object value = theDiff.getLeftElement().eGet(reference);
-				if(value instanceof EObject) {
-					cmd = PapyrusMergeCommandProvider.INSTANCE.getDestroyReferenceCommand(domain, element, reference, (EObject)value, false);
-				} else {
-					//TODO : we don't use the ServiceEdit
-					//TODO : not tested
-					//			element.eUnset(reference);
-					cmd = new SetCommand(domain, element, reference, null);
+		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
+		final EObject origin = theDiff.getLeftElement();
+		final Object value = theDiff.getRightTarget();
+		final EAttribute attr = theDiff.getAttribute();
+		try {
+			int valueIndex = -1;
+			if (attr.isMany()) {
+				final EObject rightElement = theDiff.getRightElement();
+				final Object rightValues = rightElement.eGet(attr);
+				if (rightValues instanceof List) {
+					final List<?> rightValuesList = (List<?>)rightValues;
+					valueIndex = rightValuesList.indexOf(value);
 				}
 			}
-		} else {
-			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
-			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, leftTarget, matchedLeftTarget, -1);
+			cmd = PapyrusEFactory.getEAddCommand(domain, origin, attr.getName(), value, valueIndex);
+		} catch (FactoryException e) {
+			Activator.log.error(e);
 		}
 		return cmd;
 	}
 
-
 	public Command getDoUndoInTargetCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
-		final UpdateReference theDiff = (UpdateReference)this.diff;
-		final EReference reference = theDiff.getReference();
-		final EObject element = theDiff.getRightElement();
-		final EObject rightTarget = (EObject)theDiff.getLeftElement().eGet(reference);
-		final EObject matchedRightTarget = theDiff.getRightTarget();
-
-		if(rightTarget == null) {
-			if(FeatureMapUtil.isMany(element, reference)) {
-				//TODO : I didn't find an example to test this case.
-				throw new UnsupportedOperationException("Not Yet Supported");
-			} else {
-				final Object value = theDiff.getRightElement().eGet(reference);
-				if(value instanceof EObject) {
-					cmd = PapyrusMergeCommandProvider.INSTANCE.getDestroyReferenceCommand(domain, element, reference, (EObject)value, false);
-				} else {
-					//TODO : we don't use the ServiceEdit
-					//TODO : not tested
-					//			element.eUnset(reference);
-					cmd = new SetCommand(domain, element, reference, null);
-				}
-			}
-		} else {
-			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
-			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, rightTarget, matchedRightTarget, -1);
+		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
+		final EObject target = theDiff.getRightElement();
+		final Object value = theDiff.getRightTarget();
+		final EAttribute attr = theDiff.getAttribute();
+		try {
+			cmd = PapyrusEFactory.getERemoveCommand(domain, target, attr.getName(), value);
+		} catch (FactoryException e) {
+			Activator.log.error(e);
 		}
 		return cmd;
 	}
@@ -159,7 +139,7 @@ public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ITr
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CUpdateReferenceMerger.this.mergeRequiredDifferences(applyInOrigin);
+				AttributeChangeRightTargetTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
 				return null;
 			}
 		});
@@ -170,7 +150,7 @@ public class CUpdateReferenceMerger extends UpdateReferenceMerger implements ITr
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				CUpdateReferenceMerger.this.postProcess();
+				AttributeChangeRightTargetTransactionalMerger.this.postProcess();
 				return null;
 			}
 		});
