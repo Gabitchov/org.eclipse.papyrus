@@ -21,10 +21,10 @@ Export-Package: org.eclipse.papyrus.infra.emf.compare.ui,
  org.eclipse.papyrus.infra.emf.compare.ui.provider,
  org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer,
  org.eclipse.papyrus.infra.emf.compare.ui.utils
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.9.0.qualifier
-Bundle-Name: Papyrus Compare UI
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.compare.ui.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.compare.ui;singleto

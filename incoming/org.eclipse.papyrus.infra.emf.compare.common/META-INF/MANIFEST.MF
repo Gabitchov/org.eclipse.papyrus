@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Common Plugin for Papyrus Compare Editor
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.compare.common;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.emf.compare.common.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.papyrus.infra.emf.compare.instance,
  org.eclipse.compare,
  org.eclipse.emf.compare.ui,
@@ -24,3 +24,4 @@ Export-Package: org.eclipse.papyrus.infra.emf.compare.common,
  org.eclipse.papyrus.infra.emf.compare.common.handler,
  org.eclipse.papyrus.infra.emf.compare.common.modelresource,
  org.eclipse.papyrus.infra.emf.compare.common.utils
+Bundle-Localization: plugin
