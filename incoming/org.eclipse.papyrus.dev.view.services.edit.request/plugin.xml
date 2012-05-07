@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="org.eclipse.papyrus.dev.views.category"
+            class="org.eclipse.papyrus.dev.view.services.edit.request.view.RequestView"
+            icon="icons/serviceeditview.png"
+            id="org.eclipse.service.edit.request.view"
+            name="%view.name"
+            restorable="true">
+      </view>
+      <category
+            id="org.eclipse.papyrus.dev.views.category"
+            name="%category.name"
+            parentCategory="org.eclipse.papyrus.views.category">
+      </category>
+   </extension>
+
+   
+   <extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+   <metamodel
+         nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+      <adviceBinding
+            class="org.eclipse.papyrus.dev.view.services.edit.request.helper.ViewEditHelperAdvice"
+            id="org.eclipse.papyrus.infra.services.edit.request.helper.ViewEditHelperAdvice"
+            inheritance="all"
+            typeId="org.eclipse.papyrus.uml.Element">
+      </adviceBinding>
+   </metamodel>
+</extension>
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <binding
+            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+         <advice
+               ref="org.eclipse.papyrus.infra.services.edit.request.helper.ViewEditHelperAdvice">
+         </advice>
+      </binding>
+   </extension>
+</plugin>
