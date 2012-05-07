@@ -54,7 +54,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
@@ -85,8 +85,6 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
 		CompoundCommand compoundCmd = new CompoundCommand();
 		compoundCmd.setLabel("Move or Resize");
-		
-		Point point = request.getMoveDelta();
 		
 		IFigure figure = getHostFigure();
 		Rectangle hostBounds = figure.getBounds();
@@ -245,14 +243,14 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	private static void addUpdateInteractionFragmentsLocationCommand(
 			CompoundCommand compoundCmd, ChangeBoundsRequest request,
 			LifelineEditPart lifelineEditPart) {
-		Shape shape = (Shape) lifelineEditPart.getModel();
+		View shape = (View) lifelineEditPart.getModel();
 		Lifeline element = (Lifeline) shape.getElement();
 		EList<InteractionFragment> covereds = element.getCoveredBys();
 		EditPart parent = lifelineEditPart.getParent();
 		List<?> children = parent.getChildren();
 		for (Object obj : children) {
 			EditPart et = (EditPart) obj;
-			Shape sp = (Shape) et.getModel();
+			View sp = (View) et.getModel();
 			if (!covereds.contains(sp.getElement())) {
 				continue;
 			}
@@ -262,10 +260,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			Command command = et.getCommand(req);
 			if (command != null && command.canExecute()) {
 				compoundCmd.add(command);
-			}
+			} 
 		}
 	}
-
+	
 	/**
 	 * Handle the owning of interaction fragments when moving or resizing a CF.
 	 * 

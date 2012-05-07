@@ -122,6 +122,18 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		return super.getCreateCommand(request);
 	}
 
+	protected Object getConstraintFor(CreateRequest request) {
+		Rectangle constraint = (Rectangle)super.getConstraintFor(request);
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateViewAndElementRequest req = (CreateViewAndElementRequest)request;
+			IHintedType type = (IHintedType) UMLElementTypes.Lifeline_3001;
+			if (type.getSemanticHint().equals(req.getViewAndElementDescriptor().getSemanticHint())) {
+				constraint.y = 0 ;  	// fix layout offset
+			}
+		}
+		return constraint;
+	}
+
 	private static Rectangle getNewBoundsForCoRegion(LifelineEditPart lifelineEP, Rectangle bounds) {
 		Rectangle newBounds = bounds.getCopy();
 

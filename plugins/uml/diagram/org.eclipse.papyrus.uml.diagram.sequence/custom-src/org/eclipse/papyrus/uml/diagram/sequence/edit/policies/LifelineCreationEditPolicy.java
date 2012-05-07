@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -29,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
@@ -37,6 +39,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -132,8 +135,30 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		if(refreshConnectionCommand != null) {
 			cc.compose(new CommandProxy(refreshConnectionCommand));
 		}
-
+		
+		LifelineEditPart parentPart = (LifelineEditPart)getHost();
+		IHintedType type = (IHintedType)UMLElementTypes.Lifeline_3001;
+		if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
+			 setChildLifelineBounds(cc, request, parentPart);
+		}
+		
 		return new ICommandProxy(cc);
+	}
+	
+	private void setChildLifelineBounds(CompositeCommand cc, CreateViewAndElementRequest request, LifelineEditPart parentPart) {
+		Point location = request.getLocation().getCopy();
+		LifelineDotLineCustomFigure parentFigure = (LifelineDotLineCustomFigure) parentPart.getContentPane();
+		Rectangle parentBounds = parentFigure.getBounds().getCopy();
+		parentFigure.translateToAbsolute(parentBounds );
+	 
+		Rectangle childBounds = parentBounds.getCopy();
+		childBounds.height = parentBounds.height;
+		childBounds.width = -1; // default size
+		childBounds.y = 0;  // y offset from parent
+		childBounds.x = location.x - parentBounds.x;  // x offset from parent
+		
+		SetBoundsCommand cmd = new SetBoundsCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
+		cc.compose(cmd);
 	}
 
 	/**

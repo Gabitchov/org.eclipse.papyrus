@@ -54,6 +54,7 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 		super();
 		normalModeManager = new XYLayout();
 
+		/*
 		inlineModeManager = new FlowLayout(true) {
 
 			{
@@ -61,10 +62,7 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 				minorSpacing = 10;
 				fill = true;
 			}
-
-			/**
-			 * {@inheritDoc}
-			 */
+ 
 			@Override
 			protected Dimension getChildSize(IFigure child, int wHint, int hHint) {
 				wHint = getParent().getBounds().width;
@@ -80,10 +78,7 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 				Dimension childSize = super.getChildSize(child, wHint, hHint);
 				return childSize;
 			}
-
-			/**
-			 * {@inheritDoc}
-			 */
+ 
 			@Override
 			protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
 				Dimension calculatePreferredSize = super.calculatePreferredSize(container, wHint, hHint);
@@ -92,7 +87,8 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 				return calculatePreferredSize;
 			}
 		};
-
+		*/
+		inlineModeManager = new XYLayout();
 		setLayoutManager(normalModeManager);
 	}
 

@@ -36,35 +36,40 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -99,11 +104,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.ConnectableElement;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
@@ -236,13 +239,70 @@ public class LifelineEditPart extends NamedElementEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
+				if(request instanceof ChangeBoundsRequest)
+					return getMoveResizeCommand((ChangeBoundsRequest)request);
 				return null;
 			}
 
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
+
+			public Command getCommand(Request request) {
+				Command command = null;
+				if(REQ_MOVE_CHILDREN.equals(request.getType()))
+					command = getMoveChildrenCommand(request);
+				if(REQ_RESIZE_CHILDREN.equals(request.getType()) && request instanceof ChangeBoundsRequest)
+					command = getMoveResizeCommand((ChangeBoundsRequest)request);
+				if(command != null)
+					return command;
+
+				return super.getCommand(request);
+			}
+
+			private Command getMoveResizeCommand(ChangeBoundsRequest request) {
+				List changeEditParts = request.getEditParts();
+				if (changeEditParts != null && changeEditParts.size() > 0) {
+					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+					CompositeTransactionalCommand composite = new CompositeTransactionalCommand(editingDomain, null);
+
+					LifelineEditPart parent = (LifelineEditPart)this.getHost();
+					LifelineDotLineCustomFigure parentFig = (LifelineDotLineCustomFigure)parent.getContentPane();
+					Rectangle parentBounds = parentFig.getBounds();
+					for (Object o : changeEditParts) {
+						if (o instanceof LifelineEditPart) {
+							LifelineEditPart child = (LifelineEditPart)o;
+							IFigure childFig = child.getFigure();
+
+							Rectangle newBounds = childFig.getBounds().getCopy();
+							Rectangle childConstraint = (Rectangle)parentFig.getLayoutManager().getConstraint(childFig);
+							newBounds.setLocation(childConstraint.getLocation().getCopy());
+							
+							newBounds.translate(request.getMoveDelta());
+							if (!request.getType().equals(RequestConstants.REQ_MOVE_CHILDREN)) {
+								newBounds.resize(request.getSizeDelta());
+							}
+
+							// do not excceed parent
+							if (newBounds.x < 0) {
+								newBounds.width += newBounds.x;
+								newBounds.x = 0;
+							}
+							if (newBounds.x + newBounds.width > parentBounds.width) {
+								newBounds.width = parentBounds.width - newBounds.x;
+							}
+
+							ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)child.getModel()), newBounds);
+							composite.add(boundsCommand);
+						}
+					}
+					return new ICommandProxy(composite.reduce());
+				}
+				return null;
+			}
+
 		};
 		return lep;
 	}
@@ -403,7 +463,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 					return primaryShape.containsPoint(x, y);
 				}
 				return super.containsPoint(x, y);
-		}
+			}
 		};
 		return result;
 	}
@@ -1467,12 +1527,27 @@ public class LifelineEditPart extends NamedElementEditPart {
 				Rectangle bounds = fFigureLifelineDotLineFigure
 						.getDashLineRectangle().getBounds().getCopy();
 				bounds.expand(4, 0);
-				return bounds.contains(x, y);
+				if (bounds.contains(x, y))
+					return true;
 			}
-			return false;
+
+			return isChildLifelineSelected(x,y);
 		}
 	}
 
+	private boolean isChildLifelineSelected(int x, int y){
+		if (inlineMode) {
+			List parts = getChildren();
+			for(Object p : parts)
+				if(p instanceof LifelineEditPart) {
+					LifelineEditPart child = (LifelineEditPart)p;
+					IFigure fig = child.getFigure();
+					if(fig.containsPoint(x, y))
+						return true;
+				}
+		}
+		return false;
+	}
 	/**
 	 * @generated
 	 */
@@ -1578,8 +1653,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			//				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
 			//				getPrimaryShape().repaint();
 			//			}
-		} 
-		
+		}
 		super.handleNotificationEvent(notification);
 		// fixed bug (id=364711) when bounds changed update coveredBys with the
 		// figure's bounds.
@@ -1702,8 +1776,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 			Rectangle updatedRect = rect.getCopy();
 			updateRectangleBounds(updatedRect);
 
+			/*
 			// use the real width to compute the preferred height which will be used during the layout
-			int newNameContainerHeight = getPrimaryShape().getNameContainerPreferredHeight(updatedRect.width);
+			int newNameContainerHeight = getPrimaryShape().getNameContainerPreferredHeight(updatedRect.width); //fix width would cause height expand
 
 			if(oldNameContainerHeight != newNameContainerHeight) {
 
@@ -1713,15 +1788,21 @@ public class LifelineEditPart extends NamedElementEditPart {
 					if(rect.height != -1) {
 						rect.height -= heightDiff;
 					}
-
-					rect.y += heightDiff;
+					//adjust height offset
+					if(!(this.getParent() instanceof LifelineEditPart))
+						rect.y += heightDiff;
 					updateLifelineBounds(rect);
 				}
 
 				oldNameContainerHeight = newNameContainerHeight;
 			}
+			*/
+			Dimension size = getPrimaryShape().getFigureLifelineNameContainerFigure().getPreferredSize(-1, oldNameContainerHeight);
+			if(size.width > rect.width  ){ 
+				rect.width = size.width;
+				updateLifelineBounds(rect);
+			}
 		}
-
 	}
 
 	/**
@@ -1741,7 +1822,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setBackgroundColor(org.eclipse.swt.graphics.Color)
 	 */
 	@Override
-	protected void setBackgroundColor(Color c) {
+	public void setBackgroundColor(Color c) {
 		super.setBackgroundColor(c);
 		//		NodeFigure fig = getPrimaryShape();
 		//		fig.setBackgroundColor(c);
@@ -1895,7 +1976,13 @@ public class LifelineEditPart extends NamedElementEditPart {
 	@Override
 	protected void refreshChildren() {
 		super.refreshChildren();
-		configure(isInlineMode());
+		configure(isInlineMode(), true);
+	}
+
+	@Override
+	public void refresh() {
+		configure(isInlineMode(), false);
+		super.refresh();
 	}
 
 	/**
@@ -1917,12 +2004,20 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * 
 	 * @return True if the lifeline is in inline mode and if there are properties, else false
 	 */
-	private boolean isInlineMode() {
-		for(Object o : getChildren()) {
-			if(o instanceof LifelineEditPart) {
-				return true;
+	public boolean isInlineMode() {
+		//		for(Object o : getChildren()) {
+		//			if(o instanceof LifelineEditPart) {
+		//				return true;
+		//			}
+		//		}
+		List models = getModelChildren();
+		for (Object o : models)
+			if(o instanceof View) {
+				View view = (View) o;
+				if (UMLVisualIDRegistry.getVisualID(view.getType()) == LifelineEditPart.VISUAL_ID && view.getElement() instanceof Lifeline)
+					return true;
 			}
-		}
+
 		return false;
 	}
 
@@ -1932,18 +2027,19 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @param inlineMode
 	 *        True if the lifeline is in inline mode
 	 */
-	private void configure(boolean inlineMode) {
+	private void configure(boolean inlineMode, boolean refresh) {
 		(getPrimaryShape().getFigureLifelineDotLineFigure()).configure(inlineMode, getInnerConnectableElementList().size());
-		if(this.inlineMode != inlineMode) {
+		if (this.inlineMode != inlineMode) {
 			this.inlineMode = inlineMode;
-			if(inlineMode) {
+			if (inlineMode) {
 				installEditPolicy(EditPolicy.LAYOUT_ROLE, inlineModeLayoutRole);
 				removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 			} else {
 				installEditPolicy(EditPolicy.LAYOUT_ROLE, normalModeLayoutRole);
 				installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, dragDropEditPolicy);
 			}
-			refreshVisuals();
+			if (refresh)
+				refreshVisuals();
 		}
 	}
 
