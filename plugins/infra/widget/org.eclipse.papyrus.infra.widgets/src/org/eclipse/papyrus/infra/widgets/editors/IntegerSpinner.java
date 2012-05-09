@@ -48,7 +48,7 @@ public class IntegerSpinner extends AbstractValueEditor {
 	 */
 	public IntegerSpinner(Composite parent, int style) {
 		super(parent, style);
-		spinner = new Spinner(this, factory.getBorderStyle());
+		spinner = createSpinner();
 
 		setWidgetObservable(new AbstractObservableValue() {
 
@@ -69,6 +69,15 @@ public class IntegerSpinner extends AbstractValueEditor {
 		});
 
 		targetToModelConverter = StringToNumberConverter.toInteger(false);
+	}
+
+	/**
+	 * Creates the Spinner
+	 * 
+	 * @return the Spinner
+	 */
+	protected Spinner createSpinner() {
+		return new Spinner(this, factory.getBorderStyle());
 	}
 
 	@Override
