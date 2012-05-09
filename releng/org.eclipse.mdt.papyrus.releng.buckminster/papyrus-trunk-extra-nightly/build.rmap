@@ -231,14 +231,7 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
-    
-      <!-- EMF Compare -->
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("EMF COMPARE",0) -->
-      <rm:uri format="{0}/modeling/emf/compare/updates/milestones/2.0">
-        <bc:propertyRef key="eclipse.downloads"/>
-      </rm:uri>
-    </rm:provider> 
+ 
 
     <!-- EMF Transaction, EMF Validation -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
