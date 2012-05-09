@@ -174,6 +174,7 @@ public class StereotypeApplicationObservableList extends WritableList implements
 		}
 
 		domain.getCommandStack().execute(compoundCommand);
+		refreshCacheList();
 		commands.clear();
 	}
 

@@ -181,6 +181,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		}
 
 		domain.getCommandStack().execute(compoundCommand);
+		refreshCacheList();
 		commands.clear();
 	}
 
