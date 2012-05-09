@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.tools.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
@@ -35,7 +36,7 @@ public class UMLProviderHelper {
 	 *        The ContentProvider to encapsulate
 	 * @return
 	 */
-	public static EMFGraphicalContentProvider encapsulateProvider(IStructuredContentProvider provider, EObject editedEObject, EStructuralFeature feature) {
+	public static EMFGraphicalContentProvider encapsulateProvider(IStructuredContentProvider provider, EObject editedEObject, EStructuralFeature feature, ResourceSet root) {
 		String historyId = HistoryUtil.getHistoryID(editedEObject, feature);
 
 		IStructuredContentProvider contentProvider;
@@ -46,8 +47,7 @@ public class UMLProviderHelper {
 			contentProvider = provider;
 		}
 
-		//FIXME : The editedEObject might not be contained in a Resource
-		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, editedEObject.eResource().getResourceSet(), historyId);
+		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, root, historyId);
 
 		return graphicalProvider;
 	}

@@ -18,10 +18,10 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -41,9 +41,11 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 	/**
 	 * The property composite.
 	 */
-	protected AppliedStereotypePropertyCompositeWithView propertyComposite;
+	protected MultipleReferenceEditor propertyComposite;
 
 	private EModelElement diagramElement;
+
+	private ISelectionChangedListener propertySelectionChangeListener;
 
 	/**
 	 * The Constructor.
@@ -105,8 +107,8 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 	 * @param propertyComposite
 	 *        the composite associated to this stereotype composite used for stereotype property display.
 	 */
-	public void setPropertyComposite(AppliedStereotypePropertyCompositeWithView propertyComposite) {
-		this.propertyComposite = propertyComposite;
+	public void setPropertySelectionChangeListener(ISelectionChangedListener propertySelectionChangeListener) {
+		this.propertySelectionChangeListener = propertySelectionChangeListener;
 	}
 
 	/**
@@ -225,18 +227,6 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 	 */
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-		if(event == null) {
-			propertyComposite.setInput(null);
-			return;
-		}
-		
-		IStructuredSelection structSelection = (IStructuredSelection)event.getSelection();
-		Object selection = structSelection.getFirstElement();
-
-		if(selection instanceof AppliedStereotypePropertyTreeObject) {
-			propertyComposite.setInput((AppliedStereotypePropertyTreeObject)selection);
-		} else {
-			propertyComposite.setInput(null);
-		}
+		propertySelectionChangeListener.selectionChanged(event);
 	}
 }

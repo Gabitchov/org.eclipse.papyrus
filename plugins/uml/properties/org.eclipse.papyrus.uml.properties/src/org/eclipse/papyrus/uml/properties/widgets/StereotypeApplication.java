@@ -18,7 +18,6 @@ import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.properties.modelelement.StereotypeApplicationModelElement;
 import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedStereotypeCompositeWithView;
-import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedStereotypePropertyCompositeWithView;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
@@ -32,15 +31,13 @@ public class StereotypeApplication extends AbstractPropertyEditor {
 
 	private AppliedStereotypeCompositeWithView stereotypeComposite;
 
-	private AppliedStereotypePropertyCompositeWithView propertyComposite;
-
 	private Composite self;
 
 	public StereotypeApplication(Composite parent, int style) {
 		self = new Composite(parent, style);
 		self.setLayout(new PropertiesLayout(2, true));
 
-		int heightHint = 140;
+		int heightHint = 200;
 
 		stereotypeComposite = new AppliedStereotypeCompositeWithView(self);
 		stereotypeComposite.createContent(self, AbstractEditor.factory);
@@ -48,13 +45,12 @@ public class StereotypeApplication extends AbstractPropertyEditor {
 		data.heightHint = heightHint;
 		stereotypeComposite.setLayoutData(data);
 
-		propertyComposite = new AppliedStereotypePropertyCompositeWithView(self, stereotypeComposite);
-		propertyComposite.createContent(self, AbstractEditor.factory);
+		StereotypePropertyEditor propertyEditor = new StereotypePropertyEditor(self, style, stereotypeComposite);
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		data.heightHint = heightHint;
-		propertyComposite.setLayoutData(data);
+		propertyEditor.setLayoutData(data);
 
-		stereotypeComposite.setPropertyComposite(propertyComposite);
+		stereotypeComposite.setPropertySelectionChangeListener(propertyEditor);
 	}
 
 	@Override

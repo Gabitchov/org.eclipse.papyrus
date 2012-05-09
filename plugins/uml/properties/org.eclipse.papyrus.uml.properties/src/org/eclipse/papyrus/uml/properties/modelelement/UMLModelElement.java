@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -217,7 +218,8 @@ public class UMLModelElement extends EMFModelElement {
 		factory.setReferenceLabelProvider(new EMFLabelProvider());
 		ITreeContentProvider contentProvider = new UMLContainerContentProvider(source, reference);
 
-		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, source.eResource().getResourceSet(), HistoryUtil.getHistoryID(source, feature, "container"));
+		ResourceSet rs = source == null ? null : source.eResource() == null ? null : source.eResource().getResourceSet();
+		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, rs, HistoryUtil.getHistoryID(source, feature, "container"));
 
 		factory.setContainerContentProvider(provider);
 		factory.setReferenceContentProvider(new FeatureContentProvider(type));

@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
@@ -44,6 +44,8 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 
 	protected Stereotype stereotype;
 
+	protected ResourceSet root;
+
 	/**
 	 * Constructor.
 	 * 
@@ -56,6 +58,10 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		this(source, feature, null);
 	}
 
+	public UMLContentProvider(final EObject source, final EStructuralFeature feature, final Stereotype stereotype) {
+		this(source, feature, stereotype, null);
+	}
+
 	/**
 	 * 
 	 * @param source
@@ -65,14 +71,28 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	 * @param stereotype
 	 *        The {@link Stereotype} of the source EObject. May be null if the source is not a StereotypeApplication
 	 */
-	public UMLContentProvider(final EObject source, final EStructuralFeature feature, final Stereotype stereotype) {
+	public UMLContentProvider(final EObject source, final EStructuralFeature feature, final Stereotype stereotype, ResourceSet root) {
 		this.eObject = source;
 		this.feature = feature;
 		this.stereotype = stereotype;
 
 		IStructuredContentProvider semanticProvider = getSemanticProvider(source, feature, stereotype);
 
-		encapsulated = UMLProviderHelper.encapsulateProvider(semanticProvider, eObject, feature);
+		if (root == null && eObject.eResource() != null) {
+			try {
+				// try to retrieve the root from the object to edit
+				root = ServiceUtilsForResource.getInstance().getModelSet(eObject.eResource());
+			} catch (ServiceException e) {}
+		}
+		if (root == null) {
+			// try to retrieve the root from the current editor
+			try {
+				root = ServiceUtilsForActionHandlers.getInstance().getModelSet();
+			} catch (ServiceException e) {}
+		}
+		this.root  = root;
+
+		encapsulated = UMLProviderHelper.encapsulateProvider(semanticProvider, eObject, feature, root);
 	}
 
 	/**
@@ -97,20 +117,13 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 			return new EMFEnumeratorContentProvider(feature);
 		}
 
-		try {
-			ModelSet root = ServiceUtilsForResource.getInstance().getModelSet(eObject.eResource());
-			//ModelSet root = ModelUtils.getModelSetChecked(EditorUtils.getServiceRegistry());
-
-			if(feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
-				//TODO : Use a specific content provider here, when it exists
-				return new ServiceEditFilteredContentProvider(source, feature, root);
-			} else if(feature == UMLPackage.eINSTANCE.getInstanceValue_Instance()) {
-				return new InstanceValueContentProvider((InstanceValue)source, feature, root);
-			} else {
-				return new ServiceEditFilteredContentProvider(source, feature, root);
-			}
-		} catch (ServiceException ex) {
-			throw new RuntimeException("Cannot instantiate the UMLContentProvider", ex);
+		if(feature == UMLPackage.eINSTANCE.getPort_Provided() || feature == UMLPackage.eINSTANCE.getPort_Required()) {
+			//TODO : Use a specific content provider here, when it exists
+			return new ServiceEditFilteredContentProvider(source, feature, root);
+		} else if(feature == UMLPackage.eINSTANCE.getInstanceValue_Instance()) {
+			return new InstanceValueContentProvider((InstanceValue)source, feature, root);
+		} else {
+			return new ServiceEditFilteredContentProvider(source, feature, root);
 		}
 	}
 

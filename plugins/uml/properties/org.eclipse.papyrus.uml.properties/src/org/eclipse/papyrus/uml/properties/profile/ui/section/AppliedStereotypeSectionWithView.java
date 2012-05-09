@@ -20,9 +20,9 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedStereotypeCompositeWithView;
-import org.eclipse.papyrus.uml.properties.profile.ui.compositeforview.AppliedStereotypePropertyCompositeWithView;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
@@ -36,9 +36,10 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 
 	/** The stereotype composite. */
 	private AppliedStereotypeCompositeWithView appliedStereotypeComposite;
+	private MultipleReferenceEditor editor;
 
 	/** The property composite. */
-	private AppliedStereotypePropertyCompositeWithView propertyComposite;
+//	private AppliedStereotypePropertyCompositeWithView propertyComposite;
 
 	/**
 	 * Creates the controls.
@@ -54,10 +55,11 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 		appliedStereotypeComposite = new AppliedStereotypeCompositeWithView(parent);
 		appliedStereotypeComposite.createContent(parent, getWidgetFactory());
 
-		propertyComposite = new AppliedStereotypePropertyCompositeWithView(parent, appliedStereotypeComposite);
-		propertyComposite.createContent(parent, getWidgetFactory());
+		editor = new MultipleReferenceEditor(parent, 0);
+//		propertyComposite = new AppliedStereotypePropertyCompositeWithView(parent, appliedStereotypeComposite);
+//		propertyComposite.createContent(parent, getWidgetFactory());
 
-		appliedStereotypeComposite.setPropertyComposite(propertyComposite);
+//		appliedStereotypeComposite.setPropertyComposite(propertyComposite);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	@Override
 	public void refresh() {
 		appliedStereotypeComposite.refresh();
-		propertyComposite.refresh();
+		editor.refreshValue();
 	}
 
 	/**
@@ -95,7 +97,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 				Element UMLElement = (Element)view.getElement();
 				if(UMLElement != null) {
 					appliedStereotypeComposite.setDiagramElement(view);
-					propertyComposite.setDiagramElement(view);
+//					propertyComposite.setDiagramElement(view);
 					appliedStereotypeComposite.setElement(UMLElement);
 					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
 				}
@@ -145,7 +147,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 		super.dispose();
 		if(appliedStereotypeComposite != null)
 			appliedStereotypeComposite.disposeListeners();
-		if(propertyComposite != null)
-			propertyComposite.disposeListeners();
+//		if(propertyComposite != null)
+//			propertyComposite.disposeListeners();
 	}
 }

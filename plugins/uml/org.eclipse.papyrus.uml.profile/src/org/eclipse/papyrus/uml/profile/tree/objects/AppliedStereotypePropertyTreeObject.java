@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
@@ -117,6 +118,26 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 		Stereotype st = sTO.getStereotype();
 		Element elt = rTO.getElement();
 		return elt.getValue(st, property.getName());
+	}
+
+	public Element getElement() {
+		AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) getParent();
+		StereotypedElementTreeObject rTO = (StereotypedElementTreeObject) sTO.getParent();
+
+		return rTO.getElement();
+	}
+
+	public EStructuralFeature getFeature() {
+		return getStereotypeApplication().eClass().getEStructuralFeature(property.getName());
+	}
+
+	public EObject getStereotypeApplication() {
+		return getElement().getStereotypeApplication(getStereotype());
+	}
+	
+	public Stereotype getStereotype() {
+		AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) getParent();
+		return sTO.getStereotype();
 	}
 
 	/**

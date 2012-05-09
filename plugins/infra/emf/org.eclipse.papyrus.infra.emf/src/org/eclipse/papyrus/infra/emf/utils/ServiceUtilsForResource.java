@@ -66,11 +66,14 @@ public class ServiceUtilsForResource extends AbstractServiceUtils<Resource> {
 	 */
 	@Override
 	public ServicesRegistry getServiceRegistry(Resource from) throws ServiceException {
-		
+		if(from == null || from.getResourceSet() == null) {
+			throw new ServiceNotFoundException("Can't find the ResourceSet needed retrieve the ServiceRegistry.");
+		}
+
 		// An AdapterFactory referencing the ServiceRegistry is attache to the REsourceSet.
 		// Try to get it.
 		ServiceRegistryAdapterFactory factory = (ServiceRegistryAdapterFactory)EcoreUtil.getAdapterFactory(from.getResourceSet().getAdapterFactories(), ServiceRegistryAdapterFactory.TYPE_ID);
-		if( factory == null) {
+		if(factory == null) {
 			throw new ServiceNotFoundException("Can't find the ServiceRegistry. No Adapter is attached to the ResourceSet. Check if the proper service is ");
 		}
 		return factory.getServicesRegistry();

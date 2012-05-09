@@ -80,8 +80,10 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 
 	protected static EObject[] getRoots(ResourceSet root) {
 		List<EObject> roots = new LinkedList<EObject>();
-		for(Resource resource : root.getResources()) {
-			roots.addAll(resource.getContents());
+		if (root != null) {
+			for(Resource resource : root.getResources()) {
+				roots.addAll(resource.getContents());
+			}
 		}
 		return roots.toArray(new EObject[roots.size()]);
 	}

@@ -237,7 +237,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		selectionHistory = new ArrayList<EObject>(HISTORY_MAX_SIZE + 1);
 
 		IDialogSettings historySettings = getDialogSettings().getSection(HISTORY_SETTINGS);
-		if(historySettings != null) {
+		if(historySettings != null && resourceSet != null) {
 			String[] uriHistory = historySettings.getArray(PREVIOUS_SELECTION);
 			// for each element in the list, try to get the EObject by its URI
 			if(uriHistory != null) {

@@ -53,6 +53,7 @@ public class ProviderHelper {
 	 * @return
 	 */
 	public static EMFGraphicalContentProvider encapsulateProvider(ITreeContentProvider provider, EObject editedEObject, EStructuralFeature feature) {
-		return encapsulateProvider(provider, editedEObject.eResource().getResourceSet(), HistoryUtil.getHistoryID(editedEObject, feature));
+		ResourceSet rs = editedEObject == null ? null : editedEObject.eResource() == null ? null : editedEObject.eResource().getResourceSet();
+		return encapsulateProvider(provider, rs, HistoryUtil.getHistoryID(editedEObject, feature));
 	}
 }

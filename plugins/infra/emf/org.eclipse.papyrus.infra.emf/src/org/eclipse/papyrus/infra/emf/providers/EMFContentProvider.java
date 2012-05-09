@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.strategy.ContainmentBrowseStrategy;
@@ -90,7 +91,8 @@ public class EMFContentProvider extends EncapsulatedContentProvider {
 			contentProvider = provider;
 		}
 
-		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, editedEObject.eResource().getResourceSet(), historyId);
+		ResourceSet rs = editedEObject == null ? null : editedEObject.eResource() == null ? null : editedEObject.eResource().getResourceSet();
+		EMFGraphicalContentProvider graphicalProvider = new EMFGraphicalContentProvider(contentProvider, rs, historyId);
 
 		return graphicalProvider;
 	}
