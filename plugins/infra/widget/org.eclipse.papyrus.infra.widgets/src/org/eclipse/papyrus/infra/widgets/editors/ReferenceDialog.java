@@ -400,7 +400,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		// If they are displayed, check if they should be enabled
 		if(!exclude) {
 			editInstanceButton.setEnabled(valueFactory != null && valueFactory.canEdit() && getValue() != null);
-			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject());
+			createInstanceButton.setEnabled(valueFactory != null && valueFactory.canCreateObject() && !readOnly);
 		}
 
 		boolean enabled = !readOnly;

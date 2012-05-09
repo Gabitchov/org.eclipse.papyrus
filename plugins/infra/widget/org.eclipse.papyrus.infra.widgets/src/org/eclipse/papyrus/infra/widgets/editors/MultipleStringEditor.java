@@ -41,6 +41,11 @@ public class MultipleStringEditor extends MultipleValueEditor {
 		init();
 	}
 
+	public MultipleStringEditor(Composite parent, int style, boolean multiline) {
+		super(parent, style, new StringSelector(multiline));
+		init();
+	}
+
 	/**
 	 * Constructs an Editor for multiple String values
 	 * The widget is a List, with controls to move values up/down, add values

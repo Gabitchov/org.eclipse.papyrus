@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.core.databinding.Binding;
@@ -55,7 +55,7 @@ public abstract class AbstractEditor extends Composite {
 	/**
 	 * The set of elements listening on changes from this editor
 	 */
-	protected Set<ICommitListener> commitListeners = new HashSet<ICommitListener>();
+	protected Set<ICommitListener> commitListeners = new LinkedHashSet<ICommitListener>();
 
 	/**
 	 * The binding between the model object and the widget

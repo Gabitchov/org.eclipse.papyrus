@@ -26,24 +26,24 @@ import com.ibm.icu.text.NumberFormat;
  * 
  * @author Camille Letavernier
  */
-public class FloatEditor extends StringEditor {
+public class DoubleEditor extends StringEditor {
 
 	private IConverter targetToModelConverter;
 
 	/**
 	 * 
-	 * Constructs an Editor for a Float value. The widget is a Text field.
+	 * Constructs an Editor for a Double value. The widget is a Text field.
 	 * 
 	 * @param parent
 	 *        The Composite in which the editor is created
 	 * @param style
 	 *        The Text's style
 	 */
-	public FloatEditor(Composite parent, int style) {
+	public DoubleEditor(Composite parent, int style) {
 		super(parent, style);
 
-		targetToModelConverter = StringToNumberConverter.toFloat(NumberFormat.getInstance(Locale.ENGLISH), true);
-		setConverters(targetToModelConverter, NumberToStringConverter.fromFloat(NumberFormat.getInstance(Locale.ENGLISH), true));
+		targetToModelConverter = StringToNumberConverter.toDouble(NumberFormat.getInstance(Locale.ENGLISH), true);
+		setConverters(targetToModelConverter, NumberToStringConverter.fromDouble(NumberFormat.getInstance(Locale.ENGLISH), true));
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class FloatEditor extends StringEditor {
 	 */
 	@Override
 	public Object getEditableType() {
-		return Float.class;
+		return Double.class;
 	}
 
 	/**

@@ -16,6 +16,7 @@ import java.util.TimerTask;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.papyrus.infra.widgets.databinding.TextObservableValue;
+import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -140,6 +141,12 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 				}
 			} else { //Multi-line : Ctrl+Enter
 				if(e.stateMask == SWT.CTRL) {
+					String str = text.getText();
+					if (str.endsWith(StringSelector.LINE_SEPARATOR)) {
+						int newLength = str.length() - StringSelector.LINE_SEPARATOR.length();
+						text.setText(str.substring(0, newLength));
+						text.setSelection(newLength);
+					}
 					notifyChange();
 				}
 			}

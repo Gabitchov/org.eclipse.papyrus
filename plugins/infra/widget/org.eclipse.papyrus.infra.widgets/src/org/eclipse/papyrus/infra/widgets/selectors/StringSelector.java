@@ -33,6 +33,8 @@ import org.eclipse.swt.widgets.Text;
  */
 public class StringSelector implements IElementSelector {
 
+	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
 	/**
 	 * The text box used to enter a value for this selector
 	 */
@@ -84,29 +86,32 @@ public class StringSelector implements IElementSelector {
 	 * {@inheritDoc}
 	 */
 	public void createControls(Composite parent) {
-		text = new Text(parent, (multiline ? SWT.MULTI : SWT.NONE) | SWT.BORDER);
-		if(!multiline) {
-			text.addKeyListener(new KeyListener() {
+		text = new Text(parent, SWT.MULTI | SWT.BORDER);
+		text.addKeyListener(new KeyListener() {
 
-				public void keyPressed(KeyEvent e) {
-					//Nothing
-				}
+			public void keyPressed(KeyEvent e) {
+				//Nothing
+			}
 
-				public void keyReleased(KeyEvent e) {
-					if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) && e.stateMask == SWT.NONE) {
-						if(!elementSelectionListeners.isEmpty()) {
-							Object[] result = getSelectedElements();
-							if(!result[0].equals("")) { //$NON-NLS-1$
-								for(IElementSelectionListener listener : elementSelectionListeners) {
-									listener.addElements(result);
-								}
+			public void keyReleased(KeyEvent e) {
+				if((e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR)
+					&& ((e.stateMask == SWT.NONE && !multiline)
+						|| ((e.stateMask & SWT.CTRL) != 0 && multiline))) {
+					if(!elementSelectionListeners.isEmpty()) {
+						String str = (String)getSelectedElements()[0];
+						if (str.endsWith(LINE_SEPARATOR)) {
+							str = str.substring(0,str.length() - LINE_SEPARATOR.length());
+						}
+						if(!"".equals(str)) { //$NON-NLS-1$
+							for(IElementSelectionListener listener : elementSelectionListeners) {
+								listener.addElements(new Object[] {str});
 							}
 						}
 					}
 				}
+			}
 
-			});
-		}
+		});
 	}
 
 	/**
