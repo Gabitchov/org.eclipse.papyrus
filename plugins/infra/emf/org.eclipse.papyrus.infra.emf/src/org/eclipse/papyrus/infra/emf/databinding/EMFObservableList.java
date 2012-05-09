@@ -19,8 +19,10 @@ import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -136,6 +138,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		}
 
 		editingDomain.getCommandStack().execute(compoundCommand);
+		refreshCacheList();
 		commands.clear();
 	}
 
@@ -297,11 +300,26 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	}
 
 	public Command getRemoveCommand(Object value) {
-		return RemoveCommand.create(editingDomain, source, feature, value);
+		Command cmd = RemoveCommand.create(editingDomain, source, feature, value);
+		if (value instanceof EObject && feature instanceof EReference && ((EReference)feature).isContainment()) {
+			addDestroyCommand(cmd, (EObject)value);
+		}
+		return cmd;
 	}
 
 	public Command getRemoveAllCommand(Collection<?> values) {
-		return RemoveCommand.create(editingDomain, source, feature, values);
+		CompoundCommand cc = new CompoundCommand("Edit list");
+
+		if (feature instanceof EReference && ((EReference)feature).isContainment() && values != null) {
+			for (Object o : values) {
+				if (o instanceof EObject) {
+					addDestroyCommand(cc, (EObject)o);
+				}
+			}
+		}
+
+		cc.append(RemoveCommand.create(editingDomain, source, feature, values));
+		return cc;
 	}
 
 	public List<Command> getMoveCommands(int oldIndex, int newIndex) {
@@ -327,7 +345,22 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	}
 
 	public Command getSetCommand(int index, Object value) {
-		return SetCommand.create(editingDomain, source, feature, value, index);
+		Object oldValue = get(index);
+		Command command = SetCommand.create(editingDomain, source, feature, value, index);
+		if (oldValue instanceof EObject && feature instanceof EReference && ((EReference)feature).isContainment()) {
+			addDestroyCommand(command, (EObject)oldValue);
+		}
+		return command;
+	}
+	
+	protected void addDestroyCommand(Command cmd, EObject objToDestroy) {
+		Command destroyCmd = DeleteCommand.create(editingDomain, objToDestroy);
+
+		if (cmd instanceof CompoundCommand) {
+			((CompoundCommand)cmd).append(destroyCmd);
+		} else {
+			cmd.chain(destroyCmd);
+		}
 	}
 
 }

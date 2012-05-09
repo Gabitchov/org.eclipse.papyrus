@@ -16,10 +16,12 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
@@ -84,16 +86,21 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 			value = eObjectValue;
 		}
 
+		Object oldValue = getValue();
+
 		try {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getObserved());
 
 			if(provider != null) {
-				SetRequest request = new SetRequest((TransactionalEditingDomain)domain, eObject, eStructuralFeature, value);
-				ICommand createGMFCommand = provider.getEditCommand(request);
+				CompositeCommand cc = new CompositeCommand("Edit value");
 
-				Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
+				if (oldValue instanceof EObject && eStructuralFeature instanceof EReference && ((EReference)eStructuralFeature).isContainment()) {
+					cc.add(provider.getEditCommand(new DestroyElementRequest((TransactionalEditingDomain)domain, (EObject)oldValue, false)));
+				}
 
-				return emfCommand;
+				cc.add(provider.getEditCommand(new SetRequest((TransactionalEditingDomain)domain, eObject, eStructuralFeature, value)));
+
+				return new GMFtoEMFCommandWrapper(cc);
 			}
 		} catch (Exception ex) {
 			Activator.log.error(ex);
