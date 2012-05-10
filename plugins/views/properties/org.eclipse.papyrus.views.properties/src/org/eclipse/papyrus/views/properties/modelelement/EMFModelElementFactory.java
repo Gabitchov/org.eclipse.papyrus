@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.views.properties.modelelement;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
@@ -33,7 +32,7 @@ public class EMFModelElementFactory implements ModelElementFactory {
 			return null;
 		}
 
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
+		EditingDomain domain = EMFHelper.resolveEditingDomain(source);
 		return new EMFModelElement(source, domain);
 	}
 

@@ -13,7 +13,6 @@ package org.eclipse.papyrus.views.properties.modelelement;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
@@ -37,7 +36,7 @@ public class AnnotationModelElementFactory implements ModelElementFactory {
 			Activator.log.warn("The selected element must be an EModelElement"); //$NON-NLS-1$
 		}
 
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
+		EditingDomain domain = EMFHelper.resolveEditingDomain(source);
 		return new AnnotationModelElement((EModelElement)source, domain, context.getName());
 	}
 

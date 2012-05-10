@@ -36,6 +36,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
 
 /**
@@ -182,7 +184,13 @@ public class EMFHelper {
 	 *         The source eObject's editing domain, or null if it couldn't be found
 	 */
 	public static EditingDomain resolveEditingDomain(final EObject source) {
-		return AdapterFactoryEditingDomain.getEditingDomainFor(source);
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
+		if (domain == null) {
+			try {
+				domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+			} catch (ServiceException e) {}
+		}
+		return domain;
 	}
 
 	/**
@@ -317,7 +325,7 @@ public class EMFHelper {
 	 *         True if the EObject is read only
 	 */
 	public static boolean isReadOnly(final EObject eObject) {
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		EditingDomain domain = resolveEditingDomain(eObject);
 		return isReadOnly(eObject, domain);
 	}
 

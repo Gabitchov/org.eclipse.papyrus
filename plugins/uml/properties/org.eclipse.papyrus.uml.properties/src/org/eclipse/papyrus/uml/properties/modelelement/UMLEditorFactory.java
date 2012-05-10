@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.uml.properties.modelelement;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -35,7 +34,7 @@ public class UMLEditorFactory implements ModelElementFactory {
 			return null;
 		}
 
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
+		EditingDomain domain = EMFHelper.resolveEditingDomain(source);
 
 		return new MemberEndModelElement(source, domain);
 	}

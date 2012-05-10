@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -59,12 +60,12 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	 *        The Property to edit
 	 */
 	public ElementCustomizationObservableValue(EditPart sourceElement, Property property) {
-		super(UMLUtil.resolveEditingDomain(sourceElement));
+		super(null);
 		this.sourceElement = sourceElement;
 		this.property = property;
 		semanticElement = UMLUtil.resolveUMLElement(sourceElement);
 		notationElement = (View)sourceElement.getModel();
-		domain = (TransactionalEditingDomain)UMLUtil.resolveEditingDomain(semanticElement);
+		domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(semanticElement);
 	}
 
 	//TODO : The value is not correctly refreshed when someone else edits it
