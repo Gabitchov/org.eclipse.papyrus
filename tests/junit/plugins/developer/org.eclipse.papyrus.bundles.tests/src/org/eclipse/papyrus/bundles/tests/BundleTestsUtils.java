@@ -16,7 +16,7 @@ public class BundleTestsUtils {
 
 	public static final String INCUBATION = "(Incubation)"; //$NON-NLS-1$
 
-	public static final String PROVIDER_NAME = "Eclipse Modeling Project"; //$NON-NLS-1$
+	public static final String VENDOR_NAME = "Eclipse Modeling Project"; //$NON-NLS-1$
 
 	public static final String BUNDLE_NAME = "Bundle-Name"; //$NON-NLS-1$
 
