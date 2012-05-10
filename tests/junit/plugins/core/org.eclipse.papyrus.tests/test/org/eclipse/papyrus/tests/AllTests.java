@@ -35,6 +35,9 @@ public class AllTests {
 		suiteClasses = new ArrayList<ITestSuiteClass>();
 
 		/* **************** plugins *********************** */
+		/* developper*/
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
+		
 		/* core */
 		// {oep}.core
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.core.tests.AllTests"));
