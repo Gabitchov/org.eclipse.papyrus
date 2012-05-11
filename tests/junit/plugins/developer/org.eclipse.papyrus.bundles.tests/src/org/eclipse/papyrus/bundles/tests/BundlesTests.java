@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.bundles.tests;
 
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.osgi.framework.internal.core.BundleFragment;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -100,10 +103,21 @@ public class BundlesTests {
 		String message = null;
 		int nb = 0;
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			final URL url = current.getResource(filepath);
+			URL url = current.getResource(filepath);
+			//specific behavior for the fragment!
+			if(url == null && current instanceof BundleFragment) {
+				BundleFragment fragment = (BundleFragment)current;
+				Enumeration<URL> entries = fragment.findEntries("/", filepath, false);
+				if(entries != null) {
+					if(entries.hasMoreElements()) {
+						url = entries.nextElement();
+					}
+				}
+			}
+
 			if(url == null) {
 				if(message == null) {
-					message = "The following bundles doesn't have the file about.html :"; //$NON-NLS-1$
+					message = "The following bundles don't have the file about.html :"; //$NON-NLS-1$
 				}
 				message += "\n "; //$NON-NLS-1$
 				message += current.getSymbolicName();
