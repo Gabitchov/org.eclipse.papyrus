@@ -21,7 +21,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryAdapterSimple;
 
 /**
  * The Class ModelSetQuery provides service to get objects of specified type
@@ -54,7 +54,7 @@ public class ModelSetQuery {
 	 */
 	public static IModelSetQueryAdapter getExistingTypeCacheAdapter(Notifier notifier) {
 		if(notifier == null) {
-			return simpleCacheAdapter;
+			return ModelSetQueryAdapterSimple.getSimpleTypeCacheAdapter();
 		}
 		for(Adapter adapter : notifier.eAdapters()) {
 			if(adapter instanceof IModelSetQueryAdapter) {
@@ -64,8 +64,10 @@ public class ModelSetQuery {
 		if(notifier instanceof EObject) {
 			EObject object = (EObject)notifier;
 			IModelSetQueryAdapter typeCacheAdapter = getExistingTypeCacheAdapter(object.eResource());
-			if(typeCacheAdapter != null) {
+			if(typeCacheAdapter instanceof Adapter) {
 				object.eAdapters().add((Adapter)typeCacheAdapter);
+			}
+			if (typeCacheAdapter != null) {
 				return typeCacheAdapter;
 			}
 		} else if(notifier instanceof Resource) {
@@ -78,31 +80,7 @@ public class ModelSetQuery {
 				return typeCacheAdapter;
 			}
 		}
-		return simpleCacheAdapter;
-	}
-	
-	
-	/**
-	 * This cache adapter is only used if the caller don't use correctly
-	 * TypeCacheAdapter. With the simple cache adapter performance are not good
-	 * but a result is still returned
-	 */
-	private static SimpleTypeCacheAdapter simpleCacheAdapter = new SimpleTypeCacheAdapter();	
-	
-	public static IModelSetQueryAdapter getSimpleTypeCacheAdapter() {
-		return simpleCacheAdapter;
+		return ModelSetQueryAdapterSimple.getSimpleTypeCacheAdapter();
 	}
 
-	/**
-	 * This implementation uses ItemPropertyDescriptor class to resolve objects
-	 * from type
-	 * 
-	 * @author tfaure
-	 */
-	private static class SimpleTypeCacheAdapter implements IModelSetQueryAdapter {
-
-		public Collection<EObject> getReachableObjectsOfType(EObject object, EClassifier type) {
-			return ItemPropertyDescriptor.getReachableObjectsOfType(object, type);
-		}
-	}
 }

@@ -35,13 +35,6 @@ import org.eclipse.papyrus.infra.core.modelsetquery.IFillableModelSetQueryAdapte
  * 
  * @author Tristan Faure
  */
-/**
- * This cache creates a map associating EClasses to all the corresponding
- * This implementation takes less space but it is less performant for get and put methods
- * instances
- * 
- * @author Tristan Faure
- */
 public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements IFillableModelSetQueryAdapter {
 
 	/**
@@ -119,10 +112,9 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 		Collection<EObject> listOfClassifiers = cache.get(eClassifier);
 		if(listOfClassifiers != null) {
 			listOfClassifiers.remove(newObj);
-		}
-		if (listOfClassifiers.isEmpty())
-		{
-			cache.remove(eClassifier);
+			if (listOfClassifiers.isEmpty()) {
+				cache.remove(eClassifier);
+			}
 		}
 	}
 
@@ -175,4 +167,7 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 	public boolean isAlreadyComputed(EClassifier type) {
 		return cache.containsKey(type);
 	}
+
+	
+
 }
