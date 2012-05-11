@@ -25,7 +25,7 @@ public class BundlesTests {
 	 * Tests that all Papyrus Bundle name are finished by {@link #INCUBATION}
 	 */
 	@Test
-	public void incubationTests() {
+	public void incubationTest() {
 		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, ".*\\(Incubation\\)"); //$NON-NLS-1$
 	}
 
@@ -37,19 +37,28 @@ public class BundlesTests {
 		testManifestProperty(BundleTestsUtils.BUNDLE_VENDOR, BundleTestsUtils.VENDOR_NAME);
 	}
 
-
 	/**
 	 * Tests that each papyrus plugins have the correct version
 	 */
 	@Test
-	public void versionTests() {
+	public void versionTest() {
 		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.0\\..*"); //$NON-NLS-1$
 	}
 
-
+	/**
+	 * Tests if the file about.html is included to the plugin
+	 */
 	@Test
 	public void aboutTest() {
 		fileTest("/about.html"); //$NON-NLS-1$
+	}
+
+	/**
+	 * Tests the java version
+	 */
+	@Test
+	public void javaVersionTest() {
+		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5); //$NON-NLS-1$
 	}
 
 	/**
@@ -65,7 +74,7 @@ public class BundlesTests {
 		int nb = 0;
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = (String)current.getHeaders().get(property);
-			 boolean result = false;
+			boolean result = false;
 			if(value != null) {
 				result = value.matches(regex);
 			}
