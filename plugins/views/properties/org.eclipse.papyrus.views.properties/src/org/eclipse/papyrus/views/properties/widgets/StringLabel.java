@@ -35,8 +35,21 @@ public class StringLabel extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public StringLabel(Composite parent, int style) {
-		editor = new org.eclipse.papyrus.infra.widgets.editors.StringLabel(parent, style);
+		editor = createStringLabel(parent, style);
 		setEditor(editor);
+	}
+
+	/**
+	 * Creates the string label dialog.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return The string label dialog.
+	 */
+	protected org.eclipse.papyrus.infra.widgets.editors.StringLabel createStringLabel(Composite parent, int style) {
+		return new org.eclipse.papyrus.infra.widgets.editors.StringLabel(parent, style);
 	}
 
 	@Override

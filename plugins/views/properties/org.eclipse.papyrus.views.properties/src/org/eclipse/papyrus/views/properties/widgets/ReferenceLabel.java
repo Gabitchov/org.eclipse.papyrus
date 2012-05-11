@@ -34,8 +34,21 @@ public class ReferenceLabel extends AbstractPropertyEditor {
 	 * @param style
 	 */
 	public ReferenceLabel(Composite parent, int style) {
-		editor = new StringLabel(parent, style);
+		editor = createReferenceLabel(parent, style);
 		setEditor(editor);
+	}
+
+	/**
+	 * Creates the string label.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the string label.
+	 */
+	protected StringLabel createReferenceLabel(Composite parent, int style) {
+		return new StringLabel(parent, style);
 	}
 
 	@Override

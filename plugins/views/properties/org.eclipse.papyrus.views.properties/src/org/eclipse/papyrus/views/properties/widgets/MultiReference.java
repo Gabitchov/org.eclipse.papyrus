@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * A PropertyEditor for editing multiple references in a List
  * 
- * @see org.eclipse.papyrus.infra.widgets.editors.BooleanCheckbox
+ * @see org.eclipse.papyrus.widgets.editors.BooleanCheckbox
  * 
  * @author Camille Letavernier
  */
@@ -46,8 +46,21 @@ public class MultiReference extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public MultiReference(Composite parent, int style) {
-		editor = new MultipleReferenceEditor(parent, style);
+		editor = createMultipleReferenceEditor(parent, style);
 		super.setEditor(editor);
+	}
+
+	/**
+	 * Creates the reference editor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return The reference editor
+	 */
+	protected MultipleReferenceEditor createMultipleReferenceEditor(Composite parent, int style) {
+		return new MultipleReferenceEditor(parent, style);
 	}
 
 	@Override

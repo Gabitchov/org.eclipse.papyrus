@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * A PropertyEditor for editing multiple integers in a List
  * 
- * @see org.eclipse.papyrus.infra.widgets.editors.MultipleIntegerEditor
+ * @see org.eclipse.papyrus.widgets.editors.MultipleIntegerEditor
  * 
  * @author Camille Letavernier
  */
@@ -38,8 +38,21 @@ public class MultiInteger extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public MultiInteger(Composite parent, int style) {
-		editor = new MultipleIntegerEditor(parent, style);
+		editor = createMultipleIntegerEditor(parent, style);
 		super.setEditor(editor);
+	}
+
+	/**
+	 * Creates the multiple integer editor.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the multiple integer editor.
+	 */
+	protected MultipleIntegerEditor createMultipleIntegerEditor(Composite parent, int style) {
+		return new MultipleIntegerEditor(parent, style);
 	}
 
 	@Override

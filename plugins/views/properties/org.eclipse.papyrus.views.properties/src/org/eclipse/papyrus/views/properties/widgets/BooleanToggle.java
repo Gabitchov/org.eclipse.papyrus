@@ -39,8 +39,21 @@ public class BooleanToggle extends AbstractPropertyEditor {
 	 * @param style
 	 */
 	public BooleanToggle(Composite parent, int style) {
-		toggle = new org.eclipse.papyrus.infra.widgets.editors.BooleanToggle(parent, style);
+		toggle = createBooleanToggle(parent, style);
 		setEditor(toggle);
+	}
+
+	/**
+	 * Creates the boolean toggle.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the boolean toggle.
+	 */
+	protected org.eclipse.papyrus.infra.widgets.editors.BooleanToggle createBooleanToggle(Composite parent, int style) {
+		return new org.eclipse.papyrus.infra.widgets.editors.BooleanToggle(parent, style);
 	}
 
 	/**

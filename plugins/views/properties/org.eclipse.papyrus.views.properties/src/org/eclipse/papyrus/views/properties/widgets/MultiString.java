@@ -41,8 +41,21 @@ public class MultiString extends AbstractPropertyEditor {
 	 *        The style for the widget
 	 */
 	public MultiString(Composite parent, int style) {
-		editor = new MultipleStringEditor(parent, style);
+		editor = createMultipleStringEditor(parent, style);
 		super.setEditor(editor);
+	}
+
+	/**
+	 * Creates the multiple string editor
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the multiple string editor.
+	 */
+	protected MultipleStringEditor createMultipleStringEditor(Composite parent, int style) {
+		return new MultipleStringEditor(parent, style);
 	}
 
 	@Override

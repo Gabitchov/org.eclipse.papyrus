@@ -20,9 +20,22 @@ public class MultiReferencePropertyEditorWithPropertyView extends AbstractProper
 
 	protected MultiReferenceEditorWithPropertyView editor;
 
-	public MultiReferencePropertyEditorWithPropertyView(Composite parent, int style){
-		editor = new MultiReferenceEditorWithPropertyView(parent, style);
+	public MultiReferencePropertyEditorWithPropertyView(Composite parent, int style) {
+		editor = createMultiReferenceEditorWithPropertyView(parent, style);
 		setEditor(editor);
+	}
+
+	/**
+	 * Creates the multi reference editor with property view.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the multi reference editor with property view.
+	 */
+	protected MultiReferenceEditorWithPropertyView createMultiReferenceEditorWithPropertyView(Composite parent, int style) {
+		return new MultiReferenceEditorWithPropertyView(parent, style);
 	}
 
 	@Override

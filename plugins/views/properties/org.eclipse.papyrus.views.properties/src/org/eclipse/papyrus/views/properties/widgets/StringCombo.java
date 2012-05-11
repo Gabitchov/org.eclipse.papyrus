@@ -36,8 +36,21 @@ public class StringCombo extends AbstractPropertyEditor {
 	 * @param style
 	 */
 	public StringCombo(Composite parent, int style) {
-		editor = new org.eclipse.papyrus.infra.widgets.editors.StringCombo(parent, style);
+		editor = createStringCombo(parent, style);
 		super.setEditor(editor);
+	}
+
+	/**
+	 * Creates the string combo dialog.
+	 * 
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the string combo dialog.
+	 */
+	protected org.eclipse.papyrus.infra.widgets.editors.StringCombo createStringCombo(Composite parent, int style) {
+		return new org.eclipse.papyrus.infra.widgets.editors.StringCombo(parent, style);
 	}
 
 	@Override
