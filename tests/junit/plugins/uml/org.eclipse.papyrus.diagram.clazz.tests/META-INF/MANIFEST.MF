@@ -21,3 +21,4 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.diagram.clazz.test,
  org.eclipse.papyrus.diagram.clazz.test.canonical,
  org.eclipse.papyrus.diagram.clazz.test.load
+Bundle-Localization: plugin
