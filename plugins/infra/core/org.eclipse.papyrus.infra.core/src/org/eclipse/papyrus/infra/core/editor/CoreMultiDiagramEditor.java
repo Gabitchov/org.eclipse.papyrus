@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.contentoutline.ContentOutlineRegistry;
@@ -511,8 +512,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// start remaining services
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
-			log.error(e);
-			throw new PartInitException("errors in model", e);
+			try {
+				// with the ModelMultiException it is still possible to open the editors that's why the service registry is still started 
+				servicesRegistry.startRegistry();
+				warnUser(e);
+			} catch (ServiceException e1) {
+				log.error(e);
+				throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
+			}
 		} catch (ServiceException e) {
 			log.error(e);
 			throw new PartInitException("could not initialize services", e);
@@ -544,6 +551,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Listen on input changed from the ISaveAndDirtyService
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+	}
+
+	protected void warnUser(ModelMultiException e) {
+		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n"
+					+ "%s" 
+					+ "It is recommended to fix it before editing it", e.getMessage()));
 	}
 
 	/**
