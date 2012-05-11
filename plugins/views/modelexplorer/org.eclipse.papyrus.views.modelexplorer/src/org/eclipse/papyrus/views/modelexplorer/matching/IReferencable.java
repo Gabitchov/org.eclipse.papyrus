@@ -14,33 +14,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.matching;
 
-
-/***
- * An IMatchingItem implementation that matches for IReferencables
+/**
+ * This interface can be implemented by facet objects to offer access to
+ *  an underlying object. This referenced object will be used in the matching algo
+ *  when using the synchronize feature for example.
  * 
  * @author proland
+ * 
  */
-public class ReferencableMatchingItem implements IMatchingItem {
+public interface IReferencable {
 
-	Object object;
-
-	public ReferencableMatchingItem(Object object) {
-		this.object = object;
-	}
-
-	public boolean matchingItemEquals(Object obj) {
-		if(obj instanceof IReferencable) {
-			IReferencable referencable = (IReferencable)obj;
-			return referencable.getElementBehind().equals(object);
-		}
-		return super.equals(obj);
-	}
-
-	public int matchingItemHashcode() {
-		if(object != null) {
-			return object.hashCode();
-		}
-		return 0;
-	}
-
+	public Object getElementBehind();
 }

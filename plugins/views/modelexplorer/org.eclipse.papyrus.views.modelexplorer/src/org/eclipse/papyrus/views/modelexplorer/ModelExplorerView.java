@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -45,6 +46,8 @@ import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -640,25 +643,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	}
 
-
-	public void expandItems(List<Object> treeElementList, TreeItem[] list) {
-		//the treeElement has more tan one element
-		if(treeElementList.size() > 0) {
-			for(int i = 0; i < list.length; i++) {
-				if(list[i].getData() != null && list[i].getData().equals(treeElementList.get(0))) {
-					if(treeElementList.size() > 1) {//Do no expand the last
-						Object[] toexpand = { treeElementList.get(0) };
-						getCommonViewer().setExpandedElements(toexpand);
-					}
-					ArrayList<Object> tmpList = new ArrayList<Object>();
-					tmpList.addAll(treeElementList);
-					tmpList.remove(tmpList.get(0));
-					expandItems(tmpList, list[i].getItems());
-				}
-			}
-		}
-	}
-
 	public void revealSemanticElement(List<?> elementList) {
 		reveal(elementList, getCommonViewer());
 	}
@@ -696,17 +680,18 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				// reveal the resource if necessary
 				Resource r = null;
-				if (parents != null && !parents.isEmpty())
-				{
+				if (!parents.isEmpty()) {
 					 r = parents.get(parents.size() - 1).eResource();
-				}
-				else if (parents != null)
-				{
+				} else {
 					r = currentEObject.eResource();
 				}
-				if(r != null) {
-					commonViewer.expandToLevel(new ReferencableMatchingItem(r.getResourceSet()), 1);
-					commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+
+				if (r != null) {
+					ResourceSet rs = r.getResourceSet();
+					if (rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
+						commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
+						commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+					}
 				}
 
 				/*
@@ -753,7 +738,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public static void reveal(ISelection selection, CommonViewer viewer) {
 		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection structured = (IStructuredSelection)selection;
-			reveal(Lists.newArrayList(), viewer);
+			reveal(Lists.newArrayList(structured.iterator()), viewer);
 		} else {
 			viewer.setSelection(selection);
 		}
