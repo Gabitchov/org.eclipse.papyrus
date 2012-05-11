@@ -25,13 +25,17 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.EditingDomainManager;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 
@@ -57,6 +61,10 @@ import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesMod
  * 
  */
 public class ModelSet extends ResourceSetImpl {
+	/**
+	 * Id use to register the EditinDomain into the registry
+	 */
+	public static final String PAPYRUS_EDITING_DOMAIN_ID = "org.eclipse.papyrus.SharedEditingDomainID";
 
 	/** The associated IModels. */
 	private Map<String, IModel> models = new HashMap<String, IModel>();
@@ -130,11 +138,67 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	@Override
+	public Resource createResource(URI uri, String contentType) {
+		return setResourceOptions(super.createResource(uri, contentType));
+	}
+
+	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
-		Resource r = super.getResource(uri, loadOnDemand);
+		Resource resource = null;
+		resource = super.getResource(uri, loadOnDemand);
+		return setResourceOptions(resource);
+	}
+
+	/**
+	 * Retrieve and load the associated resource which have the given extension.
+	 * 
+	 * @param modelElement
+	 * @param associatedResourceExtension
+	 * @return
+	 */
+	public Resource getAssociatedResource(EObject modelElement, String associatedResourceExtension) {
+		if(modelElement != null) {
+			return getAssociatedResource(modelElement.eResource(), associatedResourceExtension);
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieve and load the associated resource which have the given extension.
+	 * 
+	 * @param modelResource
+	 * @param associatedResourceExtension
+	 * @return
+	 */
+	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
+		Resource r = null;
+		if (modelResource != null) {
+			URI trimmedModelURI = modelResource.getURI().trimFileExtension();
+			try {
+				r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
+			} catch (WrappedException e){
+				if (ModelUtils.isDegradedModeAllowed(e.getCause())) {
+					r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), false);
+					if (r == null) {
+						throw e;
+					}
+				}
+			} catch (Exception e) {
+			}
+		}
+		return setResourceOptions(r);
+	}
+
+	/**
+	 * This method is called by getResource and createResource before returning
+	 * the resource to the caller so we can set options on the resource.
+	 * 
+	 * @param r, can be null
+	 * @return the same resource for convenience
+	 */
+	protected Resource setResourceOptions(Resource r) {
 		if(r instanceof ResourceImpl) {
 			ResourceImpl impl = (ResourceImpl)r;
-			impl.setTrackingModification(true);
 			if(impl.getIntrinsicIDToEObjectMap() == null) {
 				impl.setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
 			}
@@ -152,8 +216,8 @@ public class ModelSet extends ResourceSetImpl {
 
 		if(transactionalEditingDomain == null) {
 			transactionalEditingDomain = TransactionalEditingDomainManager.createTransactionalEditingDomain(this);
-			// What for?
-			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
+			// register the id for lifecyle events the id is set by the registry
+			EditingDomainManager.getInstance().configureListeners(PAPYRUS_EDITING_DOMAIN_ID, transactionalEditingDomain);
 		}
 		return transactionalEditingDomain;
 	}
@@ -445,9 +509,13 @@ public class ModelSet extends ResourceSetImpl {
 		// Dispose Editing Domain
 		transactionalEditingDomain.dispose();
 		// Detach associated factories
-		adapterFactories.clear();
-		eAdapters().clear();
-		
+		if (adapterFactories != null) {
+			adapterFactories.clear();
+		}
+		EList<Adapter> adapters = eAdapters();
+		if (adapters != null) {
+			adapters.clear();
+		}
 	}
 
 	/**
@@ -498,21 +566,6 @@ public class ModelSet extends ResourceSetImpl {
 			}
 
 		}
-	}
-
-	/**
-	 * Check is a resource is additional in the resource set
-	 * 
-	 * @param uri
-	 *        the specified URI of the resource
-	 * @return true if it is an additional resource
-	 */
-	public boolean isAdditionalResource(URI uri) {
-		if(uri != null) {
-			String platformString = uri.trimFileExtension().toPlatformString(false);
-			return ((platformString == null) || !getFilenameWithoutExtension().toString().equals(platformString.toString()));
-		}
-		return false;
 	}
 
 }

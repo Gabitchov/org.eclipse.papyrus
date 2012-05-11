@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -151,12 +152,25 @@ public abstract class AbstractBaseModel implements IModel {
 	public void loadModel(IPath fullPathWithoutExtension) {
 
 		// Compute model URI
+		RuntimeException error = null ;
 		resourceURI = getPlatformURI(fullPathWithoutExtension.addFileExtension(getModelFileExtension()));
 
 		// Create Resource of appropriate type
-		resource = modelSet.getResource(resourceURI, true);
+		try{
+			resource = modelSet.getResource(resourceURI, true);
+		}
+		catch (WrappedException e){
+			if (ModelUtils.isDegradedModeAllowed(e.getCause())){
+				// only this case is managed in degraded mode
+				resource = modelSet.getResource(resourceURI, false);
+			}
+			error = e ;
+		}
 		// call registered snippets
 		snippets.performStart(this);
+		if (error != null){
+			throw error ;
+		}
 	}
 
 	/**
@@ -176,7 +190,10 @@ public abstract class AbstractBaseModel implements IModel {
 	 * 
 	 */
 	public void saveModel() throws IOException {
-		resource.save(null);
+		if (!getModelManager().getTransactionalEditingDomain().isReadOnly(resource)
+				&& !ModelUtils.resourceFailedOnLoad(resource)) {
+			resource.save(null);
+		}
 	}
 
 	/**

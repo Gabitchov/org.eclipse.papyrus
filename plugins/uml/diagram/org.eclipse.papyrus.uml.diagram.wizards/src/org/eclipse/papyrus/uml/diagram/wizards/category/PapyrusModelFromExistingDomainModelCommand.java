@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- * 
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,10 +15,12 @@ package org.eclipse.papyrus.uml.diagram.wizards.category;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
@@ -63,15 +65,28 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 		model.createModel(myFileNameWithoutExtension);
 		model = myDiResourceSet.getModel(NotationModel.MODEL_ID);
 		model.createModel(myFileNameWithoutExtension);
-		// START OF WORKAROUND for #315083
+		// START OF WORKAROUND for #315083 
 		IModel umlModel = new UmlModel() {
 
-			@Override
 			public void createModel(IPath fullPath) {
 				try {
 					resourceURI = myRoot.eResource().getURI();
 					// as resource already exists, use rs.getResource() not rs.createResource() here
-					resource = getResourceSet().getResource(resourceURI, true);
+					try {
+						resource = getResourceSet().getResource(resourceURI, true);
+					}
+					catch (WrappedException e){
+						if (ModelUtils.isDegradedModeAllowed(e.getCause())){
+							// in this case Papyrus can work in degraded mode
+							resource = getResourceSet().getResource(resourceURI, false);
+							if (resource == null){
+								throw e ;
+							}
+						}
+						else {
+							throw e;
+						}
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -82,7 +97,7 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 
 		//					// call snippets to allow them to do their stuff
 		//					snippets.performStart(this);
-		// END OF WORKAROUND for #315083
+		// END OF WORKAROUND for #315083 
 	}
 
 }

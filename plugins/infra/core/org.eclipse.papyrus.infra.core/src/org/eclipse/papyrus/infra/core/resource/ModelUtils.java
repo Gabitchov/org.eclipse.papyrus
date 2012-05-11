@@ -3,6 +3,11 @@
  */
 package org.eclipse.papyrus.infra.core.resource;
 
+import org.eclipse.core.internal.resources.ResourceException;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
@@ -82,4 +87,29 @@ public class ModelUtils {
 		return servicesRegistry.getService(ModelSet.class);
 	}
 
+	/**
+	 * Determine if a throwable can be managed in degraded mode
+	 * @param t
+	 */
+	public static boolean isDegradedModeAllowed(Throwable t){
+		return t instanceof org.eclipse.emf.ecore.xmi.ClassNotFoundException || t instanceof IllegalValueException;
+	}
+
+	/**
+	 * Determine if a throwable can be managed in degraded mode
+	 * @param t
+	 */
+	public static boolean resourceFailedOnLoad(Resource r){
+		if (r.getErrors() != null){
+			for (Diagnostic d : r.getErrors()){
+				if (d instanceof WrappedException) {
+					WrappedException wrapped = (WrappedException) d;
+					if (wrapped.getCause() instanceof ResourceException && r.getContents().isEmpty()) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

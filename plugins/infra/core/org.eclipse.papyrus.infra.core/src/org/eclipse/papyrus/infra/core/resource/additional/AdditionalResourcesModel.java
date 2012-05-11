@@ -15,15 +15,15 @@ package org.eclipse.papyrus.infra.core.resource.additional;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Iterator;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.IModelSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelSnippetList;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 
 public class AdditionalResourcesModel implements IModel {
 
@@ -68,12 +68,14 @@ public class AdditionalResourcesModel implements IModel {
 
 	public void saveModel() throws IOException {
 		for(Resource r : modelSet.getResources()) {
-			if(modelSet.isAdditionalResource(r.getURI())) {
-				EditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
-				// only save referenced models, if modified, not empty, not
+			if(isAdditionalResource(getModelManager(), r.getURI())) {
+				// only save referenced models not
 				// read-only and either platform or file
-				if(!r.getContents().isEmpty() && r.isModified() && (editingDomain != null) && !editingDomain.isReadOnly(r) && (r.getURI().isPlatform() || r.getURI().isFile())) {
+				if(!modelSet.getTransactionalEditingDomain().isReadOnly(r)
+						&& (r.getURI().isPlatformResource() || r.getURI().isFile())
+						&& !ModelUtils.resourceFailedOnLoad(r)) {
 					r.save(Collections.EMPTY_MAP);
+
 				}
 			}
 		}
@@ -91,12 +93,11 @@ public class AdditionalResourcesModel implements IModel {
 		snippets.performDispose(this);
 
 		// Unload remaining resources
-		for(Iterator<Resource> iter = modelSet.getResources().iterator(); iter.hasNext();) {
-			Resource next = iter.next();
-			if(modelSet.isAdditionalResource(next.getURI())) {
+		for(int i = 0; i < modelSet.getResources().size(); i++) {
+			Resource next = modelSet.getResources().get(i);
+			if(isAdditionalResource(getModelManager(), next.getURI())) {
 				next.unload();
 			}
-			iter.remove();
 		}
 	}
 
@@ -111,4 +112,18 @@ public class AdditionalResourcesModel implements IModel {
 		return modelSet;
 	}
 
+	/**
+	 * Check is a resource is additional in the resource set
+	 * 
+	 * @param uri
+	 *        the specified URI of the resource
+	 * @return true if it is an additional resource
+	 */
+	public static boolean isAdditionalResource(ModelSet modelSet, URI uri) {
+		if(uri != null) {
+			String platformString = uri.trimFileExtension().toPlatformString(false);
+			return ((platformString == null) || !modelSet.getFilenameWithoutExtension().toString().equals(platformString.toString()));
+		}
+		return false;
+	}
 }
