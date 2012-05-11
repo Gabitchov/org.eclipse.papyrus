@@ -97,7 +97,7 @@ public abstract class AbstractHandlerTest {
 	 * Constructor.
 	 * 
 	 * @param commandId
-	 *            the id of the command to test
+	 *        the id of the command to test
 	 */
 	public AbstractHandlerTest(final String commandId) {
 		this.commandId = commandId;
@@ -106,14 +106,13 @@ public abstract class AbstractHandlerTest {
 	/**
 	 * 
 	 * @param file
-	 *            the file to open
+	 *        the file to open
 	 * @return the opened editor
 	 * @throws PartInitException
 	 */
 	// TODO should be moved in an upper plugin test
 	protected IEditorPart openEditor(final IFile file) throws PartInitException {
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		final IEditorPart editor = IDE.openEditor(activePage, file);
 		return editor;
 	}
@@ -122,11 +121,9 @@ public abstract class AbstractHandlerTest {
 	 * This method tests if the active part is the model explorer
 	 */
 	protected void testIsModelExplorerActivePart() {
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
+		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		final IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView,
-				"The active part is not the ModelExplorer"); //$NON-NLS-1$
+		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
 	}
 
 	/**
@@ -134,22 +131,19 @@ public abstract class AbstractHandlerTest {
 	 * selection is the wanted selection using assertion
 	 * 
 	 * @param elementToSelect
-	 *            the element to select
+	 *        the element to select
 	 */
 	protected void selectElementInTheModelexplorer(final EObject elementToSelect) {
 		final List<EObject> selectedElement = new ArrayList<EObject>();
 		selectedElement.add(elementToSelect);
 		this.modelExplorerView.revealSemanticElement(selectedElement);
-		final IStructuredSelection currentSelection = (IStructuredSelection) this.selectionService
-				.getSelection();
-		Assert.isTrue(currentSelection.size() == 1,
-				"Only one element should be selected"); //$NON-NLS-1$
+		final IStructuredSelection currentSelection = (IStructuredSelection)this.selectionService.getSelection();
+		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
-		if (obj instanceof IAdaptable) {
-			obj = ((IAdaptable) obj).getAdapter(EObject.class);
+		if(obj instanceof IAdaptable) {
+			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == elementToSelect,
-				"the current selected element is not the wanted element"); //$NON-NLS-1$
+		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
 	}
 
 	/**
@@ -157,23 +151,18 @@ public abstract class AbstractHandlerTest {
 	 * selection is the wanted selection using assertion
 	 * 
 	 * @param elementToSelect
-	 *            the element to select
+	 *        the element to select
 	 */
-	protected void selectElementInTheModelexplorer(
-			final ITreeElement elementToSelect) {
-		this.commonViewer
-				.setSelection(new StructuredSelection(elementToSelect));
-		final IStructuredSelection currentSelection = (IStructuredSelection) this.selectionService
-				.getSelection();
-		Assert.isTrue(currentSelection.size() == 1,
-				"Only one element should be selected"); //$NON-NLS-1$
+	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
+		this.commonViewer.setSelection(new StructuredSelection(elementToSelect));
+		final IStructuredSelection currentSelection = (IStructuredSelection)this.selectionService.getSelection();
+		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
 		final Object obj = currentSelection.getFirstElement();
-		Assert.isTrue(obj == elementToSelect,
-				"the current selected element is not the wanted element"); //$NON-NLS-1$
+		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
 	}
 
 	protected IStructuredSelection getCurrentSelection() {
-		return (IStructuredSelection) this.selectionService.getSelection();
+		return (IStructuredSelection)this.selectionService.getSelection();
 	}
 
 	/**
@@ -182,8 +171,8 @@ public abstract class AbstractHandlerTest {
 	 */
 	protected IHandler getActiveHandler() {
 		IHandler currentHandler = this.testedCommand.getHandler();
-		if (currentHandler instanceof HandlerProxy) {
-			currentHandler = ((HandlerProxy) currentHandler).getHandler();
+		if(currentHandler instanceof HandlerProxy) {
+			currentHandler = ((HandlerProxy)currentHandler).getHandler();
 		}
 		return currentHandler;
 	}
@@ -192,48 +181,34 @@ public abstract class AbstractHandlerTest {
 	public void initTests() throws CoreException, IOException {
 		// we clean the workspace and create a new project to test the handlers
 		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		for (final IProject project : workspace.getRoot().getProjects()) {
+		for(final IProject project : workspace.getRoot().getProjects()) {
 			project.delete(true, new NullProgressMonitor());
 		}
-		final IProject testProject = workspace.getRoot().getProject(
-				AbstractHandlerTest.PROJECT_NAME);
+		final IProject testProject = workspace.getRoot().getProject(AbstractHandlerTest.PROJECT_NAME);
 		testProject.create(new NullProgressMonitor());
 		testProject.open(new NullProgressMonitor());
 
 		// we copy the file of the tested model in the new project
 		final Bundle bundle = Activator.getDefault().getBundle();
-		FileUtils
-				.copyFileFromBundle(
-						"/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, //$NON-NLS-1$
-						testProject, '/' + AbstractHandlerTest.FILE_NAME
-								+ AbstractHandlerTest.EXTENSION_UML, bundle);
-		FileUtils
-				.copyFileFromBundle(
-						"/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, //$NON-NLS-1$
-						testProject, '/' + AbstractHandlerTest.FILE_NAME
-								+ AbstractHandlerTest.EXTENSION_NOTATION,
-						bundle);
-		FileUtils
-				.copyFileFromBundle(
-						"/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, //$NON-NLS-1$
-						testProject, '/' + AbstractHandlerTest.FILE_NAME
-								+ AbstractHandlerTest.EXTENSION_DI, bundle);
-		final IFile file = testProject.getFile(AbstractHandlerTest.FILE_NAME
-				+ AbstractHandlerTest.EXTENSION_DI);
+		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, //$NON-NLS-1$
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, bundle);
+		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, //$NON-NLS-1$
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, bundle);
+		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, //$NON-NLS-1$
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, bundle);
+		final IFile file = testProject.getFile(AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI);
 
 		// we open the editor
-		this.editor = (CoreMultiDiagramEditor) openEditor(file);
-		final IWorkbenchWindow activeWorkbenchWindow = PlatformUI
-				.getWorkbench().getActiveWorkbenchWindow();
+		this.editor = (CoreMultiDiagramEditor)openEditor(file);
+		final IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
 		// we look for the modelexplorer
-		final IViewPart modelexplorer = activeWorkbenchWindow.getActivePage()
-				.showView(AbstractHandlerTest.viewId);
-		final ModelExplorerPageBookView view = (ModelExplorerPageBookView) modelexplorer;
+		final IViewPart modelexplorer = activeWorkbenchWindow.getActivePage().showView(AbstractHandlerTest.viewId);
+		final ModelExplorerPageBookView view = (ModelExplorerPageBookView)modelexplorer;
 		final IPage currentPage = view.getCurrentPage();
-		final ModelExplorerPage page = (ModelExplorerPage) currentPage;
+		final ModelExplorerPage page = (ModelExplorerPage)currentPage;
 		final IViewPart viewer = page.getViewer();
-		this.modelExplorerView = (ModelExplorerView) viewer;
+		this.modelExplorerView = (ModelExplorerView)viewer;
 		this.modelExplorerView.setFocus();
 
 		// we look for the common viewer
@@ -243,21 +218,20 @@ public abstract class AbstractHandlerTest {
 		this.selectionService = activeWorkbenchWindow.getSelectionService();
 
 		// we look for the testedCommand
-		final ICommandService commandService = (ICommandService) activeWorkbenchWindow
-				.getService(ICommandService.class);
-		this.testedCommand = commandService.getCommand(this.commandId);
+		final ICommandService commandService = (ICommandService)activeWorkbenchWindow.getService(ICommandService.class);
+		if(this.commandId != null) {
+			this.testedCommand = commandService.getCommand(this.commandId);
+		}
 
 		this.commonViewer.expandToLevel(2);
 
 		// store the root of the model
-		final Object[] visibleElement = this.commonViewer
-				.getVisibleExpandedElements();
-		if (visibleElement[0] instanceof IAdaptable) {
-			this.modelRoot = (EObject) ((IAdaptable) visibleElement[0])
-					.getAdapter(EObject.class);
+		final Object[] visibleElement = this.commonViewer.getVisibleExpandedElements();
+		if(visibleElement[0] instanceof IAdaptable) {
+			this.modelRoot = (EObject)((IAdaptable)visibleElement[0]).getAdapter(EObject.class);
 		}
 
-		while (this.modelRoot.eContainer() != null) {
+		while(this.modelRoot.eContainer() != null) {
 			this.modelRoot = this.modelRoot.eContainer();
 		}
 	}
@@ -302,7 +276,7 @@ public abstract class AbstractHandlerTest {
 	}
 
 	public void undoRedo(final int time) {
-		for (int i = 0; i < time; i++) {
+		for(int i = 0; i < time; i++) {
 			undoRedoTest();
 		}
 	}
@@ -310,7 +284,6 @@ public abstract class AbstractHandlerTest {
 	@After
 	public void endOfTests() {
 		// So that the Workbench can be closed.
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.closeAllEditors(false);
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().closeAllEditors(false);
 	}
 }
