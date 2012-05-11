@@ -93,14 +93,32 @@ public abstract class AbstractHandlerTest {
 	private CoreMultiDiagramEditor editor;
 
 	/**
+	 * the bundle to use to get the model to test
+	 */
+	private final Bundle bundle;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param bundle
+	 *        the bundle used to load the model
+	 */
+	public AbstractHandlerTest(final Bundle bundle) {
+		this.bundle = bundle;
+		this.commandId = null;
+	}
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
 	 * @param commandId
 	 *        the id of the command to test
 	 */
-	public AbstractHandlerTest(final String commandId) {
+	public AbstractHandlerTest(final String commandId, final Bundle bundle) {
 		this.commandId = commandId;
+		this.bundle = bundle;
 	}
 
 	/**
@@ -189,13 +207,12 @@ public abstract class AbstractHandlerTest {
 		testProject.open(new NullProgressMonitor());
 
 		// we copy the file of the tested model in the new project
-		final Bundle bundle = Activator.getDefault().getBundle();
 		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, //$NON-NLS-1$
-			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, bundle);
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_UML, this.bundle);
 		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, //$NON-NLS-1$
-			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, bundle);
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_NOTATION, this.bundle);
 		FileUtils.copyFileFromBundle("/resources/" + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, //$NON-NLS-1$
-			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, bundle);
+			testProject, '/' + AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI, this.bundle);
 		final IFile file = testProject.getFile(AbstractHandlerTest.FILE_NAME + AbstractHandlerTest.EXTENSION_DI);
 
 		// we open the editor

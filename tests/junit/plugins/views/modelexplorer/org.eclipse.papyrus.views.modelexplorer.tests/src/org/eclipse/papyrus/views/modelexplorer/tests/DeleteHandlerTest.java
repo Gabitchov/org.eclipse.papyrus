@@ -49,7 +49,7 @@ public class DeleteHandlerTest extends AbstractHandlerTest {
 	 * 
 	 */
 	public DeleteHandlerTest() {
-		super(DeleteHandlerTest.DELETE_COMMAND_ID);
+		super(DeleteHandlerTest.DELETE_COMMAND_ID, Activator.getDefault().getBundle());
 	}
 
 	/**

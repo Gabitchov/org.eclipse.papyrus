@@ -59,6 +59,8 @@ public class AllTests {
 		// {oep}.diagram.clazz.tests
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.usecase.tests.AllTests.class));
+		
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.modelexplorer.tests.AllTests.class));
 		//		,
 		//		// {oep}.sysml.tests
 		//		new PluginTestSuiteClass(SysmlAllTests.class)
