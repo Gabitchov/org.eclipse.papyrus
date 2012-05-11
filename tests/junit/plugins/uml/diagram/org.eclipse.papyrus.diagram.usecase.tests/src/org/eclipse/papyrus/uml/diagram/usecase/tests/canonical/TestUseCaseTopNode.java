@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.usecase.tests.canonical;
+package org.eclipse.papyrus.uml.diagram.usecase.tests.canonical;
 
 import org.eclipse.papyrus.diagram.tests.canonical.TestTopNode;
 import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;

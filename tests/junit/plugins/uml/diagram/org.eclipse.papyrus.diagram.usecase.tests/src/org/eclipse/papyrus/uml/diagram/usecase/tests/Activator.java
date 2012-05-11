@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.diagram.usecase.tests;
+package org.eclipse.papyrus.uml.diagram.usecase.tests;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.diagram.usecase.tests"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.diagram.usecase.tests"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

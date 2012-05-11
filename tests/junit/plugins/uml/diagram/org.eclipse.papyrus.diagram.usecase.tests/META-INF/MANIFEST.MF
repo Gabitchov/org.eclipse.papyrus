@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.usecase.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase.tests
 Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.diagram.usecase.tests.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.tests.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui,
@@ -21,3 +21,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin

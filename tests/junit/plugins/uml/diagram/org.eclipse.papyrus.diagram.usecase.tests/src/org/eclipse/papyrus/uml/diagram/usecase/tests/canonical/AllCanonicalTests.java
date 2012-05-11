@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.usecase.tests.canonical;
+package org.eclipse.papyrus.uml.diagram.usecase.tests.canonical;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
