@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: UML Tools Tests
+Bundle-Name: UML Tools Tests (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.tests
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.tools.tests.Activator
