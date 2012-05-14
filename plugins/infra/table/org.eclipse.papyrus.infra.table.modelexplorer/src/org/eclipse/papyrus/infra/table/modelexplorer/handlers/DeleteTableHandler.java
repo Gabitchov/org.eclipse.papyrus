@@ -18,11 +18,11 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
@@ -59,12 +59,11 @@ public class DeleteTableHandler extends AbstractTableModelExplorerHandler {
 						if(pageMngr.isOpen(table)) {
 							pageMngr.closePage(table);
 						}
-						pageMngr.removePage(table);
 					}
 				};
-				EList<EObject> tabls = table.eResource().getContents();
+				// the destroy element command is a good way to destroy the cross reference
 				command.append(sashRemoveComd);
-				command.append(new RemoveCommand(editingDomain, tabls, table));
+				command.append(new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(table, false))));
 			}
 			return command.isEmpty() ? UnexecutableCommand.INSTANCE : command;
 		}

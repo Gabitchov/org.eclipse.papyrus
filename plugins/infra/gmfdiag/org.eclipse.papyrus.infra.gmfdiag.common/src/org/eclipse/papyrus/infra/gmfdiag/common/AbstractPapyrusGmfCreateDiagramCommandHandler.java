@@ -23,7 +23,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -34,11 +36,13 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
@@ -319,6 +323,19 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					return CommandResult.newOKCommandResult(diagram);
 				}
 				return CommandResult.newErrorCommandResult("Error during diagram creation");
+			}
+
+			@Override
+			protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				// the undo corresponds to a destroy diagram command
+				// during diagram creation no adapters are set to the diagram so the setElement is not registered
+				// to remove the cross reference using the element reference it is better to use the destroy element command
+				Object result = getCommandResult().getReturnValue();
+				if(result instanceof Diagram) {
+					Diagram d = (Diagram)result;
+					new DestroyElementPapyrusCommand(new DestroyElementRequest(d, false)).execute(null, null);
+				}
+				return Status.OK_STATUS;
 			}
 		};
 	}

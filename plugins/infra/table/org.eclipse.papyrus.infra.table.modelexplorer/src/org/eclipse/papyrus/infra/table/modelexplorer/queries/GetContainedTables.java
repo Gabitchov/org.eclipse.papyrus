@@ -15,25 +15,25 @@
 package org.eclipse.papyrus.infra.table.modelexplorer.queries;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
+import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
 
 /** Get the collection of all contained tables */
 //FIXME this query is declared using Element in the querySet -> change into EObject when the EMF-Facet bug will be corrected 365744
@@ -44,32 +44,37 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 	 */
 	public Collection<PapyrusTableInstance> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
-			public boolean apply(EStructuralFeature.Setting arg0) {
-				return arg0.getEObject() instanceof TableInstance && arg0.getEStructuralFeature() == TableinstancePackage.Literals.TABLE_INSTANCE__CONTEXT;
+			public boolean apply(EStructuralFeature.Setting setting) {
+				return setting.getEObject() instanceof TableInstance && setting.getEStructuralFeature() == TableinstancePackage.Literals.TABLE_INSTANCE__CONTEXT;
 			}
 		};
 		Function<EStructuralFeature.Setting, PapyrusTableInstance> f = new Function<EStructuralFeature.Setting, PapyrusTableInstance>() {
 
-			public PapyrusTableInstance apply(EStructuralFeature.Setting arg0) {
-				ResourceSet resourceSet = arg0.getEObject().eResource().getResourceSet();
-				ECrossReferenceAdapter adapter2 = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-				if (adapter2 == null)
-				{
-					adapter2 = new ECrossReferenceAdapter();
-					adapter2.setTarget(resourceSet);
-				}
-				Collection<Setting> references = adapter2.getInverseReferences(arg0.getEObject(), false);
+			public PapyrusTableInstance apply(EStructuralFeature.Setting setting) {
+				Collection<Setting> references = PapyrusEcoreUtils.getUsages(setting.getEObject());
 				Predicate<Setting> p2 = new Predicate<EStructuralFeature.Setting>() {
 
-					public boolean apply(Setting arg0) {
-						return arg0.getEObject() instanceof PapyrusTableInstance && PapyrustableinstancePackage.Literals.PAPYRUS_TABLE_INSTANCE__TABLE == arg0.getEStructuralFeature();
+					public boolean apply(Setting setting) {
+						return setting.getEObject() instanceof PapyrusTableInstance && PapyrustableinstancePackage.Literals.PAPYRUS_TABLE_INSTANCE__TABLE == setting.getEStructuralFeature();
 					}
 				};
-				return (PapyrusTableInstance) Iterables.filter(references, p2).iterator().next().getEObject();
+				Iterator<Setting> iterator = Iterables.filter(references, p2).iterator();
+				if (iterator.hasNext()){
+					return (PapyrusTableInstance) iterator.next().getEObject();
+				}
+				return null;
 			}
-			
+
 		};
-		return NavigatorUtils.findFilterAndApply(context, p, f);
+
+		Iterable<PapyrusTableInstance> transform = Iterables.transform(Iterables.filter(PapyrusEcoreUtils.getUsages(context), p), f);
+		transform = Iterables.filter(transform, new Predicate<PapyrusTableInstance>() {
+
+			public boolean apply(PapyrusTableInstance table) {
+				return table != null;
+			}
+		});
+		return Sets.newHashSet(transform);
 	}
 
 }

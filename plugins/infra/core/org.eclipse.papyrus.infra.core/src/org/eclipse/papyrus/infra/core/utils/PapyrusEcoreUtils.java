@@ -19,10 +19,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 
 public class PapyrusEcoreUtils {
 
@@ -34,15 +32,8 @@ public class PapyrusEcoreUtils {
 	 * 
 	 * @return the usages or null if there is no usages
 	 */
-	public static Collection<EStructuralFeature.Setting> getUsages(EObject source) {
-		Collection<EStructuralFeature.Setting> collection = null;
-		ECrossReferenceAdapter crossReferenceAdapter = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
-		if(crossReferenceAdapter != null) {
-			collection = crossReferenceAdapter.getNonNavigableInverseReferences(source);
-		} else {
-			collection = EcoreUtil.UsageCrossReferencer.find(source, source.eResource().getResourceSet());
-		}
-		return collection;
+	public static Collection<Setting> getUsages(EObject source) {
+		return DestroyElementPapyrusCommand.getUsages(source);
 	}
 
 	/**

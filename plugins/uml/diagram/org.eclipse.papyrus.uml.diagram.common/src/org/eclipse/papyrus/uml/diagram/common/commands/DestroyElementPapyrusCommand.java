@@ -13,46 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
-import java.util.Collection;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 /**
- * This destroy command uses the first generic cross referencer founded instead
- * of using only the GMF one. This is useful because elements that don't have a
- * corresponding GMF type (like MOS in the sequence diagram) don't have the GMF
- * cross referencer registered after a reload.
- * 
- * @author mvelten
- * 
+ * @deprecated use {@link org.eclipse.papyrus.commands.DestroyElementPapyrusCommand} instead
  */
-public class DestroyElementPapyrusCommand extends DestroyElementCommand {
+public class DestroyElementPapyrusCommand extends org.eclipse.papyrus.commands.DestroyElementPapyrusCommand {
 
 	public DestroyElementPapyrusCommand(DestroyElementRequest request) {
 		super(request);
-	}
-
-	@Override
-	protected void tearDownIncomingReferences(EObject destructee) {
-		ECrossReferenceAdapter crossReferencer = ECrossReferenceAdapter.getCrossReferenceAdapter(destructee);
-
-		if(crossReferencer != null) {
-			Collection<Setting> inverseReferences = crossReferencer.getInverseReferences(destructee);
-			if(inverseReferences != null) {
-				for(Setting setting : inverseReferences) {
-					EReference eRef = (EReference)setting.getEStructuralFeature();
-					if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
-						EcoreUtil.remove(setting.getEObject(), eRef, destructee);
-					}
-				}
-			}
-		}
 	}
 
 }
