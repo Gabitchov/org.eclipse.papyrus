@@ -105,6 +105,7 @@ public abstract class AbstractHandlerTest {
 	 *        the bundle used to load the model
 	 */
 	public AbstractHandlerTest(final Bundle bundle) {
+		Assert.isNotNull(bundle, "Bundle can't be null to do the test.");
 		this.bundle = bundle;
 		this.commandId = null;
 	}
@@ -117,6 +118,7 @@ public abstract class AbstractHandlerTest {
 	 *        the id of the command to test
 	 */
 	public AbstractHandlerTest(final String commandId, final Bundle bundle) {
+		Assert.isNotNull(bundle, "Bundle can't be null to do the test.");
 		this.commandId = commandId;
 		this.bundle = bundle;
 	}

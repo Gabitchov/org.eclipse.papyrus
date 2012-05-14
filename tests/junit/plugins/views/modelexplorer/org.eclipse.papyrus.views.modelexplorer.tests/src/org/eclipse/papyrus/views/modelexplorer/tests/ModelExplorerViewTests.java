@@ -35,7 +35,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 	 * This plugin test the ModelExplorerView
 	 */
 	public ModelExplorerViewTests() {
-		super(null);
+		super(Activator.getDefault().getBundle());
 	}
 
 	/**
