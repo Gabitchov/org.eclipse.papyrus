@@ -9,11 +9,7 @@
             <or>
                <with variable="selection">
                   <and>
-                     <count value="1">
-                     </count>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable" value="true">
-                     </test>
-                     <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.view.isModelExplorer" value="true">
+                     <test forcePluginActivation="true" property="org.eclipse.papyrus.table.modelexplorer.tester.isTable" value="true">
                      </test>
                   </and>
                </with>
