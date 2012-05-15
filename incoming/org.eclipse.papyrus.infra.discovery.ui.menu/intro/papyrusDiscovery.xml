@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<introContent>
+  <!-- Extension to the SDK Overview Page. -->
+  <extensionContent id="org.eclipse.papyrus.infra.discovery" name="Install Papyrus Additional Components" alt-style="css/overview.properties" style="css/overview.css" path="overview/@">
+     <group id="papyrus-group" style-id="content-group">
+    	<link style-id="content-link" label="Install More Papyrus Components" url="http://org.eclipse.ui.intro/runAction?pluginId=org.eclipse.papyrus.infra.discovery.ui.menu&amp;class=org.eclipse.papyrus.infra.discovery.ui.menu.handler.PapyrusDiscoveryAction" id="papyrusDiscovery">
+      		<text>Select here if you wish to install additional components for Papyrus (new languages, new capabilities, etc.)</text>
+    	</link>
+     </group>
+  </extensionContent>
+</introContent>

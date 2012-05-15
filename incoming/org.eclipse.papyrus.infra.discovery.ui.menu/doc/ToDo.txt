@@ -1,0 +1,7 @@
+Trucs a faire:
+- voir comment chaque feature additionnelle peut proposer un petit texte, une petite doc à cet endroit :
+-  - cela devrait permettre de faire de facon séparée la construction de chaque external composant
+ - - il faut donc un point d'entrée unique pour ces sous paragraphes :
+ 	-  - une icone
+ 	-  - un texte descriptif
+ 	-  - what else ?
