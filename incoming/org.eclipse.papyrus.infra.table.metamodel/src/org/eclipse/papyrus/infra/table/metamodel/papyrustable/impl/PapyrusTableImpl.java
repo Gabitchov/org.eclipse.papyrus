@@ -370,34 +370,31 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isUsingUser() {
-		// TODO: implement this method to return the 'Using User' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//TODO write a tests to be that we didn't erase this implementation
+		return this.fillingMode==FillingMode.USER;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isUsingFeature() {
-		// TODO: implement this method to return the 'Using Feature' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//TODO write a tests to be that we didn't erase this implementation
+		return this.fillingMode==FillingMode.FEATURE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isUsingQueries() {
-		// TODO: implement this method to return the 'Using Queries' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//TODO write a tests to be that we didn't erase this implementation
+		return this.fillingMode==FillingMode.QUERIES;
 	}
 
 	/**
