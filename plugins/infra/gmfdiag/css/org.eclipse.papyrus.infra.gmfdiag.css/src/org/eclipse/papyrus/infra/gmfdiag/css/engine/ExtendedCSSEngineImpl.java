@@ -373,4 +373,15 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	public void handleDispose(Object nativeWidget) {
 		super.handleWidgetDisposed(nativeWidget);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Resets the CSS cache
+	 * 
+	 * @see #resetCache()
+	 */
+	public void reapply() {
+		resetCache();
+	}
 }
