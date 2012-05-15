@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.table.metamodel.papyrustable.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -92,7 +93,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTable() <em>Table</em>}' reference.
+	 * The cached value of the '{@link #getTable() <em>Table</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTable()
@@ -238,14 +239,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated
 	 */
 	public Table getTable() {
-		if (table != null && table.eIsProxy()) {
-			InternalEObject oldTable = (InternalEObject)table;
-			table = (Table)eResolveProxy(oldTable);
-			if (table != oldTable) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustablePackage.PAPYRUS_TABLE__TABLE, oldTable, table));
-			}
-		}
 		return table;
 	}
 
@@ -254,8 +247,14 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Table basicGetTable() {
-		return table;
+	public NotificationChain basicSetTable(Table newTable, NotificationChain msgs) {
+		Table oldTable = table;
+		table = newTable;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, oldTable, newTable);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -264,10 +263,17 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated
 	 */
 	public void setTable(Table newTable) {
-		Table oldTable = table;
-		table = newTable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, oldTable, table));
+		if (newTable != table) {
+			NotificationChain msgs = null;
+			if (table != null)
+				msgs = ((InternalEObject)table).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PapyrustablePackage.PAPYRUS_TABLE__TABLE, null, msgs);
+			if (newTable != null)
+				msgs = ((InternalEObject)newTable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PapyrustablePackage.PAPYRUS_TABLE__TABLE, null, msgs);
+			msgs = basicSetTable(newTable, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, newTable, newTable));
 	}
 
 	/**
@@ -403,6 +409,20 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
+				return basicSetTable(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PapyrustablePackage.PAPYRUS_TABLE__NAME:
@@ -410,8 +430,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 			case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
 				return getType();
 			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
-				if (resolve) return getTable();
-				return basicGetTable();
+				return getTable();
 			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
 				return getFillingMode();
 			case PapyrustablePackage.PAPYRUS_TABLE__FEATURE:

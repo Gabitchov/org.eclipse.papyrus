@@ -100,7 +100,7 @@ public interface PapyrusTable extends EModelElement {
 	void setType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Table</b></em>' reference.
+	 * Returns the value of the '<em><b>Table</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -108,19 +108,19 @@ public interface PapyrusTable extends EModelElement {
 	 * We choose to reference it (and not to do an inheritance) in order to be sure
 	 * to respect their API.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Table</em>' reference.
+	 * @return the value of the '<em>Table</em>' containment reference.
 	 * @see #setTable(Table)
 	 * @see org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_Table()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Table getTable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable#getTable <em>Table</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable#getTable <em>Table</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Table</em>' reference.
+	 * @param value the new value of the '<em>Table</em>' containment reference.
 	 * @see #getTable()
 	 * @generated
 	 */
@@ -213,7 +213,7 @@ public interface PapyrusTable extends EModelElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Using User</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_UsingUser()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isUsingUser();
