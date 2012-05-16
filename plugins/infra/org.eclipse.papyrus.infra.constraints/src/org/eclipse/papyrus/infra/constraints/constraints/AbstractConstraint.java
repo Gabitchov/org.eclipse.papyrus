@@ -119,6 +119,26 @@ public abstract class AbstractConstraint implements Constraint {
 	}
 
 	/**
+	 * Tests whether a value is available for the requested property
+	 * 
+	 * @param propertyName
+	 * @return
+	 */
+	protected boolean hasProperty(String propertyName) {
+		if(descriptor == null || !(descriptor instanceof SimpleConstraint)) {
+			Activator.log.warn("The constraint descriptor has not been set for this constraint : " + this); //$NON-NLS-1$
+		} else {
+			for(ConfigProperty property : ((SimpleConstraint)descriptor).getProperties()) {
+				if(property.getName().equals(propertyName)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Returns the value associated to the given property
 	 * 
 	 * @param propertyName
