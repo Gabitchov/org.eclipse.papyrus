@@ -53,6 +53,10 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 
 	private TimerTask currentValidateTask;
 
+	private final static int DEFAULT_HEIGHT_HINT = 55;
+
+	private final static int DEFAULT_WIDTH_HINT = 100;
+
 	/**
 	 * 
 	 * Constructor.
@@ -63,7 +67,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	 *        The style for this editor's text box
 	 */
 	public StringEditor(Composite parent, int style) {
-		this(parent, style, null);
+		this(parent, style, null, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT);
 	}
 
 	/**
@@ -78,12 +82,49 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	 *        The label for this editor
 	 */
 	public StringEditor(Composite parent, int style, String label) {
+		this(parent, style, label, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which this editor should be displayed
+	 * @param style
+	 *        The style for this editor's text box
+	 * @param heighHint
+	 *        Height hint of the text area in multiline mode
+	 * @param widthHint
+	 *        Width hint of the text area in multiline mode
+	 */
+	public StringEditor(Composite parent, int style, int heighHint, int widthHint) {
+		this(parent, style, null, heighHint, widthHint);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The composite in which this editor should be displayed
+	 * @param style
+	 *        The style for this editor's text box
+	 * @param label
+	 *        The label for this editor
+	 * @param heighHint
+	 *        Height hint of the text area in multiline mode
+	 * @param widthHint
+	 *        Width hint of the text area in multiline mode
+	 */
+	public StringEditor(Composite parent, int style, String label, int heighHint, int widthHint) {
 		super(parent, label);
 
 		GridData data = getDefaultLayoutData();
 
 		if((style & SWT.MULTI) != 0) {
-			data.heightHint = 55;
+			data.heightHint = heighHint;
+			data.widthHint = widthHint;
 			style = style | SWT.V_SCROLL;
 		}
 
@@ -142,7 +183,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			} else { //Multi-line : Ctrl+Enter
 				if(e.stateMask == SWT.CTRL) {
 					String str = text.getText();
-					if (str.endsWith(StringSelector.LINE_SEPARATOR)) {
+					if(str.endsWith(StringSelector.LINE_SEPARATOR)) {
 						int newLength = str.length() - StringSelector.LINE_SEPARATOR.length();
 						text.setText(str.substring(0, newLength));
 						text.setSelection(newLength);
