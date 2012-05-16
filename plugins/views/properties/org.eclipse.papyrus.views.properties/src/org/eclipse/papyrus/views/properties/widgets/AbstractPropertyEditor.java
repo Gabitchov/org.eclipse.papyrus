@@ -409,6 +409,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * @return The IObservable associated to this propertyEditor
 	 */
 	protected IObservable getInputObservable() {
+		if(input == null || propertyPath == null) {
+			return null;
+		}
+
 		if(listEditor != null) {
 			return getInputObservableList();
 		}
