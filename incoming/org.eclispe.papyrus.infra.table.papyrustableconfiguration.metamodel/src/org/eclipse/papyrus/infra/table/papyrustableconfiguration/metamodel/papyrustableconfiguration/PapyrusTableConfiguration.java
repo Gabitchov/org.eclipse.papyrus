@@ -14,6 +14,8 @@ package org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papy
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
@@ -37,6 +39,7 @@ import org.eclipse.papyrus.infra.table.metamodel.papyrustable.FillingMode;
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode <em>Filling Mode</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries <em>Filling Queries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenFeature <em>Listen Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,7 +47,7 @@ import org.eclipse.papyrus.infra.table.metamodel.papyrustable.FillingMode;
  * @model
  * @generated
  */
-public interface PapyrusTableConfiguration extends TableConfiguration {
+public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	/**
 	 * Returns the value of the '<em><b>Filling Mode</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.table.metamodel.papyrustable.FillingMode}.
@@ -112,5 +115,30 @@ public interface PapyrusTableConfiguration extends TableConfiguration {
 	 * @generated
 	 */
 	void setListenFeature(EStructuralFeature value);
+
+	/**
+	 * Returns the value of the '<em><b>Table Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This field references the emf-facet table configuration.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Table Configuration</em>' containment reference.
+	 * @see #setTableConfiguration(TableConfiguration)
+	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_TableConfiguration()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TableConfiguration getTableConfiguration();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Table Configuration</em>' containment reference.
+	 * @see #getTableConfiguration()
+	 * @generated
+	 */
+	void setTableConfiguration(TableConfiguration value);
 
 } // PapyrusTableConfiguration

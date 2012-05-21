@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papy
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -22,13 +23,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.impl.TableConfigurationImpl;
+import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
 
 import org.eclipse.papyrus.infra.table.metamodel.papyrustable.FillingMode;
 
@@ -45,12 +47,13 @@ import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyr
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getFillingMode <em>Filling Mode</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getFillingQueries <em>Filling Queries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getListenFeature <em>Listen Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getTableConfiguration <em>Table Configuration</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implements PapyrusTableConfiguration {
+public class PapyrusTableConfigurationImpl extends EModelElementImpl implements PapyrusTableConfiguration {
 	/**
 	 * The default value of the '{@link #getFillingMode() <em>Filling Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -90,6 +93,16 @@ public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implem
 	 * @ordered
 	 */
 	protected EStructuralFeature listenFeature;
+
+	/**
+	 * The cached value of the '{@link #getTableConfiguration() <em>Table Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTableConfiguration()
+	 * @generated
+	 * @ordered
+	 */
+	protected TableConfiguration tableConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,6 +199,63 @@ public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TableConfiguration getTableConfiguration() {
+		return tableConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableConfiguration(TableConfiguration newTableConfiguration, NotificationChain msgs) {
+		TableConfiguration oldTableConfiguration = tableConfiguration;
+		tableConfiguration = newTableConfiguration;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION, oldTableConfiguration, newTableConfiguration);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTableConfiguration(TableConfiguration newTableConfiguration) {
+		if (newTableConfiguration != tableConfiguration) {
+			NotificationChain msgs = null;
+			if (tableConfiguration != null)
+				msgs = ((InternalEObject)tableConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION, null, msgs);
+			if (newTableConfiguration != null)
+				msgs = ((InternalEObject)newTableConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION, null, msgs);
+			msgs = basicSetTableConfiguration(newTableConfiguration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION, newTableConfiguration, newTableConfiguration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
+				return basicSetTableConfiguration(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -196,6 +266,8 @@ public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implem
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
 				if (resolve) return getListenFeature();
 				return basicGetListenFeature();
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
+				return getTableConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +291,9 @@ public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implem
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
 				setListenFeature((EStructuralFeature)newValue);
 				return;
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
+				setTableConfiguration((TableConfiguration)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -240,6 +315,9 @@ public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implem
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
 				setListenFeature((EStructuralFeature)null);
 				return;
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
+				setTableConfiguration((TableConfiguration)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -258,6 +336,8 @@ public class PapyrusTableConfigurationImpl extends TableConfigurationImpl implem
 				return fillingQueries != null && !fillingQueries.isEmpty();
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
 				return listenFeature != null;
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
+				return tableConfiguration != null;
 		}
 		return super.eIsSet(featureID);
 	}

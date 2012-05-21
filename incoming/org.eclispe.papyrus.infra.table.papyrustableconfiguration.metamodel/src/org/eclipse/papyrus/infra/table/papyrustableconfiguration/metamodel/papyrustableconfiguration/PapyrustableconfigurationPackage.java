@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableconfigurationPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,67 +80,13 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	int PAPYRUS_TABLE_CONFIGURATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Default Local Customizations</b></em>' reference list.
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION__DEFAULT_LOCAL_CUSTOMIZATIONS = TableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_LOCAL_CUSTOMIZATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Can Be Presented In The Table</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_CONFIGURATION__CAN_BE_PRESENTED_IN_THE_TABLE = TableconfigurationPackage.TABLE_CONFIGURATION__CAN_BE_PRESENTED_IN_THE_TABLE;
-
-	/**
-	 * The feature id for the '<em><b>Forced Cell Editors</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_CONFIGURATION__FORCED_CELL_EDITORS = TableconfigurationPackage.TABLE_CONFIGURATION__FORCED_CELL_EDITORS;
-
-	/**
-	 * The feature id for the '<em><b>Default Facets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_CONFIGURATION__DEFAULT_FACETS = TableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_FACETS;
-
-	/**
-	 * The feature id for the '<em><b>Default Customizations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_CONFIGURATION__DEFAULT_CUSTOMIZATIONS = TableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_CUSTOMIZATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Instantiation Method</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_CONFIGURATION__INSTANTIATION_METHOD = TableconfigurationPackage.TABLE_CONFIGURATION__INSTANTIATION_METHOD;
-
-	/**
-	 * The feature id for the '<em><b>Default Columns</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_TABLE_CONFIGURATION__DEFAULT_COLUMNS = TableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMNS;
+	int PAPYRUS_TABLE_CONFIGURATION__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Filling Mode</b></em>' attribute.
@@ -150,7 +95,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE = TableconfigurationPackage.TABLE_CONFIGURATION_FEATURE_COUNT + 0;
+	int PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Filling Queries</b></em>' reference list.
@@ -159,7 +104,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES = TableconfigurationPackage.TABLE_CONFIGURATION_FEATURE_COUNT + 1;
+	int PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Listen Feature</b></em>' reference.
@@ -168,7 +113,16 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE = TableconfigurationPackage.TABLE_CONFIGURATION_FEATURE_COUNT + 2;
+	int PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Table Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Papyrus Table Configuration</em>' class.
@@ -177,7 +131,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION_FEATURE_COUNT = TableconfigurationPackage.TABLE_CONFIGURATION_FEATURE_COUNT + 3;
+	int PAPYRUS_TABLE_CONFIGURATION_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 
 	/**
@@ -222,6 +176,17 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPapyrusTableConfiguration_ListenFeature();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Table Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration()
+	 * @see #getPapyrusTableConfiguration()
+	 * @generated
+	 */
+	EReference getPapyrusTableConfiguration_TableConfiguration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -278,6 +243,14 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE = eINSTANCE.getPapyrusTableConfiguration_ListenFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Configuration</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION = eINSTANCE.getPapyrusTableConfiguration_TableConfiguration();
 
 	}
 

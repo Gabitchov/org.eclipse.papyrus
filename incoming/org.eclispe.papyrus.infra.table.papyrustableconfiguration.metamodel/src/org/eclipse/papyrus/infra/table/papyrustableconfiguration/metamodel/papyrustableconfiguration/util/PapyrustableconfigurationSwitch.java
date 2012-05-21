@@ -12,12 +12,11 @@
  */
 package org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.util;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
 
 import org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.papyrustableconfiguration.*;
 
@@ -81,7 +80,7 @@ public class PapyrustableconfigurationSwitch<T> extends Switch<T> {
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION: {
 				PapyrusTableConfiguration papyrusTableConfiguration = (PapyrusTableConfiguration)theEObject;
 				T result = casePapyrusTableConfiguration(papyrusTableConfiguration);
-				if (result == null) result = caseTableConfiguration(papyrusTableConfiguration);
+				if (result == null) result = caseEModelElement(papyrusTableConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,17 +104,17 @@ public class PapyrustableconfigurationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Table Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Table Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTableConfiguration(TableConfiguration object) {
+	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 

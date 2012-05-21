@@ -149,6 +149,15 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPapyrusTableConfiguration_TableConfiguration() {
+		return (EReference)papyrusTableConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PapyrustableconfigurationFactory getPapyrustableconfigurationFactory() {
 		return (PapyrustableconfigurationFactory)getEFactoryInstance();
 	}
@@ -176,6 +185,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE);
+		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION);
 	}
 
 	/**
@@ -202,23 +212,24 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		TableconfigurationPackage theTableconfigurationPackage = (TableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(TableconfigurationPackage.eNS_URI);
 		PapyrustablePackage thePapyrustablePackage = (PapyrustablePackage)EPackage.Registry.INSTANCE.getEPackage(PapyrustablePackage.eNS_URI);
 		ExtensiblePackage theExtensiblePackage = (ExtensiblePackage)EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		TableconfigurationPackage theTableconfigurationPackage = (TableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(TableconfigurationPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		papyrusTableConfigurationEClass.getESuperTypes().add(theTableconfigurationPackage.getTableConfiguration());
+		papyrusTableConfigurationEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(papyrusTableConfigurationEClass, PapyrusTableConfiguration.class, "PapyrusTableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPapyrusTableConfiguration_FillingMode(), thePapyrustablePackage.getFillingMode(), "fillingMode", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPapyrusTableConfiguration_FillingQueries(), theExtensiblePackage.getQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPapyrusTableConfiguration_ListenFeature(), theEcorePackage.getEStructuralFeature(), null, "listenFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusTableConfiguration_TableConfiguration(), theTableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
