@@ -24,6 +24,8 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.XYAnchor;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -263,6 +265,40 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		return getContentPane();
 	}
+	
+	static class SlidableAnchorEx extends SlidableAnchor{
+		SlidableAnchorEx(IFigure f, PrecisionPoint p) {
+			super(f,p);
+		}
+		
+		protected Point getLocation(Point ownReference, Point foreignReference) {
+			PointList intersections = getIntersectionPoints(ownReference, foreignReference);
+			if (intersections!=null && intersections.size()!=0) {
+				int size = intersections.size();
+				double dist = foreignReference.getDistance(ownReference);
+				for(int i = 0; i < size; i ++){
+					Point loc = intersections.getPoint(i);
+					if(isInOrder(foreignReference,ownReference,dist, loc)){
+						return loc;
+					}
+				}
+				return intersections.getFirstPoint();
+			}
+			return null;
+		}
+		
+		private boolean isInOrder(Point start, Point end, double dist, Point loc) {
+			double total = loc.getDistance(start);
+			double dist2 = loc.getDistance(end);
+			if(total < dist || total < dist2)
+				return false;
+			
+			if(Math.abs(total - dist - dist2) < 0.01)
+				return true;
+			
+			return false;
+		}
+	}
 
 	/**
 	 * @generated
@@ -272,7 +308,16 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight)){
+			
+			protected ConnectionAnchor createAnchor(PrecisionPoint p) {
+				if (p==null)
+					// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
+					// PrecisionPoint will passed in - this is handled here
+					return createDefaultAnchor();
+				return new SlidableAnchorEx(this, p);
+			}
+		};
 
 		return result;
 	}
@@ -1263,7 +1308,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		// return targetAnchor;
 		return super.getTargetConnectionAnchor(request);
 	}
-
+	
 	/**
 	 * Handle lost message
 	 */
@@ -1273,8 +1318,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		Point referencePoint = targetConnectionAnchor.getReferencePoint();
 		if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
 			targetConnectionAnchor = new XYAnchor(referencePoint);
-		}
-
+		}		
 		return targetConnectionAnchor;
 	}
 

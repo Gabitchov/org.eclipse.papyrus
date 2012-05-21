@@ -23,9 +23,12 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ContainerNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
@@ -82,6 +85,17 @@ public class PackageEditPart extends DiagramEditPart {
 		
 		//fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		
+		// do not handle connection event
+		installEditPolicy(
+			EditPolicy.GRAPHICAL_NODE_ROLE,
+			new ContainerNodeEditPolicy(){
+				
+				protected Command getConnectionAndEndCommands(
+					CreateConnectionRequest request) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			});
 	}
 
 	private EditPolicy createLayoutEditPolicy() {

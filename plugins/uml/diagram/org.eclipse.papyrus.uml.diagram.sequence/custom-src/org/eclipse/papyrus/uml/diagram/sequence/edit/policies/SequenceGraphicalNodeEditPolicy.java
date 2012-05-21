@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -46,6 +47,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
@@ -437,6 +439,30 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 	}
 
-
+	public EditPart getTargetEditPart(Request request) {
+		if (REQ_CONNECTION_START.equals(request.getType())
+				|| REQ_CONNECTION_END.equals(request.getType())
+				|| REQ_RECONNECT_SOURCE.equals(request.getType())
+				|| REQ_RECONNECT_TARGET.equals(request.getType())){
+			
+			EditPart host = getHost();
+			if((host instanceof InteractionEditPart) && (request instanceof CreateConnectionRequest) ){
+				InteractionEditPart interactionPart = (InteractionEditPart)host;
+				CreateConnectionRequest req = (CreateConnectionRequest)request;
+				IFigure figure = interactionPart.getFigure();
+				Point location = req.getLocation().getCopy();
+				figure.translateToRelative(location);
+				
+				// if mouse location is far from border, do not handle connection event 
+				Rectangle innerRetangle = figure.getBounds().getCopy().shrink(20, 20);
+				if(innerRetangle.contains(location)){
+					return null;
+				}
+			}
+			
+			return host;
+		}
+		return null;
+	}
 
 }
