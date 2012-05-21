@@ -12,9 +12,11 @@
  */
 package org.eclipse.papyrus.infra.table.metamodel.papyrustable.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
@@ -133,14 +136,14 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	protected EStructuralFeature feature;
 
 	/**
-	 * The cached value of the '{@link #getQueries() <em>Queries</em>}' reference.
+	 * The cached value of the '{@link #getQueries() <em>Queries</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getQueries()
 	 * @generated
 	 * @ordered
 	 */
-	protected Query queries;
+	protected EList<Query> queries;
 
 	/**
 	 * The default value of the '{@link #isUsingUser() <em>Using User</em>}' attribute.
@@ -340,37 +343,11 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Query getQueries() {
-		if (queries != null && queries.eIsProxy()) {
-			InternalEObject oldQueries = (InternalEObject)queries;
-			queries = (Query)eResolveProxy(oldQueries);
-			if (queries != oldQueries) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustablePackage.PAPYRUS_TABLE__QUERIES, oldQueries, queries));
-			}
+	public EList<Query> getQueries() {
+		if (queries == null) {
+			queries = new EObjectResolvingEList<Query>(Query.class, this, PapyrustablePackage.PAPYRUS_TABLE__QUERIES);
 		}
 		return queries;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Query basicGetQueries() {
-		return queries;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setQueries(Query newQueries) {
-		Query oldQueries = queries;
-		queries = newQueries;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__QUERIES, oldQueries, queries));
 	}
 
 	/**
@@ -437,8 +414,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				if (resolve) return getFeature();
 				return basicGetFeature();
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-				if (resolve) return getQueries();
-				return basicGetQueries();
+				return getQueries();
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
 				return isUsingUser();
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_FEATURE:
@@ -454,6 +430,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -473,7 +450,8 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				setFeature((EStructuralFeature)newValue);
 				return;
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-				setQueries((Query)newValue);
+				getQueries().clear();
+				getQueries().addAll((Collection<? extends Query>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -503,7 +481,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 				setFeature((EStructuralFeature)null);
 				return;
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-				setQueries((Query)null);
+				getQueries().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -528,7 +506,7 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 			case PapyrustablePackage.PAPYRUS_TABLE__FEATURE:
 				return feature != null;
 			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-				return queries != null;
+				return queries != null && !queries.isEmpty();
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
 				return isUsingUser() != USING_USER_EDEFAULT;
 			case PapyrustablePackage.PAPYRUS_TABLE__USING_FEATURE:

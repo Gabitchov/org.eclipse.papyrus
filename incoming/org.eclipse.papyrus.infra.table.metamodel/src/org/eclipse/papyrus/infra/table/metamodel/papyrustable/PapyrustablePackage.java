@@ -135,7 +135,7 @@ public interface PapyrustablePackage extends EPackage {
 	int PAPYRUS_TABLE__FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Queries</b></em>' reference.
+	 * The feature id for the '<em><b>Queries</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -256,10 +256,10 @@ public interface PapyrustablePackage extends EPackage {
 	EReference getPapyrusTable_Feature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable#getQueries <em>Queries</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable#getQueries <em>Queries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Queries</em>'.
+	 * @return the meta object for the reference list '<em>Queries</em>'.
 	 * @see org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable#getQueries()
 	 * @see #getPapyrusTable()
 	 * @generated
@@ -382,7 +382,7 @@ public interface PapyrustablePackage extends EPackage {
 		EReference PAPYRUS_TABLE__FEATURE = eINSTANCE.getPapyrusTable_Feature();
 
 		/**
-		 * The meta object literal for the '<em><b>Queries</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Queries</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

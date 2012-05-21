@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.infra.table.metamodel.papyrustable;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -180,29 +181,19 @@ public interface PapyrusTable extends EModelElement {
 	void setFeature(EStructuralFeature value);
 
 	/**
-	 * Returns the value of the '<em><b>Queries</b></em>' reference.
+	 * Returns the value of the '<em><b>Queries</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * This field references the queries used to fill table when the table is in queries mode.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Queries</em>' reference.
-	 * @see #setQueries(Query)
+	 * @return the value of the '<em>Queries</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_Queries()
 	 * @model
 	 * @generated
 	 */
-	Query getQueries();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable#getQueries <em>Queries</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Queries</em>' reference.
-	 * @see #getQueries()
-	 * @generated
-	 */
-	void setQueries(Query value);
+	EList<Query> getQueries();
 
 	/**
 	 * Returns the value of the '<em><b>Using User</b></em>' attribute.
