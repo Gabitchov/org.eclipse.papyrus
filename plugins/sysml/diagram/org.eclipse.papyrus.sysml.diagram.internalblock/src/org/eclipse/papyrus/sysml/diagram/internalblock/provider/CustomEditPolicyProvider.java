@@ -29,11 +29,13 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructure
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDefaultSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDiagramDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomNestedBlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.EncapsulatedClassifierDropEditPolicy;
@@ -70,6 +72,11 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 			return false;
 		}
 
+		// provides for the main diagram edit part
+		if(gep instanceof InternalBlockDiagramEditPart) {
+			return true;
+		}
+		
 		// Provides for edit parts that represent nodes in Internal Block diagram
 		if(gep instanceof AbstractElementEditPart) {
 			return true;
@@ -149,6 +156,10 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		
 		if(editPart instanceof ConnectorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		
+		if(editPart instanceof InternalBlockDiagramEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDropEditPolicy());
 		}
 	}
 
