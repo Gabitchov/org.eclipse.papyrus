@@ -14,12 +14,17 @@
 
 package org.eclipse.papyrus.infra.table.modelexplorer.queries;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
@@ -27,6 +32,9 @@ import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstan
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.TablePackage;
+import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.metamodel.papyrustable.PapyrustablePackage;
@@ -54,16 +62,22 @@ public class GetContainedPapyrusTables extends AbstractEditorContainerQuery impl
 		Function<EStructuralFeature.Setting, PapyrusTable> f = new Function<EStructuralFeature.Setting, PapyrusTable>() {
 
 			public PapyrusTable apply(EStructuralFeature.Setting setting) {
-				Collection<Setting> references = PapyrusEcoreUtils.getUsages(setting.getEObject());
-				Predicate<Setting> p2 = new Predicate<EStructuralFeature.Setting>() {
+				if(setting.getEObject() instanceof Table) {
+					Collection<Setting> references = PapyrusEcoreUtils.getUsages(((Table)setting.getEObject()).eContainer());
+					Predicate<Setting> p2 = new Predicate<EStructuralFeature.Setting>() {
 
-					public boolean apply(Setting setting) {
-						return setting.getEObject() instanceof PapyrusTable && PapyrustablePackage.Literals.PAPYRUS_TABLE__TABLE == setting.getEStructuralFeature();
+						public boolean apply(Setting setting) {
+							return ((PageRef)setting.getEObject()).getEmfPageIdentifier() instanceof PapyrusTable && DiPackage.Literals.PAGE_REF__EMF_PAGE_IDENTIFIER == setting.getEStructuralFeature();
+						}
+					};
+					Iterator<Setting> iterator = Iterables.filter(references, p2).iterator();
+					if(iterator.hasNext()) {
+						Setting next = iterator.next();
+						if(next.getEObject() instanceof PageRef) {
+							PageRef current = (PageRef)next.getEObject();
+							return (PapyrusTable)current.getEmfPageIdentifier();
+						}
 					}
-				};
-				Iterator<Setting> iterator = Iterables.filter(references, p2).iterator();
-				if(iterator.hasNext()) {
-					return (PapyrusTable)iterator.next().getEObject();
 				}
 				return null;
 			}
@@ -79,5 +93,4 @@ public class GetContainedPapyrusTables extends AbstractEditorContainerQuery impl
 		});
 		return Sets.newHashSet(transform);
 	}
-
 }
