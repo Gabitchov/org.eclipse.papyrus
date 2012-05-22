@@ -749,9 +749,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.UseCase"
-			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassifierPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.usecase.preferences.SubjectPreferencePage"
             id="org.eclipse.papyrus.uml.diagram.usecase.preferences.ClassifierPreferencePage"
-            name="Classifier Node" />
+            name="Subject Node" />
 	
 		
 	<?gmfgen generated="true"?>
