@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.papyrus.infra.table.papyrustableconfiguration:PapyrusTableConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:org.eclipse.papyrus.infra.table.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration">
+  <tableConfiguration/>
+</org.eclipse.papyrus.infra.table.papyrustableconfiguration:PapyrusTableConfiguration>
