@@ -76,22 +76,23 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		this.feature = feature;
 		this.stereotype = stereotype;
 
-		IStructuredContentProvider semanticProvider = getSemanticProvider(source, feature, stereotype);
-
-		if (root == null && eObject.eResource() != null) {
+		if(root == null && eObject.eResource() != null) {
 			try {
 				// try to retrieve the root from the object to edit
 				root = ServiceUtilsForResource.getInstance().getModelSet(eObject.eResource());
-			} catch (ServiceException e) {}
+			} catch (ServiceException e) {
+			}
 		}
-		if (root == null) {
+		if(root == null) {
 			// try to retrieve the root from the current editor
 			try {
 				root = ServiceUtilsForActionHandlers.getInstance().getModelSet();
-			} catch (ServiceException e) {}
+			} catch (ServiceException e) {
+			}
 		}
-		this.root  = root;
+		this.root = root;
 
+		IStructuredContentProvider semanticProvider = getSemanticProvider(source, feature, stereotype);
 		encapsulated = UMLProviderHelper.encapsulateProvider(semanticProvider, eObject, feature, root);
 	}
 
