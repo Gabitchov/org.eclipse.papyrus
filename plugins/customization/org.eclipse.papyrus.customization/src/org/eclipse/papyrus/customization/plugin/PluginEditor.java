@@ -148,4 +148,16 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	public String getValue(String key) {
 		return manifest.getValue(key);
 	}
+
+	public void setSymbolicBundleName(String name) {
+		manifest.setSymbolicBundleName(name);
+	}
+
+	public String getBundleName() {
+		return manifest.getBundleName();
+	}
+
+	public String getBundleLocalization() {
+		return manifest.getBundleLocalization();
+	}
 }
