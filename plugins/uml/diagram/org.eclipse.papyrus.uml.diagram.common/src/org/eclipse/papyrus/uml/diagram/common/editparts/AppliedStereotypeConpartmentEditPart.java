@@ -144,8 +144,6 @@ public class AppliedStereotypeConpartmentEditPart extends ResizeableListCompartm
 	 *
 	 */
 	protected void refreshVisuals() {
-		getFigure().setBackgroundColor(ColorConstants.red);
-		getFigure().setForegroundColor(ColorConstants.red);
 		super.refreshVisuals();
 		refreshBounds();
 	}
