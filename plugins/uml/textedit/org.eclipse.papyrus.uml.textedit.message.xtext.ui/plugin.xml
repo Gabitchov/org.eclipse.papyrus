@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.message.xtext.ui.UmlMessageExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage"
-            name="UmlMessage">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.uml.textedit.message.xtext.ui.UmlMessageExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage"
+              name="UmlMessage">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.message.xtext.ui.keyword_UmlMessage"/>
         </page>
         <page

@@ -49,9 +49,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"
-            name="UmlState">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.uml.textedit.state.xtext.ui.UmlStateExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.uml.textedit.state.xtext.UmlState"
+              name="UmlState">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.state.xtext.ui.keyword_UmlState"/>
         </page>
         <page

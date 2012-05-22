@@ -53,9 +53,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.infra.gmfdiag.ui.CSSExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.infra.gmfdiag.CSS"
-            name="CSS">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.infra.gmfdiag.ui.CSSExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.infra.gmfdiag.CSS"
+              name="CSS">
             <keywordReference id="org.eclipse.papyrus.infra.gmfdiag.ui.keyword_CSS"/>
         </page>
         <page

@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
-            name="AppliedStereotypeProperty">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.AppliedStereotypePropertyExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty"
+              name="AppliedStereotypeProperty">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.keyword_AppliedStereotypeProperty"/>
         </page>
         <page

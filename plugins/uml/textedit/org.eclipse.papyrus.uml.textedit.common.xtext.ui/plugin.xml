@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.common.xtext.ui.UmlCommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon"
-            name="UmlCommon">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.uml.textedit.common.xtext.ui.UmlCommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon"
+              name="UmlCommon">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.common.xtext.ui.keyword_UmlCommon"/>
         </page>
         <page

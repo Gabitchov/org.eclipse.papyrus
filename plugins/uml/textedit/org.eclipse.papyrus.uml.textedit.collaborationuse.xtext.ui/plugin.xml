@@ -50,9 +50,10 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.UmlCollaborationUseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse"
-            name="UmlCollaborationUse">
+              category="org.eclipse.papyrus.embeddededitors"
+              class="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.UmlCollaborationUseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+              id="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse"
+              name="UmlCollaborationUse">
             <keywordReference id="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.keyword_UmlCollaborationUse"/>
         </page>
         <page
