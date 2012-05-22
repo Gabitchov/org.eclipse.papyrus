@@ -16,6 +16,9 @@ package org.eclipse.papyrus.infra.table.menu.providers;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -56,10 +59,19 @@ public class TableTester extends PropertyTester {
 	 *         <code>true</code> if the current editor is a table
 	 */
 	protected boolean isTable() {
-		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if(editor != null) {
-			Object provider = editor.getAdapter(INatTableWidgetProvider.class);
-			return provider != null;
+		IWorkbench wb = PlatformUI.getWorkbench();
+		if (wb != null) {
+			IWorkbenchWindow window = wb.getActiveWorkbenchWindow();
+			if (window != null) {
+				IWorkbenchPage page = window.getActivePage();
+				if (page != null) {
+					IEditorPart editor = page.getActiveEditor();
+					if(editor != null) {
+						Object provider = editor.getAdapter(INatTableWidgetProvider.class);
+						return provider != null;
+					}
+				}
+			}
 		}
 		return false;
 	}
