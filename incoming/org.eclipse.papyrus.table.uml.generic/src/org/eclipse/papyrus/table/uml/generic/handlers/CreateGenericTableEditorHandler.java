@@ -43,7 +43,7 @@ public class CreateGenericTableEditorHandler extends AbstractCreateTableEditorHa
 	 */
 	@Override
 	protected PapyrusTableConfiguration getPapyrusTableConfiguration() {
-		final ResourceSet resourceSet = new ResourceSetImpl();
+		final ResourceSet resourceSet = getTableContext().eResource().getResourceSet();
 
 		final String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
 		final URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/uml_generic_table.papyrustableconfiguration", true); //$NON-NLS-1$
