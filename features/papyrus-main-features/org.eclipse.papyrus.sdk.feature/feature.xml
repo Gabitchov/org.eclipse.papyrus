@@ -3,7 +3,8 @@
       id="org.eclipse.papyrus.sdk.feature"
       label="Papyrus SDK Binaries (Incubation)"
       version="0.9.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="Eclipse Modeling Project"
+      plugin="org.eclipse.papyrus.infra.core">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2011 CEA LIST
