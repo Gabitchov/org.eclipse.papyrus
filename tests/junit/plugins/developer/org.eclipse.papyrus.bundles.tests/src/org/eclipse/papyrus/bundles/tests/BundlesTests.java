@@ -29,7 +29,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void incubationTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, ".*\\(Incubation\\)"); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, ".*\\(Incubation\\)", false); //$NON-NLS-1$
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void vendorTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VENDOR, BundleTestsUtils.VENDOR_NAME);
+		testManifestProperty(BundleTestsUtils.BUNDLE_VENDOR, BundleTestsUtils.VENDOR_NAME, false);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void versionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.0\\..*"); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.0\\..*", false); //$NON-NLS-1$
 	}
 
 	/**
@@ -61,9 +61,17 @@ public class BundlesTests {
 	 */
 	@Test
 	public void javaVersionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5, false); //$NON-NLS-1$
 	}
 
+	/**
+	 * Tests that we don't use import package 
+	 */
+	@Test
+	public void importPackage(){
+		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE,"", true); //$NON-NLS-1$
+	}
+	
 	/**
 	 * Tests if a the value of a property in the Manifest is correct
 	 * 
@@ -71,14 +79,18 @@ public class BundlesTests {
 	 *        the property to test
 	 * @param regex
 	 *        the regular expression to test the property
+	 * @param mustBeNull 
+	 *        indicates that the value for the property must be <code>null</code>
 	 */
-	private void testManifestProperty(final String property, final String regex) {
+	private void testManifestProperty(final String property, final String regex, boolean mustBeNull) {
 		String message = null;
 		int nb = 0;
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = (String)current.getHeaders().get(property);
 			boolean result = false;
-			if(value != null) {
+			if(mustBeNull){
+				result=(value==null);
+			}else if(value != null) {
 				result = value.matches(regex);
 			}
 			if(!result) {
