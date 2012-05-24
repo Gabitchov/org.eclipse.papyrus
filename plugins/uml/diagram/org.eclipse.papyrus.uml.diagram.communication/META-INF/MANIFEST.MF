@@ -69,7 +69,4 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.communication;singleton:=true
-Import-Package: org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies,
- org.eclipse.papyrus.uml.diagram.communication.custom.helper,
- org.eclipse.papyrus.infra.services.edit.service
 

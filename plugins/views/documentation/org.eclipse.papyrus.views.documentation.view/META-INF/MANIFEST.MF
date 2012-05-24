@@ -17,5 +17,4 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.documentation.view.DocViewPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.views.documentation.view;singleton:=true
-Import-Package: org.eclipse.ui.views.contentoutline
 
