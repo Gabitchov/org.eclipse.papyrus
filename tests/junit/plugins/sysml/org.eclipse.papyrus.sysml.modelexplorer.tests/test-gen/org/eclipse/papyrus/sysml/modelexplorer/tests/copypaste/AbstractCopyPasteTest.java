@@ -69,17 +69,19 @@ public abstract class AbstractCopyPasteTest {
 	/** generated selectable objects */
 		protected static org.eclipse.uml2.uml.Model 	model_EObject;
 		protected static org.eclipse.uml2.uml.Class 	b1_EObject;
-		protected static org.eclipse.uml2.uml.Property 	pB2_B1_EObject;
+		protected static org.eclipse.uml2.uml.Property 	rB2_B1_EObject;
 		protected static org.eclipse.uml2.uml.Property 	pB1P1_B1_EObject;
+		protected static org.eclipse.uml2.uml.Property 	pB2_B1_EObject;
 		
 		protected static org.eclipse.uml2.uml.Class 	b2_EObject;
 		
 		protected static org.eclipse.uml2.uml.Package 	p1_EObject;
-		protected static org.eclipse.uml2.uml.Class 	b2P1_P1_EObject;
-		
 		protected static org.eclipse.uml2.uml.Class 	b1P1_P1_EObject;
 		protected static org.eclipse.uml2.uml.Property 	pB2P1_B1P1_P1_EObject;
 		protected static org.eclipse.uml2.uml.Property 	pB1_B1P1_P1_EObject;
+		
+		protected static org.eclipse.uml2.uml.Class 	b2P1_P1_EObject;
+		
 		
 		
 		
@@ -114,17 +116,19 @@ public abstract class AbstractCopyPasteTest {
 		/** generated selectable objects */
 		 		model_EObject = (org.eclipse.uml2.uml.Model)root;
 				b1_EObject = (org.eclipse.uml2.uml.Class)	model_EObject.getPackagedElement("B1"); 
-				pB2_B1_EObject = b1_EObject.getAttribute("pB2", null); 
-				pB1P1_B1_EObject = b1_EObject.getAttribute("pB1P1", null); 
+				rB2_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("rB2", null); 
+				pB1P1_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("pB1P1", null); 
+				pB2_B1_EObject = (org.eclipse.uml2.uml.Property)	b1_EObject.getAttribute("pB2", null); 
 			
 				b2_EObject = (org.eclipse.uml2.uml.Class)	model_EObject.getPackagedElement("B2"); 
 			
 				p1_EObject = (org.eclipse.uml2.uml.Package)	model_EObject.getPackagedElement("P1"); 
+				b1P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B1P1"); 
+				pB2P1_B1P1_P1_EObject = (org.eclipse.uml2.uml.Property)	b1P1_P1_EObject.getAttribute("pB2P1", null); 
+				pB1_B1P1_P1_EObject = (org.eclipse.uml2.uml.Property)	b1P1_P1_EObject.getAttribute("pB1", null); 
+			
 				b2P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B2P1"); 
 			
-				b1P1_P1_EObject = (org.eclipse.uml2.uml.Class)	p1_EObject.getPackagedElement("B1P1"); 
-				pB2P1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB2P1", null); 
-				pB1_B1P1_P1_EObject = b1P1_P1_EObject.getAttribute("pB1", null); 
 			
 			
 			
@@ -156,7 +160,7 @@ public abstract class AbstractCopyPasteTest {
 		IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
 		PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 		// Prepare new project for tests
-		IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject("TestProject");
+		IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject("TestCopyPasteProject");
 		if(!testProject.exists()) {
 			testProject.create(new NullProgressMonitor());
 		}
@@ -227,7 +231,7 @@ public abstract class AbstractCopyPasteTest {
 
 		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); //$NON-NLS-0$
 		if(bookViewPart != null) {
-			modelExplorerView = (ModelExplorerView)bookViewPart.getActiveView();
+			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
 		}
 
 		// Set selection on new element in the model explorer

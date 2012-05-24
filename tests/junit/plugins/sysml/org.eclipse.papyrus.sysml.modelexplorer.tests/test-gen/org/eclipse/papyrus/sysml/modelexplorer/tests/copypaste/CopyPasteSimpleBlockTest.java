@@ -23,9 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +96,7 @@ public class CopyPasteSimpleBlockTest extends AbstractCopyPasteBlockTest  {
 		 */
 		@Test
 		public void testCopyPasteInP1() throws Exception {
-			testExecutableCopyPaste(	p1_EObject, 	b1_EObject, "ownedElement", 3);
+			testExecutableCopyPaste(	p1_EObject, 	b1_EObject, "ownedElement", 4);
 		}
 		/**
 		 * Test the copy /paste on model
@@ -108,7 +106,7 @@ public class CopyPasteSimpleBlockTest extends AbstractCopyPasteBlockTest  {
 		 */
 		@Test
 		public void testCopyPasteInmodel() throws Exception {
-			testExecutableCopyPaste(	model_EObject, 	b1_EObject, "ownedElement", 3);
+			testExecutableCopyPaste(	model_EObject, 	b1_EObject, "ownedElement", 4);
 		}
 	
 

@@ -24,9 +24,11 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+// Reference
+CopyPasteSimpleReferenceTest.class,
 // Block
-CopyPasteSimpleBlock2Test.class,
 CopyPasteSimpleBlockTest.class,
+CopyPasteSimpleBlock2Test.class,
 // Part
 CopyPasteSimplePartTest.class,
 

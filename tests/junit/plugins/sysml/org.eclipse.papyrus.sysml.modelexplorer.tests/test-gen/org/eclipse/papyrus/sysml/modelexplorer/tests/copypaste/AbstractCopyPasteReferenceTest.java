@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  * 
- * @Generated from Part - Model 
+ * @Generated from Reference - Model 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
@@ -22,15 +22,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.utils.FilteredCollectionView;
 import org.eclipse.papyrus.infra.core.utils.IFilter;
 import org.eclipse.uml2.uml.*;
-import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
+
 
 
 /**
  * Test for Copy / Paste of a Part
  */
-public abstract class AbstractCopyPastePartTest extends AbstractCopyPasteTest {
+public abstract class AbstractCopyPasteReferenceTest extends AbstractCopyPasteTest {
 
 	/**
      * {@inheritDoc}
@@ -54,7 +54,7 @@ public abstract class AbstractCopyPastePartTest extends AbstractCopyPasteTest {
     super.postCopyAdditionalChecks(originalModel, newValues, delta);
     
       /* post copy checks */
-      Association newAssociation = ((Property)newValues.get(0)).getAssociation(); Assert.assertNotNull("New Part should have an association", newAssociation);
+      Association newAssociation = ((Property)newValues.get(0)).getAssociation(); Assert.assertNotNull("New Reference should have an association", newAssociation);
       /* END OF post copy checks */
   }
 

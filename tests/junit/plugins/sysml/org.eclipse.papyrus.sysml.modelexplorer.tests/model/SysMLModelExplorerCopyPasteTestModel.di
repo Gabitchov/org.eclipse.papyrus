@@ -10,6 +10,9 @@
     <availablePage>
       <emfPageIdentifier href="SysMLModelExplorerCopyPasteTestModel.notation#_ByR8IH2bEeGYcfVa7z8CyQ"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="SysMLModelExplorerCopyPasteTestModel.notation#_4Yzc4KW-EeGN-cBhs2fFJg"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -22,6 +25,9 @@
         </children>
         <children>
           <emfPageIdentifier href="SysMLModelExplorerCopyPasteTestModel.notation#_ByR8IH2bEeGYcfVa7z8CyQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="SysMLModelExplorerCopyPasteTestModel.notation#_4Yzc4KW-EeGN-cBhs2fFJg"/>
         </children>
       </children>
     </windows>

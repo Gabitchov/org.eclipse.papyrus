@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  * 
- * @Generated from SimpleBlock2 - Model 
+ * @Generated from SimpleReference - Model 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
@@ -32,7 +32,7 @@ import org.junit.Test;
 /**
  * Test for Copy / Paste of a Part
  */
-public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest  {
+public class CopyPasteSimpleReferenceTest extends AbstractCopyPasteReferenceTest  {
 	
 	/**
 	 * prepare the copy
@@ -45,7 +45,7 @@ public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest  {
 		// check editor state (should be non dirty)
 		Assert.assertFalse("Editor should not be dirty at initialization", isEditorDirty());
 		// retrieve elements in the model explorer
-		selectAndReveal(	b1P1_P1_EObject);
+		selectAndReveal(	rB2_B1_EObject);
 
 		// copy Paste
 		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
@@ -89,24 +89,44 @@ public class CopyPasteSimpleBlock2Test extends AbstractCopyPasteBlockTest  {
 
 		
 		/**
-		 * Test the copy /paste on P1
+		 * Test the copy /paste on B1
 		 * 
 		 * @throws Exception
 		 *         exception thrown in case of problems
 		 */
 		@Test
-		public void testCopyPasteInP1() throws Exception {
-			testExecutableCopyPaste(	p1_EObject, 	b1P1_P1_EObject, "ownedElement", 3);
+		public void testCopyPasteInB1() throws Exception {
+			testExecutableCopyPaste(	b1_EObject, 	rB2_B1_EObject, "attribute", 1);
 		}
 		/**
-		 * Test the copy /paste on model
+		 * Test the copy /paste on B2
 		 * 
 		 * @throws Exception
 		 *         exception thrown in case of problems
 		 */
 		@Test
-		public void testCopyPasteInmodel() throws Exception {
-			testExecutableCopyPaste(	model_EObject, 	b1P1_P1_EObject, "ownedElement", 3);
+		public void testCopyPasteInB2() throws Exception {
+			testExecutableCopyPaste(	b2_EObject, 	rB2_B1_EObject, "attribute", 1);
+		}
+		/**
+		 * Test the copy /paste on B1P1
+		 * 
+		 * @throws Exception
+		 *         exception thrown in case of problems
+		 */
+		@Test
+		public void testCopyPasteInB1P1() throws Exception {
+			testExecutableCopyPaste(	b1P1_P1_EObject, 	rB2_B1_EObject, "attribute", 1);
+		}
+		/**
+		 * Test the copy /paste on B2P1
+		 * 
+		 * @throws Exception
+		 *         exception thrown in case of problems
+		 */
+		@Test
+		public void testCopyPasteInB2P1() throws Exception {
+			testExecutableCopyPaste(	b2P1_P1_EObject, 	rB2_B1_EObject, "attribute", 1);
 		}
 	
 

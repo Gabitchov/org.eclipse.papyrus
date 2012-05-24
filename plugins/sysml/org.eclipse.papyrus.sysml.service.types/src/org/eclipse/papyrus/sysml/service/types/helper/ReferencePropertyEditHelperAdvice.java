@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -23,11 +25,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
+import org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher;
+import org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Association;
@@ -38,7 +43,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /** SysML Property Reference edit helper advice */
-public class ReferencePropertyEditHelperAdvice extends AbstractEditHelperAdvice {
+public class ReferencePropertyEditHelperAdvice extends AbstractPropertyEditHelperAdvice {
 
 	/**
 	 * Check if the creation context is a {@link Block}.
@@ -129,5 +134,22 @@ public class ReferencePropertyEditHelperAdvice extends AbstractEditHelperAdvice 
 				return CommandResult.newOKCommandResult(sourcePart);
 			}
 		};
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Property getDuplicatedProperty(DuplicateElementsRequest request) {
+		List<Object> elementsToBeDuplicated = request.getElementsToBeDuplicated();
+		if(elementsToBeDuplicated == null || elementsToBeDuplicated.isEmpty()) {
+			return null;
+		}
+		Object firstElement = elementsToBeDuplicated.get(0); // there should be only one element here
+		if(!(firstElement instanceof Property)) {
+			return null;
+		}
+		ReferencePropertyMatcher matcher = new ReferencePropertyMatcher();
+		return matcher.matches((Property)firstElement) ? (Property)firstElement : null;
 	}
 }

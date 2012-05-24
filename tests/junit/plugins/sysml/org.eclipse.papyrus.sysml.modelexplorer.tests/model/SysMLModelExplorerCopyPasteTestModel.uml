@@ -7,6 +7,9 @@
     <packageImport xmi:id="_nz8ZoHpfEeGr6LTFg6LEhg">
       <importedPackage xmi:type="uml:Model" href="ModelWithBDD.uml#_UV0P8EAREeCMpNWxgNcrog"/>
     </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_sX-qQJqEEeGgRvetq2P46A" name="Reference">
+      <packagedElement xmi:type="uml:Class" xmi:id="_sX-qQZqEEeGgRvetq2P46A" name="SimpleReference"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_lLOOcHpgEeGr6LTFg6LEhg" name="Part">
       <packagedElement xmi:type="uml:Class" xmi:id="_tT030HphEeGr6LTFg6LEhg" name="SimplePart"/>
     </packagedElement>
@@ -32,36 +35,8 @@
     <targets xmi:type="uml:Class" href="ModelWithBDD.uml#_Idw9QHRGEeGbA9TcuN7qCA"/>
     <targets xmi:type="uml:Class" href="ModelWithBDD.uml#_K5RWYHRGEeGbA9TcuN7qCA"/>
   </ModelExplorerTest:SourceTargetRulesCopyPasteTest>
-  <ModelExplorerTest:ElementTypeRulesCopyPasteTest xmi:id="_wKFoUH2YEeGYcfVa7z8CyQ" base_Package="_v-7hMH2YEeGYcfVa7z8CyQ" elementType="org.eclipse.papyrus.sysml.Block" preCopyInitialization="List&lt;Property> originalParts = new ArrayList&lt;Property>();  for(Property p : ((org.eclipse.uml2.uml.Class)copiedEObject).getAllAttributes()) {  &#x9;if(new org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher().matches(p)) {originalParts.add(p);}} additionalChecks.put(&quot;originalParts&quot;, originalParts);" postCopyRule="
-  		FilteredCollectionView&lt;EObject&gt; newClasses = new FilteredCollectionView&lt;EObject&gt;(delta, new IFilter() {
-			/**
-			 * {@inheritDoc}
-			 */
-			public boolean isAllowed(Object object) {
-				return object instanceof org.eclipse.uml2.uml.Class &amp;&amp; !(object instanceof org.eclipse.uml2.uml.Association);
-			}
-		});
-		Assert.assertEquals(&quot;New values should contain a Class&quot;, 1, newClasses.size());
-		org.eclipse.uml2.uml.Class newBlock = newClasses.toArray(new org.eclipse.uml2.uml.Class[]{})[0];
-		Assert.assertNotNull(&quot;Block stereotype should be applied&quot;,
-				((org.eclipse.uml2.uml.Class) newBlock)
-						.getAppliedStereotype(&quot;SysML::Blocks::Block&quot;));
-		List&lt;Property&gt; originalParts = (List&lt;Property&gt;) originalModel
-				.get(&quot;originalParts&quot;);
-		List&lt;Property&gt; newParts = new ArrayList&lt;Property&gt;();
-		for (Property p : ((org.eclipse.uml2.uml.Class) newBlock)
-				.getAllAttributes()) {
-			if (new org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher().matches(p)) {
-				newParts.add(p);
-				Assert.assertNotNull(
-						&quot;Part should have an associated association.&quot;,
-						p.getAssociation());
-			}
-		}
-		Assert.assertEquals(
-				&quot;Both original and new list of attributes should be quivalent for the blocks&quot;,
-				originalParts.size(), newParts.size());"/>
-  <ModelExplorerTest:SourceTargetRulesCopyPasteTest xmi:id="_Rel5f32aEeGYcfVa7z8CyQ" base_Class="_ReSXcH2aEeGYcfVa7z8CyQ" feature="ownedElement" additionalElementsQuantity="3">
+  <ModelExplorerTest:ElementTypeRulesCopyPasteTest xmi:id="_wKFoUH2YEeGYcfVa7z8CyQ" base_Package="_v-7hMH2YEeGYcfVa7z8CyQ" elementType="org.eclipse.papyrus.sysml.Block" preCopyInitialization="List&lt;Property> originalParts = new ArrayList&lt;Property>();  for(Property p : ((org.eclipse.uml2.uml.Class)copiedEObject).getAllAttributes()) {  &#x9;if(new org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher().matches(p)) {originalParts.add(p);}} additionalChecks.put(&quot;originalParts&quot;, originalParts);" postCopyRule="     FilteredCollectionView&lt;EObject> newClasses = new FilteredCollectionView&lt;EObject>(delta, new IFilter() {    /**     * {@inheritDoc}     */    public boolean isAllowed(Object object) {     return object instanceof org.eclipse.uml2.uml.Class &amp;&amp; !(object instanceof org.eclipse.uml2.uml.Association);    }   });   Assert.assertEquals(&quot;New values should contain a Class&quot;, 1, newClasses.size());   org.eclipse.uml2.uml.Class newBlock = newClasses.toArray(new org.eclipse.uml2.uml.Class[]{})[0];   Assert.assertNotNull(&quot;Block stereotype should be applied&quot;,     ((org.eclipse.uml2.uml.Class) newBlock)       .getAppliedStereotype(&quot;SysML::Blocks::Block&quot;));   List&lt;Property> originalParts = (List&lt;Property>) originalModel     .get(&quot;originalParts&quot;);   List&lt;Property> newParts = new ArrayList&lt;Property>();   for (Property p : ((org.eclipse.uml2.uml.Class) newBlock)     .getAllAttributes()) {    if (new org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher().matches(p)) {     newParts.add(p);     Assert.assertNotNull(       &quot;Part should have an associated association.&quot;,       p.getAssociation());    }   }   Assert.assertEquals(     &quot;Both original and new list of attributes should be quivalent for the blocks&quot;,     originalParts.size(), newParts.size());"/>
+  <ModelExplorerTest:SourceTargetRulesCopyPasteTest xmi:id="_Rel5f32aEeGYcfVa7z8CyQ" base_Class="_ReSXcH2aEeGYcfVa7z8CyQ" feature="ownedElement" additionalElementsQuantity="4">
     <sourceElement xmi:type="uml:Class" href="ModelWithBDD.uml#__OVZQHRFEeGbA9TcuN7qCA"/>
     <targets xmi:type="uml:Package" href="ModelWithBDD.uml#_E8hEEHRGEeGbA9TcuN7qCA"/>
     <targets xmi:type="uml:Model" href="ModelWithBDD.uml#_UV0P8EAREeCMpNWxgNcrog"/>
@@ -70,5 +45,13 @@
     <sourceElement xmi:type="uml:Class" href="ModelWithBDD.uml#_Idw9QHRGEeGbA9TcuN7qCA"/>
     <targets xmi:type="uml:Package" href="ModelWithBDD.uml#_E8hEEHRGEeGbA9TcuN7qCA"/>
     <targets xmi:type="uml:Model" href="ModelWithBDD.uml#_UV0P8EAREeCMpNWxgNcrog"/>
+  </ModelExplorerTest:SourceTargetRulesCopyPasteTest>
+  <ModelExplorerTest:ElementTypeRulesCopyPasteTest xmi:id="_sYIbYJqEEeGgRvetq2P46A" base_Package="_sX-qQJqEEeGgRvetq2P46A" elementType="org.eclipse.papyrus.sysml.PartProperty" postCopyRule="Association newAssociation = ((Property)newValues.get(0)).getAssociation(); Assert.assertNotNull(&quot;New Reference should have an association&quot;, newAssociation);"/>
+  <ModelExplorerTest:SourceTargetRulesCopyPasteTest xmi:id="_sYIbYZqEEeGgRvetq2P46A" base_Class="_sX-qQZqEEeGgRvetq2P46A" feature="attribute">
+    <sourceElement xmi:type="uml:Property" href="ModelWithBDD.uml#_R5uCwJqEEeGgRvetq2P46A"/>
+    <targets xmi:type="uml:Class" href="ModelWithBDD.uml#__OVZQHRFEeGbA9TcuN7qCA"/>
+    <targets xmi:type="uml:Class" href="ModelWithBDD.uml#_CqW0MHRGEeGbA9TcuN7qCA"/>
+    <targets xmi:type="uml:Class" href="ModelWithBDD.uml#_Idw9QHRGEeGbA9TcuN7qCA"/>
+    <targets xmi:type="uml:Class" href="ModelWithBDD.uml#_K5RWYHRGEeGbA9TcuN7qCA"/>
   </ModelExplorerTest:SourceTargetRulesCopyPasteTest>
 </xmi:XMI>
