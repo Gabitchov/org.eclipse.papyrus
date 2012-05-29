@@ -53,6 +53,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:yann.tanguy@cea.fr">Yann Tanguy</a>
  */
+//FIXME: The outline is broken in Eclipse 4.2. #createControl(Composite) is never called.
+//See #refresh()
 public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, ISelectionListener {
 
 	protected EditingDomain editingDomain;
@@ -92,14 +94,14 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	 * {@inheritDoc}
 	 */
 	public void init(IMultiDiagramEditor multiEditor) throws BackboneException {
-		
+
 		// Get TransactionalEditingDomain
 		try {
 			this.editingDomain = multiEditor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		} catch (ServiceException e) {
 			throw new BackboneException("Can't get TransactionalEditingDomain", e);
 		}
-		
+
 		// Set multieditor.
 		this.multiEditor = multiEditor;
 
@@ -110,6 +112,8 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	/**
 	 * {@inheritDoc}
 	 */
+	//FIXME: In Eclipse 4.2, this method is never called. This results in sashComp being null,
+	//and a NPE being thrown after each selectionChangedEvent
 	@Override
 	public void createControl(Composite parent) {
 
@@ -287,13 +291,12 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 
 		if(multiEditor.getActiveEditor() != null) {
 			GraphicalViewer viewer = (GraphicalViewer)multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
-			if( viewer == null)
-			{ // In case of an editor that is not GEF based.
+			if(viewer == null) { // In case of an editor that is not GEF based.
 				root = null;
 				diagram = null;
 				return;
 			}
-			
+
 			RootEditPart rootEditPart = viewer.getRootEditPart();
 
 			if(rootEditPart instanceof RenderedDiagramRootEditPart) {
@@ -318,11 +321,20 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	/**
 	 * Refresh the outline view
 	 */
+	//FIXME: Sometimes, this method is called before #createControl(), which results in a NPE with sashComp
+	//Temporary fix : A non-null test has been added to avoid breaking the view
 	private void refresh() {
 
 		// Trash and re-Create Overview
 		if((overview != null) && !(overview.isDisposed())) {
 			overview.dispose();
+		}
+
+		//If the view hasn't been created for any reason, we shouldn't do anything. 
+		//However, this is still a (minor) problem.
+		if(sashComp == null) {
+			Activator.log.warn("Trying to refresh the Outline view before it is initialized");
+			return;
 		}
 
 		if(root != null) {
