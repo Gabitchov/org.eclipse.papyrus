@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.databinding.StereotypeApplicationObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.ProfileApplicationObservableList;
 import org.eclipse.papyrus.uml.tools.providers.ApplicableStereotypeContentProvider;
+import org.eclipse.papyrus.uml.tools.providers.ProfileLabelProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
@@ -97,6 +98,9 @@ public class StereotypeApplicationModelElement extends EMFModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == UMLPackage.eINSTANCE.getPackage_ProfileApplication() && source instanceof Package) {
+			return new ProfileLabelProvider((Package)source);
+		}
 		return new UMLLabelProvider();
 	}
 
