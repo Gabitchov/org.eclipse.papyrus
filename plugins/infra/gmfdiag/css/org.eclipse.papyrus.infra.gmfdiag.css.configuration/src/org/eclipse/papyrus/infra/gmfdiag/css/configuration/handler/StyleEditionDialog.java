@@ -38,6 +38,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
 
 
 /**
@@ -203,7 +204,7 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 	}
 
 	protected void handleSelector(SimpleSelector selector) {
-		if(contextView.getDiagram().getType().equals(selector.getElementName())) {
+		if(getDiagramType(contextView.getDiagram()).equals(selector.getElementName())) {
 			diagramRestriction = true;
 		}
 

@@ -55,6 +55,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSRefreshHandler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
+import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
 
 
 public abstract class AbstractStyleHandler extends AbstractHandler {
@@ -113,7 +114,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		}
 
 		if(dialog.getDiagramRestriction()) {
-			String diagramType = view.getDiagram().getType();
+			String diagramType = getDiagramType(view.getDiagram());
 			CompositeSelector compositeSelector = CssFactory.eINSTANCE.createCompositeSelector();
 			compositeSelector.setRight(selector);
 

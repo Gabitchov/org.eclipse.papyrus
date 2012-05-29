@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -46,6 +47,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
 
 
 public abstract class AbstractStyleDialog extends TrayDialog {
@@ -200,7 +202,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 			@Override
 			public String getText(Object element) {
 				Boolean value = (Boolean)element;
-				return value ? contextView.getDiagram().getType() + " only" : "Any diagram";
+				return value ? getDiagramType(contextView.getDiagram()) + " only" : "Any diagram";
 			}
 		};
 
@@ -368,7 +370,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		String selectorText = "";
 
 		if(diagramRestriction) {
-			selectorText += contextView.getDiagram().getType() + " ";
+			selectorText += getDiagramType(contextView.getDiagram()) + " ";
 		}
 
 		selectorText += useSelectorName ? selectorName : "*";
