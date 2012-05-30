@@ -99,9 +99,7 @@ public class ExtendedViewCSSImpl implements ViewCSS {
 		int length = ruleList.getLength();
 		for(int i = 0; i < length; i++) {
 			CSSRule rule = ruleList.item(i);
-			switch(rule.getType()) {
-			case CSSRule.STYLE_RULE:
-			{
+			if(rule.getType() == CSSRule.STYLE_RULE) {
 				CSSStyleRule styleRule = (CSSStyleRule)rule;
 				if(rule instanceof ExtendedCSSRule) {
 					ExtendedCSSRule r = (ExtendedCSSRule)rule;
@@ -127,7 +125,6 @@ public class ExtendedViewCSSImpl implements ViewCSS {
 					// TODO : CSS rule is not ExtendedCSSRule,
 					// Manage this case...
 				}
-			}
 			}
 		}
 

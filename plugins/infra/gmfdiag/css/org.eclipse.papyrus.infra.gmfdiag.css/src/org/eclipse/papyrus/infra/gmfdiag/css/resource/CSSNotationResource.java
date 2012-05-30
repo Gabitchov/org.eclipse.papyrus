@@ -41,16 +41,25 @@ public class CSSNotationResource extends GMFResource {
 
 	public ExtendedCSSEngine getEngine() {
 		if(engine == null) {
+			//Create a CSSEngine and listen to modifications on the resourceSet,
+			//to know when this resource is disposed
 			engine = new ModelCSSEngine(this);
 			getResourceSet().eAdapters().add(disposeListener = new ResourceDisposeListener());
 		}
 		return engine;
 	}
 
+	/**
+	 * Dispose the CSS Engine and stops listening on the ResourceSet
+	 * 
+	 * @param notifier
+	 */
 	private void disposeEngine(Object notifier) {
+		//notifier is the owning resourceSet
 		if(engine != null) {
 			engine.dispose();
 			engine = null;
+			//Stop listening on the resourceSet
 			((ResourceSet)notifier).eAdapters().remove(disposeListener);
 		}
 	}
@@ -59,6 +68,8 @@ public class CSSNotationResource extends GMFResource {
 
 		@Override
 		public void notifyChanged(Notification notification) {
+			//If this resource is removed from the resourceSet, dispose the CSSEngine
+			//and stop listening on the resourceSet
 			switch(notification.getEventType()) {
 			case Notification.REMOVE_MANY:
 				for(Object oldValue : (Collection<?>)notification.getOldValue()) {

@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.infra.core.resource.notation;
 
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -39,8 +38,8 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	public void init(ModelSet modelManager) {
 		super.init(modelManager);
 		// Specify the factory to use to create the resource.
-		GMFResourceFactory gmfFactory = new GMFResourceFactory();
-		getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
+		//		GMFResourceFactory gmfFactory = new GMFResourceFactory();
+		//		getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
 
 	}
 

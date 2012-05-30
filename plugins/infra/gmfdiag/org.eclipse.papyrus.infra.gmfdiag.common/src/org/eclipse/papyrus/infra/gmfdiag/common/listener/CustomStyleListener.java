@@ -25,7 +25,11 @@ import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
-
+/**
+ * A Listener for GMF CustomStyle changes
+ * 
+ * @author Camille Letavernier
+ */
 public class CustomStyleListener extends AdapterImpl {
 
 	private final Collection<String> styleNames;
