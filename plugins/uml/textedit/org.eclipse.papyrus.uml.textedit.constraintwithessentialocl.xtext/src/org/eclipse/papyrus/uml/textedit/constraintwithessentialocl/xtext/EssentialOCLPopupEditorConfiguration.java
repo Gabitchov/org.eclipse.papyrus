@@ -25,10 +25,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
@@ -50,12 +50,14 @@ public class EssentialOCLPopupEditorConfiguration extends org.eclipse.xtext.gmf.
 	public class Reconciler implements IXtextEMFReconciler2
 	{
 		public void configureResource(XtextResource resource, EObject umlObject) {
-			if (resource instanceof EvaluationContext) {
+			//if (resource instanceof EvaluationContext) {
+			if(resource instanceof EssentialOCLCSResource){
 				TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 				org.eclipse.ocl.examples.pivot.Element pivotElement = getPivotModel(umlObject);
 				if (pivotElement instanceof org.eclipse.ocl.examples.pivot.NamedElement) {
-					((EvaluationContext)resource).setContext((org.eclipse.ocl.examples.pivot.NamedElement)pivotElement, null);
+				//	((EssentialOCLCSResource)resource).setContext((org.eclipse.ocl.examples.pivot.NamedElement)pivotElement, null);
 				}
+			
 			}
 		}
 
