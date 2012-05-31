@@ -256,7 +256,7 @@
     <!-- EPF -->
     
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/extraplugins/epf-richtext/properties{1}">
+      <rm:uri format="{0}/extraplugins/epf-richtext/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
