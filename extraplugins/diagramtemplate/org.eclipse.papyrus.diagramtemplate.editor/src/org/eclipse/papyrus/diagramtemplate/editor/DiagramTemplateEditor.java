@@ -74,7 +74,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
 import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
 import org.eclipse.papyrus.diagramtemplate.DiagramTemplateFactory;
@@ -95,9 +94,10 @@ import org.eclipse.papyrus.diagramtemplate.editor.provider.WhatContentProvider;
 import org.eclipse.papyrus.diagramtemplate.launcher.DiagramTemplateLauncher;
 import org.eclipse.papyrus.diagramtemplate.provider.DiagramTemplateItemProviderAdapterFactory;
 import org.eclipse.papyrus.diagramtemplate.utils.Messages;
-import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
-import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
-import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
+import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
+import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.FocusAdapter;
@@ -448,7 +448,7 @@ public class DiagramTemplateEditor extends EditorPart {
 	protected void clearTemplate() {
 		TreeIterator<EObject> it = template.eAllContents();
 		while(it.hasNext()) {
-			EObject eObject = (EObject)it.next();
+			EObject eObject = it.next();
 			if(eObject instanceof DiagramDefinition) {
 				((DiagramDefinition)eObject).setFromRoot(null);
 			} else if(eObject instanceof Selection) {
@@ -795,7 +795,7 @@ public class DiagramTemplateEditor extends EditorPart {
 				if(selection instanceof IStructuredSelection) {
 					Iterator it = ((IStructuredSelection)selection).iterator();
 					while(it.hasNext()) {
-						Object object = (Object)it.next();
+						Object object = it.next();
 
 						RemoveCommand command = new RemoveCommand(editingDomain, template, template.eClass().getEStructuralFeature("diagramDefinitions"), object); //$NON-NLS-1$
 						editingDomain.getCommandStack().execute(command);
@@ -1062,14 +1062,14 @@ public class DiagramTemplateEditor extends EditorPart {
 				UMLPackage umlPackage = UMLPackage.eINSTANCE;
 				TreeIterator<EObject> it = umlPackage.eAllContents();
 				while(it.hasNext()) {
-					EObject typeInUML = (EObject)it.next();
+					EObject typeInUML = it.next();
 					if(typeInUML instanceof EClass) {
 						if(targetModelResource != null) {
 							if(!targetModelResource.getContents().isEmpty()) {
 								//If the element is a type available in the model
 								TreeIterator<EObject> itTarget = targetModelResource.getAllContents();
 								while(itTarget.hasNext()) {
-									EObject elementInTargetModel = (EObject)itTarget.next();
+									EObject elementInTargetModel = itTarget.next();
 
 									if(typeInUML == elementInTargetModel.eClass() && !listOfTypes.contains(typeInUML)) {
 										listOfTypes.add(typeInUML);
@@ -1163,7 +1163,7 @@ public class DiagramTemplateEditor extends EditorPart {
 				if(selection != null && selection instanceof ITreeSelection) {
 					Iterator it = ((ITreeSelection)selection).iterator();
 					while(it.hasNext()) {
-						Object object = (Object)it.next();
+						Object object = it.next();
 						//						removeSelection((AbstractSelection)object);
 						if(object instanceof Selection) {
 							RemoveCommand command = new RemoveCommand(editingDomain, ((Selection)object).eContainer(), ((Selection)object).eContainer().eClass().getEStructuralFeature("selection"), object); //$NON-NLS-1$

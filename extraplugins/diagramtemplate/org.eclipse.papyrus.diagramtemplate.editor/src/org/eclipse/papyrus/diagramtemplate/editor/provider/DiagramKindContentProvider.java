@@ -18,9 +18,9 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
 
 /**
  * 
@@ -76,6 +76,6 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 * @return the creation command registry
 	 */
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 	}
 }

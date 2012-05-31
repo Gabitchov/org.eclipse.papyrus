@@ -43,12 +43,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
 import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
 import org.eclipse.papyrus.diagramtemplate.Selection;
@@ -58,9 +52,15 @@ import org.eclipse.papyrus.diagramtemplate.Template;
 import org.eclipse.papyrus.diagramtemplate.editor.provider.DiagramKindContentProvider;
 import org.eclipse.papyrus.diagramtemplate.utils.Messages;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
-import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
+import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryDescriptor;
+import org.eclipse.papyrus.uml.diagram.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -189,7 +189,7 @@ public class DiagramTemplateLauncher {
 		Iterator it = mapCopy.keySet().iterator();
 		boolean found = false;
 		while(it.hasNext() && !found) {
-			Object view = (Object)it.next();
+			Object view = it.next();
 
 			Object value = mapCopy.get(view);
 			if(value instanceof GraphicalEditPart) {
@@ -291,7 +291,7 @@ public class DiagramTemplateLauncher {
 					int i = 0;
 					for(EObject elementToShow : resultsToShow) {
 
-						EditPart actualEditPart = showElementIn(elementToShow, (DiagramEditor)activeEditor, editPartToShowIn, i);
+						EditPart actualEditPart = showElementIn(elementToShow, activeEditor, editPartToShowIn, i);
 						processRecursively(actualEditPart, elementToShow, selectionRef, activeEditor);
 						i++;
 					}
@@ -303,7 +303,7 @@ public class DiagramTemplateLauncher {
 						String elementID = selectionRef.getElement().eResource().getURIFragment(selectionRef.getElement());
 						if(eObjectID.equals(elementID)) {
 							//						if(eObject == selectionRef.getElement()) {
-							EditPart actualEditPart = showElementIn(eObject, (DiagramEditor)activeEditor, editPartToShowIn, 0);
+							EditPart actualEditPart = showElementIn(eObject, activeEditor, editPartToShowIn, 0);
 							processRecursively(actualEditPart, eObject, selectionRef, activeEditor);
 						}
 					}
@@ -362,7 +362,7 @@ public class DiagramTemplateLauncher {
 				processChildren = true;
 			} else {
 				if(commandDrop.canExecute()) {
-					((DiagramEditor)activeEditor).getDiagramEditDomain().getDiagramCommandStack().execute(commandDrop);
+					activeEditor.getDiagramEditDomain().getDiagramCommandStack().execute(commandDrop);
 					returnEditPart = editPart;
 					creationReport.put(elementToShow, CreationReportKind.SUCCESS);
 				} else {
@@ -381,7 +381,7 @@ public class DiagramTemplateLauncher {
 						Command commandDropChild = ((EditPart)child).getCommand(dropObjectsRequest);
 						if(commandDropChild != null) {
 							if(commandDropChild.canExecute()) {
-								((DiagramEditor)activeEditor).getDiagramEditDomain().getDiagramCommandStack().execute(commandDropChild);
+								activeEditor.getDiagramEditDomain().getDiagramCommandStack().execute(commandDropChild);
 								found = true;
 								returnEditPart = (EditPart)child;
 								creationReport.put(elementToShow, CreationReportKind.SUCCESS);
@@ -473,7 +473,7 @@ public class DiagramTemplateLauncher {
 									//Go through all recursively
 									TreeIterator<EObject> it = root.eAllContents();
 									while(it.hasNext()) {
-										EObject eObject = (EObject)it.next();
+										EObject eObject = it.next();
 										content.add(eObject);
 									}
 								} else {
@@ -506,7 +506,7 @@ public class DiagramTemplateLauncher {
 												//Identify the new diagram
 												TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
 												while(it.hasNext()) {
-													EObject diagram = (EObject)it.next();
+													EObject diagram = it.next();
 													if(diagram instanceof Diagram) {
 														if(!diagramsInResource.contains(diagram.eResource().getURIFragment(diagram))) {
 															diagramsCreated.put(diagram.eResource().getURIFragment(diagram), selection);
@@ -533,7 +533,7 @@ public class DiagramTemplateLauncher {
 												//Identify the new diagram
 												TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
 												while(it.hasNext()) {
-													EObject diagram = (EObject)it.next();
+													EObject diagram = it.next();
 													if(diagram instanceof Diagram) {
 														if(!diagramsInResource.contains(diagram.eResource().getURIFragment(diagram))) {
 															diagramsCreated.put(diagram.eResource().getURIFragment(diagram), selection);
@@ -568,7 +568,7 @@ public class DiagramTemplateLauncher {
 								//Identify the new diagram
 								TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
 								while(it.hasNext()) {
-									EObject diagram = (EObject)it.next();
+									EObject diagram = it.next();
 									if(diagram instanceof Diagram) {
 										if(!diagramsInResource.contains(diagram.eResource().getURIFragment(diagram))) {
 											diagramsCreated.put(diagram.eResource().getURIFragment(diagram), selection);
@@ -643,7 +643,7 @@ public class DiagramTemplateLauncher {
 					//Identify already available diagrams
 					TreeIterator<EObject> it = diResourceSet.getNotationResource().getAllContents();
 					while(it.hasNext()) {
-						EObject diagram = (EObject)it.next();
+						EObject diagram = it.next();
 						if(diagram instanceof Diagram) {
 							diagramsInResource.add(diagram.eResource().getURIFragment(diagram));
 						}

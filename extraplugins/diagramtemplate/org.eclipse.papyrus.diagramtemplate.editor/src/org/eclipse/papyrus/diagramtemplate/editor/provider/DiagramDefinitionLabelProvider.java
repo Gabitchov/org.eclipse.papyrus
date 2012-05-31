@@ -15,10 +15,10 @@ package org.eclipse.papyrus.diagramtemplate.editor.provider;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.infra.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -92,7 +92,7 @@ public class DiagramDefinitionLabelProvider implements ILabelProvider {
 	 * @return the creation command registry
 	 */
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 	}
 
 }
