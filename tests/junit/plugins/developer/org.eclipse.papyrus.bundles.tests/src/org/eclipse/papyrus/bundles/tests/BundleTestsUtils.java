@@ -30,6 +30,8 @@ public class BundleTestsUtils {
 	public static final String BUNDLE_IMPORT_PACKAGE = "Import-Package"; //$NON-NLS-1$
 
 	public static final String JAVA_VERSION_5 = "J2SE-1.5"; //$NON-NLS-1$
+	
+	public static final String REQUIRE_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
 	private BundleTestsUtils() {
 		// to prevent instanciation

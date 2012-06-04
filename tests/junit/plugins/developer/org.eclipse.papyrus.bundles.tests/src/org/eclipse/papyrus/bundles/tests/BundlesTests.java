@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.osgi.framework.internal.core.BundleFragment;
+import org.eclipse.osgi.util.NLS;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -65,13 +66,43 @@ public class BundlesTests {
 	}
 
 	/**
-	 * Tests that we don't use import package 
+	 * Tests that we don't use import package
 	 */
 	@Test
-	public void importPackage(){
-		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE,"", true); //$NON-NLS-1$
+	public void importPackage() {
+		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true); //$NON-NLS-1$
 	}
-	
+
+	/**
+	 * This test verify that we doesn't re-export dependencies
+	 */
+	@Test
+	public void reexportDependencies() {
+		String message = null;
+		int nb = 0;
+		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+			final String value = (String)current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
+			String[] bundles = value.split(","); //$NON-NLS-1$
+			String localMessage = null;
+			for(String bundle : bundles) {
+				if(bundle.contains("visibility:=reexport")) { //$NON-NLS-1$
+					nb++;
+					if(localMessage == null) {
+						localMessage = NLS.bind("{0} re-exports:", current.getSymbolicName()); //$NON-NLS-1$
+					}
+					localMessage += NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";"))); //$NON-NLS-1$ //$NON-NLS-2$
+				}
+			}
+			if(localMessage != null) {
+				if(message == null) {
+					message = "";
+				}
+				message += localMessage + "\n"; //$NON-NLS-1$
+			}
+		}
+		Assert.isTrue(message == null, nb + " problems! " + message); //$NON-NLS-1$
+	}
+
 	/**
 	 * Tests if a the value of a property in the Manifest is correct
 	 * 
@@ -79,7 +110,7 @@ public class BundlesTests {
 	 *        the property to test
 	 * @param regex
 	 *        the regular expression to test the property
-	 * @param mustBeNull 
+	 * @param mustBeNull
 	 *        indicates that the value for the property must be <code>null</code>
 	 */
 	private void testManifestProperty(final String property, final String regex, boolean mustBeNull) {
@@ -88,9 +119,9 @@ public class BundlesTests {
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = (String)current.getHeaders().get(property);
 			boolean result = false;
-			if(mustBeNull){
-				result=(value==null);
-			}else if(value != null) {
+			if(mustBeNull) {
+				result = (value == null);
+			} else if(value != null) {
 				result = value.matches(regex);
 			}
 			if(!result) {
@@ -119,7 +150,7 @@ public class BundlesTests {
 			//specific behavior for the fragment!
 			if(url == null && current instanceof BundleFragment) {
 				BundleFragment fragment = (BundleFragment)current;
-				Enumeration<URL> entries = fragment.findEntries("/", filepath, false);
+				Enumeration<URL> entries = fragment.findEntries("/", filepath, false); //$NON-NLS-1$
 				if(entries != null) {
 					if(entries.hasMoreElements()) {
 						url = entries.nextElement();
