@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.ChangeVersionNumberHandler"
+            description="%command.description"
+            id="org.eclipse.papyrus.dev.project.management.command.update.version"
+            name="%command.name">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=edit">
+         <menu
+               icon="icons/papyrus.png"
+               label="%menu.label">
+            <command
+                  commandId="org.eclipse.papyrus.dev.project.management.command.update.version"
+                  label="%command.label"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>
