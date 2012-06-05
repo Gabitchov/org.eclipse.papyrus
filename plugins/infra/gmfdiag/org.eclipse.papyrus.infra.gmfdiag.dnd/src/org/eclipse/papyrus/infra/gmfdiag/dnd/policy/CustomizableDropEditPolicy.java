@@ -48,6 +48,8 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 	protected EditPolicy defaultCreationEditPolicy;
 
+	protected DropStrategy defaultDropStrategy;
+
 	//FIXME: This comes from oep.uml.diagram.common.listener.DropTargetListener
 	//This should be merged to oep.infra.gmfdiag.common, as this is not specific to UML
 	public static final String EVENT_DETAIL = "EVENT_DETAIL";
@@ -66,6 +68,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	public CustomizableDropEditPolicy(EditPolicy defaultDropEditPolicy, EditPolicy defaultCreationEditPolicy) {
 		this.defaultDropEditPolicy = defaultDropEditPolicy;
 		this.defaultCreationEditPolicy = defaultCreationEditPolicy;
+		this.defaultDropStrategy = new DefaultDropStrategy(defaultDropEditPolicy, defaultCreationEditPolicy);
 	}
 
 	@Override
@@ -196,24 +199,16 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	protected Map<DropStrategy, Command> findStrategies(Request request) {
 		Map<DropStrategy, Command> matchingStrategies = new LinkedHashMap<DropStrategy, Command>();
 
-		boolean useDefault = false;
-
 		for(DropStrategy strategy : DropStrategyManager.instance.getActiveStrategies()) {
-			if(strategy instanceof DefaultDropStrategy) {
-				useDefault = true;
-			}
 			Command command = strategy.getCommand(request, getHost());
 			if(command != null && command.canExecute()) {
 				matchingStrategies.put(strategy, command);
 			}
 		}
 
-		if(useDefault) {
-			DropStrategy defaultStrategy = new DefaultDropStrategy(defaultDropEditPolicy, defaultCreationEditPolicy);
-			Command command = defaultStrategy.getCommand(request, getHost());
-			if(command != null && command.canExecute()) {
-				matchingStrategies.put(defaultStrategy, command);
-			}
+		Command command = defaultDropStrategy.getCommand(request, getHost());
+		if(command != null && command.canExecute()) {
+			matchingStrategies.put(defaultDropStrategy, command);
 		}
 
 		return matchingStrategies;
