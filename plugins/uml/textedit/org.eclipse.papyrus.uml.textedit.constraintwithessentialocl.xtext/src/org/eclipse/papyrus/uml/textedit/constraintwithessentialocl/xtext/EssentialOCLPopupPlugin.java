@@ -52,6 +52,7 @@ public class EssentialOCLPopupPlugin extends EssentialOCLActivator
 		plugin = this;
 	}
 	
+	
 	protected Module getRuntimeModule(String grammar) {
 		if (EssentialOCLPlugin.LANGUAGE_ID.equals(grammar)) {
 		  return new EssentialOCLPopupRuntimeModule();

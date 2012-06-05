@@ -22,6 +22,12 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class EssentialOCLPopupUiModule extends EssentialOCLUiModule
 {
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param plugin
+	 */
 	public EssentialOCLPopupUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

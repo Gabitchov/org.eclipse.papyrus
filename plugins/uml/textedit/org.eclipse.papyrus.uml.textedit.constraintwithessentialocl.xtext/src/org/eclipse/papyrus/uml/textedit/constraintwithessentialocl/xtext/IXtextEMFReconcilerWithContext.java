@@ -18,7 +18,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.resource.XtextResource;
 
-public interface IXtextEMFReconciler2 extends IXtextEMFReconciler
+/**
+ * this reconciler has a context in the case of OCL in order to validate its written
+ *
+ */
+public interface IXtextEMFReconcilerWithContext extends IXtextEMFReconciler
 {
+	/**
+	 * 
+	 * @param result the resource that represent the constraint under a from of xtext
+	 * @param semanticElement the semantic object that is the context of the constraint
+	 */
 	void configureResource(XtextResource result, EObject semanticElement);
 }
