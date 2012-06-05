@@ -240,8 +240,7 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 
 				
 				if(updateCommand.canExecute()) {// && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))
-					TransactionalEditingDomain dom = EditorUtils.getTransactionalEditingDomain();
-					dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
+					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
 					return;
 				}
 			}
