@@ -25,7 +25,12 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
-
+/**
+ * An abstract implementation for TransactionalDropStrategies. Extenders do not
+ * need to implement their commands' #undo and #redo methods.
+ * 
+ * @author Camille Letavernier
+ */
 public abstract class TransactionalDropStrategy extends AbstractDropStrategy {
 
 	public final Command getCommand(Request request, EditPart targetEditPart) {

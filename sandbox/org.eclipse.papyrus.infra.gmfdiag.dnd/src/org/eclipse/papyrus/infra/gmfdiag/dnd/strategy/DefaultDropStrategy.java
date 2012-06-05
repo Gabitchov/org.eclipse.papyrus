@@ -17,7 +17,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -33,6 +32,20 @@ public class DefaultDropStrategy implements DropStrategy {
 
 	protected EditPolicy baseCreationEditPolicy;
 
+	/**
+	 * Constructs a generic instance of DefaultDropStrategy.
+	 * This instance can only be used as a descriptor.
+	 */
+	public DefaultDropStrategy() {
+
+	}
+
+	/**
+	 * Constructs an instance of DefaultDropStrategy for a specific edit policy
+	 * 
+	 * @param baseDropEditPolicy
+	 * @param baseCreationEditPolicy
+	 */
 	public DefaultDropStrategy(EditPolicy baseDropEditPolicy, EditPolicy baseCreationEditPolicy) {
 		this.baseDropEditPolicy = baseDropEditPolicy;
 		this.baseCreationEditPolicy = baseCreationEditPolicy;
@@ -43,7 +56,7 @@ public class DefaultDropStrategy implements DropStrategy {
 	}
 
 	public String getID() {
-		return Activator.PLUGIN_ID + ".default";
+		return "default";
 	}
 
 	public String getDescription() {
@@ -78,4 +91,5 @@ public class DefaultDropStrategy implements DropStrategy {
 	public void setOptions(Map<String, Object> options) {
 		//Nothing
 	}
+
 }

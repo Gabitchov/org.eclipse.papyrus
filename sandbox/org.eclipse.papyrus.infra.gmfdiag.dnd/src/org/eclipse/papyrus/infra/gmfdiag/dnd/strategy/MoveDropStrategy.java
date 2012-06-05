@@ -13,7 +13,6 @@ package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -28,22 +27,17 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.swt.graphics.Image;
 
 
-public class MoveDropStrategy extends TransactionalDropStrategy {
+public abstract class MoveDropStrategy extends TransactionalDropStrategy {
 
-	public final static String TARGET_FEATURE = "targetFeature";
+	//	public final static String TARGET_FEATURE = "targetFeature";
 
 	protected EStructuralFeature feature;
 
 	public String getLabel() {
 		return "Move element";
-	}
-
-	public String getID() {
-		return Activator.PLUGIN_ID + ".move";
 	}
 
 	public String getDescription() {
@@ -52,10 +46,6 @@ public class MoveDropStrategy extends TransactionalDropStrategy {
 
 	public Image getImage() {
 		return null;
-	}
-
-	public int getPriority() {
-		return 50;
 	}
 
 	protected EStructuralFeature getTargetFeature(Request request, EditPart targetEditPart) {
@@ -72,14 +62,14 @@ public class MoveDropStrategy extends TransactionalDropStrategy {
 	//	- Target object
 	//	- Target property
 	//	- Target view (Compartment, ...)
-	public void setOptions(Map<String, Object> options) {
-		if(options.containsKey(TARGET_FEATURE)) {
-			Object targetFeature = options.get(TARGET_FEATURE);
-			if(targetFeature instanceof EStructuralFeature) {
-				setTargetFeature((EStructuralFeature)targetFeature);
-			}
-		}
-	}
+	//	public void setOptions(Map<String, Object> options) {
+	//		if(options.containsKey(TARGET_FEATURE)) {
+	//			Object targetFeature = options.get(TARGET_FEATURE);
+	//			if(targetFeature instanceof EStructuralFeature) {
+	//				setTargetFeature((EStructuralFeature)targetFeature);
+	//			}
+	//		}
+	//	}
 
 	@Override
 	public Command doGetCommand(Request request, EditPart targetEditPart) {

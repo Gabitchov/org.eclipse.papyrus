@@ -19,32 +19,15 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.swt.graphics.Image;
 
 
-public class CompositeDropStrategy implements DropStrategy {
+public abstract class CompositeDropStrategy implements DropStrategy {
 
 	protected final List<DropStrategy> strategies = new LinkedList<DropStrategy>();
 
-	public String getLabel() {
-		return "Composite drop";
-	}
-
-	public String getID() {
-		return Activator.PLUGIN_ID + ".composite";
-	}
-
-	public String getDescription() {
-		return null;
-	}
-
 	public Image getImage() {
 		return null;
-	}
-
-	public int getPriority() {
-		return 50;
 	}
 
 	public void setOptions(Map<String, Object> options) {

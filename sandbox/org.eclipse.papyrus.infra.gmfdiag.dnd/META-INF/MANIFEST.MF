@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Customizable Drag and Drop
+Bundle-Name: Customizable Drag and Drop (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.dnd;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.dnd.Activator
@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.service.types;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
- org.eclipse.uml2.uml;bundle-version="4.0.0"
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
+ org.eclipse.core.databinding;bundle-version="1.4.1"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.dnd.strategy

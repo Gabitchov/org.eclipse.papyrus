@@ -14,5 +14,14 @@
          </Priority>
       </editpolicyProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.infra.gmfdiag.dnd.preferences.DNDPreferencesPage"
+            id="org.eclipse.papyrus.infra.gmfdiag.dnd.preferences"
+            name="Drag and drop">
+      </page>
+   </extension>
 
 </plugin>

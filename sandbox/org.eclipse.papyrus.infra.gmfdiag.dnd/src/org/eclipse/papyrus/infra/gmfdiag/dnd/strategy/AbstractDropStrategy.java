@@ -29,7 +29,11 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.swt.dnd.DND;
 
-
+/**
+ * An abstract implementation of a DropStrategy, which provides helper methods
+ * 
+ * @author Camille Letavernier
+ */
 public abstract class AbstractDropStrategy implements DropStrategy {
 
 	/**

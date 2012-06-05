@@ -11,30 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.swt.graphics.Image;
 
 
-public class SetValueDropStrategy extends TransactionalDropStrategy {
+public abstract class SetValueDropStrategy extends TransactionalDropStrategy {
 
 	protected EStructuralFeature feature;
 
-	public void setOptions(Map<String, Object> options) {
-
-	}
-
 	public String getLabel() {
 		return "Set value";
-	}
-
-	public String getID() {
-		return Activator.PLUGIN_ID + ".setValue";
 	}
 
 	public String getDescription() {
@@ -43,10 +32,6 @@ public class SetValueDropStrategy extends TransactionalDropStrategy {
 
 	public Image getImage() {
 		return null;
-	}
-
-	public int getPriority() {
-		return 100;
 	}
 
 	@Override

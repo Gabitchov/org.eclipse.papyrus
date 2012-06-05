@@ -13,12 +13,8 @@ package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -27,10 +23,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultActionHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DefaultDropStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
+import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
@@ -50,10 +48,13 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 	protected EditPolicy defaultCreationEditPolicy;
 
-	protected final TreeMap<Integer, List<DropStrategy>> dropStrategies;
+	//FIXME: This comes from oep.uml.diagram.common.listener.DropTargetListener
+	//This should be merged to oep.infra.gmfdiag.common, as this is not specific to UML
+	public static final String EVENT_DETAIL = "EVENT_DETAIL";
 
 	@Override
 	public void activate() {
+		//Nothing
 	}
 
 	/**
@@ -65,46 +66,18 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	public CustomizableDropEditPolicy(EditPolicy defaultDropEditPolicy, EditPolicy defaultCreationEditPolicy) {
 		this.defaultDropEditPolicy = defaultDropEditPolicy;
 		this.defaultCreationEditPolicy = defaultCreationEditPolicy;
-		dropStrategies = new TreeMap<Integer, List<DropStrategy>>();
-		loadStrategies();
-	}
-
-	protected void loadStrategies() {
-		addStrategy(new DefaultDropStrategy(defaultDropEditPolicy, defaultCreationEditPolicy));
-
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
-
-		for(IConfigurationElement e : config) {
-			try {
-				final DropStrategy strategy = (DropStrategy)e.createExecutableExtension("strategy"); //$NON-NLS-1$
-				getDropStrategies(strategy.getPriority()).add(strategy);
-			} catch (Exception ex) {
-				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$ //$NON-NLS-2$
-			}
-		}
-	}
-
-	protected void addStrategy(DropStrategy strategy) {
-		getDropStrategies(strategy.getPriority()).add(strategy);
-	}
-
-	protected List<DropStrategy> getDropStrategies(int priority) {
-		if(!dropStrategies.containsKey(priority)) {
-			dropStrategies.put(priority, new LinkedList<DropStrategy>());
-		}
-		return dropStrategies.get(priority);
 	}
 
 	@Override
 	public Command getCommand(final Request request) {
-		final Command command;
+		Command command;
 
 		if(super.understandsRequest(request)) {
 			//Drag & Drop request
 			try {
 				command = super.getCommand(request); //Will call this.getDropObjectsCommand() eventually
 			} catch (Exception ex) {
-				return getCustomCommand(request);
+				command = getCustomCommand(request);
 			}
 		} else if(this.understands(request)) {
 			//Add request
@@ -144,8 +117,14 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		return getCustomCommand(request);
 	}
 
+	/**
+	 * Returns the command from a Custom DropStrategy
+	 * 
+	 * @param request
+	 * @return
+	 */
 	protected Command getCustomCommand(Request request) {
-		Map<DropStrategy, Command> matchingStrategies = findStrategies(request);
+		final Map<DropStrategy, Command> matchingStrategies = findStrategies(request);
 
 		//Only one strategy: return the associated command
 		if(matchingStrategies.size() == 1) {
@@ -154,13 +133,56 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 		//More than one strategy
 		if(matchingStrategies.size() > 1) {
-			//Ask user (Open a choice List)
+			boolean useDefault = true;
+
+			//FIXME: What's the exact semantic of EVENT_DETAIL=DND_COPY in Papyrus?
+			//Currently, DND_COPY corresponds to Ctrl + Drag/Drop
+			if(request.getExtendedData().containsKey(EVENT_DETAIL)) {
+				int eventDetailValue = (Integer)request.getExtendedData().get(EVENT_DETAIL);
+				if((eventDetailValue & DND.DROP_COPY) != 0) {
+					useDefault = false;
+				}
+			}
+
+			//Search for a default strategy
+			if(useDefault) {
+				DropStrategy defaultStrategy = DropStrategyManager.instance.getDefaultDropStrategy(matchingStrategies.keySet());
+				if(defaultStrategy != null) {
+					return matchingStrategies.get(defaultStrategy);
+				}
+			}
+
+			//If there is no default choice, ask user (Open a choice List)
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			return new ICommandProxy(new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(matchingStrategies.values())));
-			//return matchingStrategies.values().iterator().next(); //FIXME Any strategy
+
+			DefaultActionHandler handler = new DefaultActionHandler() {
+
+				public void defaultActionSelected(Command defaultCommand) {
+					DropStrategy defaultStrategy = findStrategy(matchingStrategies, defaultCommand);
+					if(defaultStrategy != null) {
+						DropStrategyManager.instance.setDefaultDropStrategy(matchingStrategies.keySet(), defaultStrategy);
+					}
+				}
+
+				public String getLabel() {
+					return "Change the default strategy";
+				}
+			};
+
+			SelectAndExecuteCommand command = new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(matchingStrategies.values()), handler);
+			return new ICommandProxy(command);
 		}
 
 		//No matching strategy
+		return null;
+	}
+
+	private static DropStrategy findStrategy(Map<DropStrategy, Command> matchingStrategies, Command command) {
+		for(Map.Entry<DropStrategy, Command> entry : matchingStrategies.entrySet()) {
+			if(entry.getValue() == command) {
+				return entry.getKey();
+			}
+		}
 		return null;
 	}
 
@@ -174,16 +196,23 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	protected Map<DropStrategy, Command> findStrategies(Request request) {
 		Map<DropStrategy, Command> matchingStrategies = new LinkedHashMap<DropStrategy, Command>();
 
-		for(List<DropStrategy> strategies : dropStrategies.values()) {
-			for(DropStrategy strategy : strategies) {
-				Command command = strategy.getCommand(request, getHost());
-				if(command != null && command.canExecute()) {
-					matchingStrategies.put(strategy, command);
-				}
-			}
+		boolean useDefault = false;
 
-			if(!matchingStrategies.isEmpty()) {
-				break;
+		for(DropStrategy strategy : DropStrategyManager.instance.getActiveStrategies()) {
+			if(strategy instanceof DefaultDropStrategy) {
+				useDefault = true;
+			}
+			Command command = strategy.getCommand(request, getHost());
+			if(command != null && command.canExecute()) {
+				matchingStrategies.put(strategy, command);
+			}
+		}
+
+		if(useDefault) {
+			DropStrategy defaultStrategy = new DefaultDropStrategy(defaultDropEditPolicy, defaultCreationEditPolicy);
+			Command command = defaultStrategy.getCommand(request, getHost());
+			if(command != null && command.canExecute()) {
+				matchingStrategies.put(defaultStrategy, command);
 			}
 		}
 
