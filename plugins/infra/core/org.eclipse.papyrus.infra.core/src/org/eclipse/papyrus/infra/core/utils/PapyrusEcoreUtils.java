@@ -14,14 +14,13 @@
 package org.eclipse.papyrus.infra.core.utils;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 
 public class PapyrusEcoreUtils {
 
@@ -34,26 +33,7 @@ public class PapyrusEcoreUtils {
 	 * @return the usages or null if there is no usages
 	 */
 	public static Collection<Setting> getUsages(EObject source) {
-		if(source == null) {
-			return Collections.emptyList();
-		}
-
-		ECrossReferenceAdapter crossReferencer = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
-		if (crossReferencer == null) {
-			// try to register a cross referencer at the highest level
-			crossReferencer = new ECrossReferenceAdapter();
-			if (source.eResource() != null) {
-				if (source.eResource().getResourceSet() != null) {
-					crossReferencer.setTarget(source.eResource().getResourceSet());
-				} else {
-					crossReferencer.setTarget(source.eResource());
-				}
-			} else {
-				crossReferencer.setTarget(source);
-			}
-		}
-
-		return crossReferencer.getInverseReferences(source, true);
+		return DestroyElementPapyrusCommand.getUsages(source);
 	}
 
 	/**
