@@ -35,9 +35,9 @@ public class AllTests {
 		suiteClasses = new ArrayList<ITestSuiteClass>();
 
 		/* **************** plugins *********************** */
-		/* developper*/
+		/* developper */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
-		
+
 		/* core */
 		// {oep}.core
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.core.tests.AllTests"));
@@ -49,7 +49,7 @@ public class AllTests {
 		/* infra */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.edit.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.services.edit.tests.suites.AllTests"));
 
-		/*views*/
+		/* views */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.modelexplorer.tests.AllTests.class));
 		/* uml */
 		// {oep}.diagram.common.tests
@@ -59,8 +59,9 @@ public class AllTests {
 		// {oep}.diagram.clazz.tests
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.usecase.tests.AllTests.class));
-		
+
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.modelexplorer.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.dnd.tests.tests.AllTests.class));
 		//		,
 		//		// {oep}.sysml.tests
 		//		new PluginTestSuiteClass(SysmlAllTests.class)

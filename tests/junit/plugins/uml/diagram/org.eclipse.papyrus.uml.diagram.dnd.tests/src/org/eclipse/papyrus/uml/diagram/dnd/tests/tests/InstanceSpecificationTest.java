@@ -55,7 +55,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
+/**
+ * A Class to test the drop of a Classifier (or a list of Classifiers)
+ * on an InstanceSpecification
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class InstanceSpecificationTest {
 
 	private Diagram diagram;
