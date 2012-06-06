@@ -143,13 +143,11 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 
 	@Override
 	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

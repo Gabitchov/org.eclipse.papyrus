@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Drag and Drop Tests (Incubation)
+Bundle-Name: UML Drag and Drop (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.dnd;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.dnd.Activator
