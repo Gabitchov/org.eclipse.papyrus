@@ -152,7 +152,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		controlsSection.setLayout(new FillLayout());
 		controlsSection.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 
-		tree = new Tree(this, style | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+		tree = new Tree(this, style | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
 		GridData treeData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		treeData.horizontalSpan = 2;
 		treeData.minimumHeight = 80;
