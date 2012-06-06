@@ -153,7 +153,7 @@ public class DropStrategyManager {
 		}
 	}
 
-	private DropStrategy findStrategy(String id) {
+	public DropStrategy findStrategy(String id) {
 		for(DropStrategy strategy : getAllStrategies()) {
 			if(strategy.getID().equals(id)) {
 				return strategy;
