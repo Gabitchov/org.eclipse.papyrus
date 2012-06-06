@@ -16,7 +16,6 @@ import java.util.LinkedHashSet;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 
@@ -103,11 +102,13 @@ public class ClassifierPropertiesContentProvider implements ITreeContentProvider
 			return;
 		}
 
-		if(classifier instanceof BehavioredClassifier) {
-			for(Classifier general : ((BehavioredClassifier)classifier).getImplementedInterfaces()) {
-				getAllGenerals(general, result);
-			}
-		}
+		//		Don't take the implemented interfaces into account. The semantic here is not clear enough.
+		//
+		//		if(classifier instanceof BehavioredClassifier) {
+		//			for(Classifier general : ((BehavioredClassifier)classifier).getImplementedInterfaces()) {
+		//				getAllGenerals(general, result);
+		//			}
+		//		}
 
 		for(Classifier general : classifier.getGenerals()) {
 			getAllGenerals(general, result);

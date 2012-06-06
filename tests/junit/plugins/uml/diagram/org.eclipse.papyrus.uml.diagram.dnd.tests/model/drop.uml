@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_DfkAQK8SEeGy9aF7W4MfLQ" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_GuOUoK8SEeGy9aF7W4MfLQ" name="Class1">
+    <generalization xmi:id="_h7_GcK8SEeGy9aF7W4MfLQ" general="_hBWDIK8SEeGy9aF7W4MfLQ"/>
+    <ownedAttribute xmi:id="_TuxZ0K8SEeGy9aF7W4MfLQ" name="Property1"/>
+    <ownedAttribute xmi:id="_UAe04K8SEeGy9aF7W4MfLQ" name="Property2"/>
+    <ownedAttribute xmi:id="_UGv08K8SEeGy9aF7W4MfLQ" name="Property3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_KuJG0K8SEeGy9aF7W4MfLQ" name="Interface1">
+    <ownedAttribute xmi:id="_UPEqgK8SEeGy9aF7W4MfLQ" name="Property1"/>
+    <ownedAttribute xmi:id="_UVe0gK8SEeGy9aF7W4MfLQ" name="Property2"/>
+    <ownedAttribute xmi:id="_Ud0RIK8SEeGy9aF7W4MfLQ" name="Property3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_WKfOUK8SEeGy9aF7W4MfLQ" name="InstanceSpecification1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_hBWDIK8SEeGy9aF7W4MfLQ" name="Class2">
+    <ownedAttribute xmi:id="_irAvoK8SEeGy9aF7W4MfLQ" name="Property1"/>
+    <ownedAttribute xmi:id="_iy6HYK8SEeGy9aF7W4MfLQ" name="Property2"/>
+  </packagedElement>
+</uml:Model>

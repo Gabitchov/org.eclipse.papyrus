@@ -115,6 +115,11 @@ public class ClassifierToSlotsDropStrategy extends TransactionalDropStrategy {
 	protected ICommand getEditSlotsCommand(List<Classifier> classifiers, EditPart targetEditPart) {
 		for(Classifier classifier : classifiers) {
 			if(!classifier.getAllAttributes().isEmpty()) {
+				//FIXME: This is inconsistent with ClassifierPropertiesContentProvider, 
+				//which doesn't only relies on getAllAttributes()...
+				//When a Class (without any property) implements an Interface (With at least one property),
+				//this will return a null command, while the dialog would have displayed the interface's properties
+
 				//There is at least one property
 				return new SelectAndCreateSlotsCommand(classifiers, targetEditPart);
 			}
