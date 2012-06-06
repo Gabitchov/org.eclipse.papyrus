@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Theme
+Bundle-Name: Papyrus Theme (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.theme;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: Eclipse Modeling Project
