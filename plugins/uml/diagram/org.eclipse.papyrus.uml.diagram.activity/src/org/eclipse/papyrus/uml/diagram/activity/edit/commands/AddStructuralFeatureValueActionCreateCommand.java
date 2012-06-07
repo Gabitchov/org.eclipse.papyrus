@@ -84,7 +84,7 @@ public class AddStructuralFeatureValueActionCreateCommand extends EditElementCom
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		AddStructuralFeatureValueAction newElement = UMLFactory.eINSTANCE.createAddStructuralFeatureValueAction();
 		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_AddStructuralFeatureValueAction_3091(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

@@ -86,7 +86,7 @@ public class CreateCommandUtil {
 		EObject owner = elementToEdit;
 		// create in appropriate model container
 		if(owner instanceof Activity) {
-			((Activity)owner).getNodes().add(newElement);
+			((Activity)owner).getOwnedNodes().add(newElement);
 		} else if(owner instanceof StructuredActivityNode) {
 			((StructuredActivityNode)owner).getNodes().add(newElement);
 		} else {
@@ -124,7 +124,7 @@ public class CreateCommandUtil {
 		EObject owner = elementToEdit;
 		// create in appropriate model container
 		if(owner instanceof Activity) {
-			((Activity)owner).getGroups().add(newElement);
+			((Activity)owner).getOwnedGroups().add(newElement);
 		} else if(owner instanceof StructuredActivityNode) {
 			((StructuredActivityNode)owner).getNodes().add(newElement);
 		} else {
@@ -162,7 +162,7 @@ public class CreateCommandUtil {
 		EObject owner = elementToEdit;
 		// create in appropriate model container
 		if(owner instanceof Activity) {
-			((Activity)owner).getGroups().add(newElement);
+			((Activity)owner).getOwnedGroups().add(newElement);
 		} else if(owner instanceof ActivityPartition) {
 			((ActivityPartition)owner).getSubpartitions().add(newElement);
 		} else {

@@ -84,7 +84,7 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		AddVariableValueAction newElement = UMLFactory.eINSTANCE.createAddVariableValueAction();
 		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_AddVariableValueAction_3099(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

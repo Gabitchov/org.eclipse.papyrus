@@ -84,7 +84,7 @@ public class ReadVariableActionCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadVariableAction newElement = UMLFactory.eINSTANCE.createReadVariableAction();
 		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_ReadVariableAction_3097(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

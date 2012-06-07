@@ -176,7 +176,7 @@ public class UMLDiagramUpdater {
 		}
 		Activity modelElement = (Activity)view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+		for(Iterator<?> it = modelElement.getOwnedNodes().iterator(); it.hasNext();) {
 			ActivityNode childElement = (ActivityNode)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == ActivityParameterNodeEditPart.VISUAL_ID) {
@@ -486,7 +486,7 @@ public class UMLDiagramUpdater {
 		}
 		Activity modelElement = (Activity)view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+		for(Iterator<?> it = modelElement.getOwnedNodes().iterator(); it.hasNext();) {
 			ActivityNode childElement = (ActivityNode)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == ActivityParameterNodeEditPart.VISUAL_ID) {

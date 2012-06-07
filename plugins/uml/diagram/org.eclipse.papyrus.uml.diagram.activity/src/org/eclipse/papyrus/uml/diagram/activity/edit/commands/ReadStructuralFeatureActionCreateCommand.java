@@ -84,7 +84,7 @@ public class ReadStructuralFeatureActionCreateCommand extends EditElementCommand
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadStructuralFeatureAction newElement = UMLFactory.eINSTANCE.createReadStructuralFeatureAction();
 		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_ReadStructuralFeatureAction_3088(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

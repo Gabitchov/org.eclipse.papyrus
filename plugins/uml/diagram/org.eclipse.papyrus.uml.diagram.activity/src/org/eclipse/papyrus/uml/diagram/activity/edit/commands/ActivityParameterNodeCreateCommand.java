@@ -114,7 +114,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 			return CommandResult.newCancelledCommandResult();
 		}
 		newElement.setIsControlType(true);
-		owner.getNodes().add(newElement);
+		owner.getOwnedNodes().add(newElement);
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet 
 			ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);

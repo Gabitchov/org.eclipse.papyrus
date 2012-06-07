@@ -84,7 +84,7 @@ public class ReadSelfActionCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadSelfAction newElement = UMLFactory.eINSTANCE.createReadSelfAction();
 		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		owner.getOwnedNodes().add(newElement);
 		ElementInitializers.getInstance().init_ReadSelfAction_3081(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

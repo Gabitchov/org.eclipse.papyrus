@@ -107,10 +107,10 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_OwnedNode());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_OwnedGroup());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior());
 		}

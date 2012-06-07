@@ -96,7 +96,7 @@ public class InterruptibleActivityRegionCreateCommand extends EditElementCommand
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InterruptibleActivityRegion newElement = UMLFactory.eINSTANCE.createInterruptibleActivityRegion();
 		Activity owner = (Activity)getElementToEdit();
-		owner.getGroups().add(newElement);
+		owner.getOwnedGroups().add(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

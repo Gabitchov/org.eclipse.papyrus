@@ -60,7 +60,7 @@ public class ActivityCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getActivity_Node();
+		return UMLPackage.eINSTANCE.getActivity_OwnedNode();
 	}
 
 	/**
