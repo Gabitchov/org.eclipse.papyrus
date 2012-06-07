@@ -43,7 +43,5 @@ public class ExceptionHandlerPreferencePage extends AbstractPapyrusLinkPreferenc
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 	}
-
 }

@@ -31,9 +31,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 /**
  * @generated
  */
-public class ControlFlowEditPart extends UMLConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -105,7 +103,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new ActivityEdgeDescriptor();
 	}
@@ -151,12 +148,9 @@ implements ITreeBranchEditPart {
 		 */
 		protected void createContents() {
 			super.createContents();
-
 			//fAppliedStereotypeLabel = new WrappingLabel();
 			//fAppliedStereotypeLabel.setText("");
-
 			//this.add(fAppliedStereotypeLabel);
-
 		}
 
 		/**
@@ -194,7 +188,5 @@ implements ITreeBranchEditPart {
 		public WrappingLabel getAppliedStereotypeLabel() {
 			return super.getAppliedStereotypeLabel();
 		}
-
 	}
-
 }

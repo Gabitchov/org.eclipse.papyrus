@@ -246,7 +246,6 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
-
 			LinkedList<View> possibleMatches = potentialViews.get(next);
 			if(possibleMatches != null) {
 				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
@@ -270,7 +269,6 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 				}
 			}
 		}
-
 		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
@@ -293,7 +291,6 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
-
 		makeViewsImmutable(createdViews);
 	}
 
@@ -312,5 +309,4 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		}
 		return myFeaturesToSynchronize;
 	}
-
 }

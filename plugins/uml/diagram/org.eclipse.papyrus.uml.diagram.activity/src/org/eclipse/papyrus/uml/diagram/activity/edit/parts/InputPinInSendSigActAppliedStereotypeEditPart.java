@@ -62,20 +62,20 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -86,9 +86,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class InputPinInSendSigActAppliedStereotypeEditPart
-
-extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
+public class InputPinInSendSigActAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -120,7 +118,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -261,7 +258,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 		if(parserElement == null) {
 			return null;
 		}
-
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
 			if(NameLabelIconHelper.showLabelIcon(view)) {
@@ -269,7 +265,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 			}
 		}
 		return null;
-
 	}
 
 	/**
@@ -341,7 +336,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -423,9 +417,7 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -452,7 +444,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -460,7 +451,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -468,7 +458,6 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -775,5 +764,4 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	public IFigure getPrimaryShape() {
 		return getFigure();
 	}
-
 }

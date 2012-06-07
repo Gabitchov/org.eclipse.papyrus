@@ -177,5 +177,4 @@ public class SequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEdi
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

@@ -18,19 +18,17 @@ import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExceptionHandlerItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ExceptionHandlerEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -94,7 +92,6 @@ implements ITreeBranchEditPart {
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new ExceptionHandlerDescriptor();
 	}
@@ -115,7 +112,6 @@ implements ITreeBranchEditPart {
 		 * @generated
 		 */
 		public ExceptionHandlerDescriptor() {
-
 			setTargetDecoration(createTargetDecoration());
 		}
 
@@ -132,7 +128,5 @@ implements ITreeBranchEditPart {
 			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 			return df;
 		}
-
 	}
-
 }

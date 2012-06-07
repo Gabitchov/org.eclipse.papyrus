@@ -75,7 +75,6 @@ public class ExpansionNodeAsInCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,27 +89,20 @@ public class ExpansionNodeAsInCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ExpansionNode newElement = UMLFactory.eINSTANCE.createExpansionNode();
-
 		StructuredActivityNode owner = (StructuredActivityNode)getElementToEdit();
 		owner.getNodes().add(newElement);
 		ExpansionRegion childHolder = (ExpansionRegion)getElementToEdit();
 		childHolder.getInputElements().add(newElement);
-
 		ElementInitializers.getInstance().init_ExpansionNode_3074(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -128,5 +120,4 @@ public class ExpansionNodeAsInCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

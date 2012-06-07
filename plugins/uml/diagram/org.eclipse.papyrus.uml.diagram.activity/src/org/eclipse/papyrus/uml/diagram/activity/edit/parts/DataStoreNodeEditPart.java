@@ -66,9 +66,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DataStoreNodeEditPart extends
-
-NamedElementEditPart {
+public class DataStoreNodeEditPart extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -125,7 +123,6 @@ NamedElementEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -180,7 +177,6 @@ NamedElementEditPart {
 			((DataStoreNodeLabelEditPart)childEditPart).setLabel(getPrimaryShape().getObjectNodeLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -247,7 +243,6 @@ NamedElementEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1162,7 +1157,6 @@ NamedElementEditPart {
 			getNameLabel().setAlignment(WrappingLabel.CENTER);
 			getNameLabel().setTextWrap(true);
 			getNameLabel().setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			//			fObjectNodeLabel = new WrappingLabel();
 			//
 			//
@@ -1180,7 +1174,6 @@ NamedElementEditPart {
 			return getNameLabel();
 			//return fObjectNodeLabel;
 		}
-
 	}
 
 	/**
@@ -1190,7 +1183,6 @@ NamedElementEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1210,7 +1202,6 @@ NamedElementEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

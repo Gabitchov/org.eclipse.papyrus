@@ -23,6 +23,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -35,6 +36,8 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionInputPinInSendObjActAsReqCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionInputPinInSendObjActAsTargetCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
@@ -84,22 +87,56 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.ValuePin_3046 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.ValuePin_3046 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ValuePinInSendObjActAsReqCreateCommand(req));
 		}
-		if(UMLElementTypes.ActionInputPin_3047 == req.getElementType()) {
+		if(UMLElementTypes.ActionInputPin_3047 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActionInputPinInSendObjActAsReqCreateCommand(req));
 		}
-		if(UMLElementTypes.InputPin_3048 == req.getElementType()) {
+		if(UMLElementTypes.InputPin_3048 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InputPinInSendObjActAsReqCreateCommand(req));
 		}
-		if(UMLElementTypes.ValuePin_3049 == req.getElementType()) {
+		if(UMLElementTypes.ValuePin_3049 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ValuePinInSendObjActAsTargetCreateCommand(req));
 		}
-		if(UMLElementTypes.ActionInputPin_3050 == req.getElementType()) {
+		if(UMLElementTypes.ActionInputPin_3050 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActionInputPinInSendObjActAsTargetCreateCommand(req));
 		}
-		if(UMLElementTypes.InputPin_3051 == req.getElementType()) {
+		if(UMLElementTypes.InputPin_3051 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new InputPinInSendObjActAsTargetCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -112,7 +149,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
@@ -138,7 +174,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -156,7 +191,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -173,7 +207,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -191,7 +224,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -208,7 +240,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -226,7 +257,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -243,7 +273,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -261,7 +290,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -278,7 +306,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -296,7 +323,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -313,7 +339,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -331,7 +356,6 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 						break;
 					}
 				}
-
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
@@ -363,22 +387,53 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.ActionLocalPrecondition_4001 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return null;
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.ActionLocalPrecondition_4001 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActionLocalPreconditionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ActionLocalPostcondition_4002 == req.getElementType()) {
+		if(UMLElementTypes.ActionLocalPostcondition_4002 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ActionLocalPostconditionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ObjectFlow_4003 == req.getElementType()) {
+		if(UMLElementTypes.ObjectFlow_4003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ObjectFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ControlFlow_4004 == req.getElementType()) {
+		if(UMLElementTypes.ControlFlow_4004 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
+		if(UMLElementTypes.ExceptionHandler_4005 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == baseElementType) {
 			return null;
 		}
 		return null;
@@ -388,22 +443,47 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.ActionLocalPrecondition_4001 == req.getElementType()) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
 			return null;
 		}
-		if(UMLElementTypes.ActionLocalPostcondition_4002 == req.getElementType()) {
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.ActionLocalPrecondition_4001 == baseElementType) {
 			return null;
 		}
-		if(UMLElementTypes.ObjectFlow_4003 == req.getElementType()) {
+		if(UMLElementTypes.ActionLocalPostcondition_4002 == baseElementType) {
+			return null;
+		}
+		if(UMLElementTypes.ObjectFlow_4003 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ObjectFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ControlFlow_4004 == req.getElementType()) {
+		if(UMLElementTypes.ControlFlow_4004 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
+		if(UMLElementTypes.ExceptionHandler_4005 == baseElementType) {
 			return null;
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
 			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -444,5 +524,4 @@ public class SendObjectActionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
 }

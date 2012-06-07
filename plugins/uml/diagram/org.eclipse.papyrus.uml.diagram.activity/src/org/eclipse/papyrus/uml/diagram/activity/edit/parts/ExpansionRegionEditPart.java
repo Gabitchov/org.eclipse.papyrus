@@ -39,7 +39,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
@@ -55,6 +54,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvanced;
@@ -68,10 +68,10 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.RoundedRectangleDashedBorder;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.groups.preferences.OpacityFactoryHelper;
@@ -84,9 +84,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated NOT Implements IPapyrusEditPart
  */
-public class ExpansionRegionEditPart extends
-
-AbstractBorderedShapeEditPart implements IPapyrusEditPart {
+public class ExpansionRegionEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -114,14 +112,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExpansionRegionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
@@ -141,9 +137,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case ExpansionNodeAsInEditPart.VISUAL_ID:
 				case ExpansionNodeAsOutEditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -185,28 +179,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			((ExpansionRegionKeywordEditPart)childEditPart).setLabel(getPrimaryShape().getKeyword());
 			return true;
 		}
-
 		if(childEditPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ExpansionRegionStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsInEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsInEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		//Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if(childEditPart instanceof ExpansionNodeAsOutEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsOutEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -276,7 +266,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1429,29 +1418,19 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 * @generated NOT Instanciate stereotypeHelper
 		 */
 		public StructuredActivityNodeDescriptor() {
-
 			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
-
 			layoutThis.setStretchMinorAxis(true);
-
 			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
-
 			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-
 			layoutThis.setMajorSpacing(0);
-
 			layoutThis.setMinorSpacing(0);
-
 			layoutThis.setHorizontal(false);
-
 			this.setLayoutManager(layoutThis);
-
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			this.setLineWidth(0);
 			this.setOutline(false);
 			this.setBorder(createBorder0());
 			OpacityFactoryHelper.initOpacityPreferences(IActivityPreferenceConstants.PREF_EXPANSION_REGION_ALPHA, store, this);
-
 			createContents();
 			/*
 			 * Create the helper which will help to display stereotype
@@ -1495,51 +1474,32 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fFigureCompartmentLabelStructuredActivityNode = new RoundedRectangle();
 			fFigureCompartmentLabelStructuredActivityNode.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			fFigureCompartmentLabelStructuredActivityNode.setFill(false);
 			fFigureCompartmentLabelStructuredActivityNode.setOutline(false);
 			fFigureCompartmentLabelStructuredActivityNode.setLineWidth(0);
-
 			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelStructuredActivityNode = new FlowLayoutAdvancedConstraint();
-
 			constraintFFigureCompartmentLabelStructuredActivityNode.setHasMinsize(true);
-
 			this.add(fFigureCompartmentLabelStructuredActivityNode, constraintFFigureCompartmentLabelStructuredActivityNode);
-
 			GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
-
 			fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
-
 			fKeyword = new WrappingLabel();
-
 			fKeyword.setTextJustification(SWT.LEFT);
-
 			fKeyword.setTextAlignment(PositionConstants.LEFT);
-
 			fKeyword.setTextWrap(true);
-
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			GravityConstrainedFlowLayoutConstraint constraintFKeyword = new GravityConstrainedFlowLayoutConstraint();
-
 			constraintFKeyword.setAlign(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
-
 			fFigureCompartmentLabelStructuredActivityNode.add(fKeyword, constraintFKeyword);
-
 			fStructuredActivityNodeCompartment = new RoundedRectangle();
 			fStructuredActivityNodeCompartment.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
 			fStructuredActivityNodeCompartment.setLineWidth(0);
-
 			FlowLayoutAdvancedConstraint constraintFStructuredActivityNodeCompartment = new FlowLayoutAdvancedConstraint();
-
 			constraintFStructuredActivityNodeCompartment.setFull(true);
-
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
-
 		}
 
 		/**
@@ -1606,10 +1566,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 */
 		@Deprecated
 		public Label getStereotypesLabel() {
-
 			return null;
 		}
-
 	}
 
 	/**
@@ -1619,7 +1577,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1639,7 +1596,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

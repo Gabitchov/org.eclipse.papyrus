@@ -39,5 +39,4 @@ public class LoadResourceAction extends AbstractHandler {
 		loadResourceDialog.open();
 		return null;
 	}
-
 }

@@ -51,6 +51,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvanced;
@@ -62,7 +63,6 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
@@ -76,9 +76,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated NOT (Implement IPapyrusEditPart Used to apply stereotypes)
  */
-public class ActivityPartitionEditPart extends
-
-ShapeNodeEditPart implements IPapyrusEditPart {
+public class ActivityPartitionEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -168,14 +166,12 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			((ActivityPartitionNameEditPart)childEditPart).setLabel(getPrimaryShape().getPartitionLabel());
 			return true;
 		}
-
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ActivityPartitionActivityPartitionContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -234,7 +230,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -363,21 +358,13 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @generated NOT Instanciate stereotypeHelper
 		 */
 		public ActivityPartitionDescriptor() {
-
 			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
-
 			layoutThis.setStretchMinorAxis(true);
-
 			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
-
 			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-
 			layoutThis.setMajorSpacing(0);
-
 			layoutThis.setMinorSpacing(0);
-
 			layoutThis.setHorizontal(false);
-
 			this.setLayoutManager(layoutThis);
 			//Look for the default preference
 			this.setAlpha(new Integer(store.getInt(IActivityPreferenceConstants.PREF_ACTIVITY_PARTITION_ALPHA)));
@@ -425,7 +412,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 					setRightInset(0);
 					setStereotypeContainerFilled(true);
 				}
-
 			};
 		}
 
@@ -439,13 +425,11 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 			float lineInset = Math.max(1.0f, getLineWidthFloat()) / 2.0f;
 			int inset1 = (int)Math.floor(lineInset);
 			int inset2 = (int)Math.ceil(lineInset);
-
 			Rectangle r = Rectangle.SINGLETON.setBounds(getBounds());
 			r.x += inset1;
 			r.y += inset1;
 			r.width -= inset1 + inset2;
 			r.height -= inset1 + inset2;
-
 			graphics.drawRectangle(r);
 			// draw lines instead of the complete rectangle
 			PointList points = new PointList(4);
@@ -460,44 +444,30 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @generated
 		 */
 		private void createContents() {
-
 			fFigureCompartmentLabelActivityPartition = new RectangleFigure();
 			fFigureCompartmentLabelActivityPartition.setOutline(false);
 			fFigureCompartmentLabelActivityPartition.setLineWidth(0);
 			fFigureCompartmentLabelActivityPartition.setBorder(createBorder1());
-
 			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelActivityPartition = new FlowLayoutAdvancedConstraint();
-
 			constraintFFigureCompartmentLabelActivityPartition.setHasMinsize(true);
-
 			this.add(fFigureCompartmentLabelActivityPartition, constraintFFigureCompartmentLabelActivityPartition);
-
 			FlowLayout layoutFFigureCompartmentLabelActivityPartition = new FlowLayout();
 			layoutFFigureCompartmentLabelActivityPartition.setStretchMinorAxis(true);
 			layoutFFigureCompartmentLabelActivityPartition.setMinorAlignment(FlowLayout.ALIGN_CENTER);
-
 			layoutFFigureCompartmentLabelActivityPartition.setMajorAlignment(FlowLayout.ALIGN_CENTER);
 			layoutFFigureCompartmentLabelActivityPartition.setMajorSpacing(0);
 			layoutFFigureCompartmentLabelActivityPartition.setMinorSpacing(0);
 			layoutFFigureCompartmentLabelActivityPartition.setHorizontal(true);
-
 			fFigureCompartmentLabelActivityPartition.setLayoutManager(layoutFFigureCompartmentLabelActivityPartition);
-
 			fPartitionLabel = new CenteredWrappedLabel();
-
 			fFigureCompartmentLabelActivityPartition.add(fPartitionLabel);
-
 			fActivityPartitionCompartment = new RectangleFigure();
 			fActivityPartitionCompartment.setFill(false);
 			fActivityPartitionCompartment.setOutline(false);
 			fActivityPartitionCompartment.setLineWidth(0);
-
 			FlowLayoutAdvancedConstraint constraintFActivityPartitionCompartment = new FlowLayoutAdvancedConstraint();
-
 			constraintFActivityPartitionCompartment.setFill(true);
-
 			this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);
-
 		}
 
 		/**
@@ -505,9 +475,7 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		private Border createBorder0() {
 			LinesBorder result = new LinesBorder();
-
 			result.setSides(PositionConstants.TOP | PositionConstants.LEFT | PositionConstants.RIGHT);
-
 			return result;
 		}
 
@@ -516,17 +484,11 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		private Border createBorder1() {
 			LinesBorder result = new LinesBorder();
-
 			result.setSides(PositionConstants.BOTTOM);
-
 			result.setLeftInset(5);
-
 			result.setRightInset(5);
-
 			result.setTopInset(5);
-
 			result.setBottomInset(5);
-
 			return result;
 		}
 
@@ -560,10 +522,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @param image
 		 */
 		public void setStereotypeDisplay(String stereotypes, Image image) {
-
 			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
 			this.layout();
-
 		}
 
 		/**
@@ -575,7 +535,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
 			this.layout();
-
 		}
 
 		/**
@@ -585,10 +544,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 * @param stereotypeProperties
 		 */
 		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-
 			stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
 			this.layout();
-
 		}
 
 		/**
@@ -599,10 +556,8 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 		 */
 		@Deprecated
 		public Label getStereotypesLabel() {
-
 			return null;
 		}
-
 	}
 
 	/**
@@ -612,7 +567,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -632,7 +586,6 @@ ShapeNodeEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

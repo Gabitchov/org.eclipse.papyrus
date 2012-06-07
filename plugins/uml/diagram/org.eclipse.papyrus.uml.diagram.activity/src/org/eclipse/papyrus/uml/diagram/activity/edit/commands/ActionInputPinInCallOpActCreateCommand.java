@@ -74,7 +74,6 @@ public class ActionInputPinInCallOpActCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,25 +88,18 @@ public class ActionInputPinInCallOpActCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated NOT do not set new element which may change after validation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ActionInputPin newElement = UMLFactory.eINSTANCE.createActionInputPin();
-
 		InvocationAction owner = (InvocationAction)getElementToEdit();
 		owner.getArguments().add(newElement);
-
 		ElementInitializers.getInstance().init_ActionInputPin_3021(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		// do not set new element which may change after validation
 		//((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult();//newElement);
@@ -126,5 +118,4 @@ public class ActionInputPinInCallOpActCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

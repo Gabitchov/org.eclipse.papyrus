@@ -67,6 +67,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel;
@@ -76,7 +77,6 @@ import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.swt.SWT;
@@ -91,11 +91,7 @@ import org.eclipse.uml2.uml.ObjectNode;
 /**
  * @generated
  */
-public class DataStoreSelectionEditPart
-
-extends LabelEditPart
-
-implements ITextAwareEditPart, IBorderItemEditPart {
+public class DataStoreSelectionEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -135,7 +131,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -360,7 +355,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -455,9 +449,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		if(!selectionSet) {
 			return;
 		}
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -484,7 +476,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -492,7 +483,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -500,7 +490,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -679,7 +668,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -837,7 +825,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
@@ -846,15 +833,11 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 * @generated NOT do not add link in this figure
 		 */
 		private void createContents() {
-
 			fCornerBentContent = new WrappedLabel();
-
 			this.add(fCornerBentContent);
-
 			fLinkToBehaviorProperty = new PolylineShape();
 			fLinkToBehaviorProperty.setLineWidth(1);
 			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
-
 			// do not add link in this figure but refresh it when figure moves
 			addFigureListener(new FigureListener() {
 
@@ -862,7 +845,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 					refreshLinkToBehaviorProperty();
 				}
 			});
-
 		}
 
 		/**
@@ -885,16 +867,13 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 				// add in appropriate figure
 				getParent().add(getLinkToBehaviorProperty());
 			}
-
 			if(getParent() != null && getParent().getParent() instanceof BorderedNodeFigure) {
 				BorderedNodeFigure gParent = (BorderedNodeFigure)getParent().getParent();
 				Rectangle parentBounds = gParent.getHandleBounds().getCopy();
 				Point parentCenter = parentBounds.getCenter();
 				IFigure rect = gParent.getMainFigure();
-
 				Rectangle currentBounds = ((LinkedBehaviorLocator)getBorderItemLocator()).getCorrectItemLocation(this);
 				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
-
 				PointList polygonalBounds = new PointList(4);
 				polygonalBounds.addPoint(rect.getBounds().getTopLeft());
 				polygonalBounds.addPoint(rect.getBounds().getTopRight());
@@ -926,12 +905,10 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;
 		}
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Color THIS_BACK = new Color(null, 248, 249, 214);
-
 }

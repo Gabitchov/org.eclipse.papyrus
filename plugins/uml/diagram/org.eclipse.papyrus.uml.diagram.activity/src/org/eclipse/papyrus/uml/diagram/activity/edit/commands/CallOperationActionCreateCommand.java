@@ -84,7 +84,6 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -107,7 +106,6 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 	 * @generated NOT use the initialization popup, set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// get the activity containing the new element
 		Activity parentActivity = null;
 		EObject parent = getElementToEdit();
@@ -117,7 +115,6 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 			}
 			parent = parent.eContainer();
 		}
-
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
 		if(isOperationAlreadyManaged()) {
 			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity);
@@ -134,18 +131,14 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 				return CommandResult.newCancelledCommandResult();
 			}
 		}
-
 		// set appropriate parents
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
-
 		ElementInitializers.getInstance().init_CallOperationAction_3010(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -169,5 +162,4 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

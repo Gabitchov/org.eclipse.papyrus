@@ -40,7 +40,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
@@ -64,6 +63,8 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart.ActivityEdgeDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
@@ -74,7 +75,6 @@ import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.swt.SWT;
@@ -89,9 +89,7 @@ import org.eclipse.uml2.uml.ObjectFlow;
 /**
  * @generated
  */
-public class ObjectFlowTransformationEditPart extends LabelEditPart
-
-implements ITextAwareEditPart, ILabelRoleProvider {
+public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -123,7 +121,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
 	/**
 	 * @generated
 	 */
@@ -325,7 +322,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -407,9 +403,7 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
-
 		final Request theRequest = request;
-
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -436,7 +430,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-
 				if(Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -444,7 +437,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -452,7 +444,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -631,7 +622,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		if(checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -748,7 +738,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -787,7 +776,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
@@ -796,15 +784,11 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		 * @generated NOT do not add link in this figure
 		 */
 		private void createContents() {
-
 			fCornerBentContent = new WrappedLabel();
-
 			this.add(fCornerBentContent);
-
 			fLinkToBehaviorProperty = new PolylineShape();
 			fLinkToBehaviorProperty.setLineWidth(1);
 			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
-
 			// do not add link in this figure but refresh it when figure moves
 			addFigureListener(new FigureListener() {
 
@@ -812,7 +796,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 					refreshLinkToBehaviorProperty();
 				}
 			});
-
 		}
 
 		/**
@@ -835,7 +818,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 				// add in appropriate figure
 				getParent().add(getLinkToBehaviorProperty());
 			}
-
 			if(getParent() != null && getParent() instanceof ActivityEdgeDescriptor) {
 				Point parentCenter = getReferencePoint();
 				Rectangle currentBounds = getBounds();
@@ -861,7 +843,6 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;
 		}
-
 	}
 
 	/**
@@ -882,5 +863,4 @@ implements ITextAwareEditPart, ILabelRoleProvider {
 	public String getIconPathRole() {
 		return "";//$NON-NLS-1$
 	}
-
 }

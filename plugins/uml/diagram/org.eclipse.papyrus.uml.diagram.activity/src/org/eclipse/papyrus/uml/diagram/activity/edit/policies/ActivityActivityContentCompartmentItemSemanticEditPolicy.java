@@ -197,5 +197,4 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		return super.getCreateCommand(req);
 	}
-
 }

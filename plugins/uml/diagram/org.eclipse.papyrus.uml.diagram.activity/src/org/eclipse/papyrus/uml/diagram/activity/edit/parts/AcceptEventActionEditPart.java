@@ -47,7 +47,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
@@ -63,6 +62,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.CenteredColumnConstraint;
@@ -80,10 +80,10 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -95,9 +95,7 @@ import org.eclipse.uml2.uml.AcceptEventAction;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class AcceptEventActionEditPart extends
-
-AbstractBorderedShapeEditPart implements IPapyrusEditPart {
+public class AcceptEventActionEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -132,14 +130,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AcceptEventActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.AcceptEventActionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
@@ -171,9 +167,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 						}
 					};
 				case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
-
 					return new BorderItemResizableEditPolicy();
-
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -215,14 +209,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			((AcceptEventActionLabelEditPart)childEditPart).setLabel(getPrimaryShape().getAcceptEventActionLabel());
 			return true;
 		}
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInAcceptEventActionEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -304,7 +296,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 		return result;
 	}
 
@@ -1445,10 +1436,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 * @generated NOT add time template, make margin border relative, use StereotypeFigureHelper
 		 */
 		public AcceptEventActionFigure() {
-
 			CenteredColumnLayout layoutThis = new CenteredColumnLayout();
 			this.setLayoutManager(layoutThis);
-
 			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			this.addPoint(new Point(getMapMode().DPtoLP(200), getMapMode().DPtoLP(0)));
 			this.addPoint(new Point(getMapMode().DPtoLP(200), getMapMode().DPtoLP(50)));
@@ -1487,26 +1476,18 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 * @generated NOT use CenteredColumnConstraint
 		 */
 		private void createContents() {
-
 			RectangleFigure labelRect0 = new RectangleFigure();
 			labelRect0.setFill(false);
 			labelRect0.setOutline(false);
 			labelRect0.setLineWidth(1);
-
 			// use CenteredColumnConstraint
 			CenteredColumnConstraint constraintLabelRect0 = new CenteredColumnConstraint(true);
 			this.add(labelRect0, constraintLabelRect0);
-
 			CenterLayout layoutLabelRect0 = new CenterLayout();
-
 			labelRect0.setLayoutManager(layoutLabelRect0);
-
 			fAcceptEventActionLabel = new CenteredWrappedLabel();
-
 			fAcceptEventActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 			labelRect0.add(fAcceptEventActionLabel);
-
 		}
 
 		/**
@@ -1697,10 +1678,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		private Insets scaleMargin() {
 			Rectangle pointsBounds = getTemplateBounds();
 			Rectangle actualBounds = getBounds();
-
 			float xScale = ((float)actualBounds.width) / pointsBounds.width;
 			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
 			if(xScale == 1 && yScale == 1) {
 				return marginTemplate;
 			}
@@ -1751,10 +1730,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		private int[] scalePointList() {
 			Rectangle pointsBounds = getTemplateBounds();
 			Rectangle actualBounds = getBounds();
-
 			float xScale = ((float)actualBounds.width) / pointsBounds.width;
 			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
 			if(xScale == 1 && yScale == 1) {
 				// switch between the two templates
 				if(useTemplateTime) {
@@ -1783,7 +1760,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		public CenteredWrappedLabel getAcceptEventActionLabel() {
 			return fAcceptEventActionLabel;
 		}
-
 	}
 
 	/**
@@ -1793,7 +1769,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
-
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
@@ -1813,7 +1788,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-
 		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}

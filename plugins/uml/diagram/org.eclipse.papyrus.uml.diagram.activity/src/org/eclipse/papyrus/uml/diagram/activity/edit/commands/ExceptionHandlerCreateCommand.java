@@ -90,7 +90,6 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-
 		ExceptionHandler newElement = UMLFactory.eINSTANCE.createExceptionHandler();
 		getContainer().getHandlers().add(newElement);
 		newElement.setProtectedNode(getSource());
@@ -98,7 +97,6 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
-
 	}
 
 	/**
@@ -162,5 +160,4 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 		}
 		return null;
 	}
-
 }

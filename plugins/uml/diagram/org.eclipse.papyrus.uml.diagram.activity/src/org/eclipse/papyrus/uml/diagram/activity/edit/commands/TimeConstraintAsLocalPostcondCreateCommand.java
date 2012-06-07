@@ -74,7 +74,6 @@ public class TimeConstraintAsLocalPostcondCreateCommand extends EditElementComma
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,25 +88,18 @@ public class TimeConstraintAsLocalPostcondCreateCommand extends EditElementComma
 	 * @generated
 	 */
 	public boolean canExecute() {
-
 		return true;
-
 	}
 
 	/**
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		TimeConstraint newElement = UMLFactory.eINSTANCE.createTimeConstraint();
-
 		Action owner = (Action)getElementToEdit();
 		owner.getLocalPostconditions().add(newElement);
-
 		ElementInitializers.getInstance().init_TimeConstraint_3037(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -125,5 +117,4 @@ public class TimeConstraintAsLocalPostcondCreateCommand extends EditElementComma
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

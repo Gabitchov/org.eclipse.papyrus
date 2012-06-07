@@ -13,19 +13,17 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CommentLinkItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure;
 
 /**
  * @generated
  */
-public class CommentLinkEditPart extends ConnectionNodeEditPart
-
-implements ITreeBranchEditPart {
+public class CommentLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -65,5 +63,4 @@ implements ITreeBranchEditPart {
 	public LinkFigure getPrimaryShape() {
 		return (LinkFigure)getFigure();
 	}
-
 }

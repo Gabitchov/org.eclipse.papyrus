@@ -79,7 +79,6 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -102,7 +101,6 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 	 * @generated NOT use the initialization popup, set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		// get the activity containing the new element
 		Activity parentActivity = null;
 		EObject parent = getElementToEdit();
@@ -112,9 +110,7 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 			}
 			parent = parent.eContainer();
 		}
-
 		CallBehaviorAction newElement = UMLFactory.eINSTANCE.createCallBehaviorAction();
-
 		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
@@ -127,18 +123,14 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
-
 		// set appropriate parents
 		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
-
 		ElementInitializers.getInstance().init_CallBehaviorAction_3008(newElement);
-
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
@@ -156,5 +148,4 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 			configureCommand.execute(monitor, info);
 		}
 	}
-
 }

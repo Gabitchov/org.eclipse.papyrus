@@ -181,5 +181,4 @@ public class ActivityPartitionActivityPartitionContentCompartmentItemSemanticEdi
 		}
 		return super.getCreateCommand(req);
 	}
-
 }
