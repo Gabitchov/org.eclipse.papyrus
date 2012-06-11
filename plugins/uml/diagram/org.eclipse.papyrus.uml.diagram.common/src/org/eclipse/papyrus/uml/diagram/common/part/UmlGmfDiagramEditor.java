@@ -13,6 +13,8 @@ import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.contexts.IContextService;
 
 /**
  * Common ancestor of GMF based editors for UML. This class allows to declare
@@ -187,5 +189,16 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 			// Listen to name change
 			diagram.eAdapters().add(diagramNameListener);
 		}
+	}
+	
+	@Override
+	public void createPartControl(Composite parent) {
+		IContextService contextService = (IContextService) getSite()
+				.getService(IContextService.class);
+		//FIXME : before Eclipse Juno, this line was not necessary
+		//see bug 367816 and bug 382218
+		contextService.activateContext("org.eclipse.gmf.runtime.diagram.ui.diagramContext"); //$NON-NLS-1$
+		super.createPartControl(parent);
+
 	}
 }
