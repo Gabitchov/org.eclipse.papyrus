@@ -296,6 +296,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case InteractionUseEditPart.VISUAL_ID:
 			case LifelineEditPart.VISUAL_ID:
 				return dropNodeElement(semanticElement, nodeVISUALID, location);
+			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:	
 			case CombinedFragmentEditPart.VISUAL_ID:
 				return dropCombinedFragment((CombinedFragment)semanticElement, nodeVISUALID, location);
 			case ContinuationEditPart.VISUAL_ID:

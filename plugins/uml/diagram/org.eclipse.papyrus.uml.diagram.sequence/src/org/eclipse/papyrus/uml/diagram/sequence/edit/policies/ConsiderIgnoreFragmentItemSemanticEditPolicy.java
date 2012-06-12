@@ -42,6 +42,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message7CreateComm
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message7ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
@@ -52,6 +53,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentDeleteHelper;
+import org.eclipse.uml2.uml.CombinedFragment;
 
 /**
  * @generated
@@ -65,6 +68,7 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 		super(UMLElementTypes.ConsiderIgnoreFragment_3007);
 	}
 
+	
 	/**
 	 * @generated
 	 */
@@ -76,8 +80,12 @@ public class ConsiderIgnoreFragmentItemSemanticEditPolicy extends UMLBaseItemSem
 			ICommand deleteCommand = provider.getEditCommand(req);
 
 			if(deleteCommand != null) {
-				return new ICommandProxy(deleteCommand);
-			}
+				if(selectedEObject instanceof CombinedFragment){
+					ICommand selectCmd = CombinedFragmentDeleteHelper.createDestroyElementCommand((CombinedFragment) selectedEObject , getEditingDomain(), provider, req, deleteCommand, (CombinedFragmentEditPart)getHost());
+					return new ICommandProxy(selectCmd);
+				}else
+					return new ICommandProxy(deleteCommand);
+			}						
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
