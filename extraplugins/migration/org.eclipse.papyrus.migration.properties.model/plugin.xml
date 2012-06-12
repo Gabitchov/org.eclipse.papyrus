@@ -15,19 +15,6 @@
       <handler
             class="org.eclipse.papyrus.migration.properties.model.handler.MigrationHandler"
             commandId="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9">
-         <activeWhen>
-            <with
-                  variable="selection">
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <test
-                        property="extension"
-                        value="ctx">
-                  </test>
-               </iterate>
-            </with>
-         </activeWhen>
       </handler>
    </extension>
    <extension
@@ -40,18 +27,18 @@
                icon="icons/Customization.gif"
                style="push">
             <visibleWhen
-                  checkEnabled="true">
-               <with
-                     variable="selection">
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
                      <test
-                           property="extension"
+                           property="org.eclipse.core.resources.extension"
                            value="ctx">
                      </test>
-                  </iterate>
-               </with>
+                  </adapt>
+               </iterate>
             </visibleWhen>
          </command>
       </menuContribution>
