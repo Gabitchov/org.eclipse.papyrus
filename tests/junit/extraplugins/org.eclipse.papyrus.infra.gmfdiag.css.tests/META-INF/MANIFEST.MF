@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CSS Tests
+Bundle-Name: CSS Tests (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator
