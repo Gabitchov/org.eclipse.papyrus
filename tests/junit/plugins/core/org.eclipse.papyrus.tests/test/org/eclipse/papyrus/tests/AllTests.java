@@ -58,7 +58,6 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.tools.tests.tests.AllTests.class));
 		// {oep}.diagram.clazz.tests
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.usecase.tests.AllTests.class));
 
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.modelexplorer.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.dnd.tests.tests.AllTests.class));
@@ -73,6 +72,9 @@ public class AllTests {
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.internalblock", "org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites.AllTests"));
 
 		//end
+
+		// {oep}.uml.diagram.usecase.tests
+		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.usecase.tests.AllTests.class));
 
 	}
 
