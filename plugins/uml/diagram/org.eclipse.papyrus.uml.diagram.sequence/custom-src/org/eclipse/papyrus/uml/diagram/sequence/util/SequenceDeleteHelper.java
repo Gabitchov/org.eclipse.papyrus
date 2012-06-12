@@ -305,13 +305,14 @@ public class SequenceDeleteHelper {
 	public static void addDeleteMessageRelatedTimeObservationLinkCommand(
 			TransactionalEditingDomain editingDomain, EditPart editPart,
 			CompositeCommand command, MessageEnd messageEnd,boolean deleteRelatedEvent) {
-		OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) messageEnd;
-		EList<Lifeline> receiveCovereds = occurrenceSpecification.getCovereds();
-		CompoundCommand CompoundCommand = new CompoundCommand();
-		CompoundCommand.add(new ICommandProxy(command));
-		LifelineEditPart srcLifelinePart = (LifelineEditPart) SequenceUtil.getEditPart(editPart,receiveCovereds.get(0), LifelineEditPart.class);
-		addDeleteRelatedTimeObservationLinkCommand(CompoundCommand, editingDomain, occurrenceSpecification, srcLifelinePart,deleteRelatedEvent);
-		
+		if(messageEnd != null){
+			OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) messageEnd;
+			EList<Lifeline> receiveCovereds = occurrenceSpecification.getCovereds();
+			CompoundCommand CompoundCommand = new CompoundCommand();
+			CompoundCommand.add(new ICommandProxy(command));
+			LifelineEditPart srcLifelinePart = (LifelineEditPart) SequenceUtil.getEditPart(editPart,receiveCovereds.get(0), LifelineEditPart.class);
+			addDeleteRelatedTimeObservationLinkCommand(CompoundCommand, editingDomain, occurrenceSpecification, srcLifelinePart,deleteRelatedEvent);
+		}
 	}
 
 	/**

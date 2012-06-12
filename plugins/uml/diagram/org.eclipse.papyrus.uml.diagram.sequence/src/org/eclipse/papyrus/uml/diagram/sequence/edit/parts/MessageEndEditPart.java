@@ -177,7 +177,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 		fig.setForegroundColor(ColorConstants.white);
 
 		Label tooltip = new Label();
-		tooltip.setText(messageEnd.getName());
+		if(messageEnd != null)
+			tooltip.setText(messageEnd.getName());
 		fig.setToolTip(tooltip);
 
 		fig.setOpaque(false);
@@ -259,7 +260,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 
 	public void rebuildLinks(Diagram diagram) {
 		helper.collectViews(diagram);
-
+		if(messageEnd == null)
+			return;
 		EAnnotation annotation = messageEnd.getEAnnotation("Connections");
 		if (annotation != null) {
 			for (EObject eo : annotation.getReferences()) {
