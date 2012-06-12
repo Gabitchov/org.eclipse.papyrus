@@ -24,6 +24,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEd
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.DimensionEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowSpecificationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.UnitEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ValueTypeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
@@ -63,6 +65,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceRealizationEdit
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
@@ -102,12 +105,22 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			return true;
 		}
 
+		if(gep instanceof BlockDefinitionDiagramEditPart) {
+			return true;
+		}
+		
 		return super.provides(operation);
 	}
 
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
 
+		if(editPart instanceof BlockDefinitionDiagramEditPart) {
+			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			// no installation of other policies. 
+			return;
+		}
+		
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
 
@@ -117,6 +130,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
+			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 
 		}
 
@@ -125,6 +139,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
+			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 
 		}
 
@@ -237,5 +252,6 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		if(editPart instanceof InterfaceRealizationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
+		
 	}
 }

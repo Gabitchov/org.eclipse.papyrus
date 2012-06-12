@@ -29,6 +29,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructure
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditP
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
@@ -100,6 +102,13 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
 
+		if(editPart instanceof InternalBlockDiagramEditPart) {
+			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDropEditPolicy());
+			// no installation of other policies. 
+			return;
+		}
+		
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 
@@ -158,9 +167,6 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 		
-		if(editPart instanceof InternalBlockDiagramEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDropEditPolicy());
-		}
 	}
 
 }
