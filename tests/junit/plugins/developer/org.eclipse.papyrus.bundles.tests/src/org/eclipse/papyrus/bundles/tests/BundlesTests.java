@@ -15,7 +15,6 @@ package org.eclipse.papyrus.bundles.tests;
 
 import java.net.URL;
 import java.util.Enumeration;
-import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.osgi.framework.internal.core.BundleFragment;
@@ -62,7 +61,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void javaVersionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5, false); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5, false);
 	}
 
 	/**
@@ -81,7 +80,10 @@ public class BundlesTests {
 		String message = null;
 		int nb = 0;
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			final String value = (String)current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
+			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
+			if(value == null) {
+				continue;
+			}
 			String[] bundles = value.split(","); //$NON-NLS-1$
 			String localMessage = null;
 			for(String bundle : bundles) {
@@ -117,7 +119,7 @@ public class BundlesTests {
 		String message = null;
 		int nb = 0;
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			final String value = (String)current.getHeaders().get(property);
+			final String value = current.getHeaders().get(property);
 			boolean result = false;
 			if(mustBeNull) {
 				result = (value == null);
