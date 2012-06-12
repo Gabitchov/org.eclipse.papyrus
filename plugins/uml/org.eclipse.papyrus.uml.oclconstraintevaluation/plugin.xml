@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.uml.oclconstraintevaluation.ComputeConstraintHandler"
+            description="Compute constraint"
+            id="org.eclipse.papyrus.uml.oclconstraintevaluation.computeconstraint"
+            name="Compute constraint">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.validation">
+         <command
+               commandId="org.eclipse.papyrus.uml.oclconstraintevaluation.computeconstraint"
+               label="Compute constraint"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+      <extension
+         point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            class="org.eclipse.papyrus.uml.oclconstraintevaluation.ConstraintResultFactory"
+            label="ConstraintResult">
+      </consoleFactory>
+   </extension>
+
+</plugin>
