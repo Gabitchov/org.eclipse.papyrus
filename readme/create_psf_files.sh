@@ -7,6 +7,14 @@
 # Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and Implementation
 # Ansgar Radermacher (CEA-LIST) ansgar.radermarcher@cea.fr - Initial API and Implementation
 
+has_java_nature(){
+    JAVA_NATURE="org.eclipse.jdt.core.javanature"
+	currentFile=$1
+	isJavaProject=1
+	if grep -q $JAVA_NATURE $currentFile;
+		then isJavaProject=0;
+	fi;
+}
 
 #this function create a psf file in $generated_psf_folder
 #this function takes arguments : 
@@ -20,7 +28,6 @@ create_psf_file(){
 	endWorkingSet='</workingSets>'
 	fileName=$1
 	psf_ssh_file_name=$fileName"_svn_ssh.psf"
-	wgetLog=$psf_workspace"/logfile.log"	
 	shift
 	#create an array for the path
 	declare -a paths
@@ -36,9 +43,8 @@ create_psf_file(){
 	cd $svn	
 	for path in ${paths[@]}
 	do
-		wget -r -np -A .project $path -o $wgetLog -nv
+		wget -r -np -A .project $path -q 
 	done
-	rm $wgetLog
 	find -depth -type d -empty -exec rmdir {} \;
 
 
@@ -99,7 +105,13 @@ create_psf_file(){
 						first=0;
 					fi;
 				subFolderName=$(echo $subFolder | grep -oE "[^/]*/[^/]*$" )	
-				echo '<item elementID="='$subFolderName'" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>' >> $generated_psf_folder/$psf_ssh_file_name
+				has_java_nature $subFolder
+				if [ $isJavaProject -eq 0 ];
+				then 
+					echo '<item elementID="='$subFolderName'" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>' >> $generated_psf_folder/$psf_ssh_file_name;
+				else 
+					echo '<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/'$subFolderName'" type="4"/>' >> $generated_psf_folder/$psf_ssh_file_name;
+				fi;
 			done
 			if [ "$first" = 0 ] ;then
 				echo '</workingSets>' >> $generated_psf_folder/$psf_ssh_file_name;
@@ -127,6 +139,7 @@ create_psf_file(){
 
 
 begin=$(date +'%T')
+echo "This script takes about 20 minutes."
 # This script downloads the folders which contains a file .project from a repository and create the psf file to download it using Eclipse
 workingSetId=0
 
@@ -152,18 +165,23 @@ mkdir $generated_psf_folder
 
 
 #--------create the extraplugin psf
+echo "Creating the psf for trunk extraplugin"
 create_psf_file "extraplugins" $extraplugins_path
 
 #--------create the plugin psf
+echo "Creating the psf for trunk plugins"
 create_psf_file "plugins" $plugins_path
 
 #--------create the tests psf
+echo "Creating the psf for trunk tests"
 create_psf_file "tests" $tests_path
 
 #--------create the build psf
+echo "Creating the psf for trunk build"
 create_psf_file "build" $releng_path $features_path
 
 #--------full papyrus psf
+echo "Creating the psf for trunk"
 create_psf_file "full_papyrus" $full_papyrus
 
 echo "The created psf are in the folder: "$generated_psf_folder
