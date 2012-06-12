@@ -22,24 +22,4 @@ public class DimensionLabelNameEditPart extends NamedElementNodeLabelNameEditPar
 	public DimensionLabelNameEditPart(View view) {
 		super(view);
 	}
-
-	//	/**
-	//	 * {@inheritDoc}
-	//	 */
-	//	@Override
-	//	protected Image getLabelIcon() {
-	//		EObject parserElement = getParserElement();
-	//		if(parserElement == null) {
-	//			return null;
-	//		}
-	//
-	//		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-	//		for(View view : views) {
-	//			if(NameLabelIconHelper.showLabelIcon(view)) {
-	//				return Activator.getInstance().getImage(org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getDimension());
-	//			}
-	//		}
-	//
-	//		return null;
-	//	}
 }

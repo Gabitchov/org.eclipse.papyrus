@@ -12,7 +12,7 @@
   <customNodes xsi:type="idgen:CustomLabelNode" id="shape_sysml_value_as_label" label="Value" semanticType="org.eclipse.papyrus.sysml.ValueProperty" labelMask="Visibility, Derive, Name, Type, Undefined_Type, Multiplicity, Default_Multiplicity, DefaultValue, Modifiers">
     <editPart href="UML.ReusableParts.idgen#org.eclipse.papyrus.uml.diagram.common.edit.part.DefaultChildLabelEditPart"/>
   </customNodes>
-  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_block_as_classifier" label="Block" semanticType="org.eclipse.papyrus.sysml.Block" labels="label_sysml_block_name">
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_block_as_classifier" label="Block" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy" creationPolicy="org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy" semanticType="org.eclipse.papyrus.sysml.Block" tag="block" labels="label_sysml_block_name">
     <affixedNodes href="#shape_sysml_flowport_as_affixed"/>
     <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
     <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
@@ -28,21 +28,21 @@
     <visibleCompartments href="UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
     <visibleCompartments href="#compartment_sysml_constraint_as_list"/>
   </customNodes>
-  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_block_as_composite" label="BlockComposite" semanticType="org.eclipse.papyrus.sysml.Block" labels="label_sysml_block_name" compartments="compartment_sysml_structure" visibleCompartments="compartment_sysml_structure">
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_block_as_composite" label="BlockComposite" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy" creationPolicy="org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy" semanticType="org.eclipse.papyrus.sysml.Block" tag="block" labels="label_sysml_block_name" compartments="compartment_sysml_structure" visibleCompartments="compartment_sysml_structure">
     <affixedNodes href="#shape_sysml_flowport_as_affixed"/>
     <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
     <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
   </customNodes>
-  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_blockproperty_as_composite" label="BlockPropertyComposite" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart" semanticType="org.eclipse.papyrus.sysml.PartProperty" altSemanticTypes="org.eclipse.papyrus.sysml.ReferenceProperty" compartments="compartment_sysml_blockproperty_structure" visibleCompartments="compartment_sysml_blockproperty_structure">
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_blockproperty_as_composite" label="BlockPropertyComposite" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart" semanticType="org.eclipse.papyrus.sysml.PartProperty" altSemanticTypes="org.eclipse.papyrus.sysml.ReferenceProperty" tag="[#runtime-defined]" compartments="compartment_sysml_blockproperty_structure" visibleCompartments="compartment_sysml_blockproperty_structure">
     <labels href="UML.ReusableParts.idgen#label_uml_property_label"/>
     <affixedNodes href="#shape_sysml_flowport_as_affixed"/>
     <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
     <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
   </customNodes>
-  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_dimension_as_classifier" label="Dimension" semanticType="org.eclipse.papyrus.sysml.Dimension" labels="label_sysml_dimension_name"/>
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_dimension_as_classifier" label="Dimension" semanticType="org.eclipse.papyrus.sysml.Dimension" tag="dimension" labels="label_sysml_dimension_name"/>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_constraintblock_as_classifier" label="ConstraintBlock" semanticType="org.eclipse.papyrus.sysml.ConstraintBlock" tag="constraint" labels="label_sysml_constraintblock_name" compartments="compartment_sysml_parameter_as_list compartment_sysml_constraint_as_list" visibleCompartments="compartment_sysml_parameter_as_list compartment_sysml_constraint_as_list"/>
-  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_flowspecification_as_classifier" label="FlowSpecification" semanticType="org.eclipse.papyrus.sysml.FlowSpecification" labels="label_sysml_flowspecification_name" compartments="compartment_sysml_flowproperty_as_list" visibleCompartments="compartment_sysml_flowproperty_as_list"/>
-  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_unit_as_classifier" label="Unit" semanticType="org.eclipse.papyrus.sysml.Unit" labelMask="Name, Dimension" labels="label_sysml_unit_name"/>
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_flowspecification_as_classifier" label="FlowSpecification" semanticType="org.eclipse.papyrus.sysml.FlowSpecification" tag="flowSpecification" labels="label_sysml_flowspecification_name" compartments="compartment_sysml_flowproperty_as_list" visibleCompartments="compartment_sysml_flowproperty_as_list"/>
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_unit_as_classifier" label="Unit" semanticType="org.eclipse.papyrus.sysml.Unit" labelMask="Name, Dimension" tag="unit" labels="label_sysml_unit_name"/>
   <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_valuetype_as_classifier" label="ValueType" semanticType="org.eclipse.papyrus.sysml.ValueType" tag="valuetype" labels="label_sysml_valuetype_name">
     <compartments href="UML.ReusableParts.idgen#compartment_uml_property_as_list"/>
     <compartments href="UML.ReusableParts.idgen#compartment_uml_operation_as_list"/>
@@ -54,6 +54,12 @@
     <affixedLabels href="UML.ReusableParts.idgen#affixedlabel_uml_appliedstereotype"/>
     <locator href="UML.ReusableParts.idgen#org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator"/>
   </customNodes>
+  <customNodes xsi:type="idgen:CustomClassifierNode" id="shape_sysml_nestedblockproperty_as_composite" label="NestedBlockPropertyComposite" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart" semanticType="org.eclipse.papyrus.sysml.PartProperty" altSemanticTypes="org.eclipse.papyrus.sysml.ReferenceProperty" tag="[#runtime-defined]">
+    <labels href="UML.ReusableParts.idgen#label_uml_property_label"/>
+    <affixedNodes href="#shape_sysml_flowport_as_affixed"/>
+    <affixedNodes href="UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
+    <borderedNodeFigure href="UML.ReusableParts.idgen#org.eclipse.papyrus.gmf.diagram.common.figure.SelectableBorderedNodeFigure"/>
+  </customNodes>
   <customEdges xsi:type="idgen:CustomLink" id="link_sysml_association" label="Association" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart" semanticType="org.eclipse.papyrus.sysml.Association" altSemanticTypes="org.eclipse.papyrus.sysml.AssociationComposite org.eclipse.papyrus.sysml.AssociationCompositeDirected org.eclipse.papyrus.sysml.AssociationNone org.eclipse.papyrus.sysml.AssociationNoneDirected org.eclipse.papyrus.sysml.AssociationShared org.eclipse.papyrus.sysml.AssociationSharedDirected" figure="org.eclipse.papyrus.sysml.diagram.common.figure.AssociationFigure">
     <viewFactory href="UML.ReusableParts.idgen#org.eclipse.papyrus.uml.diagram.common.factory.AssociationLinkViewFactory"/>
     <labels href="UML.ReusableParts.idgen#linklabel_uml_namedelement_name"/>
@@ -63,24 +69,24 @@
     <labels href="UML.ReusableParts.idgen#linklabel_uml_association_target_multiplicity"/>
   </customEdges>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_constraint_as_list" label="BlockConstraint" title="constraints"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_flowport_as_list" label="FlowPort" title="flow ports"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_flowport_as_list" label="FlowPort" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortCompartmentSemanticEditPolicy" title="flow ports"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_flowproperty_as_list" label="FlowProperty" title="flow properties"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_parameter_as_list" label="Parameter" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ConstraintParameterCompartmentSemanticEditPolicy" title="parameters"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_part_as_list" label="PartProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PartCompartmentSemanticEditPolicy" title="parts"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_property_as_list" label="BlockProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PropertyCompartmentSemanticEditPolicy" title="properties"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_reference_as_list" label="ReferenceProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceCompartmentSemanticEditPolicy" title="references"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_structure" label="Structure" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureCompartmentSemanticEditPolicy" title="structure" list="false"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_blockproperty_structure" label="BlockPropertyStructure" title="structure" list="false"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_blockproperty_structure" label="BlockPropertyStructure" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureCompartmentSemanticEditPolicy" title="structure" list="false"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_value_as_list" label="ValueProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueCompartmentSemanticEditPolicy" title="values"/>
   <customDecorations xsi:type="idgen:CustomAffixedLabel" id="affixedlabel_sysml_flowport_label" label="FlowPortAffixedLabel" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart" role="Label">
     <locator href="UML.ReusableParts.idgen#org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"/>
   </customDecorations>
-  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_block_name" label="BlockLabelName" specificIconKey="org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getBlock()"/>
-  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_constraintblock_name" label="ConstraintBlockLabelName" specificIconKey="org.eclipse.papyrus.sysml.constraints.ConstraintsPackage.eINSTANCE.getConstraintBlock()"/>
-  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_dimension_name" label="DimensionLabelName" specificIconKey="org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getDimension()"/>
-  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_flowspecification_name" label="FlowSpecificationLabelName" specificIconKey="org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage.eINSTANCE.getFlowSpecification()"/>
-  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_unit_name" label="UnitLabelName" specificIconKey="org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getUnit()"/>
-  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_valuetype_name" label="ValueTypeLabelName" specificIconKey="org.eclipse.papyrus.sysml.blocks.BlocksPackage.eINSTANCE.getValueType()"/>
+  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_block_name" label="BlockLabelName" specificIconKey=""/>
+  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_constraintblock_name" label="ConstraintBlockLabelName" specificIconKey=""/>
+  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_dimension_name" label="DimensionLabelName" specificIconKey=""/>
+  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_flowspecification_name" label="FlowSpecificationLabelName" specificIconKey=""/>
+  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_unit_name" label="UnitLabelName" specificIconKey=""/>
+  <customDecorations xsi:type="idgen:CustomClassifierInnerLabel" id="label_sysml_valuetype_name" label="ValueTypeLabelName" specificIconKey=""/>
   <semanticTypes id="org.eclipse.papyrus.sysml.Block" name="Block" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"/>
   <semanticTypes id="org.eclipse.papyrus.sysml.ConstraintBlock" name="ConstraintBlock" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintBlock.gif"/>
   <semanticTypes id="org.eclipse.papyrus.sysml.ConstraintProperty" name="ConstraintProperty" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"/>
@@ -103,6 +109,8 @@
   <semanticTypes id="org.eclipse.papyrus.sysml.AssociationCompositeDirected" name="AssociationCompositeDirected" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.papyrus.uml.service.types/icons/Association_composite_directed.gif"/>
   <semanticTypes id="org.eclipse.papyrus.sysml.AssociationShared" name="AssociationShared" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared.gif"/>
   <semanticTypes id="org.eclipse.papyrus.sysml.AssociationSharedDirected" name="AssociationSharedDirected" constantTypePackage="org.eclipse.papyrus.sysml.service.types.element" constantTypeClass="SysMLElementTypes" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_shared_directed.gif"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintPropertyChildLabelEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart"/>
@@ -117,4 +125,7 @@
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceCompartmentSemanticEditPolicy"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureCompartmentSemanticEditPolicy"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortCompartmentSemanticEditPolicy"/>
 </idgen:Diagram>

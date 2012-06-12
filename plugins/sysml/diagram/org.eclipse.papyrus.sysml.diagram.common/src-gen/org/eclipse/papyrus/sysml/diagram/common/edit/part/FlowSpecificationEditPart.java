@@ -60,7 +60,6 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -80,37 +79,29 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 	}
 
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof FlowSpecificationLabelNameEditPart) {
 			((FlowSpecificationLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof FlowPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getFlowPropertyCompartmentFigure();
 			setupContentPane(pane);
 			pane.add(((FlowPropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof FlowSpecificationLabelNameEditPart) {
 			return true;
 		}
-
-
 		if(childEditPart instanceof FlowPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getFlowPropertyCompartmentFigure();
 			setupContentPane(pane);
 			pane.remove(((FlowPropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -118,7 +109,6 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 		if(editPart instanceof FlowPropertyCompartmentEditPart) {
 			return getPrimaryShape().getFlowPropertyCompartmentFigure();
 		}
-
 		return getContentPane();
 	}
 
@@ -132,7 +122,6 @@ public class FlowSpecificationEditPart extends AbstractElementEditPart {
 	//		}
 	//		return super.getTargetEditPart(request);
 	//	}
-
 	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new FlowSpecificationFigure();

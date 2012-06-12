@@ -59,7 +59,6 @@ public class ActorEditPart extends AbstractElementEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -79,13 +78,10 @@ public class ActorEditPart extends AbstractElementEditPart {
 	}
 
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			((NamedElementNodeLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof PropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPropertyCompartmentFigure();
 			setupContentPane(pane);
@@ -98,17 +94,13 @@ public class ActorEditPart extends AbstractElementEditPart {
 			pane.add(((OperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			return true;
 		}
-
-
 		if(childEditPart instanceof PropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPropertyCompartmentFigure();
 			setupContentPane(pane);
@@ -121,7 +113,6 @@ public class ActorEditPart extends AbstractElementEditPart {
 			pane.remove(((OperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -132,7 +123,6 @@ public class ActorEditPart extends AbstractElementEditPart {
 		if(editPart instanceof OperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-
 		return getContentPane();
 	}
 
@@ -146,7 +136,6 @@ public class ActorEditPart extends AbstractElementEditPart {
 	//		}
 	//		return super.getTargetEditPart(request);
 	//	}
-
 	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new ActorFigure();

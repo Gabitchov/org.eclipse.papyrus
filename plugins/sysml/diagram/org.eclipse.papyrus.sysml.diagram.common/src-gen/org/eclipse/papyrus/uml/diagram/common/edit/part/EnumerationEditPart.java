@@ -59,7 +59,6 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -79,37 +78,29 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 	}
 
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			((NamedElementNodeLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof EnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane);
 			pane.add(((EnumerationLiteralCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof NamedElementNodeLabelNameEditPart) {
 			return true;
 		}
-
-
 		if(childEditPart instanceof EnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane);
 			pane.remove(((EnumerationLiteralCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -117,7 +108,6 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 		if(editPart instanceof EnumerationLiteralCompartmentEditPart) {
 			return getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 		}
-
 		return getContentPane();
 	}
 
@@ -131,7 +121,6 @@ public class EnumerationEditPart extends AbstractElementEditPart {
 	//		}
 	//		return super.getTargetEditPart(request);
 	//	}
-
 	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new EnumerationFigure();

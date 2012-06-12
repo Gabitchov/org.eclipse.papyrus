@@ -29,9 +29,7 @@ public class GeneralizationLinkViewFactory extends ConnectorViewFactory {
 	 */
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
-
 		getViewService().createNode(element, view, UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
-
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 	}
 }

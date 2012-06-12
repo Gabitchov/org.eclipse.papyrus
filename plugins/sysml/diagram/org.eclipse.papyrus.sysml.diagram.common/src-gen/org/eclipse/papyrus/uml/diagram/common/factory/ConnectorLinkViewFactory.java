@@ -29,12 +29,10 @@ public class ConnectorLinkViewFactory extends ConnectorViewFactory {
 	 */
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
-
 		getViewService().createNode(element, view, UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_LABEL_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_SOURCE_MULTIPLICITY_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_TARGET_MULTIPLICITY_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
-
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 	}
 }

@@ -36,7 +36,6 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.OperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.policy.EncapsulatedClassifierResizableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.StructuredClassifierCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -59,6 +58,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockCompositeSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
@@ -67,8 +67,7 @@ public class BlockEditPart extends AbstractElementEditPart {
 		installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		// Start of user code custom policies
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new StructuredClassifierCreationEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new EncapsulatedClassifierResizableShapeEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.uml.diagram.common.edit.policy.EncapsulatedClassifierResizableShapeEditPolicy());
 		// End of user code
 	}
 
@@ -79,7 +78,6 @@ public class BlockEditPart extends AbstractElementEditPart {
 				if(child instanceof IBorderItemEditPart) {
 					return new BorderItemResizableEditPolicy();
 				}
-
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -99,12 +97,10 @@ public class BlockEditPart extends AbstractElementEditPart {
 	}
 
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof BlockLabelNameEditPart) {
 			((BlockLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((FlowPortAffixedNodeEditPart)childEditPart).getFigure(), locator);
@@ -115,7 +111,6 @@ public class BlockEditPart extends AbstractElementEditPart {
 			getBorderedFigure().getBorderItemContainer().add(((PortAffixedNodeEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		if(childEditPart instanceof BlockPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getBlockPropertyCompartmentFigure();
 			setupContentPane(pane);
@@ -164,16 +159,13 @@ public class BlockEditPart extends AbstractElementEditPart {
 			pane.add(((ValuePropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof BlockLabelNameEditPart) {
 			return true;
 		}
-
 		if(childEditPart instanceof FlowPortAffixedNodeEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((FlowPortAffixedNodeEditPart)childEditPart).getFigure());
 			return true;
@@ -182,7 +174,6 @@ public class BlockEditPart extends AbstractElementEditPart {
 			getBorderedFigure().getBorderItemContainer().remove(((PortAffixedNodeEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		if(childEditPart instanceof BlockPropertyCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getBlockPropertyCompartmentFigure();
 			setupContentPane(pane);
@@ -231,7 +222,6 @@ public class BlockEditPart extends AbstractElementEditPart {
 			pane.remove(((ValuePropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -263,7 +253,6 @@ public class BlockEditPart extends AbstractElementEditPart {
 		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-
 		return getContentPane();
 	}
 
@@ -277,7 +266,6 @@ public class BlockEditPart extends AbstractElementEditPart {
 	//		}
 	//		return super.getTargetEditPart(request);
 	//	}
-
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigure());

@@ -18,7 +18,6 @@ public class UMLGraphicalTypes {
 	/** ********************************************************* */
 	/** Diagram custom graphical types id *********************** */
 	/** ********************************************************* */
-
 	/** Custom nodes */
 	public static final String SHAPE_UML_ACTOR_AS_CLASSIFIER_ID = "shape_uml_actor_as_classifier"; //$NON-NLS-1$
 

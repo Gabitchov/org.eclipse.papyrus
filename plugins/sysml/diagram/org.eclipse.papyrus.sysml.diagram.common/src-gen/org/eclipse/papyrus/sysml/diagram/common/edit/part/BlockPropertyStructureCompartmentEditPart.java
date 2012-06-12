@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -29,8 +29,8 @@ public class BlockPropertyStructureCompartmentEditPart extends AbstractShapeComp
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		// Start of user code custom edit policies
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockPropertyStructureCompartmentSemanticEditPolicy());
+		// Start of user code custom edit policies
 		// End of user code
 	}
 
@@ -38,5 +38,4 @@ public class BlockPropertyStructureCompartmentEditPart extends AbstractShapeComp
 	public String getCompartmentName() {
 		return COMPARTMENT_NAME;
 	}
-
 }

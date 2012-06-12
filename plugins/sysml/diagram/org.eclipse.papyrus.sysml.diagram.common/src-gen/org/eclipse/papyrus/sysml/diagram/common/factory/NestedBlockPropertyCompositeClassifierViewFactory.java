@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,14 +22,14 @@ import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 public class NestedBlockPropertyCompositeClassifierViewFactory extends ShapeViewFactory {
 
 	/**
-	 * Creates nested BlockPropertyComposite view and add Label
+	 * Creates NestedBlockPropertyComposite view and add Label and Compartment nodes
 	 */
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
-
 		getViewService().createNode(element, view, UMLGraphicalTypes.LABEL_UML_PROPERTY_LABEL_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
-
 		// this action needs to be done after the compartments creation
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 	}
+	// Start of user code preferences	
+	// End of user code
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -18,15 +18,12 @@ public class SysMLGraphicalTypes {
 	/** ********************************************************* */
 	/** Diagram custom graphical types id *********************** */
 	/** ********************************************************* */
-
 	/** Custom nodes */
 	public static final String SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID = "shape_sysml_block_as_classifier"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID = "shape_sysml_block_as_composite"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_blockproperty_as_composite"; //$NON-NLS-1$
-
-	public static final String SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_nestedblockproperty_as_composite"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID = "shape_sysml_dimension_as_classifier"; //$NON-NLS-1$
 
@@ -39,6 +36,8 @@ public class SysMLGraphicalTypes {
 	public static final String SHAPE_SYSML_VALUETYPE_AS_CLASSIFIER_ID = "shape_sysml_valuetype_as_classifier"; //$NON-NLS-1$
 
 	public static final String SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID = "shape_sysml_flowport_as_affixed"; //$NON-NLS-1$
+
+	public static final String SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_nestedblockproperty_as_composite"; //$NON-NLS-1$
 
 	/** Custom label nodes */
 	public static final String SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID = "shape_sysml_constraintproperty_as_label"; //$NON-NLS-1$
@@ -92,5 +91,4 @@ public class SysMLGraphicalTypes {
 
 	/** Custom links */
 	public static final String LINK_SYSML_ASSOCIATION_ID = "link_sysml_association"; //$NON-NLS-1$
-
 }

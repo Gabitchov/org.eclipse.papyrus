@@ -27,12 +27,12 @@ public class ValueTypeClassifierViewFactory extends ShapeViewFactory {
 	 */
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
-
 		getViewService().createNode(element, view, SysMLGraphicalTypes.LABEL_SYSML_VALUETYPE_NAME_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, UMLGraphicalTypes.COMPARTMENT_UML_PROPERTY_AS_LIST_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, UMLGraphicalTypes.COMPARTMENT_UML_OPERATION_AS_LIST_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
-
 		// this action needs to be done after the compartments creation
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 	}
+	// Start of user code preferences	
+	// End of user code
 }

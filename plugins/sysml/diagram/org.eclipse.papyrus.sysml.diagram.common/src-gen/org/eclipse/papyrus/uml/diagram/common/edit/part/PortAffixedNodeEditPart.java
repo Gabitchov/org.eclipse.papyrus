@@ -46,7 +46,6 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
-
 		// Start of user code custom policies
 		// End of user code		
 	}
@@ -66,7 +65,6 @@ public class PortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 						}
 					};
 				}
-
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();

@@ -26,11 +26,11 @@ public class EnumerationClassifierViewFactory extends ShapeViewFactory {
 	 */
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
-
 		getViewService().createNode(element, view, UMLGraphicalTypes.LABEL_UML_NAMEDELEMENT_NAME_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, UMLGraphicalTypes.COMPARTMENT_UML_ENUMERATIONLITERAL_AS_LIST_ID, ViewUtil.APPEND, persisted, getPreferencesHint());
-
 		// this action needs to be done after the compartments creation
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 	}
+	// Start of user code preferences	
+	// End of user code
 }

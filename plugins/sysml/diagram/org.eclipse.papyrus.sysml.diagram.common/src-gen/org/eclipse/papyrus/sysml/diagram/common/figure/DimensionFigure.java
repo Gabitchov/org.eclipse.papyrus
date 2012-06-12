@@ -39,5 +39,4 @@ public class DimensionFigure extends ClassifierFigure {
 		compartments = new ArrayList<String>(compartments);
 		return compartments;
 	}
-
 }

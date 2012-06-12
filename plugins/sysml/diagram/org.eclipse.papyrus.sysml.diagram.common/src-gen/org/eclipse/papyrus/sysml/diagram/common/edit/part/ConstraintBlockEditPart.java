@@ -60,7 +60,6 @@ public class ConstraintBlockEditPart extends AbstractElementEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -80,13 +79,10 @@ public class ConstraintBlockEditPart extends AbstractElementEditPart {
 	}
 
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof ConstraintBlockLabelNameEditPart) {
 			((ConstraintBlockLabelNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if(childEditPart instanceof ParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getParameterCompartmentFigure();
 			setupContentPane(pane);
@@ -99,17 +95,13 @@ public class ConstraintBlockEditPart extends AbstractElementEditPart {
 			pane.add(((BlockConstraintCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
 		if(childEditPart instanceof ConstraintBlockLabelNameEditPart) {
 			return true;
 		}
-
-
 		if(childEditPart instanceof ParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getParameterCompartmentFigure();
 			setupContentPane(pane);
@@ -122,7 +114,6 @@ public class ConstraintBlockEditPart extends AbstractElementEditPart {
 			pane.remove(((BlockConstraintCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -133,7 +124,6 @@ public class ConstraintBlockEditPart extends AbstractElementEditPart {
 		if(editPart instanceof BlockConstraintCompartmentEditPart) {
 			return getPrimaryShape().getBlockConstraintCompartmentFigure();
 		}
-
 		return getContentPane();
 	}
 
@@ -147,7 +137,6 @@ public class ConstraintBlockEditPart extends AbstractElementEditPart {
 	//		}
 	//		return super.getTargetEditPart(request);
 	//	}
-
 	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new ConstraintBlockFigure();
