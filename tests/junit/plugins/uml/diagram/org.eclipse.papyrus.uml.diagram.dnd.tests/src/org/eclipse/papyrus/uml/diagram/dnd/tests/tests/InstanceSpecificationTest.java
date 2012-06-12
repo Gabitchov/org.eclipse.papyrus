@@ -51,8 +51,9 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -64,16 +65,16 @@ import org.junit.Test;
  */
 public class InstanceSpecificationTest {
 
-	private Diagram diagram;
+	private static Diagram diagram;
 
-	private PapyrusMultiDiagramEditor papyrusEditor;
+	private static PapyrusMultiDiagramEditor papyrusEditor;
 
-	private final Set<IFile> model = new HashSet<IFile>();
+	private static final Set<IFile> model = new HashSet<IFile>();
 
-	private DropStrategy strategy;
+	private static DropStrategy strategy;
 
-	@Before
-	public void init() {
+	@BeforeClass
+	public static void init() {
 		String projectName = "dnd.test";
 		String modelName = "drop"; //drop.di, drop.notation, drop.uml
 
@@ -84,11 +85,16 @@ public class InstanceSpecificationTest {
 			Assert.fail("Cannot load the test model");
 		}
 
-		DropStrategyManager.instance.restoreDefaults();
 		strategy = DropStrategyManager.instance.findStrategy(org.eclipse.papyrus.uml.diagram.dnd.Activator.PLUGIN_ID + ".instanceSpecification");
 	}
 
-	protected void initModel(String sourcePath, String projectName, String modelName) throws CoreException, IOException {
+	@Before
+	public void initDefaults() {
+		//Restore the default DND preferences before each test
+		DropStrategyManager.instance.restoreDefaults();
+	}
+
+	protected static void initModel(String sourcePath, String projectName, String modelName) throws CoreException, IOException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
 		IProject project = root.getProject(projectName);
@@ -115,15 +121,15 @@ public class InstanceSpecificationTest {
 		Assert.assertTrue("Cannot load the test diagram", diagram != null);
 	}
 
-	protected void copyToWorkspace(URL sourceURL, IFile targetFile) throws CoreException, IOException {
+	protected static void copyToWorkspace(URL sourceURL, IFile targetFile) throws CoreException, IOException {
 		InputStream sourceStream = sourceURL.openStream();
 		targetFile.create(sourceStream, true, new NullProgressMonitor());
 		model.add(targetFile);
 		sourceStream.close();
 	}
 
-	@After
-	public void dispose() {
+	@AfterClass
+	public static void dispose() {
 		papyrusEditor.getSite().getPage().closeEditor(papyrusEditor, false);
 		for(IFile modelFile : model) {
 			try {
