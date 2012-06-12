@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.views.properties.model.migration.handler.MigrationHandler"
+            description="Migrates the selected file to Papyrus 0.9.X"
+            id="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9"
+            name="Migrate to Papyrus 0.9.X">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.views.properties.model.migration.handler.MigrationHandler"
+            commandId="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <test
+                        property="extension"
+                        value="ctx">
+                  </test>
+               </iterate>
+            </with>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9"
+               icon="icons/Customization.gif"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <test
+                           property="extension"
+                           value="ctx">
+                     </test>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
