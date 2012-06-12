@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.papyrus.views.properties.model.migration</name>
+	<name>org.eclipse.papyrus.migration.properties.model</name>
 	<comment></comment>
 	<projects>
 	</projects>

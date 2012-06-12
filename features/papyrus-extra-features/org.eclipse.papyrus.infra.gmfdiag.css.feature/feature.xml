@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.infra.gmfdiag.css.feature"
+      id="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature"
       label="Papyrus CSS Feature (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">

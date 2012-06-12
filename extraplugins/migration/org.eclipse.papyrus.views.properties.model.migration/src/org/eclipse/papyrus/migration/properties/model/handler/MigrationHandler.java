@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.model.migration.handler;
+package org.eclipse.papyrus.migration.properties.model.handler;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.views.properties.model.migration.Activator;
+import org.eclipse.papyrus.migration.properties.model.Activator;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;

@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.model.migration;
+package org.eclipse.papyrus.migration.properties.model;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.properties.model.migration"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.migration.properties.model"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

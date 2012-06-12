@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.diagramtemplate.feature"
+      id="org.eclipse.papyrus.extra.diagramtemplate.feature"
       label="Papyrus Diagram Template (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
