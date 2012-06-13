@@ -159,4 +159,14 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 		viewBounds.setHeight(DEFAULT_HEIGHT);
 		viewBounds.setWidth(DEFAULT_WIDTH);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @generated NOT
+	 */
+	@Override
+	public boolean isParentReassignable() {
+		// Bug 374626: [Model Explorer] Moving an IBD from a block to another block shall be forbidden 
+		return false;
+	}
 }
