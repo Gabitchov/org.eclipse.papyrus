@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.bundles.tests;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class BundleTestsUtils {
 	public static final String BUNDLE_IMPORT_PACKAGE = "Import-Package"; //$NON-NLS-1$
 
 	public static final String JAVA_VERSION_5 = "J2SE-1.5"; //$NON-NLS-1$
-	
+
 	public static final String REQUIRE_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
 	private BundleTestsUtils() {
@@ -54,5 +55,18 @@ public class BundleTestsUtils {
 		EquinoxFactory factory = new EquinoxFactory();
 
 		return papyrusBundle;
+	}
+
+	/**
+	 * 
+	 * @param bundle
+	 *        a bundle
+	 * @return
+	 *         <code>true</code> if the bundle represents a Java Project
+	 */
+	public static boolean isJavaProject(final Bundle bundle) {
+		//we are looking for folders "org/eclipse/papyrus" that contains classes. If not, it is not a Java project 
+		URL res = bundle.getResource("org/eclipse/papyrus");
+		return res != null;
 	}
 }

@@ -16,9 +16,9 @@ package org.eclipse.papyrus.bundles.tests;
 import java.net.URL;
 import java.util.Enumeration;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.osgi.framework.internal.core.BundleFragment;
 import org.eclipse.osgi.util.NLS;
+import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -29,7 +29,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void incubationTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, ".*\\(Incubation\\)", false); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_NAME, ".*\\(Incubation\\)", false, false); //$NON-NLS-1$
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void vendorTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VENDOR, BundleTestsUtils.VENDOR_NAME, false);
+		testManifestProperty(BundleTestsUtils.BUNDLE_VENDOR, BundleTestsUtils.VENDOR_NAME, false, false);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void versionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.0\\..*", false); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.0\\..*", false, false); //$NON-NLS-1$
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void javaVersionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5, false);
+		testManifestProperty(BundleTestsUtils.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, BundleTestsUtils.JAVA_VERSION_5, false, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void importPackage() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true, false); //$NON-NLS-1$
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class BundlesTests {
 				message += localMessage + "\n"; //$NON-NLS-1$
 			}
 		}
-		Assert.isTrue(message == null, nb + " problems! " + message); //$NON-NLS-1$
+		Assert.assertNull(message, nb + " problems! " + message);
 	}
 
 	/**
@@ -114,11 +114,16 @@ public class BundlesTests {
 	 *        the regular expression to test the property
 	 * @param mustBeNull
 	 *        indicates that the value for the property must be <code>null</code>
+	 * @param onlyOnJavaProject
+	 *        boolean indicating if the tests should only be done on JavaProject
 	 */
-	private void testManifestProperty(final String property, final String regex, boolean mustBeNull) {
+	private void testManifestProperty(final String property, final String regex, boolean mustBeNull, boolean onlyOnJavaProject) {
 		String message = null;
 		int nb = 0;
 		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+			if(onlyOnJavaProject && !BundleTestsUtils.isJavaProject(current)) {
+				continue; //useful for oep.infra.gmfdiag.css.theme for example
+			}
 			final String value = current.getHeaders().get(property);
 			boolean result = false;
 			if(mustBeNull) {
@@ -135,7 +140,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.isTrue(message == null, nb + " problems! " + message); //$NON-NLS-1$
+		Assert.assertNull(message, nb + " problems! " + message);
 	}
 
 	/**
@@ -169,7 +174,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.isTrue(message == null, nb + " problems!" + message); //$NON-NLS-1$
+		Assert.assertNull(message, nb + " problems! " + message);
 	}
 
 }
