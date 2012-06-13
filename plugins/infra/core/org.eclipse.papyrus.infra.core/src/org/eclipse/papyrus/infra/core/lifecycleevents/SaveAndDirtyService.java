@@ -30,6 +30,7 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -303,6 +304,9 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 						@Override
 						public void execute(final IProgressMonitor monitor) {
 							try {
+								//to event bad redirection after the saveAs
+								//see bug 319023
+								EcoreUtil.resolveAll(resourceSet);
 								resourceSet.saveAs(path);
 								// notify registered IsaveablePart
 								registeredIsaveablePart.doSave(monitor);
