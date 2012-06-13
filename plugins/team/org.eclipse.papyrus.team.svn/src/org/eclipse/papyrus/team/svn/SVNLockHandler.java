@@ -32,7 +32,6 @@ public class SVNLockHandler implements IReadOnlyHandler {
 		try {
 			validator = new SVNTeamModificationValidator();
 		} catch (NoClassDefFoundError ex) {
-			System.out.println("Ignore SVN");
 			//If SVN is not installed, then the file is not locked, and can be written.
 		}
 
