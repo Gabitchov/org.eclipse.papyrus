@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Made the dependency to SVN optional
  *
  *****************************************************************************/
 package org.eclipse.papyrus.team.svn;
@@ -25,9 +26,22 @@ import org.eclipse.team.svn.ui.SVNTeamModificationValidator;
 
 public class SVNLockHandler implements IReadOnlyHandler {
 
-	SVNTeamModificationValidator validator = new SVNTeamModificationValidator();
+	SVNTeamModificationValidator validator;
+
+	public SVNLockHandler() {
+		try {
+			validator = new SVNTeamModificationValidator();
+		} catch (NoClassDefFoundError ex) {
+			System.out.println("Ignore SVN");
+			//If SVN is not installed, then the file is not locked, and can be written.
+		}
+
+	}
 
 	public boolean isReadOnly(IFile[] files) {
+		if(validator == null) {
+			return false; //SVN is not installed
+		}
 
 		IResource[] needsLockResources = FileUtility.filterResources(files, IStateFilter.SF_NEEDS_LOCK, IResource.DEPTH_ZERO);
 		for(IResource needsLockResource : needsLockResources) {
@@ -40,6 +54,9 @@ public class SVNLockHandler implements IReadOnlyHandler {
 	}
 
 	public boolean enableWrite(IFile[] files) {
+		if(validator == null) {
+			return true; //SVN is not installed
+		}
 
 		IStatus result = validator.validateEdit(files, FileModificationValidationContext.VALIDATE_PROMPT);
 
