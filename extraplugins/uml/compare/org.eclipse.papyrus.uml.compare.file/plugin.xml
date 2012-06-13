@@ -16,12 +16,19 @@
             class="org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileHandler"
             commandId="org.eclipse.papyrus.uml.compare.file.command">
          <activeWhen>
+           <and>
             <with
                   variable="selection">
                <count
                      value="2">
                </count>
             </with>
+            <test
+                  forcePluginActivation="true"
+                  property="org.eclipse.papyrus.uml.compare.file.tester.isSelectionForUMLCompareFile"
+                  value="true">
+            </test>
+             </and>
          </activeWhen>
       </handler>
    </extension>
@@ -75,6 +82,16 @@
                </and></enablement>
          </action>
       </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.uml.compare.file.tester.CompareUMLFileTester"
+            id="org.eclipse.papyrus.uml.compare.file.tester"
+            namespace="org.eclipse.papyrus.uml.compare.file.tester"
+            properties="isSelectionForUMLCompareFile"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
    </extension>
 
 </plugin>
