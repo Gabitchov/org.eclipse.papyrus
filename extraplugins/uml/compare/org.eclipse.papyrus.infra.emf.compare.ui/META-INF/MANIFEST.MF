@@ -31,4 +31,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.emf.compare.ui.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.compare.ui;singleto
  n:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 

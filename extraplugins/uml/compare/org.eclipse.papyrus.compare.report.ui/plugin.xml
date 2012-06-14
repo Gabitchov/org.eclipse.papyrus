@@ -7,7 +7,7 @@
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.emfdiff"
             id="org.eclipse.papyrus.compare.report.ui.popupMenus.contribution.IFile">
-         <menu id="org.eclipse.acceleo.module.menu" label="Acceleo Model to Text" path="additionsAcceleo">
+         <menu id="org.eclipse.acceleo.module.menu" label="%menu.label" path="additionsAcceleo">
                <groupMarker name="acceleo"/> 
          </menu>
          <action
@@ -15,7 +15,7 @@
                enablesFor="+"
                id="org.eclipse.papyrus.compare.report.ui.popupMenus.acceleoGenerateGenerateReportAction"
                icon="icons/export_as_html.gif"
-               label="Generate DiffReport"
+               label="%action.label"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
       </objectContribution>
    </extension>
