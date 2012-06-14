@@ -174,7 +174,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.assertNull(message, nb + " problems! " + message);
+		Assert.assertNull(nb + " problems! " + message, message);
 	}
 
 }
