@@ -54,11 +54,15 @@ import org.junit.Test;
 
 
 /**
-An advanced textual editor for combined fragments guards would allow to capture
-complex guards.
- *
+ * An advanced textual editor for combined fragments guards would allow to capture
+ * complex guards.
+ * 
  */
 public class TestGuardEdition_364808 extends TestTopNode {
+
+	private static final String CHANGE_OPERATOR_KIND = "Change Operator Kind: ";
+
+	private static final String EDIT = "Edit: ";
 
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
@@ -68,52 +72,51 @@ public class TestGuardEdition_364808 extends TestTopNode {
 	public void testEditText() {
 		InteractionOperandEditPart op = setupOperand();
 		WrappingLabel label = performEditRequest(op);
-		
-		Composite composite = (Composite) op.getViewer().getControl();
-//		Text editor = (Text)composite.getDisplay().getFocusControl();
+
+		Composite composite = (Composite)op.getViewer().getControl();
 		Text editor = findEditor(composite, label);
 		assertNotNull(editor);
-		
+		assertTrue(EDIT + INITIALIZATION_TEST, label.getText().contains(editor.getText()));
+
 		// edit text
 		String cond = "a < b";
 		editor.setText(cond);
 		input(editor, SWT.CR);
 		waitForComplete();
-		
+
 		// verify
-		assertTrue("", label.getText().contains(cond));		
 		CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)getRootEditPart().getChildren().get(0)).resolveSemanticElement();
 		InteractionConstraint guard = cf.getOperands().get(0).getGuard();
-		assertTrue("", cond.equals(((LiteralString)guard.getSpecification()).getValue()));
+		assertTrue(EDIT + TEST_THE_EXECUTION, cond.equals(((LiteralString)guard.getSpecification()).getValue()));
+		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains(cond));
 	}
-	
+
 	@Test
 	public void testEditLoop() {
 		InteractionOperandEditPart op = setupOperand();
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		changeOperatorKind(cep, (CombinedFragment)cep.resolveSemanticElement(), InteractionOperatorKind.LOOP_LITERAL);
-		
+
 		WrappingLabel label = performEditRequest(op);
-		
-		Composite composite = (Composite) op.getViewer().getControl();
+
+		Composite composite = (Composite)op.getViewer().getControl();
 		Text editor = findEditor(composite, label);
 		assertNotNull(editor);
-		
+
 		// edit text
 		String cond = "[1,10] a < b";
 		editor.setText(cond);
 		input(editor, SWT.CR);
 		waitForComplete();
-		
+
 		// verify
-		assertTrue("", label.getText().contains("1,10"));
-		assertTrue("", label.getText().contains("a < b"));		
 		CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)getRootEditPart().getChildren().get(0)).resolveSemanticElement();
 		InteractionConstraint guard = cf.getOperands().get(0).getGuard();
-		assertTrue("", "a < b".equals(((LiteralString)guard.getSpecification()).getValue()));
-		assertTrue("", ((LiteralInteger)guard.getMaxint()).getValue() == 10);
-		assertTrue("", ((LiteralInteger)guard.getMinint()).getValue() == 1);
-		
+		assertTrue(EDIT + TEST_THE_EXECUTION, "a < b".equals(((LiteralString)guard.getSpecification()).getValue()));
+		assertTrue(EDIT + TEST_THE_EXECUTION, ((LiteralInteger)guard.getMaxint()).getValue() == 10);
+		assertTrue(EDIT + TEST_THE_EXECUTION, ((LiteralInteger)guard.getMinint()).getValue() == 1);
+		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("1,10"));
+		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("a < b"));
 	}
 
 	protected InteractionOperandEditPart setupOperand() {
@@ -134,13 +137,12 @@ public class TestGuardEdition_364808 extends TestTopNode {
 		op.performRequest(req);
 		return label;
 	}
-	
+
 	private Text findEditor(Composite composite, WrappingLabel label) {
-		for(Control c : composite.getChildren()){
-			if(c instanceof Text){
-				System.out.println(((Text) c).getText());
-				if(label.getText().equals(((Text) c).getText()))
-					return (Text) c;
+		for(Control c : composite.getChildren()) {
+			if(c instanceof Text) {
+				if(label.getText().equals(((Text)c).getText()))
+					return (Text)c;
 			}
 		}
 		return null;
@@ -152,26 +154,28 @@ public class TestGuardEdition_364808 extends TestTopNode {
 		SetRequest request = new SetRequest(p.getEditingDomain(), cf, feature, kind);
 		ICommand createGMFCommand = provider.getEditCommand(request);
 		org.eclipse.emf.common.command.AbstractCommand emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
-		assertTrue("Change Operator: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
+		assertTrue(CHANGE_OPERATOR_KIND + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
+		waitForComplete();
+		assertTrue(CHANGE_OPERATOR_KIND + TEST_THE_EXECUTION, cf.getInteractionOperator() == kind);
 	}
 
-	public void input(Widget widget, char... character ){
+	public void input(Widget widget, char... character) {
 		if(widget.isDisposed())
 			return;
-		
-		for(char c : character){
+
+		for(char c : character) {
 			Event e = createKeyEvent(widget, 0, c);
-			e.type = SWT.KeyDown;			
+			e.type = SWT.KeyDown;
 			widget.notifyListeners(SWT.KeyDown, e);
-			
+
 			e = createKeyEvent(widget, 0, c);
-			e.type = SWT.KeyUp;			
+			e.type = SWT.KeyUp;
 			widget.notifyListeners(SWT.KeyUp, e);
 		}
 		waitForComplete();
 	}
-	
+
 	private Event createKeyEvent(Widget widget, int keyCode, char character) {
 		Event event = new Event();
 		event.time = (int)System.currentTimeMillis();

@@ -28,7 +28,7 @@ TestSequenceDiagramTopNode.class,
 // child nodes
 TestSequenceDiagramChildNode.class,
 //test links
-TestSequenceDiagramLink.class, })
+TestSequenceDiagramLink.class, TestCombinedFragmentChildNode.class })
 public class AllCanonicalTests {
 
 }

@@ -40,52 +40,54 @@ import org.junit.Test;
 
 
 public class TestCombinedFragmentChildNode extends TestChildNode {
-	
+
+	private static final String CHANGE_OPERATOR_KIND = "Change Operator Kind: ";
+
 	@Test
 	public void testToManageOperand() {
-		testToManageChildNode(UMLElementTypes.InteractionOperand_3005,  combinedFragmentProvider);
+		testToManageChildNode(UMLElementTypes.InteractionOperand_3005, combinedFragmentProvider);
 	}
 
 	@Test
 	public void testToManageContinuation() {
-		testToManageChildNode(UMLElementTypes.Continuation_3016,  operandProvider);
+		testToManageChildNode(UMLElementTypes.Continuation_3016, operandProvider);
 	}
-	
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.CombinedFragment_3004, getDiagramEditPart().getDiagramPreferencesHint());
 	}
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateSequenceDiagramCommand();
+		return new CreateSequenceDiagramCommand();
 	}
-	
+
 	@Override
 	protected void createTopNode() {
 		super.createTopNode();
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
-		changeOperatorKind(cep, cf,  InteractionOperatorKind.ALT_LITERAL);
+		changeOperatorKind(cep, cf, InteractionOperatorKind.ALT_LITERAL);
 		waitForComplete();
 	}
-	
+
 	protected void changeOperatorKind(CombinedFragmentEditPart p, CombinedFragment cf, InteractionOperatorKind kind) {
 		EAttribute feature = UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cf);
 		SetRequest request = new SetRequest(p.getEditingDomain(), cf, feature, kind);
 		ICommand createGMFCommand = provider.getEditCommand(request);
 		org.eclipse.emf.common.command.AbstractCommand emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
-		assertTrue("Change Operator: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
+		assertTrue(CHANGE_OPERATOR_KIND + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
 	}
-	
+
 	private GraphicalEditPart containerEditPart;
-	
-	IChildTestProvider operandProvider = new IChildTestProvider(){
+
+	IChildTestProvider operandProvider = new IChildTestProvider() {
 
 		public int getEditPartChildrenSize() {
-			return getParentEditPart().getChildren().size() ; 
+			return getParentEditPart().getChildren().size();
 		}
 
 		public int getSemanticChildrenSize() {
@@ -94,7 +96,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public int getViewChildrenSize() {
-			return getParentEditPart().getNotationView().getChildren().size()  ; 
+			return getParentEditPart().getNotationView().getChildren().size();
 		}
 
 		public Element getDropElement() {
@@ -102,7 +104,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public GraphicalEditPart getParentEditPart() {
-			if(containerEditPart == null){
+			if(containerEditPart == null) {
 				CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 				CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
 				containerEditPart = (GraphicalEditPart)cfp.getChildren().get(0); // operand
@@ -119,18 +121,18 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 			return true;
 		}
 
-		public Point getChildLocation(GraphicalEditPart parentEditPart) {			
+		public Point getChildLocation(GraphicalEditPart parentEditPart) {
 			IFigure f = parentEditPart.getFigure();
 			Rectangle b = f.getBounds().getCopy();
 			f.translateToAbsolute(b);
 			return b.getCenter().getCopy();
-		}		
+		}
 	};
-	
-	IChildTestProvider combinedFragmentProvider = new IChildTestProvider(){
+
+	IChildTestProvider combinedFragmentProvider = new IChildTestProvider() {
 
 		public int getEditPartChildrenSize() {
-			return getParentEditPart().getChildren().size()-1 ; 
+			return getParentEditPart().getChildren().size() - 1;
 		}
 
 		public int getSemanticChildrenSize() {
@@ -139,7 +141,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public int getViewChildrenSize() {
-			return getParentEditPart().getNotationView().getChildren().size() -1 ; 
+			return getParentEditPart().getNotationView().getChildren().size() - 1;
 		}
 
 		public Element getDropElement() {
@@ -147,7 +149,7 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public GraphicalEditPart getParentEditPart() {
-			if(containerEditPart == null){
+			if(containerEditPart == null) {
 				CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 				CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
 				containerEditPart = cfp;
@@ -164,12 +166,12 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 			return true;
 		}
 
-		public Point getChildLocation(GraphicalEditPart parentEditPart) {			
+		public Point getChildLocation(GraphicalEditPart parentEditPart) {
 			IFigure f = parentEditPart.getFigure();
 			Rectangle b = f.getBounds().getCopy();
 			f.translateToAbsolute(b);
 			return b.getCenter().getCopy();
-		}		
+		}
 	};
 
 }

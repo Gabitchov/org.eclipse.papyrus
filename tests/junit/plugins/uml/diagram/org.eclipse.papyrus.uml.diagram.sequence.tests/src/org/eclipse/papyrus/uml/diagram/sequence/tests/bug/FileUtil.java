@@ -23,8 +23,10 @@ import java.nio.charset.Charset;
 
 
 public class FileUtil {
+
 	/**
-	 * @param in the input stream to read from.
+	 * @param in
+	 *        the input stream to read from.
 	 * @return the contents of the inputstream.
 	 */
 	public static String read(InputStream in) {
@@ -32,7 +34,8 @@ public class FileUtil {
 	}
 
 	/**
-	 * @param url the URL to read from.
+	 * @param url
+	 *        the URL to read from.
 	 * @return the contents of the url.
 	 */
 	public static String read(URL url) {
@@ -44,14 +47,15 @@ public class FileUtil {
 	}
 
 	/**
-	 * @param in the reader to read from.
+	 * @param in
+	 *        the reader to read from.
 	 * @return the contents of the reader.
 	 */
 	public static String read(Reader in) {
 		StringBuffer buffer = new StringBuffer();
 		try {
-			while (in.ready()) {
-				buffer.append((char) in.read());
+			while(in.ready()) {
+				buffer.append((char)in.read());
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -60,10 +64,10 @@ public class FileUtil {
 		}
 		return buffer.toString();
 	}
-	
+
 
 	private static void close(Closeable c) {
-		if (c != null) {
+		if(c != null) {
 			try {
 				c.close();
 			} catch (IOException e) {

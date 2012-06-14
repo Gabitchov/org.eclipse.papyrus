@@ -42,6 +42,8 @@ import org.junit.Test;
  */
 public class TestMovingCombinedFragment_364711 extends TestTopNode {
 
+	private static final String MOVE = "Move: ";
+
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
@@ -50,51 +52,64 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 	public void testMovingRight() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(20, 20));
 		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80));
-		final LifelineEditPart lifeline = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-
+		final LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(1);
+		waitForComplete(); // wait for updating covered field
 
-		waitForComplete(); // wait for updating covered field 
-		ChangeBoundsRequest req = new ChangeBoundsRequest(RequestConstants.REQ_MOVE); 
+		Point moveDelta = new Point(50, 0);
+		ChangeBoundsRequest req = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
 		req.setResizeDirection(PositionConstants.WEST);
-		req.setLocation(getAbsoluteCenter(lifeline));
-		req.setEditParts(lifeline);
-		req.setMoveDelta(new Point(50, 0));
+		req.setLocation(getAbsoluteCenter(lifelineEP));
+		req.setEditParts(lifelineEP);
+		req.setMoveDelta(moveDelta);
 
+		Command command = lifelineEP.getCommand(req);
+		assertNotNull(MOVE + COMMAND_NULL, command);
+		assertTrue(MOVE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		Rectangle before = getAbsoluteBounds(cep);
-
-		Command command = lifeline.getCommand(req);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 
 		Rectangle after = getAbsoluteBounds(cep);
-		assertTrue("Move horizontal", after.x() - before.x() == 50);
-		assertTrue("Move vertical", after.y() - before.y() == 0);
+		assertTrue(MOVE + TEST_THE_EXECUTION, after.x() - before.x() == moveDelta.x);
+		assertTrue(MOVE + TEST_THE_EXECUTION, after.y() - before.y() == moveDelta.y);
 
+		getEMFCommandStack().undo();
+		assertTrue(MOVE + TEST_THE_UNDO, before.equals(getAbsoluteBounds(cep)));
+
+		getEMFCommandStack().redo();
+		assertTrue(MOVE + TEST_THE_REDO, after.equals(getAbsoluteBounds(cep)));
 	}
 
 	@Test
 	public void testMovingLeft() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(70, 20));
 		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(60, 80));
-		final LifelineEditPart lifeline = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-
+		final LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(1);
-		waitForComplete(); // wait for updating covered field 
+		waitForComplete(); // wait for updating covered field
+
+		Point moveDelta = new Point(-30, 0);
 		ChangeBoundsRequest req = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
 		req.setResizeDirection(PositionConstants.EAST);
-		req.setLocation(getAbsoluteCenter(lifeline));
-		req.setEditParts(lifeline);
-		req.setMoveDelta(new Point(-30, 0));
+		req.setLocation(getAbsoluteCenter(lifelineEP));
+		req.setEditParts(lifelineEP);
+		req.setMoveDelta(moveDelta);
 
+		Command command = lifelineEP.getCommand(req);
+		assertNotNull(MOVE + COMMAND_NULL, command);
+		assertTrue(MOVE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		Rectangle before = getAbsoluteBounds(cep);
-
-		Command command = lifeline.getCommand(req);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 
 		Rectangle after = getAbsoluteBounds(cep);
-		assertTrue("Move horizontal", after.x() - before.x() == -30);
-		assertTrue("Move vertical", after.y() - before.y() == 0);
+		assertTrue(MOVE + TEST_THE_EXECUTION, after.x() - before.x() == moveDelta.x);
+		assertTrue(MOVE + TEST_THE_EXECUTION, after.y() - before.y() == moveDelta.y);
 
+		getEMFCommandStack().undo();
+		assertTrue(MOVE + TEST_THE_UNDO, before.equals(getAbsoluteBounds(cep)));
+
+		getEMFCommandStack().redo();
+		assertTrue(MOVE + TEST_THE_REDO, after.equals(getAbsoluteBounds(cep)));
 	}
 
 	public void createNode(IElementType type, GraphicalEditPart parent, Point location) {
@@ -105,7 +120,6 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
-
 		getDiagramCommandStack().execute(command);
 	}
 }

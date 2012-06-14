@@ -56,7 +56,7 @@ public class TestSequenceDiagramLink extends TestLink {
 	}
 
 	@Test
-	public void testToManageMessageFound_4009() {  
+	public void testToManageMessageFound_4009() {
 		installEnvironment(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, lifelineProvider);
 		source = (GraphicalEditPart)source.getParent().getParent();
 		testToCreateALink(UMLElementTypes.Message_4009, lifelineProvider);
@@ -67,7 +67,7 @@ public class TestSequenceDiagramLink extends TestLink {
 	}
 
 	@Test
-	public void testToManageMessageLost_4008()  {
+	public void testToManageMessageLost_4008() {
 		installEnvironment(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, lifelineProvider);
 
 		target = (GraphicalEditPart)target.getParent().getParent();
@@ -77,7 +77,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		getEMFCommandStack().undo();
 		testViewDeletion(UMLElementTypes.Message_4008, lifelineProvider);
 	}
- 
+
 	@Test
 	public void testToManageCommentLink() {
 		testToManageLink(UMLElementTypes.Comment_3009, UMLElementTypes.Lifeline_3001, UMLElementTypes.CommentAnnotatedElement_4010, lifelineProvider, true);
@@ -89,17 +89,17 @@ public class TestSequenceDiagramLink extends TestLink {
 	}
 
 	@Test
-	public void testToManageMessageAsync_4004() {  
+	public void testToManageMessageAsync_4004() {
 		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4004, lifelineProvider, true);
 	}
 
 	@Test
-	public void testToManageMessageDelete_4007() {  
+	public void testToManageMessageDelete_4007() {
 		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4007, lifelineProvider, true);
 	}
 
 	@Test
-	public void testToManageMessageCreate_4006() {  
+	public void testToManageMessageCreate_4006() {
 		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4006, lifelineProvider, false);
 	}
 
@@ -170,7 +170,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		public void setUp() {
 			IElementType childNodeType = UMLElementTypes.ActionExecutionSpecification_3006;
 			source = createSubNode(source, childNodeType, getChildLocation(source));
-			sourcePlayer = createSubNode(sourcePlayer, childNodeType, getChildLocation(sourcePlayer)); 
+			sourcePlayer = createSubNode(sourcePlayer, childNodeType, getChildLocation(sourcePlayer));
 
 			target = createSubNode(target, childNodeType, getChildLocation(target).translate(0, 50));
 			targetPlayer = createSubNode(targetPlayer, childNodeType, getChildLocation(targetPlayer).translate(0, 50));

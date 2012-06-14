@@ -49,48 +49,53 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 		return new CreateSequenceDiagramCommand();
 	}
 
-
 	public void checkConstraintLink(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
 
 		createNode(UMLElementTypes.Constraint_3008, getRootEditPart(), new Point(200, 400), new Dimension(100, 50));
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target));
 		waitForComplete();
-		
-		AbstractMessageEditPart linkEditPart = (AbstractMessageEditPart)source.getSourceConnections().get(0);
 
-		MessageEndEditPart linkEndpoint = (MessageEndEditPart)linkEditPart.getChildren().get(0);
+		AbstractMessageEditPart linkEditPart = (AbstractMessageEditPart)source.getSourceConnections().get(0);
+		MessageEndEditPart linkEndPoint = (MessageEndEditPart)linkEditPart.getChildren().get(0);
 		ConstraintEditPart constraintEditPart = (ConstraintEditPart)getRootEditPart().getChildren().get(2);
-		createLink(UMLElementTypes.ConstraintConstrainedElement_4011, constraintEditPart, linkEndpoint, getAbsoluteCenter(constraintEditPart), getAbsoluteCenter(linkEndpoint));
+		createLink(UMLElementTypes.ConstraintConstrainedElement_4011, constraintEditPart, linkEndPoint, getAbsoluteCenter(constraintEditPart), getAbsoluteCenter(linkEndPoint));
 
 		Constraint constraint = (Constraint)constraintEditPart.resolveSemanticElement();
-		assertTrue("Link end: ", constraint.getConstrainedElements().get(0) instanceof MessageEnd);
+		assertTrue(CREATION + TEST_THE_EXECUTION, constraint.getConstrainedElements().get(0) instanceof MessageEnd);
+		assertTrue(CREATION + TEST_THE_EXECUTION, constraintEditPart.getSourceConnections().size() == 1);
+
+		getDiagramCommandStack().undo();
+		assertTrue(CREATION + TEST_THE_UNDO, constraintEditPart.getSourceConnections().size() == 0);
+
+		getDiagramCommandStack().redo();
+		assertTrue(CREATION + TEST_THE_REDO, constraintEditPart.getSourceConnections().size() == 1);
 	}
 
 	@Test
 	public void testMessageAsync_4004() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4004,null);
+		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4004, null);
 	}
 
 	@Test
 	public void testMessageSync_4003() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001,UMLElementTypes.Message_4003 ,UMLElementTypes.ActionExecutionSpecification_3006);
-	}
-	
-	@Test
-	public void testMessageReply_4005() { 
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001,UMLElementTypes.Message_4005,UMLElementTypes.ActionExecutionSpecification_3006);
+		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4003, UMLElementTypes.ActionExecutionSpecification_3006);
 	}
 
 	@Test
-	public void testMessageDelete_4007() {   
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001,UMLElementTypes.Message_4007 ,null);
+	public void testMessageReply_4005() {
+		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4005, UMLElementTypes.ActionExecutionSpecification_3006);
 	}
-	
+
 	@Test
-	public void testMessageCreate_4006() { 
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001,UMLElementTypes.Message_4006 ,null);
-	} 
+	public void testMessageDelete_4007() {
+		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4007, null);
+	}
+
+	@Test
+	public void testMessageCreate_4006() {
+		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4006, null);
+	}
 
 	public void createLink(IElementType linkType, EditPart source, EditPart target, Point sourcePoint, Point targetPoint) {
 		CreateConnectionViewRequest req = createConnectionViewRequest(linkType, source, target, sourcePoint, targetPoint);
@@ -109,18 +114,16 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 		connectionRequest.setTargetEditPart(source);
 		connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
 		Command cmd = source.getCommand(connectionRequest);
-		// Now, setup the request in preparation to get the
-		// connection end
-		// command.
+
+		// get the connection end command
 		connectionRequest.setSourceEditPart(source);
 		connectionRequest.setTargetEditPart(target);
 		connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
 		connectionRequest.setLocation(targetPoint);
-		
+
 		EObject container = getRootEditPart().resolveSemanticElement();
 		connectionRequest.getExtendedData().put(SOURCE_MODEL_CONTAINER, container);
 		connectionRequest.getExtendedData().put(TARGET_MODEL_CONTAINER, container);
-
 		return connectionRequest;
 	}
 
@@ -132,7 +135,7 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 		Command command = parent.getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 
 		getDiagramCommandStack().execute(command);
 	}
@@ -146,13 +149,12 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 
 		source = (GraphicalEditPart)getRootEditPart().getChildren().get(0);
 		target = (GraphicalEditPart)getRootEditPart().getChildren().get(1);
-		
-		if(subNodeType != null){
+
+		if(subNodeType != null) {
 			waitForComplete();
-			source = createSubNode(source, subNodeType, getAbsoluteCenter( source));
-			target = createSubNode(target, subNodeType, getAbsoluteCenter( target).translate(0, 50));
+			source = createSubNode(source, subNodeType, getAbsoluteCenter(source));
+			target = createSubNode(target, subNodeType, getAbsoluteCenter(target).translate(0, 50));
 			waitForComplete();
 		}
 	}
-
 }

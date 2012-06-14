@@ -23,11 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests together.
  */
 @RunWith(Suite.class)
-@SuiteClasses({
-// canonical
-AllCanonicalTests.class,
-AllBugTests.class
-})
+@SuiteClasses({ AllCanonicalTests.class, AllBugTests.class })
 public class AllTests {
 
 }

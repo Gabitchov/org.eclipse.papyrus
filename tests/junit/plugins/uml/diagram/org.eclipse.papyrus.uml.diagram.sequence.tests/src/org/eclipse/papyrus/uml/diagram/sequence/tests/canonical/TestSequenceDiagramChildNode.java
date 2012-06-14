@@ -97,7 +97,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 			//DESTROY SEMANTIC+ VIEW
 			IChildTestProvider provider = executionProvider;
 			assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 1);
-			assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);  
+			assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);
 			assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
 
 			Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
@@ -108,7 +108,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 
 			getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 			assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 0);
-			assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 0);  
+			assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 0);
 			assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == 0);
 		}
 

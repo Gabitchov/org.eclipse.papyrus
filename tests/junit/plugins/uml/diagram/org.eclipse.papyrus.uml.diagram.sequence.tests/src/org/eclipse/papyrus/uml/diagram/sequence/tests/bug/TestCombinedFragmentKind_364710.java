@@ -40,8 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 /**
- * 
- Currently, combined fragment kind can be changed only if the combined fragment
+ * Currently, combined fragment kind can be changed only if the combined fragment
  * has a unique operand. Kind modification should be allowed in the case of a
  * combined fragment owing more than one operand when the modification is
  * compatible with the number of operands. For instance, the change of seq kind to
@@ -52,11 +51,13 @@ import org.junit.Test;
  */
 public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
+	private static final String CHANGE_OPERATOR_KIND = "Change Operator Kind: ";
+
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateSequenceDiagramCommand();
 	}
 
-	@Test 
+	@Test
 	public void testConsiderIgnoreFragment() {
 		createNode(UMLElementTypes.ConsiderIgnoreFragment_3007, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		ConsiderIgnoreFragmentEditPart cep = (ConsiderIgnoreFragmentEditPart)getRootEditPart().getChildren().get(0);
@@ -64,16 +65,16 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
 		// add operand
 		createNode(UMLElementTypes.InteractionOperand_3005, cfp, new Point(30, 100), new Dimension(100, 100));
-		assertTrue("Operand size: ", cfp.getChildren().size() == 2);
+		assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
 
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
-		InteractionOperatorKind[] list = { InteractionOperatorKind.IGNORE_LITERAL, InteractionOperatorKind.CONSIDER_LITERAL};
-		for(int i = 0 ;i < list.length; i ++){
+		InteractionOperatorKind[] list = { InteractionOperatorKind.IGNORE_LITERAL, InteractionOperatorKind.CONSIDER_LITERAL };
+		for(int i = 0; i < list.length; i++) {
 			changeOperatorKind(cep, cf, list[i]);
-			assertTrue("Change Operator: " + TEST_THE_EXECUTION, cf.getInteractionOperator() == list[i]);
+			assertTrue(CHANGE_OPERATOR_KIND + TEST_THE_EXECUTION, cf.getInteractionOperator() == list[i]);
 		}
 	}
-	
+
 	@Test
 	public void testCombinedFragment() {
 		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
@@ -82,25 +83,25 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
 		// add operand
 		createNode(UMLElementTypes.InteractionOperand_3005, cfp, new Point(30, 100), new Dimension(100, 100));
-		assertTrue("Operand size: ", cfp.getChildren().size() == 2);
+		assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
 
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
-		InteractionOperatorKind[] list = { InteractionOperatorKind.ALT_LITERAL, InteractionOperatorKind.PAR_LITERAL, InteractionOperatorKind.STRICT_LITERAL ,InteractionOperatorKind.CRITICAL_LITERAL, InteractionOperatorKind.ASSERT_LITERAL, InteractionOperatorKind.SEQ_LITERAL};
-		for(int i = 0 ;i < list.length; i ++){
+		InteractionOperatorKind[] list = { InteractionOperatorKind.ALT_LITERAL, InteractionOperatorKind.PAR_LITERAL, InteractionOperatorKind.STRICT_LITERAL, InteractionOperatorKind.CRITICAL_LITERAL, InteractionOperatorKind.ASSERT_LITERAL, InteractionOperatorKind.SEQ_LITERAL };
+		for(int i = 0; i < list.length; i++) {
 			changeOperatorKind(cep, cf, list[i]);
-			assertTrue("Change Operator: " + TEST_THE_EXECUTION, cf.getInteractionOperator() == list[i]);
 		}
 	}
-		 
+
 	protected void changeOperatorKind(CombinedFragmentEditPart p, CombinedFragment cf, InteractionOperatorKind kind) {
 		EAttribute feature = UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cf);
 		SetRequest request = new SetRequest(p.getEditingDomain(), cf, feature, kind);
 		ICommand createGMFCommand = provider.getEditCommand(request);
 		org.eclipse.emf.common.command.AbstractCommand emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
-		assertTrue("Change Operator: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
+		assertTrue(CHANGE_OPERATOR_KIND + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, emfCommand.canExecute() == true);
 		getEMFCommandStack().execute(emfCommand);
-		waitForComplete();		
+		waitForComplete();
+		assertTrue(CHANGE_OPERATOR_KIND + TEST_THE_EXECUTION, cf.getInteractionOperator() == kind);
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {

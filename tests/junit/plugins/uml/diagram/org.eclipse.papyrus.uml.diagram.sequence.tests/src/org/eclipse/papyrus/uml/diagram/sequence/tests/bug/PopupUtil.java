@@ -29,12 +29,13 @@ import org.eclipse.swt.widgets.Widget;
 public class PopupUtil {
 
 	static boolean menuPopup = false;
+
 	static int clickMenuIndex = 0;
-	
-	public static boolean isMenuPopup(){
+
+	public static boolean isMenuPopup() {
 		return menuPopup;
 	}
-	
+
 	public static void addMenuListener(int clickIndex) {
 		menuPopup = false;
 		clickMenuIndex = clickIndex;
@@ -60,20 +61,20 @@ public class PopupUtil {
 	public static void click(final Menu bar) {
 		click(bar, 0);
 	}
-	
+
 	public static void click(final Menu bar, int index) {
 		MenuItem[] items = bar.getItems();
 		if(items != null && index < items.length)
 			notifyEvent(items[index], SWT.Selection);
-		
+
 		bar.setVisible(false);
 		bar.notifyListeners(SWT.Hide, new Event());
 		waitForComplete();
 	}
-	
-	protected static void waitForComplete(){
+
+	protected static void waitForComplete() {
 		boolean run = true;
-		while(run){
+		while(run) {
 			try {
 				run = Display.getDefault().readAndDispatch();
 			} catch (Exception e) {
@@ -90,11 +91,12 @@ public class PopupUtil {
 		event.type = eventType;
 
 		Display.getDefault().syncExec(new Runnable() {
+
 			public void run() {
 				menuItem.notifyListeners(eventType, event);
 			}
 		});
-		
+
 		waitForComplete();
 	}
 
@@ -167,7 +169,7 @@ public class PopupUtil {
 			}
 		}
 	};
-	
+
 	public static void addDialogCloseHandler() {
 		Display.getDefault().syncExec(new Runnable() {
 

@@ -67,14 +67,14 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 	public void testToManageCombinedFragment() { // popup menu when delete
 		PopupUtil.addMenuListener(0);
 		testToManageTopNode(UMLElementTypes.CombinedFragment_3004, provider);
-		
+
 		waitForComplete();
 		PopupUtil.removeMenuListener();
 	}
 
 	@Test
 	public void testToManageTimeObservation() {
-		testToManageTopNode(UMLElementTypes.TimeObservation_3020, observationProvider); 
+		testToManageTopNode(UMLElementTypes.TimeObservation_3020, observationProvider);
 	}
 
 	@Test
@@ -83,6 +83,7 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 	}
 
 	ITestProvider provider = new ITestProvider() {
+
 		public int getEditPartChildrenSize() {
 			return getRootEditPart().getChildren().size();
 		}

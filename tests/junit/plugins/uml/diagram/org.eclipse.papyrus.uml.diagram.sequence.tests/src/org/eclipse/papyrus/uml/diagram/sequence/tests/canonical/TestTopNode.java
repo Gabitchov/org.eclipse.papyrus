@@ -13,20 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
-
 import java.util.ArrayList;
 
 import org.eclipse.draw2d.IFigure;
@@ -74,7 +60,7 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		}
 		return rootPart;
 	}
-	
+
 	protected View getRootView() {
 		return getRootEditPart().getNotationView();
 	}
@@ -108,9 +94,9 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		super.tearDown();
 	}
 
-	protected void waitForComplete(){
+	protected void waitForComplete() {
 		boolean run = true;
-		while(run){
+		while(run) {
 			try {
 				run = Display.getDefault().readAndDispatch();
 			} catch (Exception e) {
@@ -118,7 +104,7 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 			}
 		}
 	}
-	
+
 	protected Point getAbsoluteCenter(IGraphicalEditPart part) {
 		IFigure f = part.getFigure();
 		Rectangle b = f.getBounds().getCopy();
@@ -126,7 +112,7 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		Point c = b.getCenter().getCopy();
 		return c;
 	}
-	
+
 	/**
 	 * Get the bounds of an edit part
 	 * 
@@ -163,7 +149,7 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		part.getFigure().getParent().translateToAbsolute(bounds);
 		return bounds;
 	}
-	
+
 	/**
 	 * Test view deletion.
 	 * 
@@ -195,7 +181,7 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, provider.getSemanticChildrenSize() == 1);
 
 	}
-	
+
 	/**
 	 * Retrieves the TransactionalEditingDomain
 	 * 
@@ -255,14 +241,14 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 	 */
 	public void testDrop(IElementType type, ITestProvider provider) {
 		if(provider.getDropElement() == null)
-			return ;
+			return;
 		//DROP
 		assertTrue(DROP + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 0);
 		assertTrue(DROP + INITIALIZATION_TEST, provider.getSemanticChildrenSize() == 1);
 
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
-		list.add(provider.getDropElement()); 
+		list.add(provider.getDropElement());
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20, 20));
 		Command command = getRootEditPart().getCommand(dropObjectsRequest);
@@ -293,22 +279,21 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		Command command = provider.getParentEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 
 		getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == 1);  
-		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 1);  
+		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 1);
 
 		getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, provider.getViewChildrenSize() == 0);
 		assertTrue(CREATION + TEST_THE_UNDO, provider.getSemanticChildrenSize() == 0);
 
 		getDiagramCommandStack().redo();
-		assertTrue("CREATION: " + TEST_THE_REDO, provider.getEditPartChildrenSize() == 1);
-
-		assertTrue(CREATION + TEST_THE_REDO, provider.getSemanticChildrenSize() == 1);  
-		assertTrue(CREATION + TEST_THE_REDO, provider.getViewChildrenSize() == 1);  
+		assertTrue(CREATION + TEST_THE_REDO, provider.getEditPartChildrenSize() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, provider.getSemanticChildrenSize() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, provider.getViewChildrenSize() == 1);
 	}
 
 	/**
@@ -326,6 +311,6 @@ public abstract class TestTopNode extends AbstractPapyrusTestCase {
 		getEMFCommandStack().undo();
 		testViewDeletion(type, provider);
 
-		testDrop(type, provider);  
+		testDrop(type, provider);
 	}
 }

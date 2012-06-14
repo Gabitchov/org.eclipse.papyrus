@@ -45,7 +45,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	protected GraphicalEditPart getRootEditPart() {
 		if(rootPart == null) {
 			GraphicalEditPart part = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
-			rootPart = (GraphicalEditPart)part.getChildren().get(1); 
+			rootPart = (GraphicalEditPart)part.getChildren().get(1);
 		}
 		return rootPart;
 	}
@@ -66,9 +66,9 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 		return getRootEditPart().getEditingDomain().getCommandStack();
 	}
 
-	protected void waitForComplete(){
+	protected void waitForComplete() {
 		boolean run = true;
-		while(run){
+		while(run) {
 			try {
 				run = Display.getDefault().readAndDispatch();
 			} catch (Exception e) {
@@ -87,7 +87,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 		//DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 1);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);  
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);
 
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = provider.getDestroyEditPart().getCommand(deleteViewRequest);
@@ -99,17 +99,17 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 		getDiagramCommandStack().execute(command);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 0);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 0);  
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 0);
 
 		getDiagramCommandStack().undo();
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, provider.getEditPartChildrenSize() == 1);
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);  
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);
 
 		getDiagramCommandStack().redo();
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, provider.getEditPartChildrenSize() == 0);
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 0);  
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 0);
 
 	}
 
@@ -133,18 +133,18 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 0);  
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 0);
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == 0);
 
 		getEMFCommandStack().undo();
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, provider.getEditPartChildrenSize() == 1);
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, provider.getViewChildrenSize() == 1);  
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, provider.getViewChildrenSize() == 1);
 
 		getEMFCommandStack().redo();
 		assertTrue(DESTROY_DELETION + TEST_THE_REDO, provider.getEditPartChildrenSize() == 0);
 		assertTrue(DESTROY_DELETION + TEST_THE_REDO, provider.getSemanticChildrenSize() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, provider.getViewChildrenSize() == 0);  
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, provider.getViewChildrenSize() == 0);
 	}
 
 	/**
@@ -161,42 +161,40 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 
-		requestcreation.setLocation(provider.getChildLocation(provider.getParentEditPart()));  
+		requestcreation.setLocation(provider.getChildLocation(provider.getParentEditPart()));
 
 		Command command = provider.getParentEditPart().getCommand(requestcreation);
 
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
 		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);  
-		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 1);  
+		assertTrue(CREATION + TEST_THE_EXECUTION, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 1);
 
 		getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, provider.getViewChildrenSize() == 0);
 		assertTrue(CREATION + TEST_THE_UNDO, provider.getSemanticChildrenSize() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, provider.getEditPartChildrenSize() == 0);  
+		assertTrue(CREATION + TEST_THE_UNDO, provider.getEditPartChildrenSize() == 0);
 
 		getDiagramCommandStack().redo();
 		assertTrue(CREATION + TEST_THE_REDO, provider.getEditPartChildrenSize() == 1);
-		assertTrue(CREATION + TEST_THE_REDO, provider.getViewChildrenSize() == 1);  
-		assertTrue(CREATION + TEST_THE_REDO, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);  
+		assertTrue(CREATION + TEST_THE_REDO, provider.getViewChildrenSize() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
 
 	}
 
 	public void createChildNode(IElementType type, IChildTestProvider provider) {
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
-		requestcreation.setLocation(provider.getChildLocation(provider.getParentEditPart()));  		
+		requestcreation.setLocation(provider.getChildLocation(provider.getParentEditPart()));
 		Command command = provider.getParentEditPart().getCommand(requestcreation);
 
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
 	}
-
-
 
 	@Override
 	protected void setUp() throws Exception {
