@@ -32,6 +32,10 @@ public class AllTests {
 		/*Bundle tests*/
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
 		
+		/* UML Compare tests*/
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.file.tests.AllTests.class));
+		
 		/* **************** plugins *********************** */
 		/* css */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.css.tests.tests.AllTests.class));

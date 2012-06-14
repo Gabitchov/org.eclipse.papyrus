@@ -50,8 +50,24 @@
       </rm:uri>
     </rm:provider>
     
-     <rm:provider componentTypes="osgi.bundle" readerType="local">
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/extraplugins/uml/compare/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/tests/junit/plugins/developer/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/junit/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
