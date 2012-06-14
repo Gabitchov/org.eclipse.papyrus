@@ -7,6 +7,7 @@
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.sdk\.feature$" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.extra\.feature$" searchPathRef="papyrusBinaries"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\.feature$" searchPathRef="papyrusTests"/>
+  <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.junit.\utils.*" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\..*?feature$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\.tests\.extra\.build\.feature$" searchPathRef="papyrusTests"/>
   <rm:locator failOnError="true" pattern="^org\.eclipse\.papyrus\..*" searchPathRef="papyrusBinaries"/>
