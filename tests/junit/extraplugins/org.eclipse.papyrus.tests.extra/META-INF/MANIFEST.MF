@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Extra plugins Tests
+Bundle-Name: Extra plugins Tests (Incubation)
 Bundle-SymbolicName: org.eclipse.papyrus.tests.extra
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.tests.extra.Activator
