@@ -5,7 +5,7 @@
       version="0.9.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
-<copyright url="http://www.eclipse.org/legal/epl-v10.html">
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2011 CEA LIST
 All rights reserved.   This program and the accompanying materials
 are made available under the terms of the Eclipse Public License
@@ -64,6 +64,13 @@ Java and all Java-based trademarks are trademarks of Sun Microsystems, Inc. in t
 
    <plugin
          id="org.eclipse.papyrus.tests.extra"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.bundles.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -29,6 +29,9 @@ public class AllTests {
 	static {
 		suiteClasses = new ArrayList<ITestSuiteClass>();
 
+		/*Bundle tests*/
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
+		
 		/* **************** plugins *********************** */
 		/* css */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.css.tests.tests.AllTests.class));
