@@ -41,10 +41,13 @@ public class EditorUtils {
 	 * @throws PartInitException
 	 */
 	public static final IEditorPart openEditor(final IFile file) throws PartInitException {
+		System.out.println("Close Intro");
 		GenericUtils.closeIntroPart();
 		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = null;
+		System.out.println("before opening Editor");
 		editor = IDE.openEditor(activePage, file);
+		System.out.println("after opening Editor");
 		Assert.assertNotNull(editor);
 		return editor;
 	}
