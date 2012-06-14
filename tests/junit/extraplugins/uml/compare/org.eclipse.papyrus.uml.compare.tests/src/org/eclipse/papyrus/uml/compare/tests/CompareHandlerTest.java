@@ -64,15 +64,21 @@ public class CompareHandlerTest {//extends AbstractHandlerTest {
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException {
+		System.out.println("init method");
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
+		System.out.println("Create project");
 		project = ProjectUtils.createProject("CompareUMLElement"); //$NON-NLS-1$
+		System.out.println("Copy files");
 		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), "/resources/", MODEL); //$NON-NLS-1$
 		final IFile file = project.getFile(MODEL + "." + SashModel.MODEL_FILE_EXTENSION); //$NON-NLS-1$
 		Assert.assertNotNull(file);
+		System.out.println("Opening Papyrus");
 		papyrusEditor = (CoreMultiDiagramEditor)EditorUtils.openEditor(file);
 		Assert.assertNotNull(papyrusEditor);
+		System.out.println("Opening Model Explorer");
 		modelExplorerView = ModelExplorerUtils.openModelExplorerView();
+		System.out.println("End of init");
 	}
 
 	/**
@@ -80,18 +86,24 @@ public class CompareHandlerTest {//extends AbstractHandlerTest {
 	 */
 	@Test
 	public void compareClassesHandlerActivation() throws Exception {
+		System.out.println("begin the first test");
 		final Model root = (Model)ModelExplorerUtils.getRootInModelExplorer(modelExplorerView);
 		Class class1 = (Class)root.getOwnedMember("Class1"); //$NON-NLS-1$
 		Class class2 = (Class)root.getOwnedMember("Class2"); //$NON-NLS-1$
 		final List<Element> selection = new ArrayList<Element>();
 		selection.add(class1);
 		selection.add(class2);
+		System.out.println("set selection in modelExplorer");
 		ModelExplorerUtils.setSelectionInTheModelexplorer(modelExplorerView, selection);
+		System.out.println("getting handler");
 		final IHandler handler = HandlerUtils.getActiveHandlerFor(OPEN_UML_COMPARE_EDITOR_COMMAND_ID);
 		Assert.assertNotNull(handler);
 		Assert.assertTrue(handler.isEnabled());
+		System.out.println("executing command handler");
 		HandlerUtils.executeCommand(HandlerUtils.getCommand(OPEN_UML_COMPARE_EDITOR_COMMAND_ID));
+		System.out.println("getting current papyrus editors");
 		IEditorPart activeEditor = papyrusEditor.getActiveEditor();
+		System.out.println("testing current editor");
 		Assert.assertTrue(activeEditor instanceof UMLCompareEditor);
 	}
 
@@ -100,6 +112,7 @@ public class CompareHandlerTest {//extends AbstractHandlerTest {
 	 */
 	@Test
 	public void compareHandlerClassWithModelActivation() {
+		System.out.println("begin the second test");
 		final Model root = (Model)ModelExplorerUtils.getRootInModelExplorer(modelExplorerView);
 		final Model model2 = (Model)root.getOwnedMember("Model2"); //$NON-NLS-1$
 		final Class class2 = (Class)root.getOwnedMember("Class2"); //$NON-NLS-1$
