@@ -31,7 +31,7 @@
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.tests,org.eclipse.papyrus.uml.service.types.tests"/>
 <project reference="0.9.3,http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/recipes/plugins/uml/org.eclipse.papyrus.uml.modelexplorer.recipetest,org.eclipse.papyrus.uml.modelexplorer.recipetest"/>
 </provider>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="54" label="debug.plugins.core" name="debug.plugins.core">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="55" label="debug.plugins.core" name="debug.plugins.core">
 <item elementID="=org.eclipse.papyrus.core.queries.configuration.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.extendedtypes.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.extendedtypes.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -39,15 +39,15 @@
 <item elementID="=org.eclipse.papyrus.extendedtypes.emf.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.paletteconfiguration.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="55" label="debug.plugins.uml" name="debug.plugins.uml">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="56" label="debug.plugins.uml" name="debug.plugins.uml">
 <item elementID="=org.eclipse.papyrus.extendedtypes.uml.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.extendedtypes.uml.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="56" label="junit.extraplugins" name="junit.extraplugins">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="57" label="junit.extraplugins" name="junit.extraplugins">
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.css.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.tests.extra" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="57" label="junit.plugins.core" name="junit.plugins.core">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="58" label="junit.plugins.core" name="junit.plugins.core">
 <item elementID="=org.eclipse.papyrus.core.queries.configuration.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.core.queries.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.core.resourceloading.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -58,22 +58,22 @@
 <item elementID="=org.eclipse.papyrus.sasheditor.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="58" label="junit.plugins.developer" name="junit.plugins.developer">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="59" label="junit.plugins.developer" name="junit.plugins.developer">
 <item elementID="=org.eclipse.papyrus.bundles.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="59" label="junit.plugins.sysml" name="junit.plugins.sysml">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="60" label="junit.plugins.sysml" name="junit.plugins.sysml">
 <item elementID="=org.eclipse.papyrus.sysml.modelexplorer.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.service.types.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="60" label="junit.plugins.uml" name="junit.plugins.uml">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="61" label="junit.plugins.uml" name="junit.plugins.uml">
 <item elementID="=org.eclipse.papyrus.diagram.clazz.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.diagram.common.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.diagram.stereotypeproperty.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.diagram.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.service.types.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="61" label="recipes.plugins.uml" name="recipes.plugins.uml">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="62" label="recipes.plugins.uml" name="recipes.plugins.uml">
 <item elementID="=org.eclipse.papyrus.uml.modelexplorer.recipetest" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 </psf>

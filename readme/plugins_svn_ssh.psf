@@ -180,7 +180,7 @@
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/views/properties/org.eclipse.papyrus.views.properties.model.editor,org.eclipse.papyrus.views.properties.model.editor"/>
 <project reference="0.9.3,svn+ssh://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/xwt/org.eclipse.papyrus.xwt,org.eclipse.papyrus.xwt"/>
 </provider>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="22" label="customization" name="customization">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="23" label="customization" name="customization">
 <item elementID="=org.eclipse.papyrus.customization.palette" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.customization.paletteconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.customization.properties.generation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -188,12 +188,12 @@
 <item elementID="=org.eclipse.papyrus.customization.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.customization" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="23" label="developer" name="developer">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="24" label="developer" name="developer">
 <item elementID="=org.eclipse.papyrus.codegen" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.def" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.dev.java.utils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.diagramdev.modelexplorer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.doc" type="4"/>
 <item elementID="=org.eclipse.papyrus.domaincodegen.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.domaincontextcodegen.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.domaincontextcodegen.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -201,11 +201,11 @@
 <item elementID="=org.eclipse.papyrus.gmfgenextension" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.sysmloveruml.codegen" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="24" label="editor" name="editor">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="25" label="editor" name="editor">
 <item elementID="=org.eclipse.papyrus.editor.perspectiveconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="25" label="infra" name="infra">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="26" label="infra" name="infra">
 <item elementID="=org.eclipse.papyrus.infra.constraints.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.constraints.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.constraints" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -217,18 +217,18 @@
 <item elementID="=org.eclipse.papyrus.infra.tools" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.ui.resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="26" label="infra.core" name="infra.core">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="27" label="infra.core" name="infra.core">
 <item elementID="=org.eclipse.papyrus.infra.core.log" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.core.sasheditor.di" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.core.sasheditor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="27" label="infra.discovery" name="infra.discovery">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="28" label="infra.discovery" name="infra.discovery">
 <item elementID="=org.eclipse.papyrus.infra.discovery.ui.menu" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.discovery.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.discovery" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="28" label="infra.emf" name="infra.emf">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="29" label="infra.emf" name="infra.emf">
 <item elementID="=org.eclipse.papyrus.infra.emf.appearance" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.emf.diagram.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.emf.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -237,7 +237,7 @@
 <item elementID="=org.eclipse.papyrus.infra.emf.readonly" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="29" label="infra.gmfdiag" name="infra.gmfdiag">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="30" label="infra.gmfdiag" name="infra.gmfdiag">
 <item elementID="=org.eclipse.papyrus.extensionpoints.editors" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.commands" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -251,20 +251,20 @@
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.xtext.gmf.glue" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="30" label="infra.gmfdiag.css" name="infra.gmfdiag.css">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="31" label="infra.gmfdiag.css" name="infra.gmfdiag.css">
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.css.configuration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.css.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=org.eclipse.papyrus.infra.gmfdiag.css.theme" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.papyrus.infra.gmfdiag.css.theme" type="4"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.css.xtext" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.gmfdiag.css" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="31" label="infra.queries" name="infra.queries">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="32" label="infra.queries" name="infra.queries">
 <item elementID="=org.eclipse.papyrus.infra.queries.core.configuration.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.queries.core.configuration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.queries.core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="32" label="infra.services" name="infra.services">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="33" label="infra.services" name="infra.services">
 <item elementID="=org.eclipse.papyrus.infra.services.controlmode.history" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.services.controlmode" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.services.decoration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -274,27 +274,27 @@
 <item elementID="=org.eclipse.papyrus.infra.services.resourceloading" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.services.validation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="33" label="infra.table" name="infra.table">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="34" label="infra.table" name="infra.table">
 <item elementID="=org.eclipse.papyrus.infra.table.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.table.instance" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.table.menu" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.table.modelexplorer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.table.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="34" label="infra.widget" name="infra.widget">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="35" label="infra.widget" name="infra.widget">
 <item elementID="=org.eclipse.papyrus.infra.widgets.toolbox" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.infra.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="35" label="infra.xtext" name="infra.xtext">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="36" label="infra.xtext" name="infra.xtext">
 <item elementID="=org.eclipse.papyrus.infra.xtext.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="36" label="sysml" name="sysml">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="37" label="sysml" name="sysml">
 <item elementID="=org.eclipse.papyrus.sysml.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.facets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.service.types" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="37" label="sysml.diagram" name="sysml.diagram">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="38" label="sysml.diagram" name="sysml.diagram">
 <item elementID="=org.eclipse.papyrus.sysml.diagram.blockdefinition" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.diagram.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.diagram.internalblock" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -302,20 +302,20 @@
 <item elementID="=org.eclipse.papyrus.sysml.diagram.requirement" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.diagram.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="38" label="sysml.modelexplorer" name="sysml.modelexplorer">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="39" label="sysml.modelexplorer" name="sysml.modelexplorer">
 <item elementID="=org.eclipse.papyrus.sysml.modelexplorer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="39" label="sysml.properties" name="sysml.properties">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="40" label="sysml.properties" name="sysml.properties">
 <item elementID="=org.eclipse.papyrus.sysml.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="40" label="sysml.table" name="sysml.table">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="41" label="sysml.table" name="sysml.table">
 <item elementID="=org.eclipse.papyrus.sysml.table.allocation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.sysml.table.requirement" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="41" label="team" name="team">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="42" label="team" name="team">
 <item elementID="=org.eclipse.papyrus.team.svn" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="42" label="uml" name="uml">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="43" label="uml" name="uml">
 <item elementID="=org.eclipse.papyrus.uml.appearance" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.commands" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.controlmode.profile" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -334,11 +334,11 @@
 <item elementID="=org.eclipse.papyrus.uml.templaterepository" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.ui.perspectiveconfiguration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="43" label="uml.alf" name="uml.alf">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="44" label="uml.alf" name="uml.alf">
 <item elementID="=org.eclipse.papyrus.uml.alf.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.alf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="44" label="uml.diagram" name="uml.diagram">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="45" label="uml.diagram" name="uml.diagram">
 <item elementID="=org.eclipse.papyrus.uml.diagram.activity" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.diagram.clazz" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.diagram.common.groups" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -363,19 +363,19 @@
 <item elementID="=org.eclipse.papyrus.uml.diagram.usecase" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.diagram.wizards" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="45" label="uml.modelexplorer" name="uml.modelexplorer">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="46" label="uml.modelexplorer" name="uml.modelexplorer">
 <item elementID="=org.eclipse.papyrus.uml.modelexplorer.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.modelexplorer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="46" label="uml.properties" name="uml.properties">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="47" label="uml.properties" name="uml.properties">
 <item elementID="=org.eclipse.papyrus.uml.properties.tabbedproperties.comments" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="47" label="uml.table" name="uml.table">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="48" label="uml.table" name="uml.table">
 <item elementID="=org.eclipse.papyrus.uml.table.default" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.table.widgets.celleditors" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="48" label="uml.textedit" name="uml.textedit">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="49" label="uml.textedit" name="uml.textedit">
 <item elementID="=org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.textedit.collaborationuse.xtext" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.textedit.common.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -397,28 +397,28 @@
 <item elementID="=org.eclipse.papyrus.uml.textedit.transition.xtext.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.textedit.transition.xtext" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="49" label="uml.tools" name="uml.tools">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="50" label="uml.tools" name="uml.tools">
 <item elementID="=org.eclipse.papyrus.uml.tools.extendedtypes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.tools.utils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.uml.tools" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="50" label="views.documentation" name="views.documentation">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="51" label="views.documentation" name="views.documentation">
 <item elementID="=org.eclipse.papyrus.views.documentation.view.papyrus" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.documentation.view" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.documentation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="51" label="views.modelexplorer" name="views.modelexplorer">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="52" label="views.modelexplorer" name="views.modelexplorer">
 <item elementID="=org.eclipse.papyrus.views.modelexplorer.resourceloading" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.modelexplorer.widgets" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.modelexplorer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="52" label="views.properties" name="views.properties">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="53" label="views.properties" name="views.properties">
 <item elementID="=org.eclipse.papyrus.views.properties.model.edit" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.properties.model.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.properties.model" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=org.eclipse.papyrus.views.properties" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="53" label="xwt" name="xwt">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="54" label="xwt" name="xwt">
 <item elementID="=org.eclipse.papyrus.xwt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 </psf>
