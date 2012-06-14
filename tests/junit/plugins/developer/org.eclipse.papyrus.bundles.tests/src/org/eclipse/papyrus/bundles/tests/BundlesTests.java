@@ -102,7 +102,7 @@ public class BundlesTests {
 				message += localMessage + "\n"; //$NON-NLS-1$
 			}
 		}
-		Assert.assertNull(message, nb + " problems! " + message);
+		Assert.assertNull(nb + " problems! " + message, message);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.assertNull(message, nb + " problems! " + message);
+		Assert.assertNull(nb + " problems! " + message, message);
 	}
 
 	/**
