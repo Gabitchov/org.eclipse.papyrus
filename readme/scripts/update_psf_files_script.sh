@@ -23,4 +23,4 @@ for current in `find . -name ".sh`
   cp -f $current $dest
 done
 cd $HOME
-rm $tmpFolder
+rm -R $tmpFolder
