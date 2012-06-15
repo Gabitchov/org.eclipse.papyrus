@@ -150,8 +150,9 @@ workingSetId=0
 psf_workspace=$HOME/"psf_workspace"
 svn=$psf_workspace/"svn"
 generated_psf_folder=$psf_workspace/"generated_psf_folder"
+psf_trunk_dest="/home/data/users/vlorenzo/downloads/modeling/mdt/papyrus/psf/subclipse/trunk"
 
-#the path of the folder to download
+#the path of the trunk folder to download
 extraplugins_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/"
 plugins_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/"
 tests_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/"
@@ -182,9 +183,18 @@ create_psf_file "build" $releng_path $features_path
 
 #--------full papyrus psf
 echo "Creating the psf for trunk"
-create_psf_file "full_papyrus" $full_papyrus
+#create_psf_file "full_papyrus" $full_papyrus
 
 echo "The created psf are in the folder: "$generated_psf_folder
+
+#move the generated files to their final destination
+for aFile in `ls $generated_psf_folder`
+do
+	echo $aFile
+    cp -v $generated_psf_folder/$aFile $psf_trunk_dest
+done
+
+rm -R -f $psf_workspace
 end=$(date +'%T')
 echo "began at: "$begin
 echo "ended at: "$end
