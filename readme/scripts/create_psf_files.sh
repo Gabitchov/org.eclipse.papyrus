@@ -193,7 +193,7 @@ do
     cp -v $generated_psf_folder/$aFile $psf_trunk_dest
 done
 
-#rm -R -f $psf_workspace
+
 end=$(date +'%T')
 echo "began at: "$begin
 echo "ended at: "$end
