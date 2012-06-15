@@ -21,7 +21,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.extensionpoints.profile.FilteredRegisteredProfilesAsLibrarySelectionDialog;
@@ -29,10 +28,8 @@ import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
@@ -40,7 +37,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 
 
-public class ImportRegisteredProfileHandler extends AbstractCommandHandler {
+public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 
 	/**
 	 * 
@@ -48,7 +45,7 @@ public class ImportRegisteredProfileHandler extends AbstractCommandHandler {
 	 */
 	@Override
 	protected Command getCommand() {
-		return new ImportProfileCommand(getEditingDomain());
+		return new ImportProfileCommand();
 	}
 
 
@@ -57,7 +54,7 @@ public class ImportRegisteredProfileHandler extends AbstractCommandHandler {
 	 * The command to import profiles in the the model
 	 * 
 	 */
-	public class ImportProfileCommand extends ChangeCommand {
+	public class ImportProfileCommand extends AbstractImportCommand {
 
 		/**
 		 * 
@@ -66,8 +63,8 @@ public class ImportRegisteredProfileHandler extends AbstractCommandHandler {
 		 * @param editingDomain
 		 *        the editing domain
 		 */
-		public ImportProfileCommand(EditingDomain editingDomain) {
-			super(editingDomain, new Runnable() {
+		public ImportProfileCommand() {
+			super(new Runnable() {
 
 				public void run() {
 					// Retrieve shell instance
@@ -86,20 +83,6 @@ public class ImportRegisteredProfileHandler extends AbstractCommandHandler {
 					}
 				}
 			}, "Import Profile", "Import Profile from Registred Profiles"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
-		 * 
-		 * @return
-		 */
-		@Override
-		public boolean canExecute() {
-			if(getSelectedElements().size() == 1) {
-				return (getSelectedElement() instanceof Package);
-			}
-			return false;
 		}
 	}
 

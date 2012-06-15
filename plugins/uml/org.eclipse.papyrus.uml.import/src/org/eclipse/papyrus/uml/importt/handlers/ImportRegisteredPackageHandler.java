@@ -14,32 +14,26 @@ package org.eclipse.papyrus.uml.importt.handlers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.extensionpoints.library.FilteredRegisteredLibrariesSelectionDialog;
 import org.eclipse.papyrus.uml.extensionpoints.library.RegisteredLibrary;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
-import org.eclipse.papyrus.uml.profile.ui.dialogs.PackageImportTreeSelectionDialog;
+import org.eclipse.papyrus.uml.importt.ui.PackageImportDialog;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.UMLFactory;
 
 
-public class ImportRegisteredPackageHandler extends AbstractCommandHandler {
+public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
 	/**
 	 * 
@@ -47,7 +41,7 @@ public class ImportRegisteredPackageHandler extends AbstractCommandHandler {
 	 */
 	@Override
 	protected Command getCommand() {
-		return new ImportLibraryFromRepositoryCommand(getEditingDomain());
+		return new ImportLibraryFromRepositoryCommand();
 	}
 
 	/**
@@ -65,17 +59,18 @@ public class ImportRegisteredPackageHandler extends AbstractCommandHandler {
 			URI modelUri = currentLibrary.uri;
 
 			Resource modelResource = resourceSet.getResource(modelUri, true);
-			PackageImportTreeSelectionDialog eisd = new PackageImportTreeSelectionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package)modelResource.getContents().get(0)));
-			int ret = eisd.open();
+			PackageImportDialog dialog = new PackageImportDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package)modelResource.getContents().get(0)));
 
-			if(ret == Window.OK) {
-				ArrayList<?> result = eisd.getResult();
-				Iterator<?> resultIter = result.iterator();
-				while(resultIter.hasNext()) {
-					Element element = (Element)resultIter.next();
-					PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-					ei.setImportedPackage((Package)element);
-					((Package)getSelectedElement()).getPackageImports().add(ei);
+			if(dialog.open() == Window.OK) {
+				List<?> result = dialog.getResult();
+
+				for(Object resultElement : result) {
+					Package selectedPackage = (Package)resultElement;
+					if(dialog.isCopy()) {
+						handleCopyPackage(selectedPackage);
+					} else {
+						handleImportPackage(selectedPackage);
+					}
 				}
 			}
 		}
@@ -127,7 +122,7 @@ public class ImportRegisteredPackageHandler extends AbstractCommandHandler {
 	/**
 	 * Specific {@link ChangeCommand} that imports libraries from repository
 	 */
-	public class ImportLibraryFromRepositoryCommand extends ChangeCommand {
+	public class ImportLibraryFromRepositoryCommand extends AbstractImportCommand {
 
 		/**
 		 * Creates a new ImportLibraryFromRepositoryCommand
@@ -141,8 +136,8 @@ public class ImportRegisteredPackageHandler extends AbstractCommandHandler {
 		 * @param description
 		 *        description of the command
 		 */
-		public ImportLibraryFromRepositoryCommand(EditingDomain editingDomain) {
-			super(editingDomain, new Runnable() {
+		public ImportLibraryFromRepositoryCommand() {
+			super(new Runnable() {
 
 				public void run() {
 					// Retrieve shell instance
@@ -161,20 +156,6 @@ public class ImportRegisteredPackageHandler extends AbstractCommandHandler {
 					}
 				}
 			}, "Import Libraries", "Import Libraries from Repository"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
-		 * 
-		 * @return
-		 */
-		@Override
-		public boolean canExecute() {
-			if(getSelectedElements().size() == 1) {
-				return (getSelectedElement() instanceof Package);
-			}
-			return false;
 		}
 	}
 }
