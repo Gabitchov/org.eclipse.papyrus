@@ -183,7 +183,7 @@ create_psf_file "build" $releng_path $features_path
 
 #--------full papyrus psf
 echo "Creating the psf for trunk"
-#create_psf_file "full_papyrus" $full_papyrus
+create_psf_file "full_papyrus" $full_papyrus
 
 echo "The created psf are in the folder: "$generated_psf_folder
 
