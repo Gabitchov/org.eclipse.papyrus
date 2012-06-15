@@ -17,7 +17,7 @@ echo 'and move them in $dest'
 mkdir $tmpFolder && cd $tmpFolder
 #we download all the scripts
 wget -N -r -nd -np $path_on_svn
-for current in `find . -name ".sh`
+for current in `find . -name "*.sh"`
   do
   chmod+x $current
   cp -f $current $dest
