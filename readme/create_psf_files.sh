@@ -190,11 +190,10 @@ echo "The created psf are in the folder: "$generated_psf_folder
 #move the generated files to their final destination
 for aFile in `ls $generated_psf_folder`
 do
-	echo $aFile
     cp -v $generated_psf_folder/$aFile $psf_trunk_dest
 done
 
-rm -R -f $psf_workspace
+#rm -R -f $psf_workspace
 end=$(date +'%T')
 echo "began at: "$begin
 echo "ended at: "$end
