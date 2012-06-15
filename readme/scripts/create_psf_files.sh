@@ -139,7 +139,7 @@ create_psf_file(){
 
 
 begin=$(date +'%T')
-echo "This script takes about 20 minutes."
+echo "This script takes less than 1 minute on build.eclipse.org and about 20 minutes at home."
 # This script downloads the folders which contains a file .project from a repository and create the psf file to download it using Eclipse
 workingSetId=0
 
