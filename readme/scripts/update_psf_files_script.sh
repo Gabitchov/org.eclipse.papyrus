@@ -19,8 +19,9 @@ mkdir $tmpFolder && cd $tmpFolder
 wget -N -r -nd -np $path_on_svn
 for current in `find . -name ".sh`
   do
-  chmod +x $current
+  chmod+x $current
   cp -f $current $dest
 done
 cd $HOME
 rm -R $tmpFolder
+
