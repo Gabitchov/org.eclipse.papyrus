@@ -21,6 +21,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.MapLabelProvider;
+import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -205,5 +207,18 @@ public class EnumRadio extends AbstractValueEditor {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Use a Map instead of content providers to define the selectable elements
+	 * The keys are the semantic objects (contentProvider), and the values are
+	 * the labels (labelProvider)
+	 * 
+	 * @param objectsAndLabels
+	 */
+	public void setEnumValues(Map<Object, String> objectsAndLabels) {
+		StaticContentProvider provider = new StaticContentProvider(objectsAndLabels.keySet().toArray());
+		LabelProvider labelProvider = new MapLabelProvider(objectsAndLabels);
+		setProviders(provider, labelProvider);
 	}
 }
