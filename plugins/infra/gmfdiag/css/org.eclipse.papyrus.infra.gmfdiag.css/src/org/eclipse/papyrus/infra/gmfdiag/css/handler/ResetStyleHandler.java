@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.handler;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -32,6 +34,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
@@ -45,6 +48,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
  */
 public class ResetStyleHandler extends AbstractHandler {
 
+	private static Set<String> papyrusStyleAnnotations = new HashSet<String>();
+	static {
+		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
+		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.SHADOWFIGURE);
+		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.QUALIFIED_NAME);
+	}
+
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection;
 		try {
@@ -53,7 +63,6 @@ public class ResetStyleHandler extends AbstractHandler {
 				return null;
 			}
 		} catch (ServiceException ex) {
-			// TODO Auto-generated catch block
 			Activator.log.error(ex);
 			return null;
 		}
@@ -150,6 +159,8 @@ public class ResetStyleHandler extends AbstractHandler {
 
 			//Remove the "forceValue" annotations
 			resetAnnotations(view);
+			//Remove the Papyrus Style EAnnotations
+			resetStyleAnnotations(view);
 		}
 
 		private void resetStyle(Style style) {
@@ -171,10 +182,22 @@ public class ResetStyleHandler extends AbstractHandler {
 			}
 		}
 
+		//Resets the "Force Value" annotations (Tags to indicate that the user 
+		//has manually selected a value, which will override the CSS Style)
 		private void resetAnnotations(View view) {
 			Iterator<EAnnotation> iterator = view.getEAnnotations().iterator();
 			while(iterator.hasNext()) {
 				if(CSSAnnotations.CSS_FORCE_VALUE.equals(iterator.next().getSource())) {
+					iterator.remove();
+				}
+			}
+		}
+
+		//Resets the "Custom style" Annotations (elementIcon, shadow, qualifiedName)
+		private void resetStyleAnnotations(View view) {
+			Iterator<EAnnotation> iterator = view.getEAnnotations().iterator();
+			while(iterator.hasNext()) {
+				if(papyrusStyleAnnotations.contains(iterator.next().getSource())) {
 					iterator.remove();
 				}
 			}

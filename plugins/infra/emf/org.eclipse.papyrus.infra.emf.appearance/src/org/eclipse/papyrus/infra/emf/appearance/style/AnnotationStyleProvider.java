@@ -21,7 +21,17 @@ import org.eclipse.papyrus.infra.emf.appearance.commands.SetQualifiedNameDepthCo
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 
-
+/**
+ * Basic implementation of AppearanceStyleProvider, based on EMF EAnnotations
+ * 
+ * @author Camille Letavernier
+ */
+//Implementation note: the CSS rely on these EAnnotations to determine 
+//whether the CSS appearance should be enabled or not. If the EAnnotations
+//are removed, the implementation of CSSApperanceProvider and ResetStyleHandler
+//should be changed accordingly (e.g. if EAnnotations are replaced by GMF
+//NamedStyles, see
+//Bug 321305 - https://bugs.eclipse.org/bugs/show_bug.cgi?id=321305 )
 public class AnnotationStyleProvider implements AppearanceStyleProvider {
 
 	public boolean showElementIcon(EModelElement modelElement) {

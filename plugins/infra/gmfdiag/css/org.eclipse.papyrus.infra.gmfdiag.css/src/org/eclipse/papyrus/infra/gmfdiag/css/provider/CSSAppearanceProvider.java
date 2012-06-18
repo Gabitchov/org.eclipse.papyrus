@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 
 /**
@@ -21,35 +23,37 @@ import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
  * @author Camille Letavernier
  * 
  */
-//FIXME: Currently, manual changes on the appearance properties are not 
-//correctly taken into account
 public class CSSAppearanceProvider extends AnnotationStyleProvider {
 
 	@Override
 	public boolean showElementIcon(EModelElement modelElement) {
-		boolean result = super.showElementIcon(modelElement);
-		if(!result && modelElement instanceof CustomStyle) {
-			return ((CustomStyle)modelElement).showElementIcon();
+		EAnnotation displayNameLabelIcon = modelElement.getEAnnotation(VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
+		if(displayNameLabelIcon != null || !(modelElement instanceof CustomStyle)) {
+			return super.showElementIcon(modelElement);
 		}
-		return result;
+
+		return ((CustomStyle)modelElement).showElementIcon();
 	}
 
 	@Override
 	public int getQualifiedNameDepth(EModelElement modelElement) {
-		int result = super.getQualifiedNameDepth(modelElement);
-		if(result == 1000 && modelElement instanceof CustomStyle) {
-			return ((CustomStyle)modelElement).getQualifiedNameDepth();
+		EAnnotation qualifiedNameAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.QUALIFIED_NAME);
+		if(qualifiedNameAnnotation != null || !(modelElement instanceof CustomStyle)) {
+			return super.getQualifiedNameDepth(modelElement);
 		}
-		return result;
+
+		return ((CustomStyle)modelElement).getQualifiedNameDepth();
 	}
 
 	@Override
 	public boolean showShadow(EModelElement modelElement) {
-		boolean result = super.showShadow(modelElement);
-		if(!result && modelElement instanceof CustomStyle) {
-			return ((CustomStyle)modelElement).showShadow();
+		EAnnotation shadowAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.SHADOWFIGURE);
+
+		if(shadowAnnotation != null || !(modelElement instanceof CustomStyle)) {
+			return super.showShadow(modelElement);
 		}
-		return result;
+
+		return ((CustomStyle)modelElement).showShadow();
 	}
 
 }
