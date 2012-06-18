@@ -28,7 +28,7 @@
                id="org.eclipse.papyrus.infra.discovery.ui.menu.toolbars.sampleToolbar">
             <command
                   commandId="org.eclipse.papyrus.infra.discovery.ui.menu.commands.discoveryCommand"
-                  icon="icons/Papyrus_16x16.gif"
+                  icon="icons/papyrus.png"
                   id="org.eclipse.papyrus.infra.discovery.ui.menu.toolbars.discoveryCommand"
                   tooltip="Install Papyrus Additional Components">
             </command>
@@ -42,7 +42,7 @@
             locationURI="menu:help?after=org.eclipse.equinox.p2.ui.sdk.install">
             <command
                   commandId="org.eclipse.papyrus.infra.discovery.ui.menu.commands.discoveryCommand"
-                  icon="icons/Papyrus_16x16.gif"
+                  icon="icons/papyrus.png"
                   id="org.eclipse.papyrus.infra.discovery.ui.menu.toolbars.discoveryCommand"
                   tooltip="Install Papyrus Additional Components">
             </command>
