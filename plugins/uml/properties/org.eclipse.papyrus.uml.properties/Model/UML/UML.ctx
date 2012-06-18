@@ -1573,8 +1573,7 @@
 	</views>
 	<views name="SingleValueSpecification" sections="//@tabs.0/@sections.14"
 		automaticContext="true">
-		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleValueSpecification"
-			overriddenConstraints="//@views.1/@constraints.0">
+		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleValueSpecification">
 			<constraintType
 				href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="umlClassName"
