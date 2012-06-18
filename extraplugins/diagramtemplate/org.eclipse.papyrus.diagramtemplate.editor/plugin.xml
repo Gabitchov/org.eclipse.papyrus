@@ -14,7 +14,7 @@
       <wizard
             category="org.eclipse.papyrus.wizards.category"
             class="org.eclipse.papyrus.diagramtemplate.editor.DiagramTemplateModelWizard"
-            finalPerspective="org.eclipse.papyrus.core.perspective"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
             icon="icons/full/obj16/DiagramTemplateModelFile.gif"
             id="org.eclipse.papyrus.diagramtemplate.presentation.DiagramTemplateModelWizardID"
             name="%_UI_DiagramTemplateModelWizard_label">
