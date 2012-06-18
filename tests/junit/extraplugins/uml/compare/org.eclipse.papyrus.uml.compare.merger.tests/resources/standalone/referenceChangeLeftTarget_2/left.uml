@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_6sfkIJRiEeGziah99CYh_A" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_9XsmIJRiEeGziah99CYh_A" name="Class1" useCase="_9xSK0JRiEeGziah99CYh_A _-l6swJRiEeGziah99CYh_A __IToIJRiEeGziah99CYh_A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_9xSK0JRiEeGziah99CYh_A" name="UseCase" subject="_9XsmIJRiEeGziah99CYh_A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_-l6swJRiEeGziah99CYh_A" name="UseCase1" subject="_9XsmIJRiEeGziah99CYh_A"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="__IToIJRiEeGziah99CYh_A" name="UseCase2" subject="_9XsmIJRiEeGziah99CYh_A"/>
+</uml:Model>

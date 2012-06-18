@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_6QfEwJQ6EeG7PMZb4X52yw" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_652x4JQ6EeG7PMZb4X52yw" name="Class1">
+    <ownedAttribute xmi:id="_-Go28JQ6EeG7PMZb4X52yw" name="Property1" visibility="public" type="_7nGSYJQ6EeG7PMZb4X52yw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__tccsJQ6EeG7PMZb4X52yw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__tccsZQ6EeG7PMZb4X52yw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="__tccspQ6EeG7PMZb4X52yw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7nGSYJQ6EeG7PMZb4X52yw" name="type1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_70ywIJQ6EeG7PMZb4X52yw" name="type2"/>
+</uml:Model>
