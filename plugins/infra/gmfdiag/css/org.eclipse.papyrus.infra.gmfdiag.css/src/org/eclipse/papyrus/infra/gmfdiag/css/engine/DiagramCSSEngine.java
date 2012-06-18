@@ -40,6 +40,16 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 
 	private CSSDiagram diagram;
 
+	/**
+	 * Constructor
+	 * 
+	 * Builds a DiagramCSSEngine for a given CSSDiagram
+	 * 
+	 * @param parent
+	 *        The diagram's parent CSSEngine. Its stylesheets will be inherited
+	 * @param diagram
+	 *        This engine's diagram
+	 */
 	public DiagramCSSEngine(ExtendedCSSEngine parent, CSSDiagram diagram) {
 		super(parent);
 		this.diagram = diagram;

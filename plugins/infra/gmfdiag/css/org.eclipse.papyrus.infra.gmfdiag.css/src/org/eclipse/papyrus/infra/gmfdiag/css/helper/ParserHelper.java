@@ -26,6 +26,17 @@ import org.w3c.dom.css.CSSValueList;
 @SuppressWarnings("restriction")
 public class ParserHelper {
 
+	/**
+	 * Parses a list of CSS Values, and returns them as an Array of Strings
+	 * Used for multivalued CSS values (Space-separated)
+	 * 
+	 * @param engine
+	 *        The engine used to parse the values
+	 * @param value
+	 *        The raw value to parse
+	 * @return
+	 *         An Array containing each parsed value
+	 */
 	public static String[] parseValues(CSSEngine engine, String value) {
 		CSSValue cssValue;
 		try {
@@ -43,6 +54,15 @@ public class ParserHelper {
 		return new String[]{ cssValue.getCssText() };
 	}
 
+	/**
+	 * Converts a CSSValueList to an Array of Strings
+	 * 
+	 * @param valueList
+	 *        The CSSValueList to convert
+	 * @return
+	 *         An Array of Strings containing the CSSValues, in their raw form
+	 *         (CSS Text form)
+	 */
 	public static String[] toArray(CSSValueList valueList) {
 		String[] result = new String[valueList.getLength()];
 		for(int i = 0; i < result.length; i++) {

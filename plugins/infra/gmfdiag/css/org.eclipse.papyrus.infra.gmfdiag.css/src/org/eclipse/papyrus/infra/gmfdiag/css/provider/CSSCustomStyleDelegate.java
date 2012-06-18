@@ -17,6 +17,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.helper.StringHelper;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
+/**
+ * Standard implementation of Papyrus Custom Style, CSS-based
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class CSSCustomStyleDelegate implements CustomStyle {
 
@@ -34,6 +39,14 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 	private static int FULL_VALUE = 0;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param view
+	 *        The GMF view on which the custom style is applied
+	 * @param engine
+	 *        The CSS engine used to handle the custom properties
+	 */
 	public CSSCustomStyleDelegate(View view, ExtendedCSSEngine engine) {
 		this.view = view;
 		this.engine = engine;

@@ -38,8 +38,14 @@ import org.w3c.dom.css.CSSValue;
 @SuppressWarnings("restriction")
 public class GradientHelper {
 
+	/**
+	 * The CSS Value for a Vertical gradient
+	 */
 	public static final String GRADIENT_VERTICAL = "vertical";
 
+	/**
+	 * The CSS Value for a Horizontal gradient
+	 */
 	public static final String GRADIENT_HORIZONTAL = "horizontal";
 
 	//Type 1 :
@@ -54,6 +60,19 @@ public class GradientHelper {
 
 	//TODO: The Engine should provide a method to handle complex composite properties.
 	//The base CSS Engine provides such a feature. However, it is not powerful enough.
+	/**
+	 * Returns a GradientData from the CSS "gradient", "gradientColor" and/or
+	 * "gradientStyle" properties
+	 * 
+	 * @param engine
+	 *        The engine used to retrieve the gradient
+	 * @param node
+	 *        The semantic node for which the gradient should be retrieved
+	 *        (Probably a GMF View, FillStyle...)
+	 * @return
+	 *         The computed GradientData, or the default GMF GradientData
+	 *         if the stylesheet doesn't specify a Gradient
+	 */
 	public static GradientData computeGradient(ExtendedCSSEngine engine, Object node) {
 		//Type 1
 		CSSValue gradientColor = engine.retrievePropertyValue(node, "gradientColor");

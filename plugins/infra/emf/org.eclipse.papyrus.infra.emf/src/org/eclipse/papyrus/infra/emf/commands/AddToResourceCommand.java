@@ -71,12 +71,11 @@ public class AddToResourceCommand extends AbstractCommand {
 	 * 
 	 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
 	 * 
-	 * @return
 	 */
 	@Override
 	protected boolean prepare() {
 		return true;
-	};
+	}
 
 
 	/**
@@ -87,13 +86,12 @@ public class AddToResourceCommand extends AbstractCommand {
 	@Override
 	public void undo() {
 		this.resource.getContents().remove(this.toAdd);
-	};
+	}
 
 	/**
 	 * 
 	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
 	 * 
-	 * @return
 	 */
 	@Override
 	public boolean canExecute() {

@@ -17,9 +17,18 @@ import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 
+/**
+ * A Converter for String values
+ * Converts a CSS String to a Java String
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class StringConverter extends AbstractCSSValueConverter {
 
+	/**
+	 * Constructor
+	 */
 	public StringConverter() {
 		super(String.class);
 	}

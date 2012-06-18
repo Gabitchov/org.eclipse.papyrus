@@ -55,6 +55,10 @@ import org.w3c.dom.NodeList;
 @SuppressWarnings("restriction")
 public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener {
 
+	/**
+	 * The map of Papyrus Diagram ids to human-readable and consistent diagram IDs
+	 * The later can be used as valid CSS Selectors
+	 */
 	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
 	public static final Map<String, String> diagramNameMappings = new HashMap<String, String>();
 
@@ -153,6 +157,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * @param sourceElement
 	 *        The source element must be a GMF notation object (View, Style, ...)
 	 * @return
+	 *         the source element's local CSS style.
 	 */
 	public static String getCSSStyle(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_STYLE_KEY);
@@ -441,6 +446,9 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/**
 	 * The GMF View element associated to this adapter
+	 * 
+	 * @return
+	 *         The GMF View element associated to this adapter
 	 */
 	public View getNotationElement() {
 		return notationElement;

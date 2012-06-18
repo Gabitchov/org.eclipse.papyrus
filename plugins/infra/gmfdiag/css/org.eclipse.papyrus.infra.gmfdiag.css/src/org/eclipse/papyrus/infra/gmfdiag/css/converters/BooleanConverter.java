@@ -18,9 +18,18 @@ import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 
 
+/**
+ * A Converter for Boolean values
+ * Converts a CSS String to a Java Boolean
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class BooleanConverter extends AbstractCSSValueConverter {
 
+	/**
+	 * Constructor
+	 */
 	public BooleanConverter() {
 		super(Boolean.class);
 	}

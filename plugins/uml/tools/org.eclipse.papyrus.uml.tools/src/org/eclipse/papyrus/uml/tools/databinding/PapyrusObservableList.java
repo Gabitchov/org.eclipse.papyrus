@@ -70,18 +70,18 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * Creates an EMF command from a GMF request, with the given IElementEditService
 	 * 
 	 * @param provider
-	 * @param request
+	 * @param requests
 	 * @return
 	 *         The EMF command corresponding to the given request
 	 */
 	protected Command getCommandFromRequests(IElementEditService provider, Collection<? extends IEditCommandRequest> requests) {
-		if (requests.size() == 1) {
+		if(requests.size() == 1) {
 			return new GMFtoEMFCommandWrapper(provider.getEditCommand(requests.iterator().next()));
 		}
 
 		CompositeCommand cc = new CompositeCommand("Edit list");
 
-		for (IEditCommandRequest request : requests) {
+		for(IEditCommandRequest request : requests) {
 			ICommand cmd = provider.getEditCommand(request);
 			cc.add(cmd);
 		}
@@ -239,16 +239,18 @@ public class PapyrusObservableList extends EMFObservableList {
 	/**
 	 * Compute the requests
 	 * 
-	 * @param newValues the new list that will be set as a value of the observed feature
-	 * @param removedValues if element has been removed from the list put it there : it handles destroy of elements if the observed feature is a containment
+	 * @param newValues
+	 *        the new list that will be set as a value of the observed feature
+	 * @param removedValues
+	 *        if element has been removed from the list put it there : it handles destroy of elements if the observed feature is a containment
 	 * @return
 	 */
 	protected Collection<? extends IEditCommandRequest> getRequests(List<Object> newValues, Collection<?> removedValues) {
 		LinkedList<IEditCommandRequest> requests = new LinkedList<IEditCommandRequest>();
 
-		if (feature instanceof EReference && ((EReference)feature).isContainment() && removedValues != null) {
-			for (Object o : removedValues) {
-				if (o instanceof EObject) {
+		if(feature instanceof EReference && ((EReference)feature).isContainment() && removedValues != null) {
+			for(Object o : removedValues) {
+				if(o instanceof EObject) {
 					requests.add(new DestroyElementRequest((TransactionalEditingDomain)editingDomain, (EObject)o, false));
 				}
 			}

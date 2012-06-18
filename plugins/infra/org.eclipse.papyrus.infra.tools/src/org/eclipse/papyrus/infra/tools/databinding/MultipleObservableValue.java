@@ -124,7 +124,7 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		super.dispose();
 		for(IObservableValue observable : observableValues) {
 			observable.removeChangeListener(this);
@@ -132,6 +132,9 @@ public class MultipleObservableValue extends AbstractObservableValue implements 
 		}
 	}
 
+	/**
+	 * The {@link IObservableValue}s aggregated by this Observable
+	 */
 	protected List<IObservableValue> observableValues = new LinkedList<IObservableValue>();
 
 	public boolean hasDifferentValues() {

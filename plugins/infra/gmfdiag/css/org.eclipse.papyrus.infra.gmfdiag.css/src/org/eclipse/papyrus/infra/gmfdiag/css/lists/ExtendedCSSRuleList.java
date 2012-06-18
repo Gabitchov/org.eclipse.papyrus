@@ -26,16 +26,32 @@ public class ExtendedCSSRuleList extends LinkedList<CSSRule> implements CSSRuleL
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Builds an empty ExtendedCSSRuleList
+	 */
 	public ExtendedCSSRuleList() {
 
 	}
 
+	/**
+	 * Builds an ExtendedCSSRuleList by making a copy of a CSSRuleList
+	 * 
+	 * @param listToCopy
+	 *        The CSSRuleList to copy
+	 */
 	public ExtendedCSSRuleList(CSSRuleList listToCopy) {
 		for(int i = 0; i < listToCopy.getLength(); i++) {
 			add(listToCopy.item(i));
 		}
 	}
 
+	/**
+	 * Builds an ExtendedCSSRuleList by making a copy of a Collection of
+	 * CSSRules
+	 * 
+	 * @param listToCopy
+	 *        The list of CSSRule to copy
+	 */
 	public ExtendedCSSRuleList(Collection<? extends CSSRule> listToCopy) {
 		super(listToCopy);
 	}

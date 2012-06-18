@@ -24,6 +24,12 @@ public class StyleListener extends AdapterImpl {
 
 	private final GMFElementAdapter elementAdapter;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param elementAdapter
+	 *        The GMFElementAdapter to listen to
+	 */
 	public StyleListener(GMFElementAdapter elementAdapter) {
 		this.elementAdapter = elementAdapter;
 	}

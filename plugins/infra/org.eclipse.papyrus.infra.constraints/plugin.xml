@@ -12,6 +12,11 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package class="org.eclipse.papyrus.infra.constraints.ConstraintsPackage" genModel="Model/Constraints.genmodel" uri="http://www.eclipse.org/papyrus/constraints/0.9"/>
+      <package
+            class="org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage"
+            genModel="Model/Constraints.genmodel"
+            uri="http://www.eclipse.org/papyrus/constraints/environment/0.9">
+      </package>
    </extension>
 
    <extension

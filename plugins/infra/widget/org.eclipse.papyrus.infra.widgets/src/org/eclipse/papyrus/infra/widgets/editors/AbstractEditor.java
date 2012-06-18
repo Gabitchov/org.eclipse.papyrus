@@ -282,6 +282,14 @@ public abstract class AbstractEditor extends Composite {
 	 */
 	public abstract boolean isReadOnly();
 
+	/**
+	 * Indicates that this editor should notify its commit listeners
+	 * when the given control looses the Focus
+	 * 
+	 * @param control
+	 *        The control on which a FocusListener should be added,
+	 *        to notify the CommitListeners
+	 */
 	protected void setCommitOnFocusLost(Control control) {
 		control.addFocusListener(new FocusListener() {
 
@@ -305,6 +313,12 @@ public abstract class AbstractEditor extends Composite {
 		}
 	}
 
+	/**
+	 * Sets the given toolTip to the label
+	 * 
+	 * @param text
+	 *        The new label's tooltip
+	 */
 	protected void setLabelToolTipText(String text) {
 		toolTipText = text;
 		if(label != null && !label.isDisposed()) {
@@ -312,6 +326,14 @@ public abstract class AbstractEditor extends Composite {
 		}
 	}
 
+	/**
+	 * Excludes or includes the given control from the layout
+	 * 
+	 * @param control
+	 *        The control to exclude or include
+	 * @param exclude
+	 *        If true, the control will be excluded ; otherwise, it will be included
+	 */
 	protected void setExclusion(Control control, boolean exclude) {
 		if(control.getLayoutData() == null) {
 			GridData data = new GridData();

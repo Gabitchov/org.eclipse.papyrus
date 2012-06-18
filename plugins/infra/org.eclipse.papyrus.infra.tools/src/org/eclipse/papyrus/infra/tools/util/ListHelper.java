@@ -39,10 +39,32 @@ public class ListHelper {
 		return result;
 	}
 
+	/**
+	 * Invokes the toString() method recursively on this list's elements.
+	 * The values are separated by ", "
+	 * 
+	 * @param list
+	 *        The list whose string representation to return
+	 * @return
+	 * 
+	 * @see #deepToString(List, String)
+	 */
 	public static String deepToString(List<?> list) {
 		return deepToString(list, ", ");
 	}
 
+	/**
+	 * Invokes the toString() method recursively on this list's elements.
+	 * The values are separated by the given separator
+	 * 
+	 * @param list
+	 *        The list whose string representation to return
+	 * @param separator
+	 *        The string to insert between each element's string representation
+	 * @return
+	 * 
+	 * @see #deepToString(List)
+	 */
 	public static String deepToString(List<?> list, String separator) {
 		boolean firstElement = true;
 		String result = "";

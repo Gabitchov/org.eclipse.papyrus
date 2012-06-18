@@ -28,6 +28,9 @@ public class SemanticElementHelper {
 	 * Returns the semantic element attached to the given notation element
 	 * 
 	 * The result element can also be a Diagram
+	 * 
+	 * @param notationElement
+	 * @return
 	 */
 	public static EObject findSemanticElement(EObject notationElement) {
 		if(notationElement == null) {

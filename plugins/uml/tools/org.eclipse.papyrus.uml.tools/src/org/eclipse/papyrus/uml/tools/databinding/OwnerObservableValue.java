@@ -114,7 +114,7 @@ public class OwnerObservableValue extends AbstractObservableValue implements ICh
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		super.dispose();
 		navigableEndsObservableList.removeChangeListener(this);
 		navigableEndsObservableList.dispose();

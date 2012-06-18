@@ -9,12 +9,17 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.tools"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
 
+	/**
+	 * The plug-in's logger
+	 */
 	public static LogHelper log;
 
 	/**

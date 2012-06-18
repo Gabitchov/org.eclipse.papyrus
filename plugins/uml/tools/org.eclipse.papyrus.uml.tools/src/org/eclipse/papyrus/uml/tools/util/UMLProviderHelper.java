@@ -25,6 +25,11 @@ import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
 import org.eclipse.papyrus.uml.tools.providers.UMLContainmentBrowseStrategy;
 
 
+/**
+ * A Helper class for UML Content Providers
+ * 
+ * @author Camille Letavernier
+ */
 public class UMLProviderHelper {
 
 	/**

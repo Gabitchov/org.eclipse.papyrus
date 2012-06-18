@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.infra.widgets.databinding;
 
-import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
@@ -11,6 +10,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 
+/**
+ * An ObservableValue for Text field, with support for AggregatedObservable
+ * 
+ * @author Camille Letavernier
+ */
 public class TextObservableValue extends AbstractObservableValue implements Listener {
 
 	private Text text;
@@ -19,8 +23,25 @@ public class TextObservableValue extends AbstractObservableValue implements List
 
 	private Object currentValue;
 
+	/**
+	 * If the Text field may represent more than one value,
+	 * use an AggregatedObservable
+	 * 
+	 * May be null
+	 */
 	protected AggregatedObservable modelProperty;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param text
+	 *        The Text field to observe
+	 * @param modelProperty
+	 *        The model IObservableValue
+	 * @param eventType
+	 *        The eventType to listen to. When the event is fired by the Text
+	 *        widget, this IObservableValue will fire a ChangeEvent
+	 */
 	public TextObservableValue(Text text, IObservableValue modelProperty, int eventType) {
 		this.text = text;
 		this.eventType = eventType;
@@ -28,10 +49,6 @@ public class TextObservableValue extends AbstractObservableValue implements List
 			this.modelProperty = (AggregatedObservable)modelProperty;
 		}
 		this.text.addListener(eventType, this);
-	}
-
-	public TextObservableValue(Realm realm) {
-		super(realm);
 	}
 
 	public Object getValueType() {
@@ -48,7 +65,7 @@ public class TextObservableValue extends AbstractObservableValue implements List
 	}
 
 	@Override
-	protected void doSetValue(Object value){
+	protected void doSetValue(Object value) {
 		if(modelProperty != null && modelProperty.hasDifferentValues()) {
 			this.text.setText(UnchangedObject.instance.toString());
 			this.currentValue = UnchangedObject.instance;

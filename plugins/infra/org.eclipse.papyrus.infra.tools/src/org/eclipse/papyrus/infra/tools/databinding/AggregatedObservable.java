@@ -30,7 +30,7 @@ public interface AggregatedObservable extends IObservable {
 	 * Typically, only IObservable with similar ValueTypes can be
 	 * aggregated.
 	 * 
-	 * @param value
+	 * @param observable
 	 *        The IObservable to aggregate to the current IObservable
 	 * @return
 	 *         The aggregated IObservable, or null if the aggregation is not
@@ -40,6 +40,8 @@ public interface AggregatedObservable extends IObservable {
 
 	/**
 	 * Tests if the sub-observables have different values
+	 * 
+	 * @return true if the sub-observables have different values
 	 */
 	public boolean hasDifferentValues();
 }

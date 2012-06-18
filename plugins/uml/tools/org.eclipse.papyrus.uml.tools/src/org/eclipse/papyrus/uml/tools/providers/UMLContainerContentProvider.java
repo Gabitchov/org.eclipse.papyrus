@@ -19,6 +19,13 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 
+/**
+ * A semantic Hierarchic Content Provider, which only browses the UML Containment tree.
+ * Standard references are ignored
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class UMLContainerContentProvider extends SemanticUMLContentProvider {
 
 	protected EClass type;

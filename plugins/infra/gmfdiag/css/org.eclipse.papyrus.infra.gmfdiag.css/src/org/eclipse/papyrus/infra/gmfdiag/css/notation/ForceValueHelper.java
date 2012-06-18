@@ -44,6 +44,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
  * 
  * @author Camille Letavernier
  */
+//FIXME: The default behavior when undoing a setValue() is set(previous),
+//which may result in set(null) or set(default), instead of unset()
+//Thus, undoing a modification on a View may result in unexpected behavior 
+//(e.g., GMF default appearance instead of CSS style)
+//Workaround: Use the "reset style" button to retrieve the correct CSS style
 public class ForceValueHelper {
 
 	public static void setValue(View view, EStructuralFeature feature, Object value) {

@@ -78,6 +78,14 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 		setConverters(targetToModel, modelToTarget);
 	}
 
+	/**
+	 * Sets this editor's widgetObservable
+	 * 
+	 * @param widgetObservable
+	 *        The widget observable value
+	 * @param commitOnChange
+	 *        If true, CommitListeners will be notified when the widget observable changes
+	 */
 	protected void setWidgetObservable(IObservableValue widgetObservable, boolean commitOnChange) {
 		this.widgetObservable = widgetObservable;
 		if(commitOnChange) {
@@ -145,7 +153,7 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	 * 
 	 * When overriding this method, you should also override {@link #refreshValue()}
 	 * 
-	 * @see org.eclipse.papyrus.infra.widgets.AbstractEditor#doBinding()
+	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#doBinding()
 	 */
 	@Override
 	protected void doBinding() {

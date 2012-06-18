@@ -123,6 +123,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 * 
 	 * @param propertyName
 	 * @return
+	 *         True if the property exists in the constraint descriptor
 	 */
 	protected boolean hasProperty(String propertyName) {
 		if(descriptor == null || !(descriptor instanceof SimpleConstraint)) {

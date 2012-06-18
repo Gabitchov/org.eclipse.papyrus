@@ -40,6 +40,9 @@ public class BaseCSSEngine extends ExtendedCSSEngineImpl {
 		}
 	}
 
+	/**
+	 * The Singleton instance of BaseCSSEngine
+	 */
 	public static ExtendedCSSEngine instance = new BaseCSSEngine();
 
 	//Unsupported operations. The BaseCSSEngine should never be used directly.

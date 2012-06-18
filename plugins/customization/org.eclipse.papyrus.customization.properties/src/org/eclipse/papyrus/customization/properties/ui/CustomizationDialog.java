@@ -272,4 +272,9 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 			}
 		}
 	}
+
+	@Override
+	public boolean isResizable() {
+		return true;
+	}
 }

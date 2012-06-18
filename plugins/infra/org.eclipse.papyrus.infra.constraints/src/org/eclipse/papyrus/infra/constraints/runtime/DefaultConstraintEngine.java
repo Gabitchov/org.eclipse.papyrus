@@ -22,12 +22,17 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 
 /**
- * The default implementation for ConstraintEngine
+ * The default, generic implementation for ConstraintEngine
  * 
  * @author Camille Letavernier
+ * @param <E>
+ *        The type of DisplayUnit managed by this Constraint Engine
  */
 public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements ConstraintEngine<E> {
 
+	/**
+	 * The constraints instantiated by this Engine
+	 */
 	protected final Set<Constraint> constraints = new LinkedHashSet<Constraint>();
 
 	public abstract void refresh();

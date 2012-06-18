@@ -37,6 +37,9 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class StereotypeModelElement extends EMFModelElement {
 
+	/**
+	 * The stereotype handled by this ModelElement
+	 */
 	protected Stereotype stereotype;
 
 	/**

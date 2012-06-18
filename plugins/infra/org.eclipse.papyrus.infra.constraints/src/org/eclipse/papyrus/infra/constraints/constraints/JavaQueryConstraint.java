@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.infra.constraints.constraints;
 
 import org.eclipse.papyrus.infra.constraints.Activator;
-import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.JavaQuery.FalseQuery;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 
@@ -18,11 +18,15 @@ import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
  */
 public class JavaQueryConstraint extends AbstractConstraint {
 
+	/**
+	 * The Java Class property
+	 */
 	public final static String QUERY_CLASS_NAME_PROPERTY = "className"; //$NON-NLS-1$
 
 	private JavaQuery query = new FalseQuery();
 
-	protected void setDescriptor(ConstraintDescriptor descriptor) {
+	@Override
+	protected void setDescriptor(SimpleConstraint descriptor) {
 		String queryClassName = getValue(QUERY_CLASS_NAME_PROPERTY);
 		query = ClassLoaderHelper.newInstance(queryClassName, JavaQuery.class);
 		if(query == null) {
@@ -30,6 +34,7 @@ public class JavaQueryConstraint extends AbstractConstraint {
 		}
 	}
 
+	@Override
 	public boolean match(Object selection) {
 		return query.match(selection);
 	}

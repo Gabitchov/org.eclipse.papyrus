@@ -117,6 +117,7 @@ public class EMFHelper {
 
 	/**
 	 * Tests if the given eClass is a Subclass of fromClass
+	 * Also returns true when eClass == fromClass
 	 * 
 	 * @param eClass
 	 * @param fromClass
@@ -185,10 +186,12 @@ public class EMFHelper {
 	 */
 	public static EditingDomain resolveEditingDomain(final EObject source) {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
-		if (domain == null) {
+		if(domain == null) {
 			try {
 				domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
-			} catch (ServiceException e) {}
+			} catch (ServiceException e) {
+				//Ignore: We cannot find the domain
+			}
 		}
 		return domain;
 	}
@@ -236,7 +239,7 @@ public class EMFHelper {
 	 * @return
 	 *         The first EObject located at the given URI
 	 * @throws IOException
-	 * 
+	 *         When the URI cannot be loaded
 	 */
 	public static EObject loadEMFModel(ResourceSet resourceSet, final URI uri) throws IOException {
 		if(resourceSet == null) {
@@ -413,7 +416,7 @@ public class EMFHelper {
 
 		return false; //The property if not required
 	}
-	
+
 	/**
 	 * 
 	 * @param resource

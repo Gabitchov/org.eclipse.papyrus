@@ -19,21 +19,60 @@ import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.swt.custom.CLabel;
 
-
+/**
+ * An IObservableValue to edit a CLabel (Text + Image), based on a LabelProvider
+ * It supports AggregatedObservable
+ * 
+ * @author Camille Letavernier
+ */
 public class CLabelObservableValue extends AbstractObservableValue {
 
+	/**
+	 * The observed CLabel
+	 */
 	protected CLabel label;
 
+	/**
+	 * The current value
+	 */
 	protected Object currentValue;
 
+	/**
+	 * The LabelProvider used to define the CLabel's text and image,
+	 * based on the current value
+	 */
 	protected ILabelProvider labelProvider;
 
+	/**
+	 * If the CLabel may represent more than one value,
+	 * use an AggregatedObservable
+	 * 
+	 * May be null
+	 */
 	protected AggregatedObservable aggregated;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param label
+	 *        The observed CLabel
+	 * @param modelObservable
+	 *        The Model IObservable
+	 */
 	public CLabelObservableValue(CLabel label, IObservableValue modelObservable) {
 		this(label, modelObservable, null);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param label
+	 *        The observed CLabel
+	 * @param modelObservable
+	 *        The Model IObservable
+	 * @param labelProvider
+	 *        The LabelProvider used to define the CLabel's text/image from the current value
+	 */
 	public CLabelObservableValue(CLabel label, IObservableValue modelObservable, ILabelProvider labelProvider) {
 		this.label = label;
 		setLabelProvider(labelProvider);
@@ -42,6 +81,11 @@ public class CLabelObservableValue extends AbstractObservableValue {
 		}
 	}
 
+	/**
+	 * @param labelProvider
+	 *        The LabelProvider used to define the CLabel's text and image,
+	 *        based on the current value
+	 */
 	public void setLabelProvider(ILabelProvider labelProvider) {
 		if(labelProvider != null) {
 			this.labelProvider = labelProvider;

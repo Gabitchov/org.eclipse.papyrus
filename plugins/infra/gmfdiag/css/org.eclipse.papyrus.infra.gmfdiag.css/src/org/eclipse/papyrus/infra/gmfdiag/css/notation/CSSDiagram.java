@@ -17,10 +17,26 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 
+/**
+ * A GMF Diagram with CSS Support
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public interface CSSDiagram extends Diagram {
 
+	/**
+	 * Returns the list of stylesheets directly owned by this diagram
+	 * 
+	 * @return
+	 */
 	public List<StyleSheet> getStyleSheets();
 
+	/**
+	 * Returns the CSS Engine associated to this diagram
+	 * 
+	 * @return
+	 */
 	public ExtendedCSSEngine getEngine();
 
 }

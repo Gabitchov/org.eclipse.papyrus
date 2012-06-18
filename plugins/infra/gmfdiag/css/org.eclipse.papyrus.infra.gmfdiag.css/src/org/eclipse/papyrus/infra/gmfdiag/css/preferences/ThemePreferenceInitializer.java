@@ -13,7 +13,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 
-
+//Unused
 public class ThemePreferenceInitializer extends AbstractPreferenceInitializer {
 
 	@Override

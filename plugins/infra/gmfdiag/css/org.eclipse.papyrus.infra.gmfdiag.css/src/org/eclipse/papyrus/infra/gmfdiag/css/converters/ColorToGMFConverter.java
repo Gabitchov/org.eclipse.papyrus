@@ -20,11 +20,23 @@ import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 import org.w3c.dom.css.RGBColor;
 
+/**
+ * A Converter for GMF Colors
+ * Converts a CSS Color to a GMF-compatible color (RGB Integer)
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class ColorToGMFConverter extends AbstractCSSValueConverter {
 
+	/**
+	 * The GMF Color type
+	 */
 	public static final String GMFColor = "GMFColor"; //$NON-NLS-1$
 
+	/**
+	 * Constructor
+	 */
 	public ColorToGMFConverter() {
 		super(GMFColor);
 	}
@@ -47,6 +59,14 @@ public class ColorToGMFConverter extends AbstractCSSValueConverter {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Returns a GMF-compatible integer color from a CSS RGBColor object
+	 * 
+	 * @param color
+	 *        The CSS RGBColor to convert
+	 * @return
+	 *         A GMF-compatible integer color
+	 */
 	public static int getIntColor(RGBColor color) {
 		int red = getInt(color.getRed());
 		int green = getInt(color.getGreen());
@@ -55,6 +75,14 @@ public class ColorToGMFConverter extends AbstractCSSValueConverter {
 		return blue * 256 * 256 + green * 256 + red;
 	}
 
+	/**
+	 * Returns an integer from a CSSPrimitiveValue
+	 * 
+	 * @param value
+	 *        The CSSPrimitiveValue to convert
+	 * @return
+	 *         A Java integer equivalent to the CSSPrimitiveValue
+	 */
 	public static int getInt(CSSPrimitiveValue value) {
 		if(value instanceof Measure) {
 			Measure measure = (Measure)value;
@@ -63,6 +91,7 @@ public class ColorToGMFConverter extends AbstractCSSValueConverter {
 		return (int)value.getFloatValue(CSSValue.CSS_PRIMITIVE_VALUE);
 	}
 
+	//Unused
 	public static int getIntColor(String value, CSSValue cssValue) {
 		RGBColor color;
 		if(cssValue instanceof RGBColor) {

@@ -32,6 +32,12 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
+/**
+ * A global LabelProvider for UML
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider {
 
 	/** icon for metaclass */

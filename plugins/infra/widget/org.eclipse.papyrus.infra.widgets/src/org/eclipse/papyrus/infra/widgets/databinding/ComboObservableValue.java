@@ -25,15 +25,38 @@ import org.eclipse.papyrus.infra.widgets.providers.ComboLabelProvider;
 import org.eclipse.papyrus.infra.widgets.providers.UnchangedObject;
 import org.eclipse.papyrus.infra.widgets.providers.UnsetObject;
 
-
+/**
+ * An ObservableValue for a ComboViewer, with support for AggregatedObservable
+ * 
+ * @author Camille Letavernier
+ */
 public class ComboObservableValue extends AbstractObservableValue implements ISelectionChangedListener {
 
+	/**
+	 * The Observed ComboViewer
+	 */
 	protected ComboViewer viewer;
 
+	/**
+	 * The current value
+	 */
 	protected Object currentValue;
 
+	/**
+	 * If the Combo may represent more than one value,
+	 * use an AggregatedObservable
+	 * 
+	 * May be null
+	 */
 	protected AggregatedObservable modelProperty;
 
+	/**
+	 * 
+	 * @param viewer
+	 *        The observed ComboViewer
+	 * @param modelProperty
+	 *        The Model IObservable
+	 */
 	public ComboObservableValue(ComboViewer viewer, IObservableValue modelProperty) {
 		this.viewer = viewer;
 		viewer.setLabelProvider(new ComboLabelProvider(viewer.getLabelProvider()));
@@ -79,7 +102,7 @@ public class ComboObservableValue extends AbstractObservableValue implements ISe
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		viewer.removeSelectionChangedListener(this);
 		super.dispose();
 	}

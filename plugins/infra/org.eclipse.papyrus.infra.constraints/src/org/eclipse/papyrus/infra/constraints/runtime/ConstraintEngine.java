@@ -23,14 +23,30 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * to display for a given ISelection.
  * 
  * @author Camille Letavernier
+ * @param <E>
+ *        The type of DisplayUnit managed by this Constraint Engine
  */
 public interface ConstraintEngine<E extends DisplayUnit> {
 
-
+	/**
+	 * Returns the DisplayUnits matching the given selection
+	 * 
+	 * @param forSelection
+	 * @return
+	 */
 	public Set<E> getDisplayUnits(ISelection forSelection);
 
+	/**
+	 * Adds a constraint descriptor to this engine
+	 * 
+	 * @param descriptor
+	 */
 	public void addConstraint(ConstraintDescriptor descriptor);
 
+	/**
+	 * Indicate that the available constraints might have changed
+	 * Refreshes the Constraint Engine
+	 */
 	public void refresh();
 
 }

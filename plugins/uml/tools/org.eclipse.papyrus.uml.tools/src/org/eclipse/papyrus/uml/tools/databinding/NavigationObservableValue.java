@@ -91,7 +91,7 @@ public class NavigationObservableValue extends AbstractObservableValue implement
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		super.dispose();
 		ownerObservableList.removeChangeListener(this);
 		ownerObservableList.dispose();

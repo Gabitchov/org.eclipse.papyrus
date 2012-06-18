@@ -11,7 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.preferences;
 
-
+/**
+ * Interface for Theme Preferences constants
+ * 
+ * @author Camille Letavernier
+ */
 public interface ThemePreferences {
 
 	/**

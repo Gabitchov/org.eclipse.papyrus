@@ -170,7 +170,7 @@ public class MultiplicityObservableValue extends AbstractObservableValue impleme
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		lowerValue.removeChangeListener(this);
 		upperValue.removeChangeListener(this);
 		if(lowerValueSpecification != null) {

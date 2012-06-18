@@ -18,6 +18,7 @@ package org.eclipse.papyrus.infra.constraints.constraints;
  */
 public class TrueConstraint extends AbstractConstraint {
 
+	@Override
 	public boolean match(Object selection) {
 		return true;
 	}

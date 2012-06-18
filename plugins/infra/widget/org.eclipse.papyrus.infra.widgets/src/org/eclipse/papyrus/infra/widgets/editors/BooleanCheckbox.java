@@ -120,6 +120,12 @@ public class BooleanCheckbox extends AbstractValueEditor {
 		checkbox.setText(label);
 	}
 
+	/**
+	 * Sets this widget's value
+	 * 
+	 * @param selected
+	 *        Whether the checkbox should be selected or not
+	 */
 	public void setValue(Boolean selected) {
 		if(modelProperty != null) {
 			modelProperty.setValue(selected);

@@ -16,15 +16,29 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.uml2.uml.Element;
 
+/**
+ * An Abstract implementation of a stereotype application listener.
+ * This object will listener on
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public abstract class AbstractStereotypeListener implements Adapter {
 
 	private Element umlElement;
 
 	private Notifier target;
 
+	/**
+	 * Constructors
+	 * 
+	 * Adds a Stereotype application listener to the given UML Element
+	 * 
+	 * @param umlElement
+	 *        The observed UML Element
+	 */
 	public AbstractStereotypeListener(Element umlElement) {
 		this.umlElement = umlElement;
 		umlElement.eAdapters().add(this);
@@ -47,17 +61,23 @@ public abstract class AbstractStereotypeListener implements Adapter {
 		}
 	}
 
-	protected abstract void handleUnappliedStereotype(EObject newValue);
+	/**
+	 * Notifies this listener that a stereotype has been unapplied from
+	 * the observed UML Element
+	 * 
+	 * @param unappliedStereotype
+	 *        The stereotype which has been unapplied
+	 */
+	protected abstract void handleUnappliedStereotype(EObject unappliedStereotype);
 
-	protected abstract void handleAppliedStereotype(EObject newValue);
-
-	public void addChangeListener(Listener listener) {
-		//Nothing
-	}
-
-	public void removeChangeListener(Listener listener) {
-		//Nothing
-	}
+	/**
+	 * Notifies this listener that a stereotype has been applied from
+	 * the observed UML Element
+	 * 
+	 * @param appliedStereotype
+	 *        The new applied stereotype
+	 */
+	protected abstract void handleAppliedStereotype(EObject appliedStereotype);
 
 	public Notifier getTarget() {
 		return target;
@@ -71,6 +91,9 @@ public abstract class AbstractStereotypeListener implements Adapter {
 		return false;
 	}
 
+	/**
+	 * Disposes this stereotype application listener
+	 */
 	public void dispose() {
 		umlElement.eAdapters().remove(this);
 		for(EObject eObject : umlElement.getStereotypeApplications()) {

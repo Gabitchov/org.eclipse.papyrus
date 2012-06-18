@@ -5,11 +5,13 @@ import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvid
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 
 //TODO : Move that to customization.constraints
+/**
+ * A ContentProvider which returns Constraint types
+ * 
+ * 
+ * @author Camille Letavernier
+ */
 public class ConstraintTypeContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider {
-
-	public ConstraintTypeContentProvider() {
-
-	}
 
 	public Object[] getElements() {
 		return ConstraintsManager.instance.getConstraintTypes().toArray();

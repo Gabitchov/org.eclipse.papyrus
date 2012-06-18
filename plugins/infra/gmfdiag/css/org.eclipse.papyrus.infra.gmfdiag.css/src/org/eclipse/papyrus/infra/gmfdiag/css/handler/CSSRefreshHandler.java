@@ -16,7 +16,13 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.BaseCSSEngine;
 
-
+/**
+ * A Handler for refreshing a single Papyrus Diagram
+ * It will refresh the CSS Stylesheets before refreshing the diagram.
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class CSSRefreshHandler extends RefreshHandler {
 
 	@Override

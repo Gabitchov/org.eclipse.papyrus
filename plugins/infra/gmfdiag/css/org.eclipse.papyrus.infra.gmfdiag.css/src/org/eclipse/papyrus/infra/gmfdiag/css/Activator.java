@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
+import org.eclipse.core.commands.contexts.Context;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.contexts.IContextService;
@@ -22,14 +23,22 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.gmfdiag.css"; //$NON-NLS-1$
 
+	/**
+	 * The CSS {@link Context}
+	 */
 	public static final String CSS = "Papyrus CSS"; //ID of the CSS context //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
 
+	/**
+	 * The plug-in's logger
+	 */
 	public static LogHelper log;
 
 	/**

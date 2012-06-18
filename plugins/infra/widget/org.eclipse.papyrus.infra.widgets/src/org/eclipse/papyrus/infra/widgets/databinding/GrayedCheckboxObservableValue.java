@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.widgets.databinding;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
@@ -24,7 +25,6 @@ import org.eclipse.swt.widgets.Button;
  * of {@link Button#getSelection()} and {@link Button#getGrayed()}
  * 
  * @author Camille Letavernier
- * @see {@link BooleanWithDefaultState}
  */
 public class GrayedCheckboxObservableValue extends AbstractObservableValue implements SelectionListener {
 
@@ -34,6 +34,14 @@ public class GrayedCheckboxObservableValue extends AbstractObservableValue imple
 
 	private AggregatedObservable aggregated;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param checkbox
+	 *        The observed checkbox
+	 * @param aggregated
+	 *        The Observable aggregating the various observable booleans
+	 */
 	public GrayedCheckboxObservableValue(Button checkbox, AggregatedObservable aggregated) {
 		this.checkbox = checkbox;
 		this.checkbox.addSelectionListener(this);
@@ -70,7 +78,7 @@ public class GrayedCheckboxObservableValue extends AbstractObservableValue imple
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		checkbox.removeSelectionListener(this);
 		super.dispose();
 	}

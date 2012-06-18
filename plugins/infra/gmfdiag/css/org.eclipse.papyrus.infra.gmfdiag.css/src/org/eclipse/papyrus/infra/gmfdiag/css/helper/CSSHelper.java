@@ -27,6 +27,7 @@ public class CSSHelper {
 	 * This method should be called before loading resources from this resource set.
 	 * 
 	 * @param resourceSet
+	 *        The resource set on which the CSS Support will be installed
 	 */
 	public static void installCSSSupport(ResourceSet resourceSet) {
 		CSSNotationResourceFactory factory = new CSSNotationResourceFactory();

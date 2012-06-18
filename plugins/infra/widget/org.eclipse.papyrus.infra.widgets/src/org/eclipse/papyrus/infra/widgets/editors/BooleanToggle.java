@@ -19,7 +19,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * A widget to represent boolean values as a Toggle Button.
+ * The Button may have either an Icon or a Text
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class BooleanToggle extends AbstractValueEditor {
 
 	private Button toggleButton;
@@ -61,12 +67,24 @@ public class BooleanToggle extends AbstractValueEditor {
 		this(parent, style, null, null, null);
 	}
 
+	/**
+	 * Sets this button's text
+	 * 
+	 * @param text
+	 *        The text to set to this button
+	 */
 	public void setText(String text) {
 		if(text != null) {
 			toggleButton.setText(text);
 		}
 	}
 
+	/**
+	 * Sets this button's image
+	 * 
+	 * @param image
+	 *        The image to set to this button
+	 */
 	public void setImage(Image image) {
 		if(image != null) {
 			toggleButton.setImage(image);
@@ -99,6 +117,12 @@ public class BooleanToggle extends AbstractValueEditor {
 		setLabelToolTipText(text);
 	}
 
+	/**
+	 * Indicates whether this button should be selected or not
+	 * 
+	 * @param isActive
+	 *        If true, the button will be selected
+	 */
 	public void setValue(boolean isActive) {
 		toggleButton.setSelection(isActive);
 	}

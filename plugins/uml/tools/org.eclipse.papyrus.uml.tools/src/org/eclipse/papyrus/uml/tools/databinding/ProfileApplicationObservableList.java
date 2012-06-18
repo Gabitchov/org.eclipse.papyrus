@@ -124,7 +124,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 	}
 
 	@Override
-	public void dispose() {
+	public synchronized void dispose() {
 		super.dispose();
 		this.listener.dispose();
 	}

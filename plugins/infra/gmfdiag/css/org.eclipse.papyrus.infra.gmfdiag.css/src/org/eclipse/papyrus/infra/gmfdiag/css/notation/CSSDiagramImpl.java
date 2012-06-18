@@ -27,6 +27,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 
+/**
+ * Default implementation for CSSDiagram
+ * 
+ * @author Camille letavernier
+ */
 @SuppressWarnings("restriction")
 public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 

@@ -63,6 +63,7 @@ public class StringEditionFactory implements ReferenceValueFactory {
 	 * Constructor.
 	 * 
 	 * @param validator
+	 *        The InputValidator used to check the entered String
 	 */
 	public StringEditionFactory(IInputValidator validator) {
 		this.validator = validator;
@@ -135,11 +136,19 @@ public class StringEditionFactory implements ReferenceValueFactory {
 	 * Sets the Validator for this factory
 	 * 
 	 * @param validator
+	 *        The InputValidator to be used to check the input String
 	 */
 	public void setValidator(IInputValidator validator) {
 		this.validator = validator;
 	}
 
+	/**
+	 * Sets the content provider for this edition factory. The ContentProvider is used
+	 * to suggest values to the user.
+	 * 
+	 * @param provider
+	 *        The provider which will make suggestions to the user
+	 */
 	public void setContentProvider(IStaticContentProvider provider) {
 		this.contentProvider = provider;
 	}

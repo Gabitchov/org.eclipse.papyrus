@@ -14,6 +14,12 @@ package org.eclipse.papyrus.infra.widgets.databinding;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 
 
+/**
+ * An empty ValueDiff, when the diff is not known (Or not important)
+ * 
+ * @author Camille Letavernier
+ */
+@Deprecated
 public class UnknownValueDiff extends ValueDiff {
 
 	@Override

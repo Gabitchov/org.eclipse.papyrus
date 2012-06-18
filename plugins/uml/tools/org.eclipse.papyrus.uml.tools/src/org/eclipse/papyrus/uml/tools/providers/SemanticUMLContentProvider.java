@@ -26,7 +26,11 @@ import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-
+/**
+ * A semantic Hierarchic Content Provider for UML
+ * 
+ * @author Camille Letavernier
+ */
 public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	public SemanticUMLContentProvider(EObject editedEObject, EStructuralFeature feature, EObject[] roots) {

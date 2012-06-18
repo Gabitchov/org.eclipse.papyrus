@@ -18,9 +18,18 @@ import org.eclipse.e4.ui.css.core.impl.dom.Measure;
 import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 
+/**
+ * A Converter for Integer values
+ * Converts a CSS String to a Java Integer
+ * 
+ * @author Camille Letavernier
+ */
 @SuppressWarnings("restriction")
 public class IntegerConverter extends AbstractCSSValueConverter {
 
+	/**
+	 * Constructor
+	 */
 	public IntegerConverter() {
 		super(Integer.class);
 	}

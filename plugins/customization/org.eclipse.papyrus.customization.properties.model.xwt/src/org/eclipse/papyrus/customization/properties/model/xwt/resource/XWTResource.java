@@ -92,7 +92,11 @@ public class XWTResource extends ResourceImpl {
 		Root root = (Root)xmlResource.getContents().get(0);
 		try {
 			CompositeWidget widget = xmlToUISection(root);
-			getContents().add(widget);
+			if(widget == null) {
+				Activator.log.warn("Cannot load the XWT Widget");
+			} else {
+				getContents().add(widget);
+			}
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 		}
@@ -186,7 +190,9 @@ public class XWTResource extends ResourceImpl {
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
 			Activator.getDefault().getLog().log(status);
+			Activator.log.error(status.getException());
 		}
+
 		return null;
 	}
 

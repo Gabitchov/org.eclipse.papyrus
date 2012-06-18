@@ -120,6 +120,9 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		return annotation.getDetails().get(key);
 	}
 
+	/**
+	 * @return the observed EAnnotation
+	 */
 	protected EAnnotation getEAnnotation() {
 		return source.getEAnnotation(annotationName);
 	}
@@ -135,6 +138,13 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		}
 	}
 
+	/**
+	 * Returns the command used to edit the observed annotation, which the
+	 * given value
+	 * 
+	 * @param value
+	 * @return
+	 */
 	protected Command getCommand(Object value) {
 		EAnnotation annotation = getEAnnotation();
 
@@ -192,6 +202,12 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		return emfCommand;
 	}
 
+	/**
+	 * A Command to remove an entry from an EAnnotation
+	 * 
+	 * @author Camille Letavernier
+	 * 
+	 */
 	protected class RemoveEntryCommand extends AbstractCommand {
 
 		private EAnnotation annotation;
@@ -202,13 +218,22 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 
 		private boolean undo = false;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param annotation
+		 *        The EAnnotation to edit
+		 * @param key
+		 *        The EAnnotation's key to edit
+		 */
 		public RemoveEntryCommand(EAnnotation annotation, String key) {
 			this.annotation = annotation;
 			this.key = key;
 		}
 
 		public void execute() {
-			if(undo = annotation.getDetails().containsKey(key)) {
+			undo = annotation.getDetails().containsKey(key);
+			if(undo) {
 				previousValue = annotation.getDetails().get(key);
 				annotation.getDetails().remove(key);
 			}
@@ -231,6 +256,11 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 		}
 	}
 
+	/**
+	 * A Command to set an EAnnotation's entry
+	 * 
+	 * @author Camille Letavernier
+	 */
 	protected class AddEntryCommand extends AbstractCommand {
 
 		private EAnnotation annotation;
@@ -239,6 +269,16 @@ public class AnnotationObservableValue extends AbstractObservableValue {
 
 		private String value;
 
+		/**
+		 * 
+		 * 
+		 * @param annotation
+		 *        The EAnnotation to edit
+		 * @param key
+		 *        The EAnnotation's key to edit
+		 * @param value
+		 *        The value to set
+		 */
 		public AddEntryCommand(EAnnotation annotation, String key, String value) {
 			this.annotation = annotation;
 			this.key = key;
