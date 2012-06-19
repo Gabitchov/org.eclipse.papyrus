@@ -205,7 +205,7 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 */
 	public String[] getSourceFolders() {
 		if(exists()) {
-			String currentValue = this.buildConfig.getProperty(SOURCE_FOLDER_KEY, "").replace("\t|\r|\n", "");
+			String currentValue = this.buildConfig.getProperty(SOURCE_FOLDER_KEY, "").replaceAll("\t|\r|\n", "").trim();
 			String[] values = currentValue.split(","); //$NON-NLS-1$
 			return values;
 		}
