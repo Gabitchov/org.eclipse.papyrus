@@ -19,70 +19,60 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.services.PapyrusFileLoader;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.compare.merge.TransactionalMergeService;
-import org.eclipse.papyrus.uml.compare.merge.standalone.StandaloneMergeUtils;
+import org.eclipse.papyrus.uml.compare.merge.services.TransactionalMergeService;
+import org.eclipse.papyrus.uml.compare.merge.standalone.utils.StandaloneMergeUtils;
 import org.eclipse.papyrus.uml.compare.merger.tests.Activator;
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * 
  * This abstract provides methods to compare 2 Papyrus uml files named "left.uml" and "right.uml"
  * 
  */
-public abstract class AbstractStandaloneCompareTest{
+public abstract class AbstractStandaloneCompareTest {
 
-	protected IProject project;
+	protected static IProject project;
 
-	private final String LEFT = "left";
+	private final static String LEFT = "left";
 
-	private final String RIGHT = "right";
+	private final static String RIGHT = "right";
 
-	protected Model leftRoot;
+	protected static Model leftRoot;
 
-	protected Model rightRoot;
+	protected static Model rightRoot;
 
-	protected Map<String, Object> options;
+	protected static Map<String, Object> options;
 
-	protected TransactionalEditingDomain domain;
+	protected static TransactionalEditingDomain domain;
 
 
-	private final String modelPath;
+	//	private  static String modelPath;
 
 
 	private static final String FOLDER_PATH = "/resources/standalone/";
 
-	public AbstractStandaloneCompareTest(final String modelPath) {
-		this.modelPath = modelPath;
-	}
 
-	protected void mergeTest(final boolean leftToRight) throws InterruptedException {
-		// Matching model elements
-		final MatchModel match = MatchService.doMatch(leftRoot, rightRoot, options);
-		// Computing differences
-		final DiffModel diff = DiffService.doDiff(match, false);
-		// Merges all differences from model1 to model2
-		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
-		for(final DiffElement current : differences) {
-			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
-			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
-			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
-		}
-	}
 
-	@Before
-	public final void init() throws CoreException, IOException {
+	
+
+	public static final void init(final String modelPath) throws CoreException, IOException {
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
 		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
+		System.out.println(modelPath);
 		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, LEFT);
 		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, RIGHT);
 		//		openCompareFileEditor();
@@ -99,17 +89,30 @@ public abstract class AbstractStandaloneCompareTest{
 		rightRoot = (Model)roots[1];
 		options = StandaloneMergeUtils.getMergeOptions();
 	}
-
-	public void leftToRightMergeCommand() throws InterruptedException {
-		mergeTest(true);
+	
+	public abstract void testMergeCommandExecutatibility() throws InterruptedException;
+	
+	protected void mergeTest(final boolean leftToRight) throws InterruptedException {
+		// Matching model elements
+		final MatchModel match = MatchService.doMatch(leftRoot, rightRoot, options);
+		// Computing differences
+		final DiffModel diff = DiffService.doDiff(match, false);
+		// Merges all differences from model1 to model2
+		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
+		for(final DiffElement current : differences) {
+			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
+			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
+			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
+		}
 	}
 
-	public void rightToLeftMergeCommand() throws InterruptedException {
-		mergeTest(false);
-	}
+
+	
+
 
 	/**
-	 * This tests should tests the contents of the differences found
+	 * This tests tests the contents of the differences found.
+	 * The 3 first differences are always DiffGroup. The final differences are tested with the method {@link #testLastDiffElements(DiffElement)}
 	 */
 	public void testDifferences() throws InterruptedException {
 		// Matching model elements
@@ -135,13 +138,41 @@ public abstract class AbstractStandaloneCompareTest{
 		differences = current.getSubDiffElements();
 		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
 		current = differences.get(0);
-		testLastDiffElement(current);
+		testLastDiffElements(current);
 	}
 
-	public abstract void testLastDiffElement(final DiffElement diffElement);
+	/**
+	 * The first differences are always DiffGroup.
+	 * 
+	 * @param diffElement
+	 */
+	public abstract void testLastDiffElements(final DiffElement diffElement);
 
-	@After
-	public final void closeAll() {
+	@AfterClass
+	public static final void closeAll() {
+		//TODO : disconnect from EditingDomain
+		//		TransactionUtil.disconnectFromEditingDomain(eobject)
+		//we close all the editors
 		GenericUtils.closeAllEditors();
+	}
+
+	@Test
+	public void testCommandExecution() {
+		Assert.assertTrue(false);
+	}
+
+	@Test
+	public void testXMIID() {
+		Assert.assertTrue(false);
+	}
+
+	@Test
+	public void testUndo() {
+		Assert.assertTrue(false);
+	}
+
+	@Test
+	public void testRedo() {
+		Assert.assertTrue(false);
 	}
 }

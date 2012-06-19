@@ -1,31 +1,31 @@
 package org.eclipse.papyrus.uml.compare.merger.tests.standalone;
 
+import java.io.IOException;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class UpdateAttributeTest_1 extends AbstractStandaloneCompareTest {
+public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompareTest {
 
 	private static final String MODEL_PATH = "updateAttribute_1/";
 
-	public UpdateAttributeTest_1() {
-		super(MODEL_PATH);
+	@BeforeClass
+	public static void init() throws CoreException, IOException{
+		AbstractStandaloneCompareTest.init(MODEL_PATH);
 	}
 	
 	@Test
 	@Override
-	public void leftToRightMergeCommand() throws InterruptedException {
-		super.leftToRightMergeCommand();
+	public void testMergeCommandExecutatibility() throws InterruptedException {
+		mergeTest(true);
 	}
 
-	@Test
-	@Override
-	public void rightToLeftMergeCommand() throws InterruptedException {
-		super.rightToLeftMergeCommand();
-	}
 
 	@Test
 	public void testDifferences() throws InterruptedException {
@@ -33,7 +33,7 @@ public class UpdateAttributeTest_1 extends AbstractStandaloneCompareTest {
 	}
 	
 	@Override
-	public void testLastDiffElement(DiffElement diffElement) {
+	public void testLastDiffElements(DiffElement diffElement) {
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", UpdateAttribute.class), diffElement instanceof UpdateAttribute);
 	}
 
