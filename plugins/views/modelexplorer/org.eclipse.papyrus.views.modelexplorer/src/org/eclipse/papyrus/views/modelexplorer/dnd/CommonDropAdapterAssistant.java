@@ -159,7 +159,9 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 					if(command != null) {
 						Resource targetNotationResource = getTargetNotationResource(targetOwner);
-						if (targetNotationResource != null && !targetNotationResource.equals(childElement.eResource())) {
+						if (targetNotationResource != null) {
+							if(!targetNotationResource.equals(childElement.eResource())) {
+						
 							// move diagram in the correct resource
 							CompositeTransactionalCommand cc = new CompositeTransactionalCommand(domain, "");
 							cc.add(command);
@@ -167,9 +169,11 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 							commandList.add(new GMFtoEMFCommandWrapper(cc));
 							return commandList;
-						}
-
-
+							} else { // diagram stays in the same resource. Only execute the set command
+								commandList.add(new GMFtoEMFCommandWrapper(command));
+								return commandList;
+							}
+						} 
 					}
 				}
 			}

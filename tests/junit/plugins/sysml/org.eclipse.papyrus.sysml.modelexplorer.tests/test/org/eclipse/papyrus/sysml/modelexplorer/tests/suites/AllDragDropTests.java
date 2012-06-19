@@ -1,30 +1,30 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
 
+import org.eclipse.papyrus.sysml.modelexplorer.tests.dragdrop.IBDDragDropTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
- * Main test suite class
+ * Tests suites for Drag And Drop inside the model explorer
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	AllDragDropTests.class,
-	AllCopyPasteTests.class,
+IBDDragDropTest.class,
 })
-public class AllTests {
-
+public class AllDragDropTests {
 }
