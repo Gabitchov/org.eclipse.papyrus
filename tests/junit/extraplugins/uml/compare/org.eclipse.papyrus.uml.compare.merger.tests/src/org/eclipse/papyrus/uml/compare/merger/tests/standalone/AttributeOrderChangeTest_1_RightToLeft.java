@@ -18,15 +18,15 @@ public class AttributeOrderChangeTest_1_RightToLeft extends AbstractStandaloneCo
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException{
-		AbstractStandaloneCompareTest.init(MODEL_PATH);
+		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 	
 	
 
 	@Test
 	@Override
-	public void testMergeCommandExecutatibility() throws InterruptedException {
-		mergeTest(false);
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(false);
 	}
 
 	@Test

@@ -17,12 +17,12 @@ public class ModelElementChangeRightTargetTest_1_RightToLeft extends AbstractSta
 	private static final String MODEL_PATH = "modelElementChangeRightTarget_1/";
 	@BeforeClass
 	public static void init() throws CoreException, IOException{
-		AbstractStandaloneCompareTest.init(MODEL_PATH);
+		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 	@Test
 	@Override
-	public void testMergeCommandExecutatibility() throws InterruptedException {
-		mergeTest(false);
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(false);
 	}
 	@Test
 	public void testDifferences() throws InterruptedException {

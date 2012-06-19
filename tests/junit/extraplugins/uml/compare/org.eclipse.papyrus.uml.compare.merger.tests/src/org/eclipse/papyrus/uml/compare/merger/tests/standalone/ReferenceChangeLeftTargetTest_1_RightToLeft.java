@@ -19,13 +19,13 @@ public class ReferenceChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException {
-		AbstractStandaloneCompareTest.init(MODEL_PATH);
+		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 
 	@Test
 	@Override
-	public void testMergeCommandExecutatibility() throws InterruptedException {
-		mergeTest(false);
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(false);
 	}
 
 	@Test
