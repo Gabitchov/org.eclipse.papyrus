@@ -112,7 +112,7 @@ public abstract class AbstractStandaloneCompareTest {
 
 	/**
 	 * This tests tests the contents of the differences found.
-	 * The 3 first differences are always DiffGroup. The final differences are tested with the method {@link #testLastDiffElements(DiffElement)}
+	 * 
 	 */
 	public void testDifferences() throws InterruptedException {
 		// Matching model elements
@@ -126,19 +126,11 @@ public abstract class AbstractStandaloneCompareTest {
 		Assert.assertTrue("The first DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
 
 		differences = current.getSubDiffElements();
-		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
-		current = differences.get(0);
-		Assert.assertTrue("The second DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
+		while(differences.size()==1 && differences.get(0) instanceof DiffGroup){
+			differences = differences.get(0).getSubDiffElements();
+		}
 
-		differences = current.getSubDiffElements();
-		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
-		current = differences.get(0);
-		Assert.assertTrue("The third DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
-
-		differences = current.getSubDiffElements();
-		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
-		current = differences.get(0);
-		testLastDiffElements(current);
+		testLastDiffElements(differences);
 	}
 
 	/**
@@ -146,7 +138,7 @@ public abstract class AbstractStandaloneCompareTest {
 	 * 
 	 * @param diffElement
 	 */
-	public abstract void testLastDiffElements(final DiffElement diffElement);
+	public abstract void testLastDiffElements(final List<DiffElement> diffElement);
 
 	@AfterClass
 	public static final void closeAll() {
