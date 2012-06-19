@@ -208,6 +208,8 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 				}
 			} catch (IOException ex) {
 				handleExceptions(ex);
+			} catch (Exception ex) {
+				handleExceptions(ex);
 			}
 		}
 	}
