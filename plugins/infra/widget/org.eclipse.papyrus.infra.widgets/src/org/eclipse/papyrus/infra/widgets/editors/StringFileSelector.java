@@ -17,10 +17,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
+import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -30,7 +29,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.ui.dialogs.ResourceSelectionDialog;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
  * A Widget for editing Strings with File paths
@@ -70,6 +69,9 @@ public class StringFileSelector extends StringEditor {
 				File file = FileUtil.getFile(text.getText());
 
 				FileDialog dialog = new FileDialog(getShell());
+				if(labelText != null) {
+					dialog.setText(labelText);
+				}
 				dialog.setFileName(file.getAbsolutePath());
 				dialog.setFilterExtensions(filterExtensions.toArray(new String[filterExtensions.size()]));
 				dialog.setFilterNames(filterNames.toArray(new String[filterNames.size()]));
@@ -89,11 +91,15 @@ public class StringFileSelector extends StringEditor {
 		browseWorkspace.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				IWorkspaceRoot workspace = ResourcesPlugin.getWorkspace().getRoot();
-
 				IFile currentFile = FileUtil.getIFile(text.getText());
 
-				ResourceSelectionDialog dialog = new ResourceSelectionDialog(getShell(), workspace, ""); //$NON-NLS-1$
+				TreeSelectorDialog dialog = new TreeSelectorDialog(getShell());
+				if(labelText != null) {
+					dialog.setTitle(labelText);
+				}
+				dialog.setContentProvider(new WorkspaceContentProvider());
+				dialog.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+
 
 				if(currentFile != null && currentFile.exists()) {
 					dialog.setInitialSelections(new IFile[]{ currentFile });

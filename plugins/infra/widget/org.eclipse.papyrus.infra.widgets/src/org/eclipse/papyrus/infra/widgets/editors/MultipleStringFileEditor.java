@@ -6,18 +6,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.NullSelector;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.ui.dialogs.ResourceSelectionDialog;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
  * A Widget for editing multi-valued Strings with File paths
@@ -125,23 +125,21 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 	}
 
 	protected void browseWorkspace() {
-		IWorkspaceRoot workspace = ResourcesPlugin.getWorkspace().getRoot();
+		ReferenceSelector selector = new ReferenceSelector();
+		selector.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+		selector.setContentProvider(new WorkspaceContentProvider());
 
-		ResourceSelectionDialog dialog = new ResourceSelectionDialog(getShell(), workspace, ""); //$NON-NLS-1$
 
-		//		IStructuredSelection currentSelection = (IStructuredSelection)this.treeViewer.getSelection();
-		//		if(!currentSelection.isEmpty()) {
-		//			List<IFile> selectedFiles = new LinkedList<IFile>();
-		//			for(Object selection : currentSelection.toArray()) {
-		//				if(selection instanceof String) {
-		//					IFile currentFile = FileUtil.getIFile((String)selection);
-		//					if(currentFile != null) {
-		//						selectedFiles.add(currentFile);
-		//					}
-		//				}
-		//			}
-		//			dialog.setInitialSelections(selectedFiles.toArray(new IFile[selectedFiles.size()]));
-		//		}
+		MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(getShell(), selector);
+		if(labelText != null) {
+			dialog.setTitle(labelText);
+		}
+
+		dialog.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+
+		dialog.setOrdered(true);
+		dialog.setUnique(true);
+		selector.setUnique(true);
 
 		int code = dialog.open();
 		if(code == Window.OK) {

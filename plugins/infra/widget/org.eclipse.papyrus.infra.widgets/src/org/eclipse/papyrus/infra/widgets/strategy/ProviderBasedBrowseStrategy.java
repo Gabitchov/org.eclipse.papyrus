@@ -19,7 +19,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
@@ -149,4 +151,28 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 		super.dispose();
 		clearCache();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * The basic implementation is a naive tree search
+	 * 
+	 * @param elementToReveal
+	 */
+	@Override
+	public void revealSemanticElement(List<?> elementsToReveal) {
+		if(viewer != null) {
+			//FIXME: TreeViewers cannot do this search when the items have not yet be expanded. 
+			//We need to search on the ContentProvider and pass a TreeSelection to the viewer
+			viewer.setSelection(new StructuredSelection(elementsToReveal), true);
+		}
+	}
+
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		super.inputChanged(viewer, oldInput, newInput);
+		this.viewer = viewer;
+	}
+
+	protected Viewer viewer;
 }
