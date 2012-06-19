@@ -102,23 +102,6 @@ public abstract class AbstractStandaloneCompareTest {
 
 	public abstract void testMergeAllCommandExecutatibility() throws InterruptedException;
 
-	protected void mergeTestAllExecutability(final boolean leftToRight) throws InterruptedException {
-		// Matching model elements
-		final MatchModel match = MatchService.doMatch(leftRoot, rightRoot, options);
-		// Computing differences
-		final DiffModel diff = DiffService.doDiff(match, false);
-		// Merges all differences from model1 to model2
-		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
-		initialDifferences = differences;
-		for(final DiffElement current : differences) {
-			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
-			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
-			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
-		}
-	}
-
-
-
 	/**
 	 * This tests tests the contents of the differences found.
 	 * 
@@ -133,16 +116,14 @@ public abstract class AbstractStandaloneCompareTest {
 		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
 		DiffElement current = differences.get(0);
 		Assert.assertTrue("The first DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
-
+	
 		differences = current.getSubDiffElements();
 		while(differences.size() == 1 && differences.get(0) instanceof DiffGroup) {
 			differences = differences.get(0).getSubDiffElements();
 		}
-
+	
 		testLastDiffElements(differences);
 	}
-
-
 
 	/**
 	 * The first differences are always DiffGroup.
@@ -150,6 +131,21 @@ public abstract class AbstractStandaloneCompareTest {
 	 * @param diffElement
 	 */
 	public abstract void testLastDiffElements(final List<DiffElement> diffElement);
+
+	protected void mergeTestAllExecutability(final boolean leftToRight) throws InterruptedException {
+		// Matching model elements
+		final MatchModel match = MatchService.doMatch(leftRoot, rightRoot, options);
+		// Computing differences
+		final DiffModel diff = DiffService.doDiff(match, false);
+		// Merges all differences from model1 to model2
+		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
+		initialDifferences = differences;
+		for(final DiffElement current : differences) {
+			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
+			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
+			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
+		}
+	}
 
 
 
@@ -201,7 +197,7 @@ public abstract class AbstractStandaloneCompareTest {
 
 	@Test
 	public void testXMIID() {
-		Assert.assertTrue(false);
+		Assert.fail();
 	}
 
 	@Test
@@ -239,7 +235,7 @@ public abstract class AbstractStandaloneCompareTest {
 	}
 
 	protected void compareList(final List<DiffElement> diff1, final List<DiffElement> diff2) {
-		Assert.assertEquals("The compared lists don't have the same size.", diff1.size(),diff2.size());
+		Assert.assertEquals("The compared lists don't have the same size.", diff1.size(), diff2.size());
 		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(org.eclipse.emf.compare.util.AdapterUtils.getAdapterFactory());
 		int size = diff1.size();
 		for(int i = 0; i < size; i++) {
@@ -255,7 +251,7 @@ public abstract class AbstractStandaloneCompareTest {
 				DiffGroup grp2 = (DiffGroup)element2;
 				compareList(grp1.getSubDiffElements(), grp2.getSubDiffElements());
 				compareList(grp1.getRequires(), grp2.getRequires());
-//				compareList(grp1.getRequiredBy(), grp2.getRequiredBy());
+				//				compareList(grp1.getRequiredBy(), grp2.getRequiredBy());
 			}
 		}
 	}

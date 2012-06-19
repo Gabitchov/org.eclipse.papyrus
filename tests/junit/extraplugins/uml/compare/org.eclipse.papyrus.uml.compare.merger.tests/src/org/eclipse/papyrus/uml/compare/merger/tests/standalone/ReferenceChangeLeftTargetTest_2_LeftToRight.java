@@ -17,14 +17,10 @@ public class ReferenceChangeLeftTargetTest_2_LeftToRight extends AbstractStandal
 	private static final String MODEL_PATH = "referenceChangeLeftTarget_2/";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException{
+	public static void init() throws CoreException, IOException {
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
-	@Test
-	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
-	}
+
 
 
 	@Test
@@ -34,9 +30,44 @@ public class ReferenceChangeLeftTargetTest_2_LeftToRight extends AbstractStandal
 
 	@Override
 	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{1,diffElements.size()}),diffElements.size()==1);
+		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
 		final DiffElement diffElement = diffElements.get(0);
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", ReferenceChangeLeftTarget.class), diffElement instanceof ReferenceChangeLeftTarget);
 	}
 
+	@Test
+	@Override
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(true);
+	}
+
+	@Override
+	@Test
+	public void testCommandExecution() throws InterruptedException, IOException {
+		super.testCommandExecution();
+	}
+
+	@Override
+	@Test
+	public void testResult() throws InterruptedException {
+		super.testResult();
+	}
+
+	@Override
+	@Test
+	public void testXMIID() {
+		//nothing to do
+	}
+
+	@Override
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		super.testUndo();
+	}
+
+	@Override
+	@Test
+	public void testRedo() throws IOException, InterruptedException {
+		super.testRedo();
+	}
 }

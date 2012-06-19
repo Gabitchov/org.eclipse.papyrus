@@ -22,12 +22,6 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 
-	@Test
-	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
-	}
-
 
 	@Test
 	public void testDifferences() throws InterruptedException {
@@ -44,5 +38,40 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 			DiffElement element = group.getSubDiffElements().get(0);
 			Assert.assertTrue(element instanceof MoveModelElement);
 		}
+	}
+
+	@Test
+	@Override
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(true);
+	}
+
+	@Override
+	@Test
+	public void testCommandExecution() throws InterruptedException, IOException {
+		super.testCommandExecution();
+	}
+
+	@Override
+	@Test
+	public void testResult() throws InterruptedException {
+		super.testResult();
+	}
+
+	@Override
+	public void testXMIID() {
+		//nothing to do here!
+	}
+
+	@Override
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		super.testUndo();
+	}
+
+	@Override
+	@Test
+	public void testRedo() throws IOException, InterruptedException {
+		super.testRedo();
 	}
 }

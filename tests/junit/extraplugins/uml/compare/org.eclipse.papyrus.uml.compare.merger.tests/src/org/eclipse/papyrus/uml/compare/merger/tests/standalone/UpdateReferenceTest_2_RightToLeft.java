@@ -23,11 +23,6 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 
-	@Test
-	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
-	}
 
 	@Test
 	public void testDifferences() throws InterruptedException {
@@ -41,5 +36,40 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", UpdateReference.class), diffElement instanceof UpdateReference);
 	}
 
+	@Test
+	@Override
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(false);
+	}
+
+	@Override
+	@Test
+	public void testCommandExecution() throws InterruptedException, IOException {
+		super.testCommandExecution();
+	}
+
+	@Override
+	@Test
+	public void testResult() throws InterruptedException {
+		super.testResult();
+	}
+
+	@Override
+	@Test
+	public void testXMIID() {
+		//nothing to do
+	}
+
+	@Override
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		super.testUndo();
+	}
+
+	@Override
+	@Test
+	public void testRedo() throws IOException, InterruptedException {
+		super.testRedo();
+	}
 
 }

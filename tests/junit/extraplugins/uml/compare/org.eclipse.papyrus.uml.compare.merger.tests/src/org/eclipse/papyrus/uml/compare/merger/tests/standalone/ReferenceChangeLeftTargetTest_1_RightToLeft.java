@@ -22,11 +22,6 @@ public class ReferenceChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 
-	@Test
-	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
-	}
 
 	@Test
 	public void testDifferences() throws InterruptedException {
@@ -45,5 +40,42 @@ public class ReferenceChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 			Assert.assertTrue(NLS.bind("The DiffElement is not a {0}", ReferenceChangeLeftTarget.class), diffElement instanceof ReferenceChangeLeftTarget);
 		}
 	}
+
+	@Test
+	@Override
+	public void testMergeAllCommandExecutatibility() throws InterruptedException {
+		mergeTestAllExecutability(false);
+	}
+
+	@Override
+	@Test
+	public void testCommandExecution() throws InterruptedException, IOException {
+		super.testCommandExecution();
+	}
+
+	@Override
+	@Test
+	public void testResult() throws InterruptedException {
+		super.testResult();
+	}
+
+	@Override
+	@Test
+	public void testXMIID() {
+		//nothing to do
+	}
+
+	@Override
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		super.testUndo();
+	}
+
+	@Override
+	@Test
+	public void testRedo() throws IOException, InterruptedException {
+		super.testRedo();
+	}
+
 
 }

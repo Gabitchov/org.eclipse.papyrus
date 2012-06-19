@@ -21,8 +21,6 @@ public class AttributeChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 	
-	
-
 	@Test
 	@Override
 	public void testMergeAllCommandExecutatibility() throws InterruptedException {
@@ -40,4 +38,29 @@ public class AttributeChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 		final DiffElement diffElement = diffElements.get(0);
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", AttributeChangeRightTarget.class), diffElement instanceof AttributeChangeRightTarget);
 	}
+	
+	@Override
+	@Test
+	public void testResult() throws InterruptedException {
+		super.testResult();
+	}
+	
+	@Override
+	@Test
+	public void testXMIID() {
+		//nothing to do here!
+	}
+	
+	@Override
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		super.testUndo();
+	}
+	
+	@Override
+	@Test
+	public void testRedo() throws IOException, InterruptedException {
+		super.testRedo();
+	}
+
 }
