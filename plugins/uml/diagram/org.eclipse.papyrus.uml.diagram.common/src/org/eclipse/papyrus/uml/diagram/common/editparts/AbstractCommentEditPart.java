@@ -21,7 +21,9 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -51,6 +53,17 @@ public class AbstractCommentEditPart extends NodeEditPart {
 			refreshFontColor();
 
 		}
+	}
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		// adds the stereotype application edit policy
+		installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
 	}
 
 	/**
