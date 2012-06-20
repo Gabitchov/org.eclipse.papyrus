@@ -41,8 +41,8 @@ public class MoveModelElementTest_2_RightToLeft extends AbstractStandaloneCompar
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 

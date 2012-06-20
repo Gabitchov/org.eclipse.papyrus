@@ -42,7 +42,44 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ AttributeChangeLeftTargetTest_1_LeftToRight.class, AttributeChangeRightTargetTest_1_LeftToRight.class, ModelElementChangeLeftTargetTest_1_LeftToRight.class, ModelElementChangeRightTargetTest_1_LeftToRight.class, MoveModelElementTest_1_LeftToRight.class, MoveModelElementTest_2_LeftToRight.class, ReferenceChangeLeftTargetTest_1_LeftToRight.class, ReferenceChangeLeftTargetTest_2_LeftToRight.class, ReferenceOrderChangeTest_1_LeftToRight.class, UpdateAttributeTest_1_LeftToRight.class, UpdateReferenceTest_1_LeftToRight.class, UpdateReferenceTest_2_LeftToRight.class ,AttributeChangeLeftTargetTest_1_RightToLeft.class, AttributeChangeRightTargetTest_1_RightToLeft.class, ModelElementChangeLeftTargetTest_1_RightToLeft.class,  ModelElementChangeRightTargetTest_1_RightToLeft.class, MoveModelElementTest_1_RightToLeft.class, MoveModelElementTest_2_RightToLeft.class, ReferenceChangeLeftTargetTest_1_RightToLeft.class, ReferenceChangeLeftTargetTest_2_RightToLeft.class, ReferenceOrderChangeTest_1_RightToLeft.class, UpdateAttributeTest_1_RightToLeft.class, UpdateReferenceTest_1_RightToLeft.class, UpdateReferenceTest_2_RightToLeft.class })
+@SuiteClasses({ 
+	AttributeChangeLeftTargetTest_1_LeftToRight.class, 
+	AttributeChangeLeftTargetTest_1_RightToLeft.class, 
+	
+	AttributeChangeRightTargetTest_1_LeftToRight.class,
+	AttributeChangeRightTargetTest_1_RightToLeft.class, 
+	
+	ModelElementChangeLeftTargetTest_1_LeftToRight.class,
+	ModelElementChangeLeftTargetTest_1_RightToLeft.class, 
+	
+	ModelElementChangeRightTargetTest_1_LeftToRight.class, 
+	ModelElementChangeRightTargetTest_1_RightToLeft.class, 
+	
+	MoveModelElementTest_1_LeftToRight.class,
+	MoveModelElementTest_1_RightToLeft.class, 
+	
+	MoveModelElementTest_2_LeftToRight.class, 
+	MoveModelElementTest_2_RightToLeft.class, 
+	
+	ReferenceChangeLeftTargetTest_1_LeftToRight.class,
+	ReferenceChangeLeftTargetTest_1_RightToLeft.class,
+	
+	ReferenceChangeLeftTargetTest_2_LeftToRight.class, 
+	ReferenceChangeLeftTargetTest_2_RightToLeft.class,
+	
+	ReferenceOrderChangeTest_1_LeftToRight.class, 
+	ReferenceOrderChangeTest_1_RightToLeft.class,
+	
+	UpdateAttributeTest_1_LeftToRight.class, 
+	UpdateAttributeTest_1_RightToLeft.class,
+	
+	UpdateReferenceTest_1_LeftToRight.class,
+	UpdateReferenceTest_1_RightToLeft.class,
+	
+	UpdateReferenceTest_2_LeftToRight.class ,
+	UpdateReferenceTest_2_RightToLeft.class,
+	
+	})
 public class AllTests {
 	// JUnit 4 test suite
 }

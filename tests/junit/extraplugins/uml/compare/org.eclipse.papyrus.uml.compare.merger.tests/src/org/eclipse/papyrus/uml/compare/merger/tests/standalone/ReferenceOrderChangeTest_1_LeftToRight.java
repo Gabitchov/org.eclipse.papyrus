@@ -40,8 +40,8 @@ public class ReferenceOrderChangeTest_1_LeftToRight extends AbstractStandaloneCo
 	
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override

@@ -23,8 +23,8 @@ public class AttributeChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Test

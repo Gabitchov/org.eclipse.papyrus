@@ -38,8 +38,8 @@ public class UpdateReferenceTest_1_RightToLeft extends AbstractStandaloneCompare
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override

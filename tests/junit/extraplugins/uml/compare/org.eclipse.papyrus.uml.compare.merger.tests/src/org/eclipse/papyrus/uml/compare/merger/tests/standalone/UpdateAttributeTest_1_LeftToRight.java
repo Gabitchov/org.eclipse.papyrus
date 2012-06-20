@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.uml2.uml.NamedElement;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,8 +38,8 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override
@@ -51,6 +52,13 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	@Test
 	public void testResult() throws InterruptedException {
 		super.testResult();
+		testUpdateAttribute();
+	}
+	
+	public void testUpdateAttribute(){
+		List<NamedElement> members = rightRoot.getMembers();
+		Assert.assertTrue(members.size()==1);
+		Assert.assertEquals("The name of the Class has not been correctly merged", members.get(0).getName(), "Class1");
 	}
 
 	@Override

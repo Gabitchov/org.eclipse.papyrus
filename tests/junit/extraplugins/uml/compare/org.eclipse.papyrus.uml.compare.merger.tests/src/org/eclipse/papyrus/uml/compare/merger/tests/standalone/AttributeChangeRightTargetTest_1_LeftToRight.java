@@ -22,12 +22,6 @@ public class AttributeChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 	}
 	
 	@Test
-	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
-	}
-
-	@Test
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
 	}
@@ -37,6 +31,18 @@ public class AttributeChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{1,diffElements.size()}),diffElements.size()==1);
 		final DiffElement diffElement = diffElements.get(0);
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", AttributeChangeRightTarget.class), diffElement instanceof AttributeChangeRightTarget);
+	}
+	
+	@Test
+	@Override
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
+	}
+
+	@Override
+	@Test
+	public void testCommandExecution() throws InterruptedException, IOException {
+		super.testCommandExecution();
 	}
 	
 	@Override

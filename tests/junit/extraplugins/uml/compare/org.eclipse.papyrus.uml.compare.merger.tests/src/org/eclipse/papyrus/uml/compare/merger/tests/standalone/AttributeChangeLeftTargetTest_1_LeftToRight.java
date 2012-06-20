@@ -23,11 +23,6 @@ public class AttributeChangeLeftTargetTest_1_LeftToRight extends AbstractStandal
 
 
 	@Test
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
-	}
-
-	@Test
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
 	}
@@ -38,6 +33,11 @@ public class AttributeChangeLeftTargetTest_1_LeftToRight extends AbstractStandal
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", AttributeChangeLeftTarget.class), diffElement instanceof AttributeChangeLeftTarget);
 	}
 
+	@Test
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
+	}
+	
 	@Override
 	@Test
 	public void testCommandExecution() throws InterruptedException, IOException {

@@ -100,12 +100,11 @@ public abstract class AbstractStandaloneCompareTest {
 		AbstractStandaloneCompareTest.leftToRight = leftToRight;
 	}
 
-	public abstract void testMergeAllCommandExecutatibility() throws InterruptedException;
-
 	/**
 	 * This tests tests the contents of the differences found.
 	 * 
 	 */
+	@Test
 	public void testDifferences() throws InterruptedException {
 		// Matching model elements
 		final MatchModel match = MatchService.doMatch(leftRoot, rightRoot, options);
@@ -116,12 +115,12 @@ public abstract class AbstractStandaloneCompareTest {
 		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
 		DiffElement current = differences.get(0);
 		Assert.assertTrue("The first DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
-	
+
 		differences = current.getSubDiffElements();
 		while(differences.size() == 1 && differences.get(0) instanceof DiffGroup) {
 			differences = differences.get(0).getSubDiffElements();
 		}
-	
+
 		testLastDiffElements(differences);
 	}
 
@@ -129,10 +128,13 @@ public abstract class AbstractStandaloneCompareTest {
 	 * The first differences are always DiffGroup.
 	 * 
 	 * @param diffElement
+	 * 
+	 * 
 	 */
 	public abstract void testLastDiffElements(final List<DiffElement> diffElement);
 
-	protected void mergeTestAllExecutability(final boolean leftToRight) throws InterruptedException {
+	@Test
+	protected void mergeTestAllExecutability() throws InterruptedException {
 		// Matching model elements
 		final MatchModel match = MatchService.doMatch(leftRoot, rightRoot, options);
 		// Computing differences
@@ -141,12 +143,11 @@ public abstract class AbstractStandaloneCompareTest {
 		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
 		initialDifferences = differences;
 		for(final DiffElement current : differences) {
-			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
+ 			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
 			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
 			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
 		}
 	}
-
 
 
 	@Test
@@ -161,7 +162,7 @@ public abstract class AbstractStandaloneCompareTest {
 		DiffElement diffElement = differences.get(0);
 		Command cmd = TransactionalMergeService.getMergeCommand(domain, diffElement, true);
 
-
+		Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", cmd), cmd.canExecute());
 		//we execute the command and hope that all it is OK
 		domain.getCommandStack().execute(cmd);
 

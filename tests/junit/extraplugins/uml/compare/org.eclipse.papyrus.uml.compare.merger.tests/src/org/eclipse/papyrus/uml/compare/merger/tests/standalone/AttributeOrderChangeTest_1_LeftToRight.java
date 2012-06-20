@@ -24,8 +24,8 @@ public class AttributeOrderChangeTest_1_LeftToRight extends AbstractStandaloneCo
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 

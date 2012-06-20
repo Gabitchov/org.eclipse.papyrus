@@ -44,8 +44,8 @@ public class ReferenceChangeLeftTargetTest_1_LeftToRight extends AbstractStandal
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override

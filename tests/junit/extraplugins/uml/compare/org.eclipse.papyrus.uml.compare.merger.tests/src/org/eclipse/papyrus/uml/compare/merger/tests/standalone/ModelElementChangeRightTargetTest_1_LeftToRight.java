@@ -42,8 +42,8 @@ public class ModelElementChangeRightTargetTest_1_LeftToRight extends AbstractSta
 	
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(true);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	

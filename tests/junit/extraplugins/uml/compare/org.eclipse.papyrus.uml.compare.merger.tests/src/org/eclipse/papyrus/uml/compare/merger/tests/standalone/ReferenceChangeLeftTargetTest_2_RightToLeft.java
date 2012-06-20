@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
@@ -28,15 +31,31 @@ public class ReferenceChangeLeftTargetTest_2_RightToLeft extends AbstractStandal
 
 	@Override
 	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
-		final DiffElement diffElement = diffElements.get(0);
-		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", ReferenceChangeLeftTarget.class), diffElement instanceof ReferenceChangeLeftTarget);
+		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 2, diffElements.size() }), diffElements.size() == 2);
+		DiffElement diffElement = null;
+		DiffGroup group = null;
+		for(DiffElement current : diffElements) {
+			if(current instanceof DiffGroup) {
+				group = (DiffGroup)current;
+			} else {
+				diffElement = current;
+			}
+		}
+
+		Assert.assertNotNull(diffElement);
+		Assert.assertNotNull(group);
+		Assert.assertTrue(NLS.bind("The diffElement is not a {0}", ModelElementChangeLeftTarget.class), diffElement instanceof ModelElementChangeLeftTarget);//a Usecase has been added
+
+		EList<DiffElement> subDiff = group.getSubDiffElements();
+		Assert.assertTrue(subDiff.size() == 1);
+		DiffElement el = subDiff.get(0);
+		Assert.assertTrue(NLS.bind("The diffElement is not a {0}", ReferenceChangeLeftTarget.class), el instanceof ReferenceChangeLeftTarget);//a reference to the usecase has been added
 	}
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override

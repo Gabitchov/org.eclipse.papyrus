@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
@@ -23,7 +21,7 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 
-
+	@Override
 	@Test
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
@@ -38,8 +36,8 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 
 	@Test
 	@Override
-	public void testMergeAllCommandExecutatibility() throws InterruptedException {
-		mergeTestAllExecutability(false);
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override
