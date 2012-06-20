@@ -55,6 +55,7 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferences;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
@@ -99,11 +100,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		return elementTypes;
 	}
 
-	/**
-	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
-	 */
-	@Override
-	protected boolean handleButtonUp(int button) {
+	protected boolean handleButtonUpOneClick(int button) {
+		return super.handleButtonUp(button);
+	}
+
+	protected boolean handleButtonUpTwoClicks(int button) {
 		setCtrlKeyDown(getCurrentInput().isControlKeyDown());
 
 		if(isInState(STATE_CONNECTION_STARTED)) {
@@ -120,6 +121,18 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		}
 
 		return true;
+	}
+
+	/**
+	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
+	 */
+	@Override
+	protected boolean handleButtonUp(int button) {
+		if(ConnectionToolPreferences.instance.isInSingleClickMode()) {
+			return handleButtonUpOneClick(button);
+		} else {
+			return handleButtonUpTwoClicks(button);
+		}
 	}
 
 	/**

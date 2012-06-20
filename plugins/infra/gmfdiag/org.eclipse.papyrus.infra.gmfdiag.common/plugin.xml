@@ -67,6 +67,21 @@
       </command>
    </menuContribution>
 </extension>
+<extension
+      point="org.eclipse.ui.preferencePages">
+   <page
+         category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferencePage"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.connectionTools"
+         name="Connection Tools">
+   </page>
+</extension>
+<extension
+      point="org.eclipse.core.runtime.preferences">
+   <initializer
+         class="org.eclipse.papyrus.infra.gmfdiag.common.preferences.ConnectionToolPreferenceInitializer">
+   </initializer>
+</extension>
 
 
 
