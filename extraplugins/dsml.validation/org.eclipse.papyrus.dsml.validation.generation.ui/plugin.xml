@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+         <command
+               commandId="org.eclipse.papyrus.dsml.validation.model.ui.CreateJavaValidationPluginHandler"
+               label="Create validation plugin for this DSML"
+               style="push"
+               tooltip="Create validation plugin for this DSML">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <command
+               commandId="org.eclipse.papyrus.dsml.validation.model.ui.CreateJavaValidationPluginHandler"
+               label="Create validation plugin for this DSML"
+               style="push"
+               tooltip="Create validation plugin for this DSML">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.dsml.validation.generation.ui.CreateJavaValidationPluginHandler"
+            id="org.eclipse.papyrus.dsml.validation.model.ui.CreateJavaValidationPluginHandler"
+            name="Create validation plugin for this DSML">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.papyrus.dsml.validation.generation.ui.Activator">
+      </startup>
+   </extension>
+
+</plugin>
