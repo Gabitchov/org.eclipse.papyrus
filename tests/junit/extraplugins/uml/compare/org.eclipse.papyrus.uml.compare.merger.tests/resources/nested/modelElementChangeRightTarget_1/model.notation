@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:papyrusemfcompareinstance="http://www.eclipse.org/Papyrus/EMFCompare/0.9.0/papyrusemfcompareinstance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
-  <notation:Diagram xmi:id="_XSuDIInuEeGxdcQdAms8Gw" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
-    <styles xmi:type="notation:DiagramStyle" xmi:id="_XSuDIYnuEeGxdcQdAms8Gw"/>
-    <element xmi:type="uml:Model" href="model.uml#_XSnVcInuEeGxdcQdAms8Gw"/>
-  </notation:Diagram>
-  <papyrusemfcompareinstance:PapyrusEMFCompareInstance xmi:id="_KrsYwLrkEeGa2q-8wWMz3g" type="PapyrusUMLCompare">
-    <left xmi:type="uml:Class" href="model.uml#_eYsnUInuEeGxdcQdAms8Gw"/>
-    <right xmi:type="uml:Class" href="model.uml#_gc1CQInuEeGxdcQdAms8Gw"/>
-  </papyrusemfcompareinstance:PapyrusEMFCompareInstance>
-  <papyrusemfcompareinstance:PapyrusEMFCompareInstance xmi:id="_fWfZkLr0EeGa2q-8wWMz3g" type="PapyrusUMLCompare">
-    <left xmi:type="uml:Class" href="model.uml#_eYsnUInuEeGxdcQdAms8Gw"/>
-    <right xmi:type="uml:Class" href="model.uml#_gc1CQInuEeGxdcQdAms8Gw"/>
-  </papyrusemfcompareinstance:PapyrusEMFCompareInstance>
-</xmi:XMI>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_XSuDIInuEeGxdcQdAms8Gw" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_XSuDIYnuEeGxdcQdAms8Gw"/>
+  <element xmi:type="uml:Model" href="model.uml#_XSnVcInuEeGxdcQdAms8Gw"/>
+</notation:Diagram>
