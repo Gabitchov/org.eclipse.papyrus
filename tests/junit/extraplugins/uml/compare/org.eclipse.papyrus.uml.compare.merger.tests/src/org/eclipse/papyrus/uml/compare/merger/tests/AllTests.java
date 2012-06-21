@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.tests;
 
+import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedModelElementChangeRightTargetTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedUpdateAttributeTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedModelElementChangeRightTargetTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedUpdateAttributeTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.AttributeChangeLeftTargetTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.AttributeChangeLeftTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.AttributeChangeRightTargetTest_1_LeftToRight;
@@ -43,6 +47,13 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
+	
+	NestedModelElementChangeRightTargetTest_1_LeftToRight.class,
+	NestedModelElementChangeRightTargetTest_1_RightToLeft.class,
+	
+	NestedUpdateAttributeTest_1_LeftToRight.class,
+	NestedUpdateAttributeTest_1_RightToLeft.class,
+	
 	AttributeChangeLeftTargetTest_1_LeftToRight.class, 
 	AttributeChangeLeftTargetTest_1_RightToLeft.class, 
 	

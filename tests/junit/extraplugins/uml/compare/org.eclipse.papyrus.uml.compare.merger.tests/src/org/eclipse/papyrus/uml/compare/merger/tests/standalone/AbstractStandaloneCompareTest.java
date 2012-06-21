@@ -143,7 +143,7 @@ public abstract class AbstractStandaloneCompareTest {
 		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
 		initialDifferences = differences;
 		for(final DiffElement current : differences) {
- 			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, true);
+ 			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, leftToRight);
 			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
 			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
 		}
@@ -160,7 +160,7 @@ public abstract class AbstractStandaloneCompareTest {
 		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
 		Assert.assertTrue("We should find only one DiffElement", differences.size() == 1);
 		DiffElement diffElement = differences.get(0);
-		Command cmd = TransactionalMergeService.getMergeCommand(domain, diffElement, true);
+		Command cmd = TransactionalMergeService.getMergeCommand(domain, diffElement, leftToRight);
 
 		Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", cmd), cmd.canExecute());
 		//we execute the command and hope that all it is OK
@@ -188,6 +188,8 @@ public abstract class AbstractStandaloneCompareTest {
 		DiffElement diffElement = differences.get(0);
 		Assert.assertTrue(diffElement instanceof DiffGroup);
 		DiffGroup group = (DiffGroup)diffElement;
+		//FIXME : there is a difference
+		
 		Assert.assertTrue("After merging all differences, we still find differences between the models...", group.getSubDiffElements().size() == 0);
 
 		//for the fun!

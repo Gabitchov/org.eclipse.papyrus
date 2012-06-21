@@ -1,0 +1,117 @@
+package org.eclipse.papyrus.uml.compare.merger.tests.nested;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
+import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.compare.merge.nested.utils.NestedMergeUtils;
+import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Property;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+
+public class NestedModelElementChangeRightTargetTest_1_RightToLeft extends AbstractNestedCompareTest {
+
+	private static final String MODEL_PATH = "modelElementChangeRightTarget_1/";
+
+	@BeforeClass
+	public static void init() throws CoreException, IOException {
+		AbstractNestedCompareTest.init(MODEL_PATH, false);
+		AbstractCompareTest.leftElement = (Class)AbstractNestedCompareTest.root.getOwnedMember("Class1");
+		AbstractCompareTest.rightElement = (Class)((Package)root.getPackagedElement("Package1")).getOwnedMember("Class1");
+		System.out.println(NLS.bind("Je possède {0} resources", set.getResources().size()));
+	}
+
+	@Test
+	public void testDifferences() throws InterruptedException {
+		super.testDifferences();
+	}
+
+	public void testLastDiffElements(List<DiffElement> diffElements) {
+		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
+		final DiffElement diffElement = diffElements.get(0);
+		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", ModelElementChangeRightTarget.class), diffElement instanceof ModelElementChangeRightTarget);
+	}
+
+	@Test
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
+	}
+
+	@Override
+	@Test
+	public void testCommandExecution() throws InterruptedException, IOException {
+		super.testCommandExecution();
+	}
+
+
+	@Override
+	@Test
+	public void testModificationOnDiFile() {
+		super.testModificationOnDiFile();
+	}
+
+	@Override
+	@Test
+	public void testModificationOnNotationFile() {
+		super.testModificationOnNotationFile();
+	}
+
+	@Override
+	@Test
+	public void testModificationOnUMLFile() {
+		super.testModificationOnUMLFile();
+	}
+
+
+	@Override
+	@Test
+	public void saveTest() throws IOException {
+		super.saveTest();
+	}
+
+	@Override
+	@Test
+	public void testResult() throws InterruptedException {
+		Property leftAttribute = ((Class)AbstractCompareTest.leftElement).getAttribute("property1", null);
+		Assert.assertNotNull("The right attribute has not been merged to the left",leftAttribute);
+		super.testResult();
+	}
+
+	@Override
+	@Test
+	public void testXMIID() {
+		//the XMI ID should not be duplicated, because we are inside the same model!
+		Property leftAttribute = ((Class)AbstractCompareTest.leftElement).getAttribute("property1", null);
+		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("property1", null);
+		Assert.assertNotNull(leftAttribute);
+		Assert.assertNotNull(rightAttribute);
+		String leftID = EMFHelper.getXMIID(leftAttribute);
+		String rightId = EMFHelper.getXMIID(rightAttribute);
+		Assert.assertFalse("The XMIID should be different because we are in the same resource.", leftID.equals(rightId));
+		System.out.println(NLS.bind("Je possède {0} resources", set.getResources().size()));
+	}
+
+	@Override
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		super.testUndo();
+	}
+
+	@Override
+	@Test
+	public void testRedo() throws IOException, InterruptedException {
+		super.testRedo();
+	}
+
+}
