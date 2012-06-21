@@ -6,11 +6,8 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.compare.merge.nested.utils.NestedMergeUtils;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -29,7 +26,6 @@ public class NestedModelElementChangeRightTargetTest_1_RightToLeft extends Abstr
 		AbstractNestedCompareTest.init(MODEL_PATH, false);
 		AbstractCompareTest.leftElement = (Class)AbstractNestedCompareTest.root.getOwnedMember("Class1");
 		AbstractCompareTest.rightElement = (Class)((Package)root.getPackagedElement("Package1")).getOwnedMember("Class1");
-		System.out.println(NLS.bind("Je possède {0} resources", set.getResources().size()));
 	}
 
 	@Test
@@ -84,7 +80,7 @@ public class NestedModelElementChangeRightTargetTest_1_RightToLeft extends Abstr
 	@Test
 	public void testResult() throws InterruptedException {
 		Property leftAttribute = ((Class)AbstractCompareTest.leftElement).getAttribute("Property1", null);
-		Assert.assertNotNull("The right attribute has not been merged to the left",leftAttribute);
+		Assert.assertNotNull("The right attribute has not been merged to the left", leftAttribute);
 		super.testResult();
 	}
 

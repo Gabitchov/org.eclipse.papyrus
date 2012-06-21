@@ -43,6 +43,7 @@ public class AttributeChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -66,6 +67,7 @@ public class AttributeChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
@@ -77,18 +79,18 @@ public class AttributeChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 	public void testXMIID() {
 		//nothing to do
 	}
-	
+
 	@Override
 	@Test
 	public void testUndo() throws IOException, InterruptedException {
 		super.testUndo();
 	}
-	
+
 	@Override
 	@Test
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
 	}
-	
-	
+
+
 }

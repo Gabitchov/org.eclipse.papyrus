@@ -46,6 +46,7 @@ public class AttributeOrderChangeTest_1_LeftToRight extends AbstractStandaloneCo
 		// TODO Auto-generated method stub
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -69,6 +70,7 @@ public class AttributeOrderChangeTest_1_LeftToRight extends AbstractStandaloneCo
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

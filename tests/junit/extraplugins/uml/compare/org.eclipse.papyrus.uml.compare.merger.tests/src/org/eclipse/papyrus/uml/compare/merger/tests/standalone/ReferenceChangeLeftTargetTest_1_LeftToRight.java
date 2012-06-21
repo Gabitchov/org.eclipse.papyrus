@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
@@ -53,6 +52,7 @@ public class ReferenceChangeLeftTargetTest_1_LeftToRight extends AbstractStandal
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -76,6 +76,7 @@ public class ReferenceChangeLeftTargetTest_1_LeftToRight extends AbstractStandal
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

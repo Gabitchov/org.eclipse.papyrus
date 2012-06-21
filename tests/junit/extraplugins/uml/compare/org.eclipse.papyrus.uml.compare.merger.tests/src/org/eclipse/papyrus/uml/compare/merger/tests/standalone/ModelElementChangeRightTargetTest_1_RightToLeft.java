@@ -59,6 +59,7 @@ public class ModelElementChangeRightTargetTest_1_RightToLeft extends AbstractSta
 	public void testResult() throws InterruptedException {
 		super.testResult();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -82,6 +83,7 @@ public class ModelElementChangeRightTargetTest_1_RightToLeft extends AbstractSta
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	public void testXMIID() {
 		Class leftClass = (Class)((Package)leftElement).getOwnedMember(CLASS_NAME);

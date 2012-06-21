@@ -65,7 +65,7 @@ public class NestedUpdateAttributeTest_1_RightToLeft extends AbstractNestedCompa
 	public void testModificationOnUMLFile() {
 		super.testModificationOnUMLFile(true);
 	}
-	
+
 	@Override
 	@Test
 	public void saveTest() throws IOException {

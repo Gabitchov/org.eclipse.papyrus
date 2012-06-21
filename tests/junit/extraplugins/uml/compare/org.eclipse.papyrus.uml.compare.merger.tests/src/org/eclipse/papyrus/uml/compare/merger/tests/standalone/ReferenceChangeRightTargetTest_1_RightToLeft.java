@@ -1,44 +1,48 @@
-package org.eclipse.papyrus.uml.compare.merger.tests.nested;
+package org.eclipse.papyrus.uml.compare.merger.tests.standalone;
 
 import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends AbstractNestedCompareTest {
+public class ReferenceChangeRightTargetTest_1_RightToLeft extends AbstractStandaloneCompareTest {
 
-	private static final String MODEL_PATH = "modelElementChangeRightTarget_1/";
+	private static final String MODEL_PATH = "referenceChangeRightTarget_1/";
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException {
-		AbstractNestedCompareTest.init(MODEL_PATH, true);
-		AbstractCompareTest.leftElement = (Class)AbstractNestedCompareTest.root.getOwnedMember("Class1");
-		AbstractCompareTest.rightElement = (Class)((Package)root.getPackagedElement("Package1")).getOwnedMember("Class1");
+		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
+
 
 	@Test
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
 	}
 
+	@Override
 	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
-		final DiffElement diffElement = diffElements.get(0);
-		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", ModelElementChangeRightTarget.class), diffElement instanceof ModelElementChangeRightTarget);
+		//There are 2 differences, because it is cross-reference
+		Assert.assertTrue("We should find 2 differences", diffElements.size() == 2);
+		for(DiffElement current : diffElements) {
+			Assert.assertTrue(current instanceof DiffGroup);
+			DiffGroup group = (DiffGroup)current;
+			Assert.assertTrue("The DiffGroup should contains only 1 DiffElement", group.getSubDiffElements().size() == 1);
+			DiffElement diffElement = group.getSubDiffElements().get(0);
+			Assert.assertTrue(NLS.bind("The DiffElement is not a {0}", ReferenceChangeLeftTarget.class), diffElement instanceof ReferenceChangeLeftTarget);
+		}
 	}
 
 	@Test
+	@Override
 	public void mergeTestAllExecutability() throws InterruptedException {
 		super.mergeTestAllExecutability();
 	}
@@ -49,8 +53,6 @@ public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends Abstr
 		super.testCommandExecution();
 	}
 
-
-
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -59,7 +61,7 @@ public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends Abstr
 
 	@Test
 	public void testModificationOnNotationFile() {
-		super.testModificationOnNotationFile(true);
+		super.testModificationOnNotationFile(false);
 	}
 
 
@@ -78,8 +80,6 @@ public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends Abstr
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
-		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("Property1", null);
-		Assert.assertNull("The right element has not been deleted by the merge action", rightAttribute);
 		super.testResult();
 	}
 
@@ -100,5 +100,6 @@ public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends Abstr
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
 	}
+
 
 }

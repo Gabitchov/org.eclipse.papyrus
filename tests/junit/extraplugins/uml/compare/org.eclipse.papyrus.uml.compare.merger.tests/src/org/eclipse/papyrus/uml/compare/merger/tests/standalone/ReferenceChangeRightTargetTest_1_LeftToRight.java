@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
@@ -15,14 +13,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class ReferenceChangeLeftTargetTest_2_RightToLeft extends AbstractStandaloneCompareTest {
+public class ReferenceChangeRightTargetTest_1_LeftToRight extends AbstractStandaloneCompareTest {
 
-	private static final String MODEL_PATH = "referenceChangeLeftTarget_2/";
+	private static final String MODEL_PATH = "referenceChangeRightTarget_1/";
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException {
-		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
+		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
+
 
 	@Test
 	public void testDifferences() throws InterruptedException {
@@ -31,25 +30,15 @@ public class ReferenceChangeLeftTargetTest_2_RightToLeft extends AbstractStandal
 
 	@Override
 	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 2, diffElements.size() }), diffElements.size() == 2);
-		DiffElement diffElement = null;
-		DiffGroup group = null;
+		//There are 2 differences, because it is cross-reference
+		Assert.assertTrue("We should find 2 differences", diffElements.size() == 2);
 		for(DiffElement current : diffElements) {
-			if(current instanceof DiffGroup) {
-				group = (DiffGroup)current;
-			} else {
-				diffElement = current;
-			}
+			Assert.assertTrue(current instanceof DiffGroup);
+			DiffGroup group = (DiffGroup)current;
+			Assert.assertTrue("The DiffGroup should contains only 1 DiffElement", group.getSubDiffElements().size() == 1);
+			DiffElement diffElement = group.getSubDiffElements().get(0);
+			Assert.assertTrue(NLS.bind("The DiffElement is not a {0}", ReferenceChangeLeftTarget.class), diffElement instanceof ReferenceChangeLeftTarget);
 		}
-
-		Assert.assertNotNull(diffElement);
-		Assert.assertNotNull(group);
-		Assert.assertTrue(NLS.bind("The diffElement is not a {0}", ModelElementChangeLeftTarget.class), diffElement instanceof ModelElementChangeLeftTarget);//a Usecase has been added
-
-		EList<DiffElement> subDiff = group.getSubDiffElements();
-		Assert.assertTrue(subDiff.size() == 1);
-		DiffElement el = subDiff.get(0);
-		Assert.assertTrue(NLS.bind("The diffElement is not a {0}", ReferenceChangeLeftTarget.class), el instanceof ReferenceChangeLeftTarget);//a reference to the usecase has been added
 	}
 
 	@Test
@@ -63,6 +52,7 @@ public class ReferenceChangeLeftTargetTest_2_RightToLeft extends AbstractStandal
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -86,6 +76,7 @@ public class ReferenceChangeLeftTargetTest_2_RightToLeft extends AbstractStandal
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

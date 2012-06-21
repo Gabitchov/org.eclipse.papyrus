@@ -37,13 +37,13 @@ public class AttributeChangeLeftTargetTest_1_LeftToRight extends AbstractStandal
 	public void mergeTestAllExecutability() throws InterruptedException {
 		super.mergeTestAllExecutability();
 	}
-	
+
 	@Override
 	@Test
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
-	
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);

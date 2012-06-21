@@ -19,7 +19,7 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	private static final String MODEL_PATH = "updateAttribute_1/";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException{
+	public static void init() throws CoreException, IOException {
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 
@@ -29,14 +29,14 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
 	}
-	
+
 	@Override
 	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{1,diffElements.size()}),diffElements.size()==1);
+		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
 		final DiffElement diffElement = diffElements.get(0);
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", UpdateAttribute.class), diffElement instanceof UpdateAttribute);
 	}
-	
+
 	@Test
 	@Override
 	public void mergeTestAllExecutability() throws InterruptedException {
@@ -48,6 +48,7 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -71,16 +72,17 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
 		super.testResult();
 		testUpdateAttribute();
 	}
-	
-	public void testUpdateAttribute(){
+
+	public void testUpdateAttribute() {
 		List<NamedElement> members = ((Package)rightElement).getMembers();
-		Assert.assertTrue(members.size()==1);
+		Assert.assertTrue(members.size() == 1);
 		Assert.assertEquals("The name of the Class has not been correctly merged", members.get(0).getName(), "Class1");
 	}
 

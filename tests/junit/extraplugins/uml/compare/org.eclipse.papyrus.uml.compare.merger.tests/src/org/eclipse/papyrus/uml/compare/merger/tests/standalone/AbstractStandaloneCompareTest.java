@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
-import org.eclipse.papyrus.infra.emf.compare.common.utils.services.PapyrusFileLoader;
+import org.eclipse.papyrus.infra.emf.compare.common.internal.utils.PapyrusFileLoader;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.compare.merge.standalone.utils.StandaloneMergeUtils;
+import org.eclipse.papyrus.uml.compare.merger.services.standalone.StandaloneMergeUtils;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.merger.tests.Activator;
 import org.eclipse.uml2.uml.Model;
@@ -73,6 +73,7 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException {
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
+
 		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
 		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, LEFT);
 		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, RIGHT);
@@ -84,89 +85,89 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		//TODO associate the EditingDomain!
 		set = new ResourceSetImpl();
 		domain = TransactionalEditingDomainManager.createDefaultTransactionalEditingDomain(set);
-		EObject[] roots = PapyrusFileLoader.loadPapyrusFiles(set, comparedFiles);
+		EObject[] roots = PapyrusFileLoader.loadPapyrusFiles(set, comparedFiles, true);
 		leftElement = (Model)roots[0];
 		rightElement = (Model)roots[1];
 		AbstractCompareTest.leftToRight = leftToRight;
 	}
 
-//	/**
-//	 * This tests tests the contents of the differences found.
-//	 * 
-//	 */
-//	@Test
-//	public void testDifferences() throws InterruptedException {
-//		final DiffModel diff = getDiffModel(leftElement, rightElement);
-//		
-//		// Merges all differences from model1 to model2
-//		List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
-//		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
-//		DiffElement current = differences.get(0);
-//		Assert.assertTrue("The first DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
-//
-//		differences = current.getSubDiffElements();
-//		while(differences.size() == 1 && differences.get(0) instanceof DiffGroup) {
-//			differences = differences.get(0).getSubDiffElements();
-//		}
-//
-//		testLastDiffElements(differences);
-//	}
+	//	/**
+	//	 * This tests tests the contents of the differences found.
+	//	 * 
+	//	 */
+	//	@Test
+	//	public void testDifferences() throws InterruptedException {
+	//		final DiffModel diff = getDiffModel(leftElement, rightElement);
+	//		
+	//		// Merges all differences from model1 to model2
+	//		List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
+	//		Assert.assertTrue("I don't found only 1 difference,differences.", differences.size() == 1);
+	//		DiffElement current = differences.get(0);
+	//		Assert.assertTrue("The first DiffElement is not a DiffGroupElement", current instanceof DiffGroup);
+	//
+	//		differences = current.getSubDiffElements();
+	//		while(differences.size() == 1 && differences.get(0) instanceof DiffGroup) {
+	//			differences = differences.get(0).getSubDiffElements();
+	//		}
+	//
+	//		testLastDiffElements(differences);
+	//	}
 
-//	/**
-//	 * The first differences are always DiffGroup.
-//	 * 
-//	 * @param diffElement
-//	 * 
-//	 * 
-//	 */
-//	public abstract void testLastDiffElements(final List<DiffElement> diffElement);
+	//	/**
+	//	 * The first differences are always DiffGroup.
+	//	 * 
+	//	 * @param diffElement
+	//	 * 
+	//	 * 
+	//	 */
+	//	public abstract void testLastDiffElements(final List<DiffElement> diffElement);
 
-//	@Test
-//	protected void mergeTestAllExecutability() throws InterruptedException {
-//		// Matching model elements
-//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, options);
-//		// Computing differences
-//		final DiffModel diff = DiffService.doDiff(match, false);
-//		// Merges all differences from model1 to model2
-//		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
-//		initialDifferences = differences;
-//		for(final DiffElement current : differences) {
-//			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, leftToRight);
-//			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
-//			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
-//		}
-//	}
+	//	@Test
+	//	protected void mergeTestAllExecutability() throws InterruptedException {
+	//		// Matching model elements
+	//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, options);
+	//		// Computing differences
+	//		final DiffModel diff = DiffService.doDiff(match, false);
+	//		// Merges all differences from model1 to model2
+	//		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
+	//		initialDifferences = differences;
+	//		for(final DiffElement current : differences) {
+	//			Command cmd = TransactionalMergeService.getMergeCommand(domain, current, leftToRight);
+	//			Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", current), cmd);
+	//			Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", current), cmd.canExecute());
+	//		}
+	//	}
 
 
-//	@Test
-//	public void testCommandExecution() throws InterruptedException, IOException {
-//		// Matching model elements
-//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, options);
-//		// Computing differences
-//		final DiffModel diff = DiffService.doDiff(match, false);
-//		// Merges all differences from model1 to model2
-//		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
-//		Assert.assertTrue("We should find only one DiffElement", differences.size() == 1);
-//		DiffElement diffElement = differences.get(0);
-//		Command cmd = TransactionalMergeService.getMergeCommand(domain, diffElement, leftToRight);
-//
-//		Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", cmd), cmd.canExecute());
-//		//we execute the command and hope that all it is OK
-//		domain.getCommandStack().execute(cmd);
-//
-//		//we save the result
-//		for(Resource current : set.getResources()) {
-//			current.save(Collections.EMPTY_MAP);
-//			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
-//		}
-//	}
+	//	@Test
+	//	public void testCommandExecution() throws InterruptedException, IOException {
+	//		// Matching model elements
+	//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, options);
+	//		// Computing differences
+	//		final DiffModel diff = DiffService.doDiff(match, false);
+	//		// Merges all differences from model1 to model2
+	//		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
+	//		Assert.assertTrue("We should find only one DiffElement", differences.size() == 1);
+	//		DiffElement diffElement = differences.get(0);
+	//		Command cmd = TransactionalMergeService.getMergeCommand(domain, diffElement, leftToRight);
+	//
+	//		Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", cmd), cmd.canExecute());
+	//		//we execute the command and hope that all it is OK
+	//		domain.getCommandStack().execute(cmd);
+	//
+	//		//we save the result
+	//		for(Resource current : set.getResources()) {
+	//			current.save(Collections.EMPTY_MAP);
+	//			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
+	//		}
+	//	}
 
 	//TODO try to use the super implementation!
 	@Test
 	public void testResult() throws InterruptedException {
 		//we compare the left and the right UML Model, they should be equals
-		
-		final DiffModel diff =getDiffModel(leftElement, rightElement);
+
+		final DiffModel diff = getDiffModel(leftElement, rightElement);
 		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
 
 		Assert.assertTrue("After merging all differences, we still find differences between the models...", differences.size() == 1);
@@ -185,64 +186,64 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		Assert.assertTrue(NLS.bind("The message for 0 differences has changed (or there is a bug : the message {0}", label), label.equals("0 change(s) in model"));
 	}
 
-//	@Test
-//	public void testXMIID() {
-//		Assert.fail();
-//	}
+	//	@Test
+	//	public void testXMIID() {
+	//		Assert.fail();
+	//	}
 
-//	@Test
-//	public void testUndo() throws IOException, InterruptedException {
-//		domain.getCommandStack().undo();
-//		for(Resource current : set.getResources()) {
-//			current.save(Collections.EMPTY_MAP);
-//			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
-//		}
-//		// Matching model elements
-//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, options);
-//		// Computing differences
-//		final DiffModel diff = DiffService.doDiff(match, false);
-//		// Merges all differences from model1 to model2
-//		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
-//		compareList(initialDifferences, differences);
-//	}
+	//	@Test
+	//	public void testUndo() throws IOException, InterruptedException {
+	//		domain.getCommandStack().undo();
+	//		for(Resource current : set.getResources()) {
+	//			current.save(Collections.EMPTY_MAP);
+	//			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
+	//		}
+	//		// Matching model elements
+	//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, options);
+	//		// Computing differences
+	//		final DiffModel diff = DiffService.doDiff(match, false);
+	//		// Merges all differences from model1 to model2
+	//		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
+	//		compareList(initialDifferences, differences);
+	//	}
 
-//	@Test
-//	public void testRedo() throws IOException, InterruptedException {
-//		domain.getCommandStack().redo();
-//		for(Resource current : set.getResources()) {
-//			current.save(Collections.EMPTY_MAP);
-//			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
-//		}
-//		testResult();
-//	}
+	//	@Test
+	//	public void testRedo() throws IOException, InterruptedException {
+	//		domain.getCommandStack().redo();
+	//		for(Resource current : set.getResources()) {
+	//			current.save(Collections.EMPTY_MAP);
+	//			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
+	//		}
+	//		testResult();
+	//	}
 
-//	@AfterClass
-//	public static final void closeAll() {
-//		//TODO : disconnect from EditingDomain
-//		//		TransactionUtil.disconnectFromEditingDomain(eobject)
-//		//we close all the editors
-//		GenericUtils.closeAllEditors();
-//	}
+	//	@AfterClass
+	//	public static final void closeAll() {
+	//		//TODO : disconnect from EditingDomain
+	//		//		TransactionUtil.disconnectFromEditingDomain(eobject)
+	//		//we close all the editors
+	//		GenericUtils.closeAllEditors();
+	//	}
 
-//	protected void compareList(final List<DiffElement> diff1, final List<DiffElement> diff2) {
-//		Assert.assertEquals("The compared lists don't have the same size.", diff1.size(), diff2.size());
-//		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(org.eclipse.emf.compare.util.AdapterUtils.getAdapterFactory());
-//		int size = diff1.size();
-//		for(int i = 0; i < size; i++) {
-//			DiffElement element1 = diff1.get(i);
-//			DiffElement element2 = diff2.get(i);
-//			//we verify that we get the same label for the 2 elements
-//			Assert.assertTrue(provider.getText(element1).equals(provider.getText(element2)));
-//			//we verify that the 2 elements are instance of the same class
-//			Assert.assertTrue("I'm comparing 2 elements which are not instance of the same class", element1.getClass() == element2.getClass());
-//
-//			if(element1 instanceof DiffGroup) {
-//				DiffGroup grp1 = (DiffGroup)element1;
-//				DiffGroup grp2 = (DiffGroup)element2;
-//				compareList(grp1.getSubDiffElements(), grp2.getSubDiffElements());
-//				compareList(grp1.getRequires(), grp2.getRequires());
-//				//				compareList(grp1.getRequiredBy(), grp2.getRequiredBy());
-//			}
-//		}
-//	}
+	//	protected void compareList(final List<DiffElement> diff1, final List<DiffElement> diff2) {
+	//		Assert.assertEquals("The compared lists don't have the same size.", diff1.size(), diff2.size());
+	//		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(org.eclipse.emf.compare.util.AdapterUtils.getAdapterFactory());
+	//		int size = diff1.size();
+	//		for(int i = 0; i < size; i++) {
+	//			DiffElement element1 = diff1.get(i);
+	//			DiffElement element2 = diff2.get(i);
+	//			//we verify that we get the same label for the 2 elements
+	//			Assert.assertTrue(provider.getText(element1).equals(provider.getText(element2)));
+	//			//we verify that the 2 elements are instance of the same class
+	//			Assert.assertTrue("I'm comparing 2 elements which are not instance of the same class", element1.getClass() == element2.getClass());
+	//
+	//			if(element1 instanceof DiffGroup) {
+	//				DiffGroup grp1 = (DiffGroup)element1;
+	//				DiffGroup grp2 = (DiffGroup)element2;
+	//				compareList(grp1.getSubDiffElements(), grp2.getSubDiffElements());
+	//				compareList(grp1.getRequires(), grp2.getRequires());
+	//				//				compareList(grp1.getRequiredBy(), grp2.getRequiredBy());
+	//			}
+	//		}
+	//	}
 }

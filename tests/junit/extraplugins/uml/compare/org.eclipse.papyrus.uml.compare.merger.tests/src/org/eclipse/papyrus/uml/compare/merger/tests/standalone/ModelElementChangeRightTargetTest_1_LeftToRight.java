@@ -40,14 +40,14 @@ public class ModelElementChangeRightTargetTest_1_LeftToRight extends AbstractSta
 		final DiffElement diffElement = diffElements.get(0);
 		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", ModelElementChangeRightTarget.class), diffElement instanceof ModelElementChangeRightTarget);
 	}
-	
+
 	@Test
 	@Override
 	public void mergeTestAllExecutability() throws InterruptedException {
 		super.mergeTestAllExecutability();
 	}
 
-	
+
 
 	@Override
 	@Test
@@ -61,6 +61,7 @@ public class ModelElementChangeRightTargetTest_1_LeftToRight extends AbstractSta
 		// TODO Auto-generated method stub
 		super.testResult();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -84,6 +85,7 @@ public class ModelElementChangeRightTargetTest_1_LeftToRight extends AbstractSta
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testXMIID() {

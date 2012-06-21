@@ -10,22 +10,19 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
-import org.eclipse.papyrus.infra.emf.compare.common.utils.services.PapyrusFileLoader;
+import org.eclipse.papyrus.infra.emf.compare.common.internal.utils.PapyrusFileLoader;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.compare.merge.nested.utils.NestedMatchService;
-import org.eclipse.papyrus.uml.compare.merge.nested.utils.NestedMergeUtils;
-import org.eclipse.papyrus.uml.compare.merge.nested.utils.UMLDiffService;
+import org.eclipse.papyrus.uml.compare.merger.services.nested.NestedMatchService;
+import org.eclipse.papyrus.uml.compare.merger.services.nested.NestedMergeUtils;
+import org.eclipse.papyrus.uml.compare.merger.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.merger.tests.Activator;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
-import org.junit.Assert;
-import org.junit.Test;
 
 ;
 
@@ -56,7 +53,7 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 		comparedFiles.add(project.getFile(MODEL + "." + "uml"));
 		set = new ResourceSetImpl();
 		domain = TransactionalEditingDomainManager.createDefaultTransactionalEditingDomain(set);
-		EObject[] roots = PapyrusFileLoader.loadPapyrusFiles(set, comparedFiles);
+		EObject[] roots = PapyrusFileLoader.loadPapyrusFiles(set, comparedFiles, true);
 		root = (Model)roots[0];
 		AbstractNestedCompareTest.leftToRight = leftToRight;
 	}
@@ -70,9 +67,9 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 	 * @throws InterruptedException
 	 */
 	protected DiffModel getDiffModel(EObject leftRoot, EObject rightRoot) throws InterruptedException {
-		Map<String, Object> options = NestedMergeUtils.getMergeOptions(null, leftElement, rightElement);;
+		Map<String, Object> options = NestedMergeUtils.getMergeOptions(null, leftRoot, rightRoot);;
 		// Matching model elements
-		final MatchModel match = NestedMatchService.doContentMatch(leftElement, rightElement, options);
+		final MatchModel match = NestedMatchService.doContentMatch(leftRoot, rightRoot, options);
 		// Computing differences
 		final DiffModel diff = UMLDiffService.doDiff(match, false);
 		return diff;

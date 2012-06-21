@@ -18,7 +18,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
-import org.eclipse.papyrus.uml.compare.merge.services.TransactionalMergeService;
+import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
 import org.eclipse.uml2.uml.Element;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -53,7 +53,7 @@ public abstract class AbstractCompareTest {
 	 */
 	@Test
 	public void testDifferences() throws InterruptedException {
-		final DiffModel diff = getDiffModel(leftElement, leftElement);
+		final DiffModel diff = getDiffModel(leftElement, rightElement);
 		// Merges all differences from model1 to model2
 		List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
 		initialDifferences = diff.getOwnedElements();
@@ -67,6 +67,19 @@ public abstract class AbstractCompareTest {
 		}
 
 		testLastDiffElements(differences);
+	}
+
+	/** allow to verify that the class ahas the correct parameter using its name */
+	@Test
+	public void testTestConformance() {
+		final String name = getClass().getName();
+		if(name.endsWith("LeftToRight")) {
+			Assert.assertEquals(true, leftToRight);
+		} else if(name.endsWith("RightToLeft")) {
+			Assert.assertEquals(false, leftToRight);
+		} else {
+			Assert.fail();
+		}
 	}
 
 	protected abstract DiffModel getDiffModel(final EObject leftElement, final EObject rightElement) throws InterruptedException;
@@ -116,7 +129,7 @@ public abstract class AbstractCompareTest {
 
 	@Test
 	public abstract void testModificationOnUMLFile();
-	
+
 
 	public void testModificationOnDiFile(final boolean shouldBeModified) {
 		for(Resource current : getResourceOfTheProject()) {

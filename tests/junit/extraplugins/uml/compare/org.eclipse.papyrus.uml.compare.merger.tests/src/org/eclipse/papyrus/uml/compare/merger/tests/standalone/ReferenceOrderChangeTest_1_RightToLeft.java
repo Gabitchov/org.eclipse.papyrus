@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
-import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -48,6 +45,7 @@ public class ReferenceOrderChangeTest_1_RightToLeft extends AbstractStandaloneCo
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -71,6 +69,7 @@ public class ReferenceOrderChangeTest_1_RightToLeft extends AbstractStandaloneCo
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

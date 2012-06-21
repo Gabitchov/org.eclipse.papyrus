@@ -7,7 +7,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
-import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -51,6 +50,7 @@ public class MoveModelElementTest_2_RightToLeft extends AbstractStandaloneCompar
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -74,6 +74,7 @@ public class MoveModelElementTest_2_RightToLeft extends AbstractStandaloneCompar
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
@@ -98,7 +99,7 @@ public class MoveModelElementTest_2_RightToLeft extends AbstractStandaloneCompar
 	}
 
 	@Test
-	void testMergeOrder() {
+	public void testMergeOrder() {
 		Assert.fail("not yet implemented");
 	}
 }

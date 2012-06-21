@@ -6,15 +6,14 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStandaloneCompareTest {
 
@@ -56,6 +55,7 @@ public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStan
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -79,6 +79,7 @@ public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStan
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

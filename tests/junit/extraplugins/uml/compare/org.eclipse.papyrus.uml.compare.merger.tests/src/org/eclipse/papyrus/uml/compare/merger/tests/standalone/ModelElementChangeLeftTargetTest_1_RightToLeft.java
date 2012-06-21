@@ -61,6 +61,7 @@ public class ModelElementChangeLeftTargetTest_1_RightToLeft extends AbstractStan
 	public void testResult() throws InterruptedException {
 		super.testResult();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -84,6 +85,7 @@ public class ModelElementChangeLeftTargetTest_1_RightToLeft extends AbstractStan
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testXMIID() {

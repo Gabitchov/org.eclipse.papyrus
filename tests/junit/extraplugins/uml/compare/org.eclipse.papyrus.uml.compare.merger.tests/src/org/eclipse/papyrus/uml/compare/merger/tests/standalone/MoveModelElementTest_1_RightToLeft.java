@@ -44,6 +44,7 @@ public class MoveModelElementTest_1_RightToLeft extends AbstractStandaloneCompar
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -67,6 +68,7 @@ public class MoveModelElementTest_1_RightToLeft extends AbstractStandaloneCompar
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

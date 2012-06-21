@@ -45,6 +45,7 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -68,6 +69,7 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {

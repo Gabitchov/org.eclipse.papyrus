@@ -52,6 +52,7 @@ public class ReferenceChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -75,6 +76,7 @@ public class ReferenceChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 	public void saveTest() throws IOException {
 		super.saveTest();
 	}
+
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
