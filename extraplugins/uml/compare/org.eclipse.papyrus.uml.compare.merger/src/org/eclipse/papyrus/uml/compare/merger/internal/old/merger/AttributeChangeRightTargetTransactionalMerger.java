@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger.internal.merger;
+package org.eclipse.papyrus.uml.compare.merger.internal.old.merger;
 
 import java.util.List;
 
@@ -20,12 +20,9 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeRightTargetMerger;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
-import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -37,61 +34,68 @@ import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
-/**
- * 
- * Transactional version of the class {@link AttributeChangeRightTargetMerger}
- *
- */
-public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransactionalMerger {
+
+public class AttributeChangeRightTargetTransactionalMerger extends AttributeChangeRightTargetMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeChangeRightTargetMerger}
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
+	 * @see org.eclipse.emf.compare.diff.merge.IMerger#applyInOrigin()
 	 */
 	@Override
-	public void doApplyInOrigin() {
-		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
-		final EObject origin = theDiff.getLeftElement();
-		final Object value = theDiff.getRightTarget();
-		final EAttribute attr = theDiff.getAttribute();
-		try {
-			int valueIndex = -1;
-			if (attr.isMany()) {
-				final EObject rightElement = theDiff.getRightElement();
-				final Object rightValues = rightElement.eGet(attr);
-				if (rightValues instanceof List) {
-					final List rightValuesList = (List)rightValues;
-					valueIndex = rightValuesList.indexOf(value);
-				}
+	public void applyInOrigin() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getApplyInOriginCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
 			}
-			EFactory.eAdd(origin, attr.getName(), value, valueIndex);
-		} catch (FactoryException e) {
-			EMFComparePlugin.log(e, true);
+		} else {
+			super.applyInOrigin();
 		}
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeChangeRightTargetMerger}
 	 * 
-	 * {@inheritDoc}
+	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
 	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */
 	@Override
-	public void doUndoInTarget() {
-		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
-		final EObject target = theDiff.getRightElement();
-		final Object value = theDiff.getRightTarget();
-		final EAttribute attr = theDiff.getAttribute();
-		try {
-			EFactory.eRemove(target, attr.getName(), value);
-		} catch (FactoryException e) {
-			EMFComparePlugin.log(e, true);
+	public void undoInTarget() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getUndoInTargetCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
+			}
+		} else {
+			super.undoInTarget();
 		}
 	}
-	
+
+	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(true);
+		//		doApplyInOrigin();
+		//		postProcess();
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeChangeRightTargetMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
+		cmd.append(getDoApplyInOriginCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
+	}
+
+	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(false);
+		//		doUndoInTarget();
+		//		postProcess();
+
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeChangeRightTargetMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
+		cmd.append(getDoUndoInTargetCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
+	}
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
 		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
@@ -127,5 +131,28 @@ public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransa
 			Activator.log.error(e);
 		}
 		return cmd;
+	}
+
+	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
+		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				AttributeChangeRightTargetTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
+				return null;
+			}
+		});
+	}
+
+	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				AttributeChangeRightTargetTransactionalMerger.this.postProcess();
+				return null;
+			}
+		});
 	}
 }

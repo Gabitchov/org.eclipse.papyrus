@@ -17,6 +17,7 @@ public class UMLTransactionalModelContentMergeViewer extends PapyrusTransactiona
 		super(parent, config, editor);
 	}
 
+	
 
 	@Override
 	protected IMergeViewerContentProvider createMergeViewerContentProvider() {

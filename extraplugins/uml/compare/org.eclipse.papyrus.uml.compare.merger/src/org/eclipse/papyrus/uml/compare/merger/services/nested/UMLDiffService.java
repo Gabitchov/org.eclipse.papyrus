@@ -11,24 +11,34 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.utils;
+package org.eclipse.papyrus.uml.compare.merger.services.nested;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.engine.IDiffEngine;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
+import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
+import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.tools.util.ReflectHelper;
-import org.eclipse.papyrus.uml.compare.Activator;
+import org.eclipse.papyrus.uml.compare.merger.Activator;
 
 /**
  * 
  * A specific DiffService for the Nested UML Compare Editor
+ * 
  * @see DiffService
  * @see bug 377154
  */
@@ -70,8 +80,59 @@ public class UMLDiffService {
 		engine.reset();
 
 		fillRequiredDifferences(diff);
+		//clean the diff
+		cleanDiff(diff);
 
 		return diff;
+	}
+
+	private static void cleanDiff(final DiffModel diffModel) {
+		EList<DiffElement> differences = diffModel.getDifferences();
+		
+		final List<DiffElement> toRemove = new ArrayList<DiffElement>();
+		for(DiffElement current : differences) {
+			if(current instanceof MoveModelElement) {//appears when we do a comparison between 2 elements of the same model (name change for example)
+				EObject leftTarget = ((MoveModelElement)current).getLeftTarget();
+				EObject rightTarget = ((MoveModelElement)current).getRightTarget();
+				if(leftTarget == null && rightTarget == null) {
+					toRemove.add(current);
+				}
+			}
+		}
+		for(DiffElement current : toRemove) {
+			EcoreUtil.remove(current);
+		}
+		
+		differences = diffModel.getOwnedElements();
+		if(differences.size()==1 && differences.get(0) instanceof DiffGroup){
+			DiffGroup group = (DiffGroup)differences.get(0);
+			if(group.getSubDiffElements().size()==1 && group.getSubDiffElements().get(0) instanceof DiffGroup){
+				DiffGroup group2 = (DiffGroup)group.getSubDiffElements().get(0);
+				if(!group2.isConflicting() && group2.getSubDiffElements().size()==1){
+					DiffGroup group3 = (DiffGroup)group.getSubDiffElements().get(0);
+					if(!group2.isConflicting() && group2.getSubDiffElements().size()==1){
+					//we should remove its parent!
+//					diffModel.getOwnedElements().add(group2);
+//					EcoreUtil.remove(group);
+					}
+				}
+			}
+		}
+		int i=0;
+		i++;
+//		EList<DiffElement> differences2 = diffModel.getDifferences();
+//		if(differences2.size() == 1) {
+//			DiffElement el = differences2.get(0);
+//			if(el instanceof DiffGroup) {
+//				DiffGroup group = (DiffGroup)el;
+//				if(group.getSubDiffElements().size() == 1 && group.getSubDiffElements().get(0) instanceof DiffGroup) {
+//					group = (DiffGroup)group.getSubDiffElements().get(0);
+//					int i = 0;
+//					i++;
+//
+//				}
+//			}
+//		}
 	}
 
 	//TODO write a JUnit test to be sue that the method called reflexively is always available

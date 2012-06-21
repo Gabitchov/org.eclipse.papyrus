@@ -11,18 +11,20 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger.utils;import org.eclipse.emf.common.command.Command;
+package org.eclipse.papyrus.uml.compare.merger.utils;
+
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.diff.merge.DefaultMerger;
-import org.eclipse.emf.compare.diff.merge.IMerger;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-;
+
+
 
 /**
  * 
  * The mergers which implement this interface are able to provide commands for the merge actions
- * TODO : rename into ITransactionalMerger
+ * 
  */
-public interface ITransactionalMerger extends IMerger {
+public interface ITransactionalMerger {
 
 	/**
 	 * This command should have the same behavior as {@link DefaultMerger#applyInOrigin()}
@@ -77,5 +79,20 @@ public interface ITransactionalMerger extends IMerger {
 	 *         the command to do the action
 	 */
 	public Command getPostProcessCommand(final TransactionalEditingDomain domain);
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if the command can be executed, <code>false</code> if not
+	 */
+	public boolean canApplyInOrigin();
+
+	/**
+	 * 
+	 * @return
+	 *         <code>true</code> if the command can be executed, <code>false</code> if not
+	 */
+	public boolean canUndoInTarget();
+
 
 }

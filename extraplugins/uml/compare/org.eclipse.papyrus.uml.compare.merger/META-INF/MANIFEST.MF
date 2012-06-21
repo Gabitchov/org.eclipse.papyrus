@@ -16,8 +16,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.tools;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.core.sasheditor,
  com.google.guava,
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.emf.compare.match,
+ org.eclipse.papyrus.infra.emf.compare.common
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Export-Package: 
+ org.eclipse.papyrus.uml.compare.merger.services,
+ org.eclipse.papyrus.uml.compare.merger.services.nested,
+ org.eclipse.papyrus.uml.compare.merger.services.standalone,
+ org.eclipse.papyrus.uml.compare.merger.utils
+

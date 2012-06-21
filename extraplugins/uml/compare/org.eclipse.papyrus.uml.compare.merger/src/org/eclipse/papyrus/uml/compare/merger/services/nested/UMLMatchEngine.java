@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.utils;
+package org.eclipse.papyrus.uml.compare.merger.services.nested;
 
 import java.util.Map;
 
@@ -19,12 +19,10 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.engine.AbstractSimilarityChecker;
 import org.eclipse.emf.compare.match.engine.GenericMatchEngine;
-import org.eclipse.emf.compare.match.engine.internal.DistinctEcoreSimilarityChecker;
 import org.eclipse.emf.compare.match.engine.internal.GenericMatchEngineToCheckerBridge;
 import org.eclipse.emf.compare.match.internal.statistic.NameSimilarity;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
 
 //TODO verify the super class for UML models
 /**

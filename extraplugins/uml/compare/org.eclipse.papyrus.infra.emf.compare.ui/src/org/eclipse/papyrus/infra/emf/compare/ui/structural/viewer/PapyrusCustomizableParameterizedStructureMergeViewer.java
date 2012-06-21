@@ -20,6 +20,7 @@ import java.util.HashSet;
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
+import org.eclipse.emf.compare.ui.viewer.structure.ParameterizedStructureContentProvider;
 import org.eclipse.emf.compare.ui.viewer.structure.ParameterizedStructureMergeViewer;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.action.ActionContributionItem;
@@ -47,6 +48,7 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	 * the list of the metamodels referenced by the input
 	 */
 	private Collection<EPackage> metamodels;
+
 	/**
 	 * The label provider
 	 */
@@ -141,5 +143,26 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	protected LabelProvider createLabelProvider() {
 		this.labelProvider = CustomizationAndViewerActionDispatcher.getLabelProvider(this.editor);
 		return this.labelProvider;
+	}
+
+	/**
+	 * FIXME : in the default implementation, the root DiffGroup show that there are children, even if they are marked has hidden, it is a bad idea to do that here, I think
+	 * Build the content provider in relation to the compare configuration and the preference values on
+	 * filters to apply.
+	 * 
+	 * @param compareConfiguration
+	 *        The compare configuration.
+	 * @return The content provider.
+	 * @since 1.3
+	 */
+	protected ParameterizedStructureContentProvider buildContentProvider(CompareConfiguration compareConfiguration) {
+		final ParameterizedStructureContentProvider contentProvider = new ParameterizedStructureContentProvider(compareConfiguration, getDefaultOrdering(), getDefaultFilters()) {
+
+			@Override
+			public boolean hasChildren(Object element) {
+				return super.getChildren(element).length != 0;
+			}
+		};
+		return contentProvider;
 	}
 }

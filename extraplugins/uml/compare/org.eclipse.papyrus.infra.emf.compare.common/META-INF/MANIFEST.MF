@@ -22,6 +22,7 @@ Export-Package: org.eclipse.papyrus.infra.emf.compare.common,
  org.eclipse.papyrus.infra.emf.compare.common.editor,
  org.eclipse.papyrus.infra.emf.compare.common.factory,
  org.eclipse.papyrus.infra.emf.compare.common.handler,
+ org.eclipse.papyrus.infra.emf.compare.common.internal.utils,
  org.eclipse.papyrus.infra.emf.compare.common.modelresource,
  org.eclipse.papyrus.infra.emf.compare.common.utils
 Bundle-Localization: plugin

@@ -15,8 +15,12 @@ package org.eclipse.papyrus.uml.compare.utils;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareViewerPane;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.uml.compare.content.viewer.UMLTransactionalModelContentMergeViewer;
 import org.eclipse.ui.IEditorPart;
@@ -52,7 +56,24 @@ public class UMLModelCompareEditorInput extends PapyrusModelCompareEditorInput {
 	 */
 	@Override
 	protected ModelContentMergeViewer createMergeViewer(final CompareViewerPane pane, final CompareConfiguration config) {
-		return new UMLTransactionalModelContentMergeViewer(pane, config, editor);
+		return new UMLTransactionalModelContentMergeViewer(pane, config, this.editor);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput#createModelCompareInput(org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot)
+	 *
+	 * @param snap
+	 * @return
+	 */
+	@Override
+	protected ModelCompareInput createModelCompareInput(final ComparisonSnapshot snap) {
+		final TransactionalEditingDomain domain = getEditingDomain();
+		if (snap instanceof ComparisonResourceSetSnapshot) {
+			return new PapyrusModelCompareInput(domain, ((ComparisonResourceSetSnapshot)snap).getMatchResourceSet(),
+					((ComparisonResourceSetSnapshot)snap).getDiffResourceSet());
+		}
+		return new PapyrusModelCompareInput(domain, ((ComparisonResourceSnapshot)snap).getMatch(),
+				((ComparisonResourceSnapshot)snap).getDiff());
+	}
 }

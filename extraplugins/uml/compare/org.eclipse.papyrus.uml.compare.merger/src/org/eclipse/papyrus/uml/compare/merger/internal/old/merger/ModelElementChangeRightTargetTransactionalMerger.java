@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger.internal.merger;
+package org.eclipse.papyrus.uml.compare.merger.internal.old.merger;
 
 import java.util.Iterator;
 import java.util.List;
@@ -22,15 +22,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ModelElementChangeRightTargetMerger;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
-import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -43,126 +40,72 @@ import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.commands.CopyXMIIDCommand;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
+import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
-/**
- * 
- * Transactional version of the class {@link ModelElementChangeRightTargetMerger}
- *
- */
 
-public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTransactionalMerger {
+public class ModelElementChangeRightTargetTransactionalMerger extends ModelElementChangeRightTargetMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
+	 * @see org.eclipse.emf.compare.diff.merge.IMerger#applyInOrigin()
 	 */
 	@Override
-	public void doApplyInOrigin() {
-		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
-		final EObject origin = theDiff.getLeftParent();
-		final EObject element = theDiff.getRightElement();
-		final EObject newOne = copy(element);
-		final EReference ref = element.eContainmentFeature();
-		if (ref != null) {
-			try {
-				int expectedIndex = -1;
-				if (ref.isMany()) {
-					final Object containmentRefVal = element.eContainer().eGet(ref);
-					if (containmentRefVal instanceof List<?>) {
-						@SuppressWarnings("unchecked")
-						final List<EObject> listVal = (List<EObject>)containmentRefVal;
-						expectedIndex = listVal.indexOf(element);
-					}
-				}
-				EFactory.eAdd(origin, ref.getName(), newOne, expectedIndex, true);
-				setXMIID(newOne, getXMIID(element));
-			} catch (final FactoryException e) {
-				EMFComparePlugin.log(e, true);
+	public void applyInOrigin() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getApplyInOriginCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
 			}
-		} else if (origin == null && getDiffModel().getLeftRoots().size() > 0) {
-			getDiffModel().getLeftRoots().get(0).eResource().getContents().add(newOne);
-		} else if (origin != null) {
-			origin.eResource().getContents().add(newOne);
 		} else {
-			// FIXME Throw exception : couldn't merge this
+			super.applyInOrigin();
 		}
-		// we should now have a look for AddReferencesLinks needing this object
-		final Iterator<EObject> siblings = getDiffModel().eAllContents();
-		while (siblings.hasNext()) {
-			final DiffElement op = (DiffElement)siblings.next();
-			if (op instanceof ReferenceChangeRightTarget) {
-				final ReferenceChangeRightTarget link = (ReferenceChangeRightTarget)op;
-				// now if I'm in the target References I should put my copy in the origin
-				if (link.getLeftTarget() != null && link.getLeftTarget() == element) {
-					link.setRightTarget(newOne);
-				}
-			} else if (op instanceof ReferenceOrderChange) {
-				final ReferenceOrderChange link = (ReferenceOrderChange)op;
-				if (link.getLeftElement() == origin && link.getReference() == ref) {
-					final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
-					boolean replaced = false;
-					while (!replaced && targetIterator.hasNext()) {
-						final EObject target = targetIterator.next();
-						if (target.eIsProxy()
-								&& equalProxyURIs(((InternalEObject)target).eProxyURI(),
-										EcoreUtil.getURI(element))) {
-							targetIterator.set(newOne);
-							replaced = true;
-						}
-					}
-				}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
+	 * 
+	 */
+	@Override
+	public void undoInTarget() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getUndoInTargetCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
 			}
+		} else {
+			super.undoInTarget();
 		}
 	}
 
-	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
-	 */
-	@Override
-	public void doUndoInTarget() {
-		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
-		final EObject element = theDiff.getRightElement();
-		final EObject parent = theDiff.getRightElement().eContainer();
-		EcoreUtil.remove(element);
-		// now removes all the dangling references
-		removeDanglingReferences(parent);
+	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(true);
+		//		doApplyInOrigin();
+		//		postProcess();
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CModelElementChangeRightTargetMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
+		cmd.append(getDoApplyInOriginCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
 	}
 
-	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#canUndoInTarget()
-	 */
-	@Override
-	public boolean canUndoInTarget() {
-		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
-		final boolean isRightElementNotNull = theDiff.getRightElement() != null;
-		return isRightElementNotNull;
+	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(false);
+		//		doUndoInTarget();
+		//		postProcess();
+	
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CModelElementChangeRightTargetMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
+		cmd.append(getDoUndoInTargetCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
 	}
 
-	//TODO verify if I use this method
-	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
-	 */
-	@Override
-	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
-		if (applyInOrigin) {
-			return diff.getRequires();
-		}
-		return super.getDependencies(applyInOrigin);
-	}
-	
-	
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		final CompoundCommand cmd = new CompoundCommand("Command CModelElementChangeRightTargetMerger#getDoApplyInOriginCommand"); //$NON-NLS-1$
 		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
@@ -234,5 +177,29 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
 		final EObject element = theDiff.getRightElement();
 		return PapyrusMergeCommandProvider.INSTANCE.getDestroyCommand(domain, element);
+	}
+
+
+	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
+		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				ModelElementChangeRightTargetTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
+				return null;
+			}
+		});
+	}
+
+	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				ModelElementChangeRightTargetTransactionalMerger.this.postProcess();
+				return null;
+			}
+		});
 	}
 }

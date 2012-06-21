@@ -6,7 +6,7 @@
       <mergerprovider
             fileExtension="uml"
             mergerProviderClass="org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusUMLMergeProvider"
-            priority="low">
+            priority="high">
       </mergerprovider>
    </extension>
 

@@ -28,7 +28,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
-import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -39,6 +38,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
+import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
 
 /**
  * 
@@ -60,7 +60,7 @@ public class PapyrusCompareEObjectCopier {
 	 *        a diff element
 	 */
 	public PapyrusCompareEObjectCopier(final DiffElement diff) {
-		copier = MergeService.getCopier(diff);
+		copier = TransactionalMergeService.getCopier(diff);
 	}
 
 	/**

@@ -11,147 +11,93 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger.internal.merger;
+package org.eclipse.papyrus.uml.compare.merger.internal.old.merger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeOrderChangeMerger;
 import org.eclipse.emf.compare.diff.metamodel.AttributeOrderChange;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.tools.util.ReflectHelper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
+import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
-/**
- * 
- * Transactional version of the class {@link AttributeOrderChangeMerger}
- *
- */
-public class AttributeOrderChangeTransactionalMerger extends DefaultTransactionalMerger{
+
+public class AttributeOrderChangeTransactionalMerger extends AttributeOrderChangeMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeOrderChangeMerger}
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doApplyInOrigin()
+	 * @see org.eclipse.emf.compare.diff.merge.IMerger#applyInOrigin()
 	 */
 	@Override
-	public void doApplyInOrigin() {
-		final AttributeOrderChange theDiff = (AttributeOrderChange)this.diff;
-		final EAttribute attribute = theDiff.getAttribute();
-		final EObject leftElement = theDiff.getLeftElement();
-		final EObject rightElement = theDiff.getRightElement();
-
-		final List<Object> leftList = (List<Object>)leftElement.eGet(attribute);
-		final List<Object> rightList = (List<Object>)rightElement.eGet(attribute);
-
-		/*
-		 * We need to transform the "left" list into the "right" list, modulo missing values. In practical
-		 * terms, this means that we'll simply leave untouched any element that has no match in the "right"
-		 * list (elements that were deleted) while reordering the others in the order they have in the "right"
-		 * list.
-		 */
-		final List<Object> leftCopy = new ArrayList<Object>(leftList);
-		final List<Object> result = new ArrayList<Object>(leftList.size());
-		// Add all unmatched values in the result list
-		for (int i = 0; i < leftList.size(); i++) {
-			final Object left = leftList.get(i);
-
-			boolean hasMatch = false;
-			for (int j = 0; !hasMatch && j < rightList.size(); j++) {
-				hasMatch = !areDistinctValues(left, rightList.get(j));
+	public void applyInOrigin() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getApplyInOriginCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
 			}
-
-			if (!hasMatch) {
-				leftCopy.remove(left);
-				result.add(left);
-			}
+		} else {
+			super.applyInOrigin();
 		}
-		// Then reorder according to the right list's order
-		for (int i = 0; i < rightList.size(); i++) {
-			final Object right = rightList.get(i);
-
-			Object leftMatch = null;
-			for (int j = 0; leftMatch == null && j < leftCopy.size(); j++) {
-				if (!areDistinctValues(right, leftCopy.get(j))) {
-					leftMatch = leftCopy.get(j);
-				}
-			}
-
-			if (leftMatch != null) {
-				leftCopy.remove(leftMatch);
-				result.add(leftMatch);
-			}
-		}
-		// Finally, set the value of our attribute to this new list
-		leftElement.eSet(attribute, result);
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeOrderChangeMerger}
-	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doUndoInTarget()
+	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#undoInTarget()
+	 * 
 	 */
 	@Override
-	public void doUndoInTarget() {
-		final AttributeOrderChange theDiff = (AttributeOrderChange)this.diff;
-		final EAttribute attribute = theDiff.getAttribute();
-		final EObject leftElement = theDiff.getLeftElement();
-		final EObject rightElement = theDiff.getRightElement();
-
-		final List<Object> leftList = (List<Object>)leftElement.eGet(attribute);
-		final List<Object> rightList = (List<Object>)rightElement.eGet(attribute);
-
-		/*
-		 * We need to transform the "right" list into the "left" list, modulo missing values. In practical
-		 * terms, this means that we'll simply leave untouched any element that has no match in the "left"
-		 * list (elements that were added) while reordering the others in the order they have in the "left"
-		 * list.
-		 */
-		final List<Object> rightCopy = new ArrayList<Object>(rightList);
-		final List<Object> result = new ArrayList<Object>(rightList.size());
-		// Add all unmatched values in the result list
-		for (int i = 0; i < rightList.size(); i++) {
-			final Object right = rightList.get(i);
-
-			boolean hasMatch = false;
-			for (int j = 0; !hasMatch && j < leftList.size(); j++) {
-				hasMatch = !areDistinctValues(right, leftList.get(j));
+	public void undoInTarget() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getUndoInTargetCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
 			}
-
-			if (!hasMatch) {
-				rightCopy.remove(right);
-				result.add(right);
-			}
+		} else {
+			super.undoInTarget();
 		}
-		// Then reorder according to the left list's order
-		for (int i = 0; i < leftList.size(); i++) {
-			final Object left = leftList.get(i);
-
-			Object rightMatch = null;
-			for (int j = 0; rightMatch == null && j < rightCopy.size(); j++) {
-				if (!areDistinctValues(left, rightCopy.get(j))) {
-					rightMatch = rightCopy.get(j);
-				}
-			}
-
-			if (rightMatch != null) {
-				rightCopy.remove(rightMatch);
-				result.add(rightMatch);
-			}
-		}
-		// Finally, set the value of our attribute to this new list
-		rightElement.eSet(attribute, result);
 	}
 
+	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(true);
+		//		doApplyInOrigin();
+		//		postProcess();
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for AttributeOrderChangeMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
+		cmd.append(getDoApplyInOriginCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
+	}
+
+	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(false);
+		//		doUndoInTarget();
+		//		postProcess();
+
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for AttributeOrderChangeMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
+		cmd.append(getDoUndoInTargetCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
+	}
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		final AttributeOrderChange theDiff = (AttributeOrderChange)this.diff;
@@ -257,6 +203,28 @@ public class AttributeOrderChangeTransactionalMerger extends DefaultTransactiona
 		return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, rightElement, attribute, result);
 	}
 
+	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
+		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				AttributeOrderChangeTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
+				return null;
+			}
+		});
+	}
+
+	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				AttributeOrderChangeTransactionalMerger.this.postProcess();
+				return null;
+			}
+		});
+	}
 
 	/**
 	 * This method uses the reflexive way to call the static method of the super class

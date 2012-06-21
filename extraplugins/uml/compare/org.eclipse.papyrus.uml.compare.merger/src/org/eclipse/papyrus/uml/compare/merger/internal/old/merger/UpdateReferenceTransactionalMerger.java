@@ -11,100 +11,86 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger.internal.merger;
+package org.eclipse.papyrus.uml.compare.merger.internal.old.merger;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateReferenceMerger;
-import org.eclipse.emf.compare.diff.merge.service.MergeService;
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
+import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
+import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
-/**
- * 
- * Transactional version of the class {@link UpdateReferenceMerger}
- *
- */
-public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerger {
+
+public class UpdateReferenceTransactionalMerger extends UpdateReferenceMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link UpdateReferenceMerger}
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
+	 * @see org.eclipse.emf.compare.diff.merge.IMerger#applyInOrigin()
 	 */
 	@Override
-	public void doApplyInOrigin() {
-		final UpdateReference theDiff = (UpdateReference)this.diff;
-		final EReference reference = theDiff.getReference();
-		final EObject element = theDiff.getLeftElement();
-		final EObject leftTarget = (EObject)theDiff.getRightElement().eGet(reference);
-		final EObject matchedLeftTarget = theDiff.getLeftTarget();
-
-		if (leftTarget == null) {
-			// We're unsetting the value, no need to copy
-			element.eUnset(reference);
-		} else {
-			MergeService.getCopier(diff).copyReferenceValue(reference, element, leftTarget,
-					matchedLeftTarget, -1);
-		}
-	}
-
-	/**
-	 * The native implementation, duplicated Code from  {@link UpdateReferenceMerger}
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
-	 */
-	@Override
-	public void doUndoInTarget() {
-		final UpdateReference theDiff = (UpdateReference)this.diff;
-		final EReference reference = theDiff.getReference();
-		final EObject element = theDiff.getRightElement();
-		final EObject rightTarget = (EObject)theDiff.getLeftElement().eGet(reference);
-		final EObject matchedRightTarget = theDiff.getRightTarget();
-
-		if (rightTarget == null) {
-			// We're unsetting the value, no need to copy
-			element.eUnset(reference);
-		} else {
-			MergeService.getCopier(diff).copyReferenceValue(reference, element, rightTarget,
-					matchedRightTarget, -1);
-		}
-	}
-
-	//TODO verify if I use this method
-	/**
-	 * The native implementation, duplicated Code from  {@link UpdateReferenceMerger}
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
-	 */
-	@Override
-	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
-		final List<DiffElement> diffs = diff.getRequires();
-		final List<DiffElement> result = new ArrayList<DiffElement>();
-		for (DiffElement diffElement : diffs) {
-			if (applyInOrigin && diffElement instanceof ModelElementChangeRightTarget) {
-				result.add(diffElement);
-			} else if (!applyInOrigin && diffElement instanceof ModelElementChangeLeftTarget) {
-				result.add(diffElement);
+	public void applyInOrigin() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getApplyInOriginCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
 			}
+		} else {
+			super.applyInOrigin();
 		}
-		return result;
 	}
+
+	@Override
+	public void undoInTarget() {
+		if(MergerUtils.usePapyrusMerger()) {
+			final TransactionalEditingDomain domain = MergerUtils.getEditingDomain();
+			final Command cmd = getUndoInTargetCommand(domain);
+			if(cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
+			}
+		} else {
+			super.undoInTarget();
+		}
+	}
+
+
+	public Command getApplyInOriginCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(true);
+		//		doApplyInOrigin();
+		//		postProcess();
+		CompoundCommand cmd = new CompoundCommand("Apply in Origin Command for CUpdateReferenceMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
+		cmd.append(getDoApplyInOriginCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
+	}
+
+	public Command getUndoInTargetCommand(final TransactionalEditingDomain domain) {
+		//		mergeRequiredDifferences(false);
+		//		doUndoInTarget();
+		//		postProcess();
+
+		CompoundCommand cmd = new CompoundCommand("Undo In Target Command for CUpdateReferenceMerger"); //$NON-NLS-1$
+		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
+		cmd.append(getDoUndoInTargetCommand(domain));
+		cmd.append(getPostProcessCommand(domain));
+		return cmd;
+	}
+
 
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
@@ -167,5 +153,26 @@ public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerg
 		return cmd;
 	}
 
+	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
+		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
 
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				UpdateReferenceTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
+				return null;
+			}
+		});
+	}
+
+	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
+		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				UpdateReferenceTransactionalMerger.this.postProcess();
+				return null;
+			}
+		});
+	}
 }

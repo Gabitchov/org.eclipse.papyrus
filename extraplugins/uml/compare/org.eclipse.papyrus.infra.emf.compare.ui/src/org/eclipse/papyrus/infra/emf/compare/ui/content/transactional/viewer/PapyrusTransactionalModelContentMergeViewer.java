@@ -63,61 +63,7 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 		super(parent, config, editor);
 	}
 
-	/**
-	 * Undoes the changes implied by the currently selected {@link DiffElement diff}.
-	 */
-	@Override
-	protected void copyDiffLeftToRight() {
-		if(this.currentSelection != null) {
-			doCopy(this.currentSelection, true);
-		}
-		this.currentSelection.clear();
-		switchCopyState(false);
-	}
-
-	/**
-	 * Applies the changes implied by the currently selected {@link DiffElement diff}.
-	 */
-	@Override
-	protected void copyDiffRightToLeft() {
-		if(this.currentSelection != null) {
-			doCopy(this.currentSelection, false);
-		}
-		this.currentSelection.clear();
-		switchCopyState(false);
-	}
-
-
-	protected void doCopy(final List<DiffElement> diffs, final boolean leftToRight) {
-		//TODO : use the service registery when it is possible
-		TransactionalEditingDomain domain = null;
-		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		ServicesRegistry servicesRegistry = (ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class);
-		if(servicesRegistry != null) {
-			try {
-				domain = servicesRegistry.getService(TransactionalEditingDomain.class);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
-			}
-		} else if(editorPart instanceof IEditingDomainProvider) {
-			domain = (TransactionalEditingDomain)((IEditingDomainProvider)editorPart).getEditingDomain();
-		}
-		if(domain != null) {
-			Command command = new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, Messages.PapyrusTransactionalModelContentMergeViewer_MergeCommandLabel, null) {
-
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					PapyrusTransactionalModelContentMergeViewer.this.copy(diffs, leftToRight);
-					return null;
-				}
-			});
-			domain.getCommandStack().execute(command);
-		} else {
-			NotificationBuilder.createAsyncPopup(Messages.PapyrusTransactionalModelContentMergeViewer_TheCurrentEditorDontAllowToUseUndoRedo).run();
-			PapyrusTransactionalModelContentMergeViewer.this.copy(diffs, leftToRight);
-		}
-	}
-
+	
 	/**
 	 * 
 	 * {@inheritDoc} Add a toogle button to the toolbar to do the synchronization with the diagram

@@ -29,6 +29,8 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
@@ -41,8 +43,12 @@ import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelException;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
+import org.eclipse.papyrus.infra.emf.compare.common.internal.utils.PapyrusFileLoader;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.compare.file.Activator;
@@ -70,6 +76,7 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 
 	/** the compared root object */
 	private EObject roots[];
+
 
 	/**
 	 * 
@@ -130,7 +137,6 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 
 	@Override
 	public void doSave(final IProgressMonitor progressMonitor) {
-		// TODO save di and notation file
 		super.doSave(progressMonitor);
 	}
 
@@ -161,61 +167,13 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
 		if(input instanceof CompareUMLFileInput) {
 			this.tmpInput = (CompareUMLFileInput)input;
-
-			EObject roots[] = loadPapyrusFiles((CompareUMLFileInput)input);
-
+			roots = PapyrusFileLoader.loadPapyrusFiles(set, ((CompareUMLFileInput)input).getComparedFiles(), false);
 			ModelCompareEditorInput newInput = getCompareInput(roots[0], roots[1]);
 			this.tmpInput = null;
 			super.init(site, newInput);
 		} else {
 			super.init(site, input);
 		}
-	}
-
-	
-
-	private EObject[] loadPapyrusFiles(final CompareUMLFileInput input) {
-		roots = new EObject[2];
-
-		for(int i = 0; i < 2; i++) {
-			String filePath = input.getComparedFiles().get(i).getFullPath().toString();
-			URI uri = URI.createFileURI(filePath); //$NON-NLS-1$ //$NON-NLS-2$
-			try {
-				roots[i] = EMFHelper.loadEMFModel(set, uri);
-				Assert.isNotNull(roots[i]);
-			} catch (IOException e) {
-				Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-			};
-
-			//we load the notation file
-			int index = filePath.lastIndexOf("."); //$NON-NLS-1$
-			String subString = filePath.substring(0, index);
-
-			//we load the .di
-			uri = URI.createFileURI(subString + ".di"); //$NON-NLS-1$
-			Map<?, ?> options = null;
-			if(set.getURIConverter().exists(uri, options)) {
-				try {
-					set.getResource(uri, true).load(options);
-				} catch (IOException e) {
-					Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-				}
-			}
-
-			//we load the .notation
-			uri = URI.createFileURI(subString + ".notation"); //$NON-NLS-1$
-			if(set.getURIConverter().exists(uri, options)) {
-				try {
-					set.getResource(uri, true).load(options);
-				} catch (IOException e) {
-					Activator.log.error(NLS.bind(Messages.CompareUMLFileEditor_ICantLoadTheModel, uri), e);
-				}
-			}
-
-			//TODO : and if there is other referenced files?
-
-		}
-		return roots;
 	}
 
 	@Override
@@ -225,6 +183,13 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 			@Override
 			public Image getTitleImage() {
 				return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/papyrus_compare_editor.gif").createImage();
+			}
+
+			protected ModelCompareInput createModelCompareInput(final ComparisonSnapshot snap) {
+				if(snap instanceof ComparisonResourceSetSnapshot) {
+					return new PapyrusModelCompareInput(((ComparisonResourceSetSnapshot)snap).getMatchResourceSet(), ((ComparisonResourceSetSnapshot)snap).getDiffResourceSet(), editingDomain);
+				}
+				return new PapyrusModelCompareInput(((ComparisonResourceSnapshot)snap).getMatch(), ((ComparisonResourceSnapshot)snap).getDiff(), editingDomain);
 			}
 		};
 	}
@@ -265,7 +230,6 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 		getOperationHistory().removeOperationHistoryListener(historyListener);
 		removeUndoRedoListener();
 		super.dispose();
-
 	}
 
 

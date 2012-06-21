@@ -25,7 +25,10 @@ import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.structure.ModelStructureMergeViewer;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer.PapyrusTransactionalModelContentMergeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer.PapyrusCustomizableParameterizedStructureMergeViewer;
@@ -44,7 +47,6 @@ public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput impl
 
 	/** the editor */
 	protected IEditorPart editor;
-
 
 	/**
 	 * 
@@ -163,4 +165,19 @@ public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput impl
 		return this.preparedInput;
 	}
 
+	/**
+	 * 
+	 * @return
+	 *         the EditingDomain for the current Editor, or <code>null</code> if not found
+	 */
+	protected TransactionalEditingDomain getEditingDomain() {
+		TransactionalEditingDomain domain=null;
+		if(this.editor instanceof AbstractMultiPageSashEditor) {
+			IEditorPart part = ((AbstractMultiPageSashEditor)this.editor).getActiveEditor();
+			if(part instanceof IEditingDomainProvider) {
+				return (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
+			}
+		}
+		return domain;
+	}
 }
