@@ -56,9 +56,9 @@
         </eAnnotations>
         <children xmi:type="notation:DecorationNode" xmi:id="_r-JOdLt0EeGa2q-8wWMz3g" type="5014"/>
         <children xmi:type="notation:BasicCompartment" xmi:id="_r-JOdbt0EeGa2q-8wWMz3g" type="7011">
-          <children xmi:type="notation:Shape" xmi:id="_sX_R0Lt0EeGa2q-8wWMz3g" type="3012" fontName="Segoe UI" lineColor="0">
-            <element xmi:type="uml:Property" href="model.uml#_hqcr8InuEeGxdcQdAms8Gw"/>
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_sX_R0bt0EeGa2q-8wWMz3g" x="36" y="18"/>
+          <children xmi:type="notation:Shape" xmi:id="_As0c8Lt1EeGa2q-8wWMz3g" type="3012" fontName="Segoe UI" lineColor="0">
+            <element xmi:type="uml:Property" href="model.uml#_Asu9YLt1EeGa2q-8wWMz3g"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_As0c8bt1EeGa2q-8wWMz3g"/>
           </children>
           <styles xmi:type="notation:TitleStyle" xmi:id="_r-JOdrt0EeGa2q-8wWMz3g"/>
           <styles xmi:type="notation:SortingStyle" xmi:id="_r-JOd7t0EeGa2q-8wWMz3g"/>
