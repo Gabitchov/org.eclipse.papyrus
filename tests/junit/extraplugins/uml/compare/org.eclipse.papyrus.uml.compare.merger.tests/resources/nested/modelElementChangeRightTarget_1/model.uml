@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_XSnVcInuEeGxdcQdAms8Gw" name="model">
-  <packagedElement xmi:type="uml:Class" xmi:id="_eYsnUInuEeGxdcQdAms8Gw" name="Class1"/>
-  <packagedElement xmi:type="uml:Package" xmi:id="_fsfxgInuEeGxdcQdAms8Gw" name="Package1">
-    <packagedElement xmi:type="uml:Class" xmi:id="_gc1CQInuEeGxdcQdAms8Gw" name="Class1">
-      <ownedAttribute xmi:id="_Asu9YLt1EeGa2q-8wWMz3g" name="Property1" visibility="public">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A1DL4Lt1EeGa2q-8wWMz3g" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A1Dy8Lt1EeGa2q-8wWMz3g" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_A1Dy8bt1EeGa2q-8wWMz3g">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-    </packagedElement>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_sX-S0Lu4EeGGxqg-2oDCrw" name="Model">
+  <packageImport xmi:id="_sX-S0bu4EeGGxqg-2oDCrw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vCJaELu4EeGGxqg-2oDCrw" name="Class1">
+    <ownedAttribute xmi:id="_xZDAALu4EeGGxqg-2oDCrw" name="Property1" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xkGZcLu4EeGGxqg-2oDCrw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xkGZcbu4EeGGxqg-2oDCrw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_xkHAgLu4EeGGxqg-2oDCrw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_v2j5kLu4EeGGxqg-2oDCrw" name="Package1">
+    <packagedElement xmi:type="uml:Class" xmi:id="_wqWuALu4EeGGxqg-2oDCrw" name="Class1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xojboLu4EeGGxqg-2oDCrw"/>
 </uml:Model>
