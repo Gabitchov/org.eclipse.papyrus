@@ -11,7 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
+import org.eclipse.papyrus.infra.emf.appearance.style.AppearanceStyleProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.StringHelper;
 import org.w3c.dom.Element;
@@ -22,6 +26,7 @@ import org.w3c.dom.css.CSSValue;
  * 
  * @author Camille Letavernier
  */
+//FIXME: Use constants for the CSS Properties elementIcon, qualifiedNameDepth and shadow
 @SuppressWarnings("restriction")
 public class CSSCustomStyleDelegate implements CustomStyle {
 
@@ -39,6 +44,8 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 	private static int FULL_VALUE = 0;
 
+	private static final AppearanceStyleProvider provider = new AnnotationStyleProvider();;
+
 	/**
 	 * Constructor
 	 * 
@@ -54,6 +61,11 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 	}
 
 	public boolean showElementIcon() {
+		EAnnotation displayNameLabelIcon = view.getEAnnotation(VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
+		if(displayNameLabelIcon != null) {
+			return provider.showElementIcon(view);
+		}
+
 		CSSValue cssValue = engine.retrievePropertyValue(element, "elementIcon");
 		if(cssValue == null) {
 			return false;
@@ -62,6 +74,11 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 	}
 
 	public int getQualifiedNameDepth() {
+		EAnnotation qualifiedNameAnnotation = view.getEAnnotation(VisualInformationPapyrusConstants.QUALIFIED_NAME);
+		if(qualifiedNameAnnotation != null) {
+			return provider.getQualifiedNameDepth(view);
+		}
+
 		CSSValue cssValue = engine.retrievePropertyValue(element, "qualifiedNameDepth");
 		if(cssValue == null) {
 			return NONE_VALUE;
@@ -87,6 +104,12 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 	}
 
 	public boolean showShadow() {
+		EAnnotation shadowAnnotation = view.getEAnnotation(VisualInformationPapyrusConstants.SHADOWFIGURE);
+
+		if(shadowAnnotation != null) {
+			return provider.showShadow(view);
+		}
+
 		CSSValue cssValue = engine.retrievePropertyValue(element, "shadow");
 		if(cssValue == null) {
 			return false;
