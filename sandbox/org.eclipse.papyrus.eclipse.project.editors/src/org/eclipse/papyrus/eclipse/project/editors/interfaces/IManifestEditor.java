@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
 
+
 /**
  * 
  * Editor for the Manifest
@@ -169,4 +170,12 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 *         the bundle localization
 	 */
 	public String getBundleLocalization();
+
+	/**
+	 * Sets the Manifest's singleton directive
+	 * 
+	 * @param singleton
+	 *        Whether this plug-in should be a singleton
+	 */
+	public void setSingleton(boolean singleton);
 }

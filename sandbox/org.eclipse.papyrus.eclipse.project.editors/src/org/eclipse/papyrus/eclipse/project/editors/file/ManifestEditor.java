@@ -389,7 +389,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		}
 		Name bundleNameName = new Name(BUNDLE_SYMBOLIC_NAME);
 		this.manifest.getMainAttributes().put(bundleNameName, newName);
-		
+
 	}
 
 	public String getBundleLocalization() {
@@ -399,5 +399,30 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			return name;
 		}
 		return null;
+	}
+
+	public void setSingleton(boolean singleton) {
+		String value = manifest.getMainAttributes().getValue("bundle-symbolicName");
+		String[] directives = value.split(";");
+
+		if(directives.length == 0) {
+			return; //This should not happen if the Manifest is well-formed
+		} else {
+			value = directives[0];
+			boolean isDefined = false;
+			for(int i = 1; i < directives.length; i++) {
+				String directive = directives[i];
+				if(directive.startsWith("singleton:=")) {
+					directive = "singleton:=" + singleton;
+					isDefined = true;
+				}
+				value += ";" + directive;
+			}
+			if(!isDefined) {
+				value += ";singleton:=" + singleton;
+			}
+		}
+
+		manifest.getMainAttributes().putValue("bundle-symbolicName", value);
 	}
 }
