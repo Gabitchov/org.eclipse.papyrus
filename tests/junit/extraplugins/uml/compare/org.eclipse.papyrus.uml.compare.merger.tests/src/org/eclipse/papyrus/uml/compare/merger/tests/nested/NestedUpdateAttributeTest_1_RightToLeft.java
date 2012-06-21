@@ -51,19 +51,19 @@ public class NestedUpdateAttributeTest_1_RightToLeft extends AbstractNestedCompa
 	@Override
 	@Test
 	public void testModificationOnDiFile() {
-		super.testModificationOnDiFile();
+		super.testModificationOnDiFile(false);
 	}
 
 	@Override
 	@Test
 	public void testModificationOnNotationFile() {
-		super.testModificationOnNotationFile();
+		super.testModificationOnNotationFile(false);
 	}
 
 	@Override
 	@Test
 	public void testModificationOnUMLFile() {
-		super.testModificationOnUMLFile();
+		super.testModificationOnUMLFile(true);
 	}
 	
 	@Override
