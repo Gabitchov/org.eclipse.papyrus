@@ -21,5 +21,7 @@
 		</Composite.layout>
 		<ppe:EnumCombo input="{Binding}" property="UML:ObjectNode:ordering"></ppe:EnumCombo>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
+		<ppe:ReferenceDialog property="UML:TypedElement:type"
+			input="{Binding}"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

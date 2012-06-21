@@ -51,8 +51,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 	 * @param parent
 	 */
 	public RegisteredProfileSelectionDialog(Composite parent, Package umlPackage) {
-		super(parent.getShell(), true, RegisteredProfile.getRegisteredProfiles(),
-					new ArrayList<Object>(), "Apply profiles from Papyrus repository :", "");  
+		super(parent.getShell(), true, RegisteredProfile.getRegisteredProfiles(), new ArrayList<Object>(), "Apply profiles from Papyrus repository :", "");
 		currentPackage = umlPackage;
 	}
 
@@ -120,7 +119,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 				subprofilesList.add(string);
 			}
 
-			if(modelResource.getContents().get(0) instanceof Profile) {
+			if((!modelResource.getContents().isEmpty()) && modelResource.getContents().get(0) instanceof Profile) {
 				Message processMsg = new Message("Profile application", "Loading profiles...");
 				processMsg.open();
 				Profile profileToApply = (Profile)(modelResource.getContents().get(0));
@@ -142,12 +141,11 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 
 			// Apply selected profile if ok was selected
 			if(Dialog.OK == returnValue) {
-				return (ArrayList<Profile>)profileDialog.getResult();
+				return profileDialog.getResult();
 			} else {
 				new ArrayList<Profile>();
 			}
 		}
 		return new ArrayList<Profile>();
 	}
-
 }
