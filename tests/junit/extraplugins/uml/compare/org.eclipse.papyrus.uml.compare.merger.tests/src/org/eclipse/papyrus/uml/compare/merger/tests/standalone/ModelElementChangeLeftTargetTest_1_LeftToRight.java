@@ -13,6 +13,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 
 public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStandaloneCompareTest {
@@ -55,7 +56,29 @@ public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStan
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+	@Test
+	public void testModificationOnDiFile() {
+		super.testModificationOnDiFile(false);
+	}
 
+
+	@Test
+	public void testModificationOnNotationFile() {
+		super.testModificationOnNotationFile(false);
+	}
+
+
+	@Test
+	public void testModificationOnUMLFile() {
+		super.testModificationOnUMLFile(true);
+	}
+
+
+	@Override
+	@Test
+	public void saveTest() throws IOException {
+		super.saveTest();
+	}
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
@@ -65,8 +88,8 @@ public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStan
 	@Override
 	@Test
 	public void testXMIID() {
-		Class leftClass = (Class)leftRoot.getOwnedMember(CLASS_NAME);
-		Class rightClass = (Class)rightRoot.getOwnedMember(CLASS_NAME);
+		Class leftClass = (Class)((Package)leftElement).getOwnedMember(CLASS_NAME);
+		Class rightClass = (Class)((Package)rightElement).getOwnedMember(CLASS_NAME);
 		Property leftProperty = leftClass.getAttribute(PROPERTY_NAME, null);
 		Property rightProperty = rightClass.getAttribute(PROPERTY_NAME, null);
 		String leftId = EMFHelper.getXMIID(leftProperty);

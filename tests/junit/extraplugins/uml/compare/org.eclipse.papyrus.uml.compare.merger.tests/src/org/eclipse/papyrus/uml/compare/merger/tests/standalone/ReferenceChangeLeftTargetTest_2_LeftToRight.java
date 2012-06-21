@@ -21,6 +21,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.compare.merge.services.TransactionalMergeService;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -83,7 +84,29 @@ public class ReferenceChangeLeftTargetTest_2_LeftToRight extends AbstractStandal
 	public void testCommandExecution() throws InterruptedException, IOException {
 		super.testCommandExecution();
 	}
+	@Test
+	public void testModificationOnDiFile() {
+		super.testModificationOnDiFile(false);
+	}
 
+
+	@Test
+	public void testModificationOnNotationFile() {
+		super.testModificationOnNotationFile(false);
+	}
+
+
+	@Test
+	public void testModificationOnUMLFile() {
+		super.testModificationOnUMLFile(true);
+	}
+
+
+	@Override
+	@Test
+	public void saveTest() throws IOException {
+		super.saveTest();
+	}
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
@@ -93,8 +116,8 @@ public class ReferenceChangeLeftTargetTest_2_LeftToRight extends AbstractStandal
 	@Override
 	@Test
 	public void testXMIID() {
-		Element leftUsecase = leftRoot.getOwnedMember("UseCase1");
-		Element rightUsecase = rightRoot.getOwnedMember("UseCase1");
+		Element leftUsecase = ((Package)leftElement).getOwnedMember("UseCase1");
+		Element rightUsecase = ((Package)rightElement).getOwnedMember("UseCase1");
 		String leftId = EMFHelper.getXMIID(leftUsecase);
 		String rightId = EMFHelper.getXMIID(rightUsecase);
 		Assert.assertEquals("The XMI id has not been correctly copied", leftId,  rightId);

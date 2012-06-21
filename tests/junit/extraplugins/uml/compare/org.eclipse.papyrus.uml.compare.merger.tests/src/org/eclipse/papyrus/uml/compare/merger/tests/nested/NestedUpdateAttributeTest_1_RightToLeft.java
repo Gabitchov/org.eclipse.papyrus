@@ -78,7 +78,7 @@ public class NestedUpdateAttributeTest_1_RightToLeft extends AbstractNestedCompa
 		super.testResult();
 		final String leftName = ((NamedElement)leftElement).getName();
 		final String rightName = ((NamedElement)rightElement).getName();
-		Assert.assertEquals("The name of the class has not been correctly merged", leftName, rightName);
+		Assert.assertEquals("The name of the class has not been correctly merged", rightName, leftName);
 		Assert.assertEquals("The left name has not changed", "Class2", leftName);
 	}
 

@@ -9,6 +9,7 @@ import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -58,16 +59,38 @@ public class ModelElementChangeRightTargetTest_1_RightToLeft extends AbstractSta
 	public void testResult() throws InterruptedException {
 		super.testResult();
 	}
+	@Test
+	public void testModificationOnDiFile() {
+		super.testModificationOnDiFile(false);
+	}
+
+
+	@Test
+	public void testModificationOnNotationFile() {
+		super.testModificationOnNotationFile(false);
+	}
+
+
+	@Test
+	public void testModificationOnUMLFile() {
+		super.testModificationOnUMLFile(true);
+	}
+
 
 	@Override
+	@Test
+	public void saveTest() throws IOException {
+		super.saveTest();
+	}
+	@Override
 	public void testXMIID() {
-		Class leftClass = (Class)leftRoot.getOwnedMember(CLASS_NAME);
-		Class rightClass = (Class)rightRoot.getOwnedMember(CLASS_NAME);
+		Class leftClass = (Class)((Package)leftElement).getOwnedMember(CLASS_NAME);
+		Class rightClass = (Class)((Package)rightElement).getOwnedMember(CLASS_NAME);
 		Property leftProperty = leftClass.getAttribute(PROPERTY_NAME, null);
 		Property rightProperty = rightClass.getAttribute(PROPERTY_NAME, null);
 		String leftId = EMFHelper.getXMIID(leftProperty);
 		String rightId = EMFHelper.getXMIID(rightProperty);
-		Assert.assertEquals("The merged element hasn't the same Id as the initial element", leftId, rightId);
+		Assert.assertEquals("The merged element hasn't the same Id as the initial element", rightId, leftId);
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -21,7 +20,6 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.uml.compare.merge.services.TransactionalMergeService;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -111,24 +109,19 @@ public abstract class AbstractCompareTest {
 	}
 
 	@Test
-	public void testModificationOnDiFile() {
-		Assert.fail("Test not implemented");
-	}
+	public abstract void testModificationOnDiFile();
 
 	@Test
-	public void testModificationOnNotationFile() {
-		Assert.fail("Test not implemented");
-	}
+	public abstract void testModificationOnNotationFile();
 
 	@Test
-	public void testModificationOnUMLFile() {
-		Assert.fail("Test not implemented");
-	}
+	public abstract void testModificationOnUMLFile();
+	
 
 	public void testModificationOnDiFile(final boolean shouldBeModified) {
 		for(Resource current : getResourceOfTheProject()) {
-			if(current.getURI().fileExtension().equals("di") ) {
-				Assert.assertEquals("The di file has not the correct state : Modified or Unmodified", current.isModified(), shouldBeModified);
+			if(current.getURI().fileExtension().equals("di")) {
+				Assert.assertEquals("The di file has not the correct state : Modified or Unmodified", shouldBeModified, current.isModified());
 			}
 		}
 	}
@@ -137,7 +130,7 @@ public abstract class AbstractCompareTest {
 	public void testModificationOnNotationFile(final boolean shouldBeModified) {
 		for(Resource current : getResourceOfTheProject()) {
 			if(current.getURI().fileExtension().equals("notation")) {
-				Assert.assertEquals("The notation file has not the correct state : Modified or Unmodified", current.isModified(), shouldBeModified);
+				Assert.assertEquals("The notation file has not the correct state : Modified or Unmodified", shouldBeModified, current.isModified());
 			}
 		}
 	}
@@ -146,7 +139,7 @@ public abstract class AbstractCompareTest {
 	public void testModificationOnUMLFile(final boolean shouldBeModified) {
 		for(Resource current : getResourceOfTheProject()) {
 			if(current.getURI().fileExtension().equals("uml")) {
-				Assert.assertEquals("The uml file has not the correct state : Modified or Unmodified", current.isModified(), shouldBeModified);
+				Assert.assertEquals("The uml file has not the correct state : Modified or Unmodified", shouldBeModified, current.isModified());
 			}
 		}
 	}
