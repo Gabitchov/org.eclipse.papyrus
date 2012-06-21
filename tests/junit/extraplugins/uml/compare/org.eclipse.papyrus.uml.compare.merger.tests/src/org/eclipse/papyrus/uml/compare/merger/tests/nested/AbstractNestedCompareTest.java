@@ -79,34 +79,7 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 	}
 
 
-	@Test
-	public void testModificationOnDiFile() {
-		for(Resource current : set.getResources()) {
-			if(current.getURI().fileExtension().equals("di") && isAResourceOFTheTestProject(current)) {
-				Assert.assertFalse("I found modification on the di file", current.isModified());
-			}
-		}
-	}
 
-	@Override
-	@Test
-	public void testModificationOnNotationFile() {
-		for(Resource current : set.getResources()) {
-			if(current.getURI().fileExtension().equals("notation") && isAResourceOFTheTestProject(current)) {
-				Assert.assertFalse("I found modification on the notation file", current.isModified());
-			}
-		}
-	}
-
-	@Override
-	@Test
-	public void testModificationOnUMLFile() {
-		for(Resource current : set.getResources()) {
-			if(current.getURI().fileExtension().equals("uml") && isAResourceOFTheTestProject(current)) {
-				Assert.assertTrue("I didn't found modification on the uml file", current.isModified());
-			}
-		}
-	}
 
 
 }

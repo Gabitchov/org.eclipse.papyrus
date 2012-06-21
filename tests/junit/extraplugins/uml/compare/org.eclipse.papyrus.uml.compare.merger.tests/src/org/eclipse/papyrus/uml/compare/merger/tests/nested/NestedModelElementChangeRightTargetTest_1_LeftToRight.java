@@ -6,11 +6,7 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
-import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.compare.merge.nested.utils.NestedMergeUtils;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -55,22 +51,22 @@ public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends Abstr
 	}
 
 
-	@Override
+
 	@Test
 	public void testModificationOnDiFile() {
-		super.testModificationOnDiFile();
+		super.testModificationOnDiFile(false);
 	}
 
-	@Override
+
 	@Test
 	public void testModificationOnNotationFile() {
-		super.testModificationOnNotationFile();
+		super.testModificationOnNotationFile(true);
 	}
 
-	@Override
+
 	@Test
 	public void testModificationOnUMLFile() {
-		super.testModificationOnUMLFile();
+		super.testModificationOnUMLFile(true);
 	}
 
 
@@ -83,8 +79,8 @@ public class NestedModelElementChangeRightTargetTest_1_LeftToRight extends Abstr
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
-//		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("property1", null);
-//		Assert.assertNull("The right element has not been deleted by the merge action",rightAttribute);
+		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("Property1", null);
+		Assert.assertNull("The right element has not been deleted by the merge action",rightAttribute);
 		super.testResult();
 	}
 

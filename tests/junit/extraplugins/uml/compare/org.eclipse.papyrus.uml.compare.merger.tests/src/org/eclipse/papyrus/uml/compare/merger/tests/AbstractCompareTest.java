@@ -125,14 +125,38 @@ public abstract class AbstractCompareTest {
 		Assert.fail("Test not implemented");
 	}
 
+	public void testModificationOnDiFile(final boolean shouldBeModified) {
+		for(Resource current : getResourceOfTheProject()) {
+			if(current.getURI().fileExtension().equals("di") ) {
+				Assert.assertEquals("The di file has not the correct state : Modified or Unmodified", current.isModified(), shouldBeModified);
+			}
+		}
+	}
+
+
+	public void testModificationOnNotationFile(final boolean shouldBeModified) {
+		for(Resource current : getResourceOfTheProject()) {
+			if(current.getURI().fileExtension().equals("notation")) {
+				Assert.assertEquals("The notation file has not the correct state : Modified or Unmodified", current.isModified(), shouldBeModified);
+			}
+		}
+	}
+
+
+	public void testModificationOnUMLFile(final boolean shouldBeModified) {
+		for(Resource current : getResourceOfTheProject()) {
+			if(current.getURI().fileExtension().equals("uml")) {
+				Assert.assertEquals("The uml file has not the correct state : Modified or Unmodified", current.isModified(), shouldBeModified);
+			}
+		}
+	}
+
 	@Test
 	public void saveTest() throws IOException {
 		//we save the result
-		for(Resource current : set.getResources()) {
-			if(isAResourceOFTheTestProject(current)) {//emf compare seems do copy... so, i store only my files!
-				current.save(Collections.EMPTY_MAP);
-				Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
-			}
+		for(Resource current : getResourceOfTheProject()) {
+			current.save(Collections.EMPTY_MAP);
+			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
 		}
 	}
 
@@ -160,13 +184,17 @@ public abstract class AbstractCompareTest {
 		Assert.fail();
 	}
 
-	@Test
-	public void testUndo() throws IOException, InterruptedException {
-		domain.getCommandStack().undo();
-		for(Resource current : set.getResources()) {
+	protected void saveFiles() throws IOException {
+		for(Resource current : getResourceOfTheProject()) {
 			current.save(Collections.EMPTY_MAP);
 			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
 		}
+	}
+
+	@Test
+	public void testUndo() throws IOException, InterruptedException {
+		domain.getCommandStack().undo();
+		saveFiles();
 		final DiffModel diff = getDiffModel(leftElement, rightElement);
 		// Merges all differences from model1 to model2
 		final List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
@@ -176,10 +204,7 @@ public abstract class AbstractCompareTest {
 	@Test
 	public void testRedo() throws IOException, InterruptedException {
 		domain.getCommandStack().redo();
-		for(Resource current : set.getResources()) {
-			current.save(Collections.EMPTY_MAP);
-			Assert.assertTrue(NLS.bind("The resource {0} has not been correctly saved!", current), !current.isModified());
-		}
+		saveFiles();
 		testResult();
 	}
 
@@ -214,13 +239,13 @@ public abstract class AbstractCompareTest {
 	 * @return
 	 *         the list of the resource to save
 	 */
-	protected List<Resource> getResourceOfTheProject(){
+	protected List<Resource> getResourceOfTheProject() {
 		List<Resource> resources = new ArrayList<Resource>();
-			for(Resource current : set.getResources()){
-				if(isAResourceOFTheTestProject(current)){
-					resources.add(current);
-				}
+		for(Resource current : set.getResources()) {
+			if(isAResourceOFTheTestProject(current)) {
+				resources.add(current);
 			}
-			return resources;
+		}
+		return resources;
 	}
 }
