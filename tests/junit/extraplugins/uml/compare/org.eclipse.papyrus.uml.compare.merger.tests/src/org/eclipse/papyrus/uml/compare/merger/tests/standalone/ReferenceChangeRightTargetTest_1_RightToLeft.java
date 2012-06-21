@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.osgi.util.NLS;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -37,7 +37,7 @@ public class ReferenceChangeRightTargetTest_1_RightToLeft extends AbstractStanda
 			DiffGroup group = (DiffGroup)current;
 			Assert.assertTrue("The DiffGroup should contains only 1 DiffElement", group.getSubDiffElements().size() == 1);
 			DiffElement diffElement = group.getSubDiffElements().get(0);
-			Assert.assertTrue(NLS.bind("The DiffElement is not a {0}", ReferenceChangeLeftTarget.class), diffElement instanceof ReferenceChangeLeftTarget);
+			Assert.assertTrue(NLS.bind("The DiffElement is not a {0}", ReferenceChangeRightTarget.class), diffElement instanceof ReferenceChangeRightTarget);
 		}
 	}
 

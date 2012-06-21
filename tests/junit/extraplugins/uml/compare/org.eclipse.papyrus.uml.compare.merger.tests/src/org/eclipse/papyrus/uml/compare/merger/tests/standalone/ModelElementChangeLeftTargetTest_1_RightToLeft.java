@@ -70,7 +70,7 @@ public class ModelElementChangeLeftTargetTest_1_RightToLeft extends AbstractStan
 
 	@Test
 	public void testModificationOnNotationFile() {
-		super.testModificationOnNotationFile(false);
+		super.testModificationOnNotationFile(true);
 	}
 
 

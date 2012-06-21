@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.merger.tests;
 
+import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedModelElementChangeLeftTargetTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedModelElementChangeLeftTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedModelElementChangeRightTargetTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedModelElementChangeRightTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.nested.NestedUpdateAttributeTest_1_LeftToRight;
@@ -31,6 +33,8 @@ import org.eclipse.papyrus.uml.compare.merger.tests.standalone.MoveModelElementT
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.MoveModelElementTest_2_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.ReferenceChangeLeftTargetTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.ReferenceChangeLeftTargetTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.merger.tests.standalone.ReferenceChangeRightTargetTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.merger.tests.standalone.ReferenceChangeRightTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.ReferenceOrderChangeTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.ReferenceOrderChangeTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.UpdateAttributeTest_1_LeftToRight;
@@ -48,6 +52,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 NestedModelElementChangeRightTargetTest_1_LeftToRight.class, NestedModelElementChangeRightTargetTest_1_RightToLeft.class,
 
+NestedModelElementChangeLeftTargetTest_1_LeftToRight.class, NestedModelElementChangeLeftTargetTest_1_RightToLeft.class,
+
 NestedUpdateAttributeTest_1_LeftToRight.class, NestedUpdateAttributeTest_1_RightToLeft.class,
 
 AttributeChangeLeftTargetTest_1_LeftToRight.class, AttributeChangeLeftTargetTest_1_RightToLeft.class,
@@ -63,6 +69,8 @@ MoveModelElementTest_1_LeftToRight.class, MoveModelElementTest_1_RightToLeft.cla
 MoveModelElementTest_2_LeftToRight.class, MoveModelElementTest_2_RightToLeft.class,
 
 ReferenceChangeLeftTargetTest_1_LeftToRight.class, ReferenceChangeLeftTargetTest_1_RightToLeft.class,
+
+ReferenceChangeRightTargetTest_1_LeftToRight.class, ReferenceChangeRightTargetTest_1_RightToLeft.class,
 
 ReferenceOrderChangeTest_1_LeftToRight.class, ReferenceOrderChangeTest_1_RightToLeft.class,
 

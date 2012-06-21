@@ -1,46 +1,44 @@
-package org.eclipse.papyrus.uml.compare.merger.tests.standalone;
+package org.eclipse.papyrus.uml.compare.merger.tests.nested;
 
 import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompareTest {
+public class NestedModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractNestedCompareTest {
 
-	private static final String MODEL_PATH = "moveModelElement_2/";
+	private static final String MODEL_PATH = "modelElementChangeLeftTarget_1/";
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException {
-		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
+		AbstractNestedCompareTest.init(MODEL_PATH, true);
+		AbstractCompareTest.leftElement = (Class)AbstractNestedCompareTest.root.getOwnedMember("Class1");
+		AbstractCompareTest.rightElement = (Class)((Package)root.getPackagedElement("Package1")).getOwnedMember("Class1");
 	}
-
 
 	@Test
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
 	}
 
-	@Override
 	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue("The DiffElement is not a DiffGroup", diffElements.size() == 5);
-		for(DiffElement current : diffElements) {
-			Assert.assertTrue(current instanceof DiffGroup);
-			DiffGroup group = (DiffGroup)current;
-			Assert.assertTrue("The DiffGroup should contains only 1 DiffElement", group.getSubDiffElements().size() == 1);
-			DiffElement element = group.getSubDiffElements().get(0);
-			Assert.assertTrue(element instanceof MoveModelElement);
-		}
+		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
+		final DiffElement diffElement = diffElements.get(0);
+		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", ModelElementChangeLeftTarget.class), diffElement instanceof ModelElementChangeLeftTarget);
 	}
 
 	@Test
-	@Override
 	public void mergeTestAllExecutability() throws InterruptedException {
 		super.mergeTestAllExecutability();
 	}
@@ -51,6 +49,8 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 		super.testCommandExecution();
 	}
 
+
+
 	@Test
 	public void testModificationOnDiFile() {
 		super.testModificationOnDiFile(false);
@@ -59,7 +59,7 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 
 	@Test
 	public void testModificationOnNotationFile() {
-		super.testModificationOnNotationFile(false);//currently false, because this modification doesn't use the service edit, should be set to true later
+		super.testModificationOnNotationFile(false);
 	}
 
 
@@ -78,12 +78,15 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 	@Override
 	@Test
 	public void testResult() throws InterruptedException {
+		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("Property1", null);
+		Assert.assertNull("The right element has not been deleted by the merge action", rightAttribute);
 		super.testResult();
 	}
 
 	@Override
+	@Test
 	public void testXMIID() {
-		//nothing to do here!
+		//nothing to do
 	}
 
 	@Override
@@ -98,8 +101,4 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 		super.testRedo();
 	}
 
-	@Test
-	public void testMergeOrder() {
-		Assert.fail("not yet implemented");
-	}
 }

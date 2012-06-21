@@ -54,7 +54,7 @@ public class MoveModelElementTest_1_LeftToRight extends AbstractStandaloneCompar
 
 	@Test
 	public void testModificationOnNotationFile() {
-		super.testModificationOnNotationFile(false);
+		super.testModificationOnNotationFile(false);//currently false, because this modification doesn't use the service edit, should be set to true later
 	}
 
 
