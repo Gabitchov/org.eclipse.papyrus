@@ -11,9 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 
 /**
@@ -27,33 +25,26 @@ public class CSSAppearanceProvider extends AnnotationStyleProvider {
 
 	@Override
 	public boolean showElementIcon(EModelElement modelElement) {
-		EAnnotation displayNameLabelIcon = modelElement.getEAnnotation(VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
-		if(displayNameLabelIcon != null || !(modelElement instanceof CustomStyle)) {
-			return super.showElementIcon(modelElement);
+		if(modelElement instanceof CustomStyle) {
+			return ((CustomStyle)modelElement).showElementIcon();
 		}
-
-		return ((CustomStyle)modelElement).showElementIcon();
+		return super.showElementIcon(modelElement);
 	}
 
 	@Override
 	public int getQualifiedNameDepth(EModelElement modelElement) {
-		EAnnotation qualifiedNameAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.QUALIFIED_NAME);
-		if(qualifiedNameAnnotation != null || !(modelElement instanceof CustomStyle)) {
-			return super.getQualifiedNameDepth(modelElement);
+		if(modelElement instanceof CustomStyle) {
+			return ((CustomStyle)modelElement).getQualifiedNameDepth();
 		}
-
-		return ((CustomStyle)modelElement).getQualifiedNameDepth();
+		return super.getQualifiedNameDepth(modelElement);
 	}
 
 	@Override
 	public boolean showShadow(EModelElement modelElement) {
-		EAnnotation shadowAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.SHADOWFIGURE);
-
-		if(shadowAnnotation != null || !(modelElement instanceof CustomStyle)) {
-			return super.showShadow(modelElement);
+		if(modelElement instanceof CustomStyle) {
+			return ((CustomStyle)modelElement).showShadow();
 		}
-
-		return ((CustomStyle)modelElement).showShadow();
+		return super.showShadow(modelElement);
 	}
 
 }
