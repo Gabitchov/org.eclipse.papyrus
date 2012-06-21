@@ -11,10 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
+import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
+
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -47,7 +48,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
 
 
 public abstract class AbstractStyleDialog extends TrayDialog {
@@ -326,6 +326,9 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 	}
 
 	protected String getLabel(Expression expression) {
+		if(expression == null) {
+			return "";
+		}
 		String label = getLabel(expression.getTerms());
 		for(Subterm subTerm : expression.getSubterms()) {
 			if(subTerm.getOperator() != null) {

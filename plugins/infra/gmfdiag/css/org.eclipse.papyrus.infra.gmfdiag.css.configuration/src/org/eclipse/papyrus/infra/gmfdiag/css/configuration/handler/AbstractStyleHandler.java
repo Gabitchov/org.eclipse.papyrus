@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
+import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,6 +41,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.ATTRIBUTE_OP;
 import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
@@ -46,16 +49,17 @@ import org.eclipse.papyrus.infra.gmfdiag.css.AttributeValue;
 import org.eclipse.papyrus.infra.gmfdiag.css.CompositeSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css.CssFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
+import org.eclipse.papyrus.infra.gmfdiag.css.Expression;
 import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
 import org.eclipse.papyrus.infra.gmfdiag.css.SelectorCondition;
 import org.eclipse.papyrus.infra.gmfdiag.css.SimpleSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.handler.CSSRefreshHandler;
+import org.eclipse.papyrus.infra.gmfdiag.css.provider.CustomStyle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
-import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
 
 
 public abstract class AbstractStyleHandler extends AbstractHandler {
@@ -190,6 +194,10 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 			declarations.putAll(handleStyle((Style)view));
 		}
 
+		if(view instanceof CustomStyle) {
+			declarations.putAll(handleCustomStyle((CustomStyle)view, view));
+		}
+
 		return declarations;
 	}
 
@@ -262,6 +270,29 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		}
 
 		return declarations;
+	}
+
+	//FIXME: Use constants for the CSS Properties names
+	//FIXME: Use a helper to determine whether the custom styles are computed or forced
+	protected Map<Declaration, Boolean> handleCustomStyle(CustomStyle customStyle, View view) {
+		Map<Declaration, Boolean> declarations = new LinkedHashMap<Declaration, Boolean>();
+
+		GMFToCSSConverter converter = GMFToCSSConverter.instance;
+
+		handleCustomStyle(view, "elementIcon", VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON, declarations, converter.convert(customStyle.showElementIcon()));
+		handleCustomStyle(view, "shadow", VisualInformationPapyrusConstants.SHADOWFIGURE, declarations, converter.convert(customStyle.showShadow()));
+		handleCustomStyle(view, "qualifiedNameDepth", VisualInformationPapyrusConstants.QUALIFIED_NAME, declarations, converter.convert(customStyle.getQualifiedNameDepth()));
+
+		return declarations;
+	}
+
+	protected void handleCustomStyle(View view, String cssProperty, String eAnnotationName, Map<Declaration, Boolean> result, Expression value) {
+		Declaration cssDeclaration = CssFactory.eINSTANCE.createDeclaration();
+		cssDeclaration.setProperty(cssProperty);
+		cssDeclaration.setExpression(value);
+
+		boolean check = view.getEAnnotation(eAnnotationName) != null;
+		result.put(cssDeclaration, check);
 	}
 
 	protected Declaration handleStyleFeature(Style style, EStructuralFeature feature) {
