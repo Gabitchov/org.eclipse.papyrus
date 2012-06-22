@@ -12,10 +12,6 @@
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_vCOSlLu4EeGGxqg-2oDCrw" type="5029"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_vCOSlbu4EeGGxqg-2oDCrw" type="7017">
-      <children xmi:type="notation:Shape" xmi:id="_xZFcQLu4EeGGxqg-2oDCrw" type="3012" fontName="Segoe UI" lineColor="0">
-        <element xmi:type="uml:Property" href="model.uml#_xZDAALu4EeGGxqg-2oDCrw"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_xZFcQbu4EeGGxqg-2oDCrw"/>
-      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_vCOSlru4EeGGxqg-2oDCrw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_vCOSl7u4EeGGxqg-2oDCrw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_vCOSmLu4EeGGxqg-2oDCrw"/>
@@ -60,6 +56,10 @@
         </eAnnotations>
         <children xmi:type="notation:DecorationNode" xmi:id="_wqZxVru4EeGGxqg-2oDCrw" type="5014"/>
         <children xmi:type="notation:BasicCompartment" xmi:id="_wqZxV7u4EeGGxqg-2oDCrw" type="7011">
+          <children xmi:type="notation:Shape" xmi:id="_IEJFMLw4EeGs2JvhMc35NQ" type="3012" fontName="Segoe UI" lineColor="0">
+            <element xmi:type="uml:Property" href="model.uml#_ID3_cLw4EeGs2JvhMc35NQ"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_IEJFMbw4EeGs2JvhMc35NQ"/>
+          </children>
           <styles xmi:type="notation:TitleStyle" xmi:id="_wqZxWLu4EeGGxqg-2oDCrw"/>
           <styles xmi:type="notation:SortingStyle" xmi:id="_wqZxWbu4EeGGxqg-2oDCrw"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_wqZxWru4EeGGxqg-2oDCrw"/>

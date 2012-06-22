@@ -3,17 +3,17 @@
   <packageImport xmi:id="_sX-S0bu4EeGGxqg-2oDCrw">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_vCJaELu4EeGGxqg-2oDCrw" name="Class1">
-    <ownedAttribute xmi:id="_xZDAALu4EeGGxqg-2oDCrw" name="Property1" visibility="public">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xkGZcLu4EeGGxqg-2oDCrw" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xkGZcbu4EeGGxqg-2oDCrw" value="1"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="_xkHAgLu4EeGGxqg-2oDCrw">
-        <value xsi:nil="true"/>
-      </defaultValue>
-    </ownedAttribute>
-  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vCJaELu4EeGGxqg-2oDCrw" name="Class1"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_v2j5kLu4EeGGxqg-2oDCrw" name="Package1">
-    <packagedElement xmi:type="uml:Class" xmi:id="_wqWuALu4EeGGxqg-2oDCrw" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wqWuALu4EeGGxqg-2oDCrw" name="Class1">
+      <ownedAttribute xmi:id="_ID3_cLw4EeGs2JvhMc35NQ" name="Property1" visibility="public">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_INvGELw4EeGs2JvhMc35NQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_INvtILw4EeGs2JvhMc35NQ" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_INwUMLw4EeGs2JvhMc35NQ">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_xojboLu4EeGGxqg-2oDCrw"/>
 </uml:Model>
