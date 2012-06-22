@@ -8,8 +8,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlUtils;
@@ -46,8 +44,9 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 	public OnDemandLoadingModelSet() {
 		super();
 		// Register declared models
-		ModelsReader reader = new ModelsReader();
-		reader.readModel(this);
+		//	The ModelsReader has already been invoked in super()
+		//		ModelsReader reader = new ModelsReader();
+		//		reader.readModel(this);
 		proxyManager = new ProxyManager(this);
 	}
 
