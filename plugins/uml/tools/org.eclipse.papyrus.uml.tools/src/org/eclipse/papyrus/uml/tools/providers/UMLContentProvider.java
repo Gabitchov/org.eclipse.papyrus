@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
@@ -81,6 +82,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 				// try to retrieve the root from the object to edit
 				root = ServiceUtilsForResource.getInstance().getModelSet(eObject.eResource());
 			} catch (ServiceException e) {
+				//Nothing
 			}
 		}
 		if(root == null) {
@@ -88,6 +90,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 			try {
 				root = ServiceUtilsForActionHandlers.getInstance().getModelSet();
 			} catch (ServiceException e) {
+				//Nothing
 			}
 		}
 		this.root = root;
@@ -112,6 +115,10 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 			if(umlReference != null) {
 				return getStereotypedReferenceContentProvider(source, feature, (Stereotype)umlReference.getType());
 			}
+		}
+
+		if(feature == null) {
+			return EmptyContentProvider.instance;
 		}
 
 		if(feature.getEType() instanceof EEnum) {

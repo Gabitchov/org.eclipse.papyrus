@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.profile;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -29,6 +30,8 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.profile";
+
+	public static LogHelper log;
 
 	// The shared instance
 	/**
@@ -58,6 +61,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		log = new LogHelper(this);
 	}
 
 	/*

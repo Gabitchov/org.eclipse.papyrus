@@ -103,5 +103,12 @@
          </constraints>
       </constraintProvider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.model">
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.uml.profile.model.ProfileApplicationModel"
+            description="Automatically reapplies local profiles when they&apos;ve been redefined">
+      </modelSetSnippet>
+   </extension>
 
 </plugin>

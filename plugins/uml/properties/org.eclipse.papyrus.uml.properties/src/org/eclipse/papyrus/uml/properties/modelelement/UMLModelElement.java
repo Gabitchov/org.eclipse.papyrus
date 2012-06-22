@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFactory;
@@ -150,6 +151,10 @@ public class UMLModelElement extends EMFModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+
+		if(feature == null) {
+			return EmptyContentProvider.instance;
+		}
 
 		return new UMLContentProvider(source, feature);
 	}
