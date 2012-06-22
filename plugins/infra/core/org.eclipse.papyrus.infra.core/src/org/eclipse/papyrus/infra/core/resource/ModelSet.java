@@ -61,6 +61,7 @@ import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesMod
  * 
  */
 public class ModelSet extends ResourceSetImpl {
+
 	/**
 	 * Id use to register the EditinDomain into the registry
 	 */
@@ -131,8 +132,9 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public IModel getModelChecked(String key) throws NotFoundException {
 		IModel model = models.get(key);
-		if(model == null)
+		if(model == null) {
 			throw new NotFoundException("Can't find model for identifier '" + key + "'.");
+		}
 
 		return model;
 	}
@@ -172,14 +174,14 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
 		Resource r = null;
-		if (modelResource != null) {
+		if(modelResource != null) {
 			URI trimmedModelURI = modelResource.getURI().trimFileExtension();
 			try {
 				r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
-			} catch (WrappedException e){
-				if (ModelUtils.isDegradedModeAllowed(e.getCause())) {
+			} catch (WrappedException e) {
+				if(ModelUtils.isDegradedModeAllowed(e.getCause())) {
 					r = getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), false);
-					if (r == null) {
+					if(r == null) {
 						throw e;
 					}
 				}
@@ -193,7 +195,8 @@ public class ModelSet extends ResourceSetImpl {
 	 * This method is called by getResource and createResource before returning
 	 * the resource to the caller so we can set options on the resource.
 	 * 
-	 * @param r, can be null
+	 * @param r
+	 *        , can be null
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
@@ -234,8 +237,9 @@ public class ModelSet extends ResourceSetImpl {
 	 * @throws BadStateException
 	 */
 	protected IPath getFilenameWithoutExtensionChecked() throws BadStateException {
-		if(filenameWithoutExtension == null)
+		if(filenameWithoutExtension == null) {
 			throw new BadStateException("Path should be set prior calling any operations.");
+		}
 
 		return filenameWithoutExtension;
 	}
@@ -327,6 +331,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @returns The loaded model.
 	 * @deprecated Use {@link #importModel(ModelIdentifier, IFile)}
 	 */
+	@Deprecated
 	public IModel loadModel(String modelIdentifier, IFile file) throws ModelException {
 
 		importModels(new ModelIdentifiers(modelIdentifier), file);
@@ -368,8 +373,9 @@ public class ModelSet extends ResourceSetImpl {
 		snippets.performStart(this);
 
 		// Report exceptions if any
-		if(exceptions != null)
+		if(exceptions != null) {
 			throw exceptions;
+		}
 	}
 
 	/**
@@ -393,8 +399,9 @@ public class ModelSet extends ResourceSetImpl {
 
 			// Load models using the default path
 			model.importModel(path);
-			if(filenameWithoutExtension != null)
+			if(filenameWithoutExtension != null) {
 				model.changeModelPath(filenameWithoutExtension);
+			}
 		}
 	}
 
@@ -505,15 +512,17 @@ public class ModelSet extends ResourceSetImpl {
 			iter.next().unload();
 			iter.remove();
 		}
-		
+
 		// Dispose Editing Domain
-		transactionalEditingDomain.dispose();
+		if(transactionalEditingDomain != null) {
+			transactionalEditingDomain.dispose();
+		}
 		// Detach associated factories
-		if (adapterFactories != null) {
+		if(adapterFactories != null) {
 			adapterFactories.clear();
 		}
 		EList<Adapter> adapters = eAdapters();
-		if (adapters != null) {
+		if(adapters != null) {
 			adapters.clear();
 		}
 	}
