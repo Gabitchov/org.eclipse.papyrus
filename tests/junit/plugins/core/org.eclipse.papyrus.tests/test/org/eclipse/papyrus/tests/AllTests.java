@@ -40,14 +40,14 @@ public class AllTests {
 
 		/* core */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.core.tests.AllTests"));
-		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"));
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.core.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.core.sasheditor.tests.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.infra.core.sasheditor.di", "org.eclipse.papyrus.infra.core.sasheditor.di.tests.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"));
 
 		/* infra */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.edit.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.services.edit.tests.suites.AllTests"));
-		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.infra.emf", "org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest"));
-		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.infra.extendedtypes", "org.eclipse.papyrus.infra.extendedtypes.AllTests"));
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.emf.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest"));
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.extendedtypes.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.extendedtypes.AllTests"));
 
 		/* views */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.modelexplorer.tests.AllTests.class));
@@ -66,7 +66,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.tests.SysmlAllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.sysml.service.types.Activator.PLUGIN_ID, "org.eclipse.papyrus.sysml.service.types.tests.suites.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.blockdefinition", "org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites.AllTests"));
-		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.internalblock", "org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites.AllTests"));
+		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.sysml.diagram.internalblock.Activator.PLUGIN_ID, "org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.modelexplorer", "org.eclipse.papyrus.sysml.modelexplorer.tests.suites.AllTests"));
 
 		//end
