@@ -160,4 +160,8 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	public String getBundleLocalization() {
 		return manifest.getBundleLocalization();
 	}
+
+	public void setSingleton(boolean singleton) {
+		manifest.setSingleton(singleton);
+	}
 }
