@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.compare.merger.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
@@ -126,6 +127,10 @@ public class TransactionalMergeService {
 		}
 		if(merger instanceof ITransactionalMerger) {
 			if(leftToRight && merger.canUndoInTarget()) {
+				Command tmp = ((ITransactionalMerger)merger).getUndoInTargetCommand(domain);
+				if(!tmp.canExecute()){
+					System.out.println("je ne peux pas m'executer à cause de : " + merger);
+				}
 				cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain));
 			} else if(!leftToRight && merger.canApplyInOrigin()) {
 				cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));

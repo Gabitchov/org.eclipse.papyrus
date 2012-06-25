@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
@@ -147,7 +148,7 @@ public class PapyrusCompareEObjectCopier extends EMFCompareEObjectCopier {
 			} else {
 				//target.eSet(targetReference, matchedValue);
 				//tested with the project UpdateReferenceExample2
-				return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, targetReference);
+				return PapyrusMergeCommandProvider.INSTANCE.getSetCommand(domain, target, targetReference, matchedValue);
 			}
 		}
 		//tested with ReferenceChangeLefttargetExample2
