@@ -40,7 +40,7 @@ public class DirectEditorRegistry {
 		assert(directEditor!=null);
 		objectToEdits.add(directEditor.getObjectToEdit());
 		Integer priority=directEditor.getPriority();
-		
+
 		//take in account priority of preferences
 		String preferedLanguage = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + directEditor.getObjectToEdit());
 
@@ -69,7 +69,10 @@ public class DirectEditorRegistry {
 
 			String id= IDirectEditorsIds.EDITOR_FOR_ELEMENT + defaultDirectEditor.getObjectToEdit();
 			String language= defaultDirectEditor.getLanguage();
-			Activator.getDefault().getPreferenceStore().setValue(id, language);
+			//if preference set direct editor as default, do nothing
+			if(!Activator.getDefault().getPreferenceStore().getString(id).equals(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR)){
+				Activator.getDefault().getPreferenceStore().setValue(id, language);
+			}
 		}
 	}
 	@Override
@@ -118,7 +121,6 @@ public class DirectEditorRegistry {
 
 			}
 		}
-
 		return null;
 	}
 
