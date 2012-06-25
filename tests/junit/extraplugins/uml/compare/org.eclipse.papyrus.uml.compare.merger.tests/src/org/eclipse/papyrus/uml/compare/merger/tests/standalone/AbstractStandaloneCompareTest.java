@@ -14,11 +14,10 @@ import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
-import org.eclipse.papyrus.infra.emf.compare.common.internal.utils.PapyrusFileLoader;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
@@ -70,7 +69,7 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		return diff;
 	}
 
-	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException {
+	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException{
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
 
@@ -81,13 +80,10 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 
 		comparedFiles.add(project.getFile(LEFT + "." + "uml"));
 		comparedFiles.add(project.getFile(RIGHT + "." + "uml"));
-
-		//TODO associate the EditingDomain!
-		set = new ResourceSetImpl();
-		domain = TransactionalEditingDomainManager.createDefaultTransactionalEditingDomain(set);
-		EObject[] roots = PapyrusFileLoader.loadPapyrusFiles(set, comparedFiles, true);
-		leftElement = (Model)roots[0];
-		rightElement = (Model)roots[1];
+		AbstractCompareTest.loadModels(comparedFiles);
+		
+		leftElement = (Model)roots.get(0);
+		rightElement = (Model)roots.get(1);
 		AbstractCompareTest.leftToRight = leftToRight;
 	}
 

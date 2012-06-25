@@ -1,25 +1,39 @@
 package org.eclipse.papyrus.uml.compare.merger.tests;
 
+import static org.eclipse.papyrus.infra.core.Activator.log;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
+import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.uml.compare.file.editor.utils.ServicesRegistryUtils;
 import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,7 +45,7 @@ public abstract class AbstractCompareTest {
 
 	protected static TransactionalEditingDomain domain;
 
-	protected static ResourceSet set;
+	protected static ModelSet set;
 
 	/** indicates the direction of the merge */
 	protected static boolean leftToRight;
@@ -46,7 +60,27 @@ public abstract class AbstractCompareTest {
 	/** This field is used to store the initial Differences before to do the merge */
 	private static List<DiffElement> initialDifferences;
 
+	protected static ServicesRegistry servicesRegistry;
+	
+	protected static List<EObject> roots;
 
+	public static void loadModels(final List<IFile> comparedFiles) throws ServiceException, ModelMultiException{
+		roots = new ArrayList<EObject>();
+		servicesRegistry = ServicesRegistryUtils.createAndInitServiceRegistryForUMLCompareFile();
+		set = servicesRegistry.getService(ModelSet.class);
+		domain =set.getTransactionalEditingDomain();
+		for(final IFile current : comparedFiles) {
+			set.loadModels(current);
+			final String filePath = current.getFullPath().toString();
+			URI uri = URI.createPlatformResourceURI(filePath, false);
+			EObject root = UML2Util.load(set, uri, UMLPackage.Literals.PACKAGE);
+			set.getResource(uri, false).setTrackingModification(true);
+			Assert.assertNotNull("The root of the model is null",root);
+			roots.add(root);
+		}
+	}
+	
+	
 	/**
 	 * This test tests the contents of the differences found.
 	 * 
@@ -225,6 +259,13 @@ public abstract class AbstractCompareTest {
 			current.unload();
 		}
 		resources.clear();
+		if(servicesRegistry != null) {
+			try {
+				servicesRegistry.disposeRegistry();
+			} catch (ServiceMultiException e) {
+				log.error(e);
+			}
+		}
 		//we close all the editors
 		GenericUtils.closeAllEditors();
 	}

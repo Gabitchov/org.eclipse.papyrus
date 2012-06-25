@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AttributeOrderChange;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,7 +19,7 @@ public class AttributeOrderChangeTest_1_LeftToRight extends AbstractStandaloneCo
 	private static final String MODEL_PATH = "attributeOrderChange_1/";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException {
+	public static void init() throws CoreException, IOException  , ModelMultiException, ServiceException{
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 

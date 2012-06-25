@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.junit.Assert;
@@ -19,7 +21,7 @@ public class UpdateAttributeTest_1_LeftToRight extends AbstractStandaloneCompare
 	private static final String MODEL_PATH = "updateAttribute_1/";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException {
+	public static void init() throws CoreException, IOException  , ModelMultiException, ServiceException{
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 

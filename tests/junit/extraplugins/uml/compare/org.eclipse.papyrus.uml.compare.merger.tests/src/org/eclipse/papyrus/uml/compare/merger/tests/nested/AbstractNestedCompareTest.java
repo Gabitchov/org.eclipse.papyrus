@@ -10,9 +10,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
-import org.eclipse.papyrus.infra.emf.compare.common.internal.utils.PapyrusFileLoader;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
@@ -21,7 +20,6 @@ import org.eclipse.papyrus.uml.compare.merger.services.nested.NestedMergeUtils;
 import org.eclipse.papyrus.uml.compare.merger.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.merger.tests.Activator;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 
 ;
@@ -43,19 +41,17 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 	private static final String MODEL = "model";
 
 
-	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException {
+
+	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ServiceException, ModelMultiException {
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
+		AbstractCompareTest.leftToRight = leftToRight;
 		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
 		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, MODEL);
 		final List<IFile> comparedFiles = new ArrayList<IFile>();
-
 		comparedFiles.add(project.getFile(MODEL + "." + "uml"));
-		set = new ResourceSetImpl();
-		domain = TransactionalEditingDomainManager.createDefaultTransactionalEditingDomain(set);
-		EObject[] roots = PapyrusFileLoader.loadPapyrusFiles(set, comparedFiles, true);
-		root = (Model)roots[0];
-		AbstractNestedCompareTest.leftToRight = leftToRight;
+		AbstractCompareTest.loadModels(comparedFiles);
+		root = (Package)roots.get(0);
 	}
 
 	/**

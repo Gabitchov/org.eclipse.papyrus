@@ -8,6 +8,8 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +20,7 @@ public class ReferenceChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 	private static final String MODEL_PATH = "referenceChangeRightTarget_1/";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException {
+	public static void init() throws CoreException, IOException  , ModelMultiException, ServiceException{
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 

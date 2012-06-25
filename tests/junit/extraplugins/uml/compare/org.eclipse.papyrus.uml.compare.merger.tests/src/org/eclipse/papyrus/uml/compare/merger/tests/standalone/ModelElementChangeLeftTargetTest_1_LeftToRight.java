@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -24,7 +26,7 @@ public class ModelElementChangeLeftTargetTest_1_LeftToRight extends AbstractStan
 	final String PROPERTY_NAME = "Property1";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException {
+	public static void init() throws CoreException, IOException , ModelMultiException, ServiceException {
 		AbstractStandaloneCompareTest.init(MODEL_PATH, true);
 	}
 

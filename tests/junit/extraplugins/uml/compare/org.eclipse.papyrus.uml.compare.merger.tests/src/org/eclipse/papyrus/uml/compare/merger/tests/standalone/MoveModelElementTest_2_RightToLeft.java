@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,7 +19,7 @@ public class MoveModelElementTest_2_RightToLeft extends AbstractStandaloneCompar
 	private static final String MODEL_PATH = "moveModelElement_2/";
 
 	@BeforeClass
-	public static void init() throws CoreException, IOException {
+	public static void init() throws CoreException, IOException  , ModelMultiException, ServiceException{
 		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
 	}
 
