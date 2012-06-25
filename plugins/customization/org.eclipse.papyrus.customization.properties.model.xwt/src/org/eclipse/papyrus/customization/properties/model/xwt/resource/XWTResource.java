@@ -47,7 +47,6 @@ import org.eclipse.papyrus.customization.properties.model.xwt.format.XMLFormatte
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
