@@ -11,18 +11,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultActionHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
@@ -117,7 +131,59 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 */
 	@Override
 	protected Command getDropObjectsCommand(DropObjectsRequest request) {
-		return getCustomCommand(request);
+		Command dropCommand = getCustomCommand(request);
+
+		if(dropCommand != null && dropCommand.canExecute() && request.getObjects().size() > 1) {
+			return layoutDroppedObjects(dropCommand);
+		}
+
+		return dropCommand;
+	}
+
+	protected Command layoutDroppedObjects(final Command dropCommand) {
+		AbstractTransactionalCommand spacingCommand = new AbstractTransactionalCommand((TransactionalEditingDomain)EMFHelper.resolveEditingDomain(getHost()), "Spacing elements", Collections.EMPTY_LIST) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				if(dropCommand instanceof ICommandProxy) {
+					ICommand gmfCommand = ((ICommandProxy)dropCommand).getICommand();
+					CommandResult previousCommandResult = gmfCommand.getCommandResult();
+					if(previousCommandResult != null) {
+						Object returnValue = previousCommandResult.getReturnValue();
+						if(returnValue instanceof List<?>) {
+							List<?> returnedElements = (List<?>)returnValue;
+
+							int i = 0;
+							for(Object returnedElement : returnedElements) {
+								if(returnedElement instanceof CreateViewRequest.ViewDescriptor) {
+									CreateViewRequest.ViewDescriptor newViewDescriptor = (CreateViewRequest.ViewDescriptor)returnedElement;
+									Shape newShape = (Shape)newViewDescriptor.getAdapter(Shape.class);
+									if(newShape != null) {
+										LayoutConstraint constraint = newShape.getLayoutConstraint();
+										if(constraint instanceof Bounds) {
+											Bounds bounds = (Bounds)constraint;
+											updateBounds(bounds, i);
+											i++;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				return CommandResult.newOKCommandResult();
+			}
+
+		};
+
+		return dropCommand.chain(new ICommandProxy(spacingCommand));
+	}
+
+	protected void updateBounds(Bounds bounds, int position) {
+		int x = bounds.getX();
+		int y = bounds.getY();
+		bounds.setX(x + 15 * position);
+		bounds.setY(y + 15 * position);
 	}
 
 	/**
