@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.uml.compare.file.messages.Messages;
 import org.eclipse.ui.IPersistableElement;
 
 /**
@@ -59,7 +60,7 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	 * @return
 	 */
 	public ImageDescriptor getImageDescriptor() {
-		throw new UnsupportedOperationException();
+		return null;
 	}
 
 	/**
@@ -69,7 +70,7 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	 * @return
 	 */
 	public String getName() {
-		return "";
+		return Messages.CompareUMLFileInput_PapyrusCompareUMLFileEditorInput;
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class CompareUMLFileInput implements ICompareUMLFileInput {
 	 * @return
 	 */
 	public String getToolTipText() {
-		throw new UnsupportedOperationException();
+		return getName();
 	}
 
 	/**

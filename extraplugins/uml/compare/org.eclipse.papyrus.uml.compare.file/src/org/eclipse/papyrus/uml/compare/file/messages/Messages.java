@@ -22,6 +22,8 @@ public class Messages extends NLS {
 	public static String CompareUMLFileEditor_ICantLoadTheModel;
 
 	public static String CompareUMLFileHandler_ICantOpenThePapyrusCompareEdito;
+
+	public static String CompareUMLFileInput_PapyrusCompareUMLFileEditorInput;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

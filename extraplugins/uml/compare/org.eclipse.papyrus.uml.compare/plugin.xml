@@ -5,7 +5,7 @@
          point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.uml.compare.factory.UMLCompareEditorFactory"
-            icon="icons/papyrus_compare_editor.gif">
+            icon="icons/papyrus_compare_16x16.png">
       </editorDiagram>
    </extension>
    <extension
@@ -41,7 +41,7 @@
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <command
                commandId="org.eclipse.papyrus.uml.compare.command"
-               icon="icons/papyrus_compare_editor.gif"
+               icon="icons/papyrus_compare_16x16.png"
                label="Compare 2 elements"
                style="push"
                tooltip="Compare 2 elements">

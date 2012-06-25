@@ -39,7 +39,7 @@
             locationURI="popup:org.eclipse.ui.popup.any">
          <command
                commandId="org.eclipse.papyrus.uml.compare.file.command"
-               icon="icons/papyrus_compare_editor.gif"
+               icon="icons/papyrus_compare_16x16.png"
                style="push"
                tooltip="Compare Models synchronizing models and views">
             <visibleWhen
@@ -54,7 +54,7 @@
             class="org.eclipse.papyrus.uml.compare.file.editor.CompareUMLFileEditor"
             contributorClass="org.eclipse.papyrus.uml.compare.file.editor.PapyrusActionBar"
             default="false"
-            icon="icons/papyrus_compare_editor.gif"
+            icon="icons/papyrus_compare_16x16.png"
             id="org.eclipse.papyrus.uml.compare.file.editor"
             name="Papyrus Model Compare Editor">
       </editor>
@@ -69,7 +69,7 @@
                class="org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileHandler"
                definitionId="org.eclipse.papyrus.uml.compare.file.command"
                enablesFor="2"
-               icon="icons/papyrus_compare_editor.gif"
+               icon="icons/papyrus_compare_16x16.png"
                id="org.eclipse.papyrus.uml.compare.file"
                label="Model Each Other"
                menubarPath="compareWithMenu/compareWithGroup"

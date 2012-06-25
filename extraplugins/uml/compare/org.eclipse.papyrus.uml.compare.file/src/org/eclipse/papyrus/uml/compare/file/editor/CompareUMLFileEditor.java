@@ -13,10 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.file.editor;
 
-import java.io.IOException;
+import static org.eclipse.papyrus.infra.core.Activator.log;
+
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -25,6 +26,7 @@ import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
@@ -36,30 +38,33 @@ import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.resource.ModelException;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
-import org.eclipse.papyrus.infra.emf.compare.common.internal.utils.PapyrusFileLoader;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.compare.file.Activator;
+import org.eclipse.papyrus.uml.compare.file.editor.utils.ServicesRegistryUtils;
 import org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileInput;
-import org.eclipse.papyrus.uml.compare.file.messages.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.uml2.common.util.UML2Util;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLPackage;
+
+//import org.eclipse.uml2.uml.utils.UMLUtil;
 
 public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusCompareEditor {//extends CompareEditor{
 
@@ -68,7 +73,7 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 
 	private final TransactionalEditingDomain editingDomain;
 
-	private final ResourceSet set;
+	private ModelSet set;
 
 	private final ObjectUndoContext undoContext;
 
@@ -78,6 +83,12 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	private EObject roots[];
 
 
+	//always null, maybe, excepted when we are in the init method
+	private CompareUMLFileInput tmpInput;
+
+	private ServicesRegistry servicesRegistry;
+
+
 	/**
 	 * 
 	 * Constructor.
@@ -85,8 +96,15 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	 */
 	public CompareUMLFileEditor() {
 		super();
-		set = new ResourceSetImpl();
-		editingDomain = TransactionalEditingDomainManager.createDefaultTransactionalEditingDomain(set);
+		roots = new EObject[2];
+		this.servicesRegistry = getServicesRegistry();
+		try {
+			set = servicesRegistry.getService(ModelSet.class);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+
+		this.editingDomain = set.getTransactionalEditingDomain();
 		undoContext = new ObjectUndoContext(this, "PayrusUMLFileCompareUndoContext"); //$NON-NLS-1$
 		historyListener = new IOperationHistoryListener() {
 
@@ -160,14 +178,26 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 		return null;
 	}
 
-	//always null, maybe, excepted when we are in the init method
-	private CompareUMLFileInput tmpInput;
-
 	@Override
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
+
 		if(input instanceof CompareUMLFileInput) {
 			this.tmpInput = (CompareUMLFileInput)input;
-			roots = PapyrusFileLoader.loadPapyrusFiles(set, ((CompareUMLFileInput)input).getComparedFiles(), false);
+			final List<IFile> files = ((CompareUMLFileInput)input).getComparedFiles();
+			for(int i = 0; i < files.size(); i++) {
+				final IFile current = files.get(i);
+				try {
+					set.loadModels(current);
+					final String filePath = current.getFullPath().toString();
+					URI uri = URI.createPlatformResourceURI(filePath, false);
+					Package root = UML2Util.load(set, uri, UMLPackage.Literals.PACKAGE);
+					Assert.isNotNull(root, "The root of the model is null");
+					roots[i] = root;
+				} catch (ModelMultiException e1) {
+					Activator.log.error(NLS.bind("Problem for loading the file {0}", current), e1);
+				}
+			}
+
 			ModelCompareEditorInput newInput = getCompareInput(roots[0], roots[1]);
 			this.tmpInput = null;
 			super.init(site, newInput);
@@ -229,6 +259,14 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	public void dispose() {
 		getOperationHistory().removeOperationHistoryListener(historyListener);
 		removeUndoRedoListener();
+		if(this.servicesRegistry != null) {
+			try {
+				this.servicesRegistry.disposeRegistry();
+			} catch (ServiceMultiException e) {
+				log.error(e);
+			}
+		}
+
 		super.dispose();
 	}
 
@@ -260,5 +298,16 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 		viewer.setInput(input2);
 	}
 
+	/**
+	 * Returns the service registry associated to the editor.
+	 * 
+	 * @return the servicesRegistry The registry.
+	 */
+	public ServicesRegistry getServicesRegistry() {
+		if(servicesRegistry == null) {
+			servicesRegistry = ServicesRegistryUtils.createAndInitServiceRegistryForUMLCompareFile();
+		}
+		return servicesRegistry;
+	}
 
 }
