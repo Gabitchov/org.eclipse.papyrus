@@ -14,30 +14,27 @@
 package org.eclipse.papyrus.uml.compare.file.editor;
 
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
+import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
-import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 
-public class PapyrusActionBar extends EditingDomainActionBarContributor{
+public class PapyrusActionBar extends EditingDomainActionBarContributor {
 
 	public void init(IActionBars actionBars) {
 		super.init(actionBars);
 
-	    ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-	    
-		// override the superclass implementation of these actions
-	    undoAction = new UndoActionWrapper();
-	    undoAction.setImageDescriptor(
-	    		sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
-	    actionBars.setGlobalActionHandler(
-	    		ActionFactory.UNDO.getId(), undoAction);
+		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 
-	    redoAction = new RedoActionWrapper();
-	    redoAction.setImageDescriptor(
-	    		sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
-	    actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
+		// override the superclass implementation of these actions
+		undoAction = new UndoActionWrapper();
+		undoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
+		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), undoAction);
+
+		redoAction = new RedoActionWrapper();
+		redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
+		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
 	}
 }

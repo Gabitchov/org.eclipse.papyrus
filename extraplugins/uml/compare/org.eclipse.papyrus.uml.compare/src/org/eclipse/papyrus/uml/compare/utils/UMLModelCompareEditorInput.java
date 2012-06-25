@@ -62,18 +62,16 @@ public class UMLModelCompareEditorInput extends PapyrusModelCompareEditorInput {
 	/**
 	 * 
 	 * @see org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput#createModelCompareInput(org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot)
-	 *
+	 * 
 	 * @param snap
 	 * @return
 	 */
 	@Override
 	protected ModelCompareInput createModelCompareInput(final ComparisonSnapshot snap) {
 		final TransactionalEditingDomain domain = getEditingDomain();
-		if (snap instanceof ComparisonResourceSetSnapshot) {
-			return new PapyrusModelCompareInput(domain, ((ComparisonResourceSetSnapshot)snap).getMatchResourceSet(),
-					((ComparisonResourceSetSnapshot)snap).getDiffResourceSet());
+		if(snap instanceof ComparisonResourceSetSnapshot) {
+			return new PapyrusModelCompareInput(domain, ((ComparisonResourceSetSnapshot)snap).getMatchResourceSet(), ((ComparisonResourceSetSnapshot)snap).getDiffResourceSet());
 		}
-		return new PapyrusModelCompareInput(domain, ((ComparisonResourceSnapshot)snap).getMatch(),
-				((ComparisonResourceSnapshot)snap).getDiff());
+		return new PapyrusModelCompareInput(domain, ((ComparisonResourceSnapshot)snap).getMatch(), ((ComparisonResourceSnapshot)snap).getDiff());
 	}
 }

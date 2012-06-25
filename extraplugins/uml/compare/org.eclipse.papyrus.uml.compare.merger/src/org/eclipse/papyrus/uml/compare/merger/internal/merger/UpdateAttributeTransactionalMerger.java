@@ -18,7 +18,6 @@ package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateAttributeMerger;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.util.EFactory;
@@ -31,13 +30,12 @@ import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 /**
  * 
  * Transactional version of the class {@link UpdateAttributeMerger}
- *
+ * 
  */
 public class UpdateAttributeTransactionalMerger extends DefaultTransactionalMerger {//UpdateAttributeMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link UpdateAttributeMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link UpdateAttributeMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -55,8 +53,7 @@ public class UpdateAttributeTransactionalMerger extends DefaultTransactionalMerg
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link UpdateAttributeMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link UpdateAttributeMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */

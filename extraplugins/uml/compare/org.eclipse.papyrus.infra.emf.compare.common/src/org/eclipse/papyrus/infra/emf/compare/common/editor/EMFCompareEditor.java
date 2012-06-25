@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.Activator;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.listener.CloseEditorTriggerListener;
+import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.EMFCompareUtils;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
@@ -289,15 +290,20 @@ public class EMFCompareEditor extends AbstractPapyrusCompareEditor implements IR
 
 
 	public EditingDomain getEditingDomain() {
-		TransactionalEditingDomain domain = null;
-		try {
-			domain = servicesRegistry.getService(TransactionalEditingDomain.class);
-		} catch (ServiceException e) {
-			Activator.log.error("I can't find the TransactionalEditingDomain", e);
-		}
-
-		return domain;
+		return (EditingDomain)getAdapter(TransactionalEditingDomain.class);
 	}
 
-
+	@Override
+	public Object getAdapter(Class adapter) {
+		if(adapter.equals(TransactionalEditingDomain.class)) {
+			TransactionalEditingDomain domain = null;
+			try {
+				domain = servicesRegistry.getService(adapter);
+			} catch (ServiceException e) {
+				Activator.log.error(Messages.EMFCompareEditor_EditingDomainNotFound, e);
+			}
+			return domain;
+		}
+		return super.getAdapter(adapter);
+	}
 }

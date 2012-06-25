@@ -33,6 +33,6 @@ public class PapyrusMergeFactory {
 
 		return MergeFactory.createMerger(element);
 	}
-	
-	
+
+
 }

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.compare.utils;
 
 import java.util.List;
 
-
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -38,12 +37,12 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	/**
 	 * The editing domain used to do the merge
 	 */
-	final TransactionalEditingDomain domain;
+	final private TransactionalEditingDomain domain;
 
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param matchResourceSet
 	 * @param diffResourceSet
@@ -56,7 +55,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param snapshot
 	 */
@@ -68,7 +67,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param snapshot
 	 */
@@ -80,7 +79,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param matchModel
 	 * @param diffModel
@@ -94,7 +93,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param matchResourceset
 	 * @param diffResourceSet
@@ -108,7 +107,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param domain
 	 * @param match
 	 * @param diff
@@ -129,12 +128,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	 *        to the right model, <code>False</code> otherwise.
 	 */
 	protected void doCopy(DiffElement element, boolean leftToRight) {
-		if(domain != null) {
-			TransactionalMergeService.merge(domain, element, leftToRight);
-		} else {
-			throw new NullPointerException("The editingdomain is null");
-			//			super.doCopy(element, leftToRight);
-		}
+		TransactionalMergeService.merge(domain, element, leftToRight);
 	}
 
 	/**
@@ -148,12 +142,7 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	 *        to the right model, <code>False</code> otherwise.
 	 */
 	protected void doCopy(List<DiffElement> elements, boolean leftToRight) {
-		if(domain != null) {
-			TransactionalMergeService.merge(domain, elements, leftToRight);
-		} else {
-			throw new NullPointerException("The editingdomain is null");
-//			super.doCopy(elements, leftToRight);
-		}
+		TransactionalMergeService.merge(domain, elements, leftToRight);
 	}
 
 }

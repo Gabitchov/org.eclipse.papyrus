@@ -15,38 +15,27 @@ package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeRightTargetMerger;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
-import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
 /**
  * 
  * Transactional version of the class {@link AttributeChangeRightTargetMerger}
- *
+ * 
  */
 public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link AttributeChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -58,10 +47,10 @@ public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransa
 		final EAttribute attr = theDiff.getAttribute();
 		try {
 			int valueIndex = -1;
-			if (attr.isMany()) {
+			if(attr.isMany()) {
 				final EObject rightElement = theDiff.getRightElement();
 				final Object rightValues = rightElement.eGet(attr);
-				if (rightValues instanceof List) {
+				if(rightValues instanceof List) {
 					final List rightValuesList = (List)rightValues;
 					valueIndex = rightValuesList.indexOf(value);
 				}
@@ -73,7 +62,7 @@ public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransa
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeChangeRightTargetMerger}
+	 * The native implementation, duplicated Code from {@link AttributeChangeRightTargetMerger}
 	 * 
 	 * {@inheritDoc}
 	 * 
@@ -91,7 +80,7 @@ public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransa
 			EMFComparePlugin.log(e, true);
 		}
 	}
-	
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
 		final AttributeChangeRightTarget theDiff = (AttributeChangeRightTarget)this.diff;
@@ -100,10 +89,10 @@ public class AttributeChangeRightTargetTransactionalMerger extends DefaultTransa
 		final EAttribute attr = theDiff.getAttribute();
 		try {
 			int valueIndex = -1;
-			if (attr.isMany()) {
+			if(attr.isMany()) {
 				final EObject rightElement = theDiff.getRightElement();
 				final Object rightValues = rightElement.eGet(attr);
-				if (rightValues instanceof List) {
+				if(rightValues instanceof List) {
 					final List<?> rightValuesList = (List<?>)rightValues;
 					valueIndex = rightValuesList.indexOf(value);
 				}

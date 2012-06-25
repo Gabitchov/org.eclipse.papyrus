@@ -112,6 +112,7 @@ public class MoveWithIndexCommand extends MoveElementsCommand {
 		super.canExecute();
 		return true;
 	}
+
 	/**
 	 * 
 	 * @return

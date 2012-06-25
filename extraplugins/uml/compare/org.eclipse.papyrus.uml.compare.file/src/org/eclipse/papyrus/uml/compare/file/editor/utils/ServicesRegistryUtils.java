@@ -20,10 +20,10 @@ public class ServicesRegistryUtils {
 	}
 
 	public static ServicesRegistry createAndInitServiceRegistryForUMLCompareFile() {
-		ServicesRegistry servicesRegistry=null;
+		ServicesRegistry servicesRegistry = null;
 		// Create Services Registry
 		try {
-			 servicesRegistry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+			servicesRegistry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
 			// Start the ModelSet first, and load if from the specified File
 			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
 			servicesToStart.add(ModelSet.class);

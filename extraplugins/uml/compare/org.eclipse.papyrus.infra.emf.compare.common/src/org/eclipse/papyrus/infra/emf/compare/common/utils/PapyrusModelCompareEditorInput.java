@@ -18,6 +18,7 @@ import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.compare.Splitter;
 import org.eclipse.compare.contentmergeviewer.ContentMergeViewer;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
@@ -25,10 +26,8 @@ import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.structure.ModelStructureMergeViewer;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.messages.Messages;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer.PapyrusTransactionalModelContentMergeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.structural.viewer.PapyrusCustomizableParameterizedStructureMergeViewer;
@@ -171,12 +170,9 @@ public class PapyrusModelCompareEditorInput extends ModelCompareEditorInput impl
 	 *         the EditingDomain for the current Editor, or <code>null</code> if not found
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		TransactionalEditingDomain domain=null;
-		if(this.editor instanceof AbstractMultiPageSashEditor) {
-			IEditorPart part = ((AbstractMultiPageSashEditor)this.editor).getActiveEditor();
-			if(part instanceof IEditingDomainProvider) {
-				return (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
-			}
+		TransactionalEditingDomain domain = null;
+		if(this.editor instanceof IAdaptable) {
+			domain = (TransactionalEditingDomain)this.editor.getAdapter(TransactionalEditingDomain.class);
 		}
 		return domain;
 	}

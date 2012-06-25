@@ -24,7 +24,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ModelElementChangeRightTargetMerger;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
@@ -48,14 +47,13 @@ import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 /**
  * 
  * Transactional version of the class {@link ModelElementChangeRightTargetMerger}
- *
+ * 
  */
 
 public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -66,12 +64,12 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 		final EObject element = theDiff.getRightElement();
 		final EObject newOne = copy(element);
 		final EReference ref = element.eContainmentFeature();
-		if (ref != null) {
+		if(ref != null) {
 			try {
 				int expectedIndex = -1;
-				if (ref.isMany()) {
+				if(ref.isMany()) {
 					final Object containmentRefVal = element.eContainer().eGet(ref);
-					if (containmentRefVal instanceof List<?>) {
+					if(containmentRefVal instanceof List<?>) {
 						@SuppressWarnings("unchecked")
 						final List<EObject> listVal = (List<EObject>)containmentRefVal;
 						expectedIndex = listVal.indexOf(element);
@@ -82,33 +80,31 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 			} catch (final FactoryException e) {
 				EMFComparePlugin.log(e, true);
 			}
-		} else if (origin == null && getDiffModel().getLeftRoots().size() > 0) {
+		} else if(origin == null && getDiffModel().getLeftRoots().size() > 0) {
 			getDiffModel().getLeftRoots().get(0).eResource().getContents().add(newOne);
-		} else if (origin != null) {
+		} else if(origin != null) {
 			origin.eResource().getContents().add(newOne);
 		} else {
 			// FIXME Throw exception : couldn't merge this
 		}
 		// we should now have a look for AddReferencesLinks needing this object
 		final Iterator<EObject> siblings = getDiffModel().eAllContents();
-		while (siblings.hasNext()) {
+		while(siblings.hasNext()) {
 			final DiffElement op = (DiffElement)siblings.next();
-			if (op instanceof ReferenceChangeRightTarget) {
+			if(op instanceof ReferenceChangeRightTarget) {
 				final ReferenceChangeRightTarget link = (ReferenceChangeRightTarget)op;
 				// now if I'm in the target References I should put my copy in the origin
-				if (link.getLeftTarget() != null && link.getLeftTarget() == element) {
+				if(link.getLeftTarget() != null && link.getLeftTarget() == element) {
 					link.setRightTarget(newOne);
 				}
-			} else if (op instanceof ReferenceOrderChange) {
+			} else if(op instanceof ReferenceOrderChange) {
 				final ReferenceOrderChange link = (ReferenceOrderChange)op;
-				if (link.getLeftElement() == origin && link.getReference() == ref) {
+				if(link.getLeftElement() == origin && link.getReference() == ref) {
 					final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
 					boolean replaced = false;
-					while (!replaced && targetIterator.hasNext()) {
+					while(!replaced && targetIterator.hasNext()) {
 						final EObject target = targetIterator.next();
-						if (target.eIsProxy()
-								&& equalProxyURIs(((InternalEObject)target).eProxyURI(),
-										EcoreUtil.getURI(element))) {
+						if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(element))) {
 							targetIterator.set(newOne);
 							replaced = true;
 						}
@@ -119,8 +115,7 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */
@@ -135,8 +130,7 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#canUndoInTarget()
 	 */
@@ -149,20 +143,19 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 
 	//TODO verify if I use this method
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
 	 */
 	@Override
 	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
-		if (applyInOrigin) {
+		if(applyInOrigin) {
 			return diff.getRequires();
 		}
 		return super.getDependencies(applyInOrigin);
 	}
-	
-	
+
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		final CompoundCommand cmd = new CompoundCommand("Command CModelElementChangeRightTargetMerger#getDoApplyInOriginCommand"); //$NON-NLS-1$
 		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
@@ -196,7 +189,7 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 			// FIXME Throw exception : couldn't merge this
 		}
 		cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, null, null) {
-	
+
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				// we should now have a look for AddReferencesLinks needing this object

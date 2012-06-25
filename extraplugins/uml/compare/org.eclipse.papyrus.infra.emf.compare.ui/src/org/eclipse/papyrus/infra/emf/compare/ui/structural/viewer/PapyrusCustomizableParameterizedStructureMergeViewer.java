@@ -146,7 +146,8 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	}
 
 	/**
-	 * FIXME : in the default implementation, the root DiffGroup show that there are children, even if they are marked has hidden, it is a bad idea to do that here, I think
+	 * FIXME : in the default implementation, the root DiffGroup show that there are children, even if they are marked has hidden, it is a bad idea to
+	 * do that here, I think
 	 * Build the content provider in relation to the compare configuration and the preference values on
 	 * filters to apply.
 	 * 

@@ -14,30 +14,13 @@
 package org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer;
 
 
-import java.util.List;
-
 import org.eclipse.compare.CompareConfiguration;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.viewer.PapyrusCustomizableModelContentMergeViewer;
-import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -63,7 +46,7 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 		super(parent, config, editor);
 	}
 
-	
+
 	/**
 	 * 
 	 * {@inheritDoc} Add a toogle button to the toolbar to do the synchronization with the diagram

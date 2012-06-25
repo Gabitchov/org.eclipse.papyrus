@@ -15,14 +15,9 @@ package org.eclipse.papyrus.uml.compare.merger.internal.merger;
 
 import java.util.Collection;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceOrderChangeMerger;
 import org.eclipse.emf.compare.diff.merge.DefaultMerger;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
@@ -30,13 +25,8 @@ import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
-import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -45,13 +35,12 @@ import com.google.common.collect.Lists;
 /**
  * 
  * Transactional version of the class {@link ReferenceOrderChangeMerger}
- *
+ * 
  */
 public class ReferenceOrderChangeTransactionalMerger extends DefaultTransactionalMerger {
-	
+
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceOrderChangeMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceOrderChangeMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doApplyInOrigin()
 	 */
@@ -60,13 +49,12 @@ public class ReferenceOrderChangeTransactionalMerger extends DefaultTransactiona
 		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;
 		final EObject leftElement = theDiff.getLeftElement();
 
-		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getLeftTarget(),
-				new Predicate<EObject>() {
-					public boolean apply(EObject input) {
-						return !input.eIsProxy()
-								|| !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
-					}
-				}));
+		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getLeftTarget(), new Predicate<EObject>() {
+
+			public boolean apply(EObject input) {
+				return !input.eIsProxy() || !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
+			}
+		}));
 
 		try {
 			EFactory.eSet(leftElement, theDiff.getReference().getName(), target);
@@ -76,8 +64,7 @@ public class ReferenceOrderChangeTransactionalMerger extends DefaultTransactiona
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceOrderChangeMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceOrderChangeMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doUndoInTarget()
 	 */
@@ -86,13 +73,12 @@ public class ReferenceOrderChangeTransactionalMerger extends DefaultTransactiona
 		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;
 		final EObject rightElement = theDiff.getRightElement();
 
-		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getRightTarget(),
-				new Predicate<EObject>() {
-					public boolean apply(EObject input) {
-						return !input.eIsProxy()
-								|| !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
-					}
-				}));
+		final Collection<EObject> target = Lists.newArrayList(Collections2.filter(theDiff.getRightTarget(), new Predicate<EObject>() {
+
+			public boolean apply(EObject input) {
+				return !input.eIsProxy() || !DefaultMerger.isEMFCompareProxy(((InternalEObject)input).eProxyURI());
+			}
+		}));
 
 		try {
 			EFactory.eSet(rightElement, theDiff.getReference().getName(), target);
@@ -100,7 +86,7 @@ public class ReferenceOrderChangeTransactionalMerger extends DefaultTransactiona
 			EMFComparePlugin.log(e, true);
 		}
 	}
-	
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
 		final ReferenceOrderChange theDiff = (ReferenceOrderChange)this.diff;

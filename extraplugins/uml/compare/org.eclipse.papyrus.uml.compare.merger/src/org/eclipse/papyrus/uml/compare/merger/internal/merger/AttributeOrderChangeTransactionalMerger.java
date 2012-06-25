@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeOrderChangeMerger;
 import org.eclipse.emf.compare.diff.metamodel.AttributeOrderChange;
 import org.eclipse.emf.ecore.EAttribute;
@@ -32,13 +31,12 @@ import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeComm
 /**
  * 
  * Transactional version of the class {@link AttributeOrderChangeMerger}
- *
+ * 
  */
-public class AttributeOrderChangeTransactionalMerger extends DefaultTransactionalMerger{
+public class AttributeOrderChangeTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeOrderChangeMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link AttributeOrderChangeMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doApplyInOrigin()
 	 */
@@ -61,31 +59,31 @@ public class AttributeOrderChangeTransactionalMerger extends DefaultTransactiona
 		final List<Object> leftCopy = new ArrayList<Object>(leftList);
 		final List<Object> result = new ArrayList<Object>(leftList.size());
 		// Add all unmatched values in the result list
-		for (int i = 0; i < leftList.size(); i++) {
+		for(int i = 0; i < leftList.size(); i++) {
 			final Object left = leftList.get(i);
 
 			boolean hasMatch = false;
-			for (int j = 0; !hasMatch && j < rightList.size(); j++) {
+			for(int j = 0; !hasMatch && j < rightList.size(); j++) {
 				hasMatch = !areDistinctValues(left, rightList.get(j));
 			}
 
-			if (!hasMatch) {
+			if(!hasMatch) {
 				leftCopy.remove(left);
 				result.add(left);
 			}
 		}
 		// Then reorder according to the right list's order
-		for (int i = 0; i < rightList.size(); i++) {
+		for(int i = 0; i < rightList.size(); i++) {
 			final Object right = rightList.get(i);
 
 			Object leftMatch = null;
-			for (int j = 0; leftMatch == null && j < leftCopy.size(); j++) {
-				if (!areDistinctValues(right, leftCopy.get(j))) {
+			for(int j = 0; leftMatch == null && j < leftCopy.size(); j++) {
+				if(!areDistinctValues(right, leftCopy.get(j))) {
 					leftMatch = leftCopy.get(j);
 				}
 			}
 
-			if (leftMatch != null) {
+			if(leftMatch != null) {
 				leftCopy.remove(leftMatch);
 				result.add(leftMatch);
 			}
@@ -95,8 +93,7 @@ public class AttributeOrderChangeTransactionalMerger extends DefaultTransactiona
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeOrderChangeMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link AttributeOrderChangeMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doUndoInTarget()
 	 */
@@ -119,31 +116,31 @@ public class AttributeOrderChangeTransactionalMerger extends DefaultTransactiona
 		final List<Object> rightCopy = new ArrayList<Object>(rightList);
 		final List<Object> result = new ArrayList<Object>(rightList.size());
 		// Add all unmatched values in the result list
-		for (int i = 0; i < rightList.size(); i++) {
+		for(int i = 0; i < rightList.size(); i++) {
 			final Object right = rightList.get(i);
 
 			boolean hasMatch = false;
-			for (int j = 0; !hasMatch && j < leftList.size(); j++) {
+			for(int j = 0; !hasMatch && j < leftList.size(); j++) {
 				hasMatch = !areDistinctValues(right, leftList.get(j));
 			}
 
-			if (!hasMatch) {
+			if(!hasMatch) {
 				rightCopy.remove(right);
 				result.add(right);
 			}
 		}
 		// Then reorder according to the left list's order
-		for (int i = 0; i < leftList.size(); i++) {
+		for(int i = 0; i < leftList.size(); i++) {
 			final Object left = leftList.get(i);
 
 			Object rightMatch = null;
-			for (int j = 0; rightMatch == null && j < rightCopy.size(); j++) {
-				if (!areDistinctValues(left, rightCopy.get(j))) {
+			for(int j = 0; rightMatch == null && j < rightCopy.size(); j++) {
+				if(!areDistinctValues(left, rightCopy.get(j))) {
 					rightMatch = rightCopy.get(j);
 				}
 			}
 
-			if (rightMatch != null) {
+			if(rightMatch != null) {
 				rightCopy.remove(rightMatch);
 				result.add(rightMatch);
 			}

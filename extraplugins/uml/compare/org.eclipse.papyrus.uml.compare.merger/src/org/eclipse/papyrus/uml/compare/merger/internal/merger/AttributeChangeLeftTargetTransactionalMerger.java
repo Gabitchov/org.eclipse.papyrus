@@ -30,12 +30,12 @@ import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 /**
  * 
  * Transactional version of the class {@link AttributeChangeLeftTargetMerger}
- *
+ * 
  */
 public class AttributeChangeLeftTargetTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeChangeLeftTargetMerger}
+	 * The native implementation, duplicated Code from {@link AttributeChangeLeftTargetMerger}
 	 * 
 	 * {@inheritDoc}
 	 * 
@@ -56,8 +56,7 @@ public class AttributeChangeLeftTargetTransactionalMerger extends DefaultTransac
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link AttributeChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link AttributeChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 * 
@@ -70,10 +69,10 @@ public class AttributeChangeLeftTargetTransactionalMerger extends DefaultTransac
 		final EAttribute attr = theDiff.getAttribute();
 		try {
 			int valueIndex = -1;
-			if (attr.isMany()) {
+			if(attr.isMany()) {
 				final EObject leftElement = theDiff.getLeftElement();
 				final Object leftValues = leftElement.eGet(attr);
-				if (leftValues instanceof List) {
+				if(leftValues instanceof List) {
 					final List leftValuesList = (List)leftValues;
 					valueIndex = leftValuesList.indexOf(value);
 				}
@@ -83,9 +82,9 @@ public class AttributeChangeLeftTargetTransactionalMerger extends DefaultTransac
 			EMFComparePlugin.log(e, true);
 		}
 	}
-	
 
-	
+
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		Command cmd = null;
 		final AttributeChangeLeftTarget theDiff = (AttributeChangeLeftTarget)this.diff;

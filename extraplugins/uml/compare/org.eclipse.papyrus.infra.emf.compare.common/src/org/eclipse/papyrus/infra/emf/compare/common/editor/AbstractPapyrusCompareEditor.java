@@ -35,7 +35,6 @@ import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.emf.compare.common.Activator;
@@ -55,7 +54,7 @@ import org.eclipse.ui.PlatformUI;
  */
 @SuppressWarnings("restriction")
 //suppress restriction for CompareEditor
-public abstract class AbstractPapyrusCompareEditor extends CompareEditor implements ICustomizableEditor, IEditingDomainProvider {
+public abstract class AbstractPapyrusCompareEditor extends CompareEditor implements ICustomizableEditor {
 
 
 	/**

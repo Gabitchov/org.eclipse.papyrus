@@ -116,7 +116,7 @@ public class CompareUMLFileHandler extends AbstractHandler implements IObjectAct
 	/**
 	 * 
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-	 *
+	 * 
 	 * @param action
 	 */
 	public void run(IAction action) {

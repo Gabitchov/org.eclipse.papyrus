@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * 
  * A specific match engine for the Nested UML Compare Editor
+ * 
  * @see bug 377154
  */
 public class UMLMatchEngine extends GenericMatchEngine {
@@ -40,8 +41,9 @@ public class UMLMatchEngine extends GenericMatchEngine {
 
 	/**
 	 * 
-	 * @see org.eclipse.emf.compare.match.engine.GenericMatchEngine#contentMatch(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, java.util.Map)
-	 *
+	 * @see org.eclipse.emf.compare.match.engine.GenericMatchEngine#contentMatch(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject,
+	 *      java.util.Map)
+	 * 
 	 * @param leftObject
 	 * @param rightObject
 	 * @param optionMap
@@ -57,7 +59,7 @@ public class UMLMatchEngine extends GenericMatchEngine {
 	/**
 	 * 
 	 * @see org.eclipse.emf.compare.match.engine.GenericMatchEngine#prepareChecker()
-	 *
+	 * 
 	 * @return
 	 */
 	protected AbstractSimilarityChecker prepareChecker() {

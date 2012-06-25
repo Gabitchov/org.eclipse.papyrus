@@ -23,7 +23,6 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.MoveModelElementMerger;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.util.EFactory;
@@ -36,19 +35,16 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
-import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
 /**
  * 
  * Transactional version of the class {@link MoveModelElementMerger}
- *
+ * 
  */
 public class MoveModelElementTransactionalMerger extends DefaultTransactionalMerger {//MoveModelElementMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link MoveModelElementMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link MoveModelElementMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -59,12 +55,12 @@ public class MoveModelElementTransactionalMerger extends DefaultTransactionalMer
 		final EObject leftTarget = theDiff.getLeftTarget();
 		final EObject leftElement = theDiff.getLeftElement();
 		final EReference ref = theDiff.getRightElement().eContainmentFeature();
-		if (ref != null) {
+		if(ref != null) {
 			// ordering handling:
 			int index = -1;
 			final EObject rightElementParent = theDiff.getRightElement().eContainer();
 			final Object rightRefValue = rightElementParent.eGet(ref);
-			if (rightRefValue instanceof List) {
+			if(rightRefValue instanceof List) {
 				final List<Object> refRightValueList = (List<Object>)rightRefValue;
 				index = refRightValueList.indexOf(theDiff.getRightElement());
 			}
@@ -86,8 +82,7 @@ public class MoveModelElementTransactionalMerger extends DefaultTransactionalMer
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link MoveModelElementMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link MoveModelElementMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */
@@ -98,12 +93,12 @@ public class MoveModelElementTransactionalMerger extends DefaultTransactionalMer
 		final EObject rightTarget = theDiff.getRightTarget();
 		final EObject rightElement = theDiff.getRightElement();
 		final EReference ref = theDiff.getLeftElement().eContainmentFeature();
-		if (ref != null) {
+		if(ref != null) {
 			// ordering handling:
 			int index = -1;
 			final EObject leftElementParent = theDiff.getLeftElement().eContainer();
 			final Object leftRefValue = leftElementParent.eGet(ref);
-			if (leftRefValue instanceof List) {
+			if(leftRefValue instanceof List) {
 				final List<Object> refLeftValueList = (List<Object>)leftRefValue;
 				index = refLeftValueList.indexOf(theDiff.getLeftElement());
 			}
@@ -121,7 +116,7 @@ public class MoveModelElementTransactionalMerger extends DefaultTransactionalMer
 			assert false;
 		}
 	}
-	
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		final CompoundCommand cmd = new CompoundCommand("CMoveModelElementMerger#getDoApplyInOriginCommand"); //$NON-NLS-1$
 		final MoveModelElement theDiff = (MoveModelElement)this.diff;
@@ -186,28 +181,28 @@ public class MoveModelElementTransactionalMerger extends DefaultTransactionalMer
 	}
 
 
-//	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
-//		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
-//
-//			@Override
-//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-//				MoveModelElementTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
-//				return null;
-//			}
-//		});
-//	}
-//
-//	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
-//
-//			@Override
-//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-//				MoveModelElementTransactionalMerger.this.postProcess();
-//				return null;
-//			}
-//		});
-//	}
+	//	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
+	//		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
+	//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+	//
+	//			@Override
+	//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+	//				MoveModelElementTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
+	//				return null;
+	//			}
+	//		});
+	//	}
+	//
+	//	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
+	//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+	//
+	//			@Override
+	//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+	//				MoveModelElementTransactionalMerger.this.postProcess();
+	//				return null;
+	//			}
+	//		});
+	//	}
 
 	/**
 	 * This command is not the the class PapyrusUMLMergeProvider because it only should be used to preserve the xmi_id after a move,

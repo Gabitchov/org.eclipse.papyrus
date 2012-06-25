@@ -24,45 +24,36 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 
 	private final TransactionalEditingDomain domain;
 
-	public PapyrusModelCompareInput(MatchResourceSet matchResourceSet,
-			DiffResourceSet diffResourceSet, TransactionalEditingDomain domain) {
+	public PapyrusModelCompareInput(MatchResourceSet matchResourceSet, DiffResourceSet diffResourceSet, TransactionalEditingDomain domain) {
 		super(matchResourceSet, diffResourceSet);
 		this.domain = domain;
 	}
 
-	public PapyrusModelCompareInput(ComparisonResourceSetSnapshot snapshot,
-			TransactionalEditingDomain domain) {
+	public PapyrusModelCompareInput(ComparisonResourceSetSnapshot snapshot, TransactionalEditingDomain domain) {
 		super(snapshot);
 		this.domain = domain;
 		// TODO Auto-generated constructor stub
 	}
 
-	public PapyrusModelCompareInput(ComparisonResourceSnapshot snapshot,
-			TransactionalEditingDomain domain) {
+	public PapyrusModelCompareInput(ComparisonResourceSnapshot snapshot, TransactionalEditingDomain domain) {
 		super(snapshot);
 		// TODO Auto-generated constructor stub
 		this.domain = domain;
 	}
 
-	public PapyrusModelCompareInput(MatchModel matchModel, DiffModel diffModel,
-			ICompareInputDetailsProvider provider,
-			TransactionalEditingDomain domain) {
+	public PapyrusModelCompareInput(MatchModel matchModel, DiffModel diffModel, ICompareInputDetailsProvider provider, TransactionalEditingDomain domain) {
 		super(matchModel, diffModel, provider);
 		// TODO Auto-generated constructor stub
 		this.domain = domain;
 	}
 
-	public PapyrusModelCompareInput(MatchResourceSet matchResourceset,
-			DiffResourceSet diffResourceSet,
-			ICompareInputDetailsProvider provider,
-			TransactionalEditingDomain domain) {
+	public PapyrusModelCompareInput(MatchResourceSet matchResourceset, DiffResourceSet diffResourceSet, ICompareInputDetailsProvider provider, TransactionalEditingDomain domain) {
 		super(matchResourceset, diffResourceSet, provider);
 		// TODO Auto-generated constructor stub
 		this.domain = domain;
 	}
 
-	public PapyrusModelCompareInput(MatchModel match, DiffModel diff,
-			TransactionalEditingDomain domain) {
+	public PapyrusModelCompareInput(MatchModel match, DiffModel diff, TransactionalEditingDomain domain) {
 
 		super(match, diff);
 		this.domain = domain;
@@ -73,15 +64,14 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	 * direction specified by <code>leftToRight</code>.
 	 * 
 	 * @param element
-	 *            {@link DiffElement} containing the copy information.
+	 *        {@link DiffElement} containing the copy information.
 	 * @param leftToRight
-	 *            <code>True</code> if the changes must be applied from the left
-	 *            to the right model, <code>False</code> otherwise.
+	 *        <code>True</code> if the changes must be applied from the left
+	 *        to the right model, <code>False</code> otherwise.
 	 */
 	protected void doCopy(DiffElement element, boolean leftToRight) {
 		// MergeService.merge(element, leftToRight);
-		Command cmd = TransactionalMergeService.getMergeCommand(domain,
-				element, leftToRight);
+		Command cmd = TransactionalMergeService.getMergeCommand(domain, element, leftToRight);
 		domain.getCommandStack().execute(cmd);
 	}
 
@@ -90,14 +80,13 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	 * direction specified by <code>leftToRight</code>.
 	 * 
 	 * @param elements
-	 *            {@link DiffElement}s containing the copy information.
+	 *        {@link DiffElement}s containing the copy information.
 	 * @param leftToRight
-	 *            <code>True</code> if the changes must be applied from the left
-	 *            to the right model, <code>False</code> otherwise.
+	 *        <code>True</code> if the changes must be applied from the left
+	 *        to the right model, <code>False</code> otherwise.
 	 */
 	protected void doCopy(List<DiffElement> elements, boolean leftToRight) {
-		Command cmd = TransactionalMergeService.getMergeCommand(domain,
-				elements, leftToRight);
+		Command cmd = TransactionalMergeService.getMergeCommand(domain, elements, leftToRight);
 		domain.getCommandStack().execute(cmd);
 	}
 

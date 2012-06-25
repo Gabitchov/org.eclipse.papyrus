@@ -22,5 +22,5 @@ import org.eclipse.ui.IEditorInput;
 public interface ICompareUMLFileInput extends IEditorInput {
 
 	public List<IFile> getComparedFiles();
-			
+
 }

@@ -24,7 +24,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -42,20 +41,19 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
-import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
 
 /**
  * 
  * Transactional version of the class {@link ReferenceChangeLeftTargetMerger}
- *
+ * 
  */
 public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransactionalMerger {//ReferenceChangeLeftTargetMerger implements ITransactionalMerger {
+
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doApplyInOrigin()
 	 */
@@ -71,19 +69,18 @@ public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransac
 		}
 		// we should now have a look for AddReferencesLinks needing this object
 		final Iterator<EObject> siblings = getDiffModel().eAllContents();
-		while (siblings.hasNext()) {
+		while(siblings.hasNext()) {
 			final DiffElement op = (DiffElement)siblings.next();
-			if (op instanceof ReferenceChangeLeftTarget) {
+			if(op instanceof ReferenceChangeLeftTarget) {
 				final ReferenceChangeLeftTarget link = (ReferenceChangeLeftTarget)op;
 				// now if I'm in the target References I should put my copy in the origin
-				if (link.getReference().equals(theDiff.getReference().getEOpposite())
-						&& link.getLeftTarget().equals(element)) {
+				if(link.getReference().equals(theDiff.getReference().getEOpposite()) && link.getLeftTarget().equals(element)) {
 					removeFromContainer(link);
 				}
-			} else if (op instanceof ResourceDependencyChange) {
+			} else if(op instanceof ResourceDependencyChange) {
 				final ResourceDependencyChange link = (ResourceDependencyChange)op;
 				final Resource res = link.getRoots().get(0).eResource();
-				if (res == leftTarget.eResource()) {
+				if(res == leftTarget.eResource()) {
 					EcoreUtil.remove(link);
 					res.unload();
 				}
@@ -92,8 +89,7 @@ public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransac
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#doUndoInTarget()
 	 */
@@ -106,38 +102,34 @@ public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransac
 		final EObject rightTarget = theDiff.getRightTarget();
 
 		int index = -1;
-		if (reference.isMany()) {
+		if(reference.isMany()) {
 			final EObject leftElement = theDiff.getLeftElement();
 			final Object leftRefValue = leftElement.eGet(reference);
-			if (leftRefValue instanceof List) {
+			if(leftRefValue instanceof List) {
 				final List refLeftValueList = (List)leftRefValue;
 				index = refLeftValueList.indexOf(leftTarget);
 			}
 		}
-		final EObject copiedValue = MergeService.getCopier(diff).copyReferenceValue(reference, element,
-				leftTarget, rightTarget, index);
+		final EObject copiedValue = MergeService.getCopier(diff).copyReferenceValue(reference, element, leftTarget, rightTarget, index);
 
 		// we should now have a look for AddReferencesLinks needing this object
 		final Iterator<EObject> siblings = getDiffModel().eAllContents();
-		while (siblings.hasNext()) {
+		while(siblings.hasNext()) {
 			final DiffElement op = (DiffElement)siblings.next();
-			if (op instanceof ReferenceChangeLeftTarget) {
+			if(op instanceof ReferenceChangeLeftTarget) {
 				final ReferenceChangeLeftTarget link = (ReferenceChangeLeftTarget)op;
 				// now if I'm in the target References I should put my copy in the origin
-				if (link.getReference().equals(reference.getEOpposite())
-						&& link.getLeftTarget().equals(element)) {
+				if(link.getReference().equals(reference.getEOpposite()) && link.getLeftTarget().equals(element)) {
 					removeFromContainer(link);
 				}
-			} else if (op instanceof ReferenceOrderChange) {
+			} else if(op instanceof ReferenceOrderChange) {
 				final ReferenceOrderChange link = (ReferenceOrderChange)op;
-				if (link.getLeftElement() == element && link.getReference() == reference) {
+				if(link.getLeftElement() == element && link.getReference() == reference) {
 					final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
 					boolean replaced = false;
-					while (!replaced && targetIterator.hasNext()) {
+					while(!replaced && targetIterator.hasNext()) {
 						final EObject target = targetIterator.next();
-						if (target.eIsProxy()
-								&& equalProxyURIs(((InternalEObject)target).eProxyURI(),
-										EcoreUtil.getURI(leftTarget))) {
+						if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(leftTarget))) {
 							targetIterator.set(copiedValue);
 							replaced = true;
 						}
@@ -149,19 +141,18 @@ public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransac
 
 	//TODO : verify if I use this method
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
 	 */
 	@Override
 	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
-		if (!applyInOrigin) {
+		if(!applyInOrigin) {
 			return diff.getRequires();
 		}
 		return super.getDependencies(applyInOrigin);
 	}
-	
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		final CompoundCommand cmd = new CompoundCommand("CReferenceChangeLeftTargetMerger#getDoApplyInOriginCommand"); //$NON-NLS-1$
 		final ReferenceChangeLeftTarget theDiff = (ReferenceChangeLeftTarget)this.diff;
@@ -218,7 +209,7 @@ public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransac
 				index = refLeftValueList.indexOf(leftTarget);
 			}
 		}
-		final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+		final PapyrusCompareEObjectCopier copier = (PapyrusCompareEObjectCopier)TransactionalMergeService.getCopier(diff);
 		Command copierCommand = copier.getCopyReferenceValueCommand(domain, reference, element, leftTarget, rightTarget, index);
 		cmd.append(copierCommand);
 		final AbstractTransactionalCommand updateDiffModelCommand = new AbstractTransactionalCommand(domain, "Update Diff Model", null) { //$NON-NLS-1$

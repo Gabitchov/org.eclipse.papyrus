@@ -58,12 +58,13 @@ class LabelProviderUtil {
 	 */
 	private LabelProviderUtil() {
 		labelProviderMap = new HashMap<IEditorPart, EMFCompareLabelProviderRefreshingViewer>();
-		customizationMap = new HashMap<IEditorPart, CustomizationManager>(){
+		customizationMap = new HashMap<IEditorPart, CustomizationManager>() {
+
 			@Override
 			public String toString() {
 				String str = super.toString();
 				return str.replaceAll(", ", "\n");
-				
+
 			}
 		};
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().addPartListener(new CloseCompareEditorListener());

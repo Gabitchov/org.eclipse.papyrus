@@ -24,10 +24,8 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ModelElementChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
-import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
@@ -45,23 +43,19 @@ import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
 import org.eclipse.papyrus.uml.compare.merger.internal.commands.CopyXMIIDCommand;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
 import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
-import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
 
 
 /**
  * 
  * Transactional version of the class {@link ModelElementChangeLeftTargetMerger}
- *
+ * 
  */
 public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTransactionalMerger {//ModelElementChangeLeftTargetMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -76,8 +70,7 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTran
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */
@@ -89,12 +82,12 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTran
 		final EObject element = theDiff.getLeftElement();
 		final EObject newOne = copy(element);
 		final EReference ref = element.eContainmentFeature();
-		if (ref != null) {
+		if(ref != null) {
 			try {
 				int elementIndex = -1;
-				if (ref.isMany()) {
+				if(ref.isMany()) {
 					final Object containmentRefVal = element.eContainer().eGet(ref);
-					if (containmentRefVal instanceof List<?>) {
+					if(containmentRefVal instanceof List<?>) {
 						@SuppressWarnings("unchecked")
 						final List<EObject> listVal = (List<EObject>)containmentRefVal;
 						elementIndex = listVal.indexOf(element);
@@ -105,33 +98,31 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTran
 			} catch (final FactoryException e) {
 				EMFComparePlugin.log(e, true);
 			}
-		} else if (origin == null && getDiffModel().getRightRoots().size() > 0) {
+		} else if(origin == null && getDiffModel().getRightRoots().size() > 0) {
 			getDiffModel().getRightRoots().get(0).eResource().getContents().add(newOne);
-		} else if (origin != null) {
+		} else if(origin != null) {
 			origin.eResource().getContents().add(newOne);
 		} else {
 			// FIXME throw exception : couldn't merge this
 		}
 		// we should now have a look for RemovedReferencesLinks needing elements to apply
 		final Iterator<EObject> siblings = getDiffModel().eAllContents();
-		while (siblings.hasNext()) {
+		while(siblings.hasNext()) {
 			final Object op = siblings.next();
-			if (op instanceof ReferenceChangeLeftTarget) {
+			if(op instanceof ReferenceChangeLeftTarget) {
 				final ReferenceChangeLeftTarget link = (ReferenceChangeLeftTarget)op;
 				// now if I'm in the target References I should put my copy in the origin
-				if (link.getRightTarget() != null && link.getRightTarget() == element) {
+				if(link.getRightTarget() != null && link.getRightTarget() == element) {
 					link.setLeftTarget(newOne);
 				}
-			} else if (op instanceof ReferenceOrderChange) {
+			} else if(op instanceof ReferenceOrderChange) {
 				final ReferenceOrderChange link = (ReferenceOrderChange)op;
-				if (link.getRightElement() == origin && link.getReference() == ref) {
+				if(link.getRightElement() == origin && link.getReference() == ref) {
 					final ListIterator<EObject> targetIterator = link.getRightTarget().listIterator();
 					boolean replaced = false;
-					while (!replaced && targetIterator.hasNext()) {
+					while(!replaced && targetIterator.hasNext()) {
 						final EObject target = targetIterator.next();
-						if (target.eIsProxy()
-								&& equalProxyURIs(((InternalEObject)target).eProxyURI(),
-										EcoreUtil.getURI(element))) {
+						if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(element))) {
 							targetIterator.set(newOne);
 							replaced = true;
 						}
@@ -143,19 +134,18 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTran
 
 	//TODO verify that I use this method in the transactional version
 	/**
-	 * The native implementation, duplicated Code from  {@link ModelElementChangeLeftTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ModelElementChangeLeftTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
 	 */
 	@Override
 	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
-		if (!applyInOrigin) {
+		if(!applyInOrigin) {
 			return diff.getRequires();
 		}
 		return super.getDependencies(applyInOrigin);
 	}
-	
+
 	public Command getDoApplyInOriginCommand(final TransactionalEditingDomain domain) {
 		final ModelElementChangeLeftTarget theDiff = (ModelElementChangeLeftTarget)this.diff;
 		final EObject element = theDiff.getLeftElement();
@@ -237,16 +227,16 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTran
 	@Override
 	protected EObject copy(EObject eObject) {
 		EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
-		final EObject result  = copier.copy(eObject);
+		final EObject result = copier.copy(eObject);
 		//TODO  to replace with : TransactionalMergeService.getCopier(diff); ???
-//		final PapyrusCompareEObjectCopier copier2 = new PapyrusCompareEObjectCopier(diff);
-//		copier2.getCopyReferenceValueCommand(domain, targetReference, target, value, matchedValue, index)
-//		final EObject result = copier.getCopiedValue(eObject);
-		
-		
+		//		final PapyrusCompareEObjectCopier copier2 = new PapyrusCompareEObjectCopier(diff);
+		//		copier2.getCopyReferenceValueCommand(domain, targetReference, target, value, matchedValue, index)
+		//		final EObject result = copier.getCopiedValue(eObject);
+
+
 		//TODO : I think that we should to this too! should be done too
-//		copier.copyReferences();
-//		copier.copyXMIIDs();
+		//		copier.copyReferences();
+		//		copier.copyXMIIDs();
 		return result;
 	}
 }

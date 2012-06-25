@@ -46,7 +46,7 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider {
 	private final AppearanceConfiguration configuration;
 
 
-	/** the customization manager for this label provider*/
+	/** the customization manager for this label provider */
 	private final CustomizationManager manager;
 
 	/**
@@ -155,7 +155,7 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider {
 		return new ModelElementItem(eObject, getTreeElement(eObject.eContainer()), this.configuration);
 	}
 
-	public CustomizationManager getCustomizationManager(){
+	public CustomizationManager getCustomizationManager() {
 		return this.manager;
 	}
 

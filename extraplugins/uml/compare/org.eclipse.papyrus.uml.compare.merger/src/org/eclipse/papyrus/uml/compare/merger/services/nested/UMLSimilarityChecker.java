@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * 
  * A specific similarity checker for the Nested UML Compare Editor
+ * 
  * @see bug 377154
  */
 public class UMLSimilarityChecker extends DistinctEcoreSimilarityChecker {

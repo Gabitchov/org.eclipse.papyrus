@@ -67,12 +67,11 @@ public class CopyXMIIDCommand extends AbstractCommand {
 		final Resource sourceResource = source.eResource();
 		final Resource targetResource = target.eResource();
 		if(sourceResource instanceof XMIResource && targetResource instanceof XMIResource) {
-			//TODO : this test is commented because the result of this command is worse with the test than without...
-			//					if(sourceResource != targetResource) {
-			final String xmi_id = EMFHelper.getXMIID(this.source);
-			this.initialID = EMFHelper.getXMIID(target);
-			((XMIResource)this.target.eResource()).setID(this.target, xmi_id);
-			//					}
+			if(sourceResource != targetResource) {//see bug 377189: [Nested UML Compare] the merged elements have the same XMI ID
+				final String xmi_id = EMFHelper.getXMIID(this.source);
+				this.initialID = EMFHelper.getXMIID(target);
+				((XMIResource)this.target.eResource()).setID(this.target, xmi_id);
+			}
 		}
 	}
 

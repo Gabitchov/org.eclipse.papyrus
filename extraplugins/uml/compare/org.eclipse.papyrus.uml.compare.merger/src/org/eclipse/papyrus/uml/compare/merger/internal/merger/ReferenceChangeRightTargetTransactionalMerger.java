@@ -24,7 +24,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceChangeRightTargetMerger;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -42,21 +41,19 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.compare.merger.Activator;
-import org.eclipse.papyrus.uml.compare.merger.internal.utils.MergerUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusEFactory;
-import org.eclipse.papyrus.uml.compare.merger.utils.ITransactionalMerger;
+import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
 
 /**
  * 
  * Transactional version of the class {@link ReferenceChangeRightTargetMerger}
- *
+ * 
  */
 public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransactionalMerger {//ReferenceChangeRightTargetMerger implements ITransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -70,38 +67,34 @@ public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransa
 
 		// ordering handling:
 		int index = -1;
-		if (reference.isMany()) {
+		if(reference.isMany()) {
 			final EObject rightElement = theDiff.getRightElement();
 			final Object rightRefValue = rightElement.eGet(reference);
-			if (rightRefValue instanceof List) {
+			if(rightRefValue instanceof List) {
 				final List refRightValueList = (List)rightRefValue;
 				index = refRightValueList.indexOf(rightTarget);
 			}
 		}
-		final EObject copiedValue = MergeService.getCopier(diff).copyReferenceValue(reference, element,
-				rightTarget, leftTarget, index);
+		final EObject copiedValue = MergeService.getCopier(diff).copyReferenceValue(reference, element, rightTarget, leftTarget, index);
 
 		// We'll now look through this reference's eOpposite as they are already taken care of
 		final Iterator<EObject> related = getDiffModel().eAllContents();
-		while (related.hasNext()) {
+		while(related.hasNext()) {
 			final DiffElement op = (DiffElement)related.next();
-			if (op instanceof ReferenceChangeRightTarget) {
+			if(op instanceof ReferenceChangeRightTarget) {
 				final ReferenceChangeRightTarget link = (ReferenceChangeRightTarget)op;
 				// If this is my eOpposite, delete it from the DiffModel (merged along with this one)
-				if (link.getReference().equals(theDiff.getReference().getEOpposite())
-						&& link.getRightTarget().equals(element)) {
+				if(link.getReference().equals(theDiff.getReference().getEOpposite()) && link.getRightTarget().equals(element)) {
 					removeFromContainer(link);
 				}
-			} else if (op instanceof ReferenceOrderChange) {
+			} else if(op instanceof ReferenceOrderChange) {
 				final ReferenceOrderChange link = (ReferenceOrderChange)op;
-				if (link.getLeftElement() == element && link.getReference() == reference) {
+				if(link.getLeftElement() == element && link.getReference() == reference) {
 					final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
 					boolean replaced = false;
-					while (!replaced && targetIterator.hasNext()) {
+					while(!replaced && targetIterator.hasNext()) {
 						final EObject target = targetIterator.next();
-						if (target.eIsProxy()
-								&& equalProxyURIs(((InternalEObject)target).eProxyURI(),
-										EcoreUtil.getURI(rightTarget))) {
+						if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(rightTarget))) {
 							targetIterator.set(copiedValue);
 							replaced = true;
 						}
@@ -112,8 +105,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransa
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */
@@ -129,19 +121,18 @@ public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransa
 		}
 		// we should now have a look for AddReferencesLinks needing this object
 		final Iterator<EObject> related = getDiffModel().eAllContents();
-		while (related.hasNext()) {
+		while(related.hasNext()) {
 			final DiffElement op = (DiffElement)related.next();
-			if (op instanceof ReferenceChangeRightTarget) {
+			if(op instanceof ReferenceChangeRightTarget) {
 				final ReferenceChangeRightTarget link = (ReferenceChangeRightTarget)op;
 				// now if I'm in the target References I should put my copy in the origin
-				if (link.getReference().equals(theDiff.getReference().getEOpposite())
-						&& link.getRightTarget().equals(element)) {
+				if(link.getReference().equals(theDiff.getReference().getEOpposite()) && link.getRightTarget().equals(element)) {
 					removeFromContainer(link);
 				}
-			} else if (op instanceof ResourceDependencyChange) {
+			} else if(op instanceof ResourceDependencyChange) {
 				final ResourceDependencyChange link = (ResourceDependencyChange)op;
 				final Resource res = link.getRoots().get(0).eResource();
-				if (res == rightTarget.eResource()) {
+				if(res == rightTarget.eResource()) {
 					EcoreUtil.remove(link);
 					res.unload();
 				}
@@ -151,14 +142,13 @@ public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransa
 
 	//TODO : verify that I use this method
 	/**
-	 * The native implementation, duplicated Code from  {@link ReferenceChangeRightTargetMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link ReferenceChangeRightTargetMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
 	 */
 	@Override
 	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
-		if (applyInOrigin) {
+		if(applyInOrigin) {
 			return diff.getRequires();
 		}
 		return super.getDependencies(applyInOrigin);
@@ -182,7 +172,7 @@ public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransa
 				index = refRightValueList.indexOf(rightTarget);
 			}
 		}
-		final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+		final PapyrusCompareEObjectCopier copier = (PapyrusCompareEObjectCopier)TransactionalMergeService.getCopier(diff);
 		cmd.append(copier.getCopyReferenceValueCommand(domain, reference, element, rightTarget, leftTarget, index));
 
 		cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "", null) { //$NON-NLS-1$
@@ -262,26 +252,26 @@ public class ReferenceChangeRightTargetTransactionalMerger extends DefaultTransa
 		return cmd;
 	}
 
-//	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
-//		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
-//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
-//
-//			@Override
-//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-//				ReferenceChangeRightTargetTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
-//				return null;
-//			}
-//		});
-//	}
-//
-//	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
-//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
-//
-//			@Override
-//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-//				ReferenceChangeRightTargetTransactionalMerger.this.postProcess();
-//				return null;
-//			}
-//		});
-//	}
+	//	public Command getMergeRequiredDifferencesCommand(final TransactionalEditingDomain domain, final boolean applyInOrigin) {
+	//		// TODO the super method mergeRequiredDifferences should be rewritten to use cmd too
+	//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+	//
+	//			@Override
+	//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+	//				ReferenceChangeRightTargetTransactionalMerger.this.mergeRequiredDifferences(applyInOrigin);
+	//				return null;
+	//			}
+	//		});
+	//	}
+	//
+	//	public Command getPostProcessCommand(final TransactionalEditingDomain domain) {
+	//		return new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Merge Required Differences", null) { //$NON-NLS-1$
+	//
+	//			@Override
+	//			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+	//				ReferenceChangeRightTargetTransactionalMerger.this.postProcess();
+	//				return null;
+	//			}
+	//		});
+	//	}
 }

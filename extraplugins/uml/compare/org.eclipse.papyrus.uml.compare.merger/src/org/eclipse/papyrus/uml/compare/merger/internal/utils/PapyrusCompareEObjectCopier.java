@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -26,42 +27,95 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
-import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
 
 /**
  * 
  * This class copies the code of {@link EMFCompareEObjectCopier}, to do the actions with EMFCommands
  * 
  */
-public class PapyrusCompareEObjectCopier {
+public class PapyrusCompareEObjectCopier extends EMFCompareEObjectCopier {
 
 	/**
-	 * we encapsulate the "standard" implementation of {@link EMFCompareEObjectCopier}
+	 * the serial UID
 	 */
-	private EMFCompareEObjectCopier copier = null;
+	private static final long serialVersionUID = -6723632034214667973L;
 
 	/**
 	 * 
 	 * Constructor.
 	 * 
 	 * @param diff
-	 *        a diff element
 	 */
-	public PapyrusCompareEObjectCopier(final DiffElement diff) {
-		copier = TransactionalMergeService.getCopier(diff);
+	public PapyrusCompareEObjectCopier(final DiffResourceSet diff) {
+		super(diff);
 	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param diff
+	 */
+	public PapyrusCompareEObjectCopier(final DiffModel diff) {
+		super(diff);
+	}
+
+	/**
+	 * Copy the XMi_ID only when the id doesn't exist in the target resource
+	 * 
+	 * @see org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier#copyXMIIDs()
+	 * 
+	 */
+	@Override
+	public void copyXMIIDs() {
+		for(final Map.Entry<EObject, EObject> entry : entrySet()) {
+			final EObject original = entry.getKey();
+			final EObject copy = entry.getValue();
+			if(original.eResource() instanceof XMIResource && copy.eResource() instanceof XMIResource) {
+				final XMIResource originResource = (XMIResource)original.eResource();
+				final XMIResource copyResource = (XMIResource)copy.eResource();
+				if(originResource.getID(original) != null) {
+					if(original.eResource() == copy.eResource()) {
+						final String currentID = originResource.getID(original);
+						if(ResourceUtils.getAllResourceIds(copyResource).contains(currentID)) {
+							continue;
+						}
+					}
+					copyResource.setID(copy, originResource.getID(original));
+					final TreeIterator<EObject> originalIterator = original.eAllContents();
+					final TreeIterator<EObject> copyIterator = copy.eAllContents();
+					while(originalIterator.hasNext()) {
+						final EObject nextOriginalChild = originalIterator.next();
+						final EObject nextCopyChild = copyIterator.next();
+						if(nextOriginalChild.eResource() == nextCopyChild.eResource()) {
+							final String currentID = originResource.getID(nextOriginalChild);
+							if(ResourceUtils.getAllResourceIds(copyResource).contains(currentID)) {
+								continue;
+							}
+						}
+						copyResource.setID(nextCopyChild, originResource.getID(nextOriginalChild));
+					}
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * Adapted from copyReferenceValue(EReference targetReference, EObject target, EObject value,
@@ -83,7 +137,7 @@ public class PapyrusCompareEObjectCopier {
 			throw new UnsupportedOperationException("Not yet supported"); //$NON-NLS-1$
 		}
 		if(matchedValue != null) {
-			this.copier.put(actualValue, matchedValue);
+			put(actualValue, matchedValue);
 
 			final Object referenceValue = target.eGet(targetReference);
 			if(referenceValue instanceof Collection<?>) {
@@ -106,7 +160,7 @@ public class PapyrusCompareEObjectCopier {
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				final EObject copy;
-				final EObject targetValue = PapyrusCompareEObjectCopier.this.copier.get(value);
+				final EObject targetValue = PapyrusCompareEObjectCopier.this.get(value);
 				if(targetValue != null) {
 					copy = targetValue;
 				} else {
@@ -114,7 +168,7 @@ public class PapyrusCompareEObjectCopier {
 						// We can't copy that object
 						copy = value;
 					} else {
-						copy = PapyrusCompareEObjectCopier.this.copier.copy(value);
+						copy = PapyrusCompareEObjectCopier.this.copy(value);
 					}
 				}
 				Command cmd = null;
@@ -186,7 +240,7 @@ public class PapyrusCompareEObjectCopier {
 	 *         the copied object
 	 */
 	public EObject getCopiedValue(final EObject key) {
-		return this.copier.get(key);
+		return get(key);
 	}
 
 

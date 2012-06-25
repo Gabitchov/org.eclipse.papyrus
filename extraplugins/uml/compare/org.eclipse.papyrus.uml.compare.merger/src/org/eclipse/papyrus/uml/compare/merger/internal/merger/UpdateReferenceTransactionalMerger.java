@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.compare.diff.internal.merge.impl.AttributeChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateReferenceMerger;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -31,17 +30,17 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
 import org.eclipse.papyrus.uml.compare.merger.internal.utils.PapyrusCompareEObjectCopier;
+import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
 
 /**
  * 
  * Transactional version of the class {@link UpdateReferenceMerger}
- *
+ * 
  */
 public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerger {
 
 	/**
-	 * The native implementation, duplicated Code from  {@link UpdateReferenceMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link UpdateReferenceMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doApplyInOrigin()
 	 */
@@ -53,18 +52,16 @@ public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerg
 		final EObject leftTarget = (EObject)theDiff.getRightElement().eGet(reference);
 		final EObject matchedLeftTarget = theDiff.getLeftTarget();
 
-		if (leftTarget == null) {
+		if(leftTarget == null) {
 			// We're unsetting the value, no need to copy
 			element.eUnset(reference);
 		} else {
-			MergeService.getCopier(diff).copyReferenceValue(reference, element, leftTarget,
-					matchedLeftTarget, -1);
+			MergeService.getCopier(diff).copyReferenceValue(reference, element, leftTarget, matchedLeftTarget, -1);
 		}
 	}
 
 	/**
-	 * The native implementation, duplicated Code from  {@link UpdateReferenceMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link UpdateReferenceMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.api.AbstractMerger#doUndoInTarget()
 	 */
@@ -76,19 +73,17 @@ public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerg
 		final EObject rightTarget = (EObject)theDiff.getLeftElement().eGet(reference);
 		final EObject matchedRightTarget = theDiff.getRightTarget();
 
-		if (rightTarget == null) {
+		if(rightTarget == null) {
 			// We're unsetting the value, no need to copy
 			element.eUnset(reference);
 		} else {
-			MergeService.getCopier(diff).copyReferenceValue(reference, element, rightTarget,
-					matchedRightTarget, -1);
+			MergeService.getCopier(diff).copyReferenceValue(reference, element, rightTarget, matchedRightTarget, -1);
 		}
 	}
 
 	//TODO verify if I use this method
 	/**
-	 * The native implementation, duplicated Code from  {@link UpdateReferenceMerger}
-	 * {@inheritDoc}
+	 * The native implementation, duplicated Code from {@link UpdateReferenceMerger} {@inheritDoc}
 	 * 
 	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
 	 */
@@ -96,10 +91,10 @@ public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerg
 	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
 		final List<DiffElement> diffs = diff.getRequires();
 		final List<DiffElement> result = new ArrayList<DiffElement>();
-		for (DiffElement diffElement : diffs) {
-			if (applyInOrigin && diffElement instanceof ModelElementChangeRightTarget) {
+		for(DiffElement diffElement : diffs) {
+			if(applyInOrigin && diffElement instanceof ModelElementChangeRightTarget) {
 				result.add(diffElement);
-			} else if (!applyInOrigin && diffElement instanceof ModelElementChangeLeftTarget) {
+			} else if(!applyInOrigin && diffElement instanceof ModelElementChangeLeftTarget) {
 				result.add(diffElement);
 			}
 		}
@@ -130,7 +125,7 @@ public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerg
 				}
 			}
 		} else {
-			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+			final PapyrusCompareEObjectCopier copier = (PapyrusCompareEObjectCopier)TransactionalMergeService.getCopier(diff);
 			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, leftTarget, matchedLeftTarget, -1);
 		}
 		return cmd;
@@ -161,7 +156,7 @@ public class UpdateReferenceTransactionalMerger extends DefaultTransactionalMerg
 				}
 			}
 		} else {
-			final PapyrusCompareEObjectCopier copier = new PapyrusCompareEObjectCopier(diff);
+			final PapyrusCompareEObjectCopier copier = (PapyrusCompareEObjectCopier)TransactionalMergeService.getCopier(diff);
 			cmd = copier.getCopyReferenceValueCommand(domain, reference, element, rightTarget, matchedRightTarget, -1);
 		}
 		return cmd;

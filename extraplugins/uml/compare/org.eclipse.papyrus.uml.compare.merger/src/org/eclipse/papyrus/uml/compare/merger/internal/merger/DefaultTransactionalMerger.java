@@ -301,7 +301,7 @@ public class DefaultTransactionalMerger implements ITransactionalMerger, IMerger
 	 * @return the copied object.
 	 */
 	protected EObject copy(EObject eObject) {
-		final EMFCompareEObjectCopier copier = MergeService.getCopier(diff);
+		final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
 		final EObject result = copier.copy(eObject);
 		copier.copyReferences();
 		copier.copyXMIIDs();
@@ -319,7 +319,7 @@ public class DefaultTransactionalMerger implements ITransactionalMerger, IMerger
 	 * @since 1.3
 	 */
 	protected void ensureXMIIDCopied() {
-		final EMFCompareEObjectCopier copier = MergeService.getCopier(diff);
+		final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
 		copier.copyXMIIDs();
 	}
 

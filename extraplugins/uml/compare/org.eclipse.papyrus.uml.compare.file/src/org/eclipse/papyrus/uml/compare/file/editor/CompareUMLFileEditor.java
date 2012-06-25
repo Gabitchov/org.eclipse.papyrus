@@ -45,7 +45,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -87,7 +86,6 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	private CompareUMLFileInput tmpInput;
 
 	private ServicesRegistry servicesRegistry;
-
 
 	/**
 	 * 
@@ -236,12 +234,18 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	}
 
 	@Override
-	public Object getAdapter(final Class key) {
-		if(key.equals(IUndoContext.class)) {
+	public Object getAdapter(final Class adapter) {
+		if(adapter.equals(IUndoContext.class)) {
 			// used by undo/redo actions to get their undo context
 			return undoContext;
+		} else if(adapter.equals(TransactionalEditingDomain.class)) {
+			try {
+				this.servicesRegistry.getService(adapter);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
 		}
-		return super.getAdapter(key);
+		return super.getAdapter(adapter);
 	}
 
 

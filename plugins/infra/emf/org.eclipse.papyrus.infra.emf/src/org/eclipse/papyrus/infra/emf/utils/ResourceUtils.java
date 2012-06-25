@@ -13,11 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 
 /**
  * 
@@ -52,5 +62,27 @@ public class ResourceUtils {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param resource
+	 *        a resource
+	 * @return
+	 *         a collection with all existing id in the resource
+	 * 
+	 */
+	public static Collection<String> getAllResourceIds(final XMIResource resource) {
+		final Set<String> ids = new HashSet<String>();
+		final Iterator<EObject> iterator = resource.getAllContents();
+		while(iterator.hasNext()) {
+			final EObject current = iterator.next();
+			final String id = resource.getID(current);
+			Assert.isNotNull(id);
+			Assert.isTrue(!ids.contains(id));
+			ids.add(id);
+		}
+		return ids;
 	}
 }

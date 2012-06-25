@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.uml.compare.merger.internal.provider.PapyrusMergeCommandProvider;
+
 //TODO : merge with thepapyrus table command factory?
 /**
  * 
@@ -206,7 +207,7 @@ public class PapyrusEFactory {
 	private static <T> void reorderList(final List<T> list) {
 		List<T> newList = new ArrayList<T>(list);
 		Collections.sort(newList, new EObjectComparator());
-		for(int i=0;i<list.size();i++){
+		for(int i = 0; i < list.size(); i++) {
 			int oldIndex = list.indexOf(newList.get(i));
 			list.add(i, list.remove(oldIndex));
 		}

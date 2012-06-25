@@ -8,6 +8,8 @@ public class Messages extends NLS {
 
 	public static String CloseEditorTriggerListener_ICantFoundTheIPageManager;
 
+	public static String EMFCompareEditor_EditingDomainNotFound;
+
 	public static String EMFCompareUtils_CompareTitle;
 
 	public static String PapyrusModelCompareEditorInput_CompareTitle;

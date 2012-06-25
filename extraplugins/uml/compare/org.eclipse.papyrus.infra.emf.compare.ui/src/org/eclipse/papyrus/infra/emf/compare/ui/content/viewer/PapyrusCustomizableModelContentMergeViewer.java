@@ -103,7 +103,7 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 		if(metamodels == null) {
 			metamodels = new HashSet<EPackage>();
 		}
-		
+
 		Collection<TreeViewer> viewers = new ArrayList<TreeViewer>();
 		viewers.add((TreeViewer)this.rightPart.getTreePart());
 		viewers.add((TreeViewer)this.leftPart.getTreePart());
@@ -118,8 +118,8 @@ public class PapyrusCustomizableModelContentMergeViewer extends ModelContentMerg
 		tbm.insert(1, collapseAllActionContributionItem);
 
 		tbm.insert(2, new Separator("treeAction")); //$NON-NLS-1$
-		
-		
+
+
 		final IAction customizationAction = new CustomizationAction(Collections.unmodifiableCollection(metamodels));
 		final ActionContributionItem customizationContributionItem = new ActionContributionItem(customizationAction);
 		tbm.insert(3, customizationContributionItem);
