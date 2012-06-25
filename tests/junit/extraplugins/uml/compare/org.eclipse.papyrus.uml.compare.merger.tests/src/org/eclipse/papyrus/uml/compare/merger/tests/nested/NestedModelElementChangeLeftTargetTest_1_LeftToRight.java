@@ -9,6 +9,7 @@ import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -81,14 +82,21 @@ public class NestedModelElementChangeLeftTargetTest_1_LeftToRight extends Abstra
 	@Test
 	public void testResult() throws InterruptedException {
 		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("Property1", null);
-		Assert.assertNull("The right element has not been deleted by the merge action", rightAttribute);
+		Assert.assertNotNull("The right attribute has not been merged to the left", rightAttribute);
 		super.testResult();
 	}
 
 	@Override
 	@Test
 	public void testXMIID() {
-		//nothing to do
+		//the XMI ID should not be duplicated, because we are inside the same model!
+		Property leftAttribute = ((Class)AbstractCompareTest.leftElement).getAttribute("Property1", null);
+		Property rightAttribute = ((Class)AbstractCompareTest.rightElement).getAttribute("Property1", null);
+		Assert.assertNotNull(leftAttribute);
+		Assert.assertNotNull(rightAttribute);
+		String leftID = EMFHelper.getXMIID(leftAttribute);
+		String rightId = EMFHelper.getXMIID(rightAttribute);
+		Assert.assertFalse("The XMIID should be different because we are in the same resource.", leftID.equals(rightId));
 	}
 
 	@Override

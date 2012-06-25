@@ -81,7 +81,7 @@ public class UpdateAttributeTest_1_RightToLeft extends AbstractStandaloneCompare
 	}
 
 	public void testUpdateAttribute() {
-		List<NamedElement> members = ((Package)leftElement).getMembers();
+		List<NamedElement> members = ((Package)leftElement).getOwnedMembers();
 		Assert.assertTrue(members.size() == 1);
 		Assert.assertEquals("The name of the Class has not been correctly merged", members.get(0).getName(), "Class2");
 	}
