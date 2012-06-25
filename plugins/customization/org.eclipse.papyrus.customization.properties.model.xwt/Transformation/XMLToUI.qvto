@@ -155,7 +155,7 @@ query findProperty(propertyName : String) : Property {
 }
 
 query findProperty(propertyName : String, element : DataContextElement) : Property{
-	if propertyName.indexOf(":") > -1
+	if propertyName.indexOf(":") > 0
 	then {
 		var packageName := propertyName.substring(1, propertyName.indexOf(":")-1);
 		var propertyNameSuffix := propertyName.substring(propertyName.indexOf(":")+1, propertyName.size());
