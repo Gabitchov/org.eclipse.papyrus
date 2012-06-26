@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -54,7 +54,7 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID; //$NON-NLS-1$
 
 	public static String prefLabelKey = prefKey + "-" + UMLGraphicalTypes.LABEL_UML_PROPERTY_LABEL_ID; //$NON-NLS-1$	
-	
+
 	/** The compartments default visibility for preferences */
 	public static final Map<String, Boolean> compartmentDefaultVisibilityMap;
 
@@ -69,7 +69,6 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
 		compartmentTitleDefaultVisibilityMap.put("structure", Boolean.TRUE); //$NON-NLS-1$
 
-
 		// Start of user code custom static initializations
 		compartmentTitleDefaultVisibilityMap.remove("structure"); //$NON-NLS-1$
 		compartmentTitleDefaultVisibilityMap.put("structure", Boolean.FALSE); //$NON-NLS-1$
@@ -78,7 +77,7 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 		Collections.unmodifiableMap(compartmentDefaultVisibilityMap);
 		Collections.unmodifiableMap(compartmentTitleDefaultVisibilityMap);
 	}
-	
+
 	/** Constructor */
 	public CustomBlockPropertyCompositePreferencePage() {
 		super();
@@ -90,9 +89,9 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 		// Start of user code custom default initializations
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 200);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 100);
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE| DISP_UNDEFINED_TYPE);
+		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE | DISP_UNDEFINED_TYPE);
 		// End of user code
-		
+
 		// Initialize default visibility for compartments in preference page.
 		for(String compartmentName : compartmentDefaultVisibilityMap.keySet()) {
 			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
@@ -125,7 +124,7 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 			this.compartmentTitlesList.add(name);
 		}
 	}
-	
+
 	/** buttons to select the display mask of the label */
 	protected Button bttnVisibility, bttnDerive, bttnName, bttnType, bttnUndefined_Type, bttnMultiplicity, bttnDefault_Multiplicity, bttnDefaultValue, bttnModifiers;
 
@@ -270,7 +269,7 @@ public class CustomBlockPropertyCompositePreferencePage extends InternalBlockDia
 		bttnDerive.setSelection((propertyValue & DISP_DERIVE) == DISP_DERIVE);
 		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
 		bttnType.setSelection((propertyValue & DISP_TYPE) == DISP_TYPE);
-		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);		
+		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);
 		bttnMultiplicity.setSelection((propertyValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
 		bttnDefault_Multiplicity.setSelection((propertyValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
 		bttnDefaultValue.setSelection((propertyValue & DISP_DEFAULTVALUE) == DISP_DEFAULTVALUE);

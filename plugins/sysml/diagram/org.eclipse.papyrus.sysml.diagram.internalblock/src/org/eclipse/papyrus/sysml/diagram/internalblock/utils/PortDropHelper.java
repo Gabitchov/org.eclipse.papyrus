@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -42,57 +42,57 @@ public class PortDropHelper extends ElementHelper {
 	}
 
 	public Command getDropPortOnPart(DropObjectsRequest request, GraphicalEditPart host) {
-		
+
 		Object droppedEObject = request.getObjects().get(0);
-		if (! isValidPort(droppedEObject, getHostEObject(host))) {
+		if(!isValidPort(droppedEObject, getHostEObject(host))) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		return getDropPortOnPart((Port)droppedEObject, request.getLocation().getCopy(), host);
 	}
-	
 
 	public Command getDropPortOnPart(Port droppedPort, Point location, GraphicalEditPart host) {
-		
-		if (! isValidPort(droppedPort, getHostEObject(host))) {
+
+		if(!isValidPort(droppedPort, getHostEObject(host))) {
 			return UnexecutableCommand.INSTANCE;
 		}
-					
+
 		// Prepare the view creation command
 		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter((EObject)droppedPort, null), Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-		createViewRequest.setLocation(location);		
+		createViewRequest.setLocation(location);
 		Command viewCreateCommand = host.getCommand(createViewRequest);
-		
+
 		return viewCreateCommand;
 	}
-	
+
 	private boolean isValidPort(Object object, EObject dropTarget) {
 		boolean isValid = false;
-		
+
 		// The drop object is supposed to be a Port (or FlowPort)
-		if ((object != null) && (object instanceof Port)) {
-			
+		if((object != null) && (object instanceof Port)) {
+
 			// The dropTarget has to be a TypedElement with a non-null Type
-			if ((dropTarget != null) && (dropTarget instanceof TypedElement) && (((TypedElement)dropTarget).getType() != null)) {
-			
+			if((dropTarget != null) && (dropTarget instanceof TypedElement) && (((TypedElement)dropTarget).getType() != null)) {
+
 				Type targetType = ((TypedElement)dropTarget).getType();
 				// The dropped object is owned by the target type 
-				if (((Port) object).eContainer() == targetType) {
+				if(((Port)object).eContainer() == targetType) {
 					isValid = true;
 				}
 			}
 		}
-		
-		return isValid; 
+
+		return isValid;
 	}
-	
+
 	/**
 	 * return the host Edit Part's semantic element, if the semantic element
 	 * is <code>null</code> or unresolvable it will return <code>null</code>
+	 * 
 	 * @return EObject
 	 */
 	protected EObject getHostEObject(GraphicalEditPart host) {
-		return ViewUtil.resolveSemanticElement((View) host.getModel());
+		return ViewUtil.resolveSemanticElement((View)host.getModel());
 	}
 }

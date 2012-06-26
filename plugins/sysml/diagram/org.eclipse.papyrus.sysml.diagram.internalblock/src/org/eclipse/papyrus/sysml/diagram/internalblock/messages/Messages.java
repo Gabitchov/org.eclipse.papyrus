@@ -48,10 +48,9 @@ public class Messages extends NLS {
 	public static String Notification_Drop_UMLAssociationWarning;
 
 	public static String ShowHideRelatedContentsAction_Title;
-	
+
 	public static String ShowHideRelatedContentsAction_Message;
-	
-	
+
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}

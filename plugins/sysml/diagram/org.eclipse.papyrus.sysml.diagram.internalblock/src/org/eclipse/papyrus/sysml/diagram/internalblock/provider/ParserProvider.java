@@ -46,9 +46,9 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 
 		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, new PropertyLabelParser());
 		graphicalHintToParser.put(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, new FlowPortLabelParser());
-		
+
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, new NamedElementLabelParser());
-		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_LABEL_ID, new ConnectorLabelParser());		
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_LABEL_ID, new ConnectorLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_SOURCE_MULTIPLICITY_ID, new MultiplicityElementLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_TARGET_MULTIPLICITY_ID, new MultiplicityElementLabelParser());
 	}
@@ -59,11 +59,11 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	public boolean provides(IOperation operation) {
 		if(operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation)operation).getHint();
-			
-			if (! ElementTypes.DIAGRAM_ID.equals(getDiagramType(hint))) {
+
+			if(!ElementTypes.DIAGRAM_ID.equals(getDiagramType(hint))) {
 				return false;
 			}
-			
+
 			return getParser(hint) != null;
 		}
 		return false;
@@ -94,11 +94,11 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 
 	private String getDiagramType(IAdaptable hint) {
 		Diagram diagram = (Diagram)hint.getAdapter(Diagram.class);
-		if (diagram != null) {
+		if(diagram != null) {
 			return diagram.getType();
 		}
 
 		return "undefined";
 	}
-	
+
 }

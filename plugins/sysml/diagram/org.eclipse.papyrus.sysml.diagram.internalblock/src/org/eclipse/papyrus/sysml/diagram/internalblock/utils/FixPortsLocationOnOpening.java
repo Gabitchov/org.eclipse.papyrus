@@ -39,47 +39,49 @@ public class FixPortsLocationOnOpening {
 
 	/**
 	 * This method fix the diagram Port and FlowPort locations.
-	 * @param diagram the diagram
+	 * 
+	 * @param diagram
+	 *        the diagram
 	 */
 	public void fix(Diagram diagram) {
-		
+
 		// Parse diagram content
 		Iterator<EObject> it = diagram.eAllContents();
 		while(it.hasNext()) {
 			EObject current = it.next();
-			
+
 			// Select Port and FlowPorts
-			if (! (current instanceof Shape)) {
+			if(!(current instanceof Shape)) {
 				continue;
 			}
-			
+
 			String currentType = ((Shape)current).getType();
-			if (SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(currentType) || UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(currentType)) {
-				
+			if(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(currentType) || UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(currentType)) {
+
 				int borderItemOffset = 10;
-				Shape portView = (Shape) current;
-				Shape parentView = (Shape) ViewUtil.getViewContainer(portView);
-				Bounds portViewBounds = (Bounds) portView.getLayoutConstraint();
-				Bounds parentViewBounds = (Bounds) parentView.getLayoutConstraint();
-				
+				Shape portView = (Shape)current;
+				Shape parentView = (Shape)ViewUtil.getViewContainer(portView);
+				Bounds portViewBounds = (Bounds)portView.getLayoutConstraint();
+				Bounds parentViewBounds = (Bounds)parentView.getLayoutConstraint();
+
 				final Rectangle portBounds = new Rectangle(portViewBounds.getX(), portViewBounds.getY(), portViewBounds.getWidth(), portViewBounds.getHeight());
-				
+
 				int parentWidth = parentViewBounds.getWidth();
 				int parentHeight = parentViewBounds.getHeight();
-				if ((parentWidth == -1) && (parentHeight == -1)) {
+				if((parentWidth == -1) && (parentHeight == -1)) {
 					// warning the size may not be set in notation (default size), in such a case get default size from preferences.
 					String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentView.getType();
 					parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.WIDTH));
 					parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.HEIGHT));
 				}
 				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentWidth, parentHeight);
-				
+
 				// Calculate the valid location based on currently stored location and parent bounds
 				final Rectangle validLocation = PortPositionLocatorUtils.getBorderLocation(parentBounds, portBounds, borderItemOffset);
-				
+
 				// Fix when current location is not the valid location (only possible if parent size is set)
-				if ((! portBounds.equals(validLocation)) && (parentViewBounds.getWidth() != -1) && (parentViewBounds.getHeight() != -1)) {
-					
+				if((!portBounds.equals(validLocation)) && (parentViewBounds.getWidth() != -1) && (parentViewBounds.getHeight() != -1)) {
+
 					TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
 					Command fixCommand = new FixLocationCommand(editingDomain, "Fix Port location on opening", portViewBounds, validLocation);
 					editingDomain.getCommandStack().execute(fixCommand);
@@ -88,20 +90,20 @@ public class FixPortsLocationOnOpening {
 			}
 		}
 	}
-	
+
 	/**
 	 * This command set the Port view with valid locations.
 	 */
 	public class FixLocationCommand extends RecordingCommand {
-		
+
 		/** Port view bounds. */
 		private Bounds portViewBounds;
-		
+
 		/** Port valid bounds (only the location is used here). */
 		private Rectangle portValidBounds;
-		
+
 		/** Constructor. */
-		public FixLocationCommand(TransactionalEditingDomain domain,String label, Bounds portViewBounds, Rectangle portValidBounds) {
+		public FixLocationCommand(TransactionalEditingDomain domain, String label, Bounds portViewBounds, Rectangle portValidBounds) {
 			super(domain, label);
 			this.portViewBounds = portViewBounds;
 			this.portValidBounds = portValidBounds;
@@ -117,6 +119,6 @@ public class FixPortsLocationOnOpening {
 		public boolean canUndo() {
 			return false;
 		}
-		
+
 	}
 }

@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.ui;
@@ -85,7 +85,6 @@ import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.util.UMLUtil;
-
 
 /**
  * <pre>
@@ -237,7 +236,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	}
 
-
 	/**
 	 * This method fills the map {@link #requiredInterfacesMappedWithUsage}
 	 */
@@ -247,7 +245,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		classifiers.add((Classifier)this.port.getType());
 
 		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier)this.port.getType()));
-
 
 		for(Object current : allUsage) {
 			Usage usage = (Usage)current;
@@ -280,7 +277,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		classifiers.add((Classifier)this.port.getType());
 
 		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier)this.port.getType()));
-
 
 		for(Object current : allRealization) {
 			Realization realization = (Realization)current;
@@ -351,7 +347,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			}
 		});
 	}
-
 
 	/**
 	 * This method create the 2 Editors {@link #providedEditor} and {@link #requiredEditor} and provides the listener for the button of these editors
@@ -523,7 +518,8 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		//commands for Usage Creation
 		for(Object current : this.requiredEditor.getElementToAdd()) {
 			if(current instanceof EObject) {
-				CreateRelationshipRequest request = new CreateRelationshipRequest(this.port.getType().eContainer(), this.port.getType(), (EObject)current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.USAGE);
+				CreateRelationshipRequest request =
+					new CreateRelationshipRequest(this.port.getType().eContainer(), this.port.getType(), (EObject)current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.USAGE);
 				Command cmd = getCommand(request);
 				if(cmd.canExecute()) {
 					command.add(cmd);
@@ -540,13 +536,15 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		//commands for InterfaceRealization Creation
 		for(Object current : providedEditor.getElementToAdd()) {
 			if(current instanceof EObject) {
-				CreateRelationshipRequest request = new CreateRelationshipRequest(this.port.getType().eContainer(), this.port.getType(), (EObject)current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.INTERFACE_REALIZATION);
+				CreateRelationshipRequest request =
+					new CreateRelationshipRequest(this.port.getType().eContainer(), this.port.getType(), (EObject)current, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.INTERFACE_REALIZATION);
 				Command cmd = getCommand(request);
 				if(cmd.canExecute()) {
 					command.add(cmd);
 				}
 			} else {//its an NewElementRepresentation
-				CreateInterfaceRealizationCommand cmd = new CreateInterfaceRealizationCommand(this.domain, this.port.getType().eContainer(), this.port.getType(), (NewElementRepresentation)current, null);
+				CreateInterfaceRealizationCommand cmd =
+					new CreateInterfaceRealizationCommand(this.domain, this.port.getType().eContainer(), this.port.getType(), (NewElementRepresentation)current, null);
 				if(cmd.canExecute()) {
 					command.add(new ICommandProxy(cmd));
 				}
@@ -557,7 +555,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 
 	/**
 	 * Return the command corresponding to the request
@@ -628,7 +625,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 
 	}
 
-
 	/**
 	 * 
 	 * This class provides a validator for the selection of the parent of the new Interface
@@ -670,7 +666,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * 
 	 */
 	public class SelectorLabelProvider extends CreateElementLabelProvider {
-
 
 		/**
 		 * 

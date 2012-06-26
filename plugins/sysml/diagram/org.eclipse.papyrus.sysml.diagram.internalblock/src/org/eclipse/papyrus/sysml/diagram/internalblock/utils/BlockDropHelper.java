@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -55,45 +55,45 @@ public class BlockDropHelper extends ElementHelper {
 	public BlockDropHelper(TransactionalEditingDomain editDomain) {
 		this.editDomain = editDomain;
 	}
-	
+
 	public Command getDropAsStructureItemOnPart(DropObjectsRequest request, GraphicalEditPart host, IElementType elementType) {
 		String label = "";
-		if (elementType == SysMLElementTypes.PART_PROPERTY) {
+		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			label = "Create a new Part";
 		}
-		if (elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
+		if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			label = "Create a new Reference";
 		}
-		if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+		if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
 			label = "Create a new ActorPart";
 		}
-		if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+		if(elementType == SysMLElementTypes.VALUE_PROPERTY) {
 			label = "Create a new Value";
 		}
-		if (elementType == UMLElementTypes.PROPERTY) {
+		if(elementType == UMLElementTypes.PROPERTY) {
 			label = "Create a new Property";
 		}
 		CompoundCommand cc = new CompoundCommand(label);
-		
+
 		Object droppedEObject = request.getObjects().get(0);
-		if (! isValidStructureItemType(droppedEObject, elementType)) {
+		if(!isValidStructureItemType(droppedEObject, elementType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// Verify target nature
 		EObject target = getHostEObject(host);
-		if ((! (target instanceof TypedElement)) || (((TypedElement) target).getType() == null)) {
+		if((!(target instanceof TypedElement)) || (((TypedElement)target).getType() == null)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// The target type has to be a Block (will hold the created Port)
-		Type targetType = ((TypedElement) target).getType();
-		if (! ((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(targetType)) {
+		Type targetType = ((TypedElement)target).getType();
+		if(!((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(targetType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// Prepare a command for the element creation and the drop in diagram
-		
+
 		// 1. Prepare creation command
 		ICommand createElementCommand = null;
 		CreateElementRequest createElementRequest = new CreateElementRequest(getEditingDomain(), targetType, elementType);
@@ -101,48 +101,48 @@ public class BlockDropHelper extends ElementHelper {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetType);
 		if(provider != null) {
 			createElementCommand = provider.getEditCommand(createElementRequest);
-		}				
+		}
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
-			
+
 		// 2. Prepare the drop command
 		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-		createViewRequest.setLocation(request.getLocation().getCopy());		
+		createViewRequest.setLocation(request.getLocation().getCopy());
 		Command viewCreateCommand = host.getCommand(createViewRequest);
 
 		// 3. Create the compound command
 		cc.add(new ICommandProxy(createElementCommand));
 		cc.add(viewCreateCommand);
-		
+
 		return cc;
 	}
-	
+
 	public Command getDropAsStructureItem(DropObjectsRequest request, GraphicalEditPart host, IElementType elementType) {
 		String label = "";
-		if (elementType == SysMLElementTypes.PART_PROPERTY) {
+		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			label = "Create a new Part";
 		}
-		if (elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
+		if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			label = "Create a new Reference";
 		}
-		if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+		if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
 			label = "Create a new ActorPart";
 		}
-		if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
+		if(elementType == SysMLElementTypes.VALUE_PROPERTY) {
 			label = "Create a new Value";
 		}
-		if (elementType == UMLElementTypes.PROPERTY) {
+		if(elementType == UMLElementTypes.PROPERTY) {
 			label = "Create a new Property";
 		}
 		CompoundCommand cc = new CompoundCommand(label);
-		
+
 		Object droppedEObject = request.getObjects().get(0);
-		if (! isValidStructureItemType(droppedEObject, elementType)) {
+		if(!isValidStructureItemType(droppedEObject, elementType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// Prepare a command for the element creation and the drop in diagram
-		
+
 		// 1. Prepare creation command
 		ICommand createElementCommand = null;
 		CreateElementRequest createElementRequest = new CreateElementRequest(getEditingDomain(), getHostEObject(host), elementType);
@@ -150,62 +150,63 @@ public class BlockDropHelper extends ElementHelper {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getHostEObject(host));
 		if(provider != null) {
 			createElementCommand = provider.getEditCommand(createElementRequest);
-		}				
+		}
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
-			
+
 		// 2. Prepare the drop command
 		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-		createViewRequest.setLocation(request.getLocation().getCopy());		
+		createViewRequest.setLocation(request.getLocation().getCopy());
 		Command viewCreateCommand = host.getCommand(createViewRequest);
 
 		// 3. Create the compound command
 		cc.add(new ICommandProxy(createElementCommand));
 		cc.add(viewCreateCommand);
-		
+
 		return cc;
 	}
-	
+
 	private boolean isValidStructureItemType(Object object, IElementType elementType) {
 		boolean isValid = false;
-		
-		if ((object != null) && (object instanceof Type) && !(object instanceof Association)) {
 
-			Type type = (Type) object;
-			if ((elementType == SysMLElementTypes.PART_PROPERTY) || (elementType == SysMLElementTypes.REFERENCE_PROPERTY)) {
-				if(((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(type)) {
+		if((object != null) && (object instanceof Type) && !(object instanceof Association)) {
+
+			Type type = (Type)object;
+			if((elementType == SysMLElementTypes.PART_PROPERTY) || (elementType == SysMLElementTypes.REFERENCE_PROPERTY)) {
+				if(((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(type)) {
 					isValid = true;
 				}
 			}
-			if (elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
+			if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
 				if(type instanceof Actor) {
 					isValid = true;
 				}
 			}
-			if (elementType == SysMLElementTypes.VALUE_PROPERTY) {
-				if(((ISpecializationType) SysMLElementTypes.VALUE_TYPE).getMatcher().matches(type) || (type instanceof DataType)) {
+			if(elementType == SysMLElementTypes.VALUE_PROPERTY) {
+				if(((ISpecializationType)SysMLElementTypes.VALUE_TYPE).getMatcher().matches(type) || (type instanceof DataType)) {
 					isValid = true;
 				}
 			}
-			if (elementType == UMLElementTypes.PROPERTY) {
-				if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(type)
+			if(elementType == UMLElementTypes.PROPERTY) {
+				if(!((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(type)
 					&& !(type instanceof Actor)
 					&& !(type instanceof DataType)
-					&& !((ISpecializationType) SysMLElementTypes.VALUE_TYPE).getMatcher().matches(type)) {
+					&& !((ISpecializationType)SysMLElementTypes.VALUE_TYPE).getMatcher().matches(type)) {
 					isValid = true;
 				}
 			}
 		}
-		
-		return isValid; 
+
+		return isValid;
 	}
-			
+
 	/**
 	 * return the host Edit Part's semantic element, if the semantic element
 	 * is <code>null</code> or unresolvable it will return <code>null</code>
+	 * 
 	 * @return EObject
 	 */
 	protected EObject getHostEObject(GraphicalEditPart host) {
-		return ViewUtil.resolveSemanticElement((View) host.getModel());
+		return ViewUtil.resolveSemanticElement((View)host.getModel());
 	}
 }

@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
@@ -42,7 +42,6 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 		currentState.put(SHOW_HIDE_RELATED_CONTENTS, DISABLED);
 	}
 
-
 	/**
 	 * 
 	 * @see org.eclipse.ui.ISourceProvider#getProvidedSourceNames()
@@ -53,7 +52,6 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	public String[] getProvidedSourceNames() {
 		return new String[]{ SHOW_HIDE_RELATED_CONTENTS };
 	}
-
 
 	/**
 	 * Refresh the state of the Delete Action

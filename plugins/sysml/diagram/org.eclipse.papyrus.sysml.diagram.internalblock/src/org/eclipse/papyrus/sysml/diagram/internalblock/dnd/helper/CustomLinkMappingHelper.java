@@ -1,16 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - 
- *  	refactor common behavior between diagrams, define only specific behavior
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper;
@@ -39,18 +37,18 @@ public class CustomLinkMappingHelper implements ILinkMappingHelper {
 			public java.util.Collection<?> caseConnector(org.eclipse.uml2.uml.Connector object) {
 
 				java.util.Collection<?> ends = Collections.emptySet();
-				
+
 				// Support for binary Connector only in this diagram.
-				
+
 				if(object.getEnds().size() == 2) {
-					
+
 					ConnectorEnd semanticSource = object.getEnds().get(0);
-					ends = Arrays.asList(new EObject[]{semanticSource});
-					
+					ends = Arrays.asList(new EObject[]{ semanticSource });
+
 				} else {
 					// TODO: log warning here - can only drop binary associations in this diagram...
 				}
-				
+
 				return ends;
 			};
 
@@ -65,20 +63,20 @@ public class CustomLinkMappingHelper implements ILinkMappingHelper {
 		CommonTargetUMLSwitch umlSwitch = new CommonTargetUMLSwitch() {
 
 			public java.util.Collection<?> caseConnector(org.eclipse.uml2.uml.Connector object) {
-				
+
 				java.util.Collection<?> ends = Collections.emptySet();
-				
+
 				// Support for binary Connector only in this diagram.			
-				
+
 				if(object.getEnds().size() == 2) {
-					
+
 					ConnectorEnd semanticTarget = object.getEnds().get(1);
-					ends = Arrays.asList(new EObject[]{semanticTarget});
-										
+					ends = Arrays.asList(new EObject[]{ semanticTarget });
+
 				} else {
 					// TODO: log warning here - can only drop binary associations in this diagram...
 				}
-				
+
 				return ends;
 			};
 

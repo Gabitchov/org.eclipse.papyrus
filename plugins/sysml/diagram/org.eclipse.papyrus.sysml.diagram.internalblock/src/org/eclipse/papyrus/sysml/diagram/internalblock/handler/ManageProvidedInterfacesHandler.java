@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.handler;
@@ -106,7 +106,8 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 			if(type != null && !(type instanceof Classifier)) {
 				return UnexecutableCommand.INSTANCE;
 			} else if(type == null) {
-				MessageDialog dialog = new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING, new String[]{ Messages.ManageProvidedInterfacesHandler_OK }, 0);
+				MessageDialog dialog =
+					new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING, new String[]{ Messages.ManageProvidedInterfacesHandler_OK }, 0);
 				dialog.open();
 			} else {
 				InterfaceManagerDialog dialog = new InterfaceManagerDialog(DisplayUtils.getDefaultShell(), this.port);
@@ -130,7 +131,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		EObject semanticElement = selection.get(0).resolveSemanticElement();
 
 		// Selection should be a Port but should not be a FlowPort
-		if (!(semanticElement instanceof Port)) {
+		if(!(semanticElement instanceof Port)) {
 			return false;
 		}
 

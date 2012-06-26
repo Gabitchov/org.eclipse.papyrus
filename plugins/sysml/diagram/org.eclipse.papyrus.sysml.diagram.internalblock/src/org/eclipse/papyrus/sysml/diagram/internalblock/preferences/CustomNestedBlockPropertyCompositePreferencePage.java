@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -50,7 +50,7 @@ public class CustomNestedBlockPropertyCompositePreferencePage extends InternalBl
 	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID; //$NON-NLS-1$
 
 	public static String prefLabelKey = prefKey + "-" + UMLGraphicalTypes.LABEL_UML_PROPERTY_LABEL_ID; //$NON-NLS-1$	
-		
+
 	/** Constructor */
 	public CustomNestedBlockPropertyCompositePreferencePage() {
 		super();
@@ -60,12 +60,12 @@ public class CustomNestedBlockPropertyCompositePreferencePage extends InternalBl
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE| DISP_UNDEFINED_TYPE);
+		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE | DISP_UNDEFINED_TYPE);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 160);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 80);
 		// End of user code
 	}
-	
+
 	/** buttons to select the display mask of the label */
 	protected Button bttnVisibility, bttnDerive, bttnName, bttnType, bttnUndefined_Type, bttnMultiplicity, bttnDefault_Multiplicity, bttnDefaultValue, bttnModifiers;
 
@@ -210,7 +210,7 @@ public class CustomNestedBlockPropertyCompositePreferencePage extends InternalBl
 		bttnDerive.setSelection((propertyValue & DISP_DERIVE) == DISP_DERIVE);
 		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
 		bttnType.setSelection((propertyValue & DISP_TYPE) == DISP_TYPE);
-		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);		
+		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);
 		bttnMultiplicity.setSelection((propertyValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
 		bttnDefault_Multiplicity.setSelection((propertyValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
 		bttnDefaultValue.setSelection((propertyValue & DISP_DEFAULTVALUE) == DISP_DEFAULTVALUE);

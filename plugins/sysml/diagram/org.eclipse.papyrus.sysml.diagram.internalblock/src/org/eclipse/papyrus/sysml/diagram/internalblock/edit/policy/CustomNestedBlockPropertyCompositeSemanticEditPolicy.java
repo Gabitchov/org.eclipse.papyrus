@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -40,10 +40,10 @@ public class CustomNestedBlockPropertyCompositeSemanticEditPolicy extends Nested
 
 	/** Local graphical type registry for graphical elements */
 	private IGraphicalTypeRegistry registry = new CustomGraphicalTypeRegistry();
-	
+
 	/** Local graphical type registry for inherited graphical elements */
 	private IGraphicalTypeRegistry inheritedRegistry = new GraphicalTypeRegistry();
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

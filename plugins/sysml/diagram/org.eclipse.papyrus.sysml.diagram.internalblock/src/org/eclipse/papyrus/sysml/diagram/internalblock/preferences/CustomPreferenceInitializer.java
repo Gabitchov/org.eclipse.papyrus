@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,9 +32,9 @@ public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceI
 	@Override
 	public void initializeDefaultPreferences() {
 		super.initializeDefaultPreferences();
-		
+
 		IPreferenceStore store = getPreferenceStore();
-		
+
 		PortAsBorderItemPreferencePage.initDefaults(store);
 		FlowPortAsBorderItemPreferencePage.initDefaults(store);
 		BlockPropertyCompositePreferencePage.initDefaults(store);
@@ -48,14 +48,14 @@ public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceI
 		initDefaultPosition(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID, UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, 0, -30);
 		initDefaultPosition(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_SOURCE_MULTIPLICITY_ID, 0, 10);
 		initDefaultPosition(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_TARGET_MULTIPLICITY_ID, 0, 10);
-		
+
 		initDefaultPosition(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, 30, 0);
 		initDefaultPosition(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, 30, -20);
 
 		initDefaultPosition(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, 30, 0);
 		initDefaultPosition(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, 30, -20);
 	}
-	
+
 	/**
 	 * Initialize default position of a link label in preferences.
 	 * 

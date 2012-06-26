@@ -74,12 +74,12 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
-		
+
 		// Label default masks initialization
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(labelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE);
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(sourceMultLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_MULTIPLICITY);
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(targetMultLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_MULTIPLICITY);
-		
+
 		// End of user code
 
 		// Initialize default visibility for labels in preference page.
@@ -98,30 +98,36 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 			this.labelsList.add(name);
 		}
 	}
-	
+
 	// Label display mask management in preference page
 
 	/** buttons to select the display mask of the label */
 	protected Button bttnName, bttnType, bttnUndefined_Type;
-	
+
 	/** buttons to select the display mask of the source labels */
 	protected Button bttnSourceMultMultiplicity, bttnSourceMultDefault_Multiplicity;
 
 	/** buttons to select the display mask of the target labels */
 	protected Button bttnTargetMultMultiplicity, bttnTargetMultDefault_Multiplicity;
-		
+
 	/** Preference keys */
 	public static String labelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.LINK_UML_CONNECTOR_ID + "-" + UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_LABEL_ID; //$NON-NLS-1$	
+
 	public static String sourceMultLabelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.LINK_UML_CONNECTOR_ID + "-" + UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_SOURCE_MULTIPLICITY_ID; //$NON-NLS-1$	
+
 	public static String targetMultLabelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.LINK_UML_CONNECTOR_ID + "-" + UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_TARGET_MULTIPLICITY_ID; //$NON-NLS-1$	
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(labelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
+
 	private String sourceMultLabelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(sourceMultLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
+
 	private String targetMultLabelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(targetMultLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
-	
+
 	/** Current property display styles for labels */
 	private int labelDisplayValue = getPreferenceStore().getInt(labelDisplayPreferenceKey);
+
 	private int sourceMultDisplayValue = getPreferenceStore().getInt(sourceMultLabelDisplayPreferenceKey);
+
 	private int targetMultDisplayValue = getPreferenceStore().getInt(targetMultLabelDisplayPreferenceKey);
 
 	/**
@@ -156,7 +162,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		data.top = new FormAttachment(0, 0);
 		bttnUndefined_Type.setLayoutData(data);
 	}
-	
+
 	/**
 	 * Creates the group and check boxes to choose the kind of display
 	 * 
@@ -210,7 +216,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		data.top = new FormAttachment(0, 0);
 		bttnTargetMultDefault_Multiplicity.setLayoutData(data);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -222,7 +228,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		createLabelPreferencesButtons(parent);
 		createSourceMultLabelPreferencesButtons(parent);
 		createTargetMultLabelPreferencesButtons(parent);
-		
+
 		refreshButtons();
 	}
 
@@ -233,7 +239,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		labelDisplayValue = getPreferenceStore().getDefaultInt(labelDisplayPreferenceKey);
 		sourceMultDisplayValue = getPreferenceStore().getDefaultInt(sourceMultLabelDisplayPreferenceKey);
 		targetMultDisplayValue = getPreferenceStore().getDefaultInt(targetMultLabelDisplayPreferenceKey);
-		
+
 		refreshButtons();
 	}
 
@@ -264,15 +270,15 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		bttnName.setSelection((labelDisplayValue & DISP_NAME) == DISP_NAME);
 		bttnType.setSelection((labelDisplayValue & DISP_TYPE) == DISP_TYPE);
 		bttnUndefined_Type.setSelection((labelDisplayValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);
-		
+
 		// Source Label Buttons
 		bttnSourceMultMultiplicity.setSelection((sourceMultDisplayValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
 		bttnSourceMultDefault_Multiplicity.setSelection((sourceMultDisplayValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
-		
+
 		// Target Label Buttons
 		bttnTargetMultMultiplicity.setSelection((targetMultDisplayValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
 		bttnTargetMultDefault_Multiplicity.setSelection((targetMultDisplayValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
-		
+
 	}
 
 	/**
@@ -293,7 +299,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 			store.setValue(targetMultLabelDisplayPreferenceKey, targetMultDisplayValue);
 		}
 	}
-	
+
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
 	 * 
@@ -311,7 +317,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		button.addSelectionListener(new LabelAppearenceSelectionListener(mask));
 		return button;
 	}
-	
+
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
 	 * 
@@ -329,7 +335,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		button.addSelectionListener(new SourceMultAppearenceSelectionListener(mask));
 		return button;
 	}
-	
+
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
 	 * 
@@ -347,7 +353,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 		button.addSelectionListener(new TargetMultAppearenceSelectionListener(mask));
 		return button;
 	}
-	
+
 	/**
 	 * Listeners for the check buttons that select the label display.
 	 */
@@ -383,7 +389,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 			refreshButtons();
 		}
 	}
-	
+
 	/**
 	 * Listeners for the check buttons that select the source multiplicity display.
 	 */
@@ -419,7 +425,7 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 			refreshButtons();
 		}
 	}
-	
+
 	/**
 	 * Listeners for the check buttons that select the target multiplicity display.
 	 */
@@ -455,5 +461,5 @@ public class CustomConnectorPreferencePage extends InternalBlockDiagramLinkPrefe
 			refreshButtons();
 		}
 	}
-	
+
 }

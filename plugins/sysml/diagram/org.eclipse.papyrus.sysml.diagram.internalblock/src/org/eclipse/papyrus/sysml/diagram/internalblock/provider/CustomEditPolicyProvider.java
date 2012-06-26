@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -78,7 +78,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(gep instanceof InternalBlockDiagramEditPart) {
 			return true;
 		}
-		
+
 		// Provides for edit parts that represent nodes in Internal Block diagram
 		if(gep instanceof AbstractElementEditPart) {
 			return true;
@@ -86,7 +86,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(gep instanceof AbstractElementBorderEditPart) {
 			return true;
 		}
-		
+
 		// Provides for edit parts that represent edges in Internal Block diagram
 		if(gep instanceof AbstractElementLinkEditPart) {
 			return true;
@@ -95,10 +95,10 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		if(gep instanceof ResizableCompartmentEditPart) {
 			return true;
 		}
-		
+
 		return super.provides(operation);
 	}
-	
+
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
 
@@ -108,7 +108,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 			// no installation of other policies. 
 			return;
 		}
-		
+
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 
@@ -117,56 +117,56 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
-		
+
 		if((editPart instanceof CommentEditPart) || (editPart instanceof CommentEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
-		
+
 		if(editPart instanceof FlowPortAffixedNodeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TypedElementDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		
+
 		if(editPart instanceof PortAffixedNodeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TypedElementDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		
+
 		if(editPart instanceof BlockPropertyCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockPropertyCompositeSemanticEditPolicy());
 		}
-		
+
 		if(editPart instanceof NestedBlockPropertyCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomNestedBlockPropertyCompositeSemanticEditPolicy());
 		}
-		
+
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 		}
-		
+
 		if(editPart instanceof BlockCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new EncapsulatedClassifierDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockCompositeSemanticEditPolicy());
 		}
-		
+
 		if(editPart instanceof StructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new StructureClassifierDropEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 		}
-		
+
 		if(editPart instanceof DependencyEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		
+
 		if(editPart instanceof ConnectorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
-		
+
 	}
 
 }

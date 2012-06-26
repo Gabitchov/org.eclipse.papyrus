@@ -56,9 +56,9 @@ public class CustomDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 	@Override
 	protected Set<String> getSpecificDropBehaviorTypes() {
 		Set<String> specificDropBehaviorTypes = new HashSet<String>();
-		
+
 		specificDropBehaviorTypes.add(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID);
-		
+
 		return specificDropBehaviorTypes;
 	}
 
@@ -67,20 +67,20 @@ public class CustomDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 	 */
 	@Override
 	protected ICommand getSpecificDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject, String nodeType, String edgeType) {
-		if ((UMLGraphicalTypes.LINK_UML_CONNECTOR_ID.equals(edgeType)) && (droppedEObject instanceof Connector)) {
-			return getConnectorDropCommand(dropRequest, (Connector) droppedEObject, edgeType);
+		if((UMLGraphicalTypes.LINK_UML_CONNECTOR_ID.equals(edgeType)) && (droppedEObject instanceof Connector)) {
+			return getConnectorDropCommand(dropRequest, (Connector)droppedEObject, edgeType);
 		}
-		
+
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
-	
+
 	private ICommand getConnectorDropCommand(DropObjectsRequest dropRequest, Connector droppedEObject, String edgeType) {
 
 		// Only manage binary link during drop
 		if(droppedEObject.getEnds().size() != 2) {
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}
-		
+
 		ConnectorEnd source = droppedEObject.getEnds().get(0);
 		ConnectorEnd target = droppedEObject.getEnds().get(1);
 
@@ -111,12 +111,13 @@ public class CustomDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(droppedObjectAdapter, edgeType, getDiagramPreferencesHint());
 
-		CommonDeferredCreateConnectionViewCommand createConnectionViewCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), edgeType, sourceViewAdapter, targetViewAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		CommonDeferredCreateConnectionViewCommand createConnectionViewCommand =
+			new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), edgeType, sourceViewAdapter, targetViewAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
 		createConnectionViewCommand.setElement(droppedEObject);
 
-		return  createConnectionViewCommand;
+		return createConnectionViewCommand;
 	}
-	
+
 	/**
 	 * This methods looks for views representing a given {@link ConnectorEnd} in the host diagram.
 	 * 
@@ -141,25 +142,25 @@ public class CustomDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 		while(it.hasNext()) {
 			View currentView = it.next();
 			if(currentView.getDiagram() == hostDiagram) {
-				
+
 				// If the ConnectorEnd partWithPort is not null, only select Views for which 
 				// the graphical parent reference partWithPort.
-				if (end.getPartWithPort() != null) {
-					if (ViewUtil.getContainerView(currentView).getElement() == end.getPartWithPort()) {
+				if(end.getPartWithPort() != null) {
+					if(ViewUtil.getContainerView(currentView).getElement() == end.getPartWithPort()) {
 						views.add(currentView);
 					}
-				
+
 				} else {
 					// If the role is a Port, its graphical parent is a EncapsulatedClassifier
-					if (end.getRole() instanceof Port) {
-						if (ViewUtil.getContainerView(currentView).getElement() instanceof EncapsulatedClassifier) {
+					if(end.getRole() instanceof Port) {
+						if(ViewUtil.getContainerView(currentView).getElement() instanceof EncapsulatedClassifier) {
 							views.add(currentView);
 						}
-					
+
 					} else { // No further test needed
 						views.add(currentView);
 					}
-				}	
+				}
 			}
 		}
 

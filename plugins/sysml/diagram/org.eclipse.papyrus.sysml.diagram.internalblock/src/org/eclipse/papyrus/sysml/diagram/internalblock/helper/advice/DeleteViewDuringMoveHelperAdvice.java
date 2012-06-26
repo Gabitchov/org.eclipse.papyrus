@@ -52,12 +52,12 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 		Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
 		while(it.hasNext()) {
 			EObject eObject = it.next();
-			
+
 			// If current eObject is a Block do nothing.
-			if (((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(eObject)) {
+			if(((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(eObject)) {
 				continue;
 			}
-			
+
 			viewsToDestroy.addAll(getViewsToDestroy(eObject));
 		}
 
@@ -93,7 +93,6 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 				viewsToDestroy.add(view);
 			}
 		}
-
 
 		return viewsToDestroy;
 	}

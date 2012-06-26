@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,11 +25,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
 
-
 /**
  * Custom drag'n'drop edit policy when the target edit part is the diagram itself.
  * <P>
- * In this case, it should be impossible to drop elements in this Internal Block Diagram, except the block context of that diagram, if it is not already displayed in the diagram.
+ * In this case, it should be impossible to drop elements in this Internal Block Diagram, except the block context of that diagram, if it is not
+ * already displayed in the diagram.
  * </P>
  */
 public class CustomDiagramDropEditPolicy extends CustomDragDropEditPolicy {
@@ -43,13 +43,13 @@ public class CustomDiagramDropEditPolicy extends CustomDragDropEditPolicy {
 		specificDropBehaviorTypes.add(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
 		return specificDropBehaviorTypes;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected ICommand getSpecificDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject, String nodeType, String edgeType) {
-		if (SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(nodeType)) {
+		if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(nodeType)) {
 			// should not be possible to execute, unless 2 conditions: 
 			// 1. the block is the context of the diagram
 			// 2. the block is not already displayed in the diagram
@@ -57,7 +57,7 @@ public class CustomDiagramDropEditPolicy extends CustomDragDropEditPolicy {
 			if(!matcher.matches(droppedEObject)) { // should check for additional free elements, like comments, constraints.
 				return UnexecutableCommand.INSTANCE;
 			}
-			
+
 			// this is a block. checking if the element context of the diagram is the block dropped
 			Object model = getHost().getModel();
 			if(model instanceof Diagram) { // should be...
@@ -80,11 +80,10 @@ public class CustomDiagramDropEditPolicy extends CustomDragDropEditPolicy {
 			} else {
 				return UnexecutableCommand.INSTANCE;
 			}
-			
+
 			// it should be possible to create a view for the block now. It is not displayed and this is the context of the diagram
 			return getDefaultDropNodeCommand(nodeType, dropRequest.getLocation(), droppedEObject);
-			
-			
+
 		}
 		return super.getSpecificDropCommand(dropRequest, droppedEObject, nodeType, edgeType);
 	}

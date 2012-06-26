@@ -40,10 +40,10 @@ public class CustomBlockPropertyCompositeSemanticEditPolicy extends BlockPropert
 
 	/** Local graphical type registry for graphical elements */
 	private IGraphicalTypeRegistry registry = new CustomGraphicalTypeRegistry();
-	
+
 	/** Local graphical type registry for inherited graphical elements */
 	private IGraphicalTypeRegistry inheritedRegistry = new GraphicalTypeRegistry();
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
