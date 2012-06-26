@@ -106,13 +106,13 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 	 */
 	public InternalBlockDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
-		
+
 		// Verify diagram compatibility version
 		verifyDiagramCompatibilityVersion(diagram);
 
 		// Fix Port locations (implementations before 0.8.1 were erroneous see https://bugs.eclipse.org/bugs/show_bug.cgi?id=354815)
-		(new FixPortsLocationOnOpening()).fix(diagram);	
-		
+		(new FixPortsLocationOnOpening()).fix(diagram);
+
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 
@@ -123,7 +123,6 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
 	}
-
 
 	protected void verifyDiagramCompatibilityVersion(Diagram diagram) {
 		IDiagramVersionUpdater updater = new DiagramVersionUpdater();
@@ -269,7 +268,6 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
 		return savedOperation != op;
 	}
-
 
 	/**
 	 * @generated

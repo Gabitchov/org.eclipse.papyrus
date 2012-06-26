@@ -21,7 +21,6 @@ public class ConstraintConstrainedElementPreferencePage extends InternalBlockDia
 	/** Constant key to access preferences */
 	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_ConstraintConstrainedElement"; //$NON-NLS-1$
 
-
 	/** Default constructor */
 	public ConstraintConstrainedElementPreferencePage() {
 		super();

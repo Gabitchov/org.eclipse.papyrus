@@ -28,7 +28,7 @@ public class InternalBlockDiagramViewFactory extends DiagramViewFactory {
 	@Override
 	protected List createStyles(View view) {
 		//DiagramVersioningUtils.setCompatibilityVersion((Diagram) view, INTERNAL_VERSION);
-		return super.createStyles(view);		
+		return super.createStyles(view);
 	}
 
 	protected MeasurementUnit getMeasurementUnit() {

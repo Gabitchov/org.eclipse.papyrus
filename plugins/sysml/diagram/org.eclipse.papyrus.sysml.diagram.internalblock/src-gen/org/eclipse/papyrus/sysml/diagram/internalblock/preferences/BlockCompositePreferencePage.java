@@ -41,7 +41,6 @@ public class BlockCompositePreferencePage extends InternalBlockDiagramNodePrefer
 		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
 		compartmentTitleDefaultVisibilityMap.put("structure", Boolean.TRUE); //$NON-NLS-1$
 
-
 		// Start of user code custom static initializations
 		compartmentTitleDefaultVisibilityMap.remove("structure"); //$NON-NLS-1$
 		compartmentTitleDefaultVisibilityMap.put("structure", Boolean.FALSE); //$NON-NLS-1$

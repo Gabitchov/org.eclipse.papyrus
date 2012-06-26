@@ -25,13 +25,9 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** SysML Internal Block Diagram :: Diagram */
 	public static final String DIAGRAM_ID = "InternalBlock"; //$NON-NLS-1$
 
-
-
-
 	/** ********************************************************* */
 	/** SysML Internal Block Diagram - CompositeDiagram related elements */
 	/** ********************************************************* */
-
 
 	/** CompositeDiagram :: COMMENT */
 	public static final IHintedType COMMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.composite.Comment_2109"); //$NON-NLS-1$
@@ -57,12 +53,10 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CONSTRAINT_CN_LABEL_SPECIFICATION_HINT = "6049"; //$NON-NLS-1$
 
-
 	/** CompositeDiagram :: COMMENT_ANNOTATED_ELEMENT */
 	public static final IHintedType COMMENT_ANNOTATED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"); //$NON-NLS-1$
 
 	/** CompositeDiagram :: CONSTRAINT_CONSTRAINED_ELEMENT */
 	public static final IHintedType CONSTRAINT_CONSTRAINED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"); //$NON-NLS-1$
-
 
 }

@@ -43,7 +43,6 @@ public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvid
 				return true;
 			}
 
-
 			// Additional test needed here to decide whether to support Feature type links.
 			// As feature type link are not related to a MetaClass from the domain model
 			// they are not already handled by previous tests.
@@ -58,8 +57,6 @@ public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvid
 			if(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(hint)) {
 				return true;
 			}
-
-
 
 		}
 		return false;

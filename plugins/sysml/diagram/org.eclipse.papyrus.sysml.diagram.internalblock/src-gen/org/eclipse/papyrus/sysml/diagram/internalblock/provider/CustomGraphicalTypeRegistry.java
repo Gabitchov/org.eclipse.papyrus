@@ -60,7 +60,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 	@Override
 	public String getNodeGraphicalType(EObject domainElement, String containerType) {
 		// Start of user code getNodeGraphicalType(EObject domainElement, String containerType)	
-		if(((ISpecializationType)SysMLElementTypes.PART_PROPERTY).getMatcher().matches(domainElement) 
+		if(((ISpecializationType)SysMLElementTypes.PART_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(domainElement)
@@ -72,16 +72,16 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
-		
+
 		if(((ISpecializationType)SysMLElementTypes.FLOW_PORT).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_IN).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_OUT).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_IN_OUT).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.FLOW_PORT_NA).getMatcher().matches(domainElement)) {
-			
+
 			if(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
@@ -142,11 +142,11 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 	 */
 	public String getNodeGraphicalType(String proposedType, String containerType) {
 		// Start of user code getNodeGraphicalType(String proposedType, String containerType)
-		if(SysMLElementTypes.PART_PROPERTY.getSemanticHint().equals(proposedType) 
+		if(SysMLElementTypes.PART_PROPERTY.getSemanticHint().equals(proposedType)
 			|| SysMLElementTypes.REFERENCE_PROPERTY.getSemanticHint().equals(proposedType)
-			||  SysMLElementTypes.ACTOR_PART_PROPERTY.getSemanticHint().equals(proposedType)
-			||  SysMLElementTypes.VALUE_PROPERTY.getSemanticHint().equals(proposedType)
-			||  UMLElementTypes.PROPERTY.getSemanticHint().equals(proposedType)) {
+			|| SysMLElementTypes.ACTOR_PART_PROPERTY.getSemanticHint().equals(proposedType)
+			|| SysMLElementTypes.VALUE_PROPERTY.getSemanticHint().equals(proposedType)
+			|| UMLElementTypes.PROPERTY.getSemanticHint().equals(proposedType)) {
 
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;
@@ -154,10 +154,10 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID;
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
-		
+
 		if(SysMLElementTypes.FLOW_PORT.getSemanticHint().equals(proposedType)
 			|| SysMLElementTypes.FLOW_PORT_IN.getSemanticHint().equals(proposedType)
 			|| SysMLElementTypes.FLOW_PORT_OUT.getSemanticHint().equals(proposedType)
@@ -173,7 +173,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID;
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
 

@@ -48,7 +48,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(UMLElementTypes.CONSTRAINT.getSemanticHint());
 		knownNodes.add(UMLElementTypes.COMMENT.getSemanticHint());
-		
+
 		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
 		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
@@ -111,7 +111,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
 				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
-			}			
+			}
 		}
 
 		if(domainElement instanceof org.eclipse.uml2.uml.Constraint) {
@@ -142,7 +142,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 	 * {@inheritDoc}
 	 */
 	public String getNodeGraphicalType(String proposedType, String containerType) {
-		
+
 		if((UMLElementTypes.COMMENT.getSemanticHint().equals(proposedType))) {
 
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
@@ -152,11 +152,11 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return ElementTypes.COMMENT_CN.getSemanticHint();
 			}
-			
+
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
 				return ElementTypes.COMMENT_CN.getSemanticHint();
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
 
@@ -168,10 +168,10 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return ElementTypes.CONSTRAINT_CN.getSemanticHint();
 			}
-			
+
 			return UNDEFINED_TYPE;
 		}
-		
+
 		if(isKnownNodeType(proposedType)) {
 			return proposedType;
 		}

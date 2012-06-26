@@ -21,7 +21,6 @@ public class ConstraintPreferencePage extends InternalBlockDiagramNodePreference
 	/** Constant key to access preferences */
 	protected static String prefKey = ElementTypes.DIAGRAM_ID + "_Constraint"; //$NON-NLS-1$
 
-
 	/** Default constructor */
 	public ConstraintPreferencePage() {
 		super();
@@ -39,6 +38,5 @@ public class ConstraintPreferencePage extends InternalBlockDiagramNodePreference
 		// End of user code
 
 	}
-
 
 }

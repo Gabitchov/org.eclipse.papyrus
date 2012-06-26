@@ -98,7 +98,7 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 			}
 
 		} else if(owner instanceof Package) {
-			
+
 			try {
 				canvasDomainElement = null;
 
@@ -115,13 +115,13 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 					canvasDomainElement = block;
 					diagram = super.createDiagram(diagramResource, (Package)owner, name);
 				}
-				
+
 			} catch (ExecutionException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		return diagram;
 	}
 
@@ -151,7 +151,7 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 		// Create a view for the canvasDomainElement in the new diagram
 		View view = ViewService.getInstance().createNode(new SemanticAdapter(canvasDomainElement, null), diagram, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		view.setElement(diagram.getElement());
-		
+
 		// Update the view position and size (should adapt to canvas current size)
 		Bounds viewBounds = (Bounds)((Node)view).getLayoutConstraint();
 		viewBounds.setX(DEFAULT_MARGIN);
@@ -159,9 +159,10 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 		viewBounds.setHeight(DEFAULT_HEIGHT);
 		viewBounds.setWidth(DEFAULT_WIDTH);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	@Override
