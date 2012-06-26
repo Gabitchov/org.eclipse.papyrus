@@ -109,8 +109,10 @@ public class DefaultTransactionalMerger implements ITransactionalMerger, IMerger
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				handleMutuallyDerivedReferences();
 				//ensureXMIIDCopied();
-				final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
-				copier.copyXMIIDs();
+				if(getDiffModel() != null) {//383515: [UML Compare] NPE with ReferenceChangeRightTarget leftToRight and ReferenceChangeLeftTarget rightToLeft
+					final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
+					copier.copyXMIIDs();
+				}
 				removeFromContainer(diff);
 				return null;
 			}

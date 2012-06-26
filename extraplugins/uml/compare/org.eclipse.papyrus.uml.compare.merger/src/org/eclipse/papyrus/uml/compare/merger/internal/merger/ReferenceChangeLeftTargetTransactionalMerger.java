@@ -27,6 +27,7 @@ import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ReferenceChangeLeftTargetMerger;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
 import org.eclipse.emf.compare.diff.metamodel.ResourceDependencyChange;
@@ -167,22 +168,25 @@ public class ReferenceChangeLeftTargetTransactionalMerger extends DefaultTransac
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				// we should now have a look for AddReferencesLinks needing this object
-				final Iterator<EObject> siblings = getDiffModel().eAllContents();
-				while(siblings.hasNext()) {
-					final DiffElement op = (DiffElement)siblings.next();
-					if(op instanceof ReferenceChangeLeftTarget) {
-						final ReferenceChangeLeftTarget link = (ReferenceChangeLeftTarget)op;
-						// now if I'm in the target References I should put my copy in the origin
-						if(link.getReference().equals(theDiff.getReference().getEOpposite()) && link.getLeftTarget().equals(element)) {
-							removeFromContainer(link);
-						}
-					} else if(op instanceof ResourceDependencyChange) {
-						final ResourceDependencyChange link = (ResourceDependencyChange)op;
-						final Resource res = link.getRoots().get(0).eResource();
-						if(res == leftTarget.eResource()) {
-							EcoreUtil.remove(link);
-							res.unload();
+				final DiffModel diffModel = getDiffModel();
+				if(diffModel != null) {//383515: [UML Compare] NPE with ReferenceChangeRightTarget leftToRight and ReferenceChangeLeftTarget rightToLeft
+					// we should now have a look for AddReferencesLinks needing this object
+					final Iterator<EObject> siblings = diffModel.eAllContents();
+					while(siblings.hasNext()) {
+						final DiffElement op = (DiffElement)siblings.next();
+						if(op instanceof ReferenceChangeLeftTarget) {
+							final ReferenceChangeLeftTarget link = (ReferenceChangeLeftTarget)op;
+							// now if I'm in the target References I should put my copy in the origin
+							if(link.getReference().equals(theDiff.getReference().getEOpposite()) && link.getLeftTarget().equals(element)) {
+								removeFromContainer(link);
+							}
+						} else if(op instanceof ResourceDependencyChange) {
+							final ResourceDependencyChange link = (ResourceDependencyChange)op;
+							final Resource res = link.getRoots().get(0).eResource();
+							if(res == leftTarget.eResource()) {
+								EcoreUtil.remove(link);
+								res.unload();
+							}
 						}
 					}
 				}
