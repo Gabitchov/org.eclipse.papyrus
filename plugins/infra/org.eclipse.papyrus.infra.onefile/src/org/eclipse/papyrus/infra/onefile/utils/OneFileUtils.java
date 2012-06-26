@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
@@ -25,7 +24,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.onefile.Activator;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.infra.onefile.model.ISubResourceFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -109,12 +107,11 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static boolean isVisible(Object element) {
-		boolean typeOk = element instanceof IPapyrusFile || element instanceof IProject || element instanceof IFile || element instanceof IContainer || element instanceof ISubResourceFile;
-		if(typeOk && element instanceof IFile) {
+		if(element instanceof IFile) {
 			IFile file = (IFile)element;
-			typeOk &= !OneFileUtils.diExists(file.getName(), file.getParent());
+			return !OneFileUtils.diExists(file.getName(), file.getParent());
 		}
-		return typeOk;
+		return true; //Don't filter unknown types
 	}
 
 	/**
@@ -204,7 +201,7 @@ public class OneFileUtils {
 					IEditorPart editor = ref.getEditor(false);
 					if(editor != null) {
 						IEditorInput editorInput;
-						editorInput = (IEditorInput)editor.getEditorInput();
+						editorInput = editor.getEditorInput();
 						if(cu.getMainFile().equals(editorInput.getAdapter(IFile.class))) {
 							if(activate && page.getActivePart() != editor) {
 								page.activate(editor);
@@ -269,9 +266,9 @@ public class OneFileUtils {
 
 		IEditorDescriptor editorDescriptor;
 
-		if(input instanceof IFileEditorInput)
+		if(input instanceof IFileEditorInput) {
 			editorDescriptor = IDE.getEditorDescriptor(((IFileEditorInput)input).getFile());
-		else {
+		} else {
 			editorDescriptor = IDE.getEditorDescriptor(input.getName());
 		}
 		return editorDescriptor.getId();
