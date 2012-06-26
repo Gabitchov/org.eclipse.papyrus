@@ -16,10 +16,8 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.factory;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.compatibility.DiagramVersioningUtils;
 
 public class InternalBlockDiagramViewFactory extends DiagramViewFactory {
 
