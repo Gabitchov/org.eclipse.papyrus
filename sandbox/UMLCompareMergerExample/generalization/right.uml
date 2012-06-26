@@ -12,8 +12,8 @@
       </defaultValue>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KX--wL9nEeGcX795R_wLEg" name="Class2"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_KoWWAL9nEeGcX795R_wLEg" name="Class3">
+  <packagedElement xmi:type="uml:Class" xmi:id="_KX--wL9nEeGcX795R_wLEg" name="Class2">
     <generalization xmi:id="_LTC40L9nEeGcX795R_wLEg" general="_JTZVQL9nEeGcX795R_wLEg"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KoWWAL9nEeGcX795R_wLEg" name="Class3"/>
 </uml:Model>

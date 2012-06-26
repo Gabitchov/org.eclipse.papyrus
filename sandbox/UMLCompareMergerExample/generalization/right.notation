@@ -74,10 +74,6 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KoWWE79nEeGcX795R_wLEg" source="PapyrusCSSForceValue">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KogHAL9nEeGcX795R_wLEg" key="showTitle" value="true"/>
       </eAnnotations>
-      <children xmi:type="notation:Shape" xmi:id="_PgeikL9nEeGcX795R_wLEg" type="3012">
-        <element xmi:type="uml:Property" href="right.uml#_Mr3s8L9nEeGcX795R_wLEg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_Pgeikb9nEeGcX795R_wLEg"/>
-      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_KoWWBb9nEeGcX795R_wLEg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_KoWWBr9nEeGcX795R_wLEg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_KoWWB79nEeGcX795R_wLEg"/>
@@ -106,14 +102,14 @@
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_FQXksb9nEeGcX795R_wLEg"/>
   <element xmi:type="uml:Model" href="right.uml#_FO4W8L9nEeGcX795R_wLEg"/>
-  <edges xmi:type="notation:Connector" xmi:id="_LUPLoL9nEeGcX795R_wLEg" type="4002" source="_KoWWAb9nEeGcX795R_wLEg" target="_JUI8IL9nEeGcX795R_wLEg">
+  <edges xmi:type="notation:Connector" xmi:id="_LUPLoL9nEeGcX795R_wLEg" type="4002" source="_KYR5sL9nEeGcX795R_wLEg" target="_JUI8IL9nEeGcX795R_wLEg">
     <children xmi:type="notation:DecorationNode" xmi:id="_LUPLo79nEeGcX795R_wLEg" type="6007">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_LUPLpL9nEeGcX795R_wLEg" y="40"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_LUPLob9nEeGcX795R_wLEg"/>
     <element xmi:type="uml:Generalization" href="right.uml#_LTC40L9nEeGcX795R_wLEg"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_LUPLor9nEeGcX795R_wLEg" points="[-10, -11, 224, 256]$[-221, -246, 13, 21]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LVRtcL9nEeGcX795R_wLEg" id="(0.29,0.11)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LVRtcL9nEeGcX795R_wLEg" id="(0.46,0.09)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LVRtcb9nEeGcX795R_wLEg" id="(0.69,0.79)"/>
   </edges>
 </notation:Diagram>
