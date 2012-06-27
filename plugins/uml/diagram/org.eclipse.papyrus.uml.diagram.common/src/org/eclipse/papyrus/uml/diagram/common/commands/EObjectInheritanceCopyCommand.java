@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
 
 /**
@@ -66,7 +66,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 			replace(sourceEObject.eContainer(), sourceEObject, targetEObject, sourceEObject.eContainingFeature());
 		} else {
 			add(new CustomSetCommand(editingDomain, sourceEObject.eContainer(), sourceEObject.eContainingFeature(), targetEObject, sourceEObject, sourceEObject.eContainingFeature()));
-			add(new DestroyElementCommand(new DestroyElementRequest(editingDomain, sourceEObject, false)));
+			add(new DestroyElementPapyrusCommand(new DestroyElementRequest(editingDomain, sourceEObject, false)));
 		}
 	}
 
@@ -156,7 +156,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 
 			if(owner == null && structuralFeature == null) {
 				if(source instanceof EObject) {
-					add(new DestroyElementCommand(new DestroyElementRequest(editingDomain, (EObject)source, false)));
+					add(new DestroyElementPapyrusCommand(new DestroyElementRequest(editingDomain, (EObject)source, false)));
 				}
 			} else {
 				Object value = owner.eGet(structuralFeature);
@@ -179,7 +179,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 
 			if(owner == null && structuralFeature == null) {
 				if(source instanceof EObject) {
-					add(new DestroyElementCommand(new DestroyElementRequest(editingDomain, (EObject)source, false)));
+					add(new DestroyElementPapyrusCommand(new DestroyElementRequest(editingDomain, (EObject)source, false)));
 				}
 			} else {
 				Object value = owner.eGet(structuralFeature);

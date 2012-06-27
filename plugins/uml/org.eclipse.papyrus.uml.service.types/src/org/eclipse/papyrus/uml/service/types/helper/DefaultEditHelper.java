@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 
 /**
  * <pre>
@@ -242,4 +243,19 @@ public class DefaultEditHelper extends AbstractEditHelper {
 
 		return advices;
 	}
+	
+	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {
+		ICommand result = req.getBasicDestroyCommand();
+
+		if (result == null) {
+			result = new DestroyElementPapyrusCommand(req);
+		} else {
+			// ensure that re-use of this request will not accidentally
+			//    propagate this command, which would destroy the wrong object
+			req.setBasicDestroyCommand(null);
+		}
+
+		return result;
+	}
+	
 }
