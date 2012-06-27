@@ -41,6 +41,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		super.activate();
 		addAssociationEndListeners();
@@ -57,8 +58,8 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 				EObject sourceEnd = association.getMemberEnds().get(0);
 				EObject targetEnd = association.getMemberEnds().get(1);
 
-				addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd); //$NON-NLS-1$
-				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd); //$NON-NLS-1$
+				addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd);
+				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd);
 			}
 		}
 	}
@@ -68,6 +69,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * {@inheritDoc}
 	 */
 
+	@Override
 	public void deactivate() {
 		removeAssociationEndListeners();
 		super.deactivate();
@@ -78,6 +80,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * {@inheritDoc}
 	 */
 
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -92,11 +95,20 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void refreshVisuals() {
 		if(resolveSemanticElement() != null) {
 			if(getSource() == null || getTarget() == null) {
 				return;
 			}
+
+			if(!(getSource() instanceof GraphicalEditPart && getTarget() instanceof GraphicalEditPart)) {
+				return;
+			}
+
+			//FIXME: This is a quick fix to avoid model corruption when an associationClass is drawn between an association and a Class.
+			//A better solution would probably be to forbid this behavior. Currently, it is not possible to draw directly an Association Class between
+			//an association and a class, but it is possible to retarget an AssociationClass' end to an Association (Which would lead to a diagram corruption)
 			if(((GraphicalEditPart)getSource()).resolveSemanticElement() == null || ((GraphicalEditPart)getTarget()).resolveSemanticElement() == null) {
 				return;
 			}
@@ -110,12 +122,12 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 				Association association = (Association)getUMLElement();
 				assert (association.getMemberEnds().size() >= 2);
 				if(association.getMemberEnds() != null && association.getMemberEnds().size() >= 2) {
-					if(((Property)(association.getMemberEnds().get(0))).getType().equals(((GraphicalEditPart)getSource()).resolveSemanticElement())) {
-						source = ((Property)(association.getMemberEnds().get(0)));
-						target = ((Property)(association.getMemberEnds().get(1)));
+					if((association.getMemberEnds().get(0)).getType().equals(((GraphicalEditPart)getSource()).resolveSemanticElement())) {
+						source = ((association.getMemberEnds().get(0)));
+						target = ((association.getMemberEnds().get(1)));
 					} else {
-						source = ((Property)(association.getMemberEnds().get(1)));
-						target = ((Property)(association.getMemberEnds().get(0)));
+						source = ((association.getMemberEnds().get(1)));
+						target = ((association.getMemberEnds().get(0)));
 					}
 					int sourceType = 0;
 					int targetType = 0;
