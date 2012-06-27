@@ -18,9 +18,6 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 
-/**
- * Diagram semantic edit policy.
- */
 public class DiagramSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	/**

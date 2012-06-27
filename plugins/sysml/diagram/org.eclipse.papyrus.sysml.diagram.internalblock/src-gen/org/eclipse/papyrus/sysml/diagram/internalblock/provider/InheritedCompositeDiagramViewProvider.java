@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
-import static org.eclipse.papyrus.infra.core.Activator.log;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
@@ -27,11 +25,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
+import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 
 public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 
@@ -68,7 +68,7 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		}
 
 		if(createdEdge == null) {
-			log.error(new Exception("Could not create Edge."));
+			Activator.log.error(new Exception("Could not create Edge."));
 		}
 
 		return createdEdge;
@@ -148,6 +148,14 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 		// /////////////////////////////////////////////////////////////////////
 
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
+		if(elementType == UMLElementTypes.CONSTRAINT) {
+			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
+				return true;
+			}
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerGraphicalType)) {
+				return true;
+			}
+		}
 		if(elementType == UMLElementTypes.COMMENT) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
 				return true;
@@ -156,15 +164,6 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 				return true;
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerGraphicalType)) {
-				return true;
-			}
-		}
-
-		if(elementType == UMLElementTypes.CONSTRAINT) {
-			if(ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
-				return true;
-			}
-			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerGraphicalType)) {
 				return true;
 			}
 		}
@@ -214,7 +213,7 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 			return super.createNode(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
 		}
 
-		log.error(new Exception("Could not create Node."));
+		Activator.log.error(new Exception("Could not create Node."));
 		return null;
 	}
 

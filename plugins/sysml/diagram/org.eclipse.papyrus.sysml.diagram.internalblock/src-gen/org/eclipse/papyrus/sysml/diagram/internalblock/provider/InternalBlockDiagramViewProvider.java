@@ -13,11 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
-import static org.eclipse.papyrus.infra.core.Activator.log;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
+import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.sysml.diagram.internalblock.factory.InternalBlockDiagramViewFactory;
 
 public class InternalBlockDiagramViewProvider extends AbstractViewProvider {
@@ -38,7 +37,7 @@ public class InternalBlockDiagramViewProvider extends AbstractViewProvider {
 			return InternalBlockDiagramViewFactory.class;
 		}
 
-		log.error(new Exception("Could not create View."));
+		Activator.log.error(new Exception("Could not create View."));
 		return null;
 	}
 }

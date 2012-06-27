@@ -13,27 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
+
+// Start of user code custom imports
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
@@ -41,19 +43,9 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
+//  End of user code
+
 public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
-	/** Domain Element referenced by canvas if it differs from {@link Package} */
-	protected EObject canvasDomainElement = null;
-
-	/** Default margin for the display of Domain Element referenced by canvas */
-	protected static int DEFAULT_MARGIN = 40;
-
-	/** Default height for the display of Domain Element referenced by canvas */
-	protected static int DEFAULT_HEIGHT = 250;
-
-	/** Default width for the display of Domain Element referenced by canvas */
-	protected static int DEFAULT_WIDTH = 500;
 
 	/**
 	 * {@inheritDoc}
@@ -123,7 +115,21 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 		}
 
 		return diagram;
+		// End of user code
 	}
+
+	// Start of user code Custom creation command
+	/** Domain Element referenced by canvas if it differs from {@link Package} */
+	protected EObject canvasDomainElement = null;
+
+	/** Default margin for the display of Domain Element referenced by canvas */
+	protected static int DEFAULT_MARGIN = 40;
+
+	/** Default height for the display of Domain Element referenced by canvas */
+	protected static int DEFAULT_HEIGHT = 250;
+
+	/** Default width for the display of Domain Element referenced by canvas */
+	protected static int DEFAULT_WIDTH = 500;
 
 	/**
 	 * Initialize the diagram. The diagram is attached to the element selected on creation.
@@ -171,4 +177,6 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 		// Bug 374626: [Model Explorer] Moving an IBD from a block to another block shall be forbidden 
 		return false;
 	}
+
+	// End of user code
 }

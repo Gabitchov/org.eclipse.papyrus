@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
-
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.OrderedCompartmentGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.OrderedLabelGroup;

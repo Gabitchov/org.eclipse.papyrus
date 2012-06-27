@@ -13,22 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.factory;
 
-import java.util.List;
-
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
-import org.eclipse.gmf.runtime.notation.View;
 
 public class InternalBlockDiagramViewFactory extends DiagramViewFactory {
 
+	// Start of user code Custom view Factory field
 	public static final String INTERNAL_VERSION = "0.8.1";
+	// End of user code
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected List createStyles(View view) {
-		//DiagramVersioningUtils.setCompatibilityVersion((Diagram) view, INTERNAL_VERSION);
-		return super.createStyles(view);
-	}
-
 	protected MeasurementUnit getMeasurementUnit() {
 		return MeasurementUnit.PIXEL_LITERAL;
 	}

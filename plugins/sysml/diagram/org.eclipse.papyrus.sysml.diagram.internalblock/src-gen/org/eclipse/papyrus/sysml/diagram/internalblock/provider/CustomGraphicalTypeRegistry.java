@@ -14,13 +14,16 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 
@@ -31,9 +34,9 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 
 		// Nodes
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID);
-		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID);
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
 		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID);
+		knownNodes.add(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID);
 		knownNodes.add(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID);
 		// Decorations
 		knownNodes.add(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID);
@@ -64,7 +67,7 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			|| ((ISpecializationType)SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(domainElement)
 			|| ((ISpecializationType)SysMLElementTypes.VALUE_PROPERTY).getMatcher().matches(domainElement)
-			|| ((domainElement instanceof Property) && !(domainElement instanceof Port))) {
+			|| ((domainElement instanceof org.eclipse.uml2.uml.Property) && !(domainElement instanceof org.eclipse.uml2.uml.Port))) {
 
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID;

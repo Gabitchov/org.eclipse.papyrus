@@ -16,10 +16,14 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import org.eclipse.swt.SWT;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 
 public class BlockCompositePreferencePage extends InternalBlockDiagramNodePreferencePage {

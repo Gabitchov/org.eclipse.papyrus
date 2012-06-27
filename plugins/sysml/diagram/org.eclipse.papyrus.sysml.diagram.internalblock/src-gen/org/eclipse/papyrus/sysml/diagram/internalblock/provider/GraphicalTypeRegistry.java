@@ -48,10 +48,10 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(UMLElementTypes.CONSTRAINT.getSemanticHint());
 		knownNodes.add(UMLElementTypes.COMMENT.getSemanticHint());
-
-		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
-		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
+		
 		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
+		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
+		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
 		knownNodes.add(ElementTypes.CONSTRAINT_CN.getSemanticHint());
 
 		// Fill known nodes set (child label nodes)
@@ -102,6 +102,16 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			return UNDEFINED_TYPE;
 		}
 
+		if(domainElement instanceof org.eclipse.uml2.uml.Constraint) {
+				if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+				graphicalType = ElementTypes.CONSTRAINT.getSemanticHint();
+			}
+			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
+				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
+			}
+
+		}
+
 		if(domainElement instanceof org.eclipse.uml2.uml.Comment) {
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Comment TopNode
 				graphicalType = ElementTypes.COMMENT.getSemanticHint();
@@ -112,15 +122,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID.equals(containerType)) {
 				graphicalType = ElementTypes.COMMENT_CN.getSemanticHint();
 			}
-		}
 
-		if(domainElement instanceof org.eclipse.uml2.uml.Constraint) {
-			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
-				graphicalType = ElementTypes.CONSTRAINT.getSemanticHint();
-			}
-			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {
-				graphicalType = ElementTypes.CONSTRAINT_CN.getSemanticHint();
-			}
 		}
 
 		return graphicalType;
@@ -142,7 +144,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 	 * {@inheritDoc}
 	 */
 	public String getNodeGraphicalType(String proposedType, String containerType) {
-
 		if((UMLElementTypes.COMMENT.getSemanticHint().equals(proposedType))) {
 
 			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
@@ -171,7 +172,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 
 			return UNDEFINED_TYPE;
 		}
-
 		if(isKnownNodeType(proposedType)) {
 			return proposedType;
 		}

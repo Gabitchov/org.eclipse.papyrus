@@ -48,7 +48,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.sysml.diagram.internalblock.compatibility.DiagramVersionUpdater;
 import org.eclipse.papyrus.sysml.diagram.internalblock.factory.InternalBlockDiagramViewFactory;
-import org.eclipse.papyrus.sysml.diagram.internalblock.utils.FixPortsLocationOnOpening;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer;
@@ -107,11 +106,13 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 	public InternalBlockDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
 
+		// Start of user code Custom Editor Constructor
 		// Verify diagram compatibility version
 		verifyDiagramCompatibilityVersion(diagram);
 
 		// Fix Port locations (implementations before 0.8.1 were erroneous see https://bugs.eclipse.org/bugs/show_bug.cgi?id=354815)
-		(new FixPortsLocationOnOpening()).fix(diagram);
+		(new org.eclipse.papyrus.sysml.diagram.internalblock.utils.FixPortsLocationOnOpening()).fix(diagram);
+		// End of user code
 
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
@@ -136,6 +137,7 @@ public class InternalBlockDiagramEditor extends UmlGmfDiagramEditor implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
 		if(existingPaletteRoot == null) {

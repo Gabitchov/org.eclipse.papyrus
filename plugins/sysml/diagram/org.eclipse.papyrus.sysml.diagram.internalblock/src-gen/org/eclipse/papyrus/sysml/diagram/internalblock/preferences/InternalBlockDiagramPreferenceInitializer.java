@@ -27,8 +27,8 @@ public class InternalBlockDiagramPreferenceInitializer extends AbstractPreferenc
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage.initDefaults(store);
+		org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentAnnotatedElementPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintConstrainedElementPreferencePage.initDefaults(store);
 		BlockCompositePreferencePage.initDefaults(store);
