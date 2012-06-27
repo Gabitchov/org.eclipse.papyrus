@@ -16,41 +16,34 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.View;
-
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-
+import org.eclipse.papyrus.gmf.diagram.common.provider.CustomAbstractEditPartProvider;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockLabelNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeAffixedLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedLabelNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.common.edit.part.PropertyNodeLabelEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeAffixedLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeLinkLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelSourceMultiplicityEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorLinkLabelTargetMultiplicityEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.NamedElementLinkLabelNameEditPart;
-
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedLabelNameEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.PropertyNodeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.gmf.diagram.common.provider.CustomAbstractEditPartProvider;
 
 public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 

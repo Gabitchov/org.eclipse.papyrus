@@ -14,16 +14,11 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 

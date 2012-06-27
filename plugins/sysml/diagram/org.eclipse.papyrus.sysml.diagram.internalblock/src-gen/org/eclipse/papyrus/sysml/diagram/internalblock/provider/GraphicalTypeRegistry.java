@@ -48,7 +48,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(UMLElementTypes.CONSTRAINT.getSemanticHint());
 		knownNodes.add(UMLElementTypes.COMMENT.getSemanticHint());
-		
+
 		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
 		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
@@ -103,7 +103,7 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		}
 
 		if(domainElement instanceof org.eclipse.uml2.uml.Constraint) {
-				if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
+			if(ElementTypes.DIAGRAM_ID.equals(containerType)) { // Constraint TopNode
 				graphicalType = ElementTypes.CONSTRAINT.getSemanticHint();
 			}
 			if(SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID.equals(containerType)) {

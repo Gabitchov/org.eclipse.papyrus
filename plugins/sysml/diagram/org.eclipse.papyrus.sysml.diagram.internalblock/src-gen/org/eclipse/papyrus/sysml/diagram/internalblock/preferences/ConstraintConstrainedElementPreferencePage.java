@@ -13,13 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.OrderedLabelGroup;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 
 public class ConstraintConstrainedElementPreferencePage extends InternalBlockDiagramLinkPreferencePage {

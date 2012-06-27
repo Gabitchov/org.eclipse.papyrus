@@ -19,12 +19,11 @@ import java.util.HashMap;
 import org.eclipse.gef.Tool;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 
 @SuppressWarnings("serial")
 public class DiagramPaletteFactory extends PaletteFactory.Adapter {
@@ -33,7 +32,7 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 
 		{
 			put("internalblock.tool.blockcomposite", new IElementType[]{ SysMLElementTypes.BLOCK });
-			put("internalblock.tool.blockpropertycomposite", new IElementType[]{SysMLElementTypes.PART_PROPERTY, SysMLElementTypes.REFERENCE_PROPERTY, SysMLElementTypes.ACTOR_PART_PROPERTY,
+			put("internalblock.tool.blockpropertycomposite", new IElementType[]{ SysMLElementTypes.PART_PROPERTY, SysMLElementTypes.REFERENCE_PROPERTY, SysMLElementTypes.ACTOR_PART_PROPERTY,
 				SysMLElementTypes.VALUE_PROPERTY, UMLElementTypes.PROPERTY });
 			put("internalblock.tool.flowport", new IElementType[]{ SysMLElementTypes.FLOW_PORT });
 			put("internalblock.tool.nestedblockpropertycomposite", new IElementType[]{ SysMLElementTypes.PART_PROPERTY });

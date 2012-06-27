@@ -18,25 +18,19 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.sysml.diagram.common.factory.BlockCompositeClassifierViewFactory;
-import org.eclipse.papyrus.sysml.diagram.common.factory.BlockPropertyCompositeClassifierViewFactory;
-import org.eclipse.papyrus.sysml.diagram.common.factory.NestedBlockPropertyCompositeClassifierViewFactory;
-import org.eclipse.papyrus.uml.diagram.common.factory.ConnectorLinkViewFactory;
-import org.eclipse.papyrus.uml.diagram.common.factory.DependencyLinkViewFactory;
-import org.eclipse.papyrus.sysml.diagram.common.factory.FlowPortAffixedNodeViewFactory;
-import org.eclipse.papyrus.uml.diagram.common.factory.PortAffixedNodeViewFactory;
-import org.eclipse.papyrus.gmf.diagram.common.factory.CompartmentListViewFactory;
+import org.eclipse.papyrus.gmf.diagram.common.factory.AffixedLabelViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.factory.CompartmentShapeViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.factory.ConnectorLabelViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.factory.InnerLabelViewFactory;
-import org.eclipse.papyrus.gmf.diagram.common.factory.AffixedLabelViewFactory;
-import org.eclipse.papyrus.gmf.diagram.common.factory.ShapeChildLabelViewFactory;
-import org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory;
 import org.eclipse.papyrus.gmf.diagram.common.provider.CustomAbstractViewProvider;
+import org.eclipse.papyrus.sysml.diagram.common.factory.BlockCompositeClassifierViewFactory;
+import org.eclipse.papyrus.sysml.diagram.common.factory.BlockPropertyCompositeClassifierViewFactory;
+import org.eclipse.papyrus.sysml.diagram.common.factory.FlowPortAffixedNodeViewFactory;
+import org.eclipse.papyrus.sysml.diagram.common.factory.NestedBlockPropertyCompositeClassifierViewFactory;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
-import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.common.factory.ConnectorLinkViewFactory;
+import org.eclipse.papyrus.uml.diagram.common.factory.DependencyLinkViewFactory;
+import org.eclipse.papyrus.uml.diagram.common.factory.PortAffixedNodeViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class CustomViewProvider extends CustomAbstractViewProvider {

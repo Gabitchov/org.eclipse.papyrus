@@ -20,6 +20,7 @@ public class InternalBlockDiagramViewFactory extends DiagramViewFactory {
 
 	// Start of user code Custom view Factory field
 	public static final String INTERNAL_VERSION = "0.8.1";
+
 	// End of user code
 
 	/**

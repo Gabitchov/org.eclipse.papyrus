@@ -15,11 +15,13 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 
-/** Customization of the DND edit policy for the InternalBlock Diagram 
+/**
+ * Customization of the DND edit policy for the InternalBlock Diagram
+ * 
  * @deprecated prefer using {@link CustomDiagramDragDropEditPolicy}.
  */
 @Deprecated

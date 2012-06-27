@@ -19,9 +19,8 @@ import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.OrderedLabelGroup;
-import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 public class DependencyPreferencePage extends InternalBlockDiagramLinkPreferencePage {
 
