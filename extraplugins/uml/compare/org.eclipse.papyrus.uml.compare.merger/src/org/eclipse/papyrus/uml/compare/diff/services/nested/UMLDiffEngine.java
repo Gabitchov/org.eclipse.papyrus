@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger.services.nested;
+package org.eclipse.papyrus.uml.compare.diff.services.nested;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;

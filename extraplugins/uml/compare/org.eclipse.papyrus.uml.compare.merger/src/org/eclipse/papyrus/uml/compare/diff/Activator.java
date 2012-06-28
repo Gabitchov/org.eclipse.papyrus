@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.merger;
+package org.eclipse.papyrus.uml.compare.diff;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.compare.merger"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.compare.diff"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

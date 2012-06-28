@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.compare.merger.services.standalone;
+package org.eclipse.papyrus.uml.compare.diff.services.standalone;
 
 import java.util.HashMap;
 import java.util.Map;

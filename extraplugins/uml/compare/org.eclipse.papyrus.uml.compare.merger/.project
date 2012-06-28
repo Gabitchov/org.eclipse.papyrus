@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.eclipse.papyrus.uml.compare.merger</name>
+	<name>org.eclipse.papyrus.uml.compare.diff</name>
 	<comment></comment>
 	<projects>
 	</projects>

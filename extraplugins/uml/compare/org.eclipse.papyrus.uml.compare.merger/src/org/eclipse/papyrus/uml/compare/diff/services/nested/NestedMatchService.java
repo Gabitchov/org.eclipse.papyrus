@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.compare.merger.services.nested;
+package org.eclipse.papyrus.uml.compare.diff.services.nested;
 
 import java.util.Map;
 
