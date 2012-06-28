@@ -604,9 +604,13 @@ public class ConfigurationManager {
 	 *        The context to delete
 	 */
 	public void deleteContext(Context context) {
+		Resource resource = context.eResource();
 		contexts.remove(EcoreUtil.getURI(context));
 		disableContext(context, true);
 		root.getContexts().remove(context);
+
+		resource.unload();
+		resourceSet.getResources().remove(resource);
 	}
 
 	/**

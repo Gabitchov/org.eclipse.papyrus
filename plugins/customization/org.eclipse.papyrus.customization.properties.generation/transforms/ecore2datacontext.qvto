@@ -55,7 +55,7 @@ abstract mapping EClassifier::toDataContextElement() : element : DataContextElem
 
 mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement{
 	element.properties := self.eStructuralFeatures->map toProperty(); 
-	element.supertypes := self.eSuperTypes->select(e | not e.oclIsKindOf(Ecore::EModelElement))->map toDataContextElement().element; 
+	element.supertypes := self.eSuperTypes.map toDataContextElement().element;
 
 	viewSingle.name := 'Single '+self.name;
 	viewSingle.automaticContext := true;
@@ -75,7 +75,7 @@ mapping EClass::toDataContextElement() : element : DataContextElement, viewSingl
 mapping EClass::toConstraint(view : View) : SimpleConstraint {
 	name := "is" + view.name.replace(' ', '');
 	display := view;
-	constraintType := pRoot.objectsOfType(PropertiesRoot).environments.constraintTypes->any(e | e.constraintClass = 'org.eclipse.papyrus.views.properties.constraints.EMFInstanceOfConstraint');
+	constraintType := pRoot.objectsOfType(PropertiesRoot).environments.constraintTypes->any(e | e.constraintClass = 'org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint');
 	var className := object ValueProperty {
 		name := 'className';
 		value := self.name;
