@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -142,7 +143,7 @@ public class XWTResource extends ResourceImpl {
 	private Collection<Context> findContexts() {
 		Set<Context> rootContexts = new HashSet<Context>();
 		if(resourceSet == null) {
-			return null;
+			return Collections.emptyList();
 		}
 
 		for(Resource resource : resourceSet.getResources()) {
