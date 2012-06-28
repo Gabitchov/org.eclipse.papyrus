@@ -24,8 +24,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: 
- org.eclipse.papyrus.uml.compare.merger.services,
  org.eclipse.papyrus.uml.compare.merger.services.nested,
- org.eclipse.papyrus.uml.compare.merger.services.standalone,
- org.eclipse.papyrus.uml.compare.merger.utils
+ org.eclipse.papyrus.uml.compare.merger.services.standalone
 

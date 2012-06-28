@@ -13,7 +13,7 @@ import org.eclipse.emf.compare.match.metamodel.MatchResourceSet;
 import org.eclipse.emf.compare.ui.ICompareInputDetailsProvider;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.uml.compare.merger.services.TransactionalMergeService;
+import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
 
 /**
  * 

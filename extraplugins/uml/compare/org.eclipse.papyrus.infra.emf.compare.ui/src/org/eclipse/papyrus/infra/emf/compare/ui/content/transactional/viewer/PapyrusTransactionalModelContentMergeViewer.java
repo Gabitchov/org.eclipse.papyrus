@@ -15,11 +15,19 @@ package org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer;
 
 
 import org.eclipse.compare.CompareConfiguration;
+import org.eclipse.emf.compare.diff.merge.service.MergeFactory;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
+import org.eclipse.emf.compare.ui.internal.ModelComparator;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.ActionContributionItem;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.papyrus.infra.emf.compare.diff.merge.ITransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeFactory;
+import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.viewer.PapyrusCustomizableModelContentMergeViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -35,6 +43,22 @@ import org.eclipse.ui.PlatformUI;
  */
 public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomizableModelContentMergeViewer {
 
+	private IAction _copyDiffLeftToRight;
+
+	private IAction _copyDiffRightToLeft;
+
+	private IAction _copyAllLeftToRight;
+
+	private IAction _copyAllRightToLeft;
+
+	private static final String COPY_ALL_RIGHT_TO_LEFT = "org.eclipse.compare.copyAllRightToLeft";
+
+	private static final String COPY_ALL_LEFT_TO_RIGHT = "org.eclipse.compare.copyAllLeftToRight";
+
+	private static final String COPY_CURRENT_SELECTION_LEFT_TO_RIGHT = "Copy Current Change to Right";
+
+	private static final String COPY_CURRENT_SELECTION_RIGHT_TO_LEFT = "Copy Current Change to Left";
+
 	/**
 	 * 
 	 * Constructor.
@@ -45,7 +69,6 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 	public PapyrusTransactionalModelContentMergeViewer(final Composite parent, final CompareConfiguration config, final IEditorPart editor) {
 		super(parent, config, editor);
 	}
-
 
 	/**
 	 * 
@@ -79,5 +102,77 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 
 		tbm.insert(2, new Separator("undo_redo_group")); //$NON-NLS-1$
 
+		initializeIActionField(tbm);
 	}
+
+
+
+
+	private void initializeIActionField(final ToolBarManager tbm) {
+		for(IContributionItem item : tbm.getItems()) {
+			if(item instanceof ActionContributionItem) {
+				IAction action = ((ActionContributionItem)item).getAction();
+				final String id = action.getActionDefinitionId();
+				final String txt = action.getText();
+				if(COPY_ALL_LEFT_TO_RIGHT.equals(id)) {
+					_copyAllLeftToRight = action;
+					continue;
+				} else if(COPY_ALL_RIGHT_TO_LEFT.equals(id)) {
+					_copyAllRightToLeft = action;
+					continue;
+				}
+				//TODO post a bug to EMF-Compare in order to have an id for these actions
+				if(COPY_CURRENT_SELECTION_LEFT_TO_RIGHT.equals(txt)) {
+					_copyDiffLeftToRight = action;
+					continue;
+				} else if(COPY_CURRENT_SELECTION_RIGHT_TO_LEFT.equals(txt)) {
+					_copyDiffRightToLeft = action;
+					continue;
+				}
+			}
+			if(_copyAllLeftToRight != null && _copyAllRightToLeft != null && _copyDiffLeftToRight != null && _copyDiffRightToLeft != null) {
+				break;
+			}
+		}
+	}
+
+	@Override
+	protected void switchCopyState(boolean enabled) {
+		final ModelComparator comparator = ModelComparator.getComparator(configuration);
+
+		boolean leftEditable = configuration.isLeftEditable();
+		if(comparator != null)
+			leftEditable = leftEditable && !comparator.isLeftRemote();
+		boolean rightEditable = configuration.isRightEditable();
+		if(comparator != null)
+			rightEditable = rightEditable && !comparator.isRightRemote();
+
+		boolean canCopyLeftToRight = false;
+		boolean canCopyRightToLeft = false;
+		//TODO
+		boolean canAllCopyLeftToRight = false;
+		boolean canAllCopyRightToLeft = false;
+
+		if(currentSelection.size() == 1) {
+			final ITransactionalMerger merger = TransactionalMergeFactory.createMerger(currentSelection.get(0));
+			canCopyLeftToRight = merger.canUndoInTarget();
+			canCopyRightToLeft = merger.canApplyInOrigin();
+		}
+
+
+
+		if(_copyAllLeftToRight != null) {
+			//TODO
+		}
+		if(_copyAllRightToLeft != null) {
+			//TODO
+		}
+		if(_copyDiffLeftToRight != null) {
+			_copyDiffLeftToRight.setEnabled(rightEditable && enabled && canCopyLeftToRight);
+		}
+		if(_copyDiffRightToLeft != null) {
+			_copyDiffRightToLeft.setEnabled(leftEditable && enabled && canCopyRightToLeft);
+		}
+	}
+
 }
