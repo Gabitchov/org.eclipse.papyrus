@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.compare.merger.tests.standalone;
+package org.eclipse.papyrus.uml.compare.merger.tests.uml.standalone;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
 import org.eclipse.papyrus.uml.compare.merger.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.merger.tests.Activator;
+import org.eclipse.papyrus.uml.compare.merger.tests.standalone.AbstractStandaloneCompareTest;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,7 +35,7 @@ import org.junit.Test;
  * This abstract provides methods to compare 2 Papyrus uml files named "left.uml" and "right.uml"
  * 
  */
-public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest {
+public abstract class AbstractUMLStandaloneCompareTest extends AbstractCompareTest {
 
 	//	protected static IProject project;
 
@@ -55,7 +56,7 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 	//	private  static String modelPath;
 
 
-	private static final String FOLDER_PATH = "/resources/standalone/";
+	private static final String FOLDER_PATH = "/resources/uml_standalone/";
 
 	//	private static boolean leftToRight = true;
 

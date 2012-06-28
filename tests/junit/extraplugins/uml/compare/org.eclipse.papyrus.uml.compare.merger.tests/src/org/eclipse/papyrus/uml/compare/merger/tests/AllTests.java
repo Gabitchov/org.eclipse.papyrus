@@ -43,6 +43,8 @@ import org.eclipse.papyrus.uml.compare.merger.tests.standalone.UpdateReferenceTe
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.UpdateReferenceTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.UpdateReferenceTest_2_LeftToRight;
 import org.eclipse.papyrus.uml.compare.merger.tests.standalone.UpdateReferenceTest_2_RightToLeft;
+import org.eclipse.papyrus.uml.compare.merger.tests.uml.standalone.GeneralizationSourceChangedTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.merger.tests.uml.standalone.GeneralizationSourceChangedTest_1_RightToLeft;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -80,6 +82,7 @@ UpdateReferenceTest_1_LeftToRight.class, UpdateReferenceTest_1_RightToLeft.class
 
 UpdateReferenceTest_2_LeftToRight.class, UpdateReferenceTest_2_RightToLeft.class,
 
+GeneralizationSourceChangedTest_1_LeftToRight.class, GeneralizationSourceChangedTest_1_RightToLeft.class
 })
 public class AllTests {
 	// JUnit 4 test suite
