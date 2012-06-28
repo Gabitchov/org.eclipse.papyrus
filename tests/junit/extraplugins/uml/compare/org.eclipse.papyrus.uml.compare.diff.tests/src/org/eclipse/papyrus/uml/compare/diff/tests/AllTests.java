@@ -82,8 +82,7 @@ UpdateReferenceTest_1_LeftToRight.class, UpdateReferenceTest_1_RightToLeft.class
 
 UpdateReferenceTest_2_LeftToRight.class, UpdateReferenceTest_2_RightToLeft.class,
 
-GeneralizationSourceChangedTest_1_LeftToRight.class, GeneralizationSourceChangedTest_1_RightToLeft.class
-})
+GeneralizationSourceChangedTest_1_LeftToRight.class, GeneralizationSourceChangedTest_1_RightToLeft.class })
 public class AllTests {
 	// JUnit 4 test suite
 }

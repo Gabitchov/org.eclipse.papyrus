@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.diff.tests.standalone;
 
 import java.io.IOException;
@@ -9,7 +22,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.EObject;
@@ -66,15 +78,15 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		// Matching model elements
 		//TODO use standalone version
 		final MatchModel match = MatchService.doMatch(leftElement, rightElement, StandaloneMergeUtils.getMergeOptions());
-		
+
 		//TODO use standalone version
 		// Computing differences
-	//	final DiffModel diff = DiffService.doDiff(match, false);
+		//	final DiffModel diff = DiffService.doDiff(match, false);
 		final DiffModel diff = UMLDiffService.doDiff(match, false);
 		return diff;
 	}
 
-	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException{
+	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException {
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
 
@@ -86,7 +98,7 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		comparedFiles.add(project.getFile(LEFT + "." + "uml"));
 		comparedFiles.add(project.getFile(RIGHT + "." + "uml"));
 		AbstractCompareTest.loadModels(comparedFiles);
-		
+
 		leftElement = (Model)roots.get(0);
 		rightElement = (Model)roots.get(1);
 		AbstractCompareTest.leftToRight = leftToRight;

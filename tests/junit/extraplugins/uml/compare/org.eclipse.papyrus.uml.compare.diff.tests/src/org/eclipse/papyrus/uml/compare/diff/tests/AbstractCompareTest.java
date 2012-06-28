@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.diff.tests;
 
 import static org.eclipse.papyrus.infra.core.Activator.log;
@@ -58,26 +71,26 @@ public abstract class AbstractCompareTest {
 	private static List<DiffElement> initialDifferences;
 
 	protected static ServicesRegistry servicesRegistry;
-	
+
 	protected static List<EObject> roots;
 
-	public static void loadModels(final List<IFile> comparedFiles) throws ServiceException, ModelMultiException{
+	public static void loadModels(final List<IFile> comparedFiles) throws ServiceException, ModelMultiException {
 		roots = new ArrayList<EObject>();
 		servicesRegistry = ServicesRegistryUtils.createAndInitServiceRegistryForUMLCompareFile();
 		set = servicesRegistry.getService(ModelSet.class);
-		domain =set.getTransactionalEditingDomain();
+		domain = set.getTransactionalEditingDomain();
 		for(final IFile current : comparedFiles) {
 			set.loadModels(current);
 			final String filePath = current.getFullPath().toString();
 			URI uri = URI.createPlatformResourceURI(filePath, false);
 			EObject root = UML2Util.load(set, uri, UMLPackage.Literals.PACKAGE);
 			set.getResource(uri, false).setTrackingModification(true);
-			Assert.assertNotNull("The root of the model is null",root);
+			Assert.assertNotNull("The root of the model is null", root);
 			roots.add(root);
 		}
 	}
-	
-	
+
+
 	/**
 	 * This test tests the contents of the differences found.
 	 * 
