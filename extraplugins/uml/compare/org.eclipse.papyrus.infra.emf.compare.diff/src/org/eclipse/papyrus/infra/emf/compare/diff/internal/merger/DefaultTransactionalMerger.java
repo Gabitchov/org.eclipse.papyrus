@@ -135,7 +135,7 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 
 	//TODO move it in an upper class
 	protected static TransactionalEditingDomain getTransactionalEditingDomain(final DiffElement diff){
-		DiffElement diffElement = null;
+		DiffElement diffElement = diff;
 		final Iterator<EObject> iter = diff.eAllContents();
 		while(iter.hasNext()){
 			final EObject current = iter.next();
