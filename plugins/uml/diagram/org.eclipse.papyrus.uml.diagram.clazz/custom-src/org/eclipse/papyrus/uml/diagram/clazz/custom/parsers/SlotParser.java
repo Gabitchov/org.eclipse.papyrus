@@ -26,6 +26,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
@@ -87,11 +88,18 @@ public class SlotParser implements IParser {
 			if(slot.getDefiningFeature() == null) {
 				return "<UNDEFINED>";
 			}
+
+			StructuralFeature feature = slot.getDefiningFeature();
+
 			String result = slot.getDefiningFeature().getName();
+			if(feature.getType() != null) {
+				result += " : " + feature.getType().getName();
+			}
+
 			if(slot.getValues().isEmpty()) {
 				return result;
 			} else {
-				result = result + ": ";
+				result = result + " = ";
 				Iterator<ValueSpecification> iter = slot.getValues().iterator();
 				while(iter.hasNext()) {
 					ValueSpecification currentSpecification = iter.next();
