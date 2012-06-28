@@ -32,29 +32,24 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	public PapyrusModelCompareInput(ComparisonResourceSetSnapshot snapshot, TransactionalEditingDomain domain) {
 		super(snapshot);
 		this.domain = domain;
-		// TODO Auto-generated constructor stub
 	}
 
 	public PapyrusModelCompareInput(ComparisonResourceSnapshot snapshot, TransactionalEditingDomain domain) {
 		super(snapshot);
-		// TODO Auto-generated constructor stub
 		this.domain = domain;
 	}
 
 	public PapyrusModelCompareInput(MatchModel matchModel, DiffModel diffModel, ICompareInputDetailsProvider provider, TransactionalEditingDomain domain) {
 		super(matchModel, diffModel, provider);
-		// TODO Auto-generated constructor stub
 		this.domain = domain;
 	}
 
 	public PapyrusModelCompareInput(MatchResourceSet matchResourceset, DiffResourceSet diffResourceSet, ICompareInputDetailsProvider provider, TransactionalEditingDomain domain) {
 		super(matchResourceset, diffResourceSet, provider);
-		// TODO Auto-generated constructor stub
 		this.domain = domain;
 	}
 
 	public PapyrusModelCompareInput(MatchModel match, DiffModel diff, TransactionalEditingDomain domain) {
-
 		super(match, diff);
 		this.domain = domain;
 	}
@@ -70,7 +65,6 @@ public class PapyrusModelCompareInput extends ModelCompareInput {
 	 *        to the right model, <code>False</code> otherwise.
 	 */
 	protected void doCopy(DiffElement element, boolean leftToRight) {
-		// MergeService.merge(element, leftToRight);
 		Command cmd = TransactionalMergeService.getMergeCommand(domain, element, leftToRight);
 		domain.getCommandStack().execute(cmd);
 	}
