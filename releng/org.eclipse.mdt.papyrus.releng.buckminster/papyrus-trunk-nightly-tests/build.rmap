@@ -98,15 +98,22 @@
       </rm:uri>
     </rm:provider>
     
-     <rm:provider componentTypes="osgi.bundle" readerType="local">
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/tests/junit/plugins/developer/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
     
-     <rm:provider componentTypes="osgi.bundle" readerType="local">
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/tests/junit/plugins/views/modelexplorer/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/tests/junit/plugins/customization/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -179,7 +186,7 @@
       </rm:uri>
     </rm:provider>
     
-<!--     M2T (Jet) -->
+    <!-- M2T (Jet) -->
 <!--     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false"> -->
 <!--       updateFrom("M2T JET",0) -->
 <!--       <rm:uri format="{0}/modeling/m2t/updates/milestones/"> -->
@@ -282,7 +289,7 @@
     <!-- GEF -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GEF",0) -->
-    <rm:uri format="{0}/tools/gef/updates/milestones">
+     <rm:uri format="{0}/tools/gef/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
