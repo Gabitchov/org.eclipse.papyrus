@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests Papyrus UML Merger (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.compare.merger.tests
+Bundle-SymbolicName: org.eclipse.papyrus.uml.compare.diff.tests
 Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.compare.merger.tests.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.compare.diff.tests.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
