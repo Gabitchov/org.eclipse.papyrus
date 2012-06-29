@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
@@ -94,26 +95,31 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	}
 
 	public Command getMergeRequiredDifferencesCommand(TransactionalEditingDomain domain, boolean applyInOrigin) {
-		if(mergedDiffs == null) {
+		CompoundCommand cmd = new CompoundCommand("Merge required differences");
+//		if(mergedDiffs == null) { //we need to clean it, to avoid that the command creation duplicate elements in this list
 			mergedDiffs = new ArrayList<DiffElement>();
 			if(mergedDiffslistener == null) {
+				//TODO : improve that, and use command!
 				mergedDiffslistener = new MergedDiffsListener();
 				TransactionalMergeService.addMergeListener(mergedDiffslistener);
 			}
-		}
+//		}
 		mergedDiffs.add(diff);
 
 		for(DiffElement requiredDiff : getDependencies(applyInOrigin)) {
 			if(requiredDiff.eContainer() != null && !mergedDiffs.contains(requiredDiff)) {
 				final ITransactionalMerger merger = TransactionalMergeFactory.createMerger(requiredDiff);
 				if(applyInOrigin) {
-					((ITransactionalMerger)merger).getApplyInOriginCommand(domain);
+					cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));
 				} else {
-					((ITransactionalMerger)merger).getUndoInTargetCommand(domain);
+					cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain));
 				}
 			}
 		}
-		return null;
+		if(cmd.isEmpty()){
+			return IdentityCommand.INSTANCE;
+		}
+		return cmd;
 	}
 
 	public Command getPostProcessCommand(TransactionalEditingDomain domain) {

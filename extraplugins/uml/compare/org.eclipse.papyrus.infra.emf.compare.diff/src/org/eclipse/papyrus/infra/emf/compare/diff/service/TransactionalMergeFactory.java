@@ -105,8 +105,9 @@ public class TransactionalMergeFactory {
 			try {
 				IMerger merger = ((AbstractDiffExtension)element).provideMerger();
 				if(merger != null) {
-					Assert.isTrue(merger instanceof ITransactionalMerger, NLS.bind("The merger defined by {0} is not an {1}", new Object[]{ element, ITransactionalMerger.class }));
-					elementMerger = (ITransactionalMerger)merger;
+					if(merger instanceof ITransactionalMerger) {
+						elementMerger = (ITransactionalMerger)merger;
+					}
 				}
 			} catch (UnsupportedOperationException e) {
 				//we ignore the exception, this exception comes from the  Generated Code when the developper don't use Generated NOT

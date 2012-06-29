@@ -269,6 +269,7 @@ public class TransactionalMergeService {
 	 * @param listener
 	 *        New Listener to register for notifications.
 	 */
+	//TODO should be done with a command...
 	public static void addMergeListener(IMergeListener listener) {
 		MERGE_LISTENERS.add(listener);
 	}
@@ -366,6 +367,7 @@ public class TransactionalMergeService {
 	 * @param listener
 	 *        New Listener to register for notifications.
 	 */
+	//TODO should be done with a command
 	public static void removeMergeListener(IMergeListener listener) {
 		MERGE_LISTENERS.remove(listener);
 	}

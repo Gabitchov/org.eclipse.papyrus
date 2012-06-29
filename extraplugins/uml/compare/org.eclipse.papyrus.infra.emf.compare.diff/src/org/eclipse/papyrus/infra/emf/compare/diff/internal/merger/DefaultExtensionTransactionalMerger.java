@@ -9,13 +9,73 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
- *
+ * Adapted code from EMF-Compare
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.compare.diff.internal.merger;
 
-import org.eclipse.emf.compare.diff.merge.DefaultExtensionMerger;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.IdentityCommand;
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 
-public class DefaultExtensionTransactionalMerger extends DefaultExtensionMerger {
-	//TODO
+public class DefaultExtensionTransactionalMerger extends DefaultTransactionalMerger {
+	
+	public Command getDoApplyInOriginCommand(TransactionalEditingDomain domain) {
+		return IdentityCommand.INSTANCE;
+	}
+
+	public Command getDoUndoInTargetCommand(TransactionalEditingDomain domain) {
+		return IdentityCommand.INSTANCE;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.compare.diff.merge.DefaultMerger#getDependencies(boolean)
+	 */
+	@Override
+	protected List<DiffElement> getDependencies(boolean applyInOrigin) {
+		final List<DiffElement> requiredDiffs = diff.getRequires();
+		return getBusinessDependencies(applyInOrigin, requiredDiffs);
+	}
+
+	/**
+	 * Get the difference dependencies to consider in the context of the merge process.
+	 * 
+	 * @param applyInOrigin
+	 *            Direction of merge.
+	 * @param requiredDiffs
+	 *            The required differences.
+	 * @return The required differences to keep.
+	 */
+	protected List<DiffElement> getBusinessDependencies(boolean applyInOrigin, List<DiffElement> requiredDiffs) {
+		final List<DiffElement> result = new ArrayList<DiffElement>();
+		for (DiffElement diffElement : requiredDiffs) {
+			if (!(diffElement instanceof AbstractDiffExtension)
+					|| diffElement instanceof AbstractDiffExtension
+					&& isBusinessDependency(applyInOrigin, (AbstractDiffExtension)diffElement)) {
+				result.add(diffElement);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Check if the given required difference extension has to be considered in relation to the direction of
+	 * merge.
+	 * 
+	 * @param applyInOrigin
+	 *            Direction of merge.
+	 * @param requiredDiff
+	 *            The required difference.
+	 * @return True if it has to be considered in the merge.
+	 */
+	protected boolean isBusinessDependency(boolean applyInOrigin, final AbstractDiffExtension requiredDiff) {
+		return true;
+	}
 }

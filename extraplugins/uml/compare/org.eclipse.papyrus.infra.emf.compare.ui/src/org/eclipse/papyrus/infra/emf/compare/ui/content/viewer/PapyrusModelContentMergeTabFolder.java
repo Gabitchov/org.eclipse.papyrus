@@ -136,17 +136,16 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 	 * the view.
 	 * 
 	 * @author <a href="mailto:laurent.goubet@obeo.fr">Laurent Goubet</a>
+	 * FIXME : duplicated code from the super class
 	 */
-	//FIXME duplicated code from EMF-Compare :ModelContentMergeDiffTab.ModelContentMergeDiffTabContentProvider
-	public class ModelContentMergeDiffTabContentProvider extends AdapterFactoryContentProvider {
-
+	protected class ModelContentMergeDiffTabContentProvider extends AdapterFactoryContentProvider {
 		/**
 		 * Default constructor. Delegates to the super implementation.
 		 * 
 		 * @param factory
-		 *        Factory to get labels and icons from.
+		 *            Factory to get labels and icons from.
 		 */
-		public ModelContentMergeDiffTabContentProvider(final AdapterFactory factory) {
+		public ModelContentMergeDiffTabContentProvider(AdapterFactory factory) {
 			super(factory);
 		}
 
@@ -155,59 +154,27 @@ public class PapyrusModelContentMergeTabFolder extends ModelContentMergeTabFolde
 		 * 
 		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getElements(java.lang.Object)
 		 */
-		@SuppressWarnings("unchecked")
 		@Override
-		public Object[] getElements(final Object object) {
-			// overwritten to ensure contents of ResourceSets, List<Resource>, and Resource are correclty
-			// returned.
+		public Object[] getElements(Object object) {
+			// overwritten to ensure contents of ResourceSets and List<Resource> are correclty returned.
 			Object[] result = null;
-			if(object instanceof ResourceSet) {
+			if (object instanceof ResourceSet) {
 				final List<Resource> resources = ((ResourceSet)object).getResources();
 				final List<Resource> elements = new ArrayList<Resource>(resources.size());
-				for(final Resource resource : resources) {
-					if(resource.getContents().isEmpty() || !(resource.getContents().get(0) instanceof ComparisonSnapshot)) {
+				for (final Resource resource : resources) {
+					if (resource.getContents().isEmpty()
+							|| !(resource.getContents().get(0) instanceof ComparisonSnapshot)) {
 						elements.add(resource);
 					}
 				}
 				result = elements.toArray();
-			} else if(object instanceof TypedElementWrapper) {
-				result = new Object[]{ ((EObject)object).eResource(), };
-			} else if(object instanceof List) {
+			} else if (object instanceof List) {
 				// we may also display a list of resources
-				result = ((List)object).toArray();
-			} else if(object instanceof Resource) {
-				// return contents of resource
-				result = ((Resource)object).getContents().toArray();
+				result = ((List<?>)object).toArray();
 			} else {
 				result = super.getElements(object);
 			}
 			return result;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getChildren(java.lang.Object)
-		 */
-		@Override
-		public Object[] getChildren(final Object object) {
-			if(object instanceof Resource) {
-				return ((Resource)object).getContents().toArray();
-			}
-			return super.getChildren(object);
-		}
-
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#hasChildren(java.lang.Object)
-		 */
-		@Override
-		public boolean hasChildren(final Object object) {
-			if(object instanceof Resource) {
-				return ((Resource)object).getContents().size() > 0;
-			}
-			return super.hasChildren(object);
 		}
 	}
 

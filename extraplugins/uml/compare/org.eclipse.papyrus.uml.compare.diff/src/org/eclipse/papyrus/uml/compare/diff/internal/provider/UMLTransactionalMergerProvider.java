@@ -15,16 +15,22 @@ package org.eclipse.papyrus.uml.compare.diff.internal.provider;
 
 import java.util.Map;
 
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension;
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension;
 import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl;
 import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.uml2diff.impl.UMLProfileApplicationAdditionImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLProfileApplicationRemovalImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeApplicationAdditionImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeApplicationRemovalImpl;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.util.PapyrusCompareMap;
 import org.eclipse.papyrus.infra.emf.compare.diff.merge.ITransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.provider.ITransactionalMergerProvider;
 import org.eclipse.papyrus.uml.compare.diff.internal.merger.GeneralizationSourceMerger;
 import org.eclipse.papyrus.uml.compare.diff.internal.merger.GeneralizationTargetMerger;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLProfileApplicationAdditionMerger;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLProfileApplicationRemovalMerger;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationAdditionMerger;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationRemovalMerger;
 
 
 
@@ -54,6 +60,10 @@ public class UMLTransactionalMergerProvider implements ITransactionalMergerProvi
 			//another workaround is to implmements the method providesMerger in the Extension
 			mergerTypes.put(GeneralizationSourceChangedExtensionImpl.class, GeneralizationSourceMerger.class);
 			mergerTypes.put(GeneralizationTargetChangedExtensionImpl.class, GeneralizationTargetMerger.class);
+			mergerTypes.put(UMLProfileApplicationAdditionImpl.class, UMLProfileApplicationAdditionMerger.class);
+			mergerTypes.put(UMLProfileApplicationRemovalImpl.class, UMLProfileApplicationRemovalMerger.class);
+			mergerTypes.put(UMLStereotypeApplicationAdditionImpl.class, UMLStereotypeApplicationAdditionMerger.class);
+			mergerTypes.put(UMLStereotypeApplicationRemovalImpl.class, UMLStereotypeApplicationRemovalMerger.class);
 		}
 		return mergerTypes;
 	}
