@@ -55,6 +55,10 @@
             labelProvider="org.eclipse.papyrus.uml.properties.providers.UMLFilteredLabelProvider"
             priority="50">
       </labelProvider>
+      <labelProvider
+            labelProvider="org.eclipse.papyrus.uml.properties.providers.AppliedStereotypePropertyFilteredLabelProvider"
+            priority="45">
+      </labelProvider>
    </extension>
    
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
