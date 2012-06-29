@@ -183,12 +183,12 @@ public class ColorPickerEditor extends AbstractValueEditor implements IChangeLis
 
 	@Override
 	public void setReadOnly(boolean readOnly) {
-		colorPicker.setEnabled(false);
+		colorPicker.setEnabled(!readOnly);
 	}
 
 	@Override
 	public boolean isReadOnly() {
-		return colorPicker.isEnabled();
+		return !colorPicker.isEnabled();
 	}
 
 	@Override
