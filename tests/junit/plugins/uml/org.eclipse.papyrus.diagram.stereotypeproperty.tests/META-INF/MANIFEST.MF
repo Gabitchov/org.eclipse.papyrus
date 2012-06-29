@@ -19,3 +19,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.diagram.stereotypeproperty
+Bundle-Localization: plugin

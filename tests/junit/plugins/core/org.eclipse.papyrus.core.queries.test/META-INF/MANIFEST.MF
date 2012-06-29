@@ -21,4 +21,4 @@ Export-Package: org.eclipse.papyrus.core.queries.test,org.eclipse.papy
  rus.core.queries.test.modisco,org.eclipse.papyrus.core.queries.test.m
  odisco.queries
 Bundle-Version: 0.9.0.qualifier
-
+Bundle-Localization: plugin
