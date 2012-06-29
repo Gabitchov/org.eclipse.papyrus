@@ -154,7 +154,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 
 				public void run(final IProgressMonitor monitor) throws InterruptedException {
 					final Map<String, Object> options = getCompareOptions(monitor, left, right);
-					final MatchModel match = doContentMatch(left, right, options);
+					final MatchModel match = doMatch(left, right, options);
 					DiffModel diff = doDiff(match);
 					snapshot.setDiff(diff);
 					snapshot.setMatch(match);
@@ -182,7 +182,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 	 *         the MatchModel for the comparison
 	 * @throws InterruptedException
 	 */
-	protected MatchModel doContentMatch(final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
+	protected MatchModel doMatch(final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
 		return MatchService.doContentMatch(left, right, options);
 	}
 

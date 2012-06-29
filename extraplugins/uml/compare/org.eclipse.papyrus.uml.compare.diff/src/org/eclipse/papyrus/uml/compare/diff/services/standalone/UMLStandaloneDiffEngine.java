@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.compare.diff.services.standalone;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
@@ -24,11 +23,12 @@ import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
+import org.eclipse.emf.compare.uml2.diff.UML2DiffEngine;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.compare.diff.internal.utils.UMLDiffElementExtensionBuilder;
 
 
-public class UMLStandaloneDiffEngine extends GenericDiffEngine {
+public class UMLStandaloneDiffEngine extends UML2DiffEngine{//GenericDiffEngine {
 
 	private DiffSwitch<AbstractDiffExtension> extensionBuilder;
 
@@ -40,7 +40,7 @@ public class UMLStandaloneDiffEngine extends GenericDiffEngine {
 	@Override
 	public DiffModel doDiff(MatchModel match, boolean threeWay) {
 		DiffModel result = super.doDiff(match, threeWay);
-		return postProcess(result);
+		return papyrusPostProcess(result);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class UMLStandaloneDiffEngine extends GenericDiffEngine {
 	 *        the diff model
 	 * @return the diff model
 	 */
-	protected DiffModel postProcess(DiffModel diffModel) {
+	protected DiffModel papyrusPostProcess(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();
 		while(it.hasNext()) {
 			DiffElement diffElement = (DiffElement)it.next();
