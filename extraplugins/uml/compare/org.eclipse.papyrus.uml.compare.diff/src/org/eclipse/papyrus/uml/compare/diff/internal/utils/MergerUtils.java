@@ -24,6 +24,7 @@ import org.eclipse.ui.IEditorPart;
  * This class provides useful method for the mergers
  * 
  */
+//TODO used?
 public final class MergerUtils {
 
 	/**

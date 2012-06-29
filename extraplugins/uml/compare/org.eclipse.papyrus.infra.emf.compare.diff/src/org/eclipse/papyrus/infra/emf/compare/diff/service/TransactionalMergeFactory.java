@@ -109,14 +109,10 @@ public class TransactionalMergeFactory {
 					elementMerger = (ITransactionalMerger)merger;
 				}
 			} catch (UnsupportedOperationException e) {
-				//we ignore the exception
-			}
-			if(elementMerger == null) {
-				//TODO
-				//			elementMerger = new DefaultExtensionMerger();
-				throw new UnsupportedOperationException();
+				//we ignore the exception, this exception comes from the  Generated Code when the developper don't use Generated NOT
 			}
 		}
+		//TODO : and the default extension merger ?
 
 		if(elementMerger == null) {
 			try {

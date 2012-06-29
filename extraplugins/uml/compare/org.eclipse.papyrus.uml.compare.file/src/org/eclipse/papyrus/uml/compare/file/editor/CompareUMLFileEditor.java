@@ -34,6 +34,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.ecore.EObject;
@@ -50,6 +52,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
+import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
+import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.file.Activator;
 import org.eclipse.papyrus.uml.compare.file.editor.utils.ServicesRegistryUtils;
 import org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileInput;
@@ -312,6 +316,11 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 			servicesRegistry = ServicesRegistryUtils.createAndInitServiceRegistryForUMLCompareFile();
 		}
 		return servicesRegistry;
+	}
+	
+	@Override
+	protected DiffModel doDiff(final MatchModel match) {
+		return UMLStandaloneDiffService.doDiff(match, false);
 	}
 
 }

@@ -101,9 +101,7 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider {
 	@Override
 	public String getText(final Object element) {
 		String text = ""; //$NON-NLS-1$
-		if(element instanceof AbstractDiffExtension) {
-			text = ((AbstractDiffExtension)element).getText();
-		} else if(element instanceof IFile) {
+		if(element instanceof IFile) {
 			text = ((IFile)element).getName();
 		} else if(element instanceof Resource) {
 			text = ((Resource)element).getURI().lastSegment();
@@ -127,9 +125,7 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider {
 	@Override
 	public Image getImage(final Object element) {
 		Image image = null;
-		if(element instanceof AbstractDiffExtension) {
-			image = (Image)((AbstractDiffExtension)element).getImage();
-		} else if(element instanceof IFile) {
+		if(element instanceof IFile) {
 			image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FILE);
 		} else if(element instanceof EObject) {
 			final ITreeElement treeElement = getTreeElement((EObject)element);

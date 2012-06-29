@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.diff.services.nested;
 
-import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
+import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffEngine;
 
 /**
  * 
@@ -23,7 +23,7 @@ import org.eclipse.emf.compare.match.metamodel.Match2Elements;
  * see bug 377154
  */
 //TODO verify the upper class for UML models
-public class UMLDiffEngine extends GenericDiffEngine {
+public class UMLDiffEngine extends UMLStandaloneDiffEngine {
 
 	/**
 	 * 

@@ -35,6 +35,7 @@ import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
+import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.Activator;
 import org.eclipse.uml2.uml.Model;
@@ -82,7 +83,7 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		//TODO use standalone version
 		// Computing differences
 		//	final DiffModel diff = DiffService.doDiff(match, false);
-		final DiffModel diff = UMLDiffService.doDiff(match, false);
+		final DiffModel diff = UMLStandaloneDiffService.doDiff(match, false);
 		return diff;
 	}
 
