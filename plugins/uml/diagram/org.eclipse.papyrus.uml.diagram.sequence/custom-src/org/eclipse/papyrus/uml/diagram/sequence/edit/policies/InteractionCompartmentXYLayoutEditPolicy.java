@@ -42,12 +42,16 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -60,6 +64,7 @@ import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.Notificat
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
@@ -355,6 +360,11 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 						compoundCmd.add(new ICommandProxy(getMoveAnchorCommand(moveDelta.y, figureBounds, gmfAnchor)));
 					}
 				}
+				
+				if (ep instanceof DurationConstraintEditPart) {
+					DurationConstraintEditPart dcp = (DurationConstraintEditPart) ep;
+					moveCoveredDurationConstraint(dcp, compoundCmd,	origCFBounds, moveDelta);
+				}
 			}
 
 		} else {
@@ -485,6 +495,35 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			return null;
 		}
 		return compoundCmd;
+	}
+	
+	private static void moveCoveredDurationConstraint(DurationConstraintEditPart dcp, CompoundCommand compoundCmd,
+			Rectangle origCFBounds, Point moveDelta) {
+		Rectangle r = dcp.getFigure().getBounds().getCopy();
+		dcp.getFigure().translateToAbsolute(r);
+		if (origCFBounds.contains(r)) {
+			//see  org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy.getMoveCommand(ChangeBoundsRequest)
+			IBorderItemEditPart borderItemEP = (IBorderItemEditPart) dcp;
+			IBorderItemLocator borderItemLocator = borderItemEP
+					.getBorderItemLocator();
+			Rectangle realLocation = borderItemLocator
+					.getValidLocation(dcp.getFigure().getBounds()
+							.getCopy(), borderItemEP.getFigure());
+
+			Point parentOrigin = borderItemEP.getFigure()
+					.getParent().getBounds().getTopLeft();
+			Dimension d = realLocation.getTopLeft().getDifference(
+					parentOrigin);
+			Point location = new Point(d.width, d.height);
+			location = location.translate(0, moveDelta.y);
+
+			ICommandProxy resize = new ICommandProxy(
+					new SetBoundsCommand(dcp.getEditingDomain(),
+							DiagramUIMessages.Commands_MoveElement,
+							new EObjectAdapter((View) dcp.getModel()),
+							location));
+			compoundCmd.add(resize);
+		}
 	}
 
 	private static ICommand getMoveAnchorCommand(int yDelta, Rectangle figureBounds, IdentityAnchor gmfAnchor) {

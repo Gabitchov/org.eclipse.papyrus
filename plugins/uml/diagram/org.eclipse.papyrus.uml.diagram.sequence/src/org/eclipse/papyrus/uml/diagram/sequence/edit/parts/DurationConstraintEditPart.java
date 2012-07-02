@@ -107,6 +107,14 @@ BorderedBorderItemEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+	
+	
+	@Override
+	protected void refreshBounds() {		
+		super.refreshBounds();
+		//fix combined fragment move
+		this.getFigure().getParent().getLayoutManager().layout(	this.getFigure().getParent());
+	}
 
 	/**
 	 * This method creates a specific edit policy for time realted elements

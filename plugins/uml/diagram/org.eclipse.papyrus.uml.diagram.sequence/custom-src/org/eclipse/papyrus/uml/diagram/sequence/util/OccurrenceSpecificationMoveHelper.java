@@ -38,6 +38,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
@@ -463,7 +464,12 @@ public class OccurrenceSpecificationMoveHelper {
 					bottom = referencePoint2.y;
 				}
 				// top and bottom may have been inverted during the move.
-				newBounds = new Rectangle(referencePoint1.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
+				// restore x position, fix time duration always move to east
+				int viewX = (Integer) ViewUtil.getPropertyValue((View) timePart.getModel(), NotationPackage.eINSTANCE
+						.getLocation_X(), NotationPackage.eINSTANCE.getLocation_X().getEContainingClass());
+						
+				newBounds = new Rectangle(viewX, Math.min(top, bottom), -1, Math.abs(bottom - top));
+//				newBounds = new Rectangle(referencePoint1.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
 			}
 		} else if(position1 != PositionConstants.NONE) {
 			Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
