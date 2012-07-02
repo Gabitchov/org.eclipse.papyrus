@@ -29,6 +29,15 @@
          </menu>
       </menuContribution>
       <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+         <menu
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.views.modelexplorer.popup.validation"
+               label="Validation">
+         </menu>
+      </menuContribution>
+      <menuContribution
             allPopups="true"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.validation">
          <command

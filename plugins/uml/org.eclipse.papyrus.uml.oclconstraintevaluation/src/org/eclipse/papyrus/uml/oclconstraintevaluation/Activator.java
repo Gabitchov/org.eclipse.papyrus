@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
 
 	/**
 	 * the ID of the plugin ocl constraint evaluation
@@ -77,6 +77,11 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	public void earlyStartup() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

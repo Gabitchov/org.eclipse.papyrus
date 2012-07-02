@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.oclconstraintevaluation;
 
+
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
@@ -23,38 +25,40 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.part.Page;
+import org.eclipse.ui.part.ViewPart;
 
 /**
- *this class is a text area that display the result of a constraint 
+ * this is console that display the result of a OCL Constraint. The pattern Singleton has been applied
  *
  */
-public class ConstraintConsolePage extends Page {
-	protected Text textViewer;
-	protected Composite page;
+public class OCLEvaluationView extends ViewPart {
+	private Text textViewer;
+	/**
+	 * ID
+	 */
+	public static String ID= "org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView";
 
-	protected  MetaModelManager nullMetaModelManager = null;
-
-	@Override
-	public void createControl(Composite parent) {
-		page = new SashForm(parent, SWT.VERTICAL | SWT.LEFT_TO_RIGHT);
-
-		textViewer = new Text(page, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
+	protected  MetaModelManager metaModelManager = null;
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
+	public OCLEvaluationView() {
+		super();
+	}
+	public void setFocus() {
+		textViewer.setFocus();
+	}
+	public void createPartControl(Composite parent) {
+		textViewer = new Text(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
 		textViewer.setEditable(false);
-
+		textViewer.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
 	}
 
-	@Override
-	public Control getControl() {
-		return page;
-	}
-
-	@Override
-	public void setFocus() {}
 	/**
 	 * this method comes from the org.eclipse.ocl.examples.xtext.console.OCLConsolePage written by 
 	 * @param contextObject
@@ -65,10 +69,10 @@ public class ConstraintConsolePage extends Page {
 		if (metaModelManager != null) {
 			return metaModelManager;
 		}
-		if (nullMetaModelManager == null) {
-			nullMetaModelManager = new MetaModelManager();
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
 		}
-		return nullMetaModelManager;
+		return metaModelManager;
 	}
 	
 	
@@ -91,7 +95,6 @@ public class ConstraintConsolePage extends Page {
 			Value evaluate = ocl.evaluate(contextObject, createQuery);
 			String print = evaluate.asObject().toString();
 			
-			//clear the value of the text area
 			textViewer.selectAll();
 			textViewer.clearSelection();
 			//display the value
@@ -102,3 +105,4 @@ public class ConstraintConsolePage extends Page {
 
 	}
 }
+

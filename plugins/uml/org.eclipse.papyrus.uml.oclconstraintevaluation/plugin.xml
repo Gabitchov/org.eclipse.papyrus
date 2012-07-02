@@ -19,15 +19,23 @@
                commandId="org.eclipse.papyrus.uml.oclconstraintevaluation.computeconstraint"
                label="Compute constraint"
                style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
-      <extension
-         point="org.eclipse.ui.console.consoleFactories">
-      <consoleFactory
-            class="org.eclipse.papyrus.uml.oclconstraintevaluation.ConstraintResultFactory"
-            label="ConstraintResult">
-      </consoleFactory>
+   <extension point="org.eclipse.ui.views">
+        <view id="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
+             name="OCL evaluation View"
+          class="org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView"
+       />
+</extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.papyrus.uml.oclconstraintevaluation.Activator">
+      </startup>
    </extension>
 
 </plugin>

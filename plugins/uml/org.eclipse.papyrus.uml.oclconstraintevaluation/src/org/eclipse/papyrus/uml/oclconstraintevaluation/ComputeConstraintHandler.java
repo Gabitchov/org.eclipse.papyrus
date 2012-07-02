@@ -18,7 +18,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -82,7 +85,6 @@ public class ComputeConstraintHandler extends AbstractHandler {
 		//test if this is a constraint
 		if( selectedObject instanceof Constraint){
 			Constraint constraint= (Constraint)selectedObject;
-			ConstraintResultFactory factory= new ConstraintResultFactory();
 
 			//test if this is an opaqueExpression
 			if( constraint.getSpecification() instanceof OpaqueExpression){
@@ -96,8 +98,12 @@ public class ComputeConstraintHandler extends AbstractHandler {
 					}
 				}
 				if( indexOfOCLBody!=-1){
-					factory.openConsole();
-					ConstraintConsoleResult.getInstance().compute(constraint.getContext(), opaqueExpression.getBodies().get(indexOfOCLBody));
+					try {
+						OCLEvaluationView view=(OCLEvaluationView)HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(OCLEvaluationView.ID);
+						view.compute(constraint.getContext(), opaqueExpression.getBodies().get(indexOfOCLBody));
+					} catch (PartInitException e) {
+						e.printStackTrace();
+					}
 				}
 
 
@@ -123,7 +129,7 @@ public class ComputeConstraintHandler extends AbstractHandler {
 	@Override
 	public boolean isEnabled() {
 		EObject eObject=getSelectedElement();
-		if( eObject instanceof Element){
+		if( eObject instanceof Constraint){
 			if( !(getToPackage((Element)eObject) instanceof Profile)){
 				return true;
 			}
