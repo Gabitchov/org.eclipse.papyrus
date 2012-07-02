@@ -43,7 +43,12 @@ public class ExistingStyleContentProvider implements IHierarchicContentProvider 
 	}
 
 	public Object[] getElements(Object inputElement) {
-		return getStyleSheets().toArray();
+		Collection<StyleSheet> stylesheets = getStyleSheets();
+		if(stylesheets.isEmpty()) {
+			//Display a message to let the user know why he cannot edit a stylesheet
+			return new Object[]{ "No stylesheet available" };
+		}
+		return stylesheets.toArray();
 	}
 
 	public Object[] getChildren(Object parentElement) {
