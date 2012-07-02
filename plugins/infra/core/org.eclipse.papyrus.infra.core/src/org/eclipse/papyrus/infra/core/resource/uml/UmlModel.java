@@ -32,6 +32,7 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	 * 
 	 * @param fullPath
 	 */
+	@Override
 	public void createModel(IPath fullPath) {
 
 		// Compute model URI
@@ -81,13 +82,12 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	 * @return
 	 */
 	public EObject lookupRoot() throws NotFoundException {
-		// TODO Auto-generated method stub
-		try {
-			return resource.getContents().get(0);
-		} catch (IndexOutOfBoundsException e) {
+		if(resource.getContents().isEmpty()) {
 			// The root doesn't exist.
 			throw new NotFoundException("No root defined in the model");
 		}
+
+		return resource.getContents().get(0);
 	}
 
 }

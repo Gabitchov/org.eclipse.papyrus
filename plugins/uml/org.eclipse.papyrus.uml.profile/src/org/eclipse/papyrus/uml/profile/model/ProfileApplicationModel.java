@@ -21,7 +21,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.swt.widgets.Display;
@@ -60,7 +59,9 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 				return (Package)root;
 			}
 		} catch (NotFoundException ex) {
-			Activator.log.error(ex);
+			//Ignore the exception: On diagram creation, the root isn't defined yet. 
+			//There's not profile application, and nothing to do.
+			//Activator.log.error(ex);
 		}
 		return null;
 	}
