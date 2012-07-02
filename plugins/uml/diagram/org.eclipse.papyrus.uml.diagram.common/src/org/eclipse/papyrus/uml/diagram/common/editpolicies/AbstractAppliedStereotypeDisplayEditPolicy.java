@@ -23,10 +23,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
@@ -35,6 +37,7 @@ import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusCons
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -57,6 +60,27 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		super();
 	}
 
+	
+	/**
+	 * clean stereotype to display in Eannotation this method can be called directly
+	 * at the activation of this class
+	 */
+	protected void cleanStereotypeDisplayInEAnnotation(){
+		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getHost().getModel());
+
+		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
+		while(strQualifiedName.hasMoreElements()) {
+			String currentStereotype = strQualifiedName.nextToken();
+
+			// check if current stereotype is applied
+			final Element umlElement = getUMLElement();
+			Stereotype stereotype = umlElement.getAppliedStereotype(currentStereotype);
+			if(stereotype == null) {
+				removeEAnnotationAboutStereotype(currentStereotype);
+			}
+
+		}
+	}
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -87,6 +111,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		}
 
 		refreshDisplay();
+		// try to display stereotype properties
+		cleanStereotypeDisplayInEAnnotation();
 	}
 
 	/**
@@ -147,106 +173,131 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		return (View)getHost().getModel();
 	}
 
-	/**
-	 * 
-	 * {@inheritedDoc}
-	 */
-	public void notifyChanged(Notification notification) {
-		// change the label of the figure managed by the host edit part (managed
-		// by the parent edit
-		// part in general...)
-		// it must be changed only if:
-		// - the annotation corresponding to the display of the stereotype
-		// changes
-		// - the stereotype application list has changed
-		final int eventType = notification.getEventType();
+	protected void removeEAnnotationAboutStereotype(final String stereotypeQN){
 
-		if(eventType == PapyrusStereotypeListener.APPLIED_STEREOTYPE) {
-			// a stereotype was applied to the notifier
-			// then a new listener should be added to the stereotype application
-			getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
-		} else if(eventType == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
-			getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+			try {
+				((GraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
+
+					public void run() {
+
+						Display.getCurrent().asyncExec(new Runnable() {
+
+							public void run() {
+								String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView());
+								RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(((GraphicalEditPart)getHost()).getEditingDomain(), getView(),stereotypeQN, presentationKind);
+								((GraphicalEditPart)getHost()).getEditingDomain().getCommandStack().execute(command);
+							}
+						});
+					}
+				});
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
-		// if element that has changed is a stereotype => refresh the label.
-		if(notification.getNotifier() instanceof EAnnotation) {
-			if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
+		/**
+		 * 
+		 * {@inheritedDoc}
+		 */
+		public void notifyChanged(Notification notification) {
+			// change the label of the figure managed by the host edit part (managed
+			// by the parent edit
+			// part in general...)
+			// it must be changed only if:
+			// - the annotation corresponding to the display of the stereotype
+			// changes
+			// - the stereotype application list has changed
+			final int eventType = notification.getEventType();
+
+			if(eventType == PapyrusStereotypeListener.APPLIED_STEREOTYPE) {
+				// a stereotype was applied to the notifier
+				// then a new listener should be added to the stereotype application
+				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
+			} else if(eventType == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
+				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				cleanStereotypeDisplayInEAnnotation();
+
+			}
+
+			// if element that has changed is a stereotype => refresh the label.
+			if(notification.getNotifier() instanceof EAnnotation) {
+				if(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
+					// stereotype annotation has changed => refresh label display
+					refreshDisplay();
+				}
+			}
+
+			// if element that has changed is a stereotype => refresh the label.
+			if((eventType == PapyrusStereotypeListener.MODIFIED_STEREOTYPE)) {
 				// stereotype annotation has changed => refresh label display
+				refreshDisplay();
+			}
+
+			// The value of a property of stereotype (dynamic profile) has changed
+			// To avoid refresh to be called during stereotype removal (stereotype#base_xxx set to null in particular) a complementary test is 
+			// added here to ensure the stereotype is still applied (the notifier is a stereotype application of the semantic element).
+			if((notification.getNotifier() instanceof DynamicEObjectImpl) && (hostSemanticElement != null) && (hostSemanticElement.getStereotypeApplications().contains(notification.getNotifier()))) {
 				refreshDisplay();
 			}
 		}
 
-		// if element that has changed is a stereotype => refresh the label.
-		if((eventType == PapyrusStereotypeListener.MODIFIED_STEREOTYPE)) {
-			// stereotype annotation has changed => refresh label display
-			refreshDisplay();
-		}
+		/**
+		 * Refreshes the display for the element controlled by the edit part with
+		 * this edit policies
+		 */
+		public abstract void refreshDisplay();
 
-		// The value of a property of stereotype (dynamic profile) has changed
-		// To avoid refresh to be called during stereotype removal (stereotype#base_xxx set to null in particular) a complementary test is 
-		// added here to ensure the stereotype is still applied (the notifier is a stereotype application of the semantic element).
-		if((notification.getNotifier() instanceof DynamicEObjectImpl) && (hostSemanticElement != null) && (hostSemanticElement.getStereotypeApplications().contains(notification.getNotifier()))) {
-			refreshDisplay();
-		}
-	}
+		/**
+		 * Parses the string containing the complete definition of properties to be
+		 * displayed, and generates a map.
+		 * 
+		 * @param stereotypesToDisplay
+		 *        the list of stereotypes to display
+		 * @param stereotypesPropertiesToDisplay
+		 *        the properties of stereotypes to display
+		 * @return a map. The keys are the name of displayed stereotypes, the
+		 *         corresponding data is a collection of its properties to be
+		 *         displayed
+		 */
+		protected Map<String, List<String>> parseStereotypeProperties(String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
+			Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
 
-	/**
-	 * Refreshes the display for the element controlled by the edit part with
-	 * this edit policies
-	 */
-	public abstract void refreshDisplay();
-
-	/**
-	 * Parses the string containing the complete definition of properties to be
-	 * displayed, and generates a map.
-	 * 
-	 * @param stereotypesToDisplay
-	 *        the list of stereotypes to display
-	 * @param stereotypesPropertiesToDisplay
-	 *        the properties of stereotypes to display
-	 * @return a map. The keys are the name of displayed stereotypes, the
-	 *         corresponding data is a collection of its properties to be
-	 *         displayed
-	 */
-	protected Map<String, List<String>> parseStereotypeProperties(String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
-		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
-
-		StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, UMLVisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
-		while(stringTokenizer.hasMoreTokens()) {
-			String propertyName = stringTokenizer.nextToken();
-			// retrieve the name of the stereotype for this property
-			String stereotypeName = propertyName.substring(0, propertyName.lastIndexOf(".")); // stereotypequalifiedName.propertyname
-			if(!propertiesMap.containsKey(stereotypeName)) {
-				List<String> propertiesForStereotype = new ArrayList<String>();
-				propertiesMap.put(stereotypeName, propertiesForStereotype);
+			StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, UMLVisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
+			while(stringTokenizer.hasMoreTokens()) {
+				String propertyName = stringTokenizer.nextToken();
+				// retrieve the name of the stereotype for this property
+				String stereotypeName = propertyName.substring(0, propertyName.lastIndexOf(".")); // stereotypequalifiedName.propertyname
+				if(!propertiesMap.containsKey(stereotypeName)) {
+					List<String> propertiesForStereotype = new ArrayList<String>();
+					propertiesMap.put(stereotypeName, propertiesForStereotype);
+				}
+				propertiesMap.get(stereotypeName).add(propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
 			}
-			propertiesMap.get(stereotypeName).add(propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
+			return propertiesMap;
 		}
-		return propertiesMap;
-	}
 
-	/**
-	 * Returns the image to be displayed for the applied stereotypes.
-	 * 
-	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
-	 */
-	public Image stereotypeIconToDisplay() {
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
-		if(stereotypespresentationKind == null) {
+		/**
+		 * Returns the image to be displayed for the applied stereotypes.
+		 * 
+		 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
+		 */
+		public Image stereotypeIconToDisplay() {
+			String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View)getHost().getModel());
+			if(stereotypespresentationKind == null) {
+				return null;
+			}
+			if(stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+
+				// retrieve the first stereotype in the list of displayed stereotype
+				String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getHost().getModel());
+				StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
+				if(tokenizer.hasMoreTokens()) {
+					String firstStereotypeName = tokenizer.nextToken();
+					Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
+					return Activator.getIconElement(getUMLElement(), stereotype, false);
+				}
+			}
 			return null;
 		}
-		if(stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
-
-			// retrieve the first stereotype in the list of displayed stereotype
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)getHost().getModel());
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			if(tokenizer.hasMoreTokens()) {
-				String firstStereotypeName = tokenizer.nextToken();
-				Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
-				return Activator.getIconElement(getUMLElement(), stereotype, false);
-			}
-		}
-		return null;
 	}
-}

@@ -31,18 +31,29 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 	
 	protected View owner;
 	protected EObject StereotypeApplication;
+	protected boolean displayit=false;
 	
-	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain,View owner, EObject StereotypeApplication) {
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param domain
+	 * @param owner
+	 * @param StereotypeApplication
+	 * @param displayit
+	 */
+	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain,View owner, EObject StereotypeApplication, boolean displayit) {
 		super(domain);
 		this.owner = owner;
 		this.StereotypeApplication=StereotypeApplication;
+		this.displayit=displayit;
 		
 	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {
 		Node compartment = NotationFactory.eINSTANCE.createBasicCompartment();
-		compartment.setVisible(false);
+		compartment.setVisible(displayit);
 		compartment.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 		ts.setShowTitle(true);

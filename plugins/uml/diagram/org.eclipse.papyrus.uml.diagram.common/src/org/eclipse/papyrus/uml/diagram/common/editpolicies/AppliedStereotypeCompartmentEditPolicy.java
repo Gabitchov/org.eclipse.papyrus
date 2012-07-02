@@ -13,11 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -54,6 +59,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	@Override
 	public void activate() {
 		super.activate();
+
 		// if stereotype has been applied, compartment has to be created
 		final GraphicalEditPart editPart = (GraphicalEditPart)getHost();
 		Element UMLEelement = (Element)editPart.resolveSemanticElement();
@@ -64,6 +70,42 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		}
 	}
 
+
+	protected boolean hasToDisplayCompartment(EObject applicationOfStereotype){
+		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
+
+		HashSet<org.eclipse.uml2.uml.Stereotype> stereoSet = new HashSet<org.eclipse.uml2.uml.Stereotype>();
+		ArrayList<String> stPropList = new ArrayList<String>();
+
+		// fill our data structure in order to generate the string
+		StringTokenizer propStringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, ",");
+		while(propStringTokenizer.hasMoreElements()) {
+			// extract property to display
+			String propertyQN = propStringTokenizer.nextToken();
+			// stereotype
+			String stereotypeQN = propertyQN.substring(0, propertyQN.indexOf("."));
+
+			Stereotype stereotype = hostSemanticElement.getAppliedStereotype(stereotypeQN);
+		
+			if(stereotype != null) {
+				stereoSet.add(stereotype);
+			}
+
+			stPropList.add(propertyQN);
+		}
+
+		// Display each stereotype
+		Iterator<org.eclipse.uml2.uml.Stereotype> stereoIter = stereoSet.iterator();
+		while(stereoIter.hasNext()) {
+			Stereotype stereotype = stereoIter.next();
+			if(stereotype != null) {
+				if(applicationOfStereotype.equals(hostSemanticElement.getStereotypeApplication(stereotype))){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	/**
 	 * the goal of this method is to execute the a command to create a notation node for a compartment of stereotype
 	 * 
@@ -80,7 +122,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), appliedstereotype);
+							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), appliedstereotype, hasToDisplayCompartment(appliedstereotype));
 							editPart.getEditingDomain().getCommandStack().execute(command);
 						}
 					});
@@ -111,7 +153,9 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			createAppliedStereotypeCompartment((EObject)notification.getNewValue());
 		} else if(eventType == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
 			getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+			cleanStereotypeDisplayInEAnnotation();
 			removeAppliedStereotypeCompartment((EObject)notification.getNewValue());
+
 		}
 		// if element that has changed is a stereotype => refresh the label.
 		if(notification.getNotifier() instanceof Node && (notification.getEventType() == Notification.ADD) && (notification.getNewValue() instanceof EAnnotation)) {
@@ -121,6 +165,8 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			}
 		}
 	}
+
+
 
 	/**
 	 * this method creates a node for the compartment of stereotype if it does not exist.
