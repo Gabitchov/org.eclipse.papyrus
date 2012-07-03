@@ -207,6 +207,15 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	CompartmentTitleVisibilityPreference createCompartmentTitleVisibilityPreference();
 
 	/**
+	 * Returns a new object of class '<em>Constrained By Reference Compartment Item Semantic Edit Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constrained By Reference Compartment Item Semantic Edit Policy</em>'.
+	 * @generated
+	 */
+	ConstrainedByReferenceCompartmentItemSemanticEditPolicy createConstrainedByReferenceCompartmentItemSemanticEditPolicy();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

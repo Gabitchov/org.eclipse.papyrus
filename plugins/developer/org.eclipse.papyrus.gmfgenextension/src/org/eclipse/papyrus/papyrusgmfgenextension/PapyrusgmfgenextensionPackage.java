@@ -1027,6 +1027,44 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
+	 * @generated
+	 */
+	int CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY = 20;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__GEN_VIEW = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Constrained By Reference Compartment Item Semantic Edit Policy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1667,6 +1705,27 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getCompartmentTitleVisibilityPreference_Compartments();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constrained By Reference Compartment Item Semantic Edit Policy</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
+	 * @generated
+	 */
+	EClass getConstrainedByReferenceCompartmentItemSemanticEditPolicy();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy#getGenView <em>Gen View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Gen View</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy#getGenView()
+	 * @see #getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
+	 * @generated
+	 */
+	EReference getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2208,6 +2267,24 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPARTMENT_TITLE_VISIBILITY_PREFERENCE__COMPARTMENTS = eINSTANCE.getCompartmentTitleVisibilityPreference_Compartments();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
+		 * @generated
+		 */
+		EClass CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY = eINSTANCE.getConstrainedByReferenceCompartmentItemSemanticEditPolicy();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__GEN_VIEW = eINSTANCE.getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView();
 
 	}
 

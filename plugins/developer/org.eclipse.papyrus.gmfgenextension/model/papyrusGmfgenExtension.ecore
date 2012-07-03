@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="papyrusgmfgenextension"
-    nsURI="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension" nsPrefix="papyrusgmfgenextension">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="papyrusgmfgenextension" nsURI="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+    nsPrefix="papyrusgmfgenextension">
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedGenView" eSuperTypes="#//CommentedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This element is always linked to a genView (topLevel, or child)&#xD;&#xA;Used set if an editPart is abstract.&#xD;&#xA;SuperGenViews is a list of all superEditPart.&#xD;&#xA;&#xD;&#xA;Thanks to this, it is possible to factorize code and to decrease the number of generated classes."/>
@@ -153,5 +152,13 @@
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" upperBound="-1"
         eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenCompartment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstrainedByReferenceCompartmentItemSemanticEditPolicy"
+      eSuperTypes="#//CommentedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="Documentation" value="Add constraint on Compartment Item Semantic Policy in order to prevent move into compartment of elements which can be contained. This constraint used the child node define in the GMF Model in order to define the correspoding EReference. When a move is executed the item semantic policy will fisrt check that the element can be conatined/referenced by this EReference?"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genView" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenCommonBase"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -166,6 +166,10 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 				return createCompartmentTitleVisibilityPreferenceAdapter();
 			}
 			@Override
+			public Adapter caseConstrainedByReferenceCompartmentItemSemanticEditPolicy(ConstrainedByReferenceCompartmentItemSemanticEditPolicy object) {
+				return createConstrainedByReferenceCompartmentItemSemanticEditPolicyAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -462,6 +466,20 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCompartmentTitleVisibilityPreferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
+	 * @generated
+	 */
+	public Adapter createConstrainedByReferenceCompartmentItemSemanticEditPolicyAdapter() {
 		return null;
 	}
 

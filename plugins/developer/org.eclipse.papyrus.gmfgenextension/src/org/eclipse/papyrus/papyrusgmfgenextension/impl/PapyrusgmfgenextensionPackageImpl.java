@@ -21,6 +21,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
 import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference;
+import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
@@ -171,6 +172,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass compartmentTitleVisibilityPreferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constrainedByReferenceCompartmentItemSemanticEditPolicyEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -741,6 +749,24 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstrainedByReferenceCompartmentItemSemanticEditPolicy() {
+		return constrainedByReferenceCompartmentItemSemanticEditPolicyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView() {
+		return (EReference)constrainedByReferenceCompartmentItemSemanticEditPolicyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -844,6 +870,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		compartmentTitleVisibilityPreferenceEClass = createEClass(COMPARTMENT_TITLE_VISIBILITY_PREFERENCE);
 		createEAttribute(compartmentTitleVisibilityPreferenceEClass, COMPARTMENT_TITLE_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT);
 		createEReference(compartmentTitleVisibilityPreferenceEClass, COMPARTMENT_TITLE_VISIBILITY_PREFERENCE__COMPARTMENTS);
+
+		constrainedByReferenceCompartmentItemSemanticEditPolicyEClass = createEClass(CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY);
+		createEReference(constrainedByReferenceCompartmentItemSemanticEditPolicyEClass, CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__GEN_VIEW);
 	}
 
 	/**
@@ -896,6 +925,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		labelVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 		compartmentVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
 		compartmentTitleVisibilityPreferenceEClass.getESuperTypes().add(this.getCommentedElement());
+		constrainedByReferenceCompartmentItemSemanticEditPolicyEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -977,6 +1007,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		initEClass(compartmentTitleVisibilityPreferenceEClass, CompartmentTitleVisibilityPreference.class, "CompartmentTitleVisibilityPreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCompartmentTitleVisibilityPreference_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, CompartmentTitleVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompartmentTitleVisibilityPreference_Compartments(), theGMFGenPackage.getGenCompartment(), null, "compartments", null, 0, -1, CompartmentTitleVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constrainedByReferenceCompartmentItemSemanticEditPolicyEClass, ConstrainedByReferenceCompartmentItemSemanticEditPolicy.class, "ConstrainedByReferenceCompartmentItemSemanticEditPolicy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView(), theGMFGenPackage.getGenCommonBase(), null, "genView", null, 0, -1, ConstrainedByReferenceCompartmentItemSemanticEditPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

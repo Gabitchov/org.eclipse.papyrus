@@ -96,6 +96,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.LABEL_VISIBILITY_PREFERENCE: return createLabelVisibilityPreference();
 			case PapyrusgmfgenextensionPackage.COMPARTMENT_VISIBILITY_PREFERENCE: return createCompartmentVisibilityPreference();
 			case PapyrusgmfgenextensionPackage.COMPARTMENT_TITLE_VISIBILITY_PREFERENCE: return createCompartmentTitleVisibilityPreference();
+			case PapyrusgmfgenextensionPackage.CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY: return createConstrainedByReferenceCompartmentItemSemanticEditPolicy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -299,6 +300,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public CompartmentTitleVisibilityPreference createCompartmentTitleVisibilityPreference() {
 		CompartmentTitleVisibilityPreferenceImpl compartmentTitleVisibilityPreference = new CompartmentTitleVisibilityPreferenceImpl();
 		return compartmentTitleVisibilityPreference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstrainedByReferenceCompartmentItemSemanticEditPolicy createConstrainedByReferenceCompartmentItemSemanticEditPolicy() {
+		ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl constrainedByReferenceCompartmentItemSemanticEditPolicy = new ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl();
+		return constrainedByReferenceCompartmentItemSemanticEditPolicy;
 	}
 
 	/**

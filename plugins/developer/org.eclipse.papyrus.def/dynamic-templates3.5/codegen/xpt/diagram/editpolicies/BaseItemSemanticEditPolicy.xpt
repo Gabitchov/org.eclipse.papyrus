@@ -297,7 +297,19 @@ protected org.eclipse.gef.commands.Command getDuplicateCommand(org.eclipse.gmf.r
 protected org.eclipse.gef.commands.Command getMoveCommand(org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest req) {
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
 	«REM»add move command«ENDREM»
-	return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand(req));
+		org.eclipse.emf.ecore.EObject targetCEObject = req.getTargetContainer();
+		if(targetCEObject != null) {
+			org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(targetCEObject);
+			if(provider != null) {
+				org.eclipse.gmf.runtime.common.core.command.ICommand moveCommand = provider.getEditCommand(req);
+				if(moveCommand != null) {
+					return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(moveCommand);
+				}
+			}
+			return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+		} else {
+			return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand(req));
+		}
     «REM»END: PapyrusGenCode«ENDREM»
 	
 }
