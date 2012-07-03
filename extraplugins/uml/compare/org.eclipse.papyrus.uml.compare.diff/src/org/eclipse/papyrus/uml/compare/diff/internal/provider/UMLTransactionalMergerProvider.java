@@ -22,6 +22,14 @@ import org.eclipse.emf.compare.uml2diff.impl.UMLProfileApplicationAdditionImpl;
 import org.eclipse.emf.compare.uml2diff.impl.UMLProfileApplicationRemovalImpl;
 import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeApplicationAdditionImpl;
 import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeApplicationRemovalImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeAttributeChangeLeftTargetImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeAttributeChangeRightTargetImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeReferenceChangeLeftTargetImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeReferenceChangeRightTargetImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeReferenceOrderChangeImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeUpdateAttributeImpl;
+import org.eclipse.emf.compare.uml2diff.impl.UMLStereotypeUpdateReferenceImpl;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DefaultExtensionTransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.util.PapyrusCompareMap;
 import org.eclipse.papyrus.infra.emf.compare.diff.merge.ITransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.provider.ITransactionalMergerProvider;
@@ -64,6 +72,18 @@ public class UMLTransactionalMergerProvider implements ITransactionalMergerProvi
 			mergerTypes.put(UMLProfileApplicationRemovalImpl.class, UMLProfileApplicationRemovalMerger.class);
 			mergerTypes.put(UMLStereotypeApplicationAdditionImpl.class, UMLStereotypeApplicationAdditionMerger.class);
 			mergerTypes.put(UMLStereotypeApplicationRemovalImpl.class, UMLStereotypeApplicationRemovalMerger.class);
+
+			//the mergers for UMLStereotype
+			mergerTypes.put(UMLStereotypeApplicationAdditionImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeApplicationRemovalImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeAttributeChangeLeftTargetImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeAttributeChangeRightTargetImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeReferenceChangeLeftTargetImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeReferenceChangeRightTargetImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeReferenceOrderChangeImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeUpdateAttributeImpl.class, DefaultExtensionTransactionalMerger.class);
+			mergerTypes.put(UMLStereotypeUpdateReferenceImpl.class, DefaultExtensionTransactionalMerger.class);
+
 		}
 		return mergerTypes;
 	}
