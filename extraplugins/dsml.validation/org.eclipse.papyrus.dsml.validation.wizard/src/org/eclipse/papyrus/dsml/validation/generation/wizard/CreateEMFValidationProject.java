@@ -83,11 +83,13 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 		if (result) {
 			IProject project = this.fMainPage.getProjectHandle();
 			try {
-				//generate plugin + extension point
-				ValidationPluginGenerator.instance.generate(project, this,constraintsManager);
 				//generate java code
 				generateAllJava = new JavaContentGenerator(project, selectedProfile);
 				generateAllJava.run();
+				//generate plugin + extension point
+				ValidationPluginGenerator.instance.generate(project, this,constraintsManager);
+				
+				
 				project.refreshLocal(IProject.DEPTH_INFINITE, null);
 			} catch (Exception e) {
 				e.printStackTrace();
