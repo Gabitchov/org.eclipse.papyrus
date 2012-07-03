@@ -23,6 +23,7 @@ import org.eclipse.emf.compare.match.engine.internal.GenericMatchEngineToChecker
 import org.eclipse.emf.compare.match.internal.statistic.NameSimilarity;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
 
 //TODO verify the super class for UML models
 /**
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * 
  * @see bug 377154
  */
-public class UMLMatchEngine extends GenericMatchEngine {
+public class UMLMatchEngine extends UMLStandaloneMatchEngine{//GenericMatchEngine {
 
 	/** the left object to compare */
 	private EObject leftObject;

@@ -66,7 +66,7 @@ public class UMLCompareEditor extends EMFCompareEditor {
 	}
 
 	@Override
-	protected MatchModel doMatch(final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
+	protected MatchModel doMatch(IProgressMonitor monitor, final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
 		return NestedMatchService.doContentMatch(left, right, options);
 	}
 

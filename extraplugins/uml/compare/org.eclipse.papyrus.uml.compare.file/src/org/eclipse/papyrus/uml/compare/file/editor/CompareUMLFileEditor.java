@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.compare.file.editor;
 
 import static org.eclipse.papyrus.infra.core.Activator.log;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -33,14 +32,12 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.EMFCompareException;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
-import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.ecore.EObject;
@@ -48,7 +45,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
@@ -58,8 +54,9 @@ import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
+import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
+import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
 import org.eclipse.papyrus.uml.compare.file.Activator;
 import org.eclipse.papyrus.uml.compare.file.editor.utils.ServicesRegistryUtils;
 import org.eclipse.papyrus.uml.compare.file.handler.CompareUMLFileInput;
@@ -68,11 +65,11 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.emf.compare.uml2.match.UML2MatchEngine;
 
 //import org.eclipse.uml2.uml.utils.UMLUtil;
 
@@ -332,18 +329,22 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor#doMatch(org.eclipse.emf.ecore.EObject,
-	 *      org.eclipse.emf.ecore.EObject, java.util.Map)
-	 * 
 	 * @param left
 	 * @param right
 	 * @param options
+	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor#doMatch(Monitor,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, java.util.Map)
+	 * 
 	 * @return
 	 * @throws InterruptedException
 	 */
 	@Override
-	protected MatchModel doMatch(EObject left, EObject right, Map<String, Object> options) throws InterruptedException {
-		return MatchService.doResourceMatch(left.eResource(), right.eResource(), options);
+	protected MatchModel doMatch(IProgressMonitor monitor, EObject left, EObject right, Map<String, Object> options) throws InterruptedException {
+		//TODO create your own MatchService
+		//		return MatchService.doResourceMatch(left.eResource(), right.eResource(), options);
+		IMatchEngine engine = (IMatchEngine)new UMLStandaloneMatchEngine();
+//		return engine.contentMatch(left, right, StandaloneMergeUtils.getMergeOptions(monitor, left, right));
+		return engine.resourceMatch(left.eResource(), right.eResource(), StandaloneMergeUtils.getMergeOptions(monitor, left, right));
 	}
 
 

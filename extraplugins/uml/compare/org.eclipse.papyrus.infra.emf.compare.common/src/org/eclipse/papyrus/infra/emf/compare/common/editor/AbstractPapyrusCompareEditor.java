@@ -103,28 +103,14 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 	 * @return
 	 *         the options for the comparison
 	 */
-	//TODO verify the options to use for UML
+	//TODO : i'm not sure of these options for EMF, but this method is always overriden in Papyrus
 	protected Map<String, Object> getCompareOptions(final IProgressMonitor monitor, final EObject left, final EObject right) {
 		final Map<String, Object> options = new EMFCompareMap<String, Object>();
 		options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
-		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, getMatchScopeProvider(left, right));
+		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left.eResource(), right.eResource()));
 		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE); //TODO verify this parameter
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE); //TODO verify this parameter
 		return options;
-	}
-
-	/**
-	 * 
-	 * @param left
-	 *        the left object
-	 * @param right
-	 *        the right object
-	 * @return
-	 *         the match scope provider
-	 */
-	//TODO verify the option to use for UML
-	protected IMatchScopeProvider getMatchScopeProvider(final EObject left, final EObject right) {
-		return new GenericMatchScopeProvider(left.eResource(), right.eResource());
 	}
 
 
@@ -154,7 +140,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 
 				public void run(final IProgressMonitor monitor) throws InterruptedException {
 					final Map<String, Object> options = getCompareOptions(monitor, left, right);
-					final MatchModel match = doMatch(left, right, options);
+					final MatchModel match = doMatch(monitor, left, right, options);
 					DiffModel diff = doDiff(match);
 					snapshot.setDiff(diff);
 					snapshot.setMatch(match);
@@ -175,6 +161,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 
 	/**
 	 * 
+	 * @param monitor TODO
 	 * @param left
 	 * @param right
 	 * @param options
@@ -182,7 +169,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 	 *         the MatchModel for the comparison
 	 * @throws InterruptedException
 	 */
-	protected MatchModel doMatch(final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
+	protected MatchModel doMatch(IProgressMonitor monitor, final EObject left, final EObject right, final Map<String, Object> options) throws InterruptedException {
 		return MatchService.doContentMatch(left, right, options);
 	}
 

@@ -16,12 +16,20 @@ package org.eclipse.papyrus.uml.compare.diff.services.standalone;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.compare.match.MatchOptions;
+import org.eclipse.emf.compare.match.engine.DefaultMatchScopeProvider;
+import org.eclipse.emf.ecore.EObject;
+
 
 public class StandaloneMergeUtils {
 
-	public static final Map<String, Object> getMergeOptions() {
+	public static final Map<String, Object> getMergeOptions(final IProgressMonitor monitor, final EObject left, final EObject right) {
 		final Map<String, Object> options = new HashMap<String, Object>();
-		//TODO : complete it!
+		if(monitor != null) {
+			options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
+		}
+		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new DefaultMatchScopeProvider(left, right));
 		return options;
 	}
 }
