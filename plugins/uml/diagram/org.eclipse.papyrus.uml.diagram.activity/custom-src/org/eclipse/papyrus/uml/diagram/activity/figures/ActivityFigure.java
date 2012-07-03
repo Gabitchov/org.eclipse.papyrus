@@ -54,18 +54,13 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	private class ActivityLayoutManager extends AbstractLayout {
 
 		/**
-		 * ---------------------------------------------------|
-		 * |sterotypeLabel| precondition |
-		 * |--------------| |
-		 * |QualifiedName |-----------------------------------|
-		 * |--------------| |
-		 * |name | postcondition |
-		 * |--------------------------------------------------|
+		 * ---------------------------------------------------| |sterotypeLabel|
+		 * precondition | |--------------| | |QualifiedName
+		 * |-----------------------------------| |--------------| | |name |
+		 * postcondition | |--------------------------------------------------|
 		 * | stereotype compartment |
-		 * |--------------------------------------------------|
-		 * |parameter | |
-		 * |----------- |
-		 * | activity content |
+		 * |--------------------------------------------------| |parameter | |
+		 * |----------- | | activity content |
 		 * ----------------------------------------------------
 		 * 
 		 * {@inheritDoc}
@@ -75,7 +70,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			int minimumWith = 0;
 			int minimumHeight = 0;
 
-			//take in account the content of the figure activity
+			// take in account the content of the figure activity
 			if((getContentFigure().getChildren().size() > 0)) {
 				IFigure content = (IFigure)getContentFigure().getChildren().get(0);
 				minimumWith = content.getPreferredSize().width + 50;
@@ -126,46 +121,46 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			if(getGMFContentContainer() != null) {
 				getGMFContentContainer().setBounds(lastRectangle);
 			}
-			//place precondition
+			// place precondition
 			// setX
 			Rectangle preconditionBound = getPreconditionFigure().getBounds().getCopy();
 			preconditionBound.x = getNameLabel().getBounds().getTopRight().x + GAP_X;
-			//take in account stereotype label
+			// take in account stereotype label
 			if(getStereotypesLabel() != null) {
 				int posStererotypeLabel = getStereotypesLabel().getBounds().getTopRight().x + GAP_X;
 				if(posStererotypeLabel > preconditionBound.x) {
 					preconditionBound.x = posStererotypeLabel;
 				}
 			}
-			//take in account qualified name
+			// take in account qualified name
 			if(getQualifiedNameLabel() != null) {
 				int posqualifiedName = getQualifiedNameLabel().getBounds().getTopRight().x + GAP_X;
 				if(posqualifiedName > preconditionBound.x) {
 					preconditionBound.x = posqualifiedName;
 				}
 			}
-			//take in account stereotype properties
+			// take in account stereotype properties
 			if(stereotypePropertiesInBraceContent != null) {
 				int possterotypeInBrace = stereotypePropertiesInBraceContent.getBounds().getTopRight().x + GAP_X;
 				if(possterotypeInBrace > preconditionBound.x) {
 					preconditionBound.x = possterotypeInBrace;
 				}
 			}
-			//take in account parameter figure
+			// take in account parameter figure
 			if(getParameterFigure() != null) {
 				int posparameter = getParameterFigure().getBounds().getTopRight().x + GAP_X;
 				if(posparameter > preconditionBound.x) {
 					preconditionBound.x = posparameter;
 				}
 			}
-			//setY
+			// setY
 			preconditionBound.y = ((IFigure)container.getChildren().get(0)).getBounds().y;
 			getPreconditionFigure().setBounds(preconditionBound);
 			if(getPreconditionFigure().getChildren().size() > 0) {
 				((IFigure)getPreconditionFigure().getChildren().get(0)).setBounds(preconditionBound);;
 			}
 
-			//setPoscondtion
+			// setPoscondtion
 			Rectangle postconditionBound = getPostconditionFigure().getBounds().getCopy();
 			postconditionBound.x = getPreconditionFigure().getBounds().x;
 			postconditionBound.y = getPreconditionFigure().getBounds().y + getPreconditionFigure().getBounds().height + GAP_Y;
@@ -174,13 +169,13 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				((IFigure)getPostconditionFigure().getChildren().get(0)).setBounds(postconditionBound);;
 			}
 
-			//setPoscondtion
+			// setPoscondtion
 			Rectangle singleExecutionBound = getHeaderSingleExecution().getBounds().getCopy();
 			singleExecutionBound.x = getPreconditionFigure().getBounds().x + getPreconditionFigure().getBounds().width + GAP_X;;
 			singleExecutionBound.y = getPreconditionFigure().getBounds().y;
 			getHeaderSingleExecution().setBounds(singleExecutionBound);
 
-			//replace compartment stereotype properties
+			// replace compartment stereotype properties
 			if(getStereotypePropertiesContent() != null) {
 				Rectangle pscontainer = getStereotypePropertiesContent().getBounds().getCopy();
 				if(getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height + GAP_Y > pscontainer.y)
@@ -188,8 +183,8 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				getStereotypePropertiesContent().setBounds(pscontainer);
 			}
 
-			//place parameter
-			//replace compartment stereotype properties
+			// place parameter
+			// replace compartment stereotype properties
 			if(getStereotypePropertiesContent() != null) {
 				Rectangle paramBoundcontainer = getParameterFigure().getBounds().getCopy();
 				paramBoundcontainer.y = getStereotypePropertiesContent().getBounds().getBottomLeft().y;
@@ -288,7 +283,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 
 		fHeaderSingleExecution = new WrappingLabel();
 		add(fHeaderSingleExecution);
-		//createContents();
+		// createContents();
 	}
 
 	public RectangleFigure getPreconditionFigure() {
@@ -326,7 +321,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 
 		RoundedRectangle activityBorderFigure0 = new RoundedRectangle();
 		this.add(activityBorderFigure0, BorderLayout.CENTER);
-		//to remove
+		// to remove
 		activityBorderFigure0.setBackgroundColor(ColorConstants.red);
 
 		GridLayout layoutActivityBorderFigure0 = new GridLayout();
@@ -342,7 +337,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		labelAndParameter1.setFill(false);
 		labelAndParameter1.setOutline(false);
 		labelAndParameter1.setLineWidth(0);
-		//to remove
+		// to remove
 		labelAndParameter1.setBackgroundColor(ColorConstants.blue);
 
 		GridData constraintLabelAndParameter1 = new GridData();
@@ -374,7 +369,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		labelAndParameter1.add(fHeaderLabel, constraintFHeaderLabel);
 
 		fActivityParametersCompartment = new RectangleFigure();
-		//to remove
+		// to remove
 		fActivityParametersCompartment.setBackgroundColor(ColorConstants.green);
 
 		fActivityParametersCompartment.setFill(false);
@@ -394,7 +389,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		fActivityParametersCompartment.setLayoutManager(new StackLayout());
 
 		RectangleFigure prePostContions1 = new RectangleFigure();
-		//to remove
+		// to remove
 		prePostContions1.setBackgroundColor(ColorConstants.cyan);
 		prePostContions1.setFill(false);
 		prePostContions1.setOutline(false);

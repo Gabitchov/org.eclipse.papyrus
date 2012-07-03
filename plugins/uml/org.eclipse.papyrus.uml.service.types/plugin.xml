@@ -80,9 +80,11 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for ActivityNode -->
-	<metamodelType id="org.eclipse.papyrus.uml.ActivityNode" name="UML::ActivityNode"
-		eclass="ActivityNode"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="ActivityNode"
+       id="org.eclipse.papyrus.uml.ActivityNode"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::ActivityNode">
 			<param name="semanticHint" value="UML::ActivityNode"/>
 	</metamodelType>
 	
@@ -1868,6 +1870,18 @@
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.StructuredClassifierHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.StructuredClassifier">
 	</adviceBinding>
+ <adviceBinding
+       class="org.eclipse.papyrus.uml.service.types.helper.advice.ActivityNodeHelperAdvice"
+       id="org.eclipse.papyrus.uml.advice.ActivityNode"
+       inheritance="all"
+       typeId="org.eclipse.papyrus.uml.ActivityNode">
+ </adviceBinding>
+ <adviceBinding
+       class="org.eclipse.papyrus.uml.service.types.helper.advice.ActivityGroupEditHelperAdvice"
+       id="org.eclipse.papyrus.uml.advice.ActivityGroup"
+       inheritance="all"
+       typeId="org.eclipse.papyrus.uml.ActivityGroup">
+ </adviceBinding>
 	
 	</metamodel>
 </extension>
@@ -2172,7 +2186,13 @@
 		
 			<!-- Standard L2 -->			
 		<elementType ref="org.eclipse.papyrus.uml.stereotype.Trace" />
-		<elementType ref="org.eclipse.papyrus.uml.stereotype.Refine" />	
+		<elementType ref="org.eclipse.papyrus.uml.stereotype.Refine" />
+  <advice
+        ref="org.eclipse.papyrus.uml.advice.ActivityNode">
+  </advice>
+  <advice
+        ref="org.eclipse.papyrus.uml.advice.ActivityGroup">
+  </advice>	
 		
 	</binding>
 	

@@ -125,15 +125,15 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
 		ConnectionAnchor targetAnchor = targetEP.getTargetConnectionAnchor(request);
 		Iterator commandItr = cc.iterator();
-		commandItr.next(); //0
-		SetConnectionEndsCommand sceCommand = (SetConnectionEndsCommand)commandItr.next(); //1
+		commandItr.next(); // 0
+		SetConnectionEndsCommand sceCommand = (SetConnectionEndsCommand)commandItr.next(); // 1
 		if(request instanceof CreateConnectionViewRequest && getObjectFlowHint().equals(((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint())) {
 			// handle redirection of Object flow on created child pin
 			sceCommand.setNewTargetAdaptor(getObjectFlowTargetViewAdapter(request));
 		} else {
 			sceCommand.setNewTargetAdaptor(new EObjectAdapter(((IGraphicalEditPart)targetEP).getNotationView()));
 		}
-		SetConnectionAnchorsCommand scaCommand = (SetConnectionAnchorsCommand)commandItr.next(); //2
+		SetConnectionAnchorsCommand scaCommand = (SetConnectionAnchorsCommand)commandItr.next(); // 2
 		scaCommand.setNewTargetTerminal(targetEP.mapConnectionAnchorToTerminal(targetAnchor));
 		setViewAdapter(sceCommand.getEdgeAdaptor());
 		INodeEditPart sourceEditPart = (INodeEditPart)request.getSourceEditPart();
@@ -146,7 +146,7 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 			pointList.addPoint(sourceAnchor.getLocation(request.getLocation()));
 			pointList.addPoint(targetAnchor.getLocation(request.getLocation()));
 		}
-		SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)commandItr.next(); //3
+		SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)commandItr.next(); // 3
 		sbbCommand.setNewPointList(pointList, sourceAnchor.getReferencePoint(), targetAnchor.getReferencePoint());
 		return request.getStartCommand();
 	}
@@ -193,7 +193,8 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 	 * Try and get an extremity view of the object flow contained in this host.
 	 * 
 	 * @param isStartEnd
-	 *        true if view is the object flow start end, false for the target end
+	 *        true if view is the object flow start end, false for the
+	 *        target end
 	 * @return the view or null
 	 */
 	protected View getObjectFlowExtremityView(boolean isStartEnd) {

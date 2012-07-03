@@ -252,6 +252,20 @@ public class UMLVisualIDRegistry {
 				return ExpansionNodeAsOutEditPart.VISUAL_ID;
 			}
 			break;
+		case LoopNodeEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())) {
+				return InputPinInLoopNodeAsVariableEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
+				return OutputPinInLoopNodeAsResultEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
+				return OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
+				return OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID;
+			}
+			break;
 		case ReadSelfActionEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 				return ReadSelfActionOutputPinEditPart.VISUAL_ID;
@@ -448,6 +462,9 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
+			}
 			break;
 		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -557,6 +574,12 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -671,6 +694,12 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
+			}
 			break;
 		case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -783,6 +812,12 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -897,6 +932,12 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
+			}
 			break;
 		case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -1009,6 +1050,12 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID:
@@ -1126,6 +1173,12 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
+			}
 			break;
 		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())) {
@@ -1238,6 +1291,12 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getCentralBufferNode().isSuperTypeOf(domainElement.eClass())) {
 				return CentralBufferNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+				return ConstraintEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
@@ -2241,6 +2300,42 @@ public class UMLVisualIDRegistry {
 			if(LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(InputPinInLoopNodeAsVariableEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInLoopNodeAsResultEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
+			if(OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInLoopNodeAsBodyOutputAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
+			if(OutputPinInLoopNodeAsLoopVariableLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInLoopNodeAsLoopVariableAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+			if(OutputPinInLoopNodeAsResultLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInLoopNodeAsResultAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case SequenceNodeEditPart.VISUAL_ID:
 			if(SequenceNodeKeywordEditPart.VISUAL_ID == nodeVisualID) {
@@ -2255,6 +2350,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			if(InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInStructuredActivityNodeAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2487,6 +2590,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ConstraintEditPartCN.VISUAL_ID:
+			if(ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -2626,6 +2737,9 @@ public class UMLVisualIDRegistry {
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 			if(InitialNodeEditPart.VISUAL_ID == nodeVisualID) {
@@ -2734,6 +2848,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2849,6 +2969,12 @@ public class UMLVisualIDRegistry {
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 			if(InitialNodeEditPart.VISUAL_ID == nodeVisualID) {
@@ -2960,6 +3086,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3075,6 +3207,12 @@ public class UMLVisualIDRegistry {
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
 			if(InitialNodeEditPart.VISUAL_ID == nodeVisualID) {
@@ -3186,6 +3324,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3304,6 +3448,12 @@ public class UMLVisualIDRegistry {
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 			if(InitialNodeEditPart.VISUAL_ID == nodeVisualID) {
@@ -3415,6 +3565,12 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CentralBufferNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3583,6 +3739,9 @@ public class UMLVisualIDRegistry {
 			if(ObjectFlowAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ObjectFlowInterruptibleIconEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ControlFlowEditPart.VISUAL_ID:
 			if(ControlFlowNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -3597,9 +3756,15 @@ public class UMLVisualIDRegistry {
 			if(ControlFlowAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ControlFlowInterruptibleIconEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ExceptionHandlerEditPart.VISUAL_ID:
 			if(ExceptionHandlerTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ExceptionHandlerIconEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3963,6 +4128,8 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
@@ -3973,11 +4140,17 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
 		root.addNode(7001, viewInfo);
@@ -4314,6 +4487,12 @@ public class UMLVisualIDRegistry {
 		root.addNode(7005, viewInfo);
 		root.addNode(7006, viewInfo);
 		root.addNode(7007, viewInfo);
+		viewInfo = new BaseViewInfo(3109, ViewInfo.Node, "OutputPin");
+		root.addNode(3071, viewInfo);
+		viewInfo = new BaseViewInfo(3110, ViewInfo.Node, "OutputPin");
+		root.addNode(3071, viewInfo);
+		viewInfo = new BaseViewInfo(3111, ViewInfo.Node, "OutputPin");
+		root.addNode(3071, viewInfo);
 		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "SequenceNode");
 		root.addNode(7004, viewInfo);
 		root.addNode(7013, viewInfo);
@@ -4334,6 +4513,8 @@ public class UMLVisualIDRegistry {
 		root.addNode(7005, viewInfo);
 		root.addNode(7006, viewInfo);
 		root.addNode(7007, viewInfo);
+		viewInfo = new BaseViewInfo(3105, ViewInfo.Node, "InputPin");
+		root.addNode(3071, viewInfo);
 		viewInfo = new BaseViewInfo(3067, ViewInfo.Node, "ActivityPartition");
 		root.addNode(7004, viewInfo);
 		root.addNode(7013, viewInfo);
@@ -4344,6 +4525,13 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
 		root.addNode(7004, viewInfo);
 		root.addNode(7013, viewInfo);
+		root.addNode(7005, viewInfo);
+		root.addNode(7008, viewInfo);
+		root.addNode(7009, viewInfo);
+		root.addNode(7010, viewInfo);
+		root.addNode(7012, viewInfo);
+		root.addNode(7006, viewInfo);
+		root.addNode(7007, viewInfo);
 		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "ReadSelfAction");
 		root.addNode(7004, viewInfo);
 		root.addNode(7013, viewInfo);
@@ -4453,6 +4641,15 @@ public class UMLVisualIDRegistry {
 		root.addNode(3102, viewInfo);
 		viewInfo = new BaseViewInfo(3104, ViewInfo.Node, "CentralBufferNode");
 		root.addNode(7013, viewInfo);
+		root.addNode(7004, viewInfo);
+		root.addNode(7008, viewInfo);
+		root.addNode(7009, viewInfo);
+		root.addNode(7010, viewInfo);
+		root.addNode(7012, viewInfo);
+		root.addNode(7005, viewInfo);
+		root.addNode(7006, viewInfo);
+		root.addNode(7007, viewInfo);
+		viewInfo = new BaseViewInfo(3112, ViewInfo.Node, "Constraint");
 		root.addNode(7004, viewInfo);
 		root.addNode(7008, viewInfo);
 		root.addNode(7009, viewInfo);

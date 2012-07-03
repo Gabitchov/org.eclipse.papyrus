@@ -87,7 +87,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	/**
 	 * Gets elements visual id that can be dropped in the diagram
 	 */
-	private Set<Integer> getSpecificDrop() {
+	protected Set<Integer> getSpecificDrop() {
 		if(specificDrop == null) {
 			specificDrop = getDroppableElementVisualId();
 		}

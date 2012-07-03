@@ -19,8 +19,10 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 
 /**
- * This editPolicy prevent from moving the activity and preserve the -1,-1 size for the activity. This way, the activity is automatically resized to
- * the optimal size, being enlarged when an element is drag out of it and taking the default large size otherwise.
+ * This editPolicy prevent from moving the activity and preserve the -1,-1 size
+ * for the activity. This way, the activity is automatically resized to the
+ * optimal size, being enlarged when an element is drag out of it and taking the
+ * default large size otherwise.
  */
 public class ResizeActivityEditPolicy extends ResizableShapeEditPolicy {
 

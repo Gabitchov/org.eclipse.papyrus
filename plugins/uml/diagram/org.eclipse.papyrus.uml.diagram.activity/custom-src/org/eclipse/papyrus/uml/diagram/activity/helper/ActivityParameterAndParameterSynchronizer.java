@@ -51,8 +51,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * ActivityParameterAndParameterSynchronizer is a validator (see corresponding extensions) to synchronize ActivityParameterNode
- * with its Parameter
+ * ActivityParameterAndParameterSynchronizer is a validator (see corresponding
+ * extensions) to synchronize ActivityParameterNode with its Parameter
  * 
  */
 public class ActivityParameterAndParameterSynchronizer extends AbstractModelConstraint {
@@ -80,16 +80,18 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 			}
 			return ctx.createSuccessStatus();
 		} catch (RuntimeException rte) {
-			// avoid throwing uncaught exception which would disable the constraint
+			// avoid throwing uncaught exception which would disable the
+			// constraint
 			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "Unexpected exception during Activity Parameter Node and Parameter synchronization : ", rte);
-			// ensure that the constraint's failure does not prevent modification
+			// ensure that the constraint's failure does not prevent
+			// modification
 			return ctx.createSuccessStatus();
 		}
 	}
 
 	/**
-	 * Handle activity parameter node modification to forbid activity parameter node type
-	 * modification
+	 * Handle activity parameter node modification to forbid activity parameter
+	 * node type modification
 	 * 
 	 * @param eObject
 	 * @param ctx
@@ -97,7 +99,8 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	 */
 	private IStatus handleActivityParameterNodeModification(ActivityParameterNode eObject, IValidationContext ctx) {
 		if(EMFEventType.SET.equals(ctx.getEventType()) && UMLPackage.eINSTANCE.getTypedElement_Type().equals(ctx.getFeature())) {
-			// does not allow type change for activity parameter node, display a message to inform the user
+			// does not allow type change for activity parameter node, display a
+			// message to inform the user
 			final Parameter parameter = eObject.getParameter();
 			if(parameter != null) {
 				final String elementLabel = labelProvider.getText(parameter);
@@ -118,8 +121,8 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	}
 
 	/**
-	 * Handle parameter modification to synchronize the type of the associated activity parameter
-	 * nodes
+	 * Handle parameter modification to synchronize the type of the associated
+	 * activity parameter nodes
 	 * 
 	 * @param eObject
 	 * @param ctx
@@ -132,7 +135,8 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 				node.setType(node.getParameter().getType());
 			}
 		} else if(EMFEventType.SET.equals(ctx.getEventType()) && UMLPackage.eINSTANCE.getNamedElement_Name().equals(ctx.getFeature())) {
-			// set the name of all the unnamed associated activity parameter nodes
+			// set the name of all the unnamed associated activity parameter
+			// nodes
 			for(ActivityParameterNode node : getActivityParameterNodesFromParameter(eObject)) {
 				if(node.getName() == null || "".equals(node.getName())) {
 					node.setName(eObject.getName());
@@ -143,8 +147,9 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	}
 
 	/**
-	 * Handle activity modification - add parameter node: set the type with the associated parameter
-	 * type - remove parameter: remove all the associated activity parameter nodes
+	 * Handle activity modification - add parameter node: set the type with the
+	 * associated parameter type - remove parameter: remove all the associated
+	 * activity parameter nodes
 	 * 
 	 * @param eObject
 	 * @param ctx
@@ -154,10 +159,12 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 		// initialize type when an activity parameter node is created
 		if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof ActivityParameterNode) {
 			ActivityParameterNode activityParameterNode = (ActivityParameterNode)ctx.getFeatureNewValue();
-			// The type of an activity parameter node is the same as the type of its parameter.
+			// The type of an activity parameter node is the same as the type of
+			// its parameter.
 			activityParameterNode.setType(activityParameterNode.getParameter().getType());
 		}
-		// constraint: the nodes of an activity must include one ActivityParameterNode for each parameter 
+		// constraint: the nodes of an activity must include one
+		// ActivityParameterNode for each parameter
 		if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof Parameter) {
 			Parameter parameter = (Parameter)ctx.getFeatureNewValue();
 			if(getActivityParameterNodesFromParameter(parameter).isEmpty()) {
@@ -181,7 +188,8 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 				if(ENotificationImpl.SET == n.getEventType() && UMLPackage.eINSTANCE.getActivityParameterNode_Parameter().equals(n.getFeature()) && n.getNotifier() instanceof ActivityParameterNode) {
 					nodesToRemove.add((ActivityParameterNode)n.getNotifier());
 				}
-				// first request is to remove the activity parameter node, it must not be remove because of parameter deletion
+				// first request is to remove the activity parameter node, it
+				// must not be remove because of parameter deletion
 				if(ENotificationImpl.REMOVE == n.getEventType() && n.getOldValue() instanceof ActivityParameterNode) {
 					nodesToRemove.remove(n.getOldValue());
 				}
@@ -223,7 +231,8 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	}
 
 	/**
-	 * Command to remove the activity parameter nodes that's not have associated parameter.
+	 * Command to remove the activity parameter nodes that's not have associated
+	 * parameter.
 	 * 
 	 * @param owner
 	 *        the activity that owns the nodes
@@ -251,8 +260,8 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	}
 
 	/**
-	 * Ask the user to validate all the implied modifications (parameters and activity parameter
-	 * nodes)
+	 * Ask the user to validate all the implied modifications (parameters and
+	 * activity parameter nodes)
 	 * 
 	 * @param parameterNodes
 	 *        the list of impacted activityParameterNodes

@@ -70,7 +70,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * DialogBox in order to link a parameter with the new ActivityParameterNode that will be created
+ * DialogBox in order to link a parameter with the new ActivityParameterNode
+ * that will be created
  * 
  */
 public class CreateActivityParameterNodeDialog extends FormDialog {
@@ -139,7 +140,8 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 
 		refreshSectionsEnable(false);
 		hookListeners();
-		// invoked name is set after listeners, since we count on listener to update it properly
+		// invoked name is set after listeners, since we count on listener to
+		// update it properly
 		setInvokedName(null);
 
 		scrolledForm.reflow(true);
@@ -265,8 +267,8 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	}
 
 	/**
-	 * Set correctly the invoked object, by creating it if needed.
-	 * Then, notifies that the ok button of this dialog has been pressed.
+	 * Set correctly the invoked object, by creating it if needed. Then,
+	 * notifies that the ok button of this dialog has been pressed.
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 * 
@@ -435,7 +437,8 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	}
 
 	/**
-	 * Define the parameter that will be set for the parameter node (if selection mode is chosen)
+	 * Define the parameter that will be set for the parameter node (if
+	 * selection mode is chosen)
 	 * 
 	 * @param invokedElement
 	 *        the selected element
@@ -472,7 +475,8 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	}
 
 	/**
-	 * Define the type of the object that will be created (if creation mode is chosen)
+	 * Define the type of the object that will be created (if creation mode is
+	 * chosen)
 	 * 
 	 * @param the
 	 *        selected parent
@@ -490,7 +494,8 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 * Refresh the enabled and disabled elements in various sections
 	 * 
 	 * @param isSelectionSelected
-	 *        true if we choose to select an existing element, false if we choose to create an element
+	 *        true if we choose to select an existing element, false if we
+	 *        choose to create an element
 	 */
 	private void refreshSectionsEnable(boolean isSelectionSelected) {
 		// handle radio button value

@@ -423,10 +423,22 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 		if(targetEditPart instanceof LoopNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof SequenceNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof ReadSelfActionEditPart) {
@@ -642,10 +654,22 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 		if(targetEditPart instanceof LoopNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof SequenceNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof ReadSelfActionEditPart) {
@@ -770,8 +794,12 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -844,8 +872,12 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -875,10 +907,11 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4007);
 		return types;
 	}
 
@@ -938,8 +971,12 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1012,8 +1049,12 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1037,6 +1078,16 @@ public class DecisionNodeEditPart extends UMLNodeEditPart {
 			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4007) {
+			types.add(UMLElementTypes.DurationConstraint_3034);
+			types.add(UMLElementTypes.DurationConstraint_3035);
+			types.add(UMLElementTypes.TimeConstraint_3036);
+			types.add(UMLElementTypes.TimeConstraint_3037);
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+			types.add(UMLElementTypes.IntervalConstraint_3033);
+			types.add(UMLElementTypes.Constraint_3011);
+			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		}
 		return types;
 	}

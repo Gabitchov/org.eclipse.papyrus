@@ -484,6 +484,18 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateConstraintConstrainedElement_4007(Constraint source, Element target) {
+			if(source != null) {
+				if(source.getConstrainedElements().contains(target)) {
+					return false;
+				}
+			}
+			return canExistConstraintConstrainedElement_4007(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistActionLocalPrecondition_4001(Action source, Constraint target) {
 			return true;
 		}
@@ -815,6 +827,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistCommentAnnotatedElement_4006(Comment source, Element target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConstraintConstrainedElement_4007(Constraint source, Element target) {
 			return true;
 		}
 	}

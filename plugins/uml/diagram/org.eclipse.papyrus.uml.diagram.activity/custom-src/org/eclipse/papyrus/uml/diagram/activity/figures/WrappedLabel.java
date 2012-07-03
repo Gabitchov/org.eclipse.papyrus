@@ -14,13 +14,15 @@
 package org.eclipse.papyrus.uml.diagram.activity.figures;
 
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
 
 /**
- * This class is a {@link WrappingLabel}, which default behavior is set differently :
+ * This class is a {@link WrappingLabel}, which default behavior is set
+ * differently :
  * 
  * The text is left aligned and automatically wraps on several lines.
  */
-public class WrappedLabel extends WrappingLabel {
+public class WrappedLabel extends PapyrusWrappingLabel {
 
 	/**
 	 * Construct an empty wrapping label with customized alignment.
@@ -31,4 +33,7 @@ public class WrappedLabel extends WrappingLabel {
 		setAlignment(WrappingLabel.LEFT);
 		setTextWrap(true);
 	}
+
+
+
 }

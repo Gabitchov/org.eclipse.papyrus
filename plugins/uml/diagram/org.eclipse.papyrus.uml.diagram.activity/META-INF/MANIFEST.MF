@@ -6,11 +6,14 @@ Export-Package: org.eclipse.papyrus.uml.diagram.activity,
  org.eclipse.papyrus.uml.diagram.activity.edit.commands,
  org.eclipse.papyrus.uml.diagram.activity.edit.dialogs,
  org.eclipse.papyrus.uml.diagram.activity.edit.helpers,
+ org.eclipse.papyrus.uml.diagram.activity.edit.part,
  org.eclipse.papyrus.uml.diagram.activity.edit.parts,
  org.eclipse.papyrus.uml.diagram.activity.edit.policies,
  org.eclipse.papyrus.uml.diagram.activity.expressions,
  org.eclipse.papyrus.uml.diagram.activity.figures,
+ org.eclipse.papyrus.uml.diagram.activity.handlers,
  org.eclipse.papyrus.uml.diagram.activity.helper,
+ org.eclipse.papyrus.uml.diagram.activity.listeners,
  org.eclipse.papyrus.uml.diagram.activity.locator,
  org.eclipse.papyrus.uml.diagram.activity.navigator,
  org.eclipse.papyrus.uml.diagram.activity.parser.custom,
@@ -19,7 +22,8 @@ Export-Package: org.eclipse.papyrus.uml.diagram.activity,
  org.eclipse.papyrus.uml.diagram.activity.preferences,
  org.eclipse.papyrus.uml.diagram.activity.providers,
  org.eclipse.papyrus.uml.diagram.activity.sheet,
- org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance
+ org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance,
+ org.eclipse.papyrus.uml.diagram.activity.testers
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -60,14 +64,18 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.papyrus.uml.diagram.common.groups;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.appearance;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.service.types,
- org.eclipse.papyrus.infra.widgets
+ org.eclipse.papyrus.infra.widgets,
+ com.google.guava;bundle-version="10.0.1",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
+ org.eclipse.papyrus.editor;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.services.edit
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.8.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true

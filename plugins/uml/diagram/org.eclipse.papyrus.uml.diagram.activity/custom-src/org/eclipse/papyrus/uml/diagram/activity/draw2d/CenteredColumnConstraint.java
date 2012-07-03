@@ -14,7 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.activity.draw2d;
 
 /**
- * Constraint to use with {@link CenteredColumnLayout}. Specifies whether figure fills extra space
+ * Constraint to use with {@link CenteredColumnLayout}. Specifies whether figure
+ * fills extra space
  */
 public class CenteredColumnConstraint {
 

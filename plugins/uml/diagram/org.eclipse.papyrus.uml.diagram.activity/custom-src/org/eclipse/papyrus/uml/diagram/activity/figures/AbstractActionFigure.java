@@ -25,7 +25,8 @@ import org.eclipse.papyrus.uml.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * AbstractActionFigure is an abstract super class for Action figures in order to manage stereotype display
+ * AbstractActionFigure is an abstract super class for Action figures in order
+ * to manage stereotype display
  * 
  * @generated
  */
@@ -71,7 +72,7 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 				return constraintStereotypeRect0;
 			}
 		};
-		//createContents();
+		// createContents();
 	}
 
 	/**
@@ -113,7 +114,8 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	 * </p>
 	 * 
 	 * @param stereotypeProperties
-	 *        the string representing the stereotype properties to be displayed
+	 *        the string representing the stereotype properties to be
+	 *        displayed
 	 */
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
@@ -123,8 +125,8 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
 	 * 
-	 * if the string is <code>null</code>, then the figure that displays the stereotype label is
-	 * removed from the NodeNamedElementFigure.
+	 * if the string is <code>null</code>, then the figure that displays the
+	 * stereotype label is removed from the NodeNamedElementFigure.
 	 * 
 	 * @param stereotypeProperties
 	 *        the string to be displayed.
@@ -156,7 +158,7 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	 * @deprecated
 	 */
 	public Label getStereotypesLabel() {
-		return null;//fActionStereotypeLabel;
+		return null;// fActionStereotypeLabel;
 	}
 
 	/**

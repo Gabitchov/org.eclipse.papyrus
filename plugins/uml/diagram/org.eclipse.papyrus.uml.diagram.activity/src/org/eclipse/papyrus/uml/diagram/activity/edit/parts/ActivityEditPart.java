@@ -51,6 +51,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceCon
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PapyrusUnmovableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure;
 import org.eclipse.papyrus.uml.diagram.activity.locator.ParameterNodeLocator;
@@ -106,6 +107,7 @@ public class ActivityEditPart extends NamedElementEditPart {
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityCanonicalEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusUnmovableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -385,8 +387,9 @@ public class ActivityEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4007);
 		return types;
 	}
 
@@ -397,6 +400,16 @@ public class ActivityEditPart extends NamedElementEditPart {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4007) {
+			types.add(UMLElementTypes.DurationConstraint_3034);
+			types.add(UMLElementTypes.DurationConstraint_3035);
+			types.add(UMLElementTypes.TimeConstraint_3036);
+			types.add(UMLElementTypes.TimeConstraint_3037);
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+			types.add(UMLElementTypes.IntervalConstraint_3033);
+			types.add(UMLElementTypes.Constraint_3011);
+			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		}
 		return types;
 	}

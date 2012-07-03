@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomActivityActivityContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
@@ -86,6 +87,7 @@ public class ActivityActivityContentCompartmentEditPart extends ShapeCompartment
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CompartmentXYLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomActivityActivityContentCompartmentItemSemanticEditPolicy());
 	}
 
 	/**

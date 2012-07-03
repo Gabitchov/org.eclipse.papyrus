@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
@@ -55,6 +56,7 @@ import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
+import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
@@ -847,6 +849,42 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_OutputPin_3109(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3109(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OutputPin_3110(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3110(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OutputPin_3111(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3111(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_SequenceNode_3073(SequenceNode instance) {
 		try {
 			Object value_0 = name_SequenceNode_3073(instance);
@@ -862,6 +900,18 @@ public class ElementInitializers {
 	public void init_StructuredActivityNode_3065(StructuredActivityNode instance) {
 		try {
 			Object value_0 = name_StructuredActivityNode_3065(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InputPin_3105(InputPin instance) {
+		try {
+			Object value_0 = name_InputPin_3105(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -1151,6 +1201,20 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_CentralBufferNode_3104(instance);
 			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Constraint_3112(Constraint instance) {
+		try {
+			Object value_0 = name_Constraint_3112(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_3112(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1688,6 +1752,27 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_OutputPin_3109(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_3110(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_3111(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_SequenceNode_3073(SequenceNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
@@ -1696,6 +1781,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_StructuredActivityNode_3065(StructuredActivityNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_3105(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
@@ -1858,6 +1950,22 @@ public class ElementInitializers {
 	 */
 	private String name_CentralBufferNode_3104(CentralBufferNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_3112(Constraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_3112(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
 	}
 
 	/**

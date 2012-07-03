@@ -32,12 +32,13 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityConte
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 
 /**
- * This Edit Policy applies on an action. It enables to create a local condition linked with this action, in the parent compartment.
+ * This Edit Policy applies on an action. It enables to create a local condition
+ * linked with this action, in the parent compartment.
  */
 public class CreateActionLocalConditionEditPolicy extends AbstractEditPolicy {
 
 	/** The list of element types this action handles */
-	private static final List<IElementType> localConditionTypes = Arrays.asList(UMLElementTypes.Constraint_3011, UMLElementTypes.Constraint_3012, UMLElementTypes.IntervalConstraint_3032, UMLElementTypes.IntervalConstraint_3033, UMLElementTypes.DurationConstraint_3034, UMLElementTypes.DurationConstraint_3035, UMLElementTypes.TimeConstraint_3036, UMLElementTypes.TimeConstraint_3037);
+	public static final List<IElementType> LOCAL_CONDITION_TYPES = Arrays.asList(UMLElementTypes.Constraint_3011, UMLElementTypes.Constraint_3012, UMLElementTypes.IntervalConstraint_3032, UMLElementTypes.IntervalConstraint_3033, UMLElementTypes.DurationConstraint_3034, UMLElementTypes.DurationConstraint_3035, UMLElementTypes.TimeConstraint_3036, UMLElementTypes.TimeConstraint_3037);
 
 	public CreateActionLocalConditionEditPolicy() {
 		super();
@@ -52,7 +53,7 @@ public class CreateActionLocalConditionEditPolicy extends AbstractEditPolicy {
 				ActivityActivityContentCompartmentEditPart compartementPart = (ActivityActivityContentCompartmentEditPart)parentEditPart;
 				EObject action = ViewUtil.resolveSemanticElement((View)getHost().getModel());
 				Object hintedType = creationRequest.getElementTypes().get(0);
-				if(localConditionTypes.contains(hintedType)) {
+				if(LOCAL_CONDITION_TYPES.contains(hintedType)) {
 					return new CreateActionLocalConditionViewCommand((IHintedType)hintedType, compartementPart, action, getHost());
 				}
 			}

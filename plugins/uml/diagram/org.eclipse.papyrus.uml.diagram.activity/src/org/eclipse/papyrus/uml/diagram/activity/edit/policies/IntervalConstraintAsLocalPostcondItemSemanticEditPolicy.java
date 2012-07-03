@@ -35,9 +35,12 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPrecond
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPreconditionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkReorientCommand;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 
 /**
@@ -111,6 +114,12 @@ public class IntervalConstraintAsLocalPostcondItemSemanticEditPolicy extends UML
 		if(UMLElementTypes.CommentAnnotatedElement_4006 == baseElementType) {
 			return null;
 		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -152,6 +161,12 @@ public class IntervalConstraintAsLocalPostcondItemSemanticEditPolicy extends UML
 			}
 			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -169,6 +184,8 @@ public class IntervalConstraintAsLocalPostcondItemSemanticEditPolicy extends UML
 			return getGEFWrapper(new ActionLocalPostconditionReorientCommand(req));
 		case CommentLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentLinkReorientCommand(req));
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

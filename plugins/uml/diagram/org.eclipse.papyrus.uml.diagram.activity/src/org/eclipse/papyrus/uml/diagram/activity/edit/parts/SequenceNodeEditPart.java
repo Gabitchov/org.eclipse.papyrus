@@ -17,17 +17,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.Border;
-import org.eclipse.draw2d.FlowLayout;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -37,13 +30,9 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -51,34 +40,25 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvanced;
-import org.eclipse.papyrus.uml.diagram.activity.draw2d.FlowLayoutAdvancedConstraint;
-import org.eclipse.papyrus.uml.diagram.activity.draw2d.GravityConstrainedFlowLayoutConstraint;
+import org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.SequenceNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.RoundedRectangleDashedBorder;
+import org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.groups.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.StereotypeFigureHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
 
 /**
- * @generated NOT Implements IPapyrusEditPart
+ * @generated
  */
-public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
+public class SequenceNodeEditPart extends UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -117,6 +97,15 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -145,14 +134,14 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new StructuredActivityNodeDescriptor();
+		return primaryShape = new StructuredActivityNodeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public StructuredActivityNodeDescriptor getPrimaryShape() {
-		return (StructuredActivityNodeDescriptor)primaryShape;
+	public StructuredActivityNodeFigure getPrimaryShape() {
+		return (StructuredActivityNodeFigure)primaryShape;
 	}
 
 	/**
@@ -160,7 +149,7 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof SequenceNodeKeywordEditPart) {
-			((SequenceNodeKeywordEditPart)childEditPart).setLabel(getPrimaryShape().getKeyword());
+			((SequenceNodeKeywordEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		if(childEditPart instanceof SequenceNodeStructuredActivityNodeContentCompartmentEditPart) {
@@ -350,6 +339,9 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 		if(targetEditPart instanceof ConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
 		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
@@ -374,6 +366,9 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 		if(targetEditPart instanceof ConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
@@ -524,10 +519,22 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 		if(targetEditPart instanceof LoopNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof ReadSelfActionEditPart) {
@@ -743,10 +750,22 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 		if(targetEditPart instanceof LoopNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof ReadSelfActionEditPart) {
@@ -909,6 +928,18 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
 		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
 		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
@@ -967,6 +998,7 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
 			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		} else if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.DurationConstraint_3034);
 			types.add(UMLElementTypes.DurationConstraint_3035);
@@ -976,6 +1008,7 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
 			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		} else if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1027,8 +1060,12 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1101,8 +1138,12 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1158,6 +1199,10 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.OutputPin_3087);
 			types.add(UMLElementTypes.InputPin_3089);
@@ -1179,10 +1224,11 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4007);
 		return types;
 	}
 
@@ -1242,8 +1288,12 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1316,8 +1366,12 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1341,194 +1395,18 @@ public class SequenceNodeEditPart extends ShapeNodeEditPart implements IPapyrusE
 			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4007) {
+			types.add(UMLElementTypes.DurationConstraint_3034);
+			types.add(UMLElementTypes.DurationConstraint_3035);
+			types.add(UMLElementTypes.TimeConstraint_3036);
+			types.add(UMLElementTypes.TimeConstraint_3037);
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+			types.add(UMLElementTypes.IntervalConstraint_3033);
+			types.add(UMLElementTypes.Constraint_3011);
+			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated NOT Implements IPapyrusNodeUMLElementFigure (Used to apply stereotype)
-	 */
-	public class StructuredActivityNodeDescriptor extends RoundedRectangle implements IPapyrusNodeUMLElementFigure {
-
-		/**
-		 * @generated
-		 */
-		private RoundedRectangle fStructuredActivityNodeCompartment;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fKeyword;
-
-		/**
-		 * @generated
-		 */
-		private RoundedRectangle fFigureCompartmentLabelStructuredActivityNode;
-
-		/**
-		 * Helper to display stereotype
-		 */
-		private StereotypeFigureHelper stereotypeHelper;
-
-		/**
-		 * Preferences Store
-		 */
-		protected IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-
-		/**
-		 * @generated NOT Instanciate stereotypeHelper
-		 */
-		public StructuredActivityNodeDescriptor() {
-			FlowLayoutAdvanced layoutThis = new FlowLayoutAdvanced();
-			layoutThis.setStretchMinorAxis(true);
-			layoutThis.setMinorAlignment(FlowLayout.ALIGN_CENTER);
-			layoutThis.setMajorAlignment(FlowLayout.ALIGN_TOPLEFT);
-			layoutThis.setMajorSpacing(0);
-			layoutThis.setMinorSpacing(0);
-			layoutThis.setHorizontal(false);
-			this.setLayoutManager(layoutThis);
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			this.setLineWidth(0);
-			this.setOutline(false);
-			this.setBorder(createBorder0());
-			OpacityFactoryHelper.initOpacityPreferences(IActivityPreferenceConstants.PREF_SEQUENCE_NODE_ALPHA, store, this);
-			createContents();
-			/*
-			 * Create the helper which will help to display stereotype
-			 */
-			stereotypeHelper = new StereotypeFigureHelper(getFigureCompartmentLabelStructuredActivityNode()) {
-
-				@Override
-				public IMapMode getMapMode() {
-					return SequenceNodeEditPart.this.getMapMode();
-				}
-
-				@Override
-				public Object getStereotypeRectangleConstraint() {
-					return new Integer(GravityConstrainedFlowLayout.ALIGN_CENTER);
-				}
-			};
-			/*
-			 * Set all the inset to 0
-			 */
-			stereotypeHelper.setBottomInset(0);
-			stereotypeHelper.setLeftInset(0);
-			stereotypeHelper.setTopInset(0);
-			stereotypeHelper.setRightInset(0);
-		}
-
-		/**
-		 * Custom border
-		 * (Used to avoid the alpa setting affect the border)
-		 * 
-		 * @generated NOT
-		 * @return
-		 */
-		private Border createBorder0() {
-			RoundedRectangleDashedBorder result = new RoundedRectangleDashedBorder(8, 8);
-			result.setWidth(1);
-			result.setStyle(Graphics.LINE_DASH);
-			return result;
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-			fFigureCompartmentLabelStructuredActivityNode = new RoundedRectangle();
-			fFigureCompartmentLabelStructuredActivityNode.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			fFigureCompartmentLabelStructuredActivityNode.setFill(false);
-			fFigureCompartmentLabelStructuredActivityNode.setOutline(false);
-			fFigureCompartmentLabelStructuredActivityNode.setLineWidth(0);
-			FlowLayoutAdvancedConstraint constraintFFigureCompartmentLabelStructuredActivityNode = new FlowLayoutAdvancedConstraint();
-			constraintFFigureCompartmentLabelStructuredActivityNode.setHasMinsize(true);
-			this.add(fFigureCompartmentLabelStructuredActivityNode, constraintFFigureCompartmentLabelStructuredActivityNode);
-			GravityConstrainedFlowLayout layoutFFigureCompartmentLabelStructuredActivityNode = new GravityConstrainedFlowLayout();
-			fFigureCompartmentLabelStructuredActivityNode.setLayoutManager(layoutFFigureCompartmentLabelStructuredActivityNode);
-			fKeyword = new WrappingLabel();
-			fKeyword.setTextJustification(SWT.LEFT);
-			fKeyword.setTextAlignment(PositionConstants.LEFT);
-			fKeyword.setTextWrap(true);
-			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-			GravityConstrainedFlowLayoutConstraint constraintFKeyword = new GravityConstrainedFlowLayoutConstraint();
-			constraintFKeyword.setAlign(GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
-			fFigureCompartmentLabelStructuredActivityNode.add(fKeyword, constraintFKeyword);
-			fStructuredActivityNodeCompartment = new RoundedRectangle();
-			fStructuredActivityNodeCompartment.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			fStructuredActivityNodeCompartment.setFill(false);
-			fStructuredActivityNodeCompartment.setOutline(false);
-			fStructuredActivityNodeCompartment.setLineWidth(0);
-			FlowLayoutAdvancedConstraint constraintFStructuredActivityNodeCompartment = new FlowLayoutAdvancedConstraint();
-			constraintFStructuredActivityNodeCompartment.setFull(true);
-			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
-		}
-
-		/**
-		 * @generated
-		 */
-		public RoundedRectangle getStructuredActivityNodeCompartment() {
-			return fStructuredActivityNodeCompartment;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getKeyword() {
-			return fKeyword;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RoundedRectangle getFigureCompartmentLabelStructuredActivityNode() {
-			return fFigureCompartmentLabelStructuredActivityNode;
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
-		 *      org.eclipse.swt.graphics.Image)
-		 * 
-		 * @param stereotypes
-		 * @param image
-		 */
-		public void setStereotypeDisplay(String stereotypes, Image image) {
-			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
-			this.layout();
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
-		 * 
-		 * @param stereotypeProperties
-		 */
-		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
-			this.layout();
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
-		 * 
-		 * @param stereotypeProperties
-		 */
-		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-			stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
-			this.layout();
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
-		 * 
-		 * @return
-		 */
-		@Deprecated
-		public Label getStereotypesLabel() {
-			return null;
-		}
 	}
 
 	/**

@@ -26,7 +26,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEdit
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
 /**
- * this is an editpolicy provider in charge to install a policy to create a AssociationClass
+ * this is an editpolicy provider in charge to install a policy to create a
+ * AssociationClass
  * 
  * @author Patrick Tessier
  */
@@ -45,7 +46,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
 		if(editPart instanceof IPrimaryEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		}

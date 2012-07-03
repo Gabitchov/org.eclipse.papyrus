@@ -44,6 +44,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.ValuePin;
@@ -357,6 +358,76 @@ public class UMLValidationProvider {
 		public IStatus validate(IValidationContext ctx) {
 			DecisionNode context = (DecisionNode)ctx.getTarget();
 			return UMLValidationHelper.validateTwoInputParameters(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter62 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
+			return UMLValidationHelper.validateException_HandlerBody_Constraint4(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter63 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
+			return UMLValidationHelper.validateInterruptibleEdge(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter64 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
+			return UMLValidationHelper.validateException_StructuredActivityNode_Constraint3(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter65 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
+			return UMLValidationHelper.validateException_SourceAndTargetEdge_Constraint1(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter66 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
+			return UMLValidationHelper.validateException_StructuredActivityNode_Constraint2(context, ctx);
 		}
 	}
 

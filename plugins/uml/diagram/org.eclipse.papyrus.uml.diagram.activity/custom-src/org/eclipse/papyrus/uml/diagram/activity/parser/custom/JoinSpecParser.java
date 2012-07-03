@@ -37,8 +37,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
- * A specific parser for displaying the joinSpec of a Join Node. This parser refreshes the text
- * displayed for the Join Node.
+ * A specific parser for displaying the joinSpec of a Join Node. This parser
+ * refreshes the text displayed for the Join Node.
  */
 public class JoinSpecParser extends MessageFormatParser implements ISemanticParser {
 
@@ -72,8 +72,8 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.papyrus.uml.diagram.sequence.parsers.AbstractParser#isAffectingEvent(java.lang.Object
-	 * , int)
+	 * org.eclipse.papyrus.uml.diagram.sequence.parsers.AbstractParser#isAffectingEvent
+	 * (java.lang.Object , int)
 	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
@@ -121,9 +121,8 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser#getPrintString(org.eclipse
-	 * .core.runtime.IAdaptable, int)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser#
+	 * getPrintString(org.eclipse .core.runtime.IAdaptable, int)
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		// ensure valueLabel is never null
@@ -139,9 +138,9 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected
-	 * (org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * areSemanticElementsAffected (org.eclipse.emf.ecore.EObject,
+	 * java.lang.Object)
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		EStructuralFeature feature = getEStructuralFeature(notification);
@@ -151,9 +150,8 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed
-	 * (org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
+	 * getSemanticElementsBeingParsed (org.eclipse.emf.ecore.EObject)
 	 */
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
@@ -169,7 +167,8 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	}
 
 	/**
-	 * Determines if the given feature has to be taken into account in this parser
+	 * Determines if the given feature has to be taken into account in this
+	 * parser
 	 * 
 	 * @param feature
 	 *        the feature to test

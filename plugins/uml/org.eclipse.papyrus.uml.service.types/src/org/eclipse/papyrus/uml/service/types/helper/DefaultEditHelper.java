@@ -244,6 +244,7 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		return advices;
 	}
 	
+	@Override
 	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {
 		ICommand result = req.getBasicDestroyCommand();
 

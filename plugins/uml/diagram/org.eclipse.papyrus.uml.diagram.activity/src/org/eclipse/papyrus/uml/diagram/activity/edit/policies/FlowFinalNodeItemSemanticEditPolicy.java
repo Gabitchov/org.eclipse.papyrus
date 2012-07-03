@@ -32,11 +32,14 @@ import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkReorientCommand;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -118,6 +121,9 @@ public class FlowFinalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		if(UMLElementTypes.CommentAnnotatedElement_4006 == baseElementType) {
 			return null;
 		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4007 == baseElementType) {
+			return null;
+		}
 		return null;
 	}
 
@@ -159,6 +165,12 @@ public class FlowFinalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 			}
 			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ConstraintConstrainedElement_4007 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -188,6 +200,8 @@ public class FlowFinalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		switch(getVisualID(req)) {
 		case CommentLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentLinkReorientCommand(req));
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

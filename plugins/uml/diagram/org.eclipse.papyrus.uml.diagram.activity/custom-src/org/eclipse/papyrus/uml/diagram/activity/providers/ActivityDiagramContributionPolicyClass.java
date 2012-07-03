@@ -24,8 +24,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Reduce the scope of the Menu contribution of the Activity Diagram.
- * implements {@link IPopupMenuContributionPolicy}
+ * Reduce the scope of the Menu contribution of the Activity Diagram. implements {@link IPopupMenuContributionPolicy}
  * 
  * @author adaussy
  * 

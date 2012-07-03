@@ -18,7 +18,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 
 /**
- * This preference initializer initializes diagram preferences specific to the activity diagram.
+ * This preference initializer initializes diagram preferences specific to the
+ * activity diagram.
  */
 public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInitializer {
 
@@ -40,15 +41,15 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_OPERATION_ACTION_CREATION_OWNER, "");
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_SEND_SIGNAL_ACTION_CREATION_OWNER, "");
 
-		//Specific preferences for groups
-		//Opacity Preferences
-		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_PARTITION_ALPHA, 100);
-		store.setDefault(IActivityPreferenceConstants.PREF_CONDITIONAL_NODE_ALPHA, 100);
-		store.setDefault(IActivityPreferenceConstants.PREF_SEQUENCE_NODE_ALPHA, 100);
-		store.setDefault(IActivityPreferenceConstants.PREF_EXPANSION_REGION_ALPHA, 100);
-		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA, 100); //TODO 
-		store.setDefault(IActivityPreferenceConstants.PREF_LOOP_NODE_ALPHA, 100);
-		//Show Specific label preferences
+		// Specific preferences for groups
+		// Opacity Preferences
+		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_PARTITION_ALPHA, 50);
+		store.setDefault(IActivityPreferenceConstants.PREF_CONDITIONAL_NODE_ALPHA, 50);
+		store.setDefault(IActivityPreferenceConstants.PREF_SEQUENCE_NODE_ALPHA, 50);
+		store.setDefault(IActivityPreferenceConstants.PREF_EXPANSION_REGION_ALPHA, 50);
+		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA, 50); // TODO
+		store.setDefault(IActivityPreferenceConstants.PREF_LOOP_NODE_ALPHA, 50);
+		// Show Specific label preferences
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_CONDITIONAL_NODE, true);
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_LOOP_NODE, true);
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE, true);

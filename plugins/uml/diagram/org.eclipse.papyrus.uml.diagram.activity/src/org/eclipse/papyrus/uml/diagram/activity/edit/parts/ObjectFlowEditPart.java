@@ -22,8 +22,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleEdgeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
@@ -52,6 +53,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ObjectFlowItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(InterruptibleEdgeEditPolicy.INTERRUPTIBLE_ICON_POLICY, new InterruptibleEdgeEditPolicy());
 	}
 
 	/**
@@ -104,35 +106,20 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new ActivityEdgeDescriptor();
+		return new ActivityEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ActivityEdgeDescriptor getPrimaryShape() {
-		return (ActivityEdgeDescriptor)getFigure();
+	public ActivityEdgeFigure getPrimaryShape() {
+		return (ActivityEdgeFigure)getFigure();
 	}
 
 	/**
 	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
 	public class ActivityEdgeDescriptor extends UMLEdgeFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fEdgeName;
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fEdgeWeight;
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fAppliedStereotypeLabel;
 
 		/**
 		 * @generated NOT call the super constructor
@@ -166,20 +153,6 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 			df.setTemplate(pl);
 			df.setScale(getMapMode().DPtoLP(5), getMapMode().DPtoLP(2));
 			return df;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappedLabel getEdgeName() {
-			return fEdgeName;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappedLabel getEdgeWeight() {
-			return fEdgeWeight;
 		}
 
 		/**

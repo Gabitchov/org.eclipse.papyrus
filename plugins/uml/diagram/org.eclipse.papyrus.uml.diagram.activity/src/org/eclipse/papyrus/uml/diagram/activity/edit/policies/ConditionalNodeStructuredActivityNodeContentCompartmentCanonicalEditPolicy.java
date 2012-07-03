@@ -52,9 +52,11 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddVariableValueActio
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionNodeEditPart;
@@ -118,6 +120,8 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_OwnedGroup());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -185,6 +189,8 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 		case ReadVariableActionEditPart.VISUAL_ID:
 		case AddVariableValueActionEditPart.VISUAL_ID:
 		case CentralBufferNodeEditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
 			return true;
 		}
 		return false;

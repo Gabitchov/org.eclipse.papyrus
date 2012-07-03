@@ -27,103 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendSigActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPartCN;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddVariableValueActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsObjectEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInDestroyObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInReadVariableActionAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ParameterEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadVariableActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendSignalActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ShapeNamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -407,6 +311,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType InputPin_3105 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ActivityPartition_3067 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"); //$NON-NLS-1$
 
 	/**
@@ -537,6 +446,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Constraint_3112 = getElementType("org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ValueSpecificationAction_3076 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"); //$NON-NLS-1$
 
 	/**
@@ -573,6 +487,21 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType LoopNode_3071 = getElementType("org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3109 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3110 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3111 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -638,6 +567,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType CommentAnnotatedElement_4006 = getElementType("org.eclipse.papyrus.uml.diagram.activity.CommentAnnotatedElement_4006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ConstraintConstrainedElement_4007 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ConstraintConstrainedElement_4007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -807,8 +741,12 @@ public class UMLElementTypes {
 			elements.put(ExpansionNode_3074, UMLPackage.eINSTANCE.getExpansionNode());
 			elements.put(ExpansionNode_3075, UMLPackage.eINSTANCE.getExpansionNode());
 			elements.put(LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode());
+			elements.put(OutputPin_3109, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(OutputPin_3110, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(OutputPin_3111, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode());
 			elements.put(StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode());
+			elements.put(InputPin_3105, UMLPackage.eINSTANCE.getInputPin());
 			elements.put(ActivityPartition_3067, UMLPackage.eINSTANCE.getActivityPartition());
 			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
 			elements.put(Comment_3080, UMLPackage.eINSTANCE.getComment());
@@ -835,12 +773,14 @@ public class UMLElementTypes {
 			elements.put(BroadcastSignalAction_3102, UMLPackage.eINSTANCE.getBroadcastSignalAction());
 			elements.put(InputPin_3103, UMLPackage.eINSTANCE.getInputPin());
 			elements.put(CentralBufferNode_3104, UMLPackage.eINSTANCE.getCentralBufferNode());
+			elements.put(Constraint_3112, UMLPackage.eINSTANCE.getConstraint());
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
 			elements.put(ControlFlow_4004, UMLPackage.eINSTANCE.getControlFlow());
 			elements.put(ExceptionHandler_4005, UMLPackage.eINSTANCE.getExceptionHandler());
 			elements.put(CommentAnnotatedElement_4006, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+			elements.put(ConstraintConstrainedElement_4007, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -921,8 +861,12 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3074);
 			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3075);
 			KNOWN_ELEMENT_TYPES.add(LoopNode_3071);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3109);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3110);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3111);
 			KNOWN_ELEMENT_TYPES.add(SequenceNode_3073);
 			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_3065);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3105);
 			KNOWN_ELEMENT_TYPES.add(ActivityPartition_3067);
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
 			KNOWN_ELEMENT_TYPES.add(Comment_3080);
@@ -949,12 +893,14 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(BroadcastSignalAction_3102);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3103);
 			KNOWN_ELEMENT_TYPES.add(CentralBufferNode_3104);
+			KNOWN_ELEMENT_TYPES.add(Constraint_3112);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
 			KNOWN_ELEMENT_TYPES.add(ControlFlow_4004);
 			KNOWN_ELEMENT_TYPES.add(ExceptionHandler_4005);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4006);
+			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4007);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -1090,10 +1036,18 @@ public class UMLElementTypes {
 			return ExpansionNode_3075;
 		case LoopNodeEditPart.VISUAL_ID:
 			return LoopNode_3071;
+		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
+			return OutputPin_3109;
+		case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
+			return OutputPin_3110;
+		case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+			return OutputPin_3111;
 		case SequenceNodeEditPart.VISUAL_ID:
 			return SequenceNode_3073;
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 			return StructuredActivityNode_3065;
+		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return InputPin_3105;
 		case ActivityPartitionEditPart.VISUAL_ID:
 			return ActivityPartition_3067;
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
@@ -1146,6 +1100,8 @@ public class UMLElementTypes {
 			return InputPin_3103;
 		case CentralBufferNodeEditPart.VISUAL_ID:
 			return CentralBufferNode_3104;
+		case ConstraintEditPartCN.VISUAL_ID:
+			return Constraint_3112;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
@@ -1158,6 +1114,8 @@ public class UMLElementTypes {
 			return ExceptionHandler_4005;
 		case CommentLinkEditPart.VISUAL_ID:
 			return CommentAnnotatedElement_4006;
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			return ConstraintConstrainedElement_4007;
 		}
 		return null;
 	}

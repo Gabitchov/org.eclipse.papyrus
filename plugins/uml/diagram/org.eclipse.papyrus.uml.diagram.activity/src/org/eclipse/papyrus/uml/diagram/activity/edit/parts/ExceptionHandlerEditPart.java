@@ -14,16 +14,13 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExceptionHandlerItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.figures.ExceptionHandlerFigure;
 
 /**
  * @generated
@@ -93,40 +90,13 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new ExceptionHandlerDescriptor();
+		return new ExceptionHandlerFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ExceptionHandlerDescriptor getPrimaryShape() {
-		return (ExceptionHandlerDescriptor)getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class ExceptionHandlerDescriptor extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public ExceptionHandlerDescriptor() {
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-			return df;
-		}
+	public ExceptionHandlerFigure getPrimaryShape() {
+		return (ExceptionHandlerFigure)getFigure();
 	}
 }

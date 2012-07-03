@@ -24,9 +24,9 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.LabelGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeCompartmentGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.activity.activitygroup.preferences.OpacityFactoryHelper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.common.groups.preferences.OpacityFactoryHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**

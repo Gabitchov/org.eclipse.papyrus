@@ -43,8 +43,8 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.uml2.uml.Constraint;
 
 /**
- * This command creates an action's local condition, then the corresponding edit part and the link
- * between the condition and the action.
+ * This command creates an action's local condition, then the corresponding edit
+ * part and the link between the condition and the action.
  */
 public class CreateActionLocalConditionViewCommand extends Command {
 
@@ -54,7 +54,9 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	/** The command to create the Constraint element */
 	private ICommandProxy elementCreationCommand = null;
 
-	/** The command to create corresponding views (constraint view and link view) */
+	/**
+	 * The command to create corresponding views (constraint view and link view)
+	 */
 	private CompoundCommand viewsCreationCommand = null;
 
 	/** The edit part of the action containing the Constraint element */
@@ -64,11 +66,12 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	private IHintedType type;
 
 	/**
-	 * Constructor a new action to create the local condition and corresponding views.
+	 * Constructor a new action to create the local condition and corresponding
+	 * views.
 	 * 
 	 * @param conditionType
-	 *        the type of the local condition : precondition (Constraint_3011) or postcondition
-	 *        (Constraint_3012)
+	 *        the type of the local condition : precondition
+	 *        (Constraint_3011) or postcondition (Constraint_3012)
 	 * @param graphicalParent
 	 *        the parent edit part which graphically contains the condition
 	 * @param containerAction
@@ -89,8 +92,8 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 * @param containerAction
 	 *        the action which owns the local condition to create
 	 * @param conditionType
-	 *        the type of the local condition : precondition (Constraint_3011) or postcondition
-	 *        (Constraint_3012)
+	 *        the type of the local condition : precondition
+	 *        (Constraint_3011) or postcondition (Constraint_3012)
 	 * @return the command to create model element or null
 	 */
 	private static ICommandProxy getElementCreationCommand(EObject containerAction, IHintedType conditionType) {
@@ -157,7 +160,8 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	}
 
 	/**
-	 * Execute the command : create the model element, then the corresponding views
+	 * Execute the command : create the model element, then the corresponding
+	 * views
 	 * 
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
@@ -176,7 +180,6 @@ public class CreateActionLocalConditionViewCommand extends Command {
 			CreateViewRequest request = new CreateViewRequest(descriptor);
 			Command nodeCreationCommand = compartment.getCommand(request);
 			viewsCreationCommand.add(nodeCreationCommand);
-
 			// try and recover the created edit part, then create the link
 			if(linkedActionEditPart != null && getLinkType() != null) {
 				IAdaptable targetAdapter = extractResult(nodeCreationCommand);
@@ -234,5 +237,4 @@ public class CreateActionLocalConditionViewCommand extends Command {
 			elementCreationCommand.undo();
 		}
 	}
-
 }

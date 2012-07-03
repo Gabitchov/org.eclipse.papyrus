@@ -38,7 +38,9 @@ Export-Package: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.diagram.common.ui.dialogs,
  org.eclipse.papyrus.uml.diagram.common.ui.helper,
  org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell,
- org.eclipse.papyrus.uml.diagram.common.util
+ org.eclipse.papyrus.uml.diagram.common.util,
+ org.eclipse.papyrus.uml.diagram.common.util.functions,
+ org.eclipse.papyrus.uml.diagram.common.util.predicates
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName

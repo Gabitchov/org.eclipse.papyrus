@@ -1575,6 +1575,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private PinParser inputPinLabel_5178Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5178Parser() {
+		if(inputPinLabel_5178Parser == null) {
+			inputPinLabel_5178Parser = new PinParser();
+		}
+		return inputPinLabel_5178Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser inputPinLabel_5179Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5179Parser() {
+		if(inputPinLabel_5179Parser == null) {
+			inputPinLabel_5179Parser = new AppliedStereotypeParser();
+		}
+		return inputPinLabel_5179Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser activityPartitionName_5118Parser;
 
 	/**
@@ -2101,6 +2131,38 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser constraintName_5189Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintName_5189Parser() {
+		if(constraintName_5189Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			constraintName_5189Parser = parser;
+		}
+		return constraintName_5189Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_5190Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_5190Parser() {
+		if(constraintSpecification_5190Parser == null) {
+			constraintSpecification_5190Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5190Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private CommentParser commentBody_5138Parser;
 
 	/**
@@ -2312,6 +2374,96 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			loopNodeLabel_5121Parser = new StructuredActivityNodeKeywordParser();
 		}
 		return loopNodeLabel_5121Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser outputPinLabel_5184Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5184Parser() {
+		if(outputPinLabel_5184Parser == null) {
+			outputPinLabel_5184Parser = new PinParser();
+		}
+		return outputPinLabel_5184Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser outputPinLabel_5185Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5185Parser() {
+		if(outputPinLabel_5185Parser == null) {
+			outputPinLabel_5185Parser = new AppliedStereotypeParser();
+		}
+		return outputPinLabel_5185Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser outputPinLabel_5186Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5186Parser() {
+		if(outputPinLabel_5186Parser == null) {
+			outputPinLabel_5186Parser = new PinParser();
+		}
+		return outputPinLabel_5186Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser outputPinLabel_5183Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5183Parser() {
+		if(outputPinLabel_5183Parser == null) {
+			outputPinLabel_5183Parser = new AppliedStereotypeParser();
+		}
+		return outputPinLabel_5183Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser outputPinLabel_5187Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5187Parser() {
+		if(outputPinLabel_5187Parser == null) {
+			outputPinLabel_5187Parser = new PinParser();
+		}
+		return outputPinLabel_5187Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser outputPinLabel_5188Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5188Parser() {
+		if(outputPinLabel_5188Parser == null) {
+			outputPinLabel_5188Parser = new AppliedStereotypeParser();
+		}
+		return outputPinLabel_5188Parser;
 	}
 
 	/**
@@ -2948,10 +3100,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getExpansionRegionLabel_5120Parser();
 		case LoopNodeKeywordEditPart.VISUAL_ID:
 			return getLoopNodeLabel_5121Parser();
+		case OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5184Parser();
+		case OutputPinInLoopNodeAsBodyOutputAppliedStereotypeEditPart.VISUAL_ID:
+			return getOutputPinLabel_5185Parser();
+		case OutputPinInLoopNodeAsLoopVariableLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5186Parser();
+		case OutputPinInLoopNodeAsLoopVariableAppliedStereotypeEditPart.VISUAL_ID:
+			return getOutputPinLabel_5183Parser();
+		case OutputPinInLoopNodeAsResultLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5187Parser();
+		case OutputPinInLoopNodeAsResultAppliedStereotypeEditPart.VISUAL_ID:
+			return getOutputPinLabel_5188Parser();
 		case SequenceNodeKeywordEditPart.VISUAL_ID:
 			return getSequenceNodeLabel_5123Parser();
 		case StructuredActivityNodeKeywordEditPart.VISUAL_ID:
 			return getStructuredActivityNodeLabel_5117Parser();
+		case InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5178Parser();
+		case InputPinInStructuredActivityNodeAppliedStereotypeEditPart.VISUAL_ID:
+			return getInputPinLabel_5179Parser();
 		case ActivityPartitionNameEditPart.VISUAL_ID:
 			return getActivityPartitionName_5118Parser();
 		case CommentBodyLabelEditPart.VISUAL_ID:
@@ -3032,6 +3200,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCentralBufferNodeLabel_5176Parser();
 		case CentralBufferNodeSelectionEditPart.VISUAL_ID:
 			return getCentralBufferNodeLabel_5177Parser();
+		case ConstraintNameEditPartCN.VISUAL_ID:
+			return getConstraintName_5189Parser();
+		case ConstraintBodyEditPartCN.VISUAL_ID:
+			return getConstraintSpecification_5190Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

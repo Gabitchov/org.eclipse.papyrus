@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Arthur Daussy - Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.figures;
@@ -19,13 +20,15 @@ import org.eclipse.draw2d.text.ParagraphTextLayout;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.draw2d.text.TextLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
 
 /**
- * This class is a {@link WrappingLabel}, which default behavior is set differently :
+ * This class is a {@link WrappingLabel}, which default behavior is set
+ * differently :
  * 
  * The text is centered and does not wrap on several lines.
  */
-public class SimpleLabel extends WrappingLabel {
+public class SimpleLabel extends PapyrusWrappingLabel {
 
 	/**
 	 * Construct an empty wrapping label with customized alignment.
@@ -48,4 +51,7 @@ public class SimpleLabel extends WrappingLabel {
 			}
 		}
 	}
+
+
+
 }

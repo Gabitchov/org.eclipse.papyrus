@@ -1131,6 +1131,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createConstraint51CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraint51CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**

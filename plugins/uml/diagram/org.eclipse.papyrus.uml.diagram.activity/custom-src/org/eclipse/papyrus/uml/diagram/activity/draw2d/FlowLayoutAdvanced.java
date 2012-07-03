@@ -23,9 +23,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * Layout to create a row (or colunm) layout
- * All children will be displayer under the previous one
- * You can add constraint with {@link FlowLayoutAdvancedConstraint}
+ * Layout to create a row (or colunm) layout All children will be displayer
+ * under the previous one You can add constraint with {@link FlowLayoutAdvancedConstraint}
  * 
  * @author arthur daussy - arthur.daussy@atosorigin.com
  * 
@@ -82,8 +81,8 @@ public class FlowLayoutAdvanced extends FlowLayout {
 
 	/**
 	 * 
-	 * @see org.eclipse.draw2d.AbstractLayout#setConstraint(org.eclipse.draw2d.IFigure, java.lang.Object)
-	 *      Use this kind of constraint {@link FlowLayoutAdvancedConstraint}
+	 * @see org.eclipse.draw2d.AbstractLayout#setConstraint(org.eclipse.draw2d.IFigure, java.lang.Object) Use this kind of constraint
+	 *      {@link FlowLayoutAdvancedConstraint}
 	 * @param child
 	 * @param constraint
 	 */
@@ -96,7 +95,8 @@ public class FlowLayoutAdvanced extends FlowLayout {
 	private Dimension getAvailableSpaceForFilledElement(IFigure currentChild, Dimension parentDim) {
 		Set<IFigure> children = constraints.keySet();
 		if(children.isEmpty()) {
-			throw new RuntimeException("Current layout is not set on any figure");//TODO externalize
+			throw new RuntimeException("Current layout is not set on any figure");// TODO
+																					// externalize
 		}
 		int numberOfFilledElement = 0;
 
@@ -119,10 +119,10 @@ public class FlowLayoutAdvanced extends FlowLayout {
 		}
 		if(Orientation.VERTICAL.equals(orientation)) {
 			parentDim.setHeight((int)((float)parentDim.height / (float)numberOfFilledElement));
-			//			parentDim.setWidth(0);
+			// parentDim.setWidth(0);
 		} else {
 			parentDim.setWidth((int)((float)parentDim.width / (float)numberOfFilledElement));
-			//			parentDim.setHeight(0);
+			// parentDim.setHeight(0);
 		}
 		return parentDim;
 	}

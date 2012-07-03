@@ -35,19 +35,28 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ObjectNodeParser extends MessageFormatParser implements ISemanticParser {
 
-	/** The String to display in front of a Data Store */
-	private static final String CENTRAL_BUFFER_NODE_PREFIX = "<<centralBuffer>>".concat(System.getProperty("line.separator"));////$NON-NLS-1$////$NON-NLS-2$
+	/** The String to display in front of a Central Buffer Node */
+	private static final String CENTRAL_BUFFER = "<<centralBuffer>>".concat(System.getProperty("line.separator"));
 
 	/** The String to display in front of a Data Store */
 	private static final String DATASTORE_PREFIX = "<<datastore>>".concat(System.getProperty("line.separator"));
 
-	/** The String format for displaying an ActivityParameterNodeParser with no type */
+	/**
+	 * The String format for displaying an ActivityParameterNodeParser with no
+	 * type
+	 */
 	private static final String UNTYPED_PARAMETER_FORMAT = "%s";
 
-	/** The String format for displaying an ActivityParameterNodeParser with its type */
+	/**
+	 * The String format for displaying an ActivityParameterNodeParser with its
+	 * type
+	 */
 	private static final String TYPED_PARAMETER_FORMAT = "%s: %s";
 
-	/** The String format for displaying an ActivityParameterNodeParser with in State property */
+	/**
+	 * The String format for displaying an ActivityParameterNodeParser with in
+	 * State property
+	 */
 	private static final String STATE_FORMAT = System.getProperty("line.separator").concat("[%s]");
 
 	/** The String for separating states */
@@ -96,11 +105,12 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	public String getPrintString(IAdaptable element, int flags) {
 		StringBuffer result = new StringBuffer();
 		Object adapter = element.getAdapter(EObject.class);
+
 		if(adapter instanceof CentralBufferNode) {
 			if(adapter instanceof DataStoreNode) {
 				result.append(DATASTORE_PREFIX);
 			} else {
-				result.append(CENTRAL_BUFFER_NODE_PREFIX);
+				result.append(CENTRAL_BUFFER);
 			}
 		}
 		if(adapter instanceof ObjectNode) {
@@ -163,7 +173,8 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	}
 
 	/**
-	 * Determines if the given feature has to be taken into account in this parser
+	 * Determines if the given feature has to be taken into account in this
+	 * parser
 	 * 
 	 * @param feature
 	 *        the feature to test

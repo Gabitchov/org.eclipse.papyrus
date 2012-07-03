@@ -16,20 +16,21 @@ package org.eclipse.papyrus.uml.diagram.activity.helper;
 import org.eclipse.core.commands.operations.IOperationApprover2;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.internal.service.ResourceStatus;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
 
 /**
- * This class must be used to open a dialog during a validation. Its usage avoids side effects with the Properties view, which would throw an
- * {@link IllegalStateException}. The parameterizing class can be used to return a result from the dialog (use {@link Void} if no result is expected).
+ * This class must be used to open a dialog during a validation. Its usage
+ * avoids side effects with the Properties view, which would throw an {@link IllegalStateException}. The parameterizing class can be used to return
+ * a result from the dialog (use {@link Void} if no result is expected).
  */
 public abstract class SafeDialogOpenerDuringValidation<ReturnType> {
 
 	/**
-	 * This approver is used to disable any operation during opening of a popup to avoid side
-	 * effects
+	 * This approver is used to disable any operation during opening of a popup
+	 * to avoid side effects
 	 */
 	private static IOperationApprover2 operationDisapprover = new IOperationApprover2() {
 
@@ -47,7 +48,8 @@ public abstract class SafeDialogOpenerDuringValidation<ReturnType> {
 	};
 
 	/**
-	 * Subclasses must implement this method with the dialog opening. If no result is expected, return null.
+	 * Subclasses must implement this method with the dialog opening. If no
+	 * result is expected, return null.
 	 */
 	protected abstract ReturnType openDialog();
 
@@ -56,13 +58,14 @@ public abstract class SafeDialogOpenerDuringValidation<ReturnType> {
 	 */
 	public final ReturnType execute() {
 		/*
-		 * We are currently validating an ongoing operation. Opening a popup here may have
-		 * side-effects such as re-launching the same operation. (the editor may have not been
-		 * deactivated yet, and its loss of focus will open a new operation) For this reason, we
-		 * temporarily disable all operations on the history, just enough time for opening the
+		 * We are currently validating an ongoing operation. Opening a popup
+		 * here may have side-effects such as re-launching the same operation.
+		 * (the editor may have not been deactivated yet, and its loss of focus
+		 * will open a new operation) For this reason, we temporarily disable
+		 * all operations on the history, just enough time for opening the
 		 * popup.
 		 */
-		IOperationHistory history = CheckedOperationHistory.getInstance();
+		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
 		history.addOperationApprover(operationDisapprover);
 		ReturnType result = openDialog();
 		history.removeOperationApprover(operationDisapprover);

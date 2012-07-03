@@ -93,7 +93,8 @@ public class WarningAndCreateAttributeDialog extends MessageDialog {
 	}
 
 	/**
-	 * Create the deactivated link and the warning message for attribute creation
+	 * Create the deactivated link and the warning message for attribute
+	 * creation
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.WarningAndLinkDialog#createCustomArea(org.eclipse.swt.widgets.Composite)
 	 * @param parent

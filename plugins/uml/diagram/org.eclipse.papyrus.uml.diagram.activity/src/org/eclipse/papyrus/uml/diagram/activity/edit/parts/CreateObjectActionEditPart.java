@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramCha
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateObjectActionCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateObjectActionItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
@@ -108,6 +109,7 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new CreateObjectActionCanonicalEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -349,6 +351,9 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof ConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
+		}
 		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
@@ -373,6 +378,9 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof ConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
@@ -523,10 +531,22 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof LoopNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof SequenceNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof ReadSelfActionEditPart) {
@@ -742,10 +762,22 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof LoopNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof SequenceNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof ReadSelfActionEditPart) {
@@ -908,6 +940,18 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
 		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
+		if(targetEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
 		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
@@ -966,6 +1010,7 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
 			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		} else if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.DurationConstraint_3034);
 			types.add(UMLElementTypes.DurationConstraint_3035);
@@ -975,6 +1020,7 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
 			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		} else if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1026,8 +1072,12 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1100,8 +1150,12 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1157,6 +1211,10 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.OutputPin_3087);
 			types.add(UMLElementTypes.InputPin_3089);
@@ -1178,10 +1236,11 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4007);
 		return types;
 	}
 
@@ -1241,8 +1300,12 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1315,8 +1378,12 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.OutputPin_3109);
+			types.add(UMLElementTypes.OutputPin_3110);
+			types.add(UMLElementTypes.OutputPin_3111);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InputPin_3105);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3084);
 			types.add(UMLElementTypes.CreateObjectAction_3086);
@@ -1340,6 +1407,16 @@ public class CreateObjectActionEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.CentralBufferNode_3104);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
 			types.add(UMLElementTypes.Comment_3080);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4007) {
+			types.add(UMLElementTypes.DurationConstraint_3034);
+			types.add(UMLElementTypes.DurationConstraint_3035);
+			types.add(UMLElementTypes.TimeConstraint_3036);
+			types.add(UMLElementTypes.TimeConstraint_3037);
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+			types.add(UMLElementTypes.IntervalConstraint_3033);
+			types.add(UMLElementTypes.Constraint_3011);
+			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.Constraint_3112);
 		}
 		return types;
 	}

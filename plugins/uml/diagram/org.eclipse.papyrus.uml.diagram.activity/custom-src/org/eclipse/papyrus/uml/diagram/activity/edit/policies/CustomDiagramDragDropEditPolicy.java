@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +31,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -68,23 +70,24 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.groups.core.utils.Utils;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 
 /**
- * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
- * and binary links. To manage specific drop the method
+ * This class is used to execute the drag and drop from the outline. It can
+ * manage the drop of nodes and binary links. To manage specific drop the method
  * CommonDiagramDragDropEditPolicy.getSpecificDropCommand has to be implemented
  */
-public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
+public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/** DropActionLocalConditionsAfterActionCommand label */
 	private static final String LABEL = "DropLocalConditions";
@@ -93,7 +96,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	private static final Point LOCAL_CONDITIONS_TRANSLATION_POINT = new Point(160, 0);
 
 	/**
-	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper
+	 * Instantiates a new custom diagram drag drop edit policy with the right
+	 * link mapping helper
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(ActivityLinkMappingHelper.getInstance());
@@ -105,7 +109,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
 		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
-
 		droppableElementsVisualID.add(OpaqueActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallBehaviorActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallOperationActionEditPart.VISUAL_ID);
@@ -121,7 +124,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ValueSpecificationActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ReadSelfActionEditPart.VISUAL_ID);
-
 		return droppableElementsVisualID;
 	}
 
@@ -131,14 +133,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	@Override
 	public IElementType getUMLElementType(int elementID) {
 		return UMLElementTypes.getElementType(elementID);
-	}
-
-	@Override
-	protected Command getDropCommand(ChangeBoundsRequest request) {
-		if(Utils.isRequestGroupFrameworkConcerned(request)) {
-			return null;
-		}
-		return super.getDropCommand(request);
 	}
 
 	/**
@@ -200,9 +194,26 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 * @return the command for action
 	 */
 	protected Command dropAction(final DropObjectsRequest dropRequest, final Element semanticElement, int nodeVISUALID) {
+		// The element to drop is a node
+		
+		/*
+		 * Check if the element is contained in this new container.
+		 * A special case as to be handle for structured element as contained node are not contained by the reference OwnedElement 
+		 */
+		// Retrieve it's expected graphical parent
+		EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		if (graphicalParent instanceof StructuredActivityNode){
+			if(!((StructuredActivityNode)graphicalParent).getNodes().contains(semanticElement)){				
+				return UnexecutableCommand.INSTANCE;
+			}
+		} else if( graphicalParent instanceof Element) {
+			if ( !((Element)graphicalParent).getOwnedElements().contains(semanticElement)){				
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
 		CompoundCommand globalCmd = new CompoundCommand();
 		if(globalCmd.isEmpty()) {
-			CompositeCommand cmd = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement);
+			ICommand cmd = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement);
 			globalCmd.add(new ICommandProxy(cmd));
 		}
 		// also drop local conditions
@@ -233,7 +244,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			location.y += 100;
 			// Retrieve expected graphical parent
 			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
-			// verification of container differs from usually, condition is graphically contained by the activity
+			// verification of container differs from usually, condition is
+			// graphically contained by the activity
 			if(graphicalParent instanceof Activity) {
 				// drop the constraint and its link to the action
 				Element linkSource = semanticElement.getOwner();
@@ -248,7 +260,6 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 						}
 					}
 				}
-
 				if(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID) {
 					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Local Precondition link"), linkSource, linkTarget, ActionLocalPreconditionEditPart.VISUAL_ID, location, semanticElement));
 				} else if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID) {
@@ -260,12 +271,13 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	/**
-	 * the method provides command to create the binary link into the diagram. If the source and the
-	 * target views do not exist, these views will be created.
+	 * the method provides command to create the binary link into the diagram.
+	 * If the source and the target views do not exist, these views will be
+	 * created.
 	 * 
 	 * @param cc
-	 *        the composite command that will contain the set of command to create the binary
-	 *        link
+	 *        the composite command that will contain the set of command to
+	 *        create the binary link
 	 * @param source
 	 *        the source the element source of the link
 	 * @param target
@@ -285,24 +297,21 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		// look for editpart linked with the object flow
 		GraphicalEditPart targetEditPart = null;
 		if(sourceEditPart != null) {
-			//TODO check that there is not already a representation linked to the source object flow
+			// TODO check that there is not already a representation linked to
+			// the source object flow
 		}
-
 		// descriptor of the link
 		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
-
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
 		if(sourceEditPart == null) {
 			// creation of the node
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Edge.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
 			cc.compose(nodeCreationCommand);
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100));
 			cc.compose(setBoundsCommand);
-
 			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 		} else {
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
@@ -311,23 +320,19 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			// creation of the node
 			String nodeSemanticHint = ((IHintedType)getUMLElementType(specificationVISUALID)).getSemanticHint();
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, nodeSemanticHint, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
 			cc.compose(nodeCreationCommand);
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
 			cc.compose(setBoundsCommand);
 			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
-
 		} else {
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
-
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
 		aLinkCommand.setElement(semanticLink);
 		cc.compose(aLinkCommand);
 		return cc;
-
 	}
 
 	/**
@@ -369,10 +374,77 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		if(sources.size() == 1 && targets.size() == 1) {
 			ActivityNode source = (ActivityNode)sources.toArray()[0];
 			ActivityNode target = (ActivityNode)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
+			CompositeCommand dropBinaryLink = dropBinaryLink(new CompositeCommand("drop Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
+			//			If the activity edge is interruptible edge we forbib to drag it outside the interuptible edge
+			if(dropBinaryLink != null && semanticLink instanceof ActivityEdge && ((ActivityEdge)semanticLink).getInterrupts() != null) {
+				if(!((ActivityEdge)semanticLink).getInterrupts().equals(((IGraphicalEditPart)getHost()).resolveSemanticElement())) {
+					return UnexecutableCommand.INSTANCE;
+				} else {
+					return new ICommandProxy(getInterruptbleEdgeCommand(new CompositeCommand("drop Interruptible Activity Edge"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));////$NON-NLS-0$
+				}
+			}
+			return new ICommandProxy(dropBinaryLink);
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
+	}
+
+	/**
+	 * Get the command to drag and drop an interruptible Edge
+	 * Set the source inside the Interruptible Edge and set the target outside the interruptible edge
+	 * 
+	 * @param dropBinaryLink
+	 *        {@link CompositeCommand} to compose the newly created command
+	 * @param semanticLink
+	 * @param point
+	 * @param linkVISUALID
+	 * @param target
+	 * @param source
+	 */
+	protected CompositeCommand getInterruptbleEdgeCommand(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+		// look for editpart
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
+		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
+		// descriptor of the link
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+		IAdaptable sourceAdapter = null;
+		IAdaptable targetAdapter = null;
+		if(sourceEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+		} else {
+			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
+		}
+		if(targetEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)((View)((IGraphicalEditPart)getHost()).getTopGraphicEditPart().getModel()).eContainer()));
+			cc.compose(nodeCreationCommand);
+			IFigure interruptibleActivityRegionFigure = ((IGraphicalEditPart)getHost()).getFigure();
+			interruptibleActivityRegionFigure.getBounds();
+			Point targetPoint = location.getCopy();
+			targetPoint.setX(targetPoint.x() + 50);
+			interruptibleActivityRegionFigure.translateToAbsolute(targetPoint);
+			while(interruptibleActivityRegionFigure.containsPoint(targetPoint)) {
+				targetPoint.setX(targetPoint.x() + 50);
+			}
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), targetPoint); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+		} else {
+			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+		}
+		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		aLinkCommand.setElement(semanticLink);
+		cc.compose(aLinkCommand);
+		return cc;
 	}
 
 	/**
@@ -388,9 +460,11 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	}
 
 	/**
-	 * This action enables to drop an action's local conditions when an action is dropped.
-	 * Check of the existing action view is run at execution time to avoid duplication of the action's view.
-	 * This action is an intern class since it is narrowly linked with this edit policy properties and operations
+	 * This action enables to drop an action's local conditions when an action
+	 * is dropped. Check of the existing action view is run at execution time to
+	 * avoid duplication of the action's view. This action is an intern class
+	 * since it is narrowly linked with this edit policy properties and
+	 * operations
 	 */
 	private class DropActionLocalConditionsAfterActionCommand extends Command {
 
@@ -435,7 +509,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		 */
 		@Override
 		public void execute() {
-			// update request to unset the position, so that position is automatically recomputed each time (to avoid superposition).
+			// update request to unset the position, so that position is
+			// automatically recomputed each time (to avoid superposition).
 			Object hostView = getHost().getModel();
 			if(hostView instanceof View) {
 				if(droppedAction instanceof Action) {
@@ -446,7 +521,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 						if(localCmd != null && localCmd.canExecute()) {
 							localCmd.execute();
 							executedCommands.add(localCmd);
-							// update the request's position to avoid conditions superposition
+							// update the request's position to avoid conditions
+							// superposition
 							request.getLocation().translate(LOCAL_CONDITIONS_TRANSLATION_POINT);
 						}
 					}
@@ -456,11 +532,12 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 						if(localCmd != null && localCmd.canExecute()) {
 							localCmd.execute();
 							executedCommands.add(localCmd);
-							// update the request's position to avoid conditions superposition
+							// update the request's position to avoid conditions
+							// superposition
 							request.getLocation().translate(LOCAL_CONDITIONS_TRANSLATION_POINT);
 						}
 					}
-					//restore initial location
+					// restore initial location
 					request.getLocation().setLocation(initialLocation);
 				}
 			}
@@ -480,5 +557,10 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			}
 			executedCommands.clear();
 		}
+	}
+
+	@Override
+	protected Command getDropCommand(ChangeBoundsRequest request) {
+		return super.getDropCommand(request);
 	}
 }

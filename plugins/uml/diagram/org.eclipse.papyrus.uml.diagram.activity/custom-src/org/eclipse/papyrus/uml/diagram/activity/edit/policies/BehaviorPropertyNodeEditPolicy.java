@@ -287,10 +287,12 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 	}
 
 	/**
-	 * Get the point of the border which is the more appropriated to link to the reference point
+	 * Get the point of the border which is the more appropriated to link to the
+	 * reference point
 	 * 
 	 * @param referencePoint
-	 *        point to refer to, which the link is directed to (not necessary an end of the link)
+	 *        point to refer to, which the link is directed to (not
+	 *        necessary an end of the link)
 	 * @param border
 	 *        the border on which an anchoring point must be chosen
 	 * @return a point of the border to use as link end
