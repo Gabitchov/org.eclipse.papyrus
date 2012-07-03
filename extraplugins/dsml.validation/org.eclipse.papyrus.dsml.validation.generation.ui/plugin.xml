@@ -33,7 +33,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.dsml.validation.generation.ui.CreateJavaValidationPluginHandler"
+            defaultHandler="org.eclipse.papyrus.dsml.validation.model.ui.CreateJavaValidationPluginHandler"
             id="org.eclipse.papyrus.dsml.validation.model.ui.CreateJavaValidationPluginHandler"
             name="Create validation plugin for this DSML">
       </command>
