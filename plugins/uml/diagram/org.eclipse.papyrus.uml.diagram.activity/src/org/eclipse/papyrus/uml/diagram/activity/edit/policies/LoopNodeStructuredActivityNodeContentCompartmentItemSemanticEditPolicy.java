@@ -58,7 +58,7 @@ public class LoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPol
 	}
 
 	/**
-	 * @generated NOT (update at each gmf change) moved local conditions creation commands to {@link CreateActionLocalConditionEditPolicy}
+	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InitialNode_3004 == req.getElementType()) {
