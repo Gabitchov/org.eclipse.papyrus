@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class Utils {
 
+	private static final String JAVA_LANGUAGE = "JAVA";
 	private static final String OCL_LANGUAGE = "OCL";
 	/*
 	 * Map holding relations between String representing the qualified name of a
@@ -70,7 +71,7 @@ public class Utils {
 		int index = 0;
 		for (String language : ((OpaqueExpression) valueSpecification)
 			.getLanguages()) {
-			if (language.compareTo("Java") == 0) {
+			if (language.compareTo(JAVA_LANGUAGE) == 0) {
 				return ((OpaqueExpression) valueSpecification).getBodies().get(index);
 			}
 			index++;
@@ -97,7 +98,7 @@ public class Utils {
 		}
 
 		for (String language : ((OpaqueExpression) valueSpec).getLanguages()) {
-			if (language.compareTo("Java") == 0) {
+			if (language.compareTo(JAVA_LANGUAGE) == 0) {
 				return true;
 			}
 		}
