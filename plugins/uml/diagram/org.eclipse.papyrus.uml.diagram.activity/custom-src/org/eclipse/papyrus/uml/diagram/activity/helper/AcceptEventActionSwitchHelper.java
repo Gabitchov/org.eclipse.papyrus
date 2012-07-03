@@ -112,7 +112,7 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	 */
 	public AcceptEventAction getAction() {
 		EObject resolveSemanticElement = editPart.resolveSemanticElement();
-		if ( resolveSemanticElement instanceof AcceptEventAction){			
+		if(resolveSemanticElement instanceof AcceptEventAction) {
 			return (AcceptEventAction)resolveSemanticElement;
 		}
 		return null;

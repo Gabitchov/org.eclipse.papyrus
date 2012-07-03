@@ -1820,7 +1820,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 						if(linkCommand != null) {
 							globalCmd.append(linkCommand);
 						}
-
 					}
 					nextKey--;
 				}
@@ -2161,33 +2160,32 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		return globalCmd;
 	}
 
-//	/**
-//	 * Get the command to reset all pins of the action.
-//	 * 
-//	 * @param action
-//	 *        action to reinitialize pins (BroadcastSignalAction)
-//	 * @return command
-//	 */
-//	protected CompoundCommand getResetPinsCmd(BroadcastSignalAction action) {
-//		// Get the editing domain
-//		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
-//		CompoundCommand globalCmd = new CompoundCommand();
-//		if(action.getSignal() != null) {
-//			if(action.getArguments().isEmpty()) {
-//				EList<Property> properties = action.getSignal().getAllAttributes();
-//				for(Property argument : properties) {
-//					InputPin argPin = UMLFactory.eINSTANCE.createInputPin();
-//					assignUpperBound(argPin);
-//					argPin.setName(argument.getName());
-//					argPin.setType(argument.getType());
-//					Command cmdArg = AddCommand.create(editingdomain, action, UMLPackage.Literals.INVOCATION_ACTION__ARGUMENT, Arrays.asList(argPin));
-//					globalCmd.append(cmdArg);
-//				}
-//			}
-//		}
-//		return globalCmd;
-//	}
-
+	//	/**
+	//	 * Get the command to reset all pins of the action.
+	//	 * 
+	//	 * @param action
+	//	 *        action to reinitialize pins (BroadcastSignalAction)
+	//	 * @return command
+	//	 */
+	//	protected CompoundCommand getResetPinsCmd(BroadcastSignalAction action) {
+	//		// Get the editing domain
+	//		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+	//		CompoundCommand globalCmd = new CompoundCommand();
+	//		if(action.getSignal() != null) {
+	//			if(action.getArguments().isEmpty()) {
+	//				EList<Property> properties = action.getSignal().getAllAttributes();
+	//				for(Property argument : properties) {
+	//					InputPin argPin = UMLFactory.eINSTANCE.createInputPin();
+	//					assignUpperBound(argPin);
+	//					argPin.setName(argument.getName());
+	//					argPin.setType(argument.getType());
+	//					Command cmdArg = AddCommand.create(editingdomain, action, UMLPackage.Literals.INVOCATION_ACTION__ARGUMENT, Arrays.asList(argPin));
+	//					globalCmd.append(cmdArg);
+	//				}
+	//			}
+	//		}
+	//		return globalCmd;
+	//	}
 	/**
 	 * Get the command to reset all pins of the action.
 	 * 
@@ -2404,56 +2402,53 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		return globalCmd;
 	}
 
-
-
-//	/**
-//	 * Get the command to reset all pins of the action.
-//	 * 
-//	 * @param action
-//	 *        action to reinitialize pins (SendSignalAction)
-//	 * @return command
-//	 */
-//	public static CompoundCommand getResetPinsCmd(InvocationAction action) {
-//		if(!(action instanceof SendSignalAction || action instanceof BroadcastSignalAction)) {
-//			return null;
-//		}
-//		// Get the editing domain
-//		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
-//		CompoundCommand globalCmd = new CompoundCommand();
-//		// remove argument pins
-//		if(!action.getArguments().isEmpty()) {
-//			Command cmd = RemoveCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getInvocationAction_Argument(), action.getArguments());
-//			globalCmd.append(cmd);
-//		}
-//		// recover attributes
-//		List<Property> attributes = Collections.emptyList();
-//		Signal signal = action instanceof SendSignalAction ? ((SendSignalAction)action).getSignal() : ((BroadcastSignalAction)action).getSignal();
-//		if(signal != null) {
-//			attributes = signal.getOwnedAttributes();
-//		}
-//		// add pins corresponding to attributes
-//		Map<Integer, Property> inParameters = new HashMap<Integer, Property>();
-//		int inIndex = 0;
-//		for(Property att : attributes) {
-//			inParameters.put(inIndex, att);
-//			inIndex++;
-//		}
-//		if(!inParameters.isEmpty()) {
-//			Command cmd = getAddPinsCmd(action, inParameters, null);
-//			globalCmd.append(cmd);
-//		}
-//		if(action instanceof SendSignalAction) {
-//			SendSignalAction sendSignalAction = (SendSignalAction)action;
-//			// add target pin
-//			if(sendSignalAction.getTarget() == null) {
-//				InputPin targetPin = createTargetPin(null);
-//				Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getSendSignalAction_Target(), targetPin);
-//				globalCmd.append(cmd);
-//			}
-//		}
-//		return globalCmd;
-//	}
-
+	//	/**
+	//	 * Get the command to reset all pins of the action.
+	//	 * 
+	//	 * @param action
+	//	 *        action to reinitialize pins (SendSignalAction)
+	//	 * @return command
+	//	 */
+	//	public static CompoundCommand getResetPinsCmd(InvocationAction action) {
+	//		if(!(action instanceof SendSignalAction || action instanceof BroadcastSignalAction)) {
+	//			return null;
+	//		}
+	//		// Get the editing domain
+	//		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+	//		CompoundCommand globalCmd = new CompoundCommand();
+	//		// remove argument pins
+	//		if(!action.getArguments().isEmpty()) {
+	//			Command cmd = RemoveCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getInvocationAction_Argument(), action.getArguments());
+	//			globalCmd.append(cmd);
+	//		}
+	//		// recover attributes
+	//		List<Property> attributes = Collections.emptyList();
+	//		Signal signal = action instanceof SendSignalAction ? ((SendSignalAction)action).getSignal() : ((BroadcastSignalAction)action).getSignal();
+	//		if(signal != null) {
+	//			attributes = signal.getOwnedAttributes();
+	//		}
+	//		// add pins corresponding to attributes
+	//		Map<Integer, Property> inParameters = new HashMap<Integer, Property>();
+	//		int inIndex = 0;
+	//		for(Property att : attributes) {
+	//			inParameters.put(inIndex, att);
+	//			inIndex++;
+	//		}
+	//		if(!inParameters.isEmpty()) {
+	//			Command cmd = getAddPinsCmd(action, inParameters, null);
+	//			globalCmd.append(cmd);
+	//		}
+	//		if(action instanceof SendSignalAction) {
+	//			SendSignalAction sendSignalAction = (SendSignalAction)action;
+	//			// add target pin
+	//			if(sendSignalAction.getTarget() == null) {
+	//				InputPin targetPin = createTargetPin(null);
+	//				Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getSendSignalAction_Target(), targetPin);
+	//				globalCmd.append(cmd);
+	//			}
+	//		}
+	//		return globalCmd;
+	//	}
 	/**
 	 * Retrieve the parameter linked
 	 * 
@@ -2501,9 +2496,9 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			parameters = ((Signal)behaviorStructural).getOwnedAttributes();
 		} else if(action instanceof BroadcastSignalAction) {
 			Signal signal = ((BroadcastSignalAction)action).getSignal();
-			if(signal != null){
+			if(signal != null) {
 				behaviorStructural = signal;
-				parameters = ((Signal)behaviorStructural).getOwnedAttributes();				
+				parameters = ((Signal)behaviorStructural).getOwnedAttributes();
 			} else {
 				parameters = Collections.emptyList();
 			}
@@ -2537,9 +2532,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		//Splitting parameters
 		Map<Integer, TypedElement> inParams = new HashMap<Integer, TypedElement>();
 		Map<Integer, TypedElement> outParams = new HashMap<Integer, TypedElement>();
-
 		splitParameters(parameters, parameterWhichPinNotDeleted, inParams, outParams, action);
-
 		//Creating new pins.
 		if(!inParams.isEmpty() || !outParams.isEmpty()) {
 			Command cmd = getAddPinsCmd(action, inParams, outParams, null);
@@ -2562,7 +2555,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				Command cmd = SetCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getCallOperationAction_Target(), targetPin);
 				globalCmd.append(cmd);
 			}
-		}else if(action instanceof SendSignalAction) {
+		} else if(action instanceof SendSignalAction) {
 			SendSignalAction sendSignalAction = (SendSignalAction)action;
 			// add target pin
 			if(sendSignalAction.getTarget() == null) {

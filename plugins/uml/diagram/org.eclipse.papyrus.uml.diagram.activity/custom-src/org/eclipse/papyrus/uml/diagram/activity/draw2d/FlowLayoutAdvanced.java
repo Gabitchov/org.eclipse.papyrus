@@ -62,14 +62,12 @@ public class FlowLayoutAdvanced extends FlowLayout {
 						bounds.setSize(bounds.getSize().getCopy().width, getAvailableSpaceForFilledElement(child, Rectangle.SINGLETON.getSize().getCopy()).getCopy().height);
 					} else {
 						bounds.setSize(getAvailableSpaceForFilledElement(child, Rectangle.SINGLETON.getSize().getCopy()).getCopy().width, bounds.getSize().getCopy().height);
-
 					}
 				}
 				if(constraint.isFull()) {
 					bounds.setSize(Rectangle.SINGLETON.getSize().getCopy());
 					bounds.setLocation(Rectangle.SINGLETON.getLocation().getCopy());
 				}
-
 			}
 		}
 		child.setBounds(bounds);
@@ -99,7 +97,6 @@ public class FlowLayoutAdvanced extends FlowLayout {
 																					// externalize
 		}
 		int numberOfFilledElement = 0;
-
 		for(Object _child : children) {
 			if(_child instanceof IFigure) {
 				IFigure child = (IFigure)_child;
@@ -149,7 +146,6 @@ public class FlowLayoutAdvanced extends FlowLayout {
 						minDim = Dimension.min(minDim, figure.getMinimumSize());
 					}
 				}
-
 			}
 		}
 		if(minDim == null) {
@@ -157,5 +153,4 @@ public class FlowLayoutAdvanced extends FlowLayout {
 		}
 		return minDim;
 	}
-
 }

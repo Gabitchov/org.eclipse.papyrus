@@ -45,7 +45,6 @@ public class ActivityPartitionFigure extends CompartmentFigure {
 		this.setOpaque(false);
 		getActivityPartitionCompartment().setOpaque(false);
 		getActivityPartitionCompartment().setBorder(new LineBorder());
-		
 	}
 
 	@Override

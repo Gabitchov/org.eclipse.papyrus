@@ -33,7 +33,4 @@ public class WrappedLabel extends PapyrusWrappingLabel {
 		setAlignment(WrappingLabel.LEFT);
 		setTextWrap(true);
 	}
-
-
-
 }

@@ -164,7 +164,6 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 	@Override
 	protected Point getPreferredLocation(int side, IFigure borderItem) {
 		return super.getPreferredLocation(side, borderItem);
-
 		// manage position for in/out parameter
 		// Rectangle bounds = getParentBorder();
 		// int parentFigureWidth = bounds.width;
@@ -206,13 +205,10 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 	 * @return a possible location on parent figure border
 	 */
 	public Rectangle getPreferredLocation(Rectangle proposedLocation) {
-
 		// Initialize port location with proposed location
 		// and resolve the bounds of it graphical parent
 		Rectangle realLocation = new Rectangle(proposedLocation);
-
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
-
 		// Calculate Max position around the graphical parent (1/2 size or the
 		// port around
 		// the graphical parent bounds.
@@ -220,30 +216,24 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		int xMax = parentRec.x - borderItemOffset + parentRec.width;
 		int yMin = parentRec.y - borderItemOffset;
 		int yMax = parentRec.y - borderItemOffset + parentRec.height;
-
 		// Modify Port location if MAX X or Y are exceeded
 		if(realLocation.x < xMin) {
 			realLocation.x = xMin;
 		}
-
 		if(realLocation.x > xMax) {
 			realLocation.x = xMax;
 		}
-
 		if(realLocation.y < yMin) {
 			realLocation.y = yMin;
 		}
-
 		if(realLocation.y > yMax) {
 			realLocation.y = yMax;
 		}
-
 		// Ensure the port is positioned on its parent borders and not in the
 		// middle.
 		// Modify position if needed.
 		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
 			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
-
 				if(realLocation.x <= (xMin + (parentRec.width / 2))) {
 					realLocation.x = xMin;
 				} else {
@@ -251,9 +241,7 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 				}
 			}
 		}
-
 		// Return constrained location
 		return realLocation;
 	}
-
 }

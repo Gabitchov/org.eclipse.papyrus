@@ -28,9 +28,7 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-
 		DiagramGeneralPreferencePage.initSpecificDefaults(store);
-
 		// preference for showing Activity edge name is common to several pages
 		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL, true);
 		// preferences for keeping user choices are not displayed
@@ -40,7 +38,6 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_CREATION_OWNER, "");
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_OPERATION_ACTION_CREATION_OWNER, "");
 		store.setDefault(IActivityPreferenceConstants.PREF_NEW_SEND_SIGNAL_ACTION_CREATION_OWNER, "");
-
 		// Specific preferences for groups
 		// Opacity Preferences
 		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_PARTITION_ALPHA, 50);
@@ -54,7 +51,6 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_LOOP_NODE, true);
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE, true);
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_STRUCTURED_NODE, true);
-
 	}
 
 	/**

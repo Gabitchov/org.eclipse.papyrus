@@ -195,19 +195,18 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropAction(final DropObjectsRequest dropRequest, final Element semanticElement, int nodeVISUALID) {
 		// The element to drop is a node
-		
 		/*
 		 * Check if the element is contained in this new container.
-		 * A special case as to be handle for structured element as contained node are not contained by the reference OwnedElement 
+		 * A special case as to be handle for structured element as contained node are not contained by the reference OwnedElement
 		 */
 		// Retrieve it's expected graphical parent
 		EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
-		if (graphicalParent instanceof StructuredActivityNode){
-			if(!((StructuredActivityNode)graphicalParent).getNodes().contains(semanticElement)){				
+		if(graphicalParent instanceof StructuredActivityNode) {
+			if(!((StructuredActivityNode)graphicalParent).getNodes().contains(semanticElement)) {
 				return UnexecutableCommand.INSTANCE;
 			}
-		} else if( graphicalParent instanceof Element) {
-			if ( !((Element)graphicalParent).getOwnedElements().contains(semanticElement)){				
+		} else if(graphicalParent instanceof Element) {
+			if(!((Element)graphicalParent).getOwnedElements().contains(semanticElement)) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}

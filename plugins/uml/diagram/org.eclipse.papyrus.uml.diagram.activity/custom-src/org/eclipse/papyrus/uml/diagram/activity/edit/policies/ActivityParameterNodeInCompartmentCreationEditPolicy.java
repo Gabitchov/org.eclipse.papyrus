@@ -35,10 +35,8 @@ public class ActivityParameterNodeInCompartmentCreationEditPolicy extends Creati
 
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-
 		if(request instanceof CreateUnspecifiedTypeRequest) {
 			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
-
 			if(understandsRequest(request)) {
 				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
@@ -54,5 +52,4 @@ public class ActivityParameterNodeInCompartmentCreationEditPolicy extends Creati
 		}
 		return super.getTargetEditPart(request);
 	}
-
 }

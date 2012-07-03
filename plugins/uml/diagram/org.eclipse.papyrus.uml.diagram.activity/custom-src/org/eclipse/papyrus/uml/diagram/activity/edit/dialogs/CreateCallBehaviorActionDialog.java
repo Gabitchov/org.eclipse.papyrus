@@ -191,5 +191,4 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	protected Image getParentImage() {
 		return UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage());
 	}
-
 }

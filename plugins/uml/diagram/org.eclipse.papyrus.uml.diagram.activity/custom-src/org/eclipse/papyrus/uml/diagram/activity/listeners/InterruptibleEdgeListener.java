@@ -87,8 +87,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 		}
 		return FEATURE_FILTER;
 	}
-	
-	
+
 	/**
 	 * get the edit part registry
 	 * 
@@ -115,7 +114,6 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 		if(Notification.SET == notif.getEventType()) {
 			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");////$NON-NLS-0$
 			//Handling views
-
 			final Iterable<IGraphicalEditPart> edgesEditPart = DiagramEditPartsUtil.getChildrenByEObject((EObject)notif.getNotifier(), getDiagramEditPart(), true);
 			InterruptibleEdgeRequest request = new InterruptibleEdgeRequest();
 			Iterable<View> views = getReferencingView(notif);
@@ -197,7 +195,6 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 			return (TransactionalEditingDomain)editingDomain;
 		}
 		return null;
-
 	}
 
 	/**
@@ -277,8 +274,6 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 					getDiagramEditPart().refresh();
 					return status;
 				}
-
-
 			};
 			return cmd;
 		}
@@ -293,12 +288,8 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 		return null;
 	}
 
-
 	@Override
 	public NotificationFilter getFilter() {
 		return getFEATURE_FILTER();
 	}
-
-
-	
 }

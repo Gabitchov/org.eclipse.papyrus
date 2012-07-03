@@ -108,5 +108,4 @@ public class FlowLayoutAdvancedConstraint {
 	public void setHasMinsize(boolean hasMinsize) {
 		this.hasMinsize = hasMinsize;
 	}
-
 }

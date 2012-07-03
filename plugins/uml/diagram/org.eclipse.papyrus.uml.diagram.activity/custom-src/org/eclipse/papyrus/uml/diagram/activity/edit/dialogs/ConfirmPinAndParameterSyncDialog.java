@@ -106,5 +106,4 @@ public class ConfirmPinAndParameterSyncDialog extends MessageDialog {
 		});
 		return checkBox;
 	}
-
 }

@@ -46,7 +46,6 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 	 */
 	private WrappedLabel fEdgeWeight;
 
-
 	/**
 	 * call the super constructor
 	 */
@@ -99,9 +98,4 @@ public class ActivityEdgeFigure extends UMLEdgeFigure {
 	public WrappingLabel getAppliedStereotypeLabel() {
 		return super.getAppliedStereotypeLabel();
 	}
-
-
-
-
-
 }

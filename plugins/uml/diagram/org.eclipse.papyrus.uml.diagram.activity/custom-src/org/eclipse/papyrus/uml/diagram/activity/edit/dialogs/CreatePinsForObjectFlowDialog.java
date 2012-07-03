@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.dialogs;
 
-import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -46,8 +45,6 @@ import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import com.google.common.collect.Sets;
 
 /**
  * This class provides a dialog to initialize a CallBehaviorAction at its
@@ -227,11 +224,8 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
 		parent.setLayout(new GridLayout());
-
 		createPinCreationSection(scrolledForm.getBody(), toolkit);
-
 		hookListeners();
-
 		scrolledForm.reflow(true);
 	}
 
@@ -253,22 +247,18 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		}
 		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreatePinsForObjectFlowDialog_PinCreationHelp, true);
 		lSection.setTextClient(componentHelp);
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		GridLayout lLayout = new GridLayout();
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
-
 		// content of the section
 		pToolkit.createLabel(lBody, NAME_LABEL, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, NAME_INITIAL_VALUE, SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		creationNameText.setFocus();
-
 		pToolkit.createLabel(lBody, TYPE_LABEL, SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, "", SWT.BORDER | SWT.READ_ONLY);
 		creationTypeText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -276,7 +266,6 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		Image image = UMLElementTypes.getImage(UMLPackage.eINSTANCE.getClass_());
 		creationTypeButton.setImage(image);
 		creationTypeButton.setLayoutData(new GridData(SWT.NONE));
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -296,7 +285,6 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 			}
 		};
 		creationNameText.addModifyListener(lNameListener);
-
 		// listener to select new pin type
 		SelectionListener selectTypeBtnListener = new SelectionAdapter() {
 
@@ -319,13 +307,13 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		/*
 		 * TODO Backport
 		 */
-//		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(),initialSource, Sets.newHashSet(UMLPackage.Literals.TYPE));
-//		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
-//		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
-//		if(dialog.open() == Window.OK) {
-//			creationType = (Type)dialog.getTheResult();
-//			creationTypeText.setText(dialog.getText(creationType));
-//		}
+		//		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(),initialSource, Sets.newHashSet(UMLPackage.Literals.TYPE));
+		//		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
+		//		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		//		if(dialog.open() == Window.OK) {
+		//			creationType = (Type)dialog.getTheResult();
+		//			creationTypeText.setText(dialog.getText(creationType));
+		//		}
 	}
 
 	/**
@@ -364,5 +352,4 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	public ActivityNode getTarget() {
 		return newTarget;
 	}
-
 }

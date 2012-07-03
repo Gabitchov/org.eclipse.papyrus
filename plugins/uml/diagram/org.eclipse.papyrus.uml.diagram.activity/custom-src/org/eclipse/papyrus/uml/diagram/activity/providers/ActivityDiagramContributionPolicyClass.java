@@ -45,5 +45,4 @@ public class ActivityDiagramContributionPolicyClass implements IPopupMenuContrib
 		}
 		return false;
 	}
-
 }

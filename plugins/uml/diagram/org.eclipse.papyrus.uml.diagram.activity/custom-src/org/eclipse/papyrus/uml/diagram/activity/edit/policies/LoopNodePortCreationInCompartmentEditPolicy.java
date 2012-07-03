@@ -27,10 +27,10 @@ import com.google.common.collect.Lists;
 public class LoopNodePortCreationInCompartmentEditPolicy extends PinAndEdgeCreationInCompartmentEditPolicy {
 
 	private static Collection<IElementType> elements = null;
-	
+
 	@Override
 	protected Collection<IElementType> getElementHandleByParent() {
-		if (elements == null){
+		if(elements == null) {
 			elements = Lists.newArrayList(UMLElementTypes.InputPin_3105);
 		}
 		return elements;

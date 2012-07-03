@@ -46,5 +46,4 @@ public class ObjectFlowTransformationParser extends AssociatedBehaviorParser {
 	protected EStructuralFeature getReferenceFeature() {
 		return UMLPackage.eINSTANCE.getObjectFlow_Transformation();
 	}
-
 }

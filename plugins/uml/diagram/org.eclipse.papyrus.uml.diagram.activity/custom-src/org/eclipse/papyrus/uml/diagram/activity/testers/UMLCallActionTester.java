@@ -11,7 +11,6 @@
  *  Anass Radouani (Atos) anass.radouani@atos.com - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.activity.testers;
 
 import org.eclipse.core.expressions.PropertyTester;
@@ -33,42 +32,33 @@ public class UMLCallActionTester extends PropertyTester {
 	/** Tester ID for UML Call Action nature */
 	public final static String IS_CALL_ACTION = "isCallAction"; //$NON-NLS-N$
 
-
 	/** Default constructor */
 	public UMLCallActionTester() {
 	}
 
 	/** Test the receiver against the selected property */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-
 		// Ensure Papyrus is the active editor
 		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if((editor == null) || (!(editor instanceof PapyrusMultiDiagramEditor))) {
 			return false;
 		}
-
 		Object currentValue = null;
 		if(IS_CALL_ACTION.equals(property)) {
-
 			if(receiver instanceof StructuredSelection) {
 				StructuredSelection structuredSelection = (StructuredSelection)receiver;
-
 				Object obj = structuredSelection.getFirstElement();
-
 				EObject element = null;
 				if(obj instanceof IAdaptable) {
 					element = (EObject)((IAdaptable)obj).getAdapter(EObject.class);
-
 					if(element instanceof View) {
 						element = ((View)element).getElement();
 					}
 				}
 				currentValue = element instanceof InvocationAction;
 			}
-
 			return (currentValue == expectedValue);
 		}
-
 		return false;
 	}
 }

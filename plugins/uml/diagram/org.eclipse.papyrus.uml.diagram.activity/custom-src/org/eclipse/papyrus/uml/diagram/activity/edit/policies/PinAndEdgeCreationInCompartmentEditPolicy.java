@@ -23,19 +23,16 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
-
 /**
  * Aim to redirect pin and edge creation to parent element
  * WARNING : NOT WORKING FOR NOW
  */
 public abstract class PinAndEdgeCreationInCompartmentEditPolicy extends CreationEditPolicy {
-	
+
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-
 		if(request instanceof CreateUnspecifiedTypeRequest) {
 			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
-
 			if(understandsRequest(request)) {
 				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
@@ -48,11 +45,8 @@ public abstract class PinAndEdgeCreationInCompartmentEditPolicy extends Creation
 				}
 			}
 		}
-
 		return super.getTargetEditPart(request);
 	}
-	
+
 	protected abstract Collection<IElementType> getElementHandleByParent();
-	
-	
 }

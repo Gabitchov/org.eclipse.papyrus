@@ -134,16 +134,13 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
 		parent.setLayout(new GridLayout());
-
 		createInvocationCreationSection(scrolledForm.getBody(), toolkit);
 		createInvocationSelectionSection(scrolledForm.getBody(), toolkit);
-
 		refreshSectionsEnable(false);
 		hookListeners();
 		// invoked name is set after listeners, since we count on listener to
 		// update it properly
 		setInvokedName(null);
-
 		scrolledForm.reflow(true);
 	}
 
@@ -177,20 +174,16 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		}
 		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateActivityParameterNodeDialog_ParameterSelectionHelp);
 		lSection.setTextClient(componentHelp);
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		GridLayout lLayout = new GridLayout();
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
-
 		// content of the section
 		selectionRadio = pToolkit.createButton(lBody, Messages.CreateActivityParameterNodeDialog_ParameterSelectionLabel, SWT.RADIO);
 		selectionRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
-
 		// manage parameter selection
 		pToolkit.createLabel(lBody, getParameterFeature().getEReferenceType().getName() + ":", SWT.NONE);
 		selectionText = pToolkit.createText(lBody, "", SWT.BORDER | SWT.READ_ONLY);
@@ -199,7 +192,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		Image image = UMLElementTypes.getImage(getParameterFeature());
 		selectionButton.setImage(image);
 		selectionButton.setLayoutData(new GridData(SWT.NONE));
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -222,25 +214,20 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		}
 		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateActivityParameterNodeDialog_ParameterCreationHelp);
 		lSection.setTextClient(componentHelp);
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		GridLayout lLayout = new GridLayout();
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
-
 		// content of the section
 		creationRadio = pToolkit.createButton(lBody, Messages.CreateActivityParameterNodeDialog_ParameterCreationLabel, SWT.RADIO);
 		creationRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
-
 		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_NameLabel, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		creationNameText.setFocus();
-
 		// manage type selection
 		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_TypeLabel, SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, labelProvider.getText(selectedType), SWT.BORDER | SWT.READ_ONLY);
@@ -249,7 +236,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		Image image = UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 		creationTypeButton.setImage(image);
 		creationTypeButton.setLayoutData(new GridData(SWT.NONE));
-
 		// manage direction selection
 		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_DirectionLabel, SWT.NONE);
 		creationDirectionCombo = new Combo(lBody, SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -261,7 +247,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		// initialize selection
 		directionComboViewer.setSelection(new StructuredSelection(getDirections()[0]));
 		selectedDirection = ParameterDirectionKind.getByName(getDirections()[0]);
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -318,7 +303,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		};
 		selectionRadio.addSelectionListener(selectCreateListener);
 		creationRadio.addSelectionListener(selectCreateListener);
-
 		// listener to select existing element
 		SelectionListener selectBtnListener = new SelectionAdapter() {
 
@@ -332,7 +316,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 			}
 		};
 		selectionButton.addSelectionListener(selectBtnListener);
-
 		if(creationDirectionCombo != null && directionComboViewer != null) {
 			// listener to select direction
 			ModifyListener lTypeListener = new ModifyListener() {
@@ -355,7 +338,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 			};
 			creationDirectionCombo.addModifyListener(lTypeListener);
 		}
-
 		// listener to element name
 		ModifyListener lNameListener = new ModifyListener() {
 
@@ -367,7 +349,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 			}
 		};
 		creationNameText.addModifyListener(lNameListener);
-
 		// listener to select new element type
 		SelectionListener selectTypeBtnListener = new SelectionAdapter() {
 
@@ -581,5 +562,4 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		}
 		return ret;
 	}
-
 }

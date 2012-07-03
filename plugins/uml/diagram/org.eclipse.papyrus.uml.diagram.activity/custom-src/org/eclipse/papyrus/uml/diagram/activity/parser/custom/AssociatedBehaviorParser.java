@@ -70,7 +70,6 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	@Override

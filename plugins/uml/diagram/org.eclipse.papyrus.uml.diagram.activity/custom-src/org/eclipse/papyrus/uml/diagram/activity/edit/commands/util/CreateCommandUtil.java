@@ -81,7 +81,6 @@ public class CreateCommandUtil {
 	 * @return false if command must be cancelled
 	 */
 	public static boolean setNodeParents(ActivityNode newElement, IEditCommandRequest request, EObject elementToEdit) {
-
 		// simply take the command edited element
 		EObject owner = elementToEdit;
 		// create in appropriate model container

@@ -17,13 +17,11 @@ package org.eclipse.papyrus.uml.diagram.activity.commands;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.request.SetDeferredRequest;
 
-
 public class DeferredSetValueCommand extends org.eclipse.gmf.runtime.emf.type.core.commands.DeferredSetValueCommand {
 
 	protected SetDeferredRequest request;
-	
+
 	protected EObject elementToEdit;
-	
 
 	public DeferredSetValueCommand(SetDeferredRequest request) {
 		super(request);
@@ -32,15 +30,12 @@ public class DeferredSetValueCommand extends org.eclipse.gmf.runtime.emf.type.co
 
 	@Override
 	protected EObject getElementToEdit() {
-		if (elementToEdit == null){
+		if(elementToEdit == null) {
 			Object adapter = request.getElementToSet().getAdapter(EObject.class);
-			if (adapter instanceof EObject){
+			if(adapter instanceof EObject) {
 				elementToEdit = (EObject)adapter;
 			}
 		}
 		return elementToEdit;
 	}
-	
-	
-
 }

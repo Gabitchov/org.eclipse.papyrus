@@ -17,7 +17,6 @@ package org.eclipse.papyrus.uml.diagram.activity.activitygroup;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;

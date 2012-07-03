@@ -84,14 +84,12 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 	 * @return the command contribution to the request
 	 */
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
-
 		// translate the feedback figure
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
 		getHostFigure().translateToRelative(rect);
-
 		if(getHost() instanceof IBorderItemEditPart) {
 			IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
 			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
@@ -154,7 +152,6 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 		if(getHost() instanceof IBorderItemEditPart) {
 			IBorderItemEditPart borderItemEP = (IBorderItemEditPart)getHost();
 			IBorderItemLocator borderItemLocator = borderItemEP.getBorderItemLocator();
-
 			if(borderItemLocator != null) {
 				IFigure feedback = getDragSourceFeedbackFigure();
 				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
@@ -170,18 +167,14 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 		} else {
 			super.showChangeBoundsFeedback(request);
 		}
-
 		// translate the feedback figure
 		IFigure p = getDragSourceFeedbackFigure();
-
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
-
 		p.translateToRelative(rect);
 		p.setBounds(rect);
-
 		Point referencePoint = getReferencePoint(request);
 		Point end = getLinkEndPoint(request, referencePoint);
 		linkFeedback.setEnd(end);
@@ -201,9 +194,7 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 	 * @return point
 	 */
 	private Point getReferencePoint(ChangeBoundsRequest request) {
-
 		Point refPoint = ((LabelEditPart)getHost()).getReferencePoint();
-
 		Rectangle centerMain = null;
 		if(((IGraphicalEditPart)getHost().getParent()).getFigure() instanceof Connection) {
 			centerMain = new Rectangle(refPoint.x, refPoint.y, 0, 0);
@@ -211,7 +202,6 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 			centerMain = ((IGraphicalEditPart)getHost().getParent()).getFigure().getBounds().getCopy();
 			centerMain.translate(centerMain.width / 2, centerMain.height / 2);
 		}
-
 		PrecisionRectangle ref = new PrecisionRectangle(centerMain);
 		getHostFigure().translateToAbsolute(ref);
 		getDragSourceFeedbackFigure().translateToRelative(ref);
@@ -302,12 +292,10 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 		Point midBottom = new Point(border.x + border.width / 2, border.y + border.height);
 		Point midLeft = new Point(border.x, border.y + border.height / 2);
 		Point midRight = new Point(border.x + border.width, border.y + border.height / 2);
-
 		Dimension diffTop = referencePoint.getDifference(midTop);
 		Dimension diffBottom = referencePoint.getDifference(midBottom);
 		Dimension diffRight = referencePoint.getDifference(midRight);
 		Dimension diffLeft = referencePoint.getDifference(midLeft);
-
 		Point startPoint = midBottom;
 		if(diffBottom.height > 0) {
 			// check if right or left is more appropriated
@@ -352,13 +340,11 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 		float denom = ((u2.y - u1.y) * (v2.x - v1.x)) - ((u2.x - u1.x) * (v2.y - v1.y));
 		float nume_a = ((u2.x - u1.x) * (v1.y - u1.y)) - ((u2.y - u1.y) * (v1.x - u1.x));
 		float nume_b = ((v2.x - v1.x) * (v1.y - u1.y)) - ((v2.y - v1.y) * (v1.x - u1.x));
-
 		if(denom == 0.0f) {
 			return null;
 		}
 		float ua = nume_a / denom;
 		float ub = nume_b / denom;
-
 		if(ua >= 0.0f && ua <= 1.0f && ub >= 0.0f && ub <= 1.0f) {
 			// Get the intersection point.
 			Float x = v1.x + ua * (v2.x - v1.x);

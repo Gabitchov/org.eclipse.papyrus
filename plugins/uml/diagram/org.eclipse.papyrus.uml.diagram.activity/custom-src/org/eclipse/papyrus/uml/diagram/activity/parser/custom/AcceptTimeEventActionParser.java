@@ -69,7 +69,6 @@ public class AcceptTimeEventActionParser extends MessageFormatParser implements 
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*

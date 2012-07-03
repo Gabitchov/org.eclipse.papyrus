@@ -167,5 +167,4 @@ public class ActivityParameterNodeParser extends MessageFormatParser implements 
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getObjectNode_InState().equals(feature);
 	}
-
 }

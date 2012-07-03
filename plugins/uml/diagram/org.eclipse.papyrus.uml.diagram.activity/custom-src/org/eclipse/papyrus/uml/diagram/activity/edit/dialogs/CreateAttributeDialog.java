@@ -120,14 +120,11 @@ public class CreateAttributeDialog extends FormDialog {
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
 		parent.setLayout(new GridLayout());
-
 		createAttributeSection(scrolledForm.getBody(), toolkit);
-
 		hookListeners();
 		// invoked name is set after listeners, since we count on listener to
 		// update it properly
 		setInvokedName(null);
-
 		scrolledForm.reflow(true);
 	}
 
@@ -159,16 +156,13 @@ public class CreateAttributeDialog extends FormDialog {
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		GridLayout lLayout = new GridLayout();
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
-
 		// content of the section
 		// eclass
 		pToolkit.createLabel(lBody, getEClassLabel(), SWT.NONE);
@@ -183,13 +177,11 @@ public class CreateAttributeDialog extends FormDialog {
 			eClassComboViewer.setSelection(new StructuredSelection(getPossibleAttributes()[0]));
 			selectedEClass = getPossibleAttributes()[0];
 		}
-
 		// name
 		pToolkit.createLabel(lBody, getNameLabel(), SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		creationNameText.setFocus();
-
 		// manage type selection
 		pToolkit.createLabel(lBody, getTypeLabel(), SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, labelProvider.getText(selectedType), SWT.BORDER | SWT.READ_ONLY);
@@ -198,7 +190,6 @@ public class CreateAttributeDialog extends FormDialog {
 		Image image = getTypeImage();
 		creationTypeButton.setImage(image);
 		creationTypeButton.setLayoutData(new GridData(SWT.NONE));
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -257,7 +248,6 @@ public class CreateAttributeDialog extends FormDialog {
 			};
 			creationEClassCombo.addModifyListener(lTypeListener);
 		}
-
 		// listener to invocation element name
 		ModifyListener lNameListener = new ModifyListener() {
 
@@ -269,7 +259,6 @@ public class CreateAttributeDialog extends FormDialog {
 			}
 		};
 		creationNameText.addModifyListener(lNameListener);
-
 		// listener to select new element parent
 		SelectionListener selectParentBtnListener = new SelectionAdapter() {
 
@@ -440,5 +429,4 @@ public class CreateAttributeDialog extends FormDialog {
 	private String getTypeLabel() {
 		return Messages.CreateAttributeDialog_TypeLabel;
 	}
-
 }

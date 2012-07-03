@@ -68,7 +68,6 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		CreateCommand createCommand = new CreateCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView.getDiagram());
 		setViewAdapter((IAdaptable)createCommand.getCommandResult().getReturnValue());
-
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(getViewAdapter());
 		if(getObjectFlowHint().equals(req.getConnectionViewDescriptor().getSemanticHint())) {
@@ -115,13 +114,11 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 		if(proxy == null) {
 			return null;
 		}
-
 		// reset the target edit-part for the request
 		INodeEditPart targetEP = getConnectionCompleteEditPart(request);
 		if(targetEP == null) {
 			return null;
 		}
-
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
 		ConnectionAnchor targetAnchor = targetEP.getTargetConnectionAnchor(request);
 		Iterator commandItr = cc.iterator();
@@ -198,7 +195,6 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 	 * @return the view or null
 	 */
 	protected View getObjectFlowExtremityView(boolean isStartEnd) {
-
 		Object objectFlowView = getViewAdapter().getAdapter(Connector.class);
 		if(objectFlowView instanceof Connector) {
 			EObject objectFlow = ((Connector)objectFlowView).getElement();

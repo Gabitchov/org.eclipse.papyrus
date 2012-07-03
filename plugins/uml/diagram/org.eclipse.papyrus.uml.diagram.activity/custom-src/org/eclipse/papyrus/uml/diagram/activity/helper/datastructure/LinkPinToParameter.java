@@ -44,9 +44,7 @@ public class LinkPinToParameter implements ILinkPinToTarget {
 	 */
 	private TypedElement parameter;
 
-
 	public LinkPinToParameter() {
-
 	}
 
 	/**
@@ -63,29 +61,23 @@ public class LinkPinToParameter implements ILinkPinToTarget {
 		this.parameter = parameter;
 	}
 
-
 	public Pin getPin() {
 		return pin;
 	}
-
 
 	public void setPin(Pin pin) {
 		this.pin = pin;
 	}
 
-
 	public TypedElement getParameter() {
 		return parameter;
 	}
-
 
 	public void setParameter(TypedElement parameter) {
 		this.parameter = parameter;
 	}
 
-
 	public Element getTarget() {
 		return parameter;
 	}
-
 }

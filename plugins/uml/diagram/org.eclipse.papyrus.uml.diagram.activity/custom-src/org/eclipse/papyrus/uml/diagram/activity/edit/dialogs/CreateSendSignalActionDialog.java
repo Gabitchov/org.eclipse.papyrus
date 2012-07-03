@@ -170,5 +170,4 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	protected Image getParentImage() {
 		return UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage());
 	}
-
 }

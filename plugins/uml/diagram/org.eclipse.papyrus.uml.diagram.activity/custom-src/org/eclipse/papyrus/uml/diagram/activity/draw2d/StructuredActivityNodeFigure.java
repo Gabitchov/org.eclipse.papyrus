@@ -11,7 +11,6 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.activity.draw2d;
 
 import org.eclipse.draw2d.Border;
@@ -33,10 +32,12 @@ import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceC
 import org.eclipse.papyrus.uml.diagram.common.draw2d.RoundedRectangleDashedBorder;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure;
 import org.eclipse.swt.graphics.Color;
+
 /**
  * Figure for structured activity node and its derived element
+ * 
  * @author arthur daussy
- *
+ * 
  */
 public class StructuredActivityNodeFigure extends PapyrusRoundedNodeFigure {
 
@@ -60,7 +61,6 @@ public class StructuredActivityNodeFigure extends PapyrusRoundedNodeFigure {
 	 */
 	protected IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 
-	
 	/**
 	 * Constructor
 	 */
@@ -79,6 +79,7 @@ public class StructuredActivityNodeFigure extends PapyrusRoundedNodeFigure {
 
 	/**
 	 * Custom border (Used to avoid the alpha setting affect the border)
+	 * 
 	 * @return
 	 */
 	private org.eclipse.draw2d.LineBorder createBorder0() {
@@ -133,7 +134,6 @@ public class StructuredActivityNodeFigure extends PapyrusRoundedNodeFigure {
 		return constraintFKeyword;
 	}
 
-
 	@Override
 	protected IFigure getDefaultLabelsContainer() {
 		if(fFigureCompartmentLabelStructuredActivityNode == null) {
@@ -159,15 +159,14 @@ public class StructuredActivityNodeFigure extends PapyrusRoundedNodeFigure {
 	@Override
 	public void paintFigure(Graphics graphics) {
 		int transparency = getTransparency();
-		if (transparency == 0){
-			transparency = 	UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getInt(IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA);
+		if(transparency == 0) {
+			transparency = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getInt(IActivityPreferenceConstants.PREF_STRUCTURED_NODE_ALPHA);
 		} else {
-			 transparency = 100 - getTransparency();
+			transparency = 100 - getTransparency();
 		}
 		graphics.setAlpha(transparency);
 		super.paintFigure(graphics);
 	}
-
 
 	/**
 	 * Compartment for activity node
@@ -178,10 +177,10 @@ public class StructuredActivityNodeFigure extends PapyrusRoundedNodeFigure {
 
 	/**
 	 * Get the keywork compartment
+	 * 
 	 * @return
 	 */
 	public WrappingLabel getKeyword() {
 		return getNameLabel();
 	}
-
 }

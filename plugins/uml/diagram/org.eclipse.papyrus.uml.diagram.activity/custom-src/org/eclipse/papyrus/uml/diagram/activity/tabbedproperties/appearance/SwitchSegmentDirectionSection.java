@@ -63,7 +63,6 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 
 	/** The switch image. */
 	public static Image switchImage = null;
-
 	/** Load the switch icon once */
 	static {
 		try {
@@ -85,7 +84,6 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 		GridLayout layout = new GridLayout(2, false);
 		Group switchGroup = getWidgetFactory().createGroup(composite, Messages.ForkJoinSegmentSwitchOrientation_actionLabel);
 		switchGroup.setLayout(layout);
-
 		// create switch button
 		Button button = new Button(switchGroup, SWT.PUSH);
 		button.setImage(switchImage);
@@ -107,7 +105,6 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 				switchSelectedSegmentsOrientation();
 				refresh();
 			}
-
 		});
 		// create help
 		ImageHyperlink help = HelpComponentFactory.createHelpComponent(switchGroup, getWidgetFactory(), Messages.ForkJoinSegmentSwitchOrientation_helpMessage);
@@ -258,6 +255,5 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 		protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			return doExecute(monitor, info);
 		}
-
 	}
 }

@@ -114,5 +114,4 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

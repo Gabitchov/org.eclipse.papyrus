@@ -82,7 +82,6 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*
@@ -93,7 +92,6 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-
 		if(obj instanceof CallOperationAction) {
 			CallOperationAction action = (CallOperationAction)obj;
 			String name = action.getName();
@@ -197,5 +195,4 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 		boolean isPrintedElement = UMLPackage.eINSTANCE.getCallOperationAction_Operation().equals(feature) || UMLPackage.eINSTANCE.getOperation_Class().equals(feature);
 		return isName || isPrintedElement;
 	}
-
 }

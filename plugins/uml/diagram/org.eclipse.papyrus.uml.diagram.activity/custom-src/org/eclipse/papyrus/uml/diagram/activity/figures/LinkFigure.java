@@ -23,5 +23,4 @@ public class LinkFigure extends DashedEdgeFigure {
 	public LinkFigure() {
 		super(false);
 	}
-
 }

@@ -28,5 +28,4 @@ public class SwitchSegmentDirectionSectionFilter implements IFilter {
 	public boolean select(Object object) {
 		return object instanceof ForkNodeEditPart || object instanceof JoinNodeEditPart;
 	}
-
 }

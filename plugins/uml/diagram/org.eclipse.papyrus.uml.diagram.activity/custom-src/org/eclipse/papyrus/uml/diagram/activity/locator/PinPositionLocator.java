@@ -558,7 +558,6 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		int parentFigureY = bounds.y;
 		int x = parentFigureX;
 		int y = parentFigureY;
-
 		Dimension borderItemSize = getSize(borderItem);
 		switch(side) {
 		case PositionConstants.NORTH:

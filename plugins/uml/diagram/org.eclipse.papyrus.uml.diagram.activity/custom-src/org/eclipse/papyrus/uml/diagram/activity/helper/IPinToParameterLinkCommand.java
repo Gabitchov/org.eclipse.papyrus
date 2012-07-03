@@ -34,5 +34,4 @@ public interface IPinToParameterLinkCommand {
 	 * ID use to inform the user that no link exist between a {@link Pin} and a {@link Parameter}
 	 */
 	public static final String NO_PARAMETER_ID = "NO_PARAMETER_ID";
-
 }

@@ -42,15 +42,12 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	 * @generated NOT use StereotypeFigureHelper
 	 */
 	public AbstractActionFigure() {
-
 		GridLayout layoutThis = new GridLayout();
 		layoutThis.numColumns = 1;
 		layoutThis.makeColumnsEqualWidth = true;
 		setLayoutManager(layoutThis);
-
 		setCornerDimensions(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16)));
 		setLineWidth(1);
-
 		// use StereotypeFigureHelper
 		stereotypeHelper = new StereotypeFigureHelper(this) {
 
@@ -170,5 +167,4 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	 * Get the map mode of the corresponding edit part
 	 */
 	public abstract IMapMode getMapMode();
-
 }

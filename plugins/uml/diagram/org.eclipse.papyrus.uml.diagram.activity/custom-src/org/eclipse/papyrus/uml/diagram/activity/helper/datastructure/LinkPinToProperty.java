@@ -20,15 +20,15 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * Link a pin a to a property
+ * 
  * @author arthur daussy
  */
 public class LinkPinToProperty implements ILinkPinToTarget {
 
 	private Pin pin;
-	
+
 	private Property property;
-	
-	
+
 	public LinkPinToProperty(Pin pin, Property property) {
 		super();
 		Assert.isNotNull(pin);
@@ -37,14 +37,11 @@ public class LinkPinToProperty implements ILinkPinToTarget {
 		this.property = property;
 	}
 
-
 	public Pin getPin() {
 		return pin;
 	}
 
-
 	public Element getTarget() {
 		return property;
 	}
-
 }

@@ -92,9 +92,7 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 			} else {
 				activityEdgeAux = null;
 			}
-
 			final ActivityEdge activityEdge = activityEdgeAux;
-
 			final View interruptbleEdgeIcon = getInterruptbleEdgeIcon(graphicalHost, interruptibleEdge);
 			//If property == null and there is an view => delete
 			if(activityEdge != null) {
@@ -232,5 +230,4 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 		}
 		return null;
 	}
-
 }

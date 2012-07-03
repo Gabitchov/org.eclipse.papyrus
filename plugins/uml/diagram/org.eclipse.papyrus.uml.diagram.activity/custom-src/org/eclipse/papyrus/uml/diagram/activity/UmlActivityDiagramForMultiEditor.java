@@ -127,7 +127,6 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	//       // return new DiagramGraphicalViewer();
 	//        return new GroupGraphicalViewer();
 	//    }
-
 	/**
 	 * {@inheritDoc}
 	 */

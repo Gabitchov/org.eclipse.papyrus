@@ -128,14 +128,11 @@ public class CreateParameterDialog extends FormDialog {
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
 		parent.setLayout(new GridLayout());
-
 		createParameterSection(scrolledForm.getBody(), toolkit);
-
 		hookListeners();
 		// invoked name is set after listeners, since we count on listener to
 		// update it properly
 		setInvokedName(null);
-
 		scrolledForm.reflow(true);
 	}
 
@@ -169,22 +166,18 @@ public class CreateParameterDialog extends FormDialog {
 		}
 		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateParameterDialog_ParameterCreationHelp, true);
 		lSection.setTextClient(componentHelp);
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		GridLayout lLayout = new GridLayout();
 		lLayout.numColumns = 3;
 		lBody.setLayout(lLayout);
-
 		// content of the section
 		pToolkit.createLabel(lBody, getNameLabel(), SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		creationNameText.setFocus();
-
 		// manage type selection
 		pToolkit.createLabel(lBody, getTypeLabel(), SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, labelProvider.getText(selectedType), SWT.BORDER | SWT.READ_ONLY);
@@ -193,7 +186,6 @@ public class CreateParameterDialog extends FormDialog {
 		Image image = getTypeImage();
 		creationTypeButton.setImage(image);
 		creationTypeButton.setLayoutData(new GridData(SWT.NONE));
-
 		// manage direction selection
 		pToolkit.createLabel(lBody, getDirectionLabel(), SWT.NONE);
 		creationDirectionCombo = new Combo(lBody, SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -205,7 +197,6 @@ public class CreateParameterDialog extends FormDialog {
 		// initialize selection
 		directionComboViewer.setSelection(new StructuredSelection(getDefaultDirection()));
 		selectedDirection = ParameterDirectionKind.getByName(getDefaultDirection());
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -263,7 +254,6 @@ public class CreateParameterDialog extends FormDialog {
 			};
 			creationDirectionCombo.addModifyListener(lTypeListener);
 		}
-
 		// listener to invocation element name
 		ModifyListener lNameListener = new ModifyListener() {
 
@@ -275,7 +265,6 @@ public class CreateParameterDialog extends FormDialog {
 			}
 		};
 		creationNameText.addModifyListener(lNameListener);
-
 		// listener to select new element parent
 		SelectionListener selectParentBtnListener = new SelectionAdapter() {
 
@@ -438,5 +427,4 @@ public class CreateParameterDialog extends FormDialog {
 	private String getDirectionLabel() {
 		return Messages.CreateParameterDialog_DirectionLabel;
 	}
-
 }

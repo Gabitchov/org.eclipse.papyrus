@@ -113,7 +113,6 @@ public class CenteredColumnLayout extends StackLayout {
 				d.width = Math.max(d.width, childSize.width);
 			}
 		}
-
 		d.expand(figure.getInsets().getWidth(), figure.getInsets().getHeight());
 		d.union(getBorderPreferredSize(figure));
 		return d;

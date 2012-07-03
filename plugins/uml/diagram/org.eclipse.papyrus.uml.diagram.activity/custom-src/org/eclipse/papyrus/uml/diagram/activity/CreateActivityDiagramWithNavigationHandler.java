@@ -20,5 +20,4 @@ public class CreateActivityDiagramWithNavigationHandler extends CreateDiagramWit
 	public CreateActivityDiagramWithNavigationHandler() {
 		super(new CreateActivityDiagramCommand(), new ActivityDiagramCreationCondition());
 	}
-
 }

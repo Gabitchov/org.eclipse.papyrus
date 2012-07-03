@@ -93,5 +93,4 @@ public class ActivityLinkMappingHelper implements ILinkMappingHelper {
 			}
 		});
 	}
-
 }

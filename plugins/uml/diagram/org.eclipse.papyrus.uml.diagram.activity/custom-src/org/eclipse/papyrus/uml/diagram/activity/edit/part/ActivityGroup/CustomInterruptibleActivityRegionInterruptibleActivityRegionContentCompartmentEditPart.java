@@ -51,5 +51,4 @@ public class CustomInterruptibleActivityRegionInterruptibleActivityRegionContent
 	public boolean isSelectable() {
 		return false;
 	}
-
 }

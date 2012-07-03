@@ -26,15 +26,13 @@ import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * @author tfaure
- *
+ * 
  */
-public class ObjectNodeListener extends AbstractPapyrusModifcationTriggerListener{
+public class ObjectNodeListener extends AbstractPapyrusModifcationTriggerListener {
 
 	@Override
-	
 	public NotificationFilter getFilter() {
 		// an object node is contained only in actions and activities
 		NotificationFilter filter1 = NotificationFilter.createEventTypeFilter(Notification.ADD).and(NotificationFilter.createNotifierTypeFilter(UMLPackage.Literals.ACTION));
@@ -47,13 +45,12 @@ public class ObjectNodeListener extends AbstractPapyrusModifcationTriggerListene
 		if(notif.getNewValue() instanceof ObjectNode && notif.getFeature() instanceof EReference && ((EReference)notif.getFeature()).isContainment()) {
 			cc = new CompositeCommand("Modify Pin");
 			final ObjectNode object = (ObjectNode)notif.getNewValue();
-			if (object.getUpperBound() == null){
+			if(object.getUpperBound() == null) {
 				LiteralInteger literalInteger = UMLFactory.eINSTANCE.createLiteralInteger();
 				literalInteger.setValue(1);
 				cc.compose(new EMFtoGMFCommandWrapper(SetCommand.create(AdapterFactoryEditingDomain.getEditingDomainFor(object), object, UMLPackage.Literals.OBJECT_NODE__UPPER_BOUND, literalInteger)));
 			}
 		}
-		return cc ;
+		return cc;
 	}
-	
 }

@@ -103,5 +103,4 @@ public class ConfirmActivityParameterNodeAndParameterSyncDialog extends MessageD
 		});
 		return checkBox;
 	}
-
 }

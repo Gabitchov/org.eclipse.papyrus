@@ -72,7 +72,6 @@ public class ExceptionHandlerTypeParser extends MessageFormatParser implements I
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*

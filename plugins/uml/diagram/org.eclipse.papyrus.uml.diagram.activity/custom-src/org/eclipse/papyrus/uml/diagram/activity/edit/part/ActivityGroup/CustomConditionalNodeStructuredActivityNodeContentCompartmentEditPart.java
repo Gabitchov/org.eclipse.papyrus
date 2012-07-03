@@ -50,5 +50,4 @@ public class CustomConditionalNodeStructuredActivityNodeContentCompartmentEditPa
 	public boolean isSelectable() {
 		return false;
 	}
-
 }

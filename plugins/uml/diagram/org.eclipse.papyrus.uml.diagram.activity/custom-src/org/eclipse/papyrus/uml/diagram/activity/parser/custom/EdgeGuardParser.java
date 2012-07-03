@@ -78,7 +78,6 @@ public class EdgeGuardParser extends MessageFormatParser implements ISemanticPar
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	@Override

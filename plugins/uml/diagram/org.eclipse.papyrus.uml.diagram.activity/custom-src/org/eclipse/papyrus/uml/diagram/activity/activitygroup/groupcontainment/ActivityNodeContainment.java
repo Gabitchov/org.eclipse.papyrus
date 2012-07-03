@@ -27,19 +27,21 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * Descriptor for an Activity Node
+ * 
  * @author adaussy
- *
+ * 
  */
 public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 
 	private List<EReference> parentReferences;
-	
-	private Map<EStructuralFeature,EStructuralFeature> parentOpositeReferences;
 
-	/* (non-Javadoc)
+	private Map<EStructuralFeature, EStructuralFeature> parentOpositeReferences;
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getContainerEClass()
 	 */
 	@Override
@@ -47,7 +49,9 @@ public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 		return UMLPackage.Literals.ACTIVITY_NODE;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getChildrenReferences()
 	 */
 	@Override
@@ -55,13 +59,15 @@ public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 		return Collections.emptyList();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getParentReferences()
 	 */
 	@Override
 	public List<EReference> getParentReferences() {
-		if (parentReferences == null){
-			parentReferences = new ArrayList<EReference>();		
+		if(parentReferences == null) {
+			parentReferences = new ArrayList<EReference>();
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE);
@@ -69,39 +75,42 @@ public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 		}
 		return parentReferences;
 	}
-	
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getParentEOppositeReferences()
 	 */
 	@Override
 	public Map<EStructuralFeature, EStructuralFeature> getParentEOppositeReferences() {
-		if (parentOpositeReferences == null){
+		if(parentOpositeReferences == null) {
 			parentOpositeReferences = new HashMap<EStructuralFeature, EStructuralFeature>();
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UMLPackage.Literals.INTERRUPTIBLE_ACTIVITY_REGION__NODE);
-			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION,UMLPackage.Literals.ACTIVITY_PARTITION__NODE);
-			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE,UMLPackage.Literals.STRUCTURED_ACTIVITY_NODE__NODE);
-			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__ACTIVITY,UMLPackage.Literals.ACTIVITY__OWNED_NODE);
+			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION, UMLPackage.Literals.ACTIVITY_PARTITION__NODE);
+			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE, UMLPackage.Literals.STRUCTURED_ACTIVITY_NODE__NODE);
+			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__ACTIVITY, UMLPackage.Literals.ACTIVITY__OWNED_NODE);
 		}
 		return parentOpositeReferences;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getCompartmentPartFromView(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getCompartmentPartFromView(org.eclipse.gmf.runtime.diagram
+	 * .ui.editparts.IGraphicalEditPart)
 	 */
 	@Override
 	public IGraphicalEditPart getCompartmentPartFromView(IGraphicalEditPart editpart) {
 		return null;//no compartment for activity node
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.IContainerNodeDescriptor#getGroupPriority()
 	 */
 	public int getGroupPriority() {
 		return IGroupPriority.ACTIVITY_NODE_PRIORITY;
 	}
-
-
-	
-
 }

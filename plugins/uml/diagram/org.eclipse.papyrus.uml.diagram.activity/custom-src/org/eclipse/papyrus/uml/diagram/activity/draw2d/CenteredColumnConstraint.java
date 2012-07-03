@@ -34,5 +34,4 @@ public class CenteredColumnConstraint {
 	public boolean isAvailableSpaceFilled() {
 		return fill;
 	}
-
 }

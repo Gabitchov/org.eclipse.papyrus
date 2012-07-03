@@ -68,7 +68,6 @@ public class ActivitySingleExecutionParser extends MessageFormatParser implement
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*
@@ -79,7 +78,6 @@ public class ActivitySingleExecutionParser extends MessageFormatParser implement
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-
 		if(obj instanceof Activity) {
 			Activity activity = (Activity)obj;
 			if(activity.isSingleExecution()) {
@@ -127,5 +125,4 @@ public class ActivitySingleExecutionParser extends MessageFormatParser implement
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getActivity_IsSingleExecution().equals(feature);
 	}
-
 }

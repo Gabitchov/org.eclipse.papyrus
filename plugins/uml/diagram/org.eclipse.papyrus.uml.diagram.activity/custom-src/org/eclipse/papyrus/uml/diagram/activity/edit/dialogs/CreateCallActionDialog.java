@@ -108,20 +108,16 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 		}
 		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateCallActionDialog_IsSynchronousHelp, true);
 		lSection.setTextClient(componentHelp);
-
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
 		lInsideScrolledForm.setExpandVertical(true);
 		Composite lBody = lInsideScrolledForm.getBody();
-
 		GridLayout lLayout = new GridLayout();
 		lLayout.numColumns = 1;
 		lBody.setLayout(lLayout);
-
 		// content of the section
 		isSynchronousButton = pToolkit.createButton(lBody, Messages.CreateCallActionDialog_IsSynchronous, SWT.CHECK | SWT.WRAP);
 		isSynchronousButton.setSelection(true);
-
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -181,5 +177,4 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	protected String getIsSynchronousSectionTitle() {
 		return Messages.CreateCallActionDialog_IsSynchronousTitle;
 	}
-
 }

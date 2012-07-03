@@ -30,14 +30,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Node descriptor for an activity
+ * 
  * @author adaussy
- *
+ * 
  */
 public class ActivityContainment extends AbstractContainerNodeDescriptor {
 
 	private List<EReference> parentReferences;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getContainerEClass()
 	 */
 	@Override
@@ -45,7 +48,9 @@ public class ActivityContainment extends AbstractContainerNodeDescriptor {
 		return UMLPackage.Literals.ACTIVITY;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getChildrenReferences()
 	 */
 	@Override
@@ -58,7 +63,9 @@ public class ActivityContainment extends AbstractContainerNodeDescriptor {
 		return parentReferences;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getParentReferences()
 	 */
 	@Override
@@ -66,22 +73,30 @@ public class ActivityContainment extends AbstractContainerNodeDescriptor {
 		return Collections.emptyList();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getCompartmentPartFromView(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getCompartmentPartFromView(org.eclipse.gmf.runtime.diagram
+	 * .ui.editparts.IGraphicalEditPart)
 	 */
 	public IGraphicalEditPart getCompartmentPartFromView(IGraphicalEditPart editpart) {
 		String hint = "" + ActivityActivityContentCompartmentEditPart.VISUAL_ID;
 		return ((GraphicalEditPart)editpart).getChildBySemanticHintOnPrimaryView(hint);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.IContainerNodeDescriptor#getGroupPriority()
 	 */
 	public int getGroupPriority() {
 		return IGroupPriority.ACTIVITY_PRIORITY;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.activity.activitygroup.AbstractContainerNodeDescriptor#getParentEOppositeReferences()
 	 */
 	@Override

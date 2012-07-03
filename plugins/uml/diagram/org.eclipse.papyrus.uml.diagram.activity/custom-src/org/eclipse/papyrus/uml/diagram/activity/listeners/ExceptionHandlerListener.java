@@ -35,9 +35,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ExceptionHandlerListener extends AbstractPapyrusModifcationTriggerListener {
 
 	private static NotificationFilter FEATURE_FILTER = null;
-	
+
 	public static NotificationFilter getFEATURE_FILTER() {
-		if (FEATURE_FILTER == null){
+		if(FEATURE_FILTER == null) {
 			FEATURE_FILTER = NotificationFilter.createFeatureFilter(UMLPackage.Literals.EXCEPTION_HANDLER__EXCEPTION_INPUT);
 		}
 		return FEATURE_FILTER;
@@ -50,7 +50,6 @@ public class ExceptionHandlerListener extends AbstractPapyrusModifcationTriggerL
 		}
 		return null;
 	}
-
 
 	@Override
 	public NotificationFilter getFilter() {

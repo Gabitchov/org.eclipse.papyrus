@@ -25,7 +25,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionStruct
  * @author arthur daussy
  * 
  */
-public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart extends ExpansionRegionStructuredActivityNodeContentCompartmentEditPart  implements IGroupCompartmentEditPart{
+public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart extends ExpansionRegionStructuredActivityNodeContentCompartmentEditPart implements IGroupCompartmentEditPart {
 
 	public CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
@@ -50,5 +50,4 @@ public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPa
 	public boolean isSelectable() {
 		return false;
 	}
-
 }

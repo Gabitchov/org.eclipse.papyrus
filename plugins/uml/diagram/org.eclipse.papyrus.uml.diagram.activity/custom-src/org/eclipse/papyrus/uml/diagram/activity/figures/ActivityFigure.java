@@ -69,14 +69,12 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
 			int minimumWith = 0;
 			int minimumHeight = 0;
-
 			// take in account the content of the figure activity
 			if((getContentFigure().getChildren().size() > 0)) {
 				IFigure content = (IFigure)getContentFigure().getChildren().get(0);
 				minimumWith = content.getPreferredSize().width + 50;
 				minimumHeight = content.getPreferredSize().height + 50;
 			}
-
 			// display name
 			if(getNameLabel() != null) {
 				if(getNameLabel().getPreferredSize().width > minimumWith) {
@@ -84,7 +82,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				}
 				minimumHeight += getNameLabel().getPreferredSize().height;
 			}
-
 			if(getHeaderSingleExecution() != null) {
 				if(getHeaderSingleExecution().getBounds().getTopRight().x > minimumWith) {
 					minimumWith = getHeaderSingleExecution().getBounds().getTopRight().x;
@@ -108,7 +105,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				} else {
 					bound.x = getBounds().x + GAP_X;
 					bound.y = getBounds().y + GAP_Y;
-
 				}
 				((IFigure)childrenList.get(i)).setBounds(bound);
 			}
@@ -159,7 +155,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			if(getPreconditionFigure().getChildren().size() > 0) {
 				((IFigure)getPreconditionFigure().getChildren().get(0)).setBounds(preconditionBound);;
 			}
-
 			// setPoscondtion
 			Rectangle postconditionBound = getPostconditionFigure().getBounds().getCopy();
 			postconditionBound.x = getPreconditionFigure().getBounds().x;
@@ -168,13 +163,11 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			if(getPostconditionFigure().getChildren().size() > 0) {
 				((IFigure)getPostconditionFigure().getChildren().get(0)).setBounds(postconditionBound);;
 			}
-
 			// setPoscondtion
 			Rectangle singleExecutionBound = getHeaderSingleExecution().getBounds().getCopy();
 			singleExecutionBound.x = getPreconditionFigure().getBounds().x + getPreconditionFigure().getBounds().width + GAP_X;;
 			singleExecutionBound.y = getPreconditionFigure().getBounds().y;
 			getHeaderSingleExecution().setBounds(singleExecutionBound);
-
 			// replace compartment stereotype properties
 			if(getStereotypePropertiesContent() != null) {
 				Rectangle pscontainer = getStereotypePropertiesContent().getBounds().getCopy();
@@ -182,7 +175,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 					pscontainer.y = getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height + GAP_Y;
 				getStereotypePropertiesContent().setBounds(pscontainer);
 			}
-
 			// place parameter
 			// replace compartment stereotype properties
 			if(getStereotypePropertiesContent() != null) {
@@ -191,7 +183,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				getParameterFigure().setBounds(paramBoundcontainer);
 				if(getParameterFigure().getChildren().size() > 0) {
 					((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);
-
 				}
 			} else {
 				Rectangle paramBoundcontainer = getParameterFigure().getBounds().getCopy();
@@ -201,9 +192,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 					((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);;
 				}
 			}
-
 		}
-
 	}
 
 	/**
@@ -250,14 +239,12 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	public ActivityFigure() {
 		super();
 		setLayoutManager(new ActivityLayoutManager());
-
 		shapeCompartment = new RectangleFigure();
 		shapeCompartment.setOpaque(false);
 		shapeCompartment.setFill(false);
 		shapeCompartment.setOutline(false);
 		shapeCompartment.setLineWidth(0);
 		add(shapeCompartment);
-
 		preconditionFigure = new RectangleFigure();
 		preconditionFigure.setOpaque(false);
 		preconditionFigure.setFill(false);
@@ -266,21 +253,18 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		preconditionFigure.setBorder(null);
 		preconditionFigure.setForegroundColor(ColorConstants.red);
 		add(preconditionFigure);
-
 		parameterFigure = new RectangleFigure();
 		parameterFigure.setOpaque(false);
 		parameterFigure.setFill(false);
 		parameterFigure.setOutline(false);
 		parameterFigure.setLineWidth(0);
 		add(parameterFigure);
-
 		postconditionFigure = new RectangleFigure();
 		postconditionFigure.setOpaque(false);
 		postconditionFigure.setFill(false);
 		postconditionFigure.setOutline(false);
 		postconditionFigure.setLineWidth(0);
 		add(postconditionFigure);
-
 		fHeaderSingleExecution = new WrappingLabel();
 		add(fHeaderSingleExecution);
 		// createContents();
@@ -318,12 +302,10 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	 * @generated
 	 */
 	private void createContents() {
-
 		RoundedRectangle activityBorderFigure0 = new RoundedRectangle();
 		this.add(activityBorderFigure0, BorderLayout.CENTER);
 		// to remove
 		activityBorderFigure0.setBackgroundColor(ColorConstants.red);
-
 		GridLayout layoutActivityBorderFigure0 = new GridLayout();
 		layoutActivityBorderFigure0.numColumns = 3;
 		layoutActivityBorderFigure0.makeColumnsEqualWidth = false;
@@ -332,14 +314,12 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		layoutActivityBorderFigure0.marginWidth = 0;
 		layoutActivityBorderFigure0.marginHeight = 0;
 		activityBorderFigure0.setLayoutManager(layoutActivityBorderFigure0);
-
 		RectangleFigure labelAndParameter1 = new RectangleFigure();
 		labelAndParameter1.setFill(false);
 		labelAndParameter1.setOutline(false);
 		labelAndParameter1.setLineWidth(0);
 		// to remove
 		labelAndParameter1.setBackgroundColor(ColorConstants.blue);
-
 		GridData constraintLabelAndParameter1 = new GridData();
 		constraintLabelAndParameter1.verticalAlignment = GridData.CENTER;
 		constraintLabelAndParameter1.horizontalAlignment = GridData.BEGINNING;
@@ -349,15 +329,12 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintLabelAndParameter1.grabExcessHorizontalSpace = true;
 		constraintLabelAndParameter1.grabExcessVerticalSpace = false;
 		activityBorderFigure0.add(labelAndParameter1, constraintLabelAndParameter1);
-
 		GridLayout layoutLabelAndParameter1 = new GridLayout();
 		layoutLabelAndParameter1.numColumns = 1;
 		layoutLabelAndParameter1.makeColumnsEqualWidth = true;
 		labelAndParameter1.setLayoutManager(layoutLabelAndParameter1);
-
 		fHeaderLabel = new WrappingLabel();
 		fHeaderLabel.setText("ActivityName");
-
 		GridData constraintFHeaderLabel = new GridData();
 		constraintFHeaderLabel.verticalAlignment = GridData.CENTER;
 		constraintFHeaderLabel.horizontalAlignment = GridData.BEGINNING;
@@ -367,15 +344,12 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintFHeaderLabel.grabExcessHorizontalSpace = true;
 		constraintFHeaderLabel.grabExcessVerticalSpace = false;
 		labelAndParameter1.add(fHeaderLabel, constraintFHeaderLabel);
-
 		fActivityParametersCompartment = new RectangleFigure();
 		// to remove
 		fActivityParametersCompartment.setBackgroundColor(ColorConstants.green);
-
 		fActivityParametersCompartment.setFill(false);
 		fActivityParametersCompartment.setOutline(false);
 		fActivityParametersCompartment.setLineWidth(0);
-
 		GridData constraintFActivityParametersCompartment = new GridData();
 		constraintFActivityParametersCompartment.verticalAlignment = GridData.CENTER;
 		constraintFActivityParametersCompartment.horizontalAlignment = GridData.BEGINNING;
@@ -385,16 +359,13 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintFActivityParametersCompartment.grabExcessHorizontalSpace = true;
 		constraintFActivityParametersCompartment.grabExcessVerticalSpace = false;
 		labelAndParameter1.add(fActivityParametersCompartment, constraintFActivityParametersCompartment);
-
 		fActivityParametersCompartment.setLayoutManager(new StackLayout());
-
 		RectangleFigure prePostContions1 = new RectangleFigure();
 		// to remove
 		prePostContions1.setBackgroundColor(ColorConstants.cyan);
 		prePostContions1.setFill(false);
 		prePostContions1.setOutline(false);
 		prePostContions1.setLineWidth(0);
-
 		GridData constraintPrePostContions1 = new GridData();
 		constraintPrePostContions1.verticalAlignment = GridData.CENTER;
 		constraintPrePostContions1.horizontalAlignment = GridData.BEGINNING;
@@ -404,18 +375,15 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintPrePostContions1.grabExcessHorizontalSpace = true;
 		constraintPrePostContions1.grabExcessVerticalSpace = false;
 		activityBorderFigure0.add(prePostContions1, constraintPrePostContions1);
-
 		GridLayout layoutPrePostContions1 = new GridLayout();
 		layoutPrePostContions1.numColumns = 1;
 		layoutPrePostContions1.makeColumnsEqualWidth = true;
 		prePostContions1.setLayoutManager(layoutPrePostContions1);
-
 		fActivityPreconditionsCompartment = new RectangleFigure();
 		fActivityPreconditionsCompartment.setBackgroundColor(ColorConstants.darkBlue);
 		fActivityPreconditionsCompartment.setFill(false);
 		fActivityPreconditionsCompartment.setOutline(false);
 		fActivityPreconditionsCompartment.setLineWidth(0);
-
 		GridData constraintFActivityPreconditionsCompartment = new GridData();
 		constraintFActivityPreconditionsCompartment.verticalAlignment = GridData.CENTER;
 		constraintFActivityPreconditionsCompartment.horizontalAlignment = GridData.BEGINNING;
@@ -425,14 +393,11 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintFActivityPreconditionsCompartment.grabExcessHorizontalSpace = true;
 		constraintFActivityPreconditionsCompartment.grabExcessVerticalSpace = false;
 		prePostContions1.add(fActivityPreconditionsCompartment, constraintFActivityPreconditionsCompartment);
-
 		fActivityPreconditionsCompartment.setLayoutManager(new StackLayout());
-
 		fActivityPostconditionsCompartment = new RectangleFigure();
 		fActivityPostconditionsCompartment.setFill(false);
 		fActivityPostconditionsCompartment.setOutline(false);
 		fActivityPostconditionsCompartment.setLineWidth(0);
-
 		GridData constraintFActivityPostconditionsCompartment = new GridData();
 		constraintFActivityPostconditionsCompartment.verticalAlignment = GridData.CENTER;
 		constraintFActivityPostconditionsCompartment.horizontalAlignment = GridData.BEGINNING;
@@ -442,12 +407,9 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintFActivityPostconditionsCompartment.grabExcessHorizontalSpace = true;
 		constraintFActivityPostconditionsCompartment.grabExcessVerticalSpace = false;
 		prePostContions1.add(fActivityPostconditionsCompartment, constraintFActivityPostconditionsCompartment);
-
 		fActivityPostconditionsCompartment.setLayoutManager(new StackLayout());
-
 		fHeaderSingleExecution = new WrappingLabel();
 		fHeaderSingleExecution.setText("");
-
 		GridData constraintFHeaderSingleExecution = new GridData();
 		constraintFHeaderSingleExecution.verticalAlignment = GridData.CENTER;
 		constraintFHeaderSingleExecution.horizontalAlignment = GridData.BEGINNING;
@@ -457,12 +419,10 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintFHeaderSingleExecution.grabExcessHorizontalSpace = false;
 		constraintFHeaderSingleExecution.grabExcessVerticalSpace = false;
 		activityBorderFigure0.add(fHeaderSingleExecution, constraintFHeaderSingleExecution);
-
 		fCompartmentFigure = new RectangleFigure();
 		fCompartmentFigure.setFill(false);
 		fCompartmentFigure.setOutline(false);
 		fCompartmentFigure.setLineWidth(0);
-
 		GridData constraintFCompartmentFigure = new GridData();
 		constraintFCompartmentFigure.verticalAlignment = GridData.FILL;
 		constraintFCompartmentFigure.horizontalAlignment = GridData.FILL;
@@ -472,7 +432,6 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		constraintFCompartmentFigure.grabExcessHorizontalSpace = true;
 		constraintFCompartmentFigure.grabExcessVerticalSpace = true;
 		activityBorderFigure0.add(fCompartmentFigure, constraintFCompartmentFigure);
-
 	}
 
 	/**
@@ -516,5 +475,4 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	public RectangleFigure getCompartmentFigure() {
 		return fCompartmentFigure;
 	}
-
 }

@@ -85,7 +85,6 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	@Override

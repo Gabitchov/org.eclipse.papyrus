@@ -69,7 +69,6 @@ public class AcceptEventActionParser extends MessageFormatParser implements ISem
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*

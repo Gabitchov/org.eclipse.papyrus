@@ -36,5 +36,4 @@ public class GravityConstrainedFlowLayoutConstraint {
 	public void setAlign(int align) {
 		this.align = align;
 	}
-
 }

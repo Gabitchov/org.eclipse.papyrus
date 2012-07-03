@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeStructure
  * @author arthur daussy
  * 
  */
-public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart extends SequenceNodeStructuredActivityNodeContentCompartmentEditPart  implements IGroupCompartmentEditPart{
+public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart extends SequenceNodeStructuredActivityNodeContentCompartmentEditPart implements IGroupCompartmentEditPart {
 
 	public CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
@@ -56,5 +56,4 @@ public class CustomSequenceNodeStructuredActivityNodeContentCompartmentEditPart 
 	public boolean isSelectable() {
 		return false;
 	}
-
 }

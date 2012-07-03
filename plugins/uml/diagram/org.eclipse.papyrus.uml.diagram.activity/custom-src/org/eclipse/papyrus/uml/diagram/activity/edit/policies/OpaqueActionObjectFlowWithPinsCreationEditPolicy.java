@@ -71,5 +71,4 @@ public class OpaqueActionObjectFlowWithPinsCreationEditPolicy extends ObjectFlow
 			connectionFeedback = null;
 		}
 	}
-
 }

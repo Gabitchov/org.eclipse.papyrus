@@ -38,7 +38,6 @@ public class SimpleLabel extends PapyrusWrappingLabel {
 		setTextJustification(WrappingLabel.CENTER);
 		setAlignment(WrappingLabel.CENTER);
 		setTextWrap(true);
-
 		// ensure wrapping performed at line breaks only (no auto wrap)
 		if(getTextFigure().getChildren().size() > 0) {
 			Object textFigChild = getTextFigure().getChildren().get(0);
@@ -51,7 +50,4 @@ public class SimpleLabel extends PapyrusWrappingLabel {
 			}
 		}
 	}
-
-
-
 }

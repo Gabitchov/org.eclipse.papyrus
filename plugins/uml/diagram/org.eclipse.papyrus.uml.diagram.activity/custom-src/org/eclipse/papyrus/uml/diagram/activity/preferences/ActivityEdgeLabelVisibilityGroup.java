@@ -56,12 +56,9 @@ public class ActivityEdgeLabelVisibilityGroup extends AbstractGroup {
 		Group visibilityGroup = new Group(parent, SWT.SCROLL_PAGE);
 		visibilityGroup.setLayout(new GridLayout());
 		visibilityGroup.setText(Messages.ActivityEdgePreferencePage_visibilityGroup);
-
 		// field for name label visibility
 		showNameLabelBooleanFieldEditor = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL, Messages.ActivityEdgePreferencePage_showName, visibilityGroup);
 		showNameLabelBooleanFieldEditor.setPage(dialogPage);
-
 		addFieldEditor(showNameLabelBooleanFieldEditor);
-
 	}
 }

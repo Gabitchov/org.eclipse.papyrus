@@ -68,8 +68,6 @@ public class InInterruptibleActivityRegionListener extends AbstractPapyrusModifc
 		}
 	}
 
-
-
 	/**
 	 * Get the list of all starting or ending Interruptible Edge wich are related to this {@link ActivityNode} and its descendant.
 	 * Those Iterable can be filled with null elements so test each element for null

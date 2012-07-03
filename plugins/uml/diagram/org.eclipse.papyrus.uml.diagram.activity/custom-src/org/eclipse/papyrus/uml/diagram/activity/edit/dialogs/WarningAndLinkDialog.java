@@ -129,7 +129,6 @@ public class WarningAndLinkDialog extends MessageDialog {
 					navigateToElement();
 					okPressed();
 				}
-
 			});
 		}
 		return hyperLink;

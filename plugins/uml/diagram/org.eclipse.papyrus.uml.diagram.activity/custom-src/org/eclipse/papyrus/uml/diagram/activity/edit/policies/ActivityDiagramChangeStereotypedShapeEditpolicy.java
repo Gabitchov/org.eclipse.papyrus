@@ -42,24 +42,20 @@ public class ActivityDiagramChangeStereotypedShapeEditpolicy extends ChangeStere
 			((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							if(part instanceof GraphicalEditPart) {
 								GraphicalEditPart gmfparent = (GraphicalEditPart)part.getParent();
 								GraphicalEditPart gmfpart = (GraphicalEditPart)part;
-
 								org.eclipse.papyrus.uml.diagram.activity.edit.commands.ElementToStereotypedShape command = new ElementToStereotypedShape(gmfpart.getEditingDomain(), gmfpart);
 								gmfpart.getEditingDomain().getCommandStack().execute(command);
-
 								ArrayList<EObject> elementToDrop = getAllSemanticLink(gmfpart);
 								Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 								Command deleteCommand = gmfpart.getCommand(deleteViewRequest);
 								gmfpart.getDiagramEditDomain().getDiagramCommandStack().execute(deleteCommand);
 								dropLink(gmfparent, elementToDrop);
 							}
-
 						}
 					});
 				}
@@ -75,13 +71,11 @@ public class ActivityDiagramChangeStereotypedShapeEditpolicy extends ChangeStere
 			((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							if(part instanceof GraphicalEditPart) {
 								GraphicalEditPart gmfparent = (GraphicalEditPart)part.getParent();
-
 								GraphicalEditPart gmfpart = (GraphicalEditPart)part;
 								DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 								ArrayList<EObject> list = new ArrayList<EObject>();
@@ -90,16 +84,12 @@ public class ActivityDiagramChangeStereotypedShapeEditpolicy extends ChangeStere
 								dropObjectsRequest.setLocation(gmfpart.getFigure().getBounds().getLocation());
 								Command command = gmfpart.getParent().getCommand(dropObjectsRequest);
 								gmfpart.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-
 								ArrayList<EObject> elementToDrop = getAllSemanticLink(gmfpart);
-
 								Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 								Command deleteCommand = gmfpart.getCommand(deleteViewRequest);
 								gmfpart.getDiagramEditDomain().getDiagramCommandStack().execute(deleteCommand);
-
 								dropLink(gmfparent, elementToDrop);
 							}
-
 						}
 					});
 				}

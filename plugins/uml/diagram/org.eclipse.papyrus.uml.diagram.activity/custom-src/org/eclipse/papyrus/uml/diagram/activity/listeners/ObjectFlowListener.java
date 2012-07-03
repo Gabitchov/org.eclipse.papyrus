@@ -28,15 +28,13 @@ import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 /**
  * @author tfaure
- *
+ * 
  */
-public class ObjectFlowListener extends AbstractPapyrusModifcationTriggerListener{
+public class ObjectFlowListener extends AbstractPapyrusModifcationTriggerListener {
 
 	@Override
-	
 	public NotificationFilter getFilter() {
 		// AN EDGE is contained only in activities and structured
 		NotificationFilter filter1 = NotificationFilter.createEventTypeFilter(Notification.ADD).and(NotificationFilter.createNotifierTypeFilter(UMLPackage.Literals.STRUCTURED_ACTIVITY_NODE));
@@ -50,19 +48,17 @@ public class ObjectFlowListener extends AbstractPapyrusModifcationTriggerListene
 			cc = new CompositeCommand("Modify Flow");
 			final ObjectFlow object = (ObjectFlow)notif.getNewValue();
 			TransactionalEditingDomain domain = (TransactionalEditingDomain)AdapterFactoryEditingDomain.getEditingDomainFor(object);
-			if (object.getGuard() == null){
+			if(object.getGuard() == null) {
 				LiteralBoolean bool = UMLFactory.eINSTANCE.createLiteralBoolean();
 				bool.setValue(true);
 				cc.compose(new EMFtoGMFCommandWrapper(SetCommand.create(domain, object, UMLPackage.Literals.ACTIVITY_EDGE__GUARD, bool)));
 			}
-			if (object.getWeight() == null){
+			if(object.getWeight() == null) {
 				LiteralInteger literalInteger = UMLFactory.eINSTANCE.createLiteralInteger();
 				literalInteger.setValue(1);
 				cc.compose(new EMFtoGMFCommandWrapper(SetCommand.create(domain, object, UMLPackage.Literals.ACTIVITY_EDGE__WEIGHT, literalInteger)));
 			}
 		}
-		return cc ;
+		return cc;
 	}
-
-	
 }

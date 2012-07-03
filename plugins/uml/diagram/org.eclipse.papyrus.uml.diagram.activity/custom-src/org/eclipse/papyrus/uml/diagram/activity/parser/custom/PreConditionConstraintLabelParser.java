@@ -10,7 +10,6 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
 
 import java.util.ArrayList;
@@ -99,7 +98,6 @@ public class PreConditionConstraintLabelParser implements IParser {
 		if(constraint == null) {
 			return "<NULL CONSTRAINT>"; //$NON-NLS-1$
 		}
-
 		return CHEVRON + constraint.getName();
 	}
 
@@ -138,5 +136,4 @@ public class PreConditionConstraintLabelParser implements IParser {
 		}
 		return null;
 	}
-
 }

@@ -64,20 +64,16 @@ public class RestoreRelatedLinksAction extends AbstractAction {
 	@Override
 	public void run() {
 		List<View> selection = getSelection();
-
 		if(selection.isEmpty()) {
 			return;
 		}
-
 		if(false == getHost() instanceof DiagramEditPart) {
 			return;
 		}
 		DiagramEditPart diagramEditPart = (DiagramEditPart)getHost();
-
 		final DiagramCommandStack commandStack = getHost().getDiagramEditDomain().getDiagramCommandStack();
 		CompoundCommand cmd = new CompoundCommand("Restore Related Links");
 		cmd.add(new ICommandProxy(new RestoreRelatedLinksCommand(diagramEditPart, selection)));
 		commandStack.execute(cmd, new NullProgressMonitor());
 	}
-
 }

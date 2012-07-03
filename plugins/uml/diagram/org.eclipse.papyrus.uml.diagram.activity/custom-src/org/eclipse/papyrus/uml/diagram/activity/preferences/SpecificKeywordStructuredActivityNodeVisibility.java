@@ -57,7 +57,6 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 		super(parent, key, dialogPage);
 		this.type = type;
 		createContent(parent);
-
 	}
 
 	/**
@@ -88,7 +87,5 @@ public class SpecificKeywordStructuredActivityNodeVisibility extends AbstractGro
 		specificKeywordVisibility = new BooleanFieldEditor(preferenceName, Messages.StructuredActivityNodePreferencePage_showSpecificKeyword, visibilityGroup);
 		specificKeywordVisibility.setPage(dialogPage);
 		addFieldEditor(specificKeywordVisibility);
-
 	}
-
 }

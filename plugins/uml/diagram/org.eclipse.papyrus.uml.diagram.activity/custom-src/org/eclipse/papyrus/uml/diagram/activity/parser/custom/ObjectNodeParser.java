@@ -105,7 +105,6 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	public String getPrintString(IAdaptable element, int flags) {
 		StringBuffer result = new StringBuffer();
 		Object adapter = element.getAdapter(EObject.class);
-
 		if(adapter instanceof CentralBufferNode) {
 			if(adapter instanceof DataStoreNode) {
 				result.append(DATASTORE_PREFIX);
@@ -183,5 +182,4 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getObjectNode_InState().equals(feature);
 	}
-
 }

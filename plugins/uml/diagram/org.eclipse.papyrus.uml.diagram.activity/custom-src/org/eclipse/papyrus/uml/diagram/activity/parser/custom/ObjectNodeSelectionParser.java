@@ -46,5 +46,4 @@ public class ObjectNodeSelectionParser extends AssociatedBehaviorParser {
 	protected EStructuralFeature getReferenceFeature() {
 		return UMLPackage.eINSTANCE.getObjectNode_Selection();
 	}
-
 }

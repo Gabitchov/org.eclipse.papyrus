@@ -10,7 +10,6 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  */
-
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.draw2d.geometry.Dimension;

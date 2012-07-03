@@ -70,7 +70,6 @@ public class CallBehaviorActionParser extends MessageFormatParser implements ISe
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*
@@ -81,7 +80,6 @@ public class CallBehaviorActionParser extends MessageFormatParser implements ISe
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-
 		if(obj instanceof CallBehaviorAction) {
 			CallBehaviorAction action = (CallBehaviorAction)obj;
 			String actionName = "";

@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNod
  * @author arthur daussy
  * 
  */
-public class CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart extends StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart  implements IGroupCompartmentEditPart{
+public class CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart extends StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart implements IGroupCompartmentEditPart {
 
 	public CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
@@ -56,5 +56,4 @@ public class CustomStructuredActivityNodeStructuredActivityNodeContentCompartmen
 	public boolean isSelectable() {
 		return false;
 	}
-
 }

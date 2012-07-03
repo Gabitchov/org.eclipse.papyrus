@@ -276,5 +276,4 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 		};
 		return opener.execute();
 	}
-
 }

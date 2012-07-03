@@ -46,5 +46,4 @@ public class InputDecisionParser extends AssociatedBehaviorParser {
 	protected EStructuralFeature getReferenceFeature() {
 		return UMLPackage.eINSTANCE.getDecisionNode_DecisionInput();
 	}
-
 }

@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActi
  * @author arthur daussy
  * 
  */
-public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart extends ActivityPartitionActivityPartitionContentCompartmentEditPart implements IGroupCompartmentEditPart{
+public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart extends ActivityPartitionActivityPartitionContentCompartmentEditPart implements IGroupCompartmentEditPart {
 
 	public CustomActivityPartitionActivityPartitionContentCompartmentEditPart(View view) {
 		super(view);
@@ -36,12 +36,4 @@ public class CustomActivityPartitionActivityPartitionContentCompartmentEditPart 
 	public boolean isSelectable() {
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-
-
 }

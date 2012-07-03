@@ -46,5 +46,4 @@ public class ObjectFlowSelectionParser extends AssociatedBehaviorParser {
 	protected EStructuralFeature getReferenceFeature() {
 		return UMLPackage.eINSTANCE.getObjectFlow_Selection();
 	}
-
 }

@@ -71,7 +71,6 @@ public class DecisionInputFlowParser extends MessageFormatParser implements ISem
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*
@@ -82,7 +81,6 @@ public class DecisionInputFlowParser extends MessageFormatParser implements ISem
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-
 		if(obj instanceof ObjectFlow) {
 			ActivityNode target = ((ObjectFlow)obj).getTarget();
 			if(target instanceof DecisionNode) {
@@ -137,5 +135,4 @@ public class DecisionInputFlowParser extends MessageFormatParser implements ISem
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getActivityEdge_Target().equals(feature) || UMLPackage.eINSTANCE.getDecisionNode_DecisionInputFlow().equals(feature);
 	}
-
 }

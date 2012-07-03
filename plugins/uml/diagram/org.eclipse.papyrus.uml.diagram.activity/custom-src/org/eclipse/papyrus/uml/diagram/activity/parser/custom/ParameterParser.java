@@ -72,7 +72,6 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*
@@ -83,7 +82,6 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Object obj = element.getAdapter(EObject.class);
-
 		if(obj instanceof Parameter) {
 			Parameter parameter = (Parameter)obj;
 			String name = parameter.getName();
@@ -144,5 +142,4 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature);
 	}
-
 }

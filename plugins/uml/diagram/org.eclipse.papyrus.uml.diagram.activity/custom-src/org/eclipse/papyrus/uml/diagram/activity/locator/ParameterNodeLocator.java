@@ -26,5 +26,4 @@ public class ParameterNodeLocator extends PortPositionLocator {
 		super(parentFigure, preferredSide);
 		setBorderItemOffset(20);
 	}
-
 }

@@ -94,7 +94,6 @@ public class StructuredActivityNodeKeywordParser extends MessageFormatParser imp
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
 		return isValidFeature(feature);
-
 	}
 
 	/*

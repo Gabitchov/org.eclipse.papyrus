@@ -31,12 +31,14 @@ public interface IGroupRequestAdvisor {
 
 	/**
 	 * Remove the listener from the Group framework
+	 * 
 	 * @param editpolicy
 	 */
 	public void removeListenner(IGroupNotifier editpolicy);
 
 	/**
 	 * Register into the group framework
+	 * 
 	 * @param eObject
 	 * @param editpolicy
 	 */
@@ -44,6 +46,7 @@ public interface IGroupRequestAdvisor {
 
 	/**
 	 * Notify to the group framework a change (come from a Notifing Edit policy)
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -51,6 +54,7 @@ public interface IGroupRequestAdvisor {
 
 	/**
 	 * Return all register edit policy
+	 * 
 	 * @return
 	 */
 	public Multimap<EObject, IGroupNotifier> getListenerRegistry();
