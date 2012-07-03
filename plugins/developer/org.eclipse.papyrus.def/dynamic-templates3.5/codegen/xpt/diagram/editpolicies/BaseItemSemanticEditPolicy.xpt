@@ -299,7 +299,7 @@ protected org.eclipse.gef.commands.Command getMoveCommand(org.eclipse.gmf.runtim
 	«REM»add move command«ENDREM»
 		org.eclipse.emf.ecore.EObject targetCEObject = req.getTargetContainer();
 		if(targetCEObject != null) {
-			org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(targetCEObject);
+			org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(targetCEObject);
 			if(provider != null) {
 				org.eclipse.gmf.runtime.common.core.command.ICommand moveCommand = provider.getEditCommand(req);
 				if(moveCommand != null) {

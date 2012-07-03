@@ -62,15 +62,15 @@ public class ServiceUtilsForActionHandlers {
 		IEditorPart editor;
 		try {
 			editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			ServicesRegistry serviceRegistry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
+			if(serviceRegistry != null) {
+				return serviceRegistry;
+			}
 		} catch (NullPointerException e) {
 			// Can't get the active editor
 			throw new ServiceNotFoundException("Can't get the current Eclipse Active Editor. No ServiceRegistry found.");
 		}
 
-		ServicesRegistry serviceRegistry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
-		if(serviceRegistry != null) {
-			return serviceRegistry;
-		}
 
 		// Not found
 		throw new ServiceNotFoundException("Can't get the ServiceRegistry from current Eclipse Active Editor");
