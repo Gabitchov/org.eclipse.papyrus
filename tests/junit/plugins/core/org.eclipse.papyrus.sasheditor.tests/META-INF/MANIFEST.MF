@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %fragmentName
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.tests;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: %providerName
