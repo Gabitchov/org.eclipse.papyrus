@@ -664,7 +664,10 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 		if(targetEditPart instanceof IGroupCompartmentEditPart) {
 			compartementEditPart = ((IGraphicalEditPart)targetEditPart);
 		} else if(targetEditPart instanceof IGraphicalEditPart) {
-			compartementEditPart = request.getNodeDescpitor().getCompartmentPartFromView((IGraphicalEditPart)targetEditPart);
+			IContainerNodeDescriptor nodeDescpitor = request.getNodeDescpitor();
+			if (nodeDescpitor != null){
+				compartementEditPart = nodeDescpitor.getCompartmentPartFromView((IGraphicalEditPart)targetEditPart);
+			}
 		}
 		if(compartementEditPart != null) {
 			/*
