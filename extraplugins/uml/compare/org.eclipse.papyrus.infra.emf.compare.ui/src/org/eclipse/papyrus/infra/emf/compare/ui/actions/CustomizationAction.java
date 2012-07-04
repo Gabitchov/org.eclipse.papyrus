@@ -23,6 +23,7 @@ import org.eclipse.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsD
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.window.Window;
@@ -33,7 +34,6 @@ import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * 
@@ -49,7 +49,7 @@ public class CustomizationAction extends Action {
 	private static final String TOOLTIPTEXT = Messages.CustomizationAction_ManageAppliedCustomization;
 
 	//FIXME imageProvider: avoid to duplicate this image, use the future service image provider?
-	private static final String CUSTOMIZATION_IMAGE_PATH = "icons/addUiCustom.gif"; //$NON-NLS-1$
+	private static final String CUSTOMIZATION_IMAGE_PATH = "icons/add_ui_custom.gif"; //$NON-NLS-1$
 
 	/**
 	 * the registered metamodels for the customization manager
@@ -66,7 +66,8 @@ public class CustomizationAction extends Action {
 	public CustomizationAction(final Collection<EPackage> registeredMetamodel) {
 		super(IAction.TOOL_TIP_TEXT, IAction.AS_PUSH_BUTTON);
 		setToolTipText(CustomizationAction.TOOLTIPTEXT);
-		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, CustomizationAction.CUSTOMIZATION_IMAGE_PATH));
+		ImageDescriptor desc = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageDescriptor(Activator.PLUGIN_ID, CustomizationAction.CUSTOMIZATION_IMAGE_PATH);
+		setImageDescriptor(desc);
 		this.registeredMetamodel = registeredMetamodel;
 	}
 

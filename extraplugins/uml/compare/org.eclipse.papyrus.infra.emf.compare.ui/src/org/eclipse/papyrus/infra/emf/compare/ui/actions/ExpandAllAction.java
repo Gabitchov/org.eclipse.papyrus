@@ -18,10 +18,10 @@ import java.util.Collection;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.papyrus.infra.emf.compare.ui.messages.Messages;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * 
@@ -71,7 +71,8 @@ public class ExpandAllAction extends Action {
 	 */
 	protected void init() {
 		setToolTipText(ExpandAllAction.TOOLTIPTEXT);
-		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, EXPAND_ALL_IMAGE_PATH));
+		ImageDescriptor desc = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageDescriptor(Activator.PLUGIN_ID, EXPAND_ALL_IMAGE_PATH);
+		setImageDescriptor(desc);
 	}
 
 	/**
