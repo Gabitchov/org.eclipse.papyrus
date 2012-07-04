@@ -47,7 +47,7 @@ public class BundlePropertiesEditor extends AbstractFileEditor {
 
 	}
 
-	public void save() throws Throwable {
+	public void save() {
 		// TODO Auto-generated method stub
 
 	}

@@ -25,8 +25,6 @@ import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEdit
 import org.eclipse.papyrus.eclipse.project.editors.project.PluginProjectEditor;
 import org.xml.sax.SAXException;
 
-
-
 public class PluginEditor extends PluginProjectEditor implements IPluginProjectEditor, IManifestEditor, IBuildEditor {
 
 	protected IManifestEditor manifest;
@@ -111,7 +109,7 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	}
 
 	@Override
-	public void save() throws Throwable {
+	public void save() {
 		super.save();
 		manifest.save();
 		build.save();

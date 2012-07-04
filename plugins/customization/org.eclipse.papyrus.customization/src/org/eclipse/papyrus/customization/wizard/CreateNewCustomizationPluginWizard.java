@@ -21,7 +21,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.generator.PluginGenerator;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationConfiguration;
 import org.eclipse.pde.internal.ui.wizards.plugin.NewPluginProjectWizard;
 import org.eclipse.swt.graphics.Image;
 import org.xml.sax.SAXException;

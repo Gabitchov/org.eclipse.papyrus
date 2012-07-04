@@ -18,8 +18,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.customization.display.DisplayManager;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
-import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationConfiguration;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginFactory;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.runtime.EmbeddedDisplayEngine;
 import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
@@ -54,7 +54,7 @@ public class CustomizationPage extends WizardPage {
 		container.setLayout(new PropertiesLayout());
 
 		if(configuration == null) {
-			this.configuration = CustomizationPackage.eINSTANCE.getCustomizationFactory().createCustomizationConfiguration();
+			this.configuration = CustomizationPluginFactory.eINSTANCE.createCustomizationConfiguration();
 		}
 
 		IStructuredSelection selection = new StructuredSelection(configuration);

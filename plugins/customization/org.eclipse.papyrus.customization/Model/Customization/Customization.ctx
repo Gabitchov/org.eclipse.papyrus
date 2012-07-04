@@ -2,7 +2,7 @@
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9"
 	xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9"
-	name="customization">
+	name="Customization plug-in">
 	<tabs label="Default" id="default" category="default">
 		<sections name="Single CustomizationConfiguration"
 			sectionFile="ui/SingleCustomizationConfiguration.xwt">

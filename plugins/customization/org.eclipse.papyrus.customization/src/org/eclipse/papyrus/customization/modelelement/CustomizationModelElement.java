@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.customization.creation.CustomizationElementCreationFactory;
-import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 
@@ -23,7 +23,7 @@ public class CustomizationModelElement extends EMFModelElement {
 	@Override
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
-		if(feature.getEType() == CustomizationPackage.eINSTANCE.getCustomizableElement()) {
+		if(feature.getEType() == CustomizationPluginPackage.eINSTANCE.getCustomizableElement()) {
 			return new CustomizationElementCreationFactory((EReference)feature);
 		}
 		return super.getValueFactory(propertyPath);

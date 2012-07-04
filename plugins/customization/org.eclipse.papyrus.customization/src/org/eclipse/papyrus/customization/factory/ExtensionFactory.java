@@ -11,51 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 
 
 public interface ExtensionFactory {
 
-	public static Registry registry = Registry.instance;
-
-	public static class Registry {
-
-		private static Registry instance = new Registry();
-
-		private final Map<EClass, ExtensionFactory> factories;
-
-		private Registry() {
-			factories = new HashMap<EClass, ExtensionFactory>();
-			factories.put(CustomizationPackage.eINSTANCE.getPropertyView(), new PropertyViewExtensionFactory());
-			factories.put(CustomizationPackage.eINSTANCE.getModelTemplate(), new ModelTemplateExtensionFactory());
-			factories.put(CustomizationPackage.eINSTANCE.getUICustom(), new UICustomExtensionFactory());
-			//factoryMap.put("Palette", new Factory("oep.p", "file", "test", true));
-			//factoryMap.put("PropertyView", ...);
-			factories.put(CustomizationPackage.eINSTANCE.getProfile(), new ProfileExtensionFactory());
-			factories.put(CustomizationPackage.eINSTANCE.getUMLModel(), new UMLModelExtensionFactory());
-		}
-
-		public ExtensionFactory getFactory(EClass type) {
-			return factories.get(type);
-		}
-
-		public void registerFactory(EClass forType, ExtensionFactory factory) {
-			factories.put(forType, factory);
-		}
-
-		public Collection<? extends ExtensionFactory> getFactories() {
-			return factories.values();
-		}
-	}
+	public static ExtensionFactoryRegistry registry = ExtensionFactoryRegistry.instance;
 
 	public void addElement(CustomizableElement element, PluginEditor editor);
+
+	public EClass getCustomizableElementClass();
 
 	public String getName();
 }

@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.papyrus.eclipse.project.editors.Activator;
 import org.eclipse.papyrus.eclipse.project.editors.file.BuildEditor;
 import org.eclipse.papyrus.eclipse.project.editors.file.ClasspathEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor;
@@ -121,9 +123,13 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 	 * @throws Throwable
 	 */
 	@Override
-	public void save() throws Throwable {
+	public void save() {
 		super.save();
-		this.javaProject.save(new NullProgressMonitor(), true);
+		try {
+			this.javaProject.save(new NullProgressMonitor(), true);
+		} catch (JavaModelException ex) {
+			Activator.log.error(ex);
+		}
 		this.classpathEditor.save();
 		this.buildEditor.save();
 	}

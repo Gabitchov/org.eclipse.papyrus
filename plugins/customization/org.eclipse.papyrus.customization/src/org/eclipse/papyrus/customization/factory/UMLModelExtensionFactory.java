@@ -11,10 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.UMLModel;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.UMLModel;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.w3c.dom.Element;
 
@@ -22,14 +24,14 @@ import org.w3c.dom.Element;
 public class UMLModelExtensionFactory extends FileBasedExtensionFactory {
 
 	public UMLModelExtensionFactory() {
-		super(Messages.UMLModelExtensionFactory_UMLModel, "org.eclipse.papyrus.extensionpoints.uml2.UMLLibrary", "path", "library", false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		super(Messages.UMLModelExtensionFactory_UMLModel, "org.eclipse.papyrus.uml.extensionpoints.UMLLibrary", "path", "library", false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.extensionpoints.uml2"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency("org.eclipse.papyrus.uml.extensionpoints"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -61,4 +63,7 @@ public class UMLModelExtensionFactory extends FileBasedExtensionFactory {
 		return "/umlLibrary/" + getFileName(element); //$NON-NLS-1$
 	}
 
+	public EClass getCustomizableElementClass() {
+		return CustomizationPluginPackage.eINSTANCE.getUMLModel();
+	}
 }

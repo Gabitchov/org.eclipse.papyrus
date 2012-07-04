@@ -91,6 +91,7 @@ public class EMFFacetProjectEditor extends JavaProjectEditor implements IEMFFace
 		this.manifestEditor.init();
 		this.pluginEditor.init();
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.eclipse.project.editors.project.JavaProjectEditor#getMissingFiles()
@@ -104,6 +105,7 @@ public class EMFFacetProjectEditor extends JavaProjectEditor implements IEMFFace
 		files.addAll(this.manifestEditor.getMissingFiles());
 		return files;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IEMFFacetProjectEditor#registerFacetSets(java.util.List)
@@ -205,11 +207,12 @@ public class EMFFacetProjectEditor extends JavaProjectEditor implements IEMFFace
 	}
 
 	@Override
-	public void save() throws Throwable {
+	public void save() {
 		this.pluginEditor.save();
 		this.manifestEditor.save();
 		super.save();
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IEMFFacetProjectEditor#addDependency(java.lang.String, java.lang.String)
@@ -226,6 +229,7 @@ public class EMFFacetProjectEditor extends JavaProjectEditor implements IEMFFace
 		this.pluginEditor.create();
 		this.manifestEditor.create();
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.eclipse.project.editors.project.JavaProjectEditor#createFiles(java.util.Set)
@@ -258,4 +262,3 @@ public class EMFFacetProjectEditor extends JavaProjectEditor implements IEMFFace
 		return buildCommand;
 	}
 }
-

@@ -27,9 +27,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.factory.ExtensionFactory;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.CustomizationConfiguration;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationConfiguration;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
 import org.xml.sax.SAXException;
 
 public class PluginGenerator {
@@ -48,6 +49,7 @@ public class PluginGenerator {
 		Set<String> natures = new HashSet<String>();
 		natures.add(PLUGIN_NATURE_ID);
 		editor.addNatures(natures);
+		editor.setSingleton(true);
 
 		for(CustomizableElement element : configuration.getElements()) {
 			ExtensionFactory factory = getFactory(element);
@@ -58,11 +60,12 @@ public class PluginGenerator {
 			}
 		}
 
-		try {
-			editor.save();
-		} catch (Throwable ex) {
-			Activator.log.error(ex);
-			return;
+		editor.save();
+
+
+		if(editor.getPluginEditor().exists()) {
+			editor.getBuildEditor().addToBuild(IPluginProjectEditor.PLUGIN_XML_FILE);
+			editor.getBuildEditor().save();
 		}
 
 		String pluginId = configuration.getPlugin();

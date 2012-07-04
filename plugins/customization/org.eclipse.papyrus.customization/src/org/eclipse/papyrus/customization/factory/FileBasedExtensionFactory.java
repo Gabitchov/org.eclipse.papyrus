@@ -19,14 +19,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.eclipse.papyrus.customization.Activator;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
 
-public class FileBasedExtensionFactory implements ExtensionFactory {
+public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 
 	private final String extensionPoint;
 

@@ -11,25 +11,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.ModelTemplate;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.ModelTemplate;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.w3c.dom.Element;
 
 
 public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
 
-	protected ModelTemplateExtensionFactory() {
-		super(Messages.ModelTemplateExtensionFactory_ModelTemplate, "org.eclipse.papyrus.wizards.templates", "file", "template", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	public ModelTemplateExtensionFactory() {
+		super(Messages.ModelTemplateExtensionFactory_ModelTemplate, "org.eclipse.papyrus.uml.diagram.wizards.templates", "file", "template", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.wizards.templates"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency("org.eclipse.papyrus.uml.diagram.wizards"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -47,6 +49,8 @@ public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
 			if(element.getLanguage() != null) {
 				extension.setAttribute("language", element.getLanguage()); //$NON-NLS-1$
 			}
+
+			//TODO: Papyrus now handles *.di and *.notation files
 		}
 
 		return extension;
@@ -55,5 +59,9 @@ public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
 	@Override
 	protected String getTargetPath(FileBasedCustomizableElement element) {
 		return "/modelTemplate/" + getFileName(element); //$NON-NLS-1$
+	}
+
+	public EClass getCustomizableElementClass() {
+		return CustomizationPluginPackage.eINSTANCE.getModelTemplate();
 	}
 }

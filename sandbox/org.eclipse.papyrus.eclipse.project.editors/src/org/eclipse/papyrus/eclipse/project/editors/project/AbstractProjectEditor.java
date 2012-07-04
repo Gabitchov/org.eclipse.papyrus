@@ -172,7 +172,7 @@ public abstract class AbstractProjectEditor extends AbstractFileEditor implement
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public void save() throws Throwable {
+	public void save() {
 		if(this.description != null) {
 			try {
 				getProject().setDescription(this.description, null);

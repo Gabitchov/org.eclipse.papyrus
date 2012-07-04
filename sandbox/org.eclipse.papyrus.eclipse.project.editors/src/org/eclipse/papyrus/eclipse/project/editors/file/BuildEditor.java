@@ -148,9 +148,15 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public void save() throws Throwable {
+	public void save() {
 		if(exists()) {
-			this.buildConfig.store(new FileOutputStream(this.buildFile), ""); //$NON-NLS-1$
+			try {
+				this.buildConfig.store(new FileOutputStream(this.buildFile), "");
+			} catch (FileNotFoundException ex) {
+				Activator.log.error(ex);
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
 		}
 	}
 

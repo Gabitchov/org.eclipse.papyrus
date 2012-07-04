@@ -3,9 +3,7 @@ package org.eclipse.papyrus.eclipse.project.editors.project;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -32,7 +31,7 @@ import org.xml.sax.SAXException;
 public class FeatureProjectEditor extends ProjectEditor implements IFeatureProjectEditor {
 
 	//TODO pour l'externalization : utiliser l'éditeur de Properties! dans java Utils
-	
+
 	private Document fragmentXML;;
 
 	private IFile fragmentFile;;
@@ -141,20 +140,23 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	 *      {@inheritDoc}
 	 */
 	@Override
-	public void save() throws Throwable {
+	public void save() {
 		if(exists()) {
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
-			StreamResult result = new StreamResult(new StringWriter());
-			DOMSource source = new DOMSource(this.fragmentXML);
-			transformer.transform(source, result);
+			try {
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = transformerFactory.newTransformer();
+				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
+				StreamResult result = new StreamResult(new StringWriter());
+				DOMSource source = new DOMSource(this.fragmentXML);
+				transformer.transform(source, result);
 
-			InputStream inputStream = getInputStream(result.getWriter().toString());
-			if(inputStream == null) {
-				throw new Exception("An error occured when modifying plugin.xml ; modifications aborted"); //$NON-NLS-1$
+				InputStream inputStream = getInputStream(result.getWriter().toString());
+				this.fragmentFile.setContents(inputStream, true, true, null);
+			} catch (TransformerException ex) {
+				Activator.log.error(ex);
+			} catch (CoreException ex) {
+				Activator.log.error(ex);
 			}
-			this.fragmentFile.setContents(inputStream, true, true, null);
 		}
 		super.save();
 	}

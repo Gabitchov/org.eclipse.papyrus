@@ -11,10 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.UICustom;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.UICustom;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.w3c.dom.Element;
 
@@ -22,7 +24,7 @@ import org.w3c.dom.Element;
 
 public class UICustomExtensionFactory extends FileBasedExtensionFactory {
 
-	protected UICustomExtensionFactory() {
+	public UICustomExtensionFactory() {
 		super(Messages.UICustomExtensionFactory_UICustom, "org.eclipse.emf.facet.infra.browser.custom.core.registration", "file", "browserCustomization", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
@@ -43,6 +45,10 @@ public class UICustomExtensionFactory extends FileBasedExtensionFactory {
 	@Override
 	protected String getTargetPath(FileBasedCustomizableElement element) {
 		return "/uiCustom/" + getFileName(element); //$NON-NLS-1$
+	}
+
+	public EClass getCustomizableElementClass() {
+		return CustomizationPluginPackage.eINSTANCE.getUICustom();
 	}
 
 }

@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -29,8 +30,9 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.messages.Messages;
-import org.eclipse.papyrus.customization.model.customization.CustomizableElement;
-import org.eclipse.papyrus.customization.model.customization.FileBasedCustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
@@ -86,7 +88,7 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 		//			Activator.log.error(ex);
 		//		}
 		//
-		//		editor.getBuildEditor().addToBuild(getTargetPath(element));
+		editor.getBuildEditor().addToBuild("propertyView/");
 	}
 
 	private void copyAll(final Context source, final File target) {
@@ -181,6 +183,10 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 		String simpleName = fileName.substring(0, fileName.lastIndexOf(".")); //$NON-NLS-1$
 		return "/propertyView/" + simpleName + "/" + fileName; //$NON-NLS-1$ //$NON-NLS-2$
 		//TODO : Copy the whole directory (.xwt files + model dependencies)
+	}
+
+	public EClass getCustomizableElementClass() {
+		return CustomizationPluginPackage.eINSTANCE.getPropertyView();
 	}
 
 }

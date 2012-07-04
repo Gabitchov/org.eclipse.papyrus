@@ -190,23 +190,29 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	@Override
-	public void save() throws IOException, CoreException {
+	public void save() {
 
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-		this.manifest.write(os);
+		try {
+			this.manifest.write(os);
 
-		final StringReader reader = new StringReader(os.toString("UTF-8")); //$NON-NLS-1$
-		this.manifestFile.setContents(new InputStream() {
+			final StringReader reader = new StringReader(os.toString("UTF-8")); //$NON-NLS-1$
+			this.manifestFile.setContents(new InputStream() {
 
-			@Override
-			public int read() throws IOException {
-				return reader.read();
-			}
-		}, true, true, null);
+				@Override
+				public int read() throws IOException {
+					return reader.read();
+				}
+			}, true, true, null);
 
-		//Use the PDE formatter for ManifestFiles
-		FormatOperation.format(this.manifestFile, new NullProgressMonitor());
+			//Use the PDE formatter for ManifestFiles
+			FormatOperation.format(this.manifestFile, new NullProgressMonitor());
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		} catch (CoreException ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	@Override

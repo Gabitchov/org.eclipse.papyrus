@@ -54,7 +54,7 @@ public interface IFileEditor {
 
 	//TODO : Remove that "Throwable" exception...
 	/** save the modification on the editor */
-	public void save() throws Throwable;
+	public void save();
 
 	/**
 	 * 

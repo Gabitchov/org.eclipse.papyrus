@@ -3,9 +3,9 @@ package org.eclipse.papyrus.customization.creation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.customization.model.customization.CustomizationPackage;
-import org.eclipse.papyrus.customization.model.customization.Profile;
-import org.eclipse.papyrus.customization.model.customization.UMLModel;
+import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
+import org.eclipse.papyrus.customization.model.customizationplugin.Profile;
+import org.eclipse.papyrus.customization.model.customizationplugin.UMLModel;
 import org.eclipse.papyrus.customization.wizard.CreateNewCustomizationPluginWizard;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
@@ -27,9 +27,9 @@ public class CustomizationElementCreationFactory extends EcorePropertyEditorFact
 		}
 
 		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
-		if(eClass == CustomizationPackage.eINSTANCE.getProfile()) {
+		if(eClass == CustomizationPluginPackage.eINSTANCE.getProfile()) {
 			((Profile)instance).setProvider(CreateNewCustomizationPluginWizard.current.getProvider());
-		} else if(eClass == CustomizationPackage.eINSTANCE.getUMLModel()) {
+		} else if(eClass == CustomizationPluginPackage.eINSTANCE.getUMLModel()) {
 			((UMLModel)instance).setProvider(CreateNewCustomizationPluginWizard.current.getProvider());
 		}
 		return instance;

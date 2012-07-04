@@ -9,11 +9,13 @@
 -->
 
 <plugin>
+   <extension-point id="factory" name="factory" schema="schema/factory.exsd"/>
+   <extension-point id="metamodel" name="metamodel" schema="schema/metamodel.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/papyrus/customization"
-            class="org.eclipse.papyrus.customization.model.customization.CustomizationPackage"
+            class="org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage"
             genModel="Model/Customization.genmodel"/>
    </extension>
    <extension
@@ -37,6 +39,24 @@
       <environment
             environmentModel="Model/Environment.xmi">
       </environment>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.customization.factory">
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.ModelTemplateExtensionFactory">
+      </factory>
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.ProfileExtensionFactory">
+      </factory>
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.PropertyViewExtensionFactory">
+      </factory>
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.UICustomExtensionFactory">
+      </factory>
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.UMLModelExtensionFactory">
+      </factory>
    </extension>
 
 </plugin>

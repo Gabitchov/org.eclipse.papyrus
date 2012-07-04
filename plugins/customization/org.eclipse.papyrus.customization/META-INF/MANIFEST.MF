@@ -1,7 +1,9 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.customization.model.customization,
- org.eclipse.papyrus.customization.model.customization.impl,
- org.eclipse.papyrus.customization.model.customization.util,
+Export-Package: org.eclipse.papyrus.customization.factory,
+ org.eclipse.papyrus.customization.generator,
+ org.eclipse.papyrus.customization.model.customizationplugin,
+ org.eclipse.papyrus.customization.model.customizationplugin.impl,
+ org.eclipse.papyrus.customization.model.customizationplugin.util,
  org.eclipse.papyrus.customization.plugin
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
