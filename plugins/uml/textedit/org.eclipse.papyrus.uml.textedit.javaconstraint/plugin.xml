@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            contributor="Eclipse Modeling Project"
+            language="JAVA constraint"
+            objectToEdit="org.eclipse.uml2.uml.Constraint">
+         <simpleeditor
+               editorConfiguration="org.eclipse.papyrus.uml.textedit.javaconstraint.JavaDirectEditorConfiguration">
+         </simpleeditor>
+      </DirectEditor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.papyrus.uml.textedit.javaconstraint.Activator"></startup>
+   </extension>
+
+</plugin>
