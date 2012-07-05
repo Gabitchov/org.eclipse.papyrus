@@ -111,7 +111,7 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 			parent = parent.eContainer();
 		}
 		SendSignalAction newElement = UMLFactory.eINSTANCE.createSendSignalAction();
-		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity);
+		CreateSendSignalActionDialog dialog = new CreateSendSignalActionDialog(Display.getDefault().getActiveShell(), parentActivity,newElement);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
 			EObject signal = dialog.getSelectedInvoked();

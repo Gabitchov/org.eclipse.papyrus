@@ -601,8 +601,7 @@
          <specializationType
                id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012"
                name="%metatype.name.Constraint_3012"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               edithelperadvice="org.eclipse.papyrus.uml.diagram.activity.edit.helpers.">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"/>
             <param name="semanticHint" value="3012"/>
          </specializationType>
@@ -2547,7 +2546,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          <![CDATA[Validate that Pin and corresponding Parameter are correctly synchronized]]>
       </category>
       <constraintProvider cache="true">
-         <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
+         <package namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML"/>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/pinAndParameterSynchronization">
                   <constraint id="org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer"
             lang="Java"
@@ -2581,7 +2580,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       </clientContext>
       <binding context="org.eclipse.papyrus.uml.diagram.activityDefaultCtx">
                   <constraint ref="org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer"/>
-               </binding>
+      </binding>
 
    </extension>
    
@@ -2674,7 +2673,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
 <extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
       <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.activityDefaultCtx"/>
+      <clientContext id="org.eclipse.papyrus.diagram.activityDefaultCtx"/>
    </extension>
 
 
@@ -3952,6 +3951,116 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       </viewProvider>
    </extension>
    
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Synchronize pins and parameters"
+            categoryId="org.eclipse.papyrus.editor.category"            
+            id="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand"
+            name="Synchronize pins and parameters">
+      </command>
+      </extension>
+
+<extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Global Synchronize pins and parameters"
+            id="org.eclipse.papyrus.uml.diagram.activity.GlobalSynchronizePinsParametersCommand"
+            name="Global Synchronize pins and parameters">
+      </command>
+</extension>
+
+<extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.uml.diagram.activity.handlers.SynchronizePinsParametersHandler"
+            commandId="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand">
+      </handler>
+      </extension>
+
+<extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.uml.diagram.activity.handlers.GlobalSynchronizePinsParametersHandler"
+            commandId="org.eclipse.papyrus.uml.diagram.activity.GlobalSynchronizePinsParametersCommand">
+      </handler>
+</extension>
+
+<!-- Defnition for seleciton is call action and editor is papyrus -->
+	<extension
+		point="org.eclipse.core.expressions.definitions">	
+	
+		<definition id="org.eclipse.papyrus.diagram.common.IsCallAction">
+			<and>
+			
+	
+			<with variable="selection">
+				<test property="org.eclipse.papyrus.UMLCallActionTester.isCallAction" value="true"
+					forcePluginActivation="true"/>
+			</with>
+			
+			</and>
+		</definition>
+	</extension>
+
+<!--Test for selection of a call Action -->
+	 <extension
+		point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester
+	       class="org.eclipse.papyrus.uml.diagram.activity.testers.UMLCallActionTester"
+	       id="org.eclipse.papyrus.UMLCallActionTester"
+	       namespace="org.eclipse.papyrus.UMLCallActionTester"
+	       properties="isCallAction"
+	       type="org.eclipse.jface.viewers.ISelection">
+	</propertyTester>
+	</extension>
+
+<extension
+      point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=fileMenu"
+		allPopups="false">
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand"
+            icon="icons/obj16/RefreshPin.png"
+            label="Synchronize pins and parameters"
+            mnemonic="Synchronize pins and parameters of the current selection"
+            style="push">
+         <visibleWhen>
+            <and>
+               
+            <reference
+                  definitionId="org.eclipse.papyrus.diagram.common.IsCallAction">
+            </reference>
+               
+            </and>
+         </visibleWhen>
+      </command>
+   </menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+    <command
+          commandId="org.eclipse.papyrus.uml.diagram.activity.SynchronizePinsParametersCommand"
+          icon="icons/obj16/RefreshPin.png"
+          label="Synchronize pins and parameters"
+          mnemonic="Synchronize pins and parameters of the current selection"
+          style="push">
+       <visibleWhen>
+          <and>
+             <reference
+                   definitionId="org.eclipse.papyrus.diagram.common.IsCallAction">
+             </reference>
+          </and>
+       </visibleWhen>
+    </command>
+ </menuContribution>
+</extension>
+
+	
+	
    <!-- Specific Edit Helper for Activity Node -->
 
    <!-- optionally, specify keybindings -->

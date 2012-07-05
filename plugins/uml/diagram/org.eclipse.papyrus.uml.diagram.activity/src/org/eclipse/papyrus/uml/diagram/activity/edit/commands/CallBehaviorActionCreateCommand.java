@@ -111,7 +111,7 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 			parent = parent.eContainer();
 		}
 		CallBehaviorAction newElement = UMLFactory.eINSTANCE.createCallBehaviorAction();
-		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity);
+		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity,newElement);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
 			EObject behavior = dialog.getSelectedInvoked();

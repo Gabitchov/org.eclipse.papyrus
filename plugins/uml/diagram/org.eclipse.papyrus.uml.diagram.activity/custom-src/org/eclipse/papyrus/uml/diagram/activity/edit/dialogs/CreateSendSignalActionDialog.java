@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.InvocationAction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -36,6 +37,8 @@ import com.google.common.collect.Sets;
  */
 public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 
+
+
 	/**
 	 * Create a new dialog to initialize a SendSignalAction.
 	 * 
@@ -44,8 +47,8 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 * @param owner
 	 *        the activity that owns the action
 	 */
-	public CreateSendSignalActionDialog(Shell shell, Activity owner) {
-		super(shell, owner);
+	public CreateSendSignalActionDialog(Shell shell, Activity owner,InvocationAction newAction) {
+		super(shell, owner,newAction);
 	}
 
 	/**

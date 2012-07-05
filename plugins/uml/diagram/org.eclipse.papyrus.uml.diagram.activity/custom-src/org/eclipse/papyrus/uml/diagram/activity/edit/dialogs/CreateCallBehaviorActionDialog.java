@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.InvocationAction;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -48,8 +49,8 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 * @param owner
 	 *        the activity that owns the action
 	 */
-	public CreateCallBehaviorActionDialog(Shell shell, Activity owner) {
-		super(shell, owner);
+	public CreateCallBehaviorActionDialog(Shell shell, Activity owner,InvocationAction newAction) {
+		super(shell, owner,newAction);
 	}
 
 	/**

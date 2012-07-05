@@ -26,6 +26,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.InvocationAction;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -47,8 +48,8 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 * @param owner
 	 *        the activity that owns the action
 	 */
-	public CreateCallOperationActionDialog(Shell shell, Activity owner) {
-		super(shell, owner);
+	public CreateCallOperationActionDialog(Shell shell, Activity owner,InvocationAction newAction) {
+		super(shell, owner,newAction);
 	}
 
 	/**

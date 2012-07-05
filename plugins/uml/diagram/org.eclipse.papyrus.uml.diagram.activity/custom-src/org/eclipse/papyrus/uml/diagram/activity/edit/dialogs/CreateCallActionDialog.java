@@ -27,6 +27,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.InvocationAction;
 
 /**
  * This class provides a dialog to initialize a CallAction at its creation.
@@ -45,8 +46,8 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	 * @param owner
 	 *        the activity that owns the action
 	 */
-	public CreateCallActionDialog(Shell shell, Activity owner) {
-		super(shell, owner);
+	public CreateCallActionDialog(Shell shell, Activity owner,InvocationAction newAction) {
+		super(shell, owner,newAction);
 	}
 
 	/**

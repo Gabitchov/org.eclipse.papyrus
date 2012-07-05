@@ -117,7 +117,7 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 		}
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
 		if(isOperationAlreadyManaged()) {
-			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity);
+			CreateCallOperationActionDialog dialog = new CreateCallOperationActionDialog(Display.getDefault().getActiveShell(), parentActivity,newElement);
 			getRequest();
 			if(IDialogConstants.OK_ID == dialog.open()) {
 				// initialize the invoked element (no need to use a command, since action is being created)
