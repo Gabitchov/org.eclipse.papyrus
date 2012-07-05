@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -296,11 +297,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
-
-
-		return getGEFWrapper(new MoveElementsCommand(req));
-
-
+		EObject targetCEObject = req.getTargetContainer();
+		if(targetCEObject != null) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
+			if(provider != null) {
+				ICommand moveCommand = provider.getEditCommand(req);
+				if(moveCommand != null) {
+					return new ICommandProxy(moveCommand);
+				}
+			}
+			return UnexecutableCommand.INSTANCE;
+		} else {
+			return getGEFWrapper(new MoveElementsCommand(req));
+		}
 	}
 
 	/**
@@ -454,7 +463,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(source != null) {
 				if(source.getAnnotatedElements().contains(target)
 
-					) {
+				) {
 					return false;
 				}
 			}
@@ -470,7 +479,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			if(source != null) {
 				if(source.getConstrainedElements().contains(target)
 
-					) {
+				) {
 					return false;
 				}
 			}
@@ -485,13 +494,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistExtension_1013(Package container, Extension linkInstance, Property source, Class target) {
 			try {
 				//ExtensionSource
-				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**
+				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				//ExtensionTarget
 
-				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**
+				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
