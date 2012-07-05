@@ -27,6 +27,8 @@ public class Messages extends NLS {
 
 	public static String LabelProviderUtil_CantProvideLabelProviderMessage;
 
+	public static String LabelProviderUtil_CustomizationNotFound;
+
 	public static String PapyrusTransactionalModelContentMergeViewer_MergeCommandLabel;
 
 	public static String PapyrusTransactionalModelContentMergeViewer_TheCurrentEditorDontAllowToUseUndoRedo;

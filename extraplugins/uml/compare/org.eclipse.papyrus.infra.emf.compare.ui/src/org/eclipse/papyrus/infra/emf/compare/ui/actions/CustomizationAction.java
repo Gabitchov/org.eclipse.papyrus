@@ -90,6 +90,7 @@ public class CustomizationAction extends Action {
 
 		final List<MetamodelView> initiallySelectedCustomizations = customizationManager.getRegisteredCustomizations();
 		final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(Display.getCurrent().getActiveShell(), initiallySelectedCustomizations, this.registeredMetamodel);
+
 		//TODO : override the dialog to hide the checkbox for the facet
 		if(Window.OK == loadCustomizationsDialog.open()) {
 			customizationManager.clearCustomizations();

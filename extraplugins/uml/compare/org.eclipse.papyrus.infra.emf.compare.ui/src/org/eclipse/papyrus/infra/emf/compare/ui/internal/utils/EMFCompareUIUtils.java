@@ -55,10 +55,11 @@ public class EMFCompareUIUtils {
 			res = ((ModelCompareInput)input).getRightResource();
 			metamodels.addAll(EMFHelper.getMetamodels(res));
 
-			//			List<DiffElement> diffs = ((ModelCompareInput)input).getDiffAsList();
-			//			for(DiffElement current : diffs) {
-			//				metamodels.add(current.eClass().getEPackage());
-			//			}
+			//we returns the applicable customizations on DiffElement too
+			final List<DiffElement> diffs = ((ModelCompareInput)input).getDiffAsList();
+			for(DiffElement current : diffs) {
+				metamodels.add(current.eClass().getEPackage());
+			}
 		}
 		return metamodels;
 	}
@@ -73,6 +74,8 @@ public class EMFCompareUIUtils {
 	 *         if the parameter metamodels is <code>null</code>, this method initializes it
 	 *         it returns the parameter metamodels filled with the metamodels referenced by the diff element
 	 */
+	//TODO not used, we display the all applicable customization for the 2 viewers see bug 384358: [UML Compare] problems with customizations applied on the viewers
+	@Deprecated //deprecated since July 2012
 	public static final Collection<EPackage> getMetamodelForDiffCustomization(final Object input, Collection<EPackage> metamodels) {
 		if(metamodels == null) {
 			metamodels = new HashSet<EPackage>();

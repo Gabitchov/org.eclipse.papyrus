@@ -81,7 +81,7 @@ public class PapyrusCustomizableParameterizedStructureMergeViewer extends Parame
 	@Override
 	protected void inputChanged(final Object input, final Object oldInput) {
 		if(input instanceof ModelCompareInput) {
-			metamodels = EMFCompareUIUtils.getMetamodelForDiffCustomization(input, metamodels);
+			metamodels = EMFCompareUIUtils.getMetamodelForCustomization(input, metamodels);
 		}
 		super.inputChanged(input, oldInput);
 	}
