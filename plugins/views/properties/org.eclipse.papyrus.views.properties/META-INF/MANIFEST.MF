@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.views.properties,
  org.eclipse.papyrus.views.properties.catalog,
  org.eclipse.papyrus.views.properties.creation,
+ org.eclipse.papyrus.views.properties.extensions,
  org.eclipse.papyrus.views.properties.modelelement,
  org.eclipse.papyrus.views.properties.providers,
  org.eclipse.papyrus.views.properties.root,

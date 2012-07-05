@@ -86,7 +86,7 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 		label.setText(Messages.CustomizationDialog_selectContextToEdit);
 		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
-		Collection<Context> contexts = ConfigurationManager.instance.getContexts();
+		Collection<Context> contexts = ConfigurationManager.instance.getCustomizableContexts();
 
 		availableContexts = new List(contents, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		availableContexts.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));

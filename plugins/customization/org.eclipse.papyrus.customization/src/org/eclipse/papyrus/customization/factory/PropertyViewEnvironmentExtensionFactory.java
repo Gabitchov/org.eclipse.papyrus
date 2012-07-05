@@ -22,7 +22,7 @@ import org.eclipse.papyrus.customization.plugin.PluginEditor;
 public class PropertyViewEnvironmentExtensionFactory extends FileBasedExtensionFactory {
 
 	public PropertyViewEnvironmentExtensionFactory() {
-		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, "org.eclipse.papyrus.views.properties.Environment", "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
+		super(Messages.EnvironmentExtensionFactory_PropertyViewEnvironment, "org.eclipse.papyrus.views.properties.environment", "environmentModel", "environment", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
 	}
 
 	@Override

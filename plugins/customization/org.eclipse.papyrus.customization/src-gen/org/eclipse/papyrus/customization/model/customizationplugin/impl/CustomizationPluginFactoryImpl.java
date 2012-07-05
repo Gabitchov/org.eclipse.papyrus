@@ -63,6 +63,8 @@ public class CustomizationPluginFactoryImpl extends EFactoryImpl implements Cust
 			case CustomizationPluginPackage.PALETTE: return createPalette();
 			case CustomizationPluginPackage.PROFILE: return createProfile();
 			case CustomizationPluginPackage.UML_MODEL: return createUMLModel();
+			case CustomizationPluginPackage.CONSTRAINTS_ENVIRONMENT: return createConstraintsEnvironment();
+			case CustomizationPluginPackage.PROPERTY_VIEW_ENVIRONMENT: return createPropertyViewEnvironment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

@@ -77,16 +77,18 @@ public class ConfigurationManager {
 
 	private final PropertiesRoot root;
 
-	private ResourceSet resourceSet = new ResourceSetImpl();
+	private final ResourceSet resourceSet = new ResourceSetImpl();
 
 	private boolean started = false;
 
 	/**
 	 * All contexts (Whether they are applied or not)
 	 */
-	private Map<URI, Context> contexts = new LinkedHashMap<URI, Context>();
+	private final Map<URI, Context> contexts;
 
-	private Set<Context> enabledContexts = new LinkedHashSet<Context>();
+	private final Set<Context> enabledContexts;
+
+	private final Map<Context, Boolean> customizableContexts;
 
 	/**
 	 * The global constraint engine
@@ -100,7 +102,9 @@ public class ConfigurationManager {
 
 	private ConfigurationManager() {
 		constraintEngine = new ViewConstraintEngineImpl();
-		enabledContexts = new HashSet<Context>();
+		enabledContexts = new LinkedHashSet<Context>();
+		customizableContexts = new HashMap<Context, Boolean>();
+		contexts = new LinkedHashMap<URI, Context>();
 
 		root = RootFactory.eINSTANCE.createPropertiesRoot();
 
@@ -225,7 +229,7 @@ public class ConfigurationManager {
 
 			if(model instanceof Context) {
 				Context context = (Context)model;
-				addContext(context, isApplied(context));
+				addContext(context, isApplied(context), true);
 			}
 		} catch (IOException ex) {
 			//Silent : The file has been removed from the preferences, but the folder still exists
@@ -242,7 +246,7 @@ public class ConfigurationManager {
 	 * @see Preferences
 	 */
 	public boolean isApplied(Context context) {
-		return findDescriptor(context).isApplied();
+		return !isCustomizable(context) || findDescriptor(context).isApplied();
 	}
 
 	/**
@@ -281,17 +285,30 @@ public class ConfigurationManager {
 	 * @throws IOException
 	 *         If the model behind this URI is not a valid Context
 	 */
-	public void addContext(URI uri) throws IOException {
+	public void addContext(URI uri, boolean customizable) throws IOException {
 		EObject firstRootObject = loadEMFModel(uri);
 
 		if(firstRootObject != null) {
 			for(EObject rootObject : firstRootObject.eResource().getContents()) {
 				if(rootObject instanceof Context) {
 					Context context = (Context)rootObject;
-					addContext(context, isApplied(context));
+					addContext(context, isApplied(context), customizable);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Adds a context via its URI. The URI should represent a valid Context model.
+	 * The model is loaded in the ConfigurationManager's resourceSet.
+	 * 
+	 * @param uri
+	 *        The context's URI
+	 * @throws IOException
+	 *         If the model behind this URI is not a valid Context
+	 */
+	public void addContext(URI uri) throws IOException {
+		addContext(uri, true);
 	}
 
 	/**
@@ -309,8 +326,29 @@ public class ConfigurationManager {
 	 * @see ConfigurationManager#addContext(URI)
 	 */
 	public void addContext(Context context, boolean apply) {
+		addContext(context, apply, true);
+	}
+
+	/**
+	 * Programmatically register a new context to this ConfigurationManager.
+	 * Most of the time, new contexts should be registered through {@link ContextExtensionPoint}.
+	 * However, you can still call this method when creating a Context at runtime, programmatically
+	 * (Wizards, ...)
+	 * All {@link Context} should have unique names
+	 * 
+	 * @param context
+	 *        The new context to register
+	 * @param apply
+	 *        Whether the context should be enabled or not
+	 * 
+	 * @see ConfigurationManager#addContext(URI)
+	 */
+	public void addContext(Context context, boolean apply, boolean isCustomizable) {
+		customizableContexts.put(context, isCustomizable);
 		contexts.put(EcoreUtil.getURI(context), context);
-		if(apply) {
+
+		//If the context is not customizable, then it must always be applied
+		if(apply || !isCustomizable) {
 			enableContext(context, true);
 		} else {
 			disableContext(context, true);
@@ -338,6 +376,10 @@ public class ConfigurationManager {
 	 * @see #enableContext(Context, boolean)
 	 */
 	public void disableContext(Context context, boolean update) {
+		if(!isCustomizable(context)) {
+			throw new IllegalStateException("Non-customizable contexts cannot be disabled. Trying to disable " + context.getName());
+		}
+
 		update = enabledContexts.remove(context) && update;
 
 		//Update the preferences
@@ -469,7 +511,7 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Returns all the known contexts, whether they are applied or not.
+	 * Returns all the known contexts, even if they are not applied
 	 * To get only applied contexts, see {@link #getEnabledContexts()}
 	 * 
 	 * @return All known contexts
@@ -480,7 +522,24 @@ public class ConfigurationManager {
 		return contexts.values();
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * Returns all the known customizable contexts.
+	 * 
+	 * @return All known contexts
+	 * 
+	 * @see PropertiesRoot#getContexts()
+	 * @see {@link #getEnabledContexts()}
+	 */
+	public Collection<Context> getCustomizableContexts() {
+		List<Context> result = new LinkedList<Context>();
+		for(Context context : contexts.values()) {
+			if(isCustomizable(context)) {
+				result.add(context);
+			}
+		}
+		return result;
+	}
+
 	private <T extends WidgetType> T getDefaultWidget(int featureID, Class<T> theClass, String widgetName, String namespacePrefix) {
 		EStructuralFeature feature = EnvironmentPackage.Literals.ENVIRONMENT.getEStructuralFeature(featureID);
 		for(Environment environment : root.getEnvironments()) {
@@ -604,6 +663,10 @@ public class ConfigurationManager {
 	 *        The context to delete
 	 */
 	public void deleteContext(Context context) {
+		if(!isCustomizable(context)) {
+			throw new IllegalStateException("Non-customizable contexts cannot be deleted. Trying to delete " + context.getName());
+		}
+
 		Resource resource = context.eResource();
 		contexts.remove(EcoreUtil.getURI(context));
 		disableContext(context, true);
@@ -713,5 +776,17 @@ public class ConfigurationManager {
 	 */
 	public ResourceSet getResourceSet() {
 		return resourceSet;
+	}
+
+	public boolean isCustomizable(Context propertyViewConfiguration) {
+
+		if(customizableContexts.containsKey(propertyViewConfiguration)) {
+			return customizableContexts.get(propertyViewConfiguration);
+		}
+
+		//Default value for isCustomizable is true. However, if the context is 
+		//not stored in customizableContexts, then it's an error. We should 
+		//disable customization tools for this one...
+		return false;
 	}
 }

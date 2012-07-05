@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.views.properties.extensions;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -36,13 +37,23 @@ public class ContextExtensionPoint {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for(IConfigurationElement e : config) {
-			final String contextResource = e.getAttribute("contextModel"); //$NON-NLS-1$
-			URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
-			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
 			try {
-				ConfigurationManager.instance.addContext(uri);
+				final String contextResource = e.getAttribute("contextModel"); //$NON-NLS-1$
+
+				final boolean isCustomizable;
+				if(Arrays.asList(e.getAttributeNames()).contains("isCustomizable")) {
+					isCustomizable = Boolean.parseBoolean(e.getAttribute("isCustomizable")); //$NON-NLS-1$
+				} else {
+					isCustomizable = true; //Default value
+				}
+				URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
+				//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
+
+				ConfigurationManager.instance.addContext(uri, isCustomizable);
 			} catch (IOException ex) {
 				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$
+			} catch (Exception ex) {
+				Activator.log.error(ex);
 			}
 		}
 	}

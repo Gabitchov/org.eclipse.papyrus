@@ -62,7 +62,8 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 		contextState.init();
 
-		for(Context context : configurationManager.getContexts()) {
+		//Only customizable Property view contexts should appear here
+		for(Context context : configurationManager.getCustomizableContexts()) {
 			boolean applied = configurationManager.isApplied(context);
 			Button checkbox = new Button(self, SWT.CHECK);
 			checkbox.setText(getLabel(context));

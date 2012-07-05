@@ -38,5 +38,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Customization.ecore#//UMLModel/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Customization.ecore#//UMLModel/provider"/>
     </genClasses>
+    <genClasses ecoreClass="Customization.ecore#//ConstraintsEnvironment"/>
+    <genClasses ecoreClass="Customization.ecore#//PropertyViewEnvironment"/>
   </genPackages>
 </genmodel:GenModel>

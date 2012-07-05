@@ -472,6 +472,10 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		createEAttribute(umlModelEClass, UML_MODEL__ICONPATH);
 		createEAttribute(umlModelEClass, UML_MODEL__DESCRIPTION);
 		createEAttribute(umlModelEClass, UML_MODEL__PROVIDER);
+
+		constraintsEnvironmentEClass = createEClass(CONSTRAINTS_ENVIRONMENT);
+
+		propertyViewEnvironmentEClass = createEClass(PROPERTY_VIEW_ENVIRONMENT);
 	}
 
 	/**
@@ -509,6 +513,8 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		paletteEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 		profileEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 		umlModelEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
+		constraintsEnvironmentEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
+		propertyViewEnvironmentEClass.getESuperTypes().add(this.getFileBasedCustomizableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(customizationConfigurationEClass, CustomizationConfiguration.class, "CustomizationConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -544,6 +550,10 @@ public class CustomizationPluginPackageImpl extends EPackageImpl implements Cust
 		initEAttribute(getUMLModel_Iconpath(), ecorePackage.getEString(), "iconpath", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUMLModel_Description(), ecorePackage.getEString(), "description", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUMLModel_Provider(), ecorePackage.getEString(), "provider", null, 0, 1, UMLModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constraintsEnvironmentEClass, ConstraintsEnvironment.class, "ConstraintsEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(propertyViewEnvironmentEClass, PropertyViewEnvironment.class, "PropertyViewEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

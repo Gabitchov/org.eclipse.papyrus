@@ -59,6 +59,13 @@
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="isCustomizable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Indicates whether this property view configuration is customizable. Default is true. If this configuration is not marked as customizable, it won&apos;t appear in the Property view customization tools, and the user won&apos;t be able to disable this configuration. Use this option when the user shouldn&apos;t be allowed to modify this configuration (e.g. when the property view configuration is used in a Wizard).
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

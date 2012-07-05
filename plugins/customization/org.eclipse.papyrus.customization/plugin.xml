@@ -31,7 +31,8 @@
    <extension
          point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="Model/Customization/Customization.ctx">
+            contextModel="Model/Customization/Customization.ctx"
+            isCustomizable="false">
       </context>
    </extension>
    <extension
@@ -56,6 +57,12 @@
       </factory>
       <factory
             factory="org.eclipse.papyrus.customization.factory.UMLModelExtensionFactory">
+      </factory>
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.ConstraintEnvironmentExtensionFactory">
+      </factory>
+      <factory
+            factory="org.eclipse.papyrus.customization.factory.PropertyViewEnvironmentExtensionFactory">
       </factory>
    </extension>
 

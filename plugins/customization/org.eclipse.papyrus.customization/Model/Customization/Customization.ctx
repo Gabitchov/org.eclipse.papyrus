@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9"
 	xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9"
 	name="Customization plug-in">
-	<tabs label="Default" id="default" category="default">
+	<tabs label="Customization plug-in" id="customizationPlugin" category="org.eclipse.papyrus">
 		<sections name="Single CustomizationConfiguration"
 			sectionFile="ui/SingleCustomizationConfiguration.xwt">
 			<widget href="ui/SingleCustomizationConfiguration.xwt#/" />
