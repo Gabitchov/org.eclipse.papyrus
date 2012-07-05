@@ -307,6 +307,13 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    
+    <!-- Juno update site -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <rm:uri format="{0}releases/juno/">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
 
     <!-- Papyrus Richtext -->
 <!--     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false"> -->
