@@ -65,7 +65,7 @@ public class UMLTransactionalMergerProvider implements ITransactionalMergerProvi
 		if(mergerTypes == null) {
 			mergerTypes = new PapyrusCompareMap<Class<? extends DiffElement>, Class<? extends ITransactionalMerger>>();
 			//its it better to set MyClassImpl.class than MyInterface.class, in the 2nd case, we don't  have guarantee that the method getBestMerger find the real best merger
-			//another workaround is to implmements the method providesMerger in the Extension
+			//another workaround is to implemements the method providesMerger in the Extension
 			mergerTypes.put(GeneralizationSourceChangedExtensionImpl.class, GeneralizationSourceMerger.class);
 			mergerTypes.put(GeneralizationTargetChangedExtensionImpl.class, GeneralizationTargetMerger.class);
 			mergerTypes.put(UMLProfileApplicationAdditionImpl.class, UMLProfileApplicationAdditionMerger.class);
@@ -73,9 +73,7 @@ public class UMLTransactionalMergerProvider implements ITransactionalMergerProvi
 			mergerTypes.put(UMLStereotypeApplicationAdditionImpl.class, UMLStereotypeApplicationAdditionMerger.class);
 			mergerTypes.put(UMLStereotypeApplicationRemovalImpl.class, UMLStereotypeApplicationRemovalMerger.class);
 
-			//the mergers for UMLStereotype
-			mergerTypes.put(UMLStereotypeApplicationAdditionImpl.class, DefaultExtensionTransactionalMerger.class);
-			mergerTypes.put(UMLStereotypeApplicationRemovalImpl.class, DefaultExtensionTransactionalMerger.class);
+			//the mergers for Stereotype properties
 			mergerTypes.put(UMLStereotypeAttributeChangeLeftTargetImpl.class, DefaultExtensionTransactionalMerger.class);
 			mergerTypes.put(UMLStereotypeAttributeChangeRightTargetImpl.class, DefaultExtensionTransactionalMerger.class);
 			mergerTypes.put(UMLStereotypeReferenceChangeLeftTargetImpl.class, DefaultExtensionTransactionalMerger.class);
