@@ -125,4 +125,14 @@
             name="ValidateDelMarkersFromSubtree">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
+      <client
+            class="org.eclipse.papyrus.infra.services.validation.ValidationFunctions"
+            decorationType="org.eclipse.emf.ecore.diagnostic">
+      </client>
+   </extension>
 </plugin>

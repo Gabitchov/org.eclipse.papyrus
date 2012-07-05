@@ -10,6 +10,7 @@
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.services.markerlistener;
 
 import java.util.Map;
@@ -19,8 +20,10 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.ui.resources.FileChangeManager;
 import org.eclipse.gmf.runtime.common.ui.resources.IFileObserver;
@@ -121,23 +124,22 @@ public class MarkersMonitorService implements IService {
 		IMarker[] markers = null;
 
 		try {
-			URI uri = ServiceUtils.getInstance().getModelSet(servicesRegistry).getResources().get(0).getURI();
-			String platformResourceString = uri.toPlatformString(true);
-			IFile file = (platformResourceString != null ? ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
-			if(file != null) {
-				try {
-					markers = file.findMarkers(IMarker.PROBLEM, true, 0);
-				} catch (CoreException e) {
-					Activator.log.error(e.getMessage(), e);
-				}
-			}
-
-			for(int i = 0; i < markers.length; i++) {
-				EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null, ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
-				int severity = markers[i].getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-				if(eObjectFromMarker != null && severity > IMarker.SEVERITY_INFO) {
+			EList<Resource> resources = ServiceUtils.getInstance().getModelSet(servicesRegistry).getResources();
+			// loop over all resources (e.g. error markers are on notation, breakpoints on UML model)
+			for(Resource resource : resources) {
+				URI uri = resource.getURI();
+				String platformResourceString = uri.toPlatformString(true);
+				IFile file = (platformResourceString != null ? ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
+				if(file != null) {
 					try {
-						decorationService.addDecoration(markers[i].toString(), eObjectFromMarker, severity, (String)markers[i].getAttribute(IMarker.MESSAGE));
+						markers = file.findMarkers(null /* all markers */, true, 0);
+
+						for(int i = 0; i < markers.length; i++) {
+							EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(markers[i], null, ServiceUtils.getInstance().getModelSet(servicesRegistry).getTransactionalEditingDomain());
+							if(eObjectFromMarker != null) {
+								decorationService.addDecoration(markers[i], eObjectFromMarker);
+							}
+						}
 					} catch (CoreException e) {
 						Activator.log.error(e.getMessage(), e);
 					}
@@ -236,8 +238,7 @@ public class MarkersMonitorService implements IService {
 		 */
 		public void handleMarkerDeleted(IMarker marker, @SuppressWarnings("rawtypes") Map attributes) {
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(null, attributes, domain);
-			int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-			if(eObjectFromMarker != null && severity == IMarker.SEVERITY_INFO) {
+			if(eObjectFromMarker != null) {
 				decorationService.removeDecoration(marker.toString());
 			}
 		}
@@ -250,13 +251,8 @@ public class MarkersMonitorService implements IService {
 		 */
 		public void handleMarkerChanged(IMarker marker) {
 			EObject eObjectFromMarker = MarkerListenerUtils.eObjectFromMarkerOrMap(marker, null, domain);
-			int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-			if(eObjectFromMarker != null && severity > IMarker.SEVERITY_INFO) {
-				try {
-					decorationService.addDecoration(marker.toString(), eObjectFromMarker, severity, (String)marker.getAttribute(IMarker.MESSAGE));
-				} catch (CoreException e) {
-					Activator.log.error(e.getMessage(), e);
-				}
+			if(eObjectFromMarker != null) {
+				decorationService.addDecoration(marker, eObjectFromMarker);
 			}
 		}
 	}

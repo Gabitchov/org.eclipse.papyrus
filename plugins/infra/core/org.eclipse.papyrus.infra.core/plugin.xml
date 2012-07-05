@@ -298,6 +298,15 @@
             type="notation">
       </parser>
    </extension>
-	
-	
+   <extension
+       id="org.eclipse.papyrus.modelmarker"
+       name="model marker"
+       point="org.eclipse.core.resources.markers">
+     <attribute
+           name="uri">
+     </attribute>
+     <persistent
+           value="true">
+     </persistent>
+   </extension> 	
 </plugin>

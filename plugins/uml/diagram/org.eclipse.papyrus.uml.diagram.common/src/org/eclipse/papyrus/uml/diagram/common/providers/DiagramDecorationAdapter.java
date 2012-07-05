@@ -9,13 +9,20 @@
  *
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
+ *  Ansgar Radermacher (CEA LIST) - ansgar.radermacher@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.providers;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.Locator;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.services.decorator.Decoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget.Direction;
@@ -23,6 +30,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -37,8 +45,9 @@ public class DiagramDecorationAdapter {
 
 
 	/** The decoration. */
-	protected IDecoration decoration;
+	protected EList<IDecoration> decorations;
 
+	protected EList<IPapyrusDecoration> pDecorations;
 
 	/** The decoration image. */
 	protected Image decorationImage;
@@ -47,25 +56,17 @@ public class DiagramDecorationAdapter {
 
 	/**
 	 * Instantiates a new diagram decoration adapter.
-	 *
-	 * @param decoratorTarget the decorator target
+	 * 
+	 * @param decoratorTarget
+	 *        the decorator target
 	 */
 	public DiagramDecorationAdapter(IDecoratorTarget decoratorTarget) {
 		this.decoratorTarget = decoratorTarget;
 	}
 
 	/**
-	 * Gets the decoration.
-	 *
-	 * @return the decoration
-	 */
-	public IDecoration getDecoration() {
-		return this.decoration;
-	}
-
-	/**
 	 * Gets the decorator target.
-	 *
+	 * 
 	 * @return the decorator target
 	 */
 	public IDecoratorTarget getDecoratorTarget() {
@@ -75,62 +76,80 @@ public class DiagramDecorationAdapter {
 	/**
 	 * Removes the decoration.
 	 */
-	public void removeDecoration() {
-		if(getDecoration() == null || getDecoratorTarget() == null) {
+	public void removeDecorations() {
+		if((decoratorTarget == null) || (decorations == null)) {
 			return;
 		}
-		removeDecoration(getDecoratorTarget(), getDecoration());
+		for(IDecoration decoration : decorations) {
+			removeDecoration(decoration);
+		}
 
 	}
 
 	/**
 	 * Removes the decoration.
-	 *
-	 * @param decoration the decoration
+	 * 
+	 * @param decoration
+	 *        the decoration
 	 */
 	public void removeDecoration(IDecoration decoration) {
-		if(decoration == null || getDecoratorTarget() == null) {
+		if(decoration == null || decoratorTarget == null) {
 			return;
 		}
-		removeDecoration(getDecoratorTarget(), decoration);
+		removeDecoration(decoratorTarget, decoration);
 
 	}
 
 	/**
 	 * Sets the decoration.
-	 *
-	 * @param image the image
-	 * @param position the position
-	 * @param percentageFromSource the percentage from source
-	 * @param margin the margin
-	 * @param isVolatile the is volatile
+	 * 
+	 * @param image
+	 *        the image
+	 * @param position
+	 *        the position
+	 * @param percentageFromSource
+	 *        the percentage from source
+	 * @param margin
+	 *        the margin
+	 * @param isVolatile
+	 *        the is volatile
 	 * @return the i decoration
 	 */
-	public IDecoration setDecoration(Image image, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
-		this.decoration = getDecoration(getDecoratorTarget(), image, position, percentageFromSource, margin, isVolatile);
-		this.decorationImage = image;
-		return getDecoration();
-	}
+	/*
+	 * public IDecoration setDecoration(Image image, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
+	 * // this.decoration = getDecoration(getDecoratorTarget(), image, position, percentageFromSource, margin, isVolatile);
+	 * this.decorationImage = image;
+	 * return getDecoration();
+	 * }
+	 */
 
 	/**
 	 * Sets the decoration.
-	 *
-	 * @param figure the figure
-	 * @param position the position
-	 * @param percentageFromSource the percentage from source
-	 * @param margin the margin
-	 * @param isVolatile the is volatile
+	 * 
+	 * @param figure
+	 *        the figure
+	 * @param position
+	 *        the position
+	 * @param percentageFromSource
+	 *        the percentage from source
+	 * @param margin
+	 *        the margin
+	 * @param isVolatile
+	 *        the is volatile
 	 * @return the i decoration
 	 */
-	public IDecoration setDecoration(IFigure figure, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
-		this.decoration = getDecoration(getDecoratorTarget(), figure, position, percentageFromSource, margin, isVolatile);
-		return getDecoration();
-	}
+	/*
+	 * public IDecoration setDecoration(IFigure figure, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
+	 * // this.decoration = getDecoration(getDecoratorTarget(), figure, position, percentageFromSource, margin, isVolatile);
+	 * return getDecoration();
+	 * }
+	 */
 
 	/**
 	 * Sets the decorator target.
-	 *
-	 * @param decoratorTarget the new decorator target
+	 * 
+	 * @param decoratorTarget
+	 *        the new decorator target
 	 */
 	public void setDecoratorTarget(IDecoratorTarget decoratorTarget) {
 		this.decoratorTarget = decoratorTarget;
@@ -138,7 +157,7 @@ public class DiagramDecorationAdapter {
 
 	/**
 	 * Gets the decoration image.
-	 *
+	 * 
 	 * @return the decoration image
 	 */
 	public Image getDecorationImage() {
@@ -147,8 +166,9 @@ public class DiagramDecorationAdapter {
 
 	/**
 	 * Gets the tool tip.
-	 *
-	 * @param message the message
+	 * 
+	 * @param message
+	 *        the message
 	 * @return the tool tip
 	 */
 	public Label getToolTip(String message) {
@@ -157,49 +177,85 @@ public class DiagramDecorationAdapter {
 
 	/**
 	 * Sets the decoration.
-	 *
-	 * @param idecoration the idecoration
-	 * @param percentageFromSource the percentage from source
-	 * @param margin the margin
-	 * @param isVolatile the is volatile
-	 * @return the i decoration
+	 * 
+	 * @param pDecoration
+	 *        A set of papyrus decorations
+	 * @param percentageFromSource
+	 *        the distance in percent from source node (only used for decorations on an edge). 50 indicates in the middle
+	 *        between source and target
+	 * @param margin
+	 *        the margin from right corner (only used for decorations on a node)
+	 * @param isVolatile
+	 *        the is volatile
+	 * @return the set of JFace decorations
 	 */
-	public IDecoration setDecoration(org.eclipse.papyrus.infra.services.decoration.util.IDecoration idecoration, int percentageFromSource, int margin, boolean isVolatile) {
+	public EList<IDecoration> setDecorations(EList<IPapyrusDecoration> pDecorations, int percentageFromSource, int margin, boolean isVolatile) {
 
-		this.decorationImage = (idecoration.getDecorationImage() != null) ? idecoration.getDecorationImage().createImage() : null;
-		this.decoration = getDecoration(getDecoratorTarget(), getDecorationImage(), idecoration.getPosition(), percentageFromSource, margin, isVolatile);
+		final int distBetweenIconsPercent = 20;
+		decorations = new BasicEList<IDecoration>();
+		if(pDecorations.size() > 1) {
+			percentageFromSource -= distBetweenIconsPercent / 2 * (pDecorations.size() - 1);
+		}
+		for(IPapyrusDecoration pDecoration : pDecorations) {
+			// TODO: createImage each time leaks!
+			Image image = pDecoration.getDecorationImageForGE().createImage();
+			IDecoration decoration = setDecoration(decoratorTarget, image, percentageFromSource, margin, isVolatile);
+			decorations.add(decoration);
+			String message = pDecoration.getMessage();
+			Label toolTip = getToolTip(message);
+			if(decoration instanceof Decoration) {
+				((Decoration)decoration).setToolTip(toolTip);
+			}
+			percentageFromSource += distBetweenIconsPercent;
+			margin += image.getBounds().width;
+		}
+		this.pDecorations = pDecorations;
 
-		return getDecoration();
+		return decorations;
 	}
 
 	/**
 	 * Removes the decoration.
-	 *
-	 * @param decoratorTarget the decorator target
-	 * @param Decoration the decoration
+	 * 
+	 * @param decoratorTarget
+	 *        the decorator target
+	 * @param Decoration
+	 *        the decoration
 	 */
-	public void removeDecoration(IDecoratorTarget decoratorTarget, org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration Decoration) {
-		if(Decoration instanceof IFigure) {
-			((IFigure)Decoration).getParent().remove((IFigure)Decoration);
+	public void removeDecoration(IDecoratorTarget decoratorTarget, IDecoration decoration) {
+		if(decoration instanceof IFigure) {
+			((IFigure)decoration).getParent().remove((IFigure)decoration);
 		}
 		GraphicalEditPart ownerEditPart = (GraphicalEditPart)decoratorTarget.getAdapter(GraphicalEditPart.class);
-		ownerEditPart.getViewer().getVisualPartMap().remove(Decoration);
+		ownerEditPart.getViewer().getVisualPartMap().remove(decoration);
 
 	}
 
 	/**
 	 * Gets the decoration.
-	 *
-	 * @param decoratorTarget the decorator target
-	 * @param image the image
-	 * @param position the position
-	 * @param percentageFromSource the percentage from source
-	 * @param margin the margin
-	 * @param isVolatile the is volatile
+	 * TODO: has side effect, rename?
+	 * 
+	 * @param decoratorTarget
+	 *        the decorator target
+	 * @param image
+	 *        the image
+	 * @param position
+	 *        the position
+	 * @param percentageFromSource
+	 *        the percentage from source, only evaluated for edge decorations
+	 * @param margin
+	 *        the margin in pixels from the target position.
+	 * @See org.eclipse.gmf.runtime.diagram.ui.services.decorator.addShapeDecoration:
+	 *      The margin is the space, in himetric units, between the
+	 *      shape's edge and the decoration. A positive margin will place
+	 *      the figure outside the shape, a negative margin will place the
+	 *      decoration inside the shape.
+	 * @param isVolatile
+	 *        the is volatile
 	 * @return the decoration
 	 */
-	public org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration getDecoration(IDecoratorTarget decoratorTarget, Image image, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
-		View view = (View)decoratorTarget.getAdapter(View.class);
+	public IDecoration setDecoration(IDecoratorTarget decoratorTarget, Image image, int percentageFromSource, int margin, boolean isVolatile) {
+		final View view = (View)decoratorTarget.getAdapter(View.class);
 		org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration decoration = null;
 		if(view == null || view.eResource() == null || image == null) {
 			return decoration;
@@ -208,14 +264,30 @@ public class DiagramDecorationAdapter {
 		if(editPart == null || editPart.getViewer() == null) {
 			return decoration;
 		}
-		if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
+		if(editPart instanceof GraphicalEditPart) {
+			GraphicalEditPart gEditPart = (GraphicalEditPart)editPart;
 			if(view instanceof Edge) {
 				decoration = decoratorTarget.addConnectionDecoration(image, percentageFromSource, isVolatile);
 			} else {
-				if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-					margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
+				IFigure parentFig = gEditPart.getFigure();
+				margin = MapModeUtil.getMapMode(parentFig).DPtoLP(margin);
+				Locator locator = new MultiIconTopRightLocator(parentFig, margin);
+
+				// test to create fig from image in order to use addDecorator directly with a locator
+
+				// ImageFigure fig = new ImageFigure(image);
+				// fig.setParent(parentFig);
+				// fig.setVisible(true);
+				// BorderLayout layout = new BorderLayout();
+				// layout.setConstraint(fig, BorderLayout.CENTER);
+				// Rectangle r = fig.getBounds();
+
+				// Direction NORTH_EAST will be ignored, since we impose "our" locator below
+				decoration = decoratorTarget.addShapeDecoration(image, IDecoratorTarget.Direction.NORTH_EAST, margin, isVolatile);
+				if(decoration instanceof Decoration) {
+					((Decoration)decoration).setLocator(locator);
 				}
-				decoration = decoratorTarget.addShapeDecoration(image, getDirection(position), margin, isVolatile);
+				// decoration = decoratorTarget.addDecoration(fig, locator, isVolatile);
 			}
 
 		}
@@ -223,11 +295,78 @@ public class DiagramDecorationAdapter {
 	}
 
 	/**
+	 * Gets the decoration.
+	 * 
+	 * @param decoratorTarget
+	 *        the decorator target
+	 * @param figure
+	 *        the figure
+	 * @param position
+	 *        the position
+	 * @param percentageFromSource
+	 *        the percentage from source
+	 * @param margin
+	 *        the margin
+	 * @param isVolatile
+	 *        the is volatile
+	 * @return the decoration
+	 */
+	public IDecoration setDecoration(IDecoratorTarget decoratorTarget, IFigure figure, int percentageFromSource, int margin, boolean isVolatile) {
+
+		final View view = (View)decoratorTarget.getAdapter(View.class);
+		org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration decoration = null;
+		if(view == null || view.eResource() == null || figure == null) {
+			return decoration;
+		}
+		EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
+		if(editPart == null || editPart.getViewer() == null) {
+			return decoration;
+		}
+		if(editPart instanceof GraphicalEditPart) {
+			if(view instanceof Edge) {
+				decoration = decoratorTarget.addConnectionDecoration(figure, percentageFromSource, isVolatile);
+			} else {
+				IFigure parentFig = ((GraphicalEditPart)editPart).getFigure();
+				margin = MapModeUtil.getMapMode(parentFig).DPtoLP(margin);
+
+				Locator locator = new MultiIconTopRightLocator(parentFig, margin);
+
+				decoration = decoratorTarget.addDecoration(figure, locator, isVolatile);
+			}
+
+		}
+		return decoration;
+	}
+
+	public class MultiIconTopRightLocator implements Locator {
+
+		public MultiIconTopRightLocator(IFigure parentFig, int rightMargin) {
+			this.parentFig = parentFig;
+			this.rightMargin = rightMargin;
+		}
+
+		public void relocate(IFigure target) {
+			// TODO Auto-generated method stub
+			Rectangle b = parentFig.getBounds();
+			Point p = new Point(b.getTopRight());
+			p.setX(p.x - target.getSize().width - rightMargin);
+			target.setLocation(p);
+		}
+
+		protected IFigure parentFig;
+
+		protected int rightMargin;
+	};
+
+
+	/**
 	 * Gets the direction.
-	 *
-	 * @param position the position
+	 * 
+	 * @param position
+	 *        the position
 	 * @return the direction
 	 */
+	@Deprecated
 	private Direction getDirection(PreferedPosition position) {
 
 		switch(position) {
@@ -256,40 +395,5 @@ public class DiagramDecorationAdapter {
 		}
 	}
 
-	/**
-	 * Gets the decoration.
-	 *
-	 * @param decoratorTarget the decorator target
-	 * @param figure the figure
-	 * @param position the position
-	 * @param percentageFromSource the percentage from source
-	 * @param margin the margin
-	 * @param isVolatile the is volatile
-	 * @return the decoration
-	 */
-	public org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration getDecoration(IDecoratorTarget decoratorTarget, IFigure figure, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
-
-		View view = (View)decoratorTarget.getAdapter(View.class);
-		org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration decoration = null;
-		if(view == null || view.eResource() == null || figure == null) {
-			return decoration;
-		}
-		EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
-		if(editPart == null || editPart.getViewer() == null) {
-			return decoration;
-		}
-		if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-			if(view instanceof Edge) {
-				decoration = decoratorTarget.addConnectionDecoration(figure, percentageFromSource, isVolatile);
-			} else {
-				if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-					margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
-				}
-				decoration = decoratorTarget.addShapeDecoration(figure, getDirection(position), margin, isVolatile);
-			}
-
-		}
-		return decoration;
-	}
 
 }

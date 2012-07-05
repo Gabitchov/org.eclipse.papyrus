@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.draw2d.Label;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
@@ -31,18 +31,16 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator;
-import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF;
-import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -162,7 +160,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 */
 		public void refresh() {
 
-			removeDecoration();
+			diagramDecorationAdapter.removeDecorations();
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
 			if(view == null || view.eResource() == null) {
 				return;
@@ -172,51 +170,24 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				return;
 			}
 			// add decoration
-			IDecoration deco = null;
-			org.eclipse.papyrus.infra.services.decoration.util.IDecoration decoration = null;
 			if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 				if(view.getElement() != null) {
-					decoration = decorationService.getDecoration(view.getElement(), false);
-					if(decoration != null) {
-						decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
+					EList<IPapyrusDecoration> decorations = decorationService.getDecorations(view.getElement(), false);
+					if((decorations != null) && (decorations.size() > 0)) {
 
 						if(view instanceof Edge) {
 							/* Test *///decoration.setDecorationImage(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/obj16/Device.gif"));
-							deco = diagramDecorationAdapter.setDecoration(decoration, 50, 0, true);
+							diagramDecorationAdapter.setDecorations(decorations, 50, 0, true);
 						} else {
 							int margin = -1;
 							if(editPart instanceof org.eclipse.gef.GraphicalEditPart) {
 								margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)editPart).getFigure()).DPtoLP(margin);
 							}
-							deco = diagramDecorationAdapter.setDecoration(decoration, 0, margin, true);
+							diagramDecorationAdapter.setDecorations(decorations, 0, margin, true);
 						}
 					}
 				}
 			}
-
-
-			if(deco != null) {
-				setDecoration(deco);
-				String message = decoration.getMessage();
-				Label toolTip = diagramDecorationAdapter.getToolTip(message);
-				getDecoration().setToolTip(toolTip);
-			}
-		}
-
-		private ImageDescriptor getImageDescriptor(int severity) {
-
-			ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-			ImageDescriptor overlay = null;
-			switch(severity) {
-			case 2://Error
-				overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_OBJS_ERROR_TSK);
-				break;
-			case 1://Warning
-				overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_OBJS_WARN_TSK);
-				break;
-			}
-
-			return overlay;
 		}
 
 		/**

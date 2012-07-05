@@ -10,6 +10,7 @@
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.services.markerlistener.util;
 
 import java.util.Map;
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MarkerListenerUtils.
  */
@@ -80,6 +80,9 @@ public class MarkerListenerUtils {
 	public static EObject eObjectOfFragment(URI uri, EditingDomain domain) {
 		try {
 			for(Resource resource : domain.getResourceSet().getResources()) {
+				if(uri.fragment() == null) {
+					continue;
+				}
 				EObject eObjectOfMarker = resource.getEObject(uri.fragment());
 				if(eObjectOfMarker != null) {
 					return eObjectOfMarker;

@@ -15,23 +15,21 @@
 package org.eclipse.papyrus.views.modelexplorer;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
-import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
-import org.eclipse.papyrus.infra.services.decoration.util.IDecoration;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ModelExplorerDecorationAdapter;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * the label provider that inherits of modisco label provider.
@@ -65,7 +63,8 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 	 * @return the message of the marker for the specified element
 	 */
 	public String getMarkerMessage(Object element) {
-		return decorationService.getDecoration(element, false).getMessage();
+		EList<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
+		return Decoration.getMessageFromDecorations(decorations);
 	}
 
 	/**
@@ -93,41 +92,19 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 			adapter.setDecoratorTarget(super.getImage(element));
 		}
 
-		//Set the decoration with default position
+		//Set the adapter decoration with position as indicated by decoration (from decoration service)
 		if(element != null) {
 			if(element instanceof EObject || (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
-				IDecoration decoration = decorationService.getDecoration(element, true);
-				decoration.setDecorationImage(getImageDescriptor(decoration.getSeverity()));
-				adapter.setDecoration(decoration.getDecorationImage(), PreferedPosition.DEFAULT);
+				EList<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
+				if(decorations != null) {
+					adapter.setDecorations(decorations);
+				}
 			}
 		}
 
 		//return the target decorated
 		return adapter.getDecoratedImage();
 
-	}
-
-	/**
-	 * Gets the image descriptor from severity.
-	 * 
-	 * @param severity
-	 *        the severity
-	 * @return the image descriptor
-	 */
-	private ImageDescriptor getImageDescriptor(int severity) {
-
-		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
-		ImageDescriptor overlay = null;
-		switch(severity) {
-		case 2://Error
-			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_DEC_FIELD_ERROR);
-			break;
-		case 1://Warning
-			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_DEC_FIELD_WARNING);
-			break;
-		}
-
-		return overlay;
 	}
 
 	/**

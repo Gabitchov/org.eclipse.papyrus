@@ -27,10 +27,6 @@ public class Activator extends AbstractUIPlugin {
 	/** The Constant PLUGIN_ID. */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.services.decoration"; //$NON-NLS-1$
 
-	// The Hierarchical Markers ID
-	/** The HIERARCHICA l_ markers. */
-	public final String HIERARCHICAL_MARKERS = "org.eclipse.papyrus.validation.HierarchicalMarkers";
-
 	/** The shared instance (Singleton pattern). */
 	private static Activator plugin;
 
@@ -46,7 +42,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 *
+	 * 
 	 * @param context
 	 * @throws Exception
 	 */
@@ -61,7 +57,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 *
+	 * 
 	 * @param context
 	 * @throws Exception
 	 */
@@ -75,7 +71,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance.
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {

@@ -8,21 +8,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
+ *  Ansgar Radermacher (CEA LIST) - ansgar.radermacher@cea.fr 
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration.util;
 
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.WordUtils;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.services.decoration.Activator;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.IDecorationSpecificFunctions;
+import org.eclipse.papyrus.infra.services.decoration.IDecorationSpecificFunctions.MarkChildren;
 
 
 // TODO: Auto-generated Javadoc
@@ -38,20 +41,6 @@ public class DecorationUtils {
 	private EObject eObject;
 
 	/**
-	 * The Enum MarkChildren.
-	 */
-
-	public enum MarkChildren {
-
-		/** The NO. */
-		NO,
-		/** The DIRECT. */
-		DIRECT,
-		/** The ALL. */
-		ALL
-	};
-
-	/**
 	 * Instantiates a new decoration utils.
 	 * 
 	 * @param element
@@ -63,9 +52,6 @@ public class DecorationUtils {
 		}
 
 		EObject eObject = (EObject)Platform.getAdapterManager().getAdapter(element, EObject.class);
-		if(eObject == null) {
-			throw new IllegalArgumentException("The decorated element cannot be resolved to an EObject");
-		}
 
 		this.element = element;
 		setEObject(eObject);
@@ -136,24 +122,8 @@ public class DecorationUtils {
 	}
 
 	/**
-	 * Gets the hierarchical markers.
-	 * 
-	 * @return the hierarchical markers
-	 */
-	public MarkChildren getHierarchicalMarkers() {
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String choice = store.getString(Activator.getDefault().HIERARCHICAL_MARKERS);
-		if(choice.equals("NO")) {
-			return MarkChildren.NO;
-		} else if(choice.equals("DIRECT")) {
-			return MarkChildren.DIRECT;
-		} else {
-			return MarkChildren.ALL;
-		}
-	}
-
-	/**
-	 * Gets the decoration severity.
+	 * Returns a list of decorations for a given UML element. It's a list, since there might be
+	 * more than one decoration (e.g. a validation marker and a tracepoint) for this element.
 	 * 
 	 * @param decorationService
 	 *        the decoration service
@@ -161,41 +131,66 @@ public class DecorationUtils {
 	 *        the navigate to parents
 	 * @return the decoration severity
 	 */
-	public int getDecorationSeverity(DecorationService decorationService, boolean navigateToParents) {
+	public EList<IPapyrusDecoration> getDecorations(DecorationService decorationService, boolean navigateToParents) {
 		Map<String, Decoration> decorations = getDecorations(decorationService);
-		MarkChildren markChildren = getHierarchicalMarkers();
-		int severity = 0;
+		// child decorations are organized in a map indexed by the decoration type
+		EList<IPapyrusDecoration> foundDecorations = new BasicEList<IPapyrusDecoration>();
+		Map<String, EList<IPapyrusDecoration>> childDecorationMap = new HashMap<String, EList<IPapyrusDecoration>>();
 		if(decorations != null) {
-			Iterator it = decorations.entrySet().iterator();
-			while(it.hasNext()) {
-				Map.Entry pairs = (Map.Entry)it.next();
-				Decoration decoration = (Decoration)pairs.getValue();
+			for(Decoration decoration : decorations.values()) {
 				EObject eObjectOfDecorator = decoration.getElement();
-				boolean first = true;
-				while(eObjectOfDecorator != null) {
-					if(eObjectOfDecorator == getEObject()) {
-						int severityI = decoration.getSeverity();
-						if(severityI > severity) {
-							severity = severityI;
-						}
+				if(eObjectOfDecorator == getEObject()) {
+					// decoration is for this element
+					if(decoration.getMessage() == null) {
+						decoration.setMessage("");
 					}
-					if(!navigateToParents) {
-						break;
-					}
-					// navigate to parents, since parent folder is contaminated as well
+					foundDecorations.add(decoration);
+				}
+				// check whether a decoration can be found in one the children
+				// (technically, we check the parents of a decoration)
+				IDecorationSpecificFunctions decoUtil = DecorationSpecificFunctions.getDecorationInterface(decoration.getType());
+
+				if(navigateToParents && (decoUtil != null) && decoUtil.supportsMarkerPropagation() != MarkChildren.NO) {
+					MarkChildren markChildren = decoUtil.supportsMarkerPropagation();
+					boolean first = true;
+
 					eObjectOfDecorator = eObjectOfDecorator.eContainer();
-					if(markChildren != MarkChildren.ALL) {
-						if((!first) || (markChildren == MarkChildren.NO)) {
-							break;
+					while(eObjectOfDecorator != null) {
+						if(eObjectOfDecorator == getEObject()) {
+							String type = decoration.getType();
+							EList<IPapyrusDecoration> childDecorations = childDecorationMap.get(type);
+							if(childDecorations == null) {
+								// does not exist yet => create
+								childDecorations = new BasicEList<IPapyrusDecoration>();
+								childDecorationMap.put(type, childDecorations);
+							}
+							childDecorations.add(decoration);
 						}
+						// navigate to parents, since parent folder is concerned by error as well
+						eObjectOfDecorator = eObjectOfDecorator.eContainer();
+						if(markChildren != MarkChildren.ALL) {
+							if(!first) {
+								break;
+							}
+						}
+						first = false;
 					}
-					first = false;
 				}
 			}
 		}
-		return severity;
-	}
 
+		// now process map of children
+		for(String type : childDecorationMap.keySet()) {
+			EList<IPapyrusDecoration> childDecorations = childDecorationMap.get(type);
+			if(childDecorations != null) {
+				IDecorationSpecificFunctions decoUtil = DecorationSpecificFunctions.getDecorationInterface(type);
+				IPapyrusDecoration propagatedDecoration = decoUtil.markerPropagation(childDecorations);
+				foundDecorations.add(propagatedDecoration);
+			}
+		}
+
+		return foundDecorations;
+	}
 
 	/**
 	 * Gets the decoration message.
@@ -209,10 +204,7 @@ public class DecorationUtils {
 		Map<String, Decoration> decorations = getDecorations(decorationService);
 		if(decorations != null) {
 			String message = "";
-			Iterator it = decorations.entrySet().iterator();
-			while(it.hasNext()) {
-				Map.Entry pairs = (Map.Entry)it.next();
-				Decoration decoration = (Decoration)pairs.getValue();
+			for(Decoration decoration : decorations.values()) {
 				EObject eObjectOfDecorator = decoration.getElement();
 				if(eObjectOfDecorator == getEObject()) {
 					if(message.length() > 0) {
@@ -225,19 +217,4 @@ public class DecorationUtils {
 		}
 		return null;
 	}
-
-
-	/**
-	 * Gets the decoration.
-	 * 
-	 * @param decorationService
-	 *        the decoration service
-	 * @param navigateToParents
-	 *        the navigate to parents
-	 * @return the decoration
-	 */
-	public Decoration getDecoration(DecorationService decorationService, boolean navigateToParents) {
-		return new Decoration(getEObject().toString(), getDecorationSeverity(decorationService, navigateToParents), getDecorationMessage(decorationService), getEObject());
-	}
-
 }

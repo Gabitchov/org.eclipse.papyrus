@@ -10,5 +10,5 @@
             startKind="lazy">
       </service>
    </extension>
-
+   <extension-point id="decorationSpecificFunctions" name="decorationSpecificFunctions" schema="schema/decorationSpecificFunctions.exsd"/>
 </plugin>

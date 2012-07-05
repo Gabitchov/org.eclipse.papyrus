@@ -8,19 +8,23 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
+ *  Ansgar Radermacher (CEA LIST) - ansgar.radermacher@cea.fr
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.decoration.util;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.IDecoration;
 
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Decoration.
  */
-public class Decoration implements IDecoration {
+public class Decoration implements IPapyrusDecoration {
 
 	/**
 	 * The Enum PreferedPosition.
@@ -52,40 +56,23 @@ public class Decoration implements IDecoration {
 	/** The id. */
 	private final String id;
 
-	/** The severity. */
-	private int severity;
-
 	/** The message. */
 	private String message;
 
 	/** The element. */
 	private EObject element;
 
-	/** The decoration image. */
-	private ImageDescriptor decorationImage;
+	/** The decoration image for the graphical editor */
+	private ImageDescriptor decorationImageForGE;
+
+	/** The decoration image for the model explorer */
+	private ImageDescriptor decorationImageForME;
+
+	/** The decoration type, currently corresponding to marker name */
+	private String type;
 
 	/** The position. */
 	private PreferedPosition position;
-
-	/**
-	 * Instantiates a new decoration.
-	 * 
-	 * @param id
-	 *        the id
-	 * @param severity
-	 *        the severity
-	 * @param message
-	 *        the message
-	 * @param element
-	 *        the element
-	 */
-	public Decoration(String id, int severity, String message, EObject element) {
-		this.id = id;
-		this.severity = severity;
-		this.message = message;
-		this.element = element;
-		this.position = PreferedPosition.DEFAULT;
-	}
 
 
 	/**
@@ -100,13 +87,15 @@ public class Decoration implements IDecoration {
 	 * @param element
 	 *        the element
 	 */
-	public Decoration(String id, ImageDescriptor decorationImage, String message, EObject element) {
+	public Decoration(String id, String type, ImageDescriptor decorationImageForGE, ImageDescriptor decorationImageForME, String message, EObject element) {
 
 		this.id = id;
-		this.severity = Integer.MAX_VALUE;
-		this.decorationImage = decorationImage;
+		this.decorationImageForGE = decorationImageForGE;
+		this.decorationImageForME = decorationImageForME;
 		this.message = message;
 		this.element = element;
+		this.type = type;
+		this.position = PreferedPosition.SOUTH_EAST;
 	}
 
 
@@ -119,36 +108,18 @@ public class Decoration implements IDecoration {
 		return id;
 	}
 
-
 	/**
-	 * Gets the severity.
-	 *
-	 * @return the severity
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#getSeverity()
+	 * @return the type (corresponding to marker type)
 	 */
-
-	public int getSeverity() {
-		return severity;
+	public String getType() {
+		return type;
 	}
-
-
-	/**
-	 * Sets the severity.
-	 *
-	 * @param severity the new severity
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#setSeverity(int)
-	 */
-
-	public void setSeverity(int severity) {
-		this.severity = severity;
-	}
-
 
 	/**
 	 * Gets the message.
-	 *
+	 * 
 	 * @return the message
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#getMessage()
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#getMessage()
 	 */
 
 	public String getMessage() {
@@ -158,9 +129,10 @@ public class Decoration implements IDecoration {
 
 	/**
 	 * Sets the message.
-	 *
-	 * @param message the new message
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#setMessage(java.lang.String)
+	 * 
+	 * @param message
+	 *        the new message
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#setMessage(java.lang.String)
 	 */
 
 	public void setMessage(String message) {
@@ -189,53 +161,107 @@ public class Decoration implements IDecoration {
 	}
 
 	/**
-	 * Gets the decoration image.
-	 *
+	 * Gets the decoration image for a graphical editor.
+	 * 
 	 * @return the decoration image
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#getDecorationImage()
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#getDecorationImage()
 	 */
-
-	public ImageDescriptor getDecorationImage() {
-		return decorationImage;
+	public ImageDescriptor getDecorationImageForGE() {
+		return decorationImageForGE;
 	}
 
 	/**
-	 * Sets the decoration image.
-	 *
-	 * @param decorationImage the new decoration image
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#setDecorationImage(org.eclipse.jface.resource.ImageDescriptor)
+	 * Sets the decoration image for a graphical editor.
+	 * 
+	 * @param decorationImage
+	 *        the new decoration image
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#setDecorationImageForGE(org.eclipse.jface.resource.ImageDescriptor)
 	 */
+	public void setDecorationImageForGE(ImageDescriptor decorationImageForGE) {
+		this.decorationImageForGE = decorationImageForGE;
+	}
 
-	public void setDecorationImage(ImageDescriptor decorationImage) {
-		this.decorationImage = decorationImage;
+	/**
+	 * Gets the decoration image for the model explorer.
+	 * 
+	 * @return the decoration image
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#getDecorationImage()
+	 */
+	public ImageDescriptor getDecorationImageForME() {
+		return decorationImageForME;
+	}
+
+	/**
+	 * Sets the decoration image for the model explorer.
+	 * 
+	 * @param decorationImage
+	 *        the new decoration image
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#setDecorationImageForGE(org.eclipse.jface.resource.ImageDescriptor)
+	 */
+	public void setDecorationImageForME(ImageDescriptor decorationImageForME) {
+		this.decorationImageForME = decorationImageForME;
 	}
 
 
-
 	/**
-	 * Gets the position.
-	 *
+	 * Gets the position. Only used for display within model explorer
+	 * 
 	 * @return the position
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#getPosition()
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#getPosition()
 	 */
-
 	public PreferedPosition getPosition() {
 		return position;
 	}
 
 
-
 	/**
 	 * Sets the position.
-	 *
-	 * @param position the new position
-	 * @see org.eclipse.papyrus.infra.services.decoration.util.IDecoration#setPosition(org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition)
+	 * 
+	 * @param position
+	 *        the new position
+	 * @see org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration#setPosition(org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition)
 	 */
 
 	public void setPosition(PreferedPosition position) {
 		this.position = position;
 	}
 
+	/**
+	 * @return the decoration position as enumerated by constants in IDecoration from JFace
+	 *         (TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, UNDERLAY
+	 */
+	public int getPositionForJFace() {
+		switch(position) {
+		case NORTH_WEST:
+		case NORTH:
+			return IDecoration.TOP_LEFT;
 
+		case NORTH_EAST:
+			return IDecoration.TOP_RIGHT;
+		case WEST:
+		case SOUTH_WEST:
+			return IDecoration.BOTTOM_LEFT;
+		case EAST:
+		case SOUTH_EAST:
+		case DEFAULT:
+		default:
+			return IDecoration.BOTTOM_RIGHT;
+		case SOUTH:
+		case CENTER:
+			return IDecoration.UNDERLAY;
+		}
+	}
 
+	public static String getMessageFromDecorations(EList<IPapyrusDecoration> decorations) {
+		String message = "";
+		if(decorations != null) {
+			for(IPapyrusDecoration decoration : decorations) {
+				if(message.length() > 0) {
+					message += "\n";
+				}
+				message += decoration.getMessage();
+			}
+		}
+		return message;
+	}
 }

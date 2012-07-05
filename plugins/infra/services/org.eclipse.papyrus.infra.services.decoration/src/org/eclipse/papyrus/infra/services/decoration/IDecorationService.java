@@ -14,14 +14,15 @@ package org.eclipse.papyrus.infra.services.decoration;
 
 import java.util.Observer;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.decoration.util.IDecoration;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration.PreferedPosition;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IDecorationService.
  */
@@ -29,76 +30,81 @@ public interface IDecorationService extends IService {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
-	 *
+	 * 
 	 * @throws ServiceException
 	 */
-	
+
 	void startService() throws ServiceException;
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#disposeService()
-	 *
+	 * 
 	 * @throws ServiceException
 	 */
-	
+
 	void disposeService() throws ServiceException;
 
 	/**
 	 * Adds the listener.
-	 *
-	 * @param o the o
+	 * 
+	 * @param o
+	 *        the o
 	 */
 	void addListener(Observer o);
 
 	/**
 	 * Delete listener.
-	 *
-	 * @param o the o
+	 * 
+	 * @param o
+	 *        the o
 	 */
 	void deleteListener(Observer o);
 
 	/**
 	 * Notify listeners.
-	 *
-	 * @param decorationService the decoration service
+	 * 
+	 * @param decorationService
+	 *        the decoration service
 	 */
 	void notifyListeners(DecorationService decorationService);
 
-	/**
-	 * Adds the decoration.
-	 *
-	 * @param id the id
-	 * @param element the element
-	 * @param severity the severity
-	 * @param message the message
-	 */
-	void addDecoration(String id, EObject element, int severity, String message);
 
 	/**
-	 * Adds the decoration.
-	 *
-	 * @param id the id
-	 * @param element the element
-	 * @param decoration the decoration
-	 * @param message the message
+	 * Adds the decoration. If a decoration with the same ID already exists, do not add, but update
+	 * the decoration.
+	 * 
+	 * @param id
+	 *        the id
+	 * @param type
+	 *        the decoration type, currently corresponding to the marker type
+	 * @param element
+	 *        the element
+	 * @param decorationForGE
+	 *        the decoration image for a graphical editor
+	 * @param decorationForME
+	 *        the decoration image for the model explorer
+	 * @param message
+	 *        the message
+	 * @return the created (or existing) decoration
 	 */
-	void addDecoration(String id, EObject element, ImageDescriptor decoration, String message);
+	IPapyrusDecoration addDecoration(String id, String type, EObject element, ImageDescriptor decorationForGE, ImageDescriptor decorationForME, PreferedPosition position, String message);
 
 	/**
 	 * Removes the decoration.
-	 *
-	 * @param id the id
+	 * 
+	 * @param id
+	 *        the id
 	 */
 	void removeDecoration(String id);
 
 	/**
 	 * Gets the decoration.
-	 *
-	 * @param element the element
-	 * @param navigateToParents the navigate to parents
+	 * 
+	 * @param element
+	 *        the element
+	 * @param navigateToParents
+	 *        the navigate to parents
 	 * @return the decoration
 	 */
-	IDecoration getDecoration(Object element, boolean navigateToParents);
-
-
+	EList<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents);
 }
