@@ -70,7 +70,7 @@ public class PapyrusControlAction extends ControlAction {
 	private static final String CONTROL_CONDITION_ELEMENT_EXTENSION_POINT = "enableControlCommand";
 
 	/** custom commands from extensions */
-	private static List<IControlCondition> commands;
+	/*package*/ static List<IControlCondition> commands;
 
 	/**
 	 * Instantiates a new papyrus control action.

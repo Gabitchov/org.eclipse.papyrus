@@ -31,6 +31,8 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCondition;
+import org.eclipse.papyrus.infra.services.controlmode.commands.IControlUncontrolCondition;
 import org.eclipse.papyrus.infra.services.controlmode.commands.UncontrolCommand;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
@@ -66,7 +68,15 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		return getEditingDomain().isControllable(eObject) && AdapterFactoryEditingDomain.isControlled(eObject);
+		boolean enableUnControl = true;
+		for(IControlCondition cond : PapyrusControlAction.commands) {
+			if (cond instanceof IControlUncontrolCondition) {
+				IControlUncontrolCondition controlUnControl = (IControlUncontrolCondition) cond;
+				// check if action is disabled by an extension
+				enableUnControl &= controlUnControl.enableUnControl(eObject);
+			}
+		}
+		return enableUnControl && getEditingDomain().isControllable(eObject) && AdapterFactoryEditingDomain.isControlled(eObject);
 	}
 
 	/**
