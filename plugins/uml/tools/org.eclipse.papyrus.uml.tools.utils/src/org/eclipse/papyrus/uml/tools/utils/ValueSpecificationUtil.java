@@ -70,9 +70,7 @@ public class ValueSpecificationUtil {
 				break;
 			case UMLPackage.OPAQUE_EXPRESSION:
 				OpaqueExpression exp = (OpaqueExpression)specification;
-				if(!exp.getLanguages().isEmpty()) {
-					value = OpaqueExpressionUtil.getBodyForLanguage(exp, exp.getLanguages().get(0)); //$NON-NLS-1$					
-				}
+				value = OpaqueExpressionUtil.getBodyForLanguage(exp, null); //$NON-NLS-1$					
 				break;
 			case UMLPackage.INSTANCE_VALUE:
 				value = ((InstanceValue)specification).getInstance().getName();

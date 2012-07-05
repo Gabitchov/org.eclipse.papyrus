@@ -90,8 +90,16 @@ public class ConstraintParser implements IParser, ISemanticParser {
 				return "0..0";}
 		}
 		if(constraint.getSpecification() instanceof OpaqueExpression) {
-				if(((OpaqueExpression)constraint.getSpecification()).getBodies().size()>0 &&((OpaqueExpression)constraint.getSpecification()).getLanguages().size()>0){
-					return OPAQUE_EXPRESSION_BEGIN_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getLanguages().get(0) +OPAQUE_EXPRESSION_END_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getBodies().get(0);
+			OpaqueExpression opaqueExpression = (OpaqueExpression)constraint.getSpecification();
+			if(opaqueExpression.getBodies().size() > 0) {
+				StringBuilder b = new StringBuilder();
+				if (opaqueExpression.getLanguages().size() > 0) {
+					b.append(OPAQUE_EXPRESSION_BEGIN_LANGUAGE);
+					b.append(opaqueExpression.getLanguages().get(0));
+					b.append(OPAQUE_EXPRESSION_END_LANGUAGE);
+				}
+				b.append(opaqueExpression.getBodies().get(0));
+				return b.toString();
 				}
 			else{return OPAQUE_EXPRESSION_BEGIN_LANGUAGE+"NATURAL"+OPAQUE_EXPRESSION_END_LANGUAGE;}
 		}

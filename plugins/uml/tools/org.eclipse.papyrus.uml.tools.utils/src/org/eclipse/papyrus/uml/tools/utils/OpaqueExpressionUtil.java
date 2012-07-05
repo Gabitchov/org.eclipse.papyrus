@@ -11,7 +11,6 @@
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
  *  
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.tools.utils;
 
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -32,8 +31,12 @@ public class OpaqueExpressionUtil {
 	 */
 	public static String getBodyForLanguage(org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, String language) {
 		String body = "";
-		// retrieve the index of the given language in the opaque Expression
-		if(opaqueExpression.getLanguages() != null) {
+		if(language == null) {
+			if(!opaqueExpression.getBodies().isEmpty()) {
+				body = opaqueExpression.getBodies().get(0);
+			}
+		} else {
+			// retrieve the index of the given language in the opaque Expression
 			int index = opaqueExpression.getLanguages().indexOf(language);
 			if(index != -1) {
 				// language found. return the corresponding body in the bodies list.
@@ -62,11 +65,9 @@ public class OpaqueExpressionUtil {
 	 * @param body
 	 *        the body to save
 	 */
-	public static void setBodyForLanguage(org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, String language,
-			String body) {
+	public static void setBodyForLanguage(org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, String language, String body) {
 		// checks both lists by size
 		checkAndCorrectLists(opaqueExpression);
-
 		// checks if language exists, if not, creates one
 		if(!opaqueExpression.getLanguages().contains(language)) {
 			opaqueExpression.getLanguages().add(language);
@@ -94,7 +95,6 @@ public class OpaqueExpressionUtil {
 		// both lists, languages and bodies, should have the same size
 		final int bodySize = opaqueExpression.getBodies().size();
 		final int languageSize = opaqueExpression.getLanguages().size();
-
 		// check both size
 		// if equals, lists are supposed synchronized, it is ok
 		// if less body than languages, add bodies
