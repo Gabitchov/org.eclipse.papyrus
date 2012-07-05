@@ -22,5 +22,12 @@
             loadByDefault="true">
       </browserCustomization>
    </extension>
+   <extension
+         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resources/uml_emf_compare_diff.uiCustom"
+            loadByDefault="true">
+      </browserCustomization>
+   </extension>
 
 </plugin>
