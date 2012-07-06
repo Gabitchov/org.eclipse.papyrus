@@ -12,9 +12,15 @@
 package org.eclipse.papyrus.customization.properties.ui;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * An action to delete an existing context. This action cannot be undone.
@@ -30,11 +36,25 @@ public class RemoveContextAction {
 	 * @param sourceContext
 	 *        The context to delete
 	 */
-	public void removeContext(Context sourceContext) {
+	public void removeContext(final Context sourceContext) {
 		//TODO : Close editors for the context being deleted
-		File directory = new File(sourceContext.eResource().getURI().toFileString()).getParentFile();
-		ConfigurationManager.instance.deleteContext(sourceContext);
-		delete(directory);
+		final File directory = new File(sourceContext.eResource().getURI().toFileString()).getParentFile();
+
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+		try {
+			dialog.run(false, false, new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+					monitor.beginTask("Deleting the property view configuration: " + sourceContext.getName(), IProgressMonitor.UNKNOWN);
+					ConfigurationManager.instance.deleteContext(sourceContext);
+					delete(directory);
+					monitor.done();
+				}
+
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -48,6 +68,7 @@ public class RemoveContextAction {
 			for(File subFile : file.listFiles()) {
 				delete(subFile);
 			}
+
 		}
 		file.delete();
 	}

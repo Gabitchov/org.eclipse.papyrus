@@ -11,9 +11,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.ui;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.util.ProjectUtil;
 import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
@@ -34,9 +42,30 @@ public class EditContextAction {
 	 * @throws Exception
 	 *         If the context cannot be edited
 	 */
-	public void openEditor(Context context) throws Exception {
-		IFile contextFile = ProjectUtil.getContextFile(context);
+	public void openEditor(final Context context) {
 
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.customization.properties.UIEditor", true); //$NON-NLS-1$
+		ProgressMonitorDialog dialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
+		try {
+			dialog.run(false, false, new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+					try {
+						monitor.beginTask("Opening the property view configuration: " + context.getName(), IProgressMonitor.UNKNOWN);
+						runOpenEditor(context);
+						monitor.done();
+					} catch (CoreException ex) {
+						Activator.log.error(ex);
+					}
+				}
+
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
+	}
+
+	protected void runOpenEditor(Context context) throws CoreException {
+		IFile contextFile = ProjectUtil.getContextFile(context);
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.customization.properties.UIEditor", true); //$NON-NLS-1$;
 	}
 }
