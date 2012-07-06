@@ -52,9 +52,11 @@ public class CommandStackView extends AbstractTreeView {
 
 	private final Map<IUndoableOperation, String> dates = new HashMap<IUndoableOperation, String>();
 
+	private final IOperationHistoryListener historyListener;
+
 	public CommandStackView() {
 		this.history = OperationHistoryFactory.getOperationHistory();
-		this.history.addOperationHistoryListener(new IOperationHistoryListener() {
+		this.history.addOperationHistoryListener(historyListener = new IOperationHistoryListener() {
 
 			public void historyNotification(final OperationHistoryEvent event) {
 				if(!CommandStackView.this.commandList.contains(event.getOperation())) {
@@ -238,6 +240,7 @@ public class CommandStackView extends AbstractTreeView {
 	@Override
 	public void dispose() {
 		super.dispose();
+		history.removeOperationHistoryListener(historyListener);
 		clear();
 	}
 
