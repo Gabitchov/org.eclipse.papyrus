@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.compare.diff.queries;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
@@ -31,6 +32,7 @@ import org.eclipse.emf.compare.diff.metamodel.UpdateContainmentFeature;
 import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.compare.diff.provider.DiffElementItemProvider;
+import org.eclipse.emf.compare.uml2diff.UMLStereotypeUpdateAttribute;
 import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -87,8 +89,23 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 			return null;
 		}
 		String diffLabel = null;
-
-		if(context instanceof UpdateAttribute) { //comes from UpdateAttributeItemProvider
+		if(context instanceof UMLStereotypeUpdateAttribute) {
+			final UMLStereotypeUpdateAttribute updateOp = (UMLStereotypeUpdateAttribute)context;
+			final String elementLabel = labelProvider.getText(updateOp.getLeftElement());
+			final UpdateAttribute hiddenDiffElement = (UpdateAttribute)updateOp.getHideElements().get(0);
+			final String attributeLabel = labelProvider.getText(hiddenDiffElement.getAttribute());
+			final Object leftValue = hiddenDiffElement.getLeftElement().eGet(hiddenDiffElement.getAttribute());
+			final Object rightValue = hiddenDiffElement.getRightElement().eGet(hiddenDiffElement.getAttribute());
+			if(hiddenDiffElement.isRemote()) {
+				diffLabel = itemProvider.getString("_UI_RemoteUpdateAttribute_type", new Object[]{ attributeLabel, elementLabel, leftValue, rightValue, }); //$NON-NLS-1$
+			} else {
+				if(hiddenDiffElement.isConflicting()) {
+					diffLabel = itemProvider.getString("_UI_UpdateAttribute_conflicting", new Object[]{ attributeLabel, rightValue, leftValue, }); //$NON-NLS-1$
+				} else {
+					diffLabel = itemProvider.getString("_UI_UpdateAttribute_type", new Object[]{ attributeLabel, elementLabel, rightValue, leftValue, }); //$NON-NLS-1$
+				}
+			}
+		} else if(context instanceof UpdateAttribute) { //comes from UpdateAttributeItemProvider
 			//TODO : not tested
 			final UpdateAttribute updateOp = (UpdateAttribute)context;
 			final String attributeLabel = labelProvider.getText(updateOp.getAttribute());
