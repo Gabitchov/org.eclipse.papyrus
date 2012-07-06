@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks">
+  <uml:Model xmi:id="_2QmroMd7EeGHyYihMaoR6g" name="model">
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_b1ozQMd8EeGHyYihMaoR6g" name="InstanceSpecification1"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_fuJV4Md8EeGHyYihMaoR6g" name="InstanceSpecification2"/>
+    <profileApplication xmi:id="_YNnjscd8EeGHyYihMaoR6g">
+      <eAnnotations xmi:id="_YNscMMd8EeGHyYihMaoR6g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Blocks:Unit xmi:id="_ePVOgMd8EeGHyYihMaoR6g" base_InstanceSpecification="_b1ozQMd8EeGHyYihMaoR6g" dimension="_h7DSUMd8EeGHyYihMaoR6g"/>
+  <Blocks:Dimension xmi:id="_h7DSUMd8EeGHyYihMaoR6g" base_InstanceSpecification="_fuJV4Md8EeGHyYihMaoR6g"/>
+</xmi:XMI>
