@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.uml.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -50,6 +49,7 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		setResult(CommandResult.newOKCommandResult(semanticAdapter));
 	}
 
+	@Override
 	protected EObject getElementToEdit() {
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -61,10 +61,12 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		return owner;
 	}
 
+	@Override
 	public boolean canExecute() {
 		return true;
 	}
 
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		newElement = UMLFactory.eINSTANCE.createProperty();
@@ -72,8 +74,9 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
 
-		ElementInitializers.getInstance().init_Property_3070(newElement);
+		String elementName = type.getName() + Integer.toString(owner.getOwnedAttributes().size());
 
+		newElement.setName(elementName);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 
 		semanticAdapter.setElement(newElement);
