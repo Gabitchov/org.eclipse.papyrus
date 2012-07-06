@@ -185,7 +185,9 @@ public class DecorationUtils {
 			if(childDecorations != null) {
 				IDecorationSpecificFunctions decoUtil = DecorationSpecificFunctions.getDecorationInterface(type);
 				IPapyrusDecoration propagatedDecoration = decoUtil.markerPropagation(childDecorations);
-				foundDecorations.add(propagatedDecoration);
+				if(propagatedDecoration != null) {
+					foundDecorations.add(propagatedDecoration);
+				}
 			}
 		}
 
