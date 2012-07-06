@@ -49,13 +49,13 @@ public class EditContextAction {
 			dialog.run(false, false, new IRunnableWithProgress() {
 
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+					monitor.beginTask("Opening the property view configuration: " + context.getName(), IProgressMonitor.UNKNOWN);
 					try {
-						monitor.beginTask("Opening the property view configuration: " + context.getName(), IProgressMonitor.UNKNOWN);
 						runOpenEditor(context);
-						monitor.done();
 					} catch (CoreException ex) {
 						Activator.log.error(ex);
 					}
+					monitor.done();
 				}
 
 			});
