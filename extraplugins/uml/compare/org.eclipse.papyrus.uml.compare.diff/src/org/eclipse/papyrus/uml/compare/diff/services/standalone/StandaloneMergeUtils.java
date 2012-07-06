@@ -29,7 +29,7 @@ public class StandaloneMergeUtils {
 		if(monitor != null) {
 			options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
 		}
-		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new DefaultMatchScopeProvider(left, right));
+		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new DefaultMatchScopeProvider(left.eResource(), right.eResource()));
 		return options;
 	}
 }
