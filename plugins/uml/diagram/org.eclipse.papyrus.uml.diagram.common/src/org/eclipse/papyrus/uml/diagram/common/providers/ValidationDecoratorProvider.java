@@ -176,7 +176,6 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 					if((decorations != null) && (decorations.size() > 0)) {
 
 						if(view instanceof Edge) {
-							/* Test *///decoration.setDecorationImage(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/obj16/Device.gif"));
 							diagramDecorationAdapter.setDecorations(decorations, 50, 0, true);
 						} else {
 							int margin = -1;
@@ -215,6 +214,8 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				return;
 			}
 
+			diagramDecorationAdapter.removeDecorations();
+			decorationService.deleteListener(this);
 			// remove self from global decorators registry
 			allDecorators.remove(viewId);
 

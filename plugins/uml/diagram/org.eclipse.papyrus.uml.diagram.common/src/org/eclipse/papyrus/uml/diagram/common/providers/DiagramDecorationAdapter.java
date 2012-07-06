@@ -17,11 +17,13 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.handles.HandleBounds;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.Decoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
@@ -85,65 +87,6 @@ public class DiagramDecorationAdapter {
 		}
 
 	}
-
-	/**
-	 * Removes the decoration.
-	 * 
-	 * @param decoration
-	 *        the decoration
-	 */
-	public void removeDecoration(IDecoration decoration) {
-		if(decoration == null || decoratorTarget == null) {
-			return;
-		}
-		removeDecoration(decoratorTarget, decoration);
-
-	}
-
-	/**
-	 * Sets the decoration.
-	 * 
-	 * @param image
-	 *        the image
-	 * @param position
-	 *        the position
-	 * @param percentageFromSource
-	 *        the percentage from source
-	 * @param margin
-	 *        the margin
-	 * @param isVolatile
-	 *        the is volatile
-	 * @return the i decoration
-	 */
-	/*
-	 * public IDecoration setDecoration(Image image, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
-	 * // this.decoration = getDecoration(getDecoratorTarget(), image, position, percentageFromSource, margin, isVolatile);
-	 * this.decorationImage = image;
-	 * return getDecoration();
-	 * }
-	 */
-
-	/**
-	 * Sets the decoration.
-	 * 
-	 * @param figure
-	 *        the figure
-	 * @param position
-	 *        the position
-	 * @param percentageFromSource
-	 *        the percentage from source
-	 * @param margin
-	 *        the margin
-	 * @param isVolatile
-	 *        the is volatile
-	 * @return the i decoration
-	 */
-	/*
-	 * public IDecoration setDecoration(IFigure figure, PreferedPosition position, int percentageFromSource, int margin, boolean isVolatile) {
-	 * // this.decoration = getDecoration(getDecoratorTarget(), figure, position, percentageFromSource, margin, isVolatile);
-	 * return getDecoration();
-	 * }
-	 */
 
 	/**
 	 * Sets the decorator target.
@@ -222,13 +165,22 @@ public class DiagramDecorationAdapter {
 	 * @param Decoration
 	 *        the decoration
 	 */
-	public void removeDecoration(IDecoratorTarget decoratorTarget, IDecoration decoration) {
-		if(decoration instanceof IFigure) {
-			((IFigure)decoration).getParent().remove((IFigure)decoration);
+	public void removeDecoration(IDecoration decoration) {
+		if((decoration == null) || (decoratorTarget == null)) {
+			return;
 		}
-		GraphicalEditPart ownerEditPart = (GraphicalEditPart)decoratorTarget.getAdapter(GraphicalEditPart.class);
-		ownerEditPart.getViewer().getVisualPartMap().remove(decoration);
 
+		if(decoration instanceof IFigure) {
+			IFigure parent = ((IFigure)decoration).getParent();
+			if(parent != null) {
+				parent.remove((IFigure)decoration);
+			}
+		}
+		// decorations.remove(decoration);
+		GraphicalEditPart ownerEditPart = (GraphicalEditPart)decoratorTarget.getAdapter(GraphicalEditPart.class);
+		if(ownerEditPart.getViewer() != null) {
+			ownerEditPart.getViewer().getVisualPartMap().remove(decoration);
+		}
 	}
 
 	/**
@@ -329,31 +281,57 @@ public class DiagramDecorationAdapter {
 				IFigure parentFig = ((GraphicalEditPart)editPart).getFigure();
 				margin = MapModeUtil.getMapMode(parentFig).DPtoLP(margin);
 
-				Locator locator = new MultiIconTopRightLocator(parentFig, margin);
+				// Locator locator = new MultiIconTopRightLocator(parentFig, margin);
 
-				decoration = decoratorTarget.addDecoration(figure, locator, isVolatile);
+				// decoration = decoratorTarget.addDecoration(figure, locator, isVolatile);
+				decoration = decoratorTarget.addShapeDecoration(figure, IDecoratorTarget.Direction.NORTH_EAST, margin, isVolatile);
 			}
 
 		}
 		return decoration;
 	}
 
+	/**
+	 * A locator that places elements to the upper right corner with a "margin" distance to the left.
+	 * 
+	 * @See org.eclipse.gmf.runtime.gef.ui.internal.figures.RelativetoBorderLocator
+	 * @author ansgar
+	 * 
+	 */
 	public class MultiIconTopRightLocator implements Locator {
 
 		public MultiIconTopRightLocator(IFigure parentFig, int rightMargin) {
-			this.parentFig = parentFig;
+			this.reference = parentFig;
+			if(rightMargin < 0) {
+				// avoid negative right margin. This could imply that the decorator enlarges the reference figure
+				// which in turn might re-position the decorator to the right and thus causing an enlargement in
+				// an endless loop
+				rightMargin = 0;
+			}
 			this.rightMargin = rightMargin;
 		}
 
 		public void relocate(IFigure target) {
-			// TODO Auto-generated method stub
-			Rectangle b = parentFig.getBounds();
-			Point p = new Point(b.getTopRight());
-			p.setX(p.x - target.getSize().width - rightMargin);
-			target.setLocation(p);
+			Rectangle bounds =
+				reference instanceof HandleBounds
+					? new PrecisionRectangle(((HandleBounds)reference).getHandleBounds())
+					: new PrecisionRectangle(reference.getBounds());
+
+			reference.translateToAbsolute(bounds);
+			target.translateToRelative(bounds);
+
+			Point pTR = new Point(bounds.getTopRight());
+			Point pTL = bounds.getTopLeft();
+			int newXPos = pTR.x - target.getSize().width - rightMargin;
+
+			if(newXPos > pTL.x) {
+				// only set position, if it is inside the figure, i.e. bigger than left margin
+				pTR.setX(newXPos);
+			}
+			target.setLocation(pTR);
 		}
 
-		protected IFigure parentFig;
+		protected IFigure reference;
 
 		protected int rightMargin;
 	};
