@@ -135,9 +135,15 @@ public class DiagramDecorationAdapter {
 	public EList<IDecoration> setDecorations(EList<IPapyrusDecoration> pDecorations, int percentageFromSource, int margin, boolean isVolatile) {
 
 		final int distBetweenIconsPercent = 20;
+		final int percentageMin = 10;
+		final int percentageMax = 90;
+
 		decorations = new BasicEList<IDecoration>();
 		if(pDecorations.size() > 1) {
 			percentageFromSource -= distBetweenIconsPercent / 2 * (pDecorations.size() - 1);
+		}
+		if(percentageFromSource < percentageMin) {
+			percentageFromSource = percentageMin;
 		}
 		for(IPapyrusDecoration pDecoration : pDecorations) {
 			// TODO: createImage each time leaks!
@@ -150,6 +156,9 @@ public class DiagramDecorationAdapter {
 				((Decoration)decoration).setToolTip(toolTip);
 			}
 			percentageFromSource += distBetweenIconsPercent;
+			if(percentageFromSource > percentageMax) {
+				percentageFromSource = percentageMax;
+			}
 			margin += image.getBounds().width;
 		}
 		this.pDecorations = pDecorations;
@@ -320,15 +329,19 @@ public class DiagramDecorationAdapter {
 			reference.translateToAbsolute(bounds);
 			target.translateToRelative(bounds);
 
-			Point pTR = new Point(bounds.getTopRight());
+			Point pTR = bounds.getTopRight();
 			Point pTL = bounds.getTopLeft();
-			int newXPos = pTR.x - target.getSize().width - rightMargin;
+			Point pDecoration = new Point(pTR);
 
-			if(newXPos > pTL.x) {
+			int decorationX = pTR.x - target.getSize().width - rightMargin;
+			if(decorationX > pTL.x) {
 				// only set position, if it is inside the figure, i.e. bigger than left margin
-				pTR.setX(newXPos);
+				pDecoration.setX(decorationX);
 			}
-			target.setLocation(pTR);
+			else {
+				pDecoration.setX(pTL.x);
+			}
+			target.setLocation(pDecoration);
 		}
 
 		protected IFigure reference;
