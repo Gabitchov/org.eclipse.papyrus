@@ -91,7 +91,7 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 			if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IMarker.SEVERITY_WARNING)) {
 				childSeverity = IMarker.SEVERITY_WARNING;
 			}
-			else if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IMarker.SEVERITY_WARNING)) {
+			else if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IMarker.SEVERITY_ERROR)) {
 				childSeverity = IMarker.SEVERITY_ERROR;
 				break; // no need to check further
 			}
