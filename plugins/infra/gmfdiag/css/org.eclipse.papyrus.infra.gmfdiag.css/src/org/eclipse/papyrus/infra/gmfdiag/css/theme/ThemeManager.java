@@ -174,7 +174,7 @@ public class ThemeManager {
 		return theme;
 	}
 
-	private static class EmptyTheme extends Theme {
+	public static class EmptyTheme extends Theme {
 
 		public static Theme instance = new EmptyTheme();
 
