@@ -13,6 +13,7 @@ package org.eclipse.papyrus.customization.factory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,15 +29,15 @@ import org.w3c.dom.Element;
 
 public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 
-	private final String extensionPoint;
+	protected final String extensionPoint;
 
-	private final String fileAttributeName;
+	protected final String fileAttributeName;
 
-	private final String fileElementName;
+	protected final String fileElementName;
 
-	private final boolean allowMultiple;
+	protected final boolean allowMultiple;
 
-	private final String name;
+	protected final String name;
 
 	public FileBasedExtensionFactory(String name, String extensionPoint, String fileAttributeName, String fileElementName, boolean allowMultiple) {
 		this.extensionPoint = extensionPoint;
@@ -48,7 +49,11 @@ public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		createExtension((FileBasedCustomizableElement)element, editor);
-		copyFile((FileBasedCustomizableElement)element, editor);
+		try {
+			copyFile((FileBasedCustomizableElement)element, editor);
+		} catch (IOException ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
@@ -61,21 +66,29 @@ public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 		return extensionElement;
 	}
 
-	protected void copyFile(FileBasedCustomizableElement element, PluginEditor editor) {
-		String path = element.getFile();
-		File sourceFile = FileUtil.getFile(path);
-		File targetFile = FileUtil.getWorkspaceFile("/" + editor.getProject().getName() + "/" + getTargetPath(element)); //$NON-NLS-1$ //$NON-NLS-2$
+	protected void copyFile(FileBasedCustomizableElement element, PluginEditor editor) throws FileNotFoundException, IOException {
+		copyFile(element.getFile(), getTargetPath(element), editor);
+	}
+
+	protected void copyFile(String sourcePath, String targetPath, PluginEditor editor) throws FileNotFoundException, IOException {
+		File sourceFile = FileUtil.getFile(sourcePath);
+		File targetFile = FileUtil.getWorkspaceFile("/" + editor.getProject().getName() + "/" + targetPath); //$NON-NLS-1$ //$NON-NLS-2$
+
+		if(sourceFile == null) {
+			throw new IllegalArgumentException("The source path " + sourcePath + " is not valid");
+		}
+
+		if(targetFile == null) {
+			throw new IllegalArgumentException("The target path " + targetPath + " is not valid");
+		}
+
 		if(!targetFile.getParentFile().exists()) {
 			targetFile.getParentFile().mkdirs();
 		}
 
-		try {
-			copy(new FileInputStream(sourceFile), targetFile);
-		} catch (IOException ex) {
-			Activator.log.error(ex);
-		}
+		copy(new FileInputStream(sourceFile), targetFile);
 
-		editor.getBuildEditor().addToBuild(getTargetPath(element));
+		editor.getBuildEditor().addToBuild(targetPath);
 	}
 
 	protected String getTargetPath(FileBasedCustomizableElement element) {
@@ -83,7 +96,13 @@ public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 	}
 
 	protected String getFileName(FileBasedCustomizableElement element) {
-		String path = element.getFile();
+		return getFileName(element.getFile());
+	}
+
+	protected String getFileName(String path) {
+		if(path == null) {
+			throw new IllegalArgumentException("File path should not be null");
+		}
 		String fileName;
 		path = path.replace("\\", "/");
 		if(path.indexOf("/") < 0) { //$NON-NLS-1$

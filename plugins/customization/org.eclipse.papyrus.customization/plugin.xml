@@ -10,7 +10,6 @@
 
 <plugin>
    <extension-point id="factory" name="factory" schema="schema/factory.exsd"/>
-   <extension-point id="metamodel" name="metamodel" schema="schema/metamodel.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package

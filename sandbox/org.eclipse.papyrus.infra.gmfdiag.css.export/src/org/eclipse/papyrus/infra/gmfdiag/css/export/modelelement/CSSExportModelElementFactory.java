@@ -9,21 +9,19 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.customization.modelelement;
+package org.eclipse.papyrus.infra.gmfdiag.css.export.modelelement;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
+import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
 
 
-public class CustomizationModelElementFactory extends EMFModelElementFactory {
+public class CSSExportModelElementFactory implements ModelElementFactory {
 
-	@Override
 	public ModelElement createFromSource(Object sourceElement, DataContextElement context) {
 		EObject source = EMFHelper.getEObject(sourceElement);
 		if(source == null) {
@@ -31,7 +29,8 @@ public class CustomizationModelElementFactory extends EMFModelElementFactory {
 			return null;
 		}
 
-		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
-		return new CustomizationModelElement(source, domain);
+		EditingDomain domain = EMFHelper.resolveEditingDomain(source);
+		return new CSSExportModelElement(source, domain);
 	}
+
 }

@@ -11,12 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.wizard;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.generator.PluginGenerator;
@@ -24,7 +20,6 @@ import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationConfiguration;
 import org.eclipse.pde.internal.ui.wizards.plugin.NewPluginProjectWizard;
 import org.eclipse.swt.graphics.Image;
-import org.xml.sax.SAXException;
 
 
 public class CreateNewCustomizationPluginWizard extends NewPluginProjectWizard {
@@ -71,14 +66,16 @@ public class CreateNewCustomizationPluginWizard extends NewPluginProjectWizard {
 			try {
 				PluginGenerator.instance.generate(project, configuration);
 				project.refreshLocal(IProject.DEPTH_INFINITE, null);
-			} catch (CoreException ex) {
+			} catch (Exception ex) {
 				Activator.log.error(ex);
-			} catch (IOException ex) {
-				Activator.log.error(ex);
-			} catch (SAXException ex) {
-				Activator.log.error(ex);
-			} catch (ParserConfigurationException ex) {
-				Activator.log.error(ex);
+				String errorMessage = "An error occured while generating the customization plug-in: " + ex.getClass().getName() + ": " + ex.getLocalizedMessage(); //$NON-NLS-1$
+				for(IWizardPage page : getPages()) {
+					if(page instanceof DialogPage) {
+						((DialogPage)page).setErrorMessage(errorMessage);
+					}
+
+				}
+				return false;
 			}
 		}
 

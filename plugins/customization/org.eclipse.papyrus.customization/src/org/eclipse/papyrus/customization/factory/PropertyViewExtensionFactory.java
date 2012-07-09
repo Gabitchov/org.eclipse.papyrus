@@ -180,8 +180,12 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 	@Override
 	protected String getTargetPath(FileBasedCustomizableElement element) {
 		String fileName = getFileName(element);
-		String simpleName = fileName.substring(0, fileName.lastIndexOf(".")); //$NON-NLS-1$
-		return "/propertyView/" + simpleName + "/" + fileName; //$NON-NLS-1$ //$NON-NLS-2$
+		if(fileName.indexOf(".") > -1) {
+			String simpleName = fileName.substring(0, fileName.lastIndexOf(".")); //$NON-NLS-1$
+			return "/propertyView/" + simpleName + "/" + fileName; //$NON-NLS-1$ //$NON-NLS-2$
+		} else {
+			return fileName;
+		}
 		//TODO : Copy the whole directory (.xwt files + model dependencies)
 	}
 

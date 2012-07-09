@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.export/src-gen"
+    editDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.export.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.export.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.infra.gmfdiag.css.export" modelName="CSSExtensionFactory"
+    testsDirectory="/org.eclipse.papyrus.infra.gmfdiag.css.export.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.papyrus.customization/Model/Customization.genmodel#//customizationplugin">
+  <foreignModel>CSSExtensionFactory.ecore</foreignModel>
+  <genPackages prefix="Csscustomization" basePackage="org.eclipse.papyrus.infra.gmfdiag.css.export"
+      disposableProviderFactory="true" ecorePackage="CSSExtensionFactory.ecore#/">
+    <genClasses ecoreClass="CSSExtensionFactory.ecore#//CSSStylesheet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSSExtensionFactory.ecore#//CSSStylesheet/theme"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSSExtensionFactory.ecore#//CSSStylesheet/icon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSSExtensionFactory.ecore#//CSSStylesheet/label"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

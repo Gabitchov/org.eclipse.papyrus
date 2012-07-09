@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="csscustomization">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.customization/Model/Customization/Customization.ctx#/"/>
+  <tabs label="csscustomization" id="csscustomization" priority="100">
+    <sections name="Single CSSStylesheet" sectionFile="ui/SingleCSSStylesheet.xwt">
+      <widget href="ui/SingleCSSStylesheet.xwt#/"/>
+    </sections>
+    <sections name="Multiple CSSStylesheet" sectionFile="ui/MultipleCSSStylesheet.xwt">
+      <widget href="ui/MultipleCSSStylesheet.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single CSSStylesheet" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCSSStylesheet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="CSSStylesheet"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/css/customization"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple CSSStylesheet" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCSSStylesheet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="CSSStylesheet"/>
+      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/papyrus/css/customization"/>
+    </constraints>
+  </views>
+  <dataContexts name="csscustomization" label="csscustomization">
+    <elements name="CSSStylesheet">
+      <properties name="theme" label="" description="The CSS Theme to which this stylesheet should be contributed. May be a reference to an existing theme, or the id of the new Theme."/>
+      <properties name="icon" label="" description="Specify an icon for the new theme (Optional)"/>
+      <properties name="label" description="Specify a label for the new Theme (Optional)"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.customization/Model/Customization/Customization.ctx#//@dataContexts.0/@elements.2"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.css.export/model/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+</contexts:Context>

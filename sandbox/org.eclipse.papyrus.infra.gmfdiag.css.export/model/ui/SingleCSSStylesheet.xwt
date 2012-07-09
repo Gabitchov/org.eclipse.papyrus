@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:j="clr-namespace:java.lang">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringFileSelector
+			property="customization:FileBasedCustomizableElement:file" input="{Binding}"
+			customLabel="CSS File or UML Model"></ppe:StringFileSelector>
+		<ppe:StringCombo input="{Binding}"
+			property="csscustomization:CSSStylesheet:theme"></ppe:StringCombo>
+	</Composite>
+	<Group text="New theme">
+		<Group.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="csscustomization:CSSStylesheet:label"></ppe:StringEditor>
+		<ppe:StringFileSelector allowFileSystem="true"
+			input="{Binding}" allowWorkspace="true"
+			property="csscustomization:CSSStylesheet:icon"></ppe:StringFileSelector>
+	</Group>
+</Composite>

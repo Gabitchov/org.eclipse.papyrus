@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/css/customization"
+            class="org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CsscustomizationPackage"
+            genModel="model/CSSExtensionFactory.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.customization.factory">
+      <factory
+            factory="org.eclipse.papyrus.infra.gmfdiag.css.export.factory.CSSExtensionFactory">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.context">
+      <context
+            contextModel="model/CSSExport.ctx"
+            isCustomizable="false">
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.environment">
+      <environment
+            environmentModel="model/Environment.xmi">
+      </environment>
+   </extension>
+
+</plugin>
