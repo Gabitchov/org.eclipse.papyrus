@@ -64,12 +64,14 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 		switch(severity) {
 		case IMarker.SEVERITY_ERROR:
 			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_DEC_FIELD_ERROR);
+			// workaround for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383810
 			if(overlay == null) {
 				overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, error_co);
 			}
 			break;
 		case IMarker.SEVERITY_WARNING:
 			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_DEC_FIELD_WARNING);
+			// workaround for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383810
 			if(overlay == null) {
 				overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, warning_co);
 			}
