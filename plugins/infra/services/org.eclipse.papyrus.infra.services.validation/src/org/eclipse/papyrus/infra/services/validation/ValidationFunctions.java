@@ -15,6 +15,12 @@ import org.eclipse.ui.PlatformUI;
 
 public class ValidationFunctions implements IDecorationSpecificFunctions {
 
+	public static final String error_co = "icons/etool16/error_co.gif";
+
+	public static final String warning_co = "icons/etool16/warning_co.gif";
+
+	public static final String info_co = "icons/etool16/info_co.gif";
+
 	/**
 	 * Return the image descriptor associated with an validation marker
 	 */
@@ -53,15 +59,23 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
 		ImageDescriptor overlay = null;
 
+		org.eclipse.papyrus.infra.widgets.Activator widgetsActivator =
+			org.eclipse.papyrus.infra.widgets.Activator.getDefault();
 		switch(severity) {
 		case IMarker.SEVERITY_ERROR:
 			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_DEC_FIELD_ERROR);
+			if(overlay == null) {
+				overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, error_co);
+			}
 			break;
 		case IMarker.SEVERITY_WARNING:
 			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_DEC_FIELD_WARNING);
+			if(overlay == null) {
+				overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, warning_co);
+			}
 			break;
 		case IMarker.SEVERITY_INFO:
-			overlay = sharedImages.getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK); // TODO: Image too big (unclear, if "info" is useful)
+			overlay = widgetsActivator.getImageDescriptor(Activator.PLUGIN_ID, info_co);
 			break;
 		}
 
@@ -85,20 +99,33 @@ public class ValidationFunctions implements IDecorationSpecificFunctions {
 	 * Set of child decorations. use severity information?
 	 */
 	public IPapyrusDecoration markerPropagation(EList<IPapyrusDecoration> childDecorations) {
-		int childSeverity = 0;
+		boolean childWarnings = false;
+		boolean childErrors = false;
 		// loop over children. Use the "highest" level for parent decoration
 		for(IPapyrusDecoration childDecoration : childDecorations) {
 			if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IMarker.SEVERITY_WARNING)) {
-				childSeverity = IMarker.SEVERITY_WARNING;
+				childWarnings = true;
 			}
 			else if(childDecoration.getDecorationImageForME() == getImageDescriptorForME(IMarker.SEVERITY_ERROR)) {
-				childSeverity = IMarker.SEVERITY_ERROR;
-				break; // no need to check further
+				childErrors = true;
 			}
 		}
-		if(childSeverity != 0) {
-			String message = (childSeverity == IMarker.SEVERITY_ERROR) ? "Error" : "Warning";
-			message += " marker in one of the children (packaged elements)";
+		if(childWarnings || childErrors) {
+			String message = "";
+			int childSeverity = 0;
+			if(childErrors && childWarnings) {
+				message = "Error and warning";
+				childSeverity = IMarker.SEVERITY_ERROR;
+			}
+			else if(childErrors) {
+				message = "Error";
+				childSeverity = IMarker.SEVERITY_ERROR;
+			}
+			else if(childWarnings) {
+				message = "Warning";
+				childSeverity = IMarker.SEVERITY_WARNING;
+			}
+			message += " marker(s) in one of the children";
 			IPapyrusDecoration deco = new Decoration(null, EValidator.MARKER,
 				getImageDescriptorForGE(childSeverity), getImageDescriptorForME(childSeverity), message, null);
 			deco.setPosition(PreferedPosition.NORTH_WEST);
