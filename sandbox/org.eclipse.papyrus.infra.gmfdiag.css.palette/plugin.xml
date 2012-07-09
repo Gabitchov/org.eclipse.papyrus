@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
+      <aspectToolProvider
+            class="org.eclipse.papyrus.infra.gmfdiag.css.palette.provider.CSSStyleAspectActionProvider"
+            description="Applies a CSS Style to a newly created element"
+            icon="icon/sourceEditor.gif"
+            id="org.eclipse.papyrus.infra.gmfdiag.css.style"
+            name="Apply CSS Style">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </aspectToolProvider>
+   </extension>
+
+</plugin>
