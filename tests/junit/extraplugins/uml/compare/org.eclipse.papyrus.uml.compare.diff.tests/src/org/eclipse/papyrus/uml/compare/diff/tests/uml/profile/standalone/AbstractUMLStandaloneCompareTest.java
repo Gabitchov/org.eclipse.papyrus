@@ -11,12 +11,13 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Adapted code from EMF-Compare
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone;
+package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
@@ -29,11 +30,15 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.junit.utils.GenericUtils;
+import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
+import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
-import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AbstractStandaloneCompareTest;
+import org.eclipse.papyrus.uml.compare.diff.tests.Activator;
+import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,6 +47,7 @@ import org.junit.Test;
  * This abstract provides methods to compare 2 Papyrus uml files named "left.uml" and "right.uml"
  * 
  */
+//TODO merge with AbstractStandaloneCompareTest
 public abstract class AbstractUMLStandaloneCompareTest extends AbstractCompareTest {
 
 	//	protected static IProject project;
@@ -63,7 +69,7 @@ public abstract class AbstractUMLStandaloneCompareTest extends AbstractCompareTe
 	//	private  static String modelPath;
 
 
-	private static final String FOLDER_PATH = "/resources/uml_standalone/";
+
 
 	//	private static boolean leftToRight = true;
 
@@ -73,13 +79,8 @@ public abstract class AbstractUMLStandaloneCompareTest extends AbstractCompareTe
 	protected DiffModel getDiffModel(EObject leftElement, EObject rightElement) throws InterruptedException {
 		// Matching model elements
 		//TODO use standalone version
-		//		final MatchModel match = MatchService.doMatch(leftElement, rightElement, StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement));
-
-		//TODO use standalone version
-		// Computing differences
-		//	final DiffModel diff = DiffService.doDiff(match, false);
-
-		//TODO : use the future Papyrus MatchService
+		//TODO use the future Papyrus MatchService
+		//		final MatchModel match = MatchService.doMatch(null, leftElement, rightElement, StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement));
 		IMatchEngine engine = new UMLStandaloneMatchEngine();
 		final MatchModel match = engine.resourceMatch(leftElement.eResource(), rightElement.eResource(), StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement));
 
@@ -88,27 +89,28 @@ public abstract class AbstractUMLStandaloneCompareTest extends AbstractCompareTe
 		//	final DiffModel diff = DiffService.doDiff(match, false);
 		final DiffModel diff = UMLStandaloneDiffService.doDiff(match, false);
 		return diff;
-		//		final DiffModel diff = UMLDiffService.doDiff(match, false);
-		//		return diff;
 	}
 
-	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException {
-		AbstractStandaloneCompareTest.init(FOLDER_PATH, modelPath, leftToRight);
-		//		GenericUtils.closeIntroPart();
-		//		GenericUtils.cleanWorkspace();
-		//
-		//		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
-		//		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, LEFT);
-		//		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, RIGHT);
-		//		final List<IFile> comparedFiles = new ArrayList<IFile>();
-		//
-		//		comparedFiles.add(project.getFile(LEFT + "." + "uml"));
-		//		comparedFiles.add(project.getFile(RIGHT + "." + "uml"));
-		//		AbstractCompareTest.loadModels(comparedFiles);
-		//
-		//		leftElement = (Model)roots.get(0);
-		//		rightElement = (Model)roots.get(1);
-		//		AbstractCompareTest.leftToRight = leftToRight;
+	public static final void init(final String folderPath, final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException {
+		GenericUtils.closeIntroPart();
+		GenericUtils.cleanWorkspace();
+		final List<IFile> comparedFiles = new ArrayList<IFile>();
+		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
+
+		if(modelPath != null) {//useful when the test is not yet implemented
+			PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), folderPath + modelPath, LEFT);
+			PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), folderPath + modelPath, RIGHT);
+
+			comparedFiles.add(project.getFile(LEFT + "." + "uml"));
+			comparedFiles.add(project.getFile(RIGHT + "." + "uml"));
+
+		}
+		AbstractCompareTest.loadModels(comparedFiles);
+		if(modelPath != null) {//useful when the test is not yet implemented
+			leftElement = (Model)roots.get(0);
+			rightElement = (Model)roots.get(1);
+		}
+		AbstractCompareTest.leftToRight = leftToRight;
 	}
 
 	//	/**

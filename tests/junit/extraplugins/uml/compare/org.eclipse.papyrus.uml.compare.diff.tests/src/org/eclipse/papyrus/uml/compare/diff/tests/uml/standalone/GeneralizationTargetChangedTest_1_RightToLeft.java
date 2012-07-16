@@ -16,11 +16,11 @@ package org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone;
 import java.io.IOException;
 import java.util.List;
 
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension;
+import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
+import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -29,9 +29,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class GeneralizationSourceChangedTest_1_RightToLeft extends AbstractUMLStandaloneCompareTest {
+public class GeneralizationTargetChangedTest_1_RightToLeft extends AbstractUMLStandaloneCompareTest {
 
-	private static final String MODEL_PATH = "generalizationSourceChanged/";
+	private static final String MODEL_PATH = "generalizationTargetChanged/";
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException, ModelMultiException, ServiceException {
@@ -48,8 +48,8 @@ public class GeneralizationSourceChangedTest_1_RightToLeft extends AbstractUMLSt
 		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 2, diffElements.size() }), diffElements.size() == 2);
 		final DiffElement firstDiffElement = diffElements.get(0);
 		final DiffElement secondDiffElement = diffElements.get(1);
-		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", MoveModelElement.class), firstDiffElement instanceof MoveModelElement);
-		Assert.assertTrue(NLS.bind("The second DiffElement is not a {0}", GeneralizationSourceChangedExtension.class), secondDiffElement instanceof GeneralizationSourceChangedExtension);
+		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", UpdateReference.class), firstDiffElement instanceof UpdateReference);
+		Assert.assertTrue(NLS.bind("The second DiffElement is not a {0}", GeneralizationTargetChangedExtension.class), secondDiffElement instanceof GeneralizationTargetChangedExtension);
 		AbstractDiffExtension ext = (AbstractDiffExtension)secondDiffElement;
 		Assert.assertTrue(NLS.bind("The {0} doesn't hide only one DiffElement", ext), ext.getHideElements().size() == 1);
 		Assert.assertTrue(NLS.bind("The {0} doesn't hide the correct DiffElement", ext), ext.getHideElements().get(0) == firstDiffElement);
