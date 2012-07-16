@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_078IsM8kEeGHyYihMaoR6g" name="Model">
+  <packageImport xmi:id="_078Isc8kEeGHyYihMaoR6g">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2Be0cM8kEeGHyYihMaoR6g" name="oldTarget">
+    <ownedAttribute xmi:id="_Ad1ekM8lEeGHyYihMaoR6g" name="Property1" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A430wM8lEeGHyYihMaoR6g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A44b0M8lEeGHyYihMaoR6g" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_A46RAM8lEeGHyYihMaoR6g">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2sYLkM8kEeGHyYihMaoR6g" name="newTarget"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_3U4WAM8kEeGHyYihMaoR6g" name="source">
+    <generalization xmi:id="__GWuQM8kEeGHyYihMaoR6g" general="_2sYLkM8kEeGHyYihMaoR6g"/>
+  </packagedElement>
+</uml:Model>
