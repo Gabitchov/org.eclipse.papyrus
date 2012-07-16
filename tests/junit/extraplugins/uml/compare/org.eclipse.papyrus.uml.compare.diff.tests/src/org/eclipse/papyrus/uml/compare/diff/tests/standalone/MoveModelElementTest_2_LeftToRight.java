@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -113,6 +114,7 @@ public class MoveModelElementTest_2_LeftToRight extends AbstractStandaloneCompar
 		super.testRedo();
 	}
 
+	@Ignore("not yet implemented")
 	@Test
 	public void testMergeOrder() {
 		Assert.fail("not yet implemented");

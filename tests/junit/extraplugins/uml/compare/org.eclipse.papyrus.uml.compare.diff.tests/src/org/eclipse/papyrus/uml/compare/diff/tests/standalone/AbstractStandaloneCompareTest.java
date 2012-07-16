@@ -24,7 +24,6 @@ import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -34,7 +33,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
@@ -93,20 +91,27 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 	}
 
 	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException {
+		init(FOLDER_PATH, modelPath, leftToRight);
+	}
+
+	public static final void init(final String folderPath, final String modelPath, boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException {
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
-
-		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
-		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, LEFT);
-		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, RIGHT);
 		final List<IFile> comparedFiles = new ArrayList<IFile>();
+		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
 
-		comparedFiles.add(project.getFile(LEFT + "." + "uml"));
-		comparedFiles.add(project.getFile(RIGHT + "." + "uml"));
-		AbstractCompareTest.loadModels(comparedFiles);
+		if(modelPath != null) {//useful when the test is not yet implemented
+			PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), folderPath + modelPath, LEFT);
+			PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), folderPath + modelPath, RIGHT);
 
-		leftElement = (Model)roots.get(0);
-		rightElement = (Model)roots.get(1);
+			comparedFiles.add(project.getFile(LEFT + "." + "uml"));
+			comparedFiles.add(project.getFile(RIGHT + "." + "uml"));
+			AbstractCompareTest.loadModels(comparedFiles);
+
+
+			leftElement = (Model)roots.get(0);
+			rightElement = (Model)roots.get(1);
+		}
 		AbstractCompareTest.leftToRight = leftToRight;
 	}
 
