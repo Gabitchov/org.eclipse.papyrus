@@ -25,6 +25,7 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ModelElementChangeRightTargetMerger;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
@@ -191,25 +192,28 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				// we should now have a look for AddReferencesLinks needing this object
-				final Iterator<EObject> siblings = getDiffModel().eAllContents();
-				while(siblings.hasNext()) {
-					final DiffElement op = (DiffElement)siblings.next();
-					if(op instanceof ReferenceChangeRightTarget) {
-						final ReferenceChangeRightTarget link = (ReferenceChangeRightTarget)op;
-						// now if I'm in the target References I should put my copy in the origin
-						if(link.getLeftTarget() != null && link.getLeftTarget() == element) {
-							link.setRightTarget(newOne);
-						}
-					} else if(op instanceof ReferenceOrderChange) {
-						final ReferenceOrderChange link = (ReferenceOrderChange)op;
-						if(link.getLeftElement() == origin && link.getReference() == ref) {
-							final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
-							boolean replaced = false;
-							while(!replaced && targetIterator.hasNext()) {
-								final EObject target = targetIterator.next();
-								if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(element))) {
-									targetIterator.set(newOne);
-									replaced = true;
+				final DiffModel diffModel = getDiffModel();////see bug 385263: [UML Compare] NPE merging a DiffGroup owning a UMLStereotypeApplicationAddition/Removal
+				if(diffModel != null) {
+					final Iterator<EObject> siblings = diffModel.eAllContents();
+					while(siblings.hasNext()) {
+						final DiffElement op = (DiffElement)siblings.next();
+						if(op instanceof ReferenceChangeRightTarget) {
+							final ReferenceChangeRightTarget link = (ReferenceChangeRightTarget)op;
+							// now if I'm in the target References I should put my copy in the origin
+							if(link.getLeftTarget() != null && link.getLeftTarget() == element) {
+								link.setRightTarget(newOne);
+							}
+						} else if(op instanceof ReferenceOrderChange) {
+							final ReferenceOrderChange link = (ReferenceOrderChange)op;
+							if(link.getLeftElement() == origin && link.getReference() == ref) {
+								final ListIterator<EObject> targetIterator = link.getLeftTarget().listIterator();
+								boolean replaced = false;
+								while(!replaced && targetIterator.hasNext()) {
+									final EObject target = targetIterator.next();
+									if(target.eIsProxy() && equalProxyURIs(((InternalEObject)target).eProxyURI(), EcoreUtil.getURI(element))) {
+										targetIterator.set(newOne);
+										replaced = true;
+									}
 								}
 							}
 						}
