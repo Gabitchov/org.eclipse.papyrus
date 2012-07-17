@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationRemoval;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
@@ -51,7 +51,7 @@ public class UMLStereotypeApplicationRemoval_1_RightToLeft extends AbstractUMLSt
 		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 2, diffElements.size() }), diffElements.size() == 2);
 		final DiffElement firstDiffElement = diffElements.get(0);
 		DiffElement secondDiffElement = diffElements.get(1);
-		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", ModelElementChangeLeftTarget.class), firstDiffElement instanceof ModelElementChangeLeftTarget);
+		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", ModelElementChangeRightTarget.class), firstDiffElement instanceof ModelElementChangeRightTarget);
 
 		Assert.assertTrue(secondDiffElement instanceof DiffGroup);
 		Assert.assertTrue(secondDiffElement.getSubDiffElements().size() == 1);
