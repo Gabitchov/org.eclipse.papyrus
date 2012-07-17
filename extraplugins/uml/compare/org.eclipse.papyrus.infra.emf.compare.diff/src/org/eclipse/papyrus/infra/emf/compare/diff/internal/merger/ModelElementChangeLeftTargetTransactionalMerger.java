@@ -24,7 +24,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.diff.internal.merge.impl.ModelElementChangeLeftTargetMerger;
-import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
@@ -43,7 +42,6 @@ import org.eclipse.papyrus.infra.emf.compare.diff.Activator;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.command.CopyXMIIDCommand;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.command.PapyrusMergeCommandProvider;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.util.PapyrusEFactory;
-import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
 
 
 /**
@@ -226,19 +224,4 @@ public class ModelElementChangeLeftTargetTransactionalMerger extends DefaultTran
 		return cmd;
 	}
 
-	@Override
-	protected EObject copy(EObject eObject) {
-		EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
-		final EObject result = copier.copy(eObject);
-		//TODO  to replace with : TransactionalMergeService.getCopier(diff); ???
-		//		final PapyrusCompareEObjectCopier copier2 = new PapyrusCompareEObjectCopier(diff);
-		//		copier2.getCopyReferenceValueCommand(domain, targetReference, target, value, matchedValue, index)
-		//		final EObject result = copier.getCopiedValue(eObject);
-
-
-		//TODO : I think that we should to this too! should be done too
-		//		copier.copyReferences();
-		//		copier.copyXMIIDs();
-		return result;
-	}
 }

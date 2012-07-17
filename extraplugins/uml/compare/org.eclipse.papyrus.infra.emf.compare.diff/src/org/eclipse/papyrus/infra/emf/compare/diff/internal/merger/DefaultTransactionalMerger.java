@@ -96,14 +96,14 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 
 	public Command getMergeRequiredDifferencesCommand(TransactionalEditingDomain domain, boolean applyInOrigin) {
 		CompoundCommand cmd = new CompoundCommand("Merge required differences");
-//		if(mergedDiffs == null) { //we need to clean it, to avoid that the command creation duplicate elements in this list
-			mergedDiffs = new ArrayList<DiffElement>();
-			if(mergedDiffslistener == null) {
-				//TODO : improve that, and use command!
-				mergedDiffslistener = new MergedDiffsListener();
-				TransactionalMergeService.addMergeListener(mergedDiffslistener);
-			}
-//		}
+		//		if(mergedDiffs == null) { //we need to clean it, to avoid that the command creation duplicate elements in this list
+		mergedDiffs = new ArrayList<DiffElement>();
+		if(mergedDiffslistener == null) {
+			//TODO : improve that, and use command!
+			mergedDiffslistener = new MergedDiffsListener();
+			TransactionalMergeService.addMergeListener(mergedDiffslistener);
+		}
+		//		}
 		mergedDiffs.add(diff);
 
 		for(DiffElement requiredDiff : getDependencies(applyInOrigin)) {
@@ -116,7 +116,7 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 				}
 			}
 		}
-		if(cmd.isEmpty()){
+		if(cmd.isEmpty()) {
 			return IdentityCommand.INSTANCE;
 		}
 		return cmd;
@@ -140,18 +140,18 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	}
 
 	//TODO move it in an upper class
-	protected static TransactionalEditingDomain getTransactionalEditingDomain(final DiffElement diff){
+	protected static TransactionalEditingDomain getTransactionalEditingDomain(final DiffElement diff) {
 		DiffElement diffElement = diff;
 		final Iterator<EObject> iter = diff.eAllContents();
-		while(iter.hasNext()){
+		while(iter.hasNext()) {
 			final EObject current = iter.next();
-			if(current instanceof DiffElement && !(current instanceof DiffGroup)){
+			if(current instanceof DiffElement && !(current instanceof DiffGroup)) {
 				diffElement = (DiffElement)current;
 				break;
 			}
 		}
 		EObject element = (EObject)ClassUtils.invokeMethod(diffElement, "getRightElement");
-		if(element==null){
+		if(element == null) {
 			element = (EObject)ClassUtils.invokeMethod(diffElement, "getLeftElement");
 		}
 		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
@@ -339,6 +339,11 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	 */
 	protected EObject copy(EObject eObject) {
 		final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
+		if(copier.containsKey(eObject)) {
+			//385289: [UML Compare] Bad result after merginf UMLStereotypeApplicationAddition/Removal
+			//in some case, the elements are copied and merged twice!
+			return copier.get(eObject);
+		}
 		final EObject result = copier.copy(eObject);
 		copier.copyReferences();
 		copier.copyXMIIDs();
