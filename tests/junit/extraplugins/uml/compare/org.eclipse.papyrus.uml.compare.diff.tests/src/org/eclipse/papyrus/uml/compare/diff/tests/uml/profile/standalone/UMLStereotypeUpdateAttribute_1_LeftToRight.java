@@ -24,6 +24,10 @@ import org.eclipse.emf.compare.uml2diff.UMLStereotypeUpdateAttribute;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Class;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -85,13 +89,26 @@ public class UMLStereotypeUpdateAttribute_1_LeftToRight extends AbstractUMLStand
 
 	@Test
 	public void testModificationOnNotationFile() {
-		Assert.fail();
+		super.testModificationOnNotationFile(false);
 	}
 
 
 	@Test
 	public void testModificationOnUMLFile() {
-		Assert.fail();
+		super.testModificationOnUMLFile(true);
+		final Class myClass;
+
+		final String blockStereotypeName = "SysML::Blocks::Block";
+		final Stereotype blockSte;
+		final Model model = (Model)rightElement;
+		myClass = (Class)model.getOwnedMember("Class1");
+		Assert.assertNotNull(myClass);
+		blockSte = myClass.getAppliedStereotype(blockStereotypeName);
+		Assert.assertNotNull(blockSte);
+
+		//the test itself
+		boolean value = (Boolean)myClass.getValue(blockSte, "isEncapsulated");
+		Assert.assertTrue("The stererotype property has not been correctly merged", value == false);
 	}
 
 
