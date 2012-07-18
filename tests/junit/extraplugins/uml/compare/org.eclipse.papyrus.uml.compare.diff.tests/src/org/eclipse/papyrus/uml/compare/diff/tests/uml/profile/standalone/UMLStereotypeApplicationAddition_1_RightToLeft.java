@@ -25,6 +25,9 @@ import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationAddition;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Stereotype;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -85,13 +88,17 @@ public class UMLStereotypeApplicationAddition_1_RightToLeft extends AbstractUMLS
 
 	@Test
 	public void testModificationOnNotationFile() {
-		Assert.fail();
+		super.testModificationOnNotationFile(false);
 	}
 
 
 	@Test
 	public void testModificationOnUMLFile() {
-		Assert.fail();
+		super.testModificationOnUMLFile(true);
+		final Model model = (Model)leftElement;
+		Class myClass = (Class)model.getOwnedMember("Class1");
+		Stereotype ste = myClass.getAppliedStereotype("SysML::Blocks::Block");
+		Assert.assertNull("The stereotype application has not been correctly merged", ste);
 	}
 
 

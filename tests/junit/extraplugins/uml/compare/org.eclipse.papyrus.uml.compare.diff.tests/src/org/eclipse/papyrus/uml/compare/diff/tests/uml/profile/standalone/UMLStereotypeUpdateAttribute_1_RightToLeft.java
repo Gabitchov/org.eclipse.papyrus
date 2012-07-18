@@ -99,7 +99,7 @@ public class UMLStereotypeUpdateAttribute_1_RightToLeft extends AbstractUMLStand
 
 		final String blockStereotypeName = "SysML::Blocks::Block";
 		final Stereotype blockSte;
-		final Model model = (Model)rightElement;
+		final Model model = (Model)leftElement;
 		myClass = (Class)model.getOwnedMember("Class1");
 		Assert.assertNotNull(myClass);
 		blockSte = myClass.getAppliedStereotype(blockStereotypeName);

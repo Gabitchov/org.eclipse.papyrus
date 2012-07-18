@@ -84,7 +84,6 @@ public class UMLProfileApplicationAddition_1_RightToLeft extends AbstractUMLStan
 	@Test
 	public void testModificationOnUMLFile() {
 		super.testModificationOnUMLFile(true);
-		super.testModificationOnUMLFile(true);
 		final Model model = (Model)leftElement;
 		Assert.assertTrue("The applied profile has not been correctly merged", model.getAppliedProfile("SysML::Blocks") == null);
 	}

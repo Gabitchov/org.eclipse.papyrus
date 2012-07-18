@@ -152,7 +152,18 @@ public class TransactionalMergeFactory {
 		if(rightElement != null && rightElement.eResource() != null) {
 			resourceFileExtension = rightElement.eResource().getURI().fileExtension();
 		}
+		
+		if(resourceFileExtension == null) {//Papyrus code
+			EObject leftElement = (EObject)ClassUtils.invokeMethod(element, "getLeftElement"); //$NON-NLS-1$
+			if(leftElement == null) {
+				leftElement = (EObject)ClassUtils.invokeMethod(element, "getLeftParent"); //$NON-NLS-1$
+			}
 
+			if(leftElement != null && leftElement.eResource() != null) {
+				resourceFileExtension = leftElement.eResource().getURI().fileExtension();
+			}
+		}
+		
 		if(resourceFileExtension == null) {
 			resourceFileExtension = ALL_EXTENSIONS;
 		}

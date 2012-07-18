@@ -21,10 +21,13 @@ import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.uml2diff.UMLProfileApplicationAddition;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.ProfileApplication;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -105,7 +108,22 @@ public class UMLProfileApplicationAddition_1_LeftToRight extends AbstractUMLStan
 	@Override
 	@Test
 	public void testXMIID() {
-		//nothing to do
+		final Model leftModel = (Model)leftElement;
+		final Model rightModel = (Model)rightElement;
+		final ProfileApplication leftApplication = leftModel.getProfileApplications().get(0);
+		final ProfileApplication rightApplication = rightModel.getProfileApplications().get(0);
+		Assert.assertNotNull(leftApplication);
+		Assert.assertNotNull(rightApplication);
+		final EAnnotation leftEAnnotation = leftApplication.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
+		final EAnnotation rightEAnnotation = rightApplication.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
+
+		Assert.assertNotNull(leftEAnnotation);
+		Assert.assertNotNull(rightEAnnotation);
+
+
+		//the test itself
+		Assert.assertEquals("The ID of the ProfileApplication has not been correctly merged", EMFHelper.getXMIID(leftApplication), EMFHelper.getXMIID(rightApplication));
+		Assert.assertEquals("The ID of the ProfileApplication has not been correctly merged", EMFHelper.getXMIID(leftEAnnotation), EMFHelper.getXMIID(rightEAnnotation));
 	}
 
 	@Override

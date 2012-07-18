@@ -108,17 +108,17 @@ public class UMLStereotypeUpdateReference_1_LeftToRight extends AbstractUMLStand
 		final Model model = (Model)rightElement;
 		unit = (InstanceSpecification)model.getOwnedMember(unitName);
 		dimension = (InstanceSpecification)model.getOwnedMember(dimensionName);
-		
+
 		Assert.assertNotNull(unit);
 		Assert.assertNotNull(dimension);
 		unitSte = unit.getAppliedStereotype(unitStereotypeName);
 		dimSte = dimension.getAppliedStereotype(dimentsionStereotypeName);
 		Assert.assertNotNull(unitSte);
 		Assert.assertNotNull(dimSte);
-		
+
 		//the test itself
 		Object value = unit.getValue(unitSte, "dimension");
-		Assert.assertTrue("The stererotype property has not been correctly merged", value==null);
+		Assert.assertTrue("The stererotype property has not been correctly merged", value == null);
 	}
 
 

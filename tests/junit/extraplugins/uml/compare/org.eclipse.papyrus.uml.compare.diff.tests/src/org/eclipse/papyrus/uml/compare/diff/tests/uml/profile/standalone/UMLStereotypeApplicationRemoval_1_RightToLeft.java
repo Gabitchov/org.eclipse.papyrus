@@ -22,9 +22,14 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationRemoval;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Stereotype;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -85,14 +90,19 @@ public class UMLStereotypeApplicationRemoval_1_RightToLeft extends AbstractUMLSt
 
 	@Test
 	public void testModificationOnNotationFile() {
-		Assert.fail();
+		super.testModificationOnNotationFile(false);
 	}
 
 
 	@Test
 	public void testModificationOnUMLFile() {
-		Assert.fail();
+		super.testModificationOnUMLFile(true);
+		final Model model = (Model)leftElement;
+		Class myClass = (Class)model.getOwnedMember("Class1");
+		Stereotype ste = myClass.getAppliedStereotype("SysML::Blocks::Block");
+		Assert.assertNotNull("The stereotype application has not been correctly merged", ste);
 	}
+
 
 
 	@Override
@@ -111,7 +121,18 @@ public class UMLStereotypeApplicationRemoval_1_RightToLeft extends AbstractUMLSt
 	@Override
 	@Test
 	public void testXMIID() {
-		//nothing to do
+		final Model leftModel = (Model)leftElement;
+		final Model rightModel = (Model)rightElement;
+		final Class leftClass = (Class)leftModel.getOwnedMember("Class1");
+		final Class rightClass = (Class)rightModel.getOwnedMember("Class1");
+		final EObject leftStereotypeApplication = leftClass.getStereotypeApplications().get(0);
+		final EObject rightStereotypeApplication = rightClass.getStereotypeApplications().get(0);
+
+		Assert.assertNotNull(leftStereotypeApplication);
+		Assert.assertNotNull(rightStereotypeApplication);
+
+		//the test itself
+		Assert.assertEquals("The ID of the StereotypeApplication has not been correctly merged", EMFHelper.getXMIID(rightStereotypeApplication), EMFHelper.getXMIID(leftStereotypeApplication));
 	}
 
 	@Override

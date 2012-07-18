@@ -43,8 +43,32 @@ import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationAddition_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationAddition_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationRemoval_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationRemoval_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeApplicationAddition_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeApplicationAddition_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeApplicationRemoval_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeApplicationRemoval_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeAttributeChangeLeftTarget_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeAttributeChangeLeftTarget_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeAttributeChangeRightTarget_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeAttributeChangeRightTarget_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeReferenceChangeLeftTarget_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeReferenceChangeLeftTarget_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeReferenceChangeRightTarget_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeReferenceChangeRightTarget_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeReferenceOrderChange_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeReferenceOrderChange_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeUpdateAttribute_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeUpdateAttribute_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeUpdateReference_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLStereotypeUpdateReference_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone.GeneralizationSourceChangedTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone.GeneralizationSourceChangedTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone.GeneralizationTargetChangedTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone.GeneralizationTargetChangedTest_1_RightToLeft;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -82,7 +106,31 @@ UpdateReferenceTest_1_LeftToRight.class, UpdateReferenceTest_1_RightToLeft.class
 
 UpdateReferenceTest_2_LeftToRight.class, UpdateReferenceTest_2_RightToLeft.class,
 
-GeneralizationSourceChangedTest_1_LeftToRight.class, GeneralizationSourceChangedTest_1_RightToLeft.class })
+GeneralizationSourceChangedTest_1_LeftToRight.class, GeneralizationSourceChangedTest_1_RightToLeft.class,
+
+GeneralizationTargetChangedTest_1_LeftToRight.class, GeneralizationTargetChangedTest_1_RightToLeft.class,
+
+UMLProfileApplicationAddition_1_LeftToRight.class, UMLProfileApplicationAddition_1_RightToLeft.class,
+
+UMLProfileApplicationRemoval_1_LeftToRight.class, UMLProfileApplicationRemoval_1_RightToLeft.class,
+
+UMLStereotypeApplicationAddition_1_LeftToRight.class, UMLStereotypeApplicationAddition_1_RightToLeft.class,
+
+UMLStereotypeApplicationRemoval_1_LeftToRight.class, UMLStereotypeApplicationRemoval_1_RightToLeft.class,
+
+UMLStereotypeAttributeChangeLeftTarget_1_LeftToRight.class, UMLStereotypeAttributeChangeLeftTarget_1_RightToLeft.class,
+
+UMLStereotypeAttributeChangeRightTarget_1_LeftToRight.class, UMLStereotypeAttributeChangeRightTarget_1_RightToLeft.class,
+
+UMLStereotypeReferenceChangeLeftTarget_1_LeftToRight.class, UMLStereotypeReferenceChangeLeftTarget_1_RightToLeft.class,
+
+UMLStereotypeReferenceChangeRightTarget_1_LeftToRight.class, UMLStereotypeReferenceChangeRightTarget_1_RightToLeft.class,
+
+UMLStereotypeReferenceOrderChange_1_LeftToRight.class, UMLStereotypeReferenceOrderChange_1_RightToLeft.class,
+
+UMLStereotypeUpdateAttribute_1_LeftToRight.class, UMLStereotypeUpdateAttribute_1_RightToLeft.class,
+
+UMLStereotypeUpdateReference_1_LeftToRight.class, UMLStereotypeUpdateReference_1_RightToLeft.class, })
 public class AllTests {
 	// JUnit 4 test suite
 }

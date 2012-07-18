@@ -261,23 +261,25 @@ public abstract class AbstractCompareTest {
 	@AfterClass
 	public static final void closeAll() {
 		//useful ?
-		final List<Resource> resources = new ArrayList<Resource>(set.getResources());
-		for(Resource current : resources) {
-			current.setTrackingModification(false);
-			set.getResources().remove(current);
-			TransactionUtil.disconnectFromEditingDomain(current);
-			current.unload();
-		}
-		resources.clear();
-		if(servicesRegistry != null) {
-			try {
-				servicesRegistry.disposeRegistry();
-			} catch (ServiceMultiException e) {
-				log.error(e);
+		if(set != null) {
+			final List<Resource> resources = new ArrayList<Resource>(set.getResources());
+			for(Resource current : resources) {
+				current.setTrackingModification(false);
+				set.getResources().remove(current);
+				TransactionUtil.disconnectFromEditingDomain(current);
+				current.unload();
 			}
+			resources.clear();
+			if(servicesRegistry != null) {
+				try {
+					servicesRegistry.disposeRegistry();
+				} catch (ServiceMultiException e) {
+					log.error(e);
+				}
+			}
+			//we close all the editors
+			GenericUtils.closeAllEditors();
 		}
-		//we close all the editors
-		GenericUtils.closeAllEditors();
 	}
 
 	/**
