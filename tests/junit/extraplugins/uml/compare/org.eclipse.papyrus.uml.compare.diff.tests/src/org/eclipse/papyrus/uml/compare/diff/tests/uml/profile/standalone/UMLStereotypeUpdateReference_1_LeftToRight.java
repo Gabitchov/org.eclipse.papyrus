@@ -25,6 +25,9 @@ import org.eclipse.emf.compare.uml2diff.UMLStereotypeUpdateReference;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Stereotype;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -86,13 +89,36 @@ public class UMLStereotypeUpdateReference_1_LeftToRight extends AbstractUMLStand
 
 	@Test
 	public void testModificationOnNotationFile() {
-		Assert.fail();
+		super.testModificationOnDiFile(false);
 	}
 
 
 	@Test
 	public void testModificationOnUMLFile() {
-		Assert.fail();
+		super.testModificationOnUMLFile(true);
+		final InstanceSpecification unit;
+		final InstanceSpecification dimension;
+
+		final String unitStereotypeName = "SysML::Blocks::Unit";
+		final String dimentsionStereotypeName = "SysML::Blocks::Dimension";
+		final String unitName = "myUnit";
+		final String dimensionName = "myDimension";
+		final Stereotype unitSte;
+		final Stereotype dimSte;
+		final Model model = (Model)rightElement;
+		unit = (InstanceSpecification)model.getOwnedMember(unitName);
+		dimension = (InstanceSpecification)model.getOwnedMember(dimensionName);
+		
+		Assert.assertNotNull(unit);
+		Assert.assertNotNull(dimension);
+		unitSte = unit.getAppliedStereotype(unitStereotypeName);
+		dimSte = dimension.getAppliedStereotype(dimentsionStereotypeName);
+		Assert.assertNotNull(unitSte);
+		Assert.assertNotNull(dimSte);
+		
+		//the test itself
+		Object value = unit.getValue(unitSte, "dimension");
+		Assert.assertTrue("The stererotype property has not been correctly merged", value==null);
 	}
 
 
