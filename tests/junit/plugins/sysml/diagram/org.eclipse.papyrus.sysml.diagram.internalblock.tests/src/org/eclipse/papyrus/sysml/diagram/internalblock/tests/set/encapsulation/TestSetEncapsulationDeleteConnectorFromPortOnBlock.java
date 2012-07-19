@@ -36,6 +36,10 @@ public class TestSetEncapsulationDeleteConnectorFromPortOnBlock extends Abstract
 
 		isConnectorDestroyed.put(actorPartTargetView, false);
 		isConnectorDestroyed.put(nestedActorPartTargetView, true);
+		isConnectorDestroyed.put(subNestedActorPartContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedActorPartContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedActorPartContainer1_1_2TargetView, false);
+
 
 		isConnectorDestroyed.put(portOnBlockTargetView, false);
 		isConnectorDestroyed.put(portOnPartTargetView, false);
@@ -47,15 +51,30 @@ public class TestSetEncapsulationDeleteConnectorFromPortOnBlock extends Abstract
 
 		isConnectorDestroyed.put(partTargetView, false);
 		isConnectorDestroyed.put(nestedPartTargetView, true);
+		isConnectorDestroyed.put(subNestedPartContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPartContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPartContainer1_1_2TargetView, false);
 
 		isConnectorDestroyed.put(propertyTargetView, false);
 		isConnectorDestroyed.put(nestedPropertyTargetView, true);
+		isConnectorDestroyed.put(subNestedPropertyContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPropertyContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPropertyContainer1_1_2TargetView, false);
+
 
 		isConnectorDestroyed.put(referenceTargetView, false);
 		isConnectorDestroyed.put(nestedReferenceTargetView, true);
+		isConnectorDestroyed.put(subNestedReferenceContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedReferenceContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedReferenceContainer1_1_2TargetView, false);
+
 
 		isConnectorDestroyed.put(valueTargetView, false);
 		isConnectorDestroyed.put(nestedValueTargetView, true);
+		isConnectorDestroyed.put(subNestedValueContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedValueContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedValueContainer1_1_2TargetView, false);
+
 		
 		// Initialize connector creation possibility
 		for(View view : isConnectorDestroyed.keySet()) {

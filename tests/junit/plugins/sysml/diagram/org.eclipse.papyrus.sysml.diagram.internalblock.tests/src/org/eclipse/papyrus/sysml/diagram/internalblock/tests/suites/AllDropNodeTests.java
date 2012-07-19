@@ -18,10 +18,15 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDr
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnBlock;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnBlockStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedActorPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedActorPartStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedPartStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedProperty;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedPropertyStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedReference;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedReferenceStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedValue;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnNestedValueStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnPartStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnProperty;
@@ -50,10 +55,15 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestNodeDropOnValue.class,
 	TestNodeDropOnValueStructureCompartment.class,
 	TestNodeDropOnNestedActorPart.class,
+	TestNodeDropOnNestedActorPartStructureCompartment.class,
 	TestNodeDropOnNestedPart.class,
+	TestNodeDropOnNestedPartStructureCompartment.class,
 	TestNodeDropOnNestedProperty.class,
+	TestNodeDropOnNestedPropertyStructureCompartment.class,
 	TestNodeDropOnNestedReference.class,
-	TestNodeDropOnNestedValue.class
+	TestNodeDropOnNestedReferenceStructureCompartment.class,
+	TestNodeDropOnNestedValue.class,
+	TestNodeDropOnNestedValueStructureCompartment.class,
 })
 public class AllDropNodeTests {
 

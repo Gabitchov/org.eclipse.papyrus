@@ -36,6 +36,7 @@ import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
  * relationships COMMENT_ANNOTATED_ELEMENT and CONSTRAINT_CONSTRAINED_ELEMENT).
  * </pre>
  */
+@Deprecated
 public class CustomNestedBlockPropertyCompositeSemanticEditPolicy extends NestedBlockPropertyCompositeSemanticEditPolicy {
 
 	/** Local graphical type registry for graphical elements */

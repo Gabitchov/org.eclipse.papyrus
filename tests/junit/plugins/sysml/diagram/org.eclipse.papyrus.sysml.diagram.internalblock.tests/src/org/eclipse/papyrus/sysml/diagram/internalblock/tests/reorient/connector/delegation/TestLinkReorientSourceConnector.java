@@ -74,6 +74,8 @@ public class TestLinkReorientSourceConnector extends AbstractLinkReorientSourceC
 		
 		isReorientAllowed.put(partSourceView, true);
 		isReorientAllowed.put(nestedPartSourceView, true);
+		isReorientAllowed.put(subNestedPartContainer1SourceView, true);
+		isReorientAllowed.put(subNestedPartContainer2SourceView, true);
 		
 		isReorientAllowed.put(propertySourceView, true);
 		isReorientAllowed.put(nestedPropertySourceView, true);

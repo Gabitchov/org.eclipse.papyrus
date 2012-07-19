@@ -32,6 +32,9 @@ public class TestNodeCreationOnNestedPart extends AbstractTest {
 
 	public static View containerView;
 
+	/** part in a nested part */
+	public static View subContainerView;
+	
 	@BeforeClass
 	public static void prepareContainerForTest() throws Exception {
 		try {
@@ -39,10 +42,16 @@ public class TestNodeCreationOnNestedPart extends AbstractTest {
 			View blockStructureView = ViewUtil.getChildBySemanticHint(blockView, SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID);
 			View partView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
 			View partStructureView = ViewUtil.getChildBySemanticHint(partView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
-			containerView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+			containerView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
 
 			if(containerView == null) {
 				throw new Exception("Unable to prepare container for test.");
+			}
+			View nestedPartView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+			View nestedPartStructureView = ViewUtil.getChildBySemanticHint(nestedPartView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);		
+			subContainerView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, nestedPartStructureView);
+			if(subContainerView == null) {
+				throw new Exception("Unable to prepare sub-container for test.");
 			}
 			
 		} catch (Exception e) {
@@ -109,5 +118,69 @@ public class TestNodeCreationOnNestedPart extends AbstractTest {
 	@Test
 	public void createConstraint() throws Exception {
 		createNodeFromPalette("internalblock.tool.constraint", containerView, false);
+	}
+	
+	/////////////////////////////////////////////////////////
+	// Test on 2 level nested part
+	/////////////////////////////////////////////////////////
+	@Test
+	public void createActorPartOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.actorpart", subContainerView, false);
+	}
+	
+	@Test
+	public void createPortOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.port", subContainerView, true);
+	}
+
+	@Test
+	public void createFlowPort_INOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.flowport_in", subContainerView, true);
+	}
+	
+	@Test
+	public void createFlowPort_OUTOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.flowport_out", subContainerView, true);
+	}
+	
+	@Test
+	public void createFlowPort_INOUTOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.flowport_inout", subContainerView, true);
+	}
+	
+	@Test
+	public void createFlowPort_NAOnDeepNestedPart() throws Exception {
+		// Don't try to run command (requires user action).
+		createNodeFromPalette("internalblock.tool.flowport_na", subContainerView, true, false);
+	}
+	
+	@Test
+	public void createPartOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.part", subContainerView, false);
+	}
+	
+	@Test
+	public void createPropertyOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.property", subContainerView, false);
+	}
+	
+	@Test
+	public void createReferenceOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.reference", subContainerView, false);
+	}
+	
+	@Test
+	public void createValueOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.value", subContainerView, false);
+	}
+	
+	@Test
+	public void createCommentOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.comment", subContainerView, false);
+	}
+
+	@Test
+	public void createConstraintOnDeepNestedPart() throws Exception {
+		createNodeFromPalette("internalblock.tool.constraint", subContainerView, false);
 	}
 }

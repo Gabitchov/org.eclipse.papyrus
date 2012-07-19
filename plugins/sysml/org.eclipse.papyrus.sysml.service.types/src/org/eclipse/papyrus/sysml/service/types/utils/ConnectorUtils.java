@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.service.types.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
@@ -104,6 +105,9 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 			}
 		}
 
+		// nested path is taken from the top block to the deepest property ==> collection must be reverted
+		Collections.reverse(isNestedConnectableElement);
+		
 		return isNestedConnectableElement;
 	}
 	

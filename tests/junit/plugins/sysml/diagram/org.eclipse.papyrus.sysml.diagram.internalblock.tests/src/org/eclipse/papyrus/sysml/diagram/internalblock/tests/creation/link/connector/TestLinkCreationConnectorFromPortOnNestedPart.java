@@ -58,6 +58,9 @@ public class TestLinkCreationConnectorFromPortOnNestedPart extends AbstractLinkC
 
 		isCreationAllowed.put(partTargetView, true);
 		isCreationAllowed.put(nestedPartTargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_1TargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_2_1TargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_2TargetView, true);
 
 		isCreationAllowed.put(propertyTargetView, true);
 		isCreationAllowed.put(nestedPropertyTargetView, true);
@@ -74,10 +77,17 @@ public class TestLinkCreationConnectorFromPortOnNestedPart extends AbstractLinkC
 		isCreationAllowed.put(constraintCNTargetView, false);
 
 		// Initialize nested property path for tests
-		Property part = (Property)partContainer1.getElement();
-		List<Property> nestedPath = Arrays.asList(new Property[]{ part });
+		Property part1 = (Property)partContainer1.getElement();
+		Property part2 = (Property)partContainer2.getElement();
+		Property nestedPartContainer1_1Property = (Property)nestedPartContainer1_1.getElement();
+		Property nestedPartContainer1_2Property = (Property)nestedPartContainer1_2.getElement();
+		Property nestedPartContainer2_1Property = (Property)nestedPartContainer2_1.getElement();
+		List<Property> subNestedPath1_1 = Arrays.asList(new Property[]{ nestedPartContainer1_1Property });
+		List<Property> subNestedPath2_1 = Arrays.asList(new Property[]{ nestedPartContainer2_1Property });
+		List<Property> subNestedPath1_2 = Arrays.asList(new Property[]{ part2, nestedPartContainer1_2Property });
 		List<Property> emptyPath = Collections.emptyList();
-
+		List<Property> nestedPath = Arrays.asList(new Property[]{ part1 });
+		
 		expectedSourceNestedPath = new HashMap<View, List<Property>>();
 		expectedTargetNestedPath = new HashMap<View, List<Property>>();
 
@@ -90,6 +100,10 @@ public class TestLinkCreationConnectorFromPortOnNestedPart extends AbstractLinkC
 		expectedSourceNestedPath.put(actorPartTargetView, nestedPath);
 		expectedSourceNestedPath.put(portOnBlockTargetView, nestedPath);
 		expectedSourceNestedPath.put(portOnPartTargetView, nestedPath);
+		expectedTargetNestedPath.put(subNestedPartContainer1_1_1TargetView, emptyPath);
+		expectedTargetNestedPath.put(subNestedPartContainer1_2_1TargetView, subNestedPath2_1);
+		expectedTargetNestedPath.put(subNestedPartContainer1_1_2TargetView, subNestedPath1_2);
+		expectedSourceNestedPath.put(subNestedPartContainer1_1_2TargetView, nestedPath);
 		expectedSourceNestedPath.put(flowportOnBlockTargetView, nestedPath);
 		expectedSourceNestedPath.put(flowportOnPartTargetView, nestedPath);
 		expectedSourceNestedPath.put(partTargetView, nestedPath);

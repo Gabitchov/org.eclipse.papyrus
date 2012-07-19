@@ -136,4 +136,93 @@ public class AbstractSetEncapsulationDeleteConnectorTest extends AbstractLinkPre
 		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
 	}
 
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedActorPart1_1_1() throws Exception {
+		View targetView = subNestedActorPartContainer1_1_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedActorPart1_2_1() throws Exception {
+		View targetView = subNestedActorPartContainer1_2_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedActorPart1_1_2() throws Exception {
+		View targetView = subNestedActorPartContainer1_1_2TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedPart1_1_1() throws Exception {
+		View targetView = subNestedPartContainer1_1_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedPart1_2_1() throws Exception {
+		View targetView = subNestedPartContainer1_2_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedPart1_1_2() throws Exception {
+		View targetView = subNestedPartContainer1_1_2TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedProperty1_1_1() throws Exception {
+		View targetView = subNestedPropertyContainer1_1_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedProperty1_2_1() throws Exception {
+		View targetView = subNestedPropertyContainer1_2_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedProperty1_1_2() throws Exception {
+		View targetView = subNestedPropertyContainer1_1_2TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedReference1_1_1() throws Exception {
+		View targetView = subNestedReferenceContainer1_1_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedReference1_2_1() throws Exception {
+		View targetView = subNestedReferenceContainer1_2_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedReference1_1_2() throws Exception {
+		View targetView = subNestedReferenceContainer1_1_2TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedValue1_1_1() throws Exception {
+		View targetView = subNestedValueContainer1_1_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedValue1_2_1() throws Exception {
+		View targetView = subNestedValueContainer1_2_1TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
+	
+	@Test
+	public void setEncapsulationDeleteConnectorWithTargetDeepNestedValue1_1_2() throws Exception {
+		View targetView = subNestedValueContainer1_1_2TargetView;
+		setEncapsulationDeleteConnectorTest(block, sourceView, targetView, isCreationAllowed.get(targetView), isConnectorDestroyed.get(targetView));
+	}
 }

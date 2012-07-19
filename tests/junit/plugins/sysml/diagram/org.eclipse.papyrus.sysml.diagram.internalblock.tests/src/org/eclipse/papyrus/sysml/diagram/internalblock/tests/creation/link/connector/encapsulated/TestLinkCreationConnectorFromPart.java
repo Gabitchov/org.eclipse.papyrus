@@ -57,6 +57,9 @@ public class TestLinkCreationConnectorFromPart extends AbstractLinkCreationFromE
 
 		isCreationAllowed.put(partTargetView, true);
 		isCreationAllowed.put(nestedPartTargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_1_1TargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_2_1TargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_1_2TargetView, false);
 
 		isCreationAllowed.put(propertyTargetView, true);
 		isCreationAllowed.put(nestedPropertyTargetView, false);

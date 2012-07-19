@@ -27,7 +27,7 @@ public class TestCreationAndTestDelegateFromPortOnNestedPart extends AbstractCon
 
 	@BeforeClass
 	public static void initSource() throws Exception {
-		sourceView = portOnNestedPartSourceView;
+		sourceView = port1OnNestedPart1_Part1SourceView;
 	}
 
 	@BeforeClass
@@ -43,19 +43,19 @@ public class TestCreationAndTestDelegateFromPortOnNestedPart extends AbstractCon
 
 		isCreationAllowed.put(blockTargetView, false);
 
-		isCreationAllowed.put(actorPartTargetView, true);
-		isCreationAllowed.put(nestedActorPartTargetView, true);
+		isCreationAllowed.put(actorPart2_BlockTargetView, true);
+		isCreationAllowed.put(actorPart2_p1TargetView, true);
 
 		isCreationAllowed.put(portOnBlockTargetView, true);
-		isCreationAllowed.put(portOnPartTargetView, true);
-		isCreationAllowed.put(portOnNestedPartTargetView, true);
+		isCreationAllowed.put(port1_Part2TargetView, true);
+		isCreationAllowed.put(port2OnNestedPart2_Part1TargetView, true);
 
 		isCreationAllowed.put(flowportOnBlockTargetView, true);
-		isCreationAllowed.put(flowportOnPartTargetView, true);
-		isCreationAllowed.put(flowportOnNestedPartTargetView, true);
+		isCreationAllowed.put(flowport1_Part2TargetView, true);
+		isCreationAllowed.put(flowport1_NestedPart2_Part1TargetView, true);
 
 		isCreationAllowed.put(partTargetView, true);
-		isCreationAllowed.put(nestedPartTargetView, true);
+		isCreationAllowed.put(nestedPart2_Part1TargetView, true);
 
 		isCreationAllowed.put(propertyTargetView, true);
 		isCreationAllowed.put(nestedPropertyTargetView, true);
@@ -67,10 +67,10 @@ public class TestCreationAndTestDelegateFromPortOnNestedPart extends AbstractCon
 		isCreationAllowed.put(nestedValueTargetView, true);
 
 		// Initialize partWithPort for tests
-		Property sourceNestedpart = (Property)nestedPartContainer1.getElement();
+		Property sourceNestedpart = (Property)p1_p1View.getElement();
 		
-		Property targetpart = (Property)partContainer2.getElement();
-		Property targetNestedpart = (Property)nestedPartContainer2.getElement();
+		Property targetpart = (Property)p2View.getElement();
+		Property targetNestedpart = (Property)p2_p1View.getElement();
 
 		expectedSourcePartWithPort = new HashMap<View, ConnectableElement>();
 		expectedTargetPartWithPort = new HashMap<View, ConnectableElement>();
@@ -79,11 +79,11 @@ public class TestCreationAndTestDelegateFromPortOnNestedPart extends AbstractCon
 			expectedSourcePartWithPort.put(view, sourceNestedpart);
 		}
 	
-		expectedTargetPartWithPort.put(portOnPartTargetView, targetpart);
-		expectedTargetPartWithPort.put(flowportOnPartTargetView, targetpart);
+		expectedTargetPartWithPort.put(port1_Part2TargetView, targetpart);
+		expectedTargetPartWithPort.put(flowport1_Part2TargetView, targetpart);
 		
-		expectedTargetPartWithPort.put(portOnNestedPartTargetView, targetNestedpart);
-		expectedTargetPartWithPort.put(flowportOnNestedPartTargetView, targetNestedpart);
+		expectedTargetPartWithPort.put(port2OnNestedPart2_Part1TargetView, targetNestedpart);
+		expectedTargetPartWithPort.put(flowport1_NestedPart2_Part1TargetView, targetNestedpart);
 	}
 
 }

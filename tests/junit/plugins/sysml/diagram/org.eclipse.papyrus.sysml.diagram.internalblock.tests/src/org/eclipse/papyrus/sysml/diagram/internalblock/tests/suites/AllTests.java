@@ -21,12 +21,12 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	AllDiagramTests.class,
 	AllCreationLinkTests.class,
+	AllAlternateDropTests.class,
+	AllDropInheritedTests.class,
 	AllCreationCustomNodeTests.class,
 	AllCreationInheritedNodeTests.class,
 	AllDropLinkTests.class,
 	AllDropNodeTests.class,
-	AllDropInheritedTests.class,
-	AllAlternateDropTests.class,
 	AllReorientLinkTests.class,
 	AllSetEncapsulationTests.class
 })

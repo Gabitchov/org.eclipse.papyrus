@@ -29,7 +29,6 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyComposite
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AppliedStereotypeAffixedLabelEditPart;
@@ -63,7 +62,6 @@ public class CustomEditPartProvider extends CustomAbstractEditPartProvider {
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, BlockPropertyCompositeEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, BlockCompositeEditPart.class);
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, FlowPortAffixedNodeEditPart.class);
-		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, NestedBlockPropertyCompositeEditPart.class);
 		nodeMap.put(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, PortAffixedNodeEditPart.class);
 
 		// Decorations

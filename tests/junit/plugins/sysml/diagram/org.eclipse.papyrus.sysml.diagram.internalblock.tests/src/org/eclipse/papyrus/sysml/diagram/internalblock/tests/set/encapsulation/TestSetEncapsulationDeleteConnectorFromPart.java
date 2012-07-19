@@ -36,6 +36,9 @@ public class TestSetEncapsulationDeleteConnectorFromPart extends AbstractSetEnca
 
 		isConnectorDestroyed.put(actorPartTargetView, false);
 		isConnectorDestroyed.put(nestedActorPartTargetView, true);
+		isConnectorDestroyed.put(subNestedActorPartContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedActorPartContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedActorPartContainer1_1_2TargetView, false); // block which is changed is in the other hierarchy of part
 
 		isConnectorDestroyed.put(portOnBlockTargetView, false);
 		isConnectorDestroyed.put(portOnPartTargetView, false);
@@ -47,15 +50,27 @@ public class TestSetEncapsulationDeleteConnectorFromPart extends AbstractSetEnca
 
 		isConnectorDestroyed.put(partTargetView, false);
 		isConnectorDestroyed.put(nestedPartTargetView, true);
+		isConnectorDestroyed.put(subNestedPartContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPartContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPartContainer1_1_2TargetView, false); // block which is changed is in the other hierarchy of part
 
 		isConnectorDestroyed.put(propertyTargetView, false);
 		isConnectorDestroyed.put(nestedPropertyTargetView, true);
+		isConnectorDestroyed.put(subNestedPropertyContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPropertyContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedPropertyContainer1_1_2TargetView, false); // block which is changed is in the other hierarchy of part
 
 		isConnectorDestroyed.put(referenceTargetView, false);
 		isConnectorDestroyed.put(nestedReferenceTargetView, true);
+		isConnectorDestroyed.put(subNestedReferenceContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedReferenceContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedReferenceContainer1_1_2TargetView, false); // block which is changed is in the other hierarchy of part
 
 		isConnectorDestroyed.put(valueTargetView, false);
 		isConnectorDestroyed.put(nestedValueTargetView, true);
+		isConnectorDestroyed.put(subNestedValueContainer1_1_1TargetView, true);
+		isConnectorDestroyed.put(subNestedValueContainer1_2_1TargetView, true);
+		isConnectorDestroyed.put(subNestedValueContainer1_1_2TargetView, false); // block which is changed is in the other hierarchy of part
 		
 		// Initialize connector creation possibility
 		for(View view : isConnectorDestroyed.keySet()) {

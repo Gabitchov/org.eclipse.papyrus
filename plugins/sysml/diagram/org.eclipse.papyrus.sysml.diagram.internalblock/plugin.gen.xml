@@ -3,7 +3,7 @@
 <plugin>
 
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
 		icon="icons/obj16/Diagram_InternalBlock.gif"
@@ -30,7 +30,7 @@
 		commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
 			</with>
 		</activeWhen>
 	</handler>
@@ -40,7 +40,7 @@
 <extension point="org.eclipse.ui.menus">
 
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
 			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
 			style="push" tooltip="Create a new Internal Block Diagram">
@@ -53,7 +53,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
 			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
 			style="push" tooltip="Create a new Internal Block Diagram">
@@ -65,7 +65,7 @@
 	</toolbar>
 	</menuContribution>
 	
-	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
 			icon="icons/obj16/Diagram_InternalBlock.gif"
 			label="Create a new Internal Block Diagram"
@@ -135,8 +135,9 @@
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
 		</entry>
-		<!-- Start of user code Custom node button entry  -->
-			
+		<!-- Start of user code Custom node button entry
+		-->
+		
 		<!-- End of user code  -->
 		
 			
@@ -161,7 +162,8 @@
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
 		</entry>
-		<!-- Start of user code Custom edge button entry  -->
+		<!-- Start of user code Custom edge button entry
+		-->
 			
 		<!-- End of user code  -->
 			
@@ -245,12 +247,12 @@
 		<Priority name="Low"/>
 		
 		<!-- 
-			"2109" = COMMENT
-			"3097" = COMMENT_CN
 			"2114" = CONSTRAINT
+			"3097" = COMMENT_CN
+			"2109" = COMMENT
 			"3120" = CONSTRAINT_CN
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2109, 3097, 2114, 3120"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2114, 3097, 2109, 3120"/>
 		
 		<!-- 
 			"4002" = COMMENT_ANNOTATED_ELEMENT
@@ -260,19 +262,19 @@
 		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
-		<!-- "uml.Comment" -->
-		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Comment"/>
-		</object>
-		
 		<!-- "uml.Constraint" -->
 		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Constraint"/>
 		</object>
 		
+		<!-- "uml.Comment" -->
+		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
+			<method name="getProxyClassID()" value="uml.Comment"/>
+		</object>
+		
 		<!-- Additional activation contexts for nodes semantic objects -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
-			elements="uml.Comment, uml.Constraint"/>
+			elements="uml.Constraint, uml.Comment"/>
 			
 	</viewProvider>	
 </extension>
@@ -325,21 +327,21 @@
 		<!-- 
 			The semantic hints given here are used in case the provider is not already loaded.
 			As soon as the provider is loaded its provides method is used.		
-			"2109" = COMMENT
-			"5192" = COMMENT_LABEL_BODY_HINT
-			"3097" = COMMENT_CN
-			"5150" = COMMENT_CN_LABEL_BODY_HINT
 			"2114" = CONSTRAINT
 			"5197" = CONSTRAINT_LABEL_NAME_HINT
 			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
+			"3097" = COMMENT_CN
+			"5150" = COMMENT_CN_LABEL_BODY_HINT
+			"2109" = COMMENT
+			"5192" = COMMENT_LABEL_BODY_HINT
 			"3120" = CONSTRAINT_CN
 			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
 			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT
 		  -->
 		<object
-			id="COMMENT"
+			id="CONSTRAINT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2109, 5192"/>
+			<method name="getType()" value="2114, 5197, 6039"/>
 		</object>
 		<object
 			id="COMMENT_CN"
@@ -347,9 +349,9 @@
 			<method name="getType()" value="3097, 5150"/>
 		</object>
 		<object
-			id="CONSTRAINT"
+			id="COMMENT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2114, 5197, 6039"/>
+			<method name="getType()" value="2109, 5192"/>
 		</object>
 		<object
 			id="CONSTRAINT_CN"
@@ -373,7 +375,7 @@
 			<method name="getType()" value="4003"/>
 		</object>
 		
-		<context views="COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"/>
+		<context views="CONSTRAINT, COMMENT_CN, COMMENT, CONSTRAINT_CN"/>
 		<context views="COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>
@@ -395,24 +397,24 @@
 	<page
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		name="InternalBlock Diagram"
-		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
+		category="org.eclipse.papyrus.preferences.diagrams"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.InternalBlockDiagramGeneralPreferencePage">
 	</page>
 
 	<!-- Element Preference pages declaration -->
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
-		name="Comment">
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
+		name="Constraint">
 	</page>
 	
 	
 	
 	
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
-		name="Constraint">
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
+		name="Comment">
 	</page>
 	
 	

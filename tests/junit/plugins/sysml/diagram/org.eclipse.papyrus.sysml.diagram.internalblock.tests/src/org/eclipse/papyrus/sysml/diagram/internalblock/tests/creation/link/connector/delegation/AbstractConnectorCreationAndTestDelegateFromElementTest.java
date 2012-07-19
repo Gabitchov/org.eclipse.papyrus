@@ -42,13 +42,13 @@ public class AbstractConnectorCreationAndTestDelegateFromElementTest extends Abs
 
 	@Test
 	public void createLinkWithSourceActorPart() throws Exception {
-		View targetView = actorPartTargetView;
+		View targetView = actorPart2_BlockTargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 
 	@Test
 	public void createLinkWithSourceNestedActorPart() throws Exception {
-		View targetView = nestedActorPartTargetView;
+		View targetView = actorPart2_p1TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 
@@ -60,13 +60,13 @@ public class AbstractConnectorCreationAndTestDelegateFromElementTest extends Abs
 
 	@Test
 	public void createLinkWithSourcePortOnPart() throws Exception {
-		View targetView = portOnPartTargetView;
+		View targetView = port1_Part2TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 
 	@Test
 	public void createLinkWithSourcePortOnNestedPart() throws Exception {
-		View targetView = portOnNestedPartTargetView;
+		View targetView = port2OnNestedPart2_Part1TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 
@@ -78,13 +78,13 @@ public class AbstractConnectorCreationAndTestDelegateFromElementTest extends Abs
 
 	@Test
 	public void createLinkWithSourceFlowPortOnPart() throws Exception {
-		View targetView = flowportOnPartTargetView;
+		View targetView = flowport1_Part2TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 
 	@Test
 	public void createLinkWithSourceFlowPortOnNestedPart() throws Exception {
-		View targetView = flowportOnNestedPartTargetView;
+		View targetView = flowport1_NestedPart2_Part1TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 
@@ -96,7 +96,7 @@ public class AbstractConnectorCreationAndTestDelegateFromElementTest extends Abs
 
 	@Test
 	public void createLinkWithSourceNestedPart() throws Exception {
-		View targetView = nestedPartTargetView;
+		View targetView = nestedPart2_Part1TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
 

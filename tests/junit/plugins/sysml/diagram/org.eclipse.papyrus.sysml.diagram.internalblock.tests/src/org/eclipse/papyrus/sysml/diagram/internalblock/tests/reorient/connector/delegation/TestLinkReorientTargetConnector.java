@@ -74,6 +74,9 @@ public class TestLinkReorientTargetConnector extends AbstractLinkReorientTargetC
 		
 		isReorientAllowed.put(partTargetView, true);
 		isReorientAllowed.put(nestedPartTargetView, true);
+		isReorientAllowed.put(partTargetView, true);
+		isReorientAllowed.put(subNestedPartContainer1TargetView, true);
+		isReorientAllowed.put(subNestedPartContainer2TargetView, true);
 		
 		isReorientAllowed.put(propertyTargetView, true);
 		isReorientAllowed.put(nestedPropertyTargetView, true);
@@ -89,6 +92,9 @@ public class TestLinkReorientTargetConnector extends AbstractLinkReorientTargetC
 		Property targetpart = (Property)partContainer2.getElement();
 
 		Property targetNestedpart = (Property)nestedPartContainer2.getElement();
+		
+		Property targetsubNestedPartContainer1 = (Property)subNestedPartContainer1TargetView.getElement();
+		Property targetsubNestedPartContainer2 = (Property)subNestedPartContainer2TargetView.getElement();
 
 		expectedSourcePartWithPort = new HashMap<View, ConnectableElement>();
 		expectedTargetPartWithPort = new HashMap<View, ConnectableElement>();
@@ -104,12 +110,17 @@ public class TestLinkReorientTargetConnector extends AbstractLinkReorientTargetC
 		expectedSourcePartWithPort.remove(nestedValueTargetView);
 		expectedSourcePartWithPort.remove(portOnNestedPartTargetView);
 		expectedSourcePartWithPort.remove(flowportOnNestedPartTargetView);
+		expectedSourcePartWithPort.remove(subNestedPartContainer1TargetView);
+		expectedSourcePartWithPort.remove(subNestedPartContainer2TargetView);
 		
 		expectedTargetPartWithPort.put(portOnPartTargetView, targetpart);
 		expectedTargetPartWithPort.put(flowportOnPartTargetView, targetpart);
 		
 		expectedTargetPartWithPort.put(portOnNestedPartTargetView, targetNestedpart);
 		expectedTargetPartWithPort.put(flowportOnNestedPartTargetView, targetNestedpart);
+		
+		//expectedTargetPartWithPort.put(subNestedPartContainer1TargetView, targetsubNestedPartContainer1);
+		//expectedTargetPartWithPort.put(subNestedPartContainer2TargetView, targetsubNestedPartContainer2);
 
 	}
 }

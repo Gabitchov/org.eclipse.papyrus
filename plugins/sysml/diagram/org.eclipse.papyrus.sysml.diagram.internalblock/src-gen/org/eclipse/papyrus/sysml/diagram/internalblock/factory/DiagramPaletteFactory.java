@@ -35,7 +35,6 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 			put("internalblock.tool.blockpropertycomposite", new IElementType[]{ SysMLElementTypes.PART_PROPERTY, SysMLElementTypes.REFERENCE_PROPERTY, SysMLElementTypes.ACTOR_PART_PROPERTY,
 				SysMLElementTypes.VALUE_PROPERTY, UMLElementTypes.PROPERTY });
 			put("internalblock.tool.flowport", new IElementType[]{ SysMLElementTypes.FLOW_PORT });
-			put("internalblock.tool.nestedblockpropertycomposite", new IElementType[]{ SysMLElementTypes.PART_PROPERTY });
 			put("internalblock.tool.port", new IElementType[]{ UMLElementTypes.PORT });
 			//Start of user code Custom nodes
 			put("internalblock.tool.part", new IElementType[]{ SysMLElementTypes.PART_PROPERTY });

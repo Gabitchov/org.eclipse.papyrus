@@ -18,10 +18,15 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestN
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnBlock;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnBlockStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedActorPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedActorPartStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedPartStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedProperty;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedPropertyStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedReference;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedReferenceStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedValue;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnNestedValueStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnPartStructureCompartment;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnProperty;
@@ -50,10 +55,15 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestNodeCreationOnValue.class,
 	TestNodeCreationOnValueStructureCompartment.class,
 	TestNodeCreationOnNestedActorPart.class,
+	TestNodeCreationOnNestedActorPartStructureCompartment.class,
 	TestNodeCreationOnNestedPart.class,
+	TestNodeCreationOnNestedPartStructureCompartment.class,
 	TestNodeCreationOnNestedProperty.class,
+	TestNodeCreationOnNestedPropertyStructureCompartment.class,
 	TestNodeCreationOnNestedReference.class,
-	TestNodeCreationOnNestedValue.class
+	TestNodeCreationOnNestedReferenceStructureCompartment.class,
+	TestNodeCreationOnNestedValue.class,
+	TestNodeCreationOnNestedValueStructureCompartment.class
 })
 public class AllCreationCustomNodeTests {
 

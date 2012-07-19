@@ -39,6 +39,7 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		
 		isCreationAllowed.put(actorPartSourceView, false);
 		isCreationAllowed.put(nestedActorPartSourceView, false);
+		isCreationAllowed.put(subNestedActorPartContainer1_1_1SourceView, false);
 		
 		isCreationAllowed.put(portOnBlockSourceView, false);
 		isCreationAllowed.put(portOnPartSourceView, false);
@@ -50,15 +51,22 @@ public class TestLinkCreationCommentConstraintForSources extends AbstractLinkCre
 		
 		isCreationAllowed.put(partSourceView, false);
 		isCreationAllowed.put(nestedPartSourceView, false);
+		isCreationAllowed.put(subNestedPartContainer1_1_1SourceView, false);
 		
 		isCreationAllowed.put(propertySourceView, false);
 		isCreationAllowed.put(nestedPropertySourceView, false);
+		isCreationAllowed.put(subNestedPropertyContainer1_1_1SourceView, false);
+		isCreationAllowed.put(subNestedPartContainer1_1_1TargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_2_1TargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_1_2TargetView, false);
 		
 		isCreationAllowed.put(referenceSourceView, false);
 		isCreationAllowed.put(nestedReferenceSourceView, false);
+		isCreationAllowed.put(subNestedReferenceContainer1_1_1SourceView, false);
 		
 		isCreationAllowed.put(valueSourceView, false);
 		isCreationAllowed.put(nestedValueSourceView, false);
+		isCreationAllowed.put(subNestedValueContainer1_1_1SourceView, false);
 		
 		isCreationAllowed.put(commentSourceView, true);
 		isCreationAllowed.put(commentCNSourceView, true);

@@ -416,7 +416,6 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 *         all the available Interfaces
 	 *         //TODO add the interfaces from the package import!
 	 */
-	@SuppressWarnings("unchecked")
 	protected List<Interface> getAllAvailableInterfaces(Package pack) {
 		List<Interface> otherInterfaces = new ArrayList<Interface>();
 		List<Element> interfaces = Visitor.getOwnedAndImportedElement(pack, Interface.class);

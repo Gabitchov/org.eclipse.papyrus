@@ -39,10 +39,12 @@ public class TestLinkCreationDependencyForSources extends AbstractLinkCreationFo
 		
 		isCreationAllowed.put(actorPartSourceView, true);
 		isCreationAllowed.put(nestedActorPartSourceView, true);
+		isCreationAllowed.put(subNestedActorPartContainer1_1_1SourceView, true);
 		
 		isCreationAllowed.put(portOnBlockSourceView, true);
 		isCreationAllowed.put(portOnPartSourceView, true);
 		isCreationAllowed.put(portOnNestedPartSourceView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_1SourceView, true);
 		
 		isCreationAllowed.put(flowportOnBlockSourceView, true);
 		isCreationAllowed.put(flowportOnPartSourceView, true);
@@ -50,15 +52,21 @@ public class TestLinkCreationDependencyForSources extends AbstractLinkCreationFo
 		
 		isCreationAllowed.put(partSourceView, true);
 		isCreationAllowed.put(nestedPartSourceView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_1TargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_2_1TargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_2TargetView, true);
 		
 		isCreationAllowed.put(propertySourceView, true);
 		isCreationAllowed.put(nestedPropertySourceView, true);
+		isCreationAllowed.put(subNestedPropertyContainer1_1_1SourceView, true);
 		
 		isCreationAllowed.put(referenceSourceView, true);
 		isCreationAllowed.put(nestedReferenceSourceView, true);
+		isCreationAllowed.put(subNestedReferenceContainer1_1_1SourceView, true);
 		
 		isCreationAllowed.put(valueSourceView, true);
 		isCreationAllowed.put(nestedValueSourceView, true);
+		isCreationAllowed.put(subNestedValueContainer1_1_1SourceView, true);
 		
 		isCreationAllowed.put(commentSourceView, false);
 		isCreationAllowed.put(commentCNSourceView, false);

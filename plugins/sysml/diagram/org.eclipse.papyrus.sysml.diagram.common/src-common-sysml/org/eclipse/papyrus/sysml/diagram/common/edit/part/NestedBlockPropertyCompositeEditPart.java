@@ -58,6 +58,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Edit part for nested Block property shown as composite.
  */
+@Deprecated
 public class NestedBlockPropertyCompositeEditPart extends AbstractElementEditPart {
 
 	public NestedBlockPropertyCompositeEditPart(View view) {

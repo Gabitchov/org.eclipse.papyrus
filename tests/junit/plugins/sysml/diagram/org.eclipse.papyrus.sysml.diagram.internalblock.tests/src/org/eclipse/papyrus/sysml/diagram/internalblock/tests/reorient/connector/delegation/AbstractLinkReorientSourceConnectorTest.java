@@ -128,5 +128,16 @@ public class AbstractLinkReorientSourceConnectorTest extends AbstractLinkPrepare
 		View newSourceView = nestedValueSourceView;
 		reorientConnectorSourceAndTestDelegate(relationshipView, newSourceView, isReorientAllowed.get(newSourceView), expectedSourcePartWithPort.get(newSourceView), expectedTargetPartWithPort.get(newSourceView));
 	}
+	
+	@Test
+	public void reorientLinkSourceToDeepNestedPartContainer1() throws Exception {
+		View newSourceView = subNestedPartContainer1SourceView;
+		reorientConnectorSourceAndTestDelegate(relationshipView, newSourceView, isReorientAllowed.get(newSourceView), expectedSourcePartWithPort.get(newSourceView), expectedTargetPartWithPort.get(newSourceView));
+	}
 
+	@Test
+	public void reorientLinkSourceToDeepNestedPartContainer2() throws Exception {
+		View newSourceView = subNestedPartContainer2SourceView;
+		reorientConnectorSourceAndTestDelegate(relationshipView, newSourceView, isReorientAllowed.get(newSourceView), expectedSourcePartWithPort.get(newSourceView), expectedTargetPartWithPort.get(newSourceView));
+	}
 }

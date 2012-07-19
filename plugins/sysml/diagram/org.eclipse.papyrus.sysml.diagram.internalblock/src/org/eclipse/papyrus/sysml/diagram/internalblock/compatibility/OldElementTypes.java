@@ -52,5 +52,9 @@ public class OldElementTypes extends AbstractElementTypeEnumerator {
 	public static final String CONNECTOR_LABEL_MULTIPLICITY_SOURCE_HINT = "6051"; //$NON-NLS-1$
 
 	public static final String CONNECTOR_LABEL_MULTIPLICITY_TARGET_HINT = "6052"; //$NON-NLS-1$
+	
+	
+	// 0.8.1 --> 0.9.1
+	public static final String SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_nestedblockproperty_as_composite";//$NON-NLS-1$ 
 
 }

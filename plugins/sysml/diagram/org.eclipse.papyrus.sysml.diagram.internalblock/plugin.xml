@@ -332,7 +332,7 @@
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomViewProvider">
 		<Priority name="Medium"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, shape_sysml_nestedblockproperty_as_composite"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, compartment_sysml_blockproperty_structure"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="UML::Dependency, UML::Connector"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_connector, link_uml_dependency"/>
 		
@@ -432,7 +432,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomNodeGraphicalTypes">
-			<method name="getType()" value="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, shape_sysml_nestedblockproperty_as_composite"/>
+			<method name="getType()" value="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite"/>
 		</object>
 		
 		<object
@@ -566,12 +566,13 @@
 		name="block property">
 	</page>
 
+	<!--
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomNestedBlockPropertyCompositePreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
 		name="nested property">
 	</page>
-		
+	-->
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.FlowPortAsBorderItemPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.FlowPortPreferencePage"

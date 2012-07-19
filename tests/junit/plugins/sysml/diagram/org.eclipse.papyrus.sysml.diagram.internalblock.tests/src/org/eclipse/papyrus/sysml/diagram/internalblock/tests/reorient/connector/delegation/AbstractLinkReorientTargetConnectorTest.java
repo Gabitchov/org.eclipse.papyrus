@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.reorient.connector.delegation;
 
+import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestUtils.reorientConnectorSourceAndTestDelegate;
 import static org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils.TestUtils.reorientConnectorTargetAndTestDelegate;
 
 import java.util.Map;
@@ -127,5 +128,17 @@ public class AbstractLinkReorientTargetConnectorTest extends AbstractLinkPrepare
 	public void reorientLinkTargetToNestedValue() throws Exception {
 		View newTargetView = nestedValueTargetView;
 		reorientConnectorTargetAndTestDelegate(relationshipView, newTargetView, isReorientAllowed.get(newTargetView), expectedSourcePartWithPort.get(newTargetView), expectedTargetPartWithPort.get(newTargetView));
+	}
+	
+	@Test
+	public void reorientLinkSourceToDeepNestedPartContainer1() throws Exception {
+		View newSourceView = subNestedPartContainer1TargetView;
+		reorientConnectorTargetAndTestDelegate(relationshipView, newSourceView, isReorientAllowed.get(newSourceView), expectedSourcePartWithPort.get(newSourceView), expectedTargetPartWithPort.get(newSourceView));
+	}
+
+	@Test
+	public void reorientLinkSourceToDeepNestedPartContainer2() throws Exception {
+		View newSourceView = subNestedPartContainer2TargetView;
+		reorientConnectorTargetAndTestDelegate(relationshipView, newSourceView, isReorientAllowed.get(newSourceView), expectedSourcePartWithPort.get(newSourceView), expectedTargetPartWithPort.get(newSourceView));
 	}
 }

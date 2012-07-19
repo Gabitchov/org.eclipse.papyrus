@@ -27,7 +27,6 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
-import org.eclipse.papyrus.sysml.diagram.common.edit.part.NestedBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
@@ -38,7 +37,6 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPr
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDiagramDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomNestedBlockPropertyCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.EncapsulatedClassifierDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.StructureClassifierDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.TypedElementDropEditPolicy;
@@ -139,10 +137,12 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockPropertyCompositeSemanticEditPolicy());
 		}
 
+		/*
 		if(editPart instanceof NestedBlockPropertyCompositeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyCompositeDropEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomNestedBlockPropertyCompositeSemanticEditPolicy());
 		}
+		*/
 
 		if(editPart instanceof BlockPropertyStructureCompartmentEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy());

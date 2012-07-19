@@ -40,8 +40,13 @@ public class TestLinkDropOnBlockPropertyStructureCpt extends AbstractTest {
 	public static EObject dependency;
 	public static EObject connector;
 	
+
+	public static EObject nestedDependency;
+	public static EObject nestedConnector;
+	
 	public static View blockStructureView;
 	public static View partStructureView;
+	public static View sourcePartStructureView;
 
 	
 	@BeforeClass
@@ -53,11 +58,20 @@ public class TestLinkDropOnBlockPropertyStructureCpt extends AbstractTest {
 		View partView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
 		partStructureView = ViewUtil.getChildBySemanticHint(partView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
 		
-		View partSourceView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
-		View partTargetView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		View partSourceView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		View partTargetView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partStructureView);
+		
+		sourcePartStructureView = ViewUtil.getChildBySemanticHint(partView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+		View nestedPartSourceView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, sourcePartStructureView);
+		View nestedPartTargetView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, sourcePartStructureView);
 		
 		dependency = createLink(UMLElementTypes.DEPENDENCY, partSourceView.getElement(), partTargetView.getElement());
 		connector = createConnectorLink((EncapsulatedClassifier) blockView.getElement(), (ConnectableElement)partSourceView.getElement(), (Property)null, (ConnectableElement)partTargetView.getElement(), (Property)null);
+		
+		nestedDependency = createLink(UMLElementTypes.DEPENDENCY, nestedPartSourceView.getElement(), nestedPartTargetView.getElement());
+		nestedConnector = createConnectorLink((EncapsulatedClassifier) ((Property)partSourceView.getElement()).getType(), (ConnectableElement)nestedPartSourceView.getElement(), (Property)null, (ConnectableElement)nestedPartTargetView.getElement(), (Property)null);
+		 
+		
 	}
 
 	@Test
@@ -68,5 +82,15 @@ public class TestLinkDropOnBlockPropertyStructureCpt extends AbstractTest {
 	@Test
 	public void dropConnectorInBlock() throws Exception {
 		dropFromModelExplorer(connector, partStructureView, true); 
+	}
+	
+	@Test
+	public void dropNestedDependencyInPart() throws Exception {
+		dropFromModelExplorer(nestedDependency, sourcePartStructureView, true);
+	}
+	
+	@Test
+	public void dropNestedConnectorInPart() throws Exception {
+		dropFromModelExplorer(nestedConnector, sourcePartStructureView, true); 
 	}
 }

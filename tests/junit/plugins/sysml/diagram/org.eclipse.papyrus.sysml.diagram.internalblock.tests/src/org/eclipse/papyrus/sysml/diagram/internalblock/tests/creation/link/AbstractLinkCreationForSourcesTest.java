@@ -150,4 +150,34 @@ public class AbstractLinkCreationForSourcesTest extends AbstractLinkPrepareTest 
 		View sourceView = constraintCNSourceView;
 		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
 	}
+
+	@Test
+	public void createLinkWithSourceDeepNestedActorPart() throws Exception {
+		View sourceView = subNestedActorPartContainer1_1_1SourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+	}
+
+	@Test
+	public void createLinkWithSourceDeepNestedPart() throws Exception {
+		View sourceView = subNestedPartContainer1_1_1SourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+	}
+
+	@Test
+	public void createLinkWithSourceDeepNestedProperty() throws Exception {
+		View sourceView = subNestedPropertyContainer1_1_1SourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+	}
+
+	@Test
+	public void createLinkWithSourceDeepNestedReference() throws Exception {
+		View sourceView = subNestedReferenceContainer1_1_1SourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+	}
+
+	@Test
+	public void createLinkWithSourceDeepNestedValue() throws Exception {
+		View sourceView = subNestedValueContainer1_1_1SourceView;
+		createEdgeFromPalette(toolID, sourceView, null, isCreationAllowed.get(sourceView));
+	}
 }

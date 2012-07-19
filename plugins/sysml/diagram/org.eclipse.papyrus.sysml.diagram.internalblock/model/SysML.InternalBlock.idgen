@@ -35,7 +35,6 @@
   <customJavaClasses name="" customEditPolicyProvider="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomEditPolicyProvider" customPreferenceInitializer="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomPreferenceInitializer"/>
   <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_block_as_composite"/>
   <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_blockproperty_as_composite"/>
-  <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_nestedblockproperty_as_composite"/>
   <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_flowport_as_affixed"/>
   <usedCustomNodes href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#shape_uml_port_as_affixed"/>
   <usedCustomEdges href="../../org.eclipse.papyrus.sysml.diagram.common/model/UML.ReusableParts.idgen#link_uml_connector"/>
@@ -76,7 +75,7 @@
           <contains>
             <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#compartment_sysml_blockproperty_structure"/>
             <contains>
-              <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_nestedblockproperty_as_composite"/>
+              <ref href="../../org.eclipse.papyrus.sysml.diagram.common/model/SysML.ReusableParts.idgen#shape_sysml_blockproperty_as_composite"/>
             </contains>
           </contains>
         </contains>

@@ -43,19 +43,19 @@ public class TestCreationAndTestDelegateFromNestedReference extends AbstractConn
 
 		isCreationAllowed.put(blockTargetView, false);
 
-		isCreationAllowed.put(actorPartTargetView, true);
-		isCreationAllowed.put(nestedActorPartTargetView, true);
+		isCreationAllowed.put(actorPart2_BlockTargetView, true);
+		isCreationAllowed.put(actorPart2_p1TargetView, true);
 
 		isCreationAllowed.put(portOnBlockTargetView, true);
-		isCreationAllowed.put(portOnPartTargetView, true);
-		isCreationAllowed.put(portOnNestedPartTargetView, true);
+		isCreationAllowed.put(port1_Part2TargetView, true);
+		isCreationAllowed.put(port2OnNestedPart2_Part1TargetView, true);
 
 		isCreationAllowed.put(flowportOnBlockTargetView, true);
-		isCreationAllowed.put(flowportOnPartTargetView, true);
-		isCreationAllowed.put(flowportOnNestedPartTargetView, true);
+		isCreationAllowed.put(flowport1_Part2TargetView, true);
+		isCreationAllowed.put(flowport1_NestedPart2_Part1TargetView, true);
 
 		isCreationAllowed.put(partTargetView, true);
-		isCreationAllowed.put(nestedPartTargetView, true);
+		isCreationAllowed.put(nestedPart2_Part1TargetView, true);
 
 		isCreationAllowed.put(propertyTargetView, true);
 		isCreationAllowed.put(nestedPropertyTargetView, true);
@@ -67,16 +67,16 @@ public class TestCreationAndTestDelegateFromNestedReference extends AbstractConn
 		isCreationAllowed.put(nestedValueTargetView, true);
 
 		// Initialize partWithPort for tests
-		Property part = (Property)partContainer2.getElement();
-		Property nestedpart = (Property)nestedPartContainer2.getElement();
+		Property part = (Property)p2View.getElement();
+		Property nestedpart = (Property)p2_p1View.getElement();
 
 		expectedSourcePartWithPort = new HashMap<View, ConnectableElement>();
 		expectedTargetPartWithPort = new HashMap<View, ConnectableElement>();
 
-		expectedTargetPartWithPort.put(portOnPartTargetView, part);
-		expectedTargetPartWithPort.put(portOnNestedPartTargetView, nestedpart);
-		expectedTargetPartWithPort.put(flowportOnPartTargetView, part);
-		expectedTargetPartWithPort.put(flowportOnNestedPartTargetView, nestedpart);
+		expectedTargetPartWithPort.put(port1_Part2TargetView, part);
+		expectedTargetPartWithPort.put(port2OnNestedPart2_Part1TargetView, nestedpart);
+		expectedTargetPartWithPort.put(flowport1_Part2TargetView, part);
+		expectedTargetPartWithPort.put(flowport1_NestedPart2_Part1TargetView, nestedpart);
 	}
 
 }

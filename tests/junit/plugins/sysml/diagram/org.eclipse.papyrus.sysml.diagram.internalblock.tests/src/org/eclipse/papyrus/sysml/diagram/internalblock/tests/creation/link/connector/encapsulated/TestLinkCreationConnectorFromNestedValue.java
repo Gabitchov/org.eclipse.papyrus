@@ -57,7 +57,10 @@ public class TestLinkCreationConnectorFromNestedValue extends AbstractLinkCreati
 
 		isCreationAllowed.put(partTargetView, false);
 		isCreationAllowed.put(nestedPartTargetView, true);
-
+		isCreationAllowed.put(subNestedPartContainer1_1_1TargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_2_1TargetView, false);
+		isCreationAllowed.put(subNestedPartContainer1_1_2TargetView, false);
+		
 		isCreationAllowed.put(propertyTargetView, false);
 		isCreationAllowed.put(nestedPropertyTargetView, true);
 

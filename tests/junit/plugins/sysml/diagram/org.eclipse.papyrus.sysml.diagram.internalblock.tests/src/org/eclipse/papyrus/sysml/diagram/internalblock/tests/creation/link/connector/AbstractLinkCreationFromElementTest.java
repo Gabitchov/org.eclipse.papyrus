@@ -37,128 +37,148 @@ public class AbstractLinkCreationFromElementTest extends AbstractLinkPrepareTest
 	public static Map<View, List<Property>> expectedTargetNestedPath;
 
 	@Test
-	public void createLinkWithSourceBlock() throws Exception {
+	public void createLinkWithTargetBlock() throws Exception {
 		View targetView = blockTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceActorPart() throws Exception {
+	public void createLinkWithTargetActorPart() throws Exception {
 		View targetView = actorPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceNestedActorPart() throws Exception {
+	public void createLinkWithTargetNestedActorPart() throws Exception {
 		View targetView = nestedActorPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourcePortOnBlock() throws Exception {
+	public void createLinkWithTargetPortOnBlock() throws Exception {
 		View targetView = portOnBlockTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourcePortOnPart() throws Exception {
+	public void createLinkWithTargetPortOnPart() throws Exception {
 		View targetView = portOnPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourcePortOnNestedPart() throws Exception {
+	public void createLinkWithTargetPortOnNestedPart() throws Exception {
 		View targetView = portOnNestedPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceFlowPortOnBlock() throws Exception {
+	public void createLinkWithTargetFlowPortOnBlock() throws Exception {
 		View targetView = flowportOnBlockTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceFlowPortOnPart() throws Exception {
+	public void createLinkWithTargetFlowPortOnPart() throws Exception {
 		View targetView = flowportOnPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceFlowPortOnNestedPart() throws Exception {
+	public void createLinkWithTargetFlowPortOnNestedPart() throws Exception {
 		View targetView = flowportOnNestedPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourcePart() throws Exception {
+	public void createLinkWithTargetPart() throws Exception {
 		View targetView = partTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceNestedPart() throws Exception {
+	public void createLinkWithTargetNestedPart() throws Exception {
 		View targetView = nestedPartTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceProperty() throws Exception {
+	public void createLinkWithTargetProperty() throws Exception {
 		View targetView = propertyTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceNestedProperty() throws Exception {
+	public void createLinkWithTargetNestedProperty() throws Exception {
 		View targetView = nestedPropertyTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceReference() throws Exception {
+	public void createLinkWithTargetReference() throws Exception {
 		View targetView = referenceTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceNestedReference() throws Exception {
+	public void createLinkWithTargetNestedReference() throws Exception {
 		View targetView = nestedReferenceTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceValue() throws Exception {
+	public void createLinkWithTargetValue() throws Exception {
 		View targetView = valueTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceNestedValue() throws Exception {
+	public void createLinkWithTargetNestedValue() throws Exception {
 		View targetView = nestedValueTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceComment() throws Exception {
+	public void createLinkWithTargetComment() throws Exception {
 		View targetView = commentTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceCommentCN() throws Exception {
+	public void createLinkWithTargetCommentCN() throws Exception {
 		View targetView = commentCNTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceConstraint() throws Exception {
+	public void createLinkWithTargetConstraint() throws Exception {
 		View targetView = constraintTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
 
 	@Test
-	public void createLinkWithSourceConstraintCN() throws Exception {
+	public void createLinkWithTargetConstraintCN() throws Exception {
 		View targetView = constraintCNTargetView;
 		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
 	}
+	
+	// deep nested tests
+	@Test
+	public void createLinkWithTargetSubNestedPartContainer_1_1_1() throws Exception {
+		View targetView = subNestedPartContainer1_1_1TargetView;
+		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
+	}
+	
+	@Test
+	public void createLinkWithTargetSubNestedPartContainer_1_2_1() throws Exception {
+		View targetView = subNestedPartContainer1_2_1TargetView;
+		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
+	}
+	
+	@Test
+	public void createLinkWithTargetSubNestedPartContainer_1_1_2() throws Exception {
+		View targetView = subNestedPartContainer1_1_2TargetView; 
+		createEdgeConnectorFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourceNestedPath.get(targetView), expectedTargetNestedPath.get(targetView));
+	}
+	
 }

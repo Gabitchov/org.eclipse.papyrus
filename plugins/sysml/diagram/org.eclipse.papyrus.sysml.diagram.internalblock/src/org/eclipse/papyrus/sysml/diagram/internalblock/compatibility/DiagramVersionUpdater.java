@@ -13,25 +13,37 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.compatibility;
 
+import java.rmi.activation.Activator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.gef.util.EditPartUtilities;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.view.factories.ViewFactory;
+import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.compatibility.DiagramVersioningUtils;
 import org.eclipse.papyrus.gmf.diagram.common.compatibility.IDiagramVersionUpdater;
+import org.eclipse.papyrus.gmf.diagram.common.provider.DiagramEditorUtil;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 /**
@@ -39,6 +51,10 @@ import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
  */
 public class DiagramVersionUpdater implements IDiagramVersionUpdater {
 
+	public static final String VERSION_0_9_1 = "0.9.1";
+	
+	public final static String VERSION_0_8_1 = "0.8.1";
+	
 	/** Constructor */
 	public DiagramVersionUpdater() {
 	}
@@ -46,14 +62,34 @@ public class DiagramVersionUpdater implements IDiagramVersionUpdater {
 	public int update(Diagram diagram, String oldVersion, String newVersion) {
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
 
-		if(DiagramVersioningUtils.UNDEFINED_VERSION.equals(oldVersion) && ("0.8.1".equals(newVersion))) {
+		if(DiagramVersioningUtils.UNDEFINED_VERSION.equals(oldVersion)) {
+			if(VERSION_0_8_1.equals(newVersion)) {
+				try {
+					editingDomain.getCommandStack().execute(getUpdateCommandFromUndefinedTo_081(diagram));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(VERSION_0_9_1.equals(newVersion)) {
+				try {
+					CompoundCommand cc = new CompoundCommand("Update Diagram");
+					cc.append(getUpdateCommandFromUndefinedTo_081(diagram));
+					cc.append(getUpdateCommandFrom081To_091(diagram));
+					editingDomain.getCommandStack().execute(cc);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+
+		if(VERSION_0_8_1.equals(oldVersion) && (VERSION_0_9_1.equals(newVersion))) {
 			try {
-				editingDomain.getCommandStack().execute(getUpdateCommandFromUndefinedTo_081(diagram));
+				editingDomain.getCommandStack().execute(getUpdateCommandFrom081To_091(diagram));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
+		
 		return 0;
 	}
 
@@ -152,6 +188,73 @@ public class DiagramVersionUpdater implements IDiagramVersionUpdater {
 			public boolean canUndo() {
 				return false;
 			}
+		};
+
+		return command;
+	}
+	
+	private Command getUpdateCommandFrom081To_091(final Diagram diagram) throws Exception {
+
+		Command command = new RecordingCommand(TransactionUtil.getEditingDomain(diagram), "Diagram version updater (from 0.8.1 to 0.9.1)") {
+
+			private Map<String, String> conversionMapping = new HashMap<String, String>();
+
+			private List<IStatus> results = new ArrayList<IStatus>();
+			
+			private void initializeMappings() {
+
+				conversionMapping.put(OldElementTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID);
+
+			}
+
+			@Override
+			protected void doExecute() {
+				initializeMappings();
+				ViewServiceUtil.forceLoad();
+				List<View> nestedPropertyViews = new ArrayList<View>();
+				List<View> failedPropertyUpdates = new ArrayList<View>();
+
+				// Update diagram compatibility version
+				//DiagramVersioningUtils.setCompatibilityVersion(diagram, "0.8.1");
+
+				// Update view types
+				Iterator<EObject> it = diagram.eAllContents();
+				while(it.hasNext()) {
+					EObject currentEObject = it.next();
+					if(currentEObject instanceof View) {
+						View currentView = (View)currentEObject;
+						String currentViewType = currentView.getType();
+						if(conversionMapping.containsKey(currentViewType)) {
+							
+							// update nested properties
+							if(OldElementTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID.equals(currentViewType)) {
+								currentView.setType(conversionMapping.get(currentView.getType()));
+								nestedPropertyViews.add(currentView);
+								// need to create child structure compartment, enven not visible
+								
+								Node compartment = ViewService.createNode(currentView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID, PreferencesHint.USE_DEFAULTS);
+								if(compartment ==null) {
+									failedPropertyUpdates.add(currentView);
+								}
+							}
+						}
+					}
+				}
+				
+				if(!failedPropertyUpdates.isEmpty()) {
+					org.eclipse.papyrus.sysml.diagram.internalblock.Activator.log.warn("Impossible to create a compartment for the properties: "+failedPropertyUpdates);
+				}
+
+			}
+
+			@Override
+			public boolean canUndo() {
+				return false;
+			}
+			
+			public java.util.Collection<IStatus> getResult() {
+				return results;
+			};
 		};
 
 		return command;

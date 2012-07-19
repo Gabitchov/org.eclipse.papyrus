@@ -37,6 +37,7 @@ public class SysMLGraphicalTypes {
 
 	public static final String SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID = "shape_sysml_flowport_as_affixed"; //$NON-NLS-1$
 
+	@Deprecated
 	public static final String SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID = "shape_sysml_nestedblockproperty_as_composite"; //$NON-NLS-1$
 
 	/** Custom label nodes */

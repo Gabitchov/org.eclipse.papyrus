@@ -26,7 +26,6 @@ import org.eclipse.papyrus.gmf.diagram.common.provider.CustomAbstractViewProvide
 import org.eclipse.papyrus.sysml.diagram.common.factory.BlockCompositeClassifierViewFactory;
 import org.eclipse.papyrus.sysml.diagram.common.factory.BlockPropertyCompositeClassifierViewFactory;
 import org.eclipse.papyrus.sysml.diagram.common.factory.FlowPortAffixedNodeViewFactory;
-import org.eclipse.papyrus.sysml.diagram.common.factory.NestedBlockPropertyCompositeClassifierViewFactory;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.factory.ConnectorLinkViewFactory;
 import org.eclipse.papyrus.uml.diagram.common.factory.DependencyLinkViewFactory;
@@ -51,7 +50,6 @@ public class CustomViewProvider extends CustomAbstractViewProvider {
 		// Custom classifier nodes
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID, BlockCompositeClassifierViewFactory.class);
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, BlockPropertyCompositeClassifierViewFactory.class);
-		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_NESTEDBLOCKPROPERTY_AS_COMPOSITE_ID, NestedBlockPropertyCompositeClassifierViewFactory.class);
 		// Custom affixed nodes
 		nodeMap.put(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID, FlowPortAffixedNodeViewFactory.class);
 		nodeMap.put(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, PortAffixedNodeViewFactory.class);

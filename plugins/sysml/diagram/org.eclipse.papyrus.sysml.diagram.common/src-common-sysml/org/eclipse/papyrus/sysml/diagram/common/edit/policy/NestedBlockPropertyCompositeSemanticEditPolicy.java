@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Type;
 /**
  * Semantic edit policy for Property owned by a Block (Part or Reference especially).
  */
+@Deprecated
 public class NestedBlockPropertyCompositeSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	/**

@@ -44,6 +44,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 /**
  * Preference page for Part and References.
  */
+@Deprecated
 public class CustomNestedBlockPropertyCompositePreferencePage extends InternalBlockDiagramNodePreferencePage {
 
 	/** Constant key to access preferences */

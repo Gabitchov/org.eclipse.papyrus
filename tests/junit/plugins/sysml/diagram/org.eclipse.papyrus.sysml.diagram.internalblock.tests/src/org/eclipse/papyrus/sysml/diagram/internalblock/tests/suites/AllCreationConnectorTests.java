@@ -18,6 +18,7 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.conne
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromFlowPortOnBlock;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromFlowPortOnNestedPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromFlowPortOnPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromFlowPortOnSubNestedPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromNestedActorPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromNestedPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromNestedProperty;
@@ -27,8 +28,14 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.conne
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromPortOnBlock;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromPortOnNestedPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromPortOnPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromPortOnSubNestedPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromProperty;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromReference;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromSubNestedActorPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromSubNestedPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromSubNestedProperty;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromSubNestedReference;
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromSubNestedValue;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector.TestLinkCreationConnectorFromValue;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -38,22 +45,43 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	
 	TestLinkCreationConnectorForSources.class,
-	TestLinkCreationConnectorFromActorPart.class,
-	TestLinkCreationConnectorFromFlowPortOnBlock.class,
-	TestLinkCreationConnectorFromFlowPortOnNestedPart.class,
-	TestLinkCreationConnectorFromFlowPortOnPart.class,
-	TestLinkCreationConnectorFromNestedActorPart.class,
-	TestLinkCreationConnectorFromNestedPart.class,
-	TestLinkCreationConnectorFromNestedProperty.class,
-	TestLinkCreationConnectorFromNestedReference.class,
-	TestLinkCreationConnectorFromNestedValue.class,
+
+	// test from port
 	TestLinkCreationConnectorFromPortOnBlock.class,
-	TestLinkCreationConnectorFromPortOnNestedPart.class,
 	TestLinkCreationConnectorFromPortOnPart.class,
+	TestLinkCreationConnectorFromPortOnNestedPart.class,
+	TestLinkCreationConnectorFromPortOnSubNestedPart.class,
+	
+	// test from flowport
+	TestLinkCreationConnectorFromFlowPortOnBlock.class,
+	TestLinkCreationConnectorFromFlowPortOnPart.class,
+	TestLinkCreationConnectorFromFlowPortOnNestedPart.class,
+	TestLinkCreationConnectorFromFlowPortOnSubNestedPart.class,
+	
+	// test from actor part
+	TestLinkCreationConnectorFromActorPart.class,
+	TestLinkCreationConnectorFromNestedActorPart.class,
+	TestLinkCreationConnectorFromSubNestedActorPart.class,
+	
+	// test from part
 	TestLinkCreationConnectorFromPart.class,
+	TestLinkCreationConnectorFromNestedPart.class,
+	TestLinkCreationConnectorFromSubNestedPart.class,
+	
+	// test from property
 	TestLinkCreationConnectorFromProperty.class,
+	TestLinkCreationConnectorFromNestedProperty.class,
+	TestLinkCreationConnectorFromSubNestedProperty.class,
+	
+	// test from reference
 	TestLinkCreationConnectorFromReference.class,
-	TestLinkCreationConnectorFromValue.class
+	TestLinkCreationConnectorFromNestedReference.class,
+	TestLinkCreationConnectorFromSubNestedReference.class,
+	
+	// test from value
+	TestLinkCreationConnectorFromValue.class,
+	TestLinkCreationConnectorFromNestedValue.class,
+	TestLinkCreationConnectorFromSubNestedValue.class,
 	
 })
 public class AllCreationConnectorTests {

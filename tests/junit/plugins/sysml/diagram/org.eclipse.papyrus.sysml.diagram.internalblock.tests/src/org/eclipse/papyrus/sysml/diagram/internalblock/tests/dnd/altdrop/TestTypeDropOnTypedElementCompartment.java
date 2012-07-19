@@ -51,6 +51,12 @@ public class TestTypeDropOnTypedElementCompartment extends AbstractTest {
 	public static View referenceCptView;
 	public static View valueCptView;
 	
+	public static View nestedActorPartCptView;
+	public static View nestedPartCptView;
+	public static View nestedPropertyCptView;
+	public static View nestedReferenceCptView;
+	public static View nestedValueCptView;
+	
 	@BeforeClass
 	public static void prepareContainerForTest() throws Exception {
 		try {
@@ -71,6 +77,21 @@ public class TestTypeDropOnTypedElementCompartment extends AbstractTest {
 			
 			if ((actorPartCptView == null) || (partCptView == null) || (propertyCptView == null) || (referenceCptView == null) || (valueCptView == null)) {
 				throw new Exception("Unable to prepare container for test.");
+			}
+			
+			View nestedActorPartView = createGraphicalNode(SysMLElementTypes.ACTOR_PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partCptView);
+			nestedActorPartCptView = ViewUtil.getChildBySemanticHint(nestedActorPartView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+			View nestedPartView = createGraphicalNode(SysMLElementTypes.PART_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partCptView);
+			nestedPartCptView = ViewUtil.getChildBySemanticHint(nestedPartView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+			View nestedPropertyView = createGraphicalNode(UMLElementTypes.PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partCptView);
+			nestedPropertyCptView = ViewUtil.getChildBySemanticHint(nestedPropertyView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+			View nestedReferenceView = createGraphicalNode(SysMLElementTypes.REFERENCE_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partCptView);
+			nestedReferenceCptView = ViewUtil.getChildBySemanticHint(nestedReferenceView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+			View nestedValueView = createGraphicalNode(SysMLElementTypes.VALUE_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, partCptView);
+			nestedValueCptView = ViewUtil.getChildBySemanticHint(nestedValueView, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
+			
+			if ((nestedActorPartCptView == null) || (nestedPartCptView == null) || (nestedPropertyCptView == null) || (nestedReferenceCptView == null) || (nestedValueCptView == null)) {
+				throw new Exception("Unable to prepare nested container for test.");
 			}
 
 			// prepare container package (getDiagramView references the shown Block).
@@ -173,5 +194,95 @@ public class TestTypeDropOnTypedElementCompartment extends AbstractTest {
 	public void testDropBlockOnValueCpt() throws Exception {
 		List<String> expectedDropNames = Collections.emptyList();
 		altDropFromModelExplorer(droppedBlock, valueCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropActorOnNestedActorPartCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedActor, actorPartCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropActorOnNestedPartCpt() throws Exception {
+		List<String> expectedDropNames = Arrays.asList(new String[]{"Create a new ActorPart"});
+		altDropFromModelExplorer(droppedActor, partCptView, expectedDropNames, true);
+	}
+
+	@Test
+	public void testDropActorOnNestedPropertyCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedActor, propertyCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropActorOnNestedReferenceCpt() throws Exception {
+		List<String> expectedDropNames = Arrays.asList(new String[]{"Create a new ActorPart"});
+		altDropFromModelExplorer(droppedActor, referenceCptView, expectedDropNames, true);
+	}
+
+	@Test
+	public void testDropActorOnNestedValueCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedActor, valueCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropBlockOnNestedActorPartCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedBlock, actorPartCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropBlockOnNestedPartCpt() throws Exception {
+		List<String> expectedDropNames = Arrays.asList(new String[]{"Create a new Part", "Create a new Reference"});
+		altDropFromModelExplorer(droppedBlock, partCptView, expectedDropNames, true);
+	}
+
+	@Test
+	public void testDropBlockOnNestedPropertyCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedBlock, propertyCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropBlockOnNestedReferenceCpt() throws Exception {
+		List<String> expectedDropNames = Arrays.asList(new String[]{"Create a new Part", "Create a new Reference"});
+		altDropFromModelExplorer(droppedBlock, referenceCptView, expectedDropNames, true);
+	}
+
+	@Test
+	public void testDropBlockOnNestedValueCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedBlock, valueCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropTypeOnNestedActorPartCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedDataType, actorPartCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropTypeOnNestedPartCpt() throws Exception {
+		List<String> expectedDropNames = Arrays.asList(new String[]{"Create a new Value"});
+		altDropFromModelExplorer(droppedDataType, partCptView, expectedDropNames, true);
+	}
+
+	@Test
+	public void testDropTypeOnNestedPropertyCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedDataType, propertyCptView, expectedDropNames, false);
+	}
+
+	@Test
+	public void testDropTypeOnNestedReferenceCpt() throws Exception {
+		List<String> expectedDropNames = Arrays.asList(new String[]{"Create a new Value"});
+		altDropFromModelExplorer(droppedDataType, referenceCptView, expectedDropNames, true);
+	}
+
+	@Test
+	public void testDropTypeOnNestedValueCpt() throws Exception {
+		List<String> expectedDropNames = Collections.emptyList();
+		altDropFromModelExplorer(droppedDataType, valueCptView, expectedDropNames, false);
 	}
 }

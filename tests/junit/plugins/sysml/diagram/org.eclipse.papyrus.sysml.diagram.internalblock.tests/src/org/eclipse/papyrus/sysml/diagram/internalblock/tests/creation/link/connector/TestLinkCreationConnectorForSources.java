@@ -39,26 +39,33 @@ public class TestLinkCreationConnectorForSources extends AbstractLinkCreationFor
 
 		isCreationAllowed.put(actorPartSourceView, true);
 		isCreationAllowed.put(nestedActorPartSourceView, true);
+		isCreationAllowed.put(subNestedActorPartContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(portOnBlockSourceView, true);
 		isCreationAllowed.put(portOnPartSourceView, true);
 		isCreationAllowed.put(portOnNestedPartSourceView, true);
+		isCreationAllowed.put(portOnSubNestedPartContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(flowportOnBlockSourceView, true);
 		isCreationAllowed.put(flowportOnPartSourceView, true);
 		isCreationAllowed.put(flowportOnNestedPartSourceView, true);
+		isCreationAllowed.put(flowportOnSubNestedPartContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(partSourceView, true);
 		isCreationAllowed.put(nestedPartSourceView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(propertySourceView, true);
 		isCreationAllowed.put(nestedPropertySourceView, true);
+		isCreationAllowed.put(subNestedPropertyContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(referenceSourceView, true);
 		isCreationAllowed.put(nestedReferenceSourceView, true);
+		isCreationAllowed.put(subNestedReferenceContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(valueSourceView, true);
 		isCreationAllowed.put(nestedValueSourceView, true);
+		isCreationAllowed.put(subNestedValueContainer1_1_1SourceView, true);
 
 		isCreationAllowed.put(commentSourceView, false);
 		isCreationAllowed.put(commentCNSourceView, false);

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.connector;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,9 @@ public class TestLinkCreationConnectorFromFlowPortOnPart extends AbstractLinkCre
 
 		isCreationAllowed.put(partTargetView, true);
 		isCreationAllowed.put(nestedPartTargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_1TargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_2_1TargetView, true);
+		isCreationAllowed.put(subNestedPartContainer1_1_2TargetView, true);
 
 		isCreationAllowed.put(propertyTargetView, true);
 		isCreationAllowed.put(nestedPropertyTargetView, true);
@@ -73,8 +77,16 @@ public class TestLinkCreationConnectorFromFlowPortOnPart extends AbstractLinkCre
 		isCreationAllowed.put(constraintCNTargetView, false);
 
 		// Initialize nested property path for tests
+		Property part1 = (Property)partContainer1.getElement();
+		Property part2 = (Property)partContainer2.getElement();
+		Property nestedPartContainer1_1Property = (Property)nestedPartContainer1_1.getElement();
+		Property nestedPartContainer1_2Property = (Property)nestedPartContainer1_2.getElement();
+		Property nestedPartContainer2_1Property = (Property)nestedPartContainer2_1.getElement();
+		List<Property> subNestedPath1_1 = Arrays.asList(new Property[]{ nestedPartContainer1_1Property });
+		List<Property> subNestedPath2_1 = Arrays.asList(new Property[]{ nestedPartContainer2_1Property });
+		List<Property> subNestedPath1_2 = Arrays.asList(new Property[]{ part2, nestedPartContainer1_2Property });
 		List<Property> emptyPath = Collections.emptyList();
-
+		
 		expectedSourceNestedPath = new HashMap<View, List<Property>>();
 		expectedTargetNestedPath = new HashMap<View, List<Property>>();
 
@@ -82,6 +94,11 @@ public class TestLinkCreationConnectorFromFlowPortOnPart extends AbstractLinkCre
 			expectedSourceNestedPath.put(view, emptyPath);
 			expectedTargetNestedPath.put(view, emptyPath);
 		}
+		
+		expectedTargetNestedPath.put(subNestedPartContainer1_1_1TargetView, subNestedPath1_1);
+		expectedTargetNestedPath.put(subNestedPartContainer1_2_1TargetView, subNestedPath2_1);
+		expectedTargetNestedPath.put(subNestedPartContainer1_1_2TargetView, subNestedPath1_2);
+		
 	}
 
 }
