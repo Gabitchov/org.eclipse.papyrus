@@ -53,6 +53,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.AttributeChangeLeftTargetTransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.AttributeChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.AttributeOrderChangeTransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DiffGroupTransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ModelElementChangeLeftTargetTransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ModelElementChangeRightTargetTransactionalMerger;
@@ -377,7 +378,7 @@ public abstract class AbstractCompareTest {
 		} else if(diffElement.getClass() == AttributeChangeRightTargetImpl.class) {
 			return AttributeChangeRightTargetTransactionalMerger.class;
 		} else if(diffElement.getClass() == AttributeOrderChangeImpl.class) {
-			Assert.fail();//something to do here?
+			return AttributeOrderChangeTransactionalMerger.class;
 		} else if(diffElement.getClass() == DiffGroupImpl.class) {
 			return DiffGroupTransactionalMerger.class;
 		} else if(diffElement.getClass() == ModelElementChangeRightTargetImpl.class) {
