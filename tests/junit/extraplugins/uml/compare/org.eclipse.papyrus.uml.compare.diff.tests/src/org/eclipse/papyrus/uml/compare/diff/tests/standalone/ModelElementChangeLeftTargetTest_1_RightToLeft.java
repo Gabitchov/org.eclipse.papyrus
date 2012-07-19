@@ -125,4 +125,9 @@ public class ModelElementChangeLeftTargetTest_1_RightToLeft extends AbstractStan
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
+
 }

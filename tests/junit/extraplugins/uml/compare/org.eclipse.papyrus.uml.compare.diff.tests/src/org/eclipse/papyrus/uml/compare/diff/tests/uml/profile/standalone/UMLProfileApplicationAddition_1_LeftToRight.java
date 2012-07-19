@@ -14,11 +14,13 @@
 package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.uml2diff.UMLProfileApplicationAddition;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -26,6 +28,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLProfileApplicationAdditionMerger;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.junit.Assert;
@@ -136,5 +139,31 @@ public class UMLProfileApplicationAddition_1_LeftToRight extends AbstractUMLStan
 	@Test
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
+	}
+
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
+
+	@Override
+	protected List<DiffElement> getDiffElementToMerge(DiffModel diff) {
+		final List<DiffElement> differences = super.getDiffElementToMerge(diff);
+		final List<DiffElement> differencesToRemove = new ArrayList<DiffElement>();
+		for(final DiffElement current : differences) {
+			if(!(current instanceof UMLProfileApplicationAddition)) {
+				differencesToRemove.add(current);
+			}
+		}
+		differences.removeAll(differencesToRemove);
+		return differences;
+	}
+
+	@Override
+	protected java.lang.Class<?> getWantedMergerFor(DiffElement diffElement) {
+		if(diffElement instanceof UMLProfileApplicationAddition) {
+			return UMLProfileApplicationAdditionMerger.class;
+		}
+		return null;
 	}
 }

@@ -112,4 +112,11 @@ public class UMLStereotypeReferenceChangeLeftTarget_1_RightToLeft extends Abstra
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
 	}
+
+	@Ignore("not yet implemented")
+	@Override
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

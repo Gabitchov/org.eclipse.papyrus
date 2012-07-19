@@ -124,4 +124,9 @@ public class NestedModelElementChangeLeftTargetTest_1_LeftToRight extends Abstra
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
+
 }

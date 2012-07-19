@@ -116,5 +116,9 @@ public class ReferenceChangeRightTargetTest_1_RightToLeft extends AbstractStanda
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 
 }

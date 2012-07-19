@@ -14,17 +14,20 @@
 package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.compare.uml2diff.UMLStereotypeUpdateAttribute;
 import org.eclipse.emf.compare.uml2diff.UMLStereotypeUpdateReference;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DefaultExtensionTransactionalMerger;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
@@ -151,5 +154,32 @@ public class UMLStereotypeUpdateReference_1_LeftToRight extends AbstractUMLStand
 	@Test
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
+	}
+
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
+
+
+	@Override
+	protected List<DiffElement> getDiffElementToMerge(DiffModel diff) {
+		final List<DiffElement> differences = super.getDiffElementToMerge(diff);
+		final List<DiffElement> differencesToRemove = new ArrayList<DiffElement>();
+		for(final DiffElement current : differences) {
+			if(!(current instanceof UMLStereotypeUpdateReference)) {
+				differencesToRemove.add(current);
+			}
+		}
+		differences.removeAll(differencesToRemove);
+		return differences;
+	}
+
+	@Override
+	protected Class<?> getWantedMergerFor(DiffElement diffElement) {
+		if(diffElement instanceof UMLStereotypeUpdateReference) {
+			return DefaultExtensionTransactionalMerger.class;
+		}
+		return null;
 	}
 }

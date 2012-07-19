@@ -14,16 +14,19 @@
 package org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.GeneralizationTargetMerger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -113,5 +116,31 @@ public class GeneralizationTargetChangedTest_1_LeftToRight extends AbstractUMLSt
 	@Test
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
+	}
+
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
+
+	@Override
+	protected List<DiffElement> getDiffElementToMerge(DiffModel diff) {
+		final List<DiffElement> differences = super.getDiffElementToMerge(diff);
+		final List<DiffElement> differencesToRemove = new ArrayList<DiffElement>();
+		for(final DiffElement current : differences) {
+			if(!(current instanceof GeneralizationTargetChangedExtension)) {
+				differencesToRemove.add(current);
+			}
+		}
+		differences.removeAll(differencesToRemove);
+		return differences;
+	}
+
+	@Override
+	protected java.lang.Class<?> getWantedMergerFor(DiffElement diffElement) {
+		if(diffElement instanceof GeneralizationTargetChangedExtension) {
+			return GeneralizationTargetMerger.class;
+		}
+		return null;
 	}
 }

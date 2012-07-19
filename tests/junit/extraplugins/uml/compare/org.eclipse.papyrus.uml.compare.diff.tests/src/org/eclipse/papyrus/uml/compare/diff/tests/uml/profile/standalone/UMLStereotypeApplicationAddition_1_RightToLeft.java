@@ -14,17 +14,20 @@
 package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationAddition;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationAdditionMerger;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
@@ -131,5 +134,31 @@ public class UMLStereotypeApplicationAddition_1_RightToLeft extends AbstractUMLS
 	@Test
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
+	}
+
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
+
+	@Override
+	protected List<DiffElement> getDiffElementToMerge(DiffModel diff) {
+		final List<DiffElement> differences = super.getDiffElementToMerge(diff);
+		final List<DiffElement> differencesToRemove = new ArrayList<DiffElement>();
+		for(final DiffElement current : differences) {
+			if(!(current instanceof UMLStereotypeApplicationAddition)) {
+				differencesToRemove.add(current);
+			}
+		}
+		differences.removeAll(differencesToRemove);
+		return differences;
+	}
+
+	@Override
+	protected java.lang.Class<?> getWantedMergerFor(DiffElement diffElement) {
+		if(diffElement instanceof UMLStereotypeApplicationAddition) {
+			return UMLStereotypeApplicationAdditionMerger.class;
+		}
+		return null;
 	}
 }

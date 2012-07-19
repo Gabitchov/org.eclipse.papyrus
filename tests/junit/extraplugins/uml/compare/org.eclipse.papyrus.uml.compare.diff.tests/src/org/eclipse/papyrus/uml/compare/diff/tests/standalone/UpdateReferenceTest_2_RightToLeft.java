@@ -109,4 +109,8 @@ public class UpdateReferenceTest_2_RightToLeft extends AbstractStandaloneCompare
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

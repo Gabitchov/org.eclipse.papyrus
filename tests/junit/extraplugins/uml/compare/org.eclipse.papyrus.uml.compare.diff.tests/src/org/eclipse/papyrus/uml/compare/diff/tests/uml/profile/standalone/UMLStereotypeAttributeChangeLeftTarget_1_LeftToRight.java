@@ -125,4 +125,11 @@ public class UMLStereotypeAttributeChangeLeftTarget_1_LeftToRight extends Abstra
 	public void testTestConformance() {
 		super.testTestConformance();
 	}
+
+	@Ignore("not yet implemented")
+	@Override
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

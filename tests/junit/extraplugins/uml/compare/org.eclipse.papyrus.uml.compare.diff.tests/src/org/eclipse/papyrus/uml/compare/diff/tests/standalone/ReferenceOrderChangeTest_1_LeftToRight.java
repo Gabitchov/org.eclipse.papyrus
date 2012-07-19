@@ -109,4 +109,8 @@ public class ReferenceOrderChangeTest_1_LeftToRight extends AbstractStandaloneCo
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

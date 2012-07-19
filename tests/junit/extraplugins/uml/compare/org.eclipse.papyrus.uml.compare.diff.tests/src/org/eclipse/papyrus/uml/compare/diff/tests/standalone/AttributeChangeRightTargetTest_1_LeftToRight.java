@@ -108,4 +108,8 @@ public class AttributeChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

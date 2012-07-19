@@ -116,4 +116,8 @@ public class NestedUpdateAttributeTest_1_LeftToRight extends AbstractNestedCompa
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

@@ -107,5 +107,9 @@ public class AttributeChangeLeftTargetTest_1_RightToLeft extends AbstractStandal
 		super.testRedo();
 	}
 
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 
 }

@@ -107,4 +107,9 @@ public class MoveModelElementTest_1_LeftToRight extends AbstractStandaloneCompar
 	public void testRedo() throws IOException, InterruptedException {
 		super.testRedo();
 	}
+
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		super.testOneDiffCommandExecution();
+	}
 }

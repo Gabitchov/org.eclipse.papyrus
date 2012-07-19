@@ -18,6 +18,7 @@ import static org.eclipse.papyrus.infra.core.Activator.log;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -27,6 +28,18 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.impl.AttributeChangeLeftTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.AttributeChangeRightTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.AttributeOrderChangeImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.DiffGroupImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.ModelElementChangeLeftTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.ModelElementChangeRightTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.MoveModelElementImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.ReferenceChangeLeftTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.ReferenceChangeRightTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.ReferenceOrderChangeImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.UpdateAttributeImpl;
+import org.eclipse.emf.compare.diff.metamodel.impl.UpdateReferenceImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -38,6 +51,18 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.AttributeChangeLeftTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.AttributeChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.DiffGroupTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ModelElementChangeLeftTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ModelElementChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.MoveModelElementTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ReferenceChangeLeftTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ReferenceChangeRightTargetTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.ReferenceOrderChangeTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.UpdateAttributeTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.merger.UpdateReferenceTransactionalMerger;
+import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeFactory;
 import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.uml.compare.file.editor.utils.ServicesRegistryUtils;
@@ -68,7 +93,7 @@ public abstract class AbstractCompareTest {
 	protected static Element rightElement;
 
 	/** This field is used to store the initial Differences before to do the merge */
-	private static List<DiffElement> initialDifferences;
+	protected static List<DiffElement> initialDifferences;
 
 	protected static ServicesRegistry servicesRegistry;
 
@@ -306,5 +331,94 @@ public abstract class AbstractCompareTest {
 			}
 		}
 		return resources;
+	}
+
+
+
+	/**
+	 * This tests verify that the merge of the Diff works fine
+	 * the method {@link #testCommandExecution()} test the MergeAll
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
+		testUndo();
+		final DiffModel diff = getDiffModel(leftElement, rightElement);
+		final DiffElement diffElement = getDiffElementToMerge(diff).get(0);
+		Assert.assertFalse(diffElement instanceof DiffGroup);
+		testDiffMerger(diffElement);
+		final Command cmd = TransactionalMergeService.getMergeCommand(domain, diffElement, leftToRight);
+		Assert.assertNotNull(NLS.bind("I can't find the merge command for {0}", diffElement), cmd);
+		Assert.assertTrue(NLS.bind("The builded command to merge {0} is not executable", diffElement), cmd.canExecute());
+		//we execute the command and hope that all it is OK
+		domain.getCommandStack().execute(cmd);
+		saveFiles();
+		testModificationOnDiFile();
+		testModificationOnNotationFile();
+		testModificationOnUMLFile();
+		testResult();
+		testXMIID();
+		testUndo();
+		testRedo();
+	}
+
+
+	protected void testDiffMerger(DiffElement diffElement) {
+		final Class<?> wantedMerger = getWantedMergerFor(diffElement);
+		final Class<?> currentMerger = TransactionalMergeFactory.createMerger(diffElement).getClass();
+		Assert.assertEquals(NLS.bind("We don't get the correct merger for {0}", diffElement), wantedMerger, currentMerger);
+	}
+
+	protected Class<?> getWantedMergerFor(final DiffElement diffElement) {
+		if(diffElement.getClass() == AttributeChangeLeftTargetImpl.class) {
+			return AttributeChangeLeftTargetTransactionalMerger.class;
+		} else if(diffElement.getClass() == AttributeChangeRightTargetImpl.class) {
+			return AttributeChangeRightTargetTransactionalMerger.class;
+		} else if(diffElement.getClass() == AttributeOrderChangeImpl.class) {
+			Assert.fail();//something to do here?
+		} else if(diffElement.getClass() == DiffGroupImpl.class) {
+			return DiffGroupTransactionalMerger.class;
+		} else if(diffElement.getClass() == ModelElementChangeRightTargetImpl.class) {
+			return ModelElementChangeRightTargetTransactionalMerger.class;
+		} else if(diffElement.getClass() == ModelElementChangeLeftTargetImpl.class) {
+			return ModelElementChangeLeftTargetTransactionalMerger.class;
+		} else if(diffElement.getClass() == MoveModelElementImpl.class) {
+			return MoveModelElementTransactionalMerger.class;
+		} else if(diffElement.getClass() == ReferenceChangeLeftTargetImpl.class) {
+			return ReferenceChangeLeftTargetTransactionalMerger.class;
+		} else if(diffElement.getClass() == ReferenceChangeRightTargetImpl.class) {
+			return ReferenceChangeRightTargetTransactionalMerger.class;
+		} else if(diffElement.getClass() == ReferenceOrderChangeImpl.class) {
+			return ReferenceOrderChangeTransactionalMerger.class;
+		} else if(diffElement.getClass() == UpdateReferenceImpl.class) {
+			return UpdateReferenceTransactionalMerger.class;
+		} else if(diffElement.getClass() == UpdateAttributeImpl.class) {
+			return UpdateAttributeTransactionalMerger.class;
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param diffModel
+	 *        a diffModel
+	 * @return
+	 *         the list of the single diff to merge -> no DiffGroup are returned
+	 */
+	protected List<DiffElement> getDiffElementToMerge(final DiffModel diff) {
+		// Merges all differences from model1 to model2
+		final List<DiffElement> differences = new ArrayList<DiffElement>();
+		Iterator<EObject> iter = diff.eAllContents();
+		while(iter.hasNext()) {
+			EObject current = iter.next();
+			if(current instanceof DiffElement) {
+				if(!(current instanceof DiffGroup)) {
+					differences.add((DiffElement)current);
+				}
+			}
+		}
+		return differences;
 	}
 }
