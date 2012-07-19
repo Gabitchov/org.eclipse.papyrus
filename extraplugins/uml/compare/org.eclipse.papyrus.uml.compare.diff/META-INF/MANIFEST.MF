@@ -36,6 +36,7 @@ Export-Package:
  org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl,
  org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.util,
  org.eclipse.papyrus.uml.compare.diff,
+ org.eclipse.papyrus.uml.compare.diff.internal.merger,
  org.eclipse.papyrus.uml.compare.diff.services.nested,
  org.eclipse.papyrus.uml.compare.diff.services.standalone
 
