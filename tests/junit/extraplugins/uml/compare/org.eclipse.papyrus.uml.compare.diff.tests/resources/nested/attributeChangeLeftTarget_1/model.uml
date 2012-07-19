@@ -6,5 +6,7 @@
   <packagedElement xmi:type="uml:OpaqueBehavior" xmi:id="_FhirMNGlEeGkRra3Rn7kIg" name="OpaqueBehavior1" body="">
     <language>C++</language>
   </packagedElement>
-  <packagedElement xmi:type="uml:OpaqueBehavior" xmi:id="_Gh1DgNGlEeGkRra3Rn7kIg" name="OpaqueBehavior1" language="" body=""/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WOPAENGnEeGkRra3Rn7kIg" name="Package1">
+    <packagedElement xmi:type="uml:OpaqueBehavior" xmi:id="_Gh1DgNGlEeGkRra3Rn7kIg" name="OpaqueBehavior1" language="" body=""/>
+  </packagedElement>
 </uml:Model>

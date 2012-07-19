@@ -4,7 +4,9 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:OpaqueBehavior" xmi:id="_FhirMNGlEeGkRra3Rn7kIg" name="OpaqueBehavior1" language="" body=""/>
-  <packagedElement xmi:type="uml:OpaqueBehavior" xmi:id="_Gh1DgNGlEeGkRra3Rn7kIg" name="OpaqueBehavior1" body="">
-    <language>C++</language>
+  <packagedElement xmi:type="uml:Package" xmi:id="_bgp78NGnEeGkRra3Rn7kIg" name="Package1">
+    <packagedElement xmi:type="uml:OpaqueBehavior" xmi:id="_Gh1DgNGlEeGkRra3Rn7kIg" name="OpaqueBehavior1" body="">
+      <language>C++</language>
+    </packagedElement>
   </packagedElement>
 </uml:Model>
