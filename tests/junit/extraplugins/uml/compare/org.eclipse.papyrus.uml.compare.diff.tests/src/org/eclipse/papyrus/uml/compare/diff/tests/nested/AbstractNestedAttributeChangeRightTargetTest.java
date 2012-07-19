@@ -9,9 +9,9 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
- *
+ *  
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.diff.tests.standalone;
+package org.eclipse.papyrus.uml.compare.diff.tests.nested;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,26 +23,29 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.OpaqueBehavior;
+import org.eclipse.uml2.uml.Package;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class AttributeChangeRightTargetTest_1_RightToLeft extends AbstractStandaloneCompareTest {
+public abstract class AbstractNestedAttributeChangeRightTargetTest extends AbstractNestedCompareTest {
 
-	private static final String MODEL_PATH = "attributeChangeRightTarget_1/";
+	private static final String MODEL_PATH = "attributeChangeRightTarget_1/"; //$NON-NLS-1$
 
-	@BeforeClass
-	public static void init() throws CoreException, IOException, ModelMultiException, ServiceException {
-		AbstractStandaloneCompareTest.init(MODEL_PATH, false);
+	public static void init(final boolean leftToRight) throws CoreException, IOException, ModelMultiException, ServiceException {
+		AbstractNestedCompareTest.init(MODEL_PATH, leftToRight);
+		AbstractCompareTest.leftElement = (Class)AbstractNestedCompareTest.root.getOwnedMember("OpaqueBehavior1"); //$NON-NLS-1$
+		AbstractCompareTest.rightElement = (Class)((Package)root.getPackagedElement("Package1")).getOwnedMember("OpaqueBehavior1"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	@Test
 	@Override
-	public void mergeTestAllExecutability() throws InterruptedException {
-		super.mergeTestAllExecutability();
+	public void testLastDiffElements(List<DiffElement> diffElements) {
+		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1); //$NON-NLS-1$
+		final DiffElement diffElement = diffElements.get(0);
+		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", AttributeChangeRightTarget.class), diffElement instanceof AttributeChangeRightTarget); //$NON-NLS-1$
 	}
 
 	@Test
@@ -50,11 +53,9 @@ public class AttributeChangeRightTargetTest_1_RightToLeft extends AbstractStanda
 		super.testDifferences();
 	}
 
-
-	public void testLastDiffElements(List<DiffElement> diffElements) {
-		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 1, diffElements.size() }), diffElements.size() == 1);
-		final DiffElement diffElement = diffElements.get(0);
-		Assert.assertTrue(NLS.bind("The last DiffElement is not a {0}", AttributeChangeRightTarget.class), diffElement instanceof AttributeChangeRightTarget);
+	@Test
+	public void mergeTestAllExecutability() throws InterruptedException {
+		super.mergeTestAllExecutability();
 	}
 
 	@Override
@@ -78,12 +79,17 @@ public class AttributeChangeRightTargetTest_1_RightToLeft extends AbstractStanda
 	@Test
 	public void testModificationOnUMLFile() {
 		super.testModificationOnUMLFile(true);
-		final EList<String> rightLanguages =((OpaqueBehavior)((Model)rightElement).getMember("OpaqueBehavior1")).getLanguages();
-		final EList<String> leftLanguages = ((OpaqueBehavior)((Model)leftElement).getMember("OpaqueBehavior1")).getLanguages();
-		Assert.assertEquals(1, leftLanguages.size());
-		Assert.assertEquals(1, rightLanguages.size());
-		Assert.assertEquals(rightLanguages.get(0), leftLanguages.get(0));
-		Assert.assertEquals(rightLanguages.get(0), "C++"); //$NON-NLS-1$
+		final EList<String> rightLanguages = ((OpaqueBehavior)rightElement).getLanguages();
+		final EList<String> leftLanguages = ((OpaqueBehavior)leftElement).getLanguages();
+		if(!leftToRight) {
+			Assert.assertEquals(1, leftLanguages.size());
+			Assert.assertEquals(1, rightLanguages.size());
+			Assert.assertEquals(rightLanguages.get(0), leftLanguages.get(0));
+			Assert.assertEquals(rightLanguages.get(0), "C++"); //$NON-NLS-1$
+		} else {
+			Assert.assertEquals(0, leftLanguages.size());
+			Assert.assertEquals(0, rightLanguages.size());
+		}
 	}
 
 
@@ -102,7 +108,7 @@ public class AttributeChangeRightTargetTest_1_RightToLeft extends AbstractStanda
 	@Override
 	@Test
 	public void testXMIID() {
-		//nothing to do here!
+		//nothing to do
 	}
 
 	@Override
@@ -121,4 +127,5 @@ public class AttributeChangeRightTargetTest_1_RightToLeft extends AbstractStanda
 	public void testOneDiffCommandExecution() throws IOException, InterruptedException {
 		super.testOneDiffCommandExecution();
 	}
+
 }

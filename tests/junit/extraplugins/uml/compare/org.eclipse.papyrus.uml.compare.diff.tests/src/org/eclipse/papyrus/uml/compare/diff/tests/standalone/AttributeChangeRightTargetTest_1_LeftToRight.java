@@ -17,11 +17,14 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -75,6 +78,10 @@ public class AttributeChangeRightTargetTest_1_LeftToRight extends AbstractStanda
 	@Test
 	public void testModificationOnUMLFile() {
 		super.testModificationOnUMLFile(true);
+		final EList<String> rightLanguages =((OpaqueBehavior)((Model)rightElement).getMember("OpaqueBehavior1")).getLanguages();
+		final EList<String> leftLanguages = ((OpaqueBehavior)((Model)leftElement).getMember("OpaqueBehavior1")).getLanguages();
+		Assert.assertEquals(0, leftLanguages.size());
+		Assert.assertEquals(0, rightLanguages.size());
 	}
 
 
