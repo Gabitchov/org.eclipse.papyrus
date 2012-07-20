@@ -75,7 +75,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 		this.amodel = model;
 		this.editorRegistry = editorFactoryRegistry;
 		createEditHyperlinkShell();
-		getObjectcLabel().setText(Messages.EditorHyperLinkEditorShell_Table); //TODO : where is it used?
+		getObjectcLabel().setText(Messages.EditorHyperLinkEditorShell_View); //TODO : where is it used?
 
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);

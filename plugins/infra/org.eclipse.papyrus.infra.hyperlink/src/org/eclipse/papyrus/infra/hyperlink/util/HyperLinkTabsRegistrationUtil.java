@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.hyperlink.util;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -77,9 +78,9 @@ public class HyperLinkTabsRegistrationUtil {
 				final Object h = e.createExecutableExtension(TAB);
 				if(h instanceof AbstractHyperLinkTab) {
 					tab = (AbstractHyperLinkTab)h;
-					String o = e.getAttribute(POSITION, null);
-					Integer position = Integer.valueOf(o);
-					String tabId = e.getAttribute(TAB_ID, null);
+					final String o = e.getAttribute(POSITION);
+					final Integer position = Integer.valueOf(o);
+					final String tabId = e.getAttribute(TAB_ID);
 					tab.setTabId(tabId);
 					allTabs.put(position, tab);
 				} else {

@@ -233,6 +233,9 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		// fill list of diagram
 		//TODO
 		//diagramListTreeViewer.setLabelProvider(new ObjectLabelProvider(null));
+		
+		//we can't reuse the same instance of the label provider see bug 385599: [Hyperlink] We can't select the diagram/table for referencing them
+		labelProvider = new LocalLabelProvider();
 		diagramListTreeViewer.setLabelProvider(labelProvider);
 
 

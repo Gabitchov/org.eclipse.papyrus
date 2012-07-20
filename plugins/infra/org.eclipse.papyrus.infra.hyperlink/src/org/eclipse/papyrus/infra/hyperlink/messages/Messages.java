@@ -21,7 +21,7 @@ public class Messages extends NLS {
 
 	public static String EditorHyperLinkEditorShell_ICanFindTheHyperLinkEditorObject;
 
-	public static String EditorHyperLinkEditorShell_Table;
+	public static String EditorHyperLinkEditorShell_View;
 
 	public static String EditorHyperLinkHelper_Editor;
 
