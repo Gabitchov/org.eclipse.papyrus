@@ -66,12 +66,12 @@ import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeServ
  * should replace DefaultMerger
  * 
  */
-//TODO can we remoe IMerger?
+//TODO can we remove IMerger?
 public class DefaultTransactionalMerger extends AbstractDefaultMerger implements ITransactionalMerger {
 
 	//---------------------These methods comes from ITransactionalMerger
 	public Command getApplyInOriginCommand(TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff));
+		CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff)); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
 		cmd.append(getDoApplyInOriginCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -79,7 +79,7 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	}
 
 	public Command getUndoInTargetCommand(TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff));
+		CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff)); //$NON-NLS-1$
 		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
 		cmd.append(getDoUndoInTargetCommand(domain));
 		cmd.append(getPostProcessCommand(domain));
@@ -95,7 +95,7 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 	}
 
 	public Command getMergeRequiredDifferencesCommand(TransactionalEditingDomain domain, boolean applyInOrigin) {
-		CompoundCommand cmd = new CompoundCommand("Merge required differences");
+		CompoundCommand cmd = new CompoundCommand("Merge required differences"); //$NON-NLS-1$
 		//		if(mergedDiffs == null) { //we need to clean it, to avoid that the command creation duplicate elements in this list
 		mergedDiffs = new ArrayList<DiffElement>();
 		if(mergedDiffslistener == null) {
@@ -150,12 +150,24 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 				break;
 			}
 		}
-		EObject element = (EObject)ClassUtils.invokeMethod(diffElement, "getRightElement");
+		//we try to get the EditingDomain using the left object AND the rightObject,
+		//because in some case it should be interesting to do a comparison between an object contained by a resource
+		//and an other object no contained by a resource
+		EObject element = (EObject)ClassUtils.invokeMethod(diffElement, "getRightElement"); //$NON-NLS-1$
 		if(element == null) {
-			element = (EObject)ClassUtils.invokeMethod(diffElement, "getLeftElement");
+			element = (EObject)ClassUtils.invokeMethod(diffElement, "getLeftElement"); //$NON-NLS-1$
 		}
-		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
-		Assert.isNotNull(domain, NLS.bind("I didn't found the EditingDomain for {0}", diff));
+		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
+		
+		if(domain == null) {
+			element = (EObject)ClassUtils.invokeMethod(diffElement, "getRightParent"); //$NON-NLS-1$
+			if(element == null) {
+				element = (EObject)ClassUtils.invokeMethod(diffElement, "getLeftParent"); //$NON-NLS-1$
+			}
+			domain = TransactionUtil.getEditingDomain(element);
+		}
+
+		Assert.isNotNull(domain, NLS.bind("I didn't found the EditingDomain for {0}", diff)); //$NON-NLS-1$
 		return domain;
 
 	}
