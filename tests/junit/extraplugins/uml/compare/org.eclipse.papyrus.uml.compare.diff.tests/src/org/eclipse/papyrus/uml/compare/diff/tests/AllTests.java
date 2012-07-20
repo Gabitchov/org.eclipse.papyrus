@@ -23,6 +23,10 @@ import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedModelElementChang
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedModelElementChangeLeftTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedModelElementChangeRightTargetTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedModelElementChangeRightTargetTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementTest_2_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementTest_2_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedUpdateAttributeTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedUpdateAttributeTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeLeftTargetTest_1_LeftToRight;
@@ -91,6 +95,10 @@ NestedAttributeOrderChangeTest_1_LeftToRight.class, NestedAttributeOrderChangeTe
 NestedModelElementChangeRightTargetTest_1_LeftToRight.class, NestedModelElementChangeRightTargetTest_1_RightToLeft.class,
 
 NestedModelElementChangeLeftTargetTest_1_LeftToRight.class, NestedModelElementChangeLeftTargetTest_1_RightToLeft.class,
+
+NestedMoveModelElementTest_1_LeftToRight.class, NestedMoveModelElementTest_1_RightToLeft.class,
+
+NestedMoveModelElementTest_2_LeftToRight.class, NestedMoveModelElementTest_2_RightToLeft.class,
 
 NestedUpdateAttributeTest_1_LeftToRight.class, NestedUpdateAttributeTest_1_RightToLeft.class,
 
