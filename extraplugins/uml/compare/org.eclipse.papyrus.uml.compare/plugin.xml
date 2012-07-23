@@ -36,28 +36,48 @@
    </extension>
    <extension
          point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
-         <command
-               commandId="org.eclipse.papyrus.uml.compare.command"
-               icon="icons/papyrus_compare_16x16.png"
-               label="Compare 2 elements"
-               style="push"
-               tooltip="Compare 2 elements">
-            <visibleWhen
-                  checkEnabled="false">
-               <and>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.infra.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </and>
-            </visibleWhen>
-         </command>
-      </menuContribution>
+            <menuContribution
+                  allPopups="true"
+                  locationURI="popup:org.eclipse.ui.popup.any">
+               <command
+                     commandId="org.eclipse.papyrus.uml.compare.command"
+                     icon="icons/papyrus_compare_16x16.png"
+                     label="Compare 2 UML Elements"
+                     style="push"
+                     tooltip="Compare 2 UML Elements">
+                  <visibleWhen
+                        checkEnabled="true">
+                     <or>
+                        <and>
+                           <with
+                                 variable="selection">
+                              <test
+                                    forcePluginActivation="true"
+                                    property="org.eclipse.papyrus.uml.compare.property.isCorrectSelection"
+                                    value="true">
+                              </test>
+                           </with>
+                           <with
+                                 variable="activeEditorId">
+                              <equals
+                                    value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                              </equals>
+                           </with>
+                        </and>
+                     </or>
+                  </visibleWhen>
+               </command>
+            </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.uml.compare.utils.UMLComparePropertyTester"
+            id="org.eclipse.papyrus.uml.compare.property"
+            namespace="org.eclipse.papyrus.uml.compare.property"
+            properties="isCorrectSelection"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
    </extension>
 
 </plugin>
