@@ -51,11 +51,13 @@
                         <and>
                            <with
                                  variable="selection">
-                              <test
-                                    forcePluginActivation="true"
-                                    property="org.eclipse.papyrus.uml.compare.property.isCorrectSelection"
-                                    value="true">
-                              </test>
+                              <iterate
+                                    ifEmpty="false"
+                                    operator="and">
+                                 <adapt
+                                       type="org.eclipse.emf.ecore.EObject">
+                                 </adapt>
+                              </iterate>
                            </with>
                            <with
                                  variable="activeEditorId">
@@ -68,16 +70,6 @@
                   </visibleWhen>
                </command>
             </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.eclipse.papyrus.uml.compare.utils.UMLComparePropertyTester"
-            id="org.eclipse.papyrus.uml.compare.property"
-            namespace="org.eclipse.papyrus.uml.compare.property"
-            properties="isCorrectSelection"
-            type="org.eclipse.jface.viewers.IStructuredSelection">
-      </propertyTester>
    </extension>
 
 </plugin>
