@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.uml.tools.providers;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
@@ -19,6 +21,7 @@ import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -26,8 +29,13 @@ import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.OperationTemplateParameter;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -212,7 +220,63 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 			} else {
 				return ((NamedElement)element).getName();
 			}
-		} else if(element instanceof Element) {
+		}
+		// TODO: Temporary solution for template parameters
+		// Note: In the class diagram, for template parameters, 
+		// org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.TemplateParameterParser is used for computing the label
+		// This code is duplicated here in the following "else" clause, as well as in the "displayOperation" method
+		else if(element instanceof TemplateParameter) {
+			final TemplateParameter templateParam = (TemplateParameter)element;
+			if(templateParam.getParameteredElement() == null) {
+				return "<UNDEFINED>";
+			}
+			String out = "";
+			if(templateParam.getParameteredElement() instanceof NamedElement) {
+				NamedElement namedElement = (NamedElement)templateParam.getParameteredElement();
+				out = namedElement.getName() + ": " + namedElement.eClass().getName();
+			}
+
+			if(templateParam instanceof OperationTemplateParameter) {
+				if(templateParam.getParameteredElement() != null) {
+					Operation op = (Operation)(templateParam.getParameteredElement());
+					out = displayOperation(op);
+				}
+			} else if(templateParam instanceof ClassifierTemplateParameter) {
+				if(!((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().isEmpty()) {
+					out = out + ">";
+					for(int i = 0; i < ((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().size(); i++) {
+						out = out + ((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().get(i).getName();
+						if(i < ((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().size() - 1) {
+							out = out + ", ";
+						}
+					}
+
+				}
+			}
+			if(templateParam.getDefault() instanceof Operation) {
+				out = out + "=" + displayOperation((Operation)templateParam.getDefault());
+			} else if(templateParam.getDefault() instanceof NamedElement) {
+				out = out + "=" + ((NamedElement)templateParam.getDefault()).getName();
+			}
+			return out;
+		}
+		// TODO: Temporary solution for template parameter substitutions
+		// Note: In the class diagram, for template parameters, 
+		// org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.TemplateBindingParser is used for computing the label
+		// This code is duplicated here in the following "else" clause
+		else if(element instanceof TemplateParameterSubstitution) {
+			String out = "";
+			TemplateParameterSubstitution substitution = (TemplateParameterSubstitution)element;
+			if(substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
+				out = out + ((NamedElement)substitution.getFormal().getParameteredElement()).getName();
+			}
+			if(substitution.getActual() instanceof NamedElement) {
+				out = out + " -> " + ((NamedElement)substitution.getActual()).getName() + "\n";
+			}
+			return out;
+		}
+		// END TODO
+		else if(element instanceof Element) {
 			// when the element is not a NamedElement, we return its Type name
 			String className = element.eClass().getName();
 			return className;
@@ -231,4 +295,27 @@ public class UMLLabelProvider extends EMFLabelProvider implements ILabelProvider
 	private boolean isEmptyString(String s) {
 		return s == null || s.trim().equals(""); //$NON-NLS-1$
 	}
+
+	/**
+	 * Computes the label corresponding to an UML Operation
+	 * 
+	 * @param op
+	 *        the operation from which the label is computed
+	 * @return the label
+	 */
+	protected String displayOperation(Operation op) {
+		String out = op.getName() + "(";
+		Iterator<Parameter> iter = op.getOwnedParameters().iterator();
+		while(iter.hasNext()) {
+			Parameter param = iter.next();
+			out = out + param.getName();
+			if(!param.equals(op.getOwnedParameters().get(op.getOwnedParameters().size() - 1))) {
+				out = out + ", ";
+			}
+		}
+		out = out + ")";
+		return out;
+
+	}
+
 }
