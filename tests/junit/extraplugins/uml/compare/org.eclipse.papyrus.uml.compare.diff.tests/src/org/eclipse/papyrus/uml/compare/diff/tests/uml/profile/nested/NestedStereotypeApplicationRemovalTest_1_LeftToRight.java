@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile;
+package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested;
 
 import java.io.IOException;
 

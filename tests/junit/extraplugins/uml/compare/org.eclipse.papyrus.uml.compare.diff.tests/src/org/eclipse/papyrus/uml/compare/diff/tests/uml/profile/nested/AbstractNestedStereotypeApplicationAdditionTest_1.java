@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile;
+package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,27 +23,29 @@ import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
-import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationRemoval;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.uml2diff.UMLStereotypeApplicationAddition;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationRemovalMerger;
+import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationAdditionMerger;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.AbstractNestedCompareTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
 
-public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends AbstractNestedCompareTest {
+public abstract class AbstractNestedStereotypeApplicationAdditionTest_1 extends AbstractNestedCompareTest {
 
-	private static final String MODEL_PATH = "stereotypeApplicationRemoval_1/"; //$NON-NLS-1$
+	private static final String MODEL_PATH = "stereotypeApplicationAddition_1/"; //$NON-NLS-1$
 
 	private static final String FOLDER_PATH = "/resources/uml_nested/";
 
@@ -51,9 +53,9 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 		AbstractNestedCompareTest.init(FOLDER_PATH, MODEL_PATH, leftToRight);
 		for(NamedElement current : AbstractNestedCompareTest.root.getOwnedMembers()) {
 			if(current.getAppliedStereotypes().size() == 0) {
-				AbstractCompareTest.leftElement = current;
-			} else {
 				AbstractCompareTest.rightElement = current;
+			} else {
+				AbstractCompareTest.leftElement = current;
 			}
 		}
 
@@ -61,17 +63,11 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 		Assert.assertNotNull(AbstractCompareTest.rightElement);
 	}
 
-	@Test
-	public void testDifferences() throws InterruptedException {
-		super.testDifferences();
-	}
-
-
 	public void testLastDiffElements(List<DiffElement> diffElements) {
 		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 2, diffElements.size() }), diffElements.size() == 2);
 		DiffElement firstDiffElement = diffElements.get(0);
 		final DiffElement secondDiffElement = diffElements.get(1);
-		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", ModelElementChangeRightTarget.class), secondDiffElement instanceof ModelElementChangeRightTarget);
+		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", ModelElementChangeLeftTarget.class), secondDiffElement instanceof ModelElementChangeLeftTarget);
 
 		Assert.assertTrue(firstDiffElement instanceof DiffGroup);
 		Assert.assertTrue(firstDiffElement.getSubDiffElements().size() == 1);
@@ -79,13 +75,19 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 		Assert.assertTrue(firstDiffElement instanceof DiffGroup);
 		Assert.assertTrue(firstDiffElement.getSubDiffElements().size() == 1);
 		firstDiffElement = firstDiffElement.getSubDiffElements().get(0);
-		Assert.assertTrue(NLS.bind("The second DiffElement is not a {0}", UMLStereotypeApplicationRemoval.class), firstDiffElement instanceof UMLStereotypeApplicationRemoval);
+		Assert.assertTrue(NLS.bind("The second DiffElement is not a {0}", UMLStereotypeApplicationAddition.class), firstDiffElement instanceof UMLStereotypeApplicationAddition);
 
 		AbstractDiffExtension ext = (AbstractDiffExtension)firstDiffElement;
 		Assert.assertTrue(NLS.bind("The {0} doesn't hide only one DiffElement", ext), ext.getHideElements().size() == 1);
 		Assert.assertTrue(NLS.bind("The {0} doesn't hide the correct DiffElement", ext), ext.getHideElements().get(0) == secondDiffElement);
 	}
 
+	
+	@Override
+	@Test
+	public void testDifferences() throws InterruptedException {
+		super.testDifferences();
+	}
 	@Test
 	public void mergeTestAllExecutability() throws InterruptedException {
 		super.mergeTestAllExecutability();
@@ -114,7 +116,7 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 		super.testModificationOnUMLFile(true);
 		final EList<EObject> leftStereotypeApplication = leftElement.getStereotypeApplications();
 		final EList<EObject> rightStereotypeApplication = rightElement.getStereotypeApplications();
-		if(!leftToRight) {
+		if(leftToRight) {
 			Assert.assertTrue("The sterotype application has not been merged", leftStereotypeApplication.size() == 1);
 			Assert.assertTrue("The sterotype application has not been merged", rightStereotypeApplication.size() == 1);
 		} else {
@@ -140,7 +142,7 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 	@Override
 	@Test
 	public void testXMIID() {
-		if(!leftToRight) {
+		if(leftToRight) {
 			final EList<EObject> leftStereotypeApplication = leftElement.getStereotypeApplications();
 			final EList<EObject> rightStereotypeApplication = rightElement.getStereotypeApplications();
 			final String leftXMI = EMFHelper.getXMIID(leftStereotypeApplication.get(0));
@@ -171,7 +173,7 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 		final List<DiffElement> differences = super.getDiffElementToMerge(diff);
 		final List<DiffElement> differencesToRemove = new ArrayList<DiffElement>();
 		for(final DiffElement current : differences) {
-			if(!(current instanceof UMLStereotypeApplicationRemoval)) {
+			if(!(current instanceof UMLStereotypeApplicationAddition)) {
 				differencesToRemove.add(current);
 			}
 		}
@@ -181,9 +183,10 @@ public abstract class AbstractNestedStereotypeApplicationRemovalTest_1 extends A
 
 	@Override
 	protected java.lang.Class<?> getWantedMergerFor(DiffElement diffElement) {
-		if(diffElement instanceof UMLStereotypeApplicationRemoval) {
-			return UMLStereotypeApplicationRemovalMerger.class;
+		if(diffElement instanceof UMLStereotypeApplicationAddition) {
+			return UMLStereotypeApplicationAdditionMerger.class;
 		}
 		return null;
 	}
+
 }

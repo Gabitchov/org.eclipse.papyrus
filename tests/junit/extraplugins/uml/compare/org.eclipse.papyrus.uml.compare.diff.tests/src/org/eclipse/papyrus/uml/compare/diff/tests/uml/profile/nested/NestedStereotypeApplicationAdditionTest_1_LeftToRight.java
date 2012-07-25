@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile;
+package org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested;
 
 import java.io.IOException;
 
@@ -21,10 +21,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.junit.BeforeClass;
 
 
-public class NestedStereotypeApplicationRemovalTest_1_RightToLeft extends AbstractNestedStereotypeApplicationRemovalTest_1{
+public class NestedStereotypeApplicationAdditionTest_1_LeftToRight extends AbstractNestedStereotypeApplicationAdditionTest_1 {
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException, ModelMultiException, ServiceException {
-		AbstractNestedStereotypeApplicationRemovalTest_1.init(false);
+		AbstractNestedStereotypeApplicationAdditionTest_1.init(true);
 	}
 }
