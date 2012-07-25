@@ -53,6 +53,14 @@ import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationAdditionTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationAdditionTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationAdditionTest_2_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationAdditionTest_2_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationRemovalTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationRemovalTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationRemovalTest_2_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.NestedStereotypeApplicationRemovalTest_2_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationAddition_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationAddition_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.standalone.UMLProfileApplicationRemoval_1_LeftToRight;
@@ -85,7 +93,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	
+
 NestedAttributeChangeLeftTargetTest_1_LeftToRight.class, NestedAttributeChangeLeftTargetTest_1_RightToLeft.class,
 
 NestedAttributeChangeRightTargetTest_1_LeftToRight.class, NestedAttributeChangeRightTargetTest_1_RightToLeft.class,
@@ -101,6 +109,14 @@ NestedMoveModelElementTest_1_LeftToRight.class, NestedMoveModelElementTest_1_Rig
 NestedMoveModelElementTest_2_LeftToRight.class, NestedMoveModelElementTest_2_RightToLeft.class,
 
 NestedUpdateAttributeTest_1_LeftToRight.class, NestedUpdateAttributeTest_1_RightToLeft.class,
+
+NestedStereotypeApplicationAdditionTest_1_LeftToRight.class, NestedStereotypeApplicationAdditionTest_1_RightToLeft.class,
+
+NestedStereotypeApplicationAdditionTest_2_LeftToRight.class, NestedStereotypeApplicationAdditionTest_2_RightToLeft.class,
+
+NestedStereotypeApplicationRemovalTest_1_LeftToRight.class, NestedStereotypeApplicationRemovalTest_1_RightToLeft.class,
+
+NestedStereotypeApplicationRemovalTest_2_LeftToRight.class, NestedStereotypeApplicationRemovalTest_2_RightToLeft.class,
 
 AttributeChangeLeftTargetTest_1_LeftToRight.class, AttributeChangeLeftTargetTest_1_RightToLeft.class,
 

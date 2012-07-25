@@ -125,13 +125,9 @@ public class TransactionalMergeService {
 			merger = TransactionalMergeFactory.createMerger(element);
 		}
 		if(merger instanceof ITransactionalMerger) {
-			if(leftToRight && merger.canUndoInTarget()) {
-				Command tmp = ((ITransactionalMerger)merger).getUndoInTargetCommand(domain);
-				if(!tmp.canExecute()) {
-					System.out.println("je ne peux pas m'executer à cause de : " + merger);
-				}
+			if(leftToRight) {
 				cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain));
-			} else if(!leftToRight && merger.canApplyInOrigin()) {
+			} else if(!leftToRight) {
 				cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));
 			}
 		} else {

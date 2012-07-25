@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -27,11 +29,16 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.diff.internal.DiffReferenceUtil;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
+import org.eclipse.emf.compare.match.metamodel.Match2Elements;
+import org.eclipse.emf.compare.match.metamodel.MatchElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -64,6 +71,7 @@ public class PapyrusCompareEObjectCopier extends EMFCompareEObjectCopier {
 	 */
 	public PapyrusCompareEObjectCopier(final DiffResourceSet diff) {
 		super(diff);
+		throw new UnsupportedOperationException("not implemented");//we should initialize the map as it is done in the 2nd constructor
 	}
 
 	/**
@@ -74,6 +82,37 @@ public class PapyrusCompareEObjectCopier extends EMFCompareEObjectCopier {
 	 */
 	public PapyrusCompareEObjectCopier(final DiffModel diff) {
 		super(diff);
+		final EObject container = diff.eContainer();
+		if(container instanceof ComparisonResourceSnapshot) {
+			final ComparisonResourceSnapshot snapshot = (ComparisonResourceSnapshot)container;
+			final EList<MatchElement> matchedElements = snapshot.getMatch().getMatchedElements();
+			for(MatchElement current : matchedElements) {
+				if(current instanceof Match2Elements) {
+					initializeCopier((Match2Elements)current);
+
+				}
+			}
+		}
+	}
+
+	/**
+	 * Initialize the copier with the couple of Object matched during the diff
+	 * It is useful for comparison between stereotyped elements in the nested editor
+	 * see bug 384490: [UML Compare] Comparison between stereotyped elements doesn't work in the nested Compare Editor
+	 * 
+	 * @param matchElement
+	 * 
+	 */
+	protected void initializeCopier(final Match2Elements matchElement) {
+		final EObject left = ((Match2Elements)matchElement).getLeftElement();
+		final EObject right = ((Match2Elements)matchElement).getRightElement();
+		put(left, right);
+		put(right, left);
+		for(final MatchElement current : matchElement.getSubMatchElements()) {
+			if(current instanceof Match2Elements) {
+				initializeCopier((Match2Elements)current);
+			}
+		}
 	}
 
 	/**

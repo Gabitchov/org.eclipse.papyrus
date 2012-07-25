@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core,
  org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.infra.tools;bundle-version="0.9.0",
- com.google.guava;bundle-version="10.0.1"
+ com.google.guava;bundle-version="10.0.1",
+ org.eclipse.emf.compare.match
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.emf.compare.diff,

@@ -14,15 +14,22 @@
 package org.eclipse.papyrus.uml.compare.diff.tests.nested;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.compare.EMFCompareException;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
@@ -33,6 +40,7 @@ import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.Activator;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 
 ;
@@ -56,11 +64,15 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 
 
 	public static final void init(final String modelPath, boolean leftToRight) throws CoreException, IOException, ServiceException, ModelMultiException {
+		AbstractNestedCompareTest.init(FOLDER_PATH, modelPath, leftToRight);
+	}
+	
+	public static final void init(final String folderPath, final String modelPath, boolean leftToRight) throws CoreException, IOException, ServiceException, ModelMultiException {
 		GenericUtils.closeIntroPart();
 		GenericUtils.cleanWorkspace();
 		AbstractCompareTest.leftToRight = leftToRight;
 		project = ProjectUtils.createProject("MyProject"); //$NON-NLS-1$
-		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), FOLDER_PATH + modelPath, MODEL);
+		PapyrusProjectUtils.copyPapyrusModel(project, Activator.getDefault().getBundle(), folderPath + modelPath, MODEL);
 		final List<IFile> comparedFiles = new ArrayList<IFile>();
 		comparedFiles.add(project.getFile(MODEL + "." + "uml"));
 		AbstractCompareTest.loadModels(comparedFiles);
@@ -76,16 +88,14 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 	 * @throws InterruptedException
 	 */
 	protected DiffModel getDiffModel(EObject leftRoot, EObject rightRoot) throws InterruptedException {
+		final ComparisonResourceSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSnapshot(); //TODO it should be interesting to factorize this process between the JUnit tests and the "graphical use"
 		Map<String, Object> options = NestedMergeUtils.getMergeOptions(null, leftRoot, rightRoot);;
 		// Matching model elements
 		final MatchModel match = NestedMatchService.doContentMatch(leftRoot, rightRoot, options);
 		// Computing differences
 		final DiffModel diff = UMLDiffService.doDiff(match, false);
+		snapshot.setMatch(match);
+		snapshot.setDiff(diff);
 		return diff;
 	}
-
-
-
-
-
 }
