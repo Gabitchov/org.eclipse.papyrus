@@ -13,10 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.adapter;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 
 /**
  * 
@@ -37,6 +36,7 @@ import org.eclipse.gef.EditPart;
  */
 public class EditPartAdapterFactory implements IAdapterFactory {
 
+
 	/**
 	 * 
 	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
@@ -46,8 +46,8 @@ public class EditPartAdapterFactory implements IAdapterFactory {
 	 * @return
 	 */
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
-		if(adaptableObject instanceof EditPart && adaptableObject instanceof IAdaptable) {
-			return ((IAdaptable)adaptableObject).getAdapter(adapterType);
+		if(adaptableObject instanceof IGraphicalEditPart) {
+			return ((IGraphicalEditPart)adaptableObject).resolveSemanticElement();
 		}
 		return null;
 	}
