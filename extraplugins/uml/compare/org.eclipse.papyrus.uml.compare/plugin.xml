@@ -20,7 +20,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.uml.compare.handler.UMLCompareEditorHandler"
+            class="org.eclipse.papyrus.uml.compare.internal.handler.UMLCompareEditorHandler"
             commandId="org.eclipse.papyrus.uml.compare.command">
          <activeWhen>
             <and>

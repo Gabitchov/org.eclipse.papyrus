@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.compare.handler;
+package org.eclipse.papyrus.uml.compare.internal.handler;
 
 import java.util.ArrayList;
 import java.util.List;
