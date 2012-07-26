@@ -35,8 +35,9 @@ public class LabelWithScalableIcons extends Label {
 		}
 		Rectangle bounds = getBounds();
 		graphics.translate(bounds.x, bounds.y);
-		if(getIcon() != null)
+		if(getIcon() != null) {
 			paintScaledIcon(graphics);
+		}
 		if(!isEnabled()) {
 			graphics.translate(1, 1);
 			graphics.setForegroundColor(ColorConstants.buttonLightest);
@@ -51,6 +52,10 @@ public class LabelWithScalableIcons extends Label {
 	@Override
 	protected Dimension getIconSize() {
 		int width = 0;
+		if(getFont() == null) {
+			return new Dimension(0, 32);
+		}
+
 		int height = getTextSize().height;
 		Image icon = getIcon();
 		if(icon != null) {
@@ -83,8 +88,7 @@ public class LabelWithScalableIcons extends Label {
 				if(scale > 1) {
 					scale = 1;
 				}
-				graphics.drawImage(icon, 0, 0, bounds.width, bounds.height,
-					p.x, p.y, (int)(bounds.width * scale), (int)(bounds.height * scale));
+				graphics.drawImage(icon, 0, 0, bounds.width, bounds.height, p.x, p.y, (int)(bounds.width * scale), (int)(bounds.height * scale));
 			}
 		}
 	}
