@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_Oxf4YNbvEeGi_opGqFp2jg" name="Model">
+  <packageImport xmi:id="_Oxf4YdbvEeGi_opGqFp2jg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PqeHwNbvEeGi_opGqFp2jg" name="Class1"/>
+</uml:Model>

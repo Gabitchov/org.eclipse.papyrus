@@ -53,6 +53,9 @@ import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeRightResourceTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeLeftResourceTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeRightResourcetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested.NestedStereotypeApplicationAdditionTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested.NestedStereotypeApplicationAdditionTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested.NestedStereotypeApplicationAdditionTest_2_LeftToRight;
@@ -117,6 +120,10 @@ NestedStereotypeApplicationAdditionTest_2_LeftToRight.class, NestedStereotypeApp
 NestedStereotypeApplicationRemovalTest_1_LeftToRight.class, NestedStereotypeApplicationRemovalTest_1_RightToLeft.class,
 
 NestedStereotypeApplicationRemovalTest_2_LeftToRight.class, NestedStereotypeApplicationRemovalTest_2_RightToLeft.class,
+
+NestedUpdateAttributeLeftResourceTest_1_RightToLeft.class, NestedUpdateAttributeLeftResourceTest_1_RightToLeft.class,
+
+NestedUpdateAttributeRightResourceTest_1_LeftToRight.class, NestedUpdateAttributeRightResourcetTest_1_RightToLeft.class,
 
 AttributeChangeLeftTargetTest_1_LeftToRight.class, AttributeChangeLeftTargetTest_1_RightToLeft.class,
 
