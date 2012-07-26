@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * 
  * Created to resolve the bug 384490: [UML Compare] Comparison between stereotyped elements doesn't work in the nested Compare Editor
- *
+ * 
  */
 public class NestedUMLStereotypeApplicationMatchScopeProvider implements IMatchScopeProvider {
 
@@ -37,14 +37,14 @@ public class NestedUMLStereotypeApplicationMatchScopeProvider implements IMatchS
 	 * 
 	 * @since 1.3
 	 */
-	protected IMatchScope leftScope;
+	final protected IMatchScope leftScope;
 
 	/**
 	 * The match scope used for the right side of comparison.
 	 * 
 	 * @since 1.3
 	 */
-	protected IMatchScope rightScope;
+	final protected IMatchScope rightScope;
 
 	/**
 	 * The match scope used for the ancestor side of comparison.
@@ -63,18 +63,31 @@ public class NestedUMLStereotypeApplicationMatchScopeProvider implements IMatchS
 	 *        the {@link EObject}, which will be used to construct the right scope
 	 */
 	public NestedUMLStereotypeApplicationMatchScopeProvider(EObject leftObject, EObject rightObject) {
-		List<EObject> leftSte = new ArrayList<EObject>();
-		List<EObject> rightSte = new ArrayList<EObject>();
-		if(leftObject instanceof Element){
+		final List<EObject> leftSte = new ArrayList<EObject>();
+		final List<EObject> rightSte = new ArrayList<EObject>();
+		if(leftObject instanceof Element) {
 			leftSte.addAll(((Element)leftObject).getStereotypeApplications());
-			leftSte.addAll(((Element)leftObject).getNearestPackage().getAllProfileApplications());
+			if(((Element)leftObject).getNearestPackage() != null) {
+				leftSte.addAll(((Element)leftObject).getNearestPackage().getAllProfileApplications());
+			}
 		}
-		if(rightObject instanceof Element){
+		if(rightObject instanceof Element) {
 			rightSte.addAll(((Element)rightObject).getStereotypeApplications());
-			rightSte.addAll(((Element)leftObject).getNearestPackage().getAllProfileApplications());
+			if(((Element)rightObject).getNearestPackage() != null) {
+				rightSte.addAll(((Element)rightObject).getNearestPackage().getAllProfileApplications());
+			}
 		}
-		this.leftScope = new NestedUMLStereotypeApplicationMatchScope(leftObject, leftSte);
-		this.rightScope = new NestedUMLStereotypeApplicationMatchScope(rightObject, rightSte);
+		if(leftObject.eResource() != null) {
+			this.leftScope = new NestedUMLStereotypeApplicationMatchScope(leftObject.eResource(), leftSte);
+		} else {
+			this.leftScope = new NestedUMLStereotypeApplicationMatchScope(leftObject, leftSte);
+		}
+		
+		if(rightObject.eResource() != null) {
+			this.rightScope = new NestedUMLStereotypeApplicationMatchScope(rightObject.eResource(), rightSte);
+		} else {
+			this.rightScope = new NestedUMLStereotypeApplicationMatchScope(rightObject, rightSte);
+		}
 	}
 
 

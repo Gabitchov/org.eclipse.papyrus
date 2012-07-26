@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.compare.match.engine.DefaultMatchScope;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -35,18 +36,28 @@ public class NestedUMLStereotypeApplicationMatchScope extends DefaultMatchScope 
 	/**
 	 * 
 	 * Constructor.
+	 *
+	 * @param el
+	 * @param stereotypeApplication
+	 */
+	public NestedUMLStereotypeApplicationMatchScope(final EObject el, final List<EObject> stereotypeApplication) {
+		super(el);
+		this.stereotypeApplication = new ArrayList<EObject>(stereotypeApplication);
+	}
+
+	/**
+	 * 
+	 * Constructor.
 	 * 
 	 * @param el
 	 *        the element
 	 * @param stereotypeApplication
 	 *        the list of the stereotype application known by this scope
 	 */
-	public NestedUMLStereotypeApplicationMatchScope(final EObject el, final List<EObject> stereotypeApplication) {
-		super(el.eResource());
+	public NestedUMLStereotypeApplicationMatchScope(final Resource res, final List<EObject> stereotypeApplication){
+		super(res);
 		this.stereotypeApplication = new ArrayList<EObject>(stereotypeApplication);
-
 	}
-
 	/**
 	 * 
 	 * @see org.eclipse.emf.compare.match.engine.GenericMatchScope#isInScope(org.eclipse.emf.ecore.EObject)

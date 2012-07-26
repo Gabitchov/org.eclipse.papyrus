@@ -61,7 +61,9 @@ public class UMLMatchEngine extends UMLStandaloneMatchEngine {//GenericMatchEngi
 		this.leftObject = leftObject;
 		this.rightObject = rightObject;
 		final MatchModel matchModel = super.contentMatch(leftObject, rightObject, optionMap);
-		completeMatchModelWithUMLDifferences(matchModel, leftObject, rightObject, optionMap);
+		if(this.leftObject.eResource() != null && this.rightObject.eResource() != null) {
+			completeMatchModelWithUMLDifferences(matchModel, leftObject, rightObject, optionMap);
+		}
 		return matchModel;
 	}
 
