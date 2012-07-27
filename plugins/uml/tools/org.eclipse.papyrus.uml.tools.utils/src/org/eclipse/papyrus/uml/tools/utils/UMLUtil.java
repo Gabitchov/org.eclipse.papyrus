@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -111,7 +112,7 @@ public class UMLUtil {
 	 * @param strict
 	 *        If set to true, only a stereotype matching the exact qualified name
 	 *        will be returned. Otherwise, any subtype of the given stereotype may be
-	 *        returned. Note that if more than one stereotype is a substype of the
+	 *        returned. Note that if more than one stereotype is a subtype of the
 	 *        given stereotype, the first matching stereotype is returned.
 	 * @return
 	 *         The first matching stereotype, or null if none was found
@@ -125,35 +126,15 @@ public class UMLUtil {
 		//The parent stereotype is not always applicable...
 		//stereotype = umlElement.getApplicableStereotype(stereotypeName);
 
-		stereotype = findStereotype(umlElement, stereotypeName);
+		List<Stereotype> subStereotypes = findSubstereotypes(umlElement, stereotypeName);
 
-		//stereotype = umlElement.getApplicableStereotype(stereotypeName);
-		if(stereotype == null) {
-			return null;
-		}
-
-		//		System.out.println("Looking for a substereotype of " + stereotype + "\n" + stereotype.eResource().getURI());
-		//		System.out.println("Applied stereotypes : " + umlElement.getAppliedStereotypes());
-		//		System.out.println("Parent stereotypes : ");
-		//		for(Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
-		//			for(Classifier parentStereotype : appliedStereotype.allParents()) {
-		//				System.out.println(parentStereotype + "\n" + parentStereotype.eResource().getURI());
-		//			}
-		//		}
-		//		System.out.println();
-		for(Stereotype appliedStereotype : umlElement.getAppliedSubstereotypes(stereotype)) {
-			return appliedStereotype;
+		for(Stereotype subStereotype : subStereotypes) {
+			if(umlElement.getAppliedStereotypes().contains(subStereotype)) {
+				return subStereotype;
+			}
 		}
 
 		return null;
-
-		//		for(Stereotype appliedStereotype : umlElement.getAppliedStereotypes()) {
-		//			if(getAllSuperStereotypes(appliedStereotype).contains(stereotype)) {
-		//				return appliedStereotype;
-		//			}
-		//		}
-		//
-		//		return null;
 	}
 
 	/**
@@ -181,6 +162,39 @@ public class UMLUtil {
 			}
 		}
 		return stereotype;
+	}
+
+	/**
+	 * Returns all stereotypes matching the given qualified stereotype name, and their substereotypes
+	 * The search is performed in the context of the given UML Element, i.e. the profiles applied
+	 * on the Element's nearest package
+	 * 
+	 * @param umlElement
+	 * @param stereotypeName
+	 * @return
+	 */
+	public static List<Stereotype> findSubstereotypes(Element umlElement, String stereotypeName) {
+		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
+
+		if(umlPackage == null) {
+			Stereotype stereotype = umlElement.getApplicableStereotype(stereotypeName);
+			if(stereotype != null) {
+				stereotypes.add(stereotype);
+			}
+		} else {
+			for(Profile profile : umlPackage.getAllAppliedProfiles()) {
+				for(Stereotype ownedStereotype : profile.getOwnedStereotypes()) {
+					for(Stereotype superStereotype : getAllSuperStereotypes(ownedStereotype)) {
+						if(superStereotype.getQualifiedName().equals(stereotypeName)) {
+							stereotypes.add(ownedStereotype);
+						}
+					}
+				}
+			}
+		}
+
+		return new LinkedList<Stereotype>(stereotypes);
 	}
 
 	/**
