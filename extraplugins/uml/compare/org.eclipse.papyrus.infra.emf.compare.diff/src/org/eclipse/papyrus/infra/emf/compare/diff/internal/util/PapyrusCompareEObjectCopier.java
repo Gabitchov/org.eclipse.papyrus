@@ -17,11 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -32,7 +30,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.diff.internal.DiffReferenceUtil;
 import org.eclipse.emf.compare.diff.merge.EMFCompareEObjectCopier;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
@@ -71,7 +68,7 @@ public class PapyrusCompareEObjectCopier extends EMFCompareEObjectCopier {
 	 */
 	public PapyrusCompareEObjectCopier(final DiffResourceSet diff) {
 		super(diff);
-		throw new UnsupportedOperationException("not implemented");//we should initialize the map as it is done in the 2nd constructor
+		throw new UnsupportedOperationException("not yet implemented");//we should initialize the map as it is done in the 2nd constructor //$NON-NLS-1$
 	}
 
 	/**

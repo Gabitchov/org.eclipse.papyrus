@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.commands.AddToResourceCommand;
@@ -160,7 +161,9 @@ public class ModelElementChangeRightTargetTransactionalMerger extends DefaultTra
 		final ModelElementChangeRightTarget theDiff = (ModelElementChangeRightTarget)this.diff;
 		final EObject origin = theDiff.getLeftParent();
 		final EObject element = theDiff.getRightElement();
-		final EObject newOne = copy(element);
+		final ICommand copyCommand = getCopyWithReferenceCommand(element);
+		cmd.append(new GMFtoEMFCommandWrapper(copyCommand));
+		final EObject newOne = (EObject)copyCommand.getCommandResult().getReturnValue();
 		final EReference ref = element.eContainmentFeature();
 		if(ref != null) {
 			try {

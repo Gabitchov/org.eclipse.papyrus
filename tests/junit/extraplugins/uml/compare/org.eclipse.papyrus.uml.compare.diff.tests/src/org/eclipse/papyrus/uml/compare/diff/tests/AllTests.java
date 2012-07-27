@@ -29,6 +29,8 @@ import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementT
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementTest_2_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedUpdateAttributeTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedUpdateAttributeTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.bugs.ModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.bugs.ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeLeftTargetTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeLeftTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeRightTargetTest_1_LeftToRight;
@@ -124,6 +126,8 @@ NestedStereotypeApplicationRemovalTest_2_LeftToRight.class, NestedStereotypeAppl
 NestedUpdateAttributeLeftResourceTest_1_RightToLeft.class, NestedUpdateAttributeLeftResourceTest_1_RightToLeft.class,
 
 NestedUpdateAttributeRightResourceTest_1_LeftToRight.class, NestedUpdateAttributeRightResourcetTest_1_RightToLeft.class,
+
+ModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight.class, ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft.class,
 
 AttributeChangeLeftTargetTest_1_LeftToRight.class, AttributeChangeLeftTargetTest_1_RightToLeft.class,
 

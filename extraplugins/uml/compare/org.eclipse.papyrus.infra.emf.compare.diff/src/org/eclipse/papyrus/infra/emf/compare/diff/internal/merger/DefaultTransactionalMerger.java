@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.emf.compare.diff.internal.merger;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.IdentityCommand;
@@ -51,12 +53,15 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.compare.diff.internal.util.CopyWithReferenceCommand;
 import org.eclipse.papyrus.infra.emf.compare.diff.merge.ITransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeFactory;
 import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
@@ -158,7 +163,7 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 			element = (EObject)ClassUtils.invokeMethod(diffElement, "getLeftElement"); //$NON-NLS-1$
 		}
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
-		
+
 		if(domain == null) {
 			element = (EObject)ClassUtils.invokeMethod(diffElement, "getRightParent"); //$NON-NLS-1$
 			if(element == null) {
@@ -341,25 +346,37 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 		}
 	}
 
+	//	/**
+	//	 * Creates a copy of the given EObject as would {@link EcoreUtil#copy(EObject)} would, except we use
+	//	 * specific handling for unmatched references.
+	//	 * 
+	//	 * @param eObject
+	//	 *        The object to copy.
+	//	 * @return the copied object.
+	//	 */
+	//	protected EObject copy(EObject eObject) {
+	//		final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
+	//		if(copier.containsKey(eObject)) {
+	//			//385289: [UML Compare] Bad result after merginf UMLStereotypeApplicationAddition/Removal
+	//			//in some case, the elements are copied and merged twice!
+	//			return copier.get(eObject);
+	//		}
+	//		final EObject result = copier.copy(eObject);
+	//		copier.copyReferences();
+	//		copier.copyXMIIDs();
+	//		return result;
+	//	}
+
 	/**
-	 * Creates a copy of the given EObject as would {@link EcoreUtil#copy(EObject)} would, except we use
-	 * specific handling for unmatched references.
 	 * 
 	 * @param eObject
-	 *        The object to copy.
-	 * @return the copied object.
+	 *        the eobject copy
+	 * @return
+	 *         the result of the command is the copiedObject
+	 *         the copied object is immediately available doing copyCommand.getCommandResult().getReturnValue();
 	 */
-	protected EObject copy(EObject eObject) {
-		final EMFCompareEObjectCopier copier = TransactionalMergeService.getCopier(diff);
-		if(copier.containsKey(eObject)) {
-			//385289: [UML Compare] Bad result after merginf UMLStereotypeApplicationAddition/Removal
-			//in some case, the elements are copied and merged twice!
-			return copier.get(eObject);
-		}
-		final EObject result = copier.copy(eObject);
-		copier.copyReferences();
-		copier.copyXMIIDs();
-		return result;
+	protected AbstractTransactionalCommand getCopyWithReferenceCommand(final EObject eObject) {
+		return new CopyWithReferenceCommand(getTransactionalEditingDomain(diff), TransactionalMergeService.getCopier(diff), eObject);
 	}
 
 	/**
