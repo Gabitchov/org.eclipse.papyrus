@@ -88,7 +88,7 @@ public class PackageUtil {
 
 		if(withSubProfiles) {
 			// Manage sub profiles
-			ArrayList<Profile> subProfiles = new ArrayList<Profile>();
+			List<Profile> subProfiles = new ArrayList<Profile>();
 			subProfiles = getSubProfiles(profileToApply);
 
 			Iterator<Profile> iter = subProfiles.iterator();
@@ -109,10 +109,10 @@ public class PackageUtil {
 	 * 
 	 * @return an arrayList containing the subprofiles
 	 */
-	public static ArrayList<Profile> getSubProfiles(org.eclipse.uml2.uml.Package package_) {
-		ArrayList<Profile> subProfiles = new ArrayList<Profile>();
+	public static List<Profile> getSubProfiles(org.eclipse.uml2.uml.Package package_) {
+		List<Profile> subProfiles = new ArrayList<Profile>();
 
-		Iterator<org.eclipse.uml2.uml.NamedElement> iter = package_.getMembers().iterator();
+		Iterator<Package> iter = package_.getNestedPackages().iterator();
 		while(iter.hasNext()) {
 
 			Object element = iter.next();
