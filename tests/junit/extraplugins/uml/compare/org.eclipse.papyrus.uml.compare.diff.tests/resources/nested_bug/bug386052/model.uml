@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_F11gUNAdEeGPq_E8kjmzsw" name="Model">
+  <packageImport xmi:id="_F12HYNAdEeGPq_E8kjmzsw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_JdYOwNAdEeGPq_E8kjmzsw" name="Class1">
+    <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_LrVUENAdEeGPq_E8kjmzsw" name="RedefinableTemplateSignature1" parameter="_M0ulENAdEeGPq_E8kjmzsw _kwm1YNS9EeGLUIDxnLhrBA _eIvjwNVxEeGohNo76peDEA">
+      <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_M0ulENAdEeGPq_E8kjmzsw" parameteredElement="_PwdWYNAdEeGPq_E8kjmzsw">
+        <ownedParameteredElement xmi:type="uml:Class" xmi:id="_PwdWYNAdEeGPq_E8kjmzsw" name="T" templateParameter="_M0ulENAdEeGPq_E8kjmzsw"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_kwm1YNS9EeGLUIDxnLhrBA" parameteredElement="_kwm1YdS9EeGLUIDxnLhrBA">
+        <ownedParameteredElement xmi:type="uml:Class" xmi:id="_kwm1YdS9EeGLUIDxnLhrBA" name="U" templateParameter="_kwm1YNS9EeGLUIDxnLhrBA"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_eIvjwNVxEeGohNo76peDEA" parameteredElement="_eIvjwdVxEeGohNo76peDEA">
+        <ownedParameteredElement xmi:type="uml:Class" xmi:id="_eIvjwdVxEeGohNo76peDEA" name="V" templateParameter="_eIvjwNVxEeGohNo76peDEA"/>
+      </ownedParameter>
+    </ownedTemplateSignature>
+    <generalization xmi:id="_ABLkoNAeEeGPq_E8kjmzsw" general="_-g3BYNAdEeGPq_E8kjmzsw"/>
+    <ownedAttribute xmi:id="_Rg4yMNAdEeGPq_E8kjmzsw" name="p1" visibility="public" type="_PwdWYNAdEeGPq_E8kjmzsw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SIXB4NAdEeGPq_E8kjmzsw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SIaFMNAdEeGPq_E8kjmzsw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_SIdIgNAdEeGPq_E8kjmzsw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_fWe0INVvEeGohNo76peDEA" name="p3" visibility="public" type="_kwm1YdS9EeGLUIDxnLhrBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gfj8ENVvEeGohNo76peDEA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gflKMNVvEeGohNo76peDEA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_gfmYUNVvEeGohNo76peDEA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_af24UNAdEeGPq_E8kjmzsw" name="op2">
+      <ownedParameter xmi:id="_fkU3wNAdEeGPq_E8kjmzsw" name="result" type="_PwdWYNAdEeGPq_E8kjmzsw" direction="return"/>
+      <ownedParameter xmi:id="_symJENVxEeGohNo76peDEA" name="p" type="_eIvjwdVxEeGohNo76peDEA"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gZ08YNAdEeGPq_E8kjmzsw" name="Class2">
+    <templateBinding xmi:id="_m_QHQNDYEeGbQMApsGby9Q" signature="_LrVUENAdEeGPq_E8kjmzsw">
+      <parameterSubstitution xmi:id="_pu9OwNDYEeGbQMApsGby9Q" formal="_M0ulENAdEeGPq_E8kjmzsw">
+        <actual xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </parameterSubstitution>
+      <parameterSubstitution xmi:id="_dLW10NVuEeGohNo76peDEA" formal="_kwm1YNS9EeGLUIDxnLhrBA">
+        <actual xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+      </parameterSubstitution>
+      <parameterSubstitution xmi:id="_CgVn4NVyEeGohNo76peDEA" formal="_eIvjwNVxEeGohNo76peDEA">
+        <actual xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </parameterSubstitution>
+    </templateBinding>
+    <generalization xmi:id="_tX41MNV2EeGohNo76peDEA" general="_-g3BYNAdEeGPq_E8kjmzsw"/>
+    <ownedAttribute xmi:id="_t5zPcNV2EeGohNo76peDEA" name="p1" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_t5zPcdV2EeGohNo76peDEA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t5zPctV2EeGohNo76peDEA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_t5zPc9V2EeGohNo76peDEA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_urB4ENV2EeGohNo76peDEA" name="p3" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_urB4EdV2EeGohNo76peDEA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_urB4EtV2EeGohNo76peDEA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_urB4E9V2EeGohNo76peDEA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_vAr_ANV2EeGohNo76peDEA" name="op2">
+      <ownedParameter xmi:id="_mx8K8NYxEeGDdJk9CMrnyw" name="result" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_m-vdoNV9EeGohNo76peDEA" name="p">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-g3BYNAdEeGPq_E8kjmzsw" name="Class3">
+    <generalization xmi:id="_Q0npANV2EeGohNo76peDEA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_78F-cNGlEeGvk5AOgBMGqw" name="Array">
+    <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_UV6pANGmEeGvk5AOgBMGqw" name="RedefinableTemplateSignature1" parameter="_Xh4OsNGmEeGvk5AOgBMGqw">
+      <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_Xh4OsNGmEeGvk5AOgBMGqw" parameteredElement="_ZrtpANGmEeGvk5AOgBMGqw">
+        <ownedParameteredElement xmi:type="uml:Class" xmi:id="_ZrtpANGmEeGvk5AOgBMGqw" name="TArray" templateParameter="_Xh4OsNGmEeGvk5AOgBMGqw"/>
+      </ownedParameter>
+    </ownedTemplateSignature>
+    <generalization xmi:id="_uEgHENGmEeGvk5AOgBMGqw" general="_BGg04NGmEeGvk5AOgBMGqw"/>
+    <ownedAttribute xmi:id="_4wfvsNGmEeGvk5AOgBMGqw" name="pArray" visibility="public" type="_ZrtpANGmEeGvk5AOgBMGqw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5AkMANGmEeGvk5AOgBMGqw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5AkMAdGmEeGvk5AOgBMGqw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_5AkMAtGmEeGvk5AOgBMGqw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_BGg04NGmEeGvk5AOgBMGqw" name="Collection&lt;TArray>">
+    <templateBinding xmi:id="_dTXFINGmEeGvk5AOgBMGqw" signature="_NYCQ4NGmEeGvk5AOgBMGqw">
+      <parameterSubstitution xmi:id="_gluNwNGmEeGvk5AOgBMGqw" actual="_ZrtpANGmEeGvk5AOgBMGqw" formal="_OLEQUNGmEeGvk5AOgBMGqw"/>
+    </templateBinding>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LcjboNGmEeGvk5AOgBMGqw" name="Collection">
+    <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_NYCQ4NGmEeGvk5AOgBMGqw" name="RedefinableTemplateSignature1" parameter="_OLEQUNGmEeGvk5AOgBMGqw">
+      <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_OLEQUNGmEeGvk5AOgBMGqw" parameteredElement="_R5QZUNGmEeGvk5AOgBMGqw">
+        <ownedParameteredElement xmi:type="uml:Class" xmi:id="_R5QZUNGmEeGvk5AOgBMGqw" name="TCollection" templateParameter="_OLEQUNGmEeGvk5AOgBMGqw"/>
+      </ownedParameter>
+    </ownedTemplateSignature>
+    <ownedAttribute xmi:id="_xAHjoNGmEeGvk5AOgBMGqw" name="pCollection" visibility="public" type="_R5QZUNGmEeGvk5AOgBMGqw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xXVJwNGmEeGvk5AOgBMGqw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xXVJwdGmEeGvk5AOgBMGqw" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_xXVJwtGmEeGvk5AOgBMGqw">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Model>
