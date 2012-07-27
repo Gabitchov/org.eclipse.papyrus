@@ -13,13 +13,16 @@ package org.eclipse.papyrus.infra.emf.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -36,6 +39,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -152,6 +158,20 @@ public class EMFHelper {
 	 *         if the EObject could not be resolved
 	 */
 	public static EObject getEObject(final Object source) {
+		//Support for EMF 0.2 CustomizedTree: The TreeElements are EObjects, and do not implement IAdatapble.
+		if(source instanceof EObjectTreeElement) {
+			return ((EObjectTreeElement)source).getEObject();
+		}
+
+		if(source instanceof EAttributeTreeElement) {
+			return ((EAttributeTreeElement)source).getEAttribute();
+		}
+
+		if(source instanceof EReferenceTreeElement) {
+			return ((EReferenceTreeElement)source).getEReference();
+		}
+
+		//General case
 		if(source instanceof EObject) {
 			return (EObject)source;
 		} else if(source instanceof IAdaptable) {
@@ -292,17 +312,72 @@ public class EMFHelper {
 	 *         The list of EClasses implementing or extending the given EClass
 	 */
 	public static List<EClass> getSubclassesOf(final EClass type, final boolean concreteClassesOnly) {
-		List<EClass> result = new LinkedList<EClass>();
+		Set<EClass> result = new LinkedHashSet<EClass>();
 		if(!concreteClassesOnly || (!type.isAbstract() && !type.isInterface())) {
 			result.add(type);
 		}
 
 		EPackage ePackage = getRootPackage(type.getEPackage());
 		getSubclassesOf(type, ePackage, result, concreteClassesOnly);
-		return result;
+		return new LinkedList<EClass>(result);
 	}
 
-	private static void getSubclassesOf(final EClass type, final EPackage fromPackage, final List<EClass> result, final boolean concreteClassesOnly) {
+	/**
+	 * Return the list of EClasses that are sub types
+	 * of the given EClass
+	 * 
+	 * @param type
+	 * @param concreteClassesOnly
+	 *        If true, only Concrete EClasses will be returned. Abstract and Interface EClasses will be filtered
+	 * @param packagesToBrowse
+	 *        The EPackages in which the EClasses should be retrieved
+	 * @return
+	 *         The list of EClasses implementing or extending the given EClass
+	 */
+	public static List<EClass> getSubclassesOf(final EClass type, final boolean concreteClassesOnly, Collection<EPackage> packagesToBrowse) {
+		Set<EClass> result = new LinkedHashSet<EClass>();
+		if(!concreteClassesOnly || (!type.isAbstract() && !type.isInterface())) {
+			result.add(type);
+		}
+
+		for(EPackage ePackage : packagesToBrowse) {
+			getSubclassesOf(type, ePackage, result, concreteClassesOnly);
+		}
+
+		return new LinkedList<EClass>(result);
+	}
+
+	/**
+	 * Return the list of EClasses that are sub types
+	 * of the given EClass
+	 * 
+	 * @param type
+	 * @param concreteClassesOnly
+	 *        If true, only Concrete EClasses will be returned. Abstract and Interface EClasses will be filtered
+	 * @param browseAllRegisteredPackages
+	 *        If true, all registered EPackages will be navigated to retrieve the matching EClasses. Otherwise,
+	 *        only the current EPackage will be used.
+	 * @return
+	 *         The list of EClasses implementing or extending the given EClass
+	 */
+	public static List<EClass> getSubclassesOf(final EClass type, final boolean concreteClassesOnly, final boolean browseAllRegisteredPackages) {
+		//If the current package is a dynamic package, it may not be registered (?). Add it directly
+		EPackage currentPackage = getRootPackage(type.getEPackage());
+
+		Set<EPackage> allPackages = new LinkedHashSet<EPackage>();
+		allPackages.add(currentPackage);
+
+		//FIXME // WARNING: This loop will load all EPackages. The first call is expensive.
+		Set<String> allUris = new HashSet<String>(EPackage.Registry.INSTANCE.keySet());
+
+		for(String nsURI : allUris) {
+			allPackages.add(EPackage.Registry.INSTANCE.getEPackage(nsURI));
+		}
+
+		return getSubclassesOf(type, concreteClassesOnly, allPackages);
+	}
+
+	private static void getSubclassesOf(final EClass type, final EPackage fromPackage, final Set<EClass> result, final boolean concreteClassesOnly) {
 		for(EClassifier classifier : fromPackage.getEClassifiers()) {
 			if(classifier instanceof EClass) {
 				EClass eClass = (EClass)classifier;
@@ -418,12 +493,70 @@ public class EMFHelper {
 	}
 
 	/**
+	 * Returns all objects of type T contained in the resource
+	 * 
+	 * @param resource
+	 * @param type
+	 * @return
+	 */
+	public static <T> Set<T> allInstances(final Resource resource, Class<T> type) {
+		TreeIterator<EObject> iterator = resource.getAllContents();
+		Set<T> result = new LinkedHashSet<T>();
+
+		while(iterator.hasNext()) {
+			EObject element = iterator.next();
+			if(type.isInstance(element)) {
+				result.add(type.cast(element));
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns all the EPackages and nested EPackages contained in this resource
+	 * 
+	 * @param resource
+	 * @return
+	 */
+	public static Set<EPackage> getAllEPackages(final Resource resource) {
+		Set<EPackage> result = new LinkedHashSet<EPackage>();
+
+		for(EObject rootElement : resource.getContents()) {
+			if(rootElement instanceof EPackage) {
+				result.add((EPackage)rootElement);
+				result.addAll(getAllNestedPackages((EPackage)rootElement));
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns all packages nested in the given EPackage (recursively). Does not
+	 * include the base EPackage.
+	 * 
+	 * @param basePackage
+	 * @return
+	 */
+	public static Set<EPackage> getAllNestedPackages(EPackage basePackage) {
+		Set<EPackage> result = new LinkedHashSet<EPackage>();
+
+		for(EPackage nestedPackage : basePackage.getESubpackages()) {
+			result.add(nestedPackage);
+			result.addAll(getAllNestedPackages(nestedPackage));
+		}
+
+		return result;
+	}
+
+	/**
 	 * 
 	 * @param resource
 	 *        a resource
 	 * 
 	 * @return
-	 *         the list of the metamodel knows by the resource
+	 *         the list of the metamodels known by the resource
 	 */
 	public static Set<EPackage> getMetamodels(final Resource resource) {
 		Set<EPackage> metamodels = new HashSet<EPackage>();

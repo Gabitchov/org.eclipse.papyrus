@@ -2,21 +2,31 @@ package org.eclipse.papyrus.infra.emf.editor.part;
 
 import java.util.EventObject;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.emf.facet.custom.ui.ICustomizedContentProviderFactory;
+import org.eclipse.emf.facet.custom.ui.IResolvingCustomizedLabelProviderFactory;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
@@ -24,13 +34,10 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.infra.emf.editor.Activator;
 import org.eclipse.papyrus.infra.emf.editor.actions.MoDiscoDropAdapter;
-import org.eclipse.papyrus.infra.emf.editor.providers.CustomizableContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
@@ -64,7 +71,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * @author Camille Letavernier
  * 
  */
-public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPageContributor, CommandStackListener {
+public class PapyrusEditor2 extends EcoreEditor implements ITabbedPropertySheetPageContributor, CommandStackListener {
 
 	public static final String PROPERTY_VIEW_ID = "CustomizablePropertyView"; //$NON-NLS-1$
 
@@ -116,8 +123,10 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 			selectionViewer = new TreeViewer(tree);
 			selectionViewer.setFilters(new ViewerFilter[]{ filter });
 			setCurrentViewer(selectionViewer);
+
+			initializeCustomizationCatalogManager();
+
 			IStructuredContentProvider contentProvider = createContentProvider();
-			getCustomizationManager().installCustomPainter(tree);
 
 			ILabelProvider labelProvider = createLabelProvider();
 
@@ -126,8 +135,8 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 			selectionViewer.setContentProvider(contentProvider);
 			selectionViewer.setLabelProvider(labelProvider);
 
-			selectionViewer.setInput(editingDomain.getResourceSet());
-			selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+			selectionViewer.setInput(getTreeViewerInput());
+			//			selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 
 			new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
@@ -168,10 +177,19 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 		updateProblemIndication();
 	}
 
+	protected Object getTreeViewerInput() {
+		List<EObject> roots = new LinkedList<EObject>();
+		for(Resource resource : getResourceSet().getResources()) {
+			for(EObject rootEObject : resource.getContents()) {
+				roots.add(rootEObject);
+			}
+		}
+		return roots;
+	}
+
 	protected int getTreeStyle() {
 		return SWT.BORDER;
 	}
-
 
 	@Override
 	protected void initializeEditingDomain() {
@@ -240,23 +258,48 @@ public class PapyrusEditor extends EcoreEditor implements ITabbedPropertySheetPa
 		return iPropertySheetPage;
 	}
 
-	protected CustomizationManager getCustomizationManager() {
-		return Activator.getDefault().getCustomizationManager();
+	protected ICustomizationManager getCustomizationManager() {
+		if(customizationManager == null) {
+			customizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(getResourceSet());
+		}
+		return customizationManager;
+	}
+
+	protected void initializeCustomizationCatalogManager() {
+		ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(getResourceSet());
+		List<Customization> allCustomizations = customCatalog.getRegisteredCustomizations();
+		for(Customization customization : allCustomizations) {
+			if(customization.isMustBeLoadedByDefault()) {
+				System.out.println("Apply default customization: " + customization.getName());
+				getCustomizationManager().getManagedCustomizations().add(customization);
+			}
+		}
 	}
 
 	protected IStructuredContentProvider createContentProvider() {
-		return new CustomizableContentProvider(getCustomizationManager());
+		return ICustomizedContentProviderFactory.DEFAULT.createCustomizedTreeContentProvider(getCustomizationManager());
+	}
+
+	protected ResourceSet getResourceSet() {
+		return getEditingDomain().getResourceSet();
 	}
 
 	protected ILabelProvider createLabelProvider() {
-		return new CustomizableModelLabelProvider(getCustomizationManager());
+		return IResolvingCustomizedLabelProviderFactory.DEFAULT.createCustomizedLabelProvider(getCustomizationManager());
 	}
 
 	public void commandStackChanged(EventObject event) {
 		getViewer().refresh();
 	}
 
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		super.doSave(monitor);
+	}
+
 	public String getContributorId() {
 		return PROPERTY_VIEW_ID;
 	}
+
+	private ICustomizationManager customizationManager;
 }

@@ -292,4 +292,8 @@ public class EmbeddedEditor implements CommandStackListener, IMenuListener {
 	public void addCommandStackListener(CommandStackListener listener) {
 		editingDomain.getCommandStack().addCommandStackListener(listener);
 	}
+
+	public EditingDomain getEditingDomain() {
+		return editingDomain;
+	}
 }

@@ -21,7 +21,16 @@
             extensions="xmi"
             icon="icons/papyrus_model.png"
             id="org.eclipse.papyrus.emf.editor"
-            name="Papyrus EMF Editor">
+            name="Papyrus EMF Editor (EMF Facet 0.1)">
+      </editor>
+      <editor
+            class="org.eclipse.papyrus.infra.emf.editor.part.PapyrusEditor2"
+            contributorClass="org.eclipse.papyrus.infra.emf.editor.part.ActionBarContributor"
+            default="false"
+            extensions="xmi"
+            icon="icons/papyrus_model.png"
+            id="org.eclipse.papyrus.emf.editor2"
+            name="Papyrus EMF Editor (EMF Facet 0.2)">
       </editor>
    </extension>
 

@@ -24,4 +24,6 @@ public interface CustomFillElement extends FillElement {
 
 	public void setParentGroup(FillMenuGroup group);
 
+	public void setSelectedObject(Object selectedObject);
+
 }

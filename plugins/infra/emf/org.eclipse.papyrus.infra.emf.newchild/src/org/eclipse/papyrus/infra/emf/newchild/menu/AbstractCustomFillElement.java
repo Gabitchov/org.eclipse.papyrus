@@ -25,12 +25,18 @@ public abstract class AbstractCustomFillElement implements CustomFillElement {
 
 	protected CustomFiller filler;
 
+	protected Object selectedObject;
+
 	public void setMenuItem(CustomFiller filler) {
 		this.filler = filler;
 	}
 
 	public void setParentGroup(FillMenuGroup group) {
 		this.group = group;
+	}
+
+	public void setSelectedObject(Object selectedObject) {
+		this.selectedObject = selectedObject;
 	}
 
 	public abstract void fill(IMenuManager menuManager);

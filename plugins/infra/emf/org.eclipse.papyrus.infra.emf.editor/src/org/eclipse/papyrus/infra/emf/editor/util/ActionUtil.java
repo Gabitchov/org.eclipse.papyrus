@@ -16,10 +16,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * Utility class for Actions
@@ -45,9 +45,9 @@ public class ActionUtil {
 	public static Collection<Object> getAdaptedSelection(Collection<? extends Object> selection) {
 		Collection<Object> newSelection = new LinkedList<Object>();
 		for(Object o : selection) {
-			if(o instanceof IAdaptable) {
-				EObject eObject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
-				newSelection.add(eObject);
+			EObject adaptedEObject = EMFHelper.getEObject(o);
+			if(adaptedEObject != null) {
+				newSelection.add(adaptedEObject);
 			} else {
 				newSelection.add(o);
 			}
@@ -76,13 +76,9 @@ public class ActionUtil {
 			Iterator<?> it = currentSelection.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-				if(object instanceof IAdaptable) {
-					EObject eObject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
-					if(eObject != null) {
-						newSelection.add(eObject);
-					} else {
-						newSelection.add(object);
-					}
+				EObject adaptedEObject = EMFHelper.getEObject(object);
+				if(adaptedEObject != null) {
+					newSelection.add(adaptedEObject);
 				} else {
 					newSelection.add(object);
 				}

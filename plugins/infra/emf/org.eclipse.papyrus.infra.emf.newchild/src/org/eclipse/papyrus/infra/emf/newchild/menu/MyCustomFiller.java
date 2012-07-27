@@ -15,7 +15,9 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.papyrus.infra.emf.newchild.runtime.DisabledContributionItem;
 import org.eclipse.papyrus.infra.emf.newchild.util.MenuHelper;
 
-
+/**
+ * Sample
+ */
 public class MyCustomFiller extends AbstractCustomFillElement {
 
 	@Override

@@ -13,8 +13,11 @@ package org.eclipse.papyrus.infra.emf.newchild.menu;
 
 import java.io.IOException;
 import java.text.Collator;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +27,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -69,7 +73,7 @@ public class FillNewChild extends FillMenu implements FillElement {
 		//TODO : Extract that to a static instance, and load with extension point
 		policyManager = new PolicyManager();
 		try {
-			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformPluginURI("org.eclipse.papyrus.infra.emf.newchild/Model/NewchildConfiguration.xmi", true));
+			NewchildConfiguration configuration = (NewchildConfiguration)EMFHelper.loadEMFModel(null, URI.createPlatformPluginURI("org.eclipse.papyrus.emf.facet.editor/newChild/NewchildConfiguration.xmi", true));
 			policyManager.addConfiguration(configuration);
 		} catch (IOException ex) {
 			Activator.log.error(ex);
@@ -116,10 +120,35 @@ public class FillNewChild extends FillMenu implements FillElement {
 
 		});
 
+		//		Collection<EPackage> allPackages = new HashSet<EPackage>();
+		//
+		//		allPackages.add(selectedEObject.eClass().getEPackage());
+		//		for(EClass eClass : selectedEObject.eClass().getEAllSuperTypes()) {
+		//			EPackage ePackage = eClass.getEPackage();
+		//			allPackages.add(ePackage);
+		//		}
+
+		Collection<EPackage> allPackages = new HashSet<EPackage>();
+		Collection<EPackage> packagesToExclude = Arrays.asList(new EPackage[]{ EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/MoDisco/infra/facet/0.8.incubation"), EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/emf/facet/efacet/0.1.incubation"), EPackage.Registry.INSTANCE.getEPackage("http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation") });
+
+		//		Collection<EPackage> packagesToExclude = Collections.emptyList();
+
+		for(Object registeredPackage : EPackage.Registry.INSTANCE.values()) {
+			if(registeredPackage instanceof EPackage && !packagesToExclude.contains(registeredPackage)) {
+				EPackage ePackage = (EPackage)registeredPackage;
+				if(ePackage.getNsURI().contains("ocl")) {
+					continue;
+				}
+				allPackages.add(ePackage);
+			}
+		}
+
 		for(EStructuralFeature feature : features) {
 			if(feature instanceof EReference && ((EReference)feature).isContainment()) {
 				EClass type = (EClass)feature.getEType();
-				List<EClass> eClasses = EMFHelper.getSubclassesOf(type, true);
+
+				List<EClass> eClasses = EMFHelper.getSubclassesOf(type, true, allPackages);
+
 				Collections.sort(eClasses, new Comparator<EClass>() {
 
 					public int compare(EClass class1, EClass class2) {
@@ -188,24 +217,33 @@ public class FillNewChild extends FillMenu implements FillElement {
 	}
 
 	private Layout getLayout(Map<EStructuralFeature, List<EClass>> instantiableClasses) {
+		//If the layout is not in automatic mode, return it
 		if(menu.getLayout() != Layout.AUTO) {
 			return menu.getLayout();
 		}
 
+		//
+		//Automatic layout
+		//
+
+		//If there is 0 or 1 category, use a Flat Layout
 		if(instantiableClasses.size() < 2) {
 			return Layout.FLAT;
 		}
 
+		//If there are more than 5 categories, use a Hierarchic layout
 		if(instantiableClasses.size() > 5) {
 			return Layout.HIERARCHICAL;
 		}
 
+		//If at least one category contains more than 5 elements, use a Hierarchic layout
 		for(List<EClass> eClasses : instantiableClasses.values()) {
 			if(eClasses.size() > 5) {
 				return Layout.HIERARCHICAL;
 			}
 		}
 
+		//The case is simple enough (Few classes and few categories); use a Flat layout
 		return Layout.FLAT;
 	}
 

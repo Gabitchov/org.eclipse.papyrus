@@ -80,7 +80,7 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 
 	protected static EObject[] getRoots(ResourceSet root) {
 		List<EObject> roots = new LinkedList<EObject>();
-		if (root != null) {
+		if(root != null) {
 			for(Resource resource : root.getResources()) {
 				roots.addAll(resource.getContents());
 			}
@@ -120,7 +120,8 @@ public class SemanticEMFContentProvider extends CustomizableModelContentProvider
 	@Override
 	public boolean hasChildren(Object parent) {
 		//May be expensive
-		return getChildren(parent).length > 0;
+		Object[] children = getChildren(parent);
+		return children != null && children.length > 0;
 	}
 
 	public boolean isValidValue(Object containerElement) {

@@ -50,6 +50,7 @@ public class FillerFactory {
 			CustomFillElement filler = ClassLoaderHelper.newInstance(className, CustomFillElement.class);
 			filler.setParentGroup(parentGroup);
 			filler.setMenuItem((CustomFiller)menuItem);
+			filler.setSelectedObject(selectedObject);
 			return filler;
 		}
 
