@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.util.EditPartUtilities;
@@ -204,9 +205,18 @@ public class LoadingUtils {
 				}
 				// mark progress
 				monitor.beginTask(Messages.LoadingUtils_UnloadModelsTask, modelSet.getResources().size());
+
+				// Use the platform string of a normalized URI for comparison below, see bug 372326
+				// (registered libraries in the model set have different URIs - e.g. due to a pathmap -
+				// although they point to the same location).
+				// TODO: Use a single detection mechanism in ResourceUpdateService and here
+				String unloadPlatformString = uriWithoutFileExtension.toPlatformString(true);
+				URIConverter uriConverter = modelSet.getURIConverter();
 				// unload resource
 				for(Resource res : new ArrayList<Resource>(modelSet.getResources())) {
-					if(res.getURI().trimFileExtension().equals(uriWithoutFileExtension)) {
+					URI normalizedURI = uriConverter.normalize(res.getURI());
+					String platformString = normalizedURI.trimFileExtension().toPlatformString(true);
+					if((platformString != null) && platformString.equals(unloadPlatformString)) {
 						// unload this resource
 						modelSet.getResources().remove(res);
 						res.unload();
