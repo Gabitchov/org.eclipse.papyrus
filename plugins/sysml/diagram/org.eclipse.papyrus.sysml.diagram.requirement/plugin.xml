@@ -58,7 +58,7 @@
 			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
 			style="push" tooltip="Create a new Requirement Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysMLRequirements"/>
 			</visibleWhen>
 		</command>
 	</toolbar>
@@ -71,7 +71,7 @@
 			style="push"
 			tooltip="Create a new Requirement Diagram">
 	       <visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysMLRequirements"/>
 	       </visibleWhen>
 	    </command>
 	</menuContribution>

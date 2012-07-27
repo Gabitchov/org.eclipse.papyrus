@@ -29,7 +29,7 @@ public class RequirementDiagramCondition extends PerspectiveContextDependence {
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof org.eclipse.uml2.uml.Package) {
 				org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package)selectedElement;
-				if(pack.getAppliedProfile(SysmlResource.BLOCKS_ID, true) != null) {
+				if(pack.getAppliedProfile(SysmlResource.REQUIREMENTS_ID, true) != null) {
 					return true;
 				}
 			}
