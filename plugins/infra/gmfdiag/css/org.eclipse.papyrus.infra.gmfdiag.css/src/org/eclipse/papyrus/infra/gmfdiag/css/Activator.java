@@ -57,13 +57,18 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
-		Display.getCurrent().asyncExec(new Runnable() {
 
-			public void run() {
-				IContextService contextService = (IContextService)PlatformUI.getWorkbench().getService(IContextService.class);
-				contextService.activateContext(CSS);
-			}
-		});
+		if(Display.getCurrent() != null) {
+			Display.getCurrent().asyncExec(new Runnable() {
+
+				public void run() {
+					IContextService contextService = (IContextService)PlatformUI.getWorkbench().getService(IContextService.class);
+					contextService.activateContext(CSS);
+				}
+			});
+		} else {
+			log.warn("Cannot activate the CSS Context");
+		}
 	}
 
 	/*
