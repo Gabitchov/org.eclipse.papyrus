@@ -4,34 +4,20 @@
 
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
-	<creationCommand
-       creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
-       creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition"
-       icon="icons/obj16/Diagram_InternalBlock.gif"
-       id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-		language="sysml"
-		label="SysML Internal Block Diagram"/>
-	<editorDiagram
-		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
-		factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory"
-		icon="icons/obj16/Diagram_InternalBlock.gif" />
+	<creationCommand creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand" creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition" icon="icons/obj16/Diagram_InternalBlock.gif" id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" language="sysml" label="SysML Internal Block Diagram"></creationCommand>
+	<editorDiagram actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor" factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory" icon="icons/obj16/Diagram_InternalBlock.gif"></editorDiagram>
 </extension>
 
 <!-- Diagram creation command and handler -->
 <extension point="org.eclipse.ui.commands">
-	<command id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-		name="Create a new Internal Block Diagram"
-		description="Create a new Internal Block Diagram"
-		categoryId="org.eclipse.papyrus.editor.category"/>
+	<command id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" name="Create a new Internal Block Diagram" description="Create a new Internal Block Diagram" categoryId="org.eclipse.papyrus.editor.category"></command>
 </extension>
 
 <extension point="org.eclipse.ui.handlers">
-	<handler
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.CreateInternalBlockDiagramWithNavigationHandler"
-		commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand">
+	<handler class="org.eclipse.papyrus.sysml.diagram.internalblock.CreateInternalBlockDiagramWithNavigationHandler" commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand">
 		<activeWhen>
 			<with variable="activeEditorId">
-				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor" />
+				<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"></equals>
 			</with>
 		</activeWhen>
 	</handler>
@@ -42,11 +28,9 @@
 
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
 	<menu id="org.eclipse.papyrus.uml.diagram.ui.menu.diagrams" label="Diagrams">
-		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
-			style="push" tooltip="Create a new Internal Block Diagram">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram" style="push" tooltip="Create a new Internal Block Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysMLBlocks"></reference>
 			</visibleWhen>
 		</command>
 	</menu>
@@ -54,24 +38,18 @@
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
 	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
-			style="push" tooltip="Create a new Internal Block Diagram">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram" style="push" tooltip="Create a new Internal Block Diagram">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysMLBlocks"></reference>
 			</visibleWhen>
 		</command>
 	</toolbar>
 	</menuContribution>
 	
 	<menuContribution locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.creatediagram">
-	    <command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-			icon="icons/obj16/Diagram_InternalBlock.gif"
-			label="Create a new Internal Block Diagram"
-			style="push"
-			tooltip="Create a new Internal Block Diagram">
+	    <command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram" style="push" tooltip="Create a new Internal Block Diagram">
 	       <visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysMLBlocks"></reference>
 	       </visibleWhen>
 	    </command>
 	</menuContribution>
@@ -79,218 +57,89 @@
 </extension>
 
 <!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
-<extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"
-	name="SYSML_InternalBlock_Predefined_Entries"
-	id="org.eclipse.papyrus.sysml.diagram.blockdefinition.palettedefinition"> 
+<extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders" name="SYSML_InternalBlock_Predefined_Entries" id="org.eclipse.papyrus.sysml.diagram.blockdefinition.palettedefinition"> 
 		
 	<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
-	<Priority name="Lowest"/> <!-- Lower priority than Palette tool declaration -->
+	<Priority name="Lowest"></Priority> <!-- Lower priority than Palette tool declaration -->
 	
 	<!-- SysML Internal Block Diagram specific tool definition -->
-	<contribution
-		factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.factory.DiagramPaletteFactory">
+	<contribution factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.factory.DiagramPaletteFactory">
 			
 		<!-- internalblock.tool.block -->
-		<entry
-			defineOnly="true"
-			description="Create a Block"
-			id="internalblock.tool.block"
-			kind="tool"
-			label="Block"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
+		<entry defineOnly="true" description="Create a Block" id="internalblock.tool.block" kind="tool" label="Block" large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
 		</entry>
 			
 		<!-- internalblock.tool.blockpropertycomposite -->
-		<entry
-			defineOnly="true"
-			description="Create a BlockPropertyComposite"
-			id="internalblock.tool.blockpropertycomposite"
-			kind="tool"
-			label="BlockPropertyComposite"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		<entry defineOnly="true" description="Create a BlockPropertyComposite" id="internalblock.tool.blockpropertycomposite" kind="tool" label="BlockPropertyComposite" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 			
 		<!-- internalblock.tool.flowport -->
-		<entry
-			defineOnly="true"
-			description="Create a FlowPort"
-			id="internalblock.tool.flowport"
-			kind="tool"
-			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
+		<entry defineOnly="true" description="Create a FlowPort" id="internalblock.tool.flowport" kind="tool" label="FlowPort" large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif" small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort.gif">
 		</entry>
 			
 		<!-- internalblock.tool.port -->
-		<entry
-			defineOnly="true"
-			description="Create a Port"
-			id="internalblock.tool.port"
-			kind="tool"
-			label="Port"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
+		<entry defineOnly="true" description="Create a Port" id="internalblock.tool.port" kind="tool" label="Port" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
 		</entry>
 		<!-- Start of user code Custom node button entry  -->
 		
 		<!-- internalblock.tool.property -->
-		<entry
-			defineOnly="true"
-			description="Create a Property"
-			id="internalblock.tool.property"
-			kind="tool"
-			label="Property"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		<entry defineOnly="true" description="Create a Property" id="internalblock.tool.property" kind="tool" label="Property" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 		
 		<!-- internalblock.tool.part -->
-		<entry
-			defineOnly="true"
-			description="Create a Part"
-			id="internalblock.tool.part"
-			kind="tool"
-			label="Part"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		<entry defineOnly="true" description="Create a Part" id="internalblock.tool.part" kind="tool" label="Part" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 		
 		<!-- internalblock.tool.reference -->
-		<entry
-			defineOnly="true"
-			description="Create a Reference"
-			id="internalblock.tool.reference"
-			kind="tool"
-			label="Reference"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		<entry defineOnly="true" description="Create a Reference" id="internalblock.tool.reference" kind="tool" label="Reference" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 
 		<!-- internalblock.tool.actorpart -->
-		<entry
-			defineOnly="true"
-			description="Create an ActorPart"
-			id="internalblock.tool.actorpart"
-			kind="tool"
-			label="ActorPart"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		<entry defineOnly="true" description="Create an ActorPart" id="internalblock.tool.actorpart" kind="tool" label="ActorPart" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 		
 		<!-- internalblock.tool.value -->
-		<entry
-			defineOnly="true"
-			description="Create a Value"
-			id="internalblock.tool.value"
-			kind="tool"
-			label="Value"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		<entry defineOnly="true" description="Create a Value" id="internalblock.tool.value" kind="tool" label="Value" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 				
 		<!-- internalblock.tool.flowport (IN) -->
-		<entry
-			defineOnly="true"
-			description="Create a FlowPort (IN)"
-			id="internalblock.tool.flowport_in"
-			kind="tool"
-			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif">
+		<entry defineOnly="true" description="Create a FlowPort (IN)" id="internalblock.tool.flowport_in" kind="tool" label="FlowPort" large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif" small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN.gif">
 		</entry>
 
 		<!-- internalblock.tool.flowport (OUT) -->
-		<entry
-			defineOnly="true"
-			description="Create a FlowPort (OUT)"
-			id="internalblock.tool.flowport_out"
-			kind="tool"
-			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif">
+		<entry defineOnly="true" description="Create a FlowPort (OUT)" id="internalblock.tool.flowport_out" kind="tool" label="FlowPort" large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif" small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT.gif">
 		</entry>
 		
 		<!-- internalblock.tool.flowport (INOUT) -->
-		<entry
-			defineOnly="true"
-			description="Create a FlowPort (INOUT)"
-			id="internalblock.tool.flowport_inout"
-			kind="tool"
-			label="FlowPort"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif">
+		<entry defineOnly="true" description="Create a FlowPort (INOUT)" id="internalblock.tool.flowport_inout" kind="tool" label="FlowPort" large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif" small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_INOUT.gif">
 		</entry>
 
 		<!-- internalblock.tool.flowport -->
-		<entry
-			defineOnly="true"
-			description="Create a FlowPort (non atomic)"
-			id="internalblock.tool.flowport_na"
-			kind="tool"
-			label="FlowPort (non atomic)"
-			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif"
-			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif">
+		<entry defineOnly="true" description="Create a FlowPort (non atomic)" id="internalblock.tool.flowport_na" kind="tool" label="FlowPort (non atomic)" large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif" small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_NA.gif">
 		</entry>
 				
 		<!-- internalblock.tool.comment -->
-		<entry
-			defineOnly="true"
-			description="Create a Comment"
-			id="internalblock.tool.comment"
-			kind="tool"
-			label="Comment"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+		<entry defineOnly="true" description="Create a Comment" id="internalblock.tool.comment" kind="tool" label="Comment" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
 		</entry>
 		
 		<!-- internalblock.tool.constraint -->
-		<entry
-			defineOnly="true"
-			description="Create a Constraint"
-			id="internalblock.tool.constraint"
-			kind="tool"
-			label="Constraint"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+		<entry defineOnly="true" description="Create a Constraint" id="internalblock.tool.constraint" kind="tool" label="Constraint" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
 		</entry>
 								
 		<!-- End of user code  -->
 		
 			
 		<!-- internalblock.tool.connector -->
-		<entry
-			defineOnly="true"
-			description="Create a Connector"
-			id="internalblock.tool.connector"
-			kind="tool"
-			label="Connector"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
+		<entry defineOnly="true" description="Create a Connector" id="internalblock.tool.connector" kind="tool" label="Connector" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
 		</entry>
 			
 		<!-- internalblock.tool.dependency -->
-		<entry
-			defineOnly="true"
-			description="Create a Dependency"
-			id="internalblock.tool.dependency"
-			kind="tool"
-			label="Dependency"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+		<entry defineOnly="true" description="Create a Dependency" id="internalblock.tool.dependency" kind="tool" label="Dependency" large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif" small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
 		</entry>
 		<!-- Start of user code Custom edge button entry  -->
 		
 		<!-- internalblock.tool.comment_constraint_link -->
-		<entry
-			defineOnly="true"
-			description="Create a Comment / Constraint link"
-			id="internalblock.tool.comment_constraint_link"
-			kind="tool"
-			label="Comment / Constraint link"
-			large_icon="icons/obj16/Link.gif"
-			small_icon="icons/obj16/Link.gif">
+		<entry defineOnly="true" description="Create a Comment / Constraint link" id="internalblock.tool.comment_constraint_link" kind="tool" label="Comment / Constraint link" large_icon="icons/obj16/Link.gif" small_icon="icons/obj16/Link.gif">
 		</entry>
 			
 		<!-- End of user code  -->
@@ -298,24 +147,19 @@
 	</contribution>
 	
 	<!-- Specify diagram this palette tools relate to -->				
-	<editor id="org.eclipse.papyrus.sysml.diagram.internalblock"/>
+	<editor id="org.eclipse.papyrus.sysml.diagram.internalblock"></editor>
 	
 	</paletteProvider>	
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
-<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition"
-	name="SYSML_InternalBlock">
+<extension point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition" name="SYSML_InternalBlock">
 	
-	<paletteDefinition ID="SYSML_InternalBlock"
-		class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
-		name="SYSML_InternalBlock" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
-		path="palettes/internalblock.palette.xml"
-		provider="CEA LIST">
-		<Priority name="Low"/>
+	<paletteDefinition ID="SYSML_InternalBlock" class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider" name="SYSML_InternalBlock" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" path="palettes/internalblock.palette.xml" provider="CEA LIST">
+		<Priority name="Low"></Priority>
 		
 		<!-- Specify diagram this palette tools relate to -->						
-		<editor id="org.eclipse.papyrus.sysml.diagram.internalblock"/>
+		<editor id="org.eclipse.papyrus.sysml.diagram.internalblock"></editor>
 	</paletteDefinition>
 </extension>
 
@@ -324,58 +168,58 @@
 
 	<!-- Diagram view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockDiagramViewProvider">
-		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="InternalBlock"/>
+		<Priority name="Low"></Priority>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="InternalBlock"></context>
 	</viewProvider>
 
 	<!-- Custom graphical types view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomViewProvider">
-		<Priority name="Medium"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, compartment_sysml_blockproperty_structure"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="UML::Dependency, UML::Connector"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_connector, link_uml_dependency"/>
+		<Priority name="Medium"></Priority>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite, compartment_sysml_blockproperty_structure"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="UML::Dependency, UML::Connector"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_connector, link_uml_dependency"></context>
 		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
 		<!-- "uml.Class" -->
 		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Class"/>
+			<method name="getProxyClassID()" value="uml.Class"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"/>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"></context>			
 		
 		<!-- "uml.Port" -->
 		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Port"/>
+			<method name="getProxyClassID()" value="uml.Port"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"/>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"></context>			
 		
 		<!-- "uml.Property" -->
 		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Property"/>
+			<method name="getProxyClassID()" value="uml.Property"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"/>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"></context>			
 		
 		<!-- "uml.Connector" -->
 		<object id="uml.Connector" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Connector"/>
+			<method name="getProxyClassID()" value="uml.Connector"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Connector"/>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Connector"></context>			
 		
 		<!-- "uml.Dependency" -->
 		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Dependency"/>
+			<method name="getProxyClassID()" value="uml.Dependency"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"/>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"></context>			
 		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from CompositeDiagram ViewProvider) -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedCompositeDiagramViewProvider">
-		<Priority name="Low"/>
+		<Priority name="Low"></Priority>
 		
 		<!-- Load the ViewProvider on following SemanticHint related to IElementType(s) used in the palette (also used for legacy elements) -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Comment, UML::Constraint"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Comment, UML::Constraint"></context>
 		
 		<!-- 
 			"2109" = COMMENT
@@ -383,29 +227,28 @@
 			"2114" = CONSTRAINT								
 			"3120" = CONSTRAINT_CN
 		  -->			
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2109, 3097, 2114, 3120"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2109, 3097, 2114, 3120"></context>
 		
 		<!-- 
 			"4002" = COMMENT_ANNOTATED_ELEMENT
 			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002, 4003"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002, 4003"></context>
         
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
         <!-- "uml.Comment" -->
 		<object id="uml.Comment" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Comment"/>
+			<method name="getProxyClassID()" value="uml.Comment"></method>
 		</object>
 
         <!-- "uml.Constraint" -->
 		<object id="uml.Constraint" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
-			<method name="getProxyClassID()" value="uml.Constraint"/>
+			<method name="getProxyClassID()" value="uml.Constraint"></method>
 		</object>
 
 		<!-- Additional activation contexts for nodes semantic objects -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
-			elements="uml.Comment, uml.Constraint"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="uml.Comment, uml.Constraint"></context>
 			
 	</viewProvider>
 	
@@ -416,47 +259,39 @@
 
 	<!-- Diagram edit part provider -->
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockDiagramEditPartProvider">
-		<Priority name="Low"/>
-		<object 
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram"
-			class="org.eclipse.gmf.runtime.notation.Diagram">
-			<method name="getType()" value="InternalBlock"/>
+		<Priority name="Low"></Priority>
+		<object id="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram" class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="InternalBlock"></method>
 		</object>
-		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram"/>	
+		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram"></context>	
 	</editpartProvider>
 	
 	<!-- Custom graphical types edit part provider -->
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomEditPartProvider">
-		<Priority name="Medium"/>
+		<Priority name="Medium"></Priority>
 	
-		<object
-			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomNodeGraphicalTypes">
-			<method name="getType()" value="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite"/>
+		<object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomNodeGraphicalTypes">
+			<method name="getType()" value="shape_sysml_flowport_as_affixed, shape_sysml_block_as_composite, shape_uml_port_as_affixed, shape_sysml_blockproperty_as_composite"></method>
 		</object>
 		
-		<object
-			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomGraphicalTypes_Decorations">
-			<method name="getType()" value="linklabel_uml_connector_target_multiplicity, label_uml_property_label, linklabel_uml_appliedstereotype, label_sysml_block_name, compartment_sysml_structure, affixedlabel_uml_port_label, linklabel_uml_connector_source_multiplicity, linklabel_uml_namedelement_name, linklabel_uml_connector_label, compartment_sysml_blockproperty_structure, affixedlabel_uml_appliedstereotype, affixedlabel_sysml_flowport_label"/>
+		<object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomGraphicalTypes_Decorations">
+			<method name="getType()" value="linklabel_uml_connector_target_multiplicity, label_uml_property_label, linklabel_uml_appliedstereotype, label_sysml_block_name, compartment_sysml_structure, affixedlabel_uml_port_label, linklabel_uml_connector_source_multiplicity, linklabel_uml_namedelement_name, linklabel_uml_connector_label, compartment_sysml_blockproperty_structure, affixedlabel_uml_appliedstereotype, affixedlabel_sysml_flowport_label"></method>
 		</object>
 		
-		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.CustomNodeGraphicalTypes"/>
-		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.CustomGraphicalTypes_Decorations"/>
+		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.CustomNodeGraphicalTypes"></context>
+		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.CustomGraphicalTypes_Decorations"></context>
 	
-		<object
-			class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)"
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomEdgeGraphicalTypes">
-			<method name="getType()" value="link_uml_connector, link_uml_dependency"/>
+		<object class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)" id="org.eclipse.papyrus.sysml.diagram.internalblock.CustomEdgeGraphicalTypes">
+			<method name="getType()" value="link_uml_connector, link_uml_dependency"></method>
 		</object>
 		
-		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.CustomEdgeGraphicalTypes"/>
+		<context views="org.eclipse.papyrus.sysml.diagram.internalblock.CustomEdgeGraphicalTypes"></context>
 		
 	</editpartProvider>
 	
 	<!-- EditPartProvider for inherited elements (from CompositeDiagram) -->
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedCompositeDiagramEditPartProvider">
-		<Priority name="Low"/>
+		<Priority name="Low"></Priority>
 		
 		<!-- 
 			The semantic hints given here are used in case the provider is not already loaded.
@@ -472,55 +307,41 @@
 			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
 			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT
 		 -->			
-		<object
-			id="COMMENT"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2109, 5192"/>
+		<object id="COMMENT" class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2109, 5192"></method>
 		</object>
-		<object
-			id="COMMENT_CN"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3097, 5150"/>
+		<object id="COMMENT_CN" class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3097, 5150"></method>
 		</object>
-		<object
-			id="CONSTRAINT"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2114, 5197, 6039"/>
+		<object id="CONSTRAINT" class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2114, 5197, 6039"></method>
 		</object>
-		<object
-			id="CONSTRAINT_CN"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3120, 6048, 6049"/>
+		<object id="CONSTRAINT_CN" class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3120, 6048, 6049"></method>
 		</object>
 
 		<!-- 	
 			"4002" = COMMENT_ANNOTATED_ELEMENT
 			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
 		  -->
-		<object
-			id="COMMENT_ANNOTATED_ELEMENT"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4002"/>
+		<object id="COMMENT_ANNOTATED_ELEMENT" class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4002"></method>
 		</object>
-		<object
-			id="CONSTRAINT_CONSTRAINED_ELEMENT"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4003"/>
+		<object id="CONSTRAINT_CONSTRAINED_ELEMENT" class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4003"></method>
 		</object>
 
-		<context views="COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"/>
-		<context views="COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
+		<context views="COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"></context>
+		<context views="COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"></context>
 		
 	</editpartProvider>
 	
 </extension>
 
 <!-- Diagram edit policy provider -->	
-<extension
-	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-	<editpolicyProvider
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomEditPolicyProvider">
-		<Priority name="Low"/>
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomEditPolicyProvider">
+		<Priority name="Low"></Priority>
 	</editpolicyProvider>
 </extension>
 
@@ -528,42 +349,23 @@
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
 
 	<!-- Diagram Preference pages declaration -->
-	<page
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		name="Internal Block Diagram"
-		category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.InternalBlockDiagramGeneralPreferencePage">
+	<page id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" name="Internal Block Diagram" category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.InternalBlockDiagramGeneralPreferencePage">
 	</page>
 
 	<!-- Element Preference pages declaration -->
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
-		name="Comment">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage" name="Comment">
 	</page>
 			
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
-		name="Constraint">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage" name="Constraint">
 	</page>
 
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockCompositePreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockCompositePreferencePage"
-		name="Block">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockCompositePreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockCompositePreferencePage" name="Block">
 	</page>
 	
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
-		name="PartAndReferences">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage" name="PartAndReferences">
 	</page>
 		
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage"
-		name="block property">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPropertyCompositePreferencePage" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomBlockPropertyCompositePreferencePage" name="block property">
 	</page>
 
 	<!--
@@ -573,28 +375,16 @@
 		name="nested property">
 	</page>
 	-->
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.FlowPortAsBorderItemPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.FlowPortPreferencePage"
-		name="FlowPort">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.FlowPortAsBorderItemPreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.FlowPortPreferencePage" name="FlowPort">
 	</page>
 			
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortAsBorderItemPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortPreferencePage"
-		name="Port">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortAsBorderItemPreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortPreferencePage" name="Port">
 	</page>
 		
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomConnectorPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
-		name="Connector">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CustomConnectorPreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage" name="Connector">
 	</page>	
 					
-	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DependencyPreferencePage"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DependencyPreferencePage"
-		name="Dependency">
+	<page category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences" class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DependencyPreferencePage" id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DependencyPreferencePage" name="Dependency">
 	</page>
 		
 
@@ -611,22 +401,21 @@
   -->
 <extension point="org.eclipse.ui.handlers">
 
-	<handler commandId="org.eclipse.papyrus.sysml.diagram.internalblock.command.manage.interfaces"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.handler.ManageProvidedInterfacesHandler">
+	<handler commandId="org.eclipse.papyrus.sysml.diagram.internalblock.command.manage.interfaces" class="org.eclipse.papyrus.sysml.diagram.internalblock.handler.ManageProvidedInterfacesHandler">
 		<activeWhen>
 		<and>
 			<with variable="selection">
 			<iterate>
-				<instanceof value="org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart"/>
+				<instanceof value="org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart"></instanceof>
 			</iterate>
 			</with>
 			
 			<with variable="activeEditor">
-			<test property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType" value="InternalBlock" forcePluginActivation="true"/>
+			<test property="org.eclipse.papyrus.uml.diagram.common.diagram.tester.diagramType" value="InternalBlock" forcePluginActivation="true"></test>
 			</with>
 			
 			<with variable="selection">
-			<test property="org.eclipse.papyrus.sysml.diagram.internalblock.tester.selection.isFlowPort" value="false" forcePluginActivation="true"/>              
+			<test property="org.eclipse.papyrus.sysml.diagram.internalblock.tester.selection.isFlowPort" value="false" forcePluginActivation="true"></test>              
 			</with>
 		</and>
 		</activeWhen>
@@ -638,31 +427,22 @@
 	The tested properties allow to enable/disable handlers for commands .
   -->
 <extension point="org.eclipse.core.expressions.propertyTesters">
-	<propertyTester id="org.eclipse.papyrus.sysml.diagram.internalblock.tester.selection" type="org.eclipse.jface.viewers.ISelection"
-		namespace="org.eclipse.papyrus.sysml.diagram.internalblock.tester.selection" properties="isFlowPort"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.utils.InternalBlockDiagramTester">
+	<propertyTester id="org.eclipse.papyrus.sysml.diagram.internalblock.tester.selection" type="org.eclipse.jface.viewers.ISelection" namespace="org.eclipse.papyrus.sysml.diagram.internalblock.tester.selection" properties="isFlowPort" class="org.eclipse.papyrus.sysml.diagram.internalblock.utils.InternalBlockDiagramTester">
 	</propertyTester>
 </extension>
 
 <!-- The Command to manages the Provided and Required Interfaces for a Port-->
 <extension point="org.eclipse.ui.commands">
-	<command categoryId="org.eclipse.papyrus.editor.category"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.command.manage.interfaces"
-		name="Manage Provided Interfaces"		
-		description="Allows to manage easily provided Interfaces for a Port">
+	<command categoryId="org.eclipse.papyrus.editor.category" id="org.eclipse.papyrus.sysml.diagram.internalblock.command.manage.interfaces" name="Manage Provided Interfaces" description="Allows to manage easily provided Interfaces for a Port">
 	</command>
 </extension>
 
 <!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
 <extension point="org.eclipse.ui.menus">
 	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu" allPopups="false">
-	<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.command.manage.interfaces"
-		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.popup.interface.manage.interface"
-		label="Manage Interfaces" mnemonic="&amp;I" style="push"
-		tooltip="The command to manage the interfaces provided and required by a Port">
+	<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.command.manage.interfaces" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif" id="org.eclipse.papyrus.sysml.diagram.internalblock.popup.interface.manage.interface" label="Manage Interfaces" mnemonic="&amp;I" style="push" tooltip="The command to manage the interfaces provided and required by a Port">
 		<!-- The action is visible only if there is an active handler for it  -->
-		<visibleWhen checkEnabled="true"/>
+		<visibleWhen checkEnabled="true"></visibleWhen>
 	</command>
 	</menuContribution>
 </extension>
@@ -670,7 +450,7 @@
 <!-- Parser provider declaration -->
 <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
 	<ParserProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.ParserProvider">
-		<Priority name="Low"/>
+		<Priority name="Low"></Priority>
 	</ParserProvider>
 </extension>
 
@@ -680,15 +460,11 @@
 	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
 
 	<!-- Property specific advices (remove inconsistent views when a Property type is set) -->		
-	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice.PropertyHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice" class="org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice.PropertyHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
 	
 	<!-- Delete moved views advice -->		
-	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice"
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice.DeleteViewDuringMoveHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
+	<adviceBinding id="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice" class="org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice.DeleteViewDuringMoveHelperAdvice" inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
 	</adviceBinding>
 				
 	</metamodel>
@@ -699,8 +475,8 @@
 
 	<!-- Bindings declaration to shared IClientContext -->
 	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
-		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice"/>
-		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.PropertyHelperAdvice"></elementType>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.internalblock.DeleteViewDuringMoveHelperAdvice"></elementType>
 	</binding>
 		
 </extension>
@@ -708,23 +484,21 @@
 <!-- Service for Show/Hide content on Part or Ref. -->
 <extension point="org.eclipse.ui.services">
 	<sourceProvider provider="org.eclipse.papyrus.sysml.diagram.internalblock.provider.ActionStateSourceProvider">
-		<variable name="showHideRelatedContents" priorityLevel="workbench"/>
+		<variable name="showHideRelatedContents" priorityLevel="workbench"></variable>
 	</sourceProvider>
 </extension>
 
 <!-- Handler for Show/Hide content on Part or Ref. -->
 <extension point="org.eclipse.ui.handlers">
-	<handler
-		class="org.eclipse.papyrus.sysml.diagram.internalblock.handler.ShowHideRelatedContentsHandler"
-		commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
+	<handler class="org.eclipse.papyrus.sysml.diagram.internalblock.handler.ShowHideRelatedContentsHandler" commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand">
 		<activeWhen>
 		<and>
 			<with variable="showHideRelatedContents">
-				<equals value="enabled"/>
+				<equals value="enabled"></equals>
 			</with>
 			<with variable="selection">
 				<iterate ifEmpty="false" operator="and">
-					<instanceof value="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart"/>
+					<instanceof value="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart"></instanceof>
 				</iterate>
 			</with>
 		</and>
@@ -735,22 +509,22 @@
 <!-- Validation markers declaration -->
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
 	<MarkerNavigationProvider class="org.eclipse.papyrus.gmf.diagram.common.provider.MarkerNavigationProvider">
-		<MarkerType name="org.eclipse.papyrus.sysml.diagram.internalblock.diagnostic"/>
-		<Priority name="Lowest"/>
+		<MarkerType name="org.eclipse.papyrus.sysml.diagram.internalblock.diagnostic"></MarkerType>
+		<Priority name="Lowest"></Priority>
 	</MarkerNavigationProvider>
 </extension>
 
 <extension id="diagnostic" name="Internal Block Diagram (Incubation) problems" point="org.eclipse.core.resources.markers">
-	<super type="org.eclipse.core.resources.problemmarker"/>
-	<super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
-	<persistent value="true"/>
+	<super type="org.eclipse.core.resources.problemmarker"></super>
+	<super type="org.eclipse.gmf.runtime.common.ui.services.marker"></super>
+	<persistent value="true"></persistent>
 </extension>
 
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
 	<decoratorProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.ValidationDecoratorProvider">
-		<Priority name="Lowest"/>
-		<object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
-		<context decoratorTargets="PRIMARY_VIEW"/>
+		<Priority name="Lowest"></Priority>
+		<object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"></object>
+		<context decoratorTargets="PRIMARY_VIEW"></context>
 	</decoratorProvider>
 </extension>
 
