@@ -22,7 +22,6 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-
 	/** Logging helper */
 	public static LogHelper log;
 

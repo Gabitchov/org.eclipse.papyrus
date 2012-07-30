@@ -38,16 +38,16 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
-	
+
 		// This provider is registered for Requirement Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
 		if(!RequirementDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
 			return false;
-		} 
-		
+		}
+
 		return true;
 	}
-	
+
 	@Override
 	protected boolean provides(CreateEdgeViewOperation op) {
 
@@ -117,7 +117,6 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		return false;
 
 	}
-
 
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {

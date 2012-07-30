@@ -14,7 +14,6 @@ import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.requirement.factory.RequirementDiagramViewFactory;
 
-
 /**
  * SysML Requirement Diagram View provider from generic view provider
  * 

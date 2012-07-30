@@ -46,19 +46,35 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 			/** Nodes *********** */
 
 			/** Package */
-			if(RequirementDiagramElementTypes.PACKAGE.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.PACKAGE_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.PACKAGE_COMPARTMENT_HINT.equals(hint)) {
+			if(RequirementDiagramElementTypes.PACKAGE.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.PACKAGE_NAME_LABEL_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.PACKAGE_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(RequirementDiagramElementTypes.PACKAGE_CN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.PACKAGE_CN_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.PACKAGE_CN_COMPARTMENT_HINT.equals(hint)) {
+			if(RequirementDiagramElementTypes.PACKAGE_CN.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.PACKAGE_CN_NAME_LABEL_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.PACKAGE_CN_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 			/** Class */
-			if(RequirementDiagramElementTypes.CLASS.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_COMPARTMENT_PROP_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_COMPARTMENT_OPER_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_COMPARTMENT_NEST_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_PROP_CLN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_OPER_CLN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_RECP_CLN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_NEST_CLN.getSemanticHint().equals(hint)) {
+			if(RequirementDiagramElementTypes.CLASS.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_COMPARTMENT_PROP_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_COMPARTMENT_OPER_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_COMPARTMENT_NEST_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_PROP_CLN.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_OPER_CLN.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_RECP_CLN.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_NEST_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
-			if(RequirementDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_PROP_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_OPER_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_NEST_HINT.equals(hint)) {
+			if(RequirementDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_PROP_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_OPER_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_NEST_HINT.equals(hint)) {
 				return true;
 			}
 
@@ -75,7 +91,9 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 			/** Edges *********** */
 
 			/** Abstraction */
-			if(RequirementDiagramElementTypes.ABSTRACTION.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.ABSTRACTION_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.ABSTRACTION_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(RequirementDiagramElementTypes.ABSTRACTION.getSemanticHint().equals(hint)
+				|| RequirementDiagramElementTypes.ABSTRACTION_NAME_LABEL_HINT.equals(hint)
+				|| RequirementDiagramElementTypes.ABSTRACTION_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 

@@ -5,7 +5,6 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHel
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
 
-
 /**
  * Preference Page for Class usage in Requirement Diagram
  * 
@@ -16,7 +15,6 @@ public class PackagePreferencePage extends RequirementDiagramNodePreferencePage 
 	 * the list of the compartments for this node
 	 */
 	public static final String compartments[] = { Messages.PackagePackageableElementCompartmentEditPartCN_title };
-
 
 	/**
 	 * Constructor.
@@ -40,7 +38,6 @@ public class PackagePreferencePage extends RequirementDiagramNodePreferencePage 
 			store.setDefault(preferenceName, true);
 		}
 	}
-
 
 	/**
 	 * 
