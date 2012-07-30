@@ -20,7 +20,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * A label in which the added icon is scaled to the height of the
  * text font. Only bigger icons are scaled, smaller remain unchanged.
@@ -53,7 +52,7 @@ public class LabelWithScalableIcons extends Label {
 	protected Dimension getIconSize() {
 		int width = 0;
 		if(getFont() == null) {
-			return new Dimension(0, 32);
+			return new Dimension(0, 16);
 		}
 
 		int height = getTextSize().height;
@@ -77,10 +76,8 @@ public class LabelWithScalableIcons extends Label {
 	 */
 	private void paintScaledIcon(Graphics graphics) {
 		Point p = getIconLocation();
-
 		if(p != null) {
 			int height = getTextSize().height;
-
 			Image icon = getIcon();
 			if(icon != null) {
 				org.eclipse.swt.graphics.Rectangle bounds = icon.getBounds();
