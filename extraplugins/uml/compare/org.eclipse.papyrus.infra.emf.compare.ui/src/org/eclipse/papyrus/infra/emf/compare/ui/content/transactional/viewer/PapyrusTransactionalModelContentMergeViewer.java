@@ -15,9 +15,11 @@ package org.eclipse.papyrus.infra.emf.compare.ui.content.transactional.viewer;
 
 
 import org.eclipse.compare.CompareConfiguration;
-import org.eclipse.emf.compare.diff.merge.service.MergeFactory;
-import org.eclipse.emf.compare.ui.ModelCompareInput;
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.ui.internal.ModelComparator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.ActionContributionItem;
@@ -27,7 +29,6 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.papyrus.infra.emf.compare.diff.merge.ITransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeFactory;
-import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
 import org.eclipse.papyrus.infra.emf.compare.ui.content.viewer.PapyrusCustomizableModelContentMergeViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -149,9 +150,9 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 
 		boolean canCopyLeftToRight = false;
 		boolean canCopyRightToLeft = false;
-		//TODO
-		boolean canAllCopyLeftToRight = false;
-		boolean canAllCopyRightToLeft = false;
+
+		boolean canAllCopyLeftToRight = true;
+		boolean canAllCopyRightToLeft = true;
 
 		if(currentSelection.size() == 1) {
 			final ITransactionalMerger merger = TransactionalMergeFactory.createMerger(currentSelection.get(0));
@@ -159,13 +160,26 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 			canCopyRightToLeft = merger.canApplyInOrigin();
 		}
 
+		if(currentSelection.size() > 0) {
+			EObject diffModel = currentSelection.get(0);
+			while(!(diffModel instanceof DiffModel)) {
+				diffModel = diffModel.eContainer();
+			}
+			Assert.isNotNull(diffModel);
 
+			for(DiffElement current : ((DiffModel)diffModel).getDifferences()) {
+				final ITransactionalMerger merger = TransactionalMergeFactory.createMerger(current);
+				canAllCopyLeftToRight = canAllCopyLeftToRight && merger.canUndoInTarget();
+				canAllCopyRightToLeft = canAllCopyRightToLeft && merger.canApplyInOrigin();
+			}
+		}
 
+		System.out.println(enabled);
 		if(_copyAllLeftToRight != null) {
-			//TODO
+			_copyAllLeftToRight.setEnabled(rightEditable && enabled && canAllCopyLeftToRight);
 		}
 		if(_copyAllRightToLeft != null) {
-			//TODO
+			_copyAllRightToLeft.setEnabled(leftEditable && enabled && canAllCopyRightToLeft);
 		}
 		if(_copyDiffLeftToRight != null) {
 			_copyDiffLeftToRight.setEnabled(rightEditable && enabled && canCopyLeftToRight);
@@ -174,5 +188,4 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 			_copyDiffRightToLeft.setEnabled(leftEditable && enabled && canCopyRightToLeft);
 		}
 	}
-
 }
