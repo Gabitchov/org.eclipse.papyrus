@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationUtils;
 
 /**
@@ -88,7 +89,15 @@ public class LoadingTester extends PropertyTester {
 						if(!atLeastOneInSubmodel) {
 							Resource containingResource = eObject.eResource();
 							if(mainURI == null && containingResource != null && containingResource.getResourceSet() instanceof ModelSet) {
-								mainURI = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet()).getResourceURI().trimFileExtension();
+
+								//Bug 366709: Add tests to avoid NPEs
+								NotationModel notationModel = NotationUtils.getNotationModel((ModelSet)containingResource.getResourceSet());
+								if(notationModel != null) {
+									URI notationModelURI = notationModel.getResourceURI();
+									if(notationModelURI != null) {
+										mainURI = notationModelURI.trimFileExtension();
+									}
+								}
 							}
 							if(mainURI != null) {
 								URI uriTrim = containingResource.getURI().trimFileExtension();
