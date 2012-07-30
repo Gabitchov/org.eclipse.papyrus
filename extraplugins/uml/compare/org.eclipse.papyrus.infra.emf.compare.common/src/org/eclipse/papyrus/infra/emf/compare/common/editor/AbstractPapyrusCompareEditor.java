@@ -141,7 +141,7 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 				public void run(final IProgressMonitor monitor) throws InterruptedException {
 					final Map<String, Object> options = getCompareOptions(monitor, left, right);
 					final MatchModel match = doMatch(monitor, left, right, options);
-					DiffModel diff = doDiff(match);
+					DiffModel diff = doDiff(match, options);
 					snapshot.setDiff(diff);
 					snapshot.setMatch(match);
 				}
@@ -176,10 +176,11 @@ public abstract class AbstractPapyrusCompareEditor extends CompareEditor impleme
 	/**
 	 * 
 	 * @param match
+	 * @param options 
 	 * @return
 	 *         the DiffModel for the comparison
 	 */
-	protected DiffModel doDiff(final MatchModel match) {
+	protected DiffModel doDiff(final MatchModel match, Map<String, Object> options) {
 		return DiffService.doDiff(match);
 	}
 

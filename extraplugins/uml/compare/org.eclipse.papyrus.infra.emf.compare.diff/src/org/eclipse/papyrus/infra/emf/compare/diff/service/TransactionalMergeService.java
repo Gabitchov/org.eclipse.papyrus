@@ -127,7 +127,7 @@ public class TransactionalMergeService {
 		if(merger instanceof ITransactionalMerger) {
 			if(leftToRight) {
 				cmd.append(((ITransactionalMerger)merger).getUndoInTargetCommand(domain));
-			} else if(!leftToRight) {
+			} else {
 				cmd.append(((ITransactionalMerger)merger).getApplyInOriginCommand(domain));
 			}
 		} else {

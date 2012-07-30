@@ -29,8 +29,12 @@ import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementT
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedMoveModelElementTest_2_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedUpdateAttributeTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.nested.NestedUpdateAttributeTest_1_RightToLeft;
-import org.eclipse.papyrus.uml.compare.diff.tests.nested.bugs.ModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight;
-import org.eclipse.papyrus.uml.compare.diff.tests.nested.bugs.ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.bugs.NestedModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.bugs.NestedModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.options.NestedAttributeChangeLeftTargetMergeOptionsEnablementTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.options.NestedAttributeChangeLeftTargetMergeOptionsEnablementTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.options.NestedAttributeChangeRightTargetMergeOptionsEnablementTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.nested.options.NestedAttributeChangeRightTargetMergeOptionsEnablementTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeLeftTargetTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeLeftTargetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AttributeChangeRightTargetTest_1_LeftToRight;
@@ -55,8 +59,12 @@ import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.UpdateReferenceTest_2_RightToLeft;
-import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeRightResourceTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.standalone.options.AttributeChangeLeftTargetMergeOptionsEnablementTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.standalone.options.AttributeChangeLeftTargetMergeOptionsEnablementTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.standalone.options.AttributeChangeRightTargetMergeOptionsEnablementTest_1_LeftToRight;
+import org.eclipse.papyrus.uml.compare.diff.tests.standalone.options.AttributeChangeRightTargetMergeOptionsEnablementTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeLeftResourceTest_1_RightToLeft;
+import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeRightResourceTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.nested.oneresource.NestedUpdateAttributeRightResourcetTest_1_RightToLeft;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested.NestedStereotypeApplicationAdditionTest_1_LeftToRight;
 import org.eclipse.papyrus.uml.compare.diff.tests.uml.profile.nested.NestedStereotypeApplicationAdditionTest_1_RightToLeft;
@@ -99,6 +107,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 
+//------------------------------------------ tests for DiffElement in nested mode
 NestedAttributeChangeLeftTargetTest_1_LeftToRight.class, NestedAttributeChangeLeftTargetTest_1_RightToLeft.class,
 
 NestedAttributeChangeRightTargetTest_1_LeftToRight.class, NestedAttributeChangeRightTargetTest_1_RightToLeft.class,
@@ -114,7 +123,7 @@ NestedMoveModelElementTest_1_LeftToRight.class, NestedMoveModelElementTest_1_Rig
 NestedMoveModelElementTest_2_LeftToRight.class, NestedMoveModelElementTest_2_RightToLeft.class,
 
 NestedUpdateAttributeTest_1_LeftToRight.class, NestedUpdateAttributeTest_1_RightToLeft.class,
-
+//------------------------------------------ tests for UML DiffElement in nested mode
 NestedStereotypeApplicationAdditionTest_1_LeftToRight.class, NestedStereotypeApplicationAdditionTest_1_RightToLeft.class,
 
 NestedStereotypeApplicationAdditionTest_2_LeftToRight.class, NestedStereotypeApplicationAdditionTest_2_RightToLeft.class,
@@ -127,8 +136,15 @@ NestedUpdateAttributeLeftResourceTest_1_RightToLeft.class, NestedUpdateAttribute
 
 NestedUpdateAttributeRightResourceTest_1_LeftToRight.class, NestedUpdateAttributeRightResourcetTest_1_RightToLeft.class,
 
-ModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight.class, ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft.class,
+//------------------------------------------ tests for options in nested mode
+NestedAttributeChangeLeftTargetMergeOptionsEnablementTest_1_LeftToRight.class, NestedAttributeChangeLeftTargetMergeOptionsEnablementTest_1_RightToLeft.class,
 
+NestedAttributeChangeRightTargetMergeOptionsEnablementTest_1_LeftToRight.class, NestedAttributeChangeRightTargetMergeOptionsEnablementTest_1_RightToLeft.class,
+
+//------------------------------------------ others nested tests
+NestedModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight.class, NestedModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft.class,
+
+//------------------------------------------ tests for DiffElement in standalone mode
 AttributeChangeLeftTargetTest_1_LeftToRight.class, AttributeChangeLeftTargetTest_1_RightToLeft.class,
 
 AttributeChangeRightTargetTest_1_LeftToRight.class, AttributeChangeRightTargetTest_1_RightToLeft.class,
@@ -153,6 +169,12 @@ UpdateReferenceTest_1_LeftToRight.class, UpdateReferenceTest_1_RightToLeft.class
 
 UpdateReferenceTest_2_LeftToRight.class, UpdateReferenceTest_2_RightToLeft.class,
 
+//------------------------------------------ tests for options in standalone mode
+AttributeChangeLeftTargetMergeOptionsEnablementTest_1_LeftToRight.class, AttributeChangeLeftTargetMergeOptionsEnablementTest_1_RightToLeft.class,
+
+AttributeChangeRightTargetMergeOptionsEnablementTest_1_LeftToRight.class, AttributeChangeRightTargetMergeOptionsEnablementTest_1_RightToLeft.class,
+
+//------------------------------------------ tests for UML DiffElement in standalone mode
 GeneralizationSourceChangedTest_1_LeftToRight.class, GeneralizationSourceChangedTest_1_RightToLeft.class,
 
 GeneralizationTargetChangedTest_1_LeftToRight.class, GeneralizationTargetChangedTest_1_RightToLeft.class,

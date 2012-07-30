@@ -16,6 +16,6 @@ package org.eclipse.papyrus.uml.compare.diff.services.standalone;
 import org.eclipse.emf.compare.uml2.match.UML2MatchEngine;
 
 
-public class UMLStandaloneMatchEngine extends UML2MatchEngine{
-//nothing to do for the moment
+public class UMLStandaloneMatchEngine extends UML2MatchEngine {
+	//nothing to do for the moment
 }

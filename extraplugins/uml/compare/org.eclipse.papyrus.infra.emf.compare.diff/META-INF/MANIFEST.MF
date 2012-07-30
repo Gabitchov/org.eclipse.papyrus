@@ -28,4 +28,5 @@ Export-Package: org.eclipse.papyrus.infra.emf.compare.diff,
  org.eclipse.papyrus.infra.emf.compare.diff.internal.util,
  org.eclipse.papyrus.infra.emf.compare.diff.merge,
  org.eclipse.papyrus.infra.emf.compare.diff.provider,
- org.eclipse.papyrus.infra.emf.compare.diff.service
+ org.eclipse.papyrus.infra.emf.compare.diff.service,
+ org.eclipse.papyrus.infra.emf.compare.diff.utils

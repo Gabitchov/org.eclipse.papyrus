@@ -10,7 +10,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -26,7 +26,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 
-public class ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLeft extends AbstractNestedCompareTest {
+public class NestedModelElementChangeLeftTarget_CopyReferenceTest_bug386052_LeftToRight extends AbstractNestedCompareTest {
 
 	private static final String MODEL_PATH = "bug386052/"; //$NON-NLS-1$
 
@@ -34,9 +34,9 @@ public class ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLe
 
 	@BeforeClass
 	public static void init() throws CoreException, IOException, ModelMultiException, ServiceException {
-		AbstractNestedCompareTest.init(FOLDER_PATH, MODEL_PATH, false);
-		AbstractCompareTest.leftElement = AbstractNestedCompareTest.root.getMember("Class3"); //$NON-NLS-1$
-		AbstractCompareTest.rightElement = AbstractNestedCompareTest.root.getMember("Class1"); //$NON-NLS-1$
+		AbstractNestedCompareTest.init(FOLDER_PATH, MODEL_PATH, true);
+		AbstractCompareTest.leftElement = AbstractNestedCompareTest.root.getMember("Class1"); //$NON-NLS-1$
+		AbstractCompareTest.rightElement = AbstractNestedCompareTest.root.getMember("Class3"); //$NON-NLS-1$
 	}
 
 	@Ignore("no sens for the tested example")
@@ -135,24 +135,22 @@ public class ModelElementChangeRightTarget_CopyReferenceTest_bug386052_RightToLe
 		saveFiles();
 	}
 
-
 	@Override
 	protected List<DiffElement> getDiffElementToMerge(DiffModel diff) {
 		final Iterator<EObject> iter = diff.eAllContents();
 		List<DiffElement> toMerge = null;
 		while(toMerge == null && iter.hasNext()) {
 			final EObject el = iter.next();
-			if(el instanceof ModelElementChangeRightTarget) {
-				final ModelElementChangeRightTarget current = (ModelElementChangeRightTarget)el;
-				final EObject currentRight = current.getRightElement();
-				final EObject leftParent = current.getLeftParent();
-				if(currentRight instanceof RedefinableTemplateSignature && leftParent == AbstractCompareTest.leftElement) {
+			if(el instanceof ModelElementChangeLeftTarget) {
+				final ModelElementChangeLeftTarget current = (ModelElementChangeLeftTarget)el;
+				final EObject currentLeft = current.getLeftElement();
+				final EObject rightParent = current.getRightParent();
+				if(currentLeft instanceof RedefinableTemplateSignature && rightParent == AbstractCompareTest.rightElement) {
 					toMerge = Collections.singletonList((DiffElement)el);
 				}
 			}
 		}
 		return toMerge;
 	}
-
 
 }

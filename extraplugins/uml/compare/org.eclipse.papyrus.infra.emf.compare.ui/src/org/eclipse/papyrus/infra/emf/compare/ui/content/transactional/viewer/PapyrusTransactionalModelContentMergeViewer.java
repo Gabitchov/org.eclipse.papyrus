@@ -174,7 +174,6 @@ public class PapyrusTransactionalModelContentMergeViewer extends PapyrusCustomiz
 			}
 		}
 
-		System.out.println(enabled);
 		if(_copyAllLeftToRight != null) {
 			_copyAllLeftToRight.setEnabled(rightEditable && enabled && canAllCopyLeftToRight);
 		}

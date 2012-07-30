@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.uml.compare.diff.services.standalone;
 
 import java.util.Iterator;
+import java.util.Map;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
@@ -25,22 +27,52 @@ import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.uml2.diff.UML2DiffEngine;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
+import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptionsUtils;
+import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusOptionsAdapter;
 import org.eclipse.papyrus.uml.compare.diff.internal.utils.UMLDiffElementExtensionBuilder;
 
 
-public class UMLStandaloneDiffEngine extends UML2DiffEngine{//GenericDiffEngine {
+public class UMLStandaloneDiffEngine extends UML2DiffEngine {//GenericDiffEngine {
 
 	private DiffSwitch<AbstractDiffExtension> extensionBuilder;
 
+	private Map<String, Object> options;
 
 	public UMLStandaloneDiffEngine() {
+		this(null);
+	}
+
+	public UMLStandaloneDiffEngine(final Map<String, Object> options) {
 		this.extensionBuilder = new UMLDiffElementExtensionBuilder();
+		this.options = options;
 	}
 
 	@Override
 	public DiffModel doDiff(MatchModel match, boolean threeWay) {
 		DiffModel result = super.doDiff(match, threeWay);
-		return papyrusPostProcess(result);
+		result = papyrusPostProcess(result);
+		addMergeOptions(result);
+		return result;
+	}
+
+	/**
+	 * Attach an adapter containing the merge options to each DiffElement
+	 * 
+	 * @param diffModel
+	 *        the diffModel
+	 */
+	private void addMergeOptions(final DiffModel diffModel) {
+		if(this.options != null) {
+			final Iterator<EObject> iter = diffModel.eAllContents();
+			while(iter.hasNext()) {
+				final EObject current = iter.next();
+				if(current instanceof DiffElement) {
+					final PapyrusOptionsAdapter adapter = new PapyrusOptionsAdapter(this.options);
+					current.eAdapters().add(adapter);
+				}
+			}
+		}
 	}
 
 	/**

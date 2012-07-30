@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
+import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMatchService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
@@ -77,8 +78,8 @@ public class UMLCompareEditor extends EMFCompareEditor {
 	 * @return
 	 */
 	@Override
-	protected DiffModel doDiff(final MatchModel match) {
-		return UMLDiffService.doDiff(match, false);
+	protected DiffModel doDiff(final MatchModel match, final Map<String, Object> options) {
+		return UMLDiffService.doDiff(match, false);//TOD0 : this service shold accept the options!
 	}
 
 
@@ -110,5 +111,16 @@ public class UMLCompareEditor extends EMFCompareEditor {
 		cc.setRightImage(prov.getImage(right));
 		cc.setProperty(RootObject.LEFT_OBJECT_KEY, rawModel.getLeft());
 		cc.setProperty(RootObject.RIGHT_OBJECT_KEY, rawModel.getRight());
+
+		//configure the merge options
+		final Map<String, Object> options = getCompareOptions(null, null, null);//we are looking for the merge options
+		final Boolean leftToRight = (Boolean)options.get(PapyrusCompareOptions.KEY_ALLOW_MERGE_LEFT_TO_RIGHT);
+		final Boolean rightToLeft = (Boolean)options.get(PapyrusCompareOptions.KEY_ALLOW_MERGE_RIGHT_TO_LEFT);
+		if(rightToLeft != null) {
+			cc.setLeftEditable(rightToLeft);
+		}
+		if(leftToRight != null) {
+			cc.setRightEditable(leftToRight);
+		}
 	};
 }

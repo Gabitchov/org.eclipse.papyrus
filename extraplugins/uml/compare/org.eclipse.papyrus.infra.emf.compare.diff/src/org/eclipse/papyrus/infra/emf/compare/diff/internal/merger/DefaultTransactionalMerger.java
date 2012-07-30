@@ -65,6 +65,8 @@ import org.eclipse.papyrus.infra.emf.compare.diff.internal.util.CopyWithReferenc
 import org.eclipse.papyrus.infra.emf.compare.diff.merge.ITransactionalMerger;
 import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeFactory;
 import org.eclipse.papyrus.infra.emf.compare.diff.service.TransactionalMergeService;
+import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptionsUtils;
+import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusOptionsAdapter;
 
 /**
  * 
@@ -76,18 +78,28 @@ public class DefaultTransactionalMerger extends AbstractDefaultMerger implements
 
 	//---------------------These methods comes from ITransactionalMerger
 	public Command getApplyInOriginCommand(TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff)); //$NON-NLS-1$
-		cmd.append(getMergeRequiredDifferencesCommand(domain, true));
-		cmd.append(getDoApplyInOriginCommand(domain));
-		cmd.append(getPostProcessCommand(domain));
+		final PapyrusOptionsAdapter adapter = PapyrusCompareOptionsUtils.getPapyrusOptionsAdapter(diff);
+		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Apply in Origin Command for {0}", this.diff)); //$NON-NLS-1$
+		if(adapter==null || adapter.canApplyInOrigin()) {
+			cmd.append(getMergeRequiredDifferencesCommand(domain, true));
+			cmd.append(getDoApplyInOriginCommand(domain));
+			cmd.append(getPostProcessCommand(domain));
+		} else {
+			cmd.append(UnexecutableCommand.INSTANCE);
+		}
 		return cmd;
 	}
 
 	public Command getUndoInTargetCommand(TransactionalEditingDomain domain) {
-		CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff)); //$NON-NLS-1$
-		cmd.append(getMergeRequiredDifferencesCommand(domain, false));
-		cmd.append(getDoUndoInTargetCommand(domain));
-		cmd.append(getPostProcessCommand(domain));
+		final PapyrusOptionsAdapter adapter = PapyrusCompareOptionsUtils.getPapyrusOptionsAdapter(diff);
+		final CompoundCommand cmd = new CompoundCommand(NLS.bind("Undo in Target Command for {0}", this.diff)); //$NON-NLS-1$
+		if(adapter == null || adapter.canUndoInTarget()) {
+			cmd.append(getMergeRequiredDifferencesCommand(domain, false));
+			cmd.append(getDoUndoInTargetCommand(domain));
+			cmd.append(getPostProcessCommand(domain));
+		} else {
+			cmd.append(UnexecutableCommand.INSTANCE);
+		}
 		return cmd;
 	}
 

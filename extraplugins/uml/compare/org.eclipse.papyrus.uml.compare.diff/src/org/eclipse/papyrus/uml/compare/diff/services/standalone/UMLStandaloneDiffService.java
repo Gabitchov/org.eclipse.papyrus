@@ -18,6 +18,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.engine.IDiffEngine;
@@ -58,8 +59,23 @@ public class UMLStandaloneDiffService {
 	 * @return the corresponding diff model
 	 */
 	public static DiffModel doDiff(MatchModel match, boolean threeWay) {
+		return doDiff(match, threeWay, null);
+	}
+
+	/**
+	 * Return a diffmodel created using the match model. This implementation is a generic and simple one.
+	 * 
+	 * @param match
+	 *        the matching model
+	 * @param threeWay
+	 *        <code>True</code> if we're computing a three way comparison, <code>False</code> otherwise.
+	 * @param options
+	 *        the options for the diff
+	 * @return the corresponding diff model
+	 */
+	public static DiffModel doDiff(MatchModel match, boolean threeWay, final Map<String, Object> options) {
 		//		final IDiffEngine engine = getBestDiffEngine(match);
-		final IDiffEngine engine = new UMLStandaloneDiffEngine(); //TODO verify that it is the correct diff engine for UML
+		final IDiffEngine engine = new UMLStandaloneDiffEngine(options); //TODO verify that it is the correct diff engine for UML
 		final DiffModel diff = engine.doDiff(match, threeWay);
 
 		final Collection<AbstractDiffExtension> extensions = DiffService.getCorrespondingDiffExtensions(match);
