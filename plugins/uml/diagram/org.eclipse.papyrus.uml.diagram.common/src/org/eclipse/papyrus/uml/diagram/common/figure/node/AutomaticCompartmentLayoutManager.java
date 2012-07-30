@@ -43,6 +43,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	protected boolean addExtraHeight = true;
 
+	/**
+	 * set the distance between compartments
+	 * @param addExtraHeight
+	 */
 	public void setAddExtraHeight(boolean addExtraHeight) {
 		this.addExtraHeight = addExtraHeight;
 	}
@@ -229,10 +233,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		compartmentList = new ArrayList<IFigure>();
 		notCompartmentList = new ArrayList<IFigure>();
 		for(int i = 0; i < container.getChildren().size(); i++) {
-			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))) {
+			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))||((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
 				compartmentList.add(((IFigure)container.getChildren().get(i)));
 			} else {
-				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel||((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
+				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel) {
 					notCompartmentList.add(((IFigure)container.getChildren().get(i)));
 				}
 			}
