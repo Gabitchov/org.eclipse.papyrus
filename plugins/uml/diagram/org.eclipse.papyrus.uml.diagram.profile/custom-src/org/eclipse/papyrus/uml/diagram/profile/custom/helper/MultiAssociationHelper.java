@@ -302,18 +302,23 @@ public class MultiAssociationHelper extends ElementHelper {
 		// ---------------------------------------------------------
 
 		// 1. initialization
-		ICommandProxy startcommand = ((ICommandProxy)createConnectionViewAndElementRequest.getStartCommand());
-		Iterator<?> ite = ((CompositeCommand)startcommand.getICommand()).iterator();
+		Command startCommand = createConnectionViewAndElementRequest.getStartCommand();
+		if(command instanceof ICommandProxy) {
+			ICommand startICommand = ((ICommandProxy)startCommand).getICommand();
+			if(startICommand instanceof CompositeCommand) {
+				Iterator<?> ite = ((CompositeCommand)startICommand).iterator();
 
-		while(ite.hasNext()) {
-			ICommand currentCommand = (ICommand)ite.next();
-			if(currentCommand instanceof SetConnectionBendpointsCommand) {
-				sourceLocation = ((SetConnectionBendpointsCommand)currentCommand).getSourceRefPoint();
-				targetLocation = ((SetConnectionBendpointsCommand)currentCommand).getTargetRefPoint();
+				while(ite.hasNext()) {
+					ICommand currentCommand = (ICommand)ite.next();
+					if(currentCommand instanceof SetConnectionBendpointsCommand) {
+						sourceLocation = ((SetConnectionBendpointsCommand)currentCommand).getSourceRefPoint();
+						targetLocation = ((SetConnectionBendpointsCommand)currentCommand).getTargetRefPoint();
+					}
+				}
 			}
 		}
 
-		if(targetEditPart != null) {
+		if(targetEditPart != null && sourceLocation != null && targetLocation != null) {
 			// the source or the target must be a association
 			// look for the edit part that represent the editpart
 			if(((View)sourceEditPart.getModel()).getElement() != null && ((View)sourceEditPart.getModel()).getElement() instanceof Association) {
