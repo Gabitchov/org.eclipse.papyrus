@@ -229,7 +229,7 @@ public class ConfigurationManager {
 
 			if(model instanceof Context) {
 				Context context = (Context)model;
-				addContext(context, isApplied(context), true);
+				addContext(context, findDescriptor(context).isApplied(), true);
 			}
 		} catch (IOException ex) {
 			//Silent : The file has been removed from the preferences, but the folder still exists
@@ -292,7 +292,7 @@ public class ConfigurationManager {
 			for(EObject rootObject : firstRootObject.eResource().getContents()) {
 				if(rootObject instanceof Context) {
 					Context context = (Context)rootObject;
-					addContext(context, isApplied(context), customizable);
+					addContext(context, findDescriptor(context).isApplied(), customizable);
 				}
 			}
 		}
