@@ -70,6 +70,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		// diagram preference page
 		DiagramGeneralPreferencePage.initDefaults(store);
+		
+		DestructionOccurrenceSpecificationPreferencePage.initDefaults(store);
 
 	}
 

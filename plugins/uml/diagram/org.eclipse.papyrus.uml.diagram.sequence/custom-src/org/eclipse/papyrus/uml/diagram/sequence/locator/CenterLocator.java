@@ -131,6 +131,19 @@ public class CenterLocator extends BorderItemLocator {
 		super.relocate(borderItem);
 
 	}
+	
+	public Rectangle getValidLocation(Rectangle proposedLocation,
+			IFigure borderItem) {
+		if(getDestructionEventFigure() != null) {
+			if(borderItem.equals(getDestructionEventFigure().getParent())) {
+				Rectangle realLocation = new Rectangle(proposedLocation);
+				Point point =  new Point(getParentBorder().getCenter().x - realLocation.getSize().width / 2, getParentBorder().y + getParentBorder().height  - realLocation.height);
+				realLocation.setLocation(point);
+				return realLocation;
+			}
+		}
+		return super.getValidLocation(proposedLocation, borderItem);
+	}
 
 	/**
 	 * Get the parent dotLine border

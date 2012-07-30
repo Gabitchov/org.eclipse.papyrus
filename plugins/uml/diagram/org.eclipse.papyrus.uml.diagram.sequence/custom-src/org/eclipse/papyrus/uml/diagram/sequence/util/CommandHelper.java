@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -34,18 +35,26 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
+import org.eclipse.gef.EditDomain;
+import org.eclipse.gef.Tool;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLPaletteFactory.AspectUnspecifiedTypeConnectionToolEx;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.Classifier;
@@ -321,6 +330,9 @@ public class CommandHelper {
 
 		Set<EObject> existingElements = getExistingElementsFromParents(mapTypesPossibleParents);
 
+		// fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383420, remove connection feedbacks before opening dialog
+		clearConnectionFeedback();
+		
 		// Open the selection dialog
 		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), EditorUtils.getTransactionalEditingDomain(), existingElements, mapTypesPossibleParents);
 
@@ -338,6 +350,24 @@ public class CommandHelper {
 		}
 
 		return null;
+	}
+	
+	private static void clearConnectionFeedback() {
+		AspectUnspecifiedTypeConnectionToolEx conTool = null;
+		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if(editor instanceof CoreMultiDiagramEditor) {
+			editor = ((CoreMultiDiagramEditor) editor).getActiveEditor();
+			if(editor instanceof DiagramEditor){
+				DiagramEditor de = (DiagramEditor)editor;
+				DiagramEditPart diagramEP = de.getDiagramEditPart();
+				EditDomain domain = diagramEP.getRoot().getViewer().getEditDomain();
+				Tool tool = domain.getActiveTool();
+				if(tool instanceof AspectUnspecifiedTypeConnectionToolEx){
+					conTool = (AspectUnspecifiedTypeConnectionToolEx)tool;
+					conTool.clearConnectionFeedback();
+				}
+			}				
+		}
 	}
 
 	/**
@@ -830,6 +860,9 @@ public class CommandHelper {
 			if (cfragmentGates.isEmpty()) {
 				gate = ((CombinedFragment) element).createCfragmentGate(null);
 			} else {
+				// remove connection feedbacks before opening dialog
+				clearConnectionFeedback();
+				
 				Shell shell = Display.getCurrent().getActiveShell();
 				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
 						UMLDiagramEditorPlugin.getInstance()
@@ -848,6 +881,8 @@ public class CommandHelper {
 				dialog.setElements(gates.toArray());
 				if (dialog.open() == Window.OK) {
 					gate = (Gate) dialog.getFirstResult();
+				}else{ // cancel button
+					throw new OperationCanceledException(); 
 				}
 			}
 		} else if(element instanceof InteractionUse) {

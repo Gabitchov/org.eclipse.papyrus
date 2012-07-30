@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.requests.SimpleFactory;
@@ -460,90 +461,90 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageSync1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4003);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageAsync2CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4004);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageReply3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4005);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageCreate4CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4006);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageDelete5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4007);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageLost6CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4008);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createMessageFound7CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Message_4009);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private Tool createGeneralOrdering8CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.GeneralOrdering_4012);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
@@ -554,7 +555,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
@@ -565,7 +566,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 	
@@ -613,4 +614,28 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 	
+	
+	public static class AspectUnspecifiedTypeConnectionToolEx extends AspectUnspecifiedTypeConnectionTool{
+		private EditPart source;
+		
+		public AspectUnspecifiedTypeConnectionToolEx(List<IElementType> elementTypes) {
+			super(elementTypes);
+		}
+
+		@Override
+		protected void setConnectionSource(EditPart source) {
+			this.source = source;
+			super.setConnectionSource(source);
+		}
+		
+		public void clearConnectionFeedback(){		
+			if (!isShowingSourceFeedback())
+				return;
+			if (source != null) {
+				Request req = getSourceRequest();
+				req.setType(REQ_CONNECTION_END);
+				source.eraseSourceFeedback(req);
+			}
+		}
+	}
 }

@@ -8,6 +8,9 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -131,6 +134,26 @@ AbstractBorderItemEditPart {
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
+	}
+	
+	protected void refreshBounds() {
+		if (getBorderItemLocator() != null) {
+			int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
+				.getLocation_X())).intValue();
+			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
+				.getLocation_Y())).intValue();
+			Point loc = new Point(x, y);
+			
+			int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			Dimension size = new Dimension(width, height);
+
+			if(width != -1 && height != -1)
+			    getFigure().setBounds(new Rectangle(loc, size)); 
+			getBorderItemLocator().setConstraint(new Rectangle(	loc, size));
+		} else {
+			super.refreshBounds();
+		}
 	}
 
 	/**
@@ -996,5 +1019,5 @@ AbstractBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
+	}	
 }

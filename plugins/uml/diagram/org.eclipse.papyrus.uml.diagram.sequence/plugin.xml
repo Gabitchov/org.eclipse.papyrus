@@ -1103,9 +1103,9 @@
        id="createDestructionEvent16CreationTool"
        kind="tool"
        label="Destruction Event"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
        path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif">
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
  	</entry>
 	<entry
        defineOnly="true"
