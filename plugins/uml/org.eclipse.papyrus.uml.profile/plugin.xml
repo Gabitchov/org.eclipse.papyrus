@@ -3,16 +3,22 @@
 <plugin>
    <extension
          point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.papyrus.uml.profile.profilestructure"
+            mandatory="true"
+            name="Structuration of the profile"><![CDATA[Validate the UML profile]]>
+      </category>
       <constraintProvider
-            cache="true">
+            cache="false">
          <package
                namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML">
          </package>
          <constraints
-               categories="org.eclipse.papyrus.infra.services.validation.CategoryID/UMLProfile">
+               categories="org.eclipse.papyrus.uml.profile.profilestructure">
             <constraint
                   class="org.eclipse.papyrus.uml.profile.constraints.PropertyHasNameConstraint"
                   id="com.cea.papyrus.profile.constraints.PropertyHasNameConstraintID"
+                  isEnabledByDefault="true"
                   lang="Java"
                   mode="Batch"
                   name="%property_has_name.name"
@@ -25,7 +31,7 @@
                   %property_has_name.desc
                </description>
                <target
-                     class="Property">
+                     class="uml.Property">
                </target>
             </constraint>
             <constraint
@@ -43,7 +49,7 @@
                   %property_has_unique_name.desc
                </description>
                <target
-                     class="Property">
+                     class="uml.Property">
                </target>
             </constraint>
             <constraint
@@ -61,7 +67,7 @@
                   %property_has_type.desc
                </description>
                <target
-                     class="Property">
+                     class="uml.Property">
                </target>
             </constraint>
             <constraint
@@ -70,7 +76,7 @@
                   lang="Java"
                   mode="Batch"
                   name="%property_has_default.name"
-                  severity="ERROR"
+                  severity="WARNING"
                   statusCode="0">
                <message>
                   %property_has_default.msg
@@ -79,7 +85,7 @@
                   %property_has_default.desc
                </description>
                <target
-                     class="Property">
+                     class="uml.Property">
                </target>
             </constraint>
             <constraint
@@ -97,7 +103,7 @@
                   %property_multiplicity_lower.desc
                </description>
                <target
-                     class="Property">
+                     class="uml.Property">
                </target>
             </constraint>            
          </constraints>
@@ -109,6 +115,21 @@
             classname="org.eclipse.papyrus.uml.profile.model.ProfileApplicationModel"
             description="Automatically reapplies local profiles when they&apos;ve been redefined">
       </modelSetSnippet>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="org.eclipse.papyrus.uml.profile.clientContext">
+         <selector
+               class="org.eclipse.papyrus.uml.profile.constraints.ClientSelector">
+         </selector>
+      </clientContext>
+      <binding
+            context="org.eclipse.papyrus.uml.profile.clientContext">
+         <category
+               ref="org.eclipse.papyrus.uml.profile.profilestructure">
+         </category>
+      </binding>
    </extension>
 
 </plugin>
