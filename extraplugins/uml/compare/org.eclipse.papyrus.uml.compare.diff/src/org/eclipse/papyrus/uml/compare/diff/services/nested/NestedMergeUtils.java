@@ -29,7 +29,9 @@ public class NestedMergeUtils {
 		options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
 		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
-		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left, right));
+		if(left!=null && right!=null){
+			options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left, right));
+		}
 		return options;
 	}
 }

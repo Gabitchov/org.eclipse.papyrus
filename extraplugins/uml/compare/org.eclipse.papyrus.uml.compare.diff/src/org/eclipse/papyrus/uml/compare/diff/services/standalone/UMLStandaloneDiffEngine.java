@@ -16,7 +16,8 @@ package org.eclipse.papyrus.uml.compare.diff.services.standalone;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.compare.diff.engine.check.AttributesCheck;
+import org.eclipse.emf.compare.diff.engine.check.ReferencesCheck;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
@@ -24,20 +25,25 @@ import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
+import org.eclipse.emf.compare.match.metamodel.Match2Elements;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.uml2.diff.UML2DiffEngine;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
-import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptionsUtils;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.compare.diff.check.FeaturesCheck;
+import org.eclipse.papyrus.infra.emf.compare.diff.check.PapyrusAttributesCheck;
 import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusOptionsAdapter;
+import org.eclipse.papyrus.uml.compare.diff.check.PapyrusUML2ReferencesCheck;
 import org.eclipse.papyrus.uml.compare.diff.internal.utils.UMLDiffElementExtensionBuilder;
-
 
 public class UMLStandaloneDiffEngine extends UML2DiffEngine {//GenericDiffEngine {
 
 	private DiffSwitch<AbstractDiffExtension> extensionBuilder;
 
 	private Map<String, Object> options;
+
+	protected FeaturesCheck featuresCheck;
 
 	public UMLStandaloneDiffEngine() {
 		this(null);
@@ -48,6 +54,32 @@ public class UMLStandaloneDiffEngine extends UML2DiffEngine {//GenericDiffEngine
 		this.options = options;
 	}
 
+	/**
+	 * This will check if the elements matched by a given {@link Match2Elements} have been moved.
+	 * 
+	 * @param root
+	 *        {@link DiffGroup root} of the {@link DiffElement} to create if the elements have actually
+	 *        been moved.
+	 * @param matchElement
+	 *        This contains the mapping information about the elements we need to check for a move.
+	 */
+	protected void checkMoves(DiffGroup root, Match2Elements matchElement) {
+		final EObject left = matchElement.getLeftElement();
+		final EObject right = matchElement.getRightElement();
+
+		if(left instanceof EGenericType || right instanceof EGenericType)
+			return;
+		if(left.eContainer() != null && right.eContainer() != null && getMatchManager().getMatchedEObject(left.eContainer()) != right.eContainer()) {
+			final EStructuralFeature leftFeature = left.eContainingFeature();
+			if(this.featuresCheck == null) {
+				this.featuresCheck = new FeaturesCheck(getMatchManager(), options);
+			}
+			if(!this.featuresCheck.shouldBeIgnored(leftFeature) && !this.featuresCheck.shouldBeIgnored(leftFeature, left)) {
+				super.checkMoves(root, matchElement);
+			}
+		}
+	}
+
 	@Override
 	public DiffModel doDiff(MatchModel match, boolean threeWay) {
 		DiffModel result = super.doDiff(match, threeWay);
@@ -55,6 +87,7 @@ public class UMLStandaloneDiffEngine extends UML2DiffEngine {//GenericDiffEngine
 		addMergeOptions(result);
 		return result;
 	}
+
 
 	/**
 	 * Attach an adapter containing the merge options to each DiffElement
@@ -117,5 +150,21 @@ public class UMLStandaloneDiffEngine extends UML2DiffEngine {//GenericDiffEngine
 		DiffGroup parent = (DiffGroup)oldElement.eContainer();
 		parent.getSubDiffElements().add((DiffElement)newElement);
 		((AbstractDiffExtension)newElement).getHideElements().add(oldElement);
+	}
+
+	@Override
+	protected AttributesCheck getAttributesChecker() {
+		if(this.featuresCheck == null) {
+			this.featuresCheck = new FeaturesCheck(getMatchManager(), this.options);
+		}
+		return new PapyrusAttributesCheck(getMatchManager(), this.featuresCheck);
+	}
+
+	@Override
+	protected ReferencesCheck getReferencesChecker() {
+		if(this.featuresCheck == null) {
+			this.featuresCheck = new FeaturesCheck(getMatchManager(), this.options);
+		}
+		return new PapyrusUML2ReferencesCheck(getMatchManager(), this.featuresCheck);
 	}
 }
