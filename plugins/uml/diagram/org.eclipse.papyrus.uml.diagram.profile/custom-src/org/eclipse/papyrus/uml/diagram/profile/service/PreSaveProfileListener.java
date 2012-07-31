@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.profile.service;
 
 import java.util.Collection;
@@ -71,8 +70,6 @@ public class PreSaveProfileListener implements ISaveEventListener {
 	 */
 	public void doSave(DoSaveEvent event) {
 		Diagram diag = null;
-
-
 		try {
 			//System.out.println("preSave Event received"); //$NON-NLS-1$
 			/**
@@ -82,28 +79,22 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			IMultiDiagramEditor multidiag = event.getMultiDiagramEditor();
 			if(multidiag instanceof PapyrusMultiDiagramEditor) {
 				diag = ((PapyrusMultiDiagramEditor)multidiag).getDiagram();
-
 				if(diag == null || diag.getElement() == null || (!(diag.getElement() instanceof Profile))) {
 					return;
 				}
 			}
-
 			/**
 			 * Does the user want define the profile?
 			 */
 			String DEFINE_MSG = "In order to apply this profile, it had to be defined.\nWould you like to define it?"; //$NON-NLS-1$
 			String PAPYRUS_QUESTION = "Papyrus question"; //$NON-NLS-1$
-
 			boolean result = MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), PAPYRUS_QUESTION, DEFINE_MSG);
 			if(!result) {
 				return;
 			}
-
-
 			Collection<EditPart> editPartSet = null;
 			DiagramEditPart diagramEditPart = null;
 			Profile rootProfile = null;
-
 			/**
 			 * Obtain the root profile
 			 */
@@ -111,7 +102,6 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			Object diagramView = diag1.getAdapter(IDiagramGraphicalViewer.class);
 			if(diagramView instanceof DiagramGraphicalViewer) {
 				editPartSet = ((DiagramGraphicalViewer)diagramView).getEditPartRegistry().values();
-
 			}
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 			while(editPartIterator.hasNext()) {
@@ -119,10 +109,7 @@ public class PreSaveProfileListener implements ISaveEventListener {
 				if(diagramEditPart != null)
 					break;
 			}
-
 			EObject profileEObject = ((Diagram)diagramEditPart.getModel()).getElement();
-
-
 			if(profileEObject instanceof Profile) {
 				rootProfile = (Profile)profileEObject;
 			}
@@ -131,54 +118,39 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			ProfileDefinitionDialog dialog = new ProfileDefinitionDialog(new Shell(), rootProfile);
 			dialog.open();
 			if(dialog.getReturnCode() == dialog.OK) {
-
-
-
 				PapyrusDefinitionAnnotation papyrusAnnotation = dialog.getPapyrusDefinitionAnnotation();
 				TransactionalEditingDomain domain = diagramEditPart.getEditingDomain();
-
-
 				//evaluate contraint of profiles
-				AdapterFactory adapterFactory = 
-					domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
-					Diagnostician diagnostician = createDiagnostician(adapterFactory, new NullProgressMonitor());
-
-					BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(rootProfile);
-					Map<Object, Object> context = diagnostician.createDefaultContext();
-
-					boolean  isValid=diagnostician.validate(rootProfile, diagnostic, context);
-
-					if( isValid){
-
-						DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, diagramEditPart.getViewer());
-						try {
-							diagramEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(cmd));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+				AdapterFactory adapterFactory = domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
+				Diagnostician diagnostician = createDiagnostician(adapterFactory, new NullProgressMonitor());
+				BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(rootProfile);
+				Map<Object, Object> context = diagnostician.createDefaultContext();
+				boolean isValid = diagnostician.validate(rootProfile, diagnostic, context);
+				if(isValid) {
+					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, diagramEditPart.getViewer());
+					try {
+						diagramEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(cmd));
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					else{
-						handleDiagnostic(diagnostic, rootProfile);
-						 MessageDialog.openError(new Shell(), "Profile not Valid", "the profile cannot be defined because it is invalid");
-					}
-
+				} else {
+					handleDiagnostic(diagnostic, rootProfile);
+					MessageDialog.openError(new Shell(), "Profile not Valid", "the profile cannot be defined because it is invalid");
+				}
 			}
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor)
-	{
+	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
 		return new Diagnostician() {
+
 			@Override
 			public String getObjectLabel(EObject eObject) {
-				if (adapterFactory != null && !eObject.eIsProxy())
-				{
+				if(adapterFactory != null && !eObject.eIsProxy()) {
 					IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
-					if (itemLabelProvider != null) {
+					if(itemLabelProvider != null) {
 						return itemLabelProvider.getText(eObject);
 					}
 				}
@@ -193,22 +165,21 @@ public class PreSaveProfileListener implements ISaveEventListener {
 		};
 	}
 
-	protected void handleDiagnostic(Diagnostic diagnostic, Profile profil){
-	    // Do not show a dialog, as in the original version since the user sees the result directly
+	protected void handleDiagnostic(Diagnostic diagnostic, Profile profil) {
+		// Do not show a dialog, as in the original version since the user sees the result directly
 		// in the model explorer
 		Resource resource = profil.eResource();
-		if (resource != null) {
-			if (profil != null) {
+		if(resource != null) {
+			if(profil != null) {
 				ValidationTool vt = new ValidationTool(profil);
 				vt.deleteSubMarkers();
 			}
-			
 			// IPath path = new Path(resource.getURI().toPlatformString (false));
 			// IWorkspaceRoot wsRoot = ResourcesPlugin.getWorkspace().getRoot();
 			// IFile file = wsRoot.getFile(path);
 			// eclipseResourcesUtil.deleteMarkers (file);
-			EclipseResourcesUtil eclipseResourcesUtil=new EclipseResourcesUtil();
-			for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+			EclipseResourcesUtil eclipseResourcesUtil = new EclipseResourcesUtil();
+			for(Diagnostic childDiagnostic : diagnostic.getChildren()) {
 				eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
 				// createMarkersOnDi (file, childDiagnostic);
 			}
@@ -226,8 +197,5 @@ public class PreSaveProfileListener implements ISaveEventListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
-
 }
