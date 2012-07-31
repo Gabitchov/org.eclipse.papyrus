@@ -46,6 +46,9 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditP
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
@@ -165,6 +168,9 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 
 		if(editPart instanceof ConnectorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		if(editPart instanceof NamedElementEditPart ){
+			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 		}
 
 	}
