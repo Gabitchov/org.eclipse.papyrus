@@ -25,9 +25,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AbstractNestedClassifierListenerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.InterfaceNestedClassifierListenerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.NestedClazzCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InterfaceNestedClassifierCompartmentItemSemanticEditPolicy;
@@ -67,7 +65,10 @@ public class InterfaceNestedClassifierCompartmentEditPart extends ResizeableList
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * 
+	 * The NestedClassifierListenerEditPolicy has been manually removed.
+	 * Bug 386296: [Class Diagram] Containment links (Nested classifiers) do no work
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -81,7 +82,7 @@ public class InterfaceNestedClassifierCompartmentEditPart extends ResizeableList
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new NestedClazzCompartmentCreationEditPolicy());
-		installEditPolicy(AbstractNestedClassifierListenerEditPolicy.EDIT_POLICY_ID, new InterfaceNestedClassifierListenerEditPolicy());
+		//installEditPolicy(AbstractNestedClassifierListenerEditPolicy.EDIT_POLICY_ID, new InterfaceNestedClassifierListenerEditPolicy());
 	}
 
 	/**
