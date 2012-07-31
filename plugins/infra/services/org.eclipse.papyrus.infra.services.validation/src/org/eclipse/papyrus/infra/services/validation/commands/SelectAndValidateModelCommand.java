@@ -23,13 +23,37 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.preference.PreferenceDialog;
+import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
-
+/**
+ * this command is used to open the list of constraint to compute on the root model
+ *
+ */
 public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param selectedElement
+	 */
 	public SelectAndValidateModelCommand(EObject selectedElement) {
-		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+		super("Validate subtree", TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement));
+	}
+	
+	/**
+	 * get the root element
+	 * @param selectedElement
+	 * @return the root element
+	 */
+	private static EObject getTopOwner(EObject selectedElement){
+		EObject selectedObject = selectedElement;
+		while(selectedObject.eContainer() != null) {
+			selectedObject = selectedObject.eContainer();
+		}
+		return selectedObject;
+		
 	}
 
 	/**
@@ -48,16 +72,11 @@ public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 		int result = dialog.open();
 
 		if(result == IDialogConstants.OK_ID) {
-			EObject selectedObject = selectedElement;
-			// replace selection by model instead of current selection
-			while(selectedObject.eContainer() != null) {
-				selectedObject = selectedObject.eContainer();
+			if( selectedElement!=null){
+				ValidationTool vt = new ValidationTool(selectedElement);
+				vt.deleteSubMarkers();
+				runValidation(selectedElement);
 			}
-			Resource resource = getResource();
-			if ((resource != null) && (eclipseResourcesUtil != null)) {
-				eclipseResourcesUtil.deleteMarkers(getResource());
-			}
-			runValidation(selectedObject);
 		}
 		return null;
 	}
