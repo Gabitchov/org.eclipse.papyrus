@@ -133,7 +133,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		}
 
 		if(importedModels.size() > 0) {
-			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels);
+			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels,true);
 
 			profileDialog.open();
 			ArrayList<Profile> profilesToApply = profileDialog.getResult();
