@@ -65,6 +65,9 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.InterfaceRealizationEdit
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
 
@@ -251,6 +254,9 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 
 		if(editPart instanceof InterfaceRealizationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		}
+		if(editPart instanceof NamedElementEditPart ){
+			editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
 		}
 		
 	}
