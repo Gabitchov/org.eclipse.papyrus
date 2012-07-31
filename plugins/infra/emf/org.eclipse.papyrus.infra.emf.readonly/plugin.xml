@@ -90,7 +90,7 @@
 <extension
       point="org.eclipse.papyrus.infra.core.transactionalEditingDomainProvider">
    <transactionalEditingDomainProvider
-         class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTransactionalEditingDomainProvider"
+         class="org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomainProvider"
          priority="10">
    </transactionalEditingDomainProvider>
 </extension>
@@ -107,7 +107,7 @@
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.commands.operationApprover">
    <operationApprover
-         class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyOneFileApprover"
+         class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyOneFileApprover"
          priority="10">
    </operationApprover>
 </extension>

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
@@ -31,7 +32,7 @@ public class EnableWriteHandler extends AbstractHandler {
 			IPapyrusFile papFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
 			IFile[] associatedFiles = OneFileUtils.getAssociatedFiles(papFile);
 
-			ReadOnlyManager.enableWrite(associatedFiles);
+			ReadOnlyManager.enableWrite(associatedFiles, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs));
 
 			for(IFile associatedFile : associatedFiles) {
 				URI associatedUri = URI.createPlatformResourceURI(associatedFile.getFullPath().toString(), true);

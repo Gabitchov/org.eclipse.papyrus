@@ -315,7 +315,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createAsyncPopup(String text) {
-		return new NotificationBuilder().setAsynchronous(true).setBuilderClass(AsyncNotifierBuilder.class).setTemporary(true).setMessage(text);
+		return new NotificationBuilder().setAsynchronous(true).setTemporary(true).setMessage(text).setDelay(2000);
 	}
 
 	/**
@@ -328,7 +328,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createAsyncPopup(String title, String text) {
-		return new NotificationBuilder().setAsynchronous(true).setBuilderClass(AsyncNotifierBuilder.class).setTemporary(true).setMessage(text).setTitle(title);
+		return new NotificationBuilder().setAsynchronous(true).setTemporary(true).setMessage(text).setTitle(title).setDelay(2000);
 	}
 
 	/**
@@ -339,7 +339,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createInfoPopup(String text) {
-		return new NotificationBuilder().setAsynchronous(false).setBuilderClass(PopupBuilder.class).setTemporary(false).setMessage(text).setType(Type.INFO);
+		return new NotificationBuilder().setAsynchronous(false).setTemporary(false).setMessage(text).setType(Type.INFO);
 	}
 
 	/**
@@ -350,7 +350,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createWarningPopup(String text) {
-		return new NotificationBuilder().setAsynchronous(false).setBuilderClass(PopupBuilder.class).setTemporary(false).setMessage(text).setType(Type.WARNING);
+		return new NotificationBuilder().setAsynchronous(false).setTemporary(false).setMessage(text).setType(Type.WARNING);
 	}
 
 	/**
@@ -361,7 +361,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createQuestionPopup(String text) {
-		return new NotificationBuilder().setAsynchronous(false).setBuilderClass(PopupBuilder.class).setTemporary(false).setMessage(text).setType(Type.QUESTION);
+		return new NotificationBuilder().setAsynchronous(false).setTemporary(false).setMessage(text).setType(Type.QUESTION);
 	}
 
 	/**
@@ -372,7 +372,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createErrorPopup(String text) {
-		return new NotificationBuilder().setAsynchronous(false).setBuilderClass(PopupBuilder.class).setTemporary(false).setMessage(text).setType(Type.ERROR);
+		return new NotificationBuilder().setAsynchronous(false).setTemporary(false).setMessage(text).setType(Type.ERROR);
 	}
 
 	/**
@@ -385,7 +385,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createYesNo(String message, final Runnable yes, final Runnable no) {
-		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
+		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(false).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
 
 			public void run(IContext context) {
 				if(yes != null) {
@@ -454,7 +454,7 @@ public class NotificationBuilder {
 	 * @return a notification builder
 	 */
 	public static NotificationBuilder createYesNo(String message, final NotificationRunnable yes, final NotificationRunnable no) {
-		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
+		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(false).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
 
 			public void run(IContext context) {
 				if(yes != null) {
