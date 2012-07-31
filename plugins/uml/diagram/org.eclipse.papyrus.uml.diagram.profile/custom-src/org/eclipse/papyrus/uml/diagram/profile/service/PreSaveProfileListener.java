@@ -124,9 +124,11 @@ public class PreSaveProfileListener implements ISaveEventListener {
 				AdapterFactory adapterFactory = domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain)domain).getAdapterFactory() : null;
 				Diagnostician diagnostician = createDiagnostician(adapterFactory, new NullProgressMonitor());
 				BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(rootProfile);
+				diagnostic.getSeverity();
 				Map<Object, Object> context = diagnostician.createDefaultContext();
 				boolean isValid = diagnostician.validate(rootProfile, diagnostic, context);
-				if(isValid) {
+				int severity=diagnostic.getSeverity();
+				if(severity!=Diagnostic.ERROR) {
 					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, diagramEditPart.getViewer());
 					try {
 						diagramEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(cmd));
