@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
  * This checker allow to know if differences on a feature should be ignored or not
  * 
  */
-public class FeaturesCheck extends AbstractCheck implements IFeaturesCheck{
+public class FeaturesCheck extends AbstractCheck implements IFeaturesCheck {
 
 	/**
 	 * The list of the features that should be ignored in the whole diff
@@ -85,16 +85,21 @@ public class FeaturesCheck extends AbstractCheck implements IFeaturesCheck{
 	}
 
 	/**
-	 * This method allows to know if a feature should be ignored in specific case (depends on the eobject)
+	 * This method begins by testing the feature must ALWAYS be ignored using shouldBeIgnored(feature).
+	 * If not, we verify is the feature should be ignored in some case, depending on its context
+	 * 
 	 * 
 	 * @param feature
-	 * @param eobject
+	 * @param context
 	 * @return
 	 */
-	public boolean shouldBeIgnored(final EStructuralFeature feature, final EObject eobject) {
+	public boolean shouldBeIgnored(final EStructuralFeature feature, final EObject context) {
+		if(shouldBeIgnored(feature)) {
+			return true;
+		}
 		final List<EObject> values = this.ignoreSomeCase.get(feature);
 		if(values != null) {
-			return values.contains(eobject);
+			return values.contains(context);
 		}
 		return false;
 	}
