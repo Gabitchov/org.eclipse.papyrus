@@ -82,6 +82,9 @@ public class AppliedStereotypePropertyEditorUtil {
 		  if(("Integer".equals(property.getType().getName()))){
 			  return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
 		  }
+		  if(("Boolean".equals(property.getType().getName()))){
+			 return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
+		  }
 
 		return result;
 	}
