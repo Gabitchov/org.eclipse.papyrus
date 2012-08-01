@@ -96,11 +96,11 @@ public class UMLCompareEditor extends EMFCompareEditor {
 		ILabelProvider prov = getLabelProvider();
 		String leftQName = null;
 		String rightQName = null;
-		EObject left = this.rawModel.getLeft();
+		final EObject left = this.rawModel.getLeft();
 		if(left instanceof NamedElement) {
 			leftQName = ((NamedElement)left).getQualifiedName();
 		}
-		EObject right = this.rawModel.getRight();
+		final EObject right = this.rawModel.getRight();
 		if(right instanceof NamedElement) {
 			rightQName = ((NamedElement)right).getQualifiedName();
 		}
@@ -113,7 +113,7 @@ public class UMLCompareEditor extends EMFCompareEditor {
 		cc.setProperty(RootObject.RIGHT_OBJECT_KEY, rawModel.getRight());
 
 		//configure the merge options
-		final Map<String, Object> options = getCompareOptions(null, null, null);//we are looking for the merge options
+		final Map<String, Object> options = getCompareOptions(null, left, right);//we are looking for the merge options
 		final Boolean leftToRight = (Boolean)options.get(PapyrusCompareOptions.KEY_ALLOW_MERGE_LEFT_TO_RIGHT);
 		final Boolean rightToLeft = (Boolean)options.get(PapyrusCompareOptions.KEY_ALLOW_MERGE_RIGHT_TO_LEFT);
 		if(rightToLeft != null) {
