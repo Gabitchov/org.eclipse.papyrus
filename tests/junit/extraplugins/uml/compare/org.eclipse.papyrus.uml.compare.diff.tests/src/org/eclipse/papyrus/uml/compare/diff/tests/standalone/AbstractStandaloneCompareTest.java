@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.compare.diff.tests.standalone;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -33,8 +34,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.Activator;
@@ -81,12 +82,14 @@ public abstract class AbstractStandaloneCompareTest extends AbstractCompareTest 
 		//TODO use the future Papyrus MatchService
 		//		final MatchModel match = MatchService.doMatch(null, leftElement, rightElement, StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement));
 		IMatchEngine engine = new UMLStandaloneMatchEngine();
-		final MatchModel match = engine.resourceMatch(leftElement.eResource(), rightElement.eResource(), StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement));
+		
+		Map<String, Object> options = StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement);
+		final MatchModel match = engine.resourceMatch(leftElement.eResource(), rightElement.eResource(), options );
 
 		//TODO use standalone version
 		// Computing differences
 		//	final DiffModel diff = DiffService.doDiff(match, false);
-		final DiffModel diff = UMLStandaloneDiffService.doDiff(match, false);
+		final DiffModel diff = UMLDiffService.doDiff(match, false, options);
 		return diff;
 	}
 

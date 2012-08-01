@@ -46,7 +46,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
@@ -57,9 +56,8 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
+import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
 import org.eclipse.papyrus.uml.compare.file.Activator;
 import org.eclipse.papyrus.uml.compare.file.editor.utils.ServicesRegistryUtils;
@@ -71,10 +69,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.common.util.UML2Util;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.emf.compare.uml2.match.UML2MatchEngine;
 
 //import org.eclipse.uml2.uml.utils.UMLUtil;
 
@@ -342,7 +338,7 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 
 	@Override
 	protected DiffModel doDiff(final MatchModel match, final Map<String, Object> options) {
-		return UMLStandaloneDiffService.doDiff(match, false, options);
+		return UMLDiffService.doDiff(match, false, options);
 	}
 
 	/**
@@ -350,7 +346,7 @@ public class CompareUMLFileEditor extends /* EMFCompareEditor */AbstractPapyrusC
 	 * @param left
 	 * @param right
 	 * @param options
-	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor#doMatch(Monitor, org.eclipse.emf.ecore.EObject,
+	 * @see org.eclipse.papyrus.infra.emf.compare.common.editor.AbstractPapyrusCompareEditor#doMatch(IProgressMonitor, org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject, java.util.Map)
 	 * 
 	 * @return

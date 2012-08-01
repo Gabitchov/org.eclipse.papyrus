@@ -28,9 +28,9 @@ import org.eclipse.papyrus.infra.emf.compare.common.editor.EMFCompareEditor;
 import org.eclipse.papyrus.infra.emf.compare.common.utils.PapyrusModelCompareEditorInput;
 import org.eclipse.papyrus.infra.emf.compare.diff.utils.PapyrusCompareOptions;
 import org.eclipse.papyrus.infra.emf.compare.instance.papyrusemfcompareinstance.PapyrusEMFCompareInstance;
+import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMatchService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.utils.RootObject;
 import org.eclipse.papyrus.uml.compare.utils.UMLModelCompareEditorInput;
 import org.eclipse.uml2.uml.NamedElement;
@@ -79,7 +79,7 @@ public class UMLCompareEditor extends EMFCompareEditor {
 	 */
 	@Override
 	protected DiffModel doDiff(final MatchModel match, final Map<String, Object> options) {
-		return UMLDiffService.doDiff(match, false);//TOD0 : this service shold accept the options!
+		return UMLDiffService.doDiff(match, false, options);
 	}
 
 

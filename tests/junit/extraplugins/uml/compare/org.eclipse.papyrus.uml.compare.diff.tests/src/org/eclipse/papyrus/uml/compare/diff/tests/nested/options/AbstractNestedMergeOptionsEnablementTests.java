@@ -30,9 +30,9 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMatchService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractSimpleCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.Activator;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.options.AbstractMergeOptionsEnablementTests;
@@ -71,7 +71,7 @@ public class AbstractNestedMergeOptionsEnablementTests extends AbstractMergeOpti
 		// Matching model elements
 		final MatchModel match = NestedMatchService.doContentMatch(leftElement, rightElement, options);
 		// Computing differences
-		final DiffModel diff = UMLDiffService.doDiff(match, false);
+		final DiffModel diff = UMLDiffService.doDiff(match, false, options);
 		snapshot.setMatch(match);
 		snapshot.setDiff(diff);
 		return diff;

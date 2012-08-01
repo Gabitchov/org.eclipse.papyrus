@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.compare.diff.tests.uml.standalone;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -29,8 +30,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.StandaloneMergeUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.standalone.UMLStandaloneMatchEngine;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.standalone.AbstractStandaloneCompareTest;
@@ -81,12 +82,14 @@ public abstract class AbstractUMLStandaloneCompareTest extends AbstractCompareTe
 
 		//TODO : use the future Papyrus MatchService
 		IMatchEngine engine = new UMLStandaloneMatchEngine();
-		final MatchModel match = engine.resourceMatch(leftElement.eResource(), rightElement.eResource(), StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement));
+		
+		final Map<String, Object> options = StandaloneMergeUtils.getMergeOptions(null, leftElement, rightElement);
+		final MatchModel match = engine.resourceMatch(leftElement.eResource(), rightElement.eResource(), options );
 
 		//TODO use standalone version
 		// Computing differences
 		//	final DiffModel diff = DiffService.doDiff(match, false);
-		final DiffModel diff = UMLStandaloneDiffService.doDiff(match, false);
+		final DiffModel diff = UMLDiffService.doDiff(match, false, options);
 		return diff;
 		//		final DiffModel diff = UMLDiffService.doDiff(match, false);
 		//		return diff;

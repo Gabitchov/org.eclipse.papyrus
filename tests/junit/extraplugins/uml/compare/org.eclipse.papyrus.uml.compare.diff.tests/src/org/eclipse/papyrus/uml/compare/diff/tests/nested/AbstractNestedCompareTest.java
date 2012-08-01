@@ -14,33 +14,27 @@
 package org.eclipse.papyrus.uml.compare.diff.tests.nested;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.compare.EMFCompareException;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
-import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
+import org.eclipse.papyrus.uml.compare.diff.services.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMatchService;
 import org.eclipse.papyrus.uml.compare.diff.services.nested.NestedMergeUtils;
-import org.eclipse.papyrus.uml.compare.diff.services.nested.UMLDiffService;
 import org.eclipse.papyrus.uml.compare.diff.tests.AbstractCompareTest;
 import org.eclipse.papyrus.uml.compare.diff.tests.Activator;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 
 ;
@@ -93,7 +87,7 @@ public abstract class AbstractNestedCompareTest extends AbstractCompareTest {
 		// Matching model elements
 		final MatchModel match = NestedMatchService.doContentMatch(leftRoot, rightRoot, options);
 		// Computing differences
-		final DiffModel diff = UMLDiffService.doDiff(match, false);
+		final DiffModel diff = UMLDiffService.doDiff(match, false, options);
 		snapshot.setMatch(match);
 		snapshot.setDiff(diff);
 		return diff;

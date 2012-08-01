@@ -65,21 +65,21 @@ public abstract class AbstractNestedStereotypeApplicationAdditionTest_1 extends 
 
 	public void testLastDiffElements(List<DiffElement> diffElements) {
 		Assert.assertTrue(NLS.bind("The number of DiffElement is not correct : we would like {0} DiffElement, and we found {1}", new Object[]{ 2, diffElements.size() }), diffElements.size() == 2);
-		DiffElement firstDiffElement = diffElements.get(0);
-		final DiffElement secondDiffElement = diffElements.get(1);
-		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", ModelElementChangeLeftTarget.class), secondDiffElement instanceof ModelElementChangeLeftTarget);
+		final DiffElement firstDiffElement = diffElements.get(0);
+		DiffElement secondDiffElement = diffElements.get(1);
+		Assert.assertTrue(NLS.bind("The first DiffElement is not a {0}", ModelElementChangeLeftTarget.class), firstDiffElement instanceof ModelElementChangeLeftTarget);
 
-		Assert.assertTrue(firstDiffElement instanceof DiffGroup);
-		Assert.assertTrue(firstDiffElement.getSubDiffElements().size() == 1);
-		firstDiffElement = firstDiffElement.getSubDiffElements().get(0);
-		Assert.assertTrue(firstDiffElement instanceof DiffGroup);
-		Assert.assertTrue(firstDiffElement.getSubDiffElements().size() == 1);
-		firstDiffElement = firstDiffElement.getSubDiffElements().get(0);
-		Assert.assertTrue(NLS.bind("The second DiffElement is not a {0}", UMLStereotypeApplicationAddition.class), firstDiffElement instanceof UMLStereotypeApplicationAddition);
+		Assert.assertTrue(secondDiffElement instanceof DiffGroup);
+		Assert.assertTrue(secondDiffElement.getSubDiffElements().size() == 1);
+		secondDiffElement = secondDiffElement.getSubDiffElements().get(0);
+		Assert.assertTrue(secondDiffElement instanceof DiffGroup);
+		Assert.assertTrue(secondDiffElement.getSubDiffElements().size() == 1);
+		secondDiffElement = secondDiffElement.getSubDiffElements().get(0);
+		Assert.assertTrue(NLS.bind("The second DiffElement is not a {0}", UMLStereotypeApplicationAddition.class), secondDiffElement instanceof UMLStereotypeApplicationAddition);
 
-		AbstractDiffExtension ext = (AbstractDiffExtension)firstDiffElement;
+		AbstractDiffExtension ext = (AbstractDiffExtension)secondDiffElement;
 		Assert.assertTrue(NLS.bind("The {0} doesn't hide only one DiffElement", ext), ext.getHideElements().size() == 1);
-		Assert.assertTrue(NLS.bind("The {0} doesn't hide the correct DiffElement", ext), ext.getHideElements().get(0) == secondDiffElement);
+		Assert.assertTrue(NLS.bind("The {0} doesn't hide the correct DiffElement", ext), ext.getHideElements().get(0) == firstDiffElement);
 	}
 
 	
@@ -88,6 +88,7 @@ public abstract class AbstractNestedStereotypeApplicationAdditionTest_1 extends 
 	public void testDifferences() throws InterruptedException {
 		super.testDifferences();
 	}
+	
 	@Test
 	public void mergeTestAllExecutability() throws InterruptedException {
 		super.mergeTestAllExecutability();
