@@ -103,8 +103,9 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			Iterator<EditPart> editPartIterator = editPartSet.iterator();
 			while(editPartIterator.hasNext()) {
 				diagramEditPart = DiagramEditPartsUtil.getDiagramEditPart(editPartIterator.next());
-				if(diagramEditPart != null)
+				if(diagramEditPart != null) {
 					break;
+				}
 			}
 			EObject profileEObject = ((Diagram)diagramEditPart.getModel()).getElement();
 			if(profileEObject instanceof Profile) {
@@ -124,8 +125,8 @@ public class PreSaveProfileListener implements ISaveEventListener {
 				diagnostic.getSeverity();
 				Map<Object, Object> context = diagnostician.createDefaultContext();
 				boolean isValid = diagnostician.validate(rootProfile, diagnostic, context);
-				int severity=diagnostic.getSeverity();
-				if(severity!=Diagnostic.ERROR) {
+				int severity = diagnostic.getSeverity();
+				if(severity != Diagnostic.ERROR) {
 					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, diagramEditPart.getViewer());
 					try {
 						diagramEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(cmd));
