@@ -39,9 +39,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
+import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -158,17 +156,11 @@ public class EMFHelper {
 	 *         if the EObject could not be resolved
 	 */
 	public static EObject getEObject(final Object source) {
+
 		//Support for EMF 0.2 CustomizedTree: The TreeElements are EObjects, and do not implement IAdatapble.
-		if(source instanceof EObjectTreeElement) {
-			return ((EObjectTreeElement)source).getEObject();
-		}
-
-		if(source instanceof EAttributeTreeElement) {
-			return ((EAttributeTreeElement)source).getEAttribute();
-		}
-
-		if(source instanceof EReferenceTreeElement) {
-			return ((EReferenceTreeElement)source).getEReference();
+		Object resolved = CustomizedContentProviderUtils.resolve(source);
+		if(resolved != source && resolved instanceof EObject) {
+			return (EObject)resolved;
 		}
 
 		//General case
@@ -176,7 +168,7 @@ public class EMFHelper {
 			return (EObject)source;
 		} else if(source instanceof IAdaptable) {
 			EObject eObject = (EObject)((IAdaptable)source).getAdapter(EObject.class);
-			if(eObject == null) { //EMF Facet
+			if(eObject == null) { //EMF Facet 0.1
 				eObject = (EObject)((IAdaptable)source).getAdapter(EReference.class);
 			}
 			return eObject;
