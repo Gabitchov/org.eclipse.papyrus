@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 public interface IReadOnlyHandler {
@@ -26,7 +26,7 @@ public interface IReadOnlyHandler {
 	 * @param files
 	 * @return
 	 */
-	boolean isReadOnly(IFile[] files, EditingDomain editingDomain);
+	boolean isReadOnly(URI[] uris, EditingDomain editingDomain);
 
 	/**
 	 * Try to enable write access on a set of files.
@@ -34,5 +34,5 @@ public interface IReadOnlyHandler {
 	 * @param files
 	 * @return false if it fails to get write access.
 	 */
-	boolean enableWrite(IFile[] files, EditingDomain editingDomain);
+	boolean enableWrite(URI[] uris, EditingDomain editingDomain);
 }

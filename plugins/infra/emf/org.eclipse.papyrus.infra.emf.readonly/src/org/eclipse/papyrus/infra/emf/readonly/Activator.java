@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
 	private static BundleContext context;
+
+	public static LogHelper log;
 
 	static BundleContext getContext() {
 		return context;
@@ -31,6 +34,7 @@ public class Activator implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
+		log = new LogHelper();
 	}
 
 	/*

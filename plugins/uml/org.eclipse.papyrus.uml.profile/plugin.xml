@@ -117,6 +117,13 @@
       </modelSetSnippet>
    </extension>
    <extension
+         point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
+      <readOnlyHandler
+            class="org.eclipse.papyrus.uml.profile.readonly.AppliedProfileReadOnlyHandler"
+            priority="15">
+      </readOnlyHandler>
+   </extension>
+   <extension
          point="org.eclipse.emf.validation.constraintBindings">
       <clientContext
             id="org.eclipse.papyrus.uml.profile.clientContext">

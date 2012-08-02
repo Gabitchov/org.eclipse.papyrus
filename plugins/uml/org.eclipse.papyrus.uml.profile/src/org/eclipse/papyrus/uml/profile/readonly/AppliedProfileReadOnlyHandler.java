@@ -1,0 +1,70 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.uml.profile.readonly;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.uml.profile.Activator;
+import org.eclipse.uml2.uml.Profile;
+
+
+public class AppliedProfileReadOnlyHandler implements IReadOnlyHandler {
+
+	public boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
+		for(URI uri : uris) {
+			Resource resource = editingDomain.getResourceSet().getResource(uri, false);
+			if(isProfileResource(resource)) {
+				try {
+					ModelSet modelSet = ServiceUtilsForResource.getInstance().getModelSet(resource);
+					UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
+					if(umlModel != null) {
+						Resource mainResource = umlModel.getResource();
+						if(mainResource != resource) {
+							return true;
+						}
+					}
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private boolean isProfileResource(Resource resource) {
+		if(resource == null) {
+			return false;
+		}
+
+		for(EObject rootElement : resource.getContents()) {
+			if(rootElement instanceof Profile) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean enableWrite(URI[] uris, EditingDomain editingDomain) {
+		return false; //Applied profiles should remain read-only
+	}
+
+}

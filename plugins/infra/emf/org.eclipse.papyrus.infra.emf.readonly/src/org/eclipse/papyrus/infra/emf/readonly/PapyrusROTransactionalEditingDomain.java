@@ -21,6 +21,7 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 
 
 public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDomainImpl {
+
 	public PapyrusROTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
 		super(adapterFactory, stack, resourceSet);
 	}

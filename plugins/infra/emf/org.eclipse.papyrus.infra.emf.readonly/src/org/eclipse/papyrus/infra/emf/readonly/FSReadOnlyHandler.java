@@ -17,29 +17,43 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourceAttributes;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
 public class FSReadOnlyHandler implements IReadOnlyHandler {
 
-	public boolean isReadOnly(IFile[] files, EditingDomain editingDomain) {
-		for(IFile file : files) {
+	public boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
+		for(URI uri : uris) {
+
+			IFile file = getFile(uri);
 			if(file != null && file.isReadOnly()) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
-	public boolean enableWrite(final IFile[] files, EditingDomain editingDomain) {
+	private static IFile getFile(URI uri) {
+		if(uri.isPlatform()) {
+			return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
+		}
+		return null;
+	}
+
+	public boolean enableWrite(final URI[] uris, EditingDomain editingDomain) {
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
 		Display.getCurrent().syncExec(new Runnable() {
 
 			public void run() {
 				String message = "Do you want to remove read only flag on those files ?\n\n";
-				for(IFile file : files) {
+				for(URI uri : uris) {
+					IFile file = getFile(uri);
 					if(file != null && file.isReadOnly()) {
 						message += file.getName() + "\n";
 					}
@@ -50,7 +64,8 @@ public class FSReadOnlyHandler implements IReadOnlyHandler {
 
 		if(doEnableWrite.get()) {
 			boolean ok = true;
-			for(IFile file : files) {
+			for(URI uri : uris) {
+				IFile file = getFile(uri);
 				if(file != null && file.isReadOnly()) {
 					try {
 						ResourceAttributes att = file.getResourceAttributes();

@@ -28,17 +28,19 @@ public class EnableWriteHandler extends AbstractHandler {
 			Resource res = elem.eResource();
 			ResourceSet rs = res.getResourceSet();
 
-			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(res.getURI().toPlatformString(true)));
-			IPapyrusFile papFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
-			IFile[] associatedFiles = OneFileUtils.getAssociatedFiles(papFile);
+			if(res.getURI() != null && res.getURI().isPlatformResource()) {
+				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(res.getURI().toPlatformString(true)));
+				IPapyrusFile papFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
+				IFile[] associatedFiles = OneFileUtils.getAssociatedFiles(papFile);
 
-			ReadOnlyManager.enableWrite(associatedFiles, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs));
+				ReadOnlyManager.enableWrite(associatedFiles, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(rs));
 
-			for(IFile associatedFile : associatedFiles) {
-				URI associatedUri = URI.createPlatformResourceURI(associatedFile.getFullPath().toString(), true);
-				Resource associatedResource = rs.getResource(associatedUri, true);
-				if(associatedResource != null) {
-					associatedResource.setModified(true);
+				for(IFile associatedFile : associatedFiles) {
+					URI associatedUri = URI.createPlatformResourceURI(associatedFile.getFullPath().toString(), true);
+					Resource associatedResource = rs.getResource(associatedUri, true);
+					if(associatedResource != null) {
+						associatedResource.setModified(true);
+					}
 				}
 			}
 		}

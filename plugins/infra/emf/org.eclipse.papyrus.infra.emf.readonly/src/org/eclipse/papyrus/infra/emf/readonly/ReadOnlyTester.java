@@ -36,7 +36,7 @@ public class ReadOnlyTester extends PropertyTester {
 				Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(obj);
 				if(businessObject instanceof EObject) {
 					Resource resource = ((EObject)businessObject).eResource();
-					if (resource != null && resource.getResourceSet() != null) {
+					if(resource != null && resource.getResourceSet() != null) {
 						return ReadOnlyManager.isReadOnly(resource, WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(resource.getResourceSet()));
 					}
 				}
