@@ -4059,6 +4059,17 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
  </menuContribution>
 </extension>
 <extension
+      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+   <propertyTabs
+         contributorId="TreeOutlinePage">
+      <propertyTab
+            category="org.eclipse.papyrus"
+            id="appearance"
+            label="Appearance">
+      </propertyTab>
+   </propertyTabs>
+</extension>
+<extension
       point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
    <editpartProvider
          class="org.eclipse.papyrus.uml.diagram.activity.providers.StereotypePropertiesEditPartProvider">
