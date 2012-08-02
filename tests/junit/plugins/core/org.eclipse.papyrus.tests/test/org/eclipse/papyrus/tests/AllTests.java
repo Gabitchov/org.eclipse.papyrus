@@ -59,6 +59,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.stereotypeproperty.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.usecase.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.sequence.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.modelexplorer.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.dnd.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.tools.tests.tests.AllTests.class));
@@ -99,9 +100,9 @@ public class AllTests {
 	 */
 	private static Class<?>[] getSuites() {
 		// retrieve all test suites.
-		Collection<Class<?>> suites = new ArrayList<Class<?>>();
-		for(ITestSuiteClass testSuiteClass : suiteClasses) {
-			Class<?> class_ = testSuiteClass.getMainTestSuiteClass();
+		final Collection<Class<?>> suites = new ArrayList<Class<?>>();
+		for(final ITestSuiteClass testSuiteClass : suiteClasses) {
+			final Class<?> class_ = testSuiteClass.getMainTestSuiteClass();
 			if(class_ != null) {
 				suites.add(class_);
 			} else {
