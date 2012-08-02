@@ -101,16 +101,20 @@ public class EMFCompareLabelProvider extends CustomizableModelLabelProvider {
 	@Override
 	public String getText(final Object element) {
 		String text = ""; //$NON-NLS-1$
-		if(element instanceof IFile) {
-			text = ((IFile)element).getName();
-		} else if(element instanceof Resource) {
-			text = ((Resource)element).getURI().lastSegment();
-		}
-		if(element instanceof EObject) {
-			final ITreeElement treeElement = getTreeElement((EObject)element);
-			text = super.getText(treeElement);
-		} else {
-			text = super.getText(element);
+		if(element != null) {
+			if(element instanceof IFile) {
+				text = ((IFile)element).getName();
+			} else if(element instanceof Resource) {
+				text = ((Resource)element).getURI().lastSegment();
+			}
+			if(element instanceof EObject) {
+				final ITreeElement treeElement = getTreeElement((EObject)element);
+				text = super.getText(treeElement);
+			} else {
+				text = super.getText(element);
+			}
+		}else{
+			text="null";
 		}
 		return text;
 	}
