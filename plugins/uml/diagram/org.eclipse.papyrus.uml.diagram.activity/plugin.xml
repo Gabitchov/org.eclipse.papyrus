@@ -4064,7 +4064,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          contributorId="TreeOutlinePage">
       <propertyTab
             category="org.eclipse.papyrus"
-            id="appearance"
+            id="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab"
             label="Appearance">
       </propertyTab>
    </propertyTabs>
