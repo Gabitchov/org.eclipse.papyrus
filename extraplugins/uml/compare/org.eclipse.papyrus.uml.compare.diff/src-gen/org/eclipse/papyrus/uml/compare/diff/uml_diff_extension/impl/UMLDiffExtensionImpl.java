@@ -11,14 +11,14 @@
  * 
  * 
  */
-package org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl;
-
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension;
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionPackage;
+package org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl;
 
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension;
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,15 +26,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl implements UMLDiffExtension {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UMLDiffExtensionImpl() {
@@ -44,7 +42,6 @@ public class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl implements U
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
@@ -27,6 +26,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.uml.compare.diff.internal.merger.GeneralizationSourceMerger;
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

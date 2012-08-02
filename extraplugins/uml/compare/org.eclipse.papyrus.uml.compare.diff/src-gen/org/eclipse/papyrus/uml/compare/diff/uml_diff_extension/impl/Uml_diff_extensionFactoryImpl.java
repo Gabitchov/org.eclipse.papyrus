@@ -11,9 +11,7 @@
  * 
  * 
  */
-package org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl;
-
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.*;
+package org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -23,29 +21,29 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.*;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_diff_extensionFactory {
-
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static Uml_diff_extensionFactory init() {
 		try {
-			Uml_diff_extensionFactory theUml_diff_extensionFactory = (Uml_diff_extensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/compare/diff_ext/0.9");
-			if(theUml_diff_extensionFactory != null) {
+			Uml_diff_extensionFactory theUml_diff_extensionFactory = (Uml_diff_extensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/uml/compare/diff_ext/0.9"); 
+			if (theUml_diff_extensionFactory != null) {
 				return theUml_diff_extensionFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new Uml_diff_extensionFactoryImpl();
@@ -55,7 +53,6 @@ public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_d
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Uml_diff_extensionFactoryImpl() {
@@ -65,27 +62,22 @@ public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_d
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case Uml_diff_extensionPackage.GENERALIZATION_TARGET_CHANGED_EXTENSION:
-			return createGeneralizationTargetChangedExtension();
-		case Uml_diff_extensionPackage.GENERALIZATION_SOURCE_CHANGED_EXTENSION:
-			return createGeneralizationSourceChangedExtension();
-		case Uml_diff_extensionPackage.UML_DIFF_EXTENSION:
-			return createUMLDiffExtension();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID()) {
+			case Uml_diff_extensionPackage.GENERALIZATION_TARGET_CHANGED_EXTENSION: return createGeneralizationTargetChangedExtension();
+			case Uml_diff_extensionPackage.GENERALIZATION_SOURCE_CHANGED_EXTENSION: return createGeneralizationSourceChangedExtension();
+			case Uml_diff_extensionPackage.UML_DIFF_EXTENSION: return createUMLDiffExtension();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GeneralizationTargetChangedExtension createGeneralizationTargetChangedExtension() {
@@ -96,7 +88,6 @@ public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_d
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GeneralizationSourceChangedExtension createGeneralizationSourceChangedExtension() {
@@ -107,7 +98,6 @@ public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_d
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UMLDiffExtension createUMLDiffExtension() {
@@ -118,7 +108,6 @@ public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_d
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Uml_diff_extensionPackage getUml_diff_extensionPackage() {
@@ -128,7 +117,6 @@ public class Uml_diff_extensionFactoryImpl extends EFactoryImpl implements Uml_d
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

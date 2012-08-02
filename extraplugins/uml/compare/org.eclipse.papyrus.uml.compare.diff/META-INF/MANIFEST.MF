@@ -32,12 +32,12 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: 
- org.eclipe.papyrus.uml.compare.diff.uml_diff_extension,
- org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl,
- org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.util,
  org.eclipse.papyrus.uml.compare.diff,
  org.eclipse.papyrus.uml.compare.diff.internal.merger,
  org.eclipse.papyrus.uml.compare.diff.services,
  org.eclipse.papyrus.uml.compare.diff.services.nested,
- org.eclipse.papyrus.uml.compare.diff.services.standalone
+ org.eclipse.papyrus.uml.compare.diff.services.standalone,
+ org.eclipse.papyrus.uml.compare.diff.uml_diff_extension,
+ org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl,
+ org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.util
 

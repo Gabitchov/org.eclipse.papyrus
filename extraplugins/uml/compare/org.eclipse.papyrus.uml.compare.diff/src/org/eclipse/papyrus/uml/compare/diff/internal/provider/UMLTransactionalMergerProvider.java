@@ -15,8 +15,6 @@ package org.eclipse.papyrus.uml.compare.diff.internal.provider;
 
 import java.util.Map;
 
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl;
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.uml2diff.impl.UMLProfileApplicationAdditionImpl;
 import org.eclipse.emf.compare.uml2diff.impl.UMLProfileApplicationRemovalImpl;
@@ -39,6 +37,8 @@ import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLProfileApplicatio
 import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLProfileApplicationRemovalMerger;
 import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationAdditionMerger;
 import org.eclipse.papyrus.uml.compare.diff.internal.merger.UMLStereotypeApplicationRemovalMerger;
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl;
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl;
 
 
 

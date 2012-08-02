@@ -13,14 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.compare.diff.internal.utils;
 
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension;
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension;
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionFactory;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
-
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension;
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension;
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionFactory;
 import org.eclipse.uml2.uml.Generalization;
 
 

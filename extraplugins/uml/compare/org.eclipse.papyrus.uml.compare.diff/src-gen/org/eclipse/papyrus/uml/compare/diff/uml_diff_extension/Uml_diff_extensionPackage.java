@@ -11,7 +11,7 @@
  * 
  * 
  */
-package org.eclipe.papyrus.uml.compare.diff.uml_diff_extension;
+package org.eclipse.papyrus.uml.compare.diff.uml_diff_extension;
 
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 
@@ -23,24 +23,21 @@ import org.eclipse.emf.ecore.EPackage;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
- * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionFactory
+ * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionFactory
  * @model kind="package"
  * @generated
  */
 public interface Uml_diff_extensionPackage extends EPackage {
-
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNAME = "uml_diff_extension";
@@ -49,7 +46,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/uml/compare/diff_ext/0.9";
@@ -58,7 +54,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "uml_diff_extension";
@@ -67,19 +62,16 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	Uml_diff_extensionPackage eINSTANCE = org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl.init();
+	Uml_diff_extensionPackage eINSTANCE = org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl
-	 * <em>UML Diff Extension</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl <em>UML Diff Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getUMLDiffExtension()
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getUMLDiffExtension()
 	 * @generated
 	 */
 	int UML_DIFF_EXTENSION = 2;
@@ -88,7 +80,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -98,7 +89,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -108,20 +98,17 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The number of structural features of the '<em>UML Diff Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int UML_DIFF_EXTENSION_FEATURE_COUNT = DiffPackage.ABSTRACT_DIFF_EXTENSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl
-	 * <em>Generalization Target Changed Extension</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl <em>Generalization Target Changed Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationTargetChangedExtension()
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationTargetChangedExtension()
 	 * @generated
 	 */
 	int GENERALIZATION_TARGET_CHANGED_EXTENSION = 0;
@@ -130,7 +117,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -140,7 +126,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -150,7 +135,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -160,7 +144,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -170,7 +153,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -180,7 +162,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -190,7 +171,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Remote</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -200,7 +180,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Requires</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -210,7 +189,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Required By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -220,7 +198,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -230,7 +207,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Right Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -240,7 +216,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Left Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -250,7 +225,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Left Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -260,7 +234,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Right Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -270,20 +243,17 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Generalization Target Changed Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GENERALIZATION_TARGET_CHANGED_EXTENSION_FEATURE_COUNT = UML_DIFF_EXTENSION_FEATURE_COUNT + 12;
 
 	/**
-	 * The meta object id for the '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl
-	 * <em>Generalization Source Changed Extension</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl <em>Generalization Source Changed Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationSourceChangedExtension()
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationSourceChangedExtension()
 	 * @generated
 	 */
 	int GENERALIZATION_SOURCE_CHANGED_EXTENSION = 1;
@@ -292,7 +262,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -302,7 +271,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -312,7 +280,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -322,7 +289,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -332,7 +298,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -342,7 +307,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -352,7 +316,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Remote</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -362,7 +325,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Requires</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -372,7 +334,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Required By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -382,7 +343,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Right Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -392,7 +352,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Left Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -402,7 +361,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Left Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -412,7 +370,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Right Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -422,7 +379,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Generalization Source Changed Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -430,37 +386,31 @@ public interface Uml_diff_extensionPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension
-	 * <em>Generalization Target Changed Extension</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension <em>Generalization Target Changed Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Generalization Target Changed Extension</em>'.
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension
 	 * @generated
 	 */
 	EClass getGeneralizationTargetChangedExtension();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension
-	 * <em>Generalization Source Changed Extension</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension <em>Generalization Source Changed Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Generalization Source Changed Extension</em>'.
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension
 	 * @generated
 	 */
 	EClass getGeneralizationSourceChangedExtension();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension <em>UML Diff Extension</em>}
-	 * '.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension <em>UML Diff Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>UML Diff Extension</em>'.
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension
 	 * @generated
 	 */
 	EClass getUMLDiffExtension();
@@ -469,7 +419,6 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -479,51 +428,41 @@ public interface Uml_diff_extensionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
-
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl
-		 * <em>Generalization Target Changed Extension</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl <em>Generalization Target Changed Extension</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
-		 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl
-		 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationTargetChangedExtension()
+		 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationTargetChangedExtensionImpl
+		 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationTargetChangedExtension()
 		 * @generated
 		 */
 		EClass GENERALIZATION_TARGET_CHANGED_EXTENSION = eINSTANCE.getGeneralizationTargetChangedExtension();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl
-		 * <em>Generalization Source Changed Extension</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl <em>Generalization Source Changed Extension</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
-		 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl
-		 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationSourceChangedExtension()
+		 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.GeneralizationSourceChangedExtensionImpl
+		 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getGeneralizationSourceChangedExtension()
 		 * @generated
 		 */
 		EClass GENERALIZATION_SOURCE_CHANGED_EXTENSION = eINSTANCE.getGeneralizationSourceChangedExtension();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl
-		 * <em>UML Diff Extension</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl <em>UML Diff Extension</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
-		 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl
-		 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getUMLDiffExtension()
+		 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.UMLDiffExtensionImpl
+		 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.impl.Uml_diff_extensionPackageImpl#getUMLDiffExtension()
 		 * @generated
 		 */
 		EClass UML_DIFF_EXTENSION = eINSTANCE.getUMLDiffExtension();

@@ -11,9 +11,7 @@
  * 
  * 
  */
-package org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.util;
-
-import org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.*;
+package org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -30,22 +28,21 @@ import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.*;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * 
- * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionPackage
+ * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.Uml_diff_extensionPackage
  * @generated
  */
 public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
-
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static Uml_diff_extensionPackage modelPackage;
@@ -54,11 +51,10 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Uml_diff_extensionAdapterFactory() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = Uml_diff_extensionPackage.eINSTANCE;
 		}
 	}
@@ -68,16 +64,15 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if(object == modelPackage) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if(object instanceof EObject) {
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -87,74 +82,61 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected Uml_diff_extensionSwitch<Adapter> modelSwitch = new Uml_diff_extensionSwitch<Adapter>() {
-
-		@Override
-		public Adapter caseGeneralizationTargetChangedExtension(GeneralizationTargetChangedExtension object) {
-			return createGeneralizationTargetChangedExtensionAdapter();
-		}
-
-		@Override
-		public Adapter caseGeneralizationSourceChangedExtension(GeneralizationSourceChangedExtension object) {
-			return createGeneralizationSourceChangedExtensionAdapter();
-		}
-
-		@Override
-		public Adapter caseUMLDiffExtension(UMLDiffExtension object) {
-			return createUMLDiffExtensionAdapter();
-		}
-
-		@Override
-		public Adapter caseAbstractDiffExtension(AbstractDiffExtension object) {
-			return createAbstractDiffExtensionAdapter();
-		}
-
-		@Override
-		public Adapter caseDiffElement(DiffElement object) {
-			return createDiffElementAdapter();
-		}
-
-		@Override
-		public Adapter caseReferenceChange(ReferenceChange object) {
-			return createReferenceChangeAdapter();
-		}
-
-		@Override
-		public Adapter caseUpdateReference(UpdateReference object) {
-			return createUpdateReferenceAdapter();
-		}
-
-		@Override
-		public Adapter caseModelElementChange(ModelElementChange object) {
-			return createModelElementChangeAdapter();
-		}
-
-		@Override
-		public Adapter caseUpdateModelElement(UpdateModelElement object) {
-			return createUpdateModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseMoveModelElement(MoveModelElement object) {
-			return createMoveModelElementAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected Uml_diff_extensionSwitch<Adapter> modelSwitch =
+		new Uml_diff_extensionSwitch<Adapter>() {
+			@Override
+			public Adapter caseGeneralizationTargetChangedExtension(GeneralizationTargetChangedExtension object) {
+				return createGeneralizationTargetChangedExtensionAdapter();
+			}
+			@Override
+			public Adapter caseGeneralizationSourceChangedExtension(GeneralizationSourceChangedExtension object) {
+				return createGeneralizationSourceChangedExtensionAdapter();
+			}
+			@Override
+			public Adapter caseUMLDiffExtension(UMLDiffExtension object) {
+				return createUMLDiffExtensionAdapter();
+			}
+			@Override
+			public Adapter caseAbstractDiffExtension(AbstractDiffExtension object) {
+				return createAbstractDiffExtensionAdapter();
+			}
+			@Override
+			public Adapter caseDiffElement(DiffElement object) {
+				return createDiffElementAdapter();
+			}
+			@Override
+			public Adapter caseReferenceChange(ReferenceChange object) {
+				return createReferenceChangeAdapter();
+			}
+			@Override
+			public Adapter caseUpdateReference(UpdateReference object) {
+				return createUpdateReferenceAdapter();
+			}
+			@Override
+			public Adapter caseModelElementChange(ModelElementChange object) {
+				return createModelElementChangeAdapter();
+			}
+			@Override
+			public Adapter caseUpdateModelElement(UpdateModelElement object) {
+				return createUpdateModelElementAdapter();
+			}
+			@Override
+			public Adapter caseMoveModelElement(MoveModelElement object) {
+				return createMoveModelElementAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param target
-	 *        the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -165,16 +147,13 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension
-	 * <em>Generalization Target Changed Extension</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension <em>Generalization Target Changed Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationTargetChangedExtension
 	 * @generated
 	 */
 	public Adapter createGeneralizationTargetChangedExtensionAdapter() {
@@ -182,16 +161,13 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension
-	 * <em>Generalization Source Changed Extension</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension <em>Generalization Source Changed Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.GeneralizationSourceChangedExtension
 	 * @generated
 	 */
 	public Adapter createGeneralizationSourceChangedExtensionAdapter() {
@@ -199,15 +175,13 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension
-	 * <em>UML Diff Extension</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension <em>UML Diff Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
-	 * @see org.eclipe.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension
+	 * @see org.eclipse.papyrus.uml.compare.diff.uml_diff_extension.UMLDiffExtension
 	 * @generated
 	 */
 	public Adapter createUMLDiffExtensionAdapter() {
@@ -215,13 +189,11 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension
-	 * <em>Abstract Diff Extension</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension <em>Abstract Diff Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension
 	 * @generated
@@ -236,7 +208,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.DiffElement
 	 * @generated
@@ -251,7 +222,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.ReferenceChange
 	 * @generated
@@ -266,7 +236,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.UpdateReference
 	 * @generated
@@ -281,7 +250,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.ModelElementChange
 	 * @generated
@@ -296,7 +264,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.UpdateModelElement
 	 * @generated
@@ -311,7 +278,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.emf.compare.diff.metamodel.MoveModelElement
 	 * @generated
@@ -325,7 +291,6 @@ public class Uml_diff_extensionAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
