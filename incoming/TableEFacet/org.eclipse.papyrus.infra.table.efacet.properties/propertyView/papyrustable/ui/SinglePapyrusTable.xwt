@@ -11,7 +11,7 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringLabel input="{Binding}"
-			property="papyrustable:Papyruspapyrustable:PapyrusTable:table:context"></ppe:StringLabel>
+			property="papyrustable:PapyrusTable:table.context"></ppe:StringLabel>
 	</Composite>
 	<Composite>
 		<Composite.layout>
@@ -27,7 +27,7 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringMultiline input="{Binding}"
-			property="papyrustable:Papyruspapyrustable:PapyrusTable:table:description"></ppe:StringMultiline>
+			property="papyrustable:PapyrusTable:table.description"></ppe:StringMultiline>
 	</Composite>
 	<Composite>
 		<Composite.layout>
@@ -55,16 +55,16 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
-			property="papyrustable:PapyrusTable:table:parameter" readOnly="true"></ppe:StringEditor>
+			property="papyrustable:PapyrusTable:table.parameter" readOnly="true"></ppe:StringEditor>
 	</Composite>
 	<Composite>
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:BooleanRadio input="{Binding}"
-			property="papyrustable:PapyrusTable:table:hideEmptyColumns" readOnly="true"></ppe:BooleanRadio>
+			property="papyrustable:PapyrusTable:table.hideEmptyColumns" readOnly="true"></ppe:BooleanRadio>
 		<ppe:BooleanRadio input="{Binding}"
-			property="papyrustable:PapyrusTable:table:onlyShowCommonColumns"
+			property="papyrustable:PapyrusTable:table.onlyShowCommonColumns" readOnly="true"
 			customLabel="Only common columns"></ppe:BooleanRadio>
 	</Composite>
 	<Composite>
@@ -72,7 +72,7 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:ReferenceDialog input="{Binding}"
-			property="papyrustable:PapyrusTable:table:canBePresentedInTheTable"
+			property="papyrustable:PapyrusTable:table.canBePresentedInTheTable"
 			readOnly="true" customLabel="Filter query"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>
@@ -80,8 +80,8 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
-			property="papyrustable:PapyrusTable:table:customizations" readOnly="true"></ppe:MultiReference>
+			property="papyrustable:PapyrusTable:table.customizations" readOnly="true"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
-			property="papyrustable:PapyrusTable:table:facetSets" readOnly="true"></ppe:MultiReference>
+			property="papyrustable:PapyrusTable:table.facetSets" readOnly="true"></ppe:MultiReference>
 	</Composite>
 </Composite>
