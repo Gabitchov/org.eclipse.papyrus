@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
@@ -164,12 +165,12 @@ public interface PapyrusTable extends EModelElement {
 	 * This field references the EStructuralFeature to listen when the table is in Feature Mode.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Context Feature</em>' reference.
-	 * @see #setContextFeature(EStructuralFeature)
+	 * @see #setContextFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_ContextFeature()
 	 * @model
 	 * @generated
 	 */
-	EStructuralFeature getContextFeature();
+	EReference getContextFeature();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature <em>Context Feature</em>}' reference.
@@ -179,7 +180,7 @@ public interface PapyrusTable extends EModelElement {
 	 * @see #getContextFeature()
 	 * @generated
 	 */
-	void setContextFeature(EStructuralFeature value);
+	void setContextFeature(EReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Queries</b></em>' reference list.
