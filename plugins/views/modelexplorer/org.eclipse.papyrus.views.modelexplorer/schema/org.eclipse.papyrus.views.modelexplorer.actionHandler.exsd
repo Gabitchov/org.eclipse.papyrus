@@ -67,7 +67,7 @@
                   implement the action handler factory to add your custom actions
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.navigator.factory.IActionHandlerFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.views.modelexplorer.factory.IActionHandlerFactory"/>
                </appinfo>
             </annotation>
          </attribute>

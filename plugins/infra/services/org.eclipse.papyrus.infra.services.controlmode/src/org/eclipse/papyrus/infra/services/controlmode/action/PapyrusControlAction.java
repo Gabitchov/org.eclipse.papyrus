@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCondition;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
@@ -70,7 +71,7 @@ public class PapyrusControlAction extends ControlAction {
 	private static final String CONTROL_CONDITION_ELEMENT_EXTENSION_POINT = "enableControlCommand";
 
 	/** custom commands from extensions */
-	/*package*/ static List<IControlCondition> commands;
+	/* package */static List<IControlCondition> commands;
 
 	/**
 	 * Instantiates a new papyrus control action.
@@ -134,7 +135,7 @@ public class PapyrusControlAction extends ControlAction {
 		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
 			if(object instanceof IAdaptable) {
-				object = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+				object = ((IAdaptable)object).getAdapter(EObject.class);
 			}
 			// Check whether the selected object is controllable
 			result = domain.isControllable(object);
@@ -164,8 +165,8 @@ public class PapyrusControlAction extends ControlAction {
 				NotificationBuilder.createAsyncPopup("You must perform control action from the resource:\n" + eObject.eResource().getURI().trimFileExtension().toString() + " for this element").setType(Type.INFO).run();
 				return;
 			}
-			
-			if (!getDiagram(eObject)) {
+
+			if(!getDiagram(eObject)) {
 				NotificationBuilder.createAsyncPopup("The selected package must contain a diagram to perform control action").setType(Type.INFO).run();
 				return;
 			}
@@ -177,8 +178,8 @@ public class PapyrusControlAction extends ControlAction {
 			try {
 				ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
 				IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
-				if (status.isOK()) {
-					notifySave();					
+				if(status.isOK()) {
+					notifySave();
 				} else {
 					NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to control").run();
 				}
@@ -188,15 +189,17 @@ public class PapyrusControlAction extends ControlAction {
 			}
 		}
 	}
-	
+
 	/**
 	 * Display asynchronous popup to inform user about the control action
 	 */
 	protected void notifySave() {
 		new NotificationBuilder().setMessage("Your element has been controlled.\nYou need to save your model to see modifications in your workspace.\nDo you want to save ?").addAction(new NotificationRunnable() {
+
 			public void run(IContext context) {
 				try {
 					Display.getDefault().syncExec(new Runnable() {
+
 						public void run() {
 							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
 						}
@@ -288,7 +291,7 @@ public class PapyrusControlAction extends ControlAction {
 					IControlCondition controlCondition = (IControlCondition)e.createExecutableExtension(CONTROL_CONDITION_ATTRIBUTE_EXTENSION_POINT);
 					commands.add(controlCondition);
 				} catch (CoreException exception) {
-					exception.printStackTrace();
+					ControlModePlugin.log.error(exception);
 				}
 			}
 		}

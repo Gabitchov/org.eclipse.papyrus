@@ -3,13 +3,42 @@
 <plugin>
    <extension-point id="org.eclipse.papyrus.infra.services.controlmode.customControlCommand" name="customControlCommand" schema="schema/customControlCommand.exsd"/>
    <extension
-         point="org.eclipse.papyrus.views.modelexplorer.actionHandler">
-      <customAction
-            actionHandler="org.eclipse.papyrus.infra.services.controlmode.action.CollaborativeActionsFactory"
-            actionId="org.eclipse.papyrus.controlmode.action.collaborativeActions"
-            afterAction="org.eclipse.papyrus.views.modelexplorer.factory.defaultEMFActions"
-            needSeparator="false">
-      </customAction>
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.action.PapyrusControlHandler"
+            id="org.eclipse.papyrus.infra.services.controlmode.control"
+            name="Control">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.action.PapyrusUncontrolHandler"
+            id="org.eclipse.papyrus.infra.services.controlmode.uncontrol"
+            name="Uncontrol">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <command
+               commandId="org.eclipse.papyrus.infra.services.controlmode.control"
+               label="Control"
+               style="push"
+               tooltip="Split the model into an external model">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.services.controlmode.uncontrol"
+               label="Uncontrol"
+               style="push"
+               tooltip="Merge the external model with the current model">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
    </extension>
 
 </plugin>
