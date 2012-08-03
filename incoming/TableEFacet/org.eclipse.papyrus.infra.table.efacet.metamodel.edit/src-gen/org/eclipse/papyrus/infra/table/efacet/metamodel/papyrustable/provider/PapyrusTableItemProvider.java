@@ -76,7 +76,7 @@ public class PapyrusTableItemProvider
 			addTypePropertyDescriptor(object);
 			addTablePropertyDescriptor(object);
 			addFillingModePropertyDescriptor(object);
-			addFeaturePropertyDescriptor(object);
+			addContextFeaturePropertyDescriptor(object);
 			addQueriesPropertyDescriptor(object);
 			addUsingUserPropertyDescriptor(object);
 			addUsingContextFeaturePropertyDescriptor(object);
@@ -174,19 +174,19 @@ public class PapyrusTableItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Feature feature.
+	 * This adds a property descriptor for the Context Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFeaturePropertyDescriptor(Object object) {
+	protected void addContextFeaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_PapyrusTable_feature_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_feature_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 PapyrustablePackage.Literals.PAPYRUS_TABLE__FEATURE,
+				 getString("_UI_PapyrusTable_contextFeature_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_contextFeature_feature", "_UI_PapyrusTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 PapyrustablePackage.Literals.PAPYRUS_TABLE__CONTEXT_FEATURE,
 				 true,
 				 false,
 				 true,

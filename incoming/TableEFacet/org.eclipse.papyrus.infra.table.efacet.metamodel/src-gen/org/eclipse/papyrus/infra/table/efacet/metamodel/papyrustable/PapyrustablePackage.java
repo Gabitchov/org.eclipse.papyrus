@@ -126,13 +126,13 @@ public interface PapyrustablePackage extends EPackage {
 	int PAPYRUS_TABLE__FILLING_MODE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Context Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE__FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int PAPYRUS_TABLE__CONTEXT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Queries</b></em>' reference list.
@@ -245,15 +245,15 @@ public interface PapyrustablePackage extends EPackage {
 	EAttribute getPapyrusTable_FillingMode();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature <em>Context Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFeature()
+	 * @return the meta object for the reference '<em>Context Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature()
 	 * @see #getPapyrusTable()
 	 * @generated
 	 */
-	EReference getPapyrusTable_Feature();
+	EReference getPapyrusTable_ContextFeature();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getQueries <em>Queries</em>}'.
@@ -374,12 +374,12 @@ public interface PapyrustablePackage extends EPackage {
 		EAttribute PAPYRUS_TABLE__FILLING_MODE = eINSTANCE.getPapyrusTable_FillingMode();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Context Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAPYRUS_TABLE__FEATURE = eINSTANCE.getPapyrusTable_Feature();
+		EReference PAPYRUS_TABLE__CONTEXT_FEATURE = eINSTANCE.getPapyrusTable_ContextFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Queries</b></em>' reference list feature.

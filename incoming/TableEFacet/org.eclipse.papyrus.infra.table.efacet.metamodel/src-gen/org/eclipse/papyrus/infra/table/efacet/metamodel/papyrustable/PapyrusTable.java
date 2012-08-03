@@ -37,7 +37,7 @@ import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFillingMode <em>Filling Mode</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature <em>Context Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getQueries <em>Queries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#isUsingUser <em>Using User</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#isUsingContextFeature <em>Using Context Feature</em>}</li>
@@ -157,29 +157,29 @@ public interface PapyrusTable extends EModelElement {
 	void setFillingMode(FillingMode value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Context Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * This field references the EStructuralFeature to listen when the table is in Feature Mode.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(EStructuralFeature)
-	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_Feature()
+	 * @return the value of the '<em>Context Feature</em>' reference.
+	 * @see #setContextFeature(EStructuralFeature)
+	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_ContextFeature()
 	 * @model
 	 * @generated
 	 */
-	EStructuralFeature getFeature();
+	EStructuralFeature getContextFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getFeature <em>Feature</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable#getContextFeature <em>Context Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' reference.
-	 * @see #getFeature()
+	 * @param value the new value of the '<em>Context Feature</em>' reference.
+	 * @see #getContextFeature()
 	 * @generated
 	 */
-	void setFeature(EStructuralFeature value);
+	void setContextFeature(EStructuralFeature value);
 
 	/**
 	 * Returns the value of the '<em><b>Queries</b></em>' reference list.

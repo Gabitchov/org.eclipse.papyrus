@@ -46,7 +46,7 @@ import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamode
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getFillingMode <em>Filling Mode</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getFillingQueries <em>Filling Queries</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getListenFeature <em>Listen Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getListenContextFeature <em>Listen Context Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl#getTableConfiguration <em>Table Configuration</em>}</li>
  * </ul>
  * </p>
@@ -85,14 +85,14 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	protected EList<Query> fillingQueries;
 
 	/**
-	 * The cached value of the '{@link #getListenFeature() <em>Listen Feature</em>}' reference.
+	 * The cached value of the '{@link #getListenContextFeature() <em>Listen Context Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getListenFeature()
+	 * @see #getListenContextFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature listenFeature;
+	protected EStructuralFeature listenContextFeature;
 
 	/**
 	 * The cached value of the '{@link #getTableConfiguration() <em>Table Configuration</em>}' containment reference.
@@ -161,16 +161,16 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature getListenFeature() {
-		if (listenFeature != null && listenFeature.eIsProxy()) {
-			InternalEObject oldListenFeature = (InternalEObject)listenFeature;
-			listenFeature = (EStructuralFeature)eResolveProxy(oldListenFeature);
-			if (listenFeature != oldListenFeature) {
+	public EStructuralFeature getListenContextFeature() {
+		if (listenContextFeature != null && listenContextFeature.eIsProxy()) {
+			InternalEObject oldListenContextFeature = (InternalEObject)listenContextFeature;
+			listenContextFeature = (EStructuralFeature)eResolveProxy(oldListenContextFeature);
+			if (listenContextFeature != oldListenContextFeature) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE, oldListenFeature, listenFeature));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE, oldListenContextFeature, listenContextFeature));
 			}
 		}
-		return listenFeature;
+		return listenContextFeature;
 	}
 
 	/**
@@ -178,8 +178,8 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature basicGetListenFeature() {
-		return listenFeature;
+	public EStructuralFeature basicGetListenContextFeature() {
+		return listenContextFeature;
 	}
 
 	/**
@@ -187,11 +187,11 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setListenFeature(EStructuralFeature newListenFeature) {
-		EStructuralFeature oldListenFeature = listenFeature;
-		listenFeature = newListenFeature;
+	public void setListenContextFeature(EStructuralFeature newListenContextFeature) {
+		EStructuralFeature oldListenContextFeature = listenContextFeature;
+		listenContextFeature = newListenContextFeature;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE, oldListenFeature, listenFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE, oldListenContextFeature, listenContextFeature));
 	}
 
 	/**
@@ -263,9 +263,9 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 				return getFillingMode();
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES:
 				return getFillingQueries();
-			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
-				if (resolve) return getListenFeature();
-				return basicGetListenFeature();
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE:
+				if (resolve) return getListenContextFeature();
+				return basicGetListenContextFeature();
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				return getTableConfiguration();
 		}
@@ -288,8 +288,8 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 				getFillingQueries().clear();
 				getFillingQueries().addAll((Collection<? extends Query>)newValue);
 				return;
-			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
-				setListenFeature((EStructuralFeature)newValue);
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE:
+				setListenContextFeature((EStructuralFeature)newValue);
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				setTableConfiguration((TableConfiguration)newValue);
@@ -312,8 +312,8 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES:
 				getFillingQueries().clear();
 				return;
-			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
-				setListenFeature((EStructuralFeature)null);
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE:
+				setListenContextFeature((EStructuralFeature)null);
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				setTableConfiguration((TableConfiguration)null);
@@ -334,8 +334,8 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 				return fillingMode != FILLING_MODE_EDEFAULT;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES:
 				return fillingQueries != null && !fillingQueries.isEmpty();
-			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE:
-				return listenFeature != null;
+			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE:
+				return listenContextFeature != null;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				return tableConfiguration != null;
 		}

@@ -140,7 +140,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTableConfiguration_ListenFeature() {
+	public EReference getPapyrusTableConfiguration_ListenContextFeature() {
 		return (EReference)papyrusTableConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -184,7 +184,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		papyrusTableConfigurationEClass = createEClass(PAPYRUS_TABLE_CONFIGURATION);
 		createEAttribute(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES);
-		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE);
+		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE);
 		createEReference(papyrusTableConfigurationEClass, PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION);
 	}
 
@@ -228,7 +228,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		initEClass(papyrusTableConfigurationEClass, PapyrusTableConfiguration.class, "PapyrusTableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPapyrusTableConfiguration_FillingMode(), thePapyrustablePackage.getFillingMode(), "fillingMode", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_FillingQueries(), theExtensiblePackage.getQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPapyrusTableConfiguration_ListenFeature(), theEcorePackage.getEStructuralFeature(), null, "listenFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusTableConfiguration_ListenContextFeature(), theEcorePackage.getEStructuralFeature(), null, "listenContextFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_TableConfiguration(), theTableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource

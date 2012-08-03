@@ -165,7 +165,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPapyrusTable_Feature() {
+	public EReference getPapyrusTable_ContextFeature() {
 		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -247,7 +247,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__TYPE);
 		createEReference(papyrusTableEClass, PAPYRUS_TABLE__TABLE);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__FILLING_MODE);
-		createEReference(papyrusTableEClass, PAPYRUS_TABLE__FEATURE);
+		createEReference(papyrusTableEClass, PAPYRUS_TABLE__CONTEXT_FEATURE);
 		createEReference(papyrusTableEClass, PAPYRUS_TABLE__QUERIES);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__USING_USER);
 		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__USING_CONTEXT_FEATURE);
@@ -298,7 +298,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		initEAttribute(getPapyrusTable_Type(), ecorePackage.getEString(), "type", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTable_Table(), theTablePackage.getTable(), null, "table", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_FillingMode(), this.getFillingMode(), "fillingMode", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPapyrusTable_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusTable_ContextFeature(), theEcorePackage.getEStructuralFeature(), null, "contextFeature", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTable_Queries(), theExtensiblePackage.getQuery(), null, "queries", null, 0, -1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingUser(), ecorePackage.getEBoolean(), "usingUser", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingContextFeature(), ecorePackage.getEBoolean(), "usingContextFeature", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

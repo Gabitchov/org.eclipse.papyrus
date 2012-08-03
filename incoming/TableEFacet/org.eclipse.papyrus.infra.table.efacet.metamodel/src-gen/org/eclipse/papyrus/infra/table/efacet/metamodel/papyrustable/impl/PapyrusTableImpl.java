@@ -36,19 +36,18 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.Papyrustabl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getType <em>Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getTable <em>Table</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getFillingMode <em>Filling Mode</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getFeature <em>Feature</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getQueries <em>Queries</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingUser <em>Using User</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingContextFeature <em>Using Context Feature
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingQueries <em>Using Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getTable <em>Table</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getFillingMode <em>Filling Mode</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getContextFeature <em>Context Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#getQueries <em>Queries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingUser <em>Using User</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingContextFeature <em>Using Context Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.impl.PapyrusTableImpl#isUsingQueries <em>Using Queries</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable {
@@ -57,7 +56,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -68,7 +66,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -79,7 +76,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -90,7 +86,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -101,7 +96,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The cached value of the '{@link #getTable() <em>Table</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTable()
 	 * @generated
 	 * @ordered
@@ -112,7 +106,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The default value of the '{@link #getFillingMode() <em>Filling Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFillingMode()
 	 * @generated
 	 * @ordered
@@ -123,7 +116,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The cached value of the '{@link #getFillingMode() <em>Filling Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFillingMode()
 	 * @generated
 	 * @ordered
@@ -131,21 +123,19 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	protected FillingMode fillingMode = FILLING_MODE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+	 * The cached value of the '{@link #getContextFeature() <em>Context Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getFeature()
+	 * @see #getContextFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature feature;
+	protected EStructuralFeature contextFeature;
 
 	/**
 	 * The cached value of the '{@link #getQueries() <em>Queries</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getQueries()
 	 * @generated
 	 * @ordered
@@ -156,7 +146,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The default value of the '{@link #isUsingUser() <em>Using User</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isUsingUser()
 	 * @generated
 	 * @ordered
@@ -167,7 +156,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The default value of the '{@link #isUsingContextFeature() <em>Using Context Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isUsingContextFeature()
 	 * @generated
 	 * @ordered
@@ -178,7 +166,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	 * The default value of the '{@link #isUsingQueries() <em>Using Queries</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isUsingQueries()
 	 * @generated
 	 * @ordered
@@ -188,7 +175,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PapyrusTableImpl() {
@@ -198,7 +184,6 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,77 +194,65 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setName(final String newName) {
-		final String oldName = this.name;
-		this.name = newName;
-		if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__NAME, oldName, this.name));
-		}
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getType() {
-		return this.type;
+		return type;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setType(final String newType) {
-		final String oldType = this.type;
-		this.type = newType;
-		if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TYPE, oldType, this.type));
-		}
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TYPE, oldType, type));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Table getTable() {
-		return this.table;
+		return table;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTable(final Table newTable, NotificationChain msgs) {
-		final Table oldTable = this.table;
-		this.table = newTable;
-		if(eNotificationRequired()) {
-			final ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, oldTable, newTable);
-			if(msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+	public NotificationChain basicSetTable(Table newTable, NotificationChain msgs) {
+		Table oldTable = table;
+		table = newTable;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, oldTable, newTable);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -287,105 +260,91 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setTable(final Table newTable) {
-		if(newTable != this.table) {
+	public void setTable(Table newTable) {
+		if (newTable != table) {
 			NotificationChain msgs = null;
-			if(this.table != null) {
-				msgs = ((InternalEObject)this.table).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PapyrustablePackage.PAPYRUS_TABLE__TABLE, null, msgs);
-			}
-			if(newTable != null) {
+			if (table != null)
+				msgs = ((InternalEObject)table).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PapyrustablePackage.PAPYRUS_TABLE__TABLE, null, msgs);
+			if (newTable != null)
 				msgs = ((InternalEObject)newTable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PapyrustablePackage.PAPYRUS_TABLE__TABLE, null, msgs);
-			}
 			msgs = basicSetTable(newTable, msgs);
-			if(msgs != null) {
-				msgs.dispatch();
-			}
-		} else if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, newTable, newTable));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__TABLE, newTable, newTable));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FillingMode getFillingMode() {
-		return this.fillingMode;
+		return fillingMode;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setFillingMode(final FillingMode newFillingMode) {
-		final FillingMode oldFillingMode = this.fillingMode;
-		this.fillingMode = newFillingMode == null ? FILLING_MODE_EDEFAULT : newFillingMode;
-		if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE, oldFillingMode, this.fillingMode));
-		}
+	public void setFillingMode(FillingMode newFillingMode) {
+		FillingMode oldFillingMode = fillingMode;
+		fillingMode = newFillingMode == null ? FILLING_MODE_EDEFAULT : newFillingMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE, oldFillingMode, fillingMode));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EStructuralFeature getFeature() {
-		if(this.feature != null && this.feature.eIsProxy()) {
-			final InternalEObject oldFeature = (InternalEObject)this.feature;
-			this.feature = (EStructuralFeature)eResolveProxy(oldFeature);
-			if(this.feature != oldFeature) {
-				if(eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustablePackage.PAPYRUS_TABLE__FEATURE, oldFeature, this.feature));
-				}
+	public EStructuralFeature getContextFeature() {
+		if (contextFeature != null && contextFeature.eIsProxy()) {
+			InternalEObject oldContextFeature = (InternalEObject)contextFeature;
+			contextFeature = (EStructuralFeature)eResolveProxy(oldContextFeature);
+			if (contextFeature != oldContextFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE, oldContextFeature, contextFeature));
 			}
 		}
-		return this.feature;
+		return contextFeature;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EStructuralFeature basicGetFeature() {
-		return this.feature;
+	public EStructuralFeature basicGetContextFeature() {
+		return contextFeature;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setFeature(final EStructuralFeature newFeature) {
-		final EStructuralFeature oldFeature = this.feature;
-		this.feature = newFeature;
-		if(eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__FEATURE, oldFeature, this.feature));
-		}
+	public void setContextFeature(EStructuralFeature newContextFeature) {
+		EStructuralFeature oldContextFeature = contextFeature;
+		contextFeature = newContextFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE, oldContextFeature, contextFeature));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Query> getQueries() {
-		if(this.queries == null) {
-			this.queries = new EObjectResolvingEList<Query>(Query.class, this, PapyrustablePackage.PAPYRUS_TABLE__QUERIES);
+		if (queries == null) {
+			queries = new EObjectResolvingEList<Query>(Query.class, this, PapyrustablePackage.PAPYRUS_TABLE__QUERIES);
 		}
-		return this.queries;
+		return queries;
 	}
 
 	/**
@@ -401,40 +360,35 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isUsingContextFeature() {
 		// TODO: implement this method to return the 'Using Context Feature' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
-		//		throw new UnsupportedOperationException();
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isUsingQueries() {
 		// TODO: implement this method to return the 'Using Queries' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
-		//		throw new UnsupportedOperationException();
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID, final NotificationChain msgs) {
-		switch(featureID) {
-		case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
-			return basicSetTable(null, msgs);
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
+				return basicSetTable(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -442,33 +396,30 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
-		switch(featureID) {
-		case PapyrustablePackage.PAPYRUS_TABLE__NAME:
-			return getName();
-		case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
-			return getType();
-		case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
-			return getTable();
-		case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
-			return getFillingMode();
-		case PapyrustablePackage.PAPYRUS_TABLE__FEATURE:
-			if(resolve) {
-				return getFeature();
-			}
-			return basicGetFeature();
-		case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-			return getQueries();
-		case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
-			return isUsingUser();
-		case PapyrustablePackage.PAPYRUS_TABLE__USING_CONTEXT_FEATURE:
-			return isUsingContextFeature();
-		case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
-			return isUsingQueries();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case PapyrustablePackage.PAPYRUS_TABLE__NAME:
+				return getName();
+			case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
+				return getType();
+			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
+				return getTable();
+			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
+				return getFillingMode();
+			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
+				if (resolve) return getContextFeature();
+				return basicGetContextFeature();
+			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
+				return getQueries();
+			case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
+				return isUsingUser();
+			case PapyrustablePackage.PAPYRUS_TABLE__USING_CONTEXT_FEATURE:
+				return isUsingContextFeature();
+			case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
+				return isUsingQueries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -476,32 +427,31 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(final int featureID, final Object newValue) {
-		switch(featureID) {
-		case PapyrustablePackage.PAPYRUS_TABLE__NAME:
-			setName((String)newValue);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
-			setType((String)newValue);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
-			setTable((Table)newValue);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
-			setFillingMode((FillingMode)newValue);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__FEATURE:
-			setFeature((EStructuralFeature)newValue);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-			getQueries().clear();
-			getQueries().addAll((Collection<? extends Query>)newValue);
-			return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case PapyrustablePackage.PAPYRUS_TABLE__NAME:
+				setName((String)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
+				setType((String)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
+				setTable((Table)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
+				setFillingMode((FillingMode)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
+				setContextFeature((EStructuralFeature)newValue);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
+				getQueries().clear();
+				getQueries().addAll((Collection<? extends Query>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -509,30 +459,29 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(final int featureID) {
-		switch(featureID) {
-		case PapyrustablePackage.PAPYRUS_TABLE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
-			setType(TYPE_EDEFAULT);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
-			setTable((Table)null);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
-			setFillingMode(FILLING_MODE_EDEFAULT);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__FEATURE:
-			setFeature((EStructuralFeature)null);
-			return;
-		case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-			getQueries().clear();
-			return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case PapyrustablePackage.PAPYRUS_TABLE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
+				setTable((Table)null);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
+				setFillingMode(FILLING_MODE_EDEFAULT);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
+				setContextFeature((EStructuralFeature)null);
+				return;
+			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
+				getQueries().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -540,30 +489,29 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(final int featureID) {
-		switch(featureID) {
-		case PapyrustablePackage.PAPYRUS_TABLE__NAME:
-			return NAME_EDEFAULT == null ? this.name != null : !NAME_EDEFAULT.equals(this.name);
-		case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
-			return TYPE_EDEFAULT == null ? this.type != null : !TYPE_EDEFAULT.equals(this.type);
-		case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
-			return this.table != null;
-		case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
-			return this.fillingMode != FILLING_MODE_EDEFAULT;
-		case PapyrustablePackage.PAPYRUS_TABLE__FEATURE:
-			return this.feature != null;
-		case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
-			return this.queries != null && !this.queries.isEmpty();
-		case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
-			return isUsingUser() != USING_USER_EDEFAULT;
-		case PapyrustablePackage.PAPYRUS_TABLE__USING_CONTEXT_FEATURE:
-			return isUsingContextFeature() != USING_CONTEXT_FEATURE_EDEFAULT;
-		case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
-			return isUsingQueries() != USING_QUERIES_EDEFAULT;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case PapyrustablePackage.PAPYRUS_TABLE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PapyrustablePackage.PAPYRUS_TABLE__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case PapyrustablePackage.PAPYRUS_TABLE__TABLE:
+				return table != null;
+			case PapyrustablePackage.PAPYRUS_TABLE__FILLING_MODE:
+				return fillingMode != FILLING_MODE_EDEFAULT;
+			case PapyrustablePackage.PAPYRUS_TABLE__CONTEXT_FEATURE:
+				return contextFeature != null;
+			case PapyrustablePackage.PAPYRUS_TABLE__QUERIES:
+				return queries != null && !queries.isEmpty();
+			case PapyrustablePackage.PAPYRUS_TABLE__USING_USER:
+				return isUsingUser() != USING_USER_EDEFAULT;
+			case PapyrustablePackage.PAPYRUS_TABLE__USING_CONTEXT_FEATURE:
+				return isUsingContextFeature() != USING_CONTEXT_FEATURE_EDEFAULT;
+			case PapyrustablePackage.PAPYRUS_TABLE__USING_QUERIES:
+				return isUsingQueries() != USING_QUERIES_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -571,22 +519,19 @@ public class PapyrusTableImpl extends EModelElementImpl implements PapyrusTable 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
-		final StringBuffer result = new StringBuffer(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
-		result.append(this.name);
+		result.append(name);
 		result.append(", type: "); //$NON-NLS-1$
-		result.append(this.type);
+		result.append(type);
 		result.append(", fillingMode: "); //$NON-NLS-1$
-		result.append(this.fillingMode);
+		result.append(fillingMode);
 		result.append(')');
 		return result.toString();
 	}

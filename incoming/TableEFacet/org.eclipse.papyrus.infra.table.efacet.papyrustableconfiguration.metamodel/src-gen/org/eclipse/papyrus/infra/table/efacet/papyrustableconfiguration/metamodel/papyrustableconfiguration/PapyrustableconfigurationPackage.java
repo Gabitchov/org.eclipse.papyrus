@@ -107,13 +107,13 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	int PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Listen Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Listen Context Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+	int PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Table Configuration</b></em>' containment reference.
@@ -167,15 +167,15 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	EReference getPapyrusTableConfiguration_FillingQueries();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenFeature <em>Listen Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Listen Feature</em>'.
-	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenFeature()
+	 * @return the meta object for the reference '<em>Listen Context Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature()
 	 * @see #getPapyrusTableConfiguration()
 	 * @generated
 	 */
-	EReference getPapyrusTableConfiguration_ListenFeature();
+	EReference getPapyrusTableConfiguration_ListenContextFeature();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}'.
@@ -237,12 +237,12 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 		EReference PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES = eINSTANCE.getPapyrusTableConfiguration_FillingQueries();
 
 		/**
-		 * The meta object literal for the '<em><b>Listen Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Listen Context Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAPYRUS_TABLE_CONFIGURATION__LISTEN_FEATURE = eINSTANCE.getPapyrusTableConfiguration_ListenFeature();
+		EReference PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE = eINSTANCE.getPapyrusTableConfiguration_ListenContextFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Table Configuration</b></em>' containment reference feature.
