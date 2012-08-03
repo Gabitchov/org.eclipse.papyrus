@@ -19,14 +19,13 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider.CustomEditPlugin;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
 import org.eclipse.emf.facet.widgets.celleditors.edit.CelleditorsEditPlugin;
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.provider.Tableinstance02EditPlugin;
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.provider.TableConfigurationEditPlugin;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.provider.PapyrustableEditPlugin;
 
 /**
  * This is the central singleton for the Papyrustableconfiguration editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
@@ -35,6 +34,7 @@ public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final PapyrustableconfigurationEditorPlugin INSTANCE = new PapyrustableconfigurationEditorPlugin();
@@ -43,6 +43,7 @@ public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static Implementation plugin;
@@ -62,6 +63,7 @@ public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -74,6 +76,7 @@ public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -85,6 +88,7 @@ public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static class Implementation extends EclipseUIPlugin {
@@ -93,11 +97,12 @@ public final class PapyrustableconfigurationEditorPlugin extends EMFPlugin {
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		public Implementation() {
 			super();
-	
+
 			// Remember the static instance.
 			//
 			plugin = this;

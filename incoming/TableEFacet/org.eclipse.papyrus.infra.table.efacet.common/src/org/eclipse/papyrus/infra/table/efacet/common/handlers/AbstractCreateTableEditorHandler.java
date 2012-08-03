@@ -185,7 +185,7 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		final PapyrusTableConfiguration configuration = getPapyrusTableConfiguration();
 		if(configuration != null) {
 			papyrusTable.setFillingMode(configuration.getFillingMode());
-			papyrusTable.setFeature(configuration.getListenFeature());
+			papyrusTable.setContextFeature(configuration.getListenContextFeature());
 			papyrusTable.getQueries().addAll(configuration.getFillingQueries());
 		}
 		//TODO 
