@@ -3,12 +3,12 @@
   <types metaclassName="papyrustable.PapyrusTable">
     <customizedFeatures customizedFeature="label">
       <defaultValue xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusTableQuery#GetPapyrusTableName"/>
+        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/TableEFacetQuery#GetTableName"/>
       </defaultValue>
     </customizedFeatures>
     <customizedFeatures customizedFeature="icon">
       <defaultValue xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/PapyrusTableQuery#GetPapyrusTableIcon"/>
+        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/TableEFacetQuery#GetTableIcon"/>
       </defaultValue>
     </customizedFeatures>
     <customizedFeatures customizedFeature="hideMetaclassName">

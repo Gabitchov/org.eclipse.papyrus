@@ -9,6 +9,9 @@ public class Activator extends Plugin {
 	// The shared instance
 	private static Activator plugin;
 
+	// The plug-in ID
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.table.efacet"; //$NON-NLS-1$
+
 	@Override
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bundle-Name: org.eclipse.papyrus.infra.table.efacet
+Bundle-Name: Facet for TableEFacet (Incubation)
 Bundle-ClassPath: .,bin
 Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.Activator
 Bundle-ManifestVersion: 2
@@ -14,10 +14,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.emf.facet.infra.facet.core,
  org.eclipse.uml2.types,
- org.eclipse.papyrus.infra.table.efacet.metamodel,
  org.eclipse.emf.facet.infra.browser.custom.core,
  org.eclipse.papyrus.infra.core,
  com.google.guava,
- org.eclipse.papyrus.views.modelexplorer
-Bundle-Version: 0.0.1.qualifier
+ org.eclipse.papyrus.views.modelexplorer,
+ org.eclipse.papyrus.infra.table.efacet.metamodel
+Bundle-Version: 0.9.0.qualifier
+Bundle-Vendor: Eclipse Modeling Project
 
