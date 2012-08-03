@@ -73,7 +73,9 @@ public class ValueSpecificationUtil {
 				value = OpaqueExpressionUtil.getBodyForLanguage(exp, null); //$NON-NLS-1$					
 				break;
 			case UMLPackage.INSTANCE_VALUE:
-				value = ((InstanceValue)specification).getInstance().getName();
+				if (((InstanceValue)specification).getInstance() != null) {
+					value = ((InstanceValue)specification).getInstance().getName();
+				}
 				break;
 			case UMLPackage.EXPRESSION:
 				Expression expr = (Expression)specification;
