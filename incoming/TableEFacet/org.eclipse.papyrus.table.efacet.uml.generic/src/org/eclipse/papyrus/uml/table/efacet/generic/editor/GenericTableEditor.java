@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.table.efacet.uml.generic.editor;
+package org.eclipse.papyrus.uml.table.efacet.generic.editor;
 
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
@@ -25,7 +25,7 @@ public class GenericTableEditor extends AbstractTableEditor {
 	public static final String EDITOR_TYPE = "PapyrusGenericTable"; //$NON-NLS-1$
 
 	/** the default name for this table */
-	public static final String DEFAULT_NAME = "GenericTable"; //$NON-NLS-1$
+	public static final String DEFAULT_NAME = "UMLGenericTable"; //$NON-NLS-1$
 
 	/**
 	 * @param servicesRegistry

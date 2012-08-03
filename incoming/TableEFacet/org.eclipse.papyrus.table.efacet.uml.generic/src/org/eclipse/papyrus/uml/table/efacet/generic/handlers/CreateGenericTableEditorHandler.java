@@ -11,15 +11,15 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.table.efacet.uml.generic.handlers;
+package org.eclipse.papyrus.uml.table.efacet.generic.handlers;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.table.efacet.common.handlers.AbstractCreateTableEditorHandler;
 import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration;
-import org.eclipse.papyrus.table.efacet.uml.generic.Activator;
-import org.eclipse.papyrus.table.efacet.uml.generic.editor.GenericTableEditor;
+import org.eclipse.papyrus.uml.table.efacet.generic.Activator;
+import org.eclipse.papyrus.uml.table.efacet.generic.editor.GenericTableEditor;
 
 
 public class CreateGenericTableEditorHandler extends AbstractCreateTableEditorHandler {

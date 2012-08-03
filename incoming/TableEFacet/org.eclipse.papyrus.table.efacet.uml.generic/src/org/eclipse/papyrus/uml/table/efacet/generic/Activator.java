@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.table.efacet.uml.generic;
+package org.eclipse.papyrus.uml.table.efacet.generic;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.table.efacet.uml.generic"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.table.efacet.generic"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

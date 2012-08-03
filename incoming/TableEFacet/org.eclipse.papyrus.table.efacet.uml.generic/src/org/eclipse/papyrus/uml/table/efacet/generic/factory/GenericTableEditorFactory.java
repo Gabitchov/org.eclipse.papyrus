@@ -13,14 +13,14 @@
  *****************************************************************************/
 
 
-package org.eclipse.papyrus.table.efacet.uml.generic.factory;
+package org.eclipse.papyrus.uml.table.efacet.generic.factory;
 
 import org.eclipse.papyrus.infra.table.efacet.common.factory.AbstractTableEditorFactory;
-import org.eclipse.papyrus.table.efacet.uml.generic.editor.GenericTableEditor;
+import org.eclipse.papyrus.uml.table.efacet.generic.editor.GenericTableEditor;
 
 
 /**
- * @author dumoulin
+ *
  * 
  */
 public class GenericTableEditorFactory extends AbstractTableEditorFactory {
