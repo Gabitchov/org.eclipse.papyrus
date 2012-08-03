@@ -20,6 +20,8 @@ import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider.CustomEditP
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
 import org.eclipse.emf.facet.widgets.celleditors.edit.CelleditorsEditPlugin;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.provider.PapyrustableEditPlugin;
+//import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.provider.Tableinstance02EditPlugin;
+//import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.provider.TableConfigurationEditPlugin;
 
 /**
  * This is the central singleton for the Papyrustableconfiguration editor plugin.

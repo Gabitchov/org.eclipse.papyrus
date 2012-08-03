@@ -13,7 +13,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -115,7 +118,7 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	public void runAsTransaction() throws ServiceException {
 		//default Value
 		this.name = this.defaultName;
-		final InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create new table", "myLabel", "myName", null);//TODO improve it
+		final InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create new table", "Table Name", this.name, null);//TODO improve it
 		if(dialog.open() == Dialog.OK) {
 			//get the name and the description for the table
 			this.name = dialog.getValue();
@@ -222,6 +225,33 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		/** label provider for EMF objects */
 		final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory);
 		System.out.println(labelProvider.getText(papyrusTable));;
+
+		if(papyrusTable.isUsingContextFeature() && papyrusTable.getContextFeature() != null) { //TODO : verify that the context owns the wanted feature
+			getTableContext().eAdapters().add(new Adapter() {
+
+				public void setTarget(final Notifier newTarget) {
+					int i = 0;
+					i++;
+
+				}
+
+				public void notifyChanged(final Notification notification) {
+					int i = 0;
+					i++;
+				}
+
+				public boolean isAdapterForType(final Object type) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+
+				public Notifier getTarget() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			});
+
+		}
 		return papyrusTable;
 	}
 

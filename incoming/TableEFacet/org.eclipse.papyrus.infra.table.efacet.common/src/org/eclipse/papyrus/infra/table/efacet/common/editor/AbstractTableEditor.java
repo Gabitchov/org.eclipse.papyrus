@@ -1,12 +1,17 @@
 package org.eclipse.papyrus.infra.table.efacet.common.editor;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.table.efacet.common.Activator;
 import org.eclipse.papyrus.infra.table.efacet.common.input.PapyrusTableEditorInput;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
+import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -28,14 +33,13 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 	/**
 	 * the part name synchronizer
 	 */
-	//	private final PartNameSynchronizer synchronizer;
+	private final PartNameSynchronizer synchronizer;
 
 
 	public AbstractTableEditor(final ServicesRegistry servicesRegistry, final PapyrusTable rawModel) {
 		this.servicesRegistry = servicesRegistry;
 		this.rawModel = rawModel;
-		//TODO
-		//		this.synchronizer = new PartNameSynchronizer(rawModel);
+		this.synchronizer = new PartNameSynchronizer(rawModel);
 	}
 
 
@@ -51,11 +55,9 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 	@Override
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
 		final PapyrusTableEditorInput tableEditorInput = new PapyrusTableEditorInput(this.rawModel, getEditingDomain());
-		//		initHiddenColumn(this.rawModel);
 		setSite(site);
 		setInput(tableEditorInput);
 		setPartName(this.rawModel.getName());
-		//		addListeners();
 		super.init(site, tableEditorInput);
 	}
 
@@ -119,9 +121,9 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 		try {
 			return ServiceUtils.getInstance().getTransactionalEditingDomain(this.servicesRegistry);
 		} catch (final ServiceException e) {
-			e.printStackTrace();
-			return null;
+			Activator.log.error(e);
 		}
+		return null;
 	}
 
 
@@ -167,93 +169,93 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 	//
 	//	}
 
-	//	/**
-	//	 * A class taking in charge the synchronization of the partName and the diagram name.
-	//	 * When diagram name change, the other is automatically updated.
-	//	 * 
-	//	 * @author vincent lorenzo
-	//	 *         adapted class from UmlGmfDiagramEditor
-	//	 */
-	//	public class PartNameSynchronizer {
-	//
-	//		/** the papyrus table */
-	//		private PapyrusTable papyrusTable;
-	//
-	//		/**
-	//		 * Listener on diagram name change.
-	//		 */
-	//		private final Adapter tableNameListener = new Adapter() {
-	//
-	//			/**
-	//			 * 
-	//			 * @see org.eclipse.emf.common.notify.Adapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
-	//			 * 
-	//			 * @param notification
-	//			 */
-	//			public void notifyChanged(final Notification notification) {
-	//				if(notification.getFeatureID(PapyrusTable.class) == PapyrustableinstancePackage.PAPYRUS_TABLE_INSTANCE__NAME && notification.getNotifier() == PartNameSynchronizer.this.papyrusTable) {
-	//					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
-	//				}
-	//			}
-	//
-	//			/**
-	//			 * 
-	//			 * @see org.eclipse.emf.common.notify.Adapter#getTarget()
-	//			 * 
-	//			 * @return
-	//			 */
-	//			public Notifier getTarget() {
-	//				return null;
-	//			}
-	//
-	//			/**
-	//			 * 
-	//			 * @see org.eclipse.emf.common.notify.Adapter#setTarget(org.eclipse.emf.common.notify.Notifier)
-	//			 * 
-	//			 * @param newTarget
-	//			 */
-	//			public void setTarget(final Notifier newTarget) {
-	//			}
-	//
-	//			/**
-	//			 * 
-	//			 * @see org.eclipse.emf.common.notify.Adapter#isAdapterForType(java.lang.Object)
-	//			 * 
-	//			 * @param type
-	//			 * @return
-	//			 */
-	//			public boolean isAdapterForType(final Object type) {
-	//				return false;
-	//			}
-	//
-	//		};
-	//
-	//		/**
-	//		 * 
-	//		 * Constructor.
-	//		 * 
-	//		 * @param diagram
-	//		 */
-	//		public PartNameSynchronizer(final PapyrusTable papyrusTable) {
-	//			setTable(papyrusTable);
-	//		}
-	//
-	//		/**
-	//		 * Change the associated diagram.
-	//		 * 
-	//		 * @param papyrusTable
-	//		 */
-	//		public void setTable(final PapyrusTable papyrusTable) {
-	//			// Remove from old diagram, if any
-	//			if(this.papyrusTable != null) {
-	//				papyrusTable.eAdapters().remove(this.tableNameListener);
-	//			}
-	//			// Set new table
-	//			this.papyrusTable = papyrusTable;
-	//			// Set editor name
-	//			setPartName(papyrusTable.getName());
-	//			// Listen to name change
-	//			papyrusTable.eAdapters().add(this.tableNameListener);
-	//		}
-	//	}
+	/**
+	 * A class taking in charge the synchronization of the partName and the diagram name.
+	 * When diagram name change, the other is automatically updated.
+	 * 
+	 * @author vincent lorenzo
+	 *         adapted class from UmlGmfDiagramEditor
+	 */
+	public class PartNameSynchronizer {
+
+		/** the papyrus table */
+		private PapyrusTable papyrusTable;
+
+		/**
+		 * Listener on diagram name change.
+		 */
+		private final Adapter tableNameListener = new Adapter() {
+
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
+			 * 
+			 * @param notification
+			 */
+			public void notifyChanged(final Notification notification) {
+				if(notification.getFeatureID(PapyrusTable.class) == PapyrustablePackage.PAPYRUS_TABLE__NAME && notification.getNotifier() == PartNameSynchronizer.this.papyrusTable) {
+					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
+				}
+			}
+
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#getTarget()
+			 * 
+			 * @return
+			 */
+			public Notifier getTarget() {
+				return null;
+			}
+
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#setTarget(org.eclipse.emf.common.notify.Notifier)
+			 * 
+			 * @param newTarget
+			 */
+			public void setTarget(final Notifier newTarget) {
+			}
+
+			/**
+			 * 
+			 * @see org.eclipse.emf.common.notify.Adapter#isAdapterForType(java.lang.Object)
+			 * 
+			 * @param type
+			 * @return
+			 */
+			public boolean isAdapterForType(final Object type) {
+				return false;
+			}
+
+		};
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param diagram
+		 */
+		public PartNameSynchronizer(final PapyrusTable papyrusTable) {
+			setTable(papyrusTable);
+		}
+
+		/**
+		 * Change the associated diagram.
+		 * 
+		 * @param papyrusTable
+		 */
+		public void setTable(final PapyrusTable papyrusTable) {
+			// Remove from old diagram, if any
+			if(this.papyrusTable != null) {
+				papyrusTable.eAdapters().remove(this.tableNameListener);
+			}
+			// Set new table
+			this.papyrusTable = papyrusTable;
+			// Set editor name
+			setPartName(papyrusTable.getName());
+			// Listen to name change
+			papyrusTable.eAdapters().add(this.tableNameListener);
+		}
+	}
 }

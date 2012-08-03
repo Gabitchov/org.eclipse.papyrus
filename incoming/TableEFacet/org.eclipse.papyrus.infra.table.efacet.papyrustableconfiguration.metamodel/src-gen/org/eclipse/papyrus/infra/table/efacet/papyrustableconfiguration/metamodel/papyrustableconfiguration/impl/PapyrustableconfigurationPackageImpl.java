@@ -214,7 +214,6 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		// Obtain other dependent packages
 		PapyrustablePackage thePapyrustablePackage = (PapyrustablePackage)EPackage.Registry.INSTANCE.getEPackage(PapyrustablePackage.eNS_URI);
 		ExtensiblePackage theExtensiblePackage = (ExtensiblePackage)EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TableconfigurationPackage theTableconfigurationPackage = (TableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(TableconfigurationPackage.eNS_URI);
 
 		// Create type parameters
@@ -228,7 +227,7 @@ public class PapyrustableconfigurationPackageImpl extends EPackageImpl implement
 		initEClass(papyrusTableConfigurationEClass, PapyrusTableConfiguration.class, "PapyrusTableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPapyrusTableConfiguration_FillingMode(), thePapyrustablePackage.getFillingMode(), "fillingMode", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_FillingQueries(), theExtensiblePackage.getQuery(), null, "fillingQueries", null, 0, -1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPapyrusTableConfiguration_ListenContextFeature(), theEcorePackage.getEStructuralFeature(), null, "listenContextFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPapyrusTableConfiguration_ListenContextFeature(), ecorePackage.getEReference(), null, "listenContextFeature", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusTableConfiguration_TableConfiguration(), theTableconfigurationPackage.getTableConfiguration(), null, "tableConfiguration", null, 0, 1, PapyrusTableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource

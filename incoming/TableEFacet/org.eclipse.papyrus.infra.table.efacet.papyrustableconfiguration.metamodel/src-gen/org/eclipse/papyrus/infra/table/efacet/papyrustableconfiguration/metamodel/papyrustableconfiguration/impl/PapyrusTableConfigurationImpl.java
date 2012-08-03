@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -92,7 +93,7 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature listenContextFeature;
+	protected EReference listenContextFeature;
 
 	/**
 	 * The cached value of the '{@link #getTableConfiguration() <em>Table Configuration</em>}' containment reference.
@@ -161,10 +162,10 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature getListenContextFeature() {
+	public EReference getListenContextFeature() {
 		if (listenContextFeature != null && listenContextFeature.eIsProxy()) {
 			InternalEObject oldListenContextFeature = (InternalEObject)listenContextFeature;
-			listenContextFeature = (EStructuralFeature)eResolveProxy(oldListenContextFeature);
+			listenContextFeature = (EReference)eResolveProxy(oldListenContextFeature);
 			if (listenContextFeature != oldListenContextFeature) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE, oldListenContextFeature, listenContextFeature));
@@ -178,7 +179,7 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature basicGetListenContextFeature() {
+	public EReference basicGetListenContextFeature() {
 		return listenContextFeature;
 	}
 
@@ -187,8 +188,8 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setListenContextFeature(EStructuralFeature newListenContextFeature) {
-		EStructuralFeature oldListenContextFeature = listenContextFeature;
+	public void setListenContextFeature(EReference newListenContextFeature) {
+		EReference oldListenContextFeature = listenContextFeature;
 		listenContextFeature = newListenContextFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE, oldListenContextFeature, listenContextFeature));
@@ -289,7 +290,7 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 				getFillingQueries().addAll((Collection<? extends Query>)newValue);
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE:
-				setListenContextFeature((EStructuralFeature)newValue);
+				setListenContextFeature((EReference)newValue);
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				setTableConfiguration((TableConfiguration)newValue);
@@ -313,7 +314,7 @@ public class PapyrusTableConfigurationImpl extends EModelElementImpl implements 
 				getFillingQueries().clear();
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE:
-				setListenContextFeature((EStructuralFeature)null);
+				setListenContextFeature((EReference)null);
 				return;
 			case PapyrustableconfigurationPackage.PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION:
 				setTableConfiguration((TableConfiguration)null);

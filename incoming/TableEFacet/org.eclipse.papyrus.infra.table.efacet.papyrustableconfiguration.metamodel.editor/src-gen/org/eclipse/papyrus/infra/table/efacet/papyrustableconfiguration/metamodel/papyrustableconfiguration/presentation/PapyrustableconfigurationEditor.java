@@ -137,6 +137,8 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+//import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.provider.TableItemProviderAdapterFactory;
+//import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.provider.TableconfigurationItemProviderAdapterFactory;
 
 
 /**

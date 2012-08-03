@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamod
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
@@ -98,12 +99,12 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * This field references the feature of the context of the table to listen, when the table in is Feature Mode
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Listen Context Feature</em>' reference.
-	 * @see #setListenContextFeature(EStructuralFeature)
+	 * @see #setListenContextFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_ListenContextFeature()
 	 * @model
 	 * @generated
 	 */
-	EStructuralFeature getListenContextFeature();
+	EReference getListenContextFeature();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}' reference.
@@ -113,7 +114,7 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * @see #getListenContextFeature()
 	 * @generated
 	 */
-	void setListenContextFeature(EStructuralFeature value);
+	void setListenContextFeature(EReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Table Configuration</b></em>' containment reference.
