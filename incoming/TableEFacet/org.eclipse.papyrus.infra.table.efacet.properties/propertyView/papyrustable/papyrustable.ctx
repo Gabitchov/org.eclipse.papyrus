@@ -27,7 +27,7 @@
       <properties name="usingContextFeature" type="Boolean" description="This attribute is true when fillingMode==Feature."/>
       <properties name="usingQueries" type="Boolean" description="This attribute is true when fillingMode==Queries."/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.table.efacet.properties/propertyView/environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts name="table" label="table">
     <elements name="Table">
@@ -68,6 +68,6 @@
     </elements>
     <elements name="EObjectQueryRow" supertypes="//@dataContexts.1/@elements.6"/>
     <elements name="ValueColumn" supertypes="//@dataContexts.1/@elements.2"/>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.table.efacet.properties/propertyView/environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>
