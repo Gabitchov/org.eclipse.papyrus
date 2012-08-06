@@ -76,7 +76,9 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 		} else if(loadOnDemand) {
 			return proxyManager.getEObjectFromStrategy(uri);
 		} else {
-			return null;
+			// call super so that the eobject is returned
+			// if the resource is already loaded
+			return super.getEObject(uri, loadOnDemand);
 		}
 	}
 
