@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.team.svn;
 
+import java.util.HashSet;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -44,12 +46,14 @@ public class SVNLockHandler implements IReadOnlyHandler {
 	}
 
 	private IFile[] getIFiles(URI[] uris) {
-		IFile[] iFiles = new IFile[uris.length];
-		int i = 0;
+		HashSet<IFile> iFilesSet = new HashSet<IFile>();
 		for(URI uri : uris) {
-			iFiles[i++] = getFile(uri);
+			IFile iFile = getFile(uri);
+			if (iFile != null) {
+				iFilesSet.add(iFile);
+			}
 		}
-		return iFiles;
+		return iFilesSet.toArray(new IFile[iFilesSet.size()]);
 	}
 
 	private static IFile getFile(URI uri) {
