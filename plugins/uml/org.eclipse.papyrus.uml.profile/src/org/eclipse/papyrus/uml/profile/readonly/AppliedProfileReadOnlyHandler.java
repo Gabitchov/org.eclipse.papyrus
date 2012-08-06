@@ -24,16 +24,18 @@ import org.eclipse.uml2.uml.Profile;
 public class AppliedProfileReadOnlyHandler implements IReadOnlyHandler {
 
 	public boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
-		Resource mainUmlResource = null;
-		if (editingDomain.getResourceSet() instanceof ModelSet) {
-			UmlModel umlModel = (UmlModel)((ModelSet)editingDomain.getResourceSet()).getModel(UmlModel.MODEL_ID);
-			mainUmlResource = umlModel.getResource();
-		}
+		if (editingDomain != null) {
+			Resource mainUmlResource = null;
+			if (editingDomain.getResourceSet() instanceof ModelSet) {
+				UmlModel umlModel = (UmlModel)((ModelSet)editingDomain.getResourceSet()).getModel(UmlModel.MODEL_ID);
+				mainUmlResource = umlModel.getResource();
+			}
 
-		for(URI uri : uris) {
-			Resource resource = editingDomain.getResourceSet().getResource(uri, false);
-			if(isProfileResource(resource) && mainUmlResource != resource) {
-				return true;
+			for(URI uri : uris) {
+				Resource resource = editingDomain.getResourceSet().getResource(uri, false);
+				if(isProfileResource(resource) && mainUmlResource != resource) {
+					return true;
+				}
 			}
 		}
 
