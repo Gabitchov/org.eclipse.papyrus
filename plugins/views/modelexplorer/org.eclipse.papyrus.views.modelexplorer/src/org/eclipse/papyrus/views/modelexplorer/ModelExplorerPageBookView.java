@@ -94,27 +94,21 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 	 * {@inheritDoc}
 	 */
 	public void gotoMarker(IMarker marker) {
-		try {
-			if(marker.isSubtypeOf(EValidator.MARKER) || marker.isSubtypeOf(MarkerConstants.modelrefMarkerID)) {
-				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
-				if(uriAttribute != null) {
-					URI uri = URI.createURI(uriAttribute);
-					IViewPart viewPart = getActiveView();
-					if(viewPart instanceof ModelExplorerView) {
-						ModelExplorerView modelExplorerView = (ModelExplorerView)viewPart;
-						EditingDomain domain = modelExplorerView.getEditingDomain();
-						EObject eObject = domain.getResourceSet().getEObject(uri, true);
-						if(eObject != null) {
-							CommonViewer treeViewer = ((ModelExplorerView)viewPart).getCommonViewer();
-							// The common viewer is in fact a tree viewer
-							// bug enhancement: use function in ModelExplorerView instead of findElementForEObject
-							ModelExplorerView.reveal(Lists.newArrayList(eObject), treeViewer);
-						}
-					}
+		String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
+		if(uriAttribute != null) {
+			URI uri = URI.createURI(uriAttribute);
+			IViewPart viewPart = getActiveView();
+			if(viewPart instanceof ModelExplorerView) {
+				ModelExplorerView modelExplorerView = (ModelExplorerView)viewPart;
+				EditingDomain domain = modelExplorerView.getEditingDomain();
+				EObject eObject = domain.getResourceSet().getEObject(uri, false);
+				if(eObject != null) {
+					CommonViewer treeViewer = ((ModelExplorerView)viewPart).getCommonViewer();
+					// The common viewer is in fact a tree viewer
+					// bug enhancement: use function in ModelExplorerView instead of findElementForEObject
+					ModelExplorerView.reveal(Lists.newArrayList(eObject), treeViewer);
 				}
 			}
-		} catch (CoreException exception) {
-			log.error(exception);
 		}
 	}
 }
