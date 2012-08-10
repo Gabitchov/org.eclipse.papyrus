@@ -58,9 +58,9 @@ public class DoubleEditor extends StringEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Float getValue() {
+	public Double getValue() {
 		try {
-			return (Float)targetToModelConverter.convert(super.getValue());
+			return (Double)targetToModelConverter.convert(super.getValue());
 		} catch (Exception ex) {
 			Activator.log.error(ex);
 			return null;

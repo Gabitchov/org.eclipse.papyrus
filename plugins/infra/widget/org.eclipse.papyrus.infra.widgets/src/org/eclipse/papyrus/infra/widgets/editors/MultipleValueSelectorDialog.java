@@ -50,6 +50,8 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  */
 public class MultipleValueSelectorDialog extends SelectionDialog implements SelectionListener, IElementSelectionListener {
 
+	public static int MANY = -1;
+
 	/**
 	 * The object selector
 	 */
@@ -150,6 +152,12 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 */
 	protected Set<Object> newObjects = new HashSet<Object>();
 
+
+	/**
+	 * The maximum number of values selected.
+	 */
+	protected int upperBound;
+
 	/**
 	 * Constructor.
 	 * 
@@ -205,6 +213,25 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 *        True if the values returned by this dialog should be unique
 	 */
 	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title, boolean unique, boolean ordered) {
+		this(parentShell, selector, null, unique, false, MANY);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parentShell
+	 *        The shell in which this dialog should be opened
+	 * @param selector
+	 *        The element selector used by this dialog
+	 * @param title
+	 *        The title of this dialog
+	 * @param unique
+	 *        True if the values returned by this dialog should be unique
+	 * @param upperBound
+	 *        The maximum number of values selected.
+	 */
+	public MultipleValueSelectorDialog(Shell parentShell, IElementSelector selector, String title, boolean unique, boolean ordered, int upperBound) {
 		super(parentShell);
 		Assert.isNotNull(selector, "The element selector should be defined"); //$NON-NLS-1$
 		this.selector = selector;
@@ -213,7 +240,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		setTitle(title);
 		this.unique = unique;
 		this.ordered = ordered;
-
+		this.upperBound = upperBound;
 		selector.addElementSelectionListener(this);
 	}
 
@@ -295,6 +322,12 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		addAll.setImage(Activator.getDefault().getImage("/icons/arrow_double.gif")); //$NON-NLS-1$
 		addAll.addSelectionListener(this);
 		addAll.setToolTipText(Messages.MultipleValueSelectorDialog_AddAllElements);
+
+		/* Disable the bouton 'addAll' if currently chosen elements is greater than the maximum number of values selected */
+		if(this.upperBound != MANY && allElements.size() > this.upperBound) {
+			addAll.setEnabled(false);
+		}
+
 
 		removeAll = new Button(buttonsSection, SWT.PUSH);
 		removeAll.setImage(Activator.getDefault().getImage("/icons/arrow_left_double.gif")); //$NON-NLS-1$
@@ -391,6 +424,16 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		} else if(e.widget == create) {
 			createAction();
 		}
+
+		/* Disable the bouton 'add' if the upperBound is reached */
+		if(this.upperBound != MANY) {
+			if(allElements.size() >= this.upperBound) {
+				add.setEnabled(false);
+			} else {
+				add.setEnabled(true);
+			}
+		}
+
 	}
 
 	/**
@@ -633,5 +676,14 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 
 	public void setSelector(IElementSelector selector) {
 		this.selector = selector;
+	}
+
+	/**
+	 * Set the maximum number of values selected.
+	 * 
+	 * @param upperBound
+	 */
+	public void setUpperBound(int upperBound) {
+		this.upperBound = upperBound;
 	}
 }

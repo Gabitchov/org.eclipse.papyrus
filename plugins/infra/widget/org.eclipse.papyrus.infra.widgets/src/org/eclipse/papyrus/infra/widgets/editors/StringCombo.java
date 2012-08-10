@@ -75,12 +75,12 @@ public class StringCombo extends ReferenceCombo {
 		//We can't rely on the ComboViewer#getSelection() method
 		return combo.getText();
 	}
-	
+
 	@Override
-	public void setValue(Object value){
+	public void setValue(Object value) {
 		//See Bug 359835 : The ComboViewer doesn't support custom values
 		//We can't rely on the ComboViewer#setSelection() method
-		if (value instanceof String){
+		if(value instanceof String) {
 			combo.setText((String)value);
 		} else {
 			combo.setText("");
