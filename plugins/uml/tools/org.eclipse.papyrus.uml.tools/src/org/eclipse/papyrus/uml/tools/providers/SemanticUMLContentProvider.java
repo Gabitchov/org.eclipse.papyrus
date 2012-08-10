@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -87,8 +88,18 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 		if(metaclass instanceof Stereotype) {
 			Stereotype stereotype = (Stereotype)metaclass;
-
-			return semanticElement.getAppliedStereotype(stereotype.getQualifiedName()) != null;
+			boolean res = semanticElement.getAppliedStereotype(stereotype.getQualifiedName()) != null;
+			if (!res) {
+				EClass definition = stereotype.getDefinition();
+				for (EObject e : semanticElement.getStereotypeApplications()){
+					EClass c = e.eClass();
+					if (definition != null && definition.isSuperTypeOf(c)){
+						res = true ;
+						break ;
+					}
+				}
+			}
+			return res;
 		}
 
 		//TODO : We should use super.isCompatibleMetaclass(), but the super-implementation 
