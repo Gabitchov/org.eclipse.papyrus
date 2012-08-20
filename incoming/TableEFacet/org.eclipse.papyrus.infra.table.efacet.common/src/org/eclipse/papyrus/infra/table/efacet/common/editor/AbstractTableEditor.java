@@ -1,20 +1,39 @@
+/**
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.infra.table.efacet.common.editor;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.table.efacet.common.Activator;
 import org.eclipse.papyrus.infra.table.efacet.common.input.PapyrusTableEditorInput;
+import org.eclipse.papyrus.infra.table.efacet.common.listener.FillingListener;
+import org.eclipse.papyrus.infra.table.efacet.common.listener.MoveTableLineListener;
+import org.eclipse.papyrus.infra.table.efacet.common.listener.TableFillingModeListener;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.contexts.IContextService;
 
 public abstract class AbstractTableEditor extends NatTableEditor2 {
 
@@ -25,21 +44,27 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 	protected PapyrusTable rawModel;
 
 	/** listener on the model for synchronized table */
-	private TriggerListener modelTriggerListener;
+	private TriggerListener fillingListener;
 
-	/** listener on the table for synchronized table : listen the properties "isSynchronized" and "fillingQueries" */
-	private TriggerListener tableTriggerListener;
+	/** listener on the filling mode */
+	private TriggerListener fillingModeListener;
+
+	/** to listen moving lines in the table */
+	private TriggerListener moveLineListener;
 
 	/**
-	 * the part name synchronizer
+	 * 
+	 * Constructor.
+	 * 
+	 * @param servicesRegistry
+	 *        the service registry
+	 * @param rawModel
+	 *        the raw model
 	 */
-	private final PartNameSynchronizer synchronizer;
-
-
 	public AbstractTableEditor(final ServicesRegistry servicesRegistry, final PapyrusTable rawModel) {
 		this.servicesRegistry = servicesRegistry;
 		this.rawModel = rawModel;
-		this.synchronizer = new PartNameSynchronizer(rawModel);
+		new PartNameSynchronizer(rawModel);
 	}
 
 
@@ -61,54 +86,48 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 		super.init(site, tableEditorInput);
 	}
 
-	//	/**
-	//	 * add listeners on the context of the table and on the table itself
-	//	 */
-	//	protected void addListeners() {
-	//		EditingDomain editingDomain = getEditingDomain();
-	//		Assert.isTrue(editingDomain instanceof TransactionalEditingDomain);
-	//		this.modelTriggerListener = new ModelTriggerListener(this.rawModel, (INatTableWidgetProvider)getAdapter(INatTableWidgetProvider.class));
-	//		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.modelTriggerListener);
-	//		this.tableTriggerListener = new TableTriggerListener(this.rawModel, (INatTableWidgetProvider)getAdapter(INatTableWidgetProvider.class));
-	//		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.tableTriggerListener);
-	//	}
 
-	//	/**
-	//	 * 
-	//	 * @see org.eclipse.papyrus.infra.table.common.internal.NatTableEditor#dispose()
-	//	 *
-	//	 *  {@inheritDoc}
-	//	 */
-	//	@Override
-	//	public void dispose() {
-	//		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.modelTriggerListener);
-	//		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.tableTriggerListener);
-	//		super.dispose();
-	//	}
+	/**
+	 * add listeners on the context of the table and on the table itself
+	 */
+	protected void addListeners() {
+		final EditingDomain editingDomain = getEditingDomain();
+		Assert.isTrue(editingDomain instanceof TransactionalEditingDomain);
 
-	//	/**
-	//	 * 
-	//	 * @param rawModel2
-	//	 */
-	//	private void initHiddenColumn(final PapyrusTableInstance rawModel2) {
-	//		for(Column current : rawModel2.getTable().getColumns()) {
-	//			if(current instanceof DefaultLabelColumn || current instanceof MetaClassColumn || current instanceof EContainerColumn){
-	//				String name = NatTableWidgetInternalUtils.getColumnName(current);
-	//				if(getInitialHiddenColumns().contains(name)) {
-	//					current.setIsHidden(true);
-	//				}
-	//			}
-	//		}
-	//	}
+		this.fillingListener = new FillingListener(this.rawModel);
+		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.fillingListener);
 
-	//	/**
-	//	 * 
-	//	 * @return
-	//	 * a list of the names of the columns to hide by default
-	//	 */
-	//	protected List<String> getInitialHiddenColumns() {
-	//		return Collections.emptyList();
-	//	}
+		this.fillingModeListener = new TableFillingModeListener(this.rawModel);
+		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.fillingModeListener);
+
+		this.moveLineListener = new MoveTableLineListener(this.rawModel);
+		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.moveLineListener);
+	}
+
+	@Override
+	public void createPartControl(final Composite parent) {
+		final IContextService contextService = (IContextService)getSite().getService(IContextService.class);
+		//FIXME : before Eclipse Juno, this line was not necessary
+		//see bug 367816 and bug 382218
+		contextService.activateContext("org.eclipse.papyrus.infra.table.efacet.common.context"); //$NON-NLS-1$
+		super.createPartControl(parent);
+		addListeners();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.table.common.internal.NatTableEditor#dispose()
+	 * 
+	 *      {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.fillingListener);
+		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.fillingModeListener);
+		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.moveLineListener);
+		super.dispose();
+	}
+
 
 	/**
 	 * 
@@ -126,48 +145,6 @@ public abstract class AbstractTableEditor extends NatTableEditor2 {
 		return null;
 	}
 
-
-	//	/**
-	//	 * This method execute the filling queries
-	//	 */
-	//	@Deprecated
-	//	protected void executeQueries() {
-	//		if(this.rawModel.isIsSynchronized()) {
-	//			TableInstance table = this.rawModel.getTable();
-	//			EObject context = table.getContext();
-	//			List<EObject> elementsToAdd = new ArrayList<EObject>();
-	//			for(ModelQuery query : this.rawModel.getFillingQueries()) {
-	//				ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
-	//				AbstractModelQuery impl = null;
-	//				try {
-	//					impl = catalog.getModelQueryImpl(query);
-	//				} catch (ModelQueryException e) {
-	//					e.printStackTrace();
-	//				}
-	//				if(impl != null) {
-	//					ModelQueryResult result = impl.evaluate(context);
-	//					Object value = result.getValue();
-	//					if(value instanceof Collection<?>) {
-	//						for(Object currentObject : (Collection<?>)value) {
-	//							if(currentObject instanceof EObject && !table.getElements().contains(currentObject)) {
-	//								elementsToAdd.add((EObject)currentObject);
-	//							}
-	//						}
-	//
-	//					} else {
-	//						//nothing to do for the moment
-	//					}
-	//				}
-	//			}
-	//			if(!elementsToAdd.isEmpty()) {
-	//				//				this.natTableWidget.addRows(elementsToAdd);
-	//				if(this.natTableWidget instanceof IPapyrusNatTableWidget) {
-	//					((IPapyrusNatTableWidget)this.natTableWidget).addRowsOutOfCommandStack(elementsToAdd);
-	//				}
-	//			}
-	//		}
-	//
-	//	}
 
 	/**
 	 * A class taking in charge the synchronization of the partName and the diagram name.

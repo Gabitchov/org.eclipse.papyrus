@@ -1,6 +1,19 @@
+/**
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.infra.table.efacet.common.handlers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,11 +26,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -109,6 +124,15 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	}
 
 	/**
+	 * 
+	 * @return
+	 *         <code>true</code> to open the name dialog
+	 */
+	protected boolean shouldOpenNameDialog() {
+		return true;
+	}
+
+	/**
 	 * Run the command as a transaction.
 	 * Create a Transaction and delegate the command to {@link #doExecute(ServicesRegistry)}.
 	 * 
@@ -118,38 +142,42 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	public void runAsTransaction() throws ServiceException {
 		//default Value
 		this.name = this.defaultName;
-		final InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create new table", "Table Name", this.name, null);//TODO improve it
-		if(dialog.open() == Dialog.OK) {
-			//get the name and the description for the table
-			this.name = dialog.getValue();
 
-			final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-			final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
-
-			//Create the transactional command
-			final AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$ //TODO add the type of the table in the command name
-
-				@Override
-				protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-					try {
-						AbstractCreateTableEditorHandler.this.doExecute(serviceRegistry);
-					} catch (final ServiceException e) {
-						Activator.log.error(e);
-						return Status.CANCEL_STATUS;
-					} catch (final NotFoundException e) {
-						Activator.log.error(e);
-						return Status.CANCEL_STATUS;
-					}
-					return Status.OK_STATUS;
-				}
-			};
-
-			// Execute the command
-			try {
-				CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null); //TODO : best way?
-			} catch (final ExecutionException e) {
-				Activator.log.error("Can't create Table Editor", e); //$NON-NLS-1$
+		if(shouldOpenNameDialog()) {//this test is used to allow the JUnit test without ui!
+			final InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create new table", "Table Name", this.name, null);//TODO improve it //$NON-NLS-1$ //$NON-NLS-2$
+			if(dialog.open() == Dialog.OK) {
+				//get the name and the description for the table
+				this.name = dialog.getValue();
+			} else {
+				return;
 			}
+		}
+		final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+
+		//Create the transactional command
+		final AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$ //TODO add the type of the table in the command name
+
+			@Override
+			protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				try {
+					AbstractCreateTableEditorHandler.this.doExecute(serviceRegistry);
+				} catch (final ServiceException e) {
+					Activator.log.error(e);
+					return Status.CANCEL_STATUS;
+				} catch (final NotFoundException e) {
+					Activator.log.error(e);
+					return Status.CANCEL_STATUS;
+				}
+				return Status.OK_STATUS;
+			}
+		};
+
+		// Execute the command
+		try {
+			CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null); //TODO : best way?
+		} catch (final ExecutionException e) {
+			Activator.log.error("Can't create Table Editor", e); //$NON-NLS-1$
 		}
 	}
 
@@ -198,8 +226,9 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		Assert.isNotNull(context);
 		//		List<EObject> elements = getInitialElement(papyrusTable, context);
 
-		//TODO initialize these elements if necessary...
-		final List<EObject> elements = new ArrayList<EObject>();
+
+		//		final List<EObject> elements = TableContentsUtils.getTableContents(papyrusTable, context, true);
+		final List<EObject> elements = Collections.EMPTY_LIST;
 		//		elements.add(getTableContext());
 		final String description = null;
 		TableConfiguration tableConfiguration = null;
@@ -227,131 +256,28 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		System.out.println(labelProvider.getText(papyrusTable));;
 
 		if(papyrusTable.isUsingContextFeature() && papyrusTable.getContextFeature() != null) { //TODO : verify that the context owns the wanted feature
-			getTableContext().eAdapters().add(new Adapter() {
+			final boolean isDerived = papyrusTable.getContextFeature().isDerived();
+			final EReference ref = papyrusTable.getContextFeature();
+			final EGenericType genericTtype = ref.getEGenericType();
+			final EList<EObject> cross = ref.eCrossReferences();
+			System.out.println(isDerived);
 
-				public void setTarget(final Notifier newTarget) {
-					int i = 0;
-					i++;
+			getTableContext().eAdapters().add(new AdapterImpl() {
 
-				}
 
+
+				@Override
 				public void notifyChanged(final Notification notification) {
+					final Object feature = notification.getFeature();
 					int i = 0;
 					i++;
 				}
 
-				public boolean isAdapterForType(final Object type) {
-					// TODO Auto-generated method stub
-					return false;
-				}
-
-				public Notifier getTarget() {
-					// TODO Auto-generated method stub
-					return null;
-				}
 			});
 
 		}
 		return papyrusTable;
 	}
-
-	//	/**
-	//	 * 
-	//	 * @param papyrusTable
-	//	 *        the papyrus table
-	//	 * @param context
-	//	 * @return the list of the initial element for the table
-	//	 */
-	//	private List<EObject> getInitialElement(PapyrusTableInstance papyrusTable, EObject context) {
-	//		if(papyrusTable.isIsSynchronized() && !papyrusTable.getFillingQueries().isEmpty()) {
-	//			List<EObject> elements = new ArrayList<EObject>();
-	//
-	//			for(ModelQuery query : papyrusTable.getFillingQueries()) {
-	//				ModelQuerySetCatalog catalog = ModelQuerySetCatalog.getSingleton();
-	//				AbstractModelQuery impl = null;
-	//				try {
-	//					impl = catalog.getModelQueryImpl(query);
-	//				} catch (ModelQueryException e) {
-	//					Activator.getDefault().log.error(e);
-	//				}
-	//				if(impl != null) {
-	//					ModelQueryResult result = impl.evaluate(context);
-	//					Object value = result.getValue();
-	//					if(value instanceof Collection<?>) {
-	//						// the build the list of the elements to add in the
-	//						// table
-	//						for(Object currentObject : (Collection<?>)value) {
-	//							if(currentObject instanceof EObject) {
-	//								elements.add((EObject)currentObject);
-	//							}
-	//						}
-	//
-	//					}
-	//				}
-	//			}
-	//			return elements;
-	//		}
-	//		return Collections.emptyList();
-	//	}
-	//
-	//	/**
-	//	 * Allows to hide the columns created by default
-	//	 * 
-	//	 * @param papyrusTable
-	//	 */
-	//	private void setHiddenColumns(final PapyrusTableInstance papyrusTable) {
-	//		List<String> hiddenColumnsName = getHiddenColumnName();
-	//		if(!hiddenColumnsName.isEmpty()) {
-	//			for(Column column : papyrusTable.getTable().getColumns()) {
-	//				String name = NatTableWidgetInternalUtils.getColumnName(column);
-	//				if(hiddenColumnsName.contains(name)) {
-	//					column.setIsHidden(true);
-	//				}
-	//			}
-	//		}
-	//	}
-
-	//	/**
-	//	 * Returns the list of the columns to hide. Currently, the name can be :
-	//	 * <ul>
-	//	 * <li>[Label]</li>
-	//	 * <li>[Metaclass]</li>
-	//	 * <li>/eContainer</li>
-	//	 * </ul>
-	//	 * 
-	//	 * @return
-	//	 *         the list of the columns to hide
-	//	 */
-	//	protected List<String> getHiddenColumnName() {
-	//		return Collections.emptyList();
-	//	}
-	//
-	//	/**
-	//	 * Returns the table configuration for the table
-	//	 * 
-	//	 * {@link Deprecated} // use getTableConfiguration2
-	//	 * 
-	//	 * @return
-	//	 *         the table configuration of the table
-	//	 *         FIXME should be removed in Papyrus 0.9.0
-	//	 * 
-	//	 */
-	//	@Deprecated
-	//	protected TableConfiguration getTableConfiguration() {
-	//		return getTableConfiguration2();
-	//	}
-	//
-	//	/**
-	//	 * Returns the table configuration for the table
-	//	 * 
-	//	 * @return
-	//	 *         the table configuration of the table
-	//	 * 
-	//	 */
-	//	protected TableConfiguration2 getTableConfiguration2() {
-	//		return null;
-	//	}
-	//
 
 	/**
 	 * 

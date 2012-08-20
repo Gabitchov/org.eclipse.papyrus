@@ -20,7 +20,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.widgets.nattable.instance,
  org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.table.efacet.metamodel.edit;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.table.efacet.metamodel.edit;bundle-version="1.0.0",
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
+ net.sourceforge.nattable.core;bundle-version="2.1.0",
+ org.eclipse.core.expressions,
+ org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.emf.facet.widgets.celleditors.editor;bundle-version="0.2.0",
+ org.eclipse.emf.facet.widgets.celleditors.ecore;bundle-version="0.2.0",
+ org.eclipse.emf.facet.efacet.core,
+ org.eclipse.emf.facet.util.core
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.table.efacet.common.editor,
