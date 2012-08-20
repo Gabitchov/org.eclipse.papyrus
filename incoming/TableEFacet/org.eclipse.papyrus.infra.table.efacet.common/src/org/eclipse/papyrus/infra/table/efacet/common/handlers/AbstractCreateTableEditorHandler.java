@@ -30,10 +30,13 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
@@ -282,9 +285,31 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	/**
 	 * 
 	 * @return
-	 *         the configuration to use for the table
+	 *         the configuration to use for the table. This method can return <code>null</code>
 	 */
-	protected abstract PapyrusTableConfiguration getPapyrusTableConfiguration();
+	protected final PapyrusTableConfiguration getPapyrusTableConfiguration() {
+
+		final ResourceSet resourceSet = getTableContext().eResource().getResourceSet();
+
+		final URI uri = getPapyrusTableConfigurationURI();
+		final Resource resource = resourceSet.getResource(uri, true);
+		EcoreUtil.resolveAll(resource);
+		PapyrusTableConfiguration configuration = null;
+
+		if(resource.getContents().get(0) instanceof PapyrusTableConfiguration) {
+			configuration = (PapyrusTableConfiguration)resource.getContents().get(0);
+		}
+		return configuration;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the URI of the Papyrus Table Configuration
+	 */
+	protected URI getPapyrusTableConfigurationURI() {
+		return null;
+	}
 
 	/**
 	 * Get the current MultiDiagramEditor.
