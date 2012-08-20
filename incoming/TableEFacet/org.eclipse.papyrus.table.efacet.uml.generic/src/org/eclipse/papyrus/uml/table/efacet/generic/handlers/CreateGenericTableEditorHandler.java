@@ -14,10 +14,7 @@
 package org.eclipse.papyrus.uml.table.efacet.generic.handlers;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.table.efacet.common.handlers.AbstractCreateTableEditorHandler;
-import org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration;
 import org.eclipse.papyrus.uml.table.efacet.generic.Activator;
 import org.eclipse.papyrus.uml.table.efacet.generic.editor.GenericTableEditor;
 
@@ -33,26 +30,15 @@ public class CreateGenericTableEditorHandler extends AbstractCreateTableEditorHa
 		super(GenericTableEditor.EDITOR_TYPE, GenericTableEditor.DEFAULT_NAME);
 	}
 
+
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.table.common.handlers.AbstractCreateTableEditorHandler#getPapyrusTableConfiguration()
-	 * 
 	 * @return
+	 *         the uri of the papyrus table configuration to use for the Papyrus Table
 	 */
-	@Override
-	protected PapyrusTableConfiguration getPapyrusTableConfiguration() {
-		final ResourceSet resourceSet = getTableContext().eResource().getResourceSet();
-
+	protected URI getPapyrusTableConfigurationURI() {
 		final String symbolicName = Activator.getDefault().getBundle().getSymbolicName();
 		final URI uri = URI.createPlatformPluginURI(symbolicName + "/resources/uml_generic_table.papyrustableconfiguration", true); //$NON-NLS-1$
-		final Resource resource = resourceSet.getResource(uri, true);
-
-		PapyrusTableConfiguration configuration = null;
-
-		if(resource.getContents().get(0) instanceof PapyrusTableConfiguration) {
-			configuration = (PapyrusTableConfiguration)resource.getContents().get(0);
-		}
-		return configuration;
+		return uri;
 	}
-
 }

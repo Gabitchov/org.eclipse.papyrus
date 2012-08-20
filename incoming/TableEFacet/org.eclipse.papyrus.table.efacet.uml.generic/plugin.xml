@@ -16,12 +16,32 @@
             id="org.eclipse.papyrus.uml.generic.table.command"
             name="Create a UML Table Editor (Generic)">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a new UML Table Editor (Generic)  Without Dialog"
+            id="org.eclipse.papyrus.uml.generic.table.command.withoutdialog"
+            name="Create a UML Table Editor (Generic) Without Dialog">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="org.eclipse.papyrus.uml.table.efacet.generic.handlers.CreateGenericTableEditorHandler"
             commandId="org.eclipse.papyrus.uml.generic.table.command">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.uml.table.efacet.generic.handlers.CreateGenericTableEditorHandler"
+            commandId="org.eclipse.papyrus.uml.generic.table.command.withoutdialog">
          <activeWhen>
             <or>
                <with
