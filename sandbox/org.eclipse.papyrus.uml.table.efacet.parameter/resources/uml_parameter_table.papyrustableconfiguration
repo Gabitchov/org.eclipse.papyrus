@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" fillingMode="CONTEXT_FEATURE">
+  <listenContextFeature href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioralFeature/ownedParameter"/>
+  <tableConfiguration/>
+</org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration>

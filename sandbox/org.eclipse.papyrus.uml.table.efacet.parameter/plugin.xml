@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <editorDiagram
+            factoryClass="org.eclipse.papyrus.uml.table.efacet.parameter.factory.ParameterTableEditorFactory"
+            icon="icons/parameter_table.gif">
+      </editorDiagram>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Create a UML Parameter Table Editor"
+            id="org.eclipse.papyrus.uml.table.efacet.parameter.command"
+            name="Create a UML Parameter Table Editor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.uml.table.efacet.parameter.handler.CreateParameterTableEditorHandler"
+            commandId="org.eclipse.papyrus.uml.table.efacet.parameter.command">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.table.efacet.creation">
+         <command
+               commandId="org.eclipse.papyrus.uml.table.efacet.parameter.command"
+               icon="icons/parameter_table.gif"
+               label="UML Parameter Table"
+               mnemonic="&amp;P"
+               style="push"
+               tooltip="Create a new UUML Parameter Table">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.papyrus.ui.menu.efacet.table.creation">
+         <command
+               commandId="org.eclipse.papyrus.uml.table.efacet.parameter.command"
+               icon="icons/parameter_table.gif"
+               label="UML Parameter Table"
+               mnemonic="&amp;P"
+               style="push"
+               tooltip="Create a new UUML Parameter Table">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.papyrus.toolbar.table.efacet.creation">
+         <command
+               commandId="org.eclipse.papyrus.uml.table.efacet.parameter.command"
+               icon="icons/parameter_table.gif"
+               label="UML Parameter Table"
+               mnemonic="&amp;P"
+               style="push"
+               tooltip="Create a new UUML Parameter Table">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
