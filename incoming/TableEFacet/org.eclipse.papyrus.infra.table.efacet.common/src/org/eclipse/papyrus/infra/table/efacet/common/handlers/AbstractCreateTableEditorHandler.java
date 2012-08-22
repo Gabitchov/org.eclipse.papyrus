@@ -256,14 +256,12 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 
 		/** label provider for EMF objects */
 		final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory);
-		System.out.println(labelProvider.getText(papyrusTable));;
 
 		if(papyrusTable.isUsingContextFeature() && papyrusTable.getContextFeature() != null) { //TODO : verify that the context owns the wanted feature
 			final boolean isDerived = papyrusTable.getContextFeature().isDerived();
 			final EReference ref = papyrusTable.getContextFeature();
 			final EGenericType genericTtype = ref.getEGenericType();
 			final EList<EObject> cross = ref.eCrossReferences();
-			System.out.println(isDerived);
 
 			getTableContext().eAdapters().add(new AdapterImpl() {
 

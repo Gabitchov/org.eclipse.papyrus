@@ -27,7 +27,6 @@ import java.util.HashMap;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -45,8 +44,6 @@ import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetFactory;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -136,7 +133,7 @@ public class NatTableEditor2 extends EditorPart implements ISelectionProvider, I
 			};
 		}
 		if(adapter == PapyrusTable.class) {
-			this.natTableWidget.getTable().eContainer();
+			return this.natTableWidget.getTable().eContainer();
 		} else if(adapter == Table.class) {
 			return this.natTableWidget.getTable();
 		}

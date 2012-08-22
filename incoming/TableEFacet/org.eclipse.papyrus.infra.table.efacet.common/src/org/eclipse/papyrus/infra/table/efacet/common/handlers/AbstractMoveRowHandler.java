@@ -12,8 +12,6 @@
  */
 package org.eclipse.papyrus.infra.table.efacet.common.handlers;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -21,9 +19,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Row;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
-import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
+import org.eclipse.emf.facet.widgets.table.ui.ITableWidget;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
@@ -31,6 +28,8 @@ import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
+
+//import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
 
 /**
  * 
@@ -56,9 +55,6 @@ public abstract class AbstractMoveRowHandler extends AbstractHandler {
 
 			//we set the old row selection
 			final ITableWidget widget = getTableWidget();
-
-			final List<EObject> toSelect = new ArrayList<EObject>();
-
 			widget.selectRows(selectedRows, true);
 		}
 		return null;
@@ -82,12 +78,8 @@ public abstract class AbstractMoveRowHandler extends AbstractHandler {
 	 *         a list of the selected rows
 	 */
 	protected List<EObject> getSelectedRowEObject() {
-		final List<Row> rows = new ArrayList<Row>();
 		final ITableWidget widget = getTableWidget();
-		if(widget instanceof org.eclipse.emf.facet.widgets.table.ui.ITableWidget) {
-			return ((org.eclipse.emf.facet.widgets.table.ui.ITableWidget)widget).getSelectedRowEObjects();
-		}
-		return Collections.EMPTY_LIST;
+		return widget.getSelectedRowEObjects();
 	}
 
 	/**
@@ -117,7 +109,10 @@ public abstract class AbstractMoveRowHandler extends AbstractHandler {
 		if(editor != null) {
 			final ITableWidgetProvider provider = (ITableWidgetProvider)editor.getAdapter(ITableWidgetProvider.class);
 			if(provider != null) {
-				return provider.getTableWidget();
+				final Object widget = provider.getTableWidget();
+				if(widget instanceof ITableWidget) {
+					return (ITableWidget)widget;
+				}
 			}
 		}
 		return null;
