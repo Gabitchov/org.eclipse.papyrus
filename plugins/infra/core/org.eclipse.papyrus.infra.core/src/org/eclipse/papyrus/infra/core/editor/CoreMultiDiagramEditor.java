@@ -555,8 +555,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	protected void warnUser(ModelMultiException e) {
 		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n"
-					+ "%s" 
-					+ "It is recommended to fix it before editing it", e.getMessage()));
+			+ "%s"
+			+ "It is recommended to fix it before editing it", e.getMessage()));
 	}
 
 	/**
@@ -625,9 +625,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Avoid memory leak
 		// This call is done from the ServicesRegistry when it is disposed.
 		// Don't need to do it there.
-//		if(resourceSet != null) {
-//			resourceSet.unload();
-//		}
+		//		if(resourceSet != null) {
+		//			resourceSet.unload();
+		//		}
 
 		// dispose available service
 		if(servicesRegistry != null) {
@@ -799,13 +799,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	public void gotoMarker(IMarker marker) {
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
+		boolean first = true;
 		for(IViewReference view : page.getViewReferences()) {
-			if(view.getId().equals("org.eclipse.papyrus.views.modelexplorer.modelexplorer")) {
-				page.activate(view.getPart(false));
-				IWorkbenchPart part = view.getPart(false);
-				if(part instanceof IGotoMarker) {
-					((IGotoMarker)part).gotoMarker(marker);
+			// no longer restrict to model explorer (see bug 387578)
+			IWorkbenchPart part = view.getPart(false);
+			if(part instanceof IGotoMarker) {
+				// activate first view implementing the IGotoMarker interface
+				if(first) {
+					page.activate(view.getPart(false));
+					first = false;
 				}
+				((IGotoMarker)part).gotoMarker(marker);
 			}
 		}
 	}
