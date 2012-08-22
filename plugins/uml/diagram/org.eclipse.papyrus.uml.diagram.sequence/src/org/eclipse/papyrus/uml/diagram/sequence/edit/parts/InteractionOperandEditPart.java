@@ -498,29 +498,31 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 				}
 			}
 
-			if(minValue == null && maxValue == null) {
-				minValue = 0;
-				maxValue = -1;
-			} else if(minValue == null) {
-				minValue = 0;
-			} else if(maxValue == null) {
-				maxValue = minValue;
-			}
+//			if(minValue == null && maxValue == null) {
+//				minValue = 0;
+//				maxValue = -1;
+//			} else if(minValue == null) {
+//				minValue = 0;
+//			} else if(maxValue == null) {
+//				maxValue = minValue;
+//			}
 
-			sb.append('[');
-			sb.append(minValue);
-			if(minValue != maxValue) {
-				sb.append(',');
-				if(maxValue == -1) {
-					sb.append('*');
-				} else {
-					sb.append(maxValue);
+			if(minValue != null && maxValue != null) {
+				sb.append('[');
+				sb.append(minValue);
+				if(minValue != maxValue) {
+					sb.append(',');
+					if(maxValue == -1) {
+						sb.append('*');
+					} else {
+						sb.append(maxValue);
+					}
 				}
-			}
-			sb.append(']');
-
-			if(specValue != null && !"".equals(specValue)) {
-				sb.append(' ');
+				sb.append(']');
+	
+				if(specValue != null && specValue.length() > 0) {
+					sb.append(' ');
+				}
 			}
 		}
 
@@ -1647,25 +1649,42 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			CombinedFragment enclosingCF = (CombinedFragment)interactionOperand.getOwner();
 			InteractionOperatorKind cfOperator = enclosingCF.getInteractionOperator();
-			
-			if(text.contains("]") && InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)){
-				String[] parts = text.split("]");
-				String[] nums = parts[0].replaceAll("\\[", "").split(",");
-				int min = 0, max = -1;
-				min = parseInt(nums[0], 0);
-				max = nums.length > 1 ? parseInt(nums[1], -1) : min;
-				setIntValue( guard.getMinint() ,min);
-				setIntValue( guard.getMaxint() ,max);
-				
-				if(parts.length > 1)
-					text = parts[1] == null? "" : parts[1].trim();
-				else
-					text = "";
-			} 
+			if(InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)){
+				if(text.contains("]") && text.contains("[") ){
+					String[] parts = text.split("]");
+					String[] nums = parts[0].replaceAll("\\[", "").split(",");
+					int min = 0, max = -1;
+					min = parseInt(nums[0], 0);
+					max = nums.length > 1 ? parseInt(nums[1], -1) : min;
+					
+					if(guard.getMinint() != null)
+						setIntValue( guard.getMinint() ,min);
+					else
+						guard.setMinint(createLiteralInteger(min));					
+					if(guard.getMaxint() != null)
+						setIntValue( guard.getMaxint() ,max);
+					else
+						guard.setMaxint(createLiteralInteger(max));
+					
+					if(parts.length > 1)
+						text = parts[1] == null? "" : parts[1].trim();
+					else
+						text = "";
+				}else{
+					guard.setMinint(null);
+					guard.setMaxint(null);
+				}
+			}
 			LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 			literalString.setValue(text);
 			guard.setSpecification(literalString);
 			return CommandResult.newOKCommandResult();
+		}
+		
+		private LiteralInteger createLiteralInteger(int val){
+			LiteralInteger li = UMLFactory.eINSTANCE.createLiteralInteger();
+			li.setValue(val);
+			return li;
 		}
 
 		private void setIntValue(ValueSpecification spec, int val) {

@@ -33,10 +33,12 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 
 /**
  * A specific policy to handle :
@@ -139,6 +141,11 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		Command command = super.getReconnectSourceCommand(request);
 		if(command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
+			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart){
+				LifelineEditPart newSource = (LifelineEditPart) request.getTarget();
+				LifelineEditPart target = (LifelineEditPart) request.getConnectionEditPart().getTarget();
+				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, newSource.getFigure().getBounds().getLocation().getCopy());	
+			}
 		}
 		return command;
 	}
@@ -157,6 +164,9 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		Command command = super.getReconnectTargetCommand(request);
 		if(command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
+			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart){
+				command = LifelineMessageCreateHelper.reconnectMessageCreate(request, command);
+			}
 		}
 		return command;
 	}

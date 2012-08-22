@@ -153,26 +153,7 @@ AbstractExecutionSpecificationEditPart {
 	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60) {
-
-			/**
-			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
-			 */
-			@Override
-			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
-				return false;
-			}
-
-			protected void paintChildren(Graphics graphics) {
-				super.paintChildren(graphics);
-			}
-			
-			public void add(IFigure figure, Object constraint, int index) {
-				super.add(figure,constraint, index);
-			}
-		};
-		 
-		return result;
+		return super.createNodePlate();
 	}
 
 	/**
@@ -1015,7 +996,7 @@ AbstractExecutionSpecificationEditPart {
 		 */
 		public ExecutionSpecificationRectangleFigure() {
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(25)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
 		}
 
 	}

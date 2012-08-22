@@ -111,7 +111,26 @@ BorderedBorderItemEditPart {
 	
 	@Override
 	protected void refreshBounds() {		
-		super.refreshBounds();
+		if (getBorderItemLocator() != null) {
+			int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
+				.getLocation_X())).intValue();
+			int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
+				.getLocation_Y())).intValue();
+			Point loc = new Point(x, y);
+			
+			int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			if(width == -1){ // fix resize issue, the height is not able to smaller than prefer height due to width is -1 
+				width = getFigure().getPreferredSize(width,height).width;
+			}
+			Dimension size = new Dimension(width, height);
+
+			getBorderItemLocator().setConstraint(new Rectangle(
+				loc, size));
+		} else {
+			super.refreshBounds();
+		}
+		
 		//fix combined fragment move
 		this.getFigure().getParent().getLayoutManager().layout(	this.getFigure().getParent());
 	}

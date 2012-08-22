@@ -13,14 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutManager;
+import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.XYLayout;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 
 /**
  * The figure of the LifelineDotLine
@@ -123,4 +123,66 @@ public class LifelineDotLineCustomFigure extends LifelineDotLineFigure {
 		}
 	}
 
+	// fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=384616
+	public static class DefaultSizeNodeFigureEx extends DefaultSizeNodeFigure {
+
+		public DefaultSizeNodeFigureEx(int width, int height) {
+			super(width, height);
+		}
+
+		public IFigure findMouseEventTargetAt(int x, int y) {		
+			// check children first instead of self
+			IFigure f = findMouseEventTargetInDescendantsAt(x, y);
+			if (f != null)
+				return f;
+			if (!containsPoint(x, y))
+				return null;
+			if (isMouseEventTarget())
+				return this;
+			return null;
+		}
+
+		public IFigure findFigureAt(int x, int y, TreeSearch search) {
+			if (search.prune(this))
+				return null;
+			IFigure child = findDescendantAtExcluding(x, y, search);
+			if (child != null)
+				return child;
+			if (!containsPoint(x, y))
+				return null;
+			if (search.accept(this))
+				return this;
+			return null;
+		}
+	};
+	
+	public static class NodeNamedElementFigureEx extends NodeNamedElementFigure{
+	
+		public IFigure findMouseEventTargetAt(int x, int y) {	
+			// check children first instead of self
+			IFigure f = findMouseEventTargetInDescendantsAt(x, y);
+			if (f != null)
+				return f;
+			if (!containsPoint(x, y))
+				return null;
+			if (isMouseEventTarget())
+				return this;
+			return null;
+		}
+
+		public IFigure findFigureAt(int x, int y, TreeSearch search) {
+			if (search.prune(this))
+				return null;
+			IFigure child = findDescendantAtExcluding(x, y, search);
+			if (child != null)
+				return child;
+			if (!containsPoint(x, y))
+				return null;
+			if (search.accept(this))
+				return this;
+			return null;
+		}
+	}
 }
+
+

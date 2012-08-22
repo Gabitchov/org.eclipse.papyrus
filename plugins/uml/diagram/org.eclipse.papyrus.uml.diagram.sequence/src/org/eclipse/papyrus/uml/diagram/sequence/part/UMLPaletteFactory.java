@@ -197,6 +197,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATECOMBINEDFRAGMENT5CREATIONTOOL)) {
 			return createCombinedFragment5CreationTool();
 		}
+		// add
+		if(toolId.equals("createConsiderIgnoreFragment5CreationTool")) {
+			return createConsiderIgnoreFragmentCreationTool();
+		}
 		if(toolId.equals(CREATEINTERACTIONOPERAND6CREATIONTOOL)) {
 			return createInteractionOperand6CreationTool();
 		}
@@ -324,13 +328,21 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createCombinedFragment5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		//types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 		types.add(UMLElementTypes.CombinedFragment_3004);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 
+	private Tool createConsiderIgnoreFragmentCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+	
 	/**
 	 * @generated
 	 */

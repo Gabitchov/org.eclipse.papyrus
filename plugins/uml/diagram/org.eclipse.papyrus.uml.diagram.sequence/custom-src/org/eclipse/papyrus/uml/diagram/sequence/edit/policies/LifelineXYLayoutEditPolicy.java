@@ -500,7 +500,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					}
 
 					// keep absolute position of anchors
-					compoundCmd.add(new ICommandProxy(new PreserveAnchorsPositionCommand(executionSpecificationEP, new Dimension(realMoveDelta.width, realMoveDelta.height), PreserveAnchorsPositionCommand.PRESERVE_Y, executionSpecificationEP.getFigure(), request.getResizeDirection())));
+					compoundCmd.add(new ICommandProxy(new LifelineEditPart.PreserveAnchorsPositionCommandEx(executionSpecificationEP, new Dimension(realMoveDelta.width, realMoveDelta.height), PreserveAnchorsPositionCommand.PRESERVE_Y, executionSpecificationEP.getFigure(), request.getResizeDirection())));
 				}
 
 				if(ep instanceof CombinedFragment2EditPart) {

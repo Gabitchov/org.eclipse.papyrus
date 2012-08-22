@@ -1104,4 +1104,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 
 	}
 
+	protected String getTitlePreferenceKey(){
+		return "ELEMENT_PapyrusUMLSequenceDiagram_ConsiderIgnoreFragment_CombinedFragmentCompartment.compartment_name.visibility";
+	}
 }

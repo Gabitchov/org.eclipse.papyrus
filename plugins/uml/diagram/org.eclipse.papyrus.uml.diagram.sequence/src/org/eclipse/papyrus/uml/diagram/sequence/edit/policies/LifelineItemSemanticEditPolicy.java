@@ -34,7 +34,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrai
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DestructionOccurrenceSpecificationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.LifelineCreateCommand;
@@ -54,7 +53,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateComma
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.StateInvariantCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.TimeConstraintCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.TimeObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
@@ -67,6 +65,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -144,7 +143,9 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			ICommand deleteCommand = provider.getEditCommand(req);
 
 			if(deleteCommand != null) {
-				return new ICommandProxy(deleteCommand);
+				Command command = new ICommandProxy(deleteCommand);
+				command = LifelineMessageCreateHelper.moveLifelineUp(command, (LifelineEditPart) getHost());		
+				return command;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

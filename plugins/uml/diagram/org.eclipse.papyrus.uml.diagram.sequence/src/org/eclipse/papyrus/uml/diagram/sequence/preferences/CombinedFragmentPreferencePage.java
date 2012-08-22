@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * @generated
@@ -69,9 +72,16 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusNodePreferenc
 		//		new org.eclipse.swt.graphics.RGB(255, 255, 255),
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
-
 	}
-
+	
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		for(String name : compartments) {
+			map.put(name,Boolean.FALSE);
+		}
+		return map;
+	}
+	
 	/**
 	 * @generated NOT
 	 */

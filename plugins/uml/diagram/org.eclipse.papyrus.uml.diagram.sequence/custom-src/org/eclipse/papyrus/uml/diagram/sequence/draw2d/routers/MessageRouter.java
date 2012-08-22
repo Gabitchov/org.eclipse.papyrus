@@ -32,7 +32,10 @@ import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.ObliqueRouter;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouterUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.SlidableAnchorEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart.MessageAsync;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart.MessageCreate;
 
 /**
  * A multi behavior router which enable to draw message.
@@ -105,6 +108,7 @@ public class MessageRouter extends ObliqueRouter {
 			break;
 		case OBLIQUE:
 			super.routeLine(conn, nestedRoutingDepth, newLine);
+			adjustCreateEndpoint(conn, newLine);
 
 			// force 2 bendpoints only
 			if(newLine.size() > 2) {
@@ -124,6 +128,19 @@ public class MessageRouter extends ObliqueRouter {
 				return;
 			}
 			break;
+		}
+	}
+
+	protected void adjustCreateEndpoint(Connection conn, PointList newLine) {
+		if(conn instanceof MessageCreate){
+			if(newLine.size() >= 2){
+				Point start = newLine.getFirstPoint();
+				Point end = newLine.getLastPoint();
+				if(start.y != end.y){
+					start.y = end.y;
+					newLine.setPoint(start, 0);
+				}
+			}
 		}
 	}
 
@@ -159,7 +176,7 @@ public class MessageRouter extends ObliqueRouter {
 
 		// insert two points
 		Point extraPoint1 = ptS2.getTranslated(ptE2).scale(0.5);
-		if(ptS2.x - middle.x > 0) {
+		if(isOnRightHand(conn, owner, middle)){
 			extraPoint1.translate(SELFRELSIZEINIT, 0);
 		} else {
 			extraPoint1.translate(-SELFRELSIZEINIT, 0);
@@ -177,6 +194,19 @@ public class MessageRouter extends ObliqueRouter {
 		newLine.addPoint(extraPoint2);
 
 		newLine.addPoint(ptE1);
+	}
+
+	protected boolean isOnRightHand(Connection conn, IFigure owner, Point middle) {
+		boolean right = true;
+		if(conn.getTargetAnchor() instanceof SlidableAnchorEx){
+			SlidableAnchorEx anchor = (SlidableAnchorEx) conn.getTargetAnchor();
+			right = anchor.isRight();
+		}else{
+			PointList list = conn.getPoints();
+			if(list.getPoint(0).x > list.getPoint(1).x)
+				right = false;
+		}
+		return right;
 	}
 
 	@Override

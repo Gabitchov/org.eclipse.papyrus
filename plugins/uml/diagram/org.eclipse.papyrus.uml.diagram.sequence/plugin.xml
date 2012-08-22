@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-
+  <extension point="org.eclipse.papyrus.views.properties.context">
+     <context contextModel="model/prop/seq.ctx">
+     </context>
+  </extension>
+  
    <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
@@ -997,6 +1001,17 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
  	</entry>
+ 	<!-- add -->
+ 	<entry
+       defineOnly="true"
+       description="Create Consider Ignore Fragment"
+       id="createConsiderIgnoreFragment5CreationTool"
+       kind="tool"
+       label="Consider Ignore Fragment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif">
+ 	</entry>
 	<entry
        defineOnly="true"
        description="Create Interaction Operand"
@@ -1270,6 +1285,12 @@
           id="createCombinedFragment5CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
+    <!-- add -->
+    <predefinedEntry
+          id="createConsiderIgnoreFragment5CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+    
  	<predefinedEntry
           id="createInteractionOperand6CreationTool"
           path="/createNodes1Group">

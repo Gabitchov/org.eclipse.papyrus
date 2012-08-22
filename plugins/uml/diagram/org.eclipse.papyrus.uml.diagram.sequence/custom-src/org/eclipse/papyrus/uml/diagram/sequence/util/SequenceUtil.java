@@ -381,7 +381,7 @@ public class SequenceUtil {
 		}
 		// If we found nothing, this may be a sync message receive
 		if(fragment instanceof MessageOccurrenceSpecification) {
-			boolean isSync = MessageSort.SYNCH_CALL_LITERAL.equals(((MessageOccurrenceSpecification)fragment).getMessage().getMessageSort());
+			boolean isSync = ((MessageOccurrenceSpecification)fragment).getMessage() != null && MessageSort.SYNCH_CALL_LITERAL.equals(((MessageOccurrenceSpecification)fragment).getMessage().getMessageSort());
 			if(isSync) {
 				// sync message should trigger an execution specification start. Find and return the corresponding start.
 				EObject container = fragment.eContainer();
@@ -1606,7 +1606,7 @@ public class SequenceUtil {
 	public static void addRestoreConstraintOfLifelineCommand(CompoundCommand deleteViewsCommand,EditPart editPart){
 		if(editPart instanceof Message4EditPart) {
 			Message4EditPart part = (Message4EditPart)editPart;
-			if(part.getTarget() instanceof LifelineEditPart){
+			if(part.getTarget() instanceof LifelineEditPart && LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size() == 1){
 				LifelineEditPart target = (LifelineEditPart)part.getTarget();
 				if(target.getModel() instanceof Shape){
 					Shape view = (ShapeImpl) target.getModel();

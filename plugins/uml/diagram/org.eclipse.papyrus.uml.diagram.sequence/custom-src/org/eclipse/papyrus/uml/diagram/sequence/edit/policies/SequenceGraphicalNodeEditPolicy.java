@@ -26,25 +26,20 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -59,6 +54,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
@@ -245,8 +241,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		Point targetPoint = request.getLocation();
 
 		// prevent uphill message (leave margin for horizontal messages)
+		boolean messageCreate =((IHintedType)UMLElementTypes.Message_4006).getSemanticHint().equals(requestHint);
 		if(sourcePoint == null || sourcePoint.y >= targetPoint.y + MARGIN) {
-			return UnexecutableCommand.INSTANCE;
+			if(!messageCreate)
+				return UnexecutableCommand.INSTANCE;
 		}
 		// prevent uphill message (for self recursive message)
 		if(request.getSourceEditPart().equals(request.getTargetEditPart()) && sourcePoint.y >= targetPoint.y) {
@@ -264,6 +262,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				}
 			}
 		}
+		
+		// prevent duplicate create link
+		if( messageCreate && request.getSourceEditPart() != null && request.getTargetEditPart() != null){
+			if(LifelineMessageCreateHelper.hasMessageCreate((GraphicalEditPart)request.getSourceEditPart(), request.getTargetEditPart()))
+				return UnexecutableCommand.INSTANCE;
+		}
 
 		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
 		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(targetPoint, getHost()));
@@ -272,8 +276,6 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
 		}
-		//			}
-		//		}
 		
 		// change constraint of the target lifeline after added a Create Message
 		if (request.getTargetEditPart() instanceof LifelineEditPart
@@ -282,29 +284,15 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			if (requestHint.equals((((IHintedType) UMLElementTypes.Message_4006).getSemanticHint()))) {
 				LifelineEditPart target = (LifelineEditPart) request
 						.getTargetEditPart();
-				Point sourcePointCopy = sourcePoint.getCopy();
-				target.getFigure().translateToRelative(sourcePointCopy);
-				if(target.getModel() instanceof Shape){
-					Shape targetView = (Shape) target.getModel();
-					if(targetView.getLayoutConstraint() instanceof Bounds){
-						Bounds bounds = (Bounds) targetView.getLayoutConstraint();
-						int centerHeight = target.getPrimaryShape()
-								.getFigureLifelineNameContainerFigure().getBounds()
-								.getSize().height / 2;
-						ICommand boundsCommand = new SetBoundsCommand(
-								target.getEditingDomain(),
-								DiagramUIMessages.SetLocationCommand_Label_Resize,
-								new EObjectAdapter(targetView), new Rectangle(
-										bounds.getX(), sourcePointCopy.y() - centerHeight,
-										bounds.getWidth(), bounds.getHeight()));
-						command = command.chain(new ICommandProxy(boundsCommand));
-					}
-				}
+				Point sourcePointCopy = ((LifelineEditPart) request.getSourceEditPart()).getFigure().getBounds().getLocation().getCopy();
+				command = LifelineMessageCreateHelper.moveLifelineDown(command, target,	sourcePointCopy);
 			}
 		}
 
 		return command;
 	}
+
+	
 
 	/**
 	 * Override to disable uphill message
@@ -312,6 +300,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 		if(isUphillMessage(request)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// prevent duplicate link
+		if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)){
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReconnectSourceCommand(request);
@@ -325,6 +317,11 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		if(isUphillMessage(request)) {
 			return UnexecutableCommand.INSTANCE;
 		}
+		// prevent duplicate link
+		if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)){
+			return UnexecutableCommand.INSTANCE;
+		}
+		
 		return super.getReconnectTargetCommand(request);
 	}
 

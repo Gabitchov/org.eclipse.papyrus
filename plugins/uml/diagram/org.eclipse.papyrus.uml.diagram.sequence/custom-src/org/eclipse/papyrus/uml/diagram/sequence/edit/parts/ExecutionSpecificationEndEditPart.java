@@ -15,10 +15,8 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.RelativeLocator;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
-import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -30,6 +28,7 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -67,12 +66,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart.ViewHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
@@ -87,8 +84,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 		super(createDummyView(parent, occurrenceSpecification) );
 		this.executionSpecificationEnd = occurrenceSpecification;
 		this.setParent(parent);
-		addToResource(parent.getNotationView(), this.getNotationView());
 		this.locator = locator;
+		addToResource(parent.getNotationView(), this.getNotationView());
 	}
 	
 	private static EObject createDummyView(ShapeNodeEditPart parent,
@@ -101,8 +98,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(DUMMY_TYPE);
-
-		final View container = (View) parent.getModel();
 		node.setElement(model);
 	   
 		return node;
@@ -152,6 +147,10 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExecutionSpecificationEndSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionSpecificationEndGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy(){
+			protected void addSelectionHandles() {  // remove handles
+			}
+		});		
 	}
 	
 	public void rebuildLinks(Diagram diagram) {
@@ -235,9 +234,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 				allViews.add(childView);
 			}
 		}
-	}
-	
-	
+	}	
 	
 	static class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		IFigure executionSpecificationEndFeedback;
@@ -422,30 +419,21 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			return res;
 		}
 	}
-	
-	
-	IFigure getParentFigure() {
-		return ((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure();
-	}
 
 	public Locator getLocator() {
 		return locator;
 	}
 	
 	protected IFigure createFigure() {
-		final ExecutionOccurrenceSpecification model = (ExecutionOccurrenceSpecification) this
-				.resolveSemanticElement();
 		IFigure fig = new ExecutionSpecificationEndFigure();
 		fig.setForegroundColor(ColorConstants.black);  
-		Rectangle b = fig.getBounds();
+//		Rectangle b = fig.getBounds();
+//		final ExecutionOccurrenceSpecification model = (ExecutionOccurrenceSpecification) this.resolveSemanticElement();
 //		Label tooltip = new Label();
 //		tooltip.setText(model.getName());
 //		fig.setToolTip(tooltip);
 
 		fig.setOpaque(false);
-		// f.setFill(true);
-		final IFigure parentFig =  getParentFigure();
-		parentFig.add(fig, locator );
 		return fig;
 	}
 
@@ -573,19 +561,18 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			return new ExecutionSpecificationEndAnchor(this);
 		}
 
-		public void validate() {
-			super.validate();
-		}
-
 		public ConnectionAnchor getTargetConnectionAnchorAt(Point p) {
 			try {
-				ConnectionAnchor a = super.getTargetConnectionAnchorAt(p);
-				return a;
+				return super.getTargetConnectionAnchorAt(p);
 			} catch (Exception e) {
-				e.printStackTrace();
 				return null;
 			}
 		};
-	}
-
+		
+		@Override
+		public void validate() {
+			locator.relocate(this);  //place figure at north or south, ignore layout manager
+			super.validate();
+		}
+	}	
 }

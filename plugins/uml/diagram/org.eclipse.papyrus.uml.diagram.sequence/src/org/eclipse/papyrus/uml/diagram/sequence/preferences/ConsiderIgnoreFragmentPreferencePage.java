@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
+import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
@@ -72,6 +74,14 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 
 	}
 
+	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
+		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		for(String name : compartments) {
+			map.put(name,Boolean.FALSE);
+		}
+		return map;
+	}
+	
 	/**
 	 * @generated NOT
 	 */

@@ -23,6 +23,7 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
@@ -105,6 +106,8 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 						.addDeleteRelatedTimeObservationLinkCommand(
 								deleteElementsCommand, req.getEditingDomain(),
 								(LifelineEditPart) getHost().getParent(), oss,true);
+				
+				ExecutionSpecificationComponentEditPolicy.addDestroyElementChildrenCommand(deleteElementsCommand, req.getEditingDomain(), getHost());
 			}
 		}
 		
@@ -114,6 +117,7 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 		
 		return UnexecutableCommand.INSTANCE;
 	}
+
 
 	/**
 	 * This method has been overridden to also delete linked time/duration views
@@ -125,12 +129,13 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		deleteViewsCommand.add(deleteViewCommand);
 		SequenceDeleteHelper.completeDeleteExecutionSpecificationViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		ExecutionSpecificationComponentEditPolicy.addDeleteViewChildrenCommand(deleteViewsCommand, getEditingDomain(), (ShapeNodeEditPart)getHost());
 		if(mainCommand == null) {
 			return deleteViewsCommand;
 		} else {
 			return mainCommand.chain(deleteViewsCommand);
 		}
-	}
+	}			
 
 	/**
 	 * @generated

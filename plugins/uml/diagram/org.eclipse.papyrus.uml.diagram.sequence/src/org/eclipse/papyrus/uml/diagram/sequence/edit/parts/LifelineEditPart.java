@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.BorderLayout;
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -31,12 +32,14 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -49,9 +52,13 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.util.Log;
+import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -60,11 +67,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -73,26 +83,35 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
+import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.SlidableAnchorEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
@@ -104,6 +123,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -212,6 +232,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 		
 		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=364608
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new LifelineSelectionEditPolicy());
+		
+		// custom label, fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383722
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new LifelineLabelEditPolicy());
 	}
 
 	/**
@@ -448,7 +471,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 250) {
+		DefaultSizeNodeFigure result = new LifelineDotLineCustomFigure.DefaultSizeNodeFigureEx(100, 250) {
 
 			/**
 			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
@@ -1305,7 +1328,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public class LifelineFigure extends NodeNamedElementFigure {
+	public class LifelineFigure extends LifelineDotLineCustomFigure.NodeNamedElementFigureEx {
 
 		/**
 		 * @generated
@@ -1868,9 +1891,57 @@ public class LifelineEditPart extends NamedElementEditPart {
 			// Create message
 			return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 		}
+		
+		if(connEditPart instanceof Message2EditPart){
+			String terminal = getTargetAnchorId(connEditPart);
+			if(terminal.length() > 0){
+				int start = terminal.indexOf("{") + 1;
+				PrecisionPoint pt = SlidableAnchor.parseTerminalString(terminal);
+				boolean rightHand = true;
+				if(start > 0){
+					if(terminal.charAt(start) == 'L')
+						rightHand = false;
+				}
+				else{
+					Connection c = (Connection)connEditPart.getFigure();
+					PointList list = c.getPoints();
+					if(list.getPoint(0).x > list.getPoint(1).x)
+						rightHand = false;
+				}
+				return new SlidableAnchorEx(getNodeFigure(), pt, rightHand);	
+			}
+		}		
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
 
+	private String getTargetAnchorId(ConnectionEditPart connEditPart) {
+        final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = 
+            (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
+        
+		String t = ""; //$NON-NLS-1$
+		try {
+			t = (String) getEditingDomain().runExclusive(
+				new RunnableWithResult.Impl() {
+
+				public void run() {
+					Anchor a = ((Edge)connection.getModel()).getTargetAnchor();
+					if (a instanceof IdentityAnchor)
+						setResult(((IdentityAnchor) a).getId());
+                    else
+                        setResult(""); //$NON-NLS-1$
+				}
+			});
+		} catch (InterruptedException e) {
+			Trace.catching(DiagramUIPlugin.getInstance(),
+				DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
+				"getTargetConnectionAnchor", e); //$NON-NLS-1$
+			Log.error(DiagramUIPlugin.getInstance(),
+				DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
+				"getTargetConnectionAnchor", e); //$NON-NLS-1$
+		}
+		return t;
+	}
+	
 	/**
 	 * Create specific anchor to handle connection on top, on center and on bottom of the lifeline
 	 */
@@ -1881,20 +1952,50 @@ public class LifelineEditPart extends NamedElementEditPart {
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4006.equals(obj)) {
-					// Create Message
-					return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
+					return LifelineMessageCreateHelper.getCreateMessageAnchor(this, request, ((CreateUnspecifiedTypeConnectionRequest) request).getLocation().getCopy());
 				}
 			}
 		} else if(request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
 			if(connectionEditPart instanceof Message4EditPart) {
-				// Create
-				return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
+				return LifelineMessageCreateHelper.getCreateMessageAnchor(this, request, ((ReconnectRequest)request).getLocation().getCopy() );
 			}
 		}
 
-		return super.getTargetConnectionAnchor(request);
+		ConnectionAnchor anchor = super.getTargetConnectionAnchor(request);
+		if(anchor instanceof SlidableAnchor) {
+			return createSlidableAnchorEx(request, (SlidableAnchor)anchor);
+		}
+		return anchor;
+	}
+
+	protected ConnectionAnchor createSlidableAnchorEx(Request request, SlidableAnchor sa) {
+		Point loc = getRequestLocation(request);
+		if(loc == null)
+			return sa;
+		
+		PrecisionPoint pt = SlidableAnchor.parseTerminalString(	sa.getTerminal());
+		IFigure fig = this.getDashLineFigure();
+		Rectangle bounds = fig.getBounds().getCopy();
+		fig.translateToAbsolute(bounds);
+		boolean rightHand = true;
+		if(loc.x < bounds.getCenter().x)
+			rightHand = false;
+		return new SlidableAnchorEx(getNodeFigure(), pt, rightHand);
+	}
+	
+	private Point getRequestLocation(Request request){
+		if (request instanceof ReconnectRequest) {
+			if (((DropRequest) request).getLocation() != null) {
+				Point pt = ((DropRequest) request).getLocation().getCopy();
+				return pt;
+			}
+		}
+		else if (request instanceof DropRequest){
+			return 	((DropRequest) request).getLocation();
+		}
+		return null;
 	}
 
 	/**
@@ -2099,5 +2200,46 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 		return null;
 	}
+	
+	public static class SlidableAnchorEx extends SlidableAnchor{
 
+		private boolean isRight;
+
+		public SlidableAnchorEx(NodeFigure nodeFigure, PrecisionPoint pt,
+				boolean isRight) {
+			super(nodeFigure, pt);
+			this.isRight = isRight;
+		}
+		
+		public boolean isRight() {
+			return isRight;
+		}
+		
+		public String getTerminal() {
+			String side = isRight? "R": "L";
+			return super.getTerminal() + "{" + side + "}";
+		}
+	}
+	
+	public static class PreserveAnchorsPositionCommandEx extends PreserveAnchorsPositionCommand{
+
+		public PreserveAnchorsPositionCommandEx(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis) {
+			super(shapeEP, sizeDelta, preserveAxis);
+		}
+
+		public PreserveAnchorsPositionCommandEx(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis, IFigure figure, int resizeDirection) {
+			super(shapeEP, sizeDelta, preserveAxis, figure, resizeDirection);
+		}
+
+		@Override
+		protected String getNewIdStr(IdentityAnchor anchor) {
+			String res = super.getNewIdStr(anchor);
+			String id = anchor.getId();
+			int start = id.indexOf('{');
+			if(start > 0)
+				res = res + id.substring(start);
+			
+			return res;
+		}
+	}
 }
