@@ -11,6 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.providers;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
@@ -21,7 +26,6 @@ import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IDetailLabelProvider;
 import org.eclipse.swt.graphics.Image;
-
 /**
  * This class handles labels for EMF Objects
  * The class can handle the following cases :
@@ -76,9 +80,22 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 			return ""; //$NON-NLS-1$
 		}
 
-		//TODO : Implement a multi-selection label, instead of just the first element's label
-		Object element = selection.getFirstElement();
-		return getText(element);
+		if(selection.size() == 1) {
+			return getText(selection.getFirstElement());
+		} else {
+			final List<Object> selectionAsList = selection.toList();
+			String str = "";
+			for(int i = 0; i < selectionAsList.size(); i++) {
+				final String txt = getText(selectionAsList.get(i));
+				if(txt != null) {
+					str += txt;
+				}
+				if(i < selectionAsList.size() - 1) {
+					str += ", ";
+				}
+			}
+			return str;
+		}
 	}
 
 	/**
@@ -109,11 +126,76 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 	protected Image getImage(IStructuredSelection selection) {
 		if(selection.isEmpty()) {
 			return null;
+		} else if(selection.size() == 1) {
+			return getImage(selection.getFirstElement());
 		}
 
-		//TODO : Implement a multi-selection label, instead of just the first element's label
-		Object element = selection.getFirstElement();
-		return getImage(element);
+		final List<?> selectionAsList = selection.toList();
+		final Set<EObject> selectedEObject = new HashSet<EObject>();
+		boolean isEObjectSelection = true;
+		for(final Object current : selectionAsList) {
+			final EObject obj = EMFHelper.getEObject(current);
+			if(obj != null) {
+				selectedEObject.add(obj);
+			} else {
+				isEObjectSelection = false;
+			}
+		}
+
+		if(isEObjectSelection) {//all selected elements are EObject
+			if(selectedEObject.size() == 1 || hasCommonImage(selectedEObject)) {
+				return getImage(selectedEObject.toArray()[0]);
+			} else {
+				final EClass common = org.eclipse.emf.facet.util.emf.core.internal.EMFUtils.computeLeastCommonSupertype(getEClasses(selectedEObject));
+				if(!common.isAbstract()) {
+					//FIXME : the label provider service should manage this case
+					final Object instance = common.getEPackage().getEFactoryInstance().create(common);
+					return getImage(instance);
+				}
+			}
+		} else if(selectedEObject.size() == 0) {
+			//the multiple selection contains any EObject 
+		} else {
+			//the selection contains EObject and others elements
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param objects
+	 *        a collection of objects
+	 * @return
+	 *         <code>true</code> if the image found for each object is the same <code>false</code> of if the collection is empty or the image returned
+	 *         for each object is not the same
+	 */
+	private boolean hasCommonImage(final Collection<?> objects) {
+		if(!objects.isEmpty()) {
+			final Image lastImage = getImage(objects.toArray()[0]);
+			for(final Object current : objects) {
+				if(lastImage != getImage(current)) {
+					return false;
+				}
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param objects
+	 *        a collection of eobject
+	 * @return
+	 *         the set of eclasses for the parameter objects
+	 */
+	private Set<EClass> getEClasses(final Collection<EObject> objects) {
+		final Set<EClass> eclasses = new HashSet<EClass>();
+		for(final EObject current : objects) {
+			eclasses.add(current.eClass());
+		}
+		return eclasses;
 	}
 
 	public String getDetail(Object object) {
