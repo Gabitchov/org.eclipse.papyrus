@@ -26,7 +26,14 @@
                style="push"
                tooltip="Split the model into an external model">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.services.controlmode.control">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
          <command
@@ -35,10 +42,27 @@
                style="push"
                tooltip="Merge the external model with the current model">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.infra.services.controlmode.uncontrol">
+                  </test>
+               </with>
             </visibleWhen>
          </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.infra.services.controlmode.action.ControlModePropertyTester"
+            id="org.eclipse.papyrus.infra.services.controlmode"
+            namespace="org.eclipse.papyrus.infra.services.controlmode"
+            properties="control,uncontrol"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
    </extension>
 
 </plugin>

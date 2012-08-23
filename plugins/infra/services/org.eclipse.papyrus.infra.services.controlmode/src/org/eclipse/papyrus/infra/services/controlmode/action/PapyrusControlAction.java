@@ -13,16 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.action;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -46,9 +40,8 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlCommand;
-import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCondition;
+import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
@@ -61,18 +54,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class PapyrusControlAction extends ControlAction {
 
-	/** extension point ID for custom control command */
-	private static final String CONTROL_CONDITION_EXTENSION_POINT_ID = "org.eclipse.papyrus.infra.services.controlmode.customControlCommand";
-
-	/** attribute ID for the custom command class. */
-	private static final String CONTROL_CONDITION_ATTRIBUTE_EXTENSION_POINT = "controlCondition";
-
-	/** element ID for the custom command class. */
-	private static final String CONTROL_CONDITION_ELEMENT_EXTENSION_POINT = "enableControlCommand";
-
-	/** custom commands from extensions */
-	/* package */static List<IControlCondition> commands;
-
 	/**
 	 * Instantiates a new papyrus control action.
 	 * 
@@ -83,7 +64,6 @@ public class PapyrusControlAction extends ControlAction {
 		super(domain);
 		setDescription(EMFEditUIPlugin.INSTANCE.getString("_UI_Control_menu_item_description"));
 		setToolTipText("Split the model into an external model");
-		commands = getCommandConditionsExtensions();
 	}
 
 	/**
@@ -91,12 +71,7 @@ public class PapyrusControlAction extends ControlAction {
 	 */
 	@Override
 	public boolean isEnabled() {
-		boolean enableControl = true;
-		for(IControlCondition cond : commands) {
-			// check if action is disabled by an extension
-			enableControl &= cond.enableControl(eObject);
-		}
-		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject);
+		return ControlModeUtil.canControl(eObject);
 	}
 
 	/**
@@ -275,27 +250,6 @@ public class PapyrusControlAction extends ControlAction {
 			}
 		}
 		return result;
-	}
-
-	/**
-	 * Gets the conditions that enable control action
-	 * 
-	 * @return the command extensions
-	 */
-	private List<IControlCondition> getCommandConditionsExtensions() {
-		List<IControlCondition> commands = new LinkedList<IControlCondition>();
-		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(CONTROL_CONDITION_EXTENSION_POINT_ID);
-		for(IConfigurationElement e : extensions) {
-			if(CONTROL_CONDITION_ELEMENT_EXTENSION_POINT.equals(e.getName())) {
-				try {
-					IControlCondition controlCondition = (IControlCondition)e.createExecutableExtension(CONTROL_CONDITION_ATTRIBUTE_EXTENSION_POINT);
-					commands.add(controlCondition);
-				} catch (CoreException exception) {
-					ControlModePlugin.log.error(exception);
-				}
-			}
-		}
-		return commands;
 	}
 
 }

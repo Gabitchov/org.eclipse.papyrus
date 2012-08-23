@@ -31,9 +31,8 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCondition;
-import org.eclipse.papyrus.infra.services.controlmode.commands.IControlUncontrolCondition;
 import org.eclipse.papyrus.infra.services.controlmode.commands.UncontrolCommand;
+import org.eclipse.papyrus.infra.services.controlmode.util.ControlModeUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
@@ -68,15 +67,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		boolean enableUnControl = true;
-		for(IControlCondition cond : PapyrusControlAction.commands) {
-			if (cond instanceof IControlUncontrolCondition) {
-				IControlUncontrolCondition controlUnControl = (IControlUncontrolCondition) cond;
-				// check if action is disabled by an extension
-				enableUnControl &= controlUnControl.enableUnControl(eObject);
-			}
-		}
-		return enableUnControl && getEditingDomain().isControllable(eObject) && AdapterFactoryEditingDomain.isControlled(eObject);
+		return ControlModeUtil.canUncontrol(eObject);
 	}
 
 	/**
@@ -93,7 +84,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
 			if(object instanceof IAdaptable) {
-				object = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+				object = ((IAdaptable)object).getAdapter(EObject.class);
 			}
 			// Check whether the selected object is controllable
 			if(domain != null) {
@@ -130,7 +121,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 			boolean confirmDelete = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Delete controlled resources?", "Delete the original controlled files ?");
 			UncontrolCommand transactionalCommand = new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null, confirmDelete);
 			IStatus status = CheckedOperationHistory.getInstance().execute(transactionalCommand, new NullProgressMonitor(), null);
-			if (!status.isOK()) {
+			if(!status.isOK()) {
 				NotificationBuilder.createErrorPopup(status.getMessage()).setTitle("Unable to uncontrol").run();
 			}
 		} catch (ExecutionException e) {

@@ -27,25 +27,10 @@ import org.eclipse.ui.ISources;
  * @author Camille Letavernier
  * 
  */
-//FIXME: Partial implementation to repair the Control/Uncontrol menu. Introduces several issues.
 public class PapyrusUncontrolHandler extends AbstractHandler {
 
-	//FIXME: EditingDomain is leaked here. The handler isn't destroyed after the editor is closed.
-	PapyrusUncontrolAction action;
-
-	public PapyrusUncontrolHandler() {
-		setBaseEnabled(false);
-	}
-
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if(action != null) {
-			action.run();
-		}
-		return null;
-	}
-
-	@Override
-	public void setEnabled(Object evaluationContext) {
+		Object evaluationContext = event.getApplicationContext();
 		if(evaluationContext instanceof IEvaluationContext) {
 			IEvaluationContext context = (IEvaluationContext)evaluationContext;
 			Object selection = context.getVariable(ISources.ACTIVE_CURRENT_SELECTION_NAME);
@@ -62,20 +47,16 @@ public class PapyrusUncontrolHandler extends AbstractHandler {
 					}
 				}
 
-				action = new PapyrusUncontrolAction(domain);
+				PapyrusUncontrolAction action = new PapyrusUncontrolAction(domain);
 				action.updateSelection(currentSelection);
-				setBaseEnabled(action.isEnabled());
-			}
-		} else {
-			setBaseEnabled(false);
-		}
-	}
 
-	@Override
-	public void dispose() {
-		System.out.println("Dispose");
-		super.dispose();
-		action = null;
+				if(action.isEnabled()) {
+					action.run();
+				}
+			}
+		}
+
+		return null;
 	}
 
 }
