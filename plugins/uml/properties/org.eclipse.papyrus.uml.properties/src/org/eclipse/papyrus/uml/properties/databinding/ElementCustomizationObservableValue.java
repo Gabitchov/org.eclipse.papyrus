@@ -44,7 +44,7 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 
 	private Property property;
 
-	private TransactionalEditingDomain domain;
+	private TransactionalEditingDomain transactionalDomain;
 
 	private View notationElement;
 
@@ -60,12 +60,14 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	 *        The Property to edit
 	 */
 	public ElementCustomizationObservableValue(EditPart sourceElement, Property property) {
-		super(null);
+		super(EMFHelper.resolveEditingDomain(sourceElement));
 		this.sourceElement = sourceElement;
 		this.property = property;
 		semanticElement = UMLUtil.resolveUMLElement(sourceElement);
 		notationElement = (View)sourceElement.getModel();
-		domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(semanticElement);
+		if(domain instanceof TransactionalEditingDomain) {
+			transactionalDomain = (TransactionalEditingDomain)domain;
+		}
 	}
 
 	//TODO : The value is not correctly refreshed when someone else edits it
@@ -126,28 +128,28 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 		switch(property) {
 		case ELEMENT_ICON:
 			if(value instanceof Boolean) {
-				return new SetNameLabelIconCommand(domain, notationElement, (Boolean)value);
+				return new SetNameLabelIconCommand(transactionalDomain, notationElement, (Boolean)value);
 			} else {
 				Activator.log.warn(value + " is not a valid value for ElementIcon ; need a Boolean"); //$NON-NLS-1$
 			}
 			break;
 		case SHADOW:
 			if(value instanceof Boolean) {
-				return new SetShadowFigureCommand(domain, notationElement, (Boolean)value);
+				return new SetShadowFigureCommand(transactionalDomain, notationElement, (Boolean)value);
 			} else {
 				Activator.log.warn(value + " is not a valid value for Shadow ; need a Boolean"); //$NON-NLS-1$
 			}
 			break;
 		case QUALIFIED_NAME:
 			if(value instanceof Integer) {
-				return new SetQualifiedNameDepthCommand(domain, notationElement, (Integer)value);
+				return new SetQualifiedNameDepthCommand(transactionalDomain, notationElement, (Integer)value);
 			} else {
 				Activator.log.warn(value + " is not a valid value for QualifiedNameDepth ; need an Integer"); //$NON-NLS-1$
 			}
 			break;
 		case LABEL_CUSTOMIZATION:
 			if(value instanceof Integer) {
-				return new AddMaskManagedLabelDisplayCommand(domain, notationElement, (Integer)value);
+				return new AddMaskManagedLabelDisplayCommand(transactionalDomain, notationElement, (Integer)value);
 			} else {
 				Activator.log.warn(value + " is not a valid value for LabelCustomization ; need an Integer"); //$NON-NLS-1$
 			}
