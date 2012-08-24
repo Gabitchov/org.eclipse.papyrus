@@ -49,6 +49,13 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 
 	}
 
+	@Override
+	public void deactivate() {
+		if(getView().eContainer() != null)
+			getDiagramEventBroker().removeNotificationListener(getView().eContainer(), this);
+
+		super.deactivate();
+	}
 	/**
 	 * {@inheritDoc}
 	 */

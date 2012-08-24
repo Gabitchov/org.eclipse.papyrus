@@ -452,13 +452,6 @@ public class InheritedDecorator implements IDecorator {
 		DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
 		View view = ((View)gep.getModel());
 
-		if(view instanceof Node) {
-			// the location of the decorator can change if it's an Affixed Child
-			// Node
-			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
-				DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
-			}
-		}
 		EObject parent = view.eContainer();
 		if(parent instanceof View) {
 			EObject el = ((View)parent).getElement();
@@ -471,7 +464,7 @@ public class InheritedDecorator implements IDecorator {
 			Element semanticElement = (Element)view.getElement();
 			if(semanticElement != null) {
 				if(semanticElement.eContainer() != null) {
-					DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+					DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(semanticElement.eContainer(), notificationListener);
 				}
 			}
 		}
