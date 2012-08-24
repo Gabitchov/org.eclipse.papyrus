@@ -26,9 +26,16 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
+import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
 import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
@@ -41,8 +48,10 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.table.efacet.common.Activator;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
+import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.TableContentsUtils;
 
 /**
  * 
@@ -103,7 +112,7 @@ public class FillingListener extends AbstractTableTriggerListener {
 				toRemove = addRemove[1];
 			}
 		} else if(this.table.isUsingQueries()) {
-			final List<EObject>[] addRemove = getElementToAddRemoveUsingQueries();
+			final List<EObject>[] addRemove = getElementToAddRemoveUsingQueries(this.table);
 			toAdd = addRemove[0];
 			toRemove = addRemove[1];
 		}
@@ -216,13 +225,38 @@ public class FillingListener extends AbstractTableTriggerListener {
 	 *         an array of lists. the first list contains the elements to add and the second list contains the elements to remove
 	 */
 	@SuppressWarnings("unchecked")
-	private final List<EObject>[] getElementToAddRemoveUsingQueries() {
+	private final List<EObject>[] getElementToAddRemoveUsingQueries(final PapyrusTable papyrusTable) {
 		final List<?>[] addRemove = new List<?>[2];
 		final List<EObject> toAdd = new ArrayList<EObject>();
 		final List<EObject> toRemove = new ArrayList<EObject>();
+		final IFacetManager facetManager = IFacetManagerFactory.DEFAULT.getOrCreateFacetManager(papyrusTable.eResource());
+		final List<EObject> allElements = new ArrayList<EObject>();
+		for(final Query current : papyrusTable.getQueries()){
+			EObject container = current.eContainer();
+			if(container instanceof FacetReference){
+				try {
+					List<EObject> res = facetManager.getOrInvokeMultiValued(papyrusTable, (ETypedElement)container,null);
+					if(res!=null){
+						allElements.addAll(res);
+					}
+				} catch (FacetManagerException e) {
+					Activator.log.equals(e);
+				}
+			}
+		}
+		final List<EObject> currentContent = TableContentsUtils.getTableContents(papyrusTable, papyrusTable.getTable().getContext(),false);
+		final ArrayList<EObject> newValue = new ArrayList<EObject>((List<EObject>)allElements);
+		//fill the add list
+
+		toAdd.addAll(newValue);
+		toAdd.removeAll(currentContent);
+
+		//fill the removeList
+		currentContent.removeAll(newValue);
+		toRemove.addAll(currentContent);
+
 		addRemove[0] = toAdd;
 		addRemove[1] = toRemove;
-		//TODO
 		return (List<EObject>[])addRemove;
 	}
 
