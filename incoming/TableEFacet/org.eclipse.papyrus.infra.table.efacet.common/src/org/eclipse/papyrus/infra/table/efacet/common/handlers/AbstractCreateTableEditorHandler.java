@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
+import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.TablePackage;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.TableWidgetUtils;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -54,6 +55,7 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.table.efacet.common.Activator;
+import org.eclipse.papyrus.infra.table.efacet.common.editor.EditorNameInitializer;
 import org.eclipse.papyrus.infra.table.efacet.common.modelresource.PapyrusTableModelResource;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustableFactory;
@@ -125,6 +127,8 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		return true;
 	}
 
+
+
 	/**
 	 * Run the command as a transaction. Create a Transaction and delegate the
 	 * command to {@link #doExecute(ServicesRegistry)}.
@@ -133,8 +137,12 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	 * 
 	 */
 	public void runAsTransaction() throws ServiceException {
+		final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+
+
 		// default Value
-		this.name = this.defaultName;
+		this.name = EditorNameInitializer.getNameWithIncrement(TablePackage.eINSTANCE.getTable(), defaultName, getTableContext());
 
 		if(shouldOpenNameDialog()) {// this test is used to allow the JUnit
 									// test without ui!
@@ -146,8 +154,7 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 				return;
 			}
 		}
-		final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
-		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+
 
 		// Create the transactional command
 		final AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create " + this.editorType) { //$NON-NLS-1$
@@ -169,7 +176,7 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 
 		// Execute the command
 		try {
-			CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null); 
+			CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null);
 		} catch (final ExecutionException e) {
 			Activator.log.error("Can't create Table Editor", e); //$NON-NLS-1$
 		}
