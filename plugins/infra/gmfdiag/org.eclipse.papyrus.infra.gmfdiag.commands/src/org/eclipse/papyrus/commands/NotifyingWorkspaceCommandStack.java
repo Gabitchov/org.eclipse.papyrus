@@ -130,7 +130,7 @@ implements IWorkspaceCommandStack {
 				// emf stack only needs to be notified when an operation is
 				// finished
 				if(OperationHistoryEvent.DONE == type || OperationHistoryEvent.REDONE == type || OperationHistoryEvent.UNDONE == type) {
-					listener.commandStackChanged(new EventObject(this));
+					listener.commandStackChanged(new EventObject(NotifyingWorkspaceCommandStack.this));
 				}
 			}
 		};
@@ -435,10 +435,10 @@ implements IWorkspaceCommandStack {
 		domainListener = null;
 		historyAffectedResources = null;
 		mostRecentOperation = null;
-		
+
 		// remove listeners registered in opertationHistory
 		Collection<IOperationHistoryListener> values = proxyOperationListeners.values();
-		for( IOperationHistoryListener proxy : values ) {
+		for(IOperationHistoryListener proxy : values) {
 			getOperationHistory().removeOperationHistoryListener(proxy);
 		}
 		proxyOperationListeners.clear();
