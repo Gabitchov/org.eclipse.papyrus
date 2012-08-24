@@ -43,13 +43,15 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
  * 
  * @generated
  */
-public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEditor implements IEditingDomainProvider,
-ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
+public class UMLEditor extends org.eclipse.uml2.uml.editor.presentation.UMLEditor implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
 	 * ServiceRegistry used to retrieve needed services. This registry is provided by the multieditor.
 	 */
 	protected ServicesRegistry servicesRegistry;
+
+	protected CommandStackListener commandStackListener;
+
 	/**
 	 * 
 	 * Constructor. Create an DiEditor using the {@link ServicesRegistry}.
@@ -75,9 +77,13 @@ ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 		// Add a listener to set the most recent command's affected objects to be the selection of
 		// the viewer with focus.
 		//
-		commandStack.addCommandStackListener(new CommandStackListener() {
+
+		commandStackListener = new CommandStackListener() {
 
 			public void commandStackChanged(final EventObject event) {
+				if(getContainer().isDisposed()) {
+					return;
+				}
 				getContainer().getDisplay().asyncExec(new Runnable() {
 
 					public void run() {
@@ -96,7 +102,9 @@ ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 				});
 			}
 
-		});
+		};
+
+		commandStack.addCommandStackListener(commandStackListener);
 
 		// Create the editing domain with a special command stack.
 		//
@@ -170,6 +178,18 @@ ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 		} catch (NullPointerException e) {
 			// If we are nested, we have not access to ActionBarContributor()
 			return null;
+		}
+	}
+
+	@Override
+	public void dispose() {
+		//super.dispose(); //FIXME: Fails on a ClassCastException: The ActionBarContributor is not accessible
+		try {
+			TransactionalEditingDomain papyrusEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
+			CommandStack commandStack = papyrusEditingDomain.getCommandStack();
+			commandStack.removeCommandStackListener(commandStackListener);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 	}
 
