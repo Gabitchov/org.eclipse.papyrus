@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests UML Generic Table (Incubation)
+Bundle-SymbolicName: org.eclipse.papyrus.uml.table.efacet.generic.tests
+Bundle-Version: 0.9.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.uml.table.efacet.generic.tests.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit;bundle-version="4.10.0",
+ org.eclipse.papyrus.uml.table.efacet.generic;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.table.efacet.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.modelexplorer,
+ org.eclipse.core.resources,
+ org.eclipse.uml2.uml;bundle-version="4.0.0",
+ org.eclipse.ui.navigator;bundle-version="3.5.200",
+ org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.9.0",
+ org.eclipse.emf.facet.widgets.table.ui,
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
