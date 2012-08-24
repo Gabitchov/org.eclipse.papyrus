@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.table.efacet.common.Activator;
  * This factory is used by the Papyrus Table when the editing domain is an instanceof TransactionalEditingDomain
  * 
  */
+//TODO we should write a switch for the command factory (one for old tables and another one for new tabels)
 @SuppressWarnings("restriction")
 public class PapyrusCommandFactory extends DefaultCommandFactory {
 

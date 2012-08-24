@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.table.efacet.common.tester;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
+import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractSynchronizedTableEditor;
 
 /**
  * 
@@ -38,7 +38,7 @@ public class TablePropertyTester extends PropertyTester {
 	 */
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
 		if(this.IS_PAPYRUS_TABLE_EFACET.equals(property) && receiver instanceof CoreMultiDiagramEditor) {
-			return expectedValue.equals((((CoreMultiDiagramEditor)receiver).getActiveEditor() instanceof AbstractTableEditor));
+			return expectedValue.equals((((CoreMultiDiagramEditor)receiver).getActiveEditor() instanceof AbstractSynchronizedTableEditor));
 		}
 		return false;
 	}

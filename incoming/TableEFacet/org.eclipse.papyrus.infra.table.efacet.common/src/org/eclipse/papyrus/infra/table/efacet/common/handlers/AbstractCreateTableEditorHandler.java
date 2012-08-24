@@ -26,19 +26,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.TableWidgetUtils;
@@ -46,7 +38,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
@@ -128,28 +119,28 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 
 	/**
 	 * 
-	 * @return
-	 *         <code>true</code> to open the name dialog
+	 * @return <code>true</code> to open the name dialog
 	 */
 	protected boolean shouldOpenNameDialog() {
 		return true;
 	}
 
 	/**
-	 * Run the command as a transaction.
-	 * Create a Transaction and delegate the command to {@link #doExecute(ServicesRegistry)}.
+	 * Run the command as a transaction. Create a Transaction and delegate the
+	 * command to {@link #doExecute(ServicesRegistry)}.
 	 * 
 	 * @throws ServiceException
 	 * 
 	 */
 	public void runAsTransaction() throws ServiceException {
-		//default Value
+		// default Value
 		this.name = this.defaultName;
 
-		if(shouldOpenNameDialog()) {//this test is used to allow the JUnit test without ui!
-			final InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create new table", "Table Name", this.name, null);//TODO improve it //$NON-NLS-1$ //$NON-NLS-2$
+		if(shouldOpenNameDialog()) {// this test is used to allow the JUnit
+									// test without ui!
+			final InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Create new table", "Table Name", this.name, null); //$NON-NLS-1$ //$NON-NLS-2$
 			if(dialog.open() == Dialog.OK) {
-				//get the name and the description for the table
+				// get the name and the description for the table
 				this.name = dialog.getValue();
 			} else {
 				return;
@@ -158,8 +149,8 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		final ServicesRegistry serviceRegistry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
 		final TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
-		//Create the transactional command
-		final AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$ //TODO add the type of the table in the command name
+		// Create the transactional command
+		final AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create " + this.editorType) { //$NON-NLS-1$
 
 			@Override
 			protected IStatus doExecute(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -178,7 +169,7 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 
 		// Execute the command
 		try {
-			CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null); //TODO : best way?
+			CheckedOperationHistory.getInstance().execute(command, new NullProgressMonitor(), null); 
 		} catch (final ExecutionException e) {
 			Activator.log.error("Can't create Table Editor", e); //$NON-NLS-1$
 		}
@@ -202,7 +193,8 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Create a model identifying the editor. This model will be saved with the sash
+	 * Create a model identifying the editor. This model will be saved with the
+	 * sash
 	 * 
 	 * @return
 	 * @throws ServiceException
@@ -222,88 +214,45 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 			papyrusTable.setContextFeature(configuration.getListenContextFeature());
 			papyrusTable.getQueries().addAll(configuration.getFillingQueries());
 		}
-		//TODO 
-		//		setFillingQueries(papyrusTable); //should be done before the TableInstance creation
-		//		setSynchronization(papyrusTable); //should be done before the TableInstance creation
+
 		final EObject context = getTableContext();
 		Assert.isNotNull(context);
-		//		List<EObject> elements = getInitialElement(papyrusTable, context);
 
-
-		//		final List<EObject> elements = TableContentsUtils.getTableContents(papyrusTable, context, true);
-		final List<EObject> elements = Collections.EMPTY_LIST;
-		//		elements.add(getTableContext());
 		final String description = null;
 		TableConfiguration tableConfiguration = null;
 		if(configuration != null) {
 			tableConfiguration = configuration.getTableConfiguration();
 		}
 		final Object parameter = null;
-		final Table table = TableWidgetUtils.createTableInstance(elements, description, tableConfiguration, context, parameter);
-		//		TableInstance2 tableInstance = NatTableWidgetUtils.createTableInstance(elements, defaultDescription, getTableConfiguration2(), getTableContext(), null);
-		//		tableInstance.setDescription(description);
+		final Table table = TableWidgetUtils.createTableInstance(Collections.EMPTY_LIST, description, tableConfiguration, context, parameter);
 
-		// Save the model in the associated resource
-		//		EMFFacetTableModelResource model = (EMFFacetTableModelResource)ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(EMFFacetTableModelResource.MODEL_ID);
-		//		model.addTableInstance(table);
 		papyrusTable.setTable(table);
 
-		//		tableInstance.setContext(context);
-
-		//		setHiddenColumns(papyrusTable);
-		// adapter factory used by EMF objects
-		final AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
-		/** label provider for EMF objects */
-		final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory);
-
-		if(papyrusTable.isUsingContextFeature() && papyrusTable.getContextFeature() != null) { //TODO : verify that the context owns the wanted feature
-			final boolean isDerived = papyrusTable.getContextFeature().isDerived();
-			final EReference ref = papyrusTable.getContextFeature();
-			final EGenericType genericTtype = ref.getEGenericType();
-			final EList<EObject> cross = ref.eCrossReferences();
-
-			getTableContext().eAdapters().add(new AdapterImpl() {
-
-
-
-				@Override
-				public void notifyChanged(final Notification notification) {
-					final Object feature = notification.getFeature();
-					int i = 0;
-					i++;
-				}
-
-			});
-
-		}
 		return papyrusTable;
 	}
 
 	/**
 	 * 
-	 * @return
-	 *         the configuration to use for the table. This method can return <code>null</code>
+	 * @return the configuration to use for the table. This method can return <code>null</code>
 	 */
 	protected final PapyrusTableConfiguration getPapyrusTableConfiguration() {
-
+		PapyrusTableConfiguration configuration = null;
 		final ResourceSet resourceSet = getTableContext().eResource().getResourceSet();
 
 		final URI uri = getPapyrusTableConfigurationURI();
-		final Resource resource = resourceSet.getResource(uri, true);
-		EcoreUtil.resolveAll(resource);
-		PapyrusTableConfiguration configuration = null;
-
-		if(resource.getContents().get(0) instanceof PapyrusTableConfiguration) {
-			configuration = (PapyrusTableConfiguration)resource.getContents().get(0);
+		if(uri != null) {
+			final Resource resource = resourceSet.getResource(uri, true);
+			EcoreUtil.resolveAll(resource);
+			if(resource.getContents().get(0) instanceof PapyrusTableConfiguration) {
+				configuration = (PapyrusTableConfiguration)resource.getContents().get(0);
+			}
 		}
 		return configuration;
 	}
 
 	/**
 	 * 
-	 * @return
-	 *         the URI of the Papyrus Table Configuration
+	 * @return the URI of the Papyrus Table Configuration
 	 */
 	protected URI getPapyrusTableConfigurationURI() {
 		return null;
@@ -322,8 +271,8 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 	/**
 	 * Returns the context used to create the table
 	 * 
-	 * @return
-	 *         the context used to create the table or <code>null</code> if not found
+	 * @return the context used to create the table or <code>null</code> if not
+	 *         found
 	 * @throws ServiceException
 	 */
 	protected EObject getTableContext() {
@@ -333,7 +282,8 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 			return selection.get(0);
 		}
 
-		//we shouldn't try to find a valid context when the selection is not valid!
+		// we shouldn't try to find a valid context when the selection is not
+		// valid!
 		ModelSet modelSet = null;
 		ServicesRegistry serviceRegistry;
 		try {
@@ -344,7 +294,6 @@ public abstract class AbstractCreateTableEditorHandler extends AbstractHandler {
 		} catch (final ServiceException exception) {
 
 		}
-
 
 		if(modelSet != null) {
 			final IModel model = modelSet.getModel(org.eclipse.papyrus.infra.core.resource.uml.UmlModel.MODEL_ID);

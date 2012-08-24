@@ -24,7 +24,7 @@ import org.eclipse.emf.facet.widgets.table.ui.ITableWidget;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidgetProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
+import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractSynchronizedTableEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
@@ -87,12 +87,12 @@ public abstract class AbstractMoveRowHandler extends AbstractHandler {
 	 * @return
 	 *         the current table editor
 	 */
-	protected AbstractTableEditor getCurrentTableEditor() {
+	protected AbstractSynchronizedTableEditor getCurrentTableEditor() {
 		final IWorkbenchPart page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
 		if(page instanceof CoreMultiDiagramEditor) {
 			final IEditorPart activeEditor = ((CoreMultiDiagramEditor)page).getActiveEditor();
-			if(activeEditor instanceof AbstractTableEditor) {
-				return (AbstractTableEditor)activeEditor;
+			if(activeEditor instanceof AbstractSynchronizedTableEditor) {
+				return (AbstractSynchronizedTableEditor)activeEditor;
 			}
 		}
 		return null;
@@ -105,7 +105,7 @@ public abstract class AbstractMoveRowHandler extends AbstractHandler {
 	 *         the current nattable widget
 	 */
 	protected ITableWidget getTableWidget() {
-		final AbstractTableEditor editor = getCurrentTableEditor();
+		final AbstractSynchronizedTableEditor editor = getCurrentTableEditor();
 		if(editor != null) {
 			final ITableWidgetProvider provider = (ITableWidgetProvider)editor.getAdapter(ITableWidgetProvider.class);
 			if(provider != null) {

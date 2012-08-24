@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTabl
  * This listener allows to know when a line has been moved in the table
  * 
  */
-public class MoveTableLineListener extends AbstractSynchronizedTableListener {
+public class MoveTableLineListener extends AbstractTableTriggerListener {
 
 	/**
 	 * 
@@ -78,8 +78,14 @@ public class MoveTableLineListener extends AbstractSynchronizedTableListener {
 		final EObject movedValue = ((Row)notification.getNewValue()).getElement();
 		if(currentValue instanceof List<?>) {
 			final MoveCommand cmd = new MoveCommand(domain, tableContext, this.table.getContextFeature(), movedValue, notification.getPosition());
+			cmd.setLabel(getCommandName(notification));
 			return cmd;
 		}
-		return super.getSynchronizationCommand(domain, notification);
+		return null;
+	}
+
+	@Override
+	protected String getCommandName(final Notification notification) {
+		return "Move Line Command (Update the Model)";
 	}
 }

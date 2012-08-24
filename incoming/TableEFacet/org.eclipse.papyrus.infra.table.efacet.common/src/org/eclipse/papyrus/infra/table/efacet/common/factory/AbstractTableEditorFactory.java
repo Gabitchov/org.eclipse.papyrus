@@ -108,8 +108,6 @@ public class AbstractTableEditorFactory extends AbstractEditorFactory {
 
 				final Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, PapyrusTable.class);
 				final IEditorPart newEditor = (IEditorPart)c.newInstance(this.servicesRegistry, this.rawModel);
-				// IEditorPart newEditor = new
-				// DefaultNattableEditor(getServiceRegistry(), rawModel);
 				this.editor = newEditor;
 				return this.editor;
 
@@ -117,7 +115,7 @@ public class AbstractTableEditorFactory extends AbstractEditorFactory {
 				// Lets propagate. This is an implementation problem that should
 				// be solved by
 				// programmer.
-				throw new PartInitException("Can't create TextEditor", e); //$NON-NLS-1$
+				throw new PartInitException("Can't create TableEditor", e); //$NON-NLS-1$
 			}
 
 		}

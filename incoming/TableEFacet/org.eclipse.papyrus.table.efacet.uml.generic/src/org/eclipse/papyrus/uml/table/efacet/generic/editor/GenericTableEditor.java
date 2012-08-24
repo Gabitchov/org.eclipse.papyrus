@@ -14,12 +14,12 @@
 package org.eclipse.papyrus.uml.table.efacet.generic.editor;
 
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractTableEditor;
+import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractSynchronizedTableEditor;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 
 
 
-public class GenericTableEditor extends AbstractTableEditor {
+public class GenericTableEditor extends AbstractSynchronizedTableEditor {
 
 	/** the type of the editor */
 	public static final String EDITOR_TYPE = "PapyrusGenericTable"; //$NON-NLS-1$
