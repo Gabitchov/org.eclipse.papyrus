@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+ <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <editorDiagram factoryClass="org.eclipse.papyrus.infra.table.efacet.nestededitor.factory.NestedEditorTableEditorFactory" icon="icons/TableOfEditors.gif">
+      </editorDiagram>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+      <command categoryId="org.eclipse.papyrus.editor.category" description="Create a new Nested Editor Table Editor " id="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation" name="Create a new Nested Editor Table Editor ">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a new Nested Editor Table Editor Without Dialog"
+            id="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation.withoutdialog"
+            name="Create a new Nested Editor Table Editor Without Dialog">
+      </command>
+   </extension>
+   <extension point="org.eclipse.ui.handlers">
+      <handler class="org.eclipse.papyrus.infra.table.efacet.nestededitor.handler.CreateNestedEditorTableEditorHandler" commandId="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation">
+         <activeWhen>
+            <or>
+               <with variable="activeEditorId">
+                  <equals value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.infra.table.efacet.nestededitor.handler.CreateNestedEditorTableEditorHandlerWithoutDialog"
+            commandId="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation.withoutdialog">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension id="create.table.menus" name="Create Table Menus" point="org.eclipse.ui.menus">
+      <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popupmenu.table.efacet.creation">
+         <command commandId="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation" icon="icons/TableOfEditors.gif" label="Nested Editor Table" mnemonic="&amp;G" style="push" tooltip="Create a new Nested Editor Table">
+            <visibleWhen>
+               <with variable="activeEditorId">
+                  <equals value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution allPopups="false" locationURI="menu:org.eclipse.papyrus.ui.menu.efacet.table.creation">
+         <command
+               commandId="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation"
+               icon="icons/TableOfEditors.gif"
+               label="Nested Editor Table"
+               mnemonic="&amp;G"
+               style="push"
+               tooltip="Create a new Nested Editor Table">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution allPopups="false" locationURI="toolbar:org.eclipse.papyrus.toolbar.table.efacet.creation">
+         <command
+               commandId="org.eclipse.papyrus.infra.table.efacet.nestededitor.creation"
+               icon="icons/TableOfEditors.gif"
+               label="Nested Editor Table"
+               mnemonic="&amp;G"
+               style="push"
+               tooltip="Create a new Nested Editor Table">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="resources/nestededitor.efacet">
+      </modeldeclaration>
+   </extension>
+
+</plugin>
