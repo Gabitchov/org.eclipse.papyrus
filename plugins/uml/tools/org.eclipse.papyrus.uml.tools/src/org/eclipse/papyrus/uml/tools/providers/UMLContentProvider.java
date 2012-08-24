@@ -121,6 +121,12 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 			return EmptyContentProvider.instance;
 		}
 
+		//Bug 383401: [Sequence Diagram] Interaction operator
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=383401
+		if(feature == UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator()) {
+			return new InteractionOperatorContentProvider(source, feature);
+		}
+
 		if(feature.getEType() instanceof EEnum) {
 			return new EMFEnumeratorContentProvider(feature);
 		}
