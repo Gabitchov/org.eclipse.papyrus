@@ -83,4 +83,15 @@ public class ExpressionLanguageFactory extends StringEditionFactory {
 
 		return currentValue;
 	}
+
+	@Override
+	public Object createObject(Control widget) {
+		String languageName = (String)super.createObject(widget);
+		if(languageName == null) {
+			return null;
+		}
+		Expression expression = new Expression();
+		expression.setLanguage(languageName);
+		return expression;
+	}
 }
