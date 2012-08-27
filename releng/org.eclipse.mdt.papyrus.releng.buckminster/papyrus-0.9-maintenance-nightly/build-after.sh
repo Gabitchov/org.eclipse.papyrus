@@ -14,6 +14,7 @@
 ########## publishing ##########
 
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.build.feature_*-eclipse.feature/site.p2
+updateSite=/shared/jobs/${JOB_NAME}/updateSite
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-nightly/promoteSignal
 promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-nightly/promoteVersion
@@ -31,12 +32,12 @@ zipName="Papyrus-Main.zip"
 rm -rf tmp
 mkdir -p "tmp/$FULL_BUILD_ID"
 
-rm -rf updateSite
-mv $p2UpdateSiteDir updateSite
+rm -rf $updateSite
+mv $p2UpdateSiteDir $updateSite
 
 # create the update site zip
-(cd updateSite && zip -r $updateZipName *)
-mv updateSite/$updateZipName "tmp/$FULL_BUILD_ID"
+(cd $updateSite && zip -r $updateZipName *)
+mv $updateSite/$updateZipName "tmp/$FULL_BUILD_ID"
 
 # copy the generated psf files to the tmp dir
 cp buildroot/result/*.psf "tmp/$FULL_BUILD_ID"
