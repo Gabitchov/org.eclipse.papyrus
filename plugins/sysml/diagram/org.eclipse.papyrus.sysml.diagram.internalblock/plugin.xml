@@ -186,31 +186,58 @@
 		<object id="uml.Class" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Class"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Class"></context>			
+		<context
+        elements="uml.Class"
+        viewClass="org.eclipse.gmf.runtime.notation.Node"></context>			
 		
 		<!-- "uml.Port" -->
 		<object id="uml.Port" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Port"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Port"></context>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" elements="uml.Port"></context>			
 		
 		<!-- "uml.Property" -->
 		<object id="uml.Property" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Property"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="uml.Property"></context>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"  elements="uml.Property"></context>			
 		
 		<!-- "uml.Connector" -->
 		<object id="uml.Connector" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Connector"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Connector"></context>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="uml.Connector"></context>			
 		
 		<!-- "uml.Dependency" -->
 		<object id="uml.Dependency" class="org.eclipse.gmf.runtime.emf.core.util.IProxyEObject(org.eclipse.gmf.runtime.emf.core)">
 			<method name="getProxyClassID()" value="uml.Dependency"></method>
 		</object>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="uml.Dependency"></context>			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" elements="uml.Dependency"></context>
+ 
+ 
+ 	 <object id="elementtype.node"
+        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+       
+     <method
+           name="getSemanticHint()"
+           value="UML::Property, SysML::ActorPartProperty, SysML::ValueProperty, SysML::ReferenceProperty, SysML::FlowPort_In, UML::Port, SysML::FlowPort_Out, SysML::PartProperty, SysML::FlowPort_InOut, SysML::FlowPort, SysML::Block, SysML::FlowPort_NA">
+     </method>
+  </object>
+  <context
+        elements="elementtype.node"
+        viewClass="org.eclipse.gmf.runtime.notation.Node">
+  </context>
+  <object id="elementtype.edge"
+        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+     <method
+           name="getSemanticHint()"
+           value="UML::Dependency, UML::Connector">
+     </method>
+  </object>
+  <context
+        elements="elementtype.edge"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge">
+  </context>			
 		
 	</viewProvider>	
 

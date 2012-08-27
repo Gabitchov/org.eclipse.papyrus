@@ -105,7 +105,7 @@ public class BlockDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, /* explicit semantic hint is mandatory */ null, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());
 		Command viewCreateCommand = host.getCommand(createViewRequest);
@@ -154,7 +154,7 @@ public class BlockDropHelper extends ElementHelper {
 		IAdaptable createElementRequestAdapter = new CreateElementRequestAdapter(createElementRequest);
 
 		// 2. Prepare the drop command
-		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(createElementRequestAdapter, Node.class, /* explicit semantic hint is mandatory */ null, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(request.getLocation().getCopy());
 		Command viewCreateCommand = host.getCommand(createViewRequest);

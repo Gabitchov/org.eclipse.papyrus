@@ -580,6 +580,30 @@
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="link_uml_dependency, link_uml_usage, link_uml_interfacerealization, link_sysml_association, link_uml_generalization"/>
 		
+		<object id="elementtype.node"
+        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+       
+     <method
+           name="getSemanticHint()"
+           value="SysML::ActorPartProperty, SysML::ReferenceProperty, UML::EnumerationLiteral, SysML::ConstraintBlock, UML::Signal, UML::Operation, SysML::FlowProperty, UML::PrimitiveType, UML::Port, SysML::ConstraintProperty, SysML::ValueProperty, UML::Reception, UML::Interface, UML::Constraint, UML::DataType, SysML::Unit, UML::Enumeration, SysML::ValueType, UML::Actor, UML::Property, SysML::Dimension, SysML::FlowSpecification, SysML::PartProperty, SysML::Block, SysML::FlowPort">
+     </method>
+  </object>
+  <context
+        elements="elementtype.node"
+        viewClass="org.eclipse.gmf.runtime.notation.Node">
+  </context>
+  <object id="elementtype.edge"
+        class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+     <method
+           name="getSemanticHint()"
+           value="SysML::AssociationNone, UML::Dependency, SysML::Association, UML::InterfaceRealization, UML::Generalization, SysML::AssociationSharedDirected, SysML::AssociationCompositeDirected, SysML::AssociationComposite, UML::Usage, SysML::AssociationNoneDirected, SysML::AssociationShared">
+     </method>
+  </object>
+  <context
+        elements="elementtype.edge"
+        viewClass="org.eclipse.gmf.runtime.notation.Edge">
+  </context>			
+		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
 		<!-- "uml.Actor" -->

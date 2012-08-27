@@ -15,13 +15,14 @@ package org.eclipse.papyrus.gmf.diagram.common.commands;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 
 /**
  * An adapter for {@link IElementType}, {@link EObject} or {@link View}.
  */
-public class SemanticElementAdapter extends SemanticAdapter {
+public class SemanticElementAdapter extends SemanticAdapter implements ISemanticHintAdapter {
 
 	/** The elementType. */
 	private Object elementType;
@@ -50,9 +51,22 @@ public class SemanticElementAdapter extends SemanticAdapter {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
+		if(adapter.equals(IHintedType.class)) {
+			if(elementType instanceof IHintedType) {
+				return (IHintedType)elementType;
+			}
+		}
 		if(adapter.equals(IElementType.class)) {
 			return elementType;
 		}
 		return super.getAdapter(adapter);
 	}
+
+	public String getSemanticHint() {
+		if(elementType instanceof IHintedType) {
+			return ((IHintedType)elementType).getSemanticHint();
+		}
+		return null;
+	}
+	
 }
