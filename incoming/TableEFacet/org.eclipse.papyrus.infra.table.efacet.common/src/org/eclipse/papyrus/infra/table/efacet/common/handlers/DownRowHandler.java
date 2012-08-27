@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.table.efacet.common.handlers;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Row;
-import org.eclipse.papyrus.infra.table.efacet.common.copy.PapyrusTableEfacetCommandFactory;
+import org.eclipse.papyrus.infra.table.efacet.common.factory.PapyrusTableEfacetCommandFactory;
 
 /**
  * 

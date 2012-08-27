@@ -14,6 +14,14 @@ package org.eclipse.papyrus.infra.table.efacet.common.listener;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
+import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
+import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
+import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
+import org.eclipse.emf.facet.widgets.table.ui.command.ITableCommandFactory;
+import org.eclipse.emf.facet.widgets.table.ui.command.ITableCommandFactoryFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
@@ -82,4 +90,22 @@ public abstract class AbstractTableTriggerListener extends TriggerListener {
 	 * @return the command name
 	 */
 	protected abstract String getCommandName(final Notification notification);
+
+	/**
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param resourceSet
+	 *        the resource set
+	 * @param table
+	 *        the table
+	 * @return
+	 *         the command factory for these parameters
+	 */
+	public static ITableCommandFactory getTableCmdFactory(final TransactionalEditingDomain editingDomain, final ResourceSet resourceSet, final Table table) {
+		final IFacetManager facetManager = IFacetManagerFactory.DEFAULT.getOrCreateFacetManager(resourceSet);
+		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(editingDomain);
+		final ITableCommandFactory tableCmdFactory = ITableCommandFactoryFactory.DEFAULT.createTableCommandFactory(table, editingDomain, commandFactory, facetManager);
+		return tableCmdFactory;
+	}
 }
