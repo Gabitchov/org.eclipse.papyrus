@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Efacet For SysML (Incubation)
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.efacet;singleton:=true
+Bundle-Version: 0.9.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.sysml.efacet.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
+ org.eclipse.papyrus.sysml;bundle-version="0.9.0",
+ org.eclipse.emf.facet.util.emf.core,
+ org.eclipse.emf.facet.query.java.core
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
