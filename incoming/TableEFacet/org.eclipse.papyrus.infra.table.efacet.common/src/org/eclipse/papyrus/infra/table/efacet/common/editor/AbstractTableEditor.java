@@ -81,7 +81,7 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 	/** the table instance */
 	protected PapyrusTable rawModel;
 
-	
+
 
 	public AbstractTableEditor(final ServicesRegistry servicesRegistry, final PapyrusTable rawModel) {
 		super(servicesRegistry);

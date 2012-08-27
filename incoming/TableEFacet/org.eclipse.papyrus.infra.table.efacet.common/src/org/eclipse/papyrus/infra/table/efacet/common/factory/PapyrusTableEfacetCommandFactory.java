@@ -10,7 +10,7 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.table.efacet.common.copy;
+package org.eclipse.papyrus.infra.table.efacet.common.factory;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;

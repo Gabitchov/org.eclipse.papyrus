@@ -200,23 +200,6 @@ public class FillingListener extends AbstractTableTriggerListener {
 		return cmd;
 	}
 
-	/**
-	 * 
-	 * @param editingDomain
-	 *        the editing domain
-	 * @param resourceSet
-	 *        the resource set
-	 * @param table
-	 *        the table
-	 * @return
-	 *         the command factory for these parameters
-	 */
-	private static ITableCommandFactory getTableCmdFactory(final TransactionalEditingDomain editingDomain, final ResourceSet resourceSet, final Table table) {
-		final IFacetManager facetManager = IFacetManagerFactory.DEFAULT.getOrCreateFacetManager(resourceSet);
-		final ICommandFactory commandFactory = ICommandFactoriesRegistry.INSTANCE.getCommandFactoryFor(editingDomain);
-		final ITableCommandFactory tableCmdFactory = ITableCommandFactoryFactory.DEFAULT.createTableCommandFactory(table, editingDomain, commandFactory, facetManager);
-		return tableCmdFactory;
-	}
 
 
 	/**
@@ -230,13 +213,13 @@ public class FillingListener extends AbstractTableTriggerListener {
 		final List<EObject> toAdd = new ArrayList<EObject>();
 		final List<EObject> toRemove = new ArrayList<EObject>();
 		final IFacetManager facetManager = IFacetManagerFactory.DEFAULT.getOrCreateFacetManager(papyrusTable.eResource());
-		final List<EObject> allElements = new ArrayList<EObject>();
-		for(final Query current : papyrusTable.getQueries()){
+		final Set<EObject> allElements = new HashSet<EObject>();
+		for(final Query current : papyrusTable.getQueries()) {
 			EObject container = current.eContainer();
-			if(container instanceof FacetReference){
+			if(container instanceof FacetReference) {
 				try {
-					List<EObject> res = facetManager.getOrInvokeMultiValued(papyrusTable, (ETypedElement)container,null);
-					if(res!=null){
+					List<EObject> res = facetManager.getOrInvokeMultiValued(papyrusTable, (ETypedElement)container, null);
+					if(res != null) {
 						allElements.addAll(res);
 					}
 				} catch (FacetManagerException e) {
@@ -244,8 +227,8 @@ public class FillingListener extends AbstractTableTriggerListener {
 				}
 			}
 		}
-		final List<EObject> currentContent = TableContentsUtils.getTableContents(papyrusTable, papyrusTable.getTable().getContext(),false);
-		final ArrayList<EObject> newValue = new ArrayList<EObject>((List<EObject>)allElements);
+		final List<EObject> currentContent = TableContentsUtils.getTableContents(papyrusTable, papyrusTable.getTable().getContext(), false);
+		final ArrayList<EObject> newValue = new ArrayList<EObject>((Set<EObject>)allElements);
 		//fill the add list
 
 		toAdd.addAll(newValue);
