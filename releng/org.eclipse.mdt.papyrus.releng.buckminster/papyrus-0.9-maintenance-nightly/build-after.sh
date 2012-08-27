@@ -15,9 +15,9 @@
 
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.build.feature_*-eclipse.feature/site.p2
 
-promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteSignal
-promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteVersion
-promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-nightly/promoteDirName
+promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-nightly/promoteSignal
+promoteVersion=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-nightly/promoteVersion
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-nightly/promoteDirName
 
 FULL_BUILD_ID=$(cat $promoteDirName)
 

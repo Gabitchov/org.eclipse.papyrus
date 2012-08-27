@@ -12,7 +12,7 @@
 #--------------------------------------------------------------------------------
 
 SVN=/usr/local/bin/svn
-promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-trunk-extra-nightly/promoteDirName
+promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-nightly/promoteDirName
 RELENG_PROJECT="sourceTree/releng/org.eclipse.mdt.papyrus.releng.buckminster"
 
 echo "building in " $WORKSPACE
@@ -28,6 +28,7 @@ COMPACT_BUILD_ID="${BUILD_ID//[-_]}"
 COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 FULL_BUILD_ID=${BUILD_TYPE}${COMPACT_BUILD_ID}
 echo $FULL_BUILD_ID > $promoteDirName
+
 
 revision=$($SVN info svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus | grep '^Revision:' | awk '{print $2}')
 echo "$revision" > "$WORKSPACE/revision.txt"
