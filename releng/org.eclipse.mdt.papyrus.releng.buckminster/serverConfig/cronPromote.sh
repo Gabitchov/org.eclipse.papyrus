@@ -333,7 +333,7 @@ if [ $signalDate09MaintenanceNightly -gt $lastPromoteDate09MaintenanceNightly ];
 	zipName="Papyrus-Main.zip"
 	
 	echo "[$DATE] deleting previous nightly update site"
-	rm -rf "$UPDATES_0_9_MAINTENANCENIGHTLY"
+	rm -rf "$UPDATES_0_9_MAINTENANCE_NIGHTLY"
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
@@ -342,7 +342,7 @@ if [ $signalDate09MaintenanceNightly -gt $lastPromoteDate09MaintenanceNightly ];
 	nfsURL="/shared/jobs/papyrus-0.9-maintenance-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.9-maintenance-nightly/lastSuccessfulBuild/artifact/"
 	export SVN_DIRECTORIES_TO_TAG=( )
-	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_0_9_MAINTENANCENIGHTLY" "Papyrus-Update-" "NA"
+	promote "$zipName" "$version" "$nfsURL" "$hudsonURL" "$DROPS_DIR" "$ARCHIVE_DIR" "$ARCHIVE_INDEX" "$UPDATES_0_9_MAINTENANCE_NIGHTLY" "Papyrus-Update-" "NA"
 
 	echo "[$DATE] promote done"
 	
@@ -391,7 +391,7 @@ fi
 ########## maintenance 0.9 main nightly tests ##########
 if [ $signalDate09MaintenanceNightlyTests -gt $lastPromoteDate09MaintenanceNightlyTests ]; then
 	# mark the promote as done
-	touch "$LAST_PROMOTE_FILE_0_9_MAINTENANCENIGHTLY_TESTS"
+	touch "$LAST_PROMOTE_FILE_0_9_MAINTENANCE_NIGHTLY_TESTS"
 
 	waitUntilJobIsFinished "papyrus-0.9-maintenance-nightly-tests" "$JOB_FINISH_WAIT_TIMEOUT"
 
@@ -403,8 +403,8 @@ if [ $signalDate09MaintenanceNightlyTests -gt $lastPromoteDate09MaintenanceNight
 	# for the tests build, the build name and version are taken from the last main build since the artifacts 
 	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
 
-	buildName=$(cat "$PROMOTE_SIGNAL_0_9_MAINTENANCENIGHTLY")
-	version=$(cat "$PROMOTE_VERSION_0_9_MAINTENANCENIGHTLY")
+	buildName=$(cat "$PROMOTE_SIGNAL_0_9_MAINTENANCE_NIGHTLY")
+	version=$(cat "$PROMOTE_VERSION_0_9_MAINTENANCE_NIGHTLY")
 	zipName="Papyrus-TestResults.zip"
 	nfsURL="/shared/jobs/papyrus-0.9-maintenance-nightly-tests/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.9-maintenance-nightly-tests/lastSuccessfulBuild/artifact/"
@@ -445,8 +445,8 @@ if [ $signalDate09MaintenanceExtraNightly -gt $lastPromoteDate09MaintenanceExtra
 	# for the extra build, the build name and version are taken from the last main build since the artifacts 
 	# must go to the same folder, and we want to be able to start several extra jobs after one single main job
 	
-	buildName=$(cat "$PROMOTE_SIGNAL_0_9_MAINTENANCENIGHTLY")
-	version=$(cat "$PROMOTE_VERSION_0_9_MAINTENANCENIGHTLY")
+	buildName=$(cat "$PROMOTE_SIGNAL_0_9_MAINTENANCE_NIGHTLY")
+	version=$(cat "$PROMOTE_VERSION_0_9_MAINTENANCE_NIGHTLY")
 	zipName="Papyrus-Extra.zip"
 	updateZipName="Papyrus-Extra-Update.zip"
 	nfsURL="/shared/jobs/papyrus-0.9-maintenance-extra-nightly/lastSuccessful/archive/"
