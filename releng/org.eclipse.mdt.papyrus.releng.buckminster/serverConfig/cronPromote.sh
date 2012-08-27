@@ -433,7 +433,7 @@ fi
 ########## maintenance 0.9 extras nightly ##########
 if [ $signalDate09MaintenanceExtraNightly -gt $lastPromoteDate09MaintenanceExtraNightly ]; then
 	# mark the promote as done
-	touch "$LAST_PROMOTE_FILE_0_9_MAINTENANCEEXTRA_NIGHTLY"
+	touch "$LAST_PROMOTE_FILE_0_9_MAINTENANCE_EXTRA_NIGHTLY"
 	
 	waitUntilJobIsFinished "papyrus-0.9-maintenance-extra-nightly" "$JOB_FINISH_WAIT_TIMEOUT"
 
@@ -466,12 +466,12 @@ if [ $signalDate09MaintenanceExtraNightly -gt $lastPromoteDate09MaintenanceExtra
 	unzip "$zipName" -d "$tmpDrop"
 	dirNameInZip=$(ls -1 "$tmpDrop")
 	[ $(echo "$dirNameInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
-	rm -rf "$UPDATES_0_9_MAINTENANCEEXTRA_NIGHTLY"
-	unzip -o "$tmpDrop/$dirNameInZip/${updateZipName}" -d "$UPDATES_0_9_MAINTENANCEEXTRA_NIGHTLY"
+	rm -rf "$UPDATES_0_9_MAINTENANCE_EXTRA_NIGHTLY"
+	unzip -o "$tmpDrop/$dirNameInZip/${updateZipName}" -d "$UPDATES_0_9_MAINTENANCE_EXTRA_NIGHTLY"
 	
 	echo "[$DATE] setting access rights"
 	setAccessRights "$buildsDir"
-	setAccessRights "$UPDATES_0_9_MAINTENANCEEXTRA_NIGHTLY"
+	setAccessRights "$UPDATES_0_9_MAINTENANCE_EXTRA_NIGHTLY"
 	
 	echo "[$DATE] promote done"
 	
