@@ -14,6 +14,7 @@
 ########## publishing ##########
 
 p2UpdateSiteDir=${WORKSPACE}/buildroot/result/output/org.eclipse.papyrus.extra.build.feature_*-eclipse.feature/site.p2
+updateSite=updateSite=/shared/jobs/${JOB_NAME}/updateSite
 
 promoteSignal=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteSignal
 promoteDirName=/opt/public/modeling/mdt/papyrus/papyrus-0.9-maintenance-extra-nightly/promoteDirName
@@ -30,8 +31,8 @@ mkdir -p "tmp/extra"
 (cd $p2UpdateSiteDir && zip -r $updateZipName *)
 mv $p2UpdateSiteDir/$updateZipName "tmp/extra"
 
-rm -rf updateSite
-mv $p2UpdateSiteDir updateSite
+rm -rf $updateSite
+mv $p2UpdateSiteDir $updateSite
 
 mv revision.txt "tmp/extra"
 
