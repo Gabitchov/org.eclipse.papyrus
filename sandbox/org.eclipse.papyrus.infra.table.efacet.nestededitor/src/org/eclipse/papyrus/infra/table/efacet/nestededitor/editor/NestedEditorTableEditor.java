@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.table.efacet.nestededitor.editor;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.TriggerListener;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.table.efacet.common.editor.AbstractSynchronizedTableEditor;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
@@ -27,6 +31,11 @@ public class NestedEditorTableEditor extends AbstractSynchronizedTableEditor {
 	public static final String DEFAULT_NAME = "NestedEditorTable"; //$NON-NLS-1$
 
 	/**
+	 * This listener allows to hide all new columns
+	 */
+	private TriggerListener hideNewColmumnsListener;
+
+	/**
 	 * @param servicesRegistry
 	 * @param rawModel
 	 * 
@@ -35,5 +44,25 @@ public class NestedEditorTableEditor extends AbstractSynchronizedTableEditor {
 		super(servicesRegistry, rawModel);
 	}
 
+	/**
+	 * add listeners on the context of the table and on the table itself
+	 */
+	@Override
+	protected void configureEditorEditingDomain() {
+		super.configureEditorEditingDomain();
+		final EditingDomain editingDomain = getEditingDomain();
+		Assert.isTrue(editingDomain instanceof TransactionalEditingDomain);
+
+		this.hideNewColmumnsListener = new HideNewColumnsListener(this.rawModel);
+		((TransactionalEditingDomain)editingDomain).addResourceSetListener(this.hideNewColmumnsListener);
+
+
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		((TransactionalEditingDomain)getEditingDomain()).removeResourceSetListener(this.hideNewColmumnsListener);
+	}
 
 }
