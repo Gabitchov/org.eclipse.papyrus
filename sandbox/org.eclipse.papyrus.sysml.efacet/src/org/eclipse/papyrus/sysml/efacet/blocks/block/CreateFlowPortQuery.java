@@ -1,17 +1,26 @@
 package org.eclipse.papyrus.sysml.efacet.blocks.block;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.uml2.uml.Port;
 //import org.eclipse.papyrus.sysml.table.flowport.messages.Messages;
@@ -27,27 +36,38 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 public class CreateFlowPortQuery implements IJavaQuery2<EObject, EObject> {
 
 	public EObject evaluate(EObject context, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		TransactionalEditingDomain editingDomain = null;
-		ParameterValue model = parameterValues.getParameterValueByName("editingDomain");
-		editingDomain = (TransactionalEditingDomain)model.getValue();
-		//
-		//						if(model != null) {
-		//							if(model.getValue() instanceof EditingDomain) {
-		//								editingDomain = (EditingDomain)model.getValue();
-		//							}
-		//							if(editingDomain != null) {
-		//								if(context != null) {
+		Assert.isNotNull(context);
+		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(context);
+		Assert.isNotNull(domain);
+		final ParameterValue directionParameter = parameterValues.getParameterValueByName("direction");
+		Object value = directionParameter.getValue();
+
+		Assert.isTrue(value instanceof EEnumLiteral);
+		final EEnumLiteral direction = (EEnumLiteral)value;
+		final IElementType elementType;
+		switch(direction.getValue()) {
+		case FlowDirection.IN_VALUE:
+			elementType = SysMLElementTypes.FLOW_PORT_IN;
+			break;
+		case FlowDirection.OUT_VALUE:
+			elementType = SysMLElementTypes.FLOW_PORT_OUT;
+			break;
+		case FlowDirection.INOUT_VALUE:
+			elementType = SysMLElementTypes.FLOW_PORT_IN_OUT;
+			break;
+		default:
+			elementType = SysMLElementTypes.FLOW_PORT;
+		}
+
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
-		CreateElementRequest createRequest = new CreateElementRequest(context, SysMLElementTypes.FLOW_PORT_OUT);
+		CreateElementRequest createRequest = new CreateElementRequest(context, elementType);
+
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
-		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(createGMFCommand));
+		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(createGMFCommand));
 		if(createGMFCommand.getCommandResult() != null) {//it's null, when the model is not a SysML model
 			Object returnedValue = createGMFCommand.getCommandResult().getReturnValue();
 			return (Port)returnedValue;
 		}
-		//								}
-		//							}
-		//						}
 		return null;
 	}
 

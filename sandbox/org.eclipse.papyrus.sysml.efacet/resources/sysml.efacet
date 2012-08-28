@@ -2,8 +2,8 @@
 <efacet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
 	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
-	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query" 
-    xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
+	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
 	name="SysML" nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML"
 	nsPrefix="EFacet/SysML">
 	<eSubpackages xsi:type="efacet:FacetSet" name="PortAndFlows"
@@ -52,8 +52,84 @@
 					<eType xsi:type="ecore:EDataType"
 						href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject" />
 				</eParameters>
+				<eParameters name="direction" ordered="false">
+					<eType xsi:type="ecore:EEnum"
+						href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection" />
+				</eParameters>
 				<query xsi:type="javaQuery2:JavaQuery" canBeCached="true"
 					implementationClassName="org.eclipse.papyrus.sysml.efacet.blocks.block.CreateFlowPortQuery" />
+			</facetOperations>
+			<facetOperations name="createFlowPort_In">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<eParameters name="eStructuralFeature">
+					<eType xsi:type="ecore:EClass"
+						href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
+				</eParameters>
+				<eParameters name="editingDomain">
+					<eType xsi:type="ecore:EDataType"
+						href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject" />
+				</eParameters>
+				<query xsi:type="query:OperationCallQuery" operation="//Blocks/Block/createFlowPort">
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element href="#//Blocks/Block/createFlowPort_In/eStructuralFeature" />
+					</arguments>
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element href="#//Blocks/Block/createFlowPort_In/editingDomain" />
+					</arguments>
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element
+							href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection/in" />
+					</arguments>
+				</query>
+			</facetOperations>
+			<facetOperations name="createFlowPort_Out">
+			<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<eParameters name="eStructuralFeature">
+					<eType xsi:type="ecore:EClass"
+						href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
+				</eParameters>
+				<eParameters name="editingDomain">
+					<eType xsi:type="ecore:EDataType"
+						href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject" />
+				</eParameters>
+				<query xsi:type="query:OperationCallQuery" operation="//Blocks/Block/createFlowPort">
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element href="#//Blocks/Block/createFlowPort_In/eStructuralFeature" />
+					</arguments>
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element href="#//Blocks/Block/createFlowPort_In/editingDomain" />
+					</arguments>
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element
+							href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection/out" />
+					</arguments>
+				</query>
+			</facetOperations>
+			<facetOperations name="createFlowPort_InOut">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<eParameters name="eStructuralFeature">
+					<eType xsi:type="ecore:EClass"
+						href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
+				</eParameters>
+				<eParameters name="editingDomain">
+					<eType xsi:type="ecore:EDataType"
+						href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject" />
+				</eParameters>
+				<query xsi:type="query:OperationCallQuery" operation="//Blocks/Block/createFlowPort">
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element href="#//Blocks/Block/createFlowPort_In/eStructuralFeature" />
+					</arguments>
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element href="#//Blocks/Block/createFlowPort_In/editingDomain" />
+					</arguments>
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element
+							href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection/inout" />
+					</arguments>
+				</query>
 			</facetOperations>
 		</eClassifiers>
 	</eSubpackages>
@@ -75,23 +151,13 @@
 				<eType xsi:type="ecore:EDataType"
 					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
 				<query xsi:type="query:OperationCallQuery"
-					operation="#//Utils/SysMLElement/isAppliedSysMLStereotype">
+					operation="//Utils/SysMLElement/isAppliedSysMLStereotype">
 					<arguments xsi:type="query:EObjectLiteralQuery">
 						<element
 							href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowPort" />
 					</arguments>
 				</query>
 			</facetOperations>
-		<facetElements xsi:type="efacet:FacetAttribute" name="isFlowPort2" derived="true" documentation="">
-        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-        <query xsi:type="query:OperationCallQuery"
-					operation="#//Utils/SysMLElement/isAppliedSysMLStereotype">
-					<arguments xsi:type="query:EObjectLiteralQuery">
-						<element
-							href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowPort" />
-					</arguments>
-				</query>
-      </facetElements>
 		</eClassifiers>
 	</eSubpackages>
 </efacet:FacetSet>

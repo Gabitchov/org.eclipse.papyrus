@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="extended_sysml" nsURI="http://www.eclipse.org/papyrus/0.9.0/Extended_SysML"
+    nsPrefix="Extended_Sysml">
+  <eSubpackages name="portandflows" nsURI="http://www.eclipse.org/papyrus/0.9.0/ExtendedSysML/PortAndFlows"
+      nsPrefix="PortAndFlows">
+    <eClassifiers xsi:type="ecore:EEnum" name="FlowDirection" instanceTypeName="FlowDirection">
+      <eLiterals name="NA" value="-1"/>
+      <eLiterals name="in" literal="in"/>
+      <eLiterals name="out" value="1" literal="out"/>
+      <eLiterals name="inout" value="2" literal="inout"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>
