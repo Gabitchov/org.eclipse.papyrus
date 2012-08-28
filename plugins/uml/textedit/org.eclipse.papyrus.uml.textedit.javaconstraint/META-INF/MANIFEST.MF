@@ -18,4 +18,3 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.textedit.javaconstraint
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-

@@ -12,10 +12,5 @@
          </simpleeditor>
       </DirectEditor>
    </extension>
-   <extension
-         point="org.eclipse.ui.startup">
-      <startup
-            class="org.eclipse.papyrus.uml.textedit.javaconstraint.Activator"></startup>
-   </extension>
 
 </plugin>
