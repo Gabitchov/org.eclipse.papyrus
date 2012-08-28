@@ -2,43 +2,45 @@
 <efacet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
 	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
-	xmlns:javaQuery="http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery"
-	name="SysML" nsURI="org.eclipse.papyrus.sysml.efacet/SysML" nsPrefix="EFacet/SysML">
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query" 
+    xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
+	name="SysML" nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML"
+	nsPrefix="EFacet/SysML">
 	<eSubpackages xsi:type="efacet:FacetSet" name="PortAndFlows"
-		nsURI="org.eclipse.papyrus.sysml.efacet/SysML/PortAndFlows" nsPrefix="EFacet/SysML/PortAndFlows">
+		nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML/PortAndFlows"
+		nsPrefix="EFacet/SysML/PortAndFlows">
 		<eClassifiers xsi:type="efacet:Facet" name="FlowPort">
 			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Port" />
-			<facetElements xsi:type="efacet:FacetAttribute" name="/isAtomic"
+			<facetElements xsi:type="efacet:FacetAttribute" name="isAtomic"
 				derived="true">
 				<eType xsi:type="ecore:EDataType"
 					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
-
-				<eType xsi:type="ecore:EClass"
-					href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
-
-				<query xsi:type="javaQuery:JavaQuery"
+				<query xsi:type="javaQuery2:JavaQuery"
 					implementationClassName="org.eclipse.papyrus.sysml.efacet.portandflows.flowport.GetFlowPortIsAtomicQuery" />
 			</facetElements>
 			<facetElements xsi:type="efacet:FacetAttribute" name="direction"
-				documentation="">
+				derived="true" documentation="">
 				<eType xsi:type="ecore:EDataType"
 					href="http://www.eclipse.org/emf/2002/Ecore#//EEnumerator" />
-				<eType xsi:type="ecore:EClass"
-					href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
-
-				<query xsi:type="javaQuery:JavaQuery"
+				<query xsi:type="javaQuery2:JavaQuery"
 					implementationClassName="org.eclipse.papyrus.sysml.efacet.portandflows.flowport.GetFlowPortDirectionQuery" />
 			</facetElements>
 			<facetOperations name="isFlowPort" documentation="">
 				<eType xsi:type="ecore:EDataType"
-					href="http://www.eclipse.org/emf/2002/Ecore##//EBoolean" />
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
 				<eParameters name="eStructuralFeature">
 					<eType xsi:type="ecore:EClass"
 						href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
 				</eParameters>
-				<query xsi:type="javaQuery:JavaQuery"
-					implementationClassName="org.eclipse.papyrus.sysml.efacet.portandflows.flowport.IsFlowPortQuery" />
+				<query xsi:type="javaQuery2:JavaQuery"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.utils.IsAppliedSysMLStereotypeQuery" />
 			</facetOperations>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xsi:type="efacet:FacetSet" name="Blocks"
+		nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML/Blocks" nsPrefix="EFacet/SysML/Blocks">
+		<eClassifiers xsi:type="efacet:Facet" name="Block">
+			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Class" />
 			<facetOperations name="createFlowPort" lowerBound="1"
 				documentation="Returns true if the Port is a SysML FlowPort">
 				<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Port" />
@@ -46,10 +48,50 @@
 					<eType xsi:type="ecore:EClass"
 						href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement" />
 				</eParameters>
-				<query xsi:type="javaQuery:JavaQuery" canHaveSideEffects="true"
-					canBeCached="true"
-					implementationClassName="org.eclipse.papyrus.sysml.efacet.portandflows.flowport.CreateFlowPortQuery" />
+				<eParameters name="editingDomain">
+					<eType xsi:type="ecore:EDataType"
+						href="http://www.eclipse.org/emf/2002/Ecore#//EJavaObject" />
+				</eParameters>
+				<query xsi:type="javaQuery2:JavaQuery" canBeCached="true"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.blocks.block.CreateFlowPortQuery" />
 			</facetOperations>
+		</eClassifiers>
+	</eSubpackages>
+	<eSubpackages xsi:type="efacet:FacetSet" name="Utils"
+		nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML/Utils" nsPrefix="EFacet/SysML/Utils">
+		<eClassifiers xsi:type="efacet:Facet" name="SysMLElement">
+			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
+			<facetOperations name="isAppliedSysMLStereotype">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<eParameters name="stereotype">
+					<eType xsi:type="ecore:EClass"
+						href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+				</eParameters>
+				<query xsi:type="javaQuery2:JavaQuery"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.utils.IsAppliedSysMLStereotypeQuery" />
+			</facetOperations>
+			<facetOperations name="isFlowPort">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<query xsi:type="query:OperationCallQuery"
+					operation="#//Utils/SysMLElement/isAppliedSysMLStereotype">
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element
+							href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowPort" />
+					</arguments>
+				</query>
+			</facetOperations>
+		<facetElements xsi:type="efacet:FacetAttribute" name="isFlowPort2" derived="true" documentation="">
+        <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <query xsi:type="query:OperationCallQuery"
+					operation="#//Utils/SysMLElement/isAppliedSysMLStereotype">
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element
+							href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowPort" />
+					</arguments>
+				</query>
+      </facetElements>
 		</eClassifiers>
 	</eSubpackages>
 </efacet:FacetSet>
