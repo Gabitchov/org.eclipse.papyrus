@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2007, 2009 Borland Software Corporation
+ * Copyright (c) 2007, 2010 Borland Software Corporation and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,25 +8,16 @@
  *
  * Contributors:
  *    Alexander Shatalin (Borland) - initial API and implementation
- *    Emilien Perico (Atos Origin) - update template for GMF 2.2 compliance
+ * 	  Michael Golubev (Montages) - #372479
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/GenModel'»
-«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
-«EXTENSION xpt::EMFUtils»
+
 «EXTENSION xpt::editor::Utils»
 «EXTENSION xpt::diagram::editpolicies::LinkUtils»
-«EXTENSION xpt::expressions::ValueExpression»
-«EXTENSION xpt::StringOperations»
-«EXTENSION MetaModel»
-«EXTENSION ViewInfoUtils»
-«EXTENSION xpt::GenModelUtils»
-«EXTENSION xpt::editor::ViewInfoUtils»
+«EXTENSION xpt::diagram::updater::Utils»
 
-«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
-«REM» install the mecanism of "filters views..." view for subelements«ENDREM»
-«REM» and  [MutatingCanvas] With mutating canvas multiple elements can be the canvas' element «ENDREM»
 
 «DEFINE VisualIDRegistry FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
@@ -60,6 +51,14 @@ public class «visualIDRegistryClassName» {
 	«EXPAND isDiagram-»
 
 	«EXPAND _constraintMethods-»
+	
+	«EXPAND checkNodeVisualID-»
+
+	«EXPAND isCompartmentVisualID-»
+
+	«EXPAND isSemanticLeafVisualID-»
+
+	«EXPAND runtimeTypedInstance-»
 
 	«EXPAND additions-»	
 }
@@ -76,8 +75,6 @@ public class «visualIDRegistryClassName» {
 «DEFINE getVisualIDMethodCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND getVisualIdMethodName»«ENDDEFINE»
 
 «DEFINE getModelIDMethodCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND getModelIDMethodName»«ENDDEFINE»
-
-
 
 «REM»
 	XXX looks like these methods would produce incorrect result for visualID of GenDiagram itself - ask Vano if
@@ -163,22 +160,16 @@ public static String «EXPAND getTypeMethodName»(int visualID) {
 
 «DEFINE getTypeMethodName FOR gmfgen::GenDiagram»getType«ENDDEFINE»
 
-«REM» [MutatingCanvas] Modified for MutatingCanvas «ENDREM»
 «DEFINE getDiagramVisualID FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
-public static int «EXPAND xpt::editor::VisualIDRegistry::getDiagramVisualIDMethodName»(org.eclipse.emf.ecore.EObject domainElement) {
+public static int «EXPAND getDiagramVisualIDMethodName»(org.eclipse.emf.ecore.EObject domainElement) {
 	if (domainElement == null) {
-		«EXPAND xpt::editor::VisualIDRegistry::unrecognizedVID-»
+		«EXPAND unrecognizedVID-»
 	}
 «IF null <> domainDiagramElement-»
-	«EXPAND xpt::editor::VisualIDRegistry::returnVisualID-»
+	«EXPAND returnVisualID-»
 «ENDIF-»
-	«IF papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self)->size()<>0»
-		«FOREACH papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self) AS referencer»
-			«EXPAND returnMutatingVisualID FOR referencer»	
-		«ENDFOREACH»
-	«ENDIF»
-	«EXPAND xpt::editor::VisualIDRegistry::unrecognizedVID-»
+	«EXPAND unrecognizedVID-»
 }
 «ENDDEFINE»
 
@@ -200,17 +191,8 @@ if («EXPAND checkSemanticElement») {
 
 «DEFINE checkDomainElementMetaclass FOR genmodel::GenClass»«EXPAND MetaModel::MetaClass».isSuperTypeOf(domainElement.eClass())«ENDDEFINE»
 
-«REM» [ExtendedConstraint] Model selector constraint  «ENDREM»
 «DEFINE checkDomainElementConstraints(commonBase : gmfgen::GenCommonBase) FOR gmfgen::TypeModelFacet-»
-«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
-«IF commonBase.oclIsTypeOf(gmfgen::GenLink)-»
-«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
 «IF null <> modelElementSelector» && «EXPAND _domainElementConstraintMethodName FOR commonBase»(«EXPAND MetaModel::CastEObject('domainElement') FOR metaClass»)«ENDIF-»
-«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
-«ELSE-»
-«IF null <> modelElementSelector» && «EXPAND _domainElementConstraintMethodName FOR commonBase»(containerView, «EXPAND MetaModel::CastEObject('domainElement') FOR metaClass»)«ENDIF-»
-«ENDIF-»
-«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
 «ENDDEFINE»
 
 «DEFINE checkSemanticElement(genLink : gmfgen::GenLink) FOR gmfgen::LinkModelFacet»«ERROR 'checkSemanticElement is supported only for TypeLinkModelFacet: ' + self.repr()»«ENDDEFINE»
@@ -309,24 +291,16 @@ public static int «EXPAND getLinkWithClassVisualIDMethodName»(org.eclipse.emf.
 
 «DEFINE getLinkWithClassVisualIDMethodName FOR gmfgen::GenDiagram»getLinkWithClassVisualID«ENDDEFINE»
 
-«REM» [MutatingCanvas] Modified for MutatingCanvas «ENDREM»
+
 «DEFINE isDiagram FOR gmfgen::GenDiagram-»
 	«IF null <> domainDiagramElement-»
 		«EXPAND xpt::Common::generatedMemberComment(
-			"User can change implementation of this method to handle some specific\n" +
-			"situations not covered by default logic.\n"
+			'User can change implementation of this method to handle some specific\n' + 
+			'situations not covered by default logic.\n'
 		)»
-private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName»(«getQualifiedInterfaceName(domainDiagramElement)» element) {
+private static boolean isDiagram(«EXPAND MetaModel::QualifiedClassName FOR domainDiagramElement» element) {
 	return true;
 }
-	«REM»[MutatingCanvas]«ENDREM»
-	«IF papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self)->size()<>0»
-		«FOREACH papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self) AS referencer»
-			private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName»(«getQualifiedInterfaceName(referencer.domainDiagramElement)» element) {
-				return true;
-			}
-		«ENDFOREACH»
-	«ENDIF»
 	«ENDIF-»
 «ENDDEFINE»
 
@@ -363,21 +337,12 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 
 «DEFINE _domainElementConstraintMethod(diagramElement : gmfgen::GenCommonBase, expression : gmfgen::ValueExpression, context : genmodel::GenClass) FOR gmfgen::GenExpressionProviderBase»«ERROR 'Constraint method is not supported for ' + self.repr()»«ENDDEFINE»
 
-«REM» [ExtendedConstraint] Model selector constraint  «ENDREM»
 «DEFINE _domainElementConstraintMethod(diagramElement : gmfgen::GenCommonBase, expression : gmfgen::ValueExpression, context : genmodel::GenClass) FOR gmfgen::GenJavaExpressionProvider-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
-	«IF diagramElement.oclIsTypeOf(gmfgen::GenLink)-»
-	«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
 	private static boolean «EXPAND _domainElementConstraintMethodName FOR diagramElement»(«EXPAND MetaModel::QualifiedClassName FOR context» domainElement) {
-	«REM» [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
-	«ELSE-»
-	private static boolean «EXPAND _domainElementConstraintMethodName FOR diagramElement»(org.eclipse.gmf.runtime.notation.View containerView, «EXPAND MetaModel::QualifiedClassName FOR context» domainElement) {
-	«ENDIF-»
-	«REM» [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case) «ENDREM»
-«IF injectExpressionBody and (expression.body <> null and expression.body.length() <> 0)-»
+«IF injectExpressionBody and (expression.body <> null and expression.body.size() <> 0)-»
 		«expression.body»
-«ELSEIF throwException or (injectExpressionBody and (expression.body = null or expression.body.length() = 0))-»
+«ELSEIF throwException or (injectExpressionBody and (expression.body = null or expression.body.size() = 0))-»
 		// FIXME: implement this method 
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new java.lang.UnsupportedOperationException("No java implementation provided in '«EXPAND _domainElementConstraintMethodName FOR diagramElement»' operation");«EXPAND xpt::Common::nonNLS»
@@ -396,23 +361,6 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 	}			
 «ENDDEFINE»
 
-
-«DEFINE _constraintField FOR gmfgen::GenNode»«EXPAND _constraintField(self) FOR modelFacet»«ENDDEFINE»
-«DEFINE _constraintField FOR gmfgen::GenLink»«EXPAND _constraintField(self) FOR modelFacet»«ENDDEFINE»
-
-«DEFINE _constraintField(diagramElement : gmfgen::GenCommonBase) FOR gmfgen::ModelFacet»«ENDDEFINE»
-«DEFINE _constraintField(diagramElement : gmfgen::GenCommonBase) FOR gmfgen::TypeModelFacet-»
-«IF modelElementSelector <> null»«EXPAND _constraintField(diagramElement) FOR modelElementSelector.provider»«ENDIF-»
-«ENDDEFINE»
-
-«DEFINE _constraintField(diagramElement : gmfgen::GenCommonBase) FOR gmfgen::GenExpressionInterpreter»
-	«EXPAND xpt::Common::generatedMemberComment»
-	private static «container.getAbstractExpressionQualifiedClassName()» «constraintFieldName(diagramElement)»;
-«ENDDEFINE»
-
-«DEFINE _constraintField(diagramElement : gmfgen::GenCommonBase) FOR gmfgen::GenExpressionProviderBase»«ERROR 'Need to define approach to constraint fields for ' + self.repr()»«ENDDEFINE»
-«DEFINE _constraintField(diagramElement : gmfgen::GenCommonBase) FOR gmfgen::GenJavaExpressionProvider»«ENDDEFINE»// IOW, no fields for Java
-
 «REM»
 		Constraints support end.
 «ENDREM»
@@ -422,109 +370,107 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 return -1;
 «ENDDEFINE»
 
-«REM» [ViewInfo] Modified for ViewInfo «ENDREM»
-«DEFINE additions FOR gmfgen::GenDiagram»
-«REM» [ViewInfo] Added to alow filtering the views by type and/or label «ENDREM»
-«EXPAND createViewInfo FOR self»
-«ENDDEFINE»
+«DEFINE checkNodeVisualIDMethodName FOR gmfgen::GenDiagram»checkNodeVisualID«ENDDEFINE»
+«DEFINE checkNodeVisualIDMethodCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND checkNodeVisualIDMethodName»«ENDDEFINE»
 
-
-«REM» [ViewInfo] START : Implementations for Papyrus filtering system «ENDREM»
-
-«DEFINE createViewInfo FOR gmfgen::GenDiagram»
-	«REM» [ViewInfo] Added to alow filtering the views by type and/or label «ENDREM»
-	
-	«REM» [ViewInfo] Diagram visual info for filtering dialog «ENDREM»
+«DEFINE checkNodeVisualID FOR gmfgen::GenDiagram»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private static org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo diagramViewInfo = null;
-
-	«REM» [ViewInfo] ViewInfo tree construction «ENDREM»
-	«EXPAND xpt::Common::generatedMemberComment»
-	public static org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo getDiagramViewInfo() {
-		if (diagramViewInfo == null) {
-			diagramViewInfo = «diagramViewInfoGetterName(self)»();
+	public static boolean «EXPAND checkNodeVisualIDMethodName»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, int candidate) {
+		if (candidate == -1){
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		«REM»For now there are only one possibility, but this may be changed in moderately near future«ENDREM»«-»
+		int basic = «EXPAND xpt::editor::VisualIDRegistry::getNodeVisualIDMethodName»(containerView, domainElement);
+		return basic == candidate;
 	}
-	
-	«REM» [ViewInfo] Start point to build all ViewInfo tree «ENDREM»
-	«EXPAND getRootDiagramViewInfo FOR self-»	
 «ENDDEFINE»
 
-«REM» [ViewInfo] Start point for all ViewInfo tree «ENDREM»
-«DEFINE getRootDiagramViewInfo FOR gmfgen::GenDiagram»
+«DEFINE isCompartmentVisualIDMethodName FOR gmfgen::GenDiagram»isCompartmentVisualID«ENDDEFINE»
+«DEFINE isCompartmentVisualIDMethodCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND isCompartmentVisualIDMethodName»«ENDDEFINE»
+
+«DEFINE isCompartmentVisualID FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	protected static org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo «diagramViewInfoGetterName(self)»() {
-		org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo root = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Head, "", null, null);
-		org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo viewInfo = null;
-		org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo labelInfo = null;
-		«FOREACH topLevelNodes AS node-»
-			«EXPAND createNodeViewInfo FOR node-»
-		«ENDFOREACH-»
-		«FOREACH links AS link-»
-			«EXPAND createLinkViewInfo FOR link-»
-		«ENDFOREACH-»
-		«FOREACH childNodes AS node-»
-			«EXPAND createNodeViewInfo FOR node-»
-		«ENDFOREACH-»
-		return root;
+	public static boolean «EXPAND isCompartmentVisualIDMethodName»(int visualID) {
+		«IF not compartments->isEmpty()-»
+			switch (visualID) {
+				«EXPAND xpt::Common::caseVisualID FOREACH compartments»
+					return true;
+				default:
+					break;
+			}
+		«ENDIF-»
+		return false;
 	}
 «ENDDEFINE»
 
-«REM» [ViewInfo] Create a node ViewInfo «ENDREM»
-«DEFINE createNodeViewInfo FOR gmfgen::GenTopLevelNode»
-	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
-	root.addNode(«diagram.visualID.toString()», viewInfo);
+«DEFINE isSemanticLeafVisualIDMethodName FOR gmfgen::GenDiagram»isSemanticLeafVisualID«ENDDEFINE»
+«DEFINE isSemanticLeafVisualIDMethodCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND isSemanticLeafVisualIDMethodName»«ENDDEFINE»
+
+«DEFINE isSemanticLeafVisualID FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public static boolean «EXPAND isSemanticLeafVisualIDMethodName»(int visualID) {
+		switch (visualID) {
+			«REM»We need to ensure at last one case, this is legitimate way«ENDREM»«-»
+			«EXPAND xpt::Common::caseVisualID FOR self»
+				return false;
+			«FOREACH self.getAllNodes()->asSequence()->sortedBy(n | n.visualID) AS nextNode-»
+			«IF getSemanticChildren(nextNode)->isEmpty()-»
+			«IF not nextNode.oclIsKindOf(gmfgen::GenNode) or nextNode.oclAsType(gmfgen::GenNode).compartments->select(c | not getSemanticChildren(c)->isEmpty())->isEmpty()-»
+			«EXPAND xpt::Common::caseVisualID FOR nextNode»
+			«ENDIF-»
+			«ENDIF-»
+			«ENDFOREACH-»
+				return true;
+			default:
+				break;
+		}
+		return false;
+	}
 «ENDDEFINE»
 
-«REM» [ViewInfo] Create a node ViewInfo «ENDREM»
-«DEFINE createNodeViewInfo FOR gmfgen::GenChildNode»
-	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID», org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Node, "«modelFacet.metaClass.ecoreClass.name»");
-	«FOREACH containers AS container»
-		root.addNode(«container.visualID.toString()», viewInfo);
-	«ENDFOREACH»
+«DEFINE runtimeTypedInstanceName FOR gmfgen::GenDiagram»TYPED_INSTANCE«ENDDEFINE»
+«DEFINE runtimeTypedInstanceCall FOR gmfgen::GenDiagram»«getVisualIDRegistryQualifiedClassName()».«EXPAND runtimeTypedInstanceName»«ENDDEFINE»
+
+«DEFINE runtimeTypedInstance FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedClassComment»
+	public static final org.eclipse.gmf.tooling.runtime.structure.DiagramStructure «EXPAND runtimeTypedInstanceName» = new org.eclipse.gmf.tooling.runtime.structure.DiagramStructure() {
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND CodeStyle::override»
+		public int «EXPAND xpt::editor::VisualIDRegistry::getVisualIdMethodName»(org.eclipse.gmf.runtime.notation.View view) {
+			return «EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall»(view);
+		}
+		
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND CodeStyle::override»
+		public String «EXPAND xpt::editor::VisualIDRegistry::getModelIDMethodName»(org.eclipse.gmf.runtime.notation.View view) {
+			return «EXPAND xpt::editor::VisualIDRegistry::getModelIDMethodCall»(view);
+		}
+		
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND CodeStyle::override»
+		public int «EXPAND xpt::editor::VisualIDRegistry::getNodeVisualIDMethodName»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
+			return «EXPAND xpt::editor::VisualIDRegistry::getNodeVisualIDMethodCall»(containerView, domainElement);
+		}
+		
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND CodeStyle::override»
+		public boolean «EXPAND checkNodeVisualIDMethodName»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, int candidate) {
+			return «EXPAND checkNodeVisualIDMethodCall»(containerView, domainElement, candidate);
+		}
+
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND CodeStyle::override»
+		public boolean «EXPAND isCompartmentVisualIDMethodName»(int visualID) {
+			return «EXPAND isCompartmentVisualIDMethodCall»(visualID);
+		}
+
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND CodeStyle::override»
+		public boolean «EXPAND isSemanticLeafVisualIDMethodName»(int visualID) {
+			return «EXPAND isSemanticLeafVisualIDMethodCall»(visualID);
+		}
+	};
 «ENDDEFINE»
 
-«REM» [ViewInfo] Create a node ViewInfo «ENDREM»
-«DEFINE createNodeViewInfo FOR gmfgen::GenCompartment»
-	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Node, "«title»", null, parent);
-	viewInfos.add(viewInfo);
-«ENDDEFINE»
-
-«REM» [ViewInfo] Create a link ViewInfo «ENDREM»
-«DEFINE createLinkViewInfo FOR gmfgen::GenLink»
-	viewInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Edge, "«linkEClass(modelFacet)»");
-	root.addNode(«diagram.visualID.toString()», viewInfo);
-	«FOREACH labels AS label»
-		«EXPAND createLabelViewInfo FOR label-»
-	«ENDFOREACH»
-«ENDDEFINE»
-
-«REM» [ViewInfo] Create a label ViewInfo «ENDREM»
-«REM»not used. may be used in the future«ENDREM»
-«DEFINE createLabelViewInfo FOR gmfgen::GenLabel»
-	labelInfo = new org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo(«visualID»,  org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.Label, "«linkEClass(modelFacet)»", null, viewInfo);
-	viewInfo.getChildren().add(labelInfo);
-«ENDDEFINE»
-
-«REM» [ViewInfo] END : Implementations for Papyrus filtering system «ENDREM»
-
-«REM» [MutatingCanvas] START : Additional implementations for mutating canvas «ENDREM»
-
-«REM»[MutatingCanvas]«ENDREM»
-«DEFINE returnMutatingVisualID FOR papyrusgmfgenextension::AlternateCanvas-»
-if («EXPAND checkMutatingSemanticElement») {
-	return «EXPAND xpt::editor::VisualIDRegistry::visualID FOR diagram»;
-}
-«ENDDEFINE»
-
-«REM»[MutatingCanvas]«ENDREM»
-«DEFINE checkMutatingSemanticElement FOR papyrusgmfgenextension::AlternateCanvas-»
-	«EXPAND xpt::editor::VisualIDRegistry::checkDomainElementMetaclass FOR domainDiagramElement» and 
-	«EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName FOR diagram»((«EXPAND MetaModel::MetaClass FOR domainDiagramElement») domainElement)
-«ENDDEFINE»
-
-«DEFINE isDiagramMethodName FOR gmfgen::GenDiagram»isDiagram«ENDDEFINE»
-
-«REM» [MutatingCanvas] END : Additional implementations for mutating canvas «ENDREM»
-
+«DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»
