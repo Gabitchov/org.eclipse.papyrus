@@ -40,10 +40,7 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 	«EXPAND impl::diagram::editparts::LinkLabelEditPart::linkLabelDragPolicyClass»
 «ENDIF-»
 
-«REM»BEGIN: PapyrusGenCode«ENDREM»
-«REM»Call the good define additions«ENDREM»
-	«EXPAND impl::diagram::editparts::DiagramEditPart::additions-»
-«REM»BEGIN: PapyrusGenCode«ENDREM»
+
 }
 «ENDAROUND»
 

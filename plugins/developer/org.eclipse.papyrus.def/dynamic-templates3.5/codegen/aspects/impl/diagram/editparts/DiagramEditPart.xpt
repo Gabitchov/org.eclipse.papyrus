@@ -15,7 +15,7 @@
  
 «REM»DOCUMENTATION: PapyrusGencode«ENDREM»
 «REM»This template has been modify to allow the drag and drop«ENDREM»
-«REM»and  install the mecanism of "filters views..." view for subelements«ENDREM»
+
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
@@ -117,40 +117,9 @@ org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart
 
 
 
-«DEFINE getAdapter FOR gmfgen::GenDiagram»
-«EXPAND xpt::Common::generatedMemberComment»
-	public Object getAdapter(Class adapter) {
-		«REM» [ViewInfo] return a ViewInfo with info about the views in this diagram «ENDREM»
-		if (adapter != null && adapter.equals(org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo.class)) {
-			return «editorGen.editor.packageName».«visualIDRegistryClassName».getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
-	}
-«ENDDEFINE»
-
 «DEFINE featureForMetaclass FOR gmfgen::GenNode-»
 		if («EXPAND MetaModel::MetaClass FOR modelFacet.metaClass».equals(class1)) {
 			return «EXPAND MetaModel::MetaFeature FOR modelFacet.containmentMetaFeature»;
 		}
 «ENDDEFINE»
 
-«DEFINE additions FOR gmfgen::GenDiagram»
-«EXPAND xpt::Common::generatedMemberComment-»
-	protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
-	«REM»[ViewInfo] to update the diagram when filtering Views by type «ENDREM»
-		super.handleNotificationEvent(event);
-		if (event.getNotifier() instanceof org.eclipse.emf.ecore.EAnnotation) {
-			org.eclipse.emf.ecore.EAnnotation eAnnotation = (org.eclipse.emf.ecore.EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null
-					&& eAnnotation.getSource().equals(
-							org.eclipse.papyrus.uml.diagram.common.util.MDTUtil.FilterViewAndLabelsSource)) {
-				//modification form MOSKitt approach, canonical policies are not called
-				org.eclipse.papyrus.uml.diagram.common.util.MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
-	}
-	
-	«EXPAND getAdapter FOR self»
-	
-«ENDDEFINE»
-«REM»END: PapyrusGenCode«ENDREM»
