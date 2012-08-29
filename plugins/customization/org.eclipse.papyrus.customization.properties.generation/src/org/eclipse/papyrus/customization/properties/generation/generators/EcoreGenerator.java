@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
+import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.FileChooser;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.Property;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -84,6 +84,10 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	public boolean isSelectedSingle(Property property) {
 		EStructuralFeature feature = getFeature(property);
+		if(feature == null) {
+			return false;
+		}
+
 		if(feature.isDerived()) {
 			return false;
 		}
@@ -94,8 +98,9 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 		if(feature instanceof EReference) {
 			EReference reference = (EReference)feature;
-			if(reference.isContainer() || reference.isContainment())
+			if(reference.isContainer() || reference.isContainment()) {
 				return false;
+			}
 		}
 
 		return true;
@@ -166,8 +171,9 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	 */
 	protected EPackage findSubPackage(EPackage currentPackage, String packageName) {
 		for(EPackage pack : currentPackage.getESubpackages()) {
-			if(pack.getName().equals(packageName))
+			if(pack.getName().equals(packageName)) {
 				return pack;
+			}
 		}
 		return null;
 	}
@@ -199,8 +205,9 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		Set<String> validDataTypes = new HashSet<String>(Arrays.asList(new String[]{ "int", "boolean", "float", "double" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
 		if(feature.getEType() instanceof EDataType) {
-			if(validDataTypes.contains(((EDataType)feature.getEType()).getInstanceTypeName()))
+			if(validDataTypes.contains(((EDataType)feature.getEType()).getInstanceTypeName())) {
 				return true;
+			}
 		}
 
 		if(feature.getEType() instanceof EEnum) {
@@ -220,7 +227,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	@Override
 	protected URI getTransformationURI() {
-		return URI.createPlatformPluginURI(Activator.PLUGIN_ID+"/transforms/ecore2datacontext.qvto", true); //$NON-NLS-1$
+		return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/transforms/ecore2datacontext.qvto", true); //$NON-NLS-1$
 	}
 
 	@Override

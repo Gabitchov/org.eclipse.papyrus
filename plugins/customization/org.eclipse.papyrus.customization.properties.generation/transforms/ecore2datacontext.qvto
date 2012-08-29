@@ -10,7 +10,9 @@ main() {
 	ecore.rootObjects()[EPackage]->map toContext();
 }
 
-mapping EPackage::toContext() : c: Context, root:DataContextRoot{
+mapping EPackage::toContext() : c: Context, root:DataContextRoot when {
+	self.isMainPackage() //Only transform source EPackages ; not their dependencies
+}{
 	c.name := self.name;
 	c.dataContexts := root;
 	c.views := self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().viewSingle
@@ -53,7 +55,10 @@ abstract mapping EClassifier::toDataContextElement() : element : DataContextElem
 	element.name := self.name;
 }
 
-mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement{
+mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement 
+when {
+	self.ePackage.isMainPackage() //Only transform Classifiers from source EPackages ; not their dependencies
+}{
 	element.properties := self.eStructuralFeatures->map toProperty(); 
 	element.supertypes := self.eSuperTypes.map toDataContextElement().element;
 
@@ -70,6 +75,18 @@ mapping EClass::toDataContextElement() : element : DataContextElement, viewSingl
 	viewMultiple.elementMultiplicity := -1;
 	viewMultiple.constraints := self.map toConstraint(viewMultiple);
 	viewMultiple.context := self.getContext();
+}
+
+query EPackage::isMainPackage() : Boolean {
+	return if ecore.rootObjects()->includes(self) then 
+		true 
+	else 
+		if self.eSuperPackage.oclIsUndefined() then
+			false
+		else
+			self.eSuperPackage.isMainPackage()
+		endif
+	endif;
 }
 
 mapping EClass::toConstraint(view : View) : SimpleConstraint {
@@ -91,7 +108,12 @@ mapping EStructuralFeature::toProperty() : Property {
 	name := self.name;
 	type := self.eType.toType();
 	multiplicity := if self.upperBound = 1 then 1 else -1 endif;
+	description := self.getGenModelDocumentation();
 	//multiplicity := self.upperBound;
+}
+
+query EModelElement::getGenModelDocumentation() : String {
+	return self.eAnnotations->select(e | e.source = 'http://www.eclipse.org/emf/2002/GenModel').details->any(entry | entry.key = 'documentation').value;
 }
 
 query EClassifier::toType() : Type {

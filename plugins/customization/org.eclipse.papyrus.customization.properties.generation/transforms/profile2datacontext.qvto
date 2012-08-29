@@ -152,6 +152,8 @@ mapping UML::Property::toProperty() : PropertyContext::Property {
 	if self.type.isView() then
 		self.type.oclAsType(Classifier).map toDCElement()
 	endif;
+	
+	description := profile.objectsOfType(UML::Comment)->select(comment | comment.annotatedElement->includes(self))->any(comment | true).body
 }
 
 query UML::Type::getType() : PropertyEnvironment::Type {
