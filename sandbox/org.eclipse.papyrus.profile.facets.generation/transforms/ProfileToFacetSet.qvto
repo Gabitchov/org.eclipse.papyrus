@@ -1,5 +1,5 @@
 modeltype facetset uses "http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation";
-modeltype uml uses "http://www.eclipse.org/uml2/3.0.0/UML";
+modeltype uml uses "http://www.eclipse.org/uml2/4.0.0/UML";
 modeltype queryset uses "http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation";
 modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 
