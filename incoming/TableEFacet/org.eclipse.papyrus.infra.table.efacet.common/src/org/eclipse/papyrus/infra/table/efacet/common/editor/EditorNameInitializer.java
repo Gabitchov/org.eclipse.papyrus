@@ -46,8 +46,8 @@ public class EditorNameInitializer {
 	 */
 	private static final EObject getNameFeatureOwner(final EObject eobject) {
 		EObject owner = eobject;
-		while(owner.eContainer() != null) {
-			EStructuralFeature nameFeature = ((EObject)eobject).eClass().getEStructuralFeature("name");
+		while(owner != null) {
+			final EStructuralFeature nameFeature = owner.eClass().getEStructuralFeature("name");
 			if(nameFeature == null) {
 				owner = owner.eContainer();
 			} else {
@@ -68,8 +68,8 @@ public class EditorNameInitializer {
 	 */
 	private static final EStructuralFeature getNameFeature(final EObject eobject) {
 		EObject owner = eobject;
-		while(owner.eContainer() != null) {
-			EStructuralFeature nameFeature = ((EObject)eobject).eClass().getEStructuralFeature("name");
+		while(owner != null) {
+			final EStructuralFeature nameFeature = owner.eClass().getEStructuralFeature("name");
 			if(nameFeature == null) {
 				owner = owner.eContainer();
 			} else {
@@ -95,21 +95,21 @@ public class EditorNameInitializer {
 		final SortedSet<Integer> existingIndex = new TreeSet<Integer>();
 		final ECrossReferenceAdapter crossRef = ECrossReferenceAdapter.getCrossReferenceAdapter(context);
 		final Collection<Setting> crossReference = crossRef.getNonNavigableInverseReferences(context, true);
-		for(Setting set : crossReference) {
+		for(final Setting set : crossReference) {
 			final EObject eobject = set.getEObject();
 			if(eobject.eClass() == editorModelEClass) {
 				final EStructuralFeature nameFeature = getNameFeature(eobject);
 				if(nameFeature != null) {
 					final EObject featureOwner = getNameFeatureOwner(eobject);
-					Object currentName = featureOwner.eGet(nameFeature);
+					final Object currentName = featureOwner.eGet(nameFeature);
 					if(currentName instanceof String) {
-						String aName = (String)currentName;
+						final String aName = (String)currentName;
 						if(aName.contains(wantedNameWithoutIndex)) {
-							String lastChar = aName.substring(aName.length() - 1, aName.length());
+							final String lastChar = aName.substring(aName.length() - 1, aName.length());
 							try {
-								Integer value = Integer.parseInt(lastChar);
+								final Integer value = Integer.parseInt(lastChar);
 								existingIndex.add(value);
-							} catch (Exception e) {
+							} catch (final Exception e) {
 								//nothing to do
 							}
 						}
