@@ -4,10 +4,16 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.ChangeVersionNumberHandler"
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.ChangeBundleVersionNumberHandler"
             description="%command.description"
-            id="org.eclipse.papyrus.dev.project.management.command.update.version"
+            id="org.eclipse.papyrus.dev.project.management.command.update.bundle.version"
             name="%command.name">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.ChangeDependencyVersionNumberHandler"
+            description="%command.description.0"
+            id="org.eclipse.papyrus.dev.project.management.command.update.dependency.version"
+            name="%command.name.0">
       </command>
    </extension>
    <extension
@@ -19,8 +25,13 @@
                icon="icons/papyrus.png"
                label="%menu.label">
             <command
-                  commandId="org.eclipse.papyrus.dev.project.management.command.update.version"
+                  commandId="org.eclipse.papyrus.dev.project.management.command.update.bundle.version"
                   label="%command.label"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.dev.project.management.command.update.dependency.version"
+                  label="%command.label.0"
                   style="push">
             </command>
          </menu>

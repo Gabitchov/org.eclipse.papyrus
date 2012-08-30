@@ -2,8 +2,6 @@ package org.eclipse.papyrus.dev.project.management.handlers;
 
 import java.io.IOException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -15,15 +13,13 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.dev.project.management.Activator;
-import org.eclipse.papyrus.dev.project.management.dialog.InputDialogWithCheckBox;
+import org.eclipse.papyrus.dev.project.management.dialog.TwoInputDialog;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
-import org.eclipse.papyrus.eclipse.project.editors.interfaces.IFeatureProjectEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
-import org.eclipse.papyrus.eclipse.project.editors.project.FeatureProjectEditor;
 import org.eclipse.swt.widgets.Display;
-import org.xml.sax.SAXException;
 
-public class ChangeVersionNumberHandler extends AbstractHandler {
+//TODO should be covered with JUnit test
+public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 
 	private static final String TITLE = "Enter the new version number for Papyrus plugin.";
 
@@ -45,44 +41,41 @@ public class ChangeVersionNumberHandler extends AbstractHandler {
 
 	private static final String PLUGIN_NATURE = "org.eclipse.pde.PluginNature";
 
-	//TODO : the same thing for the feature
-	//TODO : tests the projects name
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
-		IInputValidator validator = new IInputValidator() {
+		final IInputValidator validator = new IInputValidator() {
 
-			public String isValid(String newText) {
-				boolean match = newText.matches("[0-9]+\\.[0-9]+\\.[0-9]+\\.qualifier");
+			public String isValid(final String newText) {
+				final boolean match = newText.matches("[0-9]+\\.[0-9]+\\.[0-9]");
 				if(!match) {
 					return NLS.bind("The version number should be : something like this : {0}.", INITIAL_VALUE);
 				}
 				return null;
 			}
 		};
+		//TODO add the possibility to refactor others plugin tha
+		final TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), TITLE, "Enter the new version for the Papyrus dependencies", "pattern plugin name", "0.0.0", "org.eclipse.papyrus", validator);
 
-
-		InputDialogWithCheckBox dialog = new InputDialogWithCheckBox(Display.getCurrent().getActiveShell(), TITLE, MESSAGE, INITIAL_VALUE, CHECKBOX_MESSAGE, true, validator);
 		if(dialog.open() == Window.OK) {
 			String notManagedProjectNames = "";
 			final String newVersion = dialog.getValue();
+			final String pattern = dialog.getValue_2();
+
 			final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-			for(IProject current : projects) {
+			for(final IProject current : projects) {
 				final String name = current.getName();
-				if(dialog.isChecked()) {
-					if(name.startsWith(PAPYRUS_NAME)) {//we test the project name
-						setVersionNumber(current, newVersion, notManagedProjectNames);
-					} else {
-						notManagedProjectNames += NLS.bind("- {0} \n", current.getName());
-					}
+
+				if(name.startsWith(PAPYRUS_NAME)) {//TODO : add the possibility to manage other plugins
+					setVersionNumber(current, pattern, newVersion, notManagedProjectNames);
 				} else {
-					setVersionNumber(current, newVersion, notManagedProjectNames);
+					notManagedProjectNames += NLS.bind("- {0} \n", current.getName());
 				}
 			}
 			if(notManagedProjectNames.equals("")) {
-				MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+				final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
 				informationDialog.open();
 			} else {
-				MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+				final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
 				informationDialog.open();
 			}
 		}
@@ -93,51 +86,33 @@ public class ChangeVersionNumberHandler extends AbstractHandler {
 	 * 
 	 * @param project
 	 *        the project to manage
+	 * @param dependencyPattern
+	 *        the pattern used to find the dependency to update
 	 * @param newVersion
 	 *        the new version for the project
 	 * @param notManagedProjectNames
 	 *        a String used to build the message with the not managed projects
 	 */
-	private void setVersionNumber(final IProject project, final String newVersion, String notManagedProjectNames) {
+	private void setVersionNumber(final IProject project, final String dependencyPattern, final String newValue, String notManagedProjectNames) {
 		if(project.isOpen()) {
 			try {
-				boolean pluginnature = project.hasNature(PLUGIN_NATURE);
+				final boolean pluginnature = project.hasNature(PLUGIN_NATURE);
 				if(pluginnature) {
 					try {
-						IManifestEditor editor = new ManifestEditor(project);
+						final IManifestEditor editor = new ManifestEditor(project);
 						editor.init();
-						editor.setBundleVersion(newVersion);
+						editor.setDependenciesVersion(dependencyPattern, newValue);
 						editor.save();
-					} catch (IOException e) {
+					} catch (final IOException e) {
 						Activator.log.error(e);
 						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
-					} catch (Throwable e) {
-						Activator.log.error(e);
-						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
-					}
-
-				} else if(project.hasNature(FEATURE_NATURE)) {//for features
-					try {
-						IFeatureProjectEditor editor = new FeatureProjectEditor(project);
-						editor.init();
-						editor.setVersion(newVersion);
-						editor.save();
-					} catch (ParserConfigurationException e) {
-						Activator.log.error(e);
-						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
-					} catch (SAXException e) {
-						Activator.log.error(e);
-						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
-					} catch (IOException e) {
-						Activator.log.error(e);
-						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
-					} catch (Throwable e) {
+					} catch (final Throwable e) {
 						Activator.log.error(e);
 						notManagedProjectNames += NLS.bind("- {0} \n", project.getName());
 					}
 
 				}
-			} catch (CoreException e) {
+			} catch (final CoreException e) {
 				Activator.log.error(e);
 			}
 		} else {
