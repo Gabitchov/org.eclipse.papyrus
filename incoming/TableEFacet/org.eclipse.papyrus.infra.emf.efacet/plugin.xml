@@ -7,7 +7,7 @@
             file="resources/emf_hidden_features.custom">
       </modeldeclaration>
       <modeldeclaration
-            file="resources/papyrus_emf_facets.efacet">
+            file="resources/emf.efacet">
       </modeldeclaration>
    </extension>
 

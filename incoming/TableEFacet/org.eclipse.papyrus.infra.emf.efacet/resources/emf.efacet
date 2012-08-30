@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<efacet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery" name="emf facetset" nsURI="org.eclipse.papyrus.infra.emf.efacet/0.9/EMF" nsPrefix="EFacet/EMF" documentation="EFacets for EMF models">
+  <eClassifiers xsi:type="efacet:Facet" name="Extended_EObject" documentation="EFacet for EObject elements">
+    <extendedMetaclass href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <facetElements xsi:type="efacet:FacetReference" name="self" changeable="false" derived="true" documentation="This facet provides the element itself to display it in a table.">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.emf.efacet.queries.SelfQuery"/>
+    </facetElements>
+  </eClassifiers>
+</efacet:FacetSet>

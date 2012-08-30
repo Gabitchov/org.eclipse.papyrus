@@ -21,10 +21,18 @@ import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 
 public class SelfQuery implements IJavaQuery2<EObject, EObject> {
 
-	public EObject evaluate(final EObject source,
-			final IParameterValueList2 parameterValues,
-			final IFacetManager facetManager)
-			throws DerivedTypedElementException {
+	/**
+	 * 
+	 * @see org.eclipse.emf.facet.query.java.core.IJavaQuery2#evaluate(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.facet.query.java.core.IParameterValueList2, org.eclipse.emf.facet.efacet.core.IFacetManager)
+	 * 
+	 * @param source
+	 * @param parameterValues
+	 * @param facetManager
+	 * @return
+	 * @throws DerivedTypedElementException
+	 */
+	public EObject evaluate(final EObject source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		return source;
 	}
 }
