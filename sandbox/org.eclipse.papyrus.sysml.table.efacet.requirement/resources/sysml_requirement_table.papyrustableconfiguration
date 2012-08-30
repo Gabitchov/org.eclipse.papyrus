@@ -10,6 +10,8 @@
   <listenContextFeature
       href="http://www.eclipse.org/uml2/4.0.0/UML#//EncapsulatedClassifier/ownedPort"/>
   <tableConfiguration>
+  <defaultLocalCustomizations
+        href="requirementtable.custom#/"/>
       <canBePresentedInTheTable
         xsi:type="efacet:FacetAttribute"
        href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/resources/sysml.efacet#//Utils/SysMLElement/isRequirement"/>

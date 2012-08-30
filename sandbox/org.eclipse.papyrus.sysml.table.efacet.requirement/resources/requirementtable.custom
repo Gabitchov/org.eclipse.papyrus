@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query" name="requirement_table_hidden_columns">
+ <eClassifiers xmi:type="custom:EClassCustomization" xmi:id="_NbeYMPKcEeGXopunkh-zug" conformanceTypedElement="_NbeYMfKcEeGXopunkh-zug">
+          <extendedMetaclass xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+          <facetElements xmi:type="efacet:FacetAttribute" xmi:id="_NbeYMfKcEeGXopunkh-zug" name="isConforming" derived="true">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+            <query xmi:type="query:IsOneOfQuery" xmi:id="_NbeYM_KcEeGXopunkh-zug">
+              <expectedEObjects xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/qualifiedName"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//EModelElement/eAnnotations"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/redefinedClassifier"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/attribute"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/nameExpression"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//ParameterableElement/templateParameter"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//StructuredClassifier/ownedConnector"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/useCase"/>
+              <expectedEObjects xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class/isActive"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class/ownedOperation"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/powertypeExtent"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/representation"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element/ownedComment"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//StructuredClassifier/ownedAttribute"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/inheritedMember"/>
+              <expectedEObjects xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//RedefinableElement/isLeaf"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/ownedUseCase"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/feature"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//RedefinableElement/redefinitionContext"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedRule"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/member"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//StructuredClassifier/part"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/packageImport"/>
+              <expectedEObjects xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/isFinalSpecialization"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class/extension"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class/nestedClassifier"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//EncapsulatedClassifier/ownedPort"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/substitution"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/importedMember"/>
+              <expectedEObjects xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type/package"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/namespace"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/generalization"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class/ownedReception"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/elementImport"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateableElement/ownedTemplateSignature"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateableElement/templateBinding"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/general"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Namespace/ownedMember"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element/ownedElement"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element/owner"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//ParameterableElement/owningTemplateParameter"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//RedefinableElement/redefinedElement"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/collaborationUse"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//StructuredClassifier/role"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/clientDependency"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioredClassifier/interfaceRealization"/>
+              <expectedEObjects xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class/superClass"/>
+              <expectedEObjects xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/isAbstract"/>
+            </query>
+          </facetElements>
+          <facetOperations xmi:type="efacet:FacetOperation" xmi:id="_Nbe_QPKcEeGXopunkh-zug" name="isVisible" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+            <eParameters xmi:type="ecore:EParameter" xmi:id="_Nbe_QvKcEeGXopunkh-zug" name="eStructuralFeature">
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+            </eParameters>
+            <query xmi:type="custom:ETypedElementSwitchQuery" xmi:id="_Nbe_RPKcEeGXopunkh-zug">
+              <cases xmi:type="custom:ETypedElementCase" xmi:id="_Nbe_RfKcEeGXopunkh-zug">
+                <value xmi:type="query:FalseLiteralQuery" xmi:id="_QUxgkPKcEeGXopunkh-zug"/>
+              </cases>
+            </query>
+            <override xmi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+          </facetOperations>
+        </eClassifiers>
+</custom:Customization>
