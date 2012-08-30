@@ -24,6 +24,7 @@ import org.eclipse.core.internal.resources.Folder;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
@@ -70,18 +71,18 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	public void init() {
 		super.init();
-		if(this.manifest != null && this.manifestFile != null) {
+		if((manifest != null) && (manifestFile != null)) {
 			return;
 		}
-		if(this.manifestFile == null) {
-			this.manifestFile = getManifestFile();
+		if(manifestFile == null) {
+			manifestFile = getManifestFile();
 		}
-		if(this.manifestFile != null) {
+		if(manifestFile != null) {
 			try {
-				this.manifest = new Manifest(this.manifestFile.getContents());
-			} catch (IOException e) {
+				manifest = new Manifest(manifestFile.getContents());
+			} catch (final IOException e) {
 				Activator.log.error(e);
-			} catch (CoreException e) {
+			} catch (final CoreException e) {
 				Activator.log.error(e);
 			}
 		}
@@ -95,8 +96,8 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void addDependency(final String dependency, final String version) {
-		Name rqBundle = new Name(REQUIRED_BUNDLE);
-		String requireBundle = this.manifest.getMainAttributes().getValue(rqBundle);
+		final Name rqBundle = new Name(REQUIRED_BUNDLE);
+		String requireBundle = manifest.getMainAttributes().getValue(rqBundle);
 
 		//TODO : Improve the detection of existing dependency
 		//If a.b.c exists, then a.b cannot be added (Because it is already contained)
@@ -116,7 +117,34 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 				requireBundle += ";" + version; //$NON-NLS-1$
 			}
 		}
-		this.manifest.getMainAttributes().put(rqBundle, requireBundle);
+		manifest.getMainAttributes().put(rqBundle, requireBundle);
+	}
+
+	public void setDependenciesVersion(final String dependencyPattern, final String newVersion) {
+		final Name rqBundle = new Name(REQUIRED_BUNDLE);
+		final String requireBundle = manifest.getMainAttributes().getValue(rqBundle);
+		final String[] bundles = requireBundle.split(",");
+		String newBundleRequired = "";
+		for(int ii = 0; ii < bundles.length; ii++) {
+			final String[] dependency = bundles[ii].split(";");
+			Assert.isTrue(dependency.length <= 2);
+			if(dependency[0].contains(dependencyPattern)) {
+				final String newBundleVersion = "bundle-version=" + '"' + newVersion + '"';
+				newBundleRequired += dependency[0] + ";" + newBundleVersion;
+			} else {
+				for(int i = 0; i < dependency.length; i++) {
+					newBundleRequired += dependency[i];
+					if(i < (dependency.length - 1)) {
+						newBundleRequired += ";";
+					}
+				}
+			}
+			if(ii < (bundles.length - 1)) {
+				newBundleRequired += ",";
+			}
+		}
+		setValue(REQUIRED_BUNDLE, newBundleRequired);
+
 	}
 
 	/**
@@ -136,7 +164,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void setValue(final String key, final String name, final String value) {
-		this.manifest.getMainAttributes().putValue(key, value);
+		manifest.getMainAttributes().putValue(key, value);
 		//		this.manifest.getAttributes(key).put(name, value);
 	}
 
@@ -157,7 +185,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void removeValue(final String key) {
-		this.manifest.getAttributes(key).remove(key);
+		manifest.getAttributes(key).remove(key);
 	}
 
 	/**
@@ -165,7 +193,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 * @return
 	 */
 	private IFile getManifestFile() {
-		IFile manifest = getProject().getFile("META-INF/MANIFEST.MF"); //$NON-NLS-1$
+		final IFile manifest = getProject().getFile("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 		if(manifest.exists()) {
 			return manifest;
 		}
@@ -180,7 +208,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 */
 	@Override
 	public boolean exists() {
-		return super.exists() && getManifestFile() != null && getSymbolicBundleName() != null && getBundleVersion() != null;
+		return super.exists() && (getManifestFile() != null) && (getSymbolicBundleName() != null) && (getBundleVersion() != null);
 	}
 
 	/**
@@ -192,13 +220,13 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	public void save() {
 
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
 		try {
-			this.manifest.write(os);
+			manifest.write(os);
 
 			final StringReader reader = new StringReader(os.toString("UTF-8")); //$NON-NLS-1$
-			this.manifestFile.setContents(new InputStream() {
+			manifestFile.setContents(new InputStream() {
 
 				@Override
 				public int read() throws IOException {
@@ -207,18 +235,18 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			}, true, true, null);
 
 			//Use the PDE formatter for ManifestFiles
-			FormatOperation.format(this.manifestFile, new NullProgressMonitor());
-		} catch (IOException ex) {
+			FormatOperation.format(manifestFile, new NullProgressMonitor());
+		} catch (final IOException ex) {
 			Activator.log.error(ex);
-		} catch (CoreException ex) {
+		} catch (final CoreException ex) {
 			Activator.log.error(ex);
 		}
 	}
 
 	@Override
 	public Set<String> getMissingFiles() {
-		Set<String> files = super.getMissingFiles();
-		IFile classpath = getProject().getFile(MANIFEST_PATH);
+		final Set<String> files = super.getMissingFiles();
+		final IFile classpath = getProject().getFile(MANIFEST_PATH);
 		if(!classpath.exists()) {
 			files.add(MANIFEST_PATH);
 		}
@@ -234,24 +262,24 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	public void createFiles(final Set<String> files) {
 		if(files.contains(MANIFEST_PATH)) {
-			this.manifestFile = getProject().getFile(MANIFEST_PATH);
-			if(!this.manifestFile.exists()) {
+			manifestFile = getProject().getFile(MANIFEST_PATH);
+			if(!manifestFile.exists()) {
 				try {
-					String input = "Manifest-Version: 1.0\n"; //without the "/n", it doesn't work!!!!! //$NON-NLS-1$
-					if(!this.manifestFile.getParent().exists()) {
-						IContainer parent = this.manifestFile.getParent();
+					final String input = "Manifest-Version: 1.0\n"; //without the "/n", it doesn't work!!!!! //$NON-NLS-1$
+					if(!manifestFile.getParent().exists()) {
+						final IContainer parent = manifestFile.getParent();
 						if(parent instanceof Folder) {
 							if(!parent.exists()) {
 								((Folder)parent).create(true, false, null);
 							}
 						}
 					}
-					this.manifestFile.create(getInputStream(input), true, null);
-					this.manifestFile = getProject().getFile(MANIFEST_PATH);
+					manifestFile.create(getInputStream(input), true, null);
+					manifestFile = getProject().getFile(MANIFEST_PATH);
 
-					manifest = new Manifest(this.manifestFile.getContents());
+					manifest = new Manifest(manifestFile.getContents());
 
-					int i;
+					final int i;
 					//					InputStream is = this.manifestFile.getContents();
 					//					while((i = is.read()) > 0) {
 
@@ -259,9 +287,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 					//					}
 					//					this.manifest = new Manifest(this.manifestFile.getContents());
 
-				} catch (CoreException ex) {
+				} catch (final CoreException ex) {
 					Activator.log.error(ex);
-				} catch (IOException e) {
+				} catch (final IOException e) {
 					Activator.log.error(e);
 				}
 
@@ -287,8 +315,8 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		if(newName == null) {
 			newName = "noName"; //$NON-NLS-1$
 		}
-		Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
-		this.manifest.getMainAttributes().put(symbolicName, newName);
+		final Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
+		manifest.getMainAttributes().put(symbolicName, newName);
 	}
 
 	/**
@@ -298,9 +326,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public String getSymbolicBundleName() {
-		if(this.manifest != null) {
-			Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
-			String name = this.manifest.getMainAttributes().getValue(symbolicName);
+		if(manifest != null) {
+			final Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
+			final String name = manifest.getMainAttributes().getValue(symbolicName);
 			return name;
 		}
 		return null;
@@ -313,9 +341,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public String getBundleVersion() {
-		if(this.manifest != null) {
-			Name symbolicName = new Name(BUNDLE_VERSION);
-			String version = this.manifest.getMainAttributes().getValue(symbolicName);
+		if(manifest != null) {
+			final Name symbolicName = new Name(BUNDLE_VERSION);
+			final String version = manifest.getMainAttributes().getValue(symbolicName);
 			return version;
 		}
 		return null;
@@ -326,13 +354,13 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public void setBundleVersion(String version) {
-		if(this.manifest != null) {
-			Name bundleVersion = new Name(BUNDLE_VERSION);
+	public void setBundleVersion(final String version) {
+		if(manifest != null) {
+			final Name bundleVersion = new Name(BUNDLE_VERSION);
 			if(version == null) {
-				this.manifest.getMainAttributes().remove(bundleVersion);
+				manifest.getMainAttributes().remove(bundleVersion);
 			} else {
-				this.manifest.getMainAttributes().put(bundleVersion, version);
+				manifest.getMainAttributes().put(bundleVersion, version);
 			}
 		}
 	}
@@ -343,9 +371,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public String getBundleVendor() {
-		if(this.manifest != null) {
-			Name bundleVendor = new Name(BUNDLE_VENDOR);
-			return this.manifest.getMainAttributes().getValue(bundleVendor);
+		if(manifest != null) {
+			final Name bundleVendor = new Name(BUNDLE_VENDOR);
+			return manifest.getMainAttributes().getValue(bundleVendor);
 		}
 		return null;
 	}
@@ -355,22 +383,22 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 * 
 	 *      {@inheritDoc}
 	 */
-	public void setBundleVendor(String vendor) {
-		if(this.manifest != null) {
-			Name bundleVendor = new Name(BUNDLE_VENDOR);
+	public void setBundleVendor(final String vendor) {
+		if(manifest != null) {
+			final Name bundleVendor = new Name(BUNDLE_VENDOR);
 			if(vendor == null) {
-				this.manifest.getMainAttributes().remove(bundleVendor);
+				manifest.getMainAttributes().remove(bundleVendor);
 			} else {
-				this.manifest.getMainAttributes().put(bundleVendor, vendor);
+				manifest.getMainAttributes().put(bundleVendor, vendor);
 			}
 		}
 	}
 
-	public String getValue(String key) {
-		if(this.manifest != null) {
-			String value = this.manifest.getMainAttributes().getValue(key);
+	public String getValue(final String key) {
+		if(manifest != null) {
+			String value = manifest.getMainAttributes().getValue(key);
 			if(value == null) {
-				Attributes attributes = this.manifest.getAttributes(key);
+				final Attributes attributes = manifest.getAttributes(key);
 				if(attributes != null) {
 					value = attributes.getValue(key);
 				}
@@ -381,9 +409,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	}
 
 	public String getBundleName() {
-		if(this.manifest != null) {
-			Name bundleName = new Name(BUNDLE_NAME);
-			String name = this.manifest.getMainAttributes().getValue(bundleName);
+		if(manifest != null) {
+			final Name bundleName = new Name(BUNDLE_NAME);
+			final String name = manifest.getMainAttributes().getValue(bundleName);
 			return name;
 		}
 		return null;
@@ -393,23 +421,23 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		if(newName == null) {
 			newName = "noName"; //$NON-NLS-1$
 		}
-		Name bundleNameName = new Name(BUNDLE_SYMBOLIC_NAME);
-		this.manifest.getMainAttributes().put(bundleNameName, newName);
+		final Name bundleNameName = new Name(BUNDLE_SYMBOLIC_NAME);
+		manifest.getMainAttributes().put(bundleNameName, newName);
 
 	}
 
 	public String getBundleLocalization() {
-		if(this.manifest != null) {
-			Name bundleLocalization = new Name(BUNDLE_LOCALIZATION);
-			String name = this.manifest.getMainAttributes().getValue(bundleLocalization);
+		if(manifest != null) {
+			final Name bundleLocalization = new Name(BUNDLE_LOCALIZATION);
+			final String name = manifest.getMainAttributes().getValue(bundleLocalization);
 			return name;
 		}
 		return null;
 	}
 
-	public void setSingleton(boolean singleton) {
+	public void setSingleton(final boolean singleton) {
 		String value = manifest.getMainAttributes().getValue("bundle-symbolicName");
-		String[] directives = value.split(";");
+		final String[] directives = value.split(";");
 
 		if(directives.length == 0) {
 			return; //This should not happen if the Manifest is well-formed

@@ -178,4 +178,13 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 *        Whether this plug-in should be a singleton
 	 */
 	public void setSingleton(boolean singleton);
+
+	/**
+	 * 
+	 * @param dependencyPattern
+	 *        the pattern for the dependency to update
+	 * @param newVersion
+	 *        the version for the dependency
+	 */
+	public void setDependenciesVersion(final String dependencyPattern, final String newVersion);
 }
