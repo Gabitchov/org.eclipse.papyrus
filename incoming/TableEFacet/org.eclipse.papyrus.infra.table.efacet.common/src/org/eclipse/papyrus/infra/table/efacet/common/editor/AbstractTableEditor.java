@@ -406,15 +406,17 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 		private boolean isAllowedInTableMenu(final IContributionItem ci) {
 			final String contributionId = ci.getId();
 			boolean autorized = true;
-			for(final String current : this.forbiddenContributions) {
-				if(contributionId.contains(current)) {
-					autorized = false;
-				}
-			}
-			if(autorized) {
-				for(final String current : this.authorizedPattern) {
+			if(contributionId != null) {
+				for(final String current : this.forbiddenContributions) {
 					if(contributionId.contains(current)) {
-						autorized = true;
+						autorized = false;
+					}
+				}
+				if(autorized) {
+					for(final String current : this.authorizedPattern) {
+						if(contributionId.contains(current)) {
+							autorized = true;
+						}
 					}
 				}
 			}
