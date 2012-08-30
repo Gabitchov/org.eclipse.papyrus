@@ -53,6 +53,13 @@
 				<query xsi:type="javaQuery2:JavaQuery"
 					implementationClassName="org.eclipse.papyrus.sysml.efacet.portandflows.flowport.GetFlowPortDirectionQuery" />
 			</facetElements>
+			<facetElements xsi:type="efacet:FacetAttribute" name="isConjugated"
+				derived="true" documentation="">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<query xsi:type="javaQuery2:JavaQuery"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.portandflows.flowport.GetFlowPortIsConjugatedQuery" />
+			</facetElements>
 			<facetOperations name="isFlowPort" documentation="">
 				<eType xsi:type="ecore:EDataType"
 					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />

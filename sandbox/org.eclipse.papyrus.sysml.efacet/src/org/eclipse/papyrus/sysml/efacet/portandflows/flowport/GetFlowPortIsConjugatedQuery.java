@@ -11,27 +11,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.efacet.portandflows.flowport;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Query to qet the attribute "Direction" of the FlowPort */
-public class GetFlowPortDirectionQuery implements IJavaQuery2<Port, Enumerator> {
+public class GetFlowPortIsConjugatedQuery implements IJavaQuery2<Port, Boolean> {
 
-	public Enumerator evaluate(final Port source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
+	public Boolean evaluate(final Port source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		final FlowPort flowPort = UMLUtil.getStereotypeApplication(source, FlowPort.class);
 		if(flowPort != null) {
-			if(flowPort.isAtomic()) {
-				return flowPort.getDirection();
-			} else {
-				return NAFlowDirection.get(0);
-			}
+			return flowPort.isConjugated();
 		}
 		return null;
 	}
