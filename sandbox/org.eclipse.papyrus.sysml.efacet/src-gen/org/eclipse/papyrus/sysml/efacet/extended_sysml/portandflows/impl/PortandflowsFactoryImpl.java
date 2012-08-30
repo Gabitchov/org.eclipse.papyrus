@@ -82,8 +82,8 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case PortandflowsPackage.FLOW_DIRECTION:
-				return createFlowDirectionFromString(eDataType, initialValue);
+			case PortandflowsPackage.NA_FLOW_DIRECTION:
+				return createNAFlowDirectionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -97,8 +97,8 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case PortandflowsPackage.FLOW_DIRECTION:
-				return convertFlowDirectionToString(eDataType, instanceValue);
+			case PortandflowsPackage.NA_FLOW_DIRECTION:
+				return convertNAFlowDirectionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -109,8 +109,8 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FlowDirection createFlowDirectionFromString(EDataType eDataType, String initialValue) {
-		FlowDirection result = FlowDirection.get(initialValue);
+	public NAFlowDirection createNAFlowDirectionFromString(EDataType eDataType, String initialValue) {
+		NAFlowDirection result = NAFlowDirection.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -120,7 +120,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertFlowDirectionToString(EDataType eDataType, Object instanceValue) {
+	public String convertNAFlowDirectionToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

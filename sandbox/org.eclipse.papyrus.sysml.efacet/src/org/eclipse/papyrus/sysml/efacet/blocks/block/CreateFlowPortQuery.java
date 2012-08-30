@@ -1,17 +1,13 @@
 package org.eclipse.papyrus.sysml.efacet.blocks.block;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
-
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -20,7 +16,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection;
+import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.uml2.uml.Port;
 //import org.eclipse.papyrus.sysml.table.flowport.messages.Messages;
@@ -31,16 +27,15 @@ import org.eclipse.uml2.uml.Port;
 //import org.eclipse.papyrus.sysml.table.flowport.queries.ICommand;
 //import org.eclipse.papyrus.sysml.table.flowport.queries.IElementEditService;
 //import org.eclipse.papyrus.sysml.table.flowport.queries.NotificationBuilder;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 
 public class CreateFlowPortQuery implements IJavaQuery2<EObject, EObject> {
 
-	public EObject evaluate(EObject context, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+	public EObject evaluate(final EObject context, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		Assert.isNotNull(context);
 		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(context);
 		Assert.isNotNull(domain);
 		final ParameterValue directionParameter = parameterValues.getParameterValueByName("direction");
-		Object value = directionParameter.getValue();
+		final Object value = directionParameter.getValue();
 
 		Assert.isTrue(value instanceof EEnumLiteral);
 		final EEnumLiteral direction = (EEnumLiteral)value;
@@ -59,13 +54,13 @@ public class CreateFlowPortQuery implements IJavaQuery2<EObject, EObject> {
 			elementType = SysMLElementTypes.FLOW_PORT;
 		}
 
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
-		CreateElementRequest createRequest = new CreateElementRequest(context, elementType);
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(context);
+		final CreateElementRequest createRequest = new CreateElementRequest(context, elementType);
 
-		ICommand createGMFCommand = provider.getEditCommand(createRequest);
+		final ICommand createGMFCommand = provider.getEditCommand(createRequest);
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(createGMFCommand));
 		if(createGMFCommand.getCommandResult() != null) {//it's null, when the model is not a SysML model
-			Object returnedValue = createGMFCommand.getCommandResult().getReturnValue();
+			final Object returnedValue = createGMFCommand.getCommandResult().getReturnValue();
 			return (Port)returnedValue;
 		}
 		return null;

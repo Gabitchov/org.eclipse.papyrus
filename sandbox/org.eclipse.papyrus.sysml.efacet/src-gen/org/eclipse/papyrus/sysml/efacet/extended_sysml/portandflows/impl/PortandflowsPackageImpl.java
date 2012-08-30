@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection;
+import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection;
 import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.PortandflowsFactory;
 import org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.PortandflowsPackage;
 
@@ -35,7 +35,7 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum flowDirectionEEnum = null;
+	private EEnum naFlowDirectionEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -103,8 +103,8 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getFlowDirection() {
-		return flowDirectionEEnum;
+	public EEnum getNAFlowDirection() {
+		return naFlowDirectionEEnum;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		isCreated = true;
 
 		// Create enums
-		flowDirectionEEnum = createEEnum(FLOW_DIRECTION);
+		naFlowDirectionEEnum = createEEnum(NA_FLOW_DIRECTION);
 	}
 
 	/**
@@ -162,11 +162,8 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		setNsURI(eNS_URI);
 
 		// Initialize enums and add enum literals
-		initEEnum(flowDirectionEEnum, FlowDirection.class, "FlowDirection");
-		addEEnumLiteral(flowDirectionEEnum, FlowDirection.NA);
-		addEEnumLiteral(flowDirectionEEnum, FlowDirection.IN);
-		addEEnumLiteral(flowDirectionEEnum, FlowDirection.OUT);
-		addEEnumLiteral(flowDirectionEEnum, FlowDirection.INOUT);
+		initEEnum(naFlowDirectionEEnum, NAFlowDirection.class, "NAFlowDirection");
+		addEEnumLiteral(naFlowDirectionEEnum, NAFlowDirection.NA);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -22,14 +22,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Flow Direction</b></em>',
+ * A representation of the literals of the enumeration '<em><b>NA Flow Direction</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.PortandflowsPackage#getFlowDirection()
- * @model instanceClass="org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection"
+ * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.PortandflowsPackage#getNAFlowDirection()
+ * @model instanceClass="org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection"
  * @generated
  */
-public enum FlowDirection implements Enumerator {
+public enum NAFlowDirection implements Enumerator {
 	/**
 	 * The '<em><b>NA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -38,37 +38,7 @@ public enum FlowDirection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NA(-1, "NA", "NA"),
-
-	/**
-	 * The '<em><b>In</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IN(0, "in", "in"),
-
-	/**
-	 * The '<em><b>Out</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OUT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OUT(1, "out", "out"),
-
-	/**
-	 * The '<em><b>Inout</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INOUT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INOUT(2, "inout", "inout");
+	NA(-1, "NA", "NA");
 
 	/**
 	 * The '<em><b>NA</b></em>' literal value.
@@ -86,81 +56,33 @@ public enum FlowDirection implements Enumerator {
 	public static final int NA_VALUE = -1;
 
 	/**
-	 * The '<em><b>In</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>In</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #IN
-	 * @model name="in"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IN_VALUE = 0;
-
-	/**
-	 * The '<em><b>Out</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #OUT
-	 * @model name="out"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OUT_VALUE = 1;
-
-	/**
-	 * The '<em><b>Inout</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Inout</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INOUT
-	 * @model name="inout"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INOUT_VALUE = 2;
-
-	/**
-	 * An array of all the '<em><b>Flow Direction</b></em>' enumerators.
+	 * An array of all the '<em><b>NA Flow Direction</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final FlowDirection[] VALUES_ARRAY =
-		new FlowDirection[] {
+	private static final NAFlowDirection[] VALUES_ARRAY =
+		new NAFlowDirection[] {
 			NA,
-			IN,
-			OUT,
-			INOUT,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Flow Direction</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>NA Flow Direction</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<FlowDirection> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<NAFlowDirection> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>NA Flow Direction</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FlowDirection get(String literal) {
+	public static NAFlowDirection get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			FlowDirection result = VALUES_ARRAY[i];
+			NAFlowDirection result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -169,14 +91,14 @@ public enum FlowDirection implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified name.
+	 * Returns the '<em><b>NA Flow Direction</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FlowDirection getByName(String name) {
+	public static NAFlowDirection getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			FlowDirection result = VALUES_ARRAY[i];
+			NAFlowDirection result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -185,17 +107,14 @@ public enum FlowDirection implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Flow Direction</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>NA Flow Direction</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static FlowDirection get(int value) {
+	public static NAFlowDirection get(int value) {
 		switch (value) {
 			case NA_VALUE: return NA;
-			case IN_VALUE: return IN;
-			case OUT_VALUE: return OUT;
-			case INOUT_VALUE: return INOUT;
 		}
 		return null;
 	}
@@ -227,7 +146,7 @@ public enum FlowDirection implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private FlowDirection(int value, String name, String literal) {
+	private NAFlowDirection(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -271,4 +190,4 @@ public enum FlowDirection implements Enumerator {
 		return literal;
 	}
 	
-} //FlowDirection
+} //NAFlowDirection

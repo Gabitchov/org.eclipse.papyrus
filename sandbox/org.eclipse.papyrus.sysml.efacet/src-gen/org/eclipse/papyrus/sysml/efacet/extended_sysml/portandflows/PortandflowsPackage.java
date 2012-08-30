@@ -66,25 +66,25 @@ public interface PortandflowsPackage extends EPackage {
 	PortandflowsPackage eINSTANCE = org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.impl.PortandflowsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection <em>Flow Direction</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection <em>NA Flow Direction</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection
-	 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.impl.PortandflowsPackageImpl#getFlowDirection()
+	 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection
+	 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.impl.PortandflowsPackageImpl#getNAFlowDirection()
 	 * @generated
 	 */
-	int FLOW_DIRECTION = 0;
+	int NA_FLOW_DIRECTION = 0;
 
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection <em>Flow Direction</em>}'.
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection <em>NA Flow Direction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Flow Direction</em>'.
-	 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection
+	 * @return the meta object for enum '<em>NA Flow Direction</em>'.
+	 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection
 	 * @generated
 	 */
-	EEnum getFlowDirection();
+	EEnum getNAFlowDirection();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -109,14 +109,14 @@ public interface PortandflowsPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection <em>Flow Direction</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection <em>NA Flow Direction</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.FlowDirection
-		 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.impl.PortandflowsPackageImpl#getFlowDirection()
+		 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.NAFlowDirection
+		 * @see org.eclipse.papyrus.sysml.efacet.extended_sysml.portandflows.impl.PortandflowsPackageImpl#getNAFlowDirection()
 		 * @generated
 		 */
-		EEnum FLOW_DIRECTION = eINSTANCE.getFlowDirection();
+		EEnum NA_FLOW_DIRECTION = eINSTANCE.getNAFlowDirection();
 
 	}
 

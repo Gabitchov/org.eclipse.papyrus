@@ -4,10 +4,38 @@
 	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
 	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
 	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
-	name="SysML" nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML"
+	name="SysML" nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML"
 	nsPrefix="EFacet/SysML">
+	<eSubpackages xsi:type="efacet:FacetSet" name="Requirements"
+		nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML/Requirements"
+		nsPrefix="EFacet/SysML/Requirements">
+		<eClassifiers xsi:type="efacet:Facet" name="Requirement">
+			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Class" />
+			<facetElements xsi:type="efacet:FacetAttribute" name="text"
+				derived="true">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xsi:type="javaQuery2:JavaQuery"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.requirements.requirement.GetRequirementTextQuery" />
+			</facetElements>
+			<facetElements xsi:type="efacet:FacetAttribute" name="id"
+				derived="true">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+				<query xsi:type="javaQuery2:JavaQuery"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.requirements.requirement.GetRequirementIdQuery" />
+			</facetElements>
+			<facetOperations name="createRequirement"
+				documentation="Create a nested requirement">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/uml2/4.0.0/UML#//Class" />
+				<query xsi:type="javaQuery2:JavaQuery"
+					implementationClassName="org.eclipse.papyrus.sysml.efacet.requirements.requirement.CreateRequirementQuery" />
+			</facetOperations>
+		</eClassifiers>
+	</eSubpackages>
 	<eSubpackages xsi:type="efacet:FacetSet" name="PortAndFlows"
-		nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML/PortAndFlows"
+		nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML/PortAndFlows"
 		nsPrefix="EFacet/SysML/PortAndFlows">
 		<eClassifiers xsi:type="efacet:Facet" name="FlowPort">
 			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Port" />
@@ -38,7 +66,7 @@
 		</eClassifiers>
 	</eSubpackages>
 	<eSubpackages xsi:type="efacet:FacetSet" name="Blocks"
-		nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML/Blocks" nsPrefix="EFacet/SysML/Blocks">
+		nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML/Blocks" nsPrefix="EFacet/SysML/Blocks">
 		<eClassifiers xsi:type="efacet:Facet" name="Block">
 			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Class" />
 			<facetOperations name="createFlowPort" lowerBound="1"
@@ -79,12 +107,12 @@
 					</arguments>
 					<arguments xsi:type="query:EObjectLiteralQuery">
 						<element
-							href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection/in" />
+							href="platform:/plugin/org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowDirection/in"/>
 					</arguments>
 				</query>
 			</facetOperations>
 			<facetOperations name="createFlowPort_Out">
-			<eType xsi:type="ecore:EDataType"
+				<eType xsi:type="ecore:EDataType"
 					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
 				<eParameters name="eStructuralFeature">
 					<eType xsi:type="ecore:EClass"
@@ -103,7 +131,7 @@
 					</arguments>
 					<arguments xsi:type="query:EObjectLiteralQuery">
 						<element
-							href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection/out" />
+							href="platform:/plugin/org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowDirection/out"/>
 					</arguments>
 				</query>
 			</facetOperations>
@@ -127,14 +155,14 @@
 					</arguments>
 					<arguments xsi:type="query:EObjectLiteralQuery">
 						<element
-							href="platform:/plugin/org.eclipse.papyrus.sysml.efacet/model/extented_sysml.ecore#//portandflows/FlowDirection/inout" />
+							href="platform:/plugin/org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowDirection/inout"/>
 					</arguments>
 				</query>
 			</facetOperations>
 		</eClassifiers>
 	</eSubpackages>
 	<eSubpackages xsi:type="efacet:FacetSet" name="Utils"
-		nsURI="org.eclipse.papyrus.sysml.efacet/2012/SysML/Utils" nsPrefix="EFacet/SysML/Utils">
+		nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML/Utils" nsPrefix="EFacet/SysML/Utils">
 		<eClassifiers xsi:type="efacet:Facet" name="SysMLElement">
 			<extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//Element" />
 			<facetOperations name="isAppliedSysMLStereotype">
@@ -155,6 +183,17 @@
 					<arguments xsi:type="query:EObjectLiteralQuery">
 						<element
 							href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows/FlowPort" />
+					</arguments>
+				</query>
+			</facetOperations>
+			<facetOperations name="isRequirement">
+				<eType xsi:type="ecore:EDataType"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+				<query xsi:type="query:OperationCallQuery"
+					operation="//Utils/SysMLElement/isAppliedSysMLStereotype">
+					<arguments xsi:type="query:EObjectLiteralQuery">
+						<element
+							href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements/Requirement" />
 					</arguments>
 				</query>
 			</facetOperations>

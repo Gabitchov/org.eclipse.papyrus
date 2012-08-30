@@ -4,11 +4,8 @@
     nsPrefix="Extended_Sysml">
   <eSubpackages name="portandflows" nsURI="http://www.eclipse.org/papyrus/0.9.0/ExtendedSysML/PortAndFlows"
       nsPrefix="PortAndFlows">
-    <eClassifiers xsi:type="ecore:EEnum" name="FlowDirection" instanceTypeName="FlowDirection">
+    <eClassifiers xsi:type="ecore:EEnum" name="NAFlowDirection" instanceTypeName="NAFlowDirection">
       <eLiterals name="NA" value="-1"/>
-      <eLiterals name="in" literal="in"/>
-      <eLiterals name="out" value="1" literal="out"/>
-      <eLiterals name="inout" value="2" literal="inout"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
