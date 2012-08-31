@@ -14,6 +14,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.dev.project.management.Activator;
 import org.eclipse.papyrus.dev.project.management.dialog.TwoInputDialog;
+import org.eclipse.papyrus.dev.project.management.utils.Utils;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
 import org.eclipse.swt.widgets.Display;
@@ -23,11 +24,8 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 
 	private static final String TITLE = "Enter the new version number for Papyrus plugin.";
 
-	private static final String MESSAGE = "Enter the new version number. This action works for : \n - plugin\n - fragment";
 
-	private static final String INITIAL_VALUE = "0.0.0.qualifier";
-
-	private static final String CHECKBOX_MESSAGE = "Only projects beginning with 'org.eclipse.papyrus.*'";
+	private static final String INITIAL_VALUE = "0.0.0";
 
 	private static final String WARNING_DIALOG_TITLE = "Change Version Name Report";
 
@@ -36,10 +34,6 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 	private static final String WARNING_DIALOG_MESSAGE2 = "Done.";
 
 	private static final String PAPYRUS_NAME = "org.eclipse.papyrus";
-
-	private static final String FEATURE_NATURE = "org.eclipse.pde.FeatureNature";
-
-	private static final String PLUGIN_NATURE = "org.eclipse.pde.PluginNature";
 
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
@@ -53,8 +47,7 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 				return null;
 			}
 		};
-		//TODO add the possibility to refactor others plugin tha
-		final TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), TITLE, "Enter the new version for the Papyrus dependencies", "pattern plugin name", "0.0.0", "org.eclipse.papyrus", validator);
+		final TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), TITLE, "Enter the new version for the Papyrus dependencies", "pattern plugin name", INITIAL_VALUE, PAPYRUS_NAME, validator);
 
 		if(dialog.open() == Window.OK) {
 			String notManagedProjectNames = "";
@@ -96,7 +89,7 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 	private void setVersionNumber(final IProject project, final String dependencyPattern, final String newValue, String notManagedProjectNames) {
 		if(project.isOpen()) {
 			try {
-				final boolean pluginnature = project.hasNature(PLUGIN_NATURE);
+				final boolean pluginnature = project.hasNature(Utils.PLUGIN_NATURE);
 				if(pluginnature) {
 					try {
 						final IManifestEditor editor = new ManifestEditor(project);

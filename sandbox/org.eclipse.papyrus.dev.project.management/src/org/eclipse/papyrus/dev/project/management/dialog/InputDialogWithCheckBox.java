@@ -82,8 +82,9 @@ public class InputDialogWithCheckBox extends InputDialog {
 
 	/**
 	 * save the state of the checkbox
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
-	 *
+	 * 
 	 */
 	@Override
 	protected void okPressed() {

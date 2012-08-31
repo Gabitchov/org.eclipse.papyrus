@@ -30,6 +30,9 @@ import org.eclipse.swt.widgets.Text;
  * 
  * 
  */
+//TODO move this class in an upper project
+//TODO generalize this class to have several text field
+//FIXME : duplicated code from oep.infra.table.common
 public class TwoInputDialog extends InputDialog {
 
 	/** widget for the second value */
@@ -60,7 +63,7 @@ public class TwoInputDialog extends InputDialog {
 	 * @param validator
 	 *        the validator
 	 */
-	public TwoInputDialog(Shell parentShell, String dialogTitle, String message1, String message2, String initialValue1, String initialValue2, IInputValidator validator) {
+	public TwoInputDialog(final Shell parentShell, final String dialogTitle, final String message1, final String message2, final String initialValue1, final String initialValue2, final IInputValidator validator) {
 		super(parentShell, dialogTitle, message1, initialValue1, validator);
 		this.message_2 = message2;
 		this.value_2 = initialValue2;
@@ -75,18 +78,18 @@ public class TwoInputDialog extends InputDialog {
 	 * @return
 	 */
 	@Override
-	protected Control createDialogArea(Composite parent) {
-		Composite composite = (Composite)super.createDialogArea(parent);
-		if(message_2 != null) {
-			Label label = new Label(composite, SWT.WRAP);
-			label.setText(message_2);
-			GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
+	protected Control createDialogArea(final Composite parent) {
+		final Composite composite = (Composite)super.createDialogArea(parent);
+		if(this.message_2 != null) {
+			final Label label = new Label(composite, SWT.WRAP);
+			label.setText(this.message_2);
+			final GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
 			data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 			label.setLayoutData(data);
 			label.setFont(parent.getFont());
 		}
-		text_2 = new Text(composite, getInputTextStyle());
-		text_2.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
+		this.text_2 = new Text(composite, getInputTextStyle());
+		this.text_2.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
 		applyDialogFont(composite);
 		return composite;
 	}
@@ -98,7 +101,7 @@ public class TwoInputDialog extends InputDialog {
 	 * @param buttonId
 	 */
 	@Override
-	protected void buttonPressed(int buttonId) {
+	protected void buttonPressed(final int buttonId) {
 		if(buttonId == IDialogConstants.OK_ID) {
 			this.value_2 = this.text_2.getText();
 		} else {
@@ -114,10 +117,10 @@ public class TwoInputDialog extends InputDialog {
 	 * @param parent
 	 */
 	@Override
-	protected void createButtonsForButtonBar(Composite parent) {
+	protected void createButtonsForButtonBar(final Composite parent) {
 		super.createButtonsForButtonBar(parent);
-		if(value_2 != null) {
-			text_2.setText(value_2);
+		if(this.value_2 != null) {
+			this.text_2.setText(this.value_2);
 		}
 	}
 
