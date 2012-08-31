@@ -150,7 +150,7 @@ workingSetId=0
 psf_workspace=$HOME/"psf_workspace"
 svn=$psf_workspace/"svn"
 generated_psf_folder=$psf_workspace/"generated_psf_folder"
-psf_dest="/home/data/users/vlorenzo/downloads/modeling/mdt/papyrus/psf/subclipse/trunk"
+psf_dest="/home/data/users/vlorenzo/downloads/modeling/mdt/papyrus/psf/subclipse/"
 
 #the path of the trunk folders to download
 extraplugins_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/"
