@@ -11,12 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor;
 
@@ -67,7 +73,7 @@ public class ProjectEditor extends AbstractProjectEditor implements IProjectEdit
 	 */
 	public void createFiles(final Set<String> files) {
 		if(files.contains(PROJECT_FILE)) {
-			IFile file = getProject().getFile(PROJECT_FILE);
+			final IFile file = getProject().getFile(PROJECT_FILE);
 			if(!file.exists()) {
 				String input = ""; //$NON-NLS-1$
 				input += AbstractProjectEditor.XML_HEADER;
@@ -83,7 +89,7 @@ public class ProjectEditor extends AbstractProjectEditor implements IProjectEdit
 
 				try {
 					file.create(getInputStream(input), true, null);
-				} catch (CoreException e) {
+				} catch (final CoreException e) {
 					Activator.log.error(e);
 				}
 			}
@@ -99,11 +105,46 @@ public class ProjectEditor extends AbstractProjectEditor implements IProjectEdit
 	 */
 	@Override
 	public Set<String> getMissingFiles() {
-		Set<String> missingFile = super.getMissingFiles();
-		IFile projectFile = getProject().getFile(PROJECT_FILE);
+		final Set<String> missingFile = super.getMissingFiles();
+		final IFile projectFile = getProject().getFile(PROJECT_FILE);
 		if(!projectFile.exists()) {
 			missingFile.add(IProjectEditor.PROJECT_FILE);
 		}
 		return missingFile;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor#addFile(java.net.URL, java.lang.String)
+	 * 
+	 * @param url
+	 * @param fileDestinationPath
+	 * @param eraseExitingFile
+	 */
+	public void addFile(final URL url, final String fileDestinationPath, final boolean eraseExitingFile) {
+		final IFile targetFile = getProject().getFile(new Path(fileDestinationPath));
+		if(targetFile.exists()) {
+			if(eraseExitingFile) {
+				try {
+					targetFile.delete(true, new NullProgressMonitor());
+				} catch (final CoreException e) {
+					Activator.log.error(e);
+				}
+			} else {
+				return;
+			}
+		}
+		try {
+			final InputStream is = url.openStream();;
+			targetFile.create(is, false, new NullProgressMonitor());
+			is.close();
+			targetFile.refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
+		} catch (final CoreException e) {
+			Activator.log.error(e);
+		} catch (final IOException e) {
+			Activator.log.error(e);
+		}
+
+
 	}
 }

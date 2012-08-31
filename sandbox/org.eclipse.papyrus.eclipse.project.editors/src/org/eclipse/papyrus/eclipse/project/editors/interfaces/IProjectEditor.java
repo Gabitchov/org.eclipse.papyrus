@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
+import java.net.URL;
 import java.util.Set;
 
 /**
@@ -48,6 +49,7 @@ public interface IProjectEditor extends IFileEditor {
 	 *         the missing nature for the project
 	 */
 	public Set<String> getMissingNature();
+
 	/**
 	 * 
 	 * @param nature
@@ -79,4 +81,13 @@ public interface IProjectEditor extends IFileEditor {
 	 *         <code>true</code> if the project has the build command
 	 */
 	public boolean hasBuildCommand(String command);
+
+	/**
+	 * 
+	 * @param url
+	 *        the url of the file to copy
+	 * @param fileDestinationPath
+	 *        the destination path for the added file
+	 */
+	public void addFile(final URL url, final String fileDestinationPath, final boolean eraseExistingFile);
 }
