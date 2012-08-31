@@ -152,38 +152,67 @@ svn=$psf_workspace/"svn"
 generated_psf_folder=$psf_workspace/"generated_psf_folder"
 psf_trunk_dest="/home/data/users/vlorenzo/downloads/modeling/mdt/papyrus/psf/subclipse/trunk"
 
-#the path of the trunk folder to download
-extraplugins_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/"
-plugins_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/"
-tests_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/"
-releng_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/"
-features_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features/"
-full_papyrus="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/"
+#the path of the trunk folders to download
+extraplugins_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/"
+plugins_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/"
+tests_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/tests/"
+releng_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/releng/"
+features_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features/"
+full_papyrus_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/"
+
+#the path of the branch folders to download
+extraplugins_0_9_X_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.9.X/extraplugins/"
+plugins_0_9_X_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.9.X/plugins/"
+tests_0_9_X_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.9.X/tests/"
+releng_0_9_X_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.9.X/releng/"
+features_0_9_X_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.9.X/features/"
+full_papyrus_0_9_X_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.9.X/"
+
 rm -R -f $psf_workspace
 
 mkdir $psf_workspace
 mkdir $generated_psf_folder
 
-
+#TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-TRUNK-
 #--------create the extraplugin psf
 echo "Creating the psf for trunk extraplugin"
-create_psf_file "extraplugins" $extraplugins_path
+create_psf_file "extraplugins" $extraplugins_trunk_path
 
 #--------create the plugin psf
 echo "Creating the psf for trunk plugins"
-create_psf_file "plugins" $plugins_path
+create_psf_file "plugins" $plugins_trunk_path
 
 #--------create the tests psf
 echo "Creating the psf for trunk tests"
-create_psf_file "tests" $tests_path
+create_psf_file "tests" $tests_trunk_path
 
 #--------create the build psf
 echo "Creating the psf for trunk build"
-create_psf_file "build" $releng_path $features_path
+create_psf_file "build" $releng_trunk_path $features_trunk_path
 
 #--------full papyrus psf
 echo "Creating the psf for trunk"
-create_psf_file "full_papyrus" $full_papyrus
+create_psf_file "full_papyrus" $full_papyrus_trunk_path
+
+#BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X BRANCH-0.9.X 
+echo "Creating the psf for branch 0.9.X extraplugin"
+create_psf_file "extraplugins_0.9.X" $extraplugins_0_9_X_path
+
+#--------create the plugin psf
+echo "Creating the psf for branch 0.9.X plugins"
+create_psf_file "plugins_0.9.X" $plugins_0_9_X_path
+
+#--------create the tests psf
+echo "Creating the psf for branch 0.9.X tests"
+create_psf_file "tests_0.9.X" $tests_0_9_X_path
+
+#--------create the build psf
+echo "Creating the psf for branch 0.9.X build"
+create_psf_file "build_0.9.X" $releng_0_9_X_path $features_0_9_X_path
+
+#--------full papyrus psf
+echo "Creating the psf for branch 0.9.X"
+create_psf_file "full_papyrus_0.9.X" $full_papyrus_0_9_X_path
 
 echo "The created psf are in the folder: "$generated_psf_folder
 
