@@ -63,10 +63,10 @@ PROMOTE_VERSION_MAINTENANCE_EXTRA_NIGHTLY=/opt/public/modeling/mdt/papyrus/papyr
 
 ### Update Sites ###
 
-UPDATES_TRUNK_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/main
-UPDATES_TRUNK_EXTRA_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/extra
-UPDATES_0_9_MAINTENANCE_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/kepler/main
-UPDATES_0_9_MAINTENANCE_EXTRA_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/kepler/extra
+UPDATES_TRUNK_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/kepler/main
+UPDATES_TRUNK_EXTRA_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/kepler/extra
+UPDATES_0_9_MAINTENANCE_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/main
+UPDATES_0_9_MAINTENANCE_EXTRA_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/juno/extra
 UPDATES_MAINTENANCE_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/indigo/main
 UPDATES_MAINTENANCE_EXTRA_NIGHTLY=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/indigo/extra
 
