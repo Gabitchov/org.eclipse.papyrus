@@ -203,7 +203,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		}
 
 		setLabelProvider(new LabelProvider());
-		this.upperBound = upperBound;
+		setUpperBound(upperBound);
 		this.ordered = ordered;
 		this.unique = unique;
 		updateControls();
