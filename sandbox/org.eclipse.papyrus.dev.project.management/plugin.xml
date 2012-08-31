@@ -4,16 +4,39 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.ChangeBundleVersionNumberHandler"
-            description="%command.description"
-            id="org.eclipse.papyrus.dev.project.management.command.update.bundle.version"
-            name="%command.name">
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.plugins.ChangePluginVersionHandler"
+            description="Change Plugin Version"
+            id="org.eclipse.papyrus.dev.project.management.command.plugin.change.version"
+            name="Change Plugin Version">
       </command>
       <command
-            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.ChangeDependencyVersionNumberHandler"
-            description="%command.description.0"
-            id="org.eclipse.papyrus.dev.project.management.command.update.dependency.version"
-            name="%command.name.0">
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.features.ChangeFeatureVersionHandler"
+            description="Change Feature Version"
+            id="org.eclipse.papyrus.dev.project.management.command.feature.change.version"
+            name="Change Feature Version">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.plugins.ChangeDependencyVersionNumberHandler"
+            description="Change Dependencies Version"
+            id="org.eclipse.papyrus.dev.project.management.command.plugin.change.dependency.version"
+            name="Change Dependencies Version">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.plugins.AddProjectAboutFileHandler"
+            id="org.eclipse.papyrus.dev.project.management.command.plugin.add.about"
+            name="Add the file about.html to the project">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.features.AddFeatureLicenseFileHandler"
+            description="Add the license file to the feature"
+            id="org.eclipse.papyrus.dev.project.management.command.feature.add.license"
+            name="Add License File">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.features.AddFEPLFileHandler"
+            description="Add the EPL file to the feature"
+            id="org.eclipse.papyrus.dev.project.management.command.feature.add.epl"
+            name="Add EPL file">
       </command>
    </extension>
    <extension
@@ -23,17 +46,51 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=edit">
          <menu
                icon="icons/papyrus.png"
-               label="%menu.label">
-            <command
-                  commandId="org.eclipse.papyrus.dev.project.management.command.update.bundle.version"
-                  label="%command.label"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.dev.project.management.command.update.dependency.version"
-                  label="%command.label.0"
-                  style="push">
-            </command>
+               label="Project management">
+            <menu
+                  icon="icons/feature_obj.gif"
+                  label="Feature">
+               <command
+                     commandId="org.eclipse.papyrus.dev.project.management.command.feature.add.license"
+                     icon="icons/html.gif"
+                     label="Add License File (no undo)"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.papyrus.dev.project.management.command.feature.add.epl"
+                     icon="icons/html.gif"
+                     label="Add EPL File (no undo)"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.papyrus.dev.project.management.command.feature.change.version"
+                     icon="icons/version.png"
+                     label="Change Feature Version (no undo)"
+                     style="push">
+               </command>
+            </menu>
+            <menu
+                  icon="icons/plugin_obj.gif"
+                  label="Plugin">
+               <command
+                     commandId="org.eclipse.papyrus.dev.project.management.command.plugin.add.about"
+                     icon="icons/html.gif"
+                     label="Add about.html file (no undo)"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.papyrus.dev.project.management.command.plugin.change.dependency.version"
+                     icon="icons/plugin_mf_obj.gif"
+                     label="Change Dependencies Versions (no undo)"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.eclipse.papyrus.dev.project.management.command.plugin.change.version"
+                     icon="icons/version.png"
+                     label="Change Plugin Version (no undo)"
+                     style="push">
+               </command>
+            </menu>
          </menu>
       </menuContribution>
    </extension>
