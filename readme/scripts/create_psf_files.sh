@@ -150,7 +150,7 @@ workingSetId=0
 psf_workspace=$HOME/"psf_workspace"
 svn=$psf_workspace/"svn"
 generated_psf_folder=$psf_workspace/"generated_psf_folder"
-psf_trunk_dest="/home/data/users/vlorenzo/downloads/modeling/mdt/papyrus/psf/subclipse/trunk"
+psf_dest="/home/data/users/vlorenzo/downloads/modeling/mdt/papyrus/psf/subclipse/trunk"
 
 #the path of the trunk folders to download
 extraplugins_trunk_path="http://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/"
@@ -219,7 +219,7 @@ echo "The created psf are in the folder: "$generated_psf_folder
 #move the generated files to their final destination
 for aFile in `ls $generated_psf_folder`
 do
-    cp -v $generated_psf_folder/$aFile $psf_trunk_dest
+    cp -v $generated_psf_folder/$aFile $psf_dest
 done
 
 
