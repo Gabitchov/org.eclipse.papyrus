@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-Name: Ui Plug-in
 Bundle-Activator: org.eclipse.papyrus.java.reverse.ui.Activator
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-SymbolicName: org.eclipse.papyrus.java.reverse.ui;singleton:=tr
  ue
 Bundle-ActivationPolicy: lazy
@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gef;bundle-version="3.4.0",
  org.eclipse.jdt;bundle-version="3.4.0",
  org.eclipse.jdt.core;bundle-version="3.4.0",
- org.eclipse.papyrus.infra.core,
- org.eclipse.papyrus.java.reverse;bundle-version="0.7.0"
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.java.reverse;bundle-version="0.9.1"
 Bundle-Version: 0.9.1.qualifier
 

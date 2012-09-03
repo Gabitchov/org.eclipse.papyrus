@@ -1,12 +1,26 @@
 Manifest-Version: 1.0
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.emf.compare.diff.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %Bundle-Vendor
 Bundle-ManifestVersion: 2
+Bundle-Vendor: %Bundle-Vendor
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.compare.diff;single
  ton:=true
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.compare,
+ org.eclipse.emf.compare.diff,
+ org.eclipse.emf.transaction,
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.gmf.runtime.emf.type.core,
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.9.1",
+ com.google.guava;bundle-version="10.0.1",
+ org.eclipse.emf.compare.match
 Export-Package: org.eclipse.papyrus.infra.emf.compare.diff,
  org.eclipse.papyrus.infra.emf.compare.diff.check,
  org.eclipse.papyrus.infra.emf.compare.diff.internal.command,
@@ -17,19 +31,5 @@ Export-Package: org.eclipse.papyrus.infra.emf.compare.diff,
  org.eclipse.papyrus.infra.emf.compare.diff.provider,
  org.eclipse.papyrus.infra.emf.compare.diff.service,
  org.eclipse.papyrus.infra.emf.compare.diff.utils
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- org.eclipse.emf.compare,
- org.eclipse.emf.compare.diff,
- org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.core.log,
- org.eclipse.papyrus.infra.gmfdiag.commands,
- org.eclipse.papyrus.infra.services.edit,
- org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.emf,
- org.eclipse.papyrus.infra.tools;bundle-version="0.9.0",
- com.google.guava;bundle-version="10.0.1",
- org.eclipse.emf.compare.match
 Bundle-Version: 0.9.1.qualifier
 

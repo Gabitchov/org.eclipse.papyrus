@@ -15,7 +15,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.core.queries.configuration.ed
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,

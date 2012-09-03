@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-SymbolicName: org.eclipse.papyrus.java.profile;singleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.java.profile.java,
+ org.eclipse.papyrus.java.profile.java.impl,
+ org.eclipse.papyrus.java.profile.java.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport
-Export-Package: org.eclipse.papyrus.java.profile.java,
- org.eclipse.papyrus.java.profile.java.impl,
- org.eclipse.papyrus.java.profile.java.util
 Bundle-Version: 0.9.1.qualifier
 

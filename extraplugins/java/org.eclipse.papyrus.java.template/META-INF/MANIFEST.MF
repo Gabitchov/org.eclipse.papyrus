@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-Name: Java Template
 Bundle-Activator: org.eclipse.papyrus.java.template.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Atos Origin
 Bundle-ManifestVersion: 2
+Bundle-Vendor: Atos Origin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.java.template;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,

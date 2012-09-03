@@ -1,13 +1,12 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.diagram.tests.Activator
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.tests
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.diagram.tests.canonical
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui,
@@ -15,12 +14,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit4;bundle-version="4.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.editor;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.editor;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.usecase;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.usecase;bundle-version="0.9.1"
+Export-Package: org.eclipse.papyrus.diagram.tests.canonical
 Bundle-Version: 0.9.1.qualifier
 

@@ -16,13 +16,13 @@ Bundle-SymbolicName: org.eclipse.papyrus.extendedtypes.uml.editor;sing
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.extendedtypes.uml.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.extendedtypes.uml.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport
 

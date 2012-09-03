@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.transfo.umltoj
  dt
-Export-Package: org.eclipse.papyrus.java.generator.transfo.umltojdt
 Require-Bundle: org.eclipse.core.runtime
+Export-Package: org.eclipse.papyrus.java.generator.transfo.umltojdt
 Bundle-Version: 0.9.1.qualifier
 

@@ -13,7 +13,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.java.profile.edit;singleton:=
  true
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.java.profile;visibility:=reexport,
+ org.eclipse.papyrus.java.profile;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,

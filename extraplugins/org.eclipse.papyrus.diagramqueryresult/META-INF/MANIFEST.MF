@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.diagramqueryresult.Activator
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.papyrus.diagramqueryresult;singleton:
  =true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.core;bundle-version="0.7.0",
- org.eclipse.papyrus.editor;bundle-version="0.7.0",
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.0",
+ org.eclipse.papyrus.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.editor;bundle-version="0.9.1",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.9.1",
  org.eclipse.gmt.modisco.infra.query.ui;bundle-version="0.8.0",
  org.eclipse.gmt.modisco.infra.query;bundle-version="0.8.0",
- org.eclipse.papyrus.diagram.clazz;bundle-version="0.7.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
+ org.eclipse.papyrus.diagram.clazz;bundle-version="0.9.1",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.4.0"
 Bundle-Version: 0.9.1.qualifier
 

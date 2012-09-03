@@ -15,7 +15,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.java.generator.metamodel.jdt.
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.java.generator.metamodel.jdt.edit;visibility:=reexport,
+ org.eclipse.papyrus.java.generator.metamodel.jdt.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport

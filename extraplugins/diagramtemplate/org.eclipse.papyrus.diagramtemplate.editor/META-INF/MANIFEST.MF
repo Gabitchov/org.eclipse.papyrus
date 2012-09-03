@@ -14,16 +14,16 @@ Bundle-SymbolicName: org.eclipse.papyrus.diagramtemplate.editor;single
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.diagramtemplate.edit;visibility:=reexport,
+ org.eclipse.papyrus.diagramtemplate.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.uml2.uml.edit;bundle-version="3.1.0",
- org.eclipse.papyrus.editor;bundle-version="0.7.1",
+ org.eclipse.papyrus.editor;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui.actions;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0"
 

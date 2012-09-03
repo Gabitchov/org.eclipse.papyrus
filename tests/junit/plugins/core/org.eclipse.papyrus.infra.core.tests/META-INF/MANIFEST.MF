@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Fragment-Host: org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
-Bundle-Localization: fragment
 Bundle-SymbolicName: org.eclipse.papyrus.core.tests;singleton:=true
+Bundle-Localization: fragment
+Require-Bundle: org.junit;bundle-version="4.8.1",
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.profile;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml.diagram.ui;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.1"
 Export-Package: org.eclipse.papyrus.infra.core.lifecycleevents,
  org.eclipse.papyrus.infra.core.resource,
  org.eclipse.papyrus.infra.core.services,
  org.eclipse.papyrus.infra.core.tests
-Require-Bundle: org.junit;bundle-version="4.8.1",
- org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.profile;bundle-version="0.9.0",
- org.eclipse.papyrus.sysml.diagram.ui;bundle-version="0.9.0",
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.0"
 Bundle-Version: 0.9.1.qualifier
 

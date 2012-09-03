@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-Name: Ui
 Bundle-Activator: org.eclipse.papyrus.sasheditor.ui.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.sasheditor.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.sasheditor;bundle-version="0.7.0",
+ org.eclipse.papyrus.sasheditor;bundle-version="0.9.1",
  org.eclipse.ui.forms;bundle-version="3.4.0",
  org.eclipse.jface.text;bundle-version="3.5.0"
 Bundle-Version: 0.9.1.qualifier

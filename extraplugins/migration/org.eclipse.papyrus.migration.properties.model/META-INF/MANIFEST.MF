@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.migration.properties.model.Activ
  ator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %Bundle-Vendor
 Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
+Bundle-Vendor: %Bundle-Vendor
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.migration.properties.model;si
  ngleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1"
 Bundle-Version: 0.9.1.qualifier
 

@@ -2,23 +2,12 @@ Manifest-Version: 1.0
 Bundle-Name: org.eclipse.papyrus.operation.editor.xtext
 Import-Package: org.apache.commons.logging,
  org.apache.log4j
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Eclipse Modeling Project
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext;singleton:=true
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext;single
+ ton:=true
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.operation.editor.xtext,
- org.eclipse.papyrus.operation.editor.xtext.operation,
- org.eclipse.papyrus.operation.editor.xtext.operation.impl,
- org.eclipse.papyrus.operation.editor.xtext.operation.util,
- org.eclipse.papyrus.operation.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.operation.editor.xtext.parser.antlr,
- org.eclipse.papyrus.operation.editor.xtext.parser.antlr.internal,
- org.eclipse.papyrus.operation.editor.xtext.scoping,
- org.eclipse.papyrus.operation.editor.xtext.services,
- org.eclipse.papyrus.operation.editor.xtext.utils,
- org.eclipse.papyrus.operation.editor.xtext.validation,
- org.eclipse.papyrus.operation.editor.xtext.validation.typing
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
@@ -32,6 +21,18 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.7.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
- org.eclipse.papyrus.alf;bundle-version="0.8.0"
+ org.eclipse.papyrus.alf;bundle-version="0.9.1"
+Export-Package: org.eclipse.papyrus.operation.editor.xtext,
+ org.eclipse.papyrus.operation.editor.xtext.operation,
+ org.eclipse.papyrus.operation.editor.xtext.operation.impl,
+ org.eclipse.papyrus.operation.editor.xtext.operation.util,
+ org.eclipse.papyrus.operation.editor.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.operation.editor.xtext.parser.antlr,
+ org.eclipse.papyrus.operation.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.operation.editor.xtext.scoping,
+ org.eclipse.papyrus.operation.editor.xtext.services,
+ org.eclipse.papyrus.operation.editor.xtext.utils,
+ org.eclipse.papyrus.operation.editor.xtext.validation,
+ org.eclipse.papyrus.operation.editor.xtext.validation.typing
 Bundle-Version: 0.9.1.qualifier
 
