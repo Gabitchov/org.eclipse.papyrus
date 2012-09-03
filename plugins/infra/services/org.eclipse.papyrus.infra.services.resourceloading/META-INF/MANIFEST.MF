@@ -1,4 +1,18 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.infra.services.resourceloading.A
+ ctivator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.resourceloadin
+ g;singleton:=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.services.resourceloading,
+ org.eclipse.papyrus.infra.services.resourceloading.impl,
+ org.eclipse.papyrus.infra.services.resourceloading.strategies,
+ org.eclipse.papyrus.infra.services.resourceloading.util
 Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.services.controlmode.history;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
@@ -8,17 +22,5 @@ Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
  org.eclipse.gef;bundle-version="3.7.1",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0"
-Export-Package: org.eclipse.papyrus.infra.services.resourceloading,
- org.eclipse.papyrus.infra.services.resourceloading.impl,
- org.eclipse.papyrus.infra.services.resourceloading.strategies,
- org.eclipse.papyrus.infra.services.resourceloading.util
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.services.resourceloading.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.resourceloading;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

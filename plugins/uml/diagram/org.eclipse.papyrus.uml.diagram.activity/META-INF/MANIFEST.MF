@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDia
+ gramEditorPlugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.diagram.activity,
  org.eclipse.papyrus.uml.diagram.activity.commands,
  org.eclipse.papyrus.uml.diagram.activity.draw2d,
@@ -24,11 +28,14 @@ Export-Package: org.eclipse.papyrus.uml.diagram.activity,
  org.eclipse.papyrus.uml.diagram.activity.sheet,
  org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance,
  org.eclipse.papyrus.uml.diagram.activity.testers
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
+Eclipse-LazyStart: true
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity;singleton:=true
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
@@ -73,9 +80,4 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
  org.eclipse.papyrus.editor;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.services.edit
-Bundle-Vendor: %providerName
-Eclipse-LazyStart: true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true
+

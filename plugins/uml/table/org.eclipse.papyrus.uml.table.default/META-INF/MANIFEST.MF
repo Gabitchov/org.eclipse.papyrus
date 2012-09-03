@@ -1,20 +1,22 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.table.defaultt,
- org.eclipse.papyrus.uml.table.defaultt.editor,
- org.eclipse.papyrus.uml.table.defaultt.factory,
- org.eclipse.papyrus.uml.table.defaultt.handlers
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.uml.table.defaultt.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.table.default;singleton:=
+ true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.table.common;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.0",
  org.eclipse.emf.facet.widgets.nattable;bundle-version="0.1.0",
  org.eclipse.emf.facet.widgets.nattable.tableconfiguration,
  org.eclipse.core.runtime;bundle-version="3.7.0"
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.table.defaultt.Activator
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.table.default;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
+Export-Package: org.eclipse.papyrus.uml.table.defaultt,
+ org.eclipse.papyrus.uml.table.defaultt.editor,
+ org.eclipse.papyrus.uml.table.defaultt.factory,
+ org.eclipse.papyrus.uml.table.defaultt.handlers
+Bundle-Version: 0.9.1.qualifier
+

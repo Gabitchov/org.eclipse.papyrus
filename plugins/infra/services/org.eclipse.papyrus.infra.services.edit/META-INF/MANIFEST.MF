@@ -1,25 +1,26 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.infra.services.edit.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.edit;singleton
+ :=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.services.edit,
+ org.eclipse.papyrus.infra.services.edit.commands,
+ org.eclipse.papyrus.infra.services.edit.internal;x-internal:=true,
+ org.eclipse.papyrus.infra.services.edit.internal.context;x-internal:=true,
+ org.eclipse.papyrus.infra.services.edit.internal.matcher;x-internal:=true,
+ org.eclipse.papyrus.infra.services.edit.messages,
+ org.eclipse.papyrus.infra.services.edit.service,
+ org.eclipse.papyrus.infra.services.edit.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.infra.services.edit,
- org.eclipse.papyrus.infra.services.edit.commands,
- org.eclipse.papyrus.infra.services.edit.internal;x-internal:=true, 
- org.eclipse.papyrus.infra.services.edit.internal.context;x-internal:=true,
- org.eclipse.papyrus.infra.services.edit.internal.matcher;x-internal:=true, 
- org.eclipse.papyrus.infra.services.edit.messages,
- org.eclipse.papyrus.infra.services.edit.service,
- org.eclipse.papyrus.infra.services.edit.utils
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.services.edit.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.edit;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

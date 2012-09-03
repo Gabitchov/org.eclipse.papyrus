@@ -1,10 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.uml.appearance
-Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.appearance.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.appearance
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.appearance,
+ org.eclipse.papyrus.uml.appearance.commands,
+ org.eclipse.papyrus.uml.appearance.helper
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
@@ -12,9 +17,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.uml.appearance,
- org.eclipse.papyrus.uml.appearance.commands,
- org.eclipse.papyrus.uml.appearance.helper
+Bundle-Version: 0.9.1.qualifier
+

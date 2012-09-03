@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.core.sasheditor,
  org.eclipse.papyrus.infra.core.sasheditor.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple,
@@ -6,11 +9,14 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor,
  org.eclipse.papyrus.infra.core.sasheditor.editor.actionbarcontributor,
  org.eclipse.papyrus.infra.core.sasheditor.editor.gef,
  org.eclipse.papyrus.infra.core.sasheditor.multipage.editor
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singlet
+ on:=true
 Require-Bundle: org.eclipse.ui,
  org.eclipse.gef,
  org.junit;bundle-version="4.8.1";resolution:=optional,
@@ -19,9 +25,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.core.contexts;bundle-version="1.0.0";resolution:=optional,
  org.eclipse.e4.ui.model.workbench;bundle-version="0.10.0";resolution:=optional,
  org.eclipse.core.expressions;bundle-version="3.4.300"
-Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singleton:=true
 

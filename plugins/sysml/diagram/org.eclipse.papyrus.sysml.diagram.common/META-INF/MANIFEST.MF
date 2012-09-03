@@ -1,4 +1,37 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.sysml.diagram.common.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleto
+ n:=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.gmf.diagram.common.commands,
+ org.eclipse.papyrus.gmf.diagram.common.compatibility,
+ org.eclipse.papyrus.gmf.diagram.common.edit.part,
+ org.eclipse.papyrus.gmf.diagram.common.edit.policy,
+ org.eclipse.papyrus.gmf.diagram.common.factory,
+ org.eclipse.papyrus.gmf.diagram.common.locator,
+ org.eclipse.papyrus.gmf.diagram.common.provider,
+ org.eclipse.papyrus.sysml.diagram.common,
+ org.eclipse.papyrus.sysml.diagram.common.commands,
+ org.eclipse.papyrus.sysml.diagram.common.dialogs,
+ org.eclipse.papyrus.sysml.diagram.common.edit.part,
+ org.eclipse.papyrus.sysml.diagram.common.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.common.factory,
+ org.eclipse.papyrus.sysml.diagram.common.figure,
+ org.eclipse.papyrus.sysml.diagram.common.messages,
+ org.eclipse.papyrus.sysml.diagram.common.parser,
+ org.eclipse.papyrus.sysml.diagram.common.preferences,
+ org.eclipse.papyrus.sysml.diagram.common.utils,
+ org.eclipse.papyrus.uml.diagram.common.dnd.helper,
+ org.eclipse.papyrus.uml.diagram.common.edit.part,
+ org.eclipse.papyrus.uml.diagram.common.factory,
+ org.eclipse.papyrus.uml.diagram.common.figure,
+ org.eclipse.papyrus.uml.diagram.common.parser,
+ org.eclipse.papyrus.uml.diagram.common.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
@@ -25,38 +58,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.pastemanager;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.gmf.diagram.common.commands,
- org.eclipse.papyrus.gmf.diagram.common.compatibility,
- org.eclipse.papyrus.gmf.diagram.common.edit.part,
- org.eclipse.papyrus.gmf.diagram.common.edit.policy,
- org.eclipse.papyrus.gmf.diagram.common.factory,
- org.eclipse.papyrus.gmf.diagram.common.locator,
- org.eclipse.papyrus.gmf.diagram.common.provider,
- org.eclipse.papyrus.sysml.diagram.common,
- org.eclipse.papyrus.sysml.diagram.common.commands,
- org.eclipse.papyrus.sysml.diagram.common.dialogs,
- org.eclipse.papyrus.sysml.diagram.common.edit.part,
- org.eclipse.papyrus.sysml.diagram.common.edit.policy,
- org.eclipse.papyrus.sysml.diagram.common.factory,
- org.eclipse.papyrus.sysml.diagram.common.figure,
- org.eclipse.papyrus.sysml.diagram.common.messages,
- org.eclipse.papyrus.sysml.diagram.common.parser,
- org.eclipse.papyrus.sysml.diagram.common.preferences,
- org.eclipse.papyrus.sysml.diagram.common.utils,
- org.eclipse.papyrus.uml.diagram.common.dnd.helper,
- org.eclipse.papyrus.uml.diagram.common.edit.part,
- org.eclipse.papyrus.uml.diagram.common.factory,
- org.eclipse.papyrus.uml.diagram.common.figure,
- org.eclipse.papyrus.uml.diagram.common.parser,
- org.eclipse.papyrus.uml.diagram.common.utils
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.sysml.diagram.common.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleto
- n:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

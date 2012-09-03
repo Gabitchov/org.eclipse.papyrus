@@ -1,4 +1,9 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
+Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.diagram.common.actions,
  org.eclipse.papyrus.uml.diagram.common.actions.handlers,
@@ -41,12 +46,15 @@ Export-Package: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.diagram.common.util,
  org.eclipse.papyrus.uml.diagram.common.util.functions,
  org.eclipse.papyrus.uml.diagram.common.util.predicates
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Ant-Version: Apache Ant 1.7.0
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common;singleton:
+ =true
 Bundle-Localization: plugin
-Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
@@ -81,10 +89,4 @@ Require-Bundle: org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.papyrus.uml.profile;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.appearance;bundle-version="0.9.0"
-Bundle-Vendor: %providerName
-Ant-Version: Apache Ant 1.7.0
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common;singleton:=true
-Eclipse-BuddyPolicy: dependent
+

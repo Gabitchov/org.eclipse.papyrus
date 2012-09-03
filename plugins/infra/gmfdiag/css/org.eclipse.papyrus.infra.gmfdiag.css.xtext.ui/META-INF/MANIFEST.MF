@@ -1,10 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: CSS Editor UI (Incubation)
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSAct
+ ivator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: Eclipse Modeling Project
-Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui; singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.ui.contentassist,
+ org.eclipse.papyrus.infra.gmfdiag.ui.contentassist.antlr,
+ org.eclipse.papyrus.infra.gmfdiag.ui.internal
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
@@ -18,8 +23,5 @@ Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext,
  org.eclipse.compare,
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.e4.ui.css.core;bundle-version="0.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.ui.contentassist,
- org.eclipse.papyrus.infra.gmfdiag.ui.contentassist.antlr,
- org.eclipse.papyrus.infra.gmfdiag.ui.internal
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSActivator
+Bundle-Version: 0.9.1.qualifier
+

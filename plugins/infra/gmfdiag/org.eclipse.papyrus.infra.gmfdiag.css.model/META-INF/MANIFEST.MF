@@ -1,16 +1,13 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.model;singleton:=true
-Bundle-Version: 0.9.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.model,
- org.eclipse.papyrus.infra.gmfdiag.css.stylesheets,
- org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl,
- org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.util
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.model;singl
+ eton:=true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.ui,
@@ -21,4 +18,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.1",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.2",
  org.eclipse.uml2.uml;bundle-version="4.0.0"
-Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.model,
+ org.eclipse.papyrus.infra.gmfdiag.css.stylesheets,
+ org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl,
+ org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.util
+Bundle-Version: 0.9.1.qualifier
+

@@ -1,4 +1,25 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer;singleton
+ :=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.views.modelexplorer,
+ org.eclipse.papyrus.views.modelexplorer.actionprovider,
+ org.eclipse.papyrus.views.modelexplorer.actions,
+ org.eclipse.papyrus.views.modelexplorer.commands,
+ org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview,
+ org.eclipse.papyrus.views.modelexplorer.dialog,
+ org.eclipse.papyrus.views.modelexplorer.dnd,
+ org.eclipse.papyrus.views.modelexplorer.factory,
+ org.eclipse.papyrus.views.modelexplorer.handler,
+ org.eclipse.papyrus.views.modelexplorer.matching,
+ org.eclipse.papyrus.views.modelexplorer.preferences,
+ org.eclipse.papyrus.views.modelexplorer.queries
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator;bundle-version="3.4.0",
@@ -31,24 +52,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
  com.google.guava;bundle-version="10.0.1"
-Export-Package: org.eclipse.papyrus.views.modelexplorer,
- org.eclipse.papyrus.views.modelexplorer.actionprovider,
- org.eclipse.papyrus.views.modelexplorer.actions,
- org.eclipse.papyrus.views.modelexplorer.commands,
- org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview,
- org.eclipse.papyrus.views.modelexplorer.dialog,
- org.eclipse.papyrus.views.modelexplorer.dnd,
- org.eclipse.papyrus.views.modelexplorer.factory,
- org.eclipse.papyrus.views.modelexplorer.handler,
- org.eclipse.papyrus.views.modelexplorer.matching,
- org.eclipse.papyrus.views.modelexplorer.preferences,
- org.eclipse.papyrus.views.modelexplorer.queries
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
+

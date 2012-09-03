@@ -1,4 +1,21 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.extensionpoints.editors.Activato
+ r
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.editors;singl
+ eton:=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.extensionpoints.editors,
+ org.eclipse.papyrus.extensionpoints.editors.configuration,
+ org.eclipse.papyrus.extensionpoints.editors.definition,
+ org.eclipse.papyrus.extensionpoints.editors.preferences,
+ org.eclipse.papyrus.extensionpoints.editors.ui,
+ org.eclipse.papyrus.extensionpoints.editors.ui.images,
+ org.eclipse.papyrus.extensionpoints.editors.utils
 Require-Bundle: org.eclipse.ui.editors;bundle-version="3.4.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
  org.eclipse.emf.edit.ui;bundle-version="2.4.0",
@@ -8,22 +25,5 @@ Require-Bundle: org.eclipse.ui.editors;bundle-version="3.4.0",
  org.eclipse.draw2d;bundle-version="3.7.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
  org.eclipse.papyrus.infra.constraints;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.extensionpoints.editors,
- org.eclipse.papyrus.extensionpoints.editors.configuration,
- org.eclipse.papyrus.extensionpoints.editors.definition,
- org.eclipse.papyrus.extensionpoints.editors.preferences,
- org.eclipse.papyrus.extensionpoints.editors.ui,
- org.eclipse.papyrus.extensionpoints.editors.ui.images,
- org.eclipse.papyrus.extensionpoints.editors.utils
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.extensionpoints.editors.Activato
- r
-Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.editors;singl
- eton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

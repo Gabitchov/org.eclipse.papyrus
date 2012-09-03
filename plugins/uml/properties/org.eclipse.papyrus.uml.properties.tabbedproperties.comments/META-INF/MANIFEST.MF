@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.uml.properties.tabbedproperties.
+ comments.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.properties.tabbedproperti
+ es.comments;singleton:=true
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.properties.tabbedproperties.comments,
+ org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.views.properties.tabbed,
@@ -13,14 +25,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
  org.eclipse.gef;bundle-version="3.7.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0"
-Export-Package: org.eclipse.papyrus.uml.properties.tabbedproperties.comments,
- org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.properties.tabbedproperties.comments.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.properties.tabbedproperties.comments;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
+Bundle-Version: 0.9.1.qualifier
+

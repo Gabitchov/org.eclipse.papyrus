@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.papyrus.views.properties,
  org.eclipse.papyrus.views.properties.catalog,
  org.eclipse.papyrus.views.properties.creation,
@@ -11,12 +15,15 @@ Export-Package: org.eclipse.papyrus.views.properties,
  org.eclipse.papyrus.views.properties.widgets,
  org.eclipse.papyrus.views.properties.widgets.layout,
  org.eclipse.papyrus.views.properties.xwt
-Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.1.qualifier
+Bundle-Name: %pluginName
 Bundle-ClassPath: .,
  bin
-Bundle-Name: %pluginName
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=t
+ rue
 Require-Bundle: com.ibm.icu,
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.emf.ecore;bundle-version="2.6.0",
@@ -45,9 +52,4 @@ Require-Bundle: com.ibm.icu,
  org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.tools;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.constraints;bundle-version="0.9.0";visibility:=reexport
-Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
-Eclipse-BuddyPolicy: dependent
+

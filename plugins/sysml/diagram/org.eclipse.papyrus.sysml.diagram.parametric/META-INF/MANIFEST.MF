@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.part.Sy
+ smlDiagramEditorPlugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.sysml.diagram.parametric,
  org.eclipse.papyrus.sysml.diagram.parametric.edit.commands,
  org.eclipse.papyrus.sysml.diagram.parametric.edit.helpers,
@@ -10,11 +14,15 @@ Export-Package: org.eclipse.papyrus.sysml.diagram.parametric,
  org.eclipse.papyrus.sysml.diagram.parametric.preferences,
  org.eclipse.papyrus.sysml.diagram.parametric.providers,
  org.eclipse.papyrus.sysml.diagram.parametric.sheet
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
+Eclipse-LazyStart: true
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;sing
+ leton:=true
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -58,11 +66,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0"
-Bundle-Vendor: %providerName
-Eclipse-LazyStart: true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.part.Sy
- smlDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;singleton:=true
 

@@ -1,10 +1,23 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext; singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;singleton:=true
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.util,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.formatting;uses:="org.eclipse.xtext.formatting.impl",
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.generator;uses:="org.eclipse.emf.ecore.resource,org.eclipse.xtext.generator",
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.scoping;uses:="org.eclipse.papyrus.alf.scoping",
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services,
+ org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation
 Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="2.1.0";resolution:=optional;visibility:=reexport,
  org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
@@ -27,17 +40,5 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.alf;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.formatting;uses:="org.eclipse.xtext.formatting.impl",
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.generator;uses:="org.eclipse.emf.ecore.resource,org.eclipse.xtext.generator",
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.scoping;uses:="org.eclipse.papyrus.alf.scoping",
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.validation,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.util,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr.internal
-Bundle-Localization: plugin
+Bundle-Version: 0.9.1.qualifier
+

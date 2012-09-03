@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiag
+ ramEditorPlugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.diagram.usecase,
  org.eclipse.papyrus.uml.diagram.usecase.command,
  org.eclipse.papyrus.uml.diagram.usecase.draw2d,
@@ -15,11 +19,14 @@ Export-Package: org.eclipse.papyrus.uml.diagram.usecase,
  org.eclipse.papyrus.uml.diagram.usecase.preferences,
  org.eclipse.papyrus.uml.diagram.usecase.providers,
  org.eclipse.papyrus.uml.diagram.usecase.sheet
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
+Eclipse-LazyStart: true
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase;singleton:=true
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,
@@ -62,9 +69,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
-Bundle-Vendor: %providerName
-Eclipse-LazyStart: true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase; singleton:=true
+

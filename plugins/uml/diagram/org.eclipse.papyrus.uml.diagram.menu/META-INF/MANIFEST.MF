@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.menu.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.menu;singleton:=t
+ rue
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.diagram.menu,
+ org.eclipse.papyrus.uml.diagram.menu.actions,
+ org.eclipse.papyrus.uml.diagram.menu.actions.handlers
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
  org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
@@ -15,16 +27,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views.log,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.uml.diagram.menu,
- org.eclipse.papyrus.uml.diagram.menu.actions,
- org.eclipse.papyrus.uml.diagram.menu.actions.handlers
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.menu.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.menu;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

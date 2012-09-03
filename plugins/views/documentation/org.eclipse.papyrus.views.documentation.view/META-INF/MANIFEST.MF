@@ -1,9 +1,14 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.views.documentation.view
-Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
-Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.views.documentation.view.DocView
+ Plugin
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.views.documentation.view;sing
+ leton:=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui.editors;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -12,9 +17,6 @@ Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.core.resources,
  org.eclipse.epf.richtext,
  org.eclipse.papyrus.views.documentation;bundle-version="0.9.0";visibility:=reexport
-Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.views.documentation.view.DocViewPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.views.documentation.view;singleton:=true
+Export-Package: org.eclipse.papyrus.views.documentation.view
+Bundle-Version: 0.9.1.qualifier
 

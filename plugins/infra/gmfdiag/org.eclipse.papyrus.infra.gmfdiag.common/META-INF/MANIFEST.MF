@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.commands,
  org.eclipse.papyrus.infra.gmfdiag.common.editpart,
@@ -10,11 +13,14 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.preferences,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
+Bundle-Version: 0.9.1.qualifier
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleto
+ n:=true
 Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.emf.ecore.edit;bundle-version="2.5.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
@@ -24,9 +30,4 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
  org.eclipse.core.databinding;bundle-version="1.4.1"
-Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleton:=true
 

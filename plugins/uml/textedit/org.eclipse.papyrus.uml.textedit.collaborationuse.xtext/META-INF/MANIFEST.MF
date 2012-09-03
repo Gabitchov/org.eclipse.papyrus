@@ -1,4 +1,24 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.collaborationuse
+ .xtext;singleton:=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.util,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -17,23 +37,5 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
  org.apache.log4j;bundle-version="1.2.15"
-Export-Package: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.util,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.generator
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
+
