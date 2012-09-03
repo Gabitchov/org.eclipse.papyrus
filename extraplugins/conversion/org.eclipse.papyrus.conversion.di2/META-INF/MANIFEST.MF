@@ -1,16 +1,18 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.conversion.di2;singleton:=true
-Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %pluginProvider
+Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.conversion.di2,
- org.eclipse.papyrus.conversion.di2.impl,
- org.eclipse.papyrus.conversion.di2.util
+Bundle-SymbolicName: org.eclipse.papyrus.conversion.di2;singleton:=tru
+ e
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.uml2.uml
+Export-Package: org.eclipse.papyrus.conversion.di2,
+ org.eclipse.papyrus.conversion.di2.impl,
+ org.eclipse.papyrus.conversion.di2.util
+Bundle-Version: 0.9.1.qualifier
 Eclipse-LazyStart: true
+

@@ -1,13 +1,16 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.tests;singleton:=true
-Bundle-Version: 0.9.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Fragment-Host: org.eclipse.papyrus.uml.diagram.common;bundle-version="
+ 0.9.0"
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.tests;singleto
+ n:=true
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.diagram.common.tests.parser
 Require-Bundle: org.eclipse.core.runtime,
  org.junit4
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Fragment-Host: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.diagram.common.tests.parser
-Bundle-Localization: plugin
+Bundle-Version: 0.9.1.qualifier
+

@@ -1,16 +1,17 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.layout.algorithms.verticalsymmet
+ ryalgorithm.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.verticalSym
+ metryAlgorithm;singleton:=true
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.layout;bundle-version="0.9.0",
  org.eclipse.zest.layouts
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.layout.algorithms.verticalsy
- mmetryalgorithm.Activator
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

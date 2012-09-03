@@ -1,14 +1,17 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.compare.report.ui;singleton:=true
-Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.compare.report.ui.Activator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.compare.report.ui;singleton:=
+ true
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.compare.report.ui.common
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.ui.ide, 
+ org.eclipse.ui.ide,
  org.eclipse.papyrus.compare.report,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
@@ -18,7 +21,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.ecore,
  org.eclipse.acceleo.model,
  org.eclipse.acceleo.engine
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.1.qualifier
 Eclipse-LazyStart: true
-Export-Package: org.eclipse.papyrus.compare.report.ui.common
+

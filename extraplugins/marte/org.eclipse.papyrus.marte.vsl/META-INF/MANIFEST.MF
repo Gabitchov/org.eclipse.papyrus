@@ -1,16 +1,12 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.marte.vsl,
- org.eclipse.papyrus.marte.vsl.extensions,
- org.eclipse.papyrus.marte.vsl.parseTreeConstruction,
- org.eclipse.papyrus.marte.vsl.parser.antlr,
- org.eclipse.papyrus.marte.vsl.parser.antlr.internal,
- org.eclipse.papyrus.marte.vsl.scoping,
- org.eclipse.papyrus.marte.vsl.scoping.visitors,
- org.eclipse.papyrus.marte.vsl.services,
- org.eclipse.papyrus.marte.vsl.vSL,
- org.eclipse.papyrus.marte.vsl.vSL.impl,
- org.eclipse.papyrus.marte.vsl.vSL.util,
- org.eclipse.papyrus.marte.vsl.validation
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl;singleton:=true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -26,13 +22,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.apache.log4j;bundle-version="1.2.15"
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
+Export-Package: org.eclipse.papyrus.marte.vsl,
+ org.eclipse.papyrus.marte.vsl.extensions,
+ org.eclipse.papyrus.marte.vsl.parseTreeConstruction,
+ org.eclipse.papyrus.marte.vsl.parser.antlr,
+ org.eclipse.papyrus.marte.vsl.parser.antlr.internal,
+ org.eclipse.papyrus.marte.vsl.scoping,
+ org.eclipse.papyrus.marte.vsl.scoping.visitors,
+ org.eclipse.papyrus.marte.vsl.services,
+ org.eclipse.papyrus.marte.vsl.vSL,
+ org.eclipse.papyrus.marte.vsl.vSL.impl,
+ org.eclipse.papyrus.marte.vsl.vSL.util,
+ org.eclipse.papyrus.marte.vsl.validation
+Bundle-Version: 0.9.1.qualifier
 

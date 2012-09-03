@@ -1,14 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation;singleton:=true
-Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.dsml.validation.Activator
+Bundle-Vendor: %pluginProvider
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation;singleton:=tr
+ ue
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.dsml.validation
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %pluginProvider
-Export-Package: org.eclipse.papyrus.dsml.validation
-Bundle-Localization: plugin
+Bundle-Version: 0.9.1.qualifier
 

@@ -1,18 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.java.generator.metamodel.jdt.editor;singleton:=true
-Bundle-Version: 0.8.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation.JdtmmEditorPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.java.generator.metamodel.jdt.jdt
+ mm.presentation.JdtmmEditorPlugin$Implementation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.presentation
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm
+ .presentation
+Bundle-Version: 0.9.1.qualifier
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.java.generator.metamodel.jdt.
+ editor;singleton:=true
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.papyrus.java.generator.metamodel.jdt.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+

@@ -1,10 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: Properties view customization Tests (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.customization.properties.tests
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.customization.properties.tests.Activator
+Bundle-Activator: org.eclipse.papyrus.customization.properties.tests.A
+ ctivator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: Eclipse Modeling Project
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.customization.properties.test
+ s
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.customization.properties.tests,
+ org.eclipse.papyrus.customization.properties.tests.qvt
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.customization.properties.model.xwt;bundle-version="0.9.0",
@@ -20,7 +25,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.papyrus.junit.utils;bundle-version="0.9.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.customization.properties.tests,
- org.eclipse.papyrus.customization.properties.tests.qvt
+Bundle-Version: 0.9.1.qualifier
+

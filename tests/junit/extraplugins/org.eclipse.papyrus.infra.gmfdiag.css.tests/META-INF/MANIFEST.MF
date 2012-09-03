@@ -1,10 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: CSS Tests (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.tests.Activato
+ r
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: Eclipse Modeling Project
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.tests
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.tests,
+ org.eclipse.papyrus.infra.gmfdiag.css.tests.tests
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit,
@@ -22,7 +26,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.tests,
- org.eclipse.papyrus.infra.gmfdiag.css.tests.tests
+Bundle-Version: 0.9.1.qualifier
+

@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-ClassPath: .,
+ bin
+Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.recipetest.Act
+ ivator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %pluginProvider
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.recipetest;
+ singleton:=true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.common.core,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.papyrus.uml.diagram.icons;bundle-version="0.9.0",
  org.eclipse.uml2.uml;bundle-version="3.1.100"
-Bundle-Vendor: %pluginProvider
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- bin
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.recipetest.Act
- ivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.recipetest;
- singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.9.1.qualifier
 

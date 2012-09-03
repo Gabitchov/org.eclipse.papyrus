@@ -1,14 +1,19 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.extendedtypes.emf.edit;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.provider.ModifySemanticValuesActionConfigurationEditPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.extendedtypes.emf.modifysemantic
+ valuesactionconfiguration.provider.ModifySemanticValuesActionConfigur
+ ationEditPlugin$Implementation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.extendedtypes.emf.modifysemanticvaluesactionconfiguration.provider
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.extendedtypes.emf.modifysemanticva
+ luesactionconfiguration.provider
+Bundle-Version: 0.9.1.qualifier
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.extendedtypes.emf.edit;single
+ ton:=true
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.extendedtypes.emf;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
@@ -22,4 +27,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+
