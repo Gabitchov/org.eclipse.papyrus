@@ -2,15 +2,13 @@ Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.validation.Activa
  tor
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %pluginProvider
-Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.validation;sin
  gleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.services.validation,
- org.eclipse.papyrus.infra.services.validation.preferences
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf;bundle-version="2.6.0",
@@ -20,8 +18,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui;bundle-version="2.6.0",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.0.100",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.services.decoration;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.services.decoration;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1"
+Export-Package: org.eclipse.papyrus.infra.services.validation,
+ org.eclipse.papyrus.infra.services.validation.preferences
 Bundle-Version: 0.9.1.qualifier
 

@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.editor.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.papyrus.editor;singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.editor;singleton:=true
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.editor
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0"
+Export-Package: org.eclipse.papyrus.editor
 Bundle-Version: 0.9.1.qualifier
 

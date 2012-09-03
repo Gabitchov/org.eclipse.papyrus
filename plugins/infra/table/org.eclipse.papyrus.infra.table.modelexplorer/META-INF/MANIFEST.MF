@@ -2,23 +2,19 @@ Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.table.modelexplorer.Activa
  tor
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %pluginProvider
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.modelexplorer;sin
  gleton:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.table.modelexplorer,
- org.eclipse.papyrus.infra.table.modelexplorer.handlers,
- org.eclipse.papyrus.infra.table.modelexplorer.messages,
- org.eclipse.papyrus.infra.table.modelexplorer.providers
 Require-Bundle: org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core,
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
  org.eclipse.core.expressions,
  org.eclipse.emf.facet.widgets.nattable.instance;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.1",
  org.eclipse.uml2.uml,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.core.runtime;bundle-version="3.7.0",
@@ -27,5 +23,9 @@ Require-Bundle: org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  com.google.guava;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0"
+Export-Package: org.eclipse.papyrus.infra.table.modelexplorer,
+ org.eclipse.papyrus.infra.table.modelexplorer.handlers,
+ org.eclipse.papyrus.infra.table.modelexplorer.messages,
+ org.eclipse.papyrus.infra.table.modelexplorer.providers
 Bundle-Version: 0.9.1.qualifier
 

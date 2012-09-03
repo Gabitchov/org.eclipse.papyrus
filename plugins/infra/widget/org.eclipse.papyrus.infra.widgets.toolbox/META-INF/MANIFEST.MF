@@ -1,13 +1,18 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets.toolbox;singlet
  on:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.gef;bundle-version="3.7.1",
+ org.eclipse.ui.forms;bundle-version="3.5.100"
 Export-Package: org.eclipse.papyrus.infra.widgets.toolbox,
  org.eclipse.papyrus.infra.widgets.toolbox.dialog,
  org.eclipse.papyrus.infra.widgets.toolbox.draw2d,
@@ -19,10 +24,5 @@ Export-Package: org.eclipse.papyrus.infra.widgets.toolbox,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.utils,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.view,
  org.eclipse.papyrus.infra.widgets.toolbox.utils
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.core.runtime,
- org.eclipse.ui,
- org.eclipse.gef;bundle-version="3.7.1",
- org.eclipse.ui.forms;bundle-version="3.5.100"
 Bundle-Version: 0.9.1.qualifier
 

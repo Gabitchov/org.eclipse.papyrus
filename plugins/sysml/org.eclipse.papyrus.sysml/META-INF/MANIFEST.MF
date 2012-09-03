@@ -1,15 +1,12 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.papyrus.sysml;singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.papyrus.sysml;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.0",
- org.eclipse.uml2.uml;bundle-version="4.0.0";visibility:=reexport,
- org.eclipse.uml2.uml.profile.l2;bundle-version="1.0.0";visibility:=reexport
 Export-Package: org.eclipse.papyrus.sysml,
  org.eclipse.papyrus.sysml.activities,
  org.eclipse.papyrus.sysml.activities.internal.impl,
@@ -43,5 +40,8 @@ Export-Package: org.eclipse.papyrus.sysml,
  org.eclipse.papyrus.sysml.usecases.internal.impl,
  org.eclipse.papyrus.sysml.usecases.util,
  org.eclipse.papyrus.sysml.util
+Require-Bundle: org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.1",
+ org.eclipse.uml2.uml;bundle-version="4.0.0";visibility:=reexport,
+ org.eclipse.uml2.uml.profile.l2;bundle-version="1.0.0";visibility:=reexport
 Bundle-Version: 0.9.1.qualifier
 

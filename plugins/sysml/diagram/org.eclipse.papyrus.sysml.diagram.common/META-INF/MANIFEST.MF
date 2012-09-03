@@ -1,13 +1,39 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.common.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleto
  n:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.papyrus.sysml;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.1",
+ org.eclipse.core.expressions,
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.editor;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.modelexplorer.widgets;bundle-version="0.9.1",
+ org.eclipse.draw2d;bundle-version="3.7.1",
+ org.eclipse.gmf.runtime.diagram.core;bundle-version="1.4.1",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.pastemanager;bundle-version="0.9.1"
 Export-Package: org.eclipse.papyrus.gmf.diagram.common.commands,
  org.eclipse.papyrus.gmf.diagram.common.compatibility,
  org.eclipse.papyrus.gmf.diagram.common.edit.part,
@@ -32,31 +58,5 @@ Export-Package: org.eclipse.papyrus.gmf.diagram.common.commands,
  org.eclipse.papyrus.uml.diagram.common.figure,
  org.eclipse.papyrus.uml.diagram.common.parser,
  org.eclipse.papyrus.uml.diagram.common.utils
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.sysml;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
- org.eclipse.core.expressions,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.editor;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.9.0",
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.modelexplorer.widgets;bundle-version="0.9.0",
- org.eclipse.draw2d;bundle-version="3.7.1",
- org.eclipse.gmf.runtime.diagram.core;bundle-version="1.4.1",
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.pastemanager;bundle-version="0.9.0"
 Bundle-Version: 0.9.1.qualifier
 

@@ -1,32 +1,32 @@
 Manifest-Version: 1.0
 Bundle-Name: Papyrus EMF Editor (Incubation)
 Bundle-Activator: org.eclipse.papyrus.infra.emf.editor.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Eclipse Modeling Project
 Bundle-ManifestVersion: 2
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.editor;singleton:=t
  rue
 Bundle-ActivationPolicy: lazy
 Eclipse-BuddyPolicy: dependent
-Export-Package: org.eclipse.papyrus.infra.emf.editor.part,
- org.eclipse.papyrus.infra.emf.editor.providers
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.7.0",
  org.eclipse.emf.ecore.editor;bundle-version="2.7.0",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
- org.eclipse.papyrus.infra.emf.newchild;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.emf.newchild;bundle-version="0.9.1",
  org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.views.properties;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.properties;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.emf.facet.efacet.core;bundle-version="0.2.0",
  org.eclipse.emf.facet.custom.core;bundle-version="0.2.0",
  org.eclipse.emf.facet.custom.ui;bundle-version="0.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.1"
+Export-Package: org.eclipse.papyrus.infra.emf.editor.part,
+ org.eclipse.papyrus.infra.emf.editor.providers
 Bundle-Version: 0.9.1.qualifier
 

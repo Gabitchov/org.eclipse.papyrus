@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.extensionpoints.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.extensionpoints;singleton
  :=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.uml2.uml,
- org.eclipse.ui.views.properties.tabbed,
- org.eclipse.emf.mapping.ecore2xml
 Export-Package: org.eclipse.papyrus.uml.extensionpoints,
  org.eclipse.papyrus.uml.extensionpoints.library,
  org.eclipse.papyrus.uml.extensionpoints.metamodel,
  org.eclipse.papyrus.uml.extensionpoints.profile,
  org.eclipse.papyrus.uml.extensionpoints.standard,
  org.eclipse.papyrus.uml.extensionpoints.utils
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.uml2.uml,
+ org.eclipse.ui.views.properties.tabbed,
+ org.eclipse.emf.mapping.ecore2xml
 Bundle-Version: 0.9.1.qualifier
 

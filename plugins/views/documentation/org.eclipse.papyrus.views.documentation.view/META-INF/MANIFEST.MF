@@ -2,13 +2,14 @@ Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.views.documentation.view.DocView
  Plugin
-Bundle-ManifestVersion: 2
-Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.views.documentation.view;sing
  leton:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.views.documentation.view
 Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui.editors;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -16,7 +17,6 @@ Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.jface.text,
  org.eclipse.core.resources,
  org.eclipse.epf.richtext,
- org.eclipse.papyrus.views.documentation;bundle-version="0.9.0";visibility:=reexport
-Export-Package: org.eclipse.papyrus.views.documentation.view
+ org.eclipse.papyrus.views.documentation;bundle-version="0.9.1";visibility:=reexport
 Bundle-Version: 0.9.1.qualifier
 

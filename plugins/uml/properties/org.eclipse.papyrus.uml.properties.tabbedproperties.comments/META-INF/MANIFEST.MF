@@ -2,28 +2,28 @@ Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.properties.tabbedproperties.
  comments.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.uml.properties.tabbedproperti
  es.comments;singleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.properties.tabbedproperties.comments,
- org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.views.properties.tabbed,
  org.eclipse.emf.ecore;bundle-version="2.5.0",
  org.eclipse.uml2.uml;bundle-version="3.0.0",
  org.eclipse.emf.edit;bundle-version="2.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
  org.eclipse.epf.richtext;bundle-version="1.2.0",
  org.eclipse.emf.edit.ui;bundle-version="2.5.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.1",
  org.eclipse.gef;bundle-version="3.7.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0"
+Export-Package: org.eclipse.papyrus.uml.properties.tabbedproperties.comments,
+ org.eclipse.papyrus.uml.properties.tabbedproperties.comments.propertysection
 Bundle-Version: 0.9.1.qualifier
 

@@ -2,17 +2,17 @@ Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.discovery.ui.menu.Activato
  r
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.infra.discovery.ui.menu;singl
  eton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.discovery.ui.menu,
- org.eclipse.papyrus.infra.discovery.ui.menu.handler
 Require-Bundle: org.eclipse.ui;bundle-version="3.8.0",
  org.eclipse.core.runtime;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.discovery.ui;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.discovery.ui;bundle-version="0.9.1"
+Export-Package: org.eclipse.papyrus.infra.discovery.ui.menu,
+ org.eclipse.papyrus.infra.discovery.ui.menu.handler
 Bundle-Version: 0.9.1.qualifier
 

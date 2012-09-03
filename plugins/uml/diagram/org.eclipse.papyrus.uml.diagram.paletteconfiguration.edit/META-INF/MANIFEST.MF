@@ -14,10 +14,10 @@ Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.paletteconfigurat
  ion.edit;singleton:=true
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,

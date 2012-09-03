@@ -1,24 +1,12 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.collaborationuse
  .xtext;singleton:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.generator,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.util,
- org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -33,9 +21,21 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
  org.apache.log4j;bundle-version="1.2.15"
+Export-Package: org.eclipse.papyrus.uml.textedit.collaborationuse.xtext,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.util,
+ org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation
 Bundle-Version: 0.9.1.qualifier
 

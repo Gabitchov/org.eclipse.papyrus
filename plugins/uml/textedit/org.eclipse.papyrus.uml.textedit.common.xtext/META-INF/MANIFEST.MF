@@ -1,12 +1,24 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext;sin
  gleton:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.uml.textedit.common.xtext,
+ org.eclipse.papyrus.uml.textedit.common.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.common.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.common.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.common.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.common.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.common.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.common.xtext.services,
+ org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon,
+ org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl,
+ org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.util,
+ org.eclipse.papyrus.uml.textedit.common.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -25,18 +37,6 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.ui.ide,
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0",
  org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
-Export-Package: org.eclipse.papyrus.uml.textedit.common.xtext,
- org.eclipse.papyrus.uml.textedit.common.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.common.xtext.generator,
- org.eclipse.papyrus.uml.textedit.common.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.common.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.common.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.common.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.common.xtext.services,
- org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon,
- org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl,
- org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.util,
- org.eclipse.papyrus.uml.textedit.common.xtext.validation
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1"
 Bundle-Version: 0.9.1.qualifier
 

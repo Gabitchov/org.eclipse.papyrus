@@ -25,7 +25,8 @@ Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase;singleton
+ :=true
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -56,17 +57,17 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.1",
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.profile;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.appearance;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.service.types,
- org.eclipse.papyrus.infra.widgets,
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.profile;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.appearance;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.1"
 

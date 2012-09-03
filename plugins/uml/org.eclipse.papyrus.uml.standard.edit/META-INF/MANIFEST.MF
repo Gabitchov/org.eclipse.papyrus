@@ -12,7 +12,7 @@ Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.standard.edit;singleton:=
  true
-Require-Bundle: org.eclipse.papyrus.uml.standard;bundle-version="0.9.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.standard;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="3.6.0"
 

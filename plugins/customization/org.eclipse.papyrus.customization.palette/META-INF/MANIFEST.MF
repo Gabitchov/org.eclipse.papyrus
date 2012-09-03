@@ -1,15 +1,12 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.customization.palette;singlet
  on:=true
-Export-Package: org.eclipse.papyrus.customization.palette,
- org.eclipse.papyrus.customization.palette.dialog,
- org.eclipse.papyrus.customization.palette.proxies
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
  org.eclipse.pde.ui;bundle-version="3.6.0",
  org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
@@ -18,10 +15,13 @@ Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.1",
  org.eclipse.core.runtime;bundle-version="3.8.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0"
+Export-Package: org.eclipse.papyrus.customization.palette,
+ org.eclipse.papyrus.customization.palette.dialog,
+ org.eclipse.papyrus.customization.palette.proxies
 Bundle-Version: 0.9.1.qualifier
 

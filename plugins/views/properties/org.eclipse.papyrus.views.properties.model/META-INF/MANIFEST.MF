@@ -1,13 +1,16 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties.model;single
  ton:=true
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.7.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.constraints;bundle-version="0.9.1"
 Export-Package: org.eclipse.papyrus.views.properties.contexts,
  org.eclipse.papyrus.views.properties.contexts.impl,
  org.eclipse.papyrus.views.properties.contexts.util,
@@ -17,8 +20,5 @@ Export-Package: org.eclipse.papyrus.views.properties.contexts,
  org.eclipse.papyrus.views.properties.ui,
  org.eclipse.papyrus.views.properties.ui.impl,
  org.eclipse.papyrus.views.properties.ui.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;bundle-version="2.7.0";visibility:=reexport,
- org.eclipse.papyrus.infra.constraints;bundle-version="0.9.0"
 Bundle-Version: 0.9.1.qualifier
 

@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.export.internal.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.infra.export;singleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.export
 Require-Bundle: org.eclipse.ui.ide;bundle-version="3.7.0",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
  org.eclipse.core.expressions;bundle-version="3.4.300",
  org.eclipse.emf.common.ui;bundle-version="2.7.0",
- org.eclipse.papyrus.infra.onefile;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.onefile;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1"
+Export-Package: org.eclipse.papyrus.infra.export
 Bundle-Version: 0.9.1.qualifier
 

@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.ui.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.ui;singleton:=t
  rue
-Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.sysml.diagram.ui
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.1",
  org.eclipse.core.resources;bundle-version="3.7.0"
+Export-Package: org.eclipse.papyrus.sysml.diagram.ui
 Bundle-Version: 0.9.1.qualifier
 

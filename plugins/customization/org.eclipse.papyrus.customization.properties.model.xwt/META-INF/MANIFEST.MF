@@ -2,24 +2,24 @@ Manifest-Version: 1.0
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.customization.properties.model.x
  wt.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ManifestVersion: 2
 Bundle-Vendor: %Bundle-Vendor
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.customization.properties.mode
  l.xwt;singleton:=true
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.customization.properties.model.xwt
- .resource
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml;bundle-version="3.1.0",
  org.eclipse.gmt.modisco.xml;bundle-version="0.9.0",
  org.eclipse.gmt.modisco.xml.discoverer;bundle-version="0.9.0",
- org.eclipse.papyrus.views.properties;bundle-version="0.9.0",
- org.eclipse.papyrus.views.properties.model;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.properties;bundle-version="0.9.1",
+ org.eclipse.papyrus.views.properties.model;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
  org.eclipse.wst.xml.core;bundle-version="1.1.600",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.m2m.qvt.oml.project;bundle-version="3.1.0"
+Export-Package: org.eclipse.papyrus.customization.properties.model.xwt
+ .resource
 Bundle-Version: 0.9.1.qualifier
 

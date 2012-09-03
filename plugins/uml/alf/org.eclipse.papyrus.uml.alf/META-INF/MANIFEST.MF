@@ -1,25 +1,11 @@
 Manifest-Version: 1.0
 Bundle-Name: %pluginName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
-Bundle-Localization: plugin
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf;singleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.alf,
- org.eclipse.papyrus.uml.alf.alf,
- org.eclipse.papyrus.uml.alf.alf.impl,
- org.eclipse.papyrus.uml.alf.alf.util,
- org.eclipse.papyrus.uml.alf.formatting,
- org.eclipse.papyrus.uml.alf.generator,
- org.eclipse.papyrus.uml.alf.parser.antlr,
- org.eclipse.papyrus.uml.alf.parser.antlr.internal,
- org.eclipse.papyrus.uml.alf.scoping,
- org.eclipse.papyrus.uml.alf.serializer,
- org.eclipse.papyrus.uml.alf.services,
- org.eclipse.papyrus.uml.alf.syntax,
- org.eclipse.papyrus.uml.alf.validation,
- org.eclipse.papyrus.uml.alf.validation.typing
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -34,8 +20,22 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
  org.apache.log4j;bundle-version="1.2.15"
+Export-Package: org.eclipse.papyrus.uml.alf,
+ org.eclipse.papyrus.uml.alf.alf,
+ org.eclipse.papyrus.uml.alf.alf.impl,
+ org.eclipse.papyrus.uml.alf.alf.util,
+ org.eclipse.papyrus.uml.alf.formatting,
+ org.eclipse.papyrus.uml.alf.generator,
+ org.eclipse.papyrus.uml.alf.parser.antlr,
+ org.eclipse.papyrus.uml.alf.parser.antlr.internal,
+ org.eclipse.papyrus.uml.alf.scoping,
+ org.eclipse.papyrus.uml.alf.serializer,
+ org.eclipse.papyrus.uml.alf.services,
+ org.eclipse.papyrus.uml.alf.syntax,
+ org.eclipse.papyrus.uml.alf.validation,
+ org.eclipse.papyrus.uml.alf.validation.typing
 Bundle-Version: 0.9.1.qualifier
 
