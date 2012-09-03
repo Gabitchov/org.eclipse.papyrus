@@ -63,7 +63,7 @@ public class GetEditorNameQuery extends AbstractNestedEditorQuery<String> {
 
 	private static final void initContextFieldName() {
 		possibleNameFieldName = new ArrayList<String>();
-		possibleNameFieldName.add("name");
+		possibleNameFieldName.add("name"); //$NON-NLS-1$
 	}
 
 }

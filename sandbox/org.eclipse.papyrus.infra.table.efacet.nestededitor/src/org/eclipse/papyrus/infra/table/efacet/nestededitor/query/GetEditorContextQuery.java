@@ -40,8 +40,8 @@ public class GetEditorContextQuery extends AbstractNestedEditorQuery<EObject> {
 
 	private static final void initContextFieldName() {
 		possibleContextFieldName = new ArrayList<String>();
-		possibleContextFieldName.add("context");
-		possibleContextFieldName.add("element");
+		possibleContextFieldName.add("context"); //$NON-NLS-1$
+		possibleContextFieldName.add("element"); //$NON-NLS-1$
 	}
 
 }

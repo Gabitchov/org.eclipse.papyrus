@@ -99,7 +99,7 @@ public class HideNewColumnsListener extends AbstractTableTriggerListener {
 	 */
 	@Override
 	protected String getCommandName(Notification notification) {
-		return "Hide new columns command";
+		return "Hide new columns command"; //$NON-NLS-1$
 	}
 
 	/**

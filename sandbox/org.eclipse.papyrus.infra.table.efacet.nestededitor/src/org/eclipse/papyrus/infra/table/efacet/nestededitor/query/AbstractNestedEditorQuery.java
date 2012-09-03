@@ -22,7 +22,7 @@ public abstract class AbstractNestedEditorQuery<T2> implements IJavaQuery2<EObje
 			try {
 				serviceRegistry = ServiceUtilsForResource.getInstance().getServiceRegistry(res);
 			} catch (ServiceException e) {
-				Activator.log.error("Service Registry not found!", e);
+				Activator.log.error("Service Registry not found!", e); //$NON-NLS-1$
 			}
 		}
 		return serviceRegistry;
@@ -36,7 +36,7 @@ public abstract class AbstractNestedEditorQuery<T2> implements IJavaQuery2<EObje
 			try {
 				pageManager = ServiceUtils.getInstance().getIPageMngr(serviceRegistry);
 			} catch (ServiceException e) {
-				Activator.log.error("PageManager not found", e);
+				Activator.log.error("PageManager not found", e); //$NON-NLS-1$
 			}
 		}
 		return pageManager;
