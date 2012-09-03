@@ -24,7 +24,6 @@ import org.eclipse.core.internal.resources.Folder;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
@@ -71,15 +70,15 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	public void init() {
 		super.init();
-		if((manifest != null) && (manifestFile != null)) {
+		if((this.manifest != null) && (this.manifestFile != null)) {
 			return;
 		}
-		if(manifestFile == null) {
-			manifestFile = getManifestFile();
+		if(this.manifestFile == null) {
+			this.manifestFile = getManifestFile();
 		}
-		if(manifestFile != null) {
+		if(this.manifestFile != null) {
 			try {
-				manifest = new Manifest(manifestFile.getContents());
+				this.manifest = new Manifest(this.manifestFile.getContents());
 			} catch (final IOException e) {
 				Activator.log.error(e);
 			} catch (final CoreException e) {
@@ -97,7 +96,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 */
 	public void addDependency(final String dependency, final String version) {
 		final Name rqBundle = new Name(REQUIRED_BUNDLE);
-		String requireBundle = manifest.getMainAttributes().getValue(rqBundle);
+		String requireBundle = this.manifest.getMainAttributes().getValue(rqBundle);
 
 		//TODO : Improve the detection of existing dependency
 		//If a.b.c exists, then a.b cannot be added (Because it is already contained)
@@ -117,33 +116,36 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 				requireBundle += ";" + version; //$NON-NLS-1$
 			}
 		}
-		manifest.getMainAttributes().put(rqBundle, requireBundle);
+		this.manifest.getMainAttributes().put(rqBundle, requireBundle);
 	}
 
 	public void setDependenciesVersion(final String dependencyPattern, final String newVersion) {
 		final Name rqBundle = new Name(REQUIRED_BUNDLE);
-		final String requireBundle = manifest.getMainAttributes().getValue(rqBundle);
-		final String[] bundles = requireBundle.split(",");
-		String newBundleRequired = "";
-		for(int ii = 0; ii < bundles.length; ii++) {
-			final String[] dependency = bundles[ii].split(";");
-			Assert.isTrue(dependency.length <= 2);
-			if(dependency[0].contains(dependencyPattern)) {
-				final String newBundleVersion = "bundle-version=" + '"' + newVersion + '"';
-				newBundleRequired += dependency[0] + ";" + newBundleVersion;
-			} else {
-				for(int i = 0; i < dependency.length; i++) {
-					newBundleRequired += dependency[i];
-					if(i < (dependency.length - 1)) {
-						newBundleRequired += ";";
+		final String requireBundles = this.manifest.getMainAttributes().getValue(rqBundle);
+		final String[] bundles = requireBundles.split(",");
+		String newRequiredBundles = "";
+		for(int ii = 0; ii < bundles.length; ii++) {//we iterate on the declared dependencies
+			final String currentDependency = bundles[ii];
+			final String[] dependencyValue = currentDependency.split(";");
+			if(dependencyValue[0].contains(dependencyPattern)) {
+				final String newBundleVersion = BUNDLE_VERSION + "=" + '"' + newVersion + '"';
+				newRequiredBundles += dependencyValue[0] + ";" + newBundleVersion;
+				for(int i = 1; i < dependencyValue.length; i++) {
+					final String declaration = dependencyValue[i];
+					if(declaration.contains(BUNDLE_VERSION + "=")) {
+						//we ignore it
+					} else {
+						newRequiredBundles += ";" + dependencyValue[i];//we add the others declaration
 					}
 				}
+			} else {
+				newRequiredBundles += currentDependency;//we copy the existing declaration
 			}
 			if(ii < (bundles.length - 1)) {
-				newBundleRequired += ",";
+				newRequiredBundles += ",";
 			}
 		}
-		setValue(REQUIRED_BUNDLE, newBundleRequired);
+		setValue(REQUIRED_BUNDLE, newRequiredBundles);
 
 	}
 
@@ -164,7 +166,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void setValue(final String key, final String name, final String value) {
-		manifest.getMainAttributes().putValue(key, value);
+		this.manifest.getMainAttributes().putValue(key, value);
 		//		this.manifest.getAttributes(key).put(name, value);
 	}
 
@@ -185,7 +187,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void removeValue(final String key) {
-		manifest.getAttributes(key).remove(key);
+		this.manifest.getAttributes(key).remove(key);
 	}
 
 	/**
@@ -223,10 +225,10 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
 		try {
-			manifest.write(os);
+			this.manifest.write(os);
 
 			final StringReader reader = new StringReader(os.toString("UTF-8")); //$NON-NLS-1$
-			manifestFile.setContents(new InputStream() {
+			this.manifestFile.setContents(new InputStream() {
 
 				@Override
 				public int read() throws IOException {
@@ -235,7 +237,12 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			}, true, true, null);
 
 			//Use the PDE formatter for ManifestFiles
-			FormatOperation.format(manifestFile, new NullProgressMonitor());
+			try {
+				FormatOperation.format(this.manifestFile, new NullProgressMonitor());
+			} catch (final Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (final IOException ex) {
 			Activator.log.error(ex);
 		} catch (final CoreException ex) {
@@ -262,22 +269,22 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	public void createFiles(final Set<String> files) {
 		if(files.contains(MANIFEST_PATH)) {
-			manifestFile = getProject().getFile(MANIFEST_PATH);
-			if(!manifestFile.exists()) {
+			this.manifestFile = getProject().getFile(MANIFEST_PATH);
+			if(!this.manifestFile.exists()) {
 				try {
 					final String input = "Manifest-Version: 1.0\n"; //without the "/n", it doesn't work!!!!! //$NON-NLS-1$
-					if(!manifestFile.getParent().exists()) {
-						final IContainer parent = manifestFile.getParent();
+					if(!this.manifestFile.getParent().exists()) {
+						final IContainer parent = this.manifestFile.getParent();
 						if(parent instanceof Folder) {
 							if(!parent.exists()) {
 								((Folder)parent).create(true, false, null);
 							}
 						}
 					}
-					manifestFile.create(getInputStream(input), true, null);
-					manifestFile = getProject().getFile(MANIFEST_PATH);
+					this.manifestFile.create(getInputStream(input), true, null);
+					this.manifestFile = getProject().getFile(MANIFEST_PATH);
 
-					manifest = new Manifest(manifestFile.getContents());
+					this.manifest = new Manifest(this.manifestFile.getContents());
 
 					final int i;
 					//					InputStream is = this.manifestFile.getContents();
@@ -316,7 +323,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			newName = "noName"; //$NON-NLS-1$
 		}
 		final Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
-		manifest.getMainAttributes().put(symbolicName, newName);
+		this.manifest.getMainAttributes().put(symbolicName, newName);
 	}
 
 	/**
@@ -326,9 +333,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public String getSymbolicBundleName() {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
-			final String name = manifest.getMainAttributes().getValue(symbolicName);
+			final String name = this.manifest.getMainAttributes().getValue(symbolicName);
 			return name;
 		}
 		return null;
@@ -341,9 +348,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public String getBundleVersion() {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name symbolicName = new Name(BUNDLE_VERSION);
-			final String version = manifest.getMainAttributes().getValue(symbolicName);
+			final String version = this.manifest.getMainAttributes().getValue(symbolicName);
 			return version;
 		}
 		return null;
@@ -355,12 +362,12 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void setBundleVersion(final String version) {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name bundleVersion = new Name(BUNDLE_VERSION);
 			if(version == null) {
-				manifest.getMainAttributes().remove(bundleVersion);
+				this.manifest.getMainAttributes().remove(bundleVersion);
 			} else {
-				manifest.getMainAttributes().put(bundleVersion, version);
+				this.manifest.getMainAttributes().put(bundleVersion, version);
 			}
 		}
 	}
@@ -371,9 +378,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public String getBundleVendor() {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name bundleVendor = new Name(BUNDLE_VENDOR);
-			return manifest.getMainAttributes().getValue(bundleVendor);
+			return this.manifest.getMainAttributes().getValue(bundleVendor);
 		}
 		return null;
 	}
@@ -384,21 +391,21 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *      {@inheritDoc}
 	 */
 	public void setBundleVendor(final String vendor) {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name bundleVendor = new Name(BUNDLE_VENDOR);
 			if(vendor == null) {
-				manifest.getMainAttributes().remove(bundleVendor);
+				this.manifest.getMainAttributes().remove(bundleVendor);
 			} else {
-				manifest.getMainAttributes().put(bundleVendor, vendor);
+				this.manifest.getMainAttributes().put(bundleVendor, vendor);
 			}
 		}
 	}
 
 	public String getValue(final String key) {
-		if(manifest != null) {
-			String value = manifest.getMainAttributes().getValue(key);
+		if(this.manifest != null) {
+			String value = this.manifest.getMainAttributes().getValue(key);
 			if(value == null) {
-				final Attributes attributes = manifest.getAttributes(key);
+				final Attributes attributes = this.manifest.getAttributes(key);
 				if(attributes != null) {
 					value = attributes.getValue(key);
 				}
@@ -409,9 +416,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	}
 
 	public String getBundleName() {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name bundleName = new Name(BUNDLE_NAME);
-			final String name = manifest.getMainAttributes().getValue(bundleName);
+			final String name = this.manifest.getMainAttributes().getValue(bundleName);
 			return name;
 		}
 		return null;
@@ -422,21 +429,21 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			newName = "noName"; //$NON-NLS-1$
 		}
 		final Name bundleNameName = new Name(BUNDLE_SYMBOLIC_NAME);
-		manifest.getMainAttributes().put(bundleNameName, newName);
+		this.manifest.getMainAttributes().put(bundleNameName, newName);
 
 	}
 
 	public String getBundleLocalization() {
-		if(manifest != null) {
+		if(this.manifest != null) {
 			final Name bundleLocalization = new Name(BUNDLE_LOCALIZATION);
-			final String name = manifest.getMainAttributes().getValue(bundleLocalization);
+			final String name = this.manifest.getMainAttributes().getValue(bundleLocalization);
 			return name;
 		}
 		return null;
 	}
 
 	public void setSingleton(final boolean singleton) {
-		String value = manifest.getMainAttributes().getValue("bundle-symbolicName");
+		String value = this.manifest.getMainAttributes().getValue("bundle-symbolicName");
 		final String[] directives = value.split(";");
 
 		if(directives.length == 0) {
@@ -457,6 +464,6 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			}
 		}
 
-		manifest.getMainAttributes().putValue("bundle-symbolicName", value);
+		this.manifest.getMainAttributes().putValue("bundle-symbolicName", value);
 	}
 }

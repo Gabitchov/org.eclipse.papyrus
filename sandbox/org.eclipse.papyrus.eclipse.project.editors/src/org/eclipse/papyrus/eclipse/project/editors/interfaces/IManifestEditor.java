@@ -39,7 +39,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	public static final String REQUIRED_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
 	/** the key for the bundle version */
-	public static final String BUNDLE_VERSION = "Bundle-Version"; //$NON-NLS-1$
+	public static final String BUNDLE_VERSION = "bundle-version"; //$NON-NLS-1$
 
 	/** the key for the bundle vendor */
 	public static final String BUNDLE_VENDOR = "Bundle-Vendor"; //$NON-NLS-1$

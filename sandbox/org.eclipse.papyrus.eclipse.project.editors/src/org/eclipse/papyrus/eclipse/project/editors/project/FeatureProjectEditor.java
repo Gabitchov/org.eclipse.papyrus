@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.Collections;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -62,18 +63,18 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	@Override
 	public void init() {
 		this.fragmentFile = getPlugin();
-		if(this.fragmentFile != null && this.fragmentFile.exists()) {
-			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+		if((this.fragmentFile != null) && this.fragmentFile.exists()) {
+			final DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentFactory.newDocumentBuilder();
 				this.fragmentXML = documentBuilder.parse(this.fragmentFile.getLocation().toOSString());
 				this.fragmentRoot = this.fragmentXML.getDocumentElement();
-			} catch (ParserConfigurationException e) {
+			} catch (final ParserConfigurationException e) {
 				Activator.log.error(e);
-			} catch (SAXException e) {
+			} catch (final SAXException e) {
 				Activator.log.error(e);
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				Activator.log.error(e);
 			}
 		}
@@ -100,7 +101,7 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	 */
 	@Override
 	public boolean exists() {
-		IFile plugin = getProject().getFile(FRAGMENT_XML_FILE);
+		final IFile plugin = getProject().getFile(FRAGMENT_XML_FILE);
 		return plugin.exists() && super.exists();
 	}
 
@@ -125,7 +126,7 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	 *         the plugin file if it exists
 	 */
 	private IFile getPlugin() {
-		IFile plugin = getProject().getFile(FRAGMENT_XML_FILE);
+		final IFile plugin = getProject().getFile(FRAGMENT_XML_FILE);
 		if(plugin.exists()) {
 			return plugin;
 		}
@@ -143,18 +144,18 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	public void save() {
 		if(exists()) {
 			try {
-				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer transformer = transformerFactory.newTransformer();
+				final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				final Transformer transformer = transformerFactory.newTransformer();
 				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
-				StreamResult result = new StreamResult(new StringWriter());
-				DOMSource source = new DOMSource(this.fragmentXML);
+				final StreamResult result = new StreamResult(new StringWriter());
+				final DOMSource source = new DOMSource(this.fragmentXML);
 				transformer.transform(source, result);
 
-				InputStream inputStream = getInputStream(result.getWriter().toString());
+				final InputStream inputStream = getInputStream(result.getWriter().toString());
 				this.fragmentFile.setContents(inputStream, true, true, null);
-			} catch (TransformerException ex) {
+			} catch (final TransformerException ex) {
 				Activator.log.error(ex);
-			} catch (CoreException ex) {
+			} catch (final CoreException ex) {
 				Activator.log.error(ex);
 			}
 		}
@@ -203,20 +204,20 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	 * @see PluginProjectEditor#create()
 	 */
 	public Document getDocument() {
-		return fragmentXML;
+		return this.fragmentXML;
 	}
 
-	public void setLabel(String label) {
+	public void setLabel(final String label) {
 		this.fragmentRoot.setAttribute(LABEL, label);
 
 	}
 
-	public void setVersion(String version) {
+	public void setVersion(final String version) {
 		this.fragmentRoot.setAttribute(VERSION, version);
 
 	}
 
-	public void setProviderName(String providerName) {
+	public void setProviderName(final String providerName) {
 		this.fragmentRoot.setAttribute(PROVIDER, providerName);
 
 	}
@@ -281,8 +282,36 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		setURLNode(COPYRIGHT, copyrightURL, copyrightDesc);
 	}
 
-	public String getCopyright() {
-		// TODO Auto-generated method stub
+	public String getCopyrightURL() {
+		final Element copyrightNode = getNode(COPYRIGHT);
+		if(copyrightNode != null) {
+			final String value = copyrightNode.getAttribute("url");
+			if((value != null) && value.startsWith("%")) {
+				final IFile file = getProject().getFile("feature.properties");
+				final Properties prop = new Properties(); //TODO create a method to use Properties for others fields too
+				try {
+					prop.load(file.getContents());
+				} catch (final IOException e) {
+					Activator.log.error(e);
+				} catch (final CoreException e) {
+					Activator.log.error(e);
+				}
+				final Object val = prop.get("url");
+				if(val != null) {
+					return (String)val;
+				}
+			}
+			return copyrightNode.getAttribute("url");
+		}
+		return null;
+	}
+
+
+	public String getCopyrightText() {
+		final Element copyrightNode = getNode(COPYRIGHT);
+		if(copyrightNode != null) {
+			return copyrightNode.getTextContent();
+		}
 		return null;
 	}
 
@@ -299,11 +328,11 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	 */
 	public Element getNode(final String nodeName) {
 		if(exists()) {
-			NodeList nodes = this.fragmentRoot.getChildNodes();
+			final NodeList nodes = this.fragmentRoot.getChildNodes();
 			for(int i = 0; i < nodes.getLength(); i++) {
-				Node item = nodes.item(i);
+				final Node item = nodes.item(i);
 				if(item instanceof NodeList) {
-					String name = item.getNodeName();
+					final String name = item.getNodeName();
 					if(name.equals(nodeName)) {
 						if(item instanceof Element) {
 							return (Element)item;

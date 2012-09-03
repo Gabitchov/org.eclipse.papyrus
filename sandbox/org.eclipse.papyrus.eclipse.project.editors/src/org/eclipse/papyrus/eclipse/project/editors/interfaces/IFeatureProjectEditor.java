@@ -39,7 +39,9 @@ public interface IFeatureProjectEditor { //TODo use interface inheritance
 
 	public String getProviderName();
 
-	public String getCopyright();
+	public String getCopyrightText();
+
+	public String getCopyrightURL();
 
 	public String getLicense();
 
