@@ -1,16 +1,19 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: EFacet Requirement SysML Table (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.table.efacet.requirement;singleton:=true
-Bundle-Version: 0.9.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.sysml.table.efacet.requirement.Activator
+Bundle-Activator: org.eclipse.papyrus.sysml.table.efacet.requirement.A
+ ctivator
+Bundle-ManifestVersion: 2
 Bundle-Vendor: Eclispe Modeling Project
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.table.efacet.requiremen
+ t;singleton:=true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml.efacet;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.table.efacet.common;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core,
- org.eclipse.papyrus.infra.emf.efacet;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.infra.table.efacet.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.infra.emf.efacet;bundle-version="0.9.1"
+Bundle-Version: 0.9.1.qualifier
+
