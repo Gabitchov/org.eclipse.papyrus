@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.sysml.table.feature"
-      label="%featureName"
-      version="0.9.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.sysml.table.feature" label="%featureName" provider-name="%providerName" version="0.9.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST.
@@ -18,18 +13,8 @@ http://www.eclipse.org/legal/epl-v10.html
 		%license
 	</license>
 
-   <plugin
-         id="org.eclipse.papyrus.sysml.table.allocation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml.table.allocation" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.sysml.table.requirement"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.sysml.table.requirement" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

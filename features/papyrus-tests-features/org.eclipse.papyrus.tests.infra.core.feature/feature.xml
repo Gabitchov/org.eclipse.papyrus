@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.tests.infra.core.feature"
-      label="%featureName"
-      version="0.9.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.tests.infra.core.feature" label="%featureName" provider-name="%providerName" version="0.9.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2008-2012 CEA LIST, Atos Origin, Conselleria de
@@ -19,12 +14,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-   <plugin
-         id="org.eclipse.papyrus.core.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
+   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.core.tests" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

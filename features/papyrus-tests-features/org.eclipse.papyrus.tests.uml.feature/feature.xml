@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.tests.uml.feature"
-      label="Tests UML Feature (Incubation)"
-      version="0.9.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.tests.uml.feature" label="Tests UML Feature (Incubation)" provider-name="Eclipse Modeling Project" version="0.9.1.qualifier">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -17,26 +12,10 @@
       [Enter License Description here.]
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.service.types.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
+   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.uml.service.types.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.diagram.usecase.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.usecase.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.modelexplorer.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.modelexplorer.tests" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

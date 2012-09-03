@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.infra.core.feature"
-      label="Papyrus core (Incubation)"
-      version="0.9.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.infra.core.feature" label="Papyrus core (Incubation)" provider-name="Eclipse Modeling Project" version="0.9.1.qualifier">
 
 <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST
@@ -18,32 +13,12 @@ http://www.eclipse.org/legal/epl-v10.html
 		%license
 	</license>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.core" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.core.log"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.core.log" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.core.sasheditor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.core.sasheditor" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.core.sasheditor.di"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.core.sasheditor.di" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.infra.discovery.feature"
-      label="Papyrus Discovery Feature UI (Incubation)"
-      version="0.9.0.qualifier"
-      provider-name="Eclipse Modeling Project"
-      plugin="org.eclipse.papyrus.infra.discovery">
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.infra.discovery.feature" label="Papyrus Discovery Feature UI (Incubation)" plugin="org.eclipse.papyrus.infra.discovery" provider-name="Eclipse Modeling Project" version="0.9.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST
@@ -19,25 +13,10 @@ http://www.eclipse.org/legal/epl-v10.html
 		%license
 	</license>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.discovery"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.discovery" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.discovery.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.discovery.ui" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.infra.discovery.ui.menu"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.discovery.ui.menu" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

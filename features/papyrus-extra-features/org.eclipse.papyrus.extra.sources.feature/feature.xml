@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.extra.sources.feature"
-      label="%featureName"
-      version="0.9.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.papyrus.extra.sources.feature" label="%featureName" provider-name="%providerName" version="0.9.1.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2008-2012 CEA LIST, Atos Origin, Conselleria de
@@ -20,44 +15,24 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <includes
-         id="org.eclipse.papyrus.extra.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.compare.report.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.compare.report.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.layout.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.layout.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.marte.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.marte.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.marte.properties.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.marte.properties.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.marte.textedit.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.marte.textedit.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.uml.compare.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.uml.compare.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.diagramtemplate.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.diagramtemplate.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.infra.gmfdiag.css.source.feature" version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.papyrus.extra.migration.source.feature"
-         version="0.0.0"/>
+   <includes id="org.eclipse.papyrus.extra.migration.source.feature" version="0.0.0"/>
 
 </feature>
