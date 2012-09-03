@@ -1,22 +1,23 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
 Bundle-Name: Efacet For SysML (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.efacet;singleton:=true
-Bundle-Version: 0.9.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.sysml.efacet.Activator
+Bundle-ManifestVersion: 2
 Bundle-Vendor: Eclipse Modeling Project
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.efacet;singleton:=true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.sysml;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.9.1",
+ org.eclipse.papyrus.sysml;bundle-version="0.9.1",
  org.eclipse.emf.facet.util.emf.core,
  org.eclipse.emf.facet.query.java.core,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
- org.eclipse.papyrus.sysml.service.types,
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.1",
  org.eclipse.emf.facet.efacet.metamodel
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.9.1.qualifier
+

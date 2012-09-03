@@ -1,15 +1,16 @@
-/*******************************************************************************
- * Copyright (c) 2009, 2010 Mia-Software.
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Nicolas Bros (Mia-Software) - Bug 331203 - table model editor - initial API and implementation
- *    Nicolas Guyomar (Mia-Software) - Bug 332924 - To be able to save the table
- *    Nicolas Guyomar (Mia-Software) - Bug 333029 - To be able to save the size of the lines and the columns
- *******************************************************************************/
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.table.efacet.common.input;
 
 import org.eclipse.emf.edit.domain.EditingDomain;

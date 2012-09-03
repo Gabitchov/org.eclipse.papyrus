@@ -1,17 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.editor;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.presentation.PapyrustableconfigurationEditorPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.papyrustablec
+ onfiguration.metamodel.papyrustableconfiguration.presentation.Papyrus
+ tableconfigurationEditorPlugin$Implementation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.presentation
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.infra.table.efacet.papyrustablecon
+ figuration.metamodel.papyrustableconfiguration.presentation
+Bundle-Version: 0.9.1.qualifier
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.papyrustab
+ leconfiguration.metamodel.editor;singleton:=true
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -19,6 +24,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.custom.metamodel.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.facet.efacet.metamodel.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.table.efacet.metamodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.efacet.metamodel.edit;bundle-version="0.9.1";visibility:=reexport,
  org.eclipse.emf.facet.widgets.table.metamodel.edit;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+
