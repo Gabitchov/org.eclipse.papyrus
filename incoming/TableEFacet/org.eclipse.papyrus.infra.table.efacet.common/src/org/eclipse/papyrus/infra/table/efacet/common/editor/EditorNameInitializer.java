@@ -47,7 +47,7 @@ public class EditorNameInitializer {
 	private static final EObject getNameFeatureOwner(final EObject eobject) {
 		EObject owner = eobject;
 		while(owner != null) {
-			final EStructuralFeature nameFeature = owner.eClass().getEStructuralFeature("name");
+			final EStructuralFeature nameFeature = owner.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
 			if(nameFeature == null) {
 				owner = owner.eContainer();
 			} else {
@@ -69,7 +69,7 @@ public class EditorNameInitializer {
 	private static final EStructuralFeature getNameFeature(final EObject eobject) {
 		EObject owner = eobject;
 		while(owner != null) {
-			final EStructuralFeature nameFeature = owner.eClass().getEStructuralFeature("name");
+			final EStructuralFeature nameFeature = owner.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
 			if(nameFeature == null) {
 				owner = owner.eContainer();
 			} else {

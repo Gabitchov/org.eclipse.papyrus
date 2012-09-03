@@ -74,7 +74,7 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 	private final List<ISelectionChangedListener> registeredSelectionListener = new ArrayList<ISelectionChangedListener>();
 
 	/** the id for the menu of the editor */
-	private final static String ID = "org.eclipse.papyrus.infra.table.efacet.common.editor";
+	private final static String ID = "org.eclipse.papyrus.infra.table.efacet.common.editor"; //$NON-NLS-1$
 
 	protected ITableWidget natTableWidget;
 
@@ -145,7 +145,7 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 		compositeTableGridLayout.horizontalAlignment = SWT.FILL;
 		compositeTableGridLayout.verticalAlignment = SWT.FILL;
 		tableComposite.setLayoutData(compositeTableGridLayout);
-		final FilteredMenuManager menuMgr = new FilteredMenuManager("#PopUp", AbstractTableEditor.ID);
+		final FilteredMenuManager menuMgr = new FilteredMenuManager("#PopUp", AbstractTableEditor.ID); //$NON-NLS-1$
 		this.natTableWidget = createNattableWidget(tableComposite, this, this.rawModel.getTable(), menuMgr);
 		this.natTableWidget.addSelectionChangedListener(new SelectionChangeListener());
 		getSite().setSelectionProvider(this);
@@ -232,16 +232,16 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 	 */
 	//currently never used
 	public List<Object> getGridSelection() {
-		final String errorMessage = "We are using java reflect API to get the Grid Selection of the table";
+		final String errorMessage = "We are using java reflect API to get the Grid Selection of the table"; //$NON-NLS-1$
 		Activator.log.warn(errorMessage);
 		final Class<?> cl = this.natTableWidget.getClass();
 		ITableWidgetView view = null;
 		ITableWidgetInternal nattableWidget = null;
 		try {
-			Field field = cl.getDeclaredField("nattableWidget");
+			Field field = cl.getDeclaredField("nattableWidget"); //$NON-NLS-1$
 			field.setAccessible(true);
 			nattableWidget = (ITableWidgetInternal)field.get(this.natTableWidget);
-			field = nattableWidget.getClass().getDeclaredField("view");
+			field = nattableWidget.getClass().getDeclaredField("view"); //$NON-NLS-1$
 			field.setAccessible(true);
 			view = (ITableWidgetView)field.get(nattableWidget);
 		} catch (final SecurityException e) {
@@ -372,18 +372,18 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 		public FilteredMenuManager(final String text, final String id) {
 			super(text, id);
 			this.forbiddenContributions = new ArrayList<String>();
-			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.nattable.examples.ecore.internal.commands.openEclorTabularEditor");
-			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.nattable.workbench.action4");
-			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.nattable.workbench.action3");
-			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.table.ui.workbench.command1");
-			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.table.ui.workbench.command2");
+			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.nattable.examples.ecore.internal.commands.openEclorTabularEditor"); //$NON-NLS-1$
+			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.nattable.workbench.action4"); //$NON-NLS-1$
+			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.nattable.workbench.action3"); //$NON-NLS-1$
+			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.table.ui.workbench.command1"); //$NON-NLS-1$
+			this.forbiddenContributions.add("org.eclipse.emf.facet.widgets.table.ui.workbench.command2"); //$NON-NLS-1$
 
 			this.authorizedPattern = new ArrayList<String>();
-			this.authorizedPattern.add("papyrus");
-			this.authorizedPattern.add("table");
-			this.authorizedPattern.add("org.eclipse.ui.edit.delete");
-			this.authorizedPattern.add("org.eclipse.ui.edit.copy");
-			this.authorizedPattern.add("org.eclipse.ui.edit.selectAll");
+			this.authorizedPattern.add("papyrus"); //$NON-NLS-1$
+			this.authorizedPattern.add("table"); //$NON-NLS-1$
+			this.authorizedPattern.add("org.eclipse.ui.edit.delete"); //$NON-NLS-1$
+			this.authorizedPattern.add("org.eclipse.ui.edit.copy"); //$NON-NLS-1$
+			this.authorizedPattern.add("org.eclipse.ui.edit.selectAll"); //$NON-NLS-1$
 		}
 
 

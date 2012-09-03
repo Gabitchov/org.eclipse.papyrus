@@ -39,7 +39,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "portandflows";
+	String eNAME = "portandflows"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -47,7 +47,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/0.9.0/ExtendedSysML/PortAndFlows";
+	String eNS_URI = "http://www.eclipse.org/papyrus/0.9.0/ExtendedSysML/PortAndFlows"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -55,7 +55,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "PortAndFlows";
+	String eNS_PREFIX = "PortAndFlows"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

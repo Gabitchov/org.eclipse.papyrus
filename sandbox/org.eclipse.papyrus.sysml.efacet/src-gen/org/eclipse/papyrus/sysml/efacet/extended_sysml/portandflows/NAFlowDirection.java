@@ -38,7 +38,7 @@ public enum NAFlowDirection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NA(-1, "NA", "NA");
+	NA(-1, "NA", "NA"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>NA</b></em>' literal value.

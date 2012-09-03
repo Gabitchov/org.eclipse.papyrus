@@ -42,7 +42,7 @@ import org.eclipse.ui.services.IServiceLocator;
 public class CreateNewElementInPopupContributionItem extends AbstractTableExtensionContributionFactory {
 
 	/** the image use for the create element menu */
-	private static final Image image = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/add_obj.gif").createImage();
+	private static final Image image = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/add_obj.gif").createImage(); //$NON-NLS-1$
 
 	/**
 	 * 

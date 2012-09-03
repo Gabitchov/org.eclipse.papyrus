@@ -9,6 +9,6 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTabl
 public class GetTableName implements IJavaModelQuery<PapyrusTable, String> {
 
 	public String evaluate(final PapyrusTable context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		return context.getName() + " (new)";
+		return context.getName() + " (new)"; //$NON-NLS-1$
 	}
 }

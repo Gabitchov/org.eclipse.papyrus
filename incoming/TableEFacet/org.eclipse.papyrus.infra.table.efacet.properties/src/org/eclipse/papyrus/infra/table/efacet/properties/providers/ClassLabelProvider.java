@@ -45,7 +45,7 @@ public class ClassLabelProvider implements ILabelProvider {
 
 	public String getText(final Object element) {
 		//nothing to do
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 }

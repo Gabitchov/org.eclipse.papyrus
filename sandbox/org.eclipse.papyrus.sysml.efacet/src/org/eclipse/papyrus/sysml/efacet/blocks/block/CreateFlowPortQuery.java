@@ -34,7 +34,7 @@ public class CreateFlowPortQuery implements IJavaQuery2<EObject, EObject> {
 		Assert.isNotNull(context);
 		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(context);
 		Assert.isNotNull(domain);
-		final ParameterValue directionParameter = parameterValues.getParameterValueByName("direction");
+		final ParameterValue directionParameter = parameterValues.getParameterValueByName("direction"); //$NON-NLS-1$
 		final Object value = directionParameter.getValue();
 
 		Assert.isTrue(value instanceof EEnumLiteral);

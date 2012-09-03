@@ -155,9 +155,9 @@ public class FillingListener extends AbstractTableTriggerListener {
 	private final Command createRemoveCommand(final TransactionalEditingDomain domain, final ITableCommandFactory factory, final List<EObject> toRemove) {
 		CompoundCommand cmd = null;
 		if(!toRemove.isEmpty()) {
-			cmd = new CompoundCommand("Table Synchronization Command (Remove Rows)");
+			cmd = new CompoundCommand("Table Synchronization Command (Remove Rows)"); //$NON-NLS-1$
 			cmd.append(factory.createRemoveRowByEObjectCommand(toRemove));
-			cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Clean the set deletedEObjects", null) {
+			cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Clean the set deletedEObjects", null) { //$NON-NLS-1$
 
 				@Override
 				protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -183,12 +183,12 @@ public class FillingListener extends AbstractTableTriggerListener {
 	private final Command createAddCommand(final TransactionalEditingDomain domain, final ITableCommandFactory factory, final List<EObject> toAdd) {
 		CompoundCommand cmd = null;
 		if(!toAdd.isEmpty()) {
-			cmd = new CompoundCommand("Table Synchronization Command (Remove Rows)");
+			cmd = new CompoundCommand("Table Synchronization Command (Remove Rows)"); //$NON-NLS-1$
 			//duplicated code from the widget
 			cmd.append(factory.createAddRowsCommand(toAdd));
 			cmd.append(factory.createSetFacetSetsCommand(this.table.getTable().getFacetSets()));
 
-			cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Clean the set addedEObjects", null) {
+			cmd.append(new GMFtoEMFCommandWrapper(new AbstractTransactionalCommand(domain, "Clean the set addedEObjects", null) { //$NON-NLS-1$
 
 				@Override
 				protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
@@ -362,15 +362,15 @@ public class FillingListener extends AbstractTableTriggerListener {
 	protected String getCommandName(final Notification notification) {
 		final String commandName;
 		if(isUsingQueries()) {
-			commandName = "Synchronized Table Command (Contents Changes Using Queries)";
+			commandName = "Synchronized Table Command (Contents Changes Using Queries)"; //$NON-NLS-1$
 		} else if(isFillingModeChanging(notification)) {
-			commandName = "Synchronized Table Command (Filling Mode Changed)";
+			commandName = "Synchronized Table Command (Filling Mode Changed)"; //$NON-NLS-1$
 		} else if(isTableOpening(notification)) {
-			commandName = "Synchronized Table Command (Updating Opening Table)";
+			commandName = "Synchronized Table Command (Updating Opening Table)"; //$NON-NLS-1$
 		} else if(isModifyingModel(notification)) {
-			commandName = "Synchronized Table Command (Update for Model Changes)";
+			commandName = "Synchronized Table Command (Update for Model Changes)"; //$NON-NLS-1$
 		} else {
-			commandName = "";
+			commandName = ""; //$NON-NLS-1$
 		}
 		return commandName;
 	}

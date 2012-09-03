@@ -15,7 +15,7 @@ import org.eclipse.uml2.uml.Element;
 public class IsAppliedSysMLStereotypeQuery implements IJavaQuery2<EObject, Boolean> {
 
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		ParameterValue val = parameterValues.getParameterValueByName("stereotype");
+		ParameterValue val = parameterValues.getParameterValueByName("stereotype"); //$NON-NLS-1$
 		EClass value = (EClass)val.getValue();
 		if(source instanceof Element) {
 			List<EObject> stereotypeApplications = ((Element)source).getStereotypeApplications();

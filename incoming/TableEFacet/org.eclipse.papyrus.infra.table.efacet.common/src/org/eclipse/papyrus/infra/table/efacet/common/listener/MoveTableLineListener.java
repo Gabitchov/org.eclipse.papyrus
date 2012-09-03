@@ -86,6 +86,6 @@ public class MoveTableLineListener extends AbstractTableTriggerListener {
 
 	@Override
 	protected String getCommandName(final Notification notification) {
-		return "Move Line Command (Update the Model)";
+		return "Move Line Command (Update the Model)"; //$NON-NLS-1$
 	}
 }
