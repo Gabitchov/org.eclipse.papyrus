@@ -1285,10 +1285,10 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
 		ConnectionAnchor sourceConnectionAnchor = super.getSourceConnectionAnchor(connEditPart);
-		Point referencePoint = sourceConnectionAnchor.getReferencePoint();
-		if(connEditPart instanceof Message7EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
-			sourceConnectionAnchor = new XYAnchor(referencePoint);
-		}
+//		Point referencePoint = sourceConnectionAnchor.getReferencePoint();
+//		if(connEditPart instanceof Message7EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+//			sourceConnectionAnchor = new XYAnchor(referencePoint);
+//		}
 
 		return sourceConnectionAnchor;
 	}
@@ -1315,10 +1315,10 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(connEditPart);
-		Point referencePoint = targetConnectionAnchor.getReferencePoint();
-		if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
-			targetConnectionAnchor = new XYAnchor(referencePoint);
-		}		
+//		Point referencePoint = targetConnectionAnchor.getReferencePoint();
+//		if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+//			targetConnectionAnchor = new XYAnchor(referencePoint);
+//		}		
 		return targetConnectionAnchor;
 	}
 

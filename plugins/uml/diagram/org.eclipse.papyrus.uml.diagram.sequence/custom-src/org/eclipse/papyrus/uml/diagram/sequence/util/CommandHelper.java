@@ -79,6 +79,7 @@ import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StateInvariant;
@@ -309,17 +310,22 @@ public class CommandHelper {
 
 		// add the parents we can find
 		boolean existingParent = false;
-
+		List<Type> types = new ArrayList<Type>();
 		if(parentsOwner instanceof InteractionFragment) {
 			EList<Lifeline> lifelines = ((InteractionFragment)parentsOwner).getCovereds();
 			for(Lifeline l : lifelines) {
+				if(l.getRepresents() != null && l.getRepresents().getType() != null)
+					types.add(l.getRepresents().getType());
 				boolean result = addParentsFromLifeline(l, mapTypesPossibleParents);
 				if(result) {
 					existingParent = true;
 				}
 			}
 		} else if(parentsOwner instanceof Lifeline) {
-			existingParent = addParentsFromLifeline((Lifeline)parentsOwner, mapTypesPossibleParents);
+			Lifeline l = (Lifeline)parentsOwner;
+			if(l.getRepresents() != null && l.getRepresents().getType() != null)
+				types.add(l.getRepresents().getType());
+			existingParent = addParentsFromLifeline(l, mapTypesPossibleParents);
 		}
 
 
@@ -334,7 +340,7 @@ public class CommandHelper {
 		clearConnectionFeedback();
 		
 		// Open the selection dialog
-		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), EditorUtils.getTransactionalEditingDomain(), existingElements, mapTypesPossibleParents);
+		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), EditorUtils.getTransactionalEditingDomain(), existingElements, mapTypesPossibleParents, types);
 
 		// Get the selected result
 		if(dialog.open() == Window.OK) {
@@ -385,6 +391,14 @@ public class CommandHelper {
 			for(EObject parent : parents) {
 				if(parent instanceof Classifier) {
 					existingElements.addAll(((Classifier)parent).getAllOperations());
+					
+					// add operations from port
+					EList<Property> attrs = ((Classifier)parent).getAllAttributes();
+					for(Property p : attrs)
+						if(p instanceof Port && p.getType() instanceof Classifier){
+							existingElements.addAll(((Classifier)p.getType()).getAllOperations());
+						}
+					
 				} else if(parent instanceof Package) {
 					EList<Element> ownedElements = ((Package)parent).allOwnedElements();
 					for(Element e : ownedElements) {
@@ -462,7 +476,7 @@ public class CommandHelper {
 
 		// and the packages to signal
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
-		if(possiblePackages != null) {
+		if(possiblePackages != null && type.getPackage()!= null) {
 			Package package_ = type.getPackage();
 			possiblePackages.add(package_);
 			// add the owners of the package

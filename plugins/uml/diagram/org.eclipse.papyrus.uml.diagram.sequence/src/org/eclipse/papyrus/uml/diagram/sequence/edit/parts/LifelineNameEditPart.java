@@ -185,6 +185,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	public void setLabel(WrappingLabel figure) {
+		figure.setTextWrap(false);  // If the width is too small, the text will be displayed in part and suffixed by "..." 
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -703,9 +704,10 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 				}
 			}
 		}
-
+		
 		// handle possible change in the name container size
-		if(UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) || UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) || event.getNotifier() instanceof Bounds) {
+		// In AutoSize mode, the width should be resized if the content of the text gets changed. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
+		if(UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) || UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) || event.getNotifier() instanceof Bounds) {
 			((LifelineEditPart)getParent()).updateLifelinePosition();
 		}
 

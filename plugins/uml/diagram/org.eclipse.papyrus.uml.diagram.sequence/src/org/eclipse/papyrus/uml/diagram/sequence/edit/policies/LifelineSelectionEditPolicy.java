@@ -7,7 +7,6 @@ import org.eclipse.draw2d.Cursors;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -16,8 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Handle;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.handles.MoveHandleLocator;
 import org.eclipse.gef.handles.RelativeHandleLocator;
@@ -54,7 +53,7 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		list.add(moveHandle);
 
 		createResizeHandle(list, PositionConstants.NORTH);
-		final RectangleFigure fig = primaryShape
+		final IFigure fig = primaryShape
 				.getFigureLifelineNameContainerFigure();
 
 		createResizeHandle(host, list, fig,PositionConstants.WEST);
@@ -65,7 +64,7 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 	}
 
 	private void createResizeHandle(LifelineEditPart host, List<Handle> list,
-			RectangleFigure fig, int location) {
+			IFigure fig, int location) {
 		Locator locator = new RelativeHandleLocator(fig, location);
 		Cursor cursor = Cursors
 				.getDirectionalCursor(location, fig.isMirrored());
@@ -83,15 +82,17 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 				getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
 		
+		boolean skipMinSize = false;
 		//Only enable horizontal dragging on lifelines(except lifelines that are result of a create message). 
 		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
 		if (this.getHost() instanceof LifelineEditPart) {
+			skipMinSize = true;
 			LifelineEditPart lifelineEP = (LifelineEditPart) this.getHost();
 			if (!SequenceUtil.isCreateMessageEndLifeline(lifelineEP)) {
 				request.getMoveDelta().y = 0;
 			}
 			
-			keepNameLabelBounds(lifelineEP, request, rect);
+			//keepNameLabelBounds(lifelineEP, request, rect);
 			 
 			// restrict child size within parent bounds
 			keepInParentBounds(lifelineEP, request, rect);
@@ -114,7 +115,8 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		getHostFigure().translateToAbsolute(min); 
 		getHostFigure().translateToAbsolute(max); 
 
-		if (min.width > rect.width){
+		// In manual mode, there is no minimal width, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
+		if (min.width > rect.width && !skipMinSize){
 			if(	request.getMoveDelta().x > 0 && request.getSizeDelta().width != 0){
 				rect.x = right.x - min.width ;
 				request.getMoveDelta().x = rect.x -left.x;

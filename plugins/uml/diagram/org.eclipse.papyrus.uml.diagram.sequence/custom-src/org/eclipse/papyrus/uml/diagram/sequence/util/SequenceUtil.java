@@ -972,7 +972,7 @@ public class SequenceUtil {
 			if(oldValue instanceof MessageSort) {
 				if(!((oldValue == MessageSort.ASYNCH_CALL_LITERAL && newValue == MessageSort.ASYNCH_SIGNAL_LITERAL) || (oldValue == MessageSort.ASYNCH_SIGNAL_LITERAL && newValue == MessageSort.ASYNCH_CALL_LITERAL))) {
 					MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
-					CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()));
+					CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()), true);
 					return;
 				}
 			}

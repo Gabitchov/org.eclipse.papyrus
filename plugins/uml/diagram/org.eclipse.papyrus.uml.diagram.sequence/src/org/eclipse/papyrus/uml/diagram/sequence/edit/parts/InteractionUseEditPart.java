@@ -1121,7 +1121,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 				// notifier.unlistenObject((Interaction) notification.getOldValue());
 			}
 			InteractionUse interactionUse = (InteractionUse)resolveSemanticElement();
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionUse, UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), interactionUse.getActualGates()));
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionUse, UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), interactionUse.getActualGates()), true);
 			if(notification.getNewValue() instanceof Interaction) {
 				Interaction interaction = (Interaction)notification.getNewValue();
 				notifier.listenObject(interaction);
@@ -1131,7 +1131,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 				for(Gate formalGate : formalGates) {
 					Gate newActualGate = (Gate)EcoreUtil.create(UMLPackage.Literals.GATE);
 					newActualGate.setName(formalGate.getName());
-					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate));
+					CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate),true);
 					notifier.listenObject(formalGate);
 					notifier.listenObject(newActualGate);
 				}
@@ -1150,7 +1150,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 					Gate element = actualGates.get(i);
 					if(((Gate)oldValue).getName().equals(element.getName())) {
 						notifier.unlistenObject(element);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionUse, UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), element));
+						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionUse, UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), element),true);
 					}
 				}
 			}
@@ -1167,7 +1167,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 					Gate newActualGate = (Gate)notification.getNewValue();
 					if(!checkActualGateExistence(newActualGate)) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_CREATION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_CREATION_DLG_MSG);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate));
+						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), newActualGate), true);
 					}
 				}
 			} else if(notification.getEventType() == Notification.REMOVE) {
@@ -1176,7 +1176,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 					Gate oldActualGate = (Gate)notification.getOldValue();
 					if(checkActualGateExistence(oldActualGate)) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_DELETION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_DELETION_DLG_MSG);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), oldActualGate));
+						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), oldActualGate), true);
 					}
 				}
 			}

@@ -58,7 +58,6 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -74,7 +73,6 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -102,10 +100,7 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.SlidableAnchorEx;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -122,8 +117,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
-import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -233,6 +229,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=364608
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new LifelineSelectionEditPolicy());
 		
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new LifelineMessageCreateHelper.ComponentEditPolicyEx());
 		// custom label, fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383722
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new LifelineLabelEditPolicy());
 	}
@@ -1454,7 +1451,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		@Override
 		protected void createNameLabel() {
 			super.createNameLabel();
-			nameLabel.setTextWrap(true);
+			//nameLabel.setTextWrap(true);
 		}
 
 		/**
@@ -1769,7 +1766,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 				}
 			};
 
-			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), cmd);
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), cmd, true);
 
 		}
 	}
@@ -1821,10 +1818,12 @@ public class LifelineEditPart extends NamedElementEditPart {
 			}
 			*/
 			Dimension size = getPrimaryShape().getFigureLifelineNameContainerFigure().getPreferredSize(-1, oldNameContainerHeight);
-			if(size.width > rect.width  ){ 
-				rect.width = size.width;
-				updateLifelineBounds(rect);
-			}
+			if(!LifelineResizeHelper.isManualSize(this)){
+				if(size.width != rect.width){ 
+					rect.width = size.width;
+					updateLifelineBounds(rect);
+				}
+			}					
 		}
 	}
 
