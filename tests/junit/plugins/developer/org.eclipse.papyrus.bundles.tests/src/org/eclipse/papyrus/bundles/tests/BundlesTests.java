@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
 
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Enumeration;
 
@@ -79,30 +80,34 @@ public class BundlesTests {
 	public void reexportDependencies() {
 		String message = null;
 		int nb = 0;
-		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
 			if(value == null) {
 				continue;
 			}
-			String[] bundles = value.split(","); //$NON-NLS-1$
+			final String[] bundles = value.split(","); //$NON-NLS-1$
 			String localMessage = null;
-			for(String bundle : bundles) {
+			for(final String bundle : bundles) {
 				if(bundle.contains("visibility:=reexport")) { //$NON-NLS-1$
 					nb++;
 					if(localMessage == null) {
 						localMessage = NLS.bind("{0} re-exports:", current.getSymbolicName()); //$NON-NLS-1$
 					}
-					localMessage += NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";"))); //$NON-NLS-1$ //$NON-NLS-2$
+					if(bundle.contains(";")) { //$NON-NLS-1$
+						localMessage += NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";"))); //$NON-NLS-1$ //$NON-NLS-2$
+					} else {
+						localMessage += NLS.bind("\n  - {0}", bundle); //$NON-NLS-1$ 
+					}
 				}
 			}
 			if(localMessage != null) {
 				if(message == null) {
-					message = "";
+					message = ""; //$NON-NLS-1$
 				}
 				message += localMessage + "\n"; //$NON-NLS-1$
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message);
+		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
 	}
 
 	/**
@@ -117,10 +122,10 @@ public class BundlesTests {
 	 * @param onlyOnJavaProject
 	 *        boolean indicating if the tests should only be done on JavaProject
 	 */
-	private void testManifestProperty(final String property, final String regex, boolean mustBeNull, boolean onlyOnJavaProject) {
+	private void testManifestProperty(final String property, final String regex, final boolean mustBeNull, final boolean onlyOnJavaProject) {
 		String message = null;
 		int nb = 0;
-		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			if(onlyOnJavaProject && !BundleTestsUtils.isJavaProject(current)) {
 				continue; //useful for oep.infra.gmfdiag.css.theme for example
 			}
@@ -140,7 +145,7 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message);
+		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
 	}
 
 	/**
@@ -152,12 +157,12 @@ public class BundlesTests {
 	private void fileTest(final String filepath) {
 		String message = null;
 		int nb = 0;
-		for(Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			URL url = current.getResource(filepath);
 			//specific behavior for the fragment!
-			if(url == null && current instanceof BundleFragment) {
-				BundleFragment fragment = (BundleFragment)current;
-				Enumeration<URL> entries = fragment.findEntries("/", filepath, false); //$NON-NLS-1$
+			if((url == null) && (current instanceof BundleFragment)) {
+				final BundleFragment fragment = (BundleFragment)current;
+				final Enumeration<URL> entries = fragment.findEntries("/", filepath, false); //$NON-NLS-1$
 				if(entries != null) {
 					if(entries.hasMoreElements()) {
 						url = entries.nextElement();
@@ -174,7 +179,102 @@ public class BundlesTests {
 				nb++;
 			}
 		}
-		Assert.assertNull(nb + " problems! " + message, message);
+		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+	}
+
+	/**
+	 * We want that all Papyrus dependencies in the Papyrus plugin will be define
+	 */
+	@Test
+	public void papyrusDependencyVersionTest() {
+		String message = null;
+		int nb = 0;
+		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
+			if(value == null) {
+				continue;
+			}
+			final String[] bundles = value.split(","); //$NON-NLS-1$
+			String localMessage = null;
+			for(final String bundle : bundles) {
+				if(bundle.contains("org.eclipse.papyrus")) { //$NON-NLS-1$
+					if(!bundle.contains("bundle-version=" + '"' + "0.9.0" + '"')) { //$NON-NLS-1$ //$NON-NLS-2$
+						nb++;
+						if(localMessage == null) {
+							localMessage = NLS.bind("{0} incorrect required bundle-version:", current.getSymbolicName()); //$NON-NLS-1$
+						}
+						if(bundle.contains(";")) { //$NON-NLS-1$
+							localMessage += NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";"))); //$NON-NLS-1$ //$NON-NLS-2$
+						} else {
+							localMessage += NLS.bind("\n  - {0}", bundle); //$NON-NLS-1$ 
+						}
+					}
+				}
+			}
+			if(localMessage != null) {
+				if(message == null) {
+					message = ""; //$NON-NLS-1$
+				}
+				message += localMessage + "\n"; //$NON-NLS-1$
+			}
+		}
+		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+	}
+
+	/**
+	 * This test verify that the plugin contains pdoc file
+	 */
+	@Test
+	public void documentationFileTest() {
+		String message = null;
+		int nb = 0;
+		for(final Bundle bundle : BundleTestsUtils.getPapyrusBundles()) {
+			final URL res = bundle.getResource("plugin.pdoc"); //$NON-NLS-1$
+			if(res == null) {
+				nb++;
+				if(message == null) {
+					message = "No file plugin.pdoc found for:"; //$NON-NLS-1$
+				}
+				message += NLS.bind("\n  - {0}", bundle.getSymbolicName()); //$NON-NLS-1$
+			}
+		}
+		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
+	}
+
+	/**
+	 * verify that the field PLUGIN_ID is equals to the plugin name
+	 */
+	@Test
+	public void PLUGIN_ID_Test() {
+		String message = ""; //$NON-NLS-1$
+		int nb = 0;
+		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+			if(!BundleTestsUtils.isJavaProject(current)) {
+				continue; //useful for oep.infra.gmfdiag.css.theme for example
+			}
+			final String activator = current.getHeaders().get("Bundle-Activator"); //$NON-NLS-1$
+			if(activator != null) {
+				try {
+					final Class<?> activatorClass = current.loadClass(activator);
+					Field plugin_id_field;
+					plugin_id_field = activatorClass.getField("PLUGIN_ID"); //$NON-NLS-1$
+					if(plugin_id_field != null) {
+						final String plugin_id = (String)plugin_id_field.get(activatorClass);
+						if(!plugin_id.equals(current.getSymbolicName())) {
+							nb++;
+							message += NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName()); //$NON-NLS-1$
+						}
+					} else {
+						nb++;
+						message += NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName()); //$NON-NLS-1$
+					}
+				} catch (final Exception e) {
+					message += NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[]{ current.getSymbolicName(), e }); //$NON-NLS-1$
+				}
+			}
+
+		}
+		Assert.assertTrue(nb + " problems! " + message, message.equals("")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 }
