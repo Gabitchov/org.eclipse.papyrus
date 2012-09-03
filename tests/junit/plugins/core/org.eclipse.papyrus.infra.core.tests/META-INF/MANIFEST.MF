@@ -3,7 +3,7 @@ Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Fragment-Host: org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
+Fragment-Host: org.eclipse.papyrus.infra.core;bundle-version="0.9.1"
 Bundle-SymbolicName: org.eclipse.papyrus.core.tests;singleton:=true
 Bundle-Localization: fragment
 Require-Bundle: org.junit;bundle-version="4.8.1",

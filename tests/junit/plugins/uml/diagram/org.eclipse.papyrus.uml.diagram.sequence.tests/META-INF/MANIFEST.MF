@@ -2,19 +2,19 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence.tests
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.9.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.tests.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit4;bundle-version="4.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.editor;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.1",
+ org.eclipse.papyrus.editor;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
- org.eclipse.papyrus.diagram.tests;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.sequence;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.1",
+ org.eclipse.papyrus.diagram.tests;bundle-version="0.9.1",
+ org.eclipse.papyrus.uml.diagram.sequence;bundle-version="0.9.1"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
