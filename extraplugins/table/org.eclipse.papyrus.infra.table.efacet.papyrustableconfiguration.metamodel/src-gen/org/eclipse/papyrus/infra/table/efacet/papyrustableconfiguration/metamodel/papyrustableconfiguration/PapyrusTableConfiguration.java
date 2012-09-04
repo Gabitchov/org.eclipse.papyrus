@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.tableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode;
@@ -28,21 +27,29 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Papyrus Table Configuration</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * This element registers the parameters to configure a PapyrusTableInstance2
+ * This element registers the parameters to configure a Papyrus EFacet Table
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode <em>Filling Mode</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries <em>Filling Queries</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode
+ * <em>Filling Mode</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries
+ * <em>Filling Queries</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature
+ * <em>Listen Context Feature</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration
+ * <em>Table Configuration</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration()
  * @model
  * @generated
@@ -57,6 +64,7 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This field allows to define the filling mode to use when the table is created.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Filling Mode</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
 	 * @see #setFillingMode(FillingMode)
@@ -67,10 +75,14 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	FillingMode getFillingMode();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode <em>Filling Mode</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode
+	 * <em>Filling Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filling Mode</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Filling Mode</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.FillingMode
 	 * @see #getFillingMode()
 	 * @generated
@@ -85,6 +97,7 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This list registers the queries used to fill the PapyrusTable when it is in Queries Mode
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Filling Queries</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_FillingQueries()
 	 * @model
@@ -99,6 +112,7 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This field references the feature of the context of the table to listen, when the table in is Feature Mode
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Listen Context Feature</em>' reference.
 	 * @see #setListenContextFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_ListenContextFeature()
@@ -108,10 +122,14 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	EReference getListenContextFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature
+	 * <em>Listen Context Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Listen Context Feature</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Listen Context Feature</em>' reference.
 	 * @see #getListenContextFeature()
 	 * @generated
 	 */
@@ -124,6 +142,7 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	 * <!-- begin-model-doc -->
 	 * This field references the emf-facet table configuration.
 	 * <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Table Configuration</em>' containment reference.
 	 * @see #setTableConfiguration(TableConfiguration)
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationPackage#getPapyrusTableConfiguration_TableConfiguration()
@@ -133,10 +152,14 @@ public interface PapyrusTableConfiguration extends EObject, EModelElement {
 	TableConfiguration getTableConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration
+	 * <em>Table Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Table Configuration</em>' containment reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Table Configuration</em>' containment reference.
 	 * @see #getTableConfiguration()
 	 * @generated
 	 */

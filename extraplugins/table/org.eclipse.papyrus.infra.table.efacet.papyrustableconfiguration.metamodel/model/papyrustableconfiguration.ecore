@@ -3,11 +3,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="papyrustableconfiguration" nsURI="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration"
     nsPrefix="org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-    <details key="documentation" value="This package contains the model used in Papyrus to configure a PapyrusTableInstance2"/>
+    <details key="documentation" value="This package contains the model used in Papyrus to configure a Papyrus EFacet Table"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusTableConfiguration" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="This element registers the parameters to configure a PapyrusTableInstance2"/>
+      <details key="documentation" value="This element registers the parameters to configure a Papyrus EFacet Table"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillingMode" ordered="false"
         eType="ecore:EEnum platform:/plugin/org.eclipse.papyrus.infra.table.efacet.metamodel/model/papyrustable.ecore#//FillingMode">

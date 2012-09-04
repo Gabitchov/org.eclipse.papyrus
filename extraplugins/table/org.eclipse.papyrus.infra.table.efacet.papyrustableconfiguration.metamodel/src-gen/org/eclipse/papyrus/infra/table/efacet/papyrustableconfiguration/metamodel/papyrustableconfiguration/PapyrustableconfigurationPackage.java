@@ -24,24 +24,27 @@ import org.eclipse.emf.ecore.EcorePackage;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * This package contains the model used in Papyrus to configure a PapyrusTableInstance2
+ * This package contains the model used in Papyrus to configure a Papyrus EFacet Table
  * <!-- end-model-doc -->
+ * 
  * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrustableconfigurationFactory
  * @model kind="package"
  * @generated
  */
 public interface PapyrustableconfigurationPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "papyrustableconfiguration"; //$NON-NLS-1$
@@ -50,6 +53,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration"; //$NON-NLS-1$
@@ -58,6 +62,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration"; //$NON-NLS-1$
@@ -66,14 +71,18 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	PapyrustableconfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrustableconfigurationPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl <em>Papyrus Table Configuration</em>}' class.
+	 * The meta object id for the '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl
+	 * <em>Papyrus Table Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrustableconfigurationPackageImpl#getPapyrusTableConfiguration()
 	 * @generated
@@ -84,6 +93,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -93,6 +103,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Filling Mode</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -102,6 +113,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Filling Queries</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -111,6 +123,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Listen Context Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -120,6 +133,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Table Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -129,6 +143,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Papyrus Table Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -136,9 +151,12 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration <em>Papyrus Table Configuration</em>}'.
+	 * Returns the meta object for class '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration
+	 * <em>Papyrus Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Papyrus Table Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration
 	 * @generated
@@ -146,9 +164,12 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	EClass getPapyrusTableConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode <em>Filling Mode</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode
+	 * <em>Filling Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the attribute '<em>Filling Mode</em>'.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingMode()
 	 * @see #getPapyrusTableConfiguration()
@@ -157,9 +178,12 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	EAttribute getPapyrusTableConfiguration_FillingMode();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries <em>Filling Queries</em>}'.
+	 * Returns the meta object for the reference list '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries
+	 * <em>Filling Queries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Filling Queries</em>'.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getFillingQueries()
 	 * @see #getPapyrusTableConfiguration()
@@ -168,9 +192,12 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	EReference getPapyrusTableConfiguration_FillingQueries();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature <em>Listen Context Feature</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature
+	 * <em>Listen Context Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Listen Context Feature</em>'.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getListenContextFeature()
 	 * @see #getPapyrusTableConfiguration()
@@ -179,9 +206,12 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	EReference getPapyrusTableConfiguration_ListenContextFeature();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration <em>Table Configuration</em>}'.
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration
+	 * <em>Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference '<em>Table Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.PapyrusTableConfiguration#getTableConfiguration()
 	 * @see #getPapyrusTableConfiguration()
@@ -193,6 +223,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -202,19 +233,24 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl <em>Papyrus Table Configuration</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl
+		 * <em>Papyrus Table Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrusTableConfigurationImpl
 		 * @see org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl.PapyrustableconfigurationPackageImpl#getPapyrusTableConfiguration()
 		 * @generated
@@ -225,6 +261,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Filling Mode</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute PAPYRUS_TABLE_CONFIGURATION__FILLING_MODE = eINSTANCE.getPapyrusTableConfiguration_FillingMode();
@@ -233,6 +270,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Filling Queries</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE_CONFIGURATION__FILLING_QUERIES = eINSTANCE.getPapyrusTableConfiguration_FillingQueries();
@@ -241,6 +279,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Listen Context Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE_CONFIGURATION__LISTEN_CONTEXT_FEATURE = eINSTANCE.getPapyrusTableConfiguration_ListenContextFeature();
@@ -249,6 +288,7 @@ public interface PapyrustableconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Table Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE_CONFIGURATION__TABLE_CONFIGURATION = eINSTANCE.getPapyrusTableConfiguration_TableConfiguration();
