@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Bundle-Name: Parameter Table Efacet (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.table.efacet.parameter.Activ
  ator
 Bundle-ManifestVersion: 2
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.uml.table.efacet.parameter;si
  ngleton:=true

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bundle-Name: Customization for UML (Incubation)
+Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.efacet.Activator
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -10,4 +10,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.query.java.core,
  org.eclipse.uml2.uml
 Bundle-Version: 0.9.1.qualifier
+Bundle-Vendor: %Bundle-Vendor
 
