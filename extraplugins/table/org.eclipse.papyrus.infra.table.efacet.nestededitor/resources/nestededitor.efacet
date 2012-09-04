@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="ASCII"?>
-<efacet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery" name="nestededitor">
-  <eClassifiers xsi:type="efacet:Facet" name="NestedEditor">
-    <extendedMetaclass href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <facetElements xsi:type="efacet:FacetAttribute" name="name" changeable="true" derived="true" documentation="">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetEditorNameQuery"/>
-    </facetElements>
-    <facetElements xsi:type="efacet:FacetReference" name="context" changeable="false" derived="true" documentation="">
-      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetEditorContextQuery"/>
-    </facetElements>
-    <facetElements xsi:type="efacet:FacetAttribute" name="isOpened" changeable="false" derived="true" documentation="">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetOpenEditorStatusQuery"/>
-    </facetElements>
-    <facetElements xsi:type="efacet:FacetReference" name="allNestedEditor" upperBound="-1" changeable="false" derived="true" documentation="">
-      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetAllNestedEditorsQuery"/>
-    </facetElements>
-  </eClassifiers>
+<efacet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
+	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
+	name="nestededitor">
+	<eClassifiers xsi:type="efacet:Facet" name="NestedEditor">
+		<extendedMetaclass href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+		<facetElements xsi:type="efacet:FacetAttribute" name="name"
+			changeable="true" derived="true" documentation="">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EString" />
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetEditorNameQuery" />
+		</facetElements>
+		<facetElements xsi:type="efacet:FacetReference" name="context"
+			changeable="false" derived="true" documentation="">
+			<eType xsi:type="ecore:EClass"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetEditorContextQuery" />
+		</facetElements>
+		<facetElements xsi:type="efacet:FacetAttribute" name="isOpened"
+			changeable="false" derived="true" documentation="">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetOpenEditorStatusQuery" />
+		</facetElements>
+		<facetElements xsi:type="efacet:FacetReference" name="allNestedEditor"
+			upperBound="-1" changeable="false" derived="true" documentation="">
+			<eType xsi:type="ecore:EClass"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetAllNestedEditorsQuery" />
+		</facetElements>
+	</eClassifiers>
 </efacet:FacetSet>

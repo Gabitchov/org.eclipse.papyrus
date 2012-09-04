@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery" name="papyrus_uml_customization">
+<custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:custom="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom" 
+xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" 
+	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
+	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
+name="papyrus_uml_customization">
   <eClassifiers xsi:type="custom:EClassCustomization" name="uml_label_">
     <extendedMetaclass href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
     <facetOperations name="label" lowerBound="1" documentation="Returns the label for the element">
@@ -7,7 +13,7 @@
       <eParameters name="eStructuralFeature">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.uml.efacet.queries.GetStereotypedLabelForNamedElementQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.uml.efacet.queries.GetStereotypedLabelForNamedElementQuery"/>
       <override xsi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/>
     </facetOperations>
     <extendedFacets href="platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>

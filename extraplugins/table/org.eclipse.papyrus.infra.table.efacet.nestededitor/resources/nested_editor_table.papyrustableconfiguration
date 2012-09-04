@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" xmlns:javaQuery="http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery" xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" fillingMode="QUERIES">
-  <fillingQueries xsi:type="javaQuery:JavaQuery" href="nestededitor.efacet#//NestedEditor/allNestedEditor/@query"/>
+<org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration xmi:version="2.0" 
+xmlns:xmi="http://www.omg.org/XMI" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
+	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
+	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
+xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" fillingMode="QUERIES">
+  <fillingQueries xsi:type="javaQuery2:JavaQuery" href="nestededitor.efacet#//NestedEditor/allNestedEditor/@query"/>
   <tableConfiguration>
     <defaultColumns xsi:type="efacet:FacetAttribute" href="nestededitor.efacet#//NestedEditor/name"/>
     <defaultColumns xsi:type="efacet:FacetReference" href="nestededitor.efacet#//NestedEditor/context"/>
