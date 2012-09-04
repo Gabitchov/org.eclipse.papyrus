@@ -16,17 +16,13 @@ package org.eclipse.papyrus.infra.table.efacet.common.editor;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 import org.eclipse.emf.facet.widgets.table.ui.internal.exported.ITableWidget;
@@ -41,9 +37,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.table.efacet.common.Activator;
 import org.eclipse.papyrus.infra.table.efacet.common.input.PapyrusTableEditorInput;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
@@ -52,12 +46,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.EditorPart;
 
 
 /**
@@ -419,6 +410,8 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 						}
 					}
 				}
+			} else {
+				autorized = false;
 			}
 			return autorized;
 		}
@@ -449,7 +442,7 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 			 * @param notification
 			 */
 			public void notifyChanged(final Notification notification) {
-				if(notification.getFeatureID(PapyrusTable.class) == PapyrustablePackage.PAPYRUS_TABLE__NAME && notification.getNotifier() == PartNameSynchronizer.this.papyrusTable) {
+				if((notification.getFeatureID(PapyrusTable.class) == PapyrustablePackage.PAPYRUS_TABLE__NAME) && (notification.getNotifier() == PartNameSynchronizer.this.papyrusTable)) {
 					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
 				}
 			}
