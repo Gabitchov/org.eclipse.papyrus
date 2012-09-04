@@ -357,6 +357,10 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 		for(Section section : currentView.getSections()) {
 			Composite tabControl = tabs.get(section.getTab());
+			if (tabControl == null){
+				Activator.log.warn("The section doesn't have a tab"); //Bug in section deletion: it is still referenced by the views
+				continue;
+			}
 			Composite pView = new Composite(tabControl, SWT.NONE);
 			pView.setLayout(new GridLayout(1, false));
 			URL sectionURL = saveTmp(section);

@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.customization.properties.editor;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -28,6 +27,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.customization.properties.editor.actions.CreateSectionAction;
 import org.eclipse.papyrus.customization.properties.editor.actions.CreateSectionWidgetAction;
 import org.eclipse.papyrus.customization.properties.editor.actions.MoDiscoCopyAction;
 import org.eclipse.papyrus.customization.properties.editor.actions.MoDiscoCutAction;
@@ -225,18 +225,17 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 *         The list of newly created {@link IAction}s
 	 */
 	protected Collection<IAction> createChildForView(ISelection selection, View view) {
-		return Collections.emptyList();
-		//		Collection<IAction> actions = new LinkedList<IAction>();
-		//		if(view.getContext() == null) {
-		//			return actions;
-		//		}
-		//
-		//		String sectionName = getSectionName(view.getContext());
-		//		String sectionFile = getSectionFile(sectionName);
-		//		IAction action = new CreateSectionAction(selection, sectionName, sectionFile);
-		//		actions.add(action);
-		//
-		//		return actions;
+		Collection<IAction> actions = new LinkedList<IAction>();
+		if(view.getContext() == null) {
+			return actions;
+		}
+
+		String sectionName = getSectionName(view.getContext());
+		String sectionFile = getSectionFile(sectionName);
+		IAction action = new CreateSectionAction(selection, sectionName, sectionFile);
+		actions.add(action);
+
+		return actions;
 	}
 
 	/**
