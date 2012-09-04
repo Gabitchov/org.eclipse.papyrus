@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -37,7 +39,31 @@ public class DestroyElementPapyrusCommand extends DestroyElementCommand {
 
 	public DestroyElementPapyrusCommand(DestroyElementRequest request) {
 		super(request);
+		getAffectedFiles().addAll(fileOfIncomingReferences(request.getElementToDestroy()));
 	}
+	
+	/**
+	 * Compute list of affected files affected by the tear donw methods
+	 * @param destructee
+	 * @return
+	 */
+	protected List fileOfIncomingReferences(EObject destructee) {
+        if (destructee != null){
+            Collection<Setting> usages = getUsages(destructee);
+            List<Object> result =new ArrayList<Object>();
+            for(Setting setting : usages) {
+                EReference eRef = (EReference)setting.getEStructuralFeature();
+                if(eRef.isChangeable() && (eRef.isDerived() == false) && (eRef.isContainment() == false) && (eRef.isContainer() == false)) {
+                    List files = getWorkspaceFiles(setting.getEObject());
+                    if (files != null){
+                        result.addAll(files);
+                    }
+                }
+            }
+            return result;
+        }
+        return Collections.emptyList();
+    }
 
 	@Override
 	protected void tearDownIncomingReferences(EObject destructee) {
