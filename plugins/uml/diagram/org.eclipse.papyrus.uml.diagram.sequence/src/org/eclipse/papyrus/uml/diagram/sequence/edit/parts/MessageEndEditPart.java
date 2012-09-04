@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
@@ -25,11 +27,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.Log;
@@ -45,7 +49,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -64,11 +71,15 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * Edit part for message end to make it possible for selecting a messageEnd. 
@@ -134,10 +145,9 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(DUMMY_TYPE);
-
-		final View container = (View) parent.getModel();
 		node.setElement(model);
-		// ViewUtil.insertChildView(container.getDiagram(), node,-1, true);
+//		final View container = (View) parent.getModel();
+//		ViewUtil.insertChildView(container.getDiagram(), node,-1, true);
 		return node;
 	}
 
@@ -161,7 +171,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			public void execute() {
 				ViewUtil.insertChildView(container, view,-1, false);
 			}
-		});
+		}, true);
 	}
 
 	protected void createDefaultEditPolicies() {
@@ -183,7 +193,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 
 		fig.setOpaque(false);
 		// f.setFill(true);
-		((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure().add(fig);
+		//((org.eclipse.gef.GraphicalEditPart) getParent()).getFigure().add(fig);
 		return fig;
 	}
 
@@ -192,8 +202,32 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 	}
 
 	public ConnectionAnchor getSourceConnectionAnchor(
-			ConnectionEditPart connection) {
-		return null;
+			final ConnectionEditPart connEditPart) {
+		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = 
+            (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
+		String t = ""; //$NON-NLS-1$
+		try {
+			t = (String) getEditingDomain().runExclusive(
+				new RunnableWithResult.Impl() {
+
+				public void run() {
+					Anchor a = ((Edge) connection.getModel()).getSourceAnchor();
+					if (a instanceof IdentityAnchor)
+						setResult(((IdentityAnchor) a).getId());
+                    else
+                        setResult(""); //$NON-NLS-1$
+				}
+			});
+		} catch (InterruptedException e) {
+			Trace.catching(DiagramUIPlugin.getInstance(),
+				DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
+				"getSourceConnectionAnchor", e); //$NON-NLS-1$
+			Log.error(DiagramUIPlugin.getInstance(),
+				DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
+				"getSourceConnectionAnchor", e); //$NON-NLS-1$
+		}
+		IAnchorableFigure fig = ((IAnchorableFigure) getFigure());
+		return fig.getConnectionAnchor(t);
 	}
 
 	public ConnectionAnchor getTargetConnectionAnchor(
@@ -240,7 +274,19 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 	}
 
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		return null;
+		IAnchorableFigure fig = ((IAnchorableFigure) getFigure());
+		if (request instanceof ReconnectRequest) {
+			if (((DropRequest) request).getLocation() == null) {
+				return fig.getSourceConnectionAnchorAt(null);
+			}
+			Point pt = ((DropRequest) request).getLocation().getCopy();
+			return fig.getSourceConnectionAnchorAt(pt);
+		}
+		else if (request instanceof DropRequest){
+			return fig.getSourceConnectionAnchorAt(
+				((DropRequest) request).getLocation());
+		}
+		return fig.getSourceConnectionAnchorAt(null);
 	}
 
 	public boolean canAttachNote() {
@@ -298,7 +344,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			}
 		};
 
-		CommandHelper.executeCommandWithoutHistory(this.getEditingDomain(), c);
+		CommandHelper.executeCommandWithoutHistory(this.getEditingDomain(), c, true);
 	}
 	
 	static class MessageEndGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
@@ -323,6 +369,42 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 				addFeedback(c);
 				messageEndFeedback = c;
 			}
+		}
+		
+		protected Connection createDummyConnection(Request req) {
+			Connection conn = super.createDummyConnection(req);
+			conn.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);
+			return conn;
+		}
+		
+		protected Command getConnectionAndRelationshipCreateCommand(CreateConnectionViewAndElementRequest request) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
+			if(((IHintedType)UMLElementTypes.GeneralOrdering_4012).getSemanticHint().equals(requestHint)) {
+				if(getHost() instanceof MessageEndEditPart){
+					List<OccurrenceSpecification> events = new ArrayList<OccurrenceSpecification>(2);
+					final MessageOccurrenceSpecification messageEnd = (MessageOccurrenceSpecification) ((MessageEndEditPart)getHost()).resolveSemanticElement();
+					events.add(messageEnd);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
+					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, request.getLocation());
+				}
+			}
+			return super.getConnectionAndRelationshipCreateCommand(request);
+		}
+		
+		protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
+			if(((IHintedType)UMLElementTypes.GeneralOrdering_4012).getSemanticHint().equals(requestHint)) {
+				if(getHost() instanceof MessageEndEditPart){
+					List<OccurrenceSpecification> events = new ArrayList<OccurrenceSpecification>(2);
+					final MessageOccurrenceSpecification messageEnd = (MessageOccurrenceSpecification) ((MessageEndEditPart)getHost()).resolveSemanticElement();
+					events.add(messageEnd);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, events);
+					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2, request.getLocation());
+				}
+			}
+			return super.getConnectionAndRelationshipCompleteCommand(request);
 		}
 	}
 	
@@ -382,6 +464,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 					.getElementType()) {
 				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(
 						req, req.getSource(), req.getTarget()));
+			}else if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+				return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 			}
 			return null;
 		}
@@ -395,6 +479,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			}else if(UMLElementTypes.CommentAnnotatedElement_4010 == req
 					.getElementType()) {
 				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
+			}else if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+				return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 			}
 			return null;
 		}
@@ -491,17 +577,13 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 
 		public void validate() {
 			locator.relocate(this);
-			Rectangle rect = this.getBounds();
-			final Shape shape = (Shape) MessageEndEditPart.this.getModel();
 			super.validate();
 		}
 
 		public ConnectionAnchor getTargetConnectionAnchorAt(Point p) {
 			try {
-				ConnectionAnchor a = super.getTargetConnectionAnchorAt(p);
-				return a;
+				return super.getTargetConnectionAnchorAt(p);
 			} catch (Exception e) {
-				e.printStackTrace();
 				return null;
 			}
 		};
@@ -562,5 +644,21 @@ public class MessageEndEditPart extends GraphicalEditPart implements
 			if( !annotation.getReferences().contains( connectionSource) )
 				annotation.getReferences().add(connectionSource);
 		}
+	}
+	
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest){
+			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+			if(types.contains(UMLElementTypes.CommentAnnotatedElement_4010) || types.contains(UMLElementTypes.ConstraintConstrainedElement_4011) || types.contains(UMLElementTypes.GeneralOrdering_4012)){
+				return super.getTargetEditPart(request);
+			}
+		}else if(request instanceof ReconnectRequest){
+			ConnectionEditPart con = ((ReconnectRequest)request).getConnectionEditPart();
+			if(con instanceof CommentAnnotatedElementEditPart || con instanceof ConstraintConstrainedElementEditPart || con instanceof GeneralOrderingEditPart){
+				return super.getTargetEditPart(request);
+			}
+		}
+		return null;
 	}
 }

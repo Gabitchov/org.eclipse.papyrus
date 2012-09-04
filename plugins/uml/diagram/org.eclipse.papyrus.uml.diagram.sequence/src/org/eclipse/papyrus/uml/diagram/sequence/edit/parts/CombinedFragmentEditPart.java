@@ -1176,7 +1176,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			String newStringValue = notification.getNewStringValue();
 			if(notification.getOldValue() instanceof InteractionOperatorKind && !isAllowedInteractionOperator(newStringValue)) {
 				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, FORBIDEN_OPERATOR_MODIFICATION_MSG);
-				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
+				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()), true);
 				return;
 			}
 			EList<InteractionOperand> operands = combinedFragment.getOperands();
@@ -1196,7 +1196,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 						CommandHelper.executeCommandWithoutHistory(
 								getEditingDomain(), SetCommand.create(
 										getEditingDomain(), combinedFragment,
-										feature, notification.getOldValue()));
+										feature, notification.getOldValue()), true);
 					} else {
 						updateHeaderLabel();
 					}
@@ -1223,7 +1223,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 						// Case of there is already an operand on opt, loop, break and neg
 						// CombinedFragment type
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERAND_ADDITION_MSG);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, feature, newValue));
+						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, feature, newValue), true);
 						return;
 					}
 				}

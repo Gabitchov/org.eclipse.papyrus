@@ -69,8 +69,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEdi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -121,8 +123,17 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 //					}
 				}
 
-				if(!(child instanceof LifelineEditPart) || isVerticalMove(request)) {
+				boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
+				if(hasCreateLink && !LifelineMessageCreateHelper.canMoveLifelineVertical((LifelineEditPart) child, (Rectangle) translateToModelConstraint(constraintFor)) ){
+					return UnexecutableCommand.INSTANCE; 
+				}
+				if(!(child instanceof LifelineEditPart) || isVerticalMove(request) || hasCreateLink) {
 					Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
+					
+					// When we change the width by mouse, it passe to manual mode. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723 
+					if(child instanceof LifelineEditPart && changeConstraintCommand != null && request.getSizeDelta().width != 0){
+						compoundCmd.add(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart)child));
+					}
 					compoundCmd.add(changeConstraintCommand);
 				}
 				
@@ -153,7 +164,6 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			}
 		}
 		return compoundCmd.unwrap();
-
 	}
 
 	protected boolean isVerticalMove(ChangeBoundsRequest request) {
@@ -563,12 +573,16 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			if(cons != null) {
 				rect.setSize(cons.width, cons.height);
 			}
-		} else { // resize
+		} else { // resize editpart
+			boolean skipMinSize = false;
+			if(child instanceof LifelineEditPart)// && LifelineResizeHelper.isManualSize((LifelineEditPart)child))
+				skipMinSize = true;
+				
 			Dimension minSize = getMinimumSizeFor(child);
-			if(rect.width < minSize.width) {
+			if(rect.width < minSize.width && !skipMinSize) { // In manual mode, there is no minimal width
 				return null;
 			}
-			if(rect.height < minSize.height) {
+			if(rect.height < minSize.height ) {
 				return null;
 			}
 		}

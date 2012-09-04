@@ -25,12 +25,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.Log;
@@ -47,6 +49,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -140,7 +143,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 			public void execute() {
 				ViewUtil.insertChildView(container, view,-1, false);
 			}
-		});
+		},true);
 	}
 	
 	protected void createDefaultEditPolicies() {
@@ -198,7 +201,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 				edge.setTarget((View) ExecutionSpecificationEndEditPart.this
 						.getModel());
 			}
-		});
+		},true);
 	}
 	
 	static ViewHelper helper = new ViewHelper();
@@ -519,7 +522,21 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart
 		return list;
 	}
 	
-	
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest){
+			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+			if(types.contains(UMLElementTypes.CommentAnnotatedElement_4010) || types.contains(UMLElementTypes.ConstraintConstrainedElement_4011)){
+				return super.getTargetEditPart(request);
+			}
+		}else if(request instanceof ReconnectRequest){
+			ConnectionEditPart con = ((ReconnectRequest)request).getConnectionEditPart();
+			if(con instanceof CommentAnnotatedElementEditPart || con instanceof ConstraintConstrainedElementEditPart){
+				return super.getTargetEditPart(request);
+			}
+		}
+		return null;
+	}
 	 
 	static class ExecutionSpecificationEndAnchor extends SlidableOvalAnchor {
 

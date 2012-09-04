@@ -13,14 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -52,7 +55,11 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -100,6 +107,10 @@ public class SelectOrCreateDialog extends FormDialog {
 
 	private final TransactionalEditingDomain transactionalEditingDomain;
 
+	private Button filterSignalButton;
+
+	private List<Type> types;
+
 	/**
 	 * 
 	 * @param shell
@@ -118,8 +129,9 @@ public class SelectOrCreateDialog extends FormDialog {
 	 *        The map of possible types for the element
 	 *        and the possible parents where the element
 	 *        can be created.
+	 * @param types 
 	 */
-	public SelectOrCreateDialog(Shell shell, String title, ILabelProvider typeLabelProvider, ILabelProvider elementLabelProvider, TransactionalEditingDomain transactionalEditingDomain, Collection<EObject> existingElements, LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents) {
+	public SelectOrCreateDialog(Shell shell, String title, ILabelProvider typeLabelProvider, ILabelProvider elementLabelProvider, TransactionalEditingDomain transactionalEditingDomain, Collection<EObject> existingElements, LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents, List<Type> types) {
 		super(shell);
 		this.typeLabelProvider = typeLabelProvider;
 		this.elementLabelProvider = elementLabelProvider;
@@ -127,6 +139,7 @@ public class SelectOrCreateDialog extends FormDialog {
 		this.mapTypesPossibleParents = mapTypesPossibleParents;
 		this.title = title;
 		this.transactionalEditingDomain = transactionalEditingDomain;
+		this.types = types;
 	}
 
 	/**
@@ -241,7 +254,9 @@ public class SelectOrCreateDialog extends FormDialog {
 		}
 
 		selectionButton.setLayoutData(new GridData(SWT.NONE));
-
+		
+		filterSignalButton = pToolkit.createButton(lBody, "filter out all signals which are not receivable", SWT.CHECK);
+		
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
 	}
@@ -450,10 +465,41 @@ public class SelectOrCreateDialog extends FormDialog {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), elementLabelProvider);
 		dialog.setMessage(Messages.SelectOrCreateDialog_SelectLabel);
 		dialog.setMultipleSelection(false);
-		dialog.setElements(existingElements.toArray(new EObject[existingElements.size()]));
+		dialog.setElements(filterElements(existingElements));		
 		if(dialog.open() == Window.OK) {
 			setElementSelection((EObject)dialog.getFirstResult());
 		}
+	}
+	
+	private Set<Signal> getAllSignals(List<Type> types){
+		Set<Signal> accept = new HashSet<Signal>();
+		for(Type t: types)
+			if(t instanceof Classifier){
+				Classifier c = (Classifier)t;
+				
+				EList<Property> attrs = c.getAllAttributes();
+				for(Property p : attrs)
+					if(p.getType() instanceof Signal){
+						accept.add((Signal)p.getType());
+					}
+			}
+		
+		return accept;
+	}
+
+	private Object[] filterElements(Collection<EObject> elements) {
+		if(!filterSignalButton.getSelection() || types == null || types.isEmpty())
+			return elements.toArray(new EObject[elements.size()]);
+				
+		Set<Signal> accept = getAllSignals(types);
+		
+		List<EObject> result = new ArrayList<EObject>();
+		for(EObject o:elements)
+			if(!(o instanceof Signal))
+				result.add(o);
+			else if( accept.contains(o))
+				result.add(o);
+		return result.toArray(new EObject[result.size()]);
 	}
 
 	/**

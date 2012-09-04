@@ -13,16 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.ArrowLocator;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Cursors;
+import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
@@ -158,8 +161,7 @@ implements ITreeBranchEditPart {
 	public MessageLost getPrimaryShape() {
 		return (MessageLost)getFigure();
 	}
-
-	/**
+		/**
 	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
 	public class MessageLost extends UMLEdgeFigure {
@@ -184,7 +186,7 @@ implements ITreeBranchEditPart {
 			createContents();
 			setTargetDecoration(createTargetDecoration());
 		}
-
+		
 		/**
 		 * @generated NOT
 		 */
@@ -204,12 +206,20 @@ implements ITreeBranchEditPart {
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			EllipseDecoration df = new EllipseDecoration();
-
 			df.setAlwaysFill(true);
-
 			df.setPreferredSize(new Dimension(10, 10));
-
-			return df;
+			add(df, new ArrowLocator(this, ConnectionLocator.TARGET)); // child figure
+						
+			PolylineDecoration arrow = new PolylineDecoration();
+			arrow.setForegroundColor(ColorConstants.black);
+			PointList pl = new PointList();
+			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
+			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
+			arrow.setTemplate(pl);
+			arrow.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+			
+			return arrow;		
 		}
 
 		/**
