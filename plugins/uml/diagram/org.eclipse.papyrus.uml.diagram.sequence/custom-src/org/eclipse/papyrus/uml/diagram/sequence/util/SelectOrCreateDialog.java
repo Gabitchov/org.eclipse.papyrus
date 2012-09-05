@@ -473,18 +473,28 @@ public class SelectOrCreateDialog extends FormDialog {
 	
 	private Set<Signal> getAllSignals(List<Type> types){
 		Set<Signal> accept = new HashSet<Signal>();
+		Set<Classifier> collected = new HashSet<Classifier>();
 		for(Type t: types)
 			if(t instanceof Classifier){
-				Classifier c = (Classifier)t;
-				
-				EList<Property> attrs = c.getAllAttributes();
-				for(Property p : attrs)
-					if(p.getType() instanceof Signal){
-						accept.add((Signal)p.getType());
-					}
+				Classifier c = (Classifier)t;				
+				collectSignals(c, accept, collected);
 			}
 		
 		return accept;
+	}
+
+	protected void collectSignals(Classifier c, Set<Signal> accept, Set<Classifier> collected) {
+		if(collected.contains(c))
+			return;		
+		collected.add(c);
+		
+		EList<Property> attrs = c.getAllAttributes();
+		for(Property p : attrs)
+			if(p.getType() instanceof Signal){
+				accept.add((Signal)p.getType());
+			}else if(p.getType() instanceof Classifier){
+				collectSignals((Classifier)p.getType(), accept, collected); 
+			}
 	}
 
 	private Object[] filterElements(Collection<EObject> elements) {

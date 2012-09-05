@@ -911,6 +911,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6008 = (Location)label6008.getLayoutConstraint();
 		location6008.setX(1);
 		location6008.setY(-33);
+		
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 
 		return edge;
 	}
@@ -921,7 +924,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Edge createMessage_4004(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());		
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
 		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
 		points.add(new RelativeBendpoint());
@@ -954,6 +957,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6009.setX(1);
 		location6009.setY(-33);
 
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
+		
 		return edge;
 	}
 
@@ -996,6 +1002,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6010.setX(1);
 		location6010.setY(-33);
 
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 		return edge;
 	}
 
@@ -1037,6 +1045,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6011 = (Location)label6011.getLayoutConstraint();
 		location6011.setX(1);
 		location6011.setY(-33);
+		
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 
 		return edge;
 	}
@@ -1080,6 +1091,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6012.setX(1);
 		location6012.setY(-33);
 
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
+		
 		return edge;
 	}
 
@@ -1121,6 +1135,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6013 = (Location)label6013.getLayoutConstraint();
 		location6013.setX(1);
 		location6013.setY(-33);
+		
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 
 		return edge;
 	}
@@ -1163,6 +1180,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6014 = (Location)label6014.getLayoutConstraint();
 		location6014.setX(1);
 		location6014.setY(-33);
+		
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 
 		return edge;
 	}
@@ -1195,6 +1215,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//}
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+		
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 
 		return edge;
 	}
@@ -1227,6 +1250,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//}
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+		
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
 
 		return edge;
 	}
@@ -1265,6 +1291,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location6015.setX(1);
 		location6015.setY(-33);
 
+		edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "GeneralOrdering");
 		return edge;
 	}
 

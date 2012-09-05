@@ -1127,6 +1127,18 @@ AbstractBorderItemEditPart {
 			}
 		}
 		super.handleNotificationEvent(notification);
+		
+		Object feature = notification.getFeature();
+		if((getModel() != null) && (getModel() == notification.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} 
+		}
+	}
+	
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshLineWidth();
 	}
 
 }

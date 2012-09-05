@@ -222,15 +222,15 @@ AbstractExecutionSpecificationEditPart {
 		}
 	}
 
-	/**
-	 * @generated
-	 */
-	@Override
-	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineWidth(width);
-		}
-	}
+//	/**
+//	 * @generated
+//	 */
+//	@Override
+//	protected void setLineWidth(int width) {
+//		if(primaryShape instanceof Shape) {
+//			((Shape)primaryShape).setLineWidth(width);
+//		}
+//	}
 
 	/**
 	 * @generated
@@ -986,20 +986,20 @@ AbstractExecutionSpecificationEditPart {
 		return types;
 	}
 
-	/**
-	 * @generated
-	 */
-	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		public ExecutionSpecificationRectangleFigure() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
-		}
-
-	}
+//	/**
+//	 * @generated
+//	 */
+//	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
+//
+//		/**
+//		 * @generated
+//		 */
+//		public ExecutionSpecificationRectangleFigure() {
+//			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
+//			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
+//		}
+//
+//	}
 
 	/**
 	 * @generated

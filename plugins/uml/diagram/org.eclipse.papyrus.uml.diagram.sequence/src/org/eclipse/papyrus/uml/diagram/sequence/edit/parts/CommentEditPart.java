@@ -52,6 +52,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.FontData;
 
 /**
  * @generated
@@ -263,7 +264,9 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof NodeFigure){
+			((NodeFigure)primaryShape).setLineWidth(width);
+		}else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}

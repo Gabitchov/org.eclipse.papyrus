@@ -11,6 +11,7 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -220,9 +221,10 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineWidth(width);
-		}
+		getPrimaryShape().setLineWidth(width);
+//		if(primaryShape instanceof Shape) {
+//			((Shape)primaryShape).setLineWidth(width);
+//		}
 	}
 
 	/**
@@ -1020,4 +1022,21 @@ AbstractBorderItemEditPart {
 		}
 		return result;
 	}	
+	
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		
+		Object feature = notification.getFeature();
+		if((getModel() != null) && (getModel() == notification.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} 
+		}
+	}
+
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshLineWidth();
+	}
 }

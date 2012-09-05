@@ -4,11 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
@@ -22,7 +20,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineLabelHelper;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -52,6 +52,13 @@ public class LifelineLabelEditPolicy  extends AbstractMaskManagedEditPolicy {
 		}
 		// adds a listener to the element itself, and to linked elements, like Type
 		getDiagramEventBroker().addNotificationListener(lifeline, this);
+		
+		ConnectableElement ce = lifeline.getRepresents();
+		if(ce != null){
+			getDiagramEventBroker().addNotificationListener(ce, this);
+			if(ce.getType() != null)
+				getDiagramEventBroker().addNotificationListener(ce.getType(), this);
+		}
 	}
 	
 	protected void handlePreferenceChange(PropertyChangeEvent event) {
@@ -74,27 +81,55 @@ public class LifelineLabelEditPolicy  extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 		getDiagramEventBroker().removeNotificationListener(lifeline, this);
+		
+		ConnectableElement ce = lifeline.getRepresents();
+		if(ce != null){
+			getDiagramEventBroker().removeNotificationListener(ce, this);
+			if(ce.getType() != null)
+				getDiagramEventBroker().removeNotificationListener(ce.getType(), this);
+		}
 	}
 	
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
 
 		Object object = notification.getNotifier();
-		if(object == null) {
+		if(object == null || getUMLElement() == null) {
 			return;
 		}
 		
 		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			refreshDisplay();
 		} else if(notification.getFeature().equals(UMLPackage.Literals.LIFELINE__REPRESENTS)) {
+			// change represent element
+			if(notification.getNewValue() instanceof ConnectableElement){
+				ConnectableElement ce = (ConnectableElement )notification.getNewValue();
+				getDiagramEventBroker().addNotificationListener(ce, this);
+				if(ce.getType() != null)
+					getDiagramEventBroker().addNotificationListener(ce.getType(), this);
+			}
+			
+			if(notification.getOldValue() instanceof ConnectableElement){
+				ConnectableElement ce = (ConnectableElement )notification.getOldValue();
+				getDiagramEventBroker().removeNotificationListener(ce, this);
+				
+				if(ce.getType() != null)
+					getDiagramEventBroker().removeNotificationListener(ce.getType(), this);
+			}
+			
 			refreshDisplay();
-		}
-
-		if(isMaskManagedAnnotation(object)) {
+		}else if(isMaskManagedAnnotation(object) || isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
-		}
-
-		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
+		} else if(object.equals(getUMLElement().getRepresents()) ){
+			// change represent type
+			if(notification.getNewValue() instanceof Type && notification.getNewValue() instanceof EObject){
+				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
+			}
+			
+			if(notification.getOldValue() instanceof Type && notification.getOldValue() instanceof EObject){
+				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+			}
+			
 			refreshDisplay();
 		}
 	}

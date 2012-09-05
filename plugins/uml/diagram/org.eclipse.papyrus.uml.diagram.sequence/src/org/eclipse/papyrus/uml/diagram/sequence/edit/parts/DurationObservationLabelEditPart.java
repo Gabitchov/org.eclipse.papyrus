@@ -567,7 +567,8 @@ public class DurationObservationLabelEditPart extends CompartmentEditPart implem
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		//return (View)getModel();
+		return (View) getParent().getModel();
 	}
 
 	/**

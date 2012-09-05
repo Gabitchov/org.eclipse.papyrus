@@ -39,11 +39,15 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -163,7 +167,54 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InteractionUseRectangleFigure();
+		primaryShape = new InteractionUseRectangleFigure();
+		getPrimaryShape().setShadow(false);  
+		return primaryShape;
+	}
+	
+	
+	protected final void refreshShadow() {
+		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+	}
+		
+	/**
+	 * Override to set the transparency to the correct figure
+	 */
+	@Override
+	protected void setTransparency(int transp) {
+		getPrimaryShape().setTransparency(transp);
+	}
+	
+	/**
+	 * sets the back ground color of this edit part
+	 * 
+	 * @param color
+	 *        the new value of the back ground color
+	 */
+	@Override
+	protected void setBackgroundColor(Color color) {
+		getPrimaryShape().setBackgroundColor(color);
+		getPrimaryShape().setIsUsingGradient(false);
+		getPrimaryShape().setGradientData(-1, -1, 0);
+	}
+
+	/**
+	 * Override to set the gradient data to the correct figure
+	 */
+	@Override
+	protected void setGradient(GradientData gradient) {
+		IPapyrusNodeFigure fig = getPrimaryShape();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(gradient != null) {
+			fig.setIsUsingGradient(true);;
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
+		} else {
+			fig.setIsUsingGradient(false);
+		}
+	}
+		
+	public boolean supportsGradient() {
+		return true;
 	}
 
 	/**
@@ -309,6 +360,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
+		}else if(primaryShape instanceof NodeFigure){
+			((NodeFigure)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -1203,6 +1256,13 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			}
 		}
 
+		if((getModel() != null) && (getModel() == notification.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} 
+		}
+		refreshShadow();
+		
 		super.handleNotificationEvent(notification);
 	}
 
@@ -1268,5 +1328,4 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		super.removeNotify();
 
 	}
-
 }

@@ -20,7 +20,7 @@ import org.eclipse.draw2d.Graphics;
  * @generated
  */
 public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
-
+	
 	/**
 	 * Constructor <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -30,7 +30,7 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 
 		super();
 	}
-
+	
 	/**
 	 * The stop is a cross
 	 * 
@@ -49,10 +49,18 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 		}
 		int x = bounds.x + bounds.width / 2 - width / 2;
 		int y = bounds.y + bounds.height / 2 - height / 2;
-		graphics.setLineWidth(1);
+		graphics.setLineWidth(lineWidth);
 		graphics.drawLine(x, y, x + width, y + height);
 		graphics.drawLine(x + width, y, x, y + height);
 		graphics.popState();
 	}
 
+	public void setLineWidth(int w) {
+		if ((lineWidth == w) || (w < 0))
+			return;
+		lineWidth = w;
+		repaint();
+	}
+
+	private int lineWidth = 1;
 }
