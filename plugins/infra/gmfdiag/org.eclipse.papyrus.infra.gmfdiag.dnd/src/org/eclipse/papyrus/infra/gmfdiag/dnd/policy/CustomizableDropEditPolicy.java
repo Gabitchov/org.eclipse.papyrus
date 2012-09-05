@@ -101,7 +101,11 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			command = getCreationCommand(request);
 		} else if(defaultCreationEditPolicy != null) {
 			//Creation request
-			command = defaultCreationEditPolicy.getCommand(request);
+			if(defaultCreationEditPolicy.getTargetEditPart(request) != getTargetEditPart(request)) {
+				command = defaultCreationEditPolicy.getTargetEditPart(request).getCommand(request);
+			} else {
+				command = defaultCreationEditPolicy.getCommand(request);
+			}
 		} else {
 			command = null;
 		}
