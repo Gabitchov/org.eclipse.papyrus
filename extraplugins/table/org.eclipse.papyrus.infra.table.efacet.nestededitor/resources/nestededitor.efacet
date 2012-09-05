@@ -35,5 +35,12 @@
 			<query xsi:type="javaQuery2:JavaQuery"
 				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetAllNestedEditorsQuery" />
 		</facetElements>
+		<facetElements xsi:type="efacet:FacetReference" name="allSubNestedEditor"
+			upperBound="-1" changeable="false" derived="true" documentation="Returns all editors referencing the context of the current editor or its children">
+			<eType xsi:type="ecore:EClass"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+			<query xsi:type="javaQuery2:JavaQuery"
+				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetAllSubNestedEditorsQuery" />
+		</facetElements>
 	</eClassifiers>
 </efacet:FacetSet>
