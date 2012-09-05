@@ -161,7 +161,7 @@ if [ $signalDateTrunkNightly -gt $lastPromoteDateTrunkNightly ]; then
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
+	prune N "$buildsDir" 2
 
 	nfsURL="/shared/jobs/papyrus-trunk-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/lastSuccessfulBuild/artifact/"
@@ -337,7 +337,7 @@ if [ $signalDate09MaintenanceNightly -gt $lastPromoteDate09MaintenanceNightly ];
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
+	prune N "$buildsDir" 2
 
 	nfsURL="/shared/jobs/papyrus-0.9-maintenance-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.9-maintenance-nightly/lastSuccessfulBuild/artifact/"
@@ -511,7 +511,7 @@ if [ $signalDateMaintenanceNightly -gt $lastPromoteDateMaintenanceNightly ]; the
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
+	prune N "$buildsDir" 2
 
 	nfsURL="/shared/jobs/papyrus-0.8-maintenance-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-nightly/lastSuccessfulBuild/artifact/"
@@ -536,7 +536,7 @@ if [ $signalDateMaintenanceExtraNightly -gt $lastPromoteDateMaintenanceExtraNigh
 	
 	buildsDir="$DROPS_DIR/$version"
 	echo "[$DATE] pruning old builds"
-	prune N "$buildsDir" 4
+	prune N "$buildsDir" 2
 
 	nfsURL="/shared/jobs/papyrus-0.8-maintenance-extra-nightly/lastSuccessful/archive/"
 	hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-0.8-maintenance-extra-nightly/lastSuccessfulBuild/artifact/"
