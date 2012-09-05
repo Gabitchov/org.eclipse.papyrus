@@ -8,6 +8,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" fillingMode="QUERIES">
   <fillingQueries xsi:type="javaQuery2:JavaQuery" href="nestededitor.efacet#//NestedEditor/allNestedEditor/@query"/>
   <tableConfiguration>
+    <defaultColumns xsi:type="efacet:FacetReference" href="platform:/plugin/org.eclipse.papyrus.infra.emf.efacet/resources/emf.efacet#//Extended_EObject/self"/>
     <defaultColumns xsi:type="efacet:FacetAttribute" href="nestededitor.efacet#//NestedEditor/name"/>
     <defaultColumns xsi:type="efacet:FacetReference" href="nestededitor.efacet#//NestedEditor/context"/>
     <defaultColumns xsi:type="efacet:FacetAttribute" href="nestededitor.efacet#//NestedEditor/isOpened"/>
