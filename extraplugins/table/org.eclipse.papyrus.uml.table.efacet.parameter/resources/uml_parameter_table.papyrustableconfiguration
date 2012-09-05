@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" fillingMode="CONTEXT_FEATURE">
+<org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration xmi:version="2.0" 
+xmlns:xmi="http://www.omg.org/XMI"
+xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet" 
+xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://www.eclipse.org/Papyrus/PapyrusTableConfiguration/0.9.0/papyrustableconfiguration" 
+fillingMode="CONTEXT_FEATURE">
   <listenContextFeature href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioralFeature/ownedParameter"/>
-  <tableConfiguration/>
+  <tableConfiguration>
+    <defaultLocalCustomizations href="parametertable.custom#/"/>
+    <defaultLocalCustomizations href="platform:/plugin/org.eclipse.papyrus.infra.emf.efacet/resources/emf_hidden_features.custom#/"/>
+    <defaultColumns xsi:type="efacet:FacetReference" href="platform:/plugin/org.eclipse.papyrus.infra.emf.efacet/resources/emf.efacet#//Extended_EObject/self"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+     <defaultColumns xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//TypedElement/type"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter/direction"/>
+     <defaultColumns xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//MultiplicityElement/lowerValue"/>
+     <defaultColumns xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//MultiplicityElement/upperValue"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//MultiplicityElement/isOrdered"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//MultiplicityElement/isUnique"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter/isException"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter/isStream"/>
+     <defaultColumns xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter/effect"/>
+  </tableConfiguration>
 </org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration>

@@ -96,5 +96,11 @@
          </command>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="resources/parametertable.custom">
+      </modeldeclaration>
+   </extension>
 
 </plugin>
