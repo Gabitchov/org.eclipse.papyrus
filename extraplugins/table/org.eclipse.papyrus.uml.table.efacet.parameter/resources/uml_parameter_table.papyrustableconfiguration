@@ -7,6 +7,7 @@ xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://w
 fillingMode="CONTEXT_FEATURE">
   <listenContextFeature href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioralFeature/ownedParameter"/>
   <tableConfiguration>
+    <canBePresentedInTheTable xmi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.papyrus.uml.efacet/resources/uml.efacet#//uml_element/isInstanceOfParameter"/>
     <defaultLocalCustomizations href="parametertable.custom#/"/>
     <defaultLocalCustomizations href="platform:/plugin/org.eclipse.papyrus.infra.emf.efacet/resources/emf_hidden_features.custom#/"/>
     <defaultColumns xsi:type="efacet:FacetReference" href="platform:/plugin/org.eclipse.papyrus.infra.emf.efacet/resources/emf.efacet#//Extended_EObject/self"/>

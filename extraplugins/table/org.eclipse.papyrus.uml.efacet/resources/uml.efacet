@@ -24,5 +24,27 @@
 			<query xsi:type="javaQuery2:JavaQuery"
 				implementationClassName="org.eclipse.papyrus.uml.efacet.queries.IsUMLElementQuery" />
 		</facetOperations>
+		<facetOperations name="isInstanceOf"
+			documentation="This query returns true if the element is an instance of the parameter">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+			<eParameters name="wantedEClass" ordered="false">
+				<eType xsi:type="ecore:EClass"
+					href="http://www.eclipse.org/emf/2002/Ecore#//EObject" />
+			</eParameters>
+			<query xsi:type="javaQuery2:JavaQuery" canBeCached="true"
+				implementationClassName="org.eclipse.papyrus.uml.efacet.queries.IsInstanceOfQuery" />
+		</facetOperations>
+		<facetOperations name="isInstanceOfParameter"
+			documentation="Returns true if the element is an instance of Parameter">
+			<eType xsi:type="ecore:EDataType"
+				href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />
+			<query xsi:type="query:OperationCallQuery" operation="//uml_element/isInstanceOf">
+				<arguments xsi:type="query:EObjectLiteralQuery">
+					<element
+						href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter" />
+				</arguments>
+			</query>
+		</facetOperations>
 	</eClassifiers>
 </efacet:FacetSet>
