@@ -27,7 +27,8 @@ import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTabl
 
 /**
  * 
- * This listener allows to know when a line has been moved in the table
+ * This listener allows to know when a line has been moved in the table. Its returns the command
+ * to update the order of the elements in the listened feature.
  * 
  */
 public class MoveTableLineListener extends AbstractTableTriggerListener {
@@ -51,10 +52,10 @@ public class MoveTableLineListener extends AbstractTableTriggerListener {
 	 */
 	@Override
 	protected boolean isManagedNotification(final Notification notification) {
-		if(notification.getEventType() == Notification.MOVE && notification.getNotifier() == this.table.getTable() && notification.getFeature() == TablePackage.eINSTANCE.getTable_Rows()) {
+		if((notification.getEventType() == Notification.MOVE) && (notification.getNotifier() == this.table.getTable()) && (notification.getFeature() == TablePackage.eINSTANCE.getTable_Rows())) {
 			if(this.table.isUsingContextFeature()) {
 				final EStructuralFeature feature = this.table.getContextFeature();
-				if(feature != null && feature.isOrdered()) {
+				if((feature != null) && feature.isOrdered()) {
 					return true;
 				}
 
