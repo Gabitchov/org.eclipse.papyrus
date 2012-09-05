@@ -75,17 +75,22 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy;
@@ -341,10 +346,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof NodeFigure){
+			((NodeFigure)primaryShape).setLineWidth(width);
+		}else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1269,8 +1276,56 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 				});
 			}
 		}
+		
+		if((getModel() != null) && (getModel() == notification.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} 
+		}
+		
+		if(resolveSemanticElement() != null) {
+			refreshShadow();
+		}
 	}
 
+	protected void refreshShadow() {
+		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+	}
+		
+	/**
+	 * Override to set the transparency to the correct figure
+	 */
+	@Override
+	protected void setTransparency(int transp) {
+		getPrimaryShape().setTransparency(transp);
+	}
+	
+	/**
+	 * Override to set the gradient data to the correct figure
+	 */
+	@Override
+	protected void setGradient(GradientData gradient) {
+		IPapyrusNodeFigure fig = getPrimaryShape();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(gradient != null) {
+			fig.setIsUsingGradient(true);;
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
+		} else {
+			fig.setIsUsingGradient(false);
+		}
+	}
+		
+	public boolean supportsGradient() {
+		return true;
+	}
+	
+	protected void setBackgroundColor(Color c) {
+		PapyrusNodeFigure fig = getPrimaryShape();
+		fig.setBackgroundColor(c);
+		fig.setIsUsingGradient(false);
+		fig.setGradientData(-1, -1, 0);	
+	}
+	
 	/**
 	 * Update header label
 	 */
@@ -1318,8 +1373,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			refreshLabel();
 	}
 	
-	protected String getTitlePreferenceKey(){
+	public String getTitlePreferenceKey(){
 		return "ELEMENT_PapyrusUMLSequenceDiagram_CombinedFragment_CombinedFragmentCompartment.compartment_name.visibility";
+	}
+	
+	public WrappingLabel getTitleLabel(){
+		return getPrimaryShape().getTitleLabel();
 	}
 
 	@Override
@@ -1583,4 +1642,5 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			return null;
 		}
 	}
+	
 }

@@ -31,6 +31,7 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -76,6 +77,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -100,6 +102,7 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RectangularShadowBorder;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
@@ -555,7 +558,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
+		if(getPrimaryShape() instanceof NodeFigure){
+			((NodeFigure)getPrimaryShape()).setLineWidth(width);
+		}else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -1553,6 +1558,33 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 			return isChildLifelineSelected(x,y);
 		}
+		
+		@Override
+		public void setLineWidth(int w) {		
+			if(w < 0)
+				return;
+			super.setLineWidth(w);
+			fFigureLifelineNameContainerFigure.setLineWidth(w);
+			fFigureLifelineDotLineFigure.setLineWidth(w);
+		}
+		
+		@Override
+		public void setShadow(boolean shadow) {
+			if(!shadow)
+				fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
+			else{
+				RectangularShadowBorder b = new RectangularShadowBorder(3, getForegroundColor()){
+					@Override
+					public Insets getInsets(IFigure figure) {
+						Insets insetsNew = new Insets(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7));
+						insetsNew.bottom = MapModeUtil.getMapMode(figure).DPtoLP(insetsNew.bottom + 3);
+						insetsNew.right = MapModeUtil.getMapMode(figure).DPtoLP(insetsNew.right + 3);
+						return insetsNew;
+					}
+				};
+				fFigureLifelineNameContainerFigure.setBorder(b);
+			}
+		}
 	}
 
 	private boolean isChildLifelineSelected(int x, int y){
@@ -1845,42 +1877,16 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	public void setBackgroundColor(Color c) {
-		super.setBackgroundColor(c);
-		//		NodeFigure fig = getPrimaryShape();
-		//		fig.setBackgroundColor(c);
-		//		fig.setIsUsingGradient(false);
-		//		fig.setGradientData(-1, -1, 0);
+		getPrimaryShape().getFigureLifelineNameContainerFigure().setFill(true);
+		super.setBackgroundColor(c);	
 	}
 
-	/**
-	 * Overrides because getNodeFigure() doesn't return the getFigure() anymore.
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData)
-	 */
 	@Override
 	protected void setGradient(GradientData gradient) {
+		getPrimaryShape().getFigureLifelineNameContainerFigure().setFill(false);
 		super.setGradient(gradient);
-		//		NodeFigure fig = getPrimaryShape();
-		//		if(gradient != null) {
-		//			fig.setIsUsingGradient(true);
-		//			fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle());
-		//		} else {
-		//			fig.setIsUsingGradient(false);
-		//		}
 	}
-
-	/**
-	 * Overrides because getNodeFigure() doesn't return the getFigure() anymore.
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setTransparency(int)
-	 */
-	@Override
-	protected void setTransparency(int transp) {
-		super.setTransparency(transp);
-		//		NodeFigure fig = getPrimaryShape();
-		//		fig.setTransparency(transp);
-	}
-
+	
 	/**
 	 * Create specific anchor to handle connection on top, on center and on bottom of the lifeline
 	 */

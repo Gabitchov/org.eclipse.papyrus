@@ -64,6 +64,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -74,18 +75,20 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.WrapTextCellEditor;
+import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
@@ -97,11 +100,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalN
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
@@ -115,7 +116,6 @@ import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
-import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -1431,6 +1431,56 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		}
 		super.handleNotificationEvent(notification);
 	}
+	
+	protected void refreshBackgroundColor() {
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+        if ( style != null ) {
+        	if(16777215 == style.getFillColor()){
+        		getPrimaryShape().setTransparency(100);
+        		getPrimaryShape().setIsUsingGradient(true);
+        		getPrimaryShape().setGradientData(style.getFillColor(), style.getFillColor(), 0);
+        		
+        	}else if ((style.getGradient() == null || !supportsGradient())) {	        	
+        		refreshTransparency();
+        		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(style.getFillColor())));
+        	} else {
+        		refreshTransparency();
+        		setGradient(style.getGradient());
+        	}        	
+        }
+    }
+	
+	@Override
+	protected void setTransparency(int transp) {
+		getPrimaryShape().setTransparency(transp);
+	}
+	
+	/**
+	 * Override to set the gradient data to the correct figure
+	 */
+	@Override
+	protected void setGradient(GradientData gradient) {
+		IPapyrusNodeFigure fig = getPrimaryShape();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(gradient != null) {
+			fig.setIsUsingGradient(true);;
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
+		} else {
+			fig.setIsUsingGradient(false);
+		}
+	}
+	
+	public boolean supportsGradient() {
+		return true;
+	}
+	
+	protected void setBackgroundColor(Color c) {
+		PapyrusNodeFigure fig = getPrimaryShape();
+		fig.setBackgroundColor(c);
+		fig.setIsUsingGradient(false);
+		fig.setGradientData(-1, -1, 0);
+	}
+
 
 	/**
 	 * Get the InteractionOperator of the CombinedFragment.

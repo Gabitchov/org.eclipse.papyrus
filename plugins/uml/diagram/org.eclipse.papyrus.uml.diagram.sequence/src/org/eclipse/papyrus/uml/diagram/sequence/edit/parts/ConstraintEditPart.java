@@ -273,7 +273,9 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof NodeFigure){
+			((NodeFigure)primaryShape).setLineWidth(width);
+		}else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}

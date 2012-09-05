@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
@@ -29,6 +30,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -1189,11 +1191,13 @@ BorderedBorderItemEditPart {
 				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
 				points.addPoint(figureWidth / 2, getLineWidth() / 2);
 				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
+				
 				points.addPoint(figureWidth / 2, getLineWidth() / 2);
-				points.addPoint(figureWidth / 2, figureHeight - getLineWidth());
-				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, figureHeight - getLineWidth() * 2 - ARROW_HEIGHT);
-				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() * 2);
-				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, figureHeight - getLineWidth() * 2 - ARROW_HEIGHT);
+				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() /2 );
+				
+				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, figureHeight - getLineWidth() / 2 - ARROW_HEIGHT);
+				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() / 2);
+				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, figureHeight - getLineWidth() / 2 - ARROW_HEIGHT);
 				getDurationArrow().setPoints(points);
 				Point topLeft = getLocation().getTranslated(getInsets().left, getInsets().top);
 				getDurationArrow().setBounds(new Rectangle(topLeft, new Dimension(figureWidth, figureHeight)));
@@ -1231,6 +1235,19 @@ BorderedBorderItemEditPart {
 			return fDurationArrow;
 		}
 
+		
+		public void paintFigure(Graphics graphics) {
+			graphics.setLineWidth(lineWidth);						
+			super.paintFigure(graphics);
+		}
+		
+		@Override
+		public void setLineWidth(int w) {
+			LinesBorder lb = (LinesBorder)getBorder();
+			lb.setWidth(w);
+			fDurationArrow.setLineWidth(w);
+			super.setLineWidth(w);
+		}
 	}
 
 	/**
@@ -1298,5 +1315,22 @@ BorderedBorderItemEditPart {
 			getParent().eraseSourceFeedback(request);
 		}
 		super.eraseSourceFeedback(request);
+	}
+	
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		
+		Object feature = notification.getFeature();
+		if((getModel() != null) && (getModel() == notification.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} 
+		}
+	}
+
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshLineWidth();
 	}
 }

@@ -623,7 +623,8 @@ public class TimeObservationLabelEditPart extends LabelEditPart implements IText
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		//return getPrimaryView();
+		return (View) getModel();
 	}
 
 	/**

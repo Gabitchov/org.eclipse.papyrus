@@ -20,6 +20,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -57,6 +58,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
@@ -705,9 +707,15 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 			}
 		}
 		
+		Object notifier = event.getNotifier();
+		Lifeline lifeline = (Lifeline)this.resolveSemanticElement();
 		// handle possible change in the name container size
 		// In AutoSize mode, the width should be resized if the content of the text gets changed. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
-		if(UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) || UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) || event.getNotifier() instanceof Bounds) {
+		if(notifier.equals(lifeline.getRepresents()) || UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) || UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) || event.getNotifier() instanceof Bounds) {
+			((LifelineEditPart)getParent()).updateLifelinePosition();
+		}
+		
+		if(notifier instanceof EAnnotation && ((EAnnotation)notifier).getSource().equals(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION) ){ 
 			((LifelineEditPart)getParent()).updateLifelinePosition();
 		}
 

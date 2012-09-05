@@ -38,9 +38,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -243,7 +246,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// prevent uphill message (leave margin for horizontal messages)
 		boolean messageCreate =((IHintedType)UMLElementTypes.Message_4006).getSemanticHint().equals(requestHint);
 		if(sourcePoint == null || sourcePoint.y >= targetPoint.y + MARGIN) {
-			if(!messageCreate)
+			if(!messageCreate && !isLostFoundMessage(requestHint))
 				return UnexecutableCommand.INSTANCE;
 		}
 		// prevent uphill message (for self recursive message)
@@ -291,15 +294,13 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		return command;
 	}
-
 	
-
 	/**
 	 * Override to disable uphill message
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
-		if(isUphillMessage(request)) {
+		if(isUphillMessage(request) && !isLostFoundMessage(request)) { 
 			return UnexecutableCommand.INSTANCE;
 		}
 		// prevent duplicate link
@@ -309,12 +310,25 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return super.getReconnectSourceCommand(request);
 	}
 
+	private boolean isLostFoundMessage(ReconnectRequest request) {
+		ConnectionEditPart connectionEditPart = request.getConnectionEditPart();
+		if(connectionEditPart instanceof Message7EditPart || connectionEditPart instanceof Message6EditPart )
+			return true;
+		return false;
+	}
+	
+	private boolean isLostFoundMessage(String requestHint) {
+		if(((IHintedType)UMLElementTypes.Message_4008).getSemanticHint().equals(requestHint) || ((IHintedType)UMLElementTypes.Message_4009).getSemanticHint().equals(requestHint))
+			return true;
+		return false;
+	}
+
 	/**
 	 * Override to disable uphill message
 	 */
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
-		if(isUphillMessage(request)) {
+		if(isUphillMessage(request) && !isLostFoundMessage(request)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// prevent duplicate link
@@ -444,6 +458,13 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			
 			EditPart host = getHost();
 			if((host instanceof InteractionEditPart) && (request instanceof CreateConnectionRequest) ){
+				if(REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4008 )){
+					return host;
+				}				
+				if(REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4009 )){
+					return host;
+				}
+				
 				InteractionEditPart interactionPart = (InteractionEditPart)host;
 				CreateConnectionRequest req = (CreateConnectionRequest)request;
 				IFigure figure = interactionPart.getFigure();
@@ -460,6 +481,22 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return host;
 		}
 		return null;
+	}
+
+	protected boolean isCreateConnectionRequest(Request request, IElementType type) {
+		if( request instanceof CreateAspectUnspecifiedTypeConnectionRequest){
+			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+			if(types.contains(type)){
+				return true;
+			}
+		}				
+
+		if(request instanceof CreateConnectionViewRequest ){
+			String requestHint = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint();
+			if(((IHintedType)type).getSemanticHint().equals(requestHint))
+				return true;
+		}
+		return false;
 	}
 
 }

@@ -7,11 +7,14 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RelativeLocator;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -22,7 +25,14 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
+import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 
 public abstract class AbstractExecutionSpecificationEditPart extends
@@ -138,4 +148,106 @@ public abstract class AbstractExecutionSpecificationEditPart extends
 			}
 		});
 	}	
+	
+	@Override
+	protected void setLineWidth(int width) {
+		if(getPrimaryShape() instanceof NodeFigure){
+			((NodeFigure)getPrimaryShape()).setLineWidth(width);
+		}
+	}
+	
+	protected final void refreshShadow() {
+		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+	}
+		
+	/**
+	 * Override to set the transparency to the correct figure
+	 */
+	@Override
+	protected void setTransparency(int transp) {
+		getPrimaryShape().setTransparency(transp);
+	}
+	
+	/**
+	 * sets the back ground color of this edit part
+	 * 
+	 * @param color
+	 *        the new value of the back ground color
+	 */
+	@Override
+	protected void setBackgroundColor(Color color) {
+		getPrimaryShape().setBackgroundColor(color);
+		getPrimaryShape().setIsUsingGradient(false);
+		getPrimaryShape().setGradientData(-1, -1, 0);
+	}
+
+	/**
+	 * Override to set the gradient data to the correct figure
+	 */
+	@Override
+	protected void setGradient(GradientData gradient) {
+		IPapyrusNodeFigure fig = getPrimaryShape();
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(gradient != null) {
+			fig.setIsUsingGradient(true);;
+			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
+		} else {
+			fig.setIsUsingGradient(false);
+		}
+	}
+		
+	public boolean supportsGradient() {
+		return true;
+	}
+	
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+		
+		Object feature = event.getFeature();
+		if((getModel() != null) && (getModel() == event.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} else if(NotationPackage.eINSTANCE.getLineTypeStyle_LineType().equals(feature)) {
+				refreshLineType();
+			}
+		}
+
+		refreshShadow();
+	}
+	
+	public class ExecutionSpecificationRectangleFigure extends PapyrusNodeFigure{ //RectangleFigure {
+
+		public ExecutionSpecificationRectangleFigure() {
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20)));
+		}
+
+		public IFigure findMouseEventTargetAt(int x, int y) {	
+			// check children first instead of self
+			IFigure f = findMouseEventTargetInDescendantsAt(x, y);
+			if (f != null)
+				return f;
+			if (!containsPoint(x, y))
+				return null;
+			if (isMouseEventTarget())
+				return this;
+			return null;
+		}
+
+		public IFigure findFigureAt(int x, int y, TreeSearch search) {
+			if (search.prune(this))
+				return null;
+			IFigure child = findDescendantAtExcluding(x, y, search);
+			if (child != null)
+				return child;
+			if (!containsPoint(x, y))
+				return null;
+			if (search.accept(this))
+				return this;
+			return null;
+		}
+	}
+	
+	public abstract ExecutionSpecificationRectangleFigure getPrimaryShape() ;
 }

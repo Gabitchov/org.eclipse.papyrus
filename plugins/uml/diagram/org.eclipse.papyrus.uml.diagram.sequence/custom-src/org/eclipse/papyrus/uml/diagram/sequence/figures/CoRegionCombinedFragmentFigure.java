@@ -46,6 +46,7 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		// Init centralVerticalLine
 		centralVerticalLine = new NodeFigure();
 		centralVerticalLine.setParent(this);
+		setLineWidth(BRACKET_LINE_WIDTH);
 	}
 
 	/**
@@ -58,7 +59,7 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		Rectangle r = getBounds().getCopy();
 		graphics.setBackgroundColor(this.getBackgroundColor());
 		graphics.setForegroundColor(this.getForegroundColor());
-		graphics.setLineWidth(BRACKET_LINE_WIDTH);
+		graphics.setLineWidth(getLineWidth() );
 		graphics.drawLine(r.x, r.y, r.right() - 1, r.y);
 		graphics.drawLine(r.x, r.bottom() - 1, r.right() - 1, r.bottom() - 1);
 		graphics.drawLine(r.x, r.y, r.x, r.y + BRACKET_HEIGHT);
