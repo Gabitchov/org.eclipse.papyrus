@@ -144,7 +144,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 
 			if(deleteCommand != null) {
 				Command command = new ICommandProxy(deleteCommand);
-				command = LifelineMessageCreateHelper.moveLifelineUp(command, (LifelineEditPart) getHost());		
+				command = LifelineMessageCreateHelper.restoreLifelineOnDelete(command, (LifelineEditPart) getHost());		
 				return command;
 			}
 		}

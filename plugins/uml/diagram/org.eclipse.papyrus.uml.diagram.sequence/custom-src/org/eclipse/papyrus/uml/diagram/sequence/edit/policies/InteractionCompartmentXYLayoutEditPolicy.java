@@ -38,6 +38,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.AlignmentRequest;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -62,6 +63,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
@@ -69,10 +71,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEdi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -740,6 +743,27 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		}
 
 		return target;
+	}
+	
+	@Override
+	protected void showSizeOnDropFeedback(CreateRequest request) {
+		super.showSizeOnDropFeedback(request);
+		if(request instanceof CreateAspectUnspecifiedTypeRequest){
+			CreateAspectUnspecifiedTypeRequest req = (CreateAspectUnspecifiedTypeRequest)request;
+			if(req.getElementTypes().contains(UMLElementTypes.CombinedFragment_3004) || req.getElementTypes().contains(UMLElementTypes.ConsiderIgnoreFragment_3007)){
+				IFigure feedback = getSizeOnDropFeedback(request);
+				Rectangle b = feedback.getBounds().getCopy();
+				feedback.translateToAbsolute(b);
+				
+				HighlightUtil.showSizeOnDropFeedback(request, getHost(),feedback,b);				
+			}
+		}
+	}
+
+	@Override
+	protected void eraseSizeOnDropFeedback(Request request) {
+		HighlightUtil.eraseSizeOnDropFeedback(request, getHost());
+		super.eraseSizeOnDropFeedback(request);
 	}
 
 }

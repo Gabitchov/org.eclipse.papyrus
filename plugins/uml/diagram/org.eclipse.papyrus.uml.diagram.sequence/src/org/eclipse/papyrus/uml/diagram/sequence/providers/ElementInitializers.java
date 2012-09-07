@@ -570,11 +570,12 @@ public class ElementInitializers {
 	@SuppressWarnings("rawtypes")
 	public static String getNextNumberedName(Collection currentElements, String base) {
 		int nextNumber = -1;
-
+		Set<String> elementNames = new HashSet<String>();
 		for(Object o : currentElements) {
 			if(o instanceof NamedElement) {
 				String name = ((NamedElement)o).getName();
 				if(name != null && name.startsWith(base)) {
+					elementNames.add(name);
 					String end = name.substring(base.length());
 					int nextNumberTmp = -1;
 
@@ -596,9 +597,17 @@ public class ElementInitializers {
 		}
 
 		if(nextNumber == -1) {
-			return base;
+			return generateUniqueName(base, elementNames, base, nextNumber);
 		} else {
-			return base + nextNumber;
+			return generateUniqueName(base + nextNumber, elementNames,base, nextNumber);
 		}
+	}
+
+	private static String generateUniqueName(String name, Set<String> elementNames, String base, int nextNumber) {		
+		while(elementNames.contains(name)){
+			nextNumber ++;
+			name = base + nextNumber;
+		}
+		return name;
 	}
 }

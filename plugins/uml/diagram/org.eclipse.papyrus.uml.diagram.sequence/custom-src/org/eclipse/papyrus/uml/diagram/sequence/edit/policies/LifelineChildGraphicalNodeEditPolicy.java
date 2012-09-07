@@ -165,7 +165,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		if(command != null) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 			if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart){
-				command = LifelineMessageCreateHelper.reconnectMessageCreate(request, command);
+				command = LifelineMessageCreateHelper.reconnectMessageCreateTarget(request, command);
 			}
 		}
 		return command;
