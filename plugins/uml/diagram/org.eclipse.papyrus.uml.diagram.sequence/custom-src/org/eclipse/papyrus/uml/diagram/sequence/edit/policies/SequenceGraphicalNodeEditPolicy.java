@@ -287,8 +287,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			if (requestHint.equals((((IHintedType) UMLElementTypes.Message_4006).getSemanticHint()))) {
 				LifelineEditPart target = (LifelineEditPart) request
 						.getTargetEditPart();
-				Point sourcePointCopy = ((LifelineEditPart) request.getSourceEditPart()).getFigure().getBounds().getLocation().getCopy();
-				command = LifelineMessageCreateHelper.moveLifelineDown(command, target,	sourcePointCopy);
+				command = LifelineMessageCreateHelper.moveLifelineDown(command, target,	sourcePoint.getCopy());
 			}
 		}
 

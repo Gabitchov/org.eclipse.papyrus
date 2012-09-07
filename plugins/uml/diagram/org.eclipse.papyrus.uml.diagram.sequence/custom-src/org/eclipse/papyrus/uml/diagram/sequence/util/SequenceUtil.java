@@ -1597,32 +1597,7 @@ public class SequenceUtil {
 		}
 		return false;
 	}
-	
-	/**
-	 * restore constraint of the target lifeline after delete Create Message
-	 * @param deleteViewsCommand
-	 * @param editPart
-	 */
-	public static void addRestoreConstraintOfLifelineCommand(CompoundCommand deleteViewsCommand,EditPart editPart){
-		if(editPart instanceof Message4EditPart) {
-			Message4EditPart part = (Message4EditPart)editPart;
-			if(part.getTarget() instanceof LifelineEditPart && LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size() == 1){
-				LifelineEditPart target = (LifelineEditPart)part.getTarget();
-				if(target.getModel() instanceof Shape){
-					Shape view = (ShapeImpl) target.getModel();
-					if(view.getLayoutConstraint() instanceof Bounds){
-						Bounds bounds = (Bounds) view.getLayoutConstraint();
-						ICommand boundsCommand = new SetBoundsCommand(
-								target.getEditingDomain(),
-								DiagramUIMessages.SetLocationCommand_Label_Resize,
-								new EObjectAdapter(view), new Rectangle(bounds.getX(),
-										SequenceUtil.LIFELINE_VERTICAL_OFFSET, bounds.getWidth(), bounds.getHeight()));
-						deleteViewsCommand.add(new ICommandProxy(boundsCommand));
-					}
-				}
-			}
-		}
-	}
+		
 	
 	/**
 	 * Find Time Observations editpart which are related to specific OccurenceSpecification 

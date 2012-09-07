@@ -26,9 +26,16 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeComp
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightConnectionPartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
@@ -52,10 +59,18 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		
 		installPopupbarPolicy(editPart);
-
+		installHighlightPolicy(editPart);
+		
 		SequenceUtil.installObservationLinkPolicy(editPart);
 	}
 
+	private void installHighlightPolicy(EditPart editPart) {
+		if(editPart instanceof LifelineEditPart || editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof CombinedFragmentEditPart || editPart instanceof InteractionOperandEditPart
+			|| editPart instanceof ConstraintEditPart || editPart instanceof CommentEditPart){
+			editPart.installEditPolicy("highlight", new HighlightConnectionPartEditPolicy());
+		}
+	}
+	
 	private void installPopupbarPolicy(final EditPart editPart) {
 		if(editPart instanceof IPrimaryEditPart && !(editPart instanceof TimeObservationEditPart)) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());

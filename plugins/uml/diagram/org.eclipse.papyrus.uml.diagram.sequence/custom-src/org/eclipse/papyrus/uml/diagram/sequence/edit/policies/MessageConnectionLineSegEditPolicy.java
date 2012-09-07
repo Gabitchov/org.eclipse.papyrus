@@ -20,11 +20,10 @@ import org.eclipse.draw2d.AbstractRouter;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.FigureCanvas;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.RoutingListener;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -34,23 +33,31 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.BendpointRequest;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionBendpointEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.util.SelectInDiagramHelper;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 
 /**
  * This bendpoint edit policy is used to allow drag of horizontal messages and forbid drag otherwise.
@@ -68,7 +75,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	@Override
 	public Command getCommand(Request request) {		
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL){
+		if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate){
 			return super.getCommand(request);
 		}
 		return null;
@@ -97,6 +104,27 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 					if(getHost() instanceof Message2EditPart && kind == RouterKind.SELF){	
 						return getSelfLinkMoveCommand(request, connectionPart, send, rcv, srcLifelinePart);
+					}else if(getHost() instanceof Message4EditPart){
+						IFigure fig = tgtLifelinePart.getPrimaryShape().getFigureLifelineNameContainerFigure();
+						Rectangle bounds = fig.getBounds().getCopy();
+						fig.translateToAbsolute(bounds);
+						
+						PointList points = getConnection().getPoints();
+						Point sourceRefPoint = points.getFirstPoint().getCopy();;
+						getConnection().translateToAbsolute(sourceRefPoint);
+						
+						int dy = sourceRefPoint.y - bounds.getCenter().y;
+						Point location = tgtLifelinePart.getFigure().getBounds().getLocation().getCopy().translate(0, dy);
+						Command moveCmd = new ICommandProxy(new SetBoundsCommand(tgtLifelinePart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(tgtLifelinePart.getNotationView()), location));		
+						
+						// Take care of the order of commands, to make sure target is always bellow the source.
+						if(dy < 0){ // move up
+							return LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart,moveCmd,dy);
+						}else{  // move down
+							Command cmd = LifelineMessageCreateHelper.moveCascadeLifeline(tgtLifelinePart,null,dy);
+							cmd = cmd == null? moveCmd: cmd.chain(moveCmd);
+							return cmd;
+						}
 					}else{
 						int y = request.getLocation().y;
 						List<EditPart> empty = Collections.emptyList();
@@ -182,7 +210,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	public void showSourceFeedback(Request request) {		
 		if(request instanceof BendpointRequest) {
 			RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-			if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL){
+			if(kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate){
 				super.showSourceFeedback(request);
 			}
 		}		
@@ -224,6 +252,27 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			if(checkBounds(linkPoints)){
 				getConnection().setPoints(linkPoints);
 				getConnection().getLayoutManager().layout(getConnection());
+			}
+			return;
+		}
+		if(getHost() instanceof Message4EditPart){
+			if(router == null){
+				router = getConnection().getConnectionRouter();
+				getConnection().setConnectionRouter( new DummyRouter()); 
+			}
+			PointList linkPoints = getConnection().getPoints().getCopy();
+	
+			Point ptLoc = new Point(request.getLocation());
+			getConnection().translateToRelative(ptLoc);
+			int dy = ptLoc.y - linkPoints.getFirstPoint().y;
+			int size = linkPoints.size();
+			for(int i = 0; i < size; i ++){
+				Point p = linkPoints.getPoint(i).translate(0, dy);
+				linkPoints.setPoint(p, i);
+			}						
+			if(checkBounds(linkPoints)){
+				getConnection().setPoints(linkPoints);
+				getConnection().getLayoutManager().layout(getConnection());		
 			}
 			return;
 		}

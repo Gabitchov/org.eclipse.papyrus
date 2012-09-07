@@ -24,6 +24,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
@@ -34,7 +35,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -47,7 +51,7 @@ public class LifelineMessageCreateHelper {
 		protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
 			Command command = super.createDeleteViewCommand(deleteRequest);
 			if(command != null && getHost() instanceof LifelineEditPart)
-				command = moveLifelineUp(command, (LifelineEditPart)getHost());
+				command = restoreLifelineOnDelete(command, (LifelineEditPart)getHost());
 			return command;
 		}
 	}
@@ -76,8 +80,33 @@ public class LifelineMessageCreateHelper {
 		}
 		return part.getNodeFigure().getTargetConnectionAnchorAt(null);
 	}
+	
+	//when a create message is deleted, move its target lifelines up
+	public static Command restoreLifelineOnMessageDelete(Command commands, EditPart editPart){
+		if(editPart instanceof Message4EditPart) {
+			Message4EditPart part = (Message4EditPart)editPart;
+			if(part.getTarget() instanceof LifelineEditPart && LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size() == 1){
+				LifelineEditPart target = (LifelineEditPart)part.getTarget();
+				if(target.getModel() instanceof Shape){
+					Shape view = (ShapeImpl) target.getModel();
+					if(view.getLayoutConstraint() instanceof Bounds){
+						Bounds bounds = (Bounds) view.getLayoutConstraint();
+						ICommand boundsCommand = new SetBoundsCommand(
+								target.getEditingDomain(),
+								DiagramUIMessages.SetLocationCommand_Label_Resize,
+								new EObjectAdapter(view), new Point(bounds.getX(),SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						commands = commands.chain(new ICommandProxy(boundsCommand));
+						int dy = SequenceUtil.LIFELINE_VERTICAL_OFFSET - bounds.getY();
+						commands = moveCascadeLifeline(target, commands, dy);
+					}
+				}
+			}
+		}
+		return commands;
+	}
 
-	public static Command moveLifelineUp(Command command, LifelineEditPart part) {
+	// when a lifleine is deleted, move its created lifelines up
+	public static Command restoreLifelineOnDelete(Command command, LifelineEditPart part) {
 		List list = part.getSourceConnections();
 		if(list != null && list.size() > 0) {
 			for(Object l : list)
@@ -85,8 +114,12 @@ public class LifelineMessageCreateHelper {
 					EditPart target = ((Message4EditPart)l).getTarget();
 					if(target instanceof LifelineEditPart && getIncomingMessageCreate(target).size() == 1) {
 						LifelineEditPart lp = (LifelineEditPart)target;
-						ICommand boundsCommand = new SetBoundsCommand(lp.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(lp.getNotationView()), new Point(lp.getPrimaryShape().getBounds().x, SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						Rectangle bounds = lp.getPrimaryShape().getBounds();
+						Point location = new Point(bounds.x, SequenceUtil.LIFELINE_VERTICAL_OFFSET);
+						int dy = location.y - bounds.y;
+						ICommand boundsCommand = new SetBoundsCommand(lp.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(lp.getNotationView()), location);
 						command = command.chain(new ICommandProxy(boundsCommand));
+						command = moveCascadeLifeline(lp, command, dy);
 					}
 				}
 		}
@@ -132,42 +165,70 @@ public class LifelineMessageCreateHelper {
 		return true;
 	}
 
-	public static Command reconnectMessageCreate(ReconnectRequest request, Command command) {
+	public static Command reconnectMessageCreateTarget(ReconnectRequest request, Command command) {
 		LifelineEditPart oldTarget = (LifelineEditPart)request.getConnectionEditPart().getTarget();
 		LifelineEditPart source = (LifelineEditPart)request.getConnectionEditPart().getSource();
 		LifelineEditPart newTarget = (LifelineEditPart)request.getTarget();
 		// move up the original connection target lifeline, it has only one create message, which will be removed
 		if(getIncomingMessageCreate(oldTarget).size() == 1) {
-			ICommand boundsCommand = new SetBoundsCommand(oldTarget.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(oldTarget.getNotationView()), new Point(oldTarget.getPrimaryShape().getBounds().x, SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+			Rectangle bounds = oldTarget.getPrimaryShape().getBounds();
+			Point location = new Point(bounds.x, SequenceUtil.LIFELINE_VERTICAL_OFFSET);
+			int dy = location.y - bounds.y;
+			ICommand boundsCommand = new SetBoundsCommand(oldTarget.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(oldTarget.getNotationView()), location);
 			command = command.chain(new ICommandProxy(boundsCommand));
+			command = moveCascadeLifeline(oldTarget, command, dy);
 		}
 
 		//move down the new connection target lifeline
-		command = moveLifelineDown(command, newTarget, source.getFigure().getBounds().getLocation().getCopy());
+		command = moveLifelineDown(command, newTarget, request.getLocation().getCopy());
 		return command;
 	}
 
 	public static Command moveLifelineDown(Command command, LifelineEditPart part, Point sourcePointCopy) {
+		IFigure fig = part.getFigure();
+		Rectangle bounds = fig.getBounds().getCopy();
+		fig.translateToAbsolute(bounds);
+		int height = part.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
+		Point location = new Point(bounds.x, Math.max(bounds.y, sourcePointCopy.y() - height / 2));
+		
 		View targetView = part.getNotationView();
-		Rectangle bounds = part.getFigure().getBounds();
-		int centerHeight = part.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().getSize().height / 2 + 5;
-		Point location = new Point(bounds.x, Math.max(bounds.y, sourcePointCopy.y() + centerHeight));
 		if(location.y != bounds.y) {
+			int dy = location.y - bounds.y;
+			fig.translateToRelative(location);
+			fig.translateToParent(location);
+			
 			ICommand boundsCommand = new SetBoundsCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location);
 			command = command.chain(new ICommandProxy(boundsCommand));
-
-			List list = part.getSourceConnections();
-			if(list != null && list.size() > 0) {
-				for(Object l : list)
-					if(l instanceof Message4EditPart) {
-						EditPart target = ((Message4EditPart)l).getTarget();
-						if(target instanceof LifelineEditPart) {
-							moveLifelineDown(command, (LifelineEditPart)target, location.getCopy());
-						}
-					}
-			}
+			command = moveCascadeLifeline(part, command, dy);
 		}
 
+		return command;
+	}
+
+	// move all lifelines which has incoming create link from part
+	public static Command moveCascadeLifeline(LifelineEditPart part, Command command, int dy) {
+		List list = part.getSourceConnections();
+		if(list != null && list.size() > 0) {
+			for(Object l : list)
+				if(l instanceof Message4EditPart) {
+					EditPart target = ((Message4EditPart)l).getTarget();
+					if(target instanceof LifelineEditPart) {
+						LifelineEditPart lp = (LifelineEditPart)target;
+						Rectangle bounds = lp.getFigure().getBounds().getCopy();
+						View targetView = lp.getNotationView();
+						Point location = bounds.getLocation().getCopy().translate(0, dy);
+						Command boundsCommand = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location));
+						// Take care of the order of commands, to make sure target is always bellow the source.
+						if(dy < 0){ // move up
+							command = command == null? boundsCommand: command.chain(boundsCommand);
+							command = moveCascadeLifeline(lp, command, dy); 
+						}else{ // move down
+							command = moveCascadeLifeline(lp, command, dy);
+							command = command == null? boundsCommand: command.chain(boundsCommand);
+						}
+					}
+				}
+		}
 		return command;
 	}
 
