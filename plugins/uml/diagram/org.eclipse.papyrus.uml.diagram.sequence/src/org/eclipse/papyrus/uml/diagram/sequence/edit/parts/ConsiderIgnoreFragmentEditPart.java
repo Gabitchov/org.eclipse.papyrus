@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHel
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ConsiderIgnoreFragmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
@@ -164,7 +165,7 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}

@@ -53,7 +53,6 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -104,6 +103,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RectangularShadowBorder;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -1898,7 +1898,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 		
 		if(connEditPart instanceof Message2EditPart){
-			String terminal = getTargetAnchorId(connEditPart);
+			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
 			if(terminal.length() > 0){
 				int start = terminal.indexOf("{") + 1;
 				PrecisionPoint pt = SlidableAnchor.parseTerminalString(terminal);
@@ -1913,40 +1913,12 @@ public class LifelineEditPart extends NamedElementEditPart {
 					if(list.getPoint(0).x > list.getPoint(1).x)
 						rightHand = false;
 				}
-				return new SlidableAnchorEx(getNodeFigure(), pt, rightHand);	
+				return new AnchorHelper.SideAnchor(getNodeFigure(), pt, rightHand);	
 			}
 		}		
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
 
-	private String getTargetAnchorId(ConnectionEditPart connEditPart) {
-        final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = 
-            (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
-        
-		String t = ""; //$NON-NLS-1$
-		try {
-			t = (String) getEditingDomain().runExclusive(
-				new RunnableWithResult.Impl() {
-
-				public void run() {
-					Anchor a = ((Edge)connection.getModel()).getTargetAnchor();
-					if (a instanceof IdentityAnchor)
-						setResult(((IdentityAnchor) a).getId());
-                    else
-                        setResult(""); //$NON-NLS-1$
-				}
-			});
-		} catch (InterruptedException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(),
-				DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-				"getTargetConnectionAnchor", e); //$NON-NLS-1$
-			Log.error(DiagramUIPlugin.getInstance(),
-				DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-				"getTargetConnectionAnchor", e); //$NON-NLS-1$
-		}
-		return t;
-	}
-	
 	/**
 	 * Create specific anchor to handle connection on top, on center and on bottom of the lifeline
 	 */
@@ -1970,13 +1942,13 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 		ConnectionAnchor anchor = super.getTargetConnectionAnchor(request);
 		if(anchor instanceof SlidableAnchor) {
-			return createSlidableAnchorEx(request, (SlidableAnchor)anchor);
+			return createSideAnchor(request, (SlidableAnchor)anchor);
 		}
 		return anchor;
 	}
 
-	protected ConnectionAnchor createSlidableAnchorEx(Request request, SlidableAnchor sa) {
-		Point loc = getRequestLocation(request);
+	protected ConnectionAnchor createSideAnchor(Request request, SlidableAnchor sa) {
+		Point loc = AnchorHelper.getRequestLocation(request);
 		if(loc == null)
 			return sa;
 		
@@ -1987,21 +1959,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 		boolean rightHand = true;
 		if(loc.x < bounds.getCenter().x)
 			rightHand = false;
-		return new SlidableAnchorEx(getNodeFigure(), pt, rightHand);
+		return new AnchorHelper.SideAnchor(getNodeFigure(), pt, rightHand);
 	}
 	
-	private Point getRequestLocation(Request request){
-		if (request instanceof ReconnectRequest) {
-			if (((DropRequest) request).getLocation() != null) {
-				Point pt = ((DropRequest) request).getLocation().getCopy();
-				return pt;
-			}
-		}
-		else if (request instanceof DropRequest){
-			return 	((DropRequest) request).getLocation();
-		}
-		return null;
-	}
 
 	/**
 	 * Create the dashLine figure
@@ -2204,26 +2164,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 
 		return null;
-	}
-	
-	public static class SlidableAnchorEx extends SlidableAnchor{
-
-		private boolean isRight;
-
-		public SlidableAnchorEx(NodeFigure nodeFigure, PrecisionPoint pt,
-				boolean isRight) {
-			super(nodeFigure, pt);
-			this.isRight = isRight;
-		}
-		
-		public boolean isRight() {
-			return isRight;
-		}
-		
-		public String getTerminal() {
-			String side = isRight? "R": "L";
-			return super.getTerminal() + "{" + side + "}";
-		}
 	}
 	
 	public static class PreserveAnchorsPositionCommandEx extends PreserveAnchorsPositionCommand{

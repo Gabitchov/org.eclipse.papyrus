@@ -1,39 +1,55 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.helper.OperationLabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
-import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
+import org.eclipse.papyrus.uml.tools.utils.ParameterUtil;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.TypedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 
 public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
@@ -41,6 +57,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	public static interface ICustomMessageLabel{
 		
 	}
+
+	private DefaultValueListener defaultValueListener;
 	
 	/**
 	 * Refreshes the display of the edit part
@@ -106,7 +124,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
-
+		this.defaultValueListener = new DefaultValueListener();
 		Message e = getUMLElement();
 		// check host semantic element is not null
 		if(e == null || e.getSignature() == null) {
@@ -119,24 +137,28 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// adds a listener to the element itself, and to linked elements, like Type
 			for(Parameter parameter : operation.getOwnedParameters()) {
 				getDiagramEventBroker().addNotificationListener(parameter, this);
-	
+				getDiagramEventBroker().addNotificationListener(parameter.getDefaultValue(), defaultValueListener);
+				
 				// should also add this element as a listener of parameter type
-				if(parameter.getType() != null) {
-					getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
-				}
+				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
 			}
 		}else if(sig instanceof Signal){
 			Signal signal = (Signal)sig;
 			getDiagramEventBroker().addNotificationListener(signal, this);
 			for(Property property : signal.getOwnedAttributes()) {
 				getDiagramEventBroker().addNotificationListener(property, this);
+				getDiagramEventBroker().addNotificationListener(property.getDefaultValue(), defaultValueListener);
 				
 				// should also add this element as a listener of parameter type
-				if(property.getType() != null) {
-					getDiagramEventBroker().addNotificationListener(property.getType(), this);
-				}
+				getDiagramEventBroker().addNotificationListener(property.getType(), this);
 			}
 		}
+		
+		EList<ValueSpecification> argments = e.getArguments();
+		for(ValueSpecification v : argments)
+			if(v instanceof EObject) {
+				getDiagramEventBroker().addNotificationListener((EObject)v, this);
+			}
 	}
 	
 	@Override
@@ -153,35 +175,47 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			getDiagramEventBroker().removeNotificationListener(operation, this);
 			for(Parameter parameter : operation.getOwnedParameters()) {
 				getDiagramEventBroker().removeNotificationListener(parameter, this);
-	
+				getDiagramEventBroker().removeNotificationListener(parameter.getDefaultValue(), defaultValueListener);
+				
 				// remove parameter type listener
-				if(parameter.getType() != null) {
-					getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
-				}
+				getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
 			}
 		}else if(sig instanceof Signal){
 			Signal signal = (Signal)sig;
 			getDiagramEventBroker().removeNotificationListener(signal, this);
 			for(Property property : signal.getOwnedAttributes()) {
 				getDiagramEventBroker().removeNotificationListener(property, this);
+				getDiagramEventBroker().removeNotificationListener(property.getDefaultValue(), defaultValueListener);
 				
 				// remove parameter type listener
-				if(property.getType() != null) {
-					getDiagramEventBroker().removeNotificationListener(property.getType(), this);
-				}
+				getDiagramEventBroker().removeNotificationListener(property.getType(), this);
 			}
 		}
+		
+		EList<ValueSpecification> argments = e.getArguments();
+		for(ValueSpecification v : argments)
+			if(v instanceof EObject) {
+				getDiagramEventBroker().removeNotificationListener((EObject)v, this);
+			}
 	}
 	
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-		Object object = notification.getNotifier();
+		final Object object = notification.getNotifier();
 		Message e = getUMLElement();
 		// check host semantic element is not null
 		if(e == null || e.getSignature() == null) {
 			return;
 		}
+		if(UMLPackage.Literals.MESSAGE__ARGUMENT.equals( notification.getFeature())){
+			parameterListChange(notification);
+			return;
+		}else if(e.getArguments().contains(object)){
+			refreshDisplay();
+			return;
+		}
+		
 		NamedElement sig = e.getSignature();
 		if(sig instanceof Operation){
 			Operation operation = (Operation)sig;	
@@ -199,25 +233,40 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				notifySignalChanged(signal, notification);
 			}else if(isProperty(object, signal)) {
 				notifyPropertyChanged(notification);
-			} else if(isPropertyType(object, signal)) {
+			}else if(isPropertyType(object, signal)) {
 				notifyTypeChanged(notification);
+			}else if(object instanceof ValueSpecification){
+				Element own = ((ValueSpecification)object).getOwner();
+				if(isProperty(own, signal)){
+					refreshDisplay();  // may be default value
+				}
 			}
 		}
 
-		if(isMaskManagedAnnotation(object)) {
+		if(isMaskManagedAnnotation(object) ){
 			refreshDisplay();
-		}
-
-		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
+		}else if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
 	}
 	
+	class DefaultValueListener implements NotificationListener{
+
+		public void notifyChanged(Notification notification) {
+			refreshDisplay();
+		}
+	}
 
 	private void notifyPropertyChanged(Notification notification) {
 		switch(notification.getFeatureID(Property.class)) {
+		case UMLPackage.PROPERTY__DEFAULT_VALUE: // set or unset default value		
+			if(notification.getOldValue() instanceof EObject)
+				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), defaultValueListener);
+			if(notification.getNewValue() instanceof EObject)
+				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), defaultValueListener);
+			refreshDisplay();
+			break;
 		case UMLPackage.PROPERTY__NAME:
-		case UMLPackage.PROPERTY__DEFAULT_VALUE:
 		case UMLPackage.PROPERTY__IS_ORDERED:
 		case UMLPackage.PROPERTY__LOWER:
 		case UMLPackage.PROPERTY__UPPER:
@@ -245,8 +294,14 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	protected void notifyParameterChanged(Notification notification) {
 		switch(notification.getFeatureID(Parameter.class)) {
-		case UMLPackage.PARAMETER__NAME:
 		case UMLPackage.PARAMETER__DEFAULT_VALUE:
+			if(notification.getOldValue() instanceof EObject)
+				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), defaultValueListener);
+			if(notification.getNewValue() instanceof EObject)
+				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), defaultValueListener);
+			refreshDisplay();
+			break;
+		case UMLPackage.PARAMETER__NAME:
 		case UMLPackage.PARAMETER__DIRECTION:
 		case UMLPackage.PARAMETER__IS_STREAM:
 		case UMLPackage.PARAMETER__IS_ORDERED:
@@ -448,6 +503,25 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		 * singelton instance
 		 */
 		private static MessageLabelHelper labelHelper;
+		
+		/** Map for masks */
+		protected final Map<Integer, String> masks = new HashMap<Integer, String>(11);
+		
+		protected MessageLabelHelper() {
+			// initialize the map
+			masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");  
+			masks.put(ICustomAppearence.DISP_NAME, "Name");
+			masks.put(ICustomAppearence.DISP_PARAMETER_NAME, "Parameters Name");
+			masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
+			masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
+			masks.put(ICustomAppearence.DISP_RT_TYPE, "Return Type");
+			masks.put(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
+			masks.put(ICustomAppearence.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
+			masks.put(ICustomAppearence.DISP_DERIVE, "Parameters Value");
+			masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
+			masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
+			
+		}
 
 		/**
 		 * Returns the singleton instance of this class
@@ -482,9 +556,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			NamedElement signature = e.getSignature();
 
 			if(signature instanceof Operation) {
-				return OperationUtil.getCustomLabel((Operation)signature, displayValue);
+				return OperationUtil.getCustomLabel(e, (Operation)signature, displayValue);
 			}else if(signature instanceof Signal) {
-				return SignalUtil.getCustomLabel((Signal)signature, displayValue);
+				return SignalUtil.getCustomLabel(e, (Signal)signature, displayValue);
 			} else if(signature != null) {
 				return signature.getName();
 			}
@@ -493,79 +567,24 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 		
 		public String getMaskLabel(int value) {
-			return OperationLabelHelper.getInstance().getMaskLabel(value);
+			return masks.get(value);
 		}
 
 		public Collection<String> getMaskLabels() {
-			return OperationLabelHelper.getInstance().getMaskLabels();
+			return masks.values();
 		}
 
 		public Map<Integer, String> getMasks() {
-			return OperationLabelHelper.getInstance().getMasks();
+			return masks;
 		}
 
 		public Set<Integer> getMaskValues() {
-			return OperationLabelHelper.getInstance().getMaskValues();
+			return masks.keySet();
 		}
 	}
 	
 	static public class SignalUtil {
-
-		/**
-		 * return the custom label of the signal, given UML2 specification and a custom style.
-		 * 
-		 * @param style
-		 *        the integer representing the style of the label
-		 * 
-		 * @return the string corresponding to the label of the signal
-		 */
-		public static String getCustomLabel(Signal signal, int style) {
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(" "); // adds " " first for correct display considerations
-
-			// visibility
-			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
-				buffer.append(NamedElementUtil.getVisibilityAsSign(signal));
-			}
-
-			// name
-			if((style & ICustomAppearence.DISP_NAME) != 0) {
-				buffer.append(" ");
-				buffer.append(signal.getName());
-			}
-
-			// 
-			// parameters : '(' parameter-list ')'
-			buffer.append("(");
-			buffer.append(getPropertiesAsString(signal, style));
-			buffer.append(")");
-
-			return buffer.toString();
-		}
-
-		/**
-		 * Returns signal properties as a string, the label is customized using a bit mask
-		 * 
-		 * @return a string containing all properties separated by commas
-		 */
-		private static String getPropertiesAsString(Signal signal, int style) {
-			StringBuffer propertiesString = new StringBuffer();
-			boolean firstProperty = true;
-			for(Property property : signal.getOwnedAttributes()) {
-				// get the label for this property
-				String propertyString = getCustomPropertyLabel(property, style);
-				if(!propertyString.trim().equals("")) {
-					if(!firstProperty) {
-						propertiesString.append(", ");
-					}
-					propertiesString.append(propertyString);
-					firstProperty = false;
-				}
-			}
-			return propertiesString.toString();
-		}
-
-		private static String getCustomPropertyLabel(Property property, int style) {
+		private static String getCustomPropertyLabel(Message e, Property property, int style) {
 			StringBuffer buffer = new StringBuffer();
 			// visibility
 
@@ -600,11 +619,19 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 				buffer.append(multiplicity);
 			}
-
-			if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
-				// default value
+			
+			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+				String value = getValue(e, property);
+				if(value != null){
+					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+						buffer.append(" = ");
+					buffer.append(value);
+				} 
+			}else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+				 // default value
 				if(property.getDefault() != null) {
-					buffer.append(" = ");
+					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+						buffer.append(" = ");
 					buffer.append(property.getDefault());
 				}
 			}
@@ -626,6 +653,330 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				}
 			}
 			return buffer.toString();
+		}
+
+		private static String getValue(Message e, Property property) {
+			EList<ValueSpecification> arguments = e.getArguments();
+			for(ValueSpecification v : arguments)
+				if(v.getName().equals(property.getName())){
+					return ValueSpecificationUtil.getSpecificationValue(v);
+				}
+			return null;
+		}
+
+		/**
+		 * return the custom label of the signal, given UML2 specification and a custom style.
+		 * @param e 
+		 * 
+		 * @param style
+		 *        the integer representing the style of the label
+		 * 
+		 * @return the string corresponding to the label of the signal
+		 */
+		public static String getCustomLabel(Message e, Signal signal, int style) {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(" "); // adds " " first for correct display considerations
+
+			// visibility
+			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+				buffer.append(NamedElementUtil.getVisibilityAsSign(signal));
+			}
+
+			// name
+			if((style & ICustomAppearence.DISP_NAME) != 0) {
+				buffer.append(" ");
+				buffer.append(signal.getName());
+			}
+
+			// 
+			// parameters : '(' parameter-list ')'
+			buffer.append("(");
+			buffer.append(getPropertiesAsString(e, signal, style));
+			buffer.append(")");
+
+			return buffer.toString();
+		}
+
+		/**
+		 * Returns signal properties as a string, the label is customized using a bit mask
+		 * 
+		 * @return a string containing all properties separated by commas
+		 */
+		private static String getPropertiesAsString(Message e, Signal signal, int style) {			
+			StringBuffer propertiesString = new StringBuffer();
+			boolean firstProperty = true;
+			for(Property property : signal.getOwnedAttributes()) {
+				// get the label for this property
+				String propertyString = getCustomPropertyLabel(e, property, style);
+				if(!propertyString.trim().equals("")) {
+					if(!firstProperty) {
+						propertiesString.append(", ");
+					}
+					propertiesString.append(propertyString);
+					firstProperty = false;
+				}
+			}
+			return propertiesString.toString();
+		}
+	}
+	
+	static class OperationUtil {
+		public static String getCustomLabel(Message e, Parameter parameter, int style) {
+			StringBuffer buffer = new StringBuffer();
+			// visibility
+			buffer.append(" ");
+			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+				buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
+			}
+
+			// direction property
+			if((style & ICustomAppearence.DISP_PARAMETER_DIRECTION) != 0) {
+				buffer.append(" ");
+				buffer.append(parameter.getDirection().getLiteral());
+			}
+
+			// name
+			if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
+				buffer.append(" ");
+				buffer.append(parameter.getName());
+			}
+
+			if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
+				// type
+				if(parameter.getType() != null) {
+					buffer.append(": " + parameter.getType().getName());
+				} else {
+					buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
+				}
+			}
+
+			if((style & ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) != 0) {
+				// multiplicity -> do not display [1]
+				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
+				buffer.append(multiplicity);
+			}
+			
+			if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+				String value = getValue(e, parameter);
+				if(value != null){
+					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+						buffer.append(" = ");
+					buffer.append(value);
+				} 
+			}else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+				 // default value
+				 if(parameter.getDefault() != null) {
+					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0)
+						buffer.append(" = ");
+					buffer.append(parameter.getDefault());
+				}
+			}
+
+			if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
+				boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
+				// property modifiers
+				String modifiers = ParameterUtil.getModifiersAsString(parameter, multiLine);
+				if(!modifiers.equals("")) {
+					if(multiLine) {
+						buffer.append("\n");
+					}
+					buffer.append(modifiers);
+				}
+			}
+			return buffer.toString();
+		}
+		
+		private static String getValue(Message e, Parameter parameter) {
+			EList<ValueSpecification> arguments = e.getArguments();
+			for(ValueSpecification v : arguments)
+				if(v.getName().equals(parameter.getName())){
+					return ValueSpecificationUtil.getSpecificationValue(v);
+				}
+			return null;
+		}
+
+		public static String getCustomLabel(Message e, Operation operation, int style) {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(" "); // adds " " first for correct display considerations
+
+			// visibility
+			if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+				buffer.append(NamedElementUtil.getVisibilityAsSign(operation));
+			}
+
+			// name
+			if((style & ICustomAppearence.DISP_NAME) != 0) {
+				buffer.append(" ");
+				buffer.append(operation.getName());
+			}
+
+			// 
+			// parameters : '(' parameter-list ')'
+			buffer.append("(");
+			buffer.append(getParametersAsString(e, operation, style));
+			buffer.append(")");
+
+			// return type
+			if((style & ICustomAppearence.DISP_RT_TYPE) != 0) {
+				buffer.append(getReturnTypeAsString(operation, style));
+			}
+
+			// modifiers
+			if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
+				String modifiers = getModifiersAsString(operation);
+				if(!modifiers.equals("")) {
+					buffer.append("{");
+					buffer.append(modifiers);
+					buffer.append("}");
+				}
+			}
+			return buffer.toString();
+		}
+
+		/**
+		 * Returns operation modifiers as string, separated with comma.
+		 * 
+		 * @return a string containing the modifiers
+		 */
+		private static String getModifiersAsString(Operation operation) {
+			StringBuffer buffer = new StringBuffer();
+			boolean needsComma = false;
+
+			// Return parameter modifiers
+			Parameter returnParameter = OperationUtil.getReturnParameter(operation);
+			if(returnParameter != null) {
+				// non unique parameter
+				if(!returnParameter.isUnique()) {
+					buffer.append("nonunique");
+					needsComma = true;
+				}
+
+				// return parameter has ordered values
+				if(returnParameter.isOrdered()) {
+					if(needsComma) {
+						buffer.append(", ");
+					}
+					buffer.append("ordered");
+					needsComma = true;
+				}
+			}
+
+			// is the operation a query ?
+			if(operation.isQuery()) {
+				if(needsComma) {
+					buffer.append(", ");
+				}
+				buffer.append("query");
+				needsComma = true;
+			}
+
+			// is the operation redefining another operation ?
+			Iterator<Operation> it = operation.getRedefinedOperations().iterator();
+			while(it.hasNext()) {
+				Operation currentOperation = it.next();
+				if(needsComma) {
+					buffer.append(", ");
+				}
+				buffer.append("redefines ");
+				buffer.append(currentOperation.getName());
+				needsComma = true;
+			}
+
+			// has the operation a constraint ?
+			Iterator<Constraint> it2 = operation.getOwnedRules().iterator();
+			while(it2.hasNext()) {
+				Constraint constraint = it2.next();
+				if(needsComma) {
+					buffer.append(", ");
+				}
+				if(constraint.getSpecification() != null) {
+					buffer.append(constraint.getSpecification().stringValue());
+				}
+				needsComma = true;
+			}
+
+			return buffer.toString();
+		}
+
+		/**
+		 * Returns return parameter label as a string, string parametrized with a style mask.
+		 * 
+		 * @param style
+		 *        the mask that indicates which element to display
+		 * @return a string containing the return parameter type
+		 */
+		private static String getReturnTypeAsString(Operation operation, int style) {
+			boolean displayType = ((style & ICustomAppearence.DISP_RT_TYPE) != 0);
+			boolean displayMultiplicity = ((style & ICustomAppearence.DISP_RT_MULTIPLICITY) != 0);
+			StringBuffer label = new StringBuffer("");
+
+			// Retrieve the return parameter (assume to be unique if defined)
+			Parameter returnParameter = getReturnParameter(operation);
+			// Create the string for the return type
+			if(returnParameter == null) {
+				// no-operation: label = ""
+
+			} else if(!displayType && !displayMultiplicity) {
+				// no-operation: label = ""
+
+			} else {
+				label.append(": ");
+				if(displayType) {
+					label.append(TypedElementUtil.getTypeAsString(returnParameter));
+				}
+
+				if(displayMultiplicity) {
+					label.append(MultiplicityElementUtil.getMultiplicityAsString(returnParameter));
+				}
+			}
+			return label.toString();
+		}
+
+		/**
+		 * Gives the return parameter for this operation, or <code>null</code> if none exists.
+		 * 
+		 * @return the return parameter of the operation or <code>null</code>
+		 */
+		private static Parameter getReturnParameter(Operation operation) {
+			// Retrieve the return parameter (assume to be unique if defined)
+			Parameter returnParameter = null;
+
+			Iterator<Parameter> it = operation.getOwnedParameters().iterator();
+			while((returnParameter == null) && (it.hasNext())) {
+				Parameter parameter = it.next();
+				if(parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
+					returnParameter = parameter;
+				}
+			}
+			return returnParameter;
+		}
+		
+		/**
+		 * Returns operation parameters as a string, the label is customized using a bit mask
+		 * @param e 
+		 * 
+		 * @return a string containing all parameters separated by commas
+		 */
+		private static String getParametersAsString(Message e, Operation operation, int style) {
+			StringBuffer paramString = new StringBuffer();
+			Iterator<Parameter> paramIterator = operation.getOwnedParameters().iterator();
+			boolean firstParameter = true;
+			while(paramIterator.hasNext()) {
+				Parameter parameter = paramIterator.next();
+				// Do not include return parameters
+				if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
+					// get the label for this parameter
+					String parameterString = getCustomLabel(e, parameter, style);
+					if (!parameterString.trim().equals("")) {
+						if (!firstParameter) {
+							paramString.append(", ");
+						}
+						paramString.append(parameterString);
+						firstParameter = false;
+					}
+				}
+			}
+			return paramString.toString();
 		}
 	}
 }

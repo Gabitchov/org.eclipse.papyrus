@@ -31,10 +31,9 @@ import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.ObliqueRouter;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouterUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart.SlidableAnchorEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart.MessageAsync;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart.MessageCreate;
 
 /**
@@ -130,6 +129,13 @@ public class MessageRouter extends ObliqueRouter {
 			break;
 		}
 	}
+	
+	protected boolean checkShapesIntersect(Connection conn, PointList newLine) {
+		if(conn.getTargetAnchor().getOwner() instanceof AnchorHelper.CombinedFragmentNodeFigure){
+			return false;
+		}
+		return super.checkShapesIntersect(conn, newLine);
+	}
 
 	protected void adjustCreateEndpoint(Connection conn, PointList newLine) {
 		if(conn instanceof MessageCreate){
@@ -198,8 +204,8 @@ public class MessageRouter extends ObliqueRouter {
 
 	protected boolean isOnRightHand(Connection conn, IFigure owner, Point middle) {
 		boolean right = true;
-		if(conn.getTargetAnchor() instanceof SlidableAnchorEx){
-			SlidableAnchorEx anchor = (SlidableAnchorEx) conn.getTargetAnchor();
+		if(conn.getTargetAnchor() instanceof AnchorHelper.SideAnchor){
+			 AnchorHelper.SideAnchor anchor = ( AnchorHelper.SideAnchor) conn.getTargetAnchor();
 			right = anchor.isRight();
 		}else{
 			PointList list = conn.getPoints();
