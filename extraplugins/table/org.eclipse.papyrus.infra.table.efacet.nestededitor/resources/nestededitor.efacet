@@ -21,7 +21,7 @@
 			<query xsi:type="javaQuery2:JavaQuery"
 				implementationClassName="org.eclipse.papyrus.infra.table.efacet.nestededitor.query.GetEditorContextQuery" />
 		</facetElements>
-		<facetElements xsi:type="efacet:FacetAttribute" name="isOpened"
+		<facetElements xsi:type="efacet:FacetAttribute" name="isOpen"
 			changeable="false" derived="true" documentation="">
 			<eType xsi:type="ecore:EDataType"
 				href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean" />

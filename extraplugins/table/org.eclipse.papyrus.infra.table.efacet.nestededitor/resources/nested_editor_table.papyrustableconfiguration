@@ -11,6 +11,6 @@ xmlns:org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration="http://w
     <defaultColumns xsi:type="efacet:FacetReference" href="platform:/plugin/org.eclipse.papyrus.infra.emf.efacet/resources/emf.efacet#//Extended_EObject/self"/>
     <defaultColumns xsi:type="efacet:FacetAttribute" href="nestededitor.efacet#//NestedEditor/name"/>
     <defaultColumns xsi:type="efacet:FacetReference" href="nestededitor.efacet#//NestedEditor/context"/>
-    <defaultColumns xsi:type="efacet:FacetAttribute" href="nestededitor.efacet#//NestedEditor/isOpened"/>
+    <defaultColumns xsi:type="efacet:FacetAttribute" href="nestededitor.efacet#//NestedEditor/isOpen"/>
   </tableConfiguration>
 </org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration:PapyrusTableConfiguration>
