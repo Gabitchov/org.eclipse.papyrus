@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.notation.NotationModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.services.controlmode.commands.IControlCommand;
 import org.eclipse.papyrus.infra.table.efacet.controlmode.helpers.PapyrusTableMoveHelper;
 
@@ -36,6 +37,10 @@ public class PapyrusTableControlCommand implements IControlCommand {
 		case POST_NOTATION:
 			PapyrusTableMoveHelper.addAllTableMoveCommands(domain, selection, target, commandToModify);
 			break;
+		case POST_DI:
+			//I think that we will need to the SashWindowsMngr to add the pages... 
+			//PapyrusTableMoveHelper.addAllPageRefTableMoveCommands(domain, selection, source, target, commandToModify);
+			break;
 		default:
 		}
 	}
@@ -44,7 +49,7 @@ public class PapyrusTableControlCommand implements IControlCommand {
 	 * {@inheritDoc}
 	 */
 	public boolean provides(final EObject selection, final STATE_CONTROL state, final Resource source, final Resource target) {
-		return NotationModel.NOTATION_FILE_EXTENSION.equals(target.getURI().fileExtension());
+		return NotationModel.NOTATION_FILE_EXTENSION.equals(target.getURI().fileExtension()) || DiModel.DI_FILE_EXTENSION.equals(target.getURI().fileExtension());
 	}
 
 

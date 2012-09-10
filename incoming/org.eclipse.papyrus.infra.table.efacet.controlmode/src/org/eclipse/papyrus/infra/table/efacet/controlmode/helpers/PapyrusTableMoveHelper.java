@@ -24,11 +24,16 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.TableInstance;
+import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.TablePackage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorException;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.utils.PapyrusEcoreUtils;
+import org.eclipse.papyrus.infra.table.efacet.controlmode.Activator;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
 import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
 import org.eclipse.papyrus.views.modelexplorer.commands.MoveOpenableCommand;
@@ -137,15 +142,15 @@ public class PapyrusTableMoveHelper {
 				boolean result = true;
 				if(setting != null) {
 					final EObject settingEObject = setting.getEObject();
-					result &= settingEObject instanceof TableInstance;
+					result &= settingEObject instanceof Table;
 					result &= setting.getEStructuralFeature() == TablePackage.Literals.TABLE__CONTEXT;
-
-					final Collection<Setting> references = PapyrusEcoreUtils.getUsages(settingEObject);
-					final Iterable<Setting> papyrusTableInstances = Iterables.filter(references, keepPapyrusTableInstances);
-					//Veryfing that there is at least one papyrusTableInstance
-					result = result && !Iterables.isEmpty(papyrusTableInstances);
-					System.out.println("result2 = " + result);
-
+					final EObject container = settingEObject;//.eContainer();
+					if(container instanceof Table) {
+						final Collection<Setting> references = PapyrusEcoreUtils.getUsages(container);
+						final Iterable<Setting> papyrusTableInstances = Iterables.filter(references, keepPapyrusTableInstances);
+						//Veryfing that there is at least one papyrusTableInstance
+						result = result && !Iterables.isEmpty(papyrusTableInstances);
+					}
 				} else {
 					result = false;
 				}
@@ -184,5 +189,28 @@ public class PapyrusTableMoveHelper {
 		}
 
 		return result;
+	}
+
+	public static void addAllPageRefTableMoveCommands(EditingDomain domain, EObject selection, Resource source, Resource target, CompoundCommand commandToModify) {
+
+		//TODO should be done in a command.
+		//we need to get the SashWindowsMngr
+		//		SashWindowsMngr windowsMngr = null;
+		//		//		Resource diResource = SashModelUtils.getSashModel(target.).getResource();
+		//		Resource diResource = source;
+		//
+		//		for(final EObject current : createDescendantTablesIterable(selection)) {
+		//			PageRef pageRef = DiUtils.getPageRef(diResource, current);
+		//			if(pageRef != null) {
+		//				windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
+		//				try {
+		//					DiUtils.addPageToTabFolder(windowsMngr, pageRef);
+		//				} catch (SashEditorException e) {
+		//					Activator.log.error(e);
+		//				}
+		//			}
+		//
+		//		}
+
 	}
 }
