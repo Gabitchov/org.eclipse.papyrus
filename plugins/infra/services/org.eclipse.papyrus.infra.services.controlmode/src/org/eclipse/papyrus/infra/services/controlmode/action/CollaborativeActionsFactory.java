@@ -32,8 +32,12 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * The Class ControlActionFactory for creating a Papyrus control action that override EMF control
  * action
  * 
+ * @deprecated The actions should be written using the Eclipse Framework (org.eclipse.ui.menu, org.eclipse.ui.handler, org.eclipse.ui.command)
+ * 
  * @author Emilien Perico
  */
+@Deprecated
+//FIXME: Unused. Creates a dependency to views.modelexplorer. Should be removed in 0.10
 public class CollaborativeActionsFactory implements IActionHandlerFactory {
 
 	protected List<Action> actions = new LinkedList<Action>();
