@@ -235,7 +235,7 @@ public interface PapyrusTable extends EModelElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Using Queries</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage#getPapyrusTable_UsingQueries()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isUsingQueries();

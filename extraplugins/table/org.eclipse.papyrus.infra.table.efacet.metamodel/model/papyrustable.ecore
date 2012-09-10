@@ -5,7 +5,7 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="This package contains the model used to store the Papyrus Table."/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="PapyrusTable" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PapyrusTable" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This element represents the tables used in Papyrus."/>
     </eAnnotations>
@@ -19,7 +19,7 @@
         <details key="documentation" value="This field allows to store the type of the Papyrus Table. It is used to know how &#xD;&#xA;to open it in the papyrus sasheditor."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="table" eType="ecore:EClass ../../org.eclipse.emf.facet.widgets.table.metamodel/model/table-0.2.0.ecore#//Table"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" eType="ecore:EClass platform:/plugin/org.eclipse.emf.facet.widgets.table.metamodel/model/table-0.2.0.ecore#//Table"
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This field reference the EMF-Facet table that we use for the papyrus Table.&#xD;&#xA;We choose to reference it (and not to do an inheritance) in order to be sure&#xD;&#xA;to respect their API."/>
@@ -57,7 +57,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usingQueries" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
-        volatile="true" derived="true">
+        volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This attribute is true when fillingMode==Queries."/>
       </eAnnotations>

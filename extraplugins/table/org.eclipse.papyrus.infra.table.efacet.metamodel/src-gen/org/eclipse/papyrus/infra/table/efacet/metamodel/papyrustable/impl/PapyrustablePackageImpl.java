@@ -303,7 +303,7 @@ public class PapyrustablePackageImpl extends EPackageImpl implements Papyrustabl
 		initEReference(getPapyrusTable_Queries(), theExtensiblePackage.getQuery(), null, "queries", null, 0, -1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingUser(), ecorePackage.getEBoolean(), "usingUser", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPapyrusTable_UsingContextFeature(), ecorePackage.getEBoolean(), "usingContextFeature", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPapyrusTable_UsingQueries(), ecorePackage.getEBoolean(), "usingQueries", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusTable_UsingQueries(), ecorePackage.getEBoolean(), "usingQueries", null, 0, 1, PapyrusTable.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(fillingModeEEnum, FillingMode.class, "FillingMode"); //$NON-NLS-1$
