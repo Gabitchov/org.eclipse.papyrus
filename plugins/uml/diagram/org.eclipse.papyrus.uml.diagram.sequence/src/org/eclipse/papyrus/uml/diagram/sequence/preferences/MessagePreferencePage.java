@@ -63,7 +63,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 	private int displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
 
 	/** buttons to select the display kind for the label of  */
-	private Button dispParamDir ,dispParamMod, dispParamName, dispVis, dispParamType, dispReturnType, dispParamMul, dispParamDef , dispName, dispMod ;
+	private Button dispParamDir ,dispParamMod, dispParamName, dispVis, dispParamType, dispReturnType, dispParamMul, dispParamDef , dispName, dispMod,dispParamVal;
 	
 	/**
 	 * Creates the group and check boxes to choose the kind of display
@@ -85,11 +85,12 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		dispReturnType = createCheckButton(group, "Return Type", ICustomAppearence.DISP_RT_TYPE);
 		dispParamMul = createCheckButton(group, "Parameters Multiplicity", ICustomAppearence.DISP_PARAMETER_MULTIPLICITY);
 		dispParamDef = createCheckButton(group, "Parameters Default Value", ICustomAppearence.DISP_PARAMETER_DEFAULT);
+		dispParamVal = createCheckButton(group, "Parameters Value", ICustomAppearence.DISP_DERIVE);
 		dispName = createCheckButton(group,  "Name", ICustomAppearence.DISP_NAME);
 		dispMod = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MOFIFIERS);
 	}
 	
-	protected void refreshButtons() {
+	protected void refreshButtons(SelectionEvent e) {
 		dispParamDir.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_DIRECTION));
 		dispParamMod.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_MODIFIERS));
 		dispParamName.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_NAME));
@@ -98,8 +99,19 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		dispReturnType.setSelection(isCheck(displayValue , ICustomAppearence.DISP_RT_TYPE));
 		dispParamMul.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_MULTIPLICITY));
 		dispParamDef.setSelection(isCheck(displayValue , ICustomAppearence.DISP_PARAMETER_DEFAULT));
+		dispParamVal.setSelection(isCheck(displayValue , ICustomAppearence.DISP_DERIVE));
 		dispName.setSelection(isCheck(displayValue , ICustomAppearence.DISP_NAME));
 		dispMod.setSelection(isCheck(displayValue , ICustomAppearence.DISP_MOFIFIERS));
+		if(e != null && dispParamDef.getSelection() && dispParamVal.getSelection()){
+			// parameter default and value can only select one of them
+			if(e.widget == dispParamDef){
+				dispParamVal.setSelection(false);
+				displayValue = displayValue ^ ICustomAppearence.DISP_DERIVE;
+			}else if(e.widget == dispParamVal){
+				dispParamDef.setSelection(false);
+				displayValue = displayValue ^ ICustomAppearence.DISP_PARAMETER_DEFAULT;
+			}
+		}
 	}		
 
 	protected void createPageContents(Composite parent) {
@@ -108,7 +120,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 		// adds the label preferences checkboxes
 		createLabelPreferencesButtons(parent);
 
-		refreshButtons();
+		refreshButtons(null);
 	}
 	
 	/**
@@ -116,7 +128,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 */
 	protected void loadDefaultPreferences() {
 		displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
-		refreshButtons();
+		refreshButtons(null);
 	}
 
 	/**
@@ -202,7 +214,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 			displayValue = displayValue ^ style;
 
 			// refresh buttons at the end
-			refreshButtons();
+			refreshButtons(e);
 		}
 	}
 }

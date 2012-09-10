@@ -74,6 +74,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFi
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -273,64 +274,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		return getContentPane();
 	}
 	
-	static class SlidableAnchorEx extends SlidableAnchor{
-		private PrecisionPoint percent;
-		private IFigure figure;
-
-		SlidableAnchorEx(IFigure fig, PrecisionPoint percent) {
-			super(fig,percent);
-			this.figure = fig;			
-			this.percent = percent;
-		}
-		
-		static SlidableAnchorEx createAnchorAtLocation(IFigure fig, PrecisionPoint loc) {
-			PrecisionPoint p = loc.getPreciseCopy();			
-			Rectangle b = fig.getBounds().getCopy();
-			fig.translateToAbsolute(b);
-						
-			Dimension d = p.getDifference(b.getTopLeft());
-			PrecisionPoint per = new PrecisionPoint( d.preciseWidth()/ b.width , d.preciseHeight() / b.height);
-			return new SlidableAnchorEx(fig, per);
-		}
-		
-		protected Point getLocation(Point ownReference, Point foreignReference) {
-//			PointList intersections = getIntersectionPoints(ownReference, foreignReference);
-//			if (intersections!=null && intersections.size()!=0) {
-//				int size = intersections.size();
-//				double dist = foreignReference.getDistance(ownReference);
-//				for(int i = 0; i < size; i ++){
-//					Point loc = intersections.getPoint(i);
-//					if(isInOrder(foreignReference,ownReference,dist, loc)){
-//						return loc;
-//					}
-//				}
-//				return intersections.getFirstPoint();
-//			}
-//			return null;
-			PrecisionRectangle bounds = new PrecisionRectangle(figure.getBounds());
-			bounds.setPreciseWidth((bounds.width * percent.preciseX()));
-			bounds.setPreciseHeight((bounds.height * percent.preciseY()));
-			figure.translateToAbsolute(bounds);
-			return bounds.getBottomRight();
-		}	
-		
-//		public String getTerminal() {			
-//			return super.getTerminal() ;
-//		}
-//		
-//		private boolean isInOrder(Point start, Point end, double dist, Point loc) {
-//			double total = loc.getDistance(start);
-//			double dist2 = loc.getDistance(end);
-//			if(total < dist || total < dist2)
-//				return false;
-//			
-//			if(Math.abs(total - dist - dist2) < 0.01)
-//				return true;
-//			
-//			return false;
-//		}
-	}
-
 	/**
 	 * @generated
 	 */
@@ -341,13 +284,13 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight)){
 			
-//			protected ConnectionAnchor createAnchor(PrecisionPoint p) {
-//				if (p==null)
-//					// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
-//					// PrecisionPoint will passed in - this is handled here
-//					return createDefaultAnchor();
-//				return new SlidableAnchorEx(this, p);
-//			}
+			protected ConnectionAnchor createAnchor(PrecisionPoint p) {
+				if (p==null)
+					// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
+					// PrecisionPoint will passed in - this is handled here
+					return createDefaultAnchor();
+				return new AnchorHelper.IntersectionPointAnchor(this, p);
+			}
 		};
 
 		return result;
@@ -1312,10 +1255,10 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {	
 		if(connEditPart instanceof Message7EditPart){
-			String terminal = getAnchorId(connEditPart,true);
+			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart,true);
 			if(terminal.length() > 0){
 				PrecisionPoint pt = SlidableAnchor.parseTerminalString(terminal);
-				return new SlidableAnchorEx(getFigure(),pt);
+				return new AnchorHelper.InnerPointAnchor(getFigure(),pt);
 			}
 		}		
 		
@@ -1347,10 +1290,10 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		
 		if(connEditPart instanceof Message6EditPart){
-			String terminal = getAnchorId(connEditPart, false);
+			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
 			if(terminal.length() > 0){
 				PrecisionPoint pt = SlidableAnchor.parseTerminalString(terminal);
-				return new SlidableAnchorEx(getFigure(),pt);
+				return new AnchorHelper.InnerPointAnchor(getFigure(),pt);
 			}
 		}
 		
@@ -1361,38 +1304,6 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 //		}		
 		return targetConnectionAnchor;
 	}	
-	
-	private String getAnchorId(ConnectionEditPart connEditPart, final boolean isSource) {
-        final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = 
-            (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)connEditPart;
-        
-		String t = ""; //$NON-NLS-1$
-		try {
-			t = (String) getEditingDomain().runExclusive(
-				new RunnableWithResult.Impl() {
-
-				public void run() {
-					Anchor a = null;
-					if(isSource)
-						a = ((Edge)connection.getModel()).getSourceAnchor();
-					else
-						a = ((Edge)connection.getModel()).getTargetAnchor();
-					if (a instanceof IdentityAnchor)
-						setResult(((IdentityAnchor) a).getId());
-                    else
-                        setResult(""); //$NON-NLS-1$
-				}
-			});
-		} catch (InterruptedException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(),
-				DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-				"getTargetConnectionAnchor", e); //$NON-NLS-1$
-			Log.error(DiagramUIPlugin.getInstance(),
-				DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-				"getTargetConnectionAnchor", e); //$NON-NLS-1$
-		}
-		return t;
-	}
 
 	/**
 	 * Create Anchor
@@ -1444,7 +1355,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 */
 	private ConnectionAnchor createAnchor(Point location) {
 		//return new SlidableAnchor(getFigure(), BaseSlidableAnchor.getAnchorRelativeLocation(location, getFigure().getBounds()));
-		return SlidableAnchorEx.createAnchorAtLocation(getFigure(), new PrecisionPoint(location));
+		return AnchorHelper.InnerPointAnchor.createAnchorAtLocation(getFigure(), new PrecisionPoint(location));
 	}		
 
 }

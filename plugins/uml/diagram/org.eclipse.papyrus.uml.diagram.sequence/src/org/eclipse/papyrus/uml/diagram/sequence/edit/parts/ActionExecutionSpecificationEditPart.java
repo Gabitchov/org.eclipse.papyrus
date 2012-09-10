@@ -17,21 +17,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.DelegatingLayout;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.IClippingStrategy;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.XYLayout;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -49,7 +39,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -58,6 +47,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.FixedAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ActionExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy;
@@ -1047,7 +1037,7 @@ AbstractExecutionSpecificationEditPart {
 				if(UMLElementTypes.Message_4003.equals(obj)) {
 					// Sync Message
 					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
-						return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+						return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.TOP);
 					}
 					// otherwise, this is a recursive call, let destination free
 				}
@@ -1057,7 +1047,7 @@ AbstractExecutionSpecificationEditPart {
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
 			if(connectionEditPart instanceof MessageEditPart) {
 				// Sync Message
-				return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+				return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.TOP);
 			}
 		}
 
@@ -1076,7 +1066,7 @@ AbstractExecutionSpecificationEditPart {
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		if(connEditPart instanceof MessageEditPart) {
 			// Sync Message
-			return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+			return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.TOP);
 		}
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
@@ -1097,7 +1087,7 @@ AbstractExecutionSpecificationEditPart {
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4005.equals(obj)) {
 					// Reply Message
-					return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
+					return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
 				}
 			}
 		} else if(request instanceof ReconnectRequest) {
@@ -1105,7 +1095,7 @@ AbstractExecutionSpecificationEditPart {
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
 			if(connectionEditPart instanceof Message3EditPart) {
 				// Reply Message
-				return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
+				return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
@@ -1123,7 +1113,7 @@ AbstractExecutionSpecificationEditPart {
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
 		if(connEditPart instanceof Message3EditPart) {
 			// Reply Message
-			return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
+			return new AnchorHelper.FixedAnchorEx(getFigure(), FixedAnchor.BOTTOM);
 		}
 		return super.getSourceConnectionAnchor(connEditPart);
 	}

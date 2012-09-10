@@ -45,7 +45,9 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
@@ -260,7 +262,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			if(replyHint.equals(desc.getSemanticHint()) && request.getSourceEditPart() instanceof IGraphicalEditPart) {
 				Rectangle srcBounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)request.getSourceEditPart());
 				int bottom = srcBounds.getBottom().y;
-				if(bottom >= targetPoint.y) {
+				if(bottom >= targetPoint.y + MARGIN) {
 					return UnexecutableCommand.INSTANCE;
 				}
 			}
@@ -456,27 +458,41 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				|| REQ_RECONNECT_TARGET.equals(request.getType())){
 			
 			EditPart host = getHost();
-			if((host instanceof InteractionEditPart) && (request instanceof CreateConnectionRequest) ){
-				if(REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4008 )){
-					return host;
-				}				
-				if(REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4009 )){
-					return host;
-				}
-				
-				InteractionEditPart interactionPart = (InteractionEditPart)host;
-				CreateConnectionRequest req = (CreateConnectionRequest)request;
-				IFigure figure = interactionPart.getFigure();
-				Point location = req.getLocation().getCopy();
-				figure.translateToRelative(location);
-				
-				// if mouse location is far from border, do not handle connection event 
-				Rectangle innerRetangle = figure.getBounds().getCopy().shrink(20, 20);
-				if(innerRetangle.contains(location)){
+			if(request instanceof CreateConnectionRequest){
+				if(host instanceof InteractionEditPart){
+					if(REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4008 )){
+						return host;
+					}				
+					if(REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request,UMLElementTypes.Message_4009 )){
+						return host;
+					}
+					
+					InteractionEditPart interactionPart = (InteractionEditPart)host;
+					CreateConnectionRequest req = (CreateConnectionRequest)request;
+					IFigure figure = interactionPart.getFigure();
+					Point location = req.getLocation().getCopy();
+					figure.translateToRelative(location);
+					
+					// if mouse location is far from border, do not handle connection event 
+					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(20, 20);
+					if(innerRetangle.contains(location)){
+						return null;
+					}
+				}else if(host instanceof InteractionOperandEditPart){
 					return null;
+				}else if(host instanceof CombinedFragmentEditPart){
+					CreateConnectionRequest req = (CreateConnectionRequest)request;
+					IFigure figure = ((GraphicalEditPart)host).getFigure();
+					Point location = req.getLocation().getCopy();
+					figure.translateToRelative(location);
+					
+					// if mouse location is far from border, do not handle connection event 
+					Rectangle innerRetangle = figure.getBounds().getCopy().shrink(10, 10);
+					if(innerRetangle.contains(location)){
+						return null;
+					}
 				}
-			}
-			
+			}	
 			return host;
 		}
 		return null;
