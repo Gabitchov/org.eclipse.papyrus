@@ -42,25 +42,45 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
+	private final String[] expressionBodies;
+
+	/**
+	 * @generated
+	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[1];
+		this.expressionBodies = new String[]{ "\' \'", //$NON-NLS-1$
+		};
+	}
+
+	/**
+	 * @generated
+	 */
+	private static UMLOCLFactory getInstance() {
+		UMLOCLFactory instance = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
+		if(instance == null) {
+			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(instance = new UMLOCLFactory());
+		}
+		return instance;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getExpressionBody(int index) {
+		return getInstance().expressionBodies[index];
 	}
 
 	/**
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
-		UMLOCLFactory cached = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
-		if(cached == null) {
-			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(cached = new UMLOCLFactory());
-		}
+		UMLOCLFactory cached = getInstance();
 		if(index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
 		if(cached.expressions[index] == null) {
-			final String[] exprBodies = new String[]{ "\' \'", //$NON-NLS-1$
-			};
-			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}

@@ -109,7 +109,7 @@
    </extension>
 <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.CUMLModelingAssitantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart" id="Dependency_2014"/>
@@ -127,11 +127,11 @@
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPart" id="DataType_2010"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart" id="Constraint_2011"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart" id="Comment_2012"/>
-         <!--object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShortCutDiagramEditPart" id="Diagram_2016"/-->
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShortCutDiagramEditPart" id="Diagram_2016"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationEditPart" id="DurationObservation_2095"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationEditPart" id="TimeObservation_2096"/>
-         <!--object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DefaultNamedElementEditPart" id="NamedElement_2097"/-->
-         <!--object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementEditPart" id="NamedElement_2098"/-->
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DefaultNamedElementEditPart" id="NamedElement_2097"/>
+         <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementEditPart" id="NamedElement_2098"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart" id="Property_3012"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEditPart" id="Property_3002"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart" id="Property_3005"/>
@@ -169,7 +169,7 @@
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForClassEditPart" id="Interface_3036"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForComponentEditPart" id="Interface_3037"/>
          <object class="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterfaceEditPart" id="Interface_3038"/>
-         <context elements="Package_1000,Dependency_2014,AssociationClass_2013,Association_2015,InstanceSpecification_2001,Component_2002,Signal_2003,Interface_2004,Model_2005,Enumeration_2006,Package_2007,Class_2008,PrimitiveType_2009,DataType_2010,Constraint_2011,Comment_2012,DurationObservation_2095,TimeObservation_2096,Property_3012,Property_3002,Property_3005,Property_3006,Property_3018,Class_3014,Class_3004,Class_3008,Operation_3013,Operation_3003,Operation_3007,Operation_3019,ConnectableElementTemplateParameter_3034,OperationTemplateParameter_3035,ClassifierTemplateParameter_3031,TemplateParameter_3016,EnumerationLiteral_3017,Reception_3011,Slot_3030,RedefinableTemplateSignature_3015,Node_3032,TemplateSignature_3033,InstanceSpecification_3020,Component_3021,Signal_3022,Interface_3023,Model_3024,Enumeration_3025,Package_3009,Class_3010,PrimitiveType_3026,DataType_3027,Comment_3028,Constraint_3029,Interface_3036,Interface_3037,Interface_3038"/>
+         <context elements="Package_1000,Dependency_2014,AssociationClass_2013,Association_2015,InstanceSpecification_2001,Component_2002,Signal_2003,Interface_2004,Model_2005,Enumeration_2006,Package_2007,Class_2008,PrimitiveType_2009,DataType_2010,Constraint_2011,Comment_2012,Diagram_2016,DurationObservation_2095,TimeObservation_2096,NamedElement_2097,NamedElement_2098,Property_3012,Property_3002,Property_3005,Property_3006,Property_3018,Class_3014,Class_3004,Class_3008,Operation_3013,Operation_3003,Operation_3007,Operation_3019,ConnectableElementTemplateParameter_3034,OperationTemplateParameter_3035,ClassifierTemplateParameter_3031,TemplateParameter_3016,EnumerationLiteral_3017,Reception_3011,Slot_3030,RedefinableTemplateSignature_3015,Node_3032,TemplateSignature_3033,InstanceSpecification_3020,Component_3021,Signal_3022,Interface_3023,Model_3024,Enumeration_3025,Package_3009,Class_3010,PrimitiveType_3026,DataType_3027,Comment_3028,Constraint_3029,Interface_3036,Interface_3037,Interface_3038"/>
       </modelingAssistantProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">

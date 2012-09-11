@@ -208,7 +208,6 @@ public class SignalEditPart extends ClassifierEditPart {
 		}
 		if(childEditPart instanceof SignalAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((SignalAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

@@ -179,7 +179,6 @@ public class InstanceSpecificationEditPartCN extends NamedElementEditPart {
 		}
 		if(childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InstanceSpecificationSlotCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}

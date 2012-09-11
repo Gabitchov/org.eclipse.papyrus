@@ -44,10 +44,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
@@ -180,13 +180,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
-			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
+			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
-		request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
+		request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, null);
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, null);
 		if(command != null) {
 			if(!(command instanceof CompositeTransactionalCommand)) {
 				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);

@@ -67,8 +67,8 @@ public class InterfaceNestedClassifierCompartmentEditPart extends ResizeableList
 	/**
 	 * @generated NOT
 	 * 
-	 * The NestedClassifierListenerEditPolicy has been manually removed.
-	 * Bug 386296: [Class Diagram] Containment links (Nested classifiers) do no work
+	 *            The NestedClassifierListenerEditPolicy has been manually removed.
+	 *            Bug 386296: [Class Diagram] Containment links (Nested classifiers) do no work
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();

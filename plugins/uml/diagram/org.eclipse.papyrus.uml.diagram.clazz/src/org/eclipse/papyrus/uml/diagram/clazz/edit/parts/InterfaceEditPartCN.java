@@ -218,19 +218,16 @@ public class InterfaceEditPartCN extends ClassifierEditPart {
 		}
 		if(childEditPart instanceof InterfaceAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InterfaceAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof InterfaceOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InterfaceOperationCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof InterfaceNestedClassifierCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InterfaceNestedClassifierCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}

@@ -210,7 +210,6 @@ public class ModelEditPartTN extends NamedElementEditPart {
 		}
 		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ModelPackageableElementCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}

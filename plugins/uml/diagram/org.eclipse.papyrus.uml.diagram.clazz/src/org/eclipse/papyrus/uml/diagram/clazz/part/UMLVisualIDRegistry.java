@@ -18,9 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
-import org.eclipse.papyrus.uml.diagram.common.providers.BaseViewInfo;
-import org.eclipse.papyrus.uml.diagram.common.providers.ViewInfo;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -1596,328 +1595,159 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static ViewInfo diagramViewInfo = null;
-
-	/**
-	 * @generated
-	 */
-	public static ViewInfo getDiagramViewInfo() {
-		if(diagramViewInfo == null) {
-			diagramViewInfo = getPackage_1000ViewInfo();
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		if(candidate == -1) {
+			//unrecognized id is always bad
+			return false;
 		}
-		return diagramViewInfo;
+		int basic = getNodeVisualID(containerView, domainElement);
+		return basic == candidate;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected static ViewInfo getPackage_1000ViewInfo() {
-		ViewInfo root = new BaseViewInfo(1000, ViewInfo.Head, "", null, null);
-		ViewInfo viewInfo = null;
-		ViewInfo labelInfo = null;
-		viewInfo = new BaseViewInfo(2014, ViewInfo.Node, "Dependency");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2013, ViewInfo.Node, "AssociationClass");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2015, ViewInfo.Node, "Association");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "InstanceSpecification");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2002, ViewInfo.Node, "Component");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2003, ViewInfo.Node, "Signal");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2004, ViewInfo.Node, "Interface");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2005, ViewInfo.Node, "Model");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2006, ViewInfo.Node, "Enumeration");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2007, ViewInfo.Node, "Package");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2008, ViewInfo.Node, "Class");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2009, ViewInfo.Node, "PrimitiveType");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2010, ViewInfo.Node, "DataType");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2011, ViewInfo.Node, "Constraint");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2012, ViewInfo.Node, "Comment");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2016, ViewInfo.Node, "Diagram");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2095, ViewInfo.Node, "DurationObservation");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2096, ViewInfo.Node, "TimeObservation");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2097, ViewInfo.Node, "NamedElement");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(2098, ViewInfo.Node, "NamedElement");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4017, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6031, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6032, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6033, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6034, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6035, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6016, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6026, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6027, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6022, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6030, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4015, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6036, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4020, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(5067, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6037, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4021, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		labelInfo = new BaseViewInfo(6039, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		labelInfo = new BaseViewInfo(6038, ViewInfo.Label, "", null, viewInfo);
-		viewInfo.getChildren().add(labelInfo);
-		viewInfo = new BaseViewInfo(4022, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4023, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4024, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(4025, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Property");
-		root.addNode(7017, viewInfo);
-		root.addNode(7011, viewInfo);
-		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
-		root.addNode(7002, viewInfo);
-		root.addNode(7023, viewInfo);
-		root.addNode(7034, viewInfo);
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "Property");
-		root.addNode(7026, viewInfo);
-		root.addNode(7005, viewInfo);
-		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "Property");
-		root.addNode(7027, viewInfo);
-		root.addNode(7006, viewInfo);
-		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "Property");
-		root.addNode(7020, viewInfo);
-		root.addNode(7032, viewInfo);
-		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "Class");
-		root.addNode(7013, viewInfo);
-		root.addNode(7019, viewInfo);
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "Class");
-		root.addNode(7004, viewInfo);
-		root.addNode(7025, viewInfo);
-		root.addNode(7037, viewInfo);
-		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "Class");
-		root.addNode(7008, viewInfo);
-		root.addNode(7029, viewInfo);
-		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "Operation");
-		root.addNode(7018, viewInfo);
-		root.addNode(7012, viewInfo);
-		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Operation");
-		root.addNode(7003, viewInfo);
-		root.addNode(7024, viewInfo);
-		root.addNode(7036, viewInfo);
-		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "Operation");
-		root.addNode(7007, viewInfo);
-		root.addNode(7028, viewInfo);
-		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "Operation");
-		root.addNode(7033, viewInfo);
-		root.addNode(7021, viewInfo);
-		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "ConnectableElementTemplateParameter");
-		root.addNode(7014, viewInfo);
-		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "OperationTemplateParameter");
-		root.addNode(7038, viewInfo);
-		root.addNode(7014, viewInfo);
-		viewInfo = new BaseViewInfo(3031, ViewInfo.Node, "ClassifierTemplateParameter");
-		root.addNode(7014, viewInfo);
-		root.addNode(7038, viewInfo);
-		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "TemplateParameter");
-		root.addNode(7014, viewInfo);
-		root.addNode(7038, viewInfo);
-		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "EnumerationLiteral");
-		root.addNode(7031, viewInfo);
-		root.addNode(7015, viewInfo);
-		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Reception");
-		root.addNode(7018, viewInfo);
-		root.addNode(7012, viewInfo);
-		viewInfo = new BaseViewInfo(3030, ViewInfo.Node, "Slot");
-		root.addNode(7001, viewInfo);
-		root.addNode(7035, viewInfo);
-		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "RedefinableTemplateSignature");
-		root.addNode(2005, viewInfo);
-		root.addNode(3010, viewInfo);
-		root.addNode(3023, viewInfo);
-		root.addNode(3009, viewInfo);
-		root.addNode(3022, viewInfo);
-		root.addNode(2003, viewInfo);
-		root.addNode(2010, viewInfo);
-		root.addNode(3021, viewInfo);
-		root.addNode(3027, viewInfo);
-		root.addNode(2004, viewInfo);
-		root.addNode(2007, viewInfo);
-		root.addNode(3024, viewInfo);
-		root.addNode(2008, viewInfo);
-		root.addNode(2002, viewInfo);
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "invalid");
-		root.addNode(2008, viewInfo);
-		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "TemplateSignature");
-		root.addNode(2005, viewInfo);
-		root.addNode(2007, viewInfo);
-		root.addNode(3024, viewInfo);
-		root.addNode(3009, viewInfo);
-		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "InstanceSpecification");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "Component");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "Signal");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "Interface");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "Model");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "Enumeration");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3009, ViewInfo.Node, "Package");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "Class");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "PrimitiveType");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "DataType");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3028, ViewInfo.Node, "Comment");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3029, ViewInfo.Node, "Constraint");
-		root.addNode(7010, viewInfo);
-		root.addNode(7009, viewInfo);
-		root.addNode(7030, viewInfo);
-		root.addNode(7016, viewInfo);
-		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "Interface");
-		root.addNode(7019, viewInfo);
-		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "Interface");
-		root.addNode(7004, viewInfo);
-		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "Interface");
-		root.addNode(7008, viewInfo);
-		return root;
+	public static boolean isCompartmentVisualID(int visualID) {
+		switch(visualID) {
+		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
+		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
+		case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
+		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
+		case ComponentOperationCompartmentEditPartCN.VISUAL_ID:
+		case ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID:
+		case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
+		case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
+		case InterfaceOperationCompartmentEditPartCN.VISUAL_ID:
+		case InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID:
+		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
+		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
+		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+		case ClassAttributeCompartmentEditPart.VISUAL_ID:
+		case ClassOperationCompartmentEditPart.VISUAL_ID:
+		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
+		case ComponentOperationCompartmentEditPart.VISUAL_ID:
+		case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
+		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
+		case InterfaceOperationCompartmentEditPart.VISUAL_ID:
+		case InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID:
+		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
+		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
+		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
+		case InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID:
+		case SignalAttributeCompartmentEditPart.VISUAL_ID:
+		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
+		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
+		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
+		case AssociationClassOperationCompartmentEditPart.VISUAL_ID:
+		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+		case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+		case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static boolean isSemanticLeafVisualID(int visualID) {
+		switch(visualID) {
+		case ModelEditPart.VISUAL_ID:
+			return false;
+		case PrimitiveTypeEditPart.VISUAL_ID:
+		case ConstraintEditPart.VISUAL_ID:
+		case CommentEditPart.VISUAL_ID:
+		case DependencyNodeEditPart.VISUAL_ID:
+		case AssociationNodeEditPart.VISUAL_ID:
+		case ShortCutDiagramEditPart.VISUAL_ID:
+		case DurationObservationEditPart.VISUAL_ID:
+		case TimeObservationEditPart.VISUAL_ID:
+		case DefaultNamedElementEditPart.VISUAL_ID:
+		case ShapeNamedElementEditPart.VISUAL_ID:
+		case PropertyForComponentEditPart.VISUAL_ID:
+		case OperationForComponentEditPart.VISUAL_ID:
+		case NestedClassForComponentEditPart.VISUAL_ID:
+		case PropertyForSignalEditPart.VISUAL_ID:
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+		case OperationForInterfaceEditpart.VISUAL_ID:
+		case NestedClassForInterfaceEditPart.VISUAL_ID:
+		case ReceptionEditPart.VISUAL_ID:
+		case PropertyForClassEditPart.VISUAL_ID:
+		case OperationForClassEditPart.VISUAL_ID:
+		case NestedClassForClassEditPart.VISUAL_ID:
+		case TemplateParameterEditPart.VISUAL_ID:
+		case EnumerationLiteralEditPart.VISUAL_ID:
+		case PropertyforDataTypeEditPart.VISUAL_ID:
+		case OperationForDataTypeEditPart.VISUAL_ID:
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
+		case SlotEditPart.VISUAL_ID:
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+		case ContainmentCircleEditPart.VISUAL_ID:
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+		case NestedInterfaceForClassEditPart.VISUAL_ID:
+		case NestedInterfaceForComponentEditPart.VISUAL_ID:
+		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
+		/**
+		 * @generated
+		 */
+		public int getVisualID(View view) {
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public String getModelID(View view) {
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getModelID(view);
+		}
+
+		/**
+		 * @generated
+		 */
+		public int getNodeVisualID(View containerView, EObject domainElement) {
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isCompartmentVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean isSemanticLeafVisualID(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
+		}
+	};
 }
