@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.team.FileModificationValidationContext;
+import org.eclipse.core.resources.team.FileModificationValidator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -31,14 +32,24 @@ import org.eclipse.team.svn.ui.SVNTeamModificationValidator;
 
 public class SVNLockHandler implements IReadOnlyHandler {
 
-	SVNTeamModificationValidator validator = new SVNTeamModificationValidator();
+	FileModificationValidator validator = null;
+
+
+	public SVNLockHandler() {
+		try {
+			validator = new SVNTeamModificationValidator();
+		} catch (NoClassDefFoundError e) {
+		}
+	}
 
 	public boolean isReadOnly(URI[] uris, EditingDomain editingDomain) {
 
-		IResource[] needsLockResources = FileUtility.filterResources(getIFiles(uris), IStateFilter.SF_NEEDS_LOCK, IResource.DEPTH_ZERO);
-		for(IResource needsLockResource : needsLockResources) {
-			if(!SVNRemoteStorage.instance().asLocalResource(needsLockResource).isLocked()) {
-				return true;
+		if (validator != null) {
+			IResource[] needsLockResources = FileUtility.filterResources(getIFiles(uris), IStateFilter.SF_NEEDS_LOCK, IResource.DEPTH_ZERO);
+			for(IResource needsLockResource : needsLockResources) {
+				if(!SVNRemoteStorage.instance().asLocalResource(needsLockResource).isLocked()) {
+					return true;
+				}
 			}
 		}
 
@@ -64,9 +75,10 @@ public class SVNLockHandler implements IReadOnlyHandler {
 	}
 
 	public boolean enableWrite(URI[] uris, EditingDomain editingDomain) {
-
-		IStatus result = validator.validateEdit(getIFiles(uris), FileModificationValidationContext.VALIDATE_PROMPT);
-
-		return result.isOK();
+		if (validator != null) {
+			IStatus result = validator.validateEdit(getIFiles(uris), FileModificationValidationContext.VALIDATE_PROMPT);
+			return result.isOK();
+		}
+		return false;
 	}
 }
