@@ -72,7 +72,12 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 	/** the table instance */
 	protected PapyrusTable rawModel;
 
-
+	/**
+	 * the current selection of the widget
+	 * 
+	 * @see bug 389253
+	 */
+	protected ISelection currentSelection;
 
 	public AbstractTableEditor(final ServicesRegistry servicesRegistry, final PapyrusTable rawModel) {
 		super(servicesRegistry);
@@ -248,7 +253,9 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 	}
 
 	public ISelection getSelection() {
-
+		if(currentSelection == null) {
+			currentSelection = StructuredSelection.EMPTY;
+		}
 		//		StructuredSelection selection = null;
 		//		final List<EObject> selectedEObject = ((org.eclipse.emf.facet.widgets.table.ui.ITableWidget)this.natTableWidget).getSelectedRowEObjects();
 		//		final ITableWidgetView view = getTableWidgetView();
@@ -300,17 +307,12 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 		//			//return 
 		//			selection = new StructuredSelection(selectedEObject);
 		//		} else {
-		//			//		final ISelection tableSelection = this.natTableWidget.getSelection();
+		//							final ISelection tableSelection = this.natTableWidget.getSelection();
 		//			//		if(tableSelection.isEmpty()) {
 		//			selection = new StructuredSelection(this.tableEditorInput.getPapyrusTable());
 		//			//		}
 		//		}
-		StructuredSelection selection = null;
-		selection = (StructuredSelection)this.natTableWidget.getSelection();
-		if(selection.isEmpty()) {
-			selection = new StructuredSelection(this.rawModel);
-		}
-		return selection;
+		return currentSelection;
 	}
 
 	public void addSelectionChangedListener(final ISelectionChangedListener listener) {
@@ -339,6 +341,7 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 			if(selection.isEmpty()) {
 				selection = new StructuredSelection(AbstractTableEditor.this.rawModel);
 			}
+			currentSelection = selection;
 			for(final ISelectionChangedListener current : AbstractTableEditor.this.registeredSelectionListener) {
 				current.selectionChanged(new SelectionChangedEvent(AbstractTableEditor.this, selection));
 			}
