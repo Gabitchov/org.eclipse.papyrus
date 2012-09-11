@@ -69,4 +69,12 @@
      	<propertyTab id="advanced" label="Advanced" category="org.eclipse.papyrus" afterTab="Comments"/>
       </propertyTabs>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.uml.properties.languagepreferences.languagepreferencesPackage"
+            genModel="Model/LanguagePreferences.genmodel"
+            uri="http://www.eclipse.org/papyrus/properties/uml/languagePreferences">
+      </package>
+   </extension>
 </plugin>
