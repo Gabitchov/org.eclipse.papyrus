@@ -63,6 +63,7 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	/**
 	 * @see org.eclipse.gef.EditPolicy#getCommand(Request)
 	 */
+	@Override
 	public Command getCommand(Request request) {
 
 		if(PasteRequest.REQ_PAPYRUS_PASTE.equals(request.getType())) {
@@ -75,7 +76,7 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 		}
 
 		if(RequestConstants.REQ_DUPLICATE.equals(request.getType())) {
-			return getDuplicateCommand(((DuplicateRequest)request));
+			return null; //Does not work as expected. Seems redundant with Paste.
 		}
 
 		return super.getCommand(request);
@@ -173,15 +174,15 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 			if(!elementsToDuplicate.isEmpty()) {
 				ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
 				// copy stereotype contained into
-				Iterator<EObject> iter=elementsToDuplicate.iterator();
-				while (iter.hasNext()) {
-					EObject subeObject = (EObject) iter.next();
-					if( subeObject instanceof Element){
+				Iterator<EObject> iter = elementsToDuplicate.iterator();
+				while(iter.hasNext()) {
+					EObject subeObject = iter.next();
+					if(subeObject instanceof Element) {
 						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
 					}
-					
+
 				}
-				ArrayList<EObject> resultToCopy=new ArrayList(elementsToDuplicate);
+				ArrayList<EObject> resultToCopy = new ArrayList(elementsToDuplicate);
 				resultToCopy.addAll(stereotypedSelection);
 				org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest duplicateElementsRequest = new DuplicateElementsRequest(editingDomain, new ArrayList(resultToCopy));
 
