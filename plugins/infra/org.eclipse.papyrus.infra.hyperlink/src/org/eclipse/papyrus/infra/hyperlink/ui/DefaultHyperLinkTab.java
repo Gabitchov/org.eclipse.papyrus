@@ -60,12 +60,12 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param tabId
 	 * @param helper
 	 */
 	public DefaultHyperLinkTab(final String tabId, final AbstractHyperLinkHelper helper) {
-		super(tabId,helper);
+		super(tabId, helper);
 	}
 
 	protected TableViewer availableHyperLinkViewer;
@@ -155,6 +155,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 
 			}
 		});
+		defaultHRight.setToolTipText("Set default hyperlink");
 
 		defaultHleft = new Button(defaultHyperlinkComposite, SWT.NONE);
 		defaultHleft.setBounds(availableHyperLink.getBounds().x + availableHyperLink.getBounds().width + 20, availableHyperLink.getBounds().y + availableHyperLink.getBounds().height / 2, 30, 23);
@@ -183,6 +184,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 
 			}
 		});
+		defaultHleft.setToolTipText("Remove default hyperlink");
 
 
 		Table defaultHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
@@ -191,6 +193,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 
 		defaultHup = new Button(defaultHyperlinkComposite, SWT.NONE);
 		defaultHup.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + (defaultHyperLink.getBounds().height / 2) - 30, 34, 23);
+		defaultHup.setToolTipText("Move default hyperlink up");
 
 		defaultHup.addMouseListener(new MouseListener() {
 
@@ -222,6 +225,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 
 		defaultHdown = new Button(defaultHyperlinkComposite, SWT.NONE);
 		defaultHdown.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + defaultHyperLink.getBounds().height / 2, 34, 23);
+		defaultHdown.setToolTipText("Move default hyperlink down");
 
 		defaultHdown.addMouseListener(new MouseListener() {
 
@@ -310,6 +314,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 	 * @param hyperLinkObjectList
 	 *        the list of hyperlinks
 	 */
+	@Override
 	public void setInput(List<HyperLinkObject> hyperLinkObjectList) {
 		defaultHyperLinkObject.clear();
 		availableHyperLinkObject.clear();
