@@ -23,7 +23,7 @@ import org.eclipse.papyrus.commands.Activator;
 
 /**
  * A GEF Command that wraps an undoable operation. Each method is redirected to the operation. <br>
- * In case the {@link IUndoableOperation} is a {@link ICommand}, you should use {@link ICommandProxy} instead of this implementation.
+ * In case the {@link IUndoableOperation} is a {@link ICommand}, you should use {@link org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy} instead of this implementation.
  * 
  * @author vhemery
  */
