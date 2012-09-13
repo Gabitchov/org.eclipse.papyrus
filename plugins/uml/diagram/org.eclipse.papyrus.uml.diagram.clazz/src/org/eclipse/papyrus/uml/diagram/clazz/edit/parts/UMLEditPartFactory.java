@@ -160,6 +160,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new EnumerationLiteralEditPart(view);
 			case ReceptionEditPart.VISUAL_ID:
 				return new ReceptionEditPart(view);
+			case ReceptionInInterfaceEditPart.VISUAL_ID:
+				return new ReceptionInInterfaceEditPart(view);
 			case SlotEditPart.VISUAL_ID:
 				return new SlotEditPart(view);
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:

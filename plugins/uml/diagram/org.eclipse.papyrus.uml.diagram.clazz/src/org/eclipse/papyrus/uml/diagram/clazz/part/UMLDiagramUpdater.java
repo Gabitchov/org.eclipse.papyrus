@@ -703,6 +703,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
+			Reception childElement = (Reception)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ReceptionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -795,6 +803,14 @@ public class UMLDiagramUpdater {
 			Operation childElement = (Operation)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == OperationForInterfaceEditpart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
+			Reception childElement = (Reception)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ReceptionInInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1195,6 +1211,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
+			Reception childElement = (Reception)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ReceptionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -1267,6 +1291,14 @@ public class UMLDiagramUpdater {
 			Operation childElement = (Operation)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == OperationForInterfaceEditpart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator<?> it = modelElement.getOwnedReceptions().iterator(); it.hasNext();) {
+			Reception childElement = (Reception)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ReceptionInInterfaceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1796,6 +1828,8 @@ public class UMLDiagramUpdater {
 			return getEnumerationLiteral_3017ContainedLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011ContainedLinks(view);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_3039ContainedLinks(view);
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030ContainedLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
@@ -1953,6 +1987,8 @@ public class UMLDiagramUpdater {
 			return getEnumerationLiteral_3017IncomingLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011IncomingLinks(view);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_3039IncomingLinks(view);
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030IncomingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
@@ -2110,6 +2146,8 @@ public class UMLDiagramUpdater {
 			return getEnumerationLiteral_3017OutgoingLinks(view);
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011OutgoingLinks(view);
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_3039OutgoingLinks(view);
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030OutgoingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
@@ -2629,6 +2667,17 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getReception_3011ContainedLinks(View view) {
+		Reception modelElement = (Reception)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReception_3039ContainedLinks(View view) {
 		Reception modelElement = (Reception)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
@@ -3583,6 +3632,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getReception_3011IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReception_3039IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -4737,6 +4793,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getReception_3011OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReception_3039OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 

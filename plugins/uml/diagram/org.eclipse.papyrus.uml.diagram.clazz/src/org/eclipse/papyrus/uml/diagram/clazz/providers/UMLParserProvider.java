@@ -105,6 +105,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPar
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalNameEditPartCN;
@@ -756,6 +757,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			reception_3011Parser = parser;
 		}
 		return reception_3011Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser reception_3039Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getReception_3039Parser() {
+		if(reception_3039Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			reception_3039Parser = parser;
+		}
+		return reception_3039Parser;
 	}
 
 	/**
@@ -1658,6 +1676,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getEnumerationLiteral_3017Parser();
 		case ReceptionEditPart.VISUAL_ID:
 			return getReception_3011Parser();
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return getReception_3039Parser();
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030Parser();
 		case InstanceSpecificationNameEditPartCN.VISUAL_ID:

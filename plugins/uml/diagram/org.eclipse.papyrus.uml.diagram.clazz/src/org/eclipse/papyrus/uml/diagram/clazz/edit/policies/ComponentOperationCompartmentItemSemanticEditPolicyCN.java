@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.OperationForComponentCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ReceptionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -57,6 +58,12 @@ public class ComponentOperationCompartmentItemSemanticEditPolicyCN extends UMLBa
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new OperationForComponentCreateCommand(req));
+		}
+		if(UMLElementTypes.Reception_3011 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new ReceptionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -98,6 +98,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPar
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShortCutDiagramEditPart;
@@ -334,6 +335,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Reception_3011 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Reception_3011"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Reception_3039 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Reception_3039"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -699,6 +705,7 @@ public class UMLElementTypes {
 			elements.put(TemplateParameter_3016, UMLPackage.eINSTANCE.getTemplateParameter());
 			elements.put(EnumerationLiteral_3017, UMLPackage.eINSTANCE.getEnumerationLiteral());
 			elements.put(Reception_3011, UMLPackage.eINSTANCE.getReception());
+			elements.put(Reception_3039, UMLPackage.eINSTANCE.getReception());
 			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
 			elements.put(RedefinableTemplateSignature_3015, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
 			elements.put(TemplateSignature_3033, UMLPackage.eINSTANCE.getTemplateSignature());
@@ -795,6 +802,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TemplateParameter_3016);
 			KNOWN_ELEMENT_TYPES.add(EnumerationLiteral_3017);
 			KNOWN_ELEMENT_TYPES.add(Reception_3011);
+			KNOWN_ELEMENT_TYPES.add(Reception_3039);
 			KNOWN_ELEMENT_TYPES.add(Slot_3030);
 			KNOWN_ELEMENT_TYPES.add(RedefinableTemplateSignature_3015);
 			KNOWN_ELEMENT_TYPES.add(Node_3032);
@@ -926,6 +934,8 @@ public class UMLElementTypes {
 			return EnumerationLiteral_3017;
 		case ReceptionEditPart.VISUAL_ID:
 			return Reception_3011;
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return Reception_3039;
 		case SlotEditPart.VISUAL_ID:
 			return Slot_3030;
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:

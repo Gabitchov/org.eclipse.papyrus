@@ -120,10 +120,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ComponentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3002);
 			types.add(UMLElementTypes.Operation_3003);
+			types.add(UMLElementTypes.Reception_3011);
 			types.add(UMLElementTypes.Class_3004);
 			types.add(UMLElementTypes.Interface_3037);
 			return types;
@@ -135,10 +136,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof InterfaceEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3006);
 			types.add(UMLElementTypes.Operation_3007);
+			types.add(UMLElementTypes.Reception_3039);
 			types.add(UMLElementTypes.Class_3008);
 			types.add(UMLElementTypes.Interface_3038);
 			return types;
@@ -199,10 +201,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ComponentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3002);
 			types.add(UMLElementTypes.Operation_3003);
+			types.add(UMLElementTypes.Reception_3011);
 			types.add(UMLElementTypes.Class_3004);
 			return types;
 		}
@@ -213,10 +216,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof InterfaceEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3006);
 			types.add(UMLElementTypes.Operation_3007);
+			types.add(UMLElementTypes.Reception_3039);
 			types.add(UMLElementTypes.Class_3008);
 			return types;
 		}
