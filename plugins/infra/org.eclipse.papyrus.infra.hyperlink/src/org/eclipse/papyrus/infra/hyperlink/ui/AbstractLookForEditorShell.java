@@ -39,7 +39,7 @@ import org.eclipse.ui.dialogs.PatternFilter;
  * getter in order to connect behavior in subclasses
  */
 public class AbstractLookForEditorShell {
-	
+
 	/** The lookfor shell. */
 	private Shell lookforShell = null; // @jve:decl-index=0:visual-constraint="108,60"
 
@@ -95,7 +95,7 @@ public class AbstractLookForEditorShell {
 		gridLayout1.numColumns = 5;
 		gridLayout1.makeColumnsEqualWidth = true;
 		// this line has to be commented in order to open with VISUAL EDITOR
-		lookforShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		lookforShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE);
 
 		// lookforShell = new Shell();
 		lookforShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));

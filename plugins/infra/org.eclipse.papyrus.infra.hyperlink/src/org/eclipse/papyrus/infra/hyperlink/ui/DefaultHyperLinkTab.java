@@ -34,9 +34,10 @@ import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -110,27 +111,41 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		CTabItem tbtmDefaultsHyperlinks = new CTabItem(cTabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText(Messages.DefaultHyperLinkTab_DefaultHyperlinks);
 		defaultHyperlinkComposite = new Composite(cTabFolder, SWT.NONE);
+		defaultHyperlinkComposite.setBackgroundMode(SWT.INHERIT_DEFAULT);
+		defaultHyperlinkComposite.setBackground(defaultHyperlinkComposite.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 
-		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		defaultHyperlinkComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		defaultHyperlinkComposite.setLayout(new GridLayout(4, false));
+
+		Composite availableHyperlinks = new Composite(defaultHyperlinkComposite, SWT.NONE);
+		availableHyperlinks.setLayout(new GridLayout(1, true));
+		availableHyperlinks.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+		Composite addRemoveButtonsComposite = new Composite(defaultHyperlinkComposite, SWT.NONE);
+		addRemoveButtonsComposite.setLayout(new GridLayout(1, true));
+		addRemoveButtonsComposite.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_CENTER));
+
+		Composite defaultHyperlinks = new Composite(defaultHyperlinkComposite, SWT.NONE);
+		defaultHyperlinks.setLayout(new GridLayout(1, true));
+		defaultHyperlinks.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+		Composite upDownButtonsComposite = new Composite(defaultHyperlinkComposite, SWT.NONE);
+		upDownButtonsComposite.setLayout(new GridLayout(1, true));
+		upDownButtonsComposite.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_CENTER));
+
 		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
 
-		Label lblHyperlinks = new Label(defaultHyperlinkComposite, SWT.NONE);
-		lblHyperlinks.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
-		lblHyperlinks.setBounds(23, 10, 71, 13);
+		Label lblHyperlinks = new Label(availableHyperlinks, SWT.NONE);
 		lblHyperlinks.setText(Messages.DefaultHyperLinkTab_HyperLinks);
 
-		Label lblDefaultHyperlinksby = new Label(defaultHyperlinkComposite, SWT.NONE);
-		lblDefaultHyperlinksby.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		lblDefaultHyperlinksby.setBounds(366, 10, 186, 13);
+		Label lblDefaultHyperlinksby = new Label(defaultHyperlinks, SWT.NONE);
 		lblDefaultHyperlinksby.setText(Messages.DefaultHyperLinkTab_DefaultHyperLinks);
 
-		Table availableHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
-		availableHyperLink.setBounds(30, 29, 250, 177);
+		Table availableHyperLink = new Table(availableHyperlinks, SWT.BORDER | SWT.FULL_SELECTION);
+		availableHyperLink.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 
-		defaultHRight = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHRight.setBounds(availableHyperLink.getBounds().x + availableHyperLink.getBounds().width + 20, availableHyperLink.getBounds().y + availableHyperLink.getBounds().height / 2 - 30, 30, 23);
+		defaultHRight = new Button(addRemoveButtonsComposite, SWT.NONE);
 		defaultHRight.addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
@@ -157,8 +172,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		});
 		defaultHRight.setToolTipText("Set default hyperlink");
 
-		defaultHleft = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHleft.setBounds(availableHyperLink.getBounds().x + availableHyperLink.getBounds().width + 20, availableHyperLink.getBounds().y + availableHyperLink.getBounds().height / 2, 30, 23);
+		defaultHleft = new Button(addRemoveButtonsComposite, SWT.NONE);
 		defaultHleft.addMouseListener(new MouseListener() {
 
 			public void mouseUp(MouseEvent e) {
@@ -187,12 +201,11 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		defaultHleft.setToolTipText("Remove default hyperlink");
 
 
-		Table defaultHyperLink = new Table(defaultHyperlinkComposite, SWT.BORDER | SWT.FULL_SELECTION);
-		defaultHyperLink.setBounds(defaultHRight.getBounds().x + defaultHRight.getBounds().width + 20, 29, 250, 177);
+		Table defaultHyperLink = new Table(defaultHyperlinks, SWT.BORDER | SWT.FULL_SELECTION);
+		defaultHyperLink.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 
-		defaultHup = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHup.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + (defaultHyperLink.getBounds().height / 2) - 30, 34, 23);
+		defaultHup = new Button(upDownButtonsComposite, SWT.NONE);
 		defaultHup.setToolTipText("Move default hyperlink up");
 
 		defaultHup.addMouseListener(new MouseListener() {
@@ -223,8 +236,7 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 			}
 		});
 
-		defaultHdown = new Button(defaultHyperlinkComposite, SWT.NONE);
-		defaultHdown.setBounds(defaultHyperLink.getBounds().x + defaultHyperLink.getBounds().width + 20, defaultHyperLink.getBounds().y + defaultHyperLink.getBounds().height / 2, 34, 23);
+		defaultHdown = new Button(upDownButtonsComposite, SWT.NONE);
 		defaultHdown.setToolTipText("Move default hyperlink down");
 
 		defaultHdown.addMouseListener(new MouseListener() {

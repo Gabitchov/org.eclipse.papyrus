@@ -60,12 +60,13 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 		Display display = Display.getCurrent();
 
 		// code use to wait for an action from the user
-		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
+		//		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().pack();
 		getEditHyperlinkShell().open();
 		while(!getEditHyperlinkShell().isDisposed()) {
-			if(!display.readAndDispatch())
+			if(!display.readAndDispatch()) {
 				display.sleep();
+			}
 		}
 	}
 
@@ -114,7 +115,7 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 				String[] filterExt = { "*.txt", "*.doc", "*.pdf", "*.*" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 				fd.setFilterExtensions(filterExt);
 				String selected = fd.open();
-				if(selected!=null){
+				if(selected != null) {
 					getObjectLabeltext().setText(selected);
 					if(usedefaultTooltip) {
 						getTooltipInputText().setText(selected);

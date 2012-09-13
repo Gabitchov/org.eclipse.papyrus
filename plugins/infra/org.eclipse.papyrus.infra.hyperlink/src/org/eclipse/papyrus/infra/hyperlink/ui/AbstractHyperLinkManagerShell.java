@@ -34,9 +34,9 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractHyperLinkManagerShell {
 
 	/** The hyper link shell. */
-	protected Shell hyperLinkShell = null; 
+	protected Shell hyperLinkShell = null;
 
-	
+
 	public Shell getHyperLinkShell() {
 		return hyperLinkShell;
 	}
@@ -44,12 +44,12 @@ public abstract class AbstractHyperLinkManagerShell {
 	/** The c tab folder. */
 	private CTabFolder cTabFolder = null;
 
-	
+
 	public CTabFolder getcTabFolder() {
 		return cTabFolder;
 	}
 
-	
+
 
 	/** The Ok button. */
 	protected Button OkButton = null;
@@ -57,9 +57,10 @@ public abstract class AbstractHyperLinkManagerShell {
 	/** The cancel button. */
 	protected Button cancelButton = null;
 
-	
 
-	protected ArrayList<AbstractHyperLinkTab>tabList=new ArrayList<AbstractHyperLinkTab>();
+
+	protected ArrayList<AbstractHyperLinkTab> tabList = new ArrayList<AbstractHyperLinkTab>();
+
 	/**
 	 * This method initializes cTabFolder.
 	 */
@@ -73,7 +74,7 @@ public abstract class AbstractHyperLinkManagerShell {
 		cTabFolder = new CTabFolder(hyperLinkShell, SWT.NONE);
 		cTabFolder.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		cTabFolder.setLayoutData(gridData);
-		
+
 
 	}
 
@@ -85,6 +86,7 @@ public abstract class AbstractHyperLinkManagerShell {
 
 	/**
 	 * This method initializes hyperLinkShell.
+	 * 
 	 * @wbp.parser.entryPoint
 	 */
 	protected void createHyperLinkShell() {
@@ -103,7 +105,7 @@ public abstract class AbstractHyperLinkManagerShell {
 		gridLayout2.makeColumnsEqualWidth = true;
 
 		// this line has to be commented in order to open with VISUAL EDITOR
-		hyperLinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		hyperLinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE);
 
 		// hyperLinkShell = new Shell();
 		hyperLinkShell.setText(Messages.AbstractHyperLinkManagerShell_HyperLink);
@@ -117,6 +119,8 @@ public abstract class AbstractHyperLinkManagerShell {
 		cancelButton = new Button(hyperLinkShell, SWT.NONE);
 		cancelButton.setText(Messages.AbstractHyperLinkManagerShell_Cancel);
 		cancelButton.setLayoutData(gridData8);
+
+		getHyperLinkShell().pack();
 	}
 
 	/**
@@ -132,5 +136,5 @@ public abstract class AbstractHyperLinkManagerShell {
 	public Button getCancelButton() {
 		return cancelButton;
 	}
-	
+
 }

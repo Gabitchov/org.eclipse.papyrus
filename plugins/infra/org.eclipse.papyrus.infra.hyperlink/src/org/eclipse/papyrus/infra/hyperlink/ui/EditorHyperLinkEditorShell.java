@@ -52,7 +52,7 @@ public class EditorHyperLinkEditorShell extends AbstractEditHyperlinkDocumentShe
 		Display display = Display.getCurrent();
 		// code use to wait for an action from the user
 
-		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
+		//		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().pack();
 		getEditHyperlinkShell().open();
 		while(!getEditHyperlinkShell().isDisposed()) {

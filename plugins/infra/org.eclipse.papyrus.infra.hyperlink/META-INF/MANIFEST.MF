@@ -10,11 +10,11 @@ Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.transaction,
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.9.1",
- org.eclipse.gef,
  org.eclipse.papyrus.infra.emf;bundle-version="0.9.1",
  org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.table.instance;bundle-version="0.9.1",
- org.eclipse.ui.navigator;bundle-version="3.5.100"
+ org.eclipse.ui.navigator;bundle-version="3.5.100",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1"
 Export-Package: org.eclipse.papyrus.infra.hyperlink,
  org.eclipse.papyrus.infra.hyperlink.commands,
  org.eclipse.papyrus.infra.hyperlink.helper,

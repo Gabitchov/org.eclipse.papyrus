@@ -43,6 +43,7 @@ import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -148,6 +149,7 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 		CTabItem tbtmDefaultsHyperlinks = new CTabItem(tabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText("Hyperlink diagram with Heuristic");
 		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
+		defaultHyperlinkComposite.setLayout(new GridLayout(1, false));
 		defaultHyperlinkComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		createArea(defaultHyperlinkComposite);
 		tbtmDefaultsHyperlinks.setControl(defaultHyperlinkComposite);
@@ -209,7 +211,7 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
-		table.setBounds(10, 20, 650, 170);
+		//		table.setBounds(10, 20, 650, 170);
 
 		for(int i = 0; i < COLUMN_NAMES.length; i++) {
 			TableColumn col = new TableColumn(table, SWT.NONE);

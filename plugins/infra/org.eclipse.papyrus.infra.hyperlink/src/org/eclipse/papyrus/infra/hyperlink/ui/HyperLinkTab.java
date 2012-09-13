@@ -291,7 +291,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), null);
+				HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), HyperLinkTab.this.element);
 				HyperLinkTab.this.setInput(HyperLinkTab.this.getHyperlinkObjects());
 			}
 

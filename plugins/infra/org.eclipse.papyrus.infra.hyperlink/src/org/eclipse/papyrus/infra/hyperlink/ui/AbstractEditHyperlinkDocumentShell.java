@@ -16,7 +16,6 @@ package org.eclipse.papyrus.infra.hyperlink.ui;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -97,14 +96,14 @@ public class AbstractEditHyperlinkDocumentShell {
 		gridLayout.numColumns = 7;
 		gridLayout.makeColumnsEqualWidth = true;
 		// this line has to be commented in order to open with VISUAL EDITOR
-		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell());
+		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE);
 
 		// editHyperlinkShell = new Shell();
 		editHyperlinkShell.setText(Messages.AbstractEditHyperlinkDocumentShell_EditHyperlink);
 		editHyperlinkShell.setToolTipText(Messages.AbstractEditHyperlinkDocumentShell_EditionOfAHyperLink);
 		editHyperlinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		editHyperlinkShell.setLayout(gridLayout);
-		editHyperlinkShell.setSize(new Point(625, 119));
+		//		editHyperlinkShell.setSize(new Point(625, 119));
 		ObjectcLabel = new CLabel(editHyperlinkShell, SWT.NONE);
 		ObjectcLabel.setText(Messages.AbstractEditHyperlinkDocumentShell_Document);
 		ObjectcLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -138,6 +137,8 @@ public class AbstractEditHyperlinkDocumentShell {
 		cancelButton = new Button(getEditHyperlinkShell(), SWT.NONE);
 		cancelButton.setText(Messages.AbstractEditHyperlinkDocumentShell_Cancel);
 		cancelButton.setLayoutData(gridData3);
+
+		editHyperlinkShell.pack();
 	}
 
 	/**
