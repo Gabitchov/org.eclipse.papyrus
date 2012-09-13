@@ -4,8 +4,8 @@
 	xmlns:efacet="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"
 	xmlns:query="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/query"
 	xmlns:javaQuery2="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
-	name="SysML" nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML"
-	nsPrefix="EFacet/SysML">
+	name="sysml_efacet" nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML"
+	nsPrefix="sysml_efacet" documentation="This FacetSet provides facets for SysML">
 	<eSubpackages xsi:type="efacet:FacetSet" name="Requirements"
 		nsURI="org.eclipse.papyrus.sysml.efacet/0.9/SysML/Requirements"
 		nsPrefix="EFacet/SysML/Requirements">
