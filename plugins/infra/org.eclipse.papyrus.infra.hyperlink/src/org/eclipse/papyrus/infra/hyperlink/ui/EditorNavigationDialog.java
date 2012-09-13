@@ -70,7 +70,6 @@ public class EditorNavigationDialog extends Dialog {
 	public EditorNavigationDialog(Shell parentShell, ArrayList<HyperLinkObject> hyperlinkObjects) {
 		super(parentShell);
 		this.hyperlinkObjects = hyperlinkObjects;
-		parentShell.setText(Messages.DiagramNavigationDialog_ChooseHyperLinks);
 	}
 
 	@Override
@@ -112,6 +111,7 @@ public class EditorNavigationDialog extends Dialog {
 			availableHyperLink.getItem(0).setChecked(true);
 		}
 
+		getShell().setText(Messages.DiagramNavigationDialog_ChooseHyperLinks);
 		getShell().pack();
 
 		return defaultHyperlinkComposite;
