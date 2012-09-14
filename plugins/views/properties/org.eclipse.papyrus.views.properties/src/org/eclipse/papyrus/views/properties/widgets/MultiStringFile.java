@@ -20,6 +20,18 @@ public class MultiStringFile extends AbstractPropertyEditor {
 
 	public MultipleStringFileEditor editor;
 
+	/**
+	 * The filtered extensions
+	 * This should be a 1-1 mapping with {@link #filterNames}
+	 */
+	protected String[] filterExtensions;
+
+	/**
+	 * The name of the filters.
+	 * This should be a 1-1 mapping with {@link #filterExtensions}
+	 */
+	protected String[] filterNames;
+
 	public MultiStringFile(Composite parent, int style) {
 		editor = createMultipleStringFileEditor(parent, style);
 		setEditor(editor);
@@ -48,5 +60,40 @@ public class MultiStringFile extends AbstractPropertyEditor {
 		}
 
 		super.doBinding();
+	}
+
+	/**
+	 * 
+	 * @param filterExtensions
+	 */
+	public void setFilterExtensions(String[] filterExtensions) {
+		this.filterExtensions = filterExtensions;
+		checkFilters();
+	}
+
+	public String[] getFilterExtensions() {
+		return this.filterExtensions;
+	}
+
+	/**
+	 * 
+	 * @param filterNames
+	 */
+	public void setFilterNames(String[] filterNames) {
+		this.filterNames = filterNames;
+		checkFilters();
+	}
+
+	public String[] getFilterNames() {
+		return this.filterNames;
+	}
+
+	/**
+	 * Checks if the filters are valid
+	 */
+	protected void checkFilters() {
+		if(filterExtensions != null && filterNames != null) {
+			editor.setFilters(filterExtensions, filterNames);
+		}
 	}
 }

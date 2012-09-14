@@ -2,6 +2,7 @@ package org.eclipse.papyrus.infra.widgets.editors;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -157,6 +158,35 @@ public class MultipleStringFileEditor extends MultipleValueEditor {
 				commit();
 			}
 		}
+	}
+
+	public void setFilters(String[] filterExtensions, String[] filterNames) {
+		if(filterExtensions.length != filterNames.length) {
+			//This is a simple warning. Only valid filters will be retained.
+			Activator.log.warn("FilterExtensions and FilterNames do not match");
+		}
+
+		setFilterNames(getFilterLabels(filterNames, filterExtensions));
+		setFilterExtensions(filterExtensions);
+	}
+
+	protected String[] getFilterLabels(String[] filterNames, String[] filterExtensions) {
+		int size = Math.min(filterNames.length, filterExtensions.length);
+		String[] filters = new String[size];
+		for(int i = 0; i < size; i++) {
+			filters[i] = filterNames[i] + " (" + filterExtensions[i] + ")";
+		}
+		return filters;
+	}
+
+	public void setFilterExtensions(String[] filterExtensions) {
+		this.filterExtensions.clear();
+		this.filterExtensions.addAll(Arrays.asList(filterExtensions));
+	}
+
+	public void setFilterNames(String[] filterNames) {
+		this.filterNames.clear();
+		this.filterNames.addAll(Arrays.asList(filterNames));
 	}
 
 }

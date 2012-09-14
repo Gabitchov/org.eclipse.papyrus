@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
@@ -140,8 +141,22 @@ public class StringFileSelector extends StringEditor {
 	}
 
 	public void setFilters(String[] filterExtensions, String[] filterNames) {
-		setFilterNames(filterNames);
+		if(filterExtensions.length != filterNames.length) {
+			//This is a simple warning. Only valid filters will be retained.
+			Activator.log.warn("FilterExtensions and FilterNames do not match");
+		}
+
+		setFilterNames(getFilterLabels(filterNames, filterExtensions));
 		setFilterExtensions(filterExtensions);
+	}
+
+	protected String[] getFilterLabels(String[] filterNames, String[] filterExtensions) {
+		int size = Math.min(filterNames.length, filterExtensions.length);
+		String[] filters = new String[size];
+		for(int i = 0; i < size; i++) {
+			filters[i] = filterNames[i] + " (" + filterExtensions[i] + ")";
+		}
+		return filters;
 	}
 
 	public void setFilterExtensions(String[] filterExtensions) {
