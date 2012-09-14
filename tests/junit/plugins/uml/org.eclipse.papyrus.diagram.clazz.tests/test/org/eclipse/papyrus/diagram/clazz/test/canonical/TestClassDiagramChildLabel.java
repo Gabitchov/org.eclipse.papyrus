@@ -104,10 +104,20 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Operation_3013, ClassOperationCompartmentEditPart.VISUAL_ID);
 				}
 	@Test
-	public void testToClassNestedClass() {
+	public void testToManageClassNestedClass() {
 		//class
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Class_3014, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
 	}
 	
 	
+	@Test
+	public void testToManageComponentReception() {
+		//class
+		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Reception_3011,ComponentOperationCompartmentEditPart.VISUAL_ID );
+	}
+	@Test
+	public void testToManageInterfaceReception() {
+		//class
+		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Reception_3039,InterfaceOperationCompartmentEditPart.VISUAL_ID );
+	}
 }
