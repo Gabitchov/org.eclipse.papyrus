@@ -52,6 +52,28 @@ public class EMFFacetProjectEditor extends JavaProjectEditor implements IEMFFace
 	 */
 	private final IManifestEditor manifestEditor;
 
+	
+	/**
+	 * Gets the plugin editor.
+	 *
+	 * @return the plugin editor
+	 */
+	public IPluginProjectEditor getPluginEditor() {
+		return pluginEditor;
+	}
+
+
+	
+	/**
+	 * Gets the manifest editor.
+	 *
+	 * @return the manifest editor
+	 */
+	public IManifestEditor getManifestEditor() {
+		return manifestEditor;
+	}
+
+
 	/**
 	 * 
 	 * Constructor.

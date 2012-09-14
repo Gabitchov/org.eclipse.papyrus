@@ -32,6 +32,19 @@ public interface IJavaProjectEditor extends IBuildEditor {
 	 *        the path of the java source folder
 	 */
 	public void addJavaSourceFolder(final String path);
+	/**
+	 * Gets the classpath editor.
+	 *
+	 * @return the classpath editor
+	 */
+	public IClasspathEditor getClasspathEditor();
 
+	
+	/**
+	 * Gets the builds the editor.
+	 *
+	 * @return the builds the editor
+	 */
+	public IBuildEditor getBuildEditor();
 
 }

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- * 
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,6 +38,27 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 
 	/** the java project */
 	private final IJavaProject javaProject;
+
+	
+		
+	/**
+	 * Gets the classpath editor.
+	 *
+	 * @return the classpath editor
+	 */
+	public IClasspathEditor getClasspathEditor() {
+		return classpathEditor;
+	}
+
+	
+	/**
+	 * Gets the builds the editor.
+	 *
+	 * @return the builds the editor
+	 */
+	public IBuildEditor getBuildEditor() {
+		return buildEditor;
+	}
 
 	/** the classpath editor */
 	private final IClasspathEditor classpathEditor;

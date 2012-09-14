@@ -72,6 +72,22 @@ public interface IEMFFacetProjectEditor extends IJavaProjectEditor/* , IManifest
 	 *        the version of the dependency
 	 */
 	public void addDependency(final String dependency, final String version);
+	
+	/**
+	 * Gets the plugin editor.
+	 *
+	 * @return the plugin editor
+	 */
+	public IPluginProjectEditor getPluginEditor();
+
+
+	
+	/**
+	 * Gets the manifest editor.
+	 *
+	 * @return the manifest editor
+	 */
+	public IManifestEditor getManifestEditor() ;
 
 
 }
