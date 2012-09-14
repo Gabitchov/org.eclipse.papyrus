@@ -229,7 +229,9 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 		 * Remove all listeners.
 		 */
 		protected void clear() {
-			listeners.clear();
+			if (listeners != null) {
+				listeners.clear();
+			}
 		}
 	}
 
