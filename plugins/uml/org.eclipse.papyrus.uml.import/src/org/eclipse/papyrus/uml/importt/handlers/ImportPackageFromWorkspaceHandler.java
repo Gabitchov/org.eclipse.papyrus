@@ -117,6 +117,12 @@ public class ImportPackageFromWorkspaceHandler extends AbstractImportHandler {
 							modelResource = resourceSet.getResource(modelUri, true);
 						} catch (Exception ex) {
 							MessageDialog.openWarning(shell, "Invalid model", "The selected file is not a valid model: " + labelProvider.getText(selectedElement));
+							//At this point, an empty resource may have been loaded in the resource set. We should clean it.
+							//Remove the resource from the resource set
+							modelResource = resourceSet.getResource(modelUri, false);
+							if(modelResource != null) {
+								resourceSet.getResources().remove(modelResource);
+							}
 							continue;
 						}
 						if(modelResource.getContents().isEmpty()) {
