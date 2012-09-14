@@ -25,7 +25,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -297,6 +296,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, modifiedFiles) {
 
+			protected Diagram diagram = null;
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -315,7 +316,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					attachModelToResource(model, modelResource);
 				}
 
-				Diagram diagram = createDiagram(notationResource, model, name);
+				diagram = createDiagram(notationResource, model, name);
 
 				if(diagram != null) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr(diResource);
@@ -330,12 +331,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				// the undo corresponds to a destroy diagram command
 				// during diagram creation no adapters are set to the diagram so the setElement is not registered
 				// to remove the cross reference using the element reference it is better to use the destroy element command
-				Object result = getCommandResult().getReturnValue();
-				if(result instanceof Diagram) {
-					Diagram d = (Diagram)result;
-					new DestroyElementPapyrusCommand(new DestroyElementRequest(d, false)).execute(null, null);
+				DestroyElementPapyrusCommand depc = (diagram != null) ? new DestroyElementPapyrusCommand(new DestroyElementRequest(diagram, false)) : null;
+				IStatus status = super.doUndo(monitor, info);
+				if (depc != null) {
+					depc.execute(null, null);
 				}
-				return Status.OK_STATUS;
+				return status;
 			}
 		};
 	}
