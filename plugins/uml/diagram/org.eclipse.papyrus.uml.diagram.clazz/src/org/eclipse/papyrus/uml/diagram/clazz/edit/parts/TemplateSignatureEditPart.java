@@ -154,7 +154,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((TemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -210,7 +211,6 @@ public class ModelEditPartCN extends NamedElementEditPart {
 		}
 		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ModelPackageableElementCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}

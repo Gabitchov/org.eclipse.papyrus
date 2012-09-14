@@ -117,28 +117,4 @@ public class ModelEditPart extends PapyrusDiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-		super.handleNotificationEvent(event);
-		if(event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
-			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				//modification form MOSKitt approach, canonical policies are not called
-				MDTUtil.filterDiagramViews(this.getDiagramView());
-			}
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object getAdapter(Class adapter) {
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
-			return UMLVisualIDRegistry.getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
-	}
 }
