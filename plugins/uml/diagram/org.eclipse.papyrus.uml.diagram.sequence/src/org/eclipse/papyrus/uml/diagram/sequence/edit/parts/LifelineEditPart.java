@@ -319,6 +319,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 							ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)child.getModel()), newBounds);
 							composite.add(boundsCommand);
+							composite.add(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart)child));
 						}
 					}
 					return new ICommandProxy(composite.reduce());
@@ -1949,10 +1950,10 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 	protected ConnectionAnchor createSideAnchor(Request request, SlidableAnchor sa) {
 		Point loc = AnchorHelper.getRequestLocation(request);
-		if(loc == null)
+		PrecisionPoint pt = SlidableAnchor.parseTerminalString(	sa.getTerminal());
+		if(loc == null || pt == null)
 			return sa;
 		
-		PrecisionPoint pt = SlidableAnchor.parseTerminalString(	sa.getTerminal());
 		IFigure fig = this.getDashLineFigure();
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
