@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -30,6 +31,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
@@ -44,6 +46,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
@@ -88,6 +91,23 @@ import org.eclipse.uml2.uml.Lifeline;
  */
 public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
+	protected Command getCreateCommand(CreateRequest request) {
+		CreateViewRequest req = (CreateViewRequest) request;
+		Command cmd = super.getCreateCommand(request);
+		
+		if(cmd != null && req.getSize() != null){ // create lifeline with specific size
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+			Iterator iter = req.getViewDescriptors().iterator();
+			while (iter.hasNext()) {
+				CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next(); 
+				if (((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
+					cmd = (new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand(editingDomain, viewDescriptor))).chain(cmd);
+				}
+			}		
+		}
+		return cmd;
+	}
+	
 	/**
 	 * Handle lifeline and combined fragment resize
 	 */
@@ -135,7 +155,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					
 					// When we change the width by mouse, it passe to manual mode. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723 
 					if(child instanceof LifelineEditPart && changeConstraintCommand != null && request.getSizeDelta().width != 0){
-						compoundCmd.add(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart)child));
+						compoundCmd.add(new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart)child)));
 					}
 					compoundCmd.add(changeConstraintCommand);
 				}
