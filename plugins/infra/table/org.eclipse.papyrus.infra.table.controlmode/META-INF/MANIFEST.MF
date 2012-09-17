@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.infra.table.instance,
  org.eclipse.papyrus.views.modelexplorer,
- com.google.guava
+ com.google.guava,
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
