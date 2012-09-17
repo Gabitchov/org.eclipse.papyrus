@@ -15,12 +15,15 @@ package org.eclipse.papyrus.uml.textedit.state.xtext.umlState.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.*;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.DoRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.EntryRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.ExitRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.QualifiedName;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
 
 /**
  * <!-- begin-user-doc -->

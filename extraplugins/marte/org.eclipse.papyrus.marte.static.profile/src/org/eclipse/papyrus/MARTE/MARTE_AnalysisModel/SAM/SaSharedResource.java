@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.MutualExclusionResource;
 
 /**

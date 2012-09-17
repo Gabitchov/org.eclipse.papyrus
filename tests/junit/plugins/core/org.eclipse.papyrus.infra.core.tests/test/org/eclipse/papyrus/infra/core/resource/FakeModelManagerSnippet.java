@@ -3,8 +3,6 @@
  */
 package org.eclipse.papyrus.infra.core.resource;
 
-import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 
 /**

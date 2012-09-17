@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.infra.core.lifecycleevents;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
 
 
 /**

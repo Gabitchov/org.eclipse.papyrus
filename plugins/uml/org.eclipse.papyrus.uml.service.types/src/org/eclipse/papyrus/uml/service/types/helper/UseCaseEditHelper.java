@@ -20,8 +20,6 @@ import java.util.List;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.uml2.uml.DirectedRelationship;
-import org.eclipse.uml2.uml.Extend;
-import org.eclipse.uml2.uml.Include;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.UseCase;
 

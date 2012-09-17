@@ -19,10 +19,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.widgets.toolbox.LookForElement;
 import org.eclipse.papyrus.uml.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.PropertyCommandForAssociation;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;
@@ -113,7 +111,7 @@ public class ProfileDiagramAssociationHelper {
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
 		String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(container, sourceString + "_" + targetString + "_"); //$NON-NLS-1$ //$NON-NLS-2$
-		association.setName(associationName); //$NON-NLS-1$
+		association.setName(associationName);
 		return association;
 	}
 }

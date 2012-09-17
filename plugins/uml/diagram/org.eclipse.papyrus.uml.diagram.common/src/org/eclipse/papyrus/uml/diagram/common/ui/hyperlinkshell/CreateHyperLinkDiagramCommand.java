@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 
 /**
  * The Class CreateHyperLinkCommand. this has in charge to add a new entry list

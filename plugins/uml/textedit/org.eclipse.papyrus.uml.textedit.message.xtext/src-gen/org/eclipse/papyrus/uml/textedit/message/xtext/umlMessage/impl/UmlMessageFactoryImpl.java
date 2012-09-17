@@ -9,12 +9,12 @@ package org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.*;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessageFactory;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage;
 
 /**
  * <!-- begin-user-doc -->

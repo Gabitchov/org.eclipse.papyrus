@@ -36,7 +36,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.Transactiona
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;

@@ -4,7 +4,6 @@
 package org.eclipse.papyrus.infra.core.editor;
 
 import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;

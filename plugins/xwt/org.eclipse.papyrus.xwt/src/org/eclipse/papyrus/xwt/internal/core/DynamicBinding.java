@@ -12,7 +12,6 @@ package org.eclipse.papyrus.xwt.internal.core;
 
 import java.lang.reflect.Method;
 
-import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.papyrus.xwt.IDataProvider;
 import org.eclipse.papyrus.xwt.IXWTLoader;
 import org.eclipse.papyrus.xwt.XWT;

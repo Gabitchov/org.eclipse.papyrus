@@ -9,12 +9,12 @@ package org.eclipse.papyrus.infra.constraints.environment.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.constraints.environment.*;
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintType;
+import org.eclipse.papyrus.infra.constraints.environment.EnvironmentFactory;
+import org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage;
 
 /**
  * <!-- begin-user-doc -->

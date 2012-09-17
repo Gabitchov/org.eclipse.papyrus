@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.transition.xtext.validation;
 
-import org.eclipse.papyrus.uml.textedit.transition.xtext.validation.AbstractUmlTransitionJavaValidator;
  
 
 public class UmlTransitionJavaValidator extends AbstractUmlTransitionJavaValidator {

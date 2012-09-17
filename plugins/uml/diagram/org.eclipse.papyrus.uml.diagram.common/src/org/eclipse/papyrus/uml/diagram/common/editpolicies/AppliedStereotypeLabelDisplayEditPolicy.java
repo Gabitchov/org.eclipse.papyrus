@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.Usage;
 
 /**
  * Specific edit policy for label displaying stereotypes and their properties

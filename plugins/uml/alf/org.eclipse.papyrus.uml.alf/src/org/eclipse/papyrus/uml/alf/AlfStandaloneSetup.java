@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.alf;
 
-import org.eclipse.papyrus.uml.alf.AlfStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 

@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.infra.core.lifecycleevents;
 
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
 /**

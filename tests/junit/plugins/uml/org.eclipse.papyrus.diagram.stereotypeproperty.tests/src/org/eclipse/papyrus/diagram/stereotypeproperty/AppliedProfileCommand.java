@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.stereotypeproperty;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;

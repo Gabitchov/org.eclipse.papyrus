@@ -28,7 +28,6 @@ import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.tree.DisplayedProfileElementLabelProvider;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
-import org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.DecoratedTreeComposite;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;

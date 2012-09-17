@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.infra.core.extension.commands;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.papyrus.infra.core.extension.BadNameExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
 import org.eclipse.papyrus.infra.core.utils.IDebugChannel;

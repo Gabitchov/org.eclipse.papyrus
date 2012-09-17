@@ -15,12 +15,11 @@ package org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.ExpressionContext;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.Var;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesPackage;
 
 /**
  * <!-- begin-user-doc -->

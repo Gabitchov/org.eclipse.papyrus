@@ -11,9 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage;

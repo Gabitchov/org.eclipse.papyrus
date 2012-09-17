@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.parser.antlr;
 
-import com.google.inject.Inject;
-
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services.AppliedStereotypePropertyGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
 
 public class AppliedStereotypePropertyParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

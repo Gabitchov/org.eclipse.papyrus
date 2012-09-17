@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time;
 
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeInterpretationKind;
-
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**

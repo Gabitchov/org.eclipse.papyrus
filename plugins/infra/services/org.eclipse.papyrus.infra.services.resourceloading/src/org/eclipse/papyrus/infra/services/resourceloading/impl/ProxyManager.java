@@ -27,9 +27,9 @@ import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
+import org.eclipse.papyrus.infra.services.resourceloading.Activator;
 import org.eclipse.papyrus.infra.services.resourceloading.HistoryRoutingManager;
 import org.eclipse.papyrus.infra.services.resourceloading.ILoadingStrategy;
 import org.eclipse.papyrus.infra.services.resourceloading.ILoadingStrategyExtension;
@@ -108,7 +108,7 @@ public class ProxyManager implements IProxyManager {
 		boolean result = availableStrategies.get(getCurrentStrategy()).loadResource(modelSet, uri);
 		Iterator<ILoadingStrategyExtension> iterator = strategyExtensions.iterator();
 		while(!result && iterator.hasNext()) {
-			ILoadingStrategyExtension extension = (ILoadingStrategyExtension)iterator.next();
+			ILoadingStrategyExtension extension = iterator.next();
 			result = extension.loadResource(modelSet, uri.trimFragment());
 		}
 		return result;

@@ -17,12 +17,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.*;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.AreaUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.DataSizeUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.DataTxRateUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.EnergyUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.FrequencyUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.LengthUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.MeasurementUnitsFactory;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.MeasurementUnitsPackage;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.PowerUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.TimeUnitKind;
+import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.WeightUnitKind;
 
 /**
  * <!-- begin-user-doc -->

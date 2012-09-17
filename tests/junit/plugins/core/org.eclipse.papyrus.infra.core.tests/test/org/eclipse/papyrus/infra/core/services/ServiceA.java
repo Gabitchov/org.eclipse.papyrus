@@ -3,9 +3,6 @@ package org.eclipse.papyrus.infra.core.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.services.IService;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-
 public class ServiceA implements IService {
 
 	public enum TraceKind {

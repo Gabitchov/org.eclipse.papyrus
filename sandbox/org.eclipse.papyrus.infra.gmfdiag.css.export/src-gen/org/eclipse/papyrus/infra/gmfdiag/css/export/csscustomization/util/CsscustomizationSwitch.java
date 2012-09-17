@@ -4,13 +4,11 @@ package org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
-
-import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.*;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CSSStylesheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CsscustomizationPackage;
 
 /**
  * <!-- begin-user-doc -->

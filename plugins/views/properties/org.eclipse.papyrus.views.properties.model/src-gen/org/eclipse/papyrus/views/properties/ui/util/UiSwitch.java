@@ -9,7 +9,6 @@ package org.eclipse.papyrus.views.properties.ui.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.views.properties.ui.*;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.views.properties.ui.Element;
 import org.eclipse.papyrus.views.properties.ui.Layout;

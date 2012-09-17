@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.infra.constraints;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.infra.constraints.environment.ConstraintType;
 
 /**

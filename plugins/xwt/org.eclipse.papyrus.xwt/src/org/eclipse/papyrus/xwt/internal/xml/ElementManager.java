@@ -11,7 +11,6 @@
 package org.eclipse.papyrus.xwt.internal.xml;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
@@ -27,7 +26,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.eclipse.papyrus.xwt.IConstants;
 import org.eclipse.papyrus.xwt.XWT;
 import org.eclipse.papyrus.xwt.callback.IBeforeParsingCallback;
-import org.eclipse.papyrus.xwt.internal.core.Core;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;

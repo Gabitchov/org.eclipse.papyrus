@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.tests.canonical;
 
-import org.eclipse.papyrus.diagram.tests.canonical.TestTopNode;
 import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;

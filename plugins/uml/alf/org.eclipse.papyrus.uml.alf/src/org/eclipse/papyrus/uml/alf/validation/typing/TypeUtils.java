@@ -14,14 +14,11 @@
 package org.eclipse.papyrus.uml.alf.validation.typing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-//import org.eclipse.papyrus.uml.alf.alf.OperationCallExpressionWithoutDot;
 import org.eclipse.papyrus.uml.alf.alf.AdditiveExpression;
 import org.eclipse.papyrus.uml.alf.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.alf.AndExpression;
@@ -71,19 +68,14 @@ import org.eclipse.papyrus.uml.alf.alf.UnqualifiedName;
 import org.eclipse.papyrus.uml.alf.alf.ValueSpecification;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.uml.alf.validation.AlfJavaValidator;
-import org.eclipse.papyrus.uml.alf.validation.PredefinedBehaviorsAndTypesUtils;
-import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
-import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
-import org.eclipse.uml2.uml.TemplateParameter;
-import org.eclipse.uml2.uml.TemplateableElement;
+//import org.eclipse.papyrus.uml.alf.alf.OperationCallExpressionWithoutDot;
 
 public class TypeUtils {
 	

@@ -15,11 +15,11 @@ package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.providers;
 
 import java.util.Iterator;
 
+import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.core.expressions.PropertyTester;
 
 /**
  * This class provides test called by the plugin.xml in order to know if handlers should be active or not.

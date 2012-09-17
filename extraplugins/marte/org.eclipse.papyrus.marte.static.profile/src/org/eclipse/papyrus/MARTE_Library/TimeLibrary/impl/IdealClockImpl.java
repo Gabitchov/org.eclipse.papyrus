@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE_Library.TimeLibrary.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.IdealClock;
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.TimeLibraryPackage;
 

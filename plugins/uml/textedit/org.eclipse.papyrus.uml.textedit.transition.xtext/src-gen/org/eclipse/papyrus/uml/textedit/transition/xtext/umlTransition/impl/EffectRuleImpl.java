@@ -7,12 +7,9 @@
 package org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EffectRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage;

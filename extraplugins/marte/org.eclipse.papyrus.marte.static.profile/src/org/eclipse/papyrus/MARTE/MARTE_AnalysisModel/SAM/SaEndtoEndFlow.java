@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaTimedObs;
-
 import org.eclipse.uml2.uml.NamedElement;
 
 /**

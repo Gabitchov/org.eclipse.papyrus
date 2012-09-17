@@ -3,10 +3,10 @@
 */
 package org.eclipse.papyrus.uml.textedit.transition.xtext.parser.antlr;
 
-import com.google.inject.Inject;
-
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.services.UmlTransitionGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
 
 public class UmlTransitionParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

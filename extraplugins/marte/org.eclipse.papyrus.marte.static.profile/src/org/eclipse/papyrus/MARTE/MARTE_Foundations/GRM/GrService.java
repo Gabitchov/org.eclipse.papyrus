@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Collaboration;

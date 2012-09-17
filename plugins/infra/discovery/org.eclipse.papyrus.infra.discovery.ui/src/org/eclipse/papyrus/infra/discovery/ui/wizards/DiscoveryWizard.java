@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.discovery.ui.wizards;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.infra.discovery.ui.internal.common.CommonImages;
 import org.eclipse.papyrus.infra.discovery.ui.internal.common.Installer;
-import org.eclipse.papyrus.infra.discovery.ui.internal.common.PrepareInstallProfileJob;
 import org.eclipse.papyrus.infra.discovery.ui.internal.wizards.DiscoveryWizardMainPage;
 import org.eclipse.papyrus.infra.discovery.ui.viewer.DiscoveryContentProvider;
 

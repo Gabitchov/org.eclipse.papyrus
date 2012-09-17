@@ -8,15 +8,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.eclipse.papyrus.infra.core.services.IService;
-import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.infra.core.services.FakeServiceFactory.FakeCreatedService;
 import org.eclipse.papyrus.infra.core.services.ServiceA.TraceKind;
-import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
-import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
-import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
-import org.eclipse.papyrus.infra.core.services.ServiceState;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 
 
 /**

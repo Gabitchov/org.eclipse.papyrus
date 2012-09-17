@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.state.xtext;
 
-import org.eclipse.papyrus.uml.textedit.state.xtext.UmlStateStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 

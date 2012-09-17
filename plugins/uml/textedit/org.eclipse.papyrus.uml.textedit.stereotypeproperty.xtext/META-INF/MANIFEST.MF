@@ -26,7 +26,9 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
  org.eclipse.papyrus.uml.alf;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext,
  org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.formatting;uses:="org.eclipse.xtext.formatting.impl",

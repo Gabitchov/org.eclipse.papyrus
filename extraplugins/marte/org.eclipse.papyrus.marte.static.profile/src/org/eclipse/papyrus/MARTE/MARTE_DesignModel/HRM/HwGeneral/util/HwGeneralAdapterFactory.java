@@ -15,13 +15,11 @@ package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.*;
-
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralPackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResourceService;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GrService;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 

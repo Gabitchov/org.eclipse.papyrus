@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 
 /**
  * this edit policy has in charge to display the qualified name of an elementin a external label.

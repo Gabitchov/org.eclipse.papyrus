@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.extension;
 
-import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
  * Exception thrown as an extension point is parsed at runtime. More accurately,

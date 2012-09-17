@@ -15,13 +15,11 @@ package org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.*;
-
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SW_ResourceCorePackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SwAccessService;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SwResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GrService;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 

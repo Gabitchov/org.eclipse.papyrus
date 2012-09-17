@@ -8,18 +8,14 @@ package org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.Direction;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.VisibilityKind;
-
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.EffectRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifiersRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ParameterRule;

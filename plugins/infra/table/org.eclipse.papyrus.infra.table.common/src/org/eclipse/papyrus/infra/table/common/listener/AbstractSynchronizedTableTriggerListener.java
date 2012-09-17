@@ -37,8 +37,6 @@ import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidget;
 import org.eclipse.emf.facet.widgets.nattable.INatTableWidgetProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
-import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
-import org.eclipse.emf.facet.widgets.nattable.internal.TableInstanceCommandFactory;
 import org.eclipse.emf.facet.widgets.nattable.tableconfiguration.TableConfiguration;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TriggerListener;

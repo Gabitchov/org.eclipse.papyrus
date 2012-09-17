@@ -8,9 +8,7 @@ package org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflow
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.NAFlowPortDirection;
 import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.PortandflowsFactory;
 import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.PortandflowsPackage;

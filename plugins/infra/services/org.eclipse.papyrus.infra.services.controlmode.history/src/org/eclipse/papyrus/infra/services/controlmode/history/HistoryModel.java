@@ -4,9 +4,7 @@
 package org.eclipse.papyrus.infra.services.controlmode.history;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
 
 

@@ -39,10 +39,10 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentPro
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.utils.FixPortsLocationOnOpening;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;

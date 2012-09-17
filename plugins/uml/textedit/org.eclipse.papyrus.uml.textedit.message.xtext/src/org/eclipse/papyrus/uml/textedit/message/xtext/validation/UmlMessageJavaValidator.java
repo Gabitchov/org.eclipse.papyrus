@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.message.xtext.validation;
 
-import org.eclipse.papyrus.uml.textedit.message.xtext.validation.AbstractUmlMessageJavaValidator;
  
 
 /**

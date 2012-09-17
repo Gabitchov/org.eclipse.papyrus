@@ -17,7 +17,6 @@ package org.eclipse.papyrus.infra.emf.compare.diff.internal.merger;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.compare.FactoryException;
-import org.eclipse.emf.compare.diff.internal.merge.impl.UpdateAttributeMerger;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EAttribute;

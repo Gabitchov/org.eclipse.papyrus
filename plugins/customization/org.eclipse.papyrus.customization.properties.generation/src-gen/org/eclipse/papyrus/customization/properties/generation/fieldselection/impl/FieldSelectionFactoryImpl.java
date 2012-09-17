@@ -10,12 +10,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.customization.properties.generation.fieldselection.*;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionFactory;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionPackage;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton.State;
 
 

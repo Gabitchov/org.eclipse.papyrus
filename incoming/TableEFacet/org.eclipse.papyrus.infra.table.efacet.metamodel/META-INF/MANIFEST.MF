@@ -12,8 +12,8 @@ Export-Package: org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable,
  org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.facet.widgets.celleditors;visibility:=reexport,
- org.eclipse.emf.facet.custom.metamodel;visibility:=reexport,
- org.eclipse.emf.facet.efacet.metamodel;visibility:=reexport,
- org.eclipse.emf.facet.widgets.table.metamodel;visibility:=reexport
+ org.eclipse.emf.facet.widgets.celleditors,
+ org.eclipse.emf.facet.custom.metamodel,
+ org.eclipse.emf.facet.efacet.metamodel,
+ org.eclipse.emf.facet.widgets.table.metamodel
 Bundle-ActivationPolicy: lazy

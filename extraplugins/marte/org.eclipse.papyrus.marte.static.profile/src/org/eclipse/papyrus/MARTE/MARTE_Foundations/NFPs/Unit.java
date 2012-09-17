@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.uml2.uml.EnumerationLiteral;
 
 /**

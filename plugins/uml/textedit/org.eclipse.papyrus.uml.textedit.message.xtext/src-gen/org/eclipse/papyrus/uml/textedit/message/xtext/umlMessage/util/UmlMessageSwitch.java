@@ -8,10 +8,10 @@ package org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.*;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule;
+import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage;
 
 /**
  * <!-- begin-user-doc -->

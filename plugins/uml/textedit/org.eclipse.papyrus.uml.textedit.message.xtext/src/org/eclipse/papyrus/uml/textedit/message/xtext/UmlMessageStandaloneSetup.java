@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.message.xtext;
 
-import org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessageStandaloneSetupGenerated;
 
 // TODO: Auto-generated Javadoc
 /**

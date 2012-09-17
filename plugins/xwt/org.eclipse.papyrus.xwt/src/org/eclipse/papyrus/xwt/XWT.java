@@ -32,7 +32,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.papyrus.xwt.callback.IBeforeParsingCallback;
 import org.eclipse.papyrus.xwt.core.IBinding;
 import org.eclipse.papyrus.xwt.core.TriggerBase;
-import org.eclipse.papyrus.xwt.databinding.BindingContext;
 import org.eclipse.papyrus.xwt.databinding.IBindingContext;
 import org.eclipse.papyrus.xwt.input.ICommand;
 import org.eclipse.papyrus.xwt.internal.core.UpdateSourceTrigger;

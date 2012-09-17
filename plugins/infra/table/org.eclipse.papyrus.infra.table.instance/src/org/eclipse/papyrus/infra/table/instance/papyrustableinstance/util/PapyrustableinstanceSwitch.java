@@ -9,10 +9,9 @@ package org.eclipse.papyrus.infra.table.instance.papyrustableinstance.util;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.*;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
+import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrustableinstancePackage;
 
 /**
  * <!-- begin-user-doc -->

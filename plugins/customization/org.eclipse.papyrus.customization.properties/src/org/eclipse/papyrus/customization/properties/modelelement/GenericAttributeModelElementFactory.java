@@ -16,14 +16,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
 import org.eclipse.papyrus.views.properties.ui.UiFactory;
 import org.eclipse.papyrus.views.properties.ui.UiPackage;
-import org.eclipse.papyrus.views.properties.ui.WidgetAttribute;
 
 /**
  * A ModelElementFactory for handling {@link WidgetAttribute} properties

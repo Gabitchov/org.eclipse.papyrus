@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Property;
 

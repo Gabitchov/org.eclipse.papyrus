@@ -13,20 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.papyrus.uml.textedit.property.xtext.validation.UmlPropertyJavaValidator;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.Package ;
 import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
 
 public class UMLPropertyEditorPropertyUtil extends PropertyUtil {

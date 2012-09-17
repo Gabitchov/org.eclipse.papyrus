@@ -14,26 +14,16 @@
 package org.eclipse.papyrus.uml.alf.validation.typing;
 
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.alf.alf.AcceptClause;
-import org.eclipse.papyrus.uml.alf.alf.AcceptStatement;
 import org.eclipse.papyrus.uml.alf.alf.Expression;
 import org.eclipse.papyrus.uml.alf.alf.SequenceExpansionExpression;
 import org.eclipse.papyrus.uml.alf.alf.SuffixExpression;
-import org.eclipse.papyrus.uml.alf.alf.TemplateBinding;
 import org.eclipse.papyrus.uml.alf.validation.AlfJavaValidator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.ParameterableElement;
-import org.eclipse.uml2.uml.TemplateParameter;
-import org.eclipse.uml2.uml.TemplateParameterSubstitution;
-import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.TypedElement;
-import org.eclipse.uml2.uml.UMLFactory;
 
 public class TypeFacade {
 

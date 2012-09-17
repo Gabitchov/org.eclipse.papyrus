@@ -27,7 +27,6 @@ import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * Abstract non-diagram specific edit part for border node label representing {@link NamedElement}.

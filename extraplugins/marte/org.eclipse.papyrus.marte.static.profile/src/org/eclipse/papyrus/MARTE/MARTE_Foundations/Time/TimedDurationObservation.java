@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.EventKind;
-
 import org.eclipse.uml2.uml.DurationObservation;
 
 /**

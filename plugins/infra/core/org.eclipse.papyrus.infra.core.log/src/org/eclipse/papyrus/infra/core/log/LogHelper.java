@@ -11,7 +11,6 @@
 package org.eclipse.papyrus.infra.core.log;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;

@@ -14,12 +14,9 @@
 package org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.ExitRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.uml2.uml.Behavior;
 
 /**

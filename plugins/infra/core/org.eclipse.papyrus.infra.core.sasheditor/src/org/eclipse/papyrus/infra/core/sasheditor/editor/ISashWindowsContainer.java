@@ -3,7 +3,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.editor;
 import java.util.List;
 
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.ui.IEditorPart;
 
 public interface ISashWindowsContainer {

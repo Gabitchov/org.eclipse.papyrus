@@ -14,14 +14,10 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommChannel;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.impl.SchedulableResourceImpl;
 
 /**

@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.parser.antlr;
 
-import com.google.inject.Inject;
-
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.papyrus.uml.alf.services.AlfGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
 
 public class AlfParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaScenario;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
 

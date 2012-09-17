@@ -4,6 +4,7 @@
 package org.eclipse.papyrus.uml.textedit.transition.xtext.parser.antlr;
 
 import java.io.InputStream;
+
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class UmlTransitionAntlrTokenFileProvider implements IAntlrTokenFileProvider {

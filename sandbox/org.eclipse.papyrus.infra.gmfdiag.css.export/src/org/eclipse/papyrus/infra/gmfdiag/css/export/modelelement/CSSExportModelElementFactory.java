@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.export.modelelement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.Activator;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;

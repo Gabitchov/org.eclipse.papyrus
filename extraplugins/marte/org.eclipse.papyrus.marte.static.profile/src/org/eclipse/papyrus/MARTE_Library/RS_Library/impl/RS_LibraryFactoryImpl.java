@@ -17,12 +17,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE_Library.RS_Library.*;
+import org.eclipse.papyrus.MARTE_Library.RS_Library.RS_LibraryFactory;
+import org.eclipse.papyrus.MARTE_Library.RS_Library.RS_LibraryPackage;
 
 /**
  * <!-- begin-user-doc -->

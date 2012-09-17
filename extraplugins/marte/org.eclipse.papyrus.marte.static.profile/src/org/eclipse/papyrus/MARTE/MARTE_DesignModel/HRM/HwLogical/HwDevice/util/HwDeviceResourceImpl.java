@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 /**

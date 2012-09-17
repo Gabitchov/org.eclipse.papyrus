@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.scoping.UmlTransitionScopeProvider;
-import org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contentassist.AbstractUmlTransitionProposalProvider;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;

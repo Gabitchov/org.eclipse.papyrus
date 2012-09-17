@@ -46,7 +46,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 

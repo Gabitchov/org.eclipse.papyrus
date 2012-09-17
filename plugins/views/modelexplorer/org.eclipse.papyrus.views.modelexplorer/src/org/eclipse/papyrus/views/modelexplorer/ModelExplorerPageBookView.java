@@ -15,15 +15,11 @@
 
 package org.eclipse.papyrus.views.modelexplorer;
 
-import static org.eclipse.papyrus.views.modelexplorer.Activator.log;
-
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.core.markers.MarkerConstants;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ViewPartPage;
 import org.eclipse.ui.IViewPart;

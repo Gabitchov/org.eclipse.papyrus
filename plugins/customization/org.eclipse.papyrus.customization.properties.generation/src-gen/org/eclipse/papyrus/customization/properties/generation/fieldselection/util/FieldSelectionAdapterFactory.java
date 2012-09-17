@@ -8,12 +8,12 @@ package org.eclipse.papyrus.customization.properties.generation.fieldselection.u
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.customization.properties.generation.fieldselection.*;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionPackage;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition;
 
 /**
  * <!-- begin-user-doc -->

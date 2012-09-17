@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.core.modelsetquery;
 
 import java.util.Collection;
+
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 

@@ -16,8 +16,6 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
-
 
 /**
  * Interface providing method to manage pages in the Sash Windows system.

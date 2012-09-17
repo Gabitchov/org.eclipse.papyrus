@@ -48,7 +48,6 @@ import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
 

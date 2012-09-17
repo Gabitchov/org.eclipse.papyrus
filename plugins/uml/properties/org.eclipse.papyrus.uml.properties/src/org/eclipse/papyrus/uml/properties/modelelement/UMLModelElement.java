@@ -57,7 +57,6 @@ import org.eclipse.papyrus.views.properties.providers.FeatureContentProvider;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;

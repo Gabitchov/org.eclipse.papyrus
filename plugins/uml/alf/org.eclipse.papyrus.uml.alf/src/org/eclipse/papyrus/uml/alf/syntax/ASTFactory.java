@@ -29,7 +29,6 @@ import org.eclipse.papyrus.uml.alf.alf.InclusiveOrExpression;
 import org.eclipse.papyrus.uml.alf.alf.IsUniqueOperation;
 import org.eclipse.papyrus.uml.alf.alf.LITERAL;
 import org.eclipse.papyrus.uml.alf.alf.LinkOperationTuple;
-import org.eclipse.papyrus.uml.alf.alf.LinkOperationTupleElement;
 import org.eclipse.papyrus.uml.alf.alf.MultiplicativeExpression;
 import org.eclipse.papyrus.uml.alf.alf.NonLiteralValueSpecification;
 import org.eclipse.papyrus.uml.alf.alf.NullExpression;

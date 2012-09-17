@@ -17,12 +17,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocateActivityGroup;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocated;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationEndKind;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationKind;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocationNature;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Assign;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentKind;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AssignmentNature;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.NfpRefine;
 
 /**
  * <!-- begin-user-doc -->

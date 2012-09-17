@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="__n52gLGyEd-tmN4hwNCxXQ" type="PapyrusUMLClassDiagram" name="GRM_BasicTypes" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="__n52gLGyEd-tmN4hwNCxXQ" type="PapyrusUMLClassDiagram" name="GRM_BasicTypes" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_HS6aYLGzEd-tmN4hwNCxXQ" type="2010" fontHeight="8" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HTELYLGzEd-tmN4hwNCxXQ" source="ShadowFigure">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HTELYbGzEd-tmN4hwNCxXQ" key="ShadowFigure_Value" value="false"/>

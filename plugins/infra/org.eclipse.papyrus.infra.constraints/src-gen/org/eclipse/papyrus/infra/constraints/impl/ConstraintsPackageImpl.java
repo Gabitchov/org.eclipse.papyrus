@@ -10,11 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-
-
 import org.eclipse.papyrus.infra.constraints.CompositeConstraint;
 import org.eclipse.papyrus.infra.constraints.ConfigProperty;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;

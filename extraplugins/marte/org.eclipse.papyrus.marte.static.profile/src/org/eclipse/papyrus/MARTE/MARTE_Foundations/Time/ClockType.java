@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeNatureKind;
-
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;

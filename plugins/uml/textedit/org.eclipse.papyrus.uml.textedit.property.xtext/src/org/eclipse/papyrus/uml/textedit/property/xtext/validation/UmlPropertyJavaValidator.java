@@ -20,11 +20,9 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.RedefinesRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.SubsetsRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.UmlPropertyPackage;
-import org.eclipse.papyrus.uml.textedit.property.xtext.validation.AbstractUmlPropertyJavaValidator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.validation.Check;
  

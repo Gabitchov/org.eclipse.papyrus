@@ -17,12 +17,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.*;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.OptimallityCriterionKind;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaAnalysisContext;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaCommHost;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaCommStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaEndtoEndFlow;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaExecHost;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaSchedObs;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaSharedResource;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaStep;
 
 /**
  * <!-- begin-user-doc -->

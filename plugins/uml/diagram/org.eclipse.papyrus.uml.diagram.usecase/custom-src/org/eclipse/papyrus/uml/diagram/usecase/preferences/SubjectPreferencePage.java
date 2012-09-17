@@ -1,9 +1,6 @@
 package org.eclipse.papyrus.uml.diagram.usecase.preferences;
 
-import org.eclipse.jface.preference.RadioGroupFieldEditor;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 
 public class SubjectPreferencePage extends ClassifierPreferencePage {
 

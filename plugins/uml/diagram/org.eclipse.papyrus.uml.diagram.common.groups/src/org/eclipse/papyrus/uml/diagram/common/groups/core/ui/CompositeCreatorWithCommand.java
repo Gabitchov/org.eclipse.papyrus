@@ -22,7 +22,6 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
-import org.eclipse.papyrus.uml.diagram.common.groups.core.PendingGroupNotificationsManager;
 
 /**
  * The CompositeCreator with command is an abstract implementation of ICompositeCreator which take cares of storing a command which evolves with the

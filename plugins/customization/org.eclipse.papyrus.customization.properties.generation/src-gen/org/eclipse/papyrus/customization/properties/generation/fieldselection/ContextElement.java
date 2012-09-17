@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.customization.properties.generation.fieldselection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.ExpressionContext;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Configuration;
 
 /**

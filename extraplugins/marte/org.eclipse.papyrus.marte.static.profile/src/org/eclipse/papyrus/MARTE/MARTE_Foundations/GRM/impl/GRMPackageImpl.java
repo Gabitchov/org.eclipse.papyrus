@@ -17,105 +17,56 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTEPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.impl.GQAMPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.impl.PAMPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.impl.SAMPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.impl.RSMPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.DataTypesPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.impl.DataTypesPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.impl.OperatorsPackageImpl;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.impl.VariablesPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.impl.GCMPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.impl.HLAMPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.impl.HwGeneralPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.HwCommunicationPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.impl.HwCommunicationPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.HwComputingPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwComputing.impl.HwComputingPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.HwDevicePackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice.impl.HwDevicePackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.HwMemoryPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwMemory.impl.HwMemoryPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.HwStorageManagerPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwStorage.HwStorageManager.impl.HwStorageManagerPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.HwTimingPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming.impl.HwTimingPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.HwLayoutPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwLayout.impl.HwLayoutPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.HwPowerPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwPhysical.HwPower.impl.HwPowerPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.SW_BrokeringPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Brokering.impl.SW_BrokeringPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SW_ConcurrencyPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.impl.SW_ConcurrencyPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.SW_InteractionPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.impl.SW_InteractionPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.SW_ResourceCorePackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore.impl.SW_ResourceCorePackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.impl.AllocPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.impl.CoreElementsPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Acquire;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ClockResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.CommunicationEndPoint;
@@ -138,61 +89,42 @@ import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.StorageResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.SynchronizationResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.TimerResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.TimingResource;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.impl.NFPsPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimePackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.impl.TimePackageImpl;
-
 import org.eclipse.papyrus.MARTE.impl.MARTEPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.BasicNFP_TypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.impl.BasicNFP_TypesPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.GRM_BasicTypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.impl.GRM_BasicTypesPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.MARTE_DataTypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.impl.MARTE_DataTypesPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_PrimitivesTypes.MARTE_PrimitivesTypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_PrimitivesTypes.impl.MARTE_PrimitivesTypesPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.MeasurementUnitsPackage;
-
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.impl.MeasurementUnitsPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.RS_Library.RS_LibraryPackage;
-
 import org.eclipse.papyrus.MARTE_Library.RS_Library.impl.RS_LibraryPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.TimeLibraryPackage;
-
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.impl.TimeLibraryPackageImpl;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeTypesLibraryPackage;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.impl.TimeTypesLibraryPackageImpl;
-
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass resourceEClass = null;
@@ -200,6 +132,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass storageResourceEClass = null;
@@ -207,6 +140,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass communicationEndPointEClass = null;
@@ -214,6 +148,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass synchronizationResourceEClass = null;
@@ -221,6 +156,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass concurrencyResourceEClass = null;
@@ -228,6 +164,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass schedulerEClass = null;
@@ -235,6 +172,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass processingResourceEClass = null;
@@ -242,6 +180,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass computingResourceEClass = null;
@@ -249,6 +188,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass mutualExclusionResourceEClass = null;
@@ -256,6 +196,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass schedulableResourceEClass = null;
@@ -263,6 +204,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass secondarySchedulerEClass = null;
@@ -270,6 +212,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass communicationMediaEClass = null;
@@ -277,6 +220,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass deviceResourceEClass = null;
@@ -284,6 +228,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass timingResourceEClass = null;
@@ -291,6 +236,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass clockResourceEClass = null;
@@ -298,6 +244,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass timerResourceEClass = null;
@@ -305,6 +252,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass grServiceEClass = null;
@@ -312,6 +260,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass releaseEClass = null;
@@ -319,6 +268,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass acquireEClass = null;
@@ -326,20 +276,19 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass resourceUsageEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GRMPackage#eNS_URI
 	 * @see #init()
@@ -352,6 +301,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -359,17 +309,19 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link GRMPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link GRMPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
+	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static GRMPackage init() {
-		if (isInited) return (GRMPackage)EPackage.Registry.INSTANCE.getEPackage(GRMPackage.eNS_URI);
+		if(isInited) {
+			return (GRMPackage)EPackage.Registry.INSTANCE.getEPackage(GRMPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
 		GRMPackageImpl theGRMPackage = (GRMPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GRMPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GRMPackageImpl());
@@ -495,7 +447,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 		// Mark meta-data to indicate it can't be changed
 		theGRMPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(GRMPackage.eNS_URI, theGRMPackage);
 		return theGRMPackage;
@@ -504,6 +456,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getResource() {
@@ -513,6 +466,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResource_ResMult() {
@@ -522,6 +476,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResource_IsProtected() {
@@ -531,6 +486,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResource_IsActive() {
@@ -540,6 +496,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResource_Base_Property() {
@@ -549,6 +506,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResource_Base_InstanceSpecification() {
@@ -558,6 +516,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResource_Base_Classifier() {
@@ -567,6 +526,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResource_Base_Lifeline() {
@@ -576,6 +536,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResource_Base_ConnectableElement() {
@@ -585,6 +546,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getStorageResource() {
@@ -594,6 +556,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getStorageResource_ElementSize() {
@@ -603,6 +566,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCommunicationEndPoint() {
@@ -612,6 +576,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommunicationEndPoint_PacketSize() {
@@ -621,6 +586,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSynchronizationResource() {
@@ -630,6 +596,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConcurrencyResource() {
@@ -639,6 +606,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getScheduler() {
@@ -648,6 +616,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getScheduler_IsPreemptible() {
@@ -657,6 +626,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getScheduler_SchedPolicy() {
@@ -666,6 +636,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getScheduler_OtherSchedPolicy() {
@@ -675,6 +646,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getScheduler_Schedule() {
@@ -684,6 +656,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getScheduler_ProcessingUnits() {
@@ -693,6 +666,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getScheduler_Host() {
@@ -702,6 +676,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getScheduler_ProtectedSharedResources() {
@@ -711,6 +686,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getScheduler_SchedulableResources() {
@@ -720,6 +696,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProcessingResource() {
@@ -729,6 +706,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProcessingResource_SpeedFactor() {
@@ -738,6 +716,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProcessingResource_MainScheduler() {
@@ -747,6 +726,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getComputingResource() {
@@ -756,6 +736,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMutualExclusionResource() {
@@ -765,6 +746,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMutualExclusionResource_ProtectKind() {
@@ -774,6 +756,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMutualExclusionResource_Ceiling() {
@@ -783,6 +766,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMutualExclusionResource_OtherProtectProtocol() {
@@ -792,6 +776,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMutualExclusionResource_Scheduler() {
@@ -801,6 +786,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSchedulableResource() {
@@ -810,6 +796,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getSchedulableResource_SchedParams() {
@@ -819,6 +806,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSchedulableResource_DependentScheduler() {
@@ -828,6 +816,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSchedulableResource_Host() {
@@ -837,6 +826,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSecondaryScheduler() {
@@ -846,6 +836,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSecondaryScheduler_VirtualProcessingUnits() {
@@ -855,6 +846,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCommunicationMedia() {
@@ -864,6 +856,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommunicationMedia_ElementSize() {
@@ -873,6 +866,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getCommunicationMedia_Base_Connector() {
@@ -882,6 +876,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommunicationMedia_TransmMode() {
@@ -891,6 +886,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommunicationMedia_BlockT() {
@@ -900,6 +896,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommunicationMedia_PacketT() {
@@ -909,6 +906,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getCommunicationMedia_Capacity() {
@@ -918,6 +916,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDeviceResource() {
@@ -927,6 +926,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTimingResource() {
@@ -936,6 +936,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getClockResource() {
@@ -945,6 +946,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTimerResource() {
@@ -954,6 +956,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTimerResource_Duration() {
@@ -963,6 +966,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTimerResource_IsPeriodic() {
@@ -972,6 +976,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getGrService() {
@@ -981,6 +986,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGrService_Owner() {
@@ -990,6 +996,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGrService_Base_ExecutionSpecification() {
@@ -999,6 +1006,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGrService_Base_BehavioralFeature() {
@@ -1008,6 +1016,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGrService_Base_Behavior() {
@@ -1017,6 +1026,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGrService_Base_Collaboration() {
@@ -1026,6 +1036,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGrService_Base_CollaborationUse() {
@@ -1035,6 +1046,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRelease() {
@@ -1044,6 +1056,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAcquire() {
@@ -1053,6 +1066,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAcquire_IsBlocking() {
@@ -1062,6 +1076,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getResourceUsage() {
@@ -1071,6 +1086,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResourceUsage_ExecTime() {
@@ -1080,6 +1096,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResourceUsage_AllocatedMemory() {
@@ -1089,6 +1106,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResourceUsage_UsedMemory() {
@@ -1098,6 +1116,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResourceUsage_PowerPeak() {
@@ -1107,6 +1126,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResourceUsage_Energy() {
@@ -1116,6 +1136,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResourceUsage_Base_NamedElement() {
@@ -1125,6 +1146,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResourceUsage_SubUsage() {
@@ -1134,6 +1156,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getResourceUsage_UsedResources() {
@@ -1143,6 +1166,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getResourceUsage_MsgSize() {
@@ -1152,6 +1176,7 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GRMFactory getGRMFactory() {
@@ -1161,19 +1186,23 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -1273,19 +1302,23 @@ public class GRMPackageImpl extends EPackageImpl implements GRMPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

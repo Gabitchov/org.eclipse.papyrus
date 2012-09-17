@@ -9,12 +9,11 @@ package org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.Operator;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage;
 
 /**
  * <!-- begin-user-doc -->

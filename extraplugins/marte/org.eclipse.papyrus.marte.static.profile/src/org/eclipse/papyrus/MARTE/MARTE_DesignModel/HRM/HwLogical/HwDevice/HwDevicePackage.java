@@ -15,7 +15,6 @@ package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwDevice;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwGeneralPackage;
 
 /**

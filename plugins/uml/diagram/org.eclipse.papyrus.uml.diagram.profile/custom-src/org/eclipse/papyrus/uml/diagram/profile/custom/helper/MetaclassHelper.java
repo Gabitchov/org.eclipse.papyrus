@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartTN;
 import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Profile;
 
 /**

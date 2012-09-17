@@ -3,7 +3,6 @@
 */
 package org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contentassist;
 
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.contentassist.AbstractUMLConnectionPointReferenceProposalProvider;
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */

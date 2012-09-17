@@ -5,12 +5,11 @@ package org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.*;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CSSStylesheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CsscustomizationFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CsscustomizationPackage;
 
 /**
  * <!-- begin-user-doc -->

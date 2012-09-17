@@ -20,7 +20,6 @@ import java.util.Set;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.views.documentation.eannotation.EAnnotationDocumentationManager;
 
 
 /**

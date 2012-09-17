@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.service.types.command;
 
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.uml2.uml.Message;
 
 /**
  * Basic re-orient command for Asynchronous {@link Message}.

@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.uml2.uml.Behavior;
 
 /**

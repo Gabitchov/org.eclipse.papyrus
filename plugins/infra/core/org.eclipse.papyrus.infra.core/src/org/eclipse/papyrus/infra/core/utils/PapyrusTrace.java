@@ -14,7 +14,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.infra.core.log.LogHelper;
 
 /**
  * Utility class to log errors or debug information either in the plugin'log or

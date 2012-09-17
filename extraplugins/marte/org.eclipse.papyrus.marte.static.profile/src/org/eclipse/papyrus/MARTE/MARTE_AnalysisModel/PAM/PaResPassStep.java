@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM;
 
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 
 /**

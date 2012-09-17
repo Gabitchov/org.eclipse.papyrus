@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater;
-import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramUpdater;
 
 /**
  * <pre>

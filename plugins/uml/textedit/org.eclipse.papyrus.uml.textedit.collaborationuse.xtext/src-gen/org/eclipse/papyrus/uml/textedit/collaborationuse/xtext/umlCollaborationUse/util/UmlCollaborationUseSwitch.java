@@ -8,10 +8,10 @@ package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaboration
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.*;
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.CollaborationUseRule;
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.TypeRule;
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
 
 /**
  * <!-- begin-user-doc -->

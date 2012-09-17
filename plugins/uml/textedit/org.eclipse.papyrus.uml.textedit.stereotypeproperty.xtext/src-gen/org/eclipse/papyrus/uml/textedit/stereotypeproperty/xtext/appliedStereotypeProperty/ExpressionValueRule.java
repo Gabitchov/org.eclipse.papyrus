@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.uml.alf.alf.SequenceElement;
 
 /**

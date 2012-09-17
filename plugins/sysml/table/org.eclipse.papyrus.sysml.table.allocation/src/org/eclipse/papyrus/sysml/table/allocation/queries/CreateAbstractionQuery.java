@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /** Create a new Abstraction */
+//FIXME: Use an element type to create the Abstraction. Remove the dependency to uml.diagram.common
 public class CreateAbstractionQuery implements IJavaModelQuery<Package, Abstraction> {
 
 	/**

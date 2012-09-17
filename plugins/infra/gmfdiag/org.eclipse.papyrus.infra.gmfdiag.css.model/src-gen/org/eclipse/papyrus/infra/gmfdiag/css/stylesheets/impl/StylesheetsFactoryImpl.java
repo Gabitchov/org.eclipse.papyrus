@@ -5,12 +5,13 @@ package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.*;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 
 /**
  * <!-- begin-user-doc -->

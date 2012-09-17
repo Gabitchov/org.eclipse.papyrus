@@ -5,8 +5,6 @@ package org.eclipse.papyrus.infra.core.resource;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
-import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource.ModelKind;
 
 
 /**

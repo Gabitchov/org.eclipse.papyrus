@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 import org.eclipse.swt.graphics.LineAttributes;
-import org.eclipse.uml2.uml.ExceptionHandler;
 
 /**
  * Figure for {@link ExceptionHandler}

@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.SW_InteractionPackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction.SwSynchronizationResource;
 

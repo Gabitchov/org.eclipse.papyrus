@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext;
 
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReferenceStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 

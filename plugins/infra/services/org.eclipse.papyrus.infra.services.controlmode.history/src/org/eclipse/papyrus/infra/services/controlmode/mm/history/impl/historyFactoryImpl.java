@@ -10,12 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.infra.services.controlmode.mm.history.*;
+import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
+import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyFactory;
+import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage;
 
 /**
  * <!-- begin-user-doc -->

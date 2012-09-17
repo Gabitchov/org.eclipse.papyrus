@@ -340,8 +340,7 @@ public class EMFHelper {
 	}
 
 	/**
-	 * Return the list of EClasses that are sub types
-	 * of the given EClass
+	 * Return the list of EClasses that are sub types of the given EClass
 	 * 
 	 * @param type
 	 * @param concreteClassesOnly
@@ -359,11 +358,13 @@ public class EMFHelper {
 		Set<EPackage> allPackages = new LinkedHashSet<EPackage>();
 		allPackages.add(currentPackage);
 
-		//FIXME // WARNING: This loop will load all EPackages. The first call is expensive.
-		Set<String> allUris = new HashSet<String>(EPackage.Registry.INSTANCE.keySet());
+		if(browseAllRegisteredPackages) {
+			//FIXME // WARNING: This loop will load all EPackages. The first call is expensive.
+			Set<String> allUris = new HashSet<String>(EPackage.Registry.INSTANCE.keySet());
 
-		for(String nsURI : allUris) {
-			allPackages.add(EPackage.Registry.INSTANCE.getEPackage(nsURI));
+			for(String nsURI : allUris) {
+				allPackages.add(EPackage.Registry.INSTANCE.getEPackage(nsURI));
+			}
 		}
 
 		return getSubclassesOf(type, concreteClassesOnly, allPackages);

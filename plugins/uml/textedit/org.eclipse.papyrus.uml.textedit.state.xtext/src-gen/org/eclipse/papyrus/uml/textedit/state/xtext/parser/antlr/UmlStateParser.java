@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.state.xtext.parser.antlr;
 
-import com.google.inject.Inject;
-
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.papyrus.uml.textedit.state.xtext.services.UmlStateGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
 
 public class UmlStateParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

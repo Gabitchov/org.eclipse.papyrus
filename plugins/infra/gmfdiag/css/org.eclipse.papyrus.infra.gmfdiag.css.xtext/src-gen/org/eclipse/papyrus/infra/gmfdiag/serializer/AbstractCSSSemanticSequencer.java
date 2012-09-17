@@ -1,7 +1,5 @@
 package org.eclipse.papyrus.infra.gmfdiag.serializer;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.gmfdiag.css.Angle;
 import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
@@ -44,6 +42,9 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEOb
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 @SuppressWarnings("restriction")
 public class AbstractCSSSemanticSequencer extends AbstractSemanticSequencer {

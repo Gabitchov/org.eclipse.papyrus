@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.TypeRule;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
 

@@ -28,24 +28,23 @@ import org.junit.Test;
 
 public class TestProfileApplication extends AbstractPapyrusTestCase {
 
-
 	@Test
 	public void testToManageModel() {
-		RegisteredProfile registeredProfile=RegisteredProfile.getRegisteredProfile("TestProfile");
-		final Model root=((Model)getDiagramEditPart().resolveSemanticElement());
-		assertTrue("Registered profile not found", registeredProfile!=null);
+		RegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
+		final Model root = ((Model)getDiagramEditPart().resolveSemanticElement());
+		assertTrue("Registered profile not found", registeredProfile != null);
 		URI modelUri = registeredProfile.uri;
 		final Resource modelResource = Util.getResourceSet(root).getResource(modelUri, true);
 		assertTrue("the registered profile is not a profile", (modelResource.getContents().get(0) instanceof Profile));
 		assertTrue("strange profile", ("".equals(registeredProfile.qualifiednames)));
-		final Profile profile=(Profile) modelResource.getContents().get(0);
+		final Profile profile = (Profile)modelResource.getContents().get(0);
 		//	PackageUtil.applyProfile(root,profile, false);
-		final TransactionalEditingDomain  domain=EditorUtils.getTransactionalEditingDomain();
-		AppliedProfileCommand appliedProfileCommand= new AppliedProfileCommand(domain, root, profile);
+		final TransactionalEditingDomain domain = EditorUtils.getTransactionalEditingDomain();
+		AppliedProfileCommand appliedProfileCommand = new AppliedProfileCommand(domain, root, profile);
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(appliedProfileCommand));
 
-		EList<Profile> list=root.getAllAppliedProfiles();
-		assertTrue("Profile not applied", root.getAllAppliedProfiles().size()==1);
+		EList<Profile> list = root.getAllAppliedProfiles();
+		assertTrue("Profile not applied", root.getAllAppliedProfiles().size() == 1);
 
 	}
 }

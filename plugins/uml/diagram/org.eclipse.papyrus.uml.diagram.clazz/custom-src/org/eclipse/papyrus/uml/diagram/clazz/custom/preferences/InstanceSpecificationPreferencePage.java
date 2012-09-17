@@ -29,7 +29,6 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
  * Specific {@link Property} preference page

@@ -17,12 +17,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.*;
+import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.MARTE_DataTypesFactory;
+import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.MARTE_DataTypesPackage;
+import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.TransmModeKind;
 
 /**
  * <!-- begin-user-doc -->

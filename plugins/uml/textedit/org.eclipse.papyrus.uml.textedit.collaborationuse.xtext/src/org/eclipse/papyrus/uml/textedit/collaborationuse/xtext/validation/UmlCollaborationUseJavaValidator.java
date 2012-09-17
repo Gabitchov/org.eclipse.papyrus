@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation;
 
 import org.eclipse.papyrus.uml.textedit.common.xtext.validation.UmlCommonJavaValidator;
-import org.eclipse.uml2.uml.CollaborationUse;
 
 /**
  * 

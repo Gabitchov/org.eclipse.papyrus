@@ -17,8 +17,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.BoundedSubtype;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.ChoiceType;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.CollectionType;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.DataTypesPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.IntervalType;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.TupleType;
 
 /**
  * <!-- begin-user-doc -->

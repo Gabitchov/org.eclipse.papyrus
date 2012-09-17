@@ -3,13 +3,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.customization.model.customizationplugin.impl.FileBasedCustomizableElementImpl;
-
 import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CSSStylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CsscustomizationPackage;
 

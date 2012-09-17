@@ -51,7 +51,6 @@ import org.eclipse.papyrus.uml.diagram.common.util.CompartmentUtils;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;

@@ -8,10 +8,10 @@ package org.eclipse.papyrus.infra.constraints.environment.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.infra.constraints.environment.*;
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
+import org.eclipse.papyrus.infra.constraints.environment.ConstraintType;
+import org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage;
 
 /**
  * <!-- begin-user-doc -->

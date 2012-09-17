@@ -15,7 +15,6 @@ package org.eclipse.papyrus.infra.hyperlink.util;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 

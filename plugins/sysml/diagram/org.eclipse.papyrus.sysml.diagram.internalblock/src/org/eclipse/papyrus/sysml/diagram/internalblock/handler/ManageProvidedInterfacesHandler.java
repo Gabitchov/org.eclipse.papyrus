@@ -30,11 +30,8 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.ui.InterfaceManagerDialog
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**

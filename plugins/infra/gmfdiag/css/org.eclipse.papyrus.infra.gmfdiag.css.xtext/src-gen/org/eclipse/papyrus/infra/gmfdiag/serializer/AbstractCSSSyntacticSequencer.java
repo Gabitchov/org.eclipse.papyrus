@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.serializer;
 
-import com.google.inject.Inject;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.gmfdiag.services.CSSGrammarAccess;
 import org.eclipse.xtext.IGrammarAccess;
@@ -14,6 +14,8 @@ import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
+
+import com.google.inject.Inject;
 
 @SuppressWarnings("restriction")
 public class AbstractCSSSyntacticSequencer extends AbstractSyntacticSequencer {

@@ -16,25 +16,18 @@ package org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerPort;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerSpecification;
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowDirectionKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.PortSpecificationKind;
 import org.eclipse.papyrus.MARTE.utils.MarteResource;
-
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;

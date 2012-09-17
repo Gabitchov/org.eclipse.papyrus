@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.infra.services.controlmode.mm.history;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

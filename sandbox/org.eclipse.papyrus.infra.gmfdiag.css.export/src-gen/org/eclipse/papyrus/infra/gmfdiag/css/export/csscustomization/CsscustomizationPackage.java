@@ -5,7 +5,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 
 /**

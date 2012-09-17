@@ -4,15 +4,12 @@ package org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
-
-import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.*;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CSSStylesheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.export.csscustomization.CsscustomizationPackage;
 
 /**
  * <!-- begin-user-doc -->

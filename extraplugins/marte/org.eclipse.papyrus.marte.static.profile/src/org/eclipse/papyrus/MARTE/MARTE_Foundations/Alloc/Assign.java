@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
-
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 

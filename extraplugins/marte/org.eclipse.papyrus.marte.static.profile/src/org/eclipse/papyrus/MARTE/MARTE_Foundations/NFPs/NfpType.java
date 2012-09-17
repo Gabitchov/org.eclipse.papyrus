@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs;
 
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.TupleType;
-
 import org.eclipse.uml2.uml.Property;
 
 /**

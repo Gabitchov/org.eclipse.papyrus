@@ -14,14 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.utils.FilteredCollectionView;
-import org.eclipse.papyrus.infra.core.utils.IFilter;
-import org.eclipse.uml2.uml.*;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;

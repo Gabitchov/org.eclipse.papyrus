@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.services.controlmode.mm.history.*;
+import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
+import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyPackage;
 
 /**
  * <!-- begin-user-doc -->

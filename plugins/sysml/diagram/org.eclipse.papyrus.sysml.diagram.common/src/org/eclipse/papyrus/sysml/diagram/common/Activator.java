@@ -18,20 +18,20 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-//import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
-//import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
-//import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
-//import org.eclipse.papyrus.sysml.constraints.provider.ConstraintsItemProviderAdapterFactory;
-//import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-//import org.eclipse.papyrus.sysml.portandflows.provider.PortandflowsItemProviderAdapterFactory;
-//import org.eclipse.papyrus.sysml.requirements.provider.RequirementsItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
+//import org.eclipse.papyrus.sysml.activities.provider.ActivitiesItemProviderAdapterFactory;
+//import org.eclipse.papyrus.sysml.allocations.provider.AllocationsItemProviderAdapterFactory;
+//import org.eclipse.papyrus.sysml.blocks.provider.BlocksItemProviderAdapterFactory;
+//import org.eclipse.papyrus.sysml.constraints.provider.ConstraintsItemProviderAdapterFactory;
+//import org.eclipse.papyrus.sysml.modelelements.provider.ModelelementsItemProviderAdapterFactory;
+//import org.eclipse.papyrus.sysml.portandflows.provider.PortandflowsItemProviderAdapterFactory;
+//import org.eclipse.papyrus.sysml.requirements.provider.RequirementsItemProviderAdapterFactory;
 
 /**
  * The activator class controls the plug-in life cycle

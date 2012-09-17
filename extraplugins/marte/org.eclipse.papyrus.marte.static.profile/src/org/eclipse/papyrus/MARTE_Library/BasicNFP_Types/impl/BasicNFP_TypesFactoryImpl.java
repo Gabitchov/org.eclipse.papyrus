@@ -17,12 +17,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.*;
+import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.BasicNFP_TypesFactory;
+import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.BasicNFP_TypesPackage;
+import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.DirectionKind;
+import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.SourceKind;
+import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.StatisticalQualifierKind;
 
 /**
  * <!-- begin-user-doc -->

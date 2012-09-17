@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation;
 
-import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
 
 /**

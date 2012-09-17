@@ -5,10 +5,6 @@ package org.eclipse.papyrus.infra.core.lifecycleevents;
 
 import junit.framework.TestCase;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
-import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider;
-
 
 /**
  * @author cedric dumoulin

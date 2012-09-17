@@ -6,9 +6,6 @@ package org.eclipse.papyrus.infra.core.lifecycleevents;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
-
 
 /**
  * @author dumoulin

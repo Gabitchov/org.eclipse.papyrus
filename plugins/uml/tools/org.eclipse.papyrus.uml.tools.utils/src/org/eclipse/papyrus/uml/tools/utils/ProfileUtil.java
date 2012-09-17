@@ -59,9 +59,9 @@ public class ProfileUtil {
 
 		// Retrieve model resourceSet
 		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
-		
-		if (pkge_resourceSet != null){
-			
+
+		if(pkge_resourceSet != null) {
+
 			// Retrieve profile resource
 			URI prof_URI = _profile.eResource().getURI();
 			Resource modelResource = pkge_resourceSet.getResource(prof_URI, true);
@@ -101,7 +101,7 @@ public class ProfileUtil {
 			}
 		}
 
-		
+
 
 		return isDirty;
 	}
@@ -199,7 +199,7 @@ public class ProfileUtil {
 							if(oppositeEnd.getType() instanceof Stereotype) {
 								return oppositeEnd;
 							}
-							break associations;
+							break associations; //break the three loops
 						}
 					}
 				}

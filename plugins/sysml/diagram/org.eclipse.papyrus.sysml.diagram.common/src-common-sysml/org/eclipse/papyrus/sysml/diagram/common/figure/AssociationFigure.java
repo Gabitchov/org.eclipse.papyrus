@@ -18,7 +18,6 @@ package org.eclipse.papyrus.sysml.diagram.common.figure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.NamedElementEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.uml2.uml.Association;
 
 /**
  * This figure is used to represent {@link Association} in SysML diagrams.

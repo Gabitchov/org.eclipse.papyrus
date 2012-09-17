@@ -17,12 +17,28 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.*;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GQAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaAcqStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaAnalysisContext;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommChannel;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommHost;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaEventTrace;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaExecHost;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaLatencyObs;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaRelStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaRequestedService;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaResourcesPlatform;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaScenario;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaTimedObs;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaWorkloadBehavior;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaWorkloadEvent;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaWorkloadGenerator;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.LaxityKind;
 
 /**
  * <!-- begin-user-doc -->

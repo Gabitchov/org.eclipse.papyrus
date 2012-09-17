@@ -23,7 +23,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction,
  org.eclipse.papyrus.uml.compare.diff,
  org.eclipse.papyrus.infra.emf.compare.diff,
- org.eclipse.core.expressions
+ org.eclipse.core.expressions,
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
+ org.eclipse.emf.edit.ui;bundle-version="2.8.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.ui.ide;bundle-version="3.8.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.compare.editor,

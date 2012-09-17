@@ -14,20 +14,16 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowDirectionKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowPort;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowSpecification;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
 import org.eclipse.papyrus.MARTE.utils.MarteResource;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
-
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Stereotype;

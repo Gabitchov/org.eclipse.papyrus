@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.emf.compare.common.utils;
 
 import org.eclipse.compare.CompareConfiguration;
-import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.compare.Splitter;
 import org.eclipse.compare.contentmergeviewer.ContentMergeViewer;

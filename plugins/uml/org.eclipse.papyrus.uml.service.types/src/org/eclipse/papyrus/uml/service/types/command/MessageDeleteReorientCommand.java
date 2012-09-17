@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.service.types.command;
 
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.Lifeline;
 
 public class MessageDeleteReorientCommand extends MessageAbstractReorientCommand {
 

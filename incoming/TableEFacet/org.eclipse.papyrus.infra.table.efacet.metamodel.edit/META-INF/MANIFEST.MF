@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.metamodel.edit;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.provider.PapyrustableEditPlugin$Implementation
 Bundle-Vendor: %providerName

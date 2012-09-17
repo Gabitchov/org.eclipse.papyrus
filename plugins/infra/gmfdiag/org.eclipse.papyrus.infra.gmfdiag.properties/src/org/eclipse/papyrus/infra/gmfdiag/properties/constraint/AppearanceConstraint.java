@@ -18,9 +18,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.extension.StyleHandlerManager;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.StyleHandlerProvider;
-import org.eclipse.papyrus.views.properties.Activator;
 
 /**
  * A constraint matching an Object on which the Appearance properties can

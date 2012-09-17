@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Unit;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeStandardKind;
-
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;

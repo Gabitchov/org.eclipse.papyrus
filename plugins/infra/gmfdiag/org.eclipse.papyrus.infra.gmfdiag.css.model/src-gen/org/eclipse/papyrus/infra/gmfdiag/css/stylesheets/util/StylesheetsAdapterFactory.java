@@ -4,13 +4,14 @@ package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.*;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 
 /**
  * <!-- begin-user-doc -->

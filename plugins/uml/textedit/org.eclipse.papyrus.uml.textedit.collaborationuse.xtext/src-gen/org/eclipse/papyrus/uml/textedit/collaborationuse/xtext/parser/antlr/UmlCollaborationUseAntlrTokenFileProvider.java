@@ -4,6 +4,7 @@
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.parser.antlr;
 
 import java.io.InputStream;
+
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class UmlCollaborationUseAntlrTokenFileProvider implements IAntlrTokenFileProvider {

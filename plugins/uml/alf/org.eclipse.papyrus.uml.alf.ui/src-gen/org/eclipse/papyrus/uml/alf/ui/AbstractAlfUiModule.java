@@ -14,8 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.DefaultUiModule;
 
 /**
  * Manual modifications go to {org.eclipse.papyrus.uml.alf.ui.AlfUiModule}

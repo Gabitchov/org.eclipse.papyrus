@@ -8,10 +8,18 @@ package org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.*;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.AbsoluteTimeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.AnyReceiveEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.ChangeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EffectRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.GuardRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
+import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage;
 
 /**
  * <!-- begin-user-doc -->

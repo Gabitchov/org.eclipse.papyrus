@@ -17,12 +17,21 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.*;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.CallConcurrencyKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.ConcurrencyKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.ExecutionKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.PoolMgtPolicyKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.PpUnit;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtAction;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtFeature;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtService;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtUnit;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.SynchronizationKind;
 
 /**
  * <!-- begin-user-doc -->

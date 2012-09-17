@@ -28,7 +28,6 @@ import org.eclipse.papyrus.xwt.callback.IBeforeParsingCallback;
 import org.eclipse.papyrus.xwt.callback.ICreatedCallback;
 import org.eclipse.papyrus.xwt.callback.ILoadedCallback;
 import org.eclipse.papyrus.xwt.core.TriggerBase;
-import org.eclipse.papyrus.xwt.databinding.BindingContext;
 import org.eclipse.papyrus.xwt.databinding.IBindingContext;
 import org.eclipse.papyrus.xwt.input.ICommand;
 import org.eclipse.papyrus.xwt.internal.core.UpdateSourceTrigger;

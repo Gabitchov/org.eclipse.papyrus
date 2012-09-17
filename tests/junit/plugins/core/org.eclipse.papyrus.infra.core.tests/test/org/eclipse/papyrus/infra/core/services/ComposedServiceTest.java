@@ -6,9 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
-import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

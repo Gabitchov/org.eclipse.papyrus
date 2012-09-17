@@ -8,12 +8,10 @@ package org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.Operator;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage;
 
 /**
  * <!-- begin-user-doc -->

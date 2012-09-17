@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 /**
  * <pre>

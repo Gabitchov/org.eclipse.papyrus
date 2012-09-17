@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.ui;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 
 /**

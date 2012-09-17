@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Interaction;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 
 /**

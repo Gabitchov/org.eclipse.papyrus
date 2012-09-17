@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedInstantObservation;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Comment;
 

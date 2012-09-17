@@ -14,7 +14,6 @@ package org.eclipse.papyrus.uml.properties.widgets;
 import java.util.LinkedList;
 
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener;
-import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.papyrus.uml.properties.expression.ExpressionList.Expression;
 import org.eclipse.papyrus.uml.properties.preferences.LanguageRegistry;

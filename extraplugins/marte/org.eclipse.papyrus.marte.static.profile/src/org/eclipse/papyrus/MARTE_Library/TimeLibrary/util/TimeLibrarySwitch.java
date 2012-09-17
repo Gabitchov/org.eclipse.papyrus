@@ -17,8 +17,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE_Library.TimeLibrary.*;
+import org.eclipse.papyrus.MARTE_Library.TimeLibrary.IdealClock;
+import org.eclipse.papyrus.MARTE_Library.TimeLibrary.TimeLibraryPackage;
 
 /**
  * <!-- begin-user-doc -->

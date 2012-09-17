@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
+
 /**
  * This handler allows to rename {@link NamedElement}
  * 
@@ -96,7 +97,6 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 		if(enabled) {
 			List<EObject> selectedElements = getSelectedElements();
 			EObject selection = selectedElements.get(0);
-			//FIXME : EMFHelper should be moved
 			enabled = !EMFHelper.isReadOnly(selection);
 		}
 		return enabled;

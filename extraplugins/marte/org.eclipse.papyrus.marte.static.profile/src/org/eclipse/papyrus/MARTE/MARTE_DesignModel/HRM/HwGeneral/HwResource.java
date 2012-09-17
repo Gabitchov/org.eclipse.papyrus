@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwCommunication.HwEndPoint;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 
 /**

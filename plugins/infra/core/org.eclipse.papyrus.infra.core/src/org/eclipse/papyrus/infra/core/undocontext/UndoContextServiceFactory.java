@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.infra.core.undocontext;
 
-import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;

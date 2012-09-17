@@ -13,7 +13,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.0",
  org.eclipse.ui.navigator,
  org.eclipse.ui.views.properties.tabbed,
- org.eclipse.emf.facet.infra.browser.uicore
+ org.eclipse.emf.facet.infra.browser.uicore,
+ org.eclipse.ui.ide;bundle-version="3.8.0",
+ org.eclipse.emf.edit;bundle-version="2.8.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.junit.utils

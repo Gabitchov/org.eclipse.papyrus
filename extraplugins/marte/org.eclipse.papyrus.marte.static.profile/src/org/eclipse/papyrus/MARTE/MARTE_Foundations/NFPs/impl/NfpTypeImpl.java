@@ -14,17 +14,12 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.impl.TupleTypeImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpType;
-
 import org.eclipse.uml2.uml.Property;
 
 /**

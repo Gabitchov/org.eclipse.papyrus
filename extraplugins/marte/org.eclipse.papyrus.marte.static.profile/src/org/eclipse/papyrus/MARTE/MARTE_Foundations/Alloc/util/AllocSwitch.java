@@ -17,8 +17,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.AllocateActivityGroup;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocated;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Assign;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.NfpRefine;
 
 /**
  * <!-- begin-user-doc -->

@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.messages.Messages;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 
 /**
  * This handler provides the duplicate action for the diagrams

@@ -16,7 +16,6 @@ package org.eclipse.papyrus.gmf.diagram.common.commands;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 
 /**
@@ -53,7 +52,7 @@ public class SemanticElementAdapter extends SemanticAdapter implements ISemantic
 	public Object getAdapter(Class adapter) {
 		if(adapter.equals(IHintedType.class)) {
 			if(elementType instanceof IHintedType) {
-				return (IHintedType)elementType;
+				return elementType;
 			}
 		}
 		if(adapter.equals(IElementType.class)) {
@@ -68,5 +67,5 @@ public class SemanticElementAdapter extends SemanticAdapter implements ISemantic
 		}
 		return null;
 	}
-	
+
 }

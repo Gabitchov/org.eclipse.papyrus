@@ -17,12 +17,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.*;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.EventKind;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeInterpretationKind;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeNatureKind;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeStandardKind;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeTypesLibraryFactory;
+import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeTypesLibraryPackage;
 
 /**
  * <!-- begin-user-doc -->

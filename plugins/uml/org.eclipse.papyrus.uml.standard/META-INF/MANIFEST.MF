@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.uml2.uml;visibility:=reexport
+Require-Bundle: org.eclipse.uml2.uml
 Export-Package: org.eclipse.papyrus.uml.standard,
  org.eclipse.papyrus.uml.standard.impl,
  org.eclipse.papyrus.uml.standard.util

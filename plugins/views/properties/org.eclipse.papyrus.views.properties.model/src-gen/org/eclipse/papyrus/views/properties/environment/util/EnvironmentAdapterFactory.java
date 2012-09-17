@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
-import org.eclipse.papyrus.views.properties.environment.*;
 import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;

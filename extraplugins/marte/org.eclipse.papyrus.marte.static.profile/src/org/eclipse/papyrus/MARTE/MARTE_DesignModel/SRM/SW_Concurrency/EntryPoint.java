@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency;
 
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 
 /**

@@ -8,12 +8,16 @@ package org.eclipse.papyrus.infra.constraints.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.infra.constraints.*;
+import org.eclipse.papyrus.infra.constraints.CompositeConstraint;
+import org.eclipse.papyrus.infra.constraints.ConfigProperty;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.infra.constraints.DisplayUnit;
+import org.eclipse.papyrus.infra.constraints.ReferenceProperty;
+import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
+import org.eclipse.papyrus.infra.constraints.ValueProperty;
 
 /**
  * <!-- begin-user-doc -->

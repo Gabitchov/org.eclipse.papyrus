@@ -18,7 +18,6 @@ import java.util.Map;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.INotification;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.ChooseChildrenNotificationConfigurator;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.ChooseParentNotificationConfigurator;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.NotificationConfigurator;

@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.widgets.toolbox.notification.INotification;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.popups.PopupNotification;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;

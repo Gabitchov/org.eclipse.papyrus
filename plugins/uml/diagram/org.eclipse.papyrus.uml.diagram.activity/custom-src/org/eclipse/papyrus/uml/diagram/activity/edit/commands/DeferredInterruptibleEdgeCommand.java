@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.interfaces.InterruptibleEdge;
 import org.eclipse.papyrus.uml.diagram.activity.request.InterruptibleEdgeRequest;
-import org.eclipse.uml2.uml.ActivityEdge;
 
 /**
  * Command to set an Activity Edge as an Interruptible Edge.

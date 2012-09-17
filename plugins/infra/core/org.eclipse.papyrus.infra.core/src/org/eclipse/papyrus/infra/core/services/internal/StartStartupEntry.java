@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.infra.core.services.internal;
 
-import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 

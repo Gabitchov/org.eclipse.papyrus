@@ -1,12 +1,8 @@
 package org.eclipse.papyrus.uml.diagram.usecase.preferences;
 
-import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference.ColorFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;

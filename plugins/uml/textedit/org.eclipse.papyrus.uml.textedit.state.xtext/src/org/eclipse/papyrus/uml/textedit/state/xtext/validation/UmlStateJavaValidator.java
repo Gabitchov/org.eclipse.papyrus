@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.ExitRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
-import org.eclipse.papyrus.uml.textedit.state.xtext.validation.AbstractUmlStateJavaValidator;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;

@@ -10,12 +10,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.*;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.EffectKind;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.EffectRule;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifierKind;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifierSpecification;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifiersRule;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ParameterRule;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterFactory;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterPackage;
 
 /**
  * <!-- begin-user-doc -->

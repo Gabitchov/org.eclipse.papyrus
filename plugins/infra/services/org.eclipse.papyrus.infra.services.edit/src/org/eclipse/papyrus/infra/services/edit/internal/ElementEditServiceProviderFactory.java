@@ -17,7 +17,6 @@ package org.eclipse.papyrus.infra.services.edit.internal;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 
 /** Papyrus factory that provides ElementEditServiceProvider */
 public class ElementEditServiceProviderFactory implements IServiceFactory {

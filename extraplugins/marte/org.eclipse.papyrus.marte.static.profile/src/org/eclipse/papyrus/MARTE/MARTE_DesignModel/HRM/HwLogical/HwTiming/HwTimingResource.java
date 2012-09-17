@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwLogical.HwTiming;
 
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HRM.HwGeneral.HwResource;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.TimingResource;
 
 /**

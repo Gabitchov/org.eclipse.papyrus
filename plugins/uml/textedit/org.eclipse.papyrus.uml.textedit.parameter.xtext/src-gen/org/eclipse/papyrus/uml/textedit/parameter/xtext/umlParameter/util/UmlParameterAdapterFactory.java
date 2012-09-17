@@ -8,12 +8,13 @@ package org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.*;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.EffectRule;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifierSpecification;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ModifiersRule;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ParameterRule;
+import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterPackage;
 
 /**
  * <!-- begin-user-doc -->

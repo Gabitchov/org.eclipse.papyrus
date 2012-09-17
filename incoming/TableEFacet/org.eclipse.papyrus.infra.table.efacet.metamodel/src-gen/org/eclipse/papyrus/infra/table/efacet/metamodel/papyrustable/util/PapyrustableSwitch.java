@@ -15,10 +15,9 @@ package org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.util;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.*;
+import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrusTable;
+import org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable.PapyrustablePackage;
 
 /**
  * <!-- begin-user-doc -->

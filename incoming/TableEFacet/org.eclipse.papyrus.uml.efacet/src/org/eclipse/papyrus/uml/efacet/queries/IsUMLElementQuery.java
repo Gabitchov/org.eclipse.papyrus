@@ -6,7 +6,6 @@ import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * 

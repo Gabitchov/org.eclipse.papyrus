@@ -14,21 +14,15 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Unit;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.Clock;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockType;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimePackage;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeStandardKind;
-
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;

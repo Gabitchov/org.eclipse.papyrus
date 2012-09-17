@@ -5,10 +5,12 @@ package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.util;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.*;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
 
 /**
  * <!-- begin-user-doc -->

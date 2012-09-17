@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.DefaultLink;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMPackage;
 

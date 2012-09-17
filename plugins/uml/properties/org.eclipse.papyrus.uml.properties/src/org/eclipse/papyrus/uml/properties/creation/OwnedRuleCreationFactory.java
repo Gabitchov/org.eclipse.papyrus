@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.uml2.uml.Namespace;
 
 /**
  * A Factory for creating objects in references that are subsets of {@link Namespace#getOwnedRules()}.

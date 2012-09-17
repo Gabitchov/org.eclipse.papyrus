@@ -14,16 +14,12 @@
 package org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.LinkTopology;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMPackage;
-
 import org.eclipse.uml2.uml.Connector;
 
 /**

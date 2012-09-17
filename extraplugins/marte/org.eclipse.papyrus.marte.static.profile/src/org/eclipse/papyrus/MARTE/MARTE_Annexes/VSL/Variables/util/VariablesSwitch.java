@@ -17,8 +17,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.ExpressionContext;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.Var;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesPackage;
 
 /**
  * <!-- begin-user-doc -->

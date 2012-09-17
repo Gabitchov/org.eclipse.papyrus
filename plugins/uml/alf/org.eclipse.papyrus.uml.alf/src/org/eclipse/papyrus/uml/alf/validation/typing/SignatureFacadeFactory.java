@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.alf.alf.InstanceCreationExpression;
 import org.eclipse.papyrus.uml.alf.alf.InstanceCreationTupleElement;
 import org.eclipse.papyrus.uml.alf.alf.QualifiedNameWithBinding;
-import org.eclipse.papyrus.uml.alf.alf.TupleElement;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;

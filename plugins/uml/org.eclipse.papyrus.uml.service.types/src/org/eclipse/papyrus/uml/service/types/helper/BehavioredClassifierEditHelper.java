@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
-import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

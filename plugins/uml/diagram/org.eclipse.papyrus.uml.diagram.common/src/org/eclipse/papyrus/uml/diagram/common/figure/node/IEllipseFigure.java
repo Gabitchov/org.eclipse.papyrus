@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
-import org.eclipse.draw2d.Ellipse;
 
 /**
  * this interface is used to inform that the figure display an ellipse (in the case where the class do not extends {@link Ellipse}

@@ -15,14 +15,21 @@ package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.Clock;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockConstraint;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.ClockType;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimePackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedConstraint;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedDomain;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedDurationObservation;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedElement;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedEvent;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedInstantObservation;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedProcessing;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedValueSpecification;
 
 /**
  * <!-- begin-user-doc -->

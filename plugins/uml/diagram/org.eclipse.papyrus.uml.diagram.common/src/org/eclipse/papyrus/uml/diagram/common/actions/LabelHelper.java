@@ -11,7 +11,6 @@
  ******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.actions;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;

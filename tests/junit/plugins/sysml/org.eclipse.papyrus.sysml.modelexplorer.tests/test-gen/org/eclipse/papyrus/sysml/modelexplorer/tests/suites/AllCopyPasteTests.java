@@ -12,7 +12,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
 
-import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.*;
+import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimpleBlock2Test;
+import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimpleBlockTest;
+import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimplePartTest;
+import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimpleReferenceTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;

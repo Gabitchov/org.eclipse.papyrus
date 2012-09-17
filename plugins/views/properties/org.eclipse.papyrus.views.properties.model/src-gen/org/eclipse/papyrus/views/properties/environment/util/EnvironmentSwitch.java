@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
-import org.eclipse.papyrus.views.properties.environment.*;
 import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;

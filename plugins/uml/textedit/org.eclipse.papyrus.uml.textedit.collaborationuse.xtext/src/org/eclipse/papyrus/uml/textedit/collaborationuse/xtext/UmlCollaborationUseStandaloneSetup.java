@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext;
 
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUseStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages

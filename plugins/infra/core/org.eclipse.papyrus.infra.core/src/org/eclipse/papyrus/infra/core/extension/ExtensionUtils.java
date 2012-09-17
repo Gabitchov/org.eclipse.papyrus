@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.core.extension;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.InvalidRegistryObjectException;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 

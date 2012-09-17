@@ -14,19 +14,15 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.ConcurrencyKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.ExecutionKind;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtService;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.SynchronizationKind;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 
 /**

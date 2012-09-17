@@ -9,7 +9,6 @@ package org.eclipse.papyrus.uml.diagram.paletteconfiguration.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.*;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;

@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.utils.FilteredCollectionView;
 import org.eclipse.papyrus.infra.core.utils.IFilter;
-import org.eclipse.uml2.uml.*;
 import org.eclipse.uml2.uml.Property;
 import org.junit.Assert;
 

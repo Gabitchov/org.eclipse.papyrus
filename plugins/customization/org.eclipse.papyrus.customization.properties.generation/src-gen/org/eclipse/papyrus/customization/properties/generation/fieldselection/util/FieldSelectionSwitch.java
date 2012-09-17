@@ -6,14 +6,13 @@
  */
 package org.eclipse.papyrus.customization.properties.generation.fieldselection.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.papyrus.customization.properties.generation.fieldselection.*;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionPackage;
+import org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition;
 
 /**
  * <!-- begin-user-doc -->

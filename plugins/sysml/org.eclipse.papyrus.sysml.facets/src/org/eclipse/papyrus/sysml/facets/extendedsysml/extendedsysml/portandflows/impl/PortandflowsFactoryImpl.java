@@ -10,12 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.*;
+import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.NAFlowPortDirection;
+import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.PortandflowsFactory;
+import org.eclipse.papyrus.sysml.facets.extendedsysml.extendedsysml.portandflows.PortandflowsPackage;
 
 /**
  * <!-- begin-user-doc -->

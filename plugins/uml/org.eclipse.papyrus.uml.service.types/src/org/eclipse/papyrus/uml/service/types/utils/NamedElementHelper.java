@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Namespace;
 
 /**
  * This singleton is used to find a new element name with

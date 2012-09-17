@@ -16,7 +16,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.mapping.ResourceMapping;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.infra.onefile.model.ISubResourceFile;
-import org.eclipse.papyrus.infra.onefile.model.impl.SubResourceFile;
 import org.eclipse.papyrus.infra.onefile.model.mapping.SubResourceMapping;
 import org.eclipse.ui.IContributorResourceAdapter;
 

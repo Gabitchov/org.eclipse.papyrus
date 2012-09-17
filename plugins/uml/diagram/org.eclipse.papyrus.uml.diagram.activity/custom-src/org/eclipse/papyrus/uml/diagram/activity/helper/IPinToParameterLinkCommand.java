@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.helper;
 
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.uml2.uml.Parameter;
-import org.eclipse.uml2.uml.Pin;
 
 /**
  * Constant used to create link between {@link Pin} and {@link Parameter}

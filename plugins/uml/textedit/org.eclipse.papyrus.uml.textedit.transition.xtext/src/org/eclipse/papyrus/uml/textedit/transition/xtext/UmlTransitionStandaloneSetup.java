@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.transition.xtext;
 
-import org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransitionStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 

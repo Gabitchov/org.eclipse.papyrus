@@ -27,8 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
@@ -37,7 +35,6 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -63,7 +60,6 @@ import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
 import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 
 import com.google.inject.Injector;
 

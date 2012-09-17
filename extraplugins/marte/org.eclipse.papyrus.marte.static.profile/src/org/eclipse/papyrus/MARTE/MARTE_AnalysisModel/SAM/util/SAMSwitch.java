@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaAnalysisContext;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommHost;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommStep;
@@ -25,13 +24,17 @@ import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaExecHost;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaScenario;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaTimedObs;
-
-import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.*;
-
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaAnalysisContext;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaCommHost;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaCommStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaEndtoEndFlow;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaExecHost;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaSchedObs;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaSharedResource;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM.SaStep;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.ExpressionContext;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Configuration;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.CommunicationMedia;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ComputingResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.MutualExclusionResource;
@@ -39,9 +42,7 @@ import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ProcessingResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ResourceUsage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Scheduler;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedElement;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedProcessing;
 

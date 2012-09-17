@@ -17,12 +17,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.*;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerFeature;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerPort;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataEvent;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataPool;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataPoolOrderingKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowDirectionKind;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowPort;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowProperty;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMInvocatingBehavior;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMInvocationAction;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMTrigger;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.PortSpecificationKind;
 
 /**
  * <!-- begin-user-doc -->

@@ -16,12 +16,30 @@ package org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Acquire;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ClockResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.CommunicationEndPoint;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.CommunicationMedia;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ComputingResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ConcurrencyResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.DeviceResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GRMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GRMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GrService;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.MutualExclusionResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ProcessingResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Release;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ResourceUsage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.SchedulableResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Scheduler;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.SecondaryScheduler;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.StorageResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.SynchronizationResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.TimerResource;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.TimingResource;
 
 /**
  * <!-- begin-user-doc -->

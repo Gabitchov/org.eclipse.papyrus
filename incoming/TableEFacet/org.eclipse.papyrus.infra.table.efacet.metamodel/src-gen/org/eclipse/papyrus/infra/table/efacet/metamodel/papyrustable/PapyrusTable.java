@@ -13,13 +13,9 @@
 package org.eclipse.papyrus.infra.table.efacet.metamodel.papyrustable;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-
 import org.eclipse.emf.facet.widgets.table.metamodel.v0_2_0.table.Table;
 
 /**

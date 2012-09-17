@@ -4,7 +4,6 @@
 package org.eclipse.papyrus.infra.core.extension.diagrameditor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.infra.core.editorsfactory.IEditorIconFactory;
 import org.eclipse.papyrus.infra.core.editorsfactory.IEditorIconFactoryExtended;
 import org.eclipse.swt.graphics.Image;
 

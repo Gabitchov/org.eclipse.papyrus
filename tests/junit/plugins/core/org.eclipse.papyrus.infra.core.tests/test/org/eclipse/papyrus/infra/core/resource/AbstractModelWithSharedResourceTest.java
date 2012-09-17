@@ -20,8 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource.ModelKind;
-import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

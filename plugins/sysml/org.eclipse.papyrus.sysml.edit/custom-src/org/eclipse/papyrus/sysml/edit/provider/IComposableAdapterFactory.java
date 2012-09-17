@@ -12,7 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.edit.provider;
 
-import org.eclipse.emf.common.notify.AdapterFactory;
 
 /**
  * The purpose of this interface is to create composable adapterFactory but in a

@@ -2,6 +2,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.preferences;
 
 import java.util.Map;
 import java.util.TreeMap;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;

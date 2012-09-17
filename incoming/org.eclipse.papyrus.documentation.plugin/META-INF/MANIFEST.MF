@@ -11,6 +11,6 @@ Export-Package: org.eclipse.papyrus.documentation.plugin.documentation,
  org.eclipse.papyrus.documentation.plugin.documentation.impl,
  org.eclipse.papyrus.documentation.plugin.documentation.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore,
  org.eclipse.ui;bundle-version="3.7.0"
 Bundle-ActivationPolicy: lazy

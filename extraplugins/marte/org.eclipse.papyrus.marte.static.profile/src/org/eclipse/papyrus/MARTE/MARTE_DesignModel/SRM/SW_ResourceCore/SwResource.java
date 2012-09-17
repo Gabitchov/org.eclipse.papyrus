@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_ResourceCore;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.TypedElement;
 

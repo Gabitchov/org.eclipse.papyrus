@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.model.queries;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;

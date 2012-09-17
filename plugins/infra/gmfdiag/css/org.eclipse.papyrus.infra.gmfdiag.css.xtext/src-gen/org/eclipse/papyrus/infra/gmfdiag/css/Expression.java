@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

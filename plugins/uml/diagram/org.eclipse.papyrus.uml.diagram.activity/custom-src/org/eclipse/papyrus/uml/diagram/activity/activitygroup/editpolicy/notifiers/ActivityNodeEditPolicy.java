@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.diagram.activity.activitygroup.editpolicy.notifiers;
 
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.IContainerNodeDescriptor;
-import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * Implementation of {@link GroupNotifyingOnMoveEditPolicy} for {@link ActivityNode}

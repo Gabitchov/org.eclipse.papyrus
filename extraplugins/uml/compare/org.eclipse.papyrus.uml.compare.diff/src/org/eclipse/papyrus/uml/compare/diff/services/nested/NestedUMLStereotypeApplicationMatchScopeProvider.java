@@ -22,7 +22,6 @@ import org.eclipse.emf.compare.match.engine.IMatchScopeProvider;
 import org.eclipse.emf.compare.match.filter.IResourceFilter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.uml2.uml.Element;
 
 /**

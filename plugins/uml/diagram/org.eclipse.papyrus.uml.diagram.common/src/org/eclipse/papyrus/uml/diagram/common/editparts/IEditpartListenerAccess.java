@@ -15,8 +15,6 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import java.util.Iterator;
 
-import org.eclipse.gef.editparts.AbstractEditPart;
-
 /**
  * All edit part that implements this interface make accessible the set of
  * eventListener

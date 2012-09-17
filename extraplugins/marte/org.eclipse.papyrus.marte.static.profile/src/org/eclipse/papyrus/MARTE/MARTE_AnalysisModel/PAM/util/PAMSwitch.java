@@ -17,17 +17,19 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommStep;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaRequestedService;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaScenario;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaStep;
-
-import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.*;
-
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaCommStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaLogicalResource;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaRequestedStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaResPassStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaRunTInstance;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaStep;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ResourceUsage;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedElement;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedProcessing;
 

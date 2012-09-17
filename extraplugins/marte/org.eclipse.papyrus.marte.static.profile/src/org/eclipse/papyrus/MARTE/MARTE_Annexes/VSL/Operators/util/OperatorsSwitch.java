@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.Operator;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage;
 
 /**
  * <!-- begin-user-doc -->

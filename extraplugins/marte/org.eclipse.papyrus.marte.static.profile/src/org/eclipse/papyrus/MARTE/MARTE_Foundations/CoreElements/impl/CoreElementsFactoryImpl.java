@@ -16,12 +16,14 @@ package org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Configuration;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Mode;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.ModeBehavior;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.ModeTransition;
 
 /**
  * <!-- begin-user-doc -->

@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.TransmModeKind;
-
 import org.eclipse.uml2.uml.Connector;
 
 /**

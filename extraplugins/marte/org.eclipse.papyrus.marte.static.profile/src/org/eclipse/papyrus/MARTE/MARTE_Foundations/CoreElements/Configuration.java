@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**

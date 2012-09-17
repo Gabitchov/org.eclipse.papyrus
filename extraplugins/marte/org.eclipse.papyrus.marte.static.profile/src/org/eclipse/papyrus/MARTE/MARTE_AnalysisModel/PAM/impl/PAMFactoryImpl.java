@@ -16,12 +16,16 @@ package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.*;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaCommStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaLogicalResource;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaRequestedStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaResPassStep;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaRunTInstance;
+import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaStep;
 
 /**
  * <!-- begin-user-doc -->

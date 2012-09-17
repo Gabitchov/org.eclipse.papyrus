@@ -17,10 +17,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.TupleType;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Dimension;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Nfp;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpType;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Unit;
 
 /**
  * <!-- begin-user-doc -->

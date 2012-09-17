@@ -24,7 +24,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 
 

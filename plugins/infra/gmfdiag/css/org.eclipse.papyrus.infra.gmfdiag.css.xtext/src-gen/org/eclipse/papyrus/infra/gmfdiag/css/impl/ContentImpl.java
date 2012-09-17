@@ -3,9 +3,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.infra.gmfdiag.css.Content;
 import org.eclipse.papyrus.infra.gmfdiag.css.CssPackage;
 

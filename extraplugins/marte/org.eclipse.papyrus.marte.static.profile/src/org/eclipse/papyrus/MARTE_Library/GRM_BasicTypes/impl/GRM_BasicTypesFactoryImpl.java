@@ -17,12 +17,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.*;
+import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.GRM_BasicTypesFactory;
+import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.GRM_BasicTypesPackage;
+import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.PeriodicServerKind;
+import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.ProtectProtocolKind;
+import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.SchedPolicyKind;
 
 /**
  * <!-- begin-user-doc -->

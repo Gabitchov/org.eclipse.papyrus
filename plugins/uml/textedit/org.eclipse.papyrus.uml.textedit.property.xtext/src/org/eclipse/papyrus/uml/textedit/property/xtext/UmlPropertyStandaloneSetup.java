@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext;
 
-import org.eclipse.papyrus.uml.textedit.property.xtext.UmlPropertyStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 

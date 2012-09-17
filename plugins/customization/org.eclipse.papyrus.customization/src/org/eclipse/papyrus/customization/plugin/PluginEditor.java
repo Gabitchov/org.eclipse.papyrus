@@ -162,4 +162,8 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	public void setSingleton(boolean singleton) {
 		manifest.setSingleton(singleton);
 	}
+
+	public void setDependenciesVersion(String dependencyPattern, String newVersion) {
+		manifest.setDependenciesVersion(dependencyPattern, newVersion);
+	}
 }

@@ -6,7 +6,6 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
-import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource.ModelKind;
 
 /**
  * Model for the sash system. <br>

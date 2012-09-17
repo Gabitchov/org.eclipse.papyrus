@@ -19,7 +19,6 @@ import java.util.HashMap;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DuplicateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 
 /**
  * this a specific paste request in the framework of papyrus

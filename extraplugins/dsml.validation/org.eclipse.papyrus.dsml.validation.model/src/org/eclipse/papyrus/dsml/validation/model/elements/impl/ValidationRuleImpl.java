@@ -22,7 +22,6 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Mode;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Severity;
-import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;

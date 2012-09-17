@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 
 /**
  * 

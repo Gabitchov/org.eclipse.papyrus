@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ComputingResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GRMPackage;
 

@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.parameter.xtext;
 
-import org.eclipse.papyrus.uml.textedit.parameter.xtext.UmlParameterStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages

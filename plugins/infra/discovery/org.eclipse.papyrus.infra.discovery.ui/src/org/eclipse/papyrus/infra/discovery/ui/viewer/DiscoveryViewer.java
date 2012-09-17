@@ -65,7 +65,6 @@ import org.eclipse.papyrus.infra.discovery.ui.internal.common.SelectionProviderA
 import org.eclipse.papyrus.infra.discovery.ui.internal.common.WorkbenchUtil;
 import org.eclipse.papyrus.infra.discovery.ui.internal.viewer.DiscoveryCategoryComparator;
 import org.eclipse.papyrus.infra.discovery.ui.internal.wizards.Messages;
-import org.eclipse.papyrus.infra.discovery.ui.wizards.DiscoveryWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.ACC;
 import org.eclipse.swt.accessibility.AccessibleAdapter;

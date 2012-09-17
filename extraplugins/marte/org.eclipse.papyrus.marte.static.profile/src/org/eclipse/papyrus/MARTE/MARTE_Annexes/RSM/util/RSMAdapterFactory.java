@@ -15,13 +15,16 @@ package org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.*;
-
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.DefaultLink;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Distribute;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.InterRepetition;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.LinkTopology;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Reshape;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Shaped;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Tiler;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 
 /**

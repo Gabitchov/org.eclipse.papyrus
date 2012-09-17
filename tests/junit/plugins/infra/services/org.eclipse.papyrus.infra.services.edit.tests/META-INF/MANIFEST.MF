@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: org.junit;bundle-version="4.8.2"
+Require-Bundle: org.junit;bundle-version="4.8.2",
+ org.eclipse.ui.ide;bundle-version="3.8.0"
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0"
 Bundle-Version: 0.9.0.qualifier

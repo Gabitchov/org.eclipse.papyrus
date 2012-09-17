@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.uml.service.types.command.ComponentRealizationReorientCommand;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Component;
-import org.eclipse.uml2.uml.ComponentRealization;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

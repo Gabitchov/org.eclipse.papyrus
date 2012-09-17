@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.profile.service;
 
 import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;

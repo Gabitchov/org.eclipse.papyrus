@@ -7,11 +7,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.services.controlmode.history.HistoryModel;
-import org.eclipse.papyrus.infra.services.controlmode.history.utils.HistoryUtils;
-import org.eclipse.papyrus.infra.services.controlmode.mm.history.ControledResource;
-import org.eclipse.papyrus.infra.services.controlmode.mm.history.historyFactory;
 
 
 /**

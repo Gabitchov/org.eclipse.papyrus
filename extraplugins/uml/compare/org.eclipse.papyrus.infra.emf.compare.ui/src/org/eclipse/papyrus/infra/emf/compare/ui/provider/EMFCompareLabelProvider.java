@@ -17,7 +17,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
@@ -25,7 +24,6 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfiguration;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
-import org.eclipse.jface.viewers.OwnerDrawLabelProvider;
 import org.eclipse.papyrus.infra.emf.compare.ui.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;

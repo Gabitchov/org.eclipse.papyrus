@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaExecHost;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.SchedulableResource;
-
 import org.eclipse.uml2.uml.NamedElement;
 
 /**

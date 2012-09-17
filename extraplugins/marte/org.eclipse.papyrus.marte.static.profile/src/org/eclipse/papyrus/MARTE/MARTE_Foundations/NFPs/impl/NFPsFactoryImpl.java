@@ -17,12 +17,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.ConstraintKind;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Dimension;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Nfp;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpType;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.Unit;
 
 /**
  * <!-- begin-user-doc -->

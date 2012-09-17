@@ -250,9 +250,9 @@ public class GetDiffElementLabel implements IJavaModelQuery<EObject, String> {
 			final String referenceLabel = labelProvider.getText(operation.getReference());
 			final String elementLabel = labelProvider.getText(operation.getLeftElement());
 
-			if(operation.isRemote())
+			if(operation.isRemote()) {
 				diffLabel = itemProvider.getString("_UI_RemoteAddReferenceValue_type", new Object[]{ valueLabel, referenceLabel, elementLabel, }); //$NON-NLS-1$
-			else {
+			} else {
 				diffLabel = itemProvider.getString("_UI_RemoveReferenceValue_type", new Object[]{ valueLabel, referenceLabel, elementLabel, }); //$NON-NLS-1$
 			}
 		}

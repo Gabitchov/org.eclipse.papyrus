@@ -16,21 +16,14 @@ package org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimePackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Time.TimedDurationObservation;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.EventKind;
-
 import org.eclipse.uml2.uml.DurationObservation;
 
 /**

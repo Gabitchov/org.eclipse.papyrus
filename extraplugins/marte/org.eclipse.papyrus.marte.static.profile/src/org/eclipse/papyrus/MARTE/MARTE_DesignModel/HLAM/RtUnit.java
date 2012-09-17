@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.SchedPolicyKind;
-
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Operation;

@@ -16,23 +16,16 @@ package org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Mode;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.ConstraintKind;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NFPsPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.NFPs.NfpConstraint;
-
 import org.eclipse.uml2.uml.Constraint;
 
 /**

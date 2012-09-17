@@ -13,10 +13,10 @@ package org.eclipse.papyrus.customization.properties.generation.extensionpoint;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.customization.properties.generation.layout.ILayoutGenerator;
 import org.eclipse.papyrus.customization.properties.generation.wizard.CreateContextWizard;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
-import org.eclipse.papyrus.views.properties.Activator;
 
 /**
  * Handles the extension point org.eclipse.papyrus.customization.properties.generation.layout

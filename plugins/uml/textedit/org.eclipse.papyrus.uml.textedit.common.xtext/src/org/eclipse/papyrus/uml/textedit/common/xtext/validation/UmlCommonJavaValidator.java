@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.textedit.common.xtext.validation;
 
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
-import org.eclipse.papyrus.uml.textedit.common.xtext.validation.AbstractUmlCommonJavaValidator;
 import org.eclipse.xtext.validation.Check;
 
 

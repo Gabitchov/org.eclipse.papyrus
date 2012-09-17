@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.SAM;
 
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.GaCommStep;
-
 import org.eclipse.uml2.uml.BehavioralFeature;
 
 /**

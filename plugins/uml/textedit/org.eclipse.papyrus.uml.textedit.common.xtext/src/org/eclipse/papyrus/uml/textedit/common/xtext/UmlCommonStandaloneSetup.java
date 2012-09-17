@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.textedit.common.xtext;
 
-import org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommonStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages

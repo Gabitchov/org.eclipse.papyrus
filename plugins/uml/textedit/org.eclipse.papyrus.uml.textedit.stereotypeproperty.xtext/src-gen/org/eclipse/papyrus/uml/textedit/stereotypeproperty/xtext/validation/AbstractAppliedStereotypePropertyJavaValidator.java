@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.uml.alf.validation.AlfJavaValidator;
-import org.eclipse.xtext.validation.ComposedChecks;
 
 
 public class AbstractAppliedStereotypePropertyJavaValidator extends AlfJavaValidator {

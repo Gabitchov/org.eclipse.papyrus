@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/applystereotypeactionconfiguration/0.7" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:extendedtypes="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7" xmlns:modifysemanticvaluesactionconfiguration="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" id="test1.palette">
-  <elementType name="Metaclass " id="org.eclipse.papyrus.uml.extended.tests.Class_2008_Metaclass" hint="2008" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
+  <elementType name="Metaclass " id="org.eclipse.papyrus.uml.extended.tests.Class_2008_Metaclass" hint="2008" preValidation="configuration:ModiscoQueryConfiguration platform:/plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
@@ -19,7 +19,7 @@
       </stereotypesToApply>
     </postAction>
   </elementType>
-  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3004_Metaclass" hint="3004" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
+  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3004_Metaclass" hint="3004" preValidation="configuration:ModiscoQueryConfiguration platform:/plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
@@ -38,7 +38,7 @@
       </stereotypesToApply>
     </postAction>
   </elementType>
-  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3008_Metaclass" hint="3008" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
+  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3008_Metaclass" hint="3008" preValidation="configuration:ModiscoQueryConfiguration platform:/plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
@@ -57,7 +57,7 @@
       </stereotypesToApply>
     </postAction>
   </elementType>
-  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3010_Metaclass" hint="3010" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
+  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3010_Metaclass" hint="3010" preValidation="configuration:ModiscoQueryConfiguration platform:/plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">
@@ -76,7 +76,7 @@
       </stereotypesToApply>
     </postAction>
   </elementType>
-  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3014_Metaclass" hint="3014" preValidation="configuration:ModiscoQueryConfiguration ../../../plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
+  <elementType name="TestClass1ExtendedElementType " id="org.eclipse.papyrus.uml.extended.tests.Class_3014_Metaclass" hint="3014" preValidation="configuration:ModiscoQueryConfiguration platform:/plugin/org.eclipse.papyrus.core.queries.test/resources/IsNameLongerThanQueryConfiguration1.configuration#/">
     <iconEntry iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <postAction xsi:type="modifysemanticvaluesactionconfiguration:ModifySemanticValuesActionConfiguration">

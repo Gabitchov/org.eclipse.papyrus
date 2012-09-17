@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.message.xtext.ui.contentassist;
 
-import org.eclipse.papyrus.uml.textedit.message.xtext.ui.contentassist.AbstractUmlMessageProposalProvider;
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */

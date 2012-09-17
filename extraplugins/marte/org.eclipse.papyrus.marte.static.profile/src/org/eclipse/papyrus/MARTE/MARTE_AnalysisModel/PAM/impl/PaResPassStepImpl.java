@@ -14,17 +14,12 @@
 package org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.impl.GaStepImpl;
-
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PAMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.PAM.PaResPassStep;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Resource;
 
 /**

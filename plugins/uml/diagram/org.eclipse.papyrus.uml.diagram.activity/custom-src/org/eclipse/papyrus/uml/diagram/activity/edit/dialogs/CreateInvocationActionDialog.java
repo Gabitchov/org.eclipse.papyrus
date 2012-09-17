@@ -32,7 +32,6 @@ import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
@@ -40,8 +39,6 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
-import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
-import org.eclipse.papyrus.uml.tools.providers.UMLContainerContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
@@ -70,7 +67,6 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.InvocationAction;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This class provides a dialog to initialize a CallAction at its creation.
@@ -110,7 +106,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	private Combo creationTypeCombo = null;
 
 	private ILabelProvider labelProvider;
-	
+
 	/**
 	 * New Object about to be created
 	 */
@@ -124,19 +120,20 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * @param owner
 	 *        the activity that owns the action
 	 */
-	public CreateInvocationActionDialog(Shell shell, Activity owner,InvocationAction newAction) {
+	public CreateInvocationActionDialog(Shell shell, Activity owner, InvocationAction newAction) {
 		super(shell);
 		actionParent = owner;
 		selectedParent = getDefaultParent(owner);
 		labelProvider = getCustomLabelProvider();
 		this.invocationAction = newAction;
 	}
-	
-	
 
-	
+
+
+
 	/**
 	 * Invocation action about to be created
+	 * 
 	 * @return
 	 */
 	public InvocationAction getInvocationAction() {
@@ -521,8 +518,9 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
 		if(dialog.open() == org.eclipse.jface.window.Window.OK) {
 			Object[] result = dialog.getResult();
-			if (result != null && result.length > 0 && result[0] instanceof EObject)
-			setInvokedSelection((EObject)result[0]);
+			if(result != null && result.length > 0 && result[0] instanceof EObject) {
+				setInvokedSelection((EObject)result[0]);
+			}
 		}
 	}
 

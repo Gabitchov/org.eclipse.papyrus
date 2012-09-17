@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.emf.compare.diff.merge;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.compare.diff.merge.DefaultMerger;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 

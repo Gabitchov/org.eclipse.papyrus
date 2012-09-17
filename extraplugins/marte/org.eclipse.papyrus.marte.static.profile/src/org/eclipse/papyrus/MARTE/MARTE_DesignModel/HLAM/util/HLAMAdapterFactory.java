@@ -15,12 +15,15 @@ package org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.*;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.HLAMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.PpUnit;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtAction;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtFeature;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtService;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.HLAM.RtUnit;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.core.runtime;visibility:=reexport,
- org.eclipse.core.commands;visibility:=reexport
+ org.eclipse.core.runtime,
+ org.eclipse.core.commands
 Export-Package: org.eclipse.papyrus.views.documentation,
  org.eclipse.papyrus.views.documentation.eannotation
 Bundle-Vendor: %providerName

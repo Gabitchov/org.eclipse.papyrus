@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

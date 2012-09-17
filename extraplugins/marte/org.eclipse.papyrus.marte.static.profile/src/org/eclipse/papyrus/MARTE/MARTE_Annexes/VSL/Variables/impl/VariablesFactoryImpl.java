@@ -17,12 +17,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.ExpressionContext;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.Var;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariableDirectionKind;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesPackage;
 
 /**
  * <!-- begin-user-doc -->

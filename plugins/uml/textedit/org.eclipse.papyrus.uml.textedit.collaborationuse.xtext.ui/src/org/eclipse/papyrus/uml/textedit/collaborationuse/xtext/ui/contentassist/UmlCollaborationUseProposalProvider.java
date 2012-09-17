@@ -21,7 +21,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions.UMLCollaborationUseEditorUtil;
 import org.eclipse.papyrus.uml.textedit.common.xtext.ui.contentassist.UmlCommonProposalProvider;
 import org.eclipse.uml2.uml.Collaboration;
-import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtext.Assignment;

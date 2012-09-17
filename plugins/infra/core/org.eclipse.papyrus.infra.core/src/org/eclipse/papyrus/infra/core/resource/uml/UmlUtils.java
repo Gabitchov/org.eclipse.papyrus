@@ -3,11 +3,8 @@
  */
 package org.eclipse.papyrus.infra.core.resource.uml;
 
-import javax.imageio.spi.ServiceRegistry;
-
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;

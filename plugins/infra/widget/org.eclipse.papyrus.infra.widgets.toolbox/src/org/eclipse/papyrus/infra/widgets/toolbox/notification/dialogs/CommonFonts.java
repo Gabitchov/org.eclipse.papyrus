@@ -13,7 +13,6 @@ package org.eclipse.papyrus.infra.widgets.toolbox.notification.dialogs;
 
 import java.lang.reflect.Field;
 
-import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;

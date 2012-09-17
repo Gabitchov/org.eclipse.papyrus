@@ -17,8 +17,18 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.*;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerFeature;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerPort;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataEvent;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataPool;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowPort;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowProperty;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMInvocatingBehavior;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMInvocationAction;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMTrigger;
 
 /**
  * <!-- begin-user-doc -->

@@ -11,9 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement;
 import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection;
 import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelectionFactory;

@@ -15,12 +15,20 @@ package org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.*;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerFeature;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerPort;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.ClientServerSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataEvent;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.DataPool;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowPort;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowProperty;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.FlowSpecification;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMInvocatingBehavior;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMInvocationAction;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_DesignModel.GCM.GCMTrigger;
 
 /**
  * <!-- begin-user-doc -->

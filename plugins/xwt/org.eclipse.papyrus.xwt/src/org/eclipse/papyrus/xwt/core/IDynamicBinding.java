@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.papyrus.xwt.core;
 
-import org.eclipse.papyrus.xwt.databinding.BindingContext;
 import org.eclipse.papyrus.xwt.databinding.IBindingContext;
 
 /**

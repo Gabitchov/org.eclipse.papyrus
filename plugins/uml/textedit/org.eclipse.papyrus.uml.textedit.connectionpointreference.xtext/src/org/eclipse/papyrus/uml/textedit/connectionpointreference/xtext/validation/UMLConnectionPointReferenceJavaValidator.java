@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation;
 
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation.AbstractUMLConnectionPointReferenceJavaValidator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
  

@@ -24,7 +24,6 @@ import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
-import org.eclipse.papyrus.views.properties.xwt.XWTSection;
 
 /**
  * A Factory to build and populate DataSource with the right ModelElements

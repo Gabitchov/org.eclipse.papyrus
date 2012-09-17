@@ -17,25 +17,19 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ComputingResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.GRMPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.MutualExclusionResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.ProcessingResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.SchedulableResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.GRM.Scheduler;
-
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.SchedPolicyKind;
 
 /**

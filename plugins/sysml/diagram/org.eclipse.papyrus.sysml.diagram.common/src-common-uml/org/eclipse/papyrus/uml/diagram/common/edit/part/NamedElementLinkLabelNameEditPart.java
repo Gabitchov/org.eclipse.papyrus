@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.common.edit.part;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolicy;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * Edit Part for link label showing {@link NamedElement} name.

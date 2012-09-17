@@ -11,8 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.widgets;
 
-import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.StringLabel;
+import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.swt.widgets.Composite;
 
 /**

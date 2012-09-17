@@ -16,12 +16,16 @@ package org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.*;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.DefaultLink;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Distribute;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.InterRepetition;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMFactory;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.RSMPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Reshape;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Shaped;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.RSM.Tiler;
 
 /**
  * <!-- begin-user-doc -->

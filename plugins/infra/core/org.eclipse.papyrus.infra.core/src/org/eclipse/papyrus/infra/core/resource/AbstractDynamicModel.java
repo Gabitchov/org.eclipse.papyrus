@@ -4,13 +4,10 @@
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.internal.resources.ResourceException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * Base class for models that can be created dynamically. Such models do not need to exist when others models are loaded.

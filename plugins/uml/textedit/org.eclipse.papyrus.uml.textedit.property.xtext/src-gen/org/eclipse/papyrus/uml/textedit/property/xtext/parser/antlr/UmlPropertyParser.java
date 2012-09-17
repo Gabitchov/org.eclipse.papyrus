@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext.parser.antlr;
 
-import com.google.inject.Inject;
-
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.papyrus.uml.textedit.property.xtext.services.UmlPropertyGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
 
 public class UmlPropertyParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

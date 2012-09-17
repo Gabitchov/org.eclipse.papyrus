@@ -17,8 +17,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.*;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Configuration;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.CoreElementsPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.Mode;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.ModeBehavior;
+import org.eclipse.papyrus.MARTE.MARTE_Foundations.CoreElements.ModeTransition;
 
 /**
  * <!-- begin-user-doc -->

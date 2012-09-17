@@ -17,12 +17,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.*;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.DoRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.EntryRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.ExitRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.QualifiedName;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStateFactory;
+import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
 
 /**
  * <!-- begin-user-doc -->
