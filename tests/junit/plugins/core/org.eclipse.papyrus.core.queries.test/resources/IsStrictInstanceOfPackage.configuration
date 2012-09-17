@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration:ModiscoQueryConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" name="isStrictInstanceOfPackage" query="query:JavaModelQuery CoreQueriesTest.querySet#isStrictInstanceOf">
+<configuration:ModiscoQueryConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/core/queries/0.7" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" name="isStrictInstanceOfPackage" query="query:JavaModelQuery CoreQueriesTest.querySet#isStrictInstanceOf">
   <parameterValues xsi:type="configuration:ConstantParameterValue" parameter="CoreQueriesTest.querySet#typeName">
     <valueInstance xsi:type="uml:LiteralString" name="" value="org.eclipse.uml2.uml.Package"/>
   </parameterValues>
