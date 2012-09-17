@@ -33,6 +33,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ShortCutDiagramPreferencePage.initDefaults(store);
 		InstanceSpecificationPreferencePage.initDefaults(store);
 		ContainmentCirclePreferencePage.initDefaults(store);
+		InformationItemPreferencePage.initDefaults(store);
 		PropertyPreferencePage.initDefaults(store);
 		SlotPreferencePage.initDefaults(store);
 		TemplateSignaturePreferencePage.initDefaults(store);

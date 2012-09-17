@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.InformationItem;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
@@ -147,6 +148,18 @@ public class ElementInitializers {
 	public void init_Package_2007(Package instance) {
 		try {
 			Object value_0 = name_Package_2007(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InformationItem_2099(InformationItem instance) {
+		try {
+			Object value_0 = name_InformationItem_2099(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -520,6 +533,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_InformationItem_3040(InformationItem instance) {
+		try {
+			Object value_0 = name_InformationItem_3040(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Class_3010(Class instance) {
 		try {
 			Object value_0 = name_Class_3010(instance);
@@ -794,6 +819,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_InformationItem_2099(InformationItem self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Class_2008(Class self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -1000,6 +1032,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Package_3009(Package self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InformationItem_3040(InformationItem self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

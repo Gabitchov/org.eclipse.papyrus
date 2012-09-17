@@ -397,6 +397,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -445,6 +448,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -485,6 +491,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -535,6 +544,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -575,6 +587,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -625,6 +640,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -665,6 +683,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -715,6 +736,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -755,6 +779,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -805,6 +832,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -847,6 +877,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.ElementImport_4009);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
@@ -884,6 +917,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
+			types.add(UMLElementTypes.ElementImport_4009);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -946,6 +982,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -971,6 +1010,9 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -1001,6 +1043,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1017,6 +1060,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1032,6 +1076,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1048,6 +1093,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1063,6 +1109,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1079,6 +1126,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1094,6 +1142,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1110,6 +1159,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1125,6 +1175,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1141,6 +1192,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1156,6 +1208,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1169,6 +1222,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1192,6 +1246,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1201,6 +1256,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1245,6 +1301,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1261,6 +1318,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1276,6 +1334,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1292,6 +1351,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1307,6 +1367,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1323,6 +1384,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1338,6 +1400,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1354,6 +1417,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1369,6 +1433,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1385,6 +1450,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1398,6 +1464,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1407,6 +1474,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1419,6 +1487,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1428,6 +1497,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1451,6 +1521,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1460,6 +1531,7 @@ public class PackageEditPartCN extends NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);

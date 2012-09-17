@@ -77,6 +77,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportAliasEditPa
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPart;
@@ -282,6 +284,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			packageName_5026Parser = parser;
 		}
 		return packageName_5026Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser informationItemName_5161Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInformationItemName_5161Parser() {
+		if(informationItemName_5161Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			informationItemName_5161Parser = parser;
+		}
+		return informationItemName_5161Parser;
 	}
 
 	/**
@@ -908,6 +927,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			packageName_5017Parser = parser;
 		}
 		return packageName_5017Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser informationItemName_5162Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInformationItemName_5162Parser() {
+		if(informationItemName_5162Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			informationItemName_5162Parser = parser;
+		}
+		return informationItemName_5162Parser;
 	}
 
 	/**
@@ -1618,6 +1654,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getEnumerationName_5023Parser();
 		case PackageNameEditPart.VISUAL_ID:
 			return getPackageName_5026Parser();
+		case InformationItemNameEditPart.VISUAL_ID:
+			return getInformationItemName_5161Parser();
 		case ClassNameEditPart.VISUAL_ID:
 			return getClassName_5029Parser();
 		case PrimitiveTypeNameEditPart.VISUAL_ID:
@@ -1694,6 +1732,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getEnumerationName_5055Parser();
 		case PackageNameEditPartCN.VISUAL_ID:
 			return getPackageName_5017Parser();
+		case InformationItemNameEditPartCN.VISUAL_ID:
+			return getInformationItemName_5162Parser();
 		case ClassNameEditPartCN.VISUAL_ID:
 			return getClassName_5014Parser();
 		case PrimitiveTypeNameEditPartCN.VISUAL_ID:

@@ -385,32 +385,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createPrimitiveType12CreationTool_title;
+	public static String createInformationItem12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPrimitiveType12CreationTool_desc;
+	public static String createInformationItem12CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createModel13CreationTool_title;
+	public static String createPrimitiveType13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createModel13CreationTool_desc;
+	public static String createPrimitiveType13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createOperation14CreationTool_title;
+	public static String createModel14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createOperation14CreationTool_desc;
+	public static String createModel14CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperation15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperation15CreationTool_desc;
 
 	/**
 	 * @generated
@@ -425,72 +435,72 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createPackage16CreationTool_title;
+	public static String createPackage17CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackage16CreationTool_desc;
+	public static String createPackage17CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty17CreationTool_title;
+	public static String createProperty18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty17CreationTool_desc;
+	public static String createProperty18CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createReception18CreationTool_title;
+	public static String createReception19CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createReception18CreationTool_desc;
+	public static String createReception19CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRedefinableTemplateSignature19CreationTool_title;
+	public static String createRedefinableTemplateSignature20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRedefinableTemplateSignature19CreationTool_desc;
+	public static String createRedefinableTemplateSignature20CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSignal20CreationTool_title;
+	public static String createSignal21CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSignal20CreationTool_desc;
+	public static String createSignal21CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSlot21CreationTool_title;
+	public static String createSlot22CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSlot21CreationTool_desc;
+	public static String createSlot22CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createTemplateParameter22CreationTool_title;
+	public static String createTemplateParameter23CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createTemplateParameter22CreationTool_desc;
+	public static String createTemplateParameter23CreationTool_desc;
 
 	/**
 	 * @generated
@@ -515,12 +525,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createConnectableElementTemplateParameter25CreationTool_title;
+	public static String createConnectableElementTemplateParameter26CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConnectableElementTemplateParameter25CreationTool_desc;
+	public static String createConnectableElementTemplateParameter26CreationTool_desc;
 
 	/**
 	 * @generated

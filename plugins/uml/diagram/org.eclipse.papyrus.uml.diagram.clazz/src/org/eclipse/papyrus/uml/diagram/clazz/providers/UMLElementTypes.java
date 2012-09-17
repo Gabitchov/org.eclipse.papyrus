@@ -64,6 +64,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationSetEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
@@ -195,6 +197,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Package_2007 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Package_2007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InformationItem_2099 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.InformationItem_2099"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -395,6 +402,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Package_3009 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Package_3009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InformationItem_3040 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.InformationItem_3040"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -677,6 +689,7 @@ public class UMLElementTypes {
 			elements.put(Model_2005, UMLPackage.eINSTANCE.getModel());
 			elements.put(Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration());
 			elements.put(Package_2007, UMLPackage.eINSTANCE.getPackage());
+			elements.put(InformationItem_2099, UMLPackage.eINSTANCE.getInformationItem());
 			elements.put(Class_2008, UMLPackage.eINSTANCE.getClass_());
 			elements.put(PrimitiveType_2009, UMLPackage.eINSTANCE.getPrimitiveType());
 			elements.put(DataType_2010, UMLPackage.eINSTANCE.getDataType());
@@ -716,6 +729,7 @@ public class UMLElementTypes {
 			elements.put(Model_3024, UMLPackage.eINSTANCE.getModel());
 			elements.put(Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration());
 			elements.put(Package_3009, UMLPackage.eINSTANCE.getPackage());
+			elements.put(InformationItem_3040, UMLPackage.eINSTANCE.getInformationItem());
 			elements.put(Class_3010, UMLPackage.eINSTANCE.getClass_());
 			elements.put(PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType());
 			elements.put(DataType_3027, UMLPackage.eINSTANCE.getDataType());
@@ -774,6 +788,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Model_2005);
 			KNOWN_ELEMENT_TYPES.add(Enumeration_2006);
 			KNOWN_ELEMENT_TYPES.add(Package_2007);
+			KNOWN_ELEMENT_TYPES.add(InformationItem_2099);
 			KNOWN_ELEMENT_TYPES.add(Class_2008);
 			KNOWN_ELEMENT_TYPES.add(PrimitiveType_2009);
 			KNOWN_ELEMENT_TYPES.add(DataType_2010);
@@ -814,6 +829,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Model_3024);
 			KNOWN_ELEMENT_TYPES.add(Enumeration_3025);
 			KNOWN_ELEMENT_TYPES.add(Package_3009);
+			KNOWN_ELEMENT_TYPES.add(InformationItem_3040);
 			KNOWN_ELEMENT_TYPES.add(Class_3010);
 			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3026);
 			KNOWN_ELEMENT_TYPES.add(DataType_3027);
@@ -878,6 +894,8 @@ public class UMLElementTypes {
 			return Enumeration_2006;
 		case PackageEditPart.VISUAL_ID:
 			return Package_2007;
+		case InformationItemEditPart.VISUAL_ID:
+			return InformationItem_2099;
 		case ClassEditPart.VISUAL_ID:
 			return Class_2008;
 		case PrimitiveTypeEditPart.VISUAL_ID:
@@ -958,6 +976,8 @@ public class UMLElementTypes {
 			return Enumeration_3025;
 		case PackageEditPartCN.VISUAL_ID:
 			return Package_3009;
+		case InformationItemEditPartCN.VISUAL_ID:
+			return InformationItem_3040;
 		case ClassEditPartCN.VISUAL_ID:
 			return Class_3010;
 		case PrimitiveTypeEditPartCN.VISUAL_ID:

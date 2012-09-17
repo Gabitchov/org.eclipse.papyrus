@@ -414,6 +414,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.AssociationClass_4017);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
@@ -433,6 +436,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
 		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.AssociationClass_4017);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.AssociationClass_4017);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -462,6 +468,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Association_4001);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Association_4001);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Association_4001);
 		}
@@ -481,6 +490,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Association_4001);
 		}
 		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.Association_4001);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Association_4001);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -510,6 +522,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Association_4019);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Association_4019);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Association_4019);
 		}
@@ -529,6 +544,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Association_4019);
 		}
 		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.Association_4019);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Association_4019);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -558,6 +576,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Generalization_4002);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Generalization_4002);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Generalization_4002);
 		}
@@ -577,6 +598,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Generalization_4002);
 		}
 		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.Generalization_4002);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Generalization_4002);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -612,6 +636,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Substitution_4004);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Substitution_4004);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Substitution_4004);
 		}
@@ -631,6 +658,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Substitution_4004);
 		}
 		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4004);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4004);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -670,6 +700,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -720,6 +753,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -760,6 +796,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -810,6 +849,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -850,6 +892,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -900,6 +945,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -940,6 +988,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -990,6 +1041,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -1030,6 +1084,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof ClassEditPart) {
@@ -1080,6 +1137,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -1122,6 +1182,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.ElementImport_4009);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
@@ -1159,6 +1222,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.ElementImport_4009);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -1209,6 +1275,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -1234,6 +1303,9 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -1260,6 +1332,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1267,6 +1340,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1277,6 +1351,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1284,6 +1359,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1294,6 +1370,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1301,6 +1378,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1311,6 +1389,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1318,6 +1397,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1331,6 +1411,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1338,6 +1419,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1352,6 +1434,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1368,6 +1451,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1383,6 +1467,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1399,6 +1484,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1414,6 +1500,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1430,6 +1517,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1445,6 +1533,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1461,6 +1550,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1476,6 +1566,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1492,6 +1583,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1507,6 +1599,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1520,6 +1613,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1538,6 +1632,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1547,6 +1642,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1590,6 +1686,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1597,6 +1694,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1607,6 +1705,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1614,6 +1713,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1624,6 +1724,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1631,6 +1732,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1641,6 +1743,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1648,6 +1751,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1658,6 +1762,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1665,6 +1770,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1679,6 +1785,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1695,6 +1802,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1710,6 +1818,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1726,6 +1835,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1741,6 +1851,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1757,6 +1868,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1772,6 +1884,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1788,6 +1901,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1803,6 +1917,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1819,6 +1934,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1832,6 +1948,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1841,6 +1958,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1859,6 +1977,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1868,6 +1987,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);

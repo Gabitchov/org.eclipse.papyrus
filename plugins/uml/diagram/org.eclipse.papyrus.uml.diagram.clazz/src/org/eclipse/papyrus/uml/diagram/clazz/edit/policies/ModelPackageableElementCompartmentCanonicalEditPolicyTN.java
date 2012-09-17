@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN;
@@ -124,6 +125,7 @@ public class ModelPackageableElementCompartmentCanonicalEditPolicyTN extends Can
 		case DataTypeEditPartCN.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:
 		case ConstraintEditPartCN.VISUAL_ID:
+		case InformationItemEditPartCN.VISUAL_ID:
 			return true;
 		}
 		return false;
