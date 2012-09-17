@@ -604,8 +604,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createReception18CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Reception_3011);
+		types.add(UMLElementTypes.Reception_3039);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

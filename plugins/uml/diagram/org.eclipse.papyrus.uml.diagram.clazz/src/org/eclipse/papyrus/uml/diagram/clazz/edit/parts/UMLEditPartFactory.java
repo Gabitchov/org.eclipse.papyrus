@@ -12,15 +12,12 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
-import org.eclipse.draw2d.FigureUtilities;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.jface.viewers.CellEditor;
@@ -163,6 +160,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new EnumerationLiteralEditPart(view);
 			case ReceptionEditPart.VISUAL_ID:
 				return new ReceptionEditPart(view);
+			case ReceptionInInterfaceEditPart.VISUAL_ID:
+				return new ReceptionInInterfaceEditPart(view);
 			case SlotEditPart.VISUAL_ID:
 				return new SlotEditPart(view);
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:

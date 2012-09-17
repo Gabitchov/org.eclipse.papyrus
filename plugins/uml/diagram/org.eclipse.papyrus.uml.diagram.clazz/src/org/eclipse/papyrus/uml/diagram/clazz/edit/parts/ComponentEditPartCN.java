@@ -1892,6 +1892,9 @@ public class ComponentEditPartCN extends ClassifierEditPart {
 			if(type == UMLElementTypes.Operation_3003) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentOperationCompartmentEditPartCN.VISUAL_ID));
 			}
+			if(type == UMLElementTypes.Reception_3011) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentOperationCompartmentEditPartCN.VISUAL_ID));
+			}
 			if(type == UMLElementTypes.Class_3004) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}

@@ -412,6 +412,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Reception_3039(Reception instance) {
+		try {
+			Object value_0 = name_Reception_3039(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_RedefinableTemplateSignature_3015(RedefinableTemplateSignature instance) {
 		try {
 			Object value_0 = name_RedefinableTemplateSignature_3015(instance);
@@ -925,6 +937,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Reception_3011(Reception self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Reception_3039(Reception self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
