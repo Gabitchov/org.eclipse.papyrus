@@ -118,4 +118,12 @@ public class TestClassDiagramTopNode extends TestTopNode {
 		testToManageTopNode(UMLElementTypes.Comment_2012, UMLElementTypes.Package_2007);
 	}
 	
+	/**
+	 * Test to manage component.
+	 */
+	@Test
+	public void testToManageInformationItem() {
+		testToManageTopNode(UMLElementTypes.InformationItem_2099, UMLElementTypes.Package_2007);
+	}
+	
 }

@@ -90,6 +90,14 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	}
 	
 	/**
+	 * Test to manage InforamtionItem.
+	 */
+	@Test
+	public void testToManageInformationItem() {
+		testToManageChildNode(UMLElementTypes.InformationItem_3040, UMLElementTypes.Package_3009, true);
+	}
+	
+	/**
 	 * Test to manage primitive type.
 	 */
 	@Test
