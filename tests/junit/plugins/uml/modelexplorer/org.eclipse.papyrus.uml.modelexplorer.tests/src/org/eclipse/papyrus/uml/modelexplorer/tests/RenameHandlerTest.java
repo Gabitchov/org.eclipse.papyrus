@@ -16,10 +16,10 @@ package org.eclipse.papyrus.uml.modelexplorer.tests;
 import java.util.List;
 
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.papyrus.views.modelexplorer.tests.AbstractHandlerTest;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Model;
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -43,12 +43,12 @@ public class RenameHandlerTest extends AbstractHandlerTest {
 	@Test
 	public void renameUMLUnnamedElementTest() {
 		List<Comment> comments = ((Model)getRootOfTheModel()).getOwnedComments();
-		Assert.isTrue(comments.size() != 0);
+		Assert.assertTrue(comments.size() != 0);
 		for(int i = 0; i < ((Model)getRootOfTheModel()).getOwnedComments().size(); i++) {
 			selectElementInTheModelexplorer(((Model)getRootOfTheModel()).getOwnedComments().get(i));
 			IHandler handler = getActiveHandler();
 			if(handler != null) {
-				Assert.isTrue(handler.isEnabled() == false, "Rename handler is not disabled on UnnamedElement");
+				Assert.assertTrue("Rename handler is not disabled on UnnamedElement", handler.isEnabled() == false);
 			}
 		}
 	}
@@ -57,6 +57,6 @@ public class RenameHandlerTest extends AbstractHandlerTest {
 	public void renameUMLNamedElementTest() {
 		selectElementInTheModelexplorer(getRootOfTheModel());
 		IHandler handler = getActiveHandler();
-		Assert.isTrue(handler.isEnabled());
+		Assert.assertTrue(handler.isEnabled());
 	}
 }
