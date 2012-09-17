@@ -229,7 +229,7 @@
     <!-- MoDisco -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/SR1_RC2">
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/SR1_RC3">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -313,7 +313,7 @@
     <!-- GMF Tooling -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Tooling",0) -->
-      <rm:uri format="{0}/modeling/gmp/gmf-tooling/updates/milestones">
+      <rm:uri format="{0}/modeling/gmp/gmf-tooling/updates/milestones-3.0.1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -337,14 +337,14 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.2-M-builds/M20120905-2300/">
+		<rm:uri format="{0}/eclipse/updates/4.2-M-builds/M20120914-1800/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
 	
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.2-M-builds/M20120905-2300/">
+		<rm:uri format="{0}/eclipse/updates/4.2-M-builds/M20120914-1800/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
