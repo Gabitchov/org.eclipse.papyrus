@@ -23,7 +23,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -54,6 +53,7 @@ import org.eclipse.ui.intro.IIntroPart;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.part.IPage;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.osgi.framework.Bundle;
 
@@ -106,7 +106,7 @@ public abstract class AbstractHandlerTest {
 	 *        the bundle used to load the model
 	 */
 	public AbstractHandlerTest(final Bundle bundle) {
-		Assert.isNotNull(bundle, "Bundle can't be null to do the test.");
+		Assert.assertNotNull("Bundle can't be null to do the test.", bundle);
 		this.bundle = bundle;
 		this.commandId = null;
 	}
@@ -119,7 +119,7 @@ public abstract class AbstractHandlerTest {
 	 *        the id of the command to test
 	 */
 	public AbstractHandlerTest(final String commandId, final Bundle bundle) {
-		Assert.isNotNull(bundle, "Bundle can't be null to do the test.");
+		Assert.assertNotNull("Bundle can't be null to do the test.", bundle);
 		this.commandId = commandId;
 		this.bundle = bundle;
 	}
@@ -147,7 +147,7 @@ public abstract class AbstractHandlerTest {
 	protected void testIsModelExplorerActivePart() {
 		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		final IWorkbenchPart activePart = activePage.getActivePart();
-		Assert.isTrue(activePart instanceof ModelExplorerPageBookView, "The active part is not the ModelExplorer"); //$NON-NLS-1$
+		Assert.assertTrue("The active part is not the ModelExplorer", activePart instanceof ModelExplorerPageBookView); //$NON-NLS-1$
 	}
 
 	/**
@@ -162,12 +162,12 @@ public abstract class AbstractHandlerTest {
 		selectedElement.add(elementToSelect);
 		this.modelExplorerView.revealSemanticElement(selectedElement);
 		final IStructuredSelection currentSelection = (IStructuredSelection)this.selectionService.getSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
+		Assert.assertTrue("Only one element should be selected", currentSelection.size() == 1); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		if(obj instanceof IAdaptable) {
 			obj = ((IAdaptable)obj).getAdapter(EObject.class);
 		}
-		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
+		Assert.assertTrue("the current selected element is not the wanted element", obj == elementToSelect); //$NON-NLS-1$
 	}
 
 	/**
@@ -180,9 +180,9 @@ public abstract class AbstractHandlerTest {
 	protected void selectElementInTheModelexplorer(final ITreeElement elementToSelect) {
 		this.commonViewer.setSelection(new StructuredSelection(elementToSelect));
 		final IStructuredSelection currentSelection = (IStructuredSelection)this.selectionService.getSelection();
-		Assert.isTrue(currentSelection.size() == 1, "Only one element should be selected"); //$NON-NLS-1$
+		Assert.assertTrue("Only one element should be selected", currentSelection.size() == 1); //$NON-NLS-1$
 		final Object obj = currentSelection.getFirstElement();
-		Assert.isTrue(obj == elementToSelect, "the current selected element is not the wanted element"); //$NON-NLS-1$
+		Assert.assertTrue("the current selected element is not the wanted element", obj == elementToSelect); //$NON-NLS-1$
 	}
 
 	protected IStructuredSelection getCurrentSelection() {
@@ -295,9 +295,9 @@ public abstract class AbstractHandlerTest {
 	}
 
 	public void undoRedoTest() {
-		Assert.isTrue(getCommandStack().canUndo(), "I can't undo the command!");
+		Assert.assertTrue("I can't undo the command!", getCommandStack().canUndo());
 		getCommandStack().undo();
-		Assert.isTrue(getCommandStack().canRedo(), "I can't Redo the command!");
+		Assert.assertTrue("I can't Redo the command!", getCommandStack().canRedo());
 		getCommandStack().redo();
 	}
 
