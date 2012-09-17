@@ -493,6 +493,14 @@
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
+    
+    <!-- GMF Tooling -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+      <!-- updateFrom("GMF Tooling",0) -->
+      <rm:uri format="{0}/modeling/gmp/gmf-tooling/updates/milestones">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
 
     <!-- Subversive -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
