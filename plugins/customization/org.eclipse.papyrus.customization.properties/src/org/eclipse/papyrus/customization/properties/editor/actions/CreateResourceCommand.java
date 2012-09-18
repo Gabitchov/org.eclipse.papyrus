@@ -35,6 +35,8 @@ public class CreateResourceCommand extends AbstractCommand implements CommandAct
 
 	private ResourceSet resourceSet;
 
+	private boolean fileAlreadyExists = true;
+
 	private Resource resource;
 
 	/**
@@ -56,7 +58,14 @@ public class CreateResourceCommand extends AbstractCommand implements CommandAct
 	}
 
 	public void execute() {
-		resource = resourceSet.createResource(uri);
+		resource = resourceSet.getResource(uri, false);
+		if(resource == null) {
+			Activator.log.debug("+++ Creating " + uri);
+			fileAlreadyExists = false;
+			resource = resourceSet.createResource(uri);
+		} else {
+			Activator.log.debug("+++ " + resource.getURI() + " already exists");
+		}
 		resource.getContents().add(object);
 	}
 
@@ -66,10 +75,17 @@ public class CreateResourceCommand extends AbstractCommand implements CommandAct
 
 	@Override
 	public void undo() {
-		try {
-			resource.delete(Collections.EMPTY_MAP);
-		} catch (IOException ex) {
-			Activator.log.error(ex);
+		//Do not unload the resource if it was created before this command was executed
+		if(!fileAlreadyExists) {
+			Activator.log.debug("--- Deleting " + resource.getURI());
+			try {
+				resourceSet.getResources().remove(resource);
+				resource.delete(Collections.emptyMap());
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
+		} else {
+			Activator.log.debug("--- " + resource.getURI() + " will not be deleted");
 		}
 	}
 

@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.editor.actions;
 
-import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.StrictCompoundCommand;
 import org.eclipse.emf.edit.command.CommandActionDelegate;
 import org.eclipse.swt.graphics.Image;
 
@@ -22,11 +22,12 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Camille Letavernier
  */
-public class CompoundCommandActionDelegate extends CompoundCommand implements CommandActionDelegate {
+public class StrictCompoundCommandActionDelegate extends StrictCompoundCommand implements CommandActionDelegate {
 
 	private Image image;
 
-	public CompoundCommandActionDelegate() {
+	public StrictCompoundCommandActionDelegate() {
+		super.isPessimistic = true;
 	}
 
 	/**
