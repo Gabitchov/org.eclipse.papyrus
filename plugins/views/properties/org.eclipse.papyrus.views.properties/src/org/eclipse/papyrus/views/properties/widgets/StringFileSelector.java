@@ -82,6 +82,10 @@ public class StringFileSelector extends AbstractPropertyEditor {
 		checkFilters();
 	}
 
+	public String[] getFilterExtensions() {
+		return this.filterExtensions;
+	}
+
 	/**
 	 * 
 	 * @param filterNames
@@ -91,12 +95,15 @@ public class StringFileSelector extends AbstractPropertyEditor {
 		checkFilters();
 	}
 
+	public String[] getFilterNames() {
+		return this.filterNames;
+	}
+
 	/**
 	 * Checks if the filters are valid
 	 */
 	protected void checkFilters() {
 		if(filterExtensions != null && filterNames != null) {
-			//TODO
 			selector.setFilters(filterExtensions, filterNames);
 		}
 	}
