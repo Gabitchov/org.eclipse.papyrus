@@ -29,14 +29,20 @@ public class AllTests {
 	static {
 		suiteClasses = new ArrayList<ITestSuiteClass>();
 
-		/*Bundle tests*/
+		/* Bundle tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.bundles.tests.AllTests.class));
-		
-		/* UML Compare tests*/
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.tests.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.file.tests.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
-		
+
+		/* UML Compare tests */
+		/**
+		 * UML Compare tests have been temporarily disabled. See:
+		 * 
+		 * 389811: [Papyrus Compare] The Papyrus Compare feature is not compatible with Kepler
+		 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=389811
+		 */
+		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.tests.AllTests.class));
+		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.file.tests.AllTests.class));
+		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
+
 		/* **************** plugins *********************** */
 		/* css */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.css.tests.tests.AllTests.class));
