@@ -5,6 +5,10 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
@@ -48,30 +52,52 @@ public abstract class AbstractChangeProjectVersionHandler extends AbstractHandle
 
 		final InputDialogWithCheckBox dialog = new InputDialogWithCheckBox(Display.getCurrent().getActiveShell(), TITLE, MESSAGE, INITIAL_VALUE, CHECKBOX_MESSAGE, true, validator);
 		if(dialog.open() == Window.OK) {
-			String notManagedProjectNames = "";
-			final String newVersion = dialog.getValue();
-			final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-			for(final IProject current : projects) {
-				final String name = current.getName();
-				if(dialog.isChecked()) {
-					if(name.startsWith(PAPYRUS_NAME)) {//we test the project name
-						setVersionNumber(current, newVersion, notManagedProjectNames);
-					} else {
-						notManagedProjectNames += NLS.bind("- {0} \n", current.getName());
-					}
-				} else {
-					setVersionNumber(current, newVersion, notManagedProjectNames);
+			Job job = new Job("Update version numbers") {
+
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+					IStatus result = runAsJob(dialog.getValue(), dialog.isChecked(), monitor);
+					return result;
 				}
-			}
-			if(notManagedProjectNames.equals("")) {
-				final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-				informationDialog.open();
-			} else {
-				final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-				informationDialog.open();
-			}
+
+			};
+			job.setUser(true);
+
+			job.schedule();
 		}
 		return null;
+	}
+
+	protected IStatus runAsJob(final String newVersion, final boolean papyrusProjectsOnly, IProgressMonitor monitor) {
+		String notManagedProjectNames = "";
+		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+
+		monitor.beginTask("Update version numbers", projects.length);
+
+		for(final IProject current : projects) {
+			final String name = current.getName();
+			if(papyrusProjectsOnly) {
+				if(name.startsWith(PAPYRUS_NAME)) {//we test the project name
+					setVersionNumber(current, newVersion, notManagedProjectNames);
+				} else {
+					notManagedProjectNames += NLS.bind("- {0} \n", current.getName());
+				}
+			} else {
+				setVersionNumber(current, newVersion, notManagedProjectNames);
+			}
+
+			monitor.worked(1);
+		}
+
+		if(notManagedProjectNames.equals("")) {
+			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+			informationDialog.open();
+		} else {
+			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+			informationDialog.open();
+		}
+
+		return Status.OK_STATUS;
 	}
 
 	/**

@@ -8,6 +8,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
@@ -50,29 +54,50 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 		final TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), TITLE, "Enter the new version for the Papyrus dependencies", "pattern plugin name", INITIAL_VALUE, PAPYRUS_NAME, validator);
 
 		if(dialog.open() == Window.OK) {
-			String notManagedProjectNames = "";
 			final String newVersion = dialog.getValue();
 			final String pattern = dialog.getValue_2();
 
-			final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-			for(final IProject current : projects) {
-				final String name = current.getName();
+			Job job = new Job("Update dependency versions") {
 
-				if(name.startsWith(PAPYRUS_NAME)) {//TODO : add the possibility to manage other plugins
-					setVersionNumber(current, pattern, newVersion, notManagedProjectNames);
-				} else {
-					notManagedProjectNames += NLS.bind("- {0} \n", current.getName());
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+					return runAsJob(newVersion, pattern, monitor);
 				}
-			}
-			if(notManagedProjectNames.equals("")) {
-				final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-				informationDialog.open();
-			} else {
-				final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-				informationDialog.open();
-			}
+
+			};
+			job.setUser(true);
+			job.schedule();
 		}
 		return null;
+	}
+
+	protected IStatus runAsJob(final String newVersion, final String pattern, IProgressMonitor monitor) {
+		String notManagedProjectNames = "";
+
+		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+
+		monitor.beginTask("Update dependency versions", projects.length);
+
+		for(final IProject current : projects) {
+			final String name = current.getName();
+
+			if(name.startsWith(PAPYRUS_NAME)) {//TODO : add the possibility to manage other plugins
+				setVersionNumber(current, pattern, newVersion, notManagedProjectNames);
+			} else {
+				notManagedProjectNames += NLS.bind("- {0} \n", current.getName());
+			}
+
+			monitor.worked(1);
+		}
+		if(notManagedProjectNames.equals("")) {
+			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+			informationDialog.open();
+		} else {
+			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
+			informationDialog.open();
+		}
+
+		return Status.OK_STATUS;
 	}
 
 	/**
