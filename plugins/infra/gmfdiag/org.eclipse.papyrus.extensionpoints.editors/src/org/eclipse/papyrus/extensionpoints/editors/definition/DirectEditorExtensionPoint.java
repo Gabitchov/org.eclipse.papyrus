@@ -31,7 +31,7 @@ public class DirectEditorExtensionPoint {
 
 	/** Array that stores registered transformations */
 	private static DirectEditorExtensionPoint[] configurations;
-	
+
 	private static DirectEditorRegistry directEditorProvider;
 
 	/** value of the language attribute */
@@ -45,7 +45,7 @@ public class DirectEditorExtensionPoint {
 
 	private Class objectClassToEdit;
 
-	/**the current priority of the direct editor, can be null**/
+	/** the current priority of the direct editor, can be null **/
 	private Integer priority;
 
 
@@ -80,18 +80,17 @@ public class DirectEditorExtensionPoint {
 		} // end of configElements loop
 
 		configurations = directEditorExtensionPoints.toArray(new DirectEditorExtensionPoint[directEditorExtensionPoints.size()]);
-		directEditorProvider= new DirectEditorRegistry();
+		directEditorProvider = new DirectEditorRegistry();
 		directEditorProvider.init(configurations);
 
 		return configurations;
 	}
-	
-	public static DirectEditorRegistry getDirectEditorProvider(){
-		if(directEditorProvider!=null){
+
+	public static DirectEditorRegistry getDirectEditorProvider() {
+		if(directEditorProvider != null) {
 			return directEditorProvider;
-		}
-		else{
-			directEditorProvider= new DirectEditorRegistry();
+		} else {
+			directEditorProvider = new DirectEditorRegistry();
 			directEditorProvider.init(getDirectEditorConfigurations());
 			return directEditorProvider;
 		}
@@ -189,13 +188,13 @@ public class DirectEditorExtensionPoint {
 		directEditorConfiguration = getDirectEditorConfigurationClass(configElt);
 		//the constraint maybe null!
 
-		priority= getPriority(configElt);
+		priority = getPriority(configElt);
 		if(directEditorConfiguration == null) {
 			directEditorConfiguration = getAdvancedDirectEditorConfigurationClass(configElt);
 		}
 		// Block added for the case of popup editors		
 		if(directEditorConfiguration == null) {
-			directEditorConfiguration = getPopupDirectEditorConfigurationClass(configElt) ;
+			directEditorConfiguration = getPopupDirectEditorConfigurationClass(configElt);
 		}
 		directEditorConfiguration.setLanguage(language);
 
@@ -214,7 +213,7 @@ public class DirectEditorExtensionPoint {
 		IDirectEditorConfiguration configuration = null;
 		try {
 			if(configElement.getChildren(IDirectEditorConfigurationIds.TAG_SIMPLE_EDITOR).length > 0) {
-				Object config = configElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
+				Object config = configElement.getChildren(IDirectEditorConfigurationIds.TAG_SIMPLE_EDITOR)[0].createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
 				if(config instanceof IDirectEditorConfiguration) {
 					configuration = (IDirectEditorConfiguration)config;
 				}
@@ -230,14 +229,17 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Try to load a javaQuery defined in the extension point
-	 *
-	 * @param configElement the config element see {@link IConfigurationElement}
+	 * 
+	 * @param configElement
+	 *        the config element see {@link IConfigurationElement}
 	 * @return the java query class see {@link JavaQuery}, can return null because this attribute is optional
 	 */
 	protected static JavaQuery getJavaQueryClass(IConfigurationElement configElement) {
 		JavaQuery javaQuery = null;
 		try {
-			if(configElement.getAttribute(IDirectEditorConfigurationIds.ATT_CONSTRAINT)==null){return null;}
+			if(configElement.getAttribute(IDirectEditorConfigurationIds.ATT_CONSTRAINT) == null) {
+				return null;
+			}
 			Object config = configElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_CONSTRAINT);
 			if(config instanceof JavaQuery) {
 				javaQuery = (JavaQuery)config;
@@ -253,18 +255,23 @@ public class DirectEditorExtensionPoint {
 		IAdvancedEditorConfiguration configuration = null;
 		try {
 			for(IConfigurationElement childConfigElement : configElement.getChildren(IDirectEditorConfigurationIds.ATT_PRIORITY)) {
-				
+
 				String config = getAttribute(childConfigElement, IDirectEditorConfigurationIds.ATT_PRIORITY_NAME, null, true);
-				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_HIGHEST)){
-				 return new Integer(0);}
-				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_HIGH)){
-					 return new Integer(1);}
-				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_MEDIUM)){
-					 return new Integer(2);}
-				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_LOW)){
-					 return new Integer(3);}
-				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_LOWEST)){
-					 return new Integer(4);}
+				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_HIGHEST)) {
+					return new Integer(0);
+				}
+				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_HIGH)) {
+					return new Integer(1);
+				}
+				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_MEDIUM)) {
+					return new Integer(2);
+				}
+				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_LOW)) {
+					return new Integer(3);
+				}
+				if(config.equals(IDirectEditorConfigurationIds.PRIORITY_LOWEST)) {
+					return new Integer(4);
+				}
 				System.out.println(config);
 			}
 
@@ -274,7 +281,7 @@ public class DirectEditorExtensionPoint {
 		}
 		return new Integer(5);
 	}
-	
+
 
 	protected static IAdvancedEditorConfiguration getAdvancedDirectEditorConfigurationClass(IConfigurationElement configElement) {
 		IAdvancedEditorConfiguration configuration = null;
@@ -318,6 +325,7 @@ public class DirectEditorExtensionPoint {
 		}
 		return configuration;
 	}
+
 	/////////////////////////////////////
 
 	/**
@@ -443,7 +451,7 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Gets the priority.
-	 *
+	 * 
 	 * @return the priority
 	 */
 	public Integer getPriority() {
@@ -453,13 +461,13 @@ public class DirectEditorExtensionPoint {
 
 	/**
 	 * Sets the priority.
-	 *
-	 * @param priority the new priority
+	 * 
+	 * @param priority
+	 *        the new priority
 	 */
 	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
-
 
 
 
