@@ -41,7 +41,6 @@ public class JavaDirectEditorConfiguration extends DefaultDirectEditorConfigurat
 	 *
 	 */
 	public JavaDirectEditorConfiguration() {
-		System.out.println("test");
 	}
 
 	@Override

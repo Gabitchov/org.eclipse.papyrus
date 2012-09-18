@@ -22,58 +22,48 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 
 public class NoSemanticParserEditPolicy extends AbstractEditPolicy implements IMaskManagedLabelEditPolicy {
 
-	@Override
 	public String getMaskLabel(int value) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Collection<String> getMaskLabels() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Collection<Integer> getMaskValues() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Map<Integer, String> getMasks() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public int getCurrentDisplayValue() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public int getDefaultDisplayValue() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public void refreshDisplay() {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void updateDisplayValue(int newValue) {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void setDefaultDisplayValue() {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public String getPreferencePageID() {
 		// TODO Auto-generated method stub
 		return null;
