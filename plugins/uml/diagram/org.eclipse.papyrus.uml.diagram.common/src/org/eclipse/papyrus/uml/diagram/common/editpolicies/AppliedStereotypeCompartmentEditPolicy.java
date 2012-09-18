@@ -59,16 +59,19 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 		// if stereotype has been applied, compartment has to be created
 		final GraphicalEditPart editPart = (GraphicalEditPart)getHost();
-		Element UMLEelement = (Element)editPart.resolveSemanticElement();
-		Iterator<EObject> iterator = UMLEelement.getStereotypeApplications().iterator();
-		while(iterator.hasNext()) {
-			final EObject appliedstereotype = (EObject)iterator.next();
-			createAppliedStereotypeCompartment(appliedstereotype);
+		Element umlElement = (Element)editPart.resolveSemanticElement();
+		//umlElement may be null if the semantic element has been deleted and the view hasn't been cleaned
+		if(umlElement != null) {
+			Iterator<EObject> iterator = umlElement.getStereotypeApplications().iterator();
+			while(iterator.hasNext()) {
+				final EObject appliedstereotype = iterator.next();
+				createAppliedStereotypeCompartment(appliedstereotype);
+			}
 		}
 	}
 
 
-	protected boolean hasToDisplayCompartment(EObject applicationOfStereotype){
+	protected boolean hasToDisplayCompartment(EObject applicationOfStereotype) {
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
 
 		HashSet<org.eclipse.uml2.uml.Stereotype> stereoSet = new HashSet<org.eclipse.uml2.uml.Stereotype>();
@@ -83,7 +86,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			String stereotypeQN = propertyQN.substring(0, propertyQN.indexOf("."));
 
 			Stereotype stereotype = hostSemanticElement.getAppliedStereotype(stereotypeQN);
-		
+
 			if(stereotype != null) {
 				stereoSet.add(stereotype);
 			}
@@ -96,13 +99,14 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		while(stereoIter.hasNext()) {
 			Stereotype stereotype = stereoIter.next();
 			if(stereotype != null) {
-				if(applicationOfStereotype.equals(hostSemanticElement.getStereotypeApplication(stereotype))){
+				if(applicationOfStereotype.equals(hostSemanticElement.getStereotypeApplication(stereotype))) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
+
 	/**
 	 * the goal of this method is to execute the a command to create a notation node for a compartment of stereotype
 	 * 
@@ -134,6 +138,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	 * 
 	 * {@inheritedDoc}
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
 		// change the label of the figure managed by the host edit part (managed
 		// by the parent edit
@@ -296,8 +301,9 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	/**
 	 * Refreshes the stereotype display
 	 */
+	@Override
 	protected void refreshAppliedStereotypesPropertiesInCompartment(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
-		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)(View)getHost().getModel(), UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
+		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay((View)getHost().getModel(), UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
 		// if the string is not empty, then, the figure has to display it. Else,
 		// it displays nothing
 		final GraphicalEditPart editPart = (GraphicalEditPart)getHost();
