@@ -1,14 +1,15 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.bundles.tests
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.bundles.tests.Activator
-Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit,
  org.eclipse.pde.runtime
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.bundles.tests
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.bundles.tests.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.bundles.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

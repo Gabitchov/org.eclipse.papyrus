@@ -1,43 +1,32 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.sysml;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.sysml;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.0",
  org.eclipse.emf.common.ui;bundle-version="2.5.0",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.diagram.composite;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.composite;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.3.0",
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.10.0",
  org.eclipse.core.expressions,
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.9.0",
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.9.0",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.10.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.diagram.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.10.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.1"
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.sysml.diagram.internalblock.Acti
- vator
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.internalblock;s
- ingleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0"
 Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
  org.eclipse.papyrus.sysml.diagram.internalblock.compatibility,
  org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper,
@@ -52,4 +41,15 @@ Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
  org.eclipse.papyrus.sysml.diagram.internalblock.provider,
  org.eclipse.papyrus.sysml.diagram.internalblock.ui,
  org.eclipse.papyrus.sysml.diagram.internalblock.utils
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.sysml.diagram.internalblock.Acti
+ vator
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.internalblock;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

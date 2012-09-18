@@ -7,11 +7,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.common.xtext.ui,
  org.eclipse.papyrus.uml.textedit.common.xtext.ui.labeling,
  org.eclipse.papyrus.uml.textedit.common.xtext.ui.outline,
  org.eclipse.papyrus.uml.textedit.common.xtext.ui.quickfix
-Bundle-ActivationPolicy: lazy
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.9.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -19,11 +15,18 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.
  org.eclipse.ui,
  org.eclipse.xtext.builder,
  org.antlr.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.uml2.uml
 Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.int
+ ernal.UmlCommonActivator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;
+ singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

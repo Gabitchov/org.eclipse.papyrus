@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.generator,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl,
  org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.util,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.generator,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.formatting
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -29,9 +29,11 @@ Require-Bundle: org.eclipse.xtext,
  org.apache.log4j;bundle-version="1.2.15"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
+ eference.xtext;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

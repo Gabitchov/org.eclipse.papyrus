@@ -1,14 +1,8 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.modelexplorer;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  com.google.guava,
- org.eclipse.papyrus.views.modelexplorer,
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.0",
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.emf.facet.infra.browser.custom.core,
  org.eclipse.emf.facet.infra.facet.core,
@@ -18,9 +12,18 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.core.expressions,
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0"
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.Acti
+ vator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.modelexplorer;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

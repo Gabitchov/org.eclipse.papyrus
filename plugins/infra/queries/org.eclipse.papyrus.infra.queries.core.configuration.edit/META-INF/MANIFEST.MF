@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.queries.core.configuration.provide
- r
+Export-Package: org.eclipse.papyrus.infra.queries.core.configuration.p
+ rovider
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.10.0",
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
@@ -16,9 +16,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  org.eclipse.uml2.uml.edit
 Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.queries.core.configuration.provi
- der.ConfigurationEditPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.queries.core.configuration.edit;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.queries.core.configuration
+ .provider.ConfigurationEditPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.queries.core.configurat
+ ion.edit;singleton:=true
 

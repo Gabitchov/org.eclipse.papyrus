@@ -17,20 +17,21 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.emf.ecore.edit;bundle-version="2.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
  org.eclipse.gef;bundle-version="3.7.1",
  org.eclipse.emf.workspace;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.0",
  org.eclipse.core.databinding;bundle-version="1.4.1",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleto
+ n:=true
 

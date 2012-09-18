@@ -7,22 +7,24 @@ Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="0.10.0",
  org.eclipse.core.runtime;bundle-version="3.8.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0"
-Bundle-Vendor: %providerName
-Bundle-ClassPath: .
-Bundle-Version: 0.9.0.qualifier
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.customization.palette;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.customization.palette,
  org.eclipse.papyrus.customization.palette.dialog,
  org.eclipse.papyrus.customization.palette.proxies
+Bundle-Vendor: %providerName
+Bundle-ClassPath: .
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.customization.palette;singlet
+ on:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

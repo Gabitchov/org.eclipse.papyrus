@@ -3,11 +3,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.icons.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.icons;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.icons;singleton:=
+ true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -1,21 +1,22 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: UML Tools Tests (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.tests
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.tools.tests.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit,
- org.eclipse.papyrus.uml.tools;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.0",
  org.eclipse.emf.ecore;bundle-version="2.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0"
 Export-Package: org.eclipse.papyrus.uml.tools.tests,
  org.eclipse.papyrus.uml.tools.tests.tests
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: UML Tools Tests (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.tools.tests.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

@@ -1,23 +1,26 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: CSS Export tools (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.export;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.export.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.customization;bundle-version="0.9.0",
+ org.eclipse.papyrus.customization;bundle-version="0.10.0",
  org.eclipse.emf.ecore;bundle-version="2.8.0",
- org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0",
- org.eclipse.papyrus.eclipse.project.editors;bundle-version="0.9.0",
- org.eclipse.papyrus.views.properties;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
+ org.eclipse.papyrus.eclipse.project.editors;bundle-version="0.10.0",
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.0",
  org.eclipse.core.databinding;bundle-version="1.4.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
- org.eclipse.papyrus.views.properties.model;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
+ org.eclipse.papyrus.views.properties.model;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
  org.eclipse.emf.edit;bundle-version="2.8.0",
  org.eclipse.emf.databinding;bundle-version="1.2.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: CSS Export tools (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.export.Activat
+ or
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.export;sing
+ leton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

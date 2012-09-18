@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Name: Facet for TableEFacet (Incubation)
-Bundle-ClassPath: .,bin
-Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.Activator
-Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet;singleton:
- =true
-Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.util.core,
  org.eclipse.uml2.uml,
@@ -15,12 +7,21 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.facet.core,
  org.eclipse.uml2.types,
  org.eclipse.emf.facet.infra.browser.custom.core,
- org.eclipse.papyrus.infra.core,
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  com.google.guava,
- org.eclipse.papyrus.views.modelexplorer,
- org.eclipse.papyrus.infra.table.efacet.metamodel,
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
- org.eclipse.emf.facet.widgets.table.metamodel;bundle-version="0.2.1"
-Bundle-Version: 0.9.0.qualifier
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
+ org.eclipse.emf.facet.widgets.table.metamodel;bundle-version="0.2.0"
 Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ bin
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: Facet for TableEFacet (Incubation)
+Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet;singleton:
+ =true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

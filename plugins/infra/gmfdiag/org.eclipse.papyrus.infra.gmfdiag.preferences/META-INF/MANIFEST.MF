@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.9.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.papyrus.infra.gmfdiag.preferences.initializer,
  org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference;x-internal:=true,
@@ -13,11 +13,13 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.papyrus.infra.gmfdiag.preferences.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.preferences.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.preferences;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.preferences.Activa
+ tor
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.preferences;sin
+ gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

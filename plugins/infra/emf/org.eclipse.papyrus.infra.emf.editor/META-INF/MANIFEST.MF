@@ -1,30 +1,32 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus EMF Editor (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.editor;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.emf.editor.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.7.0",
  org.eclipse.emf.ecore.editor;bundle-version="2.7.0",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
- org.eclipse.papyrus.infra.emf.newchild;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.emf.newchild;bundle-version="0.10.0",
  org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.views.properties;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.9.0",
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.emf.facet.efacet.core;bundle-version="0.2.0",
  org.eclipse.emf.facet.custom.core;bundle-version="0.2.0",
  org.eclipse.emf.facet.custom.ui;bundle-version="0.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Eclipse-BuddyPolicy: dependent
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.infra.emf.editor.part,
  org.eclipse.papyrus.infra.emf.editor.providers
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Eclipse-BuddyPolicy: dependent
+Bundle-Name: Papyrus EMF Editor (Incubation)
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.emf.editor.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.editor;singleton:=t
+ rue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

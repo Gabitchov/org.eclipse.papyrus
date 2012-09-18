@@ -2,10 +2,11 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.documentation.profile
 Require-Bundle: org.eclipse.uml2.uml
 Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation.profile;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.documentation.profile;sin
+ gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

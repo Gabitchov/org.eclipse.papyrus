@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.tests
-Bundle-Version: 0.9.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.tests.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit;bundle-version="4.8.2",
@@ -15,13 +9,21 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.emf.facet.infra.browser.uicore,
  org.eclipse.gmf.runtime.notation,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.9.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.9.0",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.views.modelexplorer.tests
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.tests.Activa
+ tor
+Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.tests
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

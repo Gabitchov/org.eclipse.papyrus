@@ -1,14 +1,5 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: 
- org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration,
+Export-Package: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration,
  org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.impl,
  org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.util
 Require-Bundle: org.eclipse.core.runtime,
@@ -16,6 +7,16 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.widgets.celleditors;visibility:=reexport,
  org.eclipse.emf.facet.custom.metamodel;visibility:=reexport,
  org.eclipse.emf.facet.efacet.metamodel;visibility:=reexport,
- org.eclipse.papyrus.infra.table.efacet.metamodel;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.efacet.metamodel;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.emf.facet.widgets.table.metamodel;visibility:=reexport
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.papyrustab
+ leconfiguration.metamodel;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

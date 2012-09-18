@@ -1,17 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.editor;singleton:=true
-Bundle-Version: 0.9.0.qualifier
+Export-Package: org.eclipse.papyrus.infra.table.efacet.papyrustablecon
+ figuration.metamodel.papyrustableconfiguration.presentation
+Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.presentation.PapyrustableconfigurationEditorPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.papyrustableconfiguration.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.efacet.papyrustableconfiguration.metamodel.edit;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -19,6 +16,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.custom.metamodel.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.facet.efacet.metamodel.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.table.efacet.metamodel.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.table.efacet.metamodel.edit;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.emf.facet.widgets.table.metamodel.edit;visibility:=reexport
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Version: 0.10.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.table.efacet.papyrustablec
+ onfiguration.metamodel.papyrustableconfiguration.presentation.Papyrus
+ tableconfigurationEditorPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.table.efacet.papyrustab
+ leconfiguration.metamodel.editor;singleton:=true
+
