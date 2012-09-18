@@ -482,6 +482,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createTimeObservationEvent_4024(containerView, index, persisted, preferencesHint);
 		case ConnectorDurationObservationEditPart.VISUAL_ID:
 			return createDurationObservationEvent_4025(containerView, index, persisted, preferencesHint);
+		case InformationFlowEditPart.VISUAL_ID:
+			return createInformationFlow_4026(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -2458,6 +2460,44 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createInformationFlow_4026(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(InformationFlowEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "InformationFlow");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "InformationFlow");
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "InformationFlow");
+		Node label6040 = createLabel(edge, UMLVisualIDRegistry.getType(InformationFlowConveyedLabelEditPart.VISUAL_ID));
+		label6040.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6040 = (Location)label6040.getLayoutConstraint();
+		location6040.setX(0);
+		location6040.setY(30);
+		Node label6041 = createLabel(edge, UMLVisualIDRegistry.getType(InformationFlowAppliedStereotypeEditPart.VISUAL_ID));
+		label6041.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6041 = (Location)label6041.getLayoutConstraint();
+		location6041.setX(0);
+		location6041.setY(15);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InformationFlow");
 		return edge;
 	}
 

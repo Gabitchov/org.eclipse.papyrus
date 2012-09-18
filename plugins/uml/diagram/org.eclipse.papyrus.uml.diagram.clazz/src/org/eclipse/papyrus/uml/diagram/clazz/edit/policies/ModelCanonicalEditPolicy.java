@@ -80,6 +80,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationSetEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
@@ -897,6 +898,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getInstanceSpecification_4021ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case InformationFlowEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getInformationFlow_4026ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

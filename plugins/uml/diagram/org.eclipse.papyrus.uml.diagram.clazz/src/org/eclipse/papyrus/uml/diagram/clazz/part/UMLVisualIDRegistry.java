@@ -1579,6 +1579,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case InformationFlowEditPart.VISUAL_ID:
+			if(InformationFlowConveyedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InformationFlowAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -1643,6 +1651,9 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())) {
 			return InstanceSpecificationLinkEditPart.VISUAL_ID;
+		}
+		if(UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())) {
+			return InformationFlowEditPart.VISUAL_ID;
 		}
 		return -1;
 	}

@@ -64,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationSetEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
@@ -576,6 +577,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType InformationFlow_4026 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.InformationFlow_4026"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -760,6 +766,7 @@ public class UMLElementTypes {
 			elements.put(InstanceSpecification_4021, UMLPackage.eINSTANCE.getInstanceSpecification());
 			elements.put(TimeObservationEvent_4024, UMLPackage.eINSTANCE.getTimeObservation_Event());
 			elements.put(DurationObservationEvent_4025, UMLPackage.eINSTANCE.getDurationObservation_Event());
+			elements.put(InformationFlow_4026, UMLPackage.eINSTANCE.getInformationFlow());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -863,6 +870,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Link_4023);
 			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_4024);
 			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_4025);
+			KNOWN_ELEMENT_TYPES.add(InformationFlow_4026);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -1044,6 +1052,8 @@ public class UMLElementTypes {
 			return TimeObservationEvent_4024;
 		case ConnectorDurationObservationEditPart.VISUAL_ID:
 			return DurationObservationEvent_4025;
+		case InformationFlowEditPart.VISUAL_ID:
+			return InformationFlow_4026;
 		}
 		return null;
 	}

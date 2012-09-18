@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
@@ -37,6 +50,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DependencyReorientCom
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ElementImportCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ElementImportReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.GeneralizationCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InformationFlowCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InformationFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PackageImportCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PackageImportReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.RealizationCreateCommand;
@@ -59,6 +74,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SubstitutionEditPart;
@@ -212,6 +228,12 @@ public class InformationItemItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		if(UMLElementTypes.DurationObservationEvent_4025 == baseElementType) {
 			return null;
 		}
+		if(UMLElementTypes.InformationFlow_4026 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -334,6 +356,12 @@ public class InformationItemItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 			}
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.InformationFlow_4026 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -380,6 +408,8 @@ public class InformationItemItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 			return getGEFWrapper(new PackageImportReorientCommand(req));
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new TemplateBindingReorientCommand(req));
+		case InformationFlowEditPart.VISUAL_ID:
+			return getGEFWrapper(new InformationFlowReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.InformationItem;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
@@ -763,6 +764,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_InformationFlow_4026(InformationFlow instance) {
+		try {
+			Object value_0 = name_InformationFlow_4026(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_AssociationClass_2013(AssociationClass self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -1171,6 +1184,13 @@ public class ElementInitializers {
 			return (self.getImportedElement().getLabel());
 		}
 		return "elementimport";
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InformationFlow_4026(InformationFlow self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**

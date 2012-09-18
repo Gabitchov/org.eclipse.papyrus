@@ -77,6 +77,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportAliasEditPa
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationNameEditPartCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPart;
@@ -1634,6 +1635,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser informationFlowName_6041Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInformationFlowName_6041Parser() {
+		if(informationFlowName_6041Parser == null) {
+			informationFlowName_6041Parser = new AppliedStereotypeParser();
+		}
+		return informationFlowName_6041Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case MultiDependencyLabelEditPart.VISUAL_ID:
@@ -1816,6 +1832,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInstanceSpecificationLabel_6039Parser();
 		case TargetISLinkLabelEditPart.VISUAL_ID:
 			return getInstanceSpecificationLabel_6038Parser();
+		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+			return getInformationFlowName_6041Parser();
 		}
 		return null;
 	}

@@ -424,6 +424,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConnectorTimeObservationEditPart(view);
 			case ConnectorDurationObservationEditPart.VISUAL_ID:
 				return new ConnectorDurationObservationEditPart(view);
+			case InformationFlowEditPart.VISUAL_ID:
+				return new InformationFlowEditPart(view);
+			case InformationFlowConveyedLabelEditPart.VISUAL_ID:
+				return new InformationFlowConveyedLabelEditPart(view);
+			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+				return new InformationFlowAppliedStereotypeEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

@@ -635,6 +635,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createInformationFlowLinkCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createInformationFlowLinkCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createInstanceSpecificationLinkCreationTool_title;
 
 	/**
@@ -645,92 +655,92 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createInterfaceRealization12CreationTool_title;
+	public static String createInterfaceRealization13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInterfaceRealization12CreationTool_desc;
+	public static String createInterfaceRealization13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLink13CreationTool_title;
+	public static String createLink14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLink13CreationTool_desc;
+	public static String createLink14CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageImport14CreationTool_title;
+	public static String createPackageImport15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageImport14CreationTool_desc;
+	public static String createPackageImport15CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageMerge15CreationTool_title;
+	public static String createPackageMerge16CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageMerge15CreationTool_desc;
+	public static String createPackageMerge16CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfileApplication16CreationTool_title;
+	public static String createProfileApplication17CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfileApplication16CreationTool_desc;
+	public static String createProfileApplication17CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRealization17CreationTool_title;
+	public static String createRealization18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRealization17CreationTool_desc;
+	public static String createRealization18CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSubstitution18CreationTool_title;
+	public static String createSubstitution19CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSubstitution18CreationTool_desc;
+	public static String createSubstitution19CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createUsage19CreationTool_title;
+	public static String createUsage20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createUsage19CreationTool_desc;
+	public static String createUsage20CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createTemplateBinding20CreationTool_title;
+	public static String createTemplateBinding21CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createTemplateBinding20CreationTool_desc;
+	public static String createTemplateBinding21CreationTool_desc;
 
 	/**
 	 * @generated
