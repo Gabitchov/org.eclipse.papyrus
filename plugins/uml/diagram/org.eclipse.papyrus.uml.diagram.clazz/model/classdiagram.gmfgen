@@ -922,7 +922,10 @@
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="/0/@labelParsers/@implementations.1">
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="\u00ABSignal\u00BB {0}"
+            editorPattern="{0}"
+            editPattern="{0}">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>
@@ -967,7 +970,10 @@
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="/0/@labelParsers/@implementations.1">
+            parser="/0/@labelParsers/@implementations.1"
+            viewPattern="\u00ABSignal\u00BB {0}"
+            editorPattern="{0}"
+            editPattern="{0}">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
         </labelModelFacet>

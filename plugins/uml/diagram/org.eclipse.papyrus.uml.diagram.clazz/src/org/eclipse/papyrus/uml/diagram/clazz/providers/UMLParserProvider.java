@@ -1,15 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
 package org.eclipse.papyrus.uml.diagram.clazz.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -774,6 +762,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(reception_3011Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("\u00ABSignal\u00BB {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			reception_3011Parser = parser;
 		}
 		return reception_3011Parser;
@@ -791,6 +782,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(reception_3039Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("\u00ABSignal\u00BB {0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			reception_3039Parser = parser;
 		}
 		return reception_3039Parser;
