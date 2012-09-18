@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkEditorHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
@@ -221,7 +221,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		ILabelProvider labelProvider = new LocalLabelProvider();
 		treeViewer.setLabelProvider(labelProvider);
 		//treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
-		treeViewer.setContentProvider(new MoDiscoContentProvider());
+		treeViewer.setContentProvider(new SemanticEMFContentProvider(new EObject[]{ amodel }));
 		//		treeViewer.setContentProvider(new CustomizableModelContentProvider());
 		//treeViewer.setInput(model.eResource());
 		treeViewer.setInput(EditorUtils.getServiceRegistry());
@@ -233,7 +233,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		// fill list of diagram
 		//TODO
 		//diagramListTreeViewer.setLabelProvider(new ObjectLabelProvider(null));
-		
+
 		//we can't reuse the same instance of the label provider see bug 385599: [Hyperlink] We can't select the diagram/table for referencing them
 		labelProvider = new LocalLabelProvider();
 		diagramListTreeViewer.setLabelProvider(labelProvider);
@@ -329,11 +329,12 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	 */
 	public void open() {
 		Display display = Display.getCurrent();
-		getLookforShell().setSize(700, 500);
+		getLookforShell().pack();
+		//		getLookforShell().setSize(700, 500);
 
 		// code use to wait for an action from the user
 		getLookforShell().pack();
-		getLookforShell().setBounds(500, 500, 500, 300);
+		//		getLookforShell().setBounds(500, 500, 500, 300);
 		getLookforShell().open();
 		while(!getLookforShell().isDisposed()) {
 			if(!display.readAndDispatch()) {

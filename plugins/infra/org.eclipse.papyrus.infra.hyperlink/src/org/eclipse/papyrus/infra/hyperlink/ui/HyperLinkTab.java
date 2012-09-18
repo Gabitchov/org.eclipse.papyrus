@@ -87,7 +87,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param tabId
 	 * @param helper
 	 */
@@ -108,6 +108,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	 * 
 	 * @return the list of hyperlink displayed in the tab
 	 */
+	@Override
 	public List<HyperLinkObject> getHyperlinkObjects() {
 		return hyperlinkObjects;
 	}
@@ -164,7 +165,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		listLabel.setText(Messages.HyperLinkTab_Listof + hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_Hyperlink);
 		listLabel.setEnabled(false);
 		listLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		
+
 		new Label(diagramComposite, SWT.NONE);
 		hyperLinkListTable = new Table(diagramComposite, SWT.BORDER | SWT.MULTI);
 		tableViewer = new TableViewer(hyperLinkListTable);
@@ -173,23 +174,29 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 		newHyperLinkbutton.setText(""); //$NON-NLS-1$
 		newHyperLinkbutton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Add_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
 		newHyperLinkbutton.setLayoutData(gridData4);
+		newHyperLinkbutton.setToolTipText("New hyperlink");
+
 		hyperLinkListTable.setHeaderVisible(false);
 		hyperLinkListTable.setToolTipText(Messages.HyperLinkTab_SetOf + hyperLinkHelper.getNameofManagedHyperLink() + Messages.HyperLinkTab_Hyperlinks);
 		hyperLinkListTable.setLayoutData(gridData1);
 		hyperLinkListTable.setLinesVisible(false);
 		modifyHyperLinkButton = new Button(diagramComposite, SWT.NONE);
 		modifyHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Modify.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		modifyHyperLinkButton.setToolTipText("Edit hyperlink");
 
 		removeHyperLinkButton = new Button(diagramComposite, SWT.NONE);
 		removeHyperLinkButton.setText(""); //$NON-NLS-1$
 		removeHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Delete_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		removeHyperLinkButton.setToolTipText("Remove hyperlink");
 
 		upHyperLinkButton = new Button(diagramComposite, SWT.NONE);
 		upHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		upHyperLinkButton.setToolTipText("Move hyperlink up");
 
 		upHyperLinkButton.setLayoutData(gridData2);
 		downHyperLinkButton = new Button(diagramComposite, SWT.NONE);
 		downHyperLinkButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		downHyperLinkButton.setToolTipText("Move hyperlink down");
 
 		downHyperLinkButton.setLayoutData(gridData3);
 		addListeners();
@@ -284,7 +291,7 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 			}
 
 			public void mouseDown(MouseEvent e) {
-				HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), null);
+				HyperLinkTab.this.hyperLinkHelper.executeNewMousePressed(HyperLinkTab.this.getHyperlinkObjects(), HyperLinkTab.this.element);
 				HyperLinkTab.this.setInput(HyperLinkTab.this.getHyperlinkObjects());
 			}
 
@@ -357,9 +364,13 @@ public class HyperLinkTab extends AbstractHyperLinkTab {
 	 * @param hyperlinkObjects
 	 *        the lis of hyperlinkobjects
 	 */
+	@Override
 	public void setInput(List<HyperLinkObject> hyperlinkObjects) {
-		this.hyperlinkObjects = this.hyperLinkHelper.getFilteredObject(hyperlinkObjects);
-		getTableViewer().setInput(this.hyperlinkObjects);
-
+		if(!getTableViewer().getControl().isDisposed()) {
+			this.hyperlinkObjects = this.hyperLinkHelper.getFilteredObject(hyperlinkObjects);
+			getTableViewer().setInput(this.hyperlinkObjects);
+		} else {
+			Activator.log.warn("This hyperlink tab has been disposed");
+		}
 	}
 }

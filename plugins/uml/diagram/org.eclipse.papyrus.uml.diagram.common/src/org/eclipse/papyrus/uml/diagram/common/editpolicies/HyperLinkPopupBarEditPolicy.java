@@ -284,7 +284,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if(1 == me.button) // context menu, hide the popup bar
 			{
 				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()),hyperlinkHelperFactory);
+					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)((GraphicalEditPart)getHost()).getNotationView().getElement(), ((GraphicalEditPart)getHost()).getNotationView(), topPackage((Element)((GraphicalEditPart)getHost()).getNotationView().getElement()), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hyperLinkManagerShell.open();
 
@@ -370,25 +370,25 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** The POPUPBA r_ mov e_ figure. */
 	// @unused
 	static private int POPUPBAR_MOVE_FIGURE = 0x02; /*
-	 * Ignore the first
-	 * figureMoved event when
-	 * creating elements inside
-	 * a shape via a popup bar
-	 */
+													 * Ignore the first
+													 * figureMoved event when
+													 * creating elements inside
+													 * a shape via a popup bar
+													 */
 
 	/** The POPUPBA r_ ondiagramactivated. */
 	// @unused
 	static private int POPUPBAR_ONDIAGRAMACTIVATED = 0x10; /*
-	 * For popup bars on
-	 * diagram and
-	 * machine edit
-	 * parts, where we
-	 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION
-	 * , don't display
-	 * popup bar until
-	 * user clicks on
-	 * surface
-	 */
+															 * For popup bars on
+															 * diagram and
+															 * machine edit
+															 * parts, where we
+															 * POPUPBAR_DISPLAYATMOUSEHOVERLOCATION
+															 * , don't display
+															 * popup bar until
+															 * user clicks on
+															 * surface
+															 */
 
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
@@ -406,6 +406,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	private final PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
 
 	protected ArrayList<HyperLinkObject> hyperLinkObjectList;
+
 	protected HyperLinkHelperFactory hyperlinkHelperFactory;
 
 	/**
@@ -418,15 +419,15 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	public HyperLinkPopupBarEditPolicy() {
 		super();
-		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
+		ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
 		//TODO 
-//		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
-//		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
-//		hyperLinkHelpers.add(new WebHyperLinkHelper());
+		//		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
+		//		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
+		//		hyperLinkHelpers.add(new WebHyperLinkHelper());
 		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
-		hyperlinkHelperFactory= new HyperLinkHelperFactory(hyperLinkHelpers);
+		hyperlinkHelperFactory = new HyperLinkHelperFactory(hyperLinkHelpers);
 	}
-	
+
 	/**
 	 * Adds the object list in the popup bar.
 	 * 
@@ -441,9 +442,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	public int addObjectList(int positonwidth, List<?> objectList) {
 		for(int i = 0; i < objectList.size(); i++) {
-			PopupBarLabelHandle handle=null;
-			HyperLinkLabelProvider hyperLinkLabelProvider= new HyperLinkLabelProvider(getEditorRegistry());
-			handle= new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
+			PopupBarLabelHandle handle = null;
+			HyperLinkLabelProvider hyperLinkLabelProvider = new HyperLinkLabelProvider(getEditorRegistry());
+			handle = new PopupBarLabelHandle(hyperLinkObjectList.get(i), hyperLinkLabelProvider.getImage(objectList.get(i)));
 
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
@@ -626,7 +627,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			r1.setSize(16, 16);
 
 			Label l = new Label();
-			l.setText("Add Diagram");
+			l.setText("Add hyperlink");
 
 			handle.setToolTip(l);
 			handle.setPreferredSize(16, 16);

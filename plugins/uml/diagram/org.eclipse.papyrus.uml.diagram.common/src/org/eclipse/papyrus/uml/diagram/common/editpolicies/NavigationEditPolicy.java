@@ -47,7 +47,6 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.AdvancedHLManager;
 import org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -64,7 +63,8 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 	/**
 	 * 
-	 * @param element a UML element
+	 * @param element
+	 *        a UML element
 	 * @return the top package of the given element
 	 */
 	public static Package topPackage(Element element) {
@@ -74,6 +74,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			return topPackage(element.getOwner());
 		}
 	}
+
 	/**
 	 * 
 	 * @param request
@@ -87,20 +88,19 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		// edit part that refers to default diagram
 
 		// if this a label of a compartment, the good editpart is the parent
-		if((IGraphicalEditPart)getHost() instanceof CompartmentEditPart ){
-			gep=(IGraphicalEditPart)getHost().getParent();
-		}
-		else{
+		if((IGraphicalEditPart)getHost() instanceof CompartmentEditPart) {
+			gep = (IGraphicalEditPart)getHost().getParent();
+		} else {
 
-			gep=(IGraphicalEditPart)getHost();
+			gep = (IGraphicalEditPart)getHost();
 		}
-		final EObject semanticElement=gep.resolveSemanticElement();
+		final EObject semanticElement = gep.resolveSemanticElement();
 
 		// navigable element by using heuristic
-		List<NavigableElement> navElements=null;
+		List<NavigableElement> navElements = null;
 
 		// defaultHyperlinks
-		final ArrayList<HyperLinkObject> defaultHyperLinkObject=new ArrayList<HyperLinkObject>();
+		final ArrayList<HyperLinkObject> defaultHyperLinkObject = new ArrayList<HyperLinkObject>();
 		final ArrayList<HyperLinkObject> hyperLinkObjectList;
 		// Diagrams that will be found by using heuristic
 		HashMap<NavigableElement, List<Diagram>> existingDiagrams = new HashMap<NavigableElement, List<Diagram>>();
@@ -110,21 +110,21 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		}
 		// initialition of code to extract hyperlinks, in the future to do with
 		// extension points
-		ArrayList<AbstractHyperLinkHelper>  hyperLinkHelpers= new ArrayList<AbstractHyperLinkHelper>();
-//		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
-//		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
-//		hyperLinkHelpers.add(new WebHyperLinkHelper());
+		ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
+		//		hyperLinkHelpers.add(new DiagramHyperLinkHelper());
+		//		hyperLinkHelpers.add(new DocumentHyperLinkHelper());
+		//		hyperLinkHelpers.add(new WebHyperLinkHelper());
 		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
-		final HyperLinkHelperFactory hyperlinkHelperFactory= new HyperLinkHelperFactory(hyperLinkHelpers);
+		final HyperLinkHelperFactory hyperlinkHelperFactory = new HyperLinkHelperFactory(hyperLinkHelpers);
 
-		try{
+		try {
 			// fill the list of default hyperlinks
 			hyperLinkObjectList = (ArrayList<HyperLinkObject>)hyperlinkHelperFactory.getAllreferenced(gep.getNotationView());
 
-			Iterator<HyperLinkObject> iterator= hyperLinkObjectList.iterator();
+			Iterator<HyperLinkObject> iterator = hyperLinkObjectList.iterator();
 			while(iterator.hasNext()) {
 				HyperLinkObject hyperlinkObject = iterator.next();
-				if( hyperlinkObject.getIsDefault()){
+				if(hyperlinkObject.getIsDefault()) {
 
 					defaultHyperLinkObject.add(hyperlinkObject);
 				}
@@ -136,17 +136,17 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 			HashMap<NavigableElement, List<CreationCommandDescriptor>> possibleCreations = new HashMap<NavigableElement, List<CreationCommandDescriptor>>();
 
 			// test which kind of navigation by consulting preference
-			String navigationKind=Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND);
+			String navigationKind = Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND);
 
 			// no naviagation
-			if(navigationKind.equals(INavigationPreferenceConstant.NO_NAVIGATION)){
+			if(navigationKind.equals(INavigationPreferenceConstant.NO_NAVIGATION)) {
 				// do nothing
 				return UnexecutableCommand.INSTANCE;
 			}
 
 			// navigation by using heuristic
 			// add list of diagram navigables by using heuristic
-			if(navigationKind.equals(INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION)){
+			if(navigationKind.equals(INavigationPreferenceConstant.EXPLICIT_IMPLICIT_NAVIGATION)) {
 				for(NavigableElement navElement : navElements) {
 					final EObject element = navElement.getElement();
 					if(navElement instanceof ExistingNavigableElement) {
@@ -160,44 +160,49 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					}
 				}
 
-				Iterator<List<Diagram>> iter=existingDiagrams.values().iterator();
+				Iterator<List<Diagram>> iter = existingDiagrams.values().iterator();
 				while(iter.hasNext()) {
 					List<Diagram> list = iter.next();
-					Iterator<Diagram> iterDiagram=list.iterator();
+					Iterator<Diagram> iterDiagram = list.iterator();
 					while(iterDiagram.hasNext()) {
 						Diagram diagram = iterDiagram.next();
-						HyperLinkDiagram hyperLinkDiagram= new HyperLinkDiagram();
+						HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
 						hyperLinkDiagram.setDiagram(diagram);
-						hyperLinkDiagram.setTooltipText(diagram.getName()+" (found by heuristic)");
+						hyperLinkDiagram.setTooltipText(diagram.getName() + " (found by heuristic)");
 						// look for if a hyperlink already exists
-						HyperLinkObject foundHyperlink=null;
-						for(int i=0; i<defaultHyperLinkObject.size()&&foundHyperlink==null;i++){
-							if (defaultHyperLinkObject.get(i).getObject().equals(diagram)){
-								foundHyperlink=defaultHyperLinkObject.get(i);
+						HyperLinkObject foundHyperlink = null;
+						for(int i = 0; i < defaultHyperLinkObject.size() && foundHyperlink == null; i++) {
+							if(defaultHyperLinkObject.get(i).getObject().equals(diagram)) {
+								foundHyperlink = defaultHyperLinkObject.get(i);
 							}
 						}
 						// the diagram was not into the list of existing default
 						// hyperlink
-						if( foundHyperlink==null){
+						if(foundHyperlink == null) {
 							defaultHyperLinkObject.add(hyperLinkDiagram);
 						}
 					}
 				}
 			}
-			if(defaultHyperLinkObject.size()==0){
-				Command command= new Command() {
+			if(defaultHyperLinkObject.size() == 0) {
+				Command command = new Command() {
+
 					@Override
 					public void execute() {
-						HyperLinkManagerShell	hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(),((GraphicalEditPart)getHost()).getEditingDomain(),	(Element)gep.getNotationView().getElement(),gep.getNotationView(),topPackage((Element)semanticElement),hyperlinkHelperFactory);
-						hyperLinkManagerShell.setInput(hyperLinkObjectList);
-						hyperLinkManagerShell.open();
+						EObject semanticElement = gep.getNotationView().getElement();
+						if(semanticElement instanceof Element) {
+							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(), ((GraphicalEditPart)getHost()).getEditingDomain(), (Element)semanticElement, gep.getNotationView(), topPackage((Element)semanticElement), hyperlinkHelperFactory);
+							hyperLinkManagerShell.setInput(hyperLinkObjectList);
+							hyperLinkManagerShell.open();
+						}
 					}
 				};
 				return command;
 			}
-			if(defaultHyperLinkObject.size()==1){
+			if(defaultHyperLinkObject.size() == 1) {
 				// open the diagram
-				Command command= new Command() {
+				Command command = new Command() {
+
 					@Override
 					public void execute() {
 						super.execute();
@@ -207,17 +212,18 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				return command;
 
 			}
-			if(defaultHyperLinkObject.size()>1){
+			if(defaultHyperLinkObject.size() > 1) {
 				// open a dialog to choose a diagram
-				EditorNavigationDialog diagramNavigationDialog= new EditorNavigationDialog(new Shell(),defaultHyperLinkObject);
+				EditorNavigationDialog diagramNavigationDialog = new EditorNavigationDialog(getHost().getViewer().getControl().getShell(), defaultHyperLinkObject);
 				diagramNavigationDialog.open();
-				final List<HyperLinkObject> hList=diagramNavigationDialog.getSelectedHyperlinks();
-				Command command= new Command() {
+				final List<HyperLinkObject> hList = diagramNavigationDialog.getSelectedHyperlinks();
+				Command command = new Command() {
+
 					@Override
 					public void execute() {
 						super.execute();
 
-						Iterator<HyperLinkObject> iter= hList.iterator();
+						Iterator<HyperLinkObject> iter = hList.iterator();
 						while(iter.hasNext()) {
 							HyperLinkObject hyperlinkObject = iter.next();
 							hyperlinkObject.executeSelectPressed();
@@ -228,8 +234,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 			}
 
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			org.eclipse.papyrus.uml.diagram.common.Activator.log.error("Impossible to load hyperlinks", e);
 		}
 		return UnexecutableCommand.INSTANCE;

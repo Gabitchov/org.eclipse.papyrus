@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -42,16 +43,19 @@ import org.eclipse.swt.widgets.TableItem;
 public class EditorNavigationDialog extends Dialog {
 
 	// prefered dimension
-	protected int width=350;
-	protected int height=150;
+	protected int width = 350;
+
+	protected int height = 150;
 
 	protected List<HyperLinkObject> hyperlinkObjects;
+
 	protected HyperLinkContentProvider contentProvider;
+
 	private TableViewer tableViewer;
 
 	protected Table availableHyperLink;
 
-	protected List<HyperLinkObject> hyperlinkResult= new ArrayList<HyperLinkObject>();
+	protected List<HyperLinkObject> hyperlinkResult = new ArrayList<HyperLinkObject>();
 
 	/**
 	 * 
@@ -65,24 +69,28 @@ public class EditorNavigationDialog extends Dialog {
 	 */
 	public EditorNavigationDialog(Shell parentShell, ArrayList<HyperLinkObject> hyperlinkObjects) {
 		super(parentShell);
-		this.hyperlinkObjects=hyperlinkObjects;
+		this.hyperlinkObjects = hyperlinkObjects;
 		parentShell.setText(Messages.DiagramNavigationDialog_ChooseHyperLinks);
 	}
+
+	@Override
+	protected boolean isResizable() {
+		return true;
+	}
+
 	@Override
 	protected Control createContents(Composite parent) {
-
-		parent.setBounds(parent.getBounds().x, parent.getBounds().y, width+50, height+120);
-		Composite defaultHyperlinkComposite = new Composite(parent, SWT.NONE);
+		super.createContents(parent);
+		Composite defaultHyperlinkComposite = (Composite)getDialogArea();
 
 		Label lblHyperlinks = new Label(defaultHyperlinkComposite, SWT.NONE);
 		lblHyperlinks.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
-		lblHyperlinks.setBounds(23, 10,width , 13);
 		lblHyperlinks.setText(Messages.DiagramNavigationDialog_WhichHyperLinksWouldYouToNavigateTo);
 
 		// creation of the table
-		availableHyperLink = new Table(defaultHyperlinkComposite, SWT.CHECK|SWT.BORDER | SWT.FULL_SELECTION);
-		availableHyperLink.setBounds(30, 29, width, height);
-		super.createContents(parent);
+		availableHyperLink = new Table(defaultHyperlinkComposite, SWT.CHECK | SWT.BORDER | SWT.FULL_SELECTION);
+		availableHyperLink.setLayoutData(new GridData(GridData.FILL_BOTH));
+
 		// set the content provider
 		this.contentProvider = new HyperLinkContentProvider();
 		tableViewer = new TableViewer(availableHyperLink);
@@ -99,29 +107,37 @@ public class EditorNavigationDialog extends Dialog {
 		tableViewer.setLabelProvider(new HyperLinkLabelProvider(editorRegistry));
 		tableViewer.setInput(this.hyperlinkObjects);
 
+		//Check the first element by default
+		if(availableHyperLink.getItemCount() > 0) {
+			availableHyperLink.getItem(0).setChecked(true);
+		}
+
+		getShell().pack();
+
 		return defaultHyperlinkComposite;
 	}
 
 	/**
 	 * get the list of selected hyperlinks
+	 * 
 	 * @return the list
 	 */
-	public List<HyperLinkObject> getSelectedHyperlinks(){
+	public List<HyperLinkObject> getSelectedHyperlinks() {
 		return hyperlinkResult;
-
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
-	 *
+	 * 
 	 */
 	@Override
 	protected void okPressed() {
 
-		hyperlinkResult= new ArrayList<HyperLinkObject>();
-		TableItem[] tableItems=availableHyperLink.getItems();
-		for(int i=0;i<tableItems.length;i++){
-			if(tableItems[i].getChecked()){
+		hyperlinkResult = new ArrayList<HyperLinkObject>();
+		TableItem[] tableItems = availableHyperLink.getItems();
+		for(int i = 0; i < tableItems.length; i++) {
+			if(tableItems[i].getChecked()) {
 				hyperlinkResult.add((HyperLinkObject)tableItems[i].getData());
 			}
 		}

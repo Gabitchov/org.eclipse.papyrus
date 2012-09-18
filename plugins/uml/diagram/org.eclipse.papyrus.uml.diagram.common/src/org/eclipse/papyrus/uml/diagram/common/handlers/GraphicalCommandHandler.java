@@ -110,7 +110,7 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 				return true;
 			}
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 
 		return false;

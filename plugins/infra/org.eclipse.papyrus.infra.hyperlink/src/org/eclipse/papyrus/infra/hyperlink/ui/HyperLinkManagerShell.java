@@ -26,6 +26,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
@@ -73,21 +74,21 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 
 	final protected List<HyperLinkObject> allhypHyperlinkObjects = new ArrayList<HyperLinkObject>();
 
-	/** The graphical representation of the element (a View in GMF)  */
+	/** The graphical representation of the element (a View in GMF) */
 	protected EModelElement view;
 
-	protected EModelElement semanticElement;
-	
+	protected EObject semanticElement;
+
 	/** the root of the model. */
-	protected EModelElement amodel;
+	protected EObject amodel;
 
 	/** The domain. */
 	protected TransactionalEditingDomain transactionalEditingDomain;
 
 	protected HyperLinkHelperFactory hyperLinkHelperFactory;
 
-	
-	
+
+
 	public void setInput(List<HyperLinkObject> hyperLinkObjectList) {
 		this.allhypHyperlinkObjects.clear();
 		this.allhypHyperlinkObjects.addAll(hyperLinkObjectList);
@@ -189,7 +190,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		//set all hyper links is default to false
 		Iterator<HyperLinkObject> iterator = allhypHyperlinkObjects.iterator();
 		while(iterator.hasNext()) {
-			HyperLinkObject hyperLink = (HyperLinkObject)iterator.next();
+			HyperLinkObject hyperLink = iterator.next();
 			hyperLink.setIsDefault(false);
 		}
 
@@ -258,15 +259,16 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 */
 	public void open() {
 		Display display = Display.getCurrent();
-		// code use to wait for an action from the user
 		getHyperLinkShell().pack();
-		getHyperLinkShell().setBounds(500, 500, 700, 300);
+		//		getHyperLinkShell().setBounds(500, 500, 700, 300);
 		getHyperLinkShell().open();
 		//Select the good tab
 		selectLastTab();
+		// code use to wait for an action from the user
 		while(!getHyperLinkShell().isDisposed()) {
-			if(!display.readAndDispatch())
+			if(!display.readAndDispatch()) {
 				display.sleep();
+			}
 		}
 	}
 

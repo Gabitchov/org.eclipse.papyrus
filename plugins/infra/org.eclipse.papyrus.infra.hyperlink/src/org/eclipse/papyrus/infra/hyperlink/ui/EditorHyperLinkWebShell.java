@@ -48,11 +48,12 @@ public class EditorHyperLinkWebShell extends AbstractEditHyperlinkShell {
 
 		// code use to wait for an action from the user
 		getEditHyperlinkShell().pack();
-		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
+		//		getEditHyperlinkShell().setBounds(500, 500, 600, 120);
 		getEditHyperlinkShell().open();
 		while(!getEditHyperlinkShell().isDisposed()) {
-			if(!display.readAndDispatch())
+			if(!display.readAndDispatch()) {
 				display.sleep();
+			}
 		}
 	}
 

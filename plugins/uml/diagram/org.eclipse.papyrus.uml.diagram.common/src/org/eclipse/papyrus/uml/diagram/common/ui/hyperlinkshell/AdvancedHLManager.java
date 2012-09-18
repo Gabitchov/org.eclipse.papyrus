@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Arthut Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
+ *  Arthur Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
  *  Vincent Lorenzo (CEA-LIST) Vincent.lorenzo@cea.fr (refactoring of the hyperlink)
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell;
@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.Package;
  * 
  * This hyperlink manager can manage default hyperlinks and creation of diagram with heuristic
  */
+//FIXME: We shouldn't depend on uml here. The superclass expects any kind of EObject
 public class AdvancedHLManager extends HyperLinkManagerShell {
 
 
@@ -88,7 +89,7 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	@Override
 	protected void doAction() {
 		super.doAction();
-//		defaultTab = getDefaultHyperLinkTab();
+		//		defaultTab = getDefaultHyperLinkTab();
 		final LocalDefaultLinkDiagramTab heuristicTab = getHeuristicTab();
 		ArrayList<HyperLinkDiagram> defaultdiagramsWithHeuristic = new ArrayList<HyperLinkDiagram>();
 		//if the default diagrams is opened, get created default diagrams
@@ -100,8 +101,8 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 			defaultdiagramsWithHeuristic.addAll(getCreatedHyperlinkDiagramsWithHeuristic(creationCommand));
 		}
 
-		
-		
+
+
 		//add into the list all diagram create by using heuristic
 		for(int i = 0; i < defaultdiagramsWithHeuristic.size(); i++) {
 			allhypHyperlinkObjects.add(0, defaultdiagramsWithHeuristic.get(i));
@@ -109,16 +110,16 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 
 	}
 
-	private LocalDefaultLinkDiagramTab getHeuristicTab(){
-		int i=0;
-		LocalDefaultLinkDiagramTab tab=null;
-		for(AbstractHyperLinkTab current : tabList){
-			if(current instanceof LocalDefaultLinkDiagramTab){
+	private LocalDefaultLinkDiagramTab getHeuristicTab() {
+		int i = 0;
+		LocalDefaultLinkDiagramTab tab = null;
+		for(AbstractHyperLinkTab current : tabList) {
+			if(current instanceof LocalDefaultLinkDiagramTab) {
 				tab = (LocalDefaultLinkDiagramTab)current;
 				i++;
 			}
 		}
-		Assert.isTrue(i==1);
+		Assert.isTrue(i == 1);
 		Assert.isNotNull(tab);
 		return tab;
 	}
