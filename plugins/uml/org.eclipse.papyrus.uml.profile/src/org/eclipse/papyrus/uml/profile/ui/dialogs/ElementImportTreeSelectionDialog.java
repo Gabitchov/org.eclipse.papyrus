@@ -47,6 +47,7 @@ import org.eclipse.uml2.uml.Profile;
  * this is a dialog to select an element import
  * 
  */
+//FIXME: This dialog should be moved to another plug-in
 public class ElementImportTreeSelectionDialog extends Dialog {
 
 	/**
@@ -57,7 +58,7 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 	protected List<Package> models;
 
 	protected boolean subSelection = false;
-	
+
 	/**
 	 * 
 	 */
@@ -107,9 +108,12 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 
 
 	/**
-	 * @param parent the parent shell
-	 * @param model the UML model of profile or import library
-	 * @param subselection true, if the selection of an element automatically selects all sub-elements
+	 * @param parent
+	 *        the parent shell
+	 * @param model
+	 *        the UML model of profile or import library
+	 * @param subselection
+	 *        true, if the selection of an element automatically selects all sub-elements
 	 */
 	public ElementImportTreeSelectionDialog(Shell parent, Package model) {
 		super(parent);
@@ -141,9 +145,14 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 	 * 
 	 * @return
 	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite comp = (Composite)super.createDialogArea(parent);
 		elementTree = new Tree(comp, SWT.CHECK | SWT.BORDER | SWT.V_SCROLL);
+		GridData treeData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		treeData.widthHint = 300;
+		treeData.heightHint = 300;
+		elementTree.setLayoutData(treeData);
 
 		if(model != null) {
 			createTreeItem(model);
@@ -162,19 +171,21 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 				if(event.detail == SWT.CHECK) {
 					if(elementsToImport.contains(event.item.getData())) {
 						elementsToImport.remove(event.item.getData());
-						if (subSelection) {
+						if(subSelection) {
 							remChildSelection((TreeItem)event.item);
 						}
 
 					} else {
 						elementsToImport.add((Element)event.item.getData());
-						if (subSelection) {
+						if(subSelection) {
 							addChildSelection((TreeItem)event.item);
 						}
 					}
 				}
 			}
 		});
+
+		getShell().setText("Select the elements to import");
 
 		return comp;
 	}
@@ -232,8 +243,6 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 			item.setImage(IMG_PACKAGE);
 		}
 		buildImportTreeList(item, _package);
-
-		elementTree.setLayoutData(new GridData(300, 300));
 	}
 
 	/**
@@ -256,7 +265,7 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 	protected void buildImportTreeList(TreeItem elemTree, Package _package) {
 		Iterator<PackageableElement> elemIter = _package.getPackagedElements().iterator();
 		while(elemIter.hasNext()) {
-			Element elem = (Element)elemIter.next();
+			Element elem = elemIter.next();
 			if(elem instanceof Package) {
 				TreeItem item = new TreeItem(elemTree, SWT.NONE);
 				item.setText(((Package)elem).getName());
@@ -272,18 +281,19 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 				item.setData(elem);
 
 				/* icon setting */
-				if(elem instanceof Association)
+				if(elem instanceof Association) {
 					item.setImage(IMG_ASSOCIATION);
-				else if(elem instanceof Enumeration)
+				} else if(elem instanceof Enumeration) {
 					item.setImage(IMG_ENUM);
-				else if(elem instanceof PrimitiveType)
+				} else if(elem instanceof PrimitiveType) {
 					item.setImage(IMG_PRIMITIVE);
-				else if(elem instanceof DataType)
+				} else if(elem instanceof DataType) {
 					item.setImage(IMG_DATATYPE);
-				else if(elem instanceof org.eclipse.uml2.uml.Class)
+				} else if(elem instanceof org.eclipse.uml2.uml.Class) {
 					item.setImage(IMG_CLASS);
-				else if(elem instanceof InstanceSpecification)
+				} else if(elem instanceof InstanceSpecification) {
 					item.setImage(IMG_INSTANCESPEC);
+				}
 			}
 		}
 	}

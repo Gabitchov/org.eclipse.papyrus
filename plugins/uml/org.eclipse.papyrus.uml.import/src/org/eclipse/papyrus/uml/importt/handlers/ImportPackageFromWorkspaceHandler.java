@@ -14,18 +14,21 @@ package org.eclipse.papyrus.uml.importt.handlers;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
+import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
-import org.eclipse.papyrus.uml.importt.messages.Messages;
 import org.eclipse.papyrus.uml.importt.ui.PackageImportDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ResourceSelectionDialog;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.Package;
 
 
@@ -66,7 +69,18 @@ public class ImportPackageFromWorkspaceHandler extends AbstractImportHandler {
 					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
 					// Start selection dialog
-					ResourceSelectionDialog chooseLib = new ResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), Messages.ImportPackageFromFileHandler_SelectRegisteredModelLibrary);
+					ReferenceSelector selector = new ReferenceSelector();
+					ILabelProvider labelProvider = WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider();
+					selector.setLabelProvider(labelProvider);
+					selector.setContentProvider(new WorkspaceContentProvider());
+
+					MultipleValueSelectorDialog chooseLib = new MultipleValueSelectorDialog(shell, selector);
+
+					chooseLib.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
+					chooseLib.setUnique(true);
+					chooseLib.setTitle("Select the models to import");
+
+					//ResourceSelectionDialog chooseLib = new ResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), Messages.ImportPackageFromFileHandler_SelectRegisteredModelLibrary);
 
 					chooseLib.open();
 
@@ -79,38 +93,69 @@ public class ImportPackageFromWorkspaceHandler extends AbstractImportHandler {
 
 					ResourceSet resourceSet = Util.getResourceSet(getSelectedElement());
 					// Parse selection and add ModelLibrary files
-					for(int i = 0; i < selection.length; i++) {
+					for(Object selectedElement : selection) {
 
-						if(selection[i] instanceof IFile) {
+						//Handle errors:
+						//- The selected is not an IFile
+						//- The selected file is not a valid EMF Model (Error occurs during the resource loading)
+						//- The selected model is empty
+						//- The selected model is not a Package
 
-							IFile currentFile = (IFile)selection[i];
+						if(!(selectedElement instanceof IFile)) {
+							MessageDialog.openWarning(shell, "Selection is not a File", "The selected element is not a File: " + labelProvider.getText(selectedElement));
+							continue;
+						}
 
-							URI modelUri = URI.createURI("platform:/resource" + currentFile.getFullPath()); //$NON-NLS-1$
-							Resource modelResource = resourceSet.getResource(modelUri, true);
+						IFile currentFile = (IFile)selectedElement;
 
-							PackageImportDialog dialog = new PackageImportDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package)modelResource.getContents().get(0)));
+						URI modelUri = URI.createURI("platform:/resource" + currentFile.getFullPath()); //$NON-NLS-1$
 
-							if(dialog.open() == Window.OK) {
-								List<?> result = dialog.getResult();
 
-								for(Object resultElement : result) {
-									Package selectedPackage = (Package)resultElement;
-									if(dialog.isCopy()) {
-										handleCopyPackage(selectedPackage);
-									} else {
-										handleImportPackage(selectedPackage);
-									}
+						Resource modelResource;
+						try {
+							modelResource = resourceSet.getResource(modelUri, true);
+						} catch (Exception ex) {
+							MessageDialog.openWarning(shell, "Invalid model", "The selected file is not a valid model: " + labelProvider.getText(selectedElement));
+							//At this point, an empty resource may have been loaded in the resource set. We should clean it.
+							//Remove the resource from the resource set
+							modelResource = resourceSet.getResource(modelUri, false);
+							if(modelResource != null) {
+								resourceSet.getResources().remove(modelResource);
+							}
+							continue;
+						}
+						if(modelResource.getContents().isEmpty()) {
+							MessageDialog.openWarning(shell, "Model is empty", "The selected model is empty: " + labelProvider.getText(selectedElement));
+							continue;
+						}
+						if(!(modelResource.getContents().get(0) instanceof Package)) {
+							MessageDialog.openWarning(shell, "Model is not a Package", "The selected model is not a valid UML Package: " + labelProvider.getText(selectedElement));
+							continue;
+						}
+
+						PackageImportDialog dialog = new PackageImportDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), ((Package)modelResource.getContents().get(0)));
+
+						if(dialog.open() == Window.OK) {
+							List<?> result = dialog.getResult();
+
+							for(Object resultElement : result) {
+								Package selectedPackage = (Package)resultElement;
+								if(dialog.isCopy()) {
+									handleCopyPackage(selectedPackage);
+								} else {
+									handleImportPackage(selectedPackage);
 								}
 							}
-
-							/*
-							 * Element root = (Element) modelResource.getContents().get(0);
-							 * 
-							 * // Import model library Package libToImport = (Package) root; // create import package PackageImport pi =
-							 * UMLFactory.eINSTANCE.createPackageImport();
-							 * pi.setImportedPackage(libToImport); ((Package) selectedElement).getPackageImports().add(pi);
-							 */
 						}
+
+						/*
+						 * Element root = (Element) modelResource.getContents().get(0);
+						 * 
+						 * // Import model library Package libToImport = (Package) root; // create import package PackageImport pi =
+						 * UMLFactory.eINSTANCE.createPackageImport();
+						 * pi.setImportedPackage(libToImport); ((Package) selectedElement).getPackageImports().add(pi);
+						 */
+
 					}
 				}
 
