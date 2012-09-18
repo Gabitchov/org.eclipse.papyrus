@@ -1,11 +1,5 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.papyrus.operation.editor.xtext.ui
-Bundle-Vendor: Eclipse Modeling Project
-Bundle-Version: 0.9.0.qualifier
-Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext.ui; singleton:=true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.papyrus.operation.editor.xtext;visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.operation.editor.xtext;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -15,18 +9,27 @@ Require-Bundle: org.eclipse.papyrus.operation.editor.xtext;visibility:=reexport,
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.2.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.8.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.core;bundle-version="0.8.0",
- org.eclipse.papyrus.properties.runtime;bundle-version="0.8.0",
+ org.eclipse.papyrus.core;bundle-version="0.10.0",
+ org.eclipse.papyrus.properties.runtime;bundle-version="0.10.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
- org.eclipse.papyrus.alf;bundle-version="0.8.0",
- org.eclipse.papyrus.alf.ui;bundle-version="0.8.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
- org.eclipse.papyrus.profile;bundle-version="0.8.0"
-Import-Package: org.apache.log4j,
- org.apache.commons.logging
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Activator: org.eclipse.papyrus.operation.editor.xtext.ui.internal.OperationActivator
+ org.eclipse.papyrus.alf;bundle-version="0.10.0",
+ org.eclipse.papyrus.alf.ui;bundle-version="0.10.0",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.10.0",
+ org.eclipse.papyrus.profile;bundle-version="0.10.0"
 Export-Package: org.eclipse.papyrus.operation.editor.xtext.ui.contentassist.antlr,
  org.eclipse.papyrus.operation.editor.xtext.ui.internal
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.0.qualifier
+Bundle-Name: org.eclipse.papyrus.operation.editor.xtext.ui
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.operation.editor.xtext.ui.intern
+ al.OperationActivator
+Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext.ui;sin
+ gleton:=true
+Import-Package: org.apache.commons.logging,
+ org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

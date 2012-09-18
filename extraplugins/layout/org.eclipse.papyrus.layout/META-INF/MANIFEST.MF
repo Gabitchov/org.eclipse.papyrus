@@ -8,7 +8,7 @@ Export-Package: org.eclipse.papyrus.layout,
  org.eclipse.papyrus.layout.managealgorithms
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

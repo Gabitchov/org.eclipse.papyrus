@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
- org.eclipse.papyrus.marte.vsl;bundle-version="0.9.0",
+ org.eclipse.papyrus.marte.vsl;bundle-version="0.10.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
 Export-Package: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext,
  org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext.constraintWithVSLl,
@@ -27,10 +27,11 @@ Export-Package: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.constraintwithvsl.xtext;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.constraintwith
+ vsl.xtext;singleton:=true
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

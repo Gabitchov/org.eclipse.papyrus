@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.contentassist.antlr
+Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicati
+ onwithvsl.xtext.ui.contentassist.antlr
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext;bundle-version="0.9.0";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext;bundle-version="0.10.0";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -14,16 +15,18 @@ Require-Bundle: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.9.0",
- org.eclipse.papyrus.marte.vsl;bundle-version="0.9.0",
- org.eclipse.papyrus.marte.vsl.ui;bundle-version="0.9.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.0",
+ org.eclipse.papyrus.marte.vsl;bundle-version="0.10.0",
+ org.eclipse.papyrus.marte.vsl.ui;bundle-version="0.10.0",
  org.eclipse.xtext.gmf.glue;bundle-version="0.9.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator
-Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.ui;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.marte.textedit.stereotypeapplica
+ tionwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator
+Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeappl
+ icationwithvsl.xtext.ui;singleton:=true
 Import-Package: org.apache.log4j
 
