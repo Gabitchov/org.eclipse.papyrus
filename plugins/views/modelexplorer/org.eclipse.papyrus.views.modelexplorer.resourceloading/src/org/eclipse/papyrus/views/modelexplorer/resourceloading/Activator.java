@@ -30,7 +30,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.modelexplorer.resourceLoading"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.views.modelexplorer.resourceloading"; //$NON-NLS-1$
 
 	/** The plug-in shared instance */
 	private static Activator plugin;
@@ -49,6 +49,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
 	 * )
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
@@ -81,6 +82,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
 	 * )
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);

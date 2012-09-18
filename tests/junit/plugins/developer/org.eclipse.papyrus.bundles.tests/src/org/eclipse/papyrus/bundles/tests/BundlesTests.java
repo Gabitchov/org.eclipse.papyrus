@@ -46,7 +46,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void versionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.9\\.0\\..*", false, false); //$NON-NLS-1$
+		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, "0\\.10\\.0\\..*", false, false); //$NON-NLS-1$
 	}
 
 	/**
@@ -198,7 +198,7 @@ public class BundlesTests {
 			String localMessage = null;
 			for(final String bundle : bundles) {
 				if(bundle.contains("org.eclipse.papyrus")) { //$NON-NLS-1$
-					if(!bundle.contains("bundle-version=" + '"' + "0.9.0" + '"')) { //$NON-NLS-1$ //$NON-NLS-2$
+					if(!bundle.contains("bundle-version=" + '"' + "0.10.0" + '"')) { //$NON-NLS-1$ //$NON-NLS-2$
 						nb++;
 						if(localMessage == null) {
 							localMessage = NLS.bind("{0} incorrect required bundle-version:", current.getSymbolicName()); //$NON-NLS-1$
