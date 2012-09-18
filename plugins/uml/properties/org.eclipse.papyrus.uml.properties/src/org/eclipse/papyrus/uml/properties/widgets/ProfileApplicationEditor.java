@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.uml.properties.widgets;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -20,7 +21,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -28,6 +33,7 @@ import org.eclipse.papyrus.uml.properties.messages.Messages;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.FileSelectionFilter;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.Message;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.RegisteredProfileSelectionDialog;
+import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -48,6 +54,11 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 	 * The button to add profiles from the list of registered ones
 	 */
 	protected Button addRegisteredProfile;
+
+	/**
+	 * The button to reapply a profile
+	 */
+	protected Button reapplyProfile;
 
 	/**
 	 * The umlPackage being edited
@@ -75,6 +86,14 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
 		add.setToolTipText(Messages.ProfileApplicationEditor_ApplyProfile);
 		addRegisteredProfile = createButton(Activator.getDefault().getImage("/icons/AddReg.gif"), Messages.ProfileApplicationEditor_ApplyRegisteredProfile); //$NON-NLS-1$
+
+		reapplyProfile = createButton(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/refresh.gif"), "Reapply profile");
+		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				updateControls();
+			}
+		});
 	}
 
 	/**
@@ -133,7 +152,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		}
 
 		if(importedModels.size() > 0) {
-			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels,true);
+			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels, true);
 
 			profileDialog.open();
 			ArrayList<Profile> profilesToApply = profileDialog.getResult();
@@ -161,11 +180,29 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		commit();
 	}
 
+	protected void reapplyProfileAction() {
+		ISelection selectedElements = treeViewer.getSelection();
+		if(!selectedElements.isEmpty() && selectedElements instanceof IStructuredSelection) {
+			IStructuredSelection selection = (IStructuredSelection)selectedElements;
+			Iterator<?> iterator = selection.iterator();
+			while(iterator.hasNext()) {
+				Object element = iterator.next();
+				if(element instanceof Profile) {
+					modelProperty.add(element);
+				}
+			}
+		}
+		commit();
+	}
+
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 		super.widgetSelected(e);
 		if(e.widget == addRegisteredProfile) {
 			addRegisteredAction();
+		}
+		if(e.widget == reapplyProfile) {
+			reapplyProfileAction();
 		}
 	}
 
@@ -185,5 +222,21 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		add.setEnabled(enabled);
 		addRegisteredProfile.setEnabled(enabled);
 		remove.setEnabled(enabled);
+
+		// check whether the selection can be reapplied
+		IStructuredSelection selection = (IStructuredSelection)treeViewer.getSelection();
+		enabled = false;
+		Iterator<?> iterator = selection.iterator();
+		while(iterator.hasNext()) {
+			Object element = iterator.next();
+			if(element instanceof Profile) {
+				if(ProfileUtil.isDirty(umlPackage, (Profile)element)) {
+					enabled = true; //At least one dirty profile is selected
+					break;
+				}
+			}
+		}
+
+		reapplyProfile.setEnabled(enabled);
 	}
 }
