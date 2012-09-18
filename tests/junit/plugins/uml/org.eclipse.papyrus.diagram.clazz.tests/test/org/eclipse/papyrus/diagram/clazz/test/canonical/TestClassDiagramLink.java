@@ -71,6 +71,14 @@ public class TestClassDiagramLink extends TestLink {
 	public void testToManageUsage() {
 		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.Usage_4007,UMLElementTypes.Package_2007,true);
 	}
+	
+	/**
+	 * Test to manage Usage
+	 */
+	@Test
+	public void testToManageInformationFlow() {
+		testToManageLink(UMLElementTypes.Class_2008,UMLElementTypes.Class_2008,UMLElementTypes.InformationFlow_4026,UMLElementTypes.Package_2007,true);
+	}
 	//test Element import
 	//testPackageImport
 	//test comment link
