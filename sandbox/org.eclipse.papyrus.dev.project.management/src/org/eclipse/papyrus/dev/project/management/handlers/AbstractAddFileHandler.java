@@ -12,7 +12,10 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.dev.project.management.Activator;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor;
@@ -36,6 +39,19 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 
 		job.setUser(true);
 		job.schedule();
+
+		job.addJobChangeListener(new JobChangeAdapter() {
+
+			@Override
+			public void done(final IJobChangeEvent event) {
+				Display.getDefault().asyncExec(new Runnable() {
+
+					public void run() {
+						MessageDialog.openInformation(Display.getDefault().getActiveShell(), getJobName(), "Done.");
+					}
+				});
+			}
+		});
 
 		return null;
 	}
@@ -69,8 +85,7 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 			monitor.worked(1);
 		}
 
-		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), getJobName(), "Done.");
-		return null;
+		return Status.OK_STATUS;
 	}
 
 	//Subclasses should override this

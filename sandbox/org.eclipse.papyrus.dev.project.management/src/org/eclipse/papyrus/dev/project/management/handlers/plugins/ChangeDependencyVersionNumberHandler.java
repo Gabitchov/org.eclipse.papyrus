@@ -89,6 +89,8 @@ public class ChangeDependencyVersionNumberHandler extends AbstractHandler {
 
 			monitor.worked(1);
 		}
+
+		//FIXME: We're not in the UI Thread anymore. We can't open a dialog here.
 		if(notManagedProjectNames.equals("")) {
 			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
 			informationDialog.open();
