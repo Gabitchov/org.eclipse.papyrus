@@ -14,7 +14,8 @@ package org.eclipse.papyrus.uml.tools.commands;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -23,7 +24,7 @@ import org.eclipse.uml2.uml.Profile;
  * 
  * @author Camille Letavernier
  */
-public class ApplyProfileCommand extends AbstractCommand {
+public class ApplyProfileCommand extends RecordingCommand {
 
 	private Package umlPackage;
 
@@ -37,8 +38,11 @@ public class ApplyProfileCommand extends AbstractCommand {
 	 *        The UML Package on which the profiles will be applied
 	 * @param profiles
 	 *        The list of profiles to apply
+	 * @param editingDomain
+	 *        The EditingDomain
 	 */
-	public ApplyProfileCommand(Package umlPackage, Collection<Profile> profiles) {
+	public ApplyProfileCommand(Package umlPackage, Collection<Profile> profiles, TransactionalEditingDomain editingDomain) {
+		super(editingDomain);
 		this.umlPackage = umlPackage;
 		this.profiles = profiles;
 	}
@@ -51,37 +55,20 @@ public class ApplyProfileCommand extends AbstractCommand {
 	 *        The UML Package on which the profile will be applied
 	 * @param profile
 	 *        The profile to apply
+	 * @param editingDomain
+	 *        The EditingDomain
 	 */
-	public ApplyProfileCommand(Package umlPackage, Profile profile) {
+	public ApplyProfileCommand(Package umlPackage, Profile profile, TransactionalEditingDomain editingDomain) {
+		super(editingDomain);
 		this.umlPackage = umlPackage;
 		this.profiles = Collections.singletonList(profile);
 	}
 
 	@Override
-	public boolean canExecute() {
-		return true;
-	}
-
-	public void execute() {
+	protected void doExecute() {
 		for(Profile profile : profiles) {
 			umlPackage.applyProfile(profile);
 		}
-	}
-
-	@Override
-	public boolean canUndo() {
-		return true;
-	}
-
-	@Override
-	public void undo() {
-		for(Profile profile : profiles) {
-			umlPackage.unapplyProfile(profile);
-		}
-	}
-
-	public void redo() {
-		execute();
 	}
 
 }

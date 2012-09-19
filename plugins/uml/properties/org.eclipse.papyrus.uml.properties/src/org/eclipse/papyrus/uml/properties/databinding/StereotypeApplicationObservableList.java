@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
@@ -196,7 +197,7 @@ public class StereotypeApplicationObservableList extends WritableList implements
 			return false;
 		}
 		Stereotype stereotype = (Stereotype)o;
-		Command command = new ApplyStereotypeCommand(umlSource, stereotype);
+		Command command = new ApplyStereotypeCommand(umlSource, stereotype, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 
@@ -211,7 +212,7 @@ public class StereotypeApplicationObservableList extends WritableList implements
 		}
 
 		final Stereotype stereotype = (Stereotype)o;
-		Command command = new UnapplyStereotypeCommand(umlSource, stereotype);
+		Command command = new UnapplyStereotypeCommand(umlSource, stereotype, (TransactionalEditingDomain)domain);
 
 
 		commands.add(command);
@@ -224,7 +225,7 @@ public class StereotypeApplicationObservableList extends WritableList implements
 		//We only apply the stereotypes that are not applied yet (To avoid removing them when undo is called)
 		c.removeAll(wrappedList);
 
-		Command command = new ApplyStereotypeCommand(umlSource, c);
+		Command command = new ApplyStereotypeCommand(umlSource, c, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 
@@ -233,7 +234,7 @@ public class StereotypeApplicationObservableList extends WritableList implements
 
 	@Override
 	public boolean removeAll(Collection c) {
-		Command command = new UnapplyStereotypeCommand(umlSource, c);
+		Command command = new UnapplyStereotypeCommand(umlSource, c, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 

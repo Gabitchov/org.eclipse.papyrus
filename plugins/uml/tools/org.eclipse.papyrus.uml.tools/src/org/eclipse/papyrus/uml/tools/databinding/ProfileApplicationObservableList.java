@@ -22,6 +22,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
@@ -209,7 +210,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		}
 
 		Profile profile = (Profile)o;
-		Command command = new ApplyProfileCommand(umlSource, profile);
+		Command command = new ApplyProfileCommand(umlSource, profile, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 
@@ -227,7 +228,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		}
 
 		final Profile profile = (Profile)o;
-		Command command = new UnapplyProfileCommand(umlSource, profile);
+		Command command = new UnapplyProfileCommand(umlSource, profile, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 
@@ -242,7 +243,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		//We only apply the profiles that are not applied yet (To avoid removing them when undo is called)
 		c.removeAll(wrappedList);
 
-		Command command = new ApplyProfileCommand(umlSource, c);
+		Command command = new ApplyProfileCommand(umlSource, c, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 
@@ -254,7 +255,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 	 */
 	@Override
 	public boolean removeAll(Collection c) {
-		Command command = new UnapplyProfileCommand(umlSource, c);
+		Command command = new UnapplyProfileCommand(umlSource, c, (TransactionalEditingDomain)domain);
 
 		commands.add(command);
 
