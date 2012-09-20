@@ -59,7 +59,7 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.gmf.tooling.runtime;bundle-version="3.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.9.1.qualifier
+Bundle-Version: 0.10.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagra
  mEditorPlugin
