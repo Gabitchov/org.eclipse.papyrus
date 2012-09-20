@@ -37,6 +37,9 @@ TestMutliLink.class,
 TestClassDiagramContainment.class,
 //test the order for the drop
 TestDropfunction.class,
+//test is a static operation is underlined
+TestStaticFeatureRepresentation.class,
+
 })
 public class AllCanonicalTests {
 

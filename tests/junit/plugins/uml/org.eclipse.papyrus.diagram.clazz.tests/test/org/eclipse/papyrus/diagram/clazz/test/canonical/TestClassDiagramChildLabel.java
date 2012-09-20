@@ -65,12 +65,6 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	}
 	
 	@Test
-	public void testToManageComponentReception() {
-		//instance specification
-		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Reception_3011, ComponentOperationCompartmentEditPart.VISUAL_ID);
-	}
-	
-	@Test
 	public void testToManageSignalProperty() {
 		//instance specification
 		testToManageTopNode(UMLElementTypes.Signal_2003, UMLElementTypes.Property_3005, SignalAttributeCompartmentEditPart.VISUAL_ID);
@@ -83,11 +77,6 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	public void testToManageInterfaceOperation() {
 		//interface
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Operation_3007, InterfaceOperationCompartmentEditPart.VISUAL_ID);
-	}
-	
-	public void testToManageInterfaceReception() {
-		//interface
-		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Reception_3039, InterfaceOperationCompartmentEditPart.VISUAL_ID);
 	}
 	
 	public void testToManageInterfaceNestedClass() {
@@ -115,10 +104,20 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Operation_3013, ClassOperationCompartmentEditPart.VISUAL_ID);
 				}
 	@Test
-	public void testToClassNestedClass() {
+	public void testToManageClassNestedClass() {
 		//class
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Class_3014, ClassNestedClassifierCompartmentEditPart.VISUAL_ID);
 	}
 	
 	
+	@Test
+	public void testToManageComponentReception() {
+		//class
+		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Reception_3011,ComponentOperationCompartmentEditPart.VISUAL_ID );
+	}
+	@Test
+	public void testToManageInterfaceReception() {
+		//class
+		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Reception_3039,InterfaceOperationCompartmentEditPart.VISUAL_ID );
+	}
 }
