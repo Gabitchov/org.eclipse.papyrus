@@ -32,6 +32,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DefaultNamedElementCr
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DependencyNodeCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.EnumerationCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InformationItemCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InstanceSpecificationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InterfaceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ModelCreateCommandTN;
@@ -135,6 +136,12 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new PackageCreateCommand(req));
+		}
+		if(UMLElementTypes.InformationItem_2099 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InformationItemCreateCommand(req));
 		}
 		if(UMLElementTypes.Class_2008 == baseElementType) {
 			if(isExtendedType) {

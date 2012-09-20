@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -52,11 +53,17 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ActivityPartition;
+import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -64,18 +71,23 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.GeneralizationSet;
+import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Realization;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TemplateBinding;
@@ -83,6 +95,7 @@ import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.UseCase;
 
 /**
  * @generated
@@ -616,6 +629,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateInformationFlow_4026(Package container, NamedElement source, NamedElement target) {
+			return canExistInformationFlow_4026(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistLink_4016() {
 			return true;
 		}
@@ -786,6 +806,46 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistDurationObservationEvent_4025(DurationObservation source, NamedElement target) {
 			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistInformationFlow_4026(Package container, InformationFlow linkInstance, NamedElement source, NamedElement target) {
+			try {
+				//Information Flow source constraint
+				if(source != null) {
+					if(!((source instanceof Actor) || (source instanceof Node) || (source instanceof UseCase) || (source instanceof Artifact) || (source instanceof Class) || (source instanceof Component) || (source instanceof Port) || (source instanceof Property) || (source instanceof Interface) || (source instanceof Package) || (source instanceof ActivityNode) || (source instanceof ActivityPartition) || (source instanceof InstanceSpecification))) {
+						return false;
+					}
+					if(source instanceof InstanceSpecification) {
+						EList<Classifier> classes = ((InstanceSpecification)source).getClassifiers();
+						for(int i = 0; i < classes.size(); i++) {
+							if(classes.get(i) instanceof Relationship) {
+								return false;
+							}
+						}
+					}
+				}
+				//Information Flow target constraint
+				if(target != null) {
+					if(!((target instanceof Actor) || (target instanceof Node) || (target instanceof UseCase) || (target instanceof Artifact) || (target instanceof Class) || (target instanceof Component) || (target instanceof Port) || (target instanceof Property) || (target instanceof Interface) || (target instanceof Package) || (target instanceof ActivityNode) || (target instanceof ActivityPartition) || (target instanceof InstanceSpecification))) {
+						return false;
+					}
+					if(target instanceof InstanceSpecification) {
+						EList<Classifier> classes = ((InstanceSpecification)target).getClassifiers();
+						for(int i = 0; i < classes.size(); i++) {
+							if(classes.get(i) instanceof Relationship) {
+								return false;
+							}
+						}
+					}
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 	}
 }

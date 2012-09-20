@@ -80,6 +80,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.GeneralizationSetEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
@@ -184,6 +187,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ModelEditPartTN.VISUAL_ID:
 		case EnumerationEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
+		case InformationItemEditPart.VISUAL_ID:
 		case ClassEditPart.VISUAL_ID:
 		case PrimitiveTypeEditPart.VISUAL_ID:
 		case DataTypeEditPart.VISUAL_ID:
@@ -460,6 +464,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
+		case InformationItemEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getInformationItem_2099ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
 		case ClassEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
@@ -644,6 +658,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getPackage_3009ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case InformationItemEditPartCN.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getInformationItem_3040ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);
@@ -874,6 +898,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getInstanceSpecification_4021ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case InformationFlowEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getInformationFlow_4026ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

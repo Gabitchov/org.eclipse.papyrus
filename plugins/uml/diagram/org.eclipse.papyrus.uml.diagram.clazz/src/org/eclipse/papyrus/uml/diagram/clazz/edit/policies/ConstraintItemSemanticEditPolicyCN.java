@@ -42,6 +42,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DependencyCreateComma
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ElementImportCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ElementImportReorientCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InformationFlowCreateCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InformationFlowReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.RealizationReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.UsageCreateCommand;
@@ -54,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintConstrainedEle
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ElementImportEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
@@ -162,6 +165,12 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		if(UMLElementTypes.DurationObservationEvent_4025 == baseElementType) {
 			return null;
 		}
+		if(UMLElementTypes.InformationFlow_4026 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -245,6 +254,12 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 			}
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.InformationFlow_4026 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InformationFlowCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -268,6 +283,8 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));
+		case InformationFlowEditPart.VISUAL_ID:
+			return getGEFWrapper(new InformationFlowReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

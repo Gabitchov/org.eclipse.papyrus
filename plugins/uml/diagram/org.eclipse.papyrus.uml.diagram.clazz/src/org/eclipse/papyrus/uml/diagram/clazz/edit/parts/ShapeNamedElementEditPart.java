@@ -289,12 +289,13 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
 		types.add(UMLElementTypes.Dependency_4008);
 		types.add(UMLElementTypes.Dependency_4018);
+		types.add(UMLElementTypes.InformationFlow_4026);
 		return types;
 	}
 
@@ -333,6 +334,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -379,6 +383,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -423,6 +430,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -469,6 +479,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -513,6 +526,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -559,6 +575,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -603,6 +622,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -649,6 +671,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof ClassEditPartCN) {
@@ -693,6 +718,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -741,6 +769,9 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -752,6 +783,102 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof DependencyNodeEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof AssociationClassEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof AssociationNodeEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ComponentEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof SignalEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof InterfaceEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ModelEditPartTN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof EnumerationEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof PackageEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof InformationItemEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ClassEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ComponentEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof SignalEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof InterfaceEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ModelEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof EnumerationEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof PackageEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof InformationItemEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ClassEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof DataTypeEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4026);
 		}
 		return types;
 	}
@@ -772,6 +899,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -788,6 +916,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -803,6 +932,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -819,6 +949,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -834,6 +965,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -850,6 +982,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -865,6 +998,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -881,6 +1015,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -896,6 +1031,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -912,6 +1048,40 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Constraint_3029);
+		} else if(relationshipType == UMLElementTypes.InformationFlow_4026) {
+			types.add(UMLElementTypes.Dependency_2014);
+			types.add(UMLElementTypes.AssociationClass_2013);
+			types.add(UMLElementTypes.Association_2015);
+			types.add(UMLElementTypes.InstanceSpecification_2001);
+			types.add(UMLElementTypes.Component_2002);
+			types.add(UMLElementTypes.Signal_2003);
+			types.add(UMLElementTypes.Interface_2004);
+			types.add(UMLElementTypes.Model_2005);
+			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
+			types.add(UMLElementTypes.Class_2008);
+			types.add(UMLElementTypes.PrimitiveType_2009);
+			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.Constraint_2011);
+			types.add(UMLElementTypes.DurationObservation_2095);
+			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -924,7 +1094,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -934,6 +1104,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		types.add(UMLElementTypes.TimeObservationEvent_4024);
 		types.add(UMLElementTypes.DurationObservationEvent_4025);
+		types.add(UMLElementTypes.InformationFlow_4026);
 		return types;
 	}
 
@@ -953,6 +1124,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -969,6 +1141,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -984,6 +1157,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1000,6 +1174,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1015,6 +1190,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1031,6 +1207,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1046,6 +1223,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1062,6 +1240,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1077,6 +1256,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Enumeration_2006);
 			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
@@ -1093,6 +1273,7 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Enumeration_3025);
 			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
@@ -1107,6 +1288,39 @@ public class ShapeNamedElementEditPart extends AbstractShapeEditPart {
 			types.add(UMLElementTypes.TimeObservation_2096);
 		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
 			types.add(UMLElementTypes.DurationObservation_2095);
+		} else if(relationshipType == UMLElementTypes.InformationFlow_4026) {
+			types.add(UMLElementTypes.Dependency_2014);
+			types.add(UMLElementTypes.AssociationClass_2013);
+			types.add(UMLElementTypes.Association_2015);
+			types.add(UMLElementTypes.InstanceSpecification_2001);
+			types.add(UMLElementTypes.Component_2002);
+			types.add(UMLElementTypes.Signal_2003);
+			types.add(UMLElementTypes.Interface_2004);
+			types.add(UMLElementTypes.Model_2005);
+			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.Package_2007);
+			types.add(UMLElementTypes.InformationItem_2099);
+			types.add(UMLElementTypes.Class_2008);
+			types.add(UMLElementTypes.PrimitiveType_2009);
+			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.Constraint_2011);
+			types.add(UMLElementTypes.DurationObservation_2095);
+			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.InformationItem_3040);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Constraint_3029);
 		}
 		return types;
 	}

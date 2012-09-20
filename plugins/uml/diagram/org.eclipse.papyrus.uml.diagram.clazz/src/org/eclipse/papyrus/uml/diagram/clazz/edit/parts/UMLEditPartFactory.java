@@ -78,6 +78,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PackageEditPart(view);
 			case PackageNameEditPart.VISUAL_ID:
 				return new PackageNameEditPart(view);
+			case InformationItemEditPart.VISUAL_ID:
+				return new InformationItemEditPart(view);
+			case InformationItemNameEditPart.VISUAL_ID:
+				return new InformationItemNameEditPart(view);
 			case ClassEditPart.VISUAL_ID:
 				return new ClassEditPart(view);
 			case ClassNameEditPart.VISUAL_ID:
@@ -198,6 +202,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PackageEditPartCN(view);
 			case PackageNameEditPartCN.VISUAL_ID:
 				return new PackageNameEditPartCN(view);
+			case InformationItemEditPartCN.VISUAL_ID:
+				return new InformationItemEditPartCN(view);
+			case InformationItemNameEditPartCN.VISUAL_ID:
+				return new InformationItemNameEditPartCN(view);
 			case ClassEditPartCN.VISUAL_ID:
 				return new ClassEditPartCN(view);
 			case ClassNameEditPartCN.VISUAL_ID:
@@ -416,6 +424,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConnectorTimeObservationEditPart(view);
 			case ConnectorDurationObservationEditPart.VISUAL_ID:
 				return new ConnectorDurationObservationEditPart(view);
+			case InformationFlowEditPart.VISUAL_ID:
+				return new InformationFlowEditPart(view);
+			case InformationFlowConveyedLabelEditPart.VISUAL_ID:
+				return new InformationFlowConveyedLabelEditPart(view);
+			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+				return new InformationFlowAppliedStereotypeEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

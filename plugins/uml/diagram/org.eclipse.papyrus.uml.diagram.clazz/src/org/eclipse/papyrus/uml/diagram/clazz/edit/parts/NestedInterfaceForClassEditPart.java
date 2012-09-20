@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -69,6 +82,8 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -491,6 +506,13 @@ public class NestedInterfaceForClassEditPart extends CompartmentEditPart impleme
 		if(style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
+		if(resolveSemanticElement() instanceof Feature) {
+			if(((Feature)resolveSemanticElement()).isStatic()) {
+				((WrappingLabel)getFigure()).setTextUnderline(true);
+			} else {
+				((WrappingLabel)getFigure()).setTextUnderline(false);
+			}
+		}
 	}
 
 	/**
@@ -717,6 +739,9 @@ public class NestedInterfaceForClassEditPart extends CompartmentEditPart impleme
 					refreshLabel();
 				}
 			}
+		}
+		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
+			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
 	}

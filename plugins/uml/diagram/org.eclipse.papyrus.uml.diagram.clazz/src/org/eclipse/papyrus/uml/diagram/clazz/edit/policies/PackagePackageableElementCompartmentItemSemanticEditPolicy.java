@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ComponentCreateComman
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.DataTypeCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.EnumerationCreateCommandCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InformationItemCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InstanceSpecificationCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.InterfaceCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ModelCreateCommandCN;
@@ -134,6 +135,12 @@ public class PackagePackageableElementCompartmentItemSemanticEditPolicy extends 
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommandCN(req));
+		}
+		if(UMLElementTypes.InformationItem_3040 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new InformationItemCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);
 	}
