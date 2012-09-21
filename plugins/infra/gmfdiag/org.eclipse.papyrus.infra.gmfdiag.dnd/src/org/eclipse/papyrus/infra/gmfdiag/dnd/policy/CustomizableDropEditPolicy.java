@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -101,10 +102,16 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			command = getCreationCommand(request);
 		} else if(defaultCreationEditPolicy != null) {
 			//Creation request
-			if(defaultCreationEditPolicy.getTargetEditPart(request) != getTargetEditPart(request)) {
-				command = defaultCreationEditPolicy.getTargetEditPart(request).getCommand(request);
+			if(defaultCreationEditPolicy.understandsRequest(request)) {
+				EditPart defaultTargetEditPart = defaultCreationEditPolicy.getTargetEditPart(request);
+				EditPart myTargetEditPart = getTargetEditPart(request);
+				if(defaultTargetEditPart != myTargetEditPart) {
+					command = defaultTargetEditPart.getCommand(request);
+				} else {
+					command = defaultCreationEditPolicy.getCommand(request);
+				}
 			} else {
-				command = defaultCreationEditPolicy.getCommand(request);
+				command = null;
 			}
 		} else {
 			command = null;
