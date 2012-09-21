@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
+import junit.framework.Assert;
+
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.commands.Command;
@@ -19,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmen
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
@@ -80,10 +83,12 @@ public class TestStaticFeatureRepresentation extends TestChildLabel {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(new EMFtoGMFCommandWrapper(setStaticOperation)));
 		TextFlowEx label=(TextFlowEx)((FlowPage)featureEditPart.getFigure().getChildren().get(0)).getChildren().get(0);
 		featureEditPart.refresh();
+		//while( PlatformUI.getWorkbench().getDisplay().readAndDispatch()){
+		//}
 		//the semantic element is static
 		assertTrue("the feature is static",((Feature)featureEditPart.resolveSemanticElement()).isStatic());
 		//the graphical element is underlined
-		assertTrue("the figigure is drawn as static", label.isTextUnderlined());
+		assertTrue("the figure is not drawn as static", label.isTextUnderlined());
 		
 	}
 }
