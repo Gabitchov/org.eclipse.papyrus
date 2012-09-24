@@ -57,7 +57,11 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 		waitForComplete();
 
 		AbstractMessageEditPart linkEditPart = (AbstractMessageEditPart)source.getSourceConnections().get(0);
-		MessageEndEditPart linkEndPoint = (MessageEndEditPart)linkEditPart.getChildren().get(0);
+		MessageEndEditPart linkEndPoint = null;
+		for(Object child : linkEditPart.getChildren())
+			if(child instanceof MessageEndEditPart)
+			linkEndPoint = (MessageEndEditPart) child;
+		
 		ConstraintEditPart constraintEditPart = (ConstraintEditPart)getRootEditPart().getChildren().get(2);
 		createLink(UMLElementTypes.ConstraintConstrainedElement_4011, constraintEditPart, linkEndPoint, getAbsoluteCenter(constraintEditPart), getAbsoluteCenter(linkEndPoint));
 
