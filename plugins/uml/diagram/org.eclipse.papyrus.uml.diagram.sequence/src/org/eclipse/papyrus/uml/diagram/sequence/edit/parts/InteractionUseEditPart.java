@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -59,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionUseUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
@@ -1326,6 +1328,24 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	public void removeNotify() {
 		notifier.unlistenAll();
 		super.removeNotify();
-
+	}
+	
+	@Override
+	public void performRequest(Request request) {
+		if(request.getType().equals(REQ_OPEN)){
+			InteractionUse interactionUse = (InteractionUse)resolveSemanticElement();
+			Interaction interaction = interactionUse.getRefersTo();
+			if(interaction == null) {
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "Warning", "There is no referenced interaction!");
+				return;
+			}
+			Diagram diagram = InteractionUseUtil.findDiagram(getNotationView(), interaction);
+			if(diagram == null)
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "Warning", "Cannot find diagram of the referenced interaction!");
+			else
+				InteractionUseUtil.openDiagram(diagram);
+			return;
+		}
+		super.performRequest(request);
 	}
 }

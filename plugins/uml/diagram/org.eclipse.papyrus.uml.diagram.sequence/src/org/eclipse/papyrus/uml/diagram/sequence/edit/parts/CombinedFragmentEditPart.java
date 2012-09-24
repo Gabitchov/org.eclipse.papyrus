@@ -45,6 +45,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
@@ -66,6 +67,8 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
@@ -1642,5 +1645,54 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 			}
 			return null;
 		}
+	}
+	
+	public EditPolicy getPrimaryDragEditPolicy() {
+		EditPolicy policy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		return policy != null ? policy : new ResizableShapeEditPolicyEx() ;
+	}
+	
+	static class ResizableShapeEditPolicyEx extends ResizableShapeEditPolicy{
+	   protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
+	        IFigure feedback = getDragSourceFeedbackFigure();
+	        
+	        PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+	        getHostFigure().translateToAbsolute(rect);
+	        Rectangle old = rect.getCopy();
+	        rect.translate(request.getMoveDelta());
+	        rect.resize(request.getSizeDelta());
+	        
+	        IFigure f = getHostFigure();
+	        Dimension min = f.getMinimumSize().getCopy();
+	        Dimension max = f.getMaximumSize().getCopy();
+	        IMapMode mmode = MapModeUtil.getMapMode(f);
+	        min.height = mmode.LPtoDP(min.height);
+	        min.width = mmode.LPtoDP(min.width);
+	        max.height = mmode.LPtoDP(max.height);
+	        max.width = mmode.LPtoDP(max.width);
+	        
+	        if (min.width>rect.width){
+	            rect.width = min.width;
+	            if(request.getMoveDelta().x > 0 && request.getSizeDelta().width < 0){ // shrinking from left
+	            	rect.x = old.getRight().x - min.width;
+	            	request.getMoveDelta().x = rect.x - old.getLeft().x;
+	            }
+	        }
+	        else if (max.width < rect.width)
+	            rect.width = max.width;
+	        
+	        if (min.height>rect.height){
+	            rect.height = min.height;
+	            if(request.getMoveDelta().y > 0 && request.getSizeDelta().height < 0){ // shrinking from upper
+	            	rect.y = old.getBottom().y - min.height; 
+	            	request.getMoveDelta().y = rect.y - old.getTop().y;
+	            }
+	        }
+	        else if (max.height < rect.height)
+	            rect.height = max.height;
+	        
+	        feedback.translateToRelative(rect);
+	        feedback.setBounds(rect);
+	    }
 	}
 }
