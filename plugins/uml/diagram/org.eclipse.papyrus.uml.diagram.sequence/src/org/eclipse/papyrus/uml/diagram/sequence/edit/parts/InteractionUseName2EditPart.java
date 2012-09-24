@@ -747,4 +747,12 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 
 	}
 
+	@Override
+	public void performRequest(Request request) {
+		if(request.getType().equals(REQ_OPEN)){
+			getParent().performRequest(request);
+			return;
+		}
+		super.performRequest(request);
+	}
 }

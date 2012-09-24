@@ -47,6 +47,8 @@ public class OperandBoundsComputeHelper {
 	 * Default height of Interaction Operand
 	 */
 	public static final int DEFAULT_INTERACTION_OPERAND_HEIGHT = 61;
+	
+	public static final int MIN_INTERACTION_OPERAND_HEIGHT = 10; 
 	/**
 	 * Default width of Interaction Operand
 	 */
@@ -503,7 +505,7 @@ public class OperandBoundsComputeHelper {
 		// if last operand
 		if(targetIOEP == null){
 			if (heightDelta < 0) {
-				if (currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT) {
+				if (currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 					return null;
 				}
 			}
@@ -537,11 +539,11 @@ public class OperandBoundsComputeHelper {
 				return null;
 			}
 			if (heightDelta > 0) {
-				if (targetIOEPBounds.getHeight() - heightDelta < OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT) {
+				if (targetIOEPBounds.getHeight() - heightDelta < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 					return null;
 				}
 			} else {
-				if (currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT) {
+				if (currentIOEPBounds.getHeight() - Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT) {
 					return null;
 				}
 			}
@@ -613,13 +615,11 @@ public class OperandBoundsComputeHelper {
 					}
 					InteractionOperandEditPart targetOperandEditPart = OperandBoundsComputeHelper.findTargetOperandEditPart(
 							cf, targetOperand, combinedFragmentChildrenEditParts);
-					if(targetOperandEditPart!=null){
+					int heightDelta = request.getSizeDelta().height();
+					if(targetOperandEditPart!=null && heightDelta<0){
 						int height = targetOperandEditPart.getFigure().getBounds().height();
-						int heightDelta = request.getSizeDelta().height();
-						if(heightDelta<0){
-							if(height-Math.abs(heightDelta) < OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT){
-								return false;
-							}
+						if(height-Math.abs(heightDelta) < OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT){
+							return false;
 						}
 					}
 				}

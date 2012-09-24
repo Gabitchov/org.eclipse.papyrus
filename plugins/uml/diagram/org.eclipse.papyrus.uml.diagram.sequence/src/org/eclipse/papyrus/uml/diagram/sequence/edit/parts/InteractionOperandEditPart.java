@@ -1331,10 +1331,18 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		if(UMLPackage.eINSTANCE.getInteractionOperand_Guard().equals(feature)) {
 			// Case of add, change or delete guard
 			if(notification.getOldValue() instanceof InteractionConstraint) {
-				notifierHelper.unlistenObject((InteractionConstraint)notification.getOldValue());
+				InteractionConstraint constraint = (InteractionConstraint)notification.getOldValue();
+				notifierHelper.unlistenObject(constraint);
+				notifierHelper.unlistenObject(constraint.getSpecification());
+				notifierHelper.unlistenObject(constraint.getMaxint());
+				notifierHelper.unlistenObject(constraint.getMinint());
 			}
 			if(newValue instanceof InteractionConstraint) {
-				notifierHelper.listenObject((InteractionConstraint)newValue);
+				InteractionConstraint constraint = (InteractionConstraint)newValue;
+				notifierHelper.listenObject(constraint);
+				notifierHelper.listenObject(constraint.getSpecification());
+				notifierHelper.listenObject(constraint.getMaxint());
+				notifierHelper.listenObject(constraint.getMinint());
 			}
 		} else if(UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature)) {
 			// Case of add, change or delete Specification
@@ -1725,9 +1733,11 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 					guard.setMaxint(null);
 				}
 			}
-			LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
-			literalString.setValue(text);
-			guard.setSpecification(literalString);
+			if(guard.getSpecification() != null || text.length() > 0){
+				LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+				literalString.setValue(text);
+				guard.setSpecification(literalString);
+			}
 			return CommandResult.newOKCommandResult();
 		}
 		

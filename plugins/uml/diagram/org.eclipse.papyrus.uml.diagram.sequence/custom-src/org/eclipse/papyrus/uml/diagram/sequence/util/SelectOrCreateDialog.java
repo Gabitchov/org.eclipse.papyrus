@@ -58,6 +58,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -487,6 +488,11 @@ public class SelectOrCreateDialog extends FormDialog {
 		if(collected.contains(c))
 			return;		
 		collected.add(c);
+		if(c instanceof org.eclipse.uml2.uml.Class){
+			EList<Reception> receptions = ((org.eclipse.uml2.uml.Class)c).getOwnedReceptions();
+			for(Reception r : receptions)
+				accept.add(r.getSignal());
+		}
 		
 		EList<Property> attrs = c.getAllAttributes();
 		for(Property p : attrs)
