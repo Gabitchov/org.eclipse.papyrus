@@ -140,7 +140,7 @@
     <!-- CDO -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF CDO",0) -->
-      <rm:uri format="{0}/modeling/emf/cdo/drops/S20120912-0119">
+      <rm:uri format="{0}/modeling/emf/cdo/drops/R20120918-0947">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -203,7 +203,7 @@
     <!-- MoDisco -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/SR1_RC3">
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/milestones/0.10/SR1_RC4">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -219,7 +219,7 @@
     <!-- Mylyn -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("Mylyn",0) -->
-      <rm:uri format="{0}/mylyn/snapshots/juno">
+      <rm:uri format="{0}/mylyn/snapshots/3.8">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -243,7 +243,7 @@
     <!-- EMF -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF (Core)",0) -->
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.8.x">
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.8.x/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -305,7 +305,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.4.1/I-3.4.1-20120817053109/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.4.1/R-3.4.1-20120917174803/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
