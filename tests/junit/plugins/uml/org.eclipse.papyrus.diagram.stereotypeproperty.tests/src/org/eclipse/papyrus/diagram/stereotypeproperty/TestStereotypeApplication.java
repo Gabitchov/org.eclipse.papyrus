@@ -81,9 +81,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		ArrayList<Stereotype> stereotypeslist = new ArrayList<Stereotype>();
 		stereotypeslist.add(element.getApplicableStereotype(TEST_PROFILE_STEREOTYPE1));
 
-
-
-		ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand(((Element)classEditPart.resolveSemanticElement()), stereotypeslist);
+		ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand(((Element)classEditPart.resolveSemanticElement()), stereotypeslist, diagramEditor.getEditingDomain());
 		diagramEditor.getEditingDomain().getCommandStack().execute(applyStereotypeCommand);
 		//diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(new EMFtoGMFCommandWrapper(applyStereotypeCommand)));
 		Element semanticElement = (Element)classEditPart.resolveSemanticElement();

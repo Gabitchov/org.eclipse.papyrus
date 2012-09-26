@@ -14,7 +14,8 @@ package org.eclipse.papyrus.uml.tools.commands;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -23,7 +24,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  * @author Camille Letavernier
  */
-public class UnapplyStereotypeCommand extends AbstractCommand {
+public class UnapplyStereotypeCommand extends RecordingCommand {
 
 	private Element element;
 
@@ -38,7 +39,8 @@ public class UnapplyStereotypeCommand extends AbstractCommand {
 	 * @param stereotypes
 	 *        The stereotypes to unapply
 	 */
-	public UnapplyStereotypeCommand(Element element, Collection<Stereotype> stereotypes) {
+	public UnapplyStereotypeCommand(Element element, Collection<Stereotype> stereotypes, TransactionalEditingDomain domain) {
+		super(domain);
 		this.element = element;
 		this.stereotypes = stereotypes;
 	}
@@ -52,36 +54,17 @@ public class UnapplyStereotypeCommand extends AbstractCommand {
 	 * @param stereotype
 	 *        The stereotype to unapply
 	 */
-	public UnapplyStereotypeCommand(Element element, Stereotype stereotype) {
+	public UnapplyStereotypeCommand(Element element, Stereotype stereotype, TransactionalEditingDomain domain) {
+		super(domain);
 		this.element = element;
 		this.stereotypes = Collections.singletonList(stereotype);
 	}
 
 	@Override
-	public boolean canExecute() {
-		return true;
-	}
-
-	public void execute() {
+	protected void doExecute() {
 		for(Stereotype stereotype : stereotypes) {
 			element.unapplyStereotype(stereotype);
 		}
-	}
-
-	@Override
-	public boolean canUndo() {
-		return true;
-	}
-
-	@Override
-	public void undo() {
-		for(Stereotype stereotype : stereotypes) {
-			element.applyStereotype(stereotype);
-		}
-	}
-
-	public void redo() {
-		execute();
 	}
 
 }

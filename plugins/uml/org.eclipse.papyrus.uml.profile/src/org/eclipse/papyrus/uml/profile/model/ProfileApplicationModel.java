@@ -14,13 +14,16 @@ package org.eclipse.papyrus.uml.profile.model;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.swt.widgets.Display;
@@ -42,6 +45,9 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 
 	public void start(ModelSet modelsManager) {
 		UmlModel umlModel = (UmlModel)modelsManager.getModel(UmlModel.MODEL_ID);
+		if(umlModel == null) {
+			return;
+		}
 
 		rootPackage = getRootPackage(umlModel);
 
@@ -50,6 +56,7 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 		}
 
 		checkAndRefreshProfiles(rootPackage);
+
 	}
 
 	protected Package getRootPackage(UmlModel umlModel) {
@@ -90,11 +97,20 @@ public class ProfileApplicationModel implements IModelSetSnippet {
 
 			public void run() {
 				Map<Package, Collection<Profile>> profilesToReapply = dialog.getProfilesToReapply();
-				for(Map.Entry<Package, Collection<Profile>> profiles : profilesToReapply.entrySet()) {
-					ApplyProfileCommand command = new ApplyProfileCommand(profiles.getKey(), profiles.getValue());
-					EditingDomain domain = EMFHelper.resolveEditingDomain(rootPackage);
+				EditingDomain domain = EMFHelper.resolveEditingDomain(rootPackage);
+
+				if(domain instanceof TransactionalEditingDomain) {
+					CompoundCommand command = new CompoundCommand();
+
+					for(Map.Entry<Package, Collection<Profile>> profiles : profilesToReapply.entrySet()) {
+						command.append(new ApplyProfileCommand(profiles.getKey(), profiles.getValue(), (TransactionalEditingDomain)domain));
+					}
+
 					domain.getCommandStack().execute(command);
+				} else {
+					Activator.log.error(new IllegalArgumentException("Cannot reapply profiles on Package " + rootPackage.getQualifiedName() + ". The EditingDomain cannot be found"));
 				}
+
 			}
 
 		};
