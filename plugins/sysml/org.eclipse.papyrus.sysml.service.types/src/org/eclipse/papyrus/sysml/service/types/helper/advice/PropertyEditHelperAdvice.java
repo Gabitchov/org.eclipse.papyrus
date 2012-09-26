@@ -86,14 +86,6 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				
 				return gmfCommand;
 			}
-			
-			// If the new type is not a block, destroy related association
-			if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())) {
-				ICommand destroyCommand = getDestroyPartAssociationCommand(relatedAssociation, propertyToEdit);
-				gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
-				
-				return gmfCommand;
-			}
 
 			// Setting new type can be related to an association re-orient (or trigger the association re-orient)
 			// Retrieve elements already under re-factor.
@@ -106,6 +98,16 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				if(currentlyRefactoredElements.contains(relatedAssociation)) {
 					return gmfCommand;
 				}
+			}
+
+			// If the new type is not a block, destroy related association
+			// This must be done only if the setting of the property type is not part of an association re-orient (hence after the previous code-block),
+			// otherwise there is no legitimate reason to destroy the existing association while re-orienting it.
+			if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())) {
+				ICommand destroyCommand = getDestroyPartAssociationCommand(relatedAssociation, propertyToEdit);
+				gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
+				
+				return gmfCommand;
 			}
 
 			ICommand refactorCommand = getAssociationRefactoringCommand(propertyToEdit, relatedAssociation, request);
