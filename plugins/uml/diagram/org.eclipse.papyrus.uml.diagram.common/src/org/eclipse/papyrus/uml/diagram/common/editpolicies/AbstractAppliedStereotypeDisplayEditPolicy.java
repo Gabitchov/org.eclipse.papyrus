@@ -176,7 +176,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	protected void removeEAnnotationAboutStereotype(final String stereotypeQN){
 
 			try {
-				((GraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
+				((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 					public void run() {
 
@@ -184,8 +184,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 							public void run() {
 								String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView());
-								RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(((GraphicalEditPart)getHost()).getEditingDomain(), getView(),stereotypeQN, presentationKind);
-								((GraphicalEditPart)getHost()).getEditingDomain().getCommandStack().execute(command);
+								RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), getView(),stereotypeQN, presentationKind);
+								((IGraphicalEditPart)getHost()).getEditingDomain().getCommandStack().execute(command);
 							}
 						});
 					}

@@ -15,13 +15,16 @@ package org.eclipse.papyrus.uml.diagram.common.commands;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.core.util.IProxyEObject;
+import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * The Class SemanticAdapter used to package semantic or view element in a
  * deferred command
  */
-public class SemanticAdapter implements IAdaptable {
+public class SemanticAdapter implements IAdaptable, IProxyEObject {
 
 	/** The element. */
 	private Object element;
@@ -77,4 +80,17 @@ public class SemanticAdapter implements IAdaptable {
 		this.view = view;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object getProxyClassID() {
+		return (element != null) ? PackageUtil.getID(EMFCoreUtil.getProxyClass((EObject)element)) : null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public EObject resolve() {
+		return (element != null) ? (EObject)element : null;
+	}
 }
