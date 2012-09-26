@@ -109,7 +109,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		this.title = title;
 		this.message = message;
 		/* for further information, see bug 302555 */
-		ViewServiceUtil.forceLoad();
+		// ViewServiceUtil.forceLoad();
 	}
 
 	/**

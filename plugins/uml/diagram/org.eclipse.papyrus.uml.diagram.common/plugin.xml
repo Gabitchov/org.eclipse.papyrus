@@ -243,6 +243,19 @@
    </aspectToolProvider>
 </extension>
 <extension
+      point="org.eclipse.papyrus.uml.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.uml.diagram.common.service.palette.DisplayAppliedStereotypePropertiesInCompartmentAspectActionProvider"
+         description="This action modifies the list of stereotype properties that will be displayed for the specified element."
+         icon="icons/stereotype_display.gif"
+         id="org.eclipse.papyrus.postaction.displayAppliedStereotypePropertiesInCompartmentactionprovider"
+         name="Set list of displayed stereotypes properties in Compartment">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
       point="org.eclipse.papyrus.uml.pastemanager.pasteCommandProvider">
    <PasteCommandProvider
          priority="Lowest"
