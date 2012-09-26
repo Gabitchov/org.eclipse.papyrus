@@ -104,7 +104,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			//Creation request
 			if(defaultCreationEditPolicy.understandsRequest(request)) {
 				EditPart defaultTargetEditPart = defaultCreationEditPolicy.getTargetEditPart(request);
-				EditPart myTargetEditPart = getTargetEditPart(request);
+				EditPart myTargetEditPart = super.getTargetEditPart(request);
 				if(defaultTargetEditPart != myTargetEditPart) {
 					command = defaultTargetEditPart.getCommand(request);
 				} else {
@@ -300,4 +300,17 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			super.showTargetFeedback(request);
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		// when default creation edit policy is not overriden and request is a creation request, target edit part should be computed by the default edit policy itself
+		if(!super.understandsRequest(request) && !this.understands(request) && (defaultCreationEditPolicy != null && defaultCreationEditPolicy.understandsRequest(request))) { 
+			return defaultCreationEditPolicy.getTargetEditPart(request);
+		}
+		return super.getTargetEditPart(request);
+	}
+	
 }
