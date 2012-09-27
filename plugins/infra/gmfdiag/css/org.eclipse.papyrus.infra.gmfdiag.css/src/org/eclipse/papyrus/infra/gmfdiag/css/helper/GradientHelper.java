@@ -80,10 +80,12 @@ public class GradientHelper {
 
 		if(gradientColor != null || gradientStyle != null) {
 			int color1 = (Integer)engine.convert(gradientColor, ColorToGMFConverter.GMFColor, null);
-			int color2 = 0; //Unused by Papyrus diagrams
 			int style = getGradientStyle(gradientStyle.getCssText());
-			GradientData data = new GradientData(color1, color2, style);
-			return data;
+
+			GradientData gradientData = new GradientData();
+			gradientData.setGradientColor1(color1);
+			gradientData.setGradientStyle(style);
+			return gradientData;
 		}
 
 		//Type 2
@@ -97,6 +99,7 @@ public class GradientHelper {
 			}
 
 			int[] gradientValues = parseGradient(engine, gradientString);
+
 			return new GradientData(gradientValues[0], gradientValues[1], gradientValues[2]);
 		}
 
@@ -139,16 +142,22 @@ public class GradientHelper {
 		int color1, color2, style;
 		color1 = color2 = style = -1;
 
-		CSSValue cssColor1;
+		CSSValue cssColor1, cssColor2;
 		try {
-			cssColor1 = engine.parsePropertyValue(sColor1);
-			color1 = (Integer)engine.convert(cssColor1, ColorToGMFConverter.GMFColor, null);
-			color2 = 0; //Unused
+			if(sColor1 != null) {
+				cssColor1 = engine.parsePropertyValue(sColor1);
+				color1 = (Integer)engine.convert(cssColor1, ColorToGMFConverter.GMFColor, null);
+			}
+
+			if(sColor2 != null) {
+				cssColor2 = engine.parsePropertyValue(sColor2);
+				color2 = (Integer)engine.convert(cssColor2, ColorToGMFConverter.GMFColor, null); //Unused
+			}
+
 			style = getGradientStyle(sStyle);
 		} catch (IOException ex) {
 			engine.handleExceptions(ex);
 		}
-
 
 		return new int[]{ color1, color2, style };
 	}
