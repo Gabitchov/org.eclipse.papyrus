@@ -79,7 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class MessageName2EditPart extends LabelEditPart implements ITextAwareEditPart, MessageLabelEditPolicy.ICustomMessageLabel {
+public class MessageName2EditPart extends MessageLabelEditPart implements ITextAwareEditPart, MessageLabelEditPolicy.ICustomMessageLabel {
 
 	/**
 	 * @generated
@@ -512,7 +512,7 @@ public class MessageName2EditPart extends LabelEditPart implements ITextAwareEdi
 	/**
 	 * @generated
 	 */
-	protected void refreshFont() {
+	public void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
 			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
@@ -574,7 +574,7 @@ public class MessageName2EditPart extends LabelEditPart implements ITextAwareEdi
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		return (View)getParent().getModel();
 	}
 
 	/**

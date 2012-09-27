@@ -382,7 +382,9 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
+		if(primaryShape instanceof NodeFigure){
+			((NodeFigure)primaryShape).setLineWidth(width);
+		}else if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
@@ -421,8 +423,14 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			this.setBorder(null);
 
 			this.setLineSeparator(!firstOperand);
-
+			this.setLineWidth(2);
 			createContents();
+		}
+		
+		protected void paintBackground(Graphics graphics, Rectangle rectangle) {
+			graphics.pushState();
+			super.paintBackground(graphics, rectangle);
+			graphics.popState();
 		}
 
 		/**
@@ -1438,19 +1446,25 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 			}
 		}
 		super.handleNotificationEvent(notification);
+		if((getModel() != null) && (getModel() == notification.getNotifier())) {
+			if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+				refreshLineWidth();
+			} 
+		}
 	}
 	
 	protected void refreshBackgroundColor() {
 		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
         if ( style != null ) {
-        	if(16777215 == style.getFillColor()){
-        		getPrimaryShape().setTransparency(100);
-        		getPrimaryShape().setIsUsingGradient(true);
-        		getPrimaryShape().setGradientData(style.getFillColor(), style.getFillColor(), 0);
-        		
-        	}else if ((style.getGradient() == null || !supportsGradient())) {	        	
-        		refreshTransparency();
-        		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(style.getFillColor())));
+        	if ((style.getGradient() == null || !supportsGradient())) {	        	        	
+            	if(16777215 == style.getFillColor()){  // default color
+            		getPrimaryShape().setTransparency(100);
+            		getPrimaryShape().setIsUsingGradient(true);
+            		getPrimaryShape().setGradientData(style.getFillColor(), style.getFillColor(), 0);
+            	}else{
+            		refreshTransparency();
+            		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(style.getFillColor())));
+            	}
         	} else {
         		refreshTransparency();
         		setGradient(style.getGradient());
@@ -1471,7 +1485,8 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 		IPapyrusNodeFigure fig = getPrimaryShape();
 		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
 		if(gradient != null) {
-			fig.setIsUsingGradient(true);;
+			setTransparency(0);
+			fig.setIsUsingGradient(true);
 			fig.setGradientData(style.getFillColor(), gradient.getGradientColor1(), gradient.getGradientStyle());
 		} else {
 			fig.setIsUsingGradient(false);

@@ -163,7 +163,7 @@ implements ITreeBranchEditPart {
 	/**
 	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
-	public class MessageFound extends UMLEdgeFigure {
+	public class MessageFound extends MessageFigure {
 
 		/**
 		 * @generated
@@ -220,7 +220,7 @@ implements ITreeBranchEditPart {
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
-			df.setForegroundColor(ColorConstants.black);
+			df.setForegroundColor(getForegroundColor());
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

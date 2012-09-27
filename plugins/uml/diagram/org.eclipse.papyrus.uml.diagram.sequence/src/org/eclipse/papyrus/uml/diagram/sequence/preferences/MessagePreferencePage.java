@@ -122,21 +122,14 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 		refreshButtons(null);
 	}
-	
+
 	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
-	protected void loadDefaultPreferences() {
-		displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
-		refreshButtons(null);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void performDefaults() {
-		loadDefaultPreferences();
+		displayValue = getPreferenceStore().getInt(LABEL_DISPLAY_PREFERENCE);
+		refreshButtons(null);
 		super.performDefaults();
 	}
 
@@ -155,6 +148,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
 	protected void storePreferences() {
+		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();
 		// checks the stored value and the actual one, so does not refresh diagram if it is not
 		// needed

@@ -161,7 +161,7 @@ implements ITreeBranchEditPart {
 	/**
 	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
-	public class MessageDelete extends UMLEdgeFigure {
+	public class MessageDelete extends MessageFigure {
 
 		/**
 		 * @generated
@@ -205,8 +205,8 @@ implements ITreeBranchEditPart {
 		private RotatableDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			df.setFill(true);
-			df.setForegroundColor(ColorConstants.black);
-			df.setBackgroundColor(ColorConstants.black);
+			df.setForegroundColor(getForegroundColor());
+			df.setBackgroundColor(getForegroundColor());
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

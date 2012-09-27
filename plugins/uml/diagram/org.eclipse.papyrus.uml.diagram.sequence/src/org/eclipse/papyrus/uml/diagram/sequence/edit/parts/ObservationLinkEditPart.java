@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -185,8 +186,18 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 			tracker.setDefaultCursor(getCursor());
 			return tracker;
 		}
-		
-
 	}
-
+	
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object feature = notification.getFeature();
+		if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+			refreshLineWidth();
+		}
+	}
+	
+	protected void setLineWidth(int width) {
+		getPrimaryShape().setLineWidth(width);
+	}
 }

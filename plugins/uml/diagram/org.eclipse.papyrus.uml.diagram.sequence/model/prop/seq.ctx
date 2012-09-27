@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="ASCII"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="SequenceNotation">
-  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="100">   
+  <tabs label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="10">   
     <sections name="CombinedFragmentTitle" sectionFile="ui/CombinedFragmentTitle.xwt">
       <widget href="ui/CombinedFragmentTitle.xwt#/"/>
     </sections>
     <sections name="ConsiderIgnoreFragmentTitle" sectionFile="ui/ConsiderIgnoreFragmentTitle.xwt">
       <widget href="ui/ConsiderIgnoreFragmentTitle.xwt#/"/>
     </sections>
+    <sections name="MessageStyle" sectionFile="ui/MessageStyle.xwt">
+      <widget href="ui/MessageStyle.xwt#/"/>
+    </sections>
   </tabs>
 	
- 
    <views name="CombinedFragmentTitle" sections="//@tabs.0/@sections.0"	automaticContext="true">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleCombinedFragment">
 			<constraintType	href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0" />
@@ -22,7 +24,13 @@
 			<properties xsi:type="constraints:ValueProperty" name="umlClassName" value="ConsiderIgnoreFragment" />
 		</constraints>
 	</views>
-	
+	 <views name="MessageStyle" sections="//@tabs.0/@sections.2"	automaticContext="true">
+	   <constraints xsi:type="constraints:SimpleConstraint" name="isMessageStyle">
+	      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
+	      <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+	      <properties xsi:type="constraints:ValueProperty" name="className" value="Edge"/>
+	    </constraints>
+	</views>
   
   <dataContexts name="Preference" label="Preference">
     <elements name="org.eclipse.papyrus.infra.gmfdiag.preferences">
@@ -32,4 +40,20 @@
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/Model/Environment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
   
+   <dataContexts name="MessageStyle" label="MessageStyle">
+	    <elements name="LineStyle">
+	      <properties name="lineColor" type="Integer"/>
+	      <properties name="lineWidth" type="Integer"/>
+	    </elements>
+	     <elements name="FontStyle">
+	      <properties name="fontColor" type="Integer"/>
+	      <properties name="fontName"/>
+	      <properties name="fontHeight" type="Integer"/>
+	      <properties name="bold" type="Boolean"/>
+	      <properties name="italic" type="Boolean"/>
+	      <properties name="underline" type="Boolean"/>
+	      <properties name="strikeThrough" type="Boolean"/>
+	    </elements>
+	<modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.0"/>    
+  </dataContexts>
 </contexts:Context>

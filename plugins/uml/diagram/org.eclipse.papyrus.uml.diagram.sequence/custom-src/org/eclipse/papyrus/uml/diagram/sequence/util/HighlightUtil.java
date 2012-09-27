@@ -145,7 +145,7 @@ public class HighlightUtil {
 			fig.setBackgroundColor(color);
 		}else if(host instanceof ConstraintEditPart){
 			ConstraintFigure fig = ( (ConstraintEditPart) host).getPrimaryShape();
-			figureState.put(host, new FigureState(fig.getBackgroundColor()));
+			saveIfNotExist(host, fig);
 			fig.setBackgroundColor(color);
 		}
 	}
