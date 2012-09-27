@@ -15,10 +15,14 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CommentAnnotatedElementItemSemanticEditPolicy;
 
@@ -84,4 +88,16 @@ implements ITreeBranchEditPart {
 
 	}
 
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object feature = notification.getFeature();
+		if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+			refreshLineWidth();
+		}
+	}
+	
+	protected void setLineWidth(int width) {
+		getPrimaryShape().setLineWidth(width);
+	}
 }

@@ -8,13 +8,16 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
@@ -149,8 +152,8 @@ implements ITreeBranchEditPart {
 		private RotatableDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			df.setFill(true);
-			df.setForegroundColor(ColorConstants.black);
-			df.setBackgroundColor(ColorConstants.black);
+			df.setForegroundColor(getForegroundColor());
+			df.setBackgroundColor(getForegroundColor());
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
@@ -188,6 +191,15 @@ implements ITreeBranchEditPart {
 			super.setForegroundColor(fg);
 			if(getMiddleDecoration() != null) {
 				getMiddleDecoration().setForegroundColor(fg);
+				getMiddleDecoration().setBackgroundColor(fg);
+			}
+		}
+		
+		@Override
+		public void setLineWidth(int w) {
+			super.setLineWidth(w);
+			if(getMiddleDecoration() instanceof Shape){
+				((Shape)getMiddleDecoration()).setLineWidth(w);
 			}
 		}
 
@@ -230,5 +242,17 @@ implements ITreeBranchEditPart {
 		}
 
 	}
-
+	
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object feature = notification.getFeature();
+		if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+			refreshLineWidth();
+		}
+	}
+	
+	protected void setLineWidth(int width) {
+		getPrimaryShape().setLineWidth(width);
+	}
 }

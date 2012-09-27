@@ -7,17 +7,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.handles.ConnectionEndpointHandle;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.tools.ConnectionEndpointTracker;
@@ -31,6 +29,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -188,8 +187,18 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 			tracker.setDefaultCursor(getCursor());
 			return tracker;
 		}
-		
-
 	}
-
+	
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object feature = notification.getFeature();
+		if(NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
+			refreshLineWidth();
+		}
+	}
+	
+	protected void setLineWidth(int width) {
+		getPrimaryShape().setLineWidth(width);
+	}
 }

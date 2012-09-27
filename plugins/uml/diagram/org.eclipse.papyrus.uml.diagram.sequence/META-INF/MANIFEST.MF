@@ -58,4 +58,9 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.infra.widgets;bundle-version="0.9.1",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.9.1",
  org.eclipse.papyrus.uml.appearance;bundle-version="0.9.1"
-
+Import-Package: org.eclipse.core.databinding.observable,
+ org.eclipse.papyrus.infra.emf.databinding,
+ org.eclipse.papyrus.infra.tools.databinding,
+ org.eclipse.papyrus.uml.tools.databinding,
+ org.eclipse.papyrus.views.properties.contexts,
+ org.eclipse.papyrus.views.properties.modelelement

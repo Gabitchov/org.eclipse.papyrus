@@ -28,7 +28,7 @@ public class InteractionOperandFigure extends PapyrusNodeFigure {
 		super.paintFigure(graphics);
 		if(lineSeparator) {
 			graphics.setLineStyle(getLineStyle());
-			graphics.setLineWidth(2);
+			graphics.setLineWidth(getLineWidth());
 			graphics.drawLine(getBounds().getTopLeft(), getBounds().getTopRight());
 		}
 	}

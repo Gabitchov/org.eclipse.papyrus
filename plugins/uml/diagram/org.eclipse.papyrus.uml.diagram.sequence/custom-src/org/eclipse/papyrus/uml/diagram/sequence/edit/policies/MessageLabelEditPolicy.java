@@ -205,7 +205,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		final Object object = notification.getNotifier();
 		Message e = getUMLElement();
 		// check host semantic element is not null
-		if(e == null || e.getSignature() == null) {
+		if(e == null) {
 			return;
 		}
 		if(UMLPackage.Literals.MESSAGE__ARGUMENT.equals( notification.getFeature())){
@@ -246,6 +246,8 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(isMaskManagedAnnotation(object) ){
 			refreshDisplay();
 		}else if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
+			refreshDisplay();
+		}else if(sig == null && object instanceof Message && notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())){
 			refreshDisplay();
 		}
 	}

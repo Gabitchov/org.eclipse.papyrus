@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.Message;
 
 public abstract class AbstractMessageEditPart extends ConnectionNodeEditPart {
@@ -97,5 +105,89 @@ public abstract class AbstractMessageEditPart extends ConnectionNodeEditPart {
 			}
 		}
 		return super.getTargetEditPart(request);
+	}
+	
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object feature = notification.getFeature();
+		
+		MessageLabelEditPart labelPart = getMessageLabelEditPart();
+		if(labelPart == null)
+			return;
+		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			labelPart.refreshFontColor();
+		}else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+			labelPart.refreshFont();
+		}
+	}
+	
+	public MessageLabelEditPart getMessageLabelEditPart(){
+		for(Object c : this.getChildren())
+			if(c instanceof MessageLabelEditPart) {
+				return (MessageLabelEditPart)c;
+			}
+		return null;
+	}
+	
+	public abstract IFigure getPrimaryShape() ;
+	
+	public void setLineWidth(int width) {
+		if(getPrimaryShape() instanceof MessageFigure){
+			MessageFigure edge = (MessageFigure)getPrimaryShape();
+			edge.setLineWidth(width);			
+		}
+	}
+	
+	public static class MessageFigure extends UMLEdgeFigure{
+		@Override
+		public void setLineWidth(int w) {
+			super.setLineWidth(w);
+			if(getSourceDecoration() instanceof Shape){
+				((Shape)getSourceDecoration()).setLineWidth(w);
+			}
+			if(getTargetDecoration() instanceof Shape){
+				((Shape)getTargetDecoration()).setLineWidth(w);
+			}
+		}
+		
+		@Override
+		public void setForegroundColor(Color c) {
+			super.setForegroundColor(c);
+			if(getSourceDecoration() instanceof Shape){
+				((Shape)getSourceDecoration()).setForegroundColor(c);
+				((Shape)getSourceDecoration()).setBackgroundColor(c);
+			}
+			if(getTargetDecoration() instanceof Shape){
+				((Shape)getTargetDecoration()).setForegroundColor(c);
+				((Shape)getTargetDecoration()).setBackgroundColor(c);
+			}
+		}
+	}
+	
+	static abstract class MessageLabelEditPart extends LabelEditPart {
+
+		public MessageLabelEditPart(View view) {
+			super(view);
+		}
+
+		protected void handleNotificationEvent(Notification notification) {
+			Object feature = notification.getFeature();
+			if(NotationPackage.eINSTANCE.getLineStyle_LineColor().equals(feature)) {
+				refreshFontColor();
+			} else
+				super.handleNotificationEvent(notification);
+		}
+
+		@Override
+		public void refreshFontColor() {
+			FontStyle style = (FontStyle)((org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)getParent()).getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+			if(style != null) {
+				setFontColor(DiagramColorRegistry.getInstance().getColor(Integer.valueOf(style.getFontColor())));
+			}
+		}
+
+		public void refreshFont() {
+			super.refreshFont();
+		}
 	}
 }

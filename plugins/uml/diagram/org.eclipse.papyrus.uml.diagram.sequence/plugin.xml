@@ -5,7 +5,13 @@
      <context contextModel="model/prop/seq.ctx">
      </context>
   </extension>
-  
+  <extension
+         point="org.eclipse.papyrus.views.properties.environment">
+      <environment
+            environmentModel="model/prop/Environment.xmi">
+      </environment>
+   </extension>
+   
    <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
