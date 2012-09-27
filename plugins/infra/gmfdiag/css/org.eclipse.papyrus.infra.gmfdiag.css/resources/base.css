@@ -19,5 +19,16 @@ unwished behaviors, related to the base implementation (GMF, Papyrus...)
 
 * {
  	lineColor:black; /* Avoid the gray line-colors from default GMF connectors */
- 	fontName:"Segoe UI";
+ 	fontName:"Segoe UI"; /* Default font used in Papyrus. It is different from the GMF default */
+}
+
+/* For most Activity diagram nodes (e.g. initial, final, fork, decision, ...), 
+ * the element icon is displayed next to the actual object. 
+ * By default, we prevent this. 
+ * 
+ * For standard nodes (OpaqueAction, ...), they are not implemented at all, 
+ * so a global selector will not have side effects (yet). 
+ */
+ActivityDiagram Activity * {
+	elementIcon:false; 
 }
