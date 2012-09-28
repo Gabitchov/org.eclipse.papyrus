@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.extra.sources.feature"
+      id="*"
       label="%featureName"
       version="0.9.1.qualifier"
       provider-name="%providerName">
@@ -62,6 +62,10 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes
          id="org.eclipse.papyrus.table.efacet.source.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.uml.export.source.feature"
          version="0.0.0"/>
 
 </feature>
