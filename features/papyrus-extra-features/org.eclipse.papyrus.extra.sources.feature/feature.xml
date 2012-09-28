@@ -56,4 +56,8 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.extra.migration.source.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.uml.export.source.feature"
+         version="0.0.0"/>
+
 </feature>
