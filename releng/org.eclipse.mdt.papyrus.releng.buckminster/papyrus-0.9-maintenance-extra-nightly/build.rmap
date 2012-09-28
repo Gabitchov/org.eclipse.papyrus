@@ -27,6 +27,15 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+    
+   <!-- UML Export -->
+  <rm:searchPath name="papyrus">
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/uml/export/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
 
   	<!-- Papyrus EFacet Table -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
