@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="*"
+      id="org.eclipse.papyrus.extra.sources.feature"
       label="%featureName"
       version="0.9.1.qualifier"
       provider-name="%providerName">
