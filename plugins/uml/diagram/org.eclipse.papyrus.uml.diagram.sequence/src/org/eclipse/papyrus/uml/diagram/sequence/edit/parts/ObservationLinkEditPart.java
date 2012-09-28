@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
@@ -36,7 +37,7 @@ import org.eclipse.uml2.uml.TimeObservation;
 
 /**
  * Observation link editpart used by time observation and duration observation
- *
+ * 
  */
 public class ObservationLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
@@ -44,12 +45,13 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 		super(view);
 	}
 
+	@Override
 	protected Connection createConnectionFigure() {
 		return new ConstraintLinkDescriptor();
 	}
 
 	public ConstraintLinkDescriptor getPrimaryShape() {
-		return (ConstraintLinkDescriptor) getFigure();
+		return (ConstraintLinkDescriptor)getFigure();
 	}
 
 	public class ConstraintLinkDescriptor extends PolylineConnectionEx {
@@ -60,41 +62,38 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 
 	}
 
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,  new CustomComponentEditPolicy());
+
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomComponentEditPolicy());
 		//installEditPolicy(EditPolicy.COMPONENT_ROLE, new CustomComponentEditPolicy());
 		//SequenceUtil.OBSERVATION_LINK_TYPE
-		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE,new CustomConnectionEndpointEditPolicy());
+		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new CustomConnectionEndpointEditPolicy());
 	}
 
 	private final class CustomComponentEditPolicy extends SemanticEditPolicy {
+
 		@Override
 		protected Command getSemanticCommand(IEditCommandRequest request) {
 			Command semanticCommand = super.getSemanticCommand(request);
-			if (semanticCommand != null) {
-				if (semanticCommand instanceof ICommandProxy) {
-					ICommandProxy proxy = (ICommandProxy) semanticCommand;
-					if (proxy.getICommand() instanceof CompositeTransactionalCommand) {
-						CompositeTransactionalCommand compositeCommand = (CompositeTransactionalCommand) proxy
-								.getICommand();
+			if(semanticCommand != null) {
+				if(semanticCommand instanceof ICommandProxy) {
+					ICommandProxy proxy = (ICommandProxy)semanticCommand;
+					if(proxy.getICommand() instanceof CompositeTransactionalCommand) {
+						CompositeTransactionalCommand compositeCommand = (CompositeTransactionalCommand)proxy.getICommand();
 						// update TimeObservation or DurationObservation model
-						final ObservationLinkEditPart link = (ObservationLinkEditPart) getHost();
-						AbstractTransactionalCommand updateLinkSourceModelCmd = new AbstractTransactionalCommand(
-								link.getEditingDomain(), "", null) {
+						final ObservationLinkEditPart link = (ObservationLinkEditPart)getHost();
+						AbstractTransactionalCommand updateLinkSourceModelCmd = new AbstractTransactionalCommand(link.getEditingDomain(), "", null) {
+
 							@Override
-							protected CommandResult doExecuteWithResult(
-									IProgressMonitor monitor, IAdaptable info)
-									throws ExecutionException {
+							protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 								EditPart source = link.getSource();
-								if (source instanceof TimeObservationLabelEditPart) {
-									TimeObservation timeObservation = (TimeObservation) ((TimeObservationLabelEditPart) source)
-											.resolveSemanticElement();
+								if(source instanceof TimeObservationLabelEditPart) {
+									TimeObservation timeObservation = (TimeObservation)((TimeObservationLabelEditPart)source).resolveSemanticElement();
 									timeObservation.setEvent(null);
-								} else if (source instanceof DurationObservationEditPart) {
-									DurationObservation durationObservation = (DurationObservation) ((DurationObservationEditPart) source)
-											.resolveSemanticElement();
+								} else if(source instanceof DurationObservationEditPart) {
+									DurationObservation durationObservation = (DurationObservation)((DurationObservationEditPart)source).resolveSemanticElement();
 									durationObservation.getEvents().clear();
 								}
 
@@ -109,52 +108,46 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 		}
 	}
 
-	private final class CustomConnectionEndpointEditPolicy extends
-			org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy {
+	private final class CustomConnectionEndpointEditPolicy extends org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy {
+
+		@Override
 		protected List createSelectionHandles() {
 			List list = new ArrayList();
-			list.add(new CustomConnectionEndpointHandle(
-					(ConnectionEditPart) getHost(),
-					ConnectionLocator.SOURCE));
-			list.add(new CustomConnectionEndpointHandle(
-					(ConnectionEditPart) getHost(),
-					ConnectionLocator.TARGET));
+			list.add(new CustomConnectionEndpointHandle((ConnectionEditPart)getHost(), ConnectionLocator.SOURCE));
+			list.add(new CustomConnectionEndpointHandle((ConnectionEditPart)getHost(), ConnectionLocator.TARGET));
 			return list;
 		}
-		
+
+		@Override
 		protected void showConnectionMoveFeedback(ReconnectRequest request) {
-			if (request.getConnectionEditPart().getSource() instanceof TimeObservationLabelEditPart
-					&& request.getTarget() instanceof AbstractMessageEditPart) {
+			if(request.getConnectionEditPart().getSource() instanceof TimeObservationLabelEditPart && request.getTarget() instanceof AbstractMessageEditPart) {
 				return;
 			}
 			super.showConnectionMoveFeedback(request);
 		}
 
+		@Override
 		public void showSourceFeedback(Request request) {
-			if (SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE
-					.equals(request.getType())
-					|| SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_TARGET
-							.equals(request.getType()))
-				showConnectionMoveFeedback((ReconnectRequest) request);
+			if(SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE.equals(request.getType()) || SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_TARGET.equals(request.getType())) {
+				showConnectionMoveFeedback((ReconnectRequest)request);
+			}
 		}
 
+		@Override
 		public void eraseSourceFeedback(Request request) {
-			if (SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE
-					.equals(request.getType())
-					|| SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_TARGET
-							.equals(request.getType()))
-				eraseConnectionMoveFeedback((ReconnectRequest) request);
+			if(SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE.equals(request.getType()) || SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_TARGET.equals(request.getType())) {
+				eraseConnectionMoveFeedback((ReconnectRequest)request);
+			}
 		}
 	}
-	
-	private class CustomConnectionEndpointHandle extends ConnectionEndpointHandle{
+
+	private class CustomConnectionEndpointHandle extends ConnectionEndpointHandle {
 
 		public CustomConnectionEndpointHandle(ConnectionEditPart owner, int endPoint) {
 			super(owner, endPoint);
 		}
-		
-		public CustomConnectionEndpointHandle(ConnectionEditPart owner,
-				boolean fixed, int endPoint) {
+
+		public CustomConnectionEndpointHandle(ConnectionEditPart owner, boolean fixed, int endPoint) {
 			super(owner, fixed, endPoint);
 		}
 
@@ -162,14 +155,19 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 			super(endPoint);
 		}
 
+		@Override
 		protected DragTracker createDragTracker() {
-			if (isFixed())
+			if(isFixed()) {
 				return null;
+			}
 			ConnectionEndpointTracker tracker;
-			tracker = new ConnectionEndpointTracker((ConnectionEditPart) getOwner()){
+			tracker = new ConnectionEndpointTracker((ConnectionEditPart)getOwner()) {
+
+				@Override
 				protected Request createTargetRequest() {
-					ReconnectRequest request = new ReconnectRequest(
-							getCommandName()){
+					ReconnectRequest request = new ReconnectRequest(getCommandName()) {
+
+						@Override
 						public boolean isMovingStartAnchor() {
 							return SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE.equals(getType());
 						}
@@ -178,7 +176,7 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 					return request;
 				}
 			};
-			if (getEndPoint() == ConnectionLocator.SOURCE) {
+			if(getEndPoint() == ConnectionLocator.SOURCE) {
 				tracker.setCommandName(SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE);
 			} else {
 				tracker.setCommandName(SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_TARGET);
@@ -187,7 +185,7 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 			return tracker;
 		}
 	}
-	
+
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
@@ -196,7 +194,8 @@ public class ObservationLinkEditPart extends ConnectionNodeEditPart implements I
 			refreshLineWidth();
 		}
 	}
-	
+
+	@Override
 	protected void setLineWidth(int width) {
 		getPrimaryShape().setLineWidth(width);
 	}

@@ -63,6 +63,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart.MessageLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -78,7 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class MessageName4EditPart extends MessageLabelEditPart implements ITextAwareEditPart , MessageLabelEditPolicy.ICustomMessageLabel {
+public class MessageName4EditPart extends MessageLabelEditPart implements ITextAwareEditPart, MessageLabelEditPolicy.ICustomMessageLabel {
 
 	/**
 	 * @generated
@@ -128,6 +129,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -138,6 +140,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
@@ -208,6 +211,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -215,6 +219,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -383,6 +388,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
@@ -408,7 +414,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -460,6 +466,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -511,6 +518,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	public void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
@@ -522,6 +530,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -529,6 +538,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if(getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -544,6 +554,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if(parserElements != null) {
 			for(int i = 0; i < parserElements.size(); i++) {
@@ -557,10 +568,12 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -680,6 +693,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -713,6 +727,7 @@ public class MessageName4EditPart extends MessageLabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
