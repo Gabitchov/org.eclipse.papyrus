@@ -28,9 +28,9 @@
       </rm:uri>
     </rm:provider>
     
-   <!-- UML Export -->
+   <!-- UML -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
-      <rm:uri format="{0}/extraplugins/uml/export/{1}">
+      <rm:uri format="{0}/extraplugins/uml/{1}">
         <bc:propertyRef key="local.repository"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
