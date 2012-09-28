@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.export.util;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.uml.UmlModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -51,9 +51,10 @@ public class AreThereAppliedProfilesFromWS extends PropertyTester {
 		// Ensure Papyrus is the active editor
 
 		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if((editor == null) || (!(editor instanceof PapyrusMultiDiagramEditor))) {
+		if((editor == null) || (!(editor instanceof IMultiDiagramEditor))) {
 			return false;
 		}
+
 		Object currentValue = null;
 		if(ARE_THERE_APPLIED_PROFILES.equals(property)) {
 
