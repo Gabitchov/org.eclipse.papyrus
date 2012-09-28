@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.export.feature"
-      label="ExportProfilesFeature"
-      version="1.0.0.qualifier">
+      label="Export Profiles Feature (Incubation)"
+      version="0.9.0.qualifier"
+      provider-name="Eclipse Modeling Project">
 
    <description url="http://www.example.com/description">
       This feature enables expoting and installing applied profiles from worksapce
