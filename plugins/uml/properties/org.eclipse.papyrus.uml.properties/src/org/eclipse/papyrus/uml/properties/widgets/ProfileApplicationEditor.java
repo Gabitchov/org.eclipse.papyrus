@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -127,7 +128,9 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		dialog.setHelpAvailable(false);
 		dialog.setAllowMultiple(true);
 
-		dialog.open();
+		if(dialog.open() != Window.OK) {
+			return;
+		}
 
 		// If nothing is selected : abort
 		if((dialog.getResult() == null) || (dialog.getResult().length < 1)) {
@@ -154,7 +157,10 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		if(importedModels.size() > 0) {
 			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels, true);
 
-			profileDialog.open();
+			if(profileDialog.open() != Window.OK) {
+				return;
+			}
+
 			ArrayList<Profile> profilesToApply = profileDialog.getResult();
 
 			Message message = new Message(Messages.ProfileApplicationEditor_WaitMessageTitle, Messages.ProfileApplicationEditor_WaitMessage);

@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
@@ -203,7 +204,9 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		dialog.setHelpAvailable(false);
 		dialog.setAllowMultiple(true);
 
-		dialog.open();
+		if(dialog.open() != Window.OK) {
+			return;
+		}
 
 		// If nothing is selected : abort
 		if((dialog.getResult() == null) || (dialog.getResult().length < 1)) {
@@ -231,7 +234,9 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		if(importedModels.size() > 0) {
 			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), importedModels);
 
-			profileDialog.open();
+			if(profileDialog.open() != Window.OK) {
+				return;
+			}
 			ArrayList<Profile> profilestoApply = profileDialog.getResult();
 
 			Message message = new Message("Profile application", "Applying profile...");
@@ -441,11 +446,11 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	public Package getSelectedPackage() {
 		Package selectedPackage = null;
 		Object input = ((IStructuredSelection)selectedElement).getFirstElement();
-		Element element =UMLUtil.resolveUMLElement(input);
-		if(element!=null && element instanceof Package ) {
-				selectedPackage = (Package)element;
+		Element element = UMLUtil.resolveUMLElement(input);
+		if(element != null && element instanceof Package) {
+			selectedPackage = (Package)element;
 		}
-		
+
 		return selectedPackage;
 	}
 
