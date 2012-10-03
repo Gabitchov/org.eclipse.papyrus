@@ -34,6 +34,68 @@ public class TestActivityDiagramChildNode extends TestActivityChildNode {
 	public void testToManageOpaqueAction() {
 		testToManageChildNode(UMLElementTypes.OpaqueAction_3007, UMLElementTypes.StructuredActivityNode_3065, true);
 	}
+	
+	/**
+	 * Test to manage initialNode.
+	 */
+	@Test
+	public void testToManageinitialNode() {
+		testToManageChildNode(UMLElementTypes.InitialNode_3004, UMLElementTypes.StructuredActivityNode_3065, true);
+	}
+	/**
+	 * Test to manage finalNode.
+	 */
+	@Test
+	public void testToManagefinalNode() {
+		testToManageChildNode(UMLElementTypes.ActivityFinalNode_3005, UMLElementTypes.StructuredActivityNode_3065, true);
+	}
+	
+	/**
+	 * Test to manage flow final.
+	 */
+	@Test
+	public void testToManageflowfinal() {
+		testToManageChildNode(UMLElementTypes.FlowFinalNode_3006, UMLElementTypes.StructuredActivityNode_3065, true);
+	}
+	
+	/**
+	 * Test to manageDecision Node.
+	 */
+	@Test
+	public void testToManageDecisionNode() {
+		testToManageChildNode(UMLElementTypes.DecisionNode_3038, UMLElementTypes.StructuredActivityNode_3065, true);
+	}
+	//merge Node
+	//join Node
+	//forkNode
+	//activityParameterNode
+	//DataStoreNode
+	//callbehaviorAction
+	//callOperationAction
+	//SendObjectAction
+	//SendSignalAction
+	//AcceptEventAction
+	//ValueSpecificationAction
+	//ActivityPartition
+	//InteruptibleActivityRegion
+	//StructuredActivity
+	//ReadSelfAction
+	//ConditionalNode
+	//ExpansionRegion
+	//loopNode
+	//sequenceNode
+	//Activity
+	//Create ObjectAction
+	//readStructuralFeatureAction
+	//readStructuralfeatureValueAction
+	//DestroyObjectAction
+	//ReadVariableAction
+	//ReadVariableValueAction
+	//BroadCastSignalAction
+	//CentralBufferNode
+	
+	
+	
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateActivityDiagramCommand();
