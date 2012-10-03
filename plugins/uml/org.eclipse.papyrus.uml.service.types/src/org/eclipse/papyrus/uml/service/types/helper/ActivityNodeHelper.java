@@ -111,8 +111,6 @@ public class ActivityNodeHelper extends ElementEditHelper {
 			// emfcmd.canExecute();
 			emfcmd.redo();
 			
-			System.err.println(getChange());
-			
 			return Status.OK_STATUS;
 		}
 	}
