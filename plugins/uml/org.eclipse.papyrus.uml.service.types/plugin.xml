@@ -54,6 +54,7 @@
 	<!-- IMetamodelType for Activity -->
 	<metamodelType id="org.eclipse.papyrus.uml.Activity" name="UML::Activity"
 		eclass="Activity"
+		 edithelper="org.eclipse.papyrus.uml.service.types.helper.ActivityHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::Activity"/>
 	</metamodelType>
@@ -83,6 +84,7 @@
 	<metamodelType
        eclass="ActivityNode"
        id="org.eclipse.papyrus.uml.ActivityNode"
+       edithelper="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper"
        kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
        name="UML::ActivityNode">
 			<param name="semanticHint" value="UML::ActivityNode"/>
