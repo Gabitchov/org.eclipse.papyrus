@@ -31,56 +31,52 @@ import org.eclipse.ui.PlatformUI;
  * Execution class for the execution of the discovery component
  */
 public class DiscoveryComponent {
-	
+
 	/** URI of the model where all extra component features to be installed are referenced */
-	public static final String DISCOVERY_PAPYRUS_URI = "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/juno/papyrus-extra.xmi";
+	public static final String DISCOVERY_PAPYRUS_URI = "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/kepler/papyrus-extra.xmi";
 
 	public static final Object execute() {
-		final IWorkbenchWindow window = PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow();
+		final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
-	DiscoveryContentProvider provider = new DiscoveryContentProvider() {
+		DiscoveryContentProvider provider = new DiscoveryContentProvider() {
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected DiscoveryDefinition load() {
-			Resource res = new XMIResourceImpl(
-					URI
-.createURI(DISCOVERY_PAPYRUS_URI));
-			try {
-				res.load(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				MessageDialog.openError(window.getShell(),
-						Messages.DiscoveryComponent_CannotConnectToSource_title,  Messages.DiscoveryComponent_CannotConnectToSource_label);
-				throw new RuntimeException(e);
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			protected DiscoveryDefinition load() {
+				Resource res = new XMIResourceImpl(URI.createURI(DISCOVERY_PAPYRUS_URI));
+				try {
+					res.load(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					MessageDialog.openError(window.getShell(), Messages.DiscoveryComponent_CannotConnectToSource_title, Messages.DiscoveryComponent_CannotConnectToSource_label);
+					throw new RuntimeException(e);
+				}
+				return (DiscoveryDefinition)res.getContents().get(0);
 			}
-			return (DiscoveryDefinition) res.getContents().get(0);
-		}
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getDescription() {
-			return Messages.DiscoveryComponent_description;
-		}
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getDescription() {
+				return Messages.DiscoveryComponent_description;
+			}
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getTitle() {
-			return Messages.DiscoveryComponent_title;
-		}
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getTitle() {
+				return Messages.DiscoveryComponent_title;
+			}
 
-	};
-	
-	
-	DiscoveryWizard wizard = new DiscoveryWizard(provider);
-	WizardDialog dialog = new WizardDialog(window.getShell(), wizard);
-	return dialog.open();
+		};
+
+
+		DiscoveryWizard wizard = new DiscoveryWizard(provider);
+		WizardDialog dialog = new WizardDialog(window.getShell(), wizard);
+		return dialog.open();
 	}
-	
+
 }
