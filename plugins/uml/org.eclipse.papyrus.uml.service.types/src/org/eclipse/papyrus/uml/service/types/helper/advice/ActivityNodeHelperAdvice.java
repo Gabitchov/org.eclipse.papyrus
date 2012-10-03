@@ -49,74 +49,74 @@ import com.google.common.collect.Sets;
  */
 public class ActivityNodeHelperAdvice extends AbstractEditHelperAdvice {
 
-//	@Override
-//	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
-//		CompositeCommand cc = new CompositeCommand("Before Command for an Activity Node");////$NON-NLS-1$
-//		/*
-//		 * Destroy edge
-//		 */
-//		ICommand destroyEdgeCommand = getDestroyActivityEdgeCommand(request);
-//		if(destroyEdgeCommand != null) {
-//			cc.compose(destroyEdgeCommand);
-//		}
-//		if(cc != null && !cc.isEmpty()) {
-//			return cc;
-//		}
-//		return super.getBeforeDestroyDependentsCommand(request);
-//	}
-//
-//	@Override
-//	protected ICommand getAfterDestroyDependentsCommand(DestroyDependentsRequest request) {
-//		CompositeCommand cc = new CompositeCommand("After Command for an Activity Node");////$NON-NLS-1$
-//		/*
-//		 * Remove from derived feature ownedNode
-//		 * WARNING:
-//		 * This should be done in the DestroyElementPapyrusCommand however this command for now prevent removing it from derive feature.
-//		 * Waiting for discussion.
-//		 * This is a temporary discussion
-//		 */
-//		ICommand removedFromOwnedNodeCommand = getRemoveFromDerivedFeature(request);
-//		if(removedFromOwnedNodeCommand != null) {
-//			cc.compose(removedFromOwnedNodeCommand);
-//		}
-//		if(cc != null && !cc.isEmpty()) {
-//			return cc;
-//		}
-//		return super.getAfterDestroyDependentsCommand(request);
-//	}
-//
-//	/**
-//	 * Remove from derived polluting feature
-//	 * 
-//	 * @param request
-//	 * @return
-//	 */
-//	protected ICommand getRemoveFromDerivedFeature(DestroyDependentsRequest request) {
-//		EObject eObject = request.getElementToDestroy();
-//		if(eObject instanceof ActivityNode) {
-//			/*
-//			 * Destroy Activity Edge
-//			 */
-//			final ActivityNode activityNode = (ActivityNode)eObject;
-//			final EStructuralFeature containingFeature = activityNode.eContainingFeature();
-//			if(UMLPackage.Literals.ACTIVITY__OWNED_NODE.equals(containingFeature)) {
-//				final Activity holder = (Activity)activityNode.eContainer();
-//				return new AbstractTransactionalCommand((TransactionalEditingDomain)AdapterFactoryEditingDomain.getEditingDomainFor(activityNode), "test", null) {
-//
-//					@Override
-//					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-//						Object elements = holder.eGet(UMLPackage.Literals.ACTIVITY__NODE);
-//						if(elements instanceof EList<?>) {
-//							EList<?> collection = (EList<?>)elements;
-//							collection.remove(activityNode);
-//						}
-//						return CommandResult.newOKCommandResult();
-//					}
-//				};
-//			}
-//		}
-//		return null;
-//	}
+	@Override
+	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
+		CompositeCommand cc = new CompositeCommand("Before Command for an Activity Node");////$NON-NLS-1$
+		/*
+		 * Destroy edge
+		 */
+		ICommand destroyEdgeCommand = getDestroyActivityEdgeCommand(request);
+		if(destroyEdgeCommand != null) {
+			cc.compose(destroyEdgeCommand);
+		}
+		if(cc != null && !cc.isEmpty()) {
+			return cc;
+		}
+		return super.getBeforeDestroyDependentsCommand(request);
+	}
+
+	@Override
+	protected ICommand getAfterDestroyDependentsCommand(DestroyDependentsRequest request) {
+		CompositeCommand cc = new CompositeCommand("After Command for an Activity Node");////$NON-NLS-1$
+		/*
+		 * Remove from derived feature ownedNode
+		 * WARNING:
+		 * This should be done in the DestroyElementPapyrusCommand however this command for now prevent removing it from derive feature.
+		 * Waiting for discussion.
+		 * This is a temporary discussion
+		 */
+		ICommand removedFromOwnedNodeCommand = getRemoveFromDerivedFeature(request);
+		if(removedFromOwnedNodeCommand != null) {
+			cc.compose(removedFromOwnedNodeCommand);
+		}
+		if(cc != null && !cc.isEmpty()) {
+			return cc;
+		}
+		return super.getAfterDestroyDependentsCommand(request);
+	}
+
+	/**
+	 * Remove from derived polluting feature
+	 * 
+	 * @param request
+	 * @return
+	 */
+	protected ICommand getRemoveFromDerivedFeature(DestroyDependentsRequest request) {
+		EObject eObject = request.getElementToDestroy();
+		if(eObject instanceof ActivityNode) {
+			/*
+			 * Destroy Activity Edge
+			 */
+			final ActivityNode activityNode = (ActivityNode)eObject;
+			final EStructuralFeature containingFeature = activityNode.eContainingFeature();
+			if(UMLPackage.Literals.ACTIVITY__OWNED_NODE.equals(containingFeature)) {
+				final Activity holder = (Activity)activityNode.eContainer();
+				return new AbstractTransactionalCommand((TransactionalEditingDomain)AdapterFactoryEditingDomain.getEditingDomainFor(activityNode), "test", null) {
+
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						Object elements = holder.eGet(UMLPackage.Literals.ACTIVITY__NODE);
+						if(elements instanceof EList<?>) {
+							EList<?> collection = (EList<?>)elements;
+							collection.remove(activityNode);
+						}
+						return CommandResult.newOKCommandResult();
+					}
+				};
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * When an activity node is deleted than all activity edge starting/ending from/to it should be deleted
