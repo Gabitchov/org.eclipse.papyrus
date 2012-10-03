@@ -41,6 +41,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ActivityGroupEditHelperAdvice extends AbstractEditHelperAdvice {
 
+	
+	
 	@Override
 	protected ICommand getAfterDestroyDependentsCommand(DestroyDependentsRequest request) {
 		CompositeCommand cc = new CompositeCommand("After Command for an Activity Node");////$NON-NLS-1$
