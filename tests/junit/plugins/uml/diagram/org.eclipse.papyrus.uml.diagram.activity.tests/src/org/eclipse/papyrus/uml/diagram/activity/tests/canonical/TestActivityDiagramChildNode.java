@@ -32,7 +32,7 @@ public class TestActivityDiagramChildNode extends TestActivityChildNode {
 	 */
 	@Test
 	public void testToManageOpaqueAction() {
-		testToManageChildNode(UMLElementTypes.OpaqueAction_3007, UMLElementTypes.Activity_2001, false);
+		testToManageChildNode(UMLElementTypes.OpaqueAction_3007, UMLElementTypes.StructuredActivityNode_3065, true);
 	}
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
