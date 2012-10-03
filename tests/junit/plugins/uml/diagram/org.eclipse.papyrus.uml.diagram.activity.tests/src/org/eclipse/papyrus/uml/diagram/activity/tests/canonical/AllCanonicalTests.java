@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
+ * Copyright (c) 2010 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,25 +7,33 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.activity.tests;
+package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
-import org.eclipse.papyrus.uml.diagram.activity.tests.canonical.AllCanonicalTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+
 /**
- * All tests together.
+ * All test in canonical package
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	// canonical
-AllCanonicalTests.class,
+
+// child nodes
+TestActivityDiagramChildNode.class,
+//labelNodes
+//TestActivityDiagramChildLabel.class,
+//test links
+//TestActivityDiagramLink.class,
+//test links owned by source
+//TestClassDiagramLinkOwnedBySource.class,
+//containmentLink
+//TestClassDiagramContainment.class,
 
 })
-public class AllTests {
+public class AllCanonicalTests {
 
 }

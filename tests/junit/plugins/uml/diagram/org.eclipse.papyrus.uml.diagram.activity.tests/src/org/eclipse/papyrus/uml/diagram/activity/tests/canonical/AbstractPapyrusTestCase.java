@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2012 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,22 +11,21 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.activity.tests;
+package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
-import org.eclipse.papyrus.uml.diagram.activity.tests.canonical.AllCanonicalTests;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
+
 
 /**
- * All tests together.
+ * The Class AbstractPapyrusTestCase.
  */
-@RunWith(Suite.class)
-@SuiteClasses({
-	// canonical
-AllCanonicalTests.class,
+public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
 
-})
-public class AllTests {
+	@Override
+	protected ICreationCommand getDiagramCommandCreation() {
+		return  new CreateActivityDiagramCommand();
+	}
+
 
 }
