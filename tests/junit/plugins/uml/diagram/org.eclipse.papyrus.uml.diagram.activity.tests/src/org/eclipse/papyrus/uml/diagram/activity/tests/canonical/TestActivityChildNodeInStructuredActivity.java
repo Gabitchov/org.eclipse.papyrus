@@ -11,21 +11,34 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
+import org.eclipse.papyrus.diagram.tests.canonical.TestChildNode;
 import org.eclipse.papyrus.infra.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand;
+import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.junit.Test;
 
 
-/**
- * The Class AbstractPapyrusTestCase.
- */
-public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.diagram.tests.canonical.AbstractPapyrusTestCase {
+public  class TestActivityChildNodeInStructuredActivity extends AbstractTestCaseIntoStructureActivity {
 
+
+	@Override
+	protected CreateViewRequest createViewRequestShapeContainer() {
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.StructuredActivityNode_3065, getDiagramEditPart().getDiagramPreferencesHint());
+	}
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return  new CreateActivityDiagramCommand();
 	}
-
-
+	/**
+	 * Test to manage component.
+	 */
+	@Test
+	public void testToManageOpaqueAction() {
+		testToManageChildNode(UMLElementTypes.OpaqueAction_3007, UMLElementTypes.StructuredActivityNode_3065, false);
+	}
 }

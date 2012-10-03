@@ -24,8 +24,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 // child nodes
 TestActivityDiagramChildNode.class,
-//labelNodes
-//TestActivityDiagramChildLabel.class,
+//Nodes in structured Activity
+TestActivityChildNodeInStructuredActivity.class,
 //test links
 //TestActivityDiagramLink.class,
 //test links owned by source
