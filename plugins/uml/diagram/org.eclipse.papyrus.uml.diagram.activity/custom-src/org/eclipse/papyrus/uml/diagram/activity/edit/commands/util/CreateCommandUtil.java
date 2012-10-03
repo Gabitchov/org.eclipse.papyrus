@@ -91,50 +91,29 @@ public class CreateCommandUtil {
 	 */
 	public static boolean setNodeParents(ActivityNode newElement, IEditCommandRequest request, EObject elementToEdit) {
 		// simply take the command edited element
-		EObject owner = elementToEdit;
-		// create in appropriate model container
-		
-		
-		
-		if(owner instanceof Activity) {
-			//((Activity)owner).getNodes().add(newElement);
-//			ArrayList<ActivityNode> activityNodes= new ArrayList<ActivityNode>();
-//		//	activityNodes.addAll(((Activity)owner).getOwnedNodes());
-//			activityNodes.add(newElement);
-//			//
-//			SubsetAddCommand subsetAddCommand= new SubsetAddCommand(request.getEditingDomain(), owner, UMLPackage.Literals.ACTIVITY__OWNED_NODE,
-//				new EStructuralFeature[]{UMLPackage.Literals.ACTIVITY__NODE},
-//				activityNodes, -1);
-//			//request.getEditingDomain().getCommandStack().execute(subsetAddCommand);
-//			subsetAddCommand.execute();
-			
-			Command emfcmd= new CreateChildCommand(request.getEditingDomain(),owner,  UMLPackage.Literals.ACTIVITY__OWNED_NODE, newElement, Collections.EMPTY_LIST);
-			emfcmd.canExecute();
-			emfcmd.execute();
-			//((Activity)owner).getOwnedNodes().add(newElement);
-			System.out.println(((Activity)owner).getOwnedNodes());
-			System.out.println(((Activity)owner).getNodes());
-	
-			
-		} else if(owner instanceof StructuredActivityNode) {
-			((StructuredActivityNode)owner).getNodes().add(newElement);
-		} else {
-			// incorrect model container
-			return false;
-		}
-		//		// add extra parent reference
-		//		if(elementToEdit != owner) {
-		//			EObject childHolder = elementToEdit;
-		//			if(childHolder instanceof InterruptibleActivityRegion) {
-		//				((InterruptibleActivityRegion)childHolder).getNodes().add(newElement);
-		//			} else if(childHolder instanceof ActivityPartition) {
-		//				((ActivityPartition)childHolder).getNodes().add(newElement);
-		//			} else {
-		//				// incorrect referencing parent
-		//				return false;
-		//			}
-		//		}
-		return true;
+				EObject owner = elementToEdit;
+				// create in appropriate model container
+				if(owner instanceof Activity) {
+					((Activity)owner).getOwnedNodes().add(newElement);
+				} else if(owner instanceof StructuredActivityNode) {
+					((StructuredActivityNode)owner).getNodes().add(newElement);
+				} else {
+					// incorrect model container
+					return false;
+				}
+				//		// add extra parent reference
+				//		if(elementToEdit != owner) {
+				//			EObject childHolder = elementToEdit;
+				//			if(childHolder instanceof InterruptibleActivityRegion) {
+				//				((InterruptibleActivityRegion)childHolder).getNodes().add(newElement);
+				//			} else if(childHolder instanceof ActivityPartition) {
+				//				((ActivityPartition)childHolder).getNodes().add(newElement);
+				//			} else {
+				//				// incorrect referencing parent
+				//				return false;
+				//			}
+				//		}
+				return true;
 	}
 
 	/**
