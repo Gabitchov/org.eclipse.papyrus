@@ -35,8 +35,7 @@ public abstract class ActivityNodeCreateCommand extends EditElementCommand {
 	 * initialize  the emf command  that will add the child element
 	 * @return the created child
 	 */
-	protected Element InitAndExecuteEmfCommand(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		OpaqueAction newElement = UMLFactory.eINSTANCE.createOpaqueAction();
+	protected Element InitAndExecuteEmfCommand(Element newElement) throws ExecutionException {
 		EReference containmentFeature = PackageUtil.findFeature(getElementToEdit().eClass(),newElement.eClass());
 		emfcmd= new CreateChildCommand(getEditingDomain(),getElementToEdit(),  containmentFeature, newElement, Collections.EMPTY_LIST);
 		emfcmd.canExecute();

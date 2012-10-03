@@ -28,12 +28,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.FlowFinalNode;
+import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class FlowFinalNodeCreateCommand extends EditElementCommand {
+public class FlowFinalNodeCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -96,13 +97,8 @@ public class FlowFinalNodeCreateCommand extends EditElementCommand {
 	 * @generated NOT set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		FlowFinalNode newElement = UMLFactory.eINSTANCE.createFlowFinalNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		FlowFinalNode newElement = UMLFactory.eINSTANCE.createFlowFinalNode(); 
+		InitAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_FlowFinalNode_3006(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

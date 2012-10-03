@@ -28,9 +28,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class OpaqueActionCreateCommand extends ActivityNodeCreateCommand {
 
@@ -72,7 +73,8 @@ public class OpaqueActionCreateCommand extends ActivityNodeCreateCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		OpaqueAction newElement =(OpaqueAction)InitAndExecuteEmfCommand(monitor, info);
+		OpaqueAction newElement =UMLFactory.eINSTANCE.createOpaqueAction();
+		InitAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
