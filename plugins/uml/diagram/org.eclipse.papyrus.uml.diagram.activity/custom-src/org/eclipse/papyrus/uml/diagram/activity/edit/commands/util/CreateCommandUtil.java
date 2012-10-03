@@ -13,12 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands.util;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.uml2.common.edit.command.SubsetAddCommand;
+import org.eclipse.uml2.common.edit.command.SubsetSetCommand;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.StructuredActivityNode;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This class provides utility methods shared by numerous create commands
@@ -84,8 +93,29 @@ public class CreateCommandUtil {
 		// simply take the command edited element
 		EObject owner = elementToEdit;
 		// create in appropriate model container
+		
+		
+		
 		if(owner instanceof Activity) {
-			((Activity)owner).getOwnedNodes().add(newElement);
+			//((Activity)owner).getNodes().add(newElement);
+//			ArrayList<ActivityNode> activityNodes= new ArrayList<ActivityNode>();
+//		//	activityNodes.addAll(((Activity)owner).getOwnedNodes());
+//			activityNodes.add(newElement);
+//			//
+//			SubsetAddCommand subsetAddCommand= new SubsetAddCommand(request.getEditingDomain(), owner, UMLPackage.Literals.ACTIVITY__OWNED_NODE,
+//				new EStructuralFeature[]{UMLPackage.Literals.ACTIVITY__NODE},
+//				activityNodes, -1);
+//			//request.getEditingDomain().getCommandStack().execute(subsetAddCommand);
+//			subsetAddCommand.execute();
+			
+			Command emfcmd= new CreateChildCommand(request.getEditingDomain(),owner,  UMLPackage.Literals.ACTIVITY__OWNED_NODE, newElement, Collections.EMPTY_LIST);
+			emfcmd.canExecute();
+			emfcmd.execute();
+			//((Activity)owner).getOwnedNodes().add(newElement);
+			System.out.println(((Activity)owner).getOwnedNodes());
+			System.out.println(((Activity)owner).getNodes());
+	
+			
 		} else if(owner instanceof StructuredActivityNode) {
 			((StructuredActivityNode)owner).getNodes().add(newElement);
 		} else {
