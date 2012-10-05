@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.export.feature"
-      label="Export Profiles Feature (Incubation)"
+      label="Papyrus Export Profiles Feature (Incubation)"
       version="0.10.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
