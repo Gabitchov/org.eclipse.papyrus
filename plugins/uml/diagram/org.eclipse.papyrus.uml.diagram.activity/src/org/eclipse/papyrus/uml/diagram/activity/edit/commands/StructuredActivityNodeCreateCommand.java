@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class StructuredActivityNodeCreateCommand extends EditElementCommand {
+public class StructuredActivityNodeCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class StructuredActivityNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		StructuredActivityNode newElement = UMLFactory.eINSTANCE.createStructuredActivityNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setStructuredActivityNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_StructuredActivityNode_3065(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

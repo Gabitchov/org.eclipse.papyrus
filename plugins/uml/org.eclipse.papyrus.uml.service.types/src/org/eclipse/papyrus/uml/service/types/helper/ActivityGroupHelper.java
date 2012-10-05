@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
  *
  */
 
-public class ActivityNodeHelper extends ElementEditHelper {
+public class ActivityGroupHelper extends ElementEditHelper {
 
 	@Override
 	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {

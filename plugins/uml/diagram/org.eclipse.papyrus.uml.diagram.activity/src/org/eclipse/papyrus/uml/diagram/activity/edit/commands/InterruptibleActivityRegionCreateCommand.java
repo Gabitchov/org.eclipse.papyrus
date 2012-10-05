@@ -30,9 +30,9 @@ import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class InterruptibleActivityRegionCreateCommand extends EditElementCommand {
+public class InterruptibleActivityRegionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -95,8 +95,7 @@ public class InterruptibleActivityRegionCreateCommand extends EditElementCommand
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InterruptibleActivityRegion newElement = UMLFactory.eINSTANCE.createInterruptibleActivityRegion();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedGroups().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

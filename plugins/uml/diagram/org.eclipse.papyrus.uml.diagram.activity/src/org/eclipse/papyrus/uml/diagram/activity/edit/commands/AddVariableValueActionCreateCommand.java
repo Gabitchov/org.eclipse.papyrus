@@ -20,8 +20,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class AddVariableValueActionCreateCommand extends EditElementCommand {
-
+public class AddVariableValueActionCreateCommand extends ActivityNodeCreateCommand {
 	/**
 	 * @generated
 	 */
@@ -83,8 +82,7 @@ public class AddVariableValueActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		AddVariableValueAction newElement = UMLFactory.eINSTANCE.createAddVariableValueAction();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_AddVariableValueAction_3099(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

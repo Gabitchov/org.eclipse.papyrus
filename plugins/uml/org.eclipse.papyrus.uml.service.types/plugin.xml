@@ -76,6 +76,7 @@
 	<!-- IMetamodelType for ActivityGroup -->
 	<metamodelType id="org.eclipse.papyrus.uml.ActivityGroup" name="UML::ActivityGroup"
 		eclass="ActivityGroup"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ActivityGroupHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ActivityGroup"/>
 	</metamodelType>
@@ -1074,6 +1075,7 @@
 	<!-- IMetamodelType for ObjectNode -->
 	<metamodelType id="org.eclipse.papyrus.uml.ObjectNode" name="UML::ObjectNode"
 		eclass="ObjectNode"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.ObjectNodeHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
 			<param name="semanticHint" value="UML::ObjectNode"/>
 	</metamodelType>

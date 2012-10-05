@@ -98,7 +98,7 @@ public class InitialNodeCreateCommand  extends ActivityNodeCreateCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InitialNode newElement = UMLFactory.eINSTANCE.createInitialNode();
-		InitAndExecuteEmfCommand(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_InitialNode_3004(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

@@ -74,7 +74,7 @@ public class OpaqueActionCreateCommand extends ActivityNodeCreateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		OpaqueAction newElement =UMLFactory.eINSTANCE.createOpaqueAction();
-		InitAndExecuteEmfCommand(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

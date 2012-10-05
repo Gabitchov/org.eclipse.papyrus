@@ -18,9 +18,9 @@ import org.eclipse.uml2.uml.ReadVariableAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class ReadVariableActionCreateCommand extends EditElementCommand {
+public class ReadVariableActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -83,8 +83,7 @@ public class ReadVariableActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ReadVariableAction newElement = UMLFactory.eINSTANCE.createReadVariableAction();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ReadVariableAction_3097(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

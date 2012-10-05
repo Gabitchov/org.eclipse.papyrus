@@ -99,7 +99,7 @@ public class DecisionNodeCreateCommand extends ActivityNodeCreateCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		DecisionNode newElement = UMLFactory.eINSTANCE.createDecisionNode();
-		InitAndExecuteEmfCommand(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_DecisionNode_3038(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

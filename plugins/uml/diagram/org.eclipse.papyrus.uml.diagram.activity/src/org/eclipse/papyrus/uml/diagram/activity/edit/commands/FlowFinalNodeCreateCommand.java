@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated NOT
  */
-public class FlowFinalNodeCreateCommand  extends ActivityNodeCreateCommand {
+public class FlowFinalNodeCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -98,7 +98,7 @@ public class FlowFinalNodeCreateCommand  extends ActivityNodeCreateCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		FlowFinalNode newElement = UMLFactory.eINSTANCE.createFlowFinalNode(); 
-		InitAndExecuteEmfCommand(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_FlowFinalNode_3006(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

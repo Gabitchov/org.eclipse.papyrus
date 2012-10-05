@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class CentralBufferNodeCreateCommand extends EditElementCommand {
+public class CentralBufferNodeCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -83,8 +83,7 @@ public class CentralBufferNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CentralBufferNode newElement = UMLFactory.eINSTANCE.createCentralBufferNode();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_CentralBufferNode_3104(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

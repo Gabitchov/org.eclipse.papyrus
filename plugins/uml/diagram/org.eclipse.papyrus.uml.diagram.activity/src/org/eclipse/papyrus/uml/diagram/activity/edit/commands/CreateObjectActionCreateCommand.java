@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class CreateObjectActionCreateCommand extends EditElementCommand {
+public class CreateObjectActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -83,8 +83,7 @@ public class CreateObjectActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		CreateObjectAction newElement = UMLFactory.eINSTANCE.createCreateObjectAction();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_CreateObjectAction_3086(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

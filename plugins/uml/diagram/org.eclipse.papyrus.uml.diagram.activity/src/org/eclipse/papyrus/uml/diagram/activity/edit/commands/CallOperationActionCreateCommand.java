@@ -43,7 +43,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class CallOperationActionCreateCommand extends EditElementCommand {
+public class CallOperationActionCreateCommand extends  ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -131,10 +131,7 @@ public class CallOperationActionCreateCommand extends EditElementCommand {
 				return CommandResult.newCancelledCommandResult();
 			}
 		}
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
+		initAndExecuteEmfCommand(newElement);
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
 		ElementInitializers.getInstance().init_CallOperationAction_3010(newElement);

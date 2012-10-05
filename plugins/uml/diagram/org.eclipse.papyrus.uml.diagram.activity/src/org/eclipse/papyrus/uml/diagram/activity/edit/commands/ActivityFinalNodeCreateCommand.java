@@ -99,7 +99,7 @@ public class ActivityFinalNodeCreateCommand  extends ActivityNodeCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		
 		ActivityFinalNode newElement = UMLFactory.eINSTANCE.createActivityFinalNode();
-		InitAndExecuteEmfCommand(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ActivityFinalNode_3005(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

@@ -18,9 +18,9 @@ import org.eclipse.uml2.uml.BroadcastSignalAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class BroadcastSignalActionCreateCommand extends EditElementCommand {
+public class BroadcastSignalActionCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -83,8 +83,7 @@ public class BroadcastSignalActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		BroadcastSignalAction newElement = UMLFactory.eINSTANCE.createBroadcastSignalAction();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_BroadcastSignalAction_3102(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
