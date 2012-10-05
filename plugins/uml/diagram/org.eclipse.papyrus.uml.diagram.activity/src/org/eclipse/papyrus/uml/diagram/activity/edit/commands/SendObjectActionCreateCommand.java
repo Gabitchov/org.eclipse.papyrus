@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class SendObjectActionCreateCommand extends EditElementCommand {
+public class SendObjectActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class SendObjectActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		SendObjectAction newElement = UMLFactory.eINSTANCE.createSendObjectAction();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_SendObjectAction_3042(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

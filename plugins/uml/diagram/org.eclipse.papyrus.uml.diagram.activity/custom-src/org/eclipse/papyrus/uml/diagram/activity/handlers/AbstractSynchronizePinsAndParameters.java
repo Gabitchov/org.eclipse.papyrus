@@ -18,6 +18,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.CallAction;
 
 /**
  * Abstract handler to launch a Synchronization of pins on {@link CallAction}

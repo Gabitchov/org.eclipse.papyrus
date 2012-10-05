@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.ValueSpecificationAction;
 /**
  * @generated
  */
-public class ValueSpecificationActionCreateCommand extends EditElementCommand {
+public class ValueSpecificationActionCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class ValueSpecificationActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ValueSpecificationAction newElement = UMLFactory.eINSTANCE.createValueSpecificationAction();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ValueSpecificationAction_3076(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class DestroyObjectActionCreateCommand extends EditElementCommand {
+public class DestroyObjectActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -83,8 +83,7 @@ public class DestroyObjectActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		DestroyObjectAction newElement = UMLFactory.eINSTANCE.createDestroyObjectAction();
-		Activity owner = (Activity)getElementToEdit();
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_DestroyObjectAction_3095(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

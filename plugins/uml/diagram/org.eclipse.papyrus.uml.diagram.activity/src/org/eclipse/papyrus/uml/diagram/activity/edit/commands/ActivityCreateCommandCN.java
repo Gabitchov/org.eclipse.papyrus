@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class ActivityCreateCommandCN extends EditElementCommand {
+public class ActivityCreateCommandCN extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -83,8 +83,7 @@ public class ActivityCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Activity newElement = UMLFactory.eINSTANCE.createActivity();
-		BehavioredClassifier owner = (BehavioredClassifier)getElementToEdit();
-		owner.getOwnedBehaviors().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_Activity_3083(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

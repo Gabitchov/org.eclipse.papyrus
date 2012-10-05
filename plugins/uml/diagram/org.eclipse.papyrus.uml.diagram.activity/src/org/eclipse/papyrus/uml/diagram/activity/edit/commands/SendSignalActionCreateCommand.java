@@ -36,9 +36,9 @@ import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class SendSignalActionCreateCommand extends EditElementCommand {
+public class SendSignalActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -123,12 +123,9 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		
+		initAndExecuteEmfCommand(newElement);
+		
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet 
 			ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);

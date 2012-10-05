@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class JoinNodeCreateCommand extends EditElementCommand {
+public class JoinNodeCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class JoinNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		JoinNode newElement = UMLFactory.eINSTANCE.createJoinNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_JoinNode_3041(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

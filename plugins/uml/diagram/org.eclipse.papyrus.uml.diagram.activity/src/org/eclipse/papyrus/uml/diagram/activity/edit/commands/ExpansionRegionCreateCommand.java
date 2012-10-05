@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class ExpansionRegionCreateCommand extends EditElementCommand {
+public class ExpansionRegionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class ExpansionRegionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ExpansionRegion newElement = UMLFactory.eINSTANCE.createExpansionRegion();
-		// set appropriate parents
-		if(!CreateCommandUtil.setStructuredActivityNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ExpansionRegion_3070(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

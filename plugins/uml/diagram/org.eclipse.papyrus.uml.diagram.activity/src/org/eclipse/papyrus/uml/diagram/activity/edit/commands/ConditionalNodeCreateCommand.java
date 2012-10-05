@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class ConditionalNodeCreateCommand extends EditElementCommand {
+public class ConditionalNodeCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class ConditionalNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConditionalNode newElement = UMLFactory.eINSTANCE.createConditionalNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ConditionalNode_3069(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

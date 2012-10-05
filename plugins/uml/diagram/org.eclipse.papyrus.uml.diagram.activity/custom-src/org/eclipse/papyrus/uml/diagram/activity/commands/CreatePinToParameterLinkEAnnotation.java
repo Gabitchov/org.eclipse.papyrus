@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.uml.diagram.activity.helper.IPinToParameterLinkCommand;
 import org.eclipse.papyrus.uml.diagram.activity.helper.datastructure.ILinkPinToTarget;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Pin;
 
 /**

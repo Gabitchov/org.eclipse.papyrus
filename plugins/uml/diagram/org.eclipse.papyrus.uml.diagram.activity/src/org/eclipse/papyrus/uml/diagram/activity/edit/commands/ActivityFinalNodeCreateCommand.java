@@ -28,12 +28,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ActivityFinalNode;
+import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class ActivityFinalNodeCreateCommand extends EditElementCommand {
+public class ActivityFinalNodeCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -96,13 +97,9 @@ public class ActivityFinalNodeCreateCommand extends EditElementCommand {
 	 * @generated NOT set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		
 		ActivityFinalNode newElement = UMLFactory.eINSTANCE.createActivityFinalNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ActivityFinalNode_3005(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

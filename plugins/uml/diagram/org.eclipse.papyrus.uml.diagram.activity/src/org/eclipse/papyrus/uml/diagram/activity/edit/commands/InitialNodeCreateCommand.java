@@ -28,12 +28,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.uml.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.InitialNode;
+import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class InitialNodeCreateCommand extends EditElementCommand {
+public class InitialNodeCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +98,7 @@ public class InitialNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InitialNode newElement = UMLFactory.eINSTANCE.createInitialNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_InitialNode_3004(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

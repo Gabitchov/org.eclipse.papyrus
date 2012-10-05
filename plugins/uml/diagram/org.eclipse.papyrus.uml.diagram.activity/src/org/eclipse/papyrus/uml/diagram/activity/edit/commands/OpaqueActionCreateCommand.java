@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands;
 
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
-public class OpaqueActionCreateCommand extends EditElementCommand {
+public class OpaqueActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -67,7 +67,19 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 	public OpaqueActionCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
-
+	
+	/**
+	 * @generated NOT  set appropriate parents
+	 */
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		OpaqueAction newElement =UMLFactory.eINSTANCE.createOpaqueAction();
+		initAndExecuteEmfCommand(newElement);
+		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
 	/**
 	 * FIXME: replace with setElementToEdit()
 	 * 
@@ -90,23 +102,6 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 	public boolean canExecute() {
 		//check that there is a correct model container
 		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
-	}
-
-	/**
-	 * @generated NOT set appropriate parents
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		OpaqueAction newElement = UMLFactory.eINSTANCE.createOpaqueAction();
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getNodes().add(newElement);
-		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);
-		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**

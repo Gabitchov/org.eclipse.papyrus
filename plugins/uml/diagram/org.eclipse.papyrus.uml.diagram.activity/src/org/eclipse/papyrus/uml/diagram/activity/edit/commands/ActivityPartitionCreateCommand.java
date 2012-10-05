@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class ActivityPartitionCreateCommand extends EditElementCommand {
+public class ActivityPartitionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -96,12 +96,7 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ActivityPartition newElement = UMLFactory.eINSTANCE.createActivityPartition();
-		// set appropriate parents
-		if(!CreateCommandUtil.setActivityPartitionParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_ActivityPartition_3067(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

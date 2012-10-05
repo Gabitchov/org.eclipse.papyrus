@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class ActivityParameterNodeCreateCommand extends EditElementCommand {
+public class ActivityParameterNodeCreateCommand  extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -114,7 +114,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 			return CommandResult.newCancelledCommandResult();
 		}
 		newElement.setIsControlType(true);
-		owner.getOwnedNodes().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet 
 			ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);

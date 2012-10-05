@@ -38,7 +38,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class CallBehaviorActionCreateCommand extends EditElementCommand {
+public class CallBehaviorActionCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -123,10 +123,7 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
+		initAndExecuteEmfCommand(newElement);
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
 		ElementInitializers.getInstance().init_CallBehaviorAction_3008(newElement);

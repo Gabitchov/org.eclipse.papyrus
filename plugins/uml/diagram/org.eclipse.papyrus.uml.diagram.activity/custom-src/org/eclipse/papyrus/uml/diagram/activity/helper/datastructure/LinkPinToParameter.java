@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.helper.datastructure;
 
+import org.eclipse.uml2.uml.CallAction;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.TypedElement;
 

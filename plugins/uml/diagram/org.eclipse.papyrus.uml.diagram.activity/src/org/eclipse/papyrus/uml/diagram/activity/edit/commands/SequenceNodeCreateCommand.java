@@ -31,9 +31,9 @@ import org.eclipse.uml2.uml.SequenceNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated not
  */
-public class SequenceNodeCreateCommand extends EditElementCommand {
+public class SequenceNodeCreateCommand extends ActivityNodeCreateCommand {
 
 	/**
 	 * @generated
@@ -97,12 +97,7 @@ public class SequenceNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		SequenceNode newElement = UMLFactory.eINSTANCE.createSequenceNode();
-		// set appropriate parents
-		if(!CreateCommandUtil.setStructuredActivityNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
+		initAndExecuteEmfCommand(newElement);
 		ElementInitializers.getInstance().init_SequenceNode_3073(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
