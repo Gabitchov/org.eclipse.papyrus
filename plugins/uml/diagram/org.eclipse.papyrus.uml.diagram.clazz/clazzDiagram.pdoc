@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc:Documentation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:doc="http://www.eclipse.org/papyrus/documentation/plugin/documentation" description="This plugin has in charge to represent UML element as defined for the class diagram">
+  <referent firstName="Patrick " lastName="Tessier" eMail="patrick.tessier@cea.fr" currentCompany="CEA LIST"/>
+  <additionalComments title="About Displayed elements in the class diagram" contents="This diagram can display all elements of UML, by using a default notation.&#xD;&#xA;From this diagram, you can create all element defined in the UML sepcification ( class structure chapter 7) and template structure with InformationFlow and InformationItem"/>
+</doc:Documentation>
