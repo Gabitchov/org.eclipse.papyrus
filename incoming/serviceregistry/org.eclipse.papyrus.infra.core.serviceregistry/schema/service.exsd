@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.infra.core.serviceregistry" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.infra.core.serviceregistry" id="service" name="Service"/>
+      </appinfo>
+      <documentation>
+         Service V2.
+Define a Service used by Papyrus Editors. 
+A service can be shared across editors. It can be used as a shared object between editors.
+Some services are used to load models, provide factories, ...
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="registry" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="servicesSet" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="service">
+      <annotation>
+         <documentation>
+            A service that should be registered to the ServicesRegistry.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The key used to retrieve the service from the ServiceRegistry. 
+If not set (default), the classname is used as key.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the class implementing the service.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.services.IService"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  Priority used when two services are registered under the same key. The service with the higher prority is used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="startKind" use="default" value="lazy">
+            <annotation>
+               <documentation>
+                  Specify how the service is started:
+lazy: when the service is requested.
+startup: started when the Registry is about to finish its initialization.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="lazy">
+                  </enumeration>
+                  <enumeration value="startup">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="serviceFactory">
+      <annotation>
+         <documentation>
+            A service factory that should be registered to the ServicesRegistry.
+The factory is used to create the service. The factory receive all the services event, and take in charge to forward them to the service.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The key used to retrieve the service from the ServiceRegistry. 
+If not set (default), the classname is used as key.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the class implementing the service.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.core.services.IServiceFactory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  Priority used when two services are registered under the same key. The service with the higher prority is used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="startKind" use="default" value="lazy">
+            <annotation>
+               <documentation>
+                  Specify how the service is started:
+lazy: when the service is requested.
+startup: started when the Registry is about to finish its initialization.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="lazy">
+                  </enumeration>
+                  <enumeration value="startup">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dependsOn">
+      <annotation>
+         <documentation>
+            Allows to express dependancies needed before starting the surrounding service.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="serviceId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Id of the service on which the surrounding service depends.
+The registry will ensure that the specified service is started before the dependant service.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.serviceregistry.service/service/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="alias">
+      <annotation>
+         <documentation>
+            An alias than can be used in place of the name of a service.
+The alias specifies the alias name, and the service that is accessible 
+from this alias.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The key used to retrieve the service from the ServiceRegistry. 
+If not set (default), the classname is used as key.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="aliasedServiceId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The registry to which this service belong.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.serviceregistry.service/servicesSet/service/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  Priority used when two services are registered under the same key. The service with the higher prority is used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="registry">
+      <annotation>
+         <documentation>
+            Describe  a  Registry.
+Declaring a regitry allows to associate services to one registry.
+Also, it is possible, from within a program, to &quot;load&quot; a registry. This mean that all associated services will be loaded in the Registry.
+
+Registry declaration also allows to:
+ - extends another registry. All services associated to the extended registry are part of the declaration of this registry. A service can be &quot;overloaded&quot; by its name.
+ - specify some registry as parents. A parent is used as a fallback when a service is not found in the registry.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendedRegistry" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="parentRegistry" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="serviceSets" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The key used to identified the registry.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isUnique" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicate if the registry instance is unique.
+A registry flagged as unique can be shared among applications and registries.
+Not yet implemented !!!
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="extendedRegistry">
+      <annotation>
+         <documentation>
+            A registry that the surrounding Registry extends.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="registryId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The registry to which this service belong.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.serviceregistry.service/registry/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="extendedServiceSet">
+      <annotation>
+         <documentation>
+            A registry that the surrounding Registry extends.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="serviceSetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the extended set.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.serviceregistry.service/servicesSet/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="serviceSets">
+      <annotation>
+         <documentation>
+            Sets used by the registry.
+Services attached to the set are added to the registry.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="serviceSetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the extended set.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.serviceregistry.service/servicesSet/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="parentRegistry">
+      <annotation>
+         <documentation>
+            A registry that is parent of this registry.
+This parent is used as a fallback when a service is not found in the surrounding registry.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="registryId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The registry to which this service belong.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.infra.core.serviceregistry.service/registry/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="servicesSet">
+      <annotation>
+         <documentation>
+            A set of services.
+A set is used to group services. 
+A set can extend another set of services. In this case, all services declared in the parent are available in this set.
+
+A set can be declared partially in different plugins. In this case, the final  content of the set is the union of all declarations.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="extendedServiceSet" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="service" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="alias" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="serviceFactory" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique id of the set.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

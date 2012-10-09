@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.presentation.ServicedescriptorswithidModelWizardID"
+            name="%_UI_ServicedescriptorswithidModelWizard_label"
+            class="org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.presentation.ServicedescriptorswithidModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ServicedescriptorswithidModelFile.gif">
+         <description>%_UI_ServicedescriptorswithidModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.presentation.ServicedescriptorswithidEditorID"
+            name="%_UI_ServicedescriptorswithidEditor_label"
+            icon="icons/full/obj16/ServicedescriptorswithidModelFile.gif"
+            extensions="servicedescriptorswithid"
+            class="org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.presentation.ServicedescriptorswithidEditor"
+            contributorClass="org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.presentation.ServicedescriptorswithidActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

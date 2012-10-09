@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="/org.eclipse.papyrus.infra.core.serviceregistry/src"
+    modelPluginID="org.eclipse.papyrus.infra.core.serviceregistry" modelName="Servicedescriptors"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" copyrightFields="false">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>servicedescriptors.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Servicedescriptors" basePackage="org.eclipse.papyrus.infra.core.serviceregistry"
+      disposableProviderFactory="true" ecorePackage="servicedescriptors.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="servicedescriptors.ecore#//StartupKind">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="servicedescriptors.ecore#//StartupKind/lazy"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="servicedescriptors.ecore#//StartupKind/startup"/>
+    </genEnums>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="servicedescriptors.ecore#//String"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="servicedescriptors.ecore#//boolean"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="servicedescriptors.ecore#//int"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//RegistryDesc">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//RegistryDesc/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//RegistryDesc/parents"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//RegistryDesc/children"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//RegistryDesc/extends"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//RegistryDesc/description"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//RegistryDesc/serviceSets"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//RegistryDesc/isUnique"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//RegistryDesc/services"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//RegistryDesc/getServiceDesc">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//RegistryDesc/getServiceDesc/serviceId"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//RegistryDesc/getServiceSetDesc">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//RegistryDesc/getServiceSetDesc/serviceSetsId"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//RegistryDesc/serviceSetsContains">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//RegistryDesc/serviceSetsContains/serviceSetsId"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//RegistryDesc/servicesContains">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//RegistryDesc/servicesContains/serviceId"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//ServiceSetDesc">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//ServiceSetDesc/services"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//ServiceSetDesc/ownedServices"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//ServiceSetDesc/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//ServiceSetDesc/extends"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//ServiceSetDesc/description"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//ServiceSetDesc/getServiceDesc">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//ServiceSetDesc/getServiceDesc/serviceId"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//ServiceSetDesc/servicesContains">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//ServiceSetDesc/servicesContains/serviceId"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="servicedescriptors.ecore#//AbstractServiceDesc">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//AbstractServiceDesc/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//AbstractServiceDesc/dependsOn"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//AbstractServiceDesc/description"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//AbstractServiceDesc/priority"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//AbstractServiceDesc/bundleID"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference servicedescriptors.ecore#//AbstractServiceDesc/parent"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//AbstractServiceDesc/dependsOnIds"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//ServiceDesc">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//ServiceDesc/startKind"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//ServiceDesc/classname"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//ServiceDesc/injections"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="servicedescriptors.ecore#//FeatureInjection">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//FeatureInjection/description"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//AliasDesc">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//AliasDesc/aliasedService"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//AliasDesc/aliasedServiceId"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//Descriptors">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//Descriptors/registries"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//Descriptors/serviceSets"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//Descriptors/getRegistryDesc">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//Descriptors/getRegistryDesc/name"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="servicedescriptors.ecore#//Descriptors/getServiceSetDesc">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="servicedescriptors.ecore#//Descriptors/getServiceSetDesc/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//PropertyInjection">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//PropertyInjection/propertyName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//PropertyInjection/values"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="servicedescriptors.ecore#//InjectedValue">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//InjectedValue/description"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//MethodInjection">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//MethodInjection/methodName"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="servicedescriptors.ecore#//AbstractMethodInjection">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//AbstractMethodInjection/parameters"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//ParameterInjection">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//ParameterInjection/parameterName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//ParameterInjection/values"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//InjectedService">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference servicedescriptors.ecore#//InjectedService/service"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//OpaqueInjectedValue">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute servicedescriptors.ecore#//OpaqueInjectedValue/value"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//ConstructorInjection"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="servicedescriptors.ecore#//ServiceFactoryDesc"/>
+  </genPackages>
+</genmodel:GenModel>

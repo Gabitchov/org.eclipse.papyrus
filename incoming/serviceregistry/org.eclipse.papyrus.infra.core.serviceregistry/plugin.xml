@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="service" name="Service" schema="schema/service.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.infra.core.serviceregistry.service">
+      <servicesSet
+            id="wizardServiceSet">
+         <service
+               classname="org.eclipse.papyrus.infra.core.serviceregistry.Service2"
+               id="modeSet"
+               priority="1"
+               serviceSetId="org.eclipse.papyrus.infra.core.serviceregistry.service2"
+               startKind="lazy">
+         </service>
+      </servicesSet>
+      <servicesSet
+            id="papyrusServiceSet">
+         <extendedServiceSet
+               serviceSetId="wizardServiceSet">
+         </extendedServiceSet>
+         <service
+               classname="org.eclipse.papyrus.infra.core.serviceregistry.Service3"
+               id="sashContainer"
+               priority="1"
+               serviceSetId="org.eclipse.papyrus.infra.core.serviceregistry.service3"
+               startKind="startup">
+         </service>
+         <serviceAlias
+               aliasedServiceId="modeSet"
+               id="myAlias">
+         </serviceAlias>
+      </servicesSet>
+      <registry
+            id="papyrusRegistry"
+            isUnique="false">
+         <serviceSets
+               serviceSetId="papyrusServiceSet">
+         </serviceSets>
+      </registry>
+      <registry
+            id="wizardRegistry"
+            isUnique="false">
+         <serviceSets
+               serviceSetId="wizardServiceSet">
+         </serviceSets>
+         <parentRegistry
+               registryId="papyrusRegistry">
+         </parentRegistry>
+      </registry>
+   </extension>
+</plugin>
