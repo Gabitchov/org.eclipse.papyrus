@@ -377,10 +377,9 @@ public class AbstractTableEditor extends AbstractPapyrusNestedEditor implements 
 			this.authorizedPattern.add("table"); //$NON-NLS-1$
 			this.authorizedPattern.add("org.eclipse.ui.edit.delete"); //$NON-NLS-1$
 			this.authorizedPattern.add("org.eclipse.ui.edit.copy"); //$NON-NLS-1$
+			this.authorizedPattern.add("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
 			this.authorizedPattern.add("org.eclipse.ui.edit.selectAll"); //$NON-NLS-1$
 		}
-
-
 
 		/**
 		 * We filter the contribution to the table menu

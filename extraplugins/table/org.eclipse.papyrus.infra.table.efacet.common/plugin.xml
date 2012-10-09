@@ -109,13 +109,13 @@
             commandId="org.eclipse.papyrus.infra.table.efacet.common.command.moveuprow"
             contextId="org.eclipse.papyrus.infra.table.efacet.common.context"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="ALT+ARROW_UP">
+            sequence="M3+ARROW_UP">
       </key>
       <key
             commandId="org.eclipse.papyrus.infra.table.efacet.common.command.movedownrow"
             contextId="org.eclipse.papyrus.infra.table.efacet.common.context"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="ALT+ARROW_DOWN">
+            sequence="M3+ARROW_DOWN">
       </key>
    </extension>
    <extension
