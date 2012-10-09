@@ -1394,7 +1394,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 					}
 					if(constraint.getMaxint() instanceof LiteralInteger) {
 						int max = ((LiteralInteger)constraint.getMaxint()).getValue();
-						if(newMin > max) {
+						if(max != -1 && newMin > max) {
 							literalIntNotifier.setValue(max);
 						}
 					}
@@ -1406,7 +1406,7 @@ AbstractBorderedShapeEditPart implements ITextAwareEditPart {
 					int min = 0;
 					if(constraint.getMinint() instanceof LiteralInteger) {
 						min = ((LiteralInteger)constraint.getMinint()).getValue();
-						if(newMax < min) {
+						if(newMax != -1 && newMax < min) {
 							literalIntNotifier.setValue(min);
 						}
 					}
