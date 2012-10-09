@@ -32,6 +32,7 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.infra.emf.commands,
  org.eclipse.papyrus.infra.emf.databinding,
+ org.eclipse.papyrus.infra.emf.dialog,
  org.eclipse.papyrus.infra.emf.providers,
  org.eclipse.papyrus.infra.emf.providers.strategy,
  org.eclipse.papyrus.infra.emf.utils
