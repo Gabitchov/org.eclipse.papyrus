@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDia
- gramEditorPlugin
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.uml.diagram.activity,
@@ -34,8 +33,7 @@ Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity;singleto
- n:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
@@ -80,5 +78,5 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.9.1",
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.1",
  org.eclipse.papyrus.editor;bundle-version="0.9.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1"
-
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.9.1",
+ org.eclipse.gmf.tooling.runtime;bundle-version="3.0.0"
