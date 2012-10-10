@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * @generated
+ * @generated NOT
  */
 public class CreateObjectActionCreateCommand extends ActivityNodeCreateCommand {
 
@@ -49,7 +49,8 @@ public class CreateObjectActionCreateCommand extends ActivityNodeCreateCommand {
 	/**
 	 * @generated
 	 */
-	public CreateObjectActionCreateCommand(CreateElementRequest req, EObject eObject) {
+	public CreateObjectActionCreateCommand(CreateElementRequest req,
+			EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -58,7 +59,8 @@ public class CreateObjectActionCreateCommand extends ActivityNodeCreateCommand {
 	/**
 	 * @generated
 	 */
-	public static CreateObjectActionCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static CreateObjectActionCreateCommand create(
+			CreateElementRequest req, EObject eObject) {
 		return new CreateObjectActionCreateCommand(req, eObject);
 	}
 
@@ -75,11 +77,13 @@ public class CreateObjectActionCreateCommand extends ActivityNodeCreateCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
+		if (container != null) {
 			return container;
 		}
 		return eObject;
@@ -89,31 +93,42 @@ public class CreateObjectActionCreateCommand extends ActivityNodeCreateCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
+
 		return true;
+
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		CreateObjectAction newElement = UMLFactory.eINSTANCE.createCreateObjectAction();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		CreateObjectAction newElement = UMLFactory.eINSTANCE
+				.createCreateObjectAction();
 		initAndExecuteEmfCommand(newElement);
-		ElementInitializers.getInstance().init_CreateObjectAction_3086(newElement);
+		ElementInitializers.getInstance().init_CreateObjectAction_3086(
+				newElement);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(CreateObjectAction newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+	protected void doConfigure(CreateObjectAction newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
